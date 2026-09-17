@@ -131,3 +131,13 @@ Explain:
 - whether any manual setup is required
 
 Do not require the owner to inspect source code to validate work.
+
+## Development status
+
+Maintain `DEV_STATUS.md` in the repository root.
+
+Update it before every milestone-completion commit and after any major architectural change.
+
+Include the current milestone, current status, completed work, files/areas changed, tests and build status, key technical decisions, known issues, remaining work, and recommended next step.
+
+Report actual verification results and distinguish implementation completion from owner approval. Never include secrets, API keys, credentials, or DM-private content.
