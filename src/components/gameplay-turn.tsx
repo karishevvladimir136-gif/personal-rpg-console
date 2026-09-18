@@ -174,7 +174,9 @@ export function GameplayTurn({
       <p role="status" className="muted">
         {t(turnStatusLabels[turn.status])}
       </p>
-      {turn.failure && <p role="alert">{t(turnFailureLabels[turn.failure])}</p>}
+      {turn.status === "failed" && turn.failure && (
+        <p role="alert">{t(turnFailureLabels[turn.failure])}</p>
+      )}
       {turn.checks.map((check) => (
         <div key={check.id}>
           <GameplayCheck check={check} />
@@ -190,7 +192,9 @@ export function GameplayTurn({
       ))}
       {turn.narration !== null && (
         <article className="gameplay-narration">
-          <span className="eyebrow">{t("DM")}</span>
+          <span className="eyebrow">
+            {t(turn.mode === "mechanic" ? "Mechanical result" : "DM")}
+          </span>
           <div className="prose">{turn.narration}</div>
         </article>
       )}
