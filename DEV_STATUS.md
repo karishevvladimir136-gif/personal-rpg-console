@@ -39,7 +39,7 @@ No configured Supabase instance, environment file, Docker/CLI or PostgreSQL serv
 
 - Integrated typecheck, lint (no warnings) and production build passed.
 - Final development suite after the remote merge: **121 passed, 1 explicitly skipped live Supabase integration test, 0 failed** (122 total).
-- Earlier production suite before the final ordering addition: 120 passed, 1 explicitly skipped. The final committed result will also be verified against a fresh production process before push.
+- Final production verification of integrated code commit `7aec653e43458572230c35fd563fe6993a7c8d8b`: **121 passed, 1 explicitly skipped, 0 failed**. Typecheck, lint and production build also passed on that commit. The following status-only commit records these actual results.
 - SQL tests execute all three migrations in embedded PostgreSQL with synthetic auth roles. They cover two unrelated campaigns, durable reopen, owner/non-owner/anonymous access, private markers, immutable document/guide restoration, revision conflicts, retries, inventory integrity, feedback isolation, source order and preserved original/correction payloads. They do not verify Supabase Auth/PostgREST or browser cookies.
 - Browser checks covered setup and isolated English/Russian preview navigation, including 320px setup and 390px Russian Game/menu without horizontal overflow. Screenshots of those narrow views were inspected. Signed-in persistence/feedback flows and physical iPhone/Safari remain unverified.
 - Production client chunks contain no synthetic private marker, private-schema operation, server auth client or password-sign-in implementation. The setup screen intentionally displays configuration variable names only. No environment files or credentials are tracked.
@@ -56,7 +56,7 @@ Actual Supabase identity, browser cookie lifecycle, refresh/relogin persistence,
 
 ## Remaining work
 
-Configure a disposable local Supabase stack and complete the real Auth/REST and signed-in application checklist before Phase 1 acceptance. No live integration or owner acceptance is claimed. Stop for owner review after the integrated commit/push; do not begin Phase 2 or deploy.
+Configure a disposable local Supabase stack and complete the real Auth/REST and signed-in application checklist before Phase 1 acceptance. No live integration or owner acceptance is claimed. The integrated implementation and this verification record are ready for commit/push and owner review. Do not begin Phase 2 or deploy.
 
 ## Recommended next step
 
