@@ -378,3 +378,73 @@ test("explicit mechanical actions need no provider and use campaign-language tru
   assert.match(result.narration, /^Результат по правилам:/);
   assert.equal(state.source.snapshot.entities[0].resources.focus, 3);
 });
+
+test("new and recovered plans share the strict private patch schema before any side effect", async () => {
+  const valid = {
+    kind: "clock",
+    key: "synthetic_clock",
+    operation: "advance",
+    value: null,
+    amount: 100,
+  };
+  const invalidPatches = [
+    { ...valid, key: "x".repeat(81) },
+    { ...valid, key: "synthetic.clock" },
+    { ...valid, key: "synthetic:clock" },
+    { ...valid, kind: "faction" },
+    { ...valid, amount: 101 },
+    { ...valid, amount: -1 },
+    {
+      kind: "fact",
+      key: "synthetic_fact",
+      operation: "set",
+      value: "x".repeat(2001),
+      amount: null,
+    },
+    { ...valid, unexpected: "SYNTHETIC_PRIVATE_MARKER" },
+  ];
+  for (const recovered of [false, true]) {
+    for (const [index, patch] of invalidPatches.entries()) {
+      const source = fixture(),
+        { store, state } = memoryStore(source);
+      const plan = { ...emptyPlan(), privatePatches: [patch] };
+      const { provider, calls } = providerDouble(plan);
+      const input = turn(source, null, `strict-${recovered}-${index}`);
+      if (recovered) {
+        await store.begin(input);
+        state.turns.get(input.operationId).checkpoint.plan =
+          structuredClone(plan);
+      }
+      const result = recovered
+        ? await resumeTurn(resume(input), { store, provider })
+        : await runTurn(input, { store, provider });
+      assert.equal(result.failure, "validation");
+      assert.equal(result.narration, null);
+      assert.equal(state.commits, 0);
+      assert.equal(state.rollsWritten, 0);
+      assert.equal(calls.narrate, 0);
+      if (recovered) assert.equal(calls.plan, 0);
+      assert.doesNotMatch(JSON.stringify(result), /SYNTHETIC_PRIVATE_MARKER/);
+    }
+  }
+  const source = fixture(),
+    { store, state } = memoryStore(source),
+    { provider } = providerDouble({
+      ...emptyPlan(),
+      privatePatches: [
+        valid,
+        {
+          kind: "fact",
+          key: "x".repeat(80),
+          operation: "set",
+          value: "x".repeat(2000),
+          amount: null,
+        },
+      ],
+    });
+  assert.equal(
+    (await runTurn(turn(source), { store, provider })).status,
+    "committed",
+  );
+  assert.equal(state.commits, 1);
+});

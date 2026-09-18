@@ -1,12 +1,12 @@
 import type { PublicTurn, ResumeInput, TurnInput } from "./contracts.ts";
 import type {
-  DmPlan,
   MechanicsResolution,
   RuntimeSource,
   TurnClaim,
   TurnDependencies,
 } from "./server-contracts.ts";
 import { isDisplayedCheck, recordServerRoll } from "./dice.ts";
+import { parsePlan } from "./dm-schema.ts";
 import {
   checkModifier,
   mechanicPlan,
@@ -87,39 +87,6 @@ function validateMode(source: RuntimeSource, input: TurnInput) {
     requireRule(input.companionId === null && input.listenerIds.length === 0);
 }
 
-function validatePrivatePatches(plan: DmPlan) {
-  requireRule(
-    Array.isArray(plan.privatePatches) && plan.privatePatches.length <= 20,
-  );
-  for (const patch of plan.privatePatches) {
-    requireRule(
-      Object.keys(patch).length === 5 &&
-        Object.keys(patch).every((key) =>
-          ["kind", "key", "operation", "value", "amount"].includes(key),
-        ),
-    );
-    requireRule(
-      ["fact", "clock", "npc", "faction", "consequence"].includes(patch.kind) &&
-        /^[a-zA-Z0-9_.:-]{1,100}$/.test(patch.key),
-    );
-    if (patch.operation === "set")
-      requireRule(
-        typeof patch.value === "string" &&
-          patch.value.length <= 4000 &&
-          patch.amount === null,
-      );
-    else
-      requireRule(
-        patch.operation === "advance" &&
-          patch.value === null &&
-          Number.isSafeInteger(patch.amount) &&
-          patch.amount! >= 0 &&
-          patch.amount! <= 1000 &&
-          ["clock", "faction"].includes(patch.kind),
-      );
-  }
-}
-
 async function execute(
   claim: TurnClaim,
   dependencies: TurnDependencies,
@@ -158,7 +125,8 @@ async function execute(
             : null,
       });
     }
-    if (!checkpoint.plan) {
+    const newPlan = !checkpoint.plan;
+    if (newPlan) {
       if (input.mode === "mechanic")
         checkpoint.plan = mechanicPlan(source, input);
       else {
@@ -166,14 +134,13 @@ async function execute(
         checkpoint.plan = response.output;
         checkpoint.usage.push(response.usage);
       }
-      validatePlan(source, input, checkpoint.plan);
-      validatePrivatePatches(checkpoint.plan);
-      requireRule(checkpoint.plan.guidanceProposal === null);
-      await store.checkpoint(lease, checkpoint, "generating");
-    } else {
-      validatePlan(source, input, checkpoint.plan);
-      validatePrivatePatches(checkpoint.plan);
     }
+    // One strict transport schema for provider output, explicit mechanics and
+    // recovered checkpoints; mechanics then validates against current authority.
+    checkpoint.plan = parsePlan(checkpoint.plan);
+    validatePlan(source, input, checkpoint.plan);
+    requireRule(checkpoint.plan.guidanceProposal === null);
+    if (newPlan) await store.checkpoint(lease, checkpoint, "generating");
     if (checkpoint.plan.clarification !== null) {
       return await store.commit(lease, {
         narration:
