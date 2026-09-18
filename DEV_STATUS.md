@@ -4,16 +4,65 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
-**Phase 2 — Text DM: explicitly authorized, implementation in progress.** Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Phase 3, deployment and real campaign/DM-private imports are not authorized.
+**Phase 2 — Text DM: implementation integrated; live OpenAI acceptance blocked on secure local owner setup. NOT READY FOR OWNER ACCEPTANCE yet.** Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Phase 3, deployment and real campaign/DM-private imports are not authorized.
 
-## Phase 2 coordination checkpoint
+## Phase 2 current status and completed work
 
-- **Current status:** all three workers acknowledged the shared contract and concrete DTOs at `c7c46e6` before GO. Separate worktrees are active for runtime/database, mechanics/turns and UI. Lead owns API integration and translations; only worker A edits migrations.
-- **Completed / files changed:** repository/specification review, shared lifecycle/privacy/context/ownership contract, public/internal DTOs, explicit house-profile vocabulary, phase-boundary documentation and lead API/request validation. No Phase 2 runtime is claimed complete.
-- **Verification so far:** 18 targeted request-validation, localization and campaign-settings tests pass; targeted ESLint passes. New HTTP authorization checks await integrated worker modules. The historical results below are accepted Phase 1 results, not Phase 2 verification. Full Phase 2 deterministic integration, live OpenAI and the 20–30 turn synthetic campaign remain pending.
-- **Key decisions:** one primary DM runtime; service-only private access after verified owner authorization; durable fenced operations and recorded dice; atomic validated consequences; separate public-only narration stage; bounded model-specific context. Reuse existing records, no Phase 3 memory runtime.
-- **Known limitations:** a names-only check found no configured OpenAI API key/model or runtime service credential. Local service setup will be coordinated after additive migrations; the owner will receive secure OpenAI setup instructions before live verification. Missing setup is not replaced by fake production replies. Physical iPhone/Safari and optional conflict-rebase confirmation remain non-blocking unverified Phase 1 items.
-- **Remaining / next step:** finish assigned workstreams, integrate runtime/database then mechanics then UI, and verify deterministically before live calls. Record actual results and stop for Phase 2 owner acceptance after the gates pass. No deployment or real-data import.
+- All three development workers acknowledged `PHASE2_CONTRACTS.md` and the concrete DTOs at `c7c46e6` before GO. Each used a separate worktree/branch; the lead integrated runtime/database, mechanics and UI in that order, including follow-up fixes. Workers did not push. Only the database worker changed `supabase/**`.
+- Owner-authorized APIs connect persistent Game, OOC, companion conversations and separate Chat with DM to one server-side DM runtime. Strict planning/output schemas, a public-only narration stage, allow-listed errors and serialization separate private planning from browser responses. No fake production DM replies.
+- Accepted input, operation/check IDs, statuses, fenced leases, saved plans/results and transactional consequences survive failure/retry. Duplicate operations return their existing result; stale manual/settings/document changes reject the old proposal. Dice use server randomness; interactive playback never rolls again. Rerolls require explicit commands and campaign allowance.
+- The explicit `console-basic-v1` house profile enforces supported checks/combat budgets, independent enemy HP/damage scaling, defeat policies, inventory/resources, quests/locations, camp/rest supplies and recovery, remote storage/cargo access, meal/coffee preparation and consumption, effects and a component-aware spear transformation. Unsupported mechanics fail closed. Manual correction tools and the isolated Phase 0 preview remain available.
+- Feedback may propose guidance but cannot apply it automatically. Explicit session approval and immutable campaign-guide versions reuse existing document infrastructure, with revision checks and retry receipts. A changed guide invalidates an older proposal's baseline. Session guidance expires with its session; ordinary gameplay receives approved guidance rather than the feedback thread.
+- Existing EN/RU design and responsive layout are retained. Input drafts are campaign/mode scoped; accepted input/status is durable. FRAME/VIDEO remain inactive. No Phase 3 runtime, deployment or real campaign/private import occurred.
+
+## Phase 2 files / areas changed
+
+`PHASE2_CONTRACTS.md`; shared DTOs, context/provider/store/schema and mechanics/turn modules in `src/lib/gameplay/`; server-only `src/lib/server/dm/` and gameplay service; campaign-scoped play/turn/resume/guidance routes; additive migration `202609180004_phase2_runtime.sql`; Game/Chat/Camp/actions/configuration UI and existing Party/Inventory/Settings integration; `gameplay.css`; English/Russian strings; focused and integrated tests; synthetic acceptance scripts; `PHASE2_SETUP.md`, `SUPABASE_SETUP.md`, `START_HERE.md`, specification, plan and this status file. Local environment, logs, fixtures, credentials and backup files remain ignored.
+
+## Phase 2 tests and build status
+
+### Automated local verification
+
+- Final Next route type generation, TypeScript check, full ESLint and normal Turbopack production build **passed** after integration and browser fixes. No lint warnings.
+- Full suite: **208 total, 207 passed, 1 explicitly skipped, 0 failed**. The skipped test is the opt-in Phase 1 empty-database seed/integration test; it passed at the accepted Phase 1 checkpoint and must not be reseeded over the now-populated fixtures. Current real Supabase checks are recorded separately below.
+- Tests cover strict output/public-private patch rejection, owner/campaign boundaries, concurrent operation serialization, lease takeover, duplicate/reconnect/retry, recorded dice and explicit rerolls, stale manual/settings changes, hidden/DC filtering, required versus discretionary checks, atomic inventory/resources, encounters, rest/camp/storage, effects/transformation provenance, guidance approval/scope/version conflicts, bounded context/oversize and draft/localization behavior.
+- Integrated tests exercise the production turn engine and RPC adapter against all four committed migrations in embedded PostgreSQL, with explicitly synthetic Auth and scripted provider outputs. They verify accepted-input durability, failed narration/retry with the same dice, atomic rejection, feedback isolation/explicit guide versions and supported mechanics. They are not real OpenAI tests.
+- A **26-operation deterministic mechanics journey** passes with state serialized/reloaded between actions. It is a domain-level scenario, not the required live 20–30 turn model campaign.
+
+### Real disposable local Supabase / application verification
+
+- Preserved the populated Phase 1 database and two accounts/one authorized owner. Created and verified a local database backup, then applied only additive migration **004**; no reset or destructive reseed. Auth/Postgres/REST remain local, with Docker ports verified on loopback. The new service credential was configured directly in ignored local environment without displaying it.
+- `scripts/gameplay-app-acceptance.mjs`: **all 8 groups passed** against the running development application and real local Auth/database. New unrelated **Synthetic Phase 2 · Glass Orchard** and **Synthetic Phase 2 · Quiet Comet** campaigns leave the original Phase 1 campaigns intact. Checks include owner/non-owner/anonymous/origin restrictions, persisted item/resource use, duplicate/concurrent operation protection, stale manual correction, campaign isolation, rest/recipe/effect state and consumed-source preservation, quest/location consequences, logout/relogin. These checks make no OpenAI calls.
+- `scripts/gameplay-access-acceptance.mjs`: passed against the **production application on port 3001**. Real PostgREST denies anonymous, ordinary owner and non-owner direct access to the service-only runtime RPC/private schema. **17** normal owner campaign/play/turn responses contained no synthetic private canary, operational checkpoint or server credential. All **20** production client JavaScript files contained no private canary or server credential names/values. Only synthetic private markers were used.
+- The temporary production verification server was stopped. The development preview remains on **http://127.0.0.1:3000/campaigns** with local Supabase running.
+
+### Browser verification actually performed
+
+- Inspected the desktop Game and 390px/320px layouts, including Russian Game, campaign rules configuration, Camp, companion dialog and language settings. No horizontal page overflow in the checked narrow layouts; the existing dark/bronze visual direction remains intact. Saved Russian for checks, then restored the owner's English preference.
+- Submitted a synthetic Game action with OpenAI unconfigured: the configuration failure retained the accepted action and exact draft across navigation/refresh. Retry reused the same accepted action; cancelling released it while retaining editable input. No fabricated narration or rolls appeared.
+- Submitted separate synthetic DM feedback; its configuration failure preserved the message and left the DM Guide unchanged. No fake reply or unapproved guidance was presented. The other campaign showed no feedback or game input from the first.
+- Started a long rest in Quiet Comet from the Russian mobile UI: opening camp did not heal. Explicitly allocated one supply and completed the rest. Returning to Game showed saved recovery from 6/12 to 12/12; camp closed. The separate real HTTP checks verify the corresponding atomic supply/time/effect rules.
+- Opened the companion conversation and explicit-listener UI. A live companion reply, actual interactive-dice animation after a model-requested roll and live feedback proposal/approval are **not** claimed as browser-verified while OpenAI remains unconfigured.
+
+### Live OpenAI verification: blocked, not passed
+
+`OPENAI_API_KEY` and `OPENAI_DM_MODEL` are absent from ignored local configuration. **Actual model used: none. Live provider calls: 0. Provider token usage/cost: none.** Observed browser failures were deliberate missing-configuration failures, not provider responses. Deterministic provider failure/retry tests are separate from live API reliability. No large paid evaluation was run.
+
+The required synthetic **20–30 turn live-model campaign remains outstanding**, including real narration/continuity quality, structured output compliance, companion knowledge and feedback proposals with session/campaign approval. Report actual model, calls, usage/cost and retries after that test. Passing deterministic and local database tests does not satisfy this gate.
+
+## Phase 2 key decisions and limitations
+
+- One primary DM runtime, with planning followed by a public-only narration stage. The browser never receives private planning output. Private access is server-only behind verified owner/campaign authorization and an independently checked service RPC. External calls occur outside transactions; fenced commits validate the pinned campaign revision.
+- Per-model configuration supports explicit `gpt-5.4-mini` or `gpt-5.4`; no automatic fallback. Responses use strict structured output, no provider tools/streaming, `store:false`, bounded attempts/timeouts and content-free diagnostics. The provider has not yet been live-tested.
+- Bounded context conservatively counts serialized UTF-8 bytes plus framing/schema against explicit model input/output/safety budgets and a 64,000 input operational cap. At most 32 complete exchanges are admitted; missing essential history or oversized mandatory sources pauses instead of silently truncating or inventing continuity. No summaries, compaction, historical/semantic retrieval, embeddings or continuity guarantee for arbitrarily long campaigns.
+- Mechanics require explicit owner selection of the small documented house profile; this is not official D&D or automatic interpretation of arbitrary engine documents/prose. Only configured supported item actions and transformations are authoritative. Rest/encounter settings are pinned at their start, so later changes are prospective. Existing inert records are reused rather than duplicated.
+- Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation remain disclosed, non-blocking unverified items. Mobile desktop-browser viewport checks do not verify physical Safari. No hosted/deployed environment or real-data behavior is claimed.
+
+## Phase 2 remaining work and recommended next step
+
+**Owner setup is the current blocker.** Follow the click-by-click [PHASE2_SETUP.md](PHASE2_SETUP.md) instructions to put an OpenAI key and an explicitly chosen supported model only in ignored `.env.local`; never paste either the file or key into chat. The local Supabase service credential is already configured. Tell the agent only **“OpenAI is configured locally.”**
+
+Then verify configuration presence without displaying values, restart the local preview, run the authorized small synthetic 20–30 turn live campaign and remaining model-dependent browser checks, and record actual model/call/token/cost/failure results. Fix any failures, rerun integrated checks, update this record, commit and push. Only after those gates pass report **PHASE 2 READY FOR OWNER ACCEPTANCE**. Only the owner may approve it. Do not begin Phase 3, deploy or import real campaign/private material.
 
 ## Approved Phase 0 checkpoint
 
@@ -24,9 +73,11 @@ The owner explicitly approved **96b69dcd63d2fa015f5e75bcc5d632c41e04369e**. It r
 
 ## Accepted Phase 1 status (historical checkpoint)
 
+All Phase 1 subsections below describe that accepted checkpoint, not the current Phase 2 implementation. In particular, their disabled-gameplay/no-service-key statements were true at Phase 1 and are superseded by the explicit Phase 2 record above.
+
 Remote documentation commits through f46014d were safely merged; section 38 remains intact. Our persistence and Chat with DM additions are sections 39 and 40. Only ordered source records and immutable correction-history foundations are added now; no memory runtime is implemented.
 
-**The owner explicitly accepted Phase 1 at commit `a0c7a815b413251df45a961af8c77986975e546f`.** This is owner approval of that implementation checkpoint, separate from the verification results below. The required local database, application HTTP and browser acceptance checks passed on September 18, 2026 UTC (September 17 locally). Physical iPhone/Safari and the optional conflict-rebase confirmation action remain disclosed, non-blocking unverified items; acceptance does not claim they were tested. Phase 2, deployment, real campaign imports and real DM-private imports remain prohibited.
+**The owner explicitly accepted Phase 1 at commit `a0c7a815b413251df45a961af8c77986975e546f`.** This is owner approval of that implementation checkpoint, separate from the verification results below. The required local database, application HTTP and browser acceptance checks passed on September 18, 2026 UTC (September 17 locally). Physical iPhone/Safari and the optional conflict-rebase confirmation action remain disclosed, non-blocking unverified items; acceptance does not claim they were tested. At that acceptance checkpoint Phase 2 was not yet authorized; its subsequent authorization is recorded above. Deployment, real campaign imports and real DM-private imports remain prohibited.
 
 Three implementation workers used separate worktrees and agreed shared contracts before implementation; the lead integrated their work. The queued Chat with DM addition joined the campaigns/documents workstream, with an additive migration from the sole database owner. This acceptance follow-up preserves that implementation and the approved Phase 0 checkpoint.
 

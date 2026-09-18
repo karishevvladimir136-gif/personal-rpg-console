@@ -4,6 +4,7 @@ import { ApplicationFrame } from "@/components/persistent-shell";
 import { WorkspaceProvider } from "@/components/persistence-context";
 import { LanguageProvider } from "@/components/language-context";
 import "./globals.css";
+import "./gameplay.css";
 export const metadata: Metadata = {
   title: "Personal RPG Console",
   description:

@@ -72,7 +72,7 @@ Acceptance:
 - typecheck, lint, tests, and production build pass; actual results recorded in DEV_STATUS.md
 - user approves visual direction
 
-Implementation completion does not count as owner approval. The owner subsequently approved Phase 0 at 96b69dcd63d2fa015f5e75bcc5d632c41e04369e and explicitly authorized Phase 1. See DEV_STATUS.md for distinct implementation and independent-review records. Phase 2 and deployment remain unauthorized.
+Implementation completion does not count as owner approval. The owner subsequently approved Phase 0 at 96b69dcd63d2fa015f5e75bcc5d632c41e04369e and explicitly authorized Phase 1. See DEV_STATUS.md for distinct implementation and independent-review records. This historical checkpoint authorized only Phase 1; the later Phase 2 authorization is recorded under Milestone 2. Deployment remains unauthorized.
 
 Suggested agent prompt:
 
@@ -152,7 +152,7 @@ The owner now explicitly authorizes this milestone after accepting Phase 1 at `a
 
 Run full integrated deterministic checks before live OpenAI calls. Complete a synthetic 20–30 turn campaign and report scripted-provider versus real-model results, actual model/call count/usage/failures separately. Missing secure local setup is a disclosed blocker; no production fake replies. Preserve the approved visual direction and English/Russian support. No Phase 3, deployment, media generation, real campaign/private import or large paid evaluation without separate authorization. Stop at PHASE 2 READY FOR OWNER ACCEPTANCE, not owner approval.
 
-Deferred Chat with DM contract (MASTER_SPEC section 40): use the same primary DM in a separate feedback mode, propose concise guidance, and require explicit owner choice of This session or Save for this campaign. Session guidance expires with the session; campaign guidance remains versioned. Gameplay receives effective approved guidance rather than all feedback messages. Apply only prospectively, respecting code-enforced mechanics, agency, canon and secrecy. Keep brief Game OOC. No part of this runtime behavior is authorized in Phase 1.
+Chat with DM contract for this milestone (MASTER_SPEC section 40): use the same primary DM in a separate feedback mode, propose concise guidance, and require explicit owner choice of This session or Save for this campaign. Session guidance expires with the session; campaign guidance remains versioned. Gameplay receives effective approved guidance rather than all feedback messages. Apply only prospectively, respecting code-enforced mechanics, agency, canon and secrecy. Keep brief Game OOC. This behavior was deferred during Phase 1 and is now part of the authorized Phase 2 scope.
 
 Goal:
 The app becomes playable.

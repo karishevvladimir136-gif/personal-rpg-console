@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "./language-context";
 import { useCampaignData, useUnsavedChanges } from "./persistence-context";
 import { Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
+import { GameplayCompanionTalk, GameplayItemActions } from "./gameplay-actions";
 import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
 import type {
   CampaignSnapshot,
@@ -456,7 +457,7 @@ function EntityEditor({
           {draft.kind === "npc" && (
             <p className="muted">
               {t(
-                "NPC equipment is not available in Phase 1. Keep known NPC details in the public record.",
+                "Known NPCs use their public character record. This editor does not assign an equipment profile to NPCs.",
               )}
             </p>
           )}
@@ -865,11 +866,7 @@ function ItemDetails({
       <Button primary onClick={onEdit}>
         {t("Correct item record")}
       </Button>
-      <p className="muted">
-        {t(
-          "Use, transfer, rest, cooking and combat are unavailable until gameplay rules are connected.",
-        )}
-      </p>
+      <GameplayItemActions item={item} />
     </Modal>
   );
 }
@@ -1072,12 +1069,9 @@ function EntityCollection({
                   {t("Open shared inventory")}
                 </Link>
               </p>
-              <Button disabled>{t("Talk")}</Button>
-              <p className="muted">
-                {t(
-                  "Companion responses and gameplay actions are not connected in Phase 1.",
-                )}
-              </p>
+              {selected.kind === "companion" && (
+                <GameplayCompanionTalk entityId={selected.id} />
+              )}
             </Panel>
           </div>
         </>

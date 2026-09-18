@@ -2,6 +2,8 @@
 
 Phase 1 is owner-approved. Phase 2 is authorized for local implementation and synthetic acceptance only. No deployment or real campaign import is authorized. Check `DEV_STATUS.md` for the actual verification checkpoint; this guide does not claim acceptance has passed.
 
+**September 18 checkpoint:** deterministic integration and the production build passed. The local database was backed up, migration 004 was applied, and the server's disposable Supabase service credential is configured. The owner only needs to complete the OpenAI steps below before live-model acceptance can proceed. Do not repeat the database setup or seed procedure.
+
 ## What stays on this computer
 
 The existing local Supabase database and owner account remain in place. Do not reset the database or repeat the Phase 1 account/seed procedure. The additive Phase 2 migration is applied after a local backup and deterministic checks. The runtime uses a server-only service credential behind verified owner/campaign authorization; ordinary browser credentials cannot call that private runtime RPC.
@@ -46,6 +48,7 @@ Game remains the main free-text play screen. Dice are generated and recorded on 
 
 - Ordinary tests use deterministic substitutes, embedded PostgreSQL with explicit test-only Auth, and unauthenticated HTTP checks against a running preview. These are separate from real Supabase and live OpenAI results.
 - `scripts/gameplay-app-acceptance.mjs` uses the real local owner/non-owner accounts and application APIs. It appends two new synthetic campaigns, preserves existing campaigns, and verifies mechanics without calling OpenAI. Its opt-in and environment files are the same ignored disposable-test setup described in `SUPABASE_SETUP.md`.
+- `scripts/gameplay-access-acceptance.mjs` reuses those fixtures for read-only owner/non-owner/anonymous runtime access, normal API privacy and production client-bundle checks. Build first; the script makes no OpenAI calls and does not create another campaign.
 - Live model acceptance runs only after deterministic integration is green. Report the actual selected model, calls, usage, approximate cost, failures/retries and the synthetic 20–30 turn results separately. No large model-quality evaluation is authorized by this setup guide.
 - Phase 2 has a conservative bounded context window and pauses when necessary exact history/current sources cannot safely fit. It does not generate summaries, search historical/semantic memory, embed documents or silently switch models. Phase 3 remains deferred.
 - Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation remain disclosed unverified items unless explicitly tested later.

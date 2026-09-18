@@ -1720,7 +1720,7 @@ Do not conduct paid model evaluation without authorization and configured creden
 
 # 39. Owner-approved Phase 1 persistence boundary
 
-Phase 0 is approved at `96b69dcd63d2fa015f5e75bcc5d632c41e04369e`. Later Phase 0 stop/approval-pending notes above are historical checkpoints superseded by this explicit approval. Phase 1 implementation is authorized; Phase 2 and deployment remain unauthorized.
+Phase 0 is approved at `96b69dcd63d2fa015f5e75bcc5d632c41e04369e`. Later Phase 0 stop/approval-pending notes above are historical checkpoints superseded by this explicit approval. This checkpoint authorized Phase 1 only; the subsequent Phase 2 authorization is recorded in section 41. Deployment remains unauthorized.
 
 Use Supabase Postgres/Auth for the private single owner. Verify the signed-in user on every server read/write, match the configured owner and database registry, enforce owner-only RLS, and prevent cross-campaign references. No public registration. Complete owner authentication and access checks before any separately authorized deployment. All credentials remain server-side; DM-private records reside in a separate unexposed schema, with no ordinary client accessor. Media providers/models remain owner-selectable in later phases.
 

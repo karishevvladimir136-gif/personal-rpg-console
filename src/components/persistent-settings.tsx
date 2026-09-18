@@ -10,6 +10,7 @@ import {
 } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
 import { CampaignSettingsEditor } from "./campaign-settings";
+import { GameplayConfiguration } from "./gameplay-configuration";
 import { updateCampaignSettings } from "@/lib/campaign-settings";
 import { languageOptions } from "@/lib/i18n";
 import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
@@ -486,6 +487,7 @@ export function PersistentCampaignSettings() {
         <div key={campaignId}>
           <CampaignIdentityForm current={data.campaign} />
           <CampaignPreferencesForm current={data} />
+          <GameplayConfiguration />
         </div>
       )}
     </>
