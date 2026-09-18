@@ -22,11 +22,26 @@ Build:
 
 Use fake data only.
 
+Owner-requested Phase 0 refinement (MASTER_SPEC section 33):
+- dedicated **Campaign settings → Rules & Play Style** tab, separate from application preferences
+- Easy / Medium / Hard / Custom and expandable Advanced difficulty controls; explicit centralized provisional values, independent HP/damage, conditional limited-reroll allowance, defeat, recovery, and scarcity
+- respect the campaign's rules-system capabilities; unsupported mechanics are unavailable
+- independent Story Structure, Player Role, and World Autonomy controls with explanations and agency guarantees
+- defaults: Medium / Balanced / One of many / Moderate
+- keep structured settings/presets separate from presentation; use campaign-scoped in-memory state across screen navigation, reset on refresh
+- English and Russian labels, responsive desktop/mobile layout, clear preview/no-gameplay-effect notice
+- no migrations, API routes, persistence, authentication, AI, or simulation engine
+
 Acceptance:
 - no broken routes
 - desktop matches mockups closely
 - mobile usable
+- preset application, every Custom transition, and narrative independence covered by tests
+- rules-system capability checks, both languages, navigation retention, and refresh defaults verified
+- typecheck, lint, tests, and production build pass; actual results recorded in DEV_STATUS.md
 - user approves visual direction
+
+Implementation completion does not count as owner approval. Approval remains pending; do not begin Milestone 1 automatically.
 
 Suggested agent prompt:
 
@@ -60,12 +75,16 @@ Add:
 - inventory editing
 - session persistence
 - one owner login
+- persist campaign Rules & Play Style and rules-system capabilities separately from global preferences and document context (MASTER_SPEC section 33)
+- validate structured values and record effective settings revisions/history so changes are prospective
 
 Acceptance:
 - refresh loses nothing
 - documents version correctly
 - two campaigns stay isolated
 - private state never appears in normal client data
+- campaign rules/play-style choices survive refresh and remain isolated by `campaign_id`
+- settings changes never rewrite historical scenes, rolls, or established facts; no AI behavior yet
 
 Suggested prompt:
 
@@ -89,6 +108,10 @@ Build:
 - quest updates
 - private state updates
 - retry/error handling
+- code-enforced, rules-system-aware mechanics for difficulty, reroll limits, recovery, and resource consumption; AI prompts alone must not enforce mechanics
+- pass structured narrative guidance and campaign document context to the single DM while preserving canon and player agency
+- clarify settings/canon conflicts rather than silently rewriting; changes only affect future play
+- advance relevant NPC/faction goals with meaningful events and in-world time according to autonomy, without a background simulator or multiple AI agents
 
 Acceptance:
 - 20–30 turn test campaign works
@@ -96,6 +119,7 @@ Acceptance:
 - consumed items stay consumed
 - hidden state does not leak
 - failure never destroys player input
+- tests prove supported mechanics are enforced, unsupported HP assumptions are rejected, narrative axes stay independent, and historical outcomes are unchanged by settings edits
 
 Suggested prompt:
 
@@ -119,6 +143,7 @@ Build:
 - NPC memory retrieval
 - canon priority
 - conflict checks
+- effective campaign settings/history included in snapshots and resume without retroactively reinterpreting prior facts
 
 Acceptance:
 - Session 2 starts correctly

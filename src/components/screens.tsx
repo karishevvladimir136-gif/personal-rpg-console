@@ -10,19 +10,12 @@ import { Campaigns, Library, Sessions } from "./collections";
 import { Badge, Panel } from "./ui";
 import { usePreview } from "./preview-context";
 import { languageOptions } from "@/lib/i18n";
+import { CampaignSettingsPanel } from "./campaign-settings";
 
 function Settings() {
   const { t, language, setLanguage } = useLanguage();
-  const {
-    largeText,
-    setLargeText,
-    suggestions,
-    setSuggestions,
-    campaignSettings,
-    setCampaignLanguage,
-  } = usePreview();
+  const { largeText, setLargeText, suggestions, setSuggestions } = usePreview();
   const [verbosity, setVerbosity] = useState("Literary");
-  const [difficulty, setDifficulty] = useState("Story-focused");
   return (
     <>
       <div className="page-heading">
@@ -33,6 +26,10 @@ function Settings() {
         </div>
         <Badge>{t("Preview settings")}</Badge>
       </div>
+      <CampaignSettingsPanel />
+      <h2 className="application-settings-heading">
+        {t("Application preferences")}
+      </h2>
       <div className="settings-grid">
         <div>
           <Panel title={t("General")}>
@@ -54,29 +51,6 @@ function Settings() {
             <p className="muted">
               {t(
                 "Changes the interface and sample content across all screens. Your own writing stays as entered. Resets to English on refresh.",
-              )}
-            </p>
-          </Panel>
-          <Panel title={t("Campaign settings")}>
-            <h3>{t("The Long Road West")}</h3>
-            <label className="field">
-              {t("Campaign Language")}
-              <select
-                value={campaignSettings.language}
-                onChange={(event) =>
-                  setCampaignLanguage(event.target.value === "ru" ? "ru" : "en")
-                }
-              >
-                {languageOptions.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <p className="muted">
-              {t(
-                "A separate preference for this campaign’s future story language. It does not change the interface or generate text yet. AI support arrives in Phase 2; this preview choice resets on refresh.",
               )}
             </p>
           </Panel>
@@ -122,54 +96,10 @@ function Settings() {
                 <option value="Detailed">{t("Detailed")}</option>
               </select>
             </label>
-            <label className="field">
-              {t("Difficulty")}
-              <select
-                value={difficulty}
-                onChange={(event) => setDifficulty(event.target.value)}
-              >
-                <option value="Story-focused">{t("Story-focused")}</option>
-                <option value="Balanced">{t("Balanced")}</option>
-                <option value="Unforgiving">{t("Unforgiving")}</option>
-              </select>
-            </label>
             <p className="muted">
               {t(
-                "Reading controls work in this preview. Narrative style and difficulty are sample preferences for future gameplay.",
+                "Reading controls work in this preview. Narrative style is a sample preference for future narration.",
               )}
-            </p>
-          </Panel>
-          <Panel title={t("Visual preferences")}>
-            <label className="field">
-              {t("Campaign visual style")}
-              <select defaultValue="Cinematic noir">
-                <option value="Cinematic noir">{t("Cinematic noir")}</option>
-                <option value="Painterly western">
-                  {t("Painterly western")}
-                </option>
-                <option value="Dark fantasy">{t("Dark fantasy")}</option>
-              </select>
-            </label>
-            <div className="form-grid">
-              <label className="field">
-                {t("Frame ratio")}
-                <select defaultValue="16:9">
-                  <option value="16:9">16:9</option>
-                  <option value="4:3">4:3</option>
-                  <option value="1:1">1:1</option>
-                </select>
-              </label>
-              <label className="field">
-                {t("Video duration")}
-                <select defaultValue="10 seconds">
-                  <option value="5 seconds">{t("5 seconds")}</option>
-                  <option value="10 seconds">{t("10 seconds")}</option>
-                  <option value="15 seconds">{t("15 seconds")}</option>
-                </select>
-              </label>
-            </div>
-            <p className="muted">
-              {t("Sample preferences only; media generation is not connected.")}
             </p>
           </Panel>
         </div>

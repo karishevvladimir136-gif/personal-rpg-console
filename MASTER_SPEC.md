@@ -993,12 +993,17 @@ Import creates an independent restored campaign.
 
 # 25. SETTINGS
 
-GENERAL
-- language
-- difficulty
-- narrative verbosity
-- visible dice
+APPLICATION PREFERENCES — GLOBAL
+- interface language (English / Russian)
+- reading size, suggested actions, and narration display preferences
+- visible dice display
+
+CAMPAIGN SETTINGS — PER CAMPAIGN
+- General: campaign language (independent of interface language) and campaign visual preferences
+- dedicated **Rules & Play Style** tab: difficulty/rules, story structure, player role, world autonomy (section 33)
 - mature tone
+
+Difficulty is a campaign setting, never a global application preference. Each campaign's rules system determines which mechanical controls apply.
 
 AI
 - text model
@@ -1307,3 +1312,66 @@ Use a simple model registry plus small server-side provider adapters, not a gene
 Expose only options supported by the selected model: reference images, image-to-video, aspect ratio, resolution, duration, and audio. Earlier 10-second/audio-on defaults and 5/10/15-second options apply only when supported; otherwise show a supported choice explicitly. Do not claim an unsupported capability or silently discard references/options.
 
 Display expected cost when a reliable estimate is available, otherwise label cost as unknown. Any fallback keyframe/enhancement step must be disclosed before paid submission. Avoid duplicate paid submissions on repeated clicks/retries; failures preserve gameplay and allow an explicit retry.
+
+---
+
+# 33. CAMPAIGN RULES & PLAY STYLE
+
+Owner requirement: a dedicated **Rules & Play Style** tab within campaign settings, separate from global application preferences. These structured settings belong to one campaign (`campaign_id`), including when there is only one active preview campaign. Keep settings types, preset definitions, and state transitions separate from presentation components. Both English and Russian interfaces expose the same controls and state.
+
+## Difficulty & Rules
+
+Offer Easy / Medium / Hard / Custom. Start at **Medium**. An expandable Advanced section exposes independent enemy HP and damage multipliers, rerolls (disabled / limited / unlimited), allowance per session when limited, defeat consequences (narrative setbacks / lasting injuries / death possible), recovery (forgiving / standard / restrictive), and resource scarcity (abundant / standard / scarce).
+
+Explicit Phase 0 preview values, centralized in `src/lib/campaign-settings.ts`:
+
+| Preset | Enemy HP | Enemy damage | Rerolls | Allowance per session | Defeat | Recovery | Resources |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Easy | 0.75× | 0.75× | Unlimited | 3, inactive until limited | Narrative setbacks | Forgiving | Abundant |
+| Medium | 1× | 1× | Limited | 2 | Lasting injuries | Standard | Standard |
+| Hard | 1.5× | 1.25× | Disabled | 1, inactive until limited | Death possible | Restrictive | Scarce |
+| Custom | Retain current values | Retain current values | Retain current value | Retain current value | Retain current value | Retain current value | Retain current value |
+
+Selecting a preset replaces all applicable difficulty parameters; selecting Custom retains them. Editing any individual difficulty parameter selects Custom. Changing story structure, player role, world autonomy, or campaign language does not change difficulty. Preview multiplier controls allow 0.25–3× in 0.25 steps; a limited allowance is 1–20 per session. An inactive allowance is remembered when changing reroll mode but grants no rerolls.
+
+These numbers and bounds are provisional examples, not calibrated game balance or final rules. Phase 0 must clearly state that no setting affects gameplay. The James & Jinn sample uses an illustrative rules profile supporting both HP and numerical damage. HP controls are not universally applicable: rules capabilities independently determine HP and damage support. Unsupported controls are unavailable, and preset/manual edits must not silently apply unsupported mechanics. Future supported systems may need different mechanical controls; do not force HP semantics onto them.
+
+## Story Structure
+
+- **Story-led:** the DM actively supports a central narrative. The player decides how their character responds.
+- **Balanced (default):** a central narrative coexists with player-led exploration.
+- **Sandbox:** player goals drive play; there is no forced return to a main plot.
+
+All modes preserve player agency. Story-led must never mean predetermined player choices.
+
+## Player Role
+
+- **One of many (default):** part of a larger world; significance can grow from choices.
+- **Significant figure:** already holds an important place in the world.
+- **Chosen one:** a special calling is part of the premise, without predetermining the player's response.
+
+Player role is independent of difficulty and story structure. Choosing a role must not silently invent or rewrite established campaign canon.
+
+## World Autonomy
+
+- **Low:** important NPCs and factions act mostly near the current story as time and events advance.
+- **Moderate (default):** relevant goals can also progress off-screen as in-world time and meaningful events advance.
+- **High:** important NPCs and factions pursue their goals more actively; consequences surface through relevant events.
+
+Autonomy is event-driven narrative guidance for the one DM runtime. High does not imply a full-world simulator, continuous background processing, or multiple AI agents.
+
+## Authority and prospective application
+
+- Campaign documents provide world and story context. Structured settings provide explicit mechanics and play-style choices; neither replaces the other.
+- Mechanical rules such as supported HP/damage scaling, reroll limits, recovery costs, and resource consumption must eventually be enforced and validated by code, not merely requested in an AI prompt.
+- Narrative settings guide the DM but never override established canon or player agency. Conflicts with campaign canon require clarification rather than silent rewriting; the canon priority list is not permission to retcon because a setting changed.
+- Changes apply prospectively. They never retroactively rewrite scenes, rolls, outcomes, spent resources, or established facts. Later persistence/runtime work must retain the effective settings for historical outcomes.
+
+## Phased implementation
+
+- **Phase 0:** interactive, bilingual preview controls with shared in-memory state. Selections survive screen navigation; refresh may restore defaults. Test preset application, Custom transitions, independent narrative settings, and unsupported mechanics. No database migrations, API routes, persistence, authentication, AI integration, or simulation engine. Owner approval remains pending.
+- **Phase 1, only when separately authorized:** persist and validate campaign-scoped structured settings and rules-system capabilities; keep them separate from global preferences and campaign documents. Preserve settings history/effective revisions for prospective application. No AI behavior in this phase.
+- **Phase 2, only when separately authorized:** enforce supported mechanics in server code and integrate narrative guidance into the single DM runtime. Clarify canon conflicts before applying a conflicting change. Progress relevant NPC/faction goals at meaningful events or advances in in-world time, without background simulation. Apply settings only to future play.
+- **Phase 3:** include effective settings and their history in snapshots/resume and continuity checks without reinterpreting past facts under new settings.
+
+Future scope in this section is a requirement record, not authorization to begin those phases.

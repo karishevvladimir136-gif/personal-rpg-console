@@ -6,19 +6,25 @@ Update this file before every milestone-completion commit and after any major ar
 
 ## Current milestone
 
-**Milestone / Phase 0 — Static clickable UI shell, including English/Russian refinement.**
+**Milestone / Phase 0 — Static clickable UI shell, including English/Russian and campaign Rules & Play Style refinements.**
 
 Scope: a private, single-user campaign preview with realistic James & Jinn sample data. No later milestone has been started.
 
 ## Current status
 
-Phase 0 and the bilingual refinement are implemented and verified. The original Phase 0 checkpoint was committed and pushed as `ab7b891`; the language refinement is ready for its checkpoint. Explicit owner approval remains the product acceptance step and has not been recorded. Phase 1 has not started.
+Phase 0, the bilingual refinement, and the owner-requested Rules & Play Style preview are implemented and verified. Earlier checkpoints were committed and pushed as `ab7b891` (original shell) and `84e73f0` (bilingual refinement). Explicit owner approval remains pending; implementation completion is not owner approval. Phase 1 has not started.
 
 The local development server was restarted as a background process after the original preview stopped. It uses port **3000**, bound to **127.0.0.1**. Preview: **http://127.0.0.1:3000/campaigns**. The server must be running on this computer for that address to work.
 
 No accounts, API keys, or external service setup are required. This preview is local and has not been deployed.
 
 ## Completed work
+
+- Added **Settings → Campaign settings → Rules & Play Style**, separate from application preferences. Campaign General retains campaign language and visual preferences; the old reading-panel difficulty selector was removed.
+- Added Easy / Medium / Hard / Custom with centralized provisional values and Advanced controls: independent HP/damage, rerolls and conditional allowance, defeat, recovery, scarcity. Every difficulty edit selects Custom.
+- Added independent Story Structure, Player Role, and World Autonomy choices with explanations and agency guarantees. Defaults are Medium / Balanced / One of many / Moderate. Clear preview wording explains that settings do not affect gameplay.
+- Shared campaign-scoped state retains choices across navigation and interface-language switches; refresh resets defaults. Rules capabilities independently gate HP/damage controls and preset application. The illustrative James & Jinn rules profile supports both.
+- Added English/Russian text, keyboard-operable tabs and radio groups, responsive layouts, and eight regression tests. Recorded prospective application, canon clarification, and future code-enforced mechanics in MASTER_SPEC section 33 and DEVELOPMENT_PLAN milestones 0–3. Future requirements are documentation only.
 
 - Read the project specifications and inspected all seven supplied design references.
 - Built a reusable charcoal-and-bronze application shell with literary headings, cinematic artwork, desktop sidebar, mobile bottom navigation, and a mobile menu.
@@ -38,6 +44,16 @@ No accounts, API keys, or external service setup are required. This preview is l
 
 ## Files / areas changed
 
+Focused Rules & Play Style refinement:
+
+- `src/lib/campaign-settings.ts`: typed campaign settings, presets/defaults/bounds, rules capabilities, choice definitions, and pure state transitions.
+- `src/components/campaign-settings.tsx`, `preview-context.tsx`, `screens.tsx`: campaign tabs, controls, shared temporary state, and separation from application preferences.
+- `src/app/globals.css`, `src/lib/locales/ru.json`: responsive charcoal/bronze styling and Russian translations.
+- `tests/campaign-settings.test.mjs`: eight regression tests; existing route and translation tests remain intact.
+- `MASTER_SPEC.md`, `DEVELOPMENT_PLAN.md`, `DEV_STATUS.md`, `VERIFICATION.md`: requirement, phased plan, decisions, actual verification, and limitations. No dependencies or backend configuration changed.
+
+Existing Phase 0 foundation, preserved by this refinement:
+
 | Area                                                                                          | Purpose                                                                                                     |
 | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | `src/app/`                                                                                    | Next.js routes, layout, visual styles, icon, and missing-page screen.                                       |
@@ -56,14 +72,14 @@ No accounts, API keys, or external service setup are required. This preview is l
 | `README.md`, `VERIFICATION.md`, `DEV_STATUS.md`                                               | Opening instructions, scope, checks, decisions, and current development status.                             |
 | `AGENTS.md`                                                                                   | Adds the requirement to maintain this status file.                                                          |
 
-The original `/design` images and `START_HERE.md` are unchanged. `MASTER_SPEC.md` and `DEVELOPMENT_PLAN.md` now include the owner's preliminary media-model selection requirement (see documentation-only update below). There are no database migrations or service integrations.
+The original `/design` images and `START_HERE.md` are unchanged. `MASTER_SPEC.md` and `DEVELOPMENT_PLAN.md` preserve the owner's preliminary media-model requirement (see documentation-only update below) and add Rules & Play Style. There are no database migrations or service integrations.
 
 ## Tests and build status
 
-- `pnpm typecheck`: passed after the bilingual refinement.
-- `pnpm lint`: passed with no warnings after the bilingual refinement.
-- `pnpm build`: passed after the bilingual refinement; all eleven screen routes were statically generated.
-- `pnpm test`: all **18 tests passed** against development and the rebuilt production preview (14 original HTTP checks plus 4 translation checks).
+- `pnpm typecheck`: passed after the Rules & Play Style refinement.
+- `pnpm lint`: passed with no warnings after the Rules & Play Style refinement.
+- `pnpm build`: passed after the Rules & Play Style refinement; all eleven screen routes were statically generated.
+- `pnpm test`: all **26 tests passed** against development and the rebuilt production preview (14 HTTP checks, 4 translation checks, and 8 campaign-settings checks).
 - Browser checks: navigation and key mock interactions passed on desktop and at 390 × 844 and 320 × 740 phone viewports. No page-wide horizontal overflow at 320px.
 - Production browser console: no errors observed during the final review.
 - Launcher: syntax and existing-server detection checked; server start verified.
@@ -71,7 +87,15 @@ The original `/design` images and `START_HERE.md` are unchanged. `MASTER_SPEC.md
 
 Language refinement verification: both languages were checked across all eleven screens at desktop width; all eleven Russian screens fit a 320 × 740 viewport without page-wide overflow. The Russian Game screen was also visually checked at 390 × 844. Russian inventory/document searches, character tabs, equipment details, map views/destination, document history, independent preferences, literal notes/actions, and refresh reset passed browser checks. The optimized production build also passed its language-switch and navigation check. See `VERIFICATION.md` for the detailed checklist.
 
+Rules refinement verification: browser checks passed for defaults; Easy/Medium/Hard application; independent HP/damage and automatic Custom; limited/unlimited allowance visibility; independent narrative choices and campaign language; keyboard tab navigation; client-navigation retention; and refresh reset. Reviewed English/Russian Settings on desktop and at 320px, plus Russian narrative cards at 390px. No page-wide horizontal overflow at either phone width. The final production preview retained Hard and Russian after Library → Settings. The temporary production server is stopped; development remains on port 3000. See `VERIFICATION.md` for the checklist.
+
 ## Key technical decisions
+
+- Rules & Play Style uses a typed object with `campaign_id`, rules capabilities, and independent difficulty, story structure, player role, and autonomy. Definitions/state transitions live outside React presentation. This is temporary state, not a game engine.
+- Provisional tuning: Easy uses 0.75× HP/damage; Medium 1×/1×; Hard 1.5×/1.25×. Other values are explicit in MASTER_SPEC section 33. Custom retains current values. Preview bounds are 0.25–3× in 0.25 steps and 1–20 limited rerolls per session; these are not approved game balance.
+- Unsupported HP/damage controls are disabled; preset/manual changes do not apply unsupported mechanics. The illustrative sample rules profile does not represent imported canon.
+- Native radio groups, selects, sliders, details, and accessible tabs keep the UI lightweight. Both languages share components and stable state values.
+- Future persistence/effective settings history belong to Phase 1; code-enforced mechanics and single-DM narrative guidance to Phase 2; continuity integration to Phase 3. Changes must be prospective and canon conflicts clarified. Recording these requirements does not authorize later phases.
 
 - Next.js App Router, React, TypeScript, and Tailwind CSS; one frontend application with no external backend.
 - Installed stable versions: Next.js 16.3.5, React 19.3.0, Tailwind 4.3.3. TypeScript 6.0 and ESLint 9 match the Next.js lint toolchain's supported ranges. Exact packages are in the lockfile.
@@ -91,6 +115,10 @@ Language refinement verification: both languages were checked across all eleven 
 
 ## Known issues
 
+- Rules & Play Style has no gameplay effect. Numerical tuning is provisional, no reroll counters/resources are consumed, and no NPC simulation runs.
+- Rules selections survive navigation but reset on refresh. Returning to Settings opens General; reopening Rules & Play Style reveals the retained selections. Advanced expansion can reset after leaving Settings.
+- Only James & Jinn is connected. Unsupported-rules behavior is covered by pure state tests; Phase 0 has no rules-system editor or second playable campaign.
+
 - Physical iPhone / Safari behavior and the software keyboard have not been tested; mobile checks used Chromium viewport sizes.
 - Artwork and map geography are preview material. A later approved visual bible may replace these assets.
 - The Evidence Board composition is fixed; card dragging and connection editing are outside Phase 0.
@@ -102,13 +130,16 @@ Language refinement verification: both languages were checked across all eleven 
 
 ## Remaining work
 
+- Owner reviews the new Rules & Play Style controls and wording in either language; Phase 0 approval remains pending.
+- Validate gameplay balance and supported rules-system behavior during separately authorized runtime work. Preview values are not final mechanics.
+
 - Owner reviews the screens and approves the visual direction, or requests focused Phase 0 adjustments.
 - Record any accepted adjustments and verification results here before another milestone-completion commit.
 - Campaign persistence, authentication, editable documents and inventory, real story responses, server dice, long-term memory, backups, and image/video generation remain deliberately unimplemented.
 
 ## Recommended next step
 
-Open **http://127.0.0.1:3000/settings**, then choose **General → Interface Language → Русский**. Review the screens in either language on a wide and narrow window. The separate campaign language selector is below General. After owner approval, wait for a separate request to begin Milestone 1 from `DEVELOPMENT_PLAN.md`; do not automatically add services or start the next phase.
+Open **http://127.0.0.1:3000/settings**, then **Campaign settings → Rules & Play Style**. Try a preset, expand Advanced, and change a value to see Custom. Change the three narrative choices, visit Library, and return/reopen the tab to check retention. Refresh restores Medium / Balanced / One of many / Moderate. For Russian use **Application preferences → General → Interface Language → Русский**; Campaign Language is separate in campaign General. No manual setup or service keys are needed. Owner approval remains pending. Wait for a separate request before starting Milestone 1.
 
 ## Documentation-only update — September 18, 2026
 

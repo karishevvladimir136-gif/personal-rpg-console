@@ -49,3 +49,23 @@ Completed September 17, 2026, before Phase 1. Final typecheck, lint, optimized b
 The catalog contains 555 English-source/Russian pairs. Original words painted into supplied artwork remain unchanged. Automated checks cover dictionary use and mock fields; visual translation review and physical-device checks remain owner acceptance work.
 
 This is viewport testing, not a test on physical iPhone hardware. The phone software keyboard and Safari-specific behavior still merit owner testing when a hosted preview is introduced. Owner approval of the visual direction remains the acceptance step.
+
+## Campaign Rules & Play Style refinement
+
+Completed September 17, 2026. Final `pnpm typecheck`, `pnpm lint` (no warnings), and `pnpm build` passed. All **26 tests passed** against development on port 3000 and the final production build on port 3001: 14 existing HTTP smoke checks, 4 existing localization checks, and 8 new campaign-settings regression tests.
+
+Automated coverage checks exact defaults and preset values, individual difficulty changes selecting Custom, Custom retaining prior values, independent narrative axes/campaign language, rules capabilities for HP and damage, invalid numeric inputs, retained inactive reroll allowances, and translated choice labels/descriptions.
+
+Browser checks performed on the actual UI:
+
+- Campaign General and Rules & Play Style are separate from Application preferences. Home and arrow keys move/select campaign tabs.
+- Medium / Balanced / One of many / Moderate appear on first load and after refresh.
+- Hard produces 1.5× HP / 1.25× damage, disabled rerolls, death possible, restrictive recovery, scarce resources. Easy and Medium restore documented values without changing narrative choices.
+- Raising HP selects Custom and leaves damage unchanged; raising damage separately leaves HP unchanged.
+- Limited rerolls exposes allowance; unlimited hides it. Choosing 5/6 works as temporary settings without generating rolls.
+- Sandbox / Chosen one / High and custom HP/damage/allowance survive Library → Settings. Returning opens General; reopening Rules & Play Style reveals retained selections.
+- Campaign language remains independent of interface language. Russian renders new choices/descriptions, preserving state after a language switch.
+- English and Russian layouts fit 320 × 740 without page-wide horizontal overflow. Russian narrative/autonomy cards were also visually inspected at 390 × 844. Desktop styling preserves charcoal/bronze panels and literary headings.
+- Refresh resets temporary settings and interface language. The final production browser retained Hard and Russian across Library → Settings.
+
+The temporary production server was stopped. Development remains **http://127.0.0.1:3000/settings**. Rules-system incompatibility is tested in pure state transitions; the connected sample uses both HP and damage and has no rules-system editor. No physical Safari/iPhone testing was performed. Numerical tuning is provisional, settings have no gameplay effect, owner approval is pending, and no later phase has begun.
