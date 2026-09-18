@@ -48,7 +48,7 @@ No accounts, API keys, or external service setup are required. This preview is l
 | `README.md`, `VERIFICATION.md`, `DEV_STATUS.md`                                               | Opening instructions, scope, checks, decisions, and current development status.                 |
 | `AGENTS.md`                                                                                   | Adds the requirement to maintain this status file.                                              |
 
-The original `/design` images, `MASTER_SPEC.md`, `DEVELOPMENT_PLAN.md`, and `START_HERE.md` are unchanged. There are no database migrations or service integrations.
+The original `/design` images and `START_HERE.md` are unchanged. `MASTER_SPEC.md` and `DEVELOPMENT_PLAN.md` now include the owner's preliminary media-model selection requirement (see documentation-only update below). There are no database migrations or service integrations.
 
 ## Tests and build status
 
@@ -94,3 +94,8 @@ See `VERIFICATION.md` for the detailed browser checklist. This file must be upda
 ## Recommended next step
 
 Open **http://127.0.0.1:3000/campaigns**, click **Continue the story**, and review the screens on a wide and narrow browser window. After explicit visual approval, wait for a separate request to begin Milestone 1 from `DEVELOPMENT_PLAN.md`. Do not automatically add services or start the next phase.
+
+
+## Documentation-only update — September 18, 2026
+
+Recorded the owner's preliminary media architecture requirement in MASTER_SPEC section 32 and aligned DEVELOPMENT_PLAN milestones 4/5: independent FRAME/VIDEO provider/model defaults, manual per-generation choice, optional quality profiles, and spoiler-safe text-model prompt preparation before generation. Concrete integrations/models remain undecided; candidates are not claims of verified API availability. No application code, dependencies, runtime integrations, or Phase 0 acceptance status changed. No build/typecheck/lint/runtime tests were rerun for this documentation-only update; earlier results above belong to the prior implementation checkpoint. The implementation agent must integrate these remote documentation changes with any ongoing local language/settings changes without overwriting either. Phase 4/5 implementation still requires a separate owner request.
