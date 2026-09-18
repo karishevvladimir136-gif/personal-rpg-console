@@ -7,15 +7,19 @@ import fragment from "../src/lib/locales/phase1-c-ru.json" with { type: "json" }
 import { createMutationAttempt } from "../src/lib/persistence/client.ts";
 import {
   entityKindLabels,
+  equipmentProfileForCorrection,
   equipmentForRecord,
   itemCorrectionIssue,
   itemIcon,
   numberOrNull,
+  parseHitPoints,
   RecordValidationError,
   resumeIssue,
   sceneOrder,
   sceneRoleLabels,
   storageKindLabels,
+  storageAcceptsEntity,
+  storageCorrectionIssue,
 } from "../src/lib/persistence/record-model.ts";
 
 const first = "20000000-0000-4000-8000-000000000001";
@@ -45,6 +49,7 @@ test("manual correction retries keep their request identity until payload or rev
 function fixture(campaign = first) {
   const entity = {
     id: `${campaign}:pilot`,
+    kind: "player",
     campaign_id: campaign,
     equipment_slots: [{ id: "hand", label: "Hand", accepts: ["gear"] }],
   };
@@ -235,9 +240,121 @@ test("optional HP parsing does not invent an HP mechanic for systems without one
   assert.equal(numberOrNull(""), null);
   assert.equal(numberOrNull("  "), null);
   assert.equal(numberOrNull("0"), 0);
-  assert.equal(numberOrNull("13.5"), 13.5);
-  for (const value of ["-2", "invalid", "Infinity"])
+  assert.deepEqual(parseHitPoints("", ""), { hp: null, max_hp: null });
+  assert.deepEqual(parseHitPoints("0", "14"), { hp: 0, max_hp: 14 });
+  assert.throws(() => parseHitPoints("", "14"), /both current and maximum/);
+  assert.throws(() => parseHitPoints("14", ""), /both current and maximum/);
+  assert.throws(() => parseHitPoints("15", "14"), /exceed maximum/);
+  for (const value of ["-2", "invalid", "Infinity", "13.5", "1000001"])
     assert.throws(() => numberOrNull(value), RecordValidationError);
+});
+
+test("storage assignment options enforce kind, campaign and equipped-item invariants", () => {
+  const data = fixture();
+  const companion = { ...data.entities[0], id: "companion", kind: "companion" };
+  const transport = { ...data.entities[0], id: "wagon", kind: "transport" };
+  const mount = { ...data.entities[0], id: "mount", kind: "mount" };
+  const npc = { ...data.entities[0], id: "npc", kind: "npc" };
+  data.entities.push(companion, transport, mount, npc);
+  assert.equal(
+    storageCorrectionIssue(data, {
+      name: "Bag",
+      kind: "player",
+      entity_id: data.entities[0].id,
+    }),
+    null,
+  );
+  assert.equal(
+    storageCorrectionIssue(data, {
+      name: "Stash",
+      kind: "camp",
+      entity_id: null,
+    }),
+    null,
+  );
+  assert.match(
+    storageCorrectionIssue(data, {
+      name: "Bag",
+      kind: "player",
+      entity_id: null,
+    }),
+    /matches this storage kind/,
+  );
+  assert.match(
+    storageCorrectionIssue(data, {
+      name: "Bag",
+      kind: "player",
+      entity_id: companion.id,
+    }),
+    /matches this storage kind/,
+  );
+  assert.match(
+    storageCorrectionIssue(data, {
+      name: "Bag",
+      kind: "camp",
+      entity_id: companion.id,
+    }),
+    /must not be assigned/,
+  );
+  assert.match(
+    storageCorrectionIssue(data, {
+      name: "Bag",
+      kind: "player",
+      entity_id: fixture(second).entities[0].id,
+    }),
+    /matches this storage kind/,
+  );
+  assert.equal(storageAcceptsEntity("transport", mount), true);
+  assert.equal(storageAcceptsEntity("transport", transport), true);
+  assert.equal(storageAcceptsEntity("companion", companion), true);
+  for (const kind of ["player", "companion", "camp", "transport"])
+    assert.equal(storageAcceptsEntity(kind, npc), false);
+  const occupied = {
+    ...data,
+    items: [
+      {
+        ...item(data),
+        campaign_id: first,
+        equipped_entity_id: data.entities[0].id,
+        equipped_slot: "hand",
+      },
+    ],
+  };
+  assert.match(
+    storageCorrectionIssue(
+      occupied,
+      { name: "Stash", kind: "camp", entity_id: null },
+      data.storages[0].id,
+    ),
+    /contains equipped items/,
+  );
+});
+
+test("NPC equipment is unavailable while legacy profiles survive unrelated public corrections", () => {
+  const data = fixture(),
+    entity = data.entities[0],
+    slots = entity.equipment_slots;
+  assert.deepEqual(equipmentProfileForCorrection(undefined, "npc", []), []);
+  assert.throws(
+    () => equipmentProfileForCorrection(entity, "npc", slots),
+    /Clear the equipment profile/,
+  );
+  const legacy = { ...entity, kind: "npc" };
+  assert.equal(
+    equipmentProfileForCorrection(legacy, "npc", []),
+    legacy.equipment_slots,
+  );
+  assert.equal(
+    equipmentProfileForCorrection(entity, "companion", slots),
+    slots,
+  );
+  assert.match(
+    itemCorrectionIssue(
+      { ...data, entities: [legacy] },
+      { ...item(data), equipped_entity_id: entity.id, equipped_slot: "hand" },
+    ),
+    /NPC equipment is not available/,
+  );
 });
 
 test("public transcript order is stable and preserves original records/settings revisions", () => {

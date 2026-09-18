@@ -19,12 +19,15 @@ import type {
 } from "@/lib/persistence/contracts";
 import {
   entityKindLabels,
+  equipmentProfileForCorrection,
   equipmentForRecord,
   itemCorrectionIssue,
   itemIcon,
-  numberOrNull,
+  parseHitPoints,
   RecordValidationError,
   storageKindLabels,
+  storageAcceptsEntity,
+  storageCorrectionIssue,
 } from "@/lib/persistence/record-model";
 
 export function RecordField({
@@ -352,32 +355,31 @@ function EntityEditor({
       initial={initial}
       onClose={onClose}
       build={(draft) => {
-        const hp = numberOrNull(draft.hp),
-          maxHp = numberOrNull(draft.max_hp);
-        if (hp !== null && maxHp !== null && hp > maxHp)
-          throw new RecordValidationError(
-            "Current HP cannot exceed maximum HP.",
-          );
+        const { hp, max_hp } = parseHitPoints(draft.hp, draft.max_hp);
         const payload: EntityInput & { id?: string } = {
           id: entity?.id,
           name: draft.name,
           kind: draft.kind,
           details: draft.details,
           hp,
-          max_hp: maxHp,
+          max_hp,
           stats: draft.stats,
           resources: draft.resources,
           conditions: draft.conditions
             .split(",")
             .map((entry) => entry.trim())
             .filter(Boolean),
-          equipment_slots: draft.slots.map((slot) => ({
-            ...slot,
-            accepts: slot.accepts
-              .split(",")
-              .map((category) => category.trim())
-              .filter(Boolean),
-          })),
+          equipment_slots: equipmentProfileForCorrection(
+            entity,
+            draft.kind,
+            draft.slots.map((slot) => ({
+              ...slot,
+              accepts: slot.accepts
+                .split(",")
+                .map((category) => category.trim())
+                .filter(Boolean),
+            })),
+          ),
         };
         return {
           operation: "entity.save",
@@ -423,7 +425,7 @@ function EntityEditor({
               value={draft.hp}
               type="number"
               min={0}
-              step="any"
+              step="1"
               onChange={(hp) => setDraft({ ...draft, hp })}
             />
             <RecordField
@@ -431,7 +433,7 @@ function EntityEditor({
               value={draft.max_hp}
               type="number"
               min={0}
-              step="any"
+              step="1"
               onChange={(max_hp) => setDraft({ ...draft, max_hp })}
             />
           </div>
@@ -451,65 +453,77 @@ function EntityEditor({
             onChange={(resources) => setDraft({ ...draft, resources })}
           />
           <h3>{t("Equipment profile")}</h3>
-          <p className="muted">
-            {t(
-              "Only add slots established for this character, vehicle or mount. Categories must match item categories exactly. Empty profiles assume no anatomy.",
-            )}
-          </p>
-          {draft.slots.map((slot, index) => (
-            <fieldset key={slot.id} style={{ minWidth: 0 }}>
-              <RecordField
-                label={t("Slot name")}
-                value={slot.label}
-                required
-                onChange={(label) =>
-                  setDraft({
-                    ...draft,
-                    slots: draft.slots.map((row, at) =>
-                      at === index ? { ...row, label } : row,
-                    ),
-                  })
-                }
-              />
-              <RecordField
-                label={t("Accepted item categories, separated by commas")}
-                value={slot.accepts}
-                required
-                onChange={(accepts) =>
-                  setDraft({
-                    ...draft,
-                    slots: draft.slots.map((row, at) =>
-                      at === index ? { ...row, accepts } : row,
-                    ),
-                  })
-                }
-              />
-              <Button
-                onClick={() =>
-                  setDraft({
-                    ...draft,
-                    slots: draft.slots.filter((_, at) => at !== index),
-                  })
-                }
-              >
-                {t("Remove slot")}
-              </Button>
-            </fieldset>
-          ))}
-          <Button
-            disabled={draft.slots.length >= 24}
-            onClick={() =>
-              setDraft({
-                ...draft,
-                slots: [
-                  ...draft.slots,
-                  { id: crypto.randomUUID(), label: "", accepts: "" },
-                ],
-              })
-            }
+          {draft.kind === "npc" && (
+            <p className="muted">
+              {t(
+                "NPC equipment is not available in Phase 1. Keep known NPC details in the public record.",
+              )}
+            </p>
+          )}
+          <fieldset
+            disabled={draft.kind === "npc"}
+            style={{ border: 0, padding: 0, minWidth: 0 }}
           >
-            {t("Add equipment slot")}
-          </Button>
+            <p className="muted">
+              {t(
+                "Only add slots established for this character, vehicle or mount. Categories must match item categories exactly. Empty profiles assume no anatomy.",
+              )}
+            </p>
+            {draft.slots.map((slot, index) => (
+              <fieldset key={slot.id} style={{ minWidth: 0 }}>
+                <RecordField
+                  label={t("Slot name")}
+                  value={slot.label}
+                  required
+                  onChange={(label) =>
+                    setDraft({
+                      ...draft,
+                      slots: draft.slots.map((row, at) =>
+                        at === index ? { ...row, label } : row,
+                      ),
+                    })
+                  }
+                />
+                <RecordField
+                  label={t("Accepted item categories, separated by commas")}
+                  value={slot.accepts}
+                  required
+                  onChange={(accepts) =>
+                    setDraft({
+                      ...draft,
+                      slots: draft.slots.map((row, at) =>
+                        at === index ? { ...row, accepts } : row,
+                      ),
+                    })
+                  }
+                />
+                <Button
+                  onClick={() =>
+                    setDraft({
+                      ...draft,
+                      slots: draft.slots.filter((_, at) => at !== index),
+                    })
+                  }
+                >
+                  {t("Remove slot")}
+                </Button>
+              </fieldset>
+            ))}
+            <Button
+              disabled={draft.slots.length >= 24}
+              onClick={() =>
+                setDraft({
+                  ...draft,
+                  slots: [
+                    ...draft.slots,
+                    { id: crypto.randomUUID(), label: "", accepts: "" },
+                  ],
+                })
+              }
+            >
+              {t("Add equipment slot")}
+            </Button>
+          </fieldset>
         </>
       )}
     </RecordEditor>
@@ -527,7 +541,9 @@ function StorageEditor({
   const { campaignId, data } = useCampaignData();
   const initial: StorageInput = {
     name: storage?.name || "",
-    kind: storage?.kind || "player",
+    kind:
+      storage?.kind ||
+      (data?.entities.some((row) => row.kind === "player") ? "player" : "camp"),
     entity_id: storage?.entity_id || null,
   };
   return (
@@ -535,12 +551,18 @@ function StorageEditor({
       title={storage ? "Edit storage record" : "Add storage record"}
       initial={initial}
       onClose={onClose}
-      build={(payload) => ({
-        operation: "storage.save",
-        campaignId,
-        expectedRevision: storage?.revision || 0,
-        payload: { ...payload, id: storage?.id },
-      })}
+      build={(payload) => {
+        if (!data)
+          throw new RecordValidationError("Campaign records are unavailable.");
+        const issue = storageCorrectionIssue(data, payload, storage?.id);
+        if (issue) throw new RecordValidationError(issue);
+        return {
+          operation: "storage.save",
+          campaignId,
+          expectedRevision: storage?.revision || 0,
+          payload: { ...payload, id: storage?.id },
+        };
+      }}
     >
       {(draft, setDraft) => (
         <>
@@ -556,22 +578,41 @@ function StorageEditor({
             options={Object.entries(storageKindLabels).map(
               ([value, label]) => ({ value, label: t(label) }),
             )}
-            onChange={(kind) =>
-              setDraft({ ...draft, kind: kind as Storage["kind"] })
-            }
+            onChange={(value) => {
+              const kind = value as Storage["kind"];
+              const entity = data?.entities.find(
+                (row) => row.id === draft.entity_id,
+              );
+              setDraft({
+                ...draft,
+                kind,
+                entity_id:
+                  entity && storageAcceptsEntity(kind, entity)
+                    ? entity.id
+                    : null,
+              });
+            }}
           />
-          <RecordSelect
-            label={t("Storage belongs to")}
-            value={draft.entity_id || ""}
-            empty
-            options={(data?.entities || []).map((row) => ({
-              value: row.id,
-              label: row.name,
-            }))}
-            onChange={(entity_id) =>
-              setDraft({ ...draft, entity_id: entity_id || null })
-            }
-          />
+          {draft.kind !== "camp" ? (
+            <RecordSelect
+              label={t("Storage belongs to")}
+              value={draft.entity_id || ""}
+              empty
+              options={(data?.entities || [])
+                .filter((row) => storageAcceptsEntity(draft.kind, row))
+                .map((row) => ({
+                  value: row.id,
+                  label: row.name,
+                }))}
+              onChange={(entity_id) =>
+                setDraft({ ...draft, entity_id: entity_id || null })
+              }
+            />
+          ) : (
+            <p className="muted">
+              {t("Shared stash storage is not assigned to a character.")}
+            </p>
+          )}
           <p className="muted">
             {t(
               "Camp and cargo records are inspectable. Gameplay withdrawals, transfers and access checks remain unavailable.",
@@ -688,7 +729,7 @@ function ItemEditor({
             value={draft.equipped_entity_id || ""}
             empty
             options={(data?.entities || [])
-              .filter((row) => row.equipment_slots.length)
+              .filter((row) => row.kind !== "npc" && row.equipment_slots.length)
               .map((row) => ({ value: row.id, label: row.name }))}
             onChange={(equipped_entity_id) =>
               setDraft({

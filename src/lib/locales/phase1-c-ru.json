@@ -157,5 +157,13 @@
   "That equipment slot is occupied. Correct the other item first.": "Эта ячейка занята. Сначала исправьте запись другого предмета.",
   "Choose a session from this campaign.": "Выберите сессию из этой кампании.",
   "The resume scene must belong to the selected session.": "Сцена для продолжения должна принадлежать выбранной сессии.",
-  "Choose a location from this campaign.": "Выберите место из этой кампании."
+  "Choose a location from this campaign.": "Выберите место из этой кампании.",
+  "Use a whole number between 0 and 1,000,000, or leave it blank.": "Введите целое число от 0 до 1 000 000 или оставьте поле пустым.",
+  "Enter both current and maximum HP, or leave both blank.": "Укажите текущие и максимальные ОЗ либо оставьте оба поля пустыми.",
+  "Shared stash storage must not be assigned to a character.": "Общий тайник не должен быть закреплён за персонажем.",
+  "Choose a character or transport that matches this storage kind.": "Выберите персонажа или транспорт, соответствующий виду хранилища.",
+  "This storage contains equipped items. Correct their equipment records before changing its assignment.": "В этом хранилище есть экипированные предметы. Исправьте их записи снаряжения, прежде чем менять принадлежность хранилища.",
+  "Clear the equipment profile before changing this record to a known NPC.": "Очистите профиль снаряжения, прежде чем менять тип записи на известного NPC.",
+  "NPC equipment is not available in Phase 1. Keep known NPC details in the public record.": "Снаряжение NPC недоступно на этапе 1. Сохраняйте известные сведения об NPC в открытой записи.",
+  "Shared stash storage is not assigned to a character.": "Общий тайник не закреплён за персонажем."
 }

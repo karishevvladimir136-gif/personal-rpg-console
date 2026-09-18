@@ -1,9 +1,11 @@
 import type {
   CampaignSnapshot,
   Entity,
+  EquipmentSlot,
   Item,
   ItemInput,
   PublicState,
+  StorageInput,
 } from "./contracts.ts";
 
 export const entityKindLabels = {
@@ -30,11 +32,77 @@ export class RecordValidationError extends Error {}
 export function numberOrNull(value: string): number | null {
   if (!value.trim()) return null;
   const number = Number(value);
-  if (!Number.isFinite(number) || number < 0)
+  if (!Number.isSafeInteger(number) || number < 0 || number > 1_000_000)
     throw new RecordValidationError(
-      "Use a non-negative number, or leave it blank.",
+      "Use a whole number between 0 and 1,000,000, or leave it blank.",
     );
   return number;
+}
+
+export function parseHitPoints(current: string, maximum: string) {
+  const hp = numberOrNull(current),
+    max_hp = numberOrNull(maximum);
+  if ((hp === null) !== (max_hp === null))
+    throw new RecordValidationError(
+      "Enter both current and maximum HP, or leave both blank.",
+    );
+  if (hp !== null && max_hp !== null && hp > max_hp)
+    throw new RecordValidationError("Current HP cannot exceed maximum HP.");
+  return { hp, max_hp };
+}
+
+export function storageAcceptsEntity(
+  kind: StorageInput["kind"],
+  entity: Entity,
+) {
+  return kind === "transport"
+    ? entity.kind === "transport" || entity.kind === "mount"
+    : kind !== "camp" && entity.kind === kind;
+}
+
+export function equipmentProfileForCorrection(
+  previous: Entity | undefined,
+  kind: Entity["kind"],
+  slots: EquipmentSlot[],
+): EquipmentSlot[] {
+  if (kind !== "npc") return slots;
+  if (previous?.kind === "npc") return previous.equipment_slots;
+  if (slots.length)
+    throw new RecordValidationError(
+      "Clear the equipment profile before changing this record to a known NPC.",
+    );
+  return [];
+}
+
+export function storageCorrectionIssue(
+  snapshot: CampaignSnapshot,
+  storage: StorageInput,
+  id?: string,
+): string | null {
+  if (storage.kind === "camp") {
+    if (storage.entity_id !== null)
+      return "Shared stash storage must not be assigned to a character.";
+  } else {
+    const entity = snapshot.entities.find(
+      (row) =>
+        row.id === storage.entity_id &&
+        row.campaign_id === snapshot.campaign.id,
+    );
+    if (!entity || !storageAcceptsEntity(storage.kind, entity))
+      return "Choose a character or transport that matches this storage kind.";
+  }
+  if (
+    id &&
+    snapshot.items.some(
+      (row) =>
+        row.campaign_id === snapshot.campaign.id &&
+        row.storage_id === id &&
+        row.equipped_entity_id &&
+        row.equipped_entity_id !== storage.entity_id,
+    )
+  )
+    return "This storage contains equipped items. Correct their equipment records before changing its assignment.";
+  return null;
 }
 
 /** Public client feedback only. The database independently repeats every invariant. */
@@ -65,6 +133,8 @@ export function itemCorrectionIssue(
     (row) =>
       row.id === item.equipped_entity_id && row.campaign_id === campaignId,
   );
+  if (entity?.kind === "npc")
+    return "NPC equipment is not available in Phase 1. Keep known NPC details in the public record.";
   const slot = entity?.equipment_slots.find(
     (row) => row.id === item.equipped_slot,
   );
