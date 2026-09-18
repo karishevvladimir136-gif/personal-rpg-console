@@ -17,9 +17,13 @@ The owner explicitly approved **96b69dcd63d2fa015f5e75bcc5d632c41e04369e**. It r
 
 Remote documentation commits through f46014d were safely merged; section 38 remains intact. Our persistence and Chat with DM additions are sections 39 and 40. Only ordered source records and immutable correction-history foundations are added now; no memory runtime is implemented.
 
-Phase 1 code is integrated and locally verified; **Phase 1 acceptance remains blocked by live Supabase setup and verification**. Three workers used separate worktrees and agreed shared contracts before implementation; the lead owns integration. The queued Chat with DM addition joined the campaigns/documents workstream at a safe checkpoint, with an additive migration from the sole database owner.
+**Phase 1 is READY FOR OWNER ACCEPTANCE. It is not owner-approved.** The required local database, application HTTP and browser acceptance checks passed on September 18, 2026 UTC (September 17 locally). Physical iPhone/Safari and the extra native-confirmation conflict-rebase action remain unverified, as detailed below. Phase 2 and deployment remain prohibited.
 
-No configured Supabase instance, environment file, Docker/CLI or PostgreSQL service was found. Real Supabase Auth/REST and signed-in browser persistence verification remain blocked by that prerequisite. Embedded PostgreSQL tests use a clearly labeled test-only auth stub; they do not constitute live Supabase verification. No deployment or real/private campaign import occurred.
+Three implementation workers used separate worktrees and agreed shared contracts before implementation; the lead integrated their work. The queued Chat with DM addition joined the campaigns/documents workstream, with an additive migration from the sole database owner. This acceptance follow-up preserves that implementation and the approved Phase 0 checkpoint.
+
+Disposable local Supabase is running on WSL 2.7.14 and Docker Desktop 4.91.0 / Engine 29.8.0. The official CLI 2.117.0 release checksum was verified. All three committed migrations applied to the initially empty database. After the owner selected Docker Desktop's localhost-only publishing option, Docker mappings and Windows listeners were verified on loopback before accounts were created. Exactly two synthetic Auth users and exactly one owner-registry row exist. The two campaigns are **Synthetic · Tidal Observatory** and **Synthetic · Copper Orchard**. Only synthetic private canaries were inserted through trusted local SQL for leakage checks. No deployment, real campaign import or real DM-private import occurred.
+
+Two acceptance blockers were reproduced and fixed narrowly: the local Supabase email provider was disabled alongside public signup, and Next proxy normalization changed `127.0.0.1` to `localhost` before the strict origin check. Email/password login is now enabled while global public signup remains disabled; the proxy preserves the original URL. Real tests verify both owner login and rejection of signup, non-owner access and foreign-origin writes. No origin check was relaxed.
 
 ## Queued section 38 coordination checkpoint
 
@@ -41,15 +45,36 @@ No configured Supabase instance, environment file, Docker/CLI or PostgreSQL serv
 
 `supabase/`, `src/lib/server/`, `src/lib/persistence/`, owner-only API routes, persistence providers/shell/forms, campaign route integration, English/Russian catalog, isolated preview routing, focused tests, setup/contract/spec/plan/status documentation and dependencies.
 
+This acceptance follow-up changes only `next.config.ts`, local `supabase/config.toml`, the live integration regression, the new `scripts/persistence-app-acceptance.mjs`, local-tooling ignores, and setup/status documentation. It introduces no migration, feature, AI behavior or visual refactoring. Credentials, CLI binaries, logs and disposable configuration remain ignored locally.
+
 ## Tests and build status
 
-- Integrated typecheck, lint (no warnings) and production build passed.
-- Queued documentation follow-up: reran typecheck, lint, all tests and production build against integrated commit `a3e0060d728fd4c20265fc0045b9e755deae45ef`; all available checks passed, with **121 tests passed, 1 live Supabase test explicitly skipped, 0 failed**. Only this status record changed afterward; no application or migration changes were needed.
-- Final development suite after the remote merge: **121 passed, 1 explicitly skipped live Supabase integration test, 0 failed** (122 total).
-- Final production verification of integrated code commit `7aec653e43458572230c35fd563fe6993a7c8d8b`: **121 passed, 1 explicitly skipped, 0 failed**. Typecheck, lint and production build also passed on that commit. The following status-only commit records these actual results.
-- SQL tests execute all three migrations in embedded PostgreSQL with synthetic auth roles. They cover two unrelated campaigns, durable reopen, owner/non-owner/anonymous access, private markers, immutable document/guide restoration, revision conflicts, retries, inventory integrity, feedback isolation, source order and preserved original/correction payloads. They do not verify Supabase Auth/PostgREST or browser cookies.
-- Browser checks covered setup and isolated English/Russian preview navigation, including 320px setup and 390px Russian Game/menu without horizontal overflow. Screenshots of those narrow views were inspected. Signed-in persistence/feedback flows and physical iPhone/Safari remain unverified.
-- Production client chunks contain no synthetic private marker, private-schema operation, server auth client or password-sign-in implementation. The setup screen intentionally displays configuration variable names only. No environment files or credentials are tracked.
+### Automated local checks
+
+- Final type generation, TypeScript check, full ESLint and production build **passed**, rerun after live/browser verification. No lint warnings.
+- Ordinary suite: **122 total, 121 passed, 1 explicitly skipped, 0 failed**. It passed against both development and production servers; the final development rerun passed again after browser acceptance. The skipped test is deliberately opt-in and was executed separately below, not silently counted as a pass in this invocation.
+- Embedded PostgreSQL tests execute all three migrations with synthetic auth roles: durable reopen, two campaigns, owner/non-owner/anonymous access, immutable document/guide history, revision conflicts/retries, inventory integrity, feedback isolation, ordering and preserved original/correction receipts. These remain distinct from real Auth verification.
+
+### Live disposable Supabase and application HTTP
+
+- Opt-in `tests/persistence-database-supabase.test.mjs`: **1 passed, 0 failed, 0 skipped** against real local Supabase Auth/PostgREST after the provider fix. Public signup is explicitly rejected. All three migration versions and the two-user/one-owner counts were checked directly. Do not rerun its seed step on these populated fixtures; it correctly refuses a nonempty database.
+- New application acceptance script: **all 9 groups passed against development on port 3000 and production on port 3001**. Real cookie login/logout/relogin, anonymous and independently authenticated non-owner denial, cross-campaign references/history denial, immutable restore, stale-write conflicts, independent settings, manual character/inventory/session/scene corrections, retry-safe DM feedback, guide separation and persisted relogin snapshots passed.
+- Before/after snapshots prove sending feedback changes only its feedback collection: HP, inventory, quests, scenes, public state/time/canon, settings and guide remain unchanged; the other campaign remains unchanged. Unsupported dice/combat/rest/DM-reply/private operations and foreign-origin writes are rejected.
+- Synthetic private canaries were absent from every checked public HTTP response and all 20 production JavaScript chunks. Normal authenticated/anonymous private-schema access is denied. No service-role key is in the app environment; no environment or credential file is tracked.
+
+### Browser acceptance
+
+- Real owner sign-in, sign-out and sign-in again passed. Both unrelated campaigns retain distinct characters, places, inventories and campaign languages. The second campaign has no messages or guidance from the first.
+- Two Library tabs loaded the same revision: the first saved, the second received a conflict, and its full unsaved draft remained intact. Refreshing saved data presented the newer comparison without replacing that draft. Document history/restoration in the other tab appended a new version and retained older versions.
+- Stopping only the local REST service produced a genuine feedback-save error. The complete typed draft remained. Restarting the service and retrying saved it with a timestamp; refresh and relogin retained it. No fake DM reply appeared and sending feedback did not modify the guide.
+- Manually saved two DM Guide versions, viewed their history and restored the older as a new current version. The restored text and feedback survived refresh and relogin.
+- Manually corrected inventory quantity in the Russian 320px interface; refresh retained the new quantity. Character HP, session recap and manually corrected scene records saved by the HTTP checks were visible in the browser.
+- Saved Russian globally, refreshed and signed out/in: Russian returned. Saved English again and loaded it on the narrow-screen settings page. Campaign story languages remained independent. Inspected desktop and 390px/320px screenshots and menu/form interactions with no horizontal page overflow. The mobile inventory dialog scrolls within the screen.
+- Game's execution controls remain disabled; only manual records and the separate Phase 0 demonstrations are available.
+
+### Not claimed
+
+Physical iPhone/Safari was not tested. An additional **Keep my draft for the next revision** native confirmation stalled browser automation; completing that optional rebase confirmation remains unverified. This does not negate the observed stale-save rejection and exact draft preservation above. The owner was asked to cancel the synthetic confirmation if visible. No deployment, hosted Supabase verification, live AI, gameplay execution or real-data acceptance is claimed.
 
 ## Key technical decisions
 
@@ -59,19 +84,21 @@ Feedback is append-only, campaign-scoped owner text. The DM Guide is a stable li
 
 ## Known issues
 
-Actual Supabase identity, browser cookie lifecycle, refresh/relogin persistence, failed-save browser interactions and signed-in desktop/mobile flows still need the configured local stack. Physical iPhone/Safari is unverified. NPC records are supported, but NPC equipment is unavailable in Phase 1; equipment supports players, companions and appropriate transports/mounts. Asset uploads/media generation and gameplay execution are outside this phase. Preexisting history receives deterministic sequence backfill; unknown old commit order is not reconstructed. No secrets or real campaign material are seeded.
+Physical iPhone/Safari and the extra conflict-rebase confirmation remain unverified. The optional Supabase Vector **log collector** restart-looped on this Windows host and is excluded from the local stack; required Auth/Postgres/REST services are healthy. This collector is unrelated to embedding/vector-search features, which remain unimplemented. A saved Russian preference is loaded after initial page hydration, so a brief English loading render can occur on refresh; the saved preference then appears correctly.
+
+NPC records are supported, but NPC equipment is unavailable in Phase 1; equipment supports players, companions and appropriate transports/mounts. Asset uploads/media generation and gameplay execution are outside this phase. Preexisting history receives deterministic sequence backfill; unknown old commit order is not reconstructed. No secrets or real campaign material are seeded.
 
 ## Remaining work
 
-Configure a disposable local Supabase stack and complete the real Auth/REST and signed-in application checklist before Phase 1 acceptance. No live integration or owner acceptance is claimed. The integrated implementation is committed and pushed; this documentation checkpoint records the confirmed integration and verification boundaries. Stop for owner review. Do not begin Phase 2 or deploy.
+Owner review and explicit acceptance of Phase 1, with the unverified checks above disclosed. No required persistence acceptance failure remains. The owner may inspect the synthetic fixtures; do not reset or replace them, import real material, deploy, or start Phase 2. Acceptance does not itself authorize any next phase.
 
 ## Recommended next step
 
-Follow [SUPABASE_SETUP.md](SUPABASE_SETUP.md): start a local Supabase instance, apply migrations in order and configure one owner, add the listed variable values only to ignored .env.local, then restart the preview. No public signup or deployment.
+Keep Docker Desktop and the port-3000 development server running. Open **http://127.0.0.1:3000/campaigns**. The browser is signed in to the synthetic owner; if sign-in is requested, use the ignored local `test-results/LOCAL_TEST_LOGIN.txt` file directly in the application, never in chat. The temporary production verification server on port 3001 was stopped after its checks.
 
-After setup: sign in → create two unrelated campaigns → save distinct documents/items/settings → refresh and sign out/in. In **Chat with DM / Чат с DM**, save a message and refresh; manually save two DM Guide versions and restore the older one as a new version. Confirm sending chat leaves guidance and all gameplay records unchanged. Try a failed save and two-tab conflicting edit; drafts must remain. See the setup guide for direct access and mobile checks.
+For owner review: open each synthetic campaign and compare its records; in **Chat with DM / Чат с DM**, refresh the saved feedback and restored guide; in **Library**, open version history; in **General Settings**, save either interface language and refresh. Sign out/in once if desired. See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the full repeatable procedure. If the older synthetic Library tab has a native draft-confirmation prompt, cancel it before continuing.
 
-The approved visual preview remains at **http://127.0.0.1:3000/preview/campaigns/long-road-west/game**. The persistent application starts at **http://127.0.0.1:3000/** and honestly displays setup instructions until configured.
+The approved visual preview remains separately isolated at **http://127.0.0.1:3000/preview/campaigns/long-road-west/game**. The configured persistent application starts at **http://127.0.0.1:3000/**. No sample campaign is imported into its database.
 
 ---
 

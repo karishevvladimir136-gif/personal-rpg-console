@@ -21,6 +21,12 @@ test(
     );
     const anonymous = testClient(config);
     assert.ok((await anonymous.from("rpg_campaigns").select("id")).error);
+    const signup = await anonymous.auth.signUp({
+      email: "blocked-registration@rpg-test.invalid",
+      password: crypto.randomUUID(),
+    });
+    assert.equal(signup.error?.code, "signup_disabled");
+    assert.equal(signup.data.user, null);
     const other = testClient(config);
     assert.equal(
       (

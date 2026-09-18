@@ -1,12 +1,26 @@
 # Phase 1 persistence setup
 
-No project was created or deployed. The application needs one Supabase database and one owner account before persistent screens can save. The approved synthetic Phase 0 preview remains separate.
+No hosted project was created or deployed. The application needs one Supabase database and one owner account before persistent screens can save. The approved synthetic Phase 0 preview remains separate.
+
+The disposable environment on this machine is now configured and verified; see [DEV_STATUS.md](DEV_STATUS.md) for actual results and remaining limitations. Open `http://127.0.0.1:3000/campaigns` for owner review. Do not repeat account creation, migrations or synthetic seeding on the populated acceptance database. Test sign-in details are in the ignored local `test-results/LOCAL_TEST_LOGIN.txt` file; enter them only in the application, never in chat.
+
+On this Windows host, the optional Supabase Vector log collector was excluded because it repeatedly restarted. The required database, Auth and REST services passed the acceptance checks. This does not add or enable embedding/vector-search functionality. If restarting the preserved stack, use its existing network and exclusion:
+
+```powershell
+$env:PATH = (Join-Path $env:LOCALAPPDATA 'Programs\DockerDesktop\resources\bin') + ';' + $env:PATH
+& '.\test-results\supabase-cli\supabase.exe' start --network-id rpg-phase1-acceptance --exclude vector
+node node_modules/next/dist/bin/next dev --hostname 127.0.0.1 --port 3000
+```
+
+Run these from the repository folder after opening Docker Desktop, only when the existing preview is stopped. Keep the terminal open. The ignored CLI executable was downloaded from the official release and checksum-verified; the commands preserve the existing database volume.
 
 ## Smallest owner checklist
 
-1. Use a **local, disposable Supabase instance** for verification first. Docker and the Supabase CLI are required on the computer; they were not installed in this implementation environment. Install them using the [official local-development instructions](https://supabase.com/docs/guides/local-development/cli/getting-started), then run `supabase start` from this repository. This is local development, not deployment.
-2. Inspect the selected database before applying anything. In local Studio (`http://127.0.0.1:54323`), check that there is no existing `rpg_` data. Apply the repository migration files in filename order in the SQL editor. For an existing project, review and back up its data first. **Do not run `supabase db reset` against existing data.** There is no automatic seed.
+1. Use a **local, disposable Supabase instance** for verification first. Docker and the Supabase CLI are required; see the [official local-development instructions](https://supabase.com/docs/guides/local-development/cli/getting-started). Inspect existing Docker containers/volumes before starting. Restrict published ports to localhost and verify the actual bindings. On Docker Desktop 4.91.0, the documented bridge-network loopback option alone did not restrict host publishing in this acceptance run; select localhost-only publishing in Docker Desktop network settings before continuing. This is local development, not deployment.
+2. Run `supabase start` from this initialized repository using the selected local network. On a new empty database the CLI applies committed migrations automatically in filename order. Inspect migration history before applying anything manually; do not apply the same migrations twice. In local Studio (`http://127.0.0.1:54323`), check that there are no existing campaign records before synthetic verification. For an existing project, review and back up its data first. **Do not run `supabase db reset` against existing data.** There is no automatic seed.
 3. In Studio → Authentication → Users, create the owner email/password account. Confirm the account. Public signup is disabled in the committed local configuration; also disable “Allow new users to sign up” in any separately configured project's authentication settings. There is no registration screen.
+
+   Keep global `auth.enable_signup = false`. The local CLI maps `auth.email.enable_signup` to its email-provider enable flag, so that provider flag must remain `true` for existing email/password accounts to sign in. The live integration test verifies that attempted public registration still returns `signup_disabled`.
 4. Copy the owner's user UUID into this one-time SQL statement and run it through the trusted SQL editor:
 
    ```sql
@@ -51,6 +65,22 @@ node --env-file=.env.local --test tests/persistence-database-supabase.test.mjs
 ```
 
 This creates two invented campaigns and leaves them available for inspection; it does not delete or reset anything. Seeding refuses a database which already contains campaigns and refuses non-local URLs. For a second run, use a fresh disposable local project. The test covers real owner/non-owner/anonymous access, direct writes, private schema rejection, scoped inventory, document restore/retry/conflict, settings separation and sign-out/sign-in persistence. It does not exercise the application's HTTP cookie adapter; complete the browser/API checklist below as well.
+
+### Application HTTP acceptance after synthetic seeding
+
+`scripts/persistence-app-acceptance.mjs` exercises the real Next.js cookie adapter and owner-only APIs after the integration test has created its two named synthetic campaigns. It refuses a non-local target or a different campaign set, and never resets/seeds the database. It deliberately appends synthetic document/guide versions and feedback and makes explicit manual synthetic record corrections. Do not point it at real data.
+
+Keep the application configuration in ignored `.env.local` and the disposable test accounts/opt-in in ignored `.env.acceptance.local` if desired. Run:
+
+```powershell
+node --env-file=.env.local --env-file=.env.acceptance.local scripts/persistence-app-acceptance.mjs
+```
+
+Use the same two environment-file arguments for the initial integration test when its test settings are stored separately. The application does not need test-account passwords or a service-role key in its own environment. The HTTP checks cover anonymous/non-owner denial (including an independently authenticated non-owner cookie session), owner login/logout/relogin, campaign isolation, immutable restore/conflicts, independent settings, manual records, feedback/guide separation, and rejected gameplay/foreign-origin operations. Browser draft retention and layout checks are separate.
+
+The local acceptance run additionally places synthetic canaries in the unexposed private schema through a trusted local SQL connection and checks their absence from public responses/client bundles. Only synthetic markers are permitted; never import real private material for this test.
+
+The Next.js configuration preserves the original proxy URL so `127.0.0.1` is not normalized to `localhost` before the strict same-origin write check. Keep using one exact application origin, normally `http://127.0.0.1:3000`.
 
 Alternatively, to create the same two synthetic campaigns for **manual** browser testing (without running the integration assertions), run:
 
