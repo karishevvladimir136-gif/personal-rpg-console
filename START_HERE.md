@@ -41,13 +41,13 @@ You need:
    - puts the app on the web so you can use it on desktop and iPhone
 
 4. OpenAI Platform
-   - DM text
-   - later image generation
+   - future server-side DM text in Phase 2, not Phase 1
 
-5. fal
-   - later video generation
+5. Image/video provider accounts, only in their later phases
+   - the owner chooses supported image and video providers/models independently
+   - OpenAI and fal are candidates, not fixed or exclusive media requirements
 
-You do NOT need to configure fal on day one.
+No AI/media account or paid call is required for Phase 1. See MASTER_SPEC section 32.
 
 ---
 
@@ -193,7 +193,8 @@ Send:
 > Add Supabase persistence for campaigns, documents/versioning, sessions, scenes, character state, inventory, quests, known NPCs, locations and asset metadata.
 > Keep DM-private state server-only by architecture.
 > Create database migrations in the repository.
-> Add seed/mock data matching the James screenshots.
+> Use two unrelated, explicitly synthetic test campaigns. Do not import real James campaign data or DM secrets.
+> Complete one-owner authentication and access checks, with no public registration.
 > Do not add OpenAI yet.
 > Run tests and give me a simple persistence checklist.
 
@@ -212,7 +213,11 @@ Then test:
 
 # STEP 9 — DEPLOY TO VERCEL
 
-Connect the GitHub repo to Vercel.
+**Deployment is a separate, explicitly authorized step. Do not deploy during Phase 1.**
+
+Before any deployment, complete and verify owner sign-in/sign-out, the single-owner restriction, database access policies, campaign isolation and server-only DM-private boundaries. A hard-to-guess URL is not access control. Do not put an unprotected app online.
+
+Only after those checks pass and the owner approves deployment, connect the GitHub repo to Vercel.
 
 Ask the agent:
 
@@ -220,11 +225,7 @@ Ask the agent:
 
 Add the variables in Vercel settings.
 
-Deploy.
-
-Now you should have a private-ish URL.
-
-Before you use real API keys heavily, enable the one-owner login.
+Deploy only after the owner explicitly authorizes it. Recheck unauthenticated and unauthorized direct requests on the deployed environment before using real campaign data.
 
 ---
 
@@ -313,7 +314,7 @@ Test:
 
 # STEP 14 — FRAME
 
-Now add OpenAI image generation.
+Now add the owner-selected supported image provider/model. OpenAI is a candidate; preserve manual model choice, campaign defaults and per-generation overrides as specified in MASTER_SPEC section 32.
 
 Do not auto-generate every scene.
 
@@ -330,20 +331,14 @@ fix the reference/prompt system before adding video.
 
 # STEP 15 — VIDEO
 
-Only now create the fal account/key.
-
-Store:
-
-`FAL_KEY`
-
-server-side.
+Only now configure the owner-selected supported video provider/model. fal is a candidate, not an exclusive requirement. Confirm capabilities before integration; keep provider keys (for example `FAL_KEY` when fal is chosen) server-side.
 
 Implement asynchronous jobs.
 
 Do not make the user wait for video before continuing the story.
 
 Start with:
-- 5–10 second clips;
+- a short duration supported by the selected model;
 - current scene frame as primary image;
 - character/location references.
 

@@ -6,11 +6,22 @@ Update before milestone-completion commits and after architectural changes. Neve
 
 ## Current milestone
 
-**Phase 0 — Static clickable UI, now with the final Game Combat View refinement.** Private single-user James & Jinn application. Phase 1 has not started.
+**Phase 1 — Persistence, authorized by the owner.** Planning and shared data contracts are in progress; Phase 2 and deployment are not authorized.
+
+## Approved Phase 0 checkpoint
+
+The owner explicitly approved **96b69dcd63d2fa015f5e75bcc5d632c41e04369e**. That commit is preserved unchanged as the Phase 0 restore point. Starting Phase 1 commit: the same SHA; origin/main matched after a non-destructive fetch.
+
+- **Original implementation verification:** the implementation run reported typecheck, lint, production build and 60 automated tests, with the browser checks recorded below and in VERIFICATION.md.
+- **Independent review, reported by the owner:** typecheck, lint, production build, 41 logic/localization tests, 5 HTTP tests and 14 additional HTML/status route checks passed. Independent visual and image-asset verification was **not performed**. Physical iPhone/Safari remains unverified. These are separate records; no independent visual review is claimed.
 
 ## Current status
 
-The Combat View refinement is implemented and verified. **All 60 tests pass in development and production; typecheck, lint and the production build pass.** Desktop and 390px/320px browser checks are complete. **Owner approval remains pending.** Requirement approval is not delivery acceptance.
+Phase 1 implementation is authorized. START_HERE has been aligned with owner-selectable media providers/models and mandatory owner authentication/access verification **before** any separately approved deployment. No deployment will occur. Local inspection found no Supabase environment configuration or Docker/CLI installation; actual Supabase verification remains an environment prerequisite.
+
+The remainder below is the historical Phase 0 implementation report and will be superseded with Phase 1 results before completion.
+
+The Combat View refinement is implemented and verified. **All 60 tests pass in development and production; typecheck, lint and the production build pass.** Desktop and 390px/320px browser checks are complete. **Phase 0 is now approved at the exact checkpoint above.** Phase 1 acceptance remains pending.
 
 Preview: **http://127.0.0.1:3000/campaigns/long-road-west/game** (loopback port **3000**). No account, keys or manual setup. After a computer restart, double-click **Start Preview.cmd** in the repository.
 
@@ -58,7 +69,7 @@ Preview: **http://127.0.0.1:3000/campaigns/long-road-west/game** (loopback port 
 
 ## Remaining work
 
-Owner click-through and explicit Phase 0 approval remain. This verified status accompanies the focused Phase 0 completion commit. Future persistence/rules/AI work is intentionally deferred. **Do not start Phase 1.**
+Phase 0 owner approval is recorded above. Complete only authorized Phase 1 persistence and verification; report setup blockers honestly. Phase 2 and deployment remain deferred.
 
 ## Recommended next step — owner click-through
 

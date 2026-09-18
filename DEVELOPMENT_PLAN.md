@@ -72,7 +72,7 @@ Acceptance:
 - typecheck, lint, tests, and production build pass; actual results recorded in DEV_STATUS.md
 - user approves visual direction
 
-Implementation completion does not count as owner approval. Approval remains pending; do not begin Milestone 1 automatically.
+Implementation completion does not count as owner approval. The owner subsequently approved Phase 0 at 96b69dcd63d2fa015f5e75bcc5d632c41e04369e and explicitly authorized Phase 1. See DEV_STATUS.md for distinct implementation and independent-review records. Phase 2 and deployment remain unauthorized.
 
 Suggested agent prompt:
 

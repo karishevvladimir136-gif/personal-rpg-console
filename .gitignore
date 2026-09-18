@@ -6,3 +6,6 @@ out/
 *.log
 .pnpm-store/
 test-results/
+
+.worktrees/
+supabase/.temp/
