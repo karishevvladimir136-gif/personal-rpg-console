@@ -76,6 +76,7 @@ export type Session = ScopedRow & {
   recap: string;
 };
 export type Scene = ScopedRow & {
+  sequence: number;
   session_id: string;
   title: string;
   body: string;
@@ -108,6 +109,7 @@ export type Asset = ScopedRow & {
 };
 export type Workspace = { campaigns: Campaign[]; preferences: Preferences };
 export type DmFeedbackMessage = {
+  sequence: number;
   id: string;
   campaign_id: string;
   body: string;
@@ -136,7 +138,7 @@ export type ItemInput = Omit<Item, keyof ScopedRow>;
 export type SessionInput = Omit<Session, keyof ScopedRow>;
 export type SceneInput = Omit<
   Scene,
-  keyof ScopedRow | "created_at" | "settings_revision"
+  keyof ScopedRow | "created_at" | "settings_revision" | "sequence"
 >;
 type Save<T> = T & { id?: string };
 type Request = { requestId: string; expectedRevision: number };
