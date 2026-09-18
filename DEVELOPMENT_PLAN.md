@@ -105,6 +105,7 @@ Build:
 - narration
 - state patch validation
 - inventory/resource updates
+- minimal server-validated item transformations through gameplay actions (MASTER_SPEC section 34): consumed ingredients, embedded components, retained tools, provenance, atomic updates, and idempotent retries; no dedicated crafting/alchemy system
 - quest updates
 - private state updates
 - retry/error handling
@@ -117,6 +118,7 @@ Acceptance:
 - 20–30 turn test campaign works
 - HP/resources remain correct
 - consumed items stay consumed
+- transformation tests cover valid outputs, rules-defined failed-attempt costs, missing/inaccessible inputs, retained tools, embedded components, campaign isolation, atomic rollback, and duplicate/retry protection
 - hidden state does not leak
 - failure never destroys player input
 - tests prove supported mechanics are enforced, unsupported HP assumptions are rejected, narrative axes stay independent, and historical outcomes are unchanged by settings edits
