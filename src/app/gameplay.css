@@ -1,0 +1,210 @@
+/* Phase 2 extends the approved journal palette; no global preview selectors. */
+.gameplay-live .context-column {
+  display: block;
+}
+.gameplay-channel,
+.gameplay-turns,
+.gameplay-turn,
+.gameplay-feedback-grid > div {
+  min-width: 0;
+}
+.gameplay-channel form {
+  margin-top: 20px;
+}
+.gameplay-channel textarea {
+  min-height: 115px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.gameplay-turn {
+  padding: 18px;
+  margin: 16px 0;
+  border-color: #635137;
+}
+.gameplay-turn .prose,
+.gameplay-guidance .prose {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.gameplay-owner-input {
+  border-left: 2px solid #9d7b46;
+  padding-left: 15px;
+}
+.gameplay-owner-input .prose {
+  margin: 7px 0;
+}
+.gameplay-owner-input time {
+  font-size: 11px;
+  color: var(--muted);
+}
+.gameplay-narration {
+  margin: 20px 0;
+  line-height: 1.75;
+}
+.gameplay-narration .eyebrow {
+  display: block;
+  margin-bottom: 10px;
+}
+.gameplay-guidance {
+  margin: 20px 0;
+  padding: 18px;
+  border: 1px solid #796139;
+  background: #29271e;
+  border-radius: 7px;
+}
+.gameplay-guidance h4 {
+  margin-top: 0;
+}
+.gameplay-check {
+  margin: 14px 0;
+  display: grid;
+  gap: 9px;
+}
+.gameplay-check > .button {
+  justify-self: start;
+}
+.gameplay-transcript {
+  margin: 18px 0;
+}
+.gameplay-transcript > summary,
+.gameplay-item-actions > summary,
+.gameplay-item-rule > summary,
+.gameplay-combat summary {
+  cursor: pointer;
+  padding: 12px 0;
+  color: #c5aa77;
+}
+.gameplay-item-actions {
+  padding-top: 14px;
+}
+.gameplay-listeners {
+  border: 1px solid #4a453a;
+  border-radius: 5px;
+  padding: 14px;
+  margin: 12px 0;
+  min-width: 0;
+}
+.gameplay-listeners label,
+.gameplay-checkbox {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  padding: 7px 0;
+  overflow-wrap: anywhere;
+}
+.gameplay-listeners input,
+.gameplay-checkbox input {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  accent-color: #b89558;
+}
+.gameplay-configuration-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.gameplay-initiative {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  padding: 0;
+  list-style: none;
+}
+.gameplay-initiative li {
+  padding: 12px;
+  border: 1px solid #494439;
+  border-radius: 5px;
+  display: grid;
+  gap: 5px;
+}
+.gameplay-initiative li.active {
+  border-color: #b6985d;
+  box-shadow: inset 2px 0 #b6985d;
+}
+.gameplay-camp-hearth {
+  min-height: 175px;
+  display: grid;
+  place-items: center;
+  color: #d5a165;
+  background: radial-gradient(ellipse, #b2773030 0%, #191d20 65%);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.gameplay-camp-hearth svg {
+  filter: drop-shadow(0 0 20px #ad712b);
+}
+.gameplay-die {
+  display: block;
+  margin: 10px auto;
+  padding: 0;
+  width: min(210px, 75%);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.gameplay-die:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.gameplay-die.is-rolling {
+  animation: gameplay-die-tumble 1.15s ease-in-out;
+}
+.gameplay-die svg {
+  width: 100%;
+  height: auto;
+}
+.gameplay-conversation-modal {
+  max-width: 820px;
+}
+.gameplay-feedback-grid .persistence-fields {
+  min-width: 0;
+}
+@keyframes gameplay-die-tumble {
+  0% {
+    transform: rotate(0deg) scale(0.96);
+  }
+  45% {
+    transform: rotate(180deg) scale(1.02);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+@media (max-width: 760px) {
+  .gameplay-live .context-column {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+  }
+  .gameplay-feedback-grid {
+    display: block;
+  }
+  .gameplay-turn {
+    padding: 12px;
+  }
+  .gameplay-configuration-grid {
+    grid-template-columns: 1fr;
+  }
+  .gameplay-live .button-group,
+  .gameplay-channel .button-group {
+    flex-wrap: wrap;
+  }
+  .gameplay-channel .button,
+  .gameplay-rest .button,
+  .gameplay-guidance .button {
+    white-space: normal;
+    min-height: 42px;
+  }
+  .gameplay-owner-input {
+    padding-left: 10px;
+  }
+  .gameplay-camp-hearth {
+    min-height: 130px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gameplay-die.is-rolling {
+    animation: none;
+  }
+}

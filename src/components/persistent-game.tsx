@@ -5,6 +5,14 @@ import Link from "next/link";
 import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Icon, Panel } from "./ui";
+import { useGameplayRuntime } from "./gameplay-runtime";
+import { GameplayComposer } from "./gameplay-composer";
+import {
+  GameplayCamp,
+  GameplayCompanionTalk,
+  GameplayRest,
+} from "./gameplay-actions";
+import { GameplayCombat } from "./gameplay-combat";
 import {
   RecordBoundary,
   RecordEditor,
@@ -409,6 +417,8 @@ export function PersistentSessions() {
 
 function GameRecords({ data }: { data: CampaignSnapshot }) {
   const { t } = useLanguage();
+  const runtime = useGameplayRuntime();
+  const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
   const [resume, setResume] = useState(false);
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
   const session = data.sessions.find(
@@ -421,14 +431,14 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
     <>
       <RecordHeading
         title={t("Game")}
-        description="Your saved public story. Phase 1 stores owner-written records; live gameplay is not connected."
+        description="Your campaign, one DM, and a story shaped by your choices."
         action={
           <Button onClick={() => setResume(true)}>
             {t("Edit public state and resume point")}
           </Button>
         }
       />
-      <div className="game-grid">
+      <div className="game-grid gameplay-live">
         <div className="story-column">
           <Panel
             className="visual-inventory-panel"
@@ -464,22 +474,72 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
             )}
           </Panel>
           {session && (
-            <Transcript data={data} session={session} onEdit={setSceneEditor} />
+            <details className="gameplay-transcript">
+              <summary>
+                {t("Recorded transcript and manual corrections")}
+              </summary>
+              <Transcript
+                data={data}
+                session={session}
+                onEdit={setSceneEditor}
+              />
+            </details>
           )}
           <Panel
             className="visual-inventory-panel"
-            title={t("Gameplay is not connected")}
+            title={t("The next moment")}
           >
-            <p className="muted">
-              {t(
-                "AI replies, rolls, combat, rest, cooking, travel and generated media remain unavailable. Manual records never trigger these actions.",
-              )}
-            </p>
+            {runtime.loading && (
+              <p role="status">{t("Loading saved gameplay…")}</p>
+            )}
+            {runtime.error && (
+              <div role="alert">
+                <p>{t(runtime.error)}</p>
+                <Button onClick={() => void runtime.refresh().catch(() => {})}>
+                  {t("Retry loading")}
+                </Button>
+              </div>
+            )}
+            {runtime.play && (
+              <>
+                {!runtime.play.configuration && (
+                  <p className="rules-preview-note">
+                    {t(
+                      "Choose an explicit supported rules profile in campaign settings before resolving mechanical actions.",
+                    )}{" "}
+                    <Link
+                      className="text-link"
+                      href={`/campaigns/${data.campaign.id}/settings`}
+                    >
+                      {t("Campaign settings")}
+                    </Link>
+                  </p>
+                )}
+                <div className="tabs" aria-label={t("Input mode")}>
+                  <button
+                    type="button"
+                    className={inputMode === "game" ? "active" : ""}
+                    onClick={() => setInputMode("game")}
+                  >
+                    {t("Game")}
+                  </button>
+                  <button
+                    type="button"
+                    className={inputMode === "ooc" ? "active" : ""}
+                    onClick={() => setInputMode("ooc")}
+                  >
+                    {t("OOC")}
+                  </button>
+                </div>
+                <GameplayComposer
+                  key={inputMode}
+                  play={runtime.play}
+                  mode={inputMode}
+                  onSaved={runtime.afterMutation}
+                />
+              </>
+            )}
             <div className="button-group">
-              <Button disabled>{t("Send")}</Button>
-              <Button disabled>{t("OOC")}</Button>
-              <Button disabled>{t("Roll Dice")}</Button>
-              <Button disabled>{t("Rest")}</Button>
               <Button disabled>{t("FRAME")}</Button>
               <Button disabled>{t("VIDEO")}</Button>
             </div>
@@ -492,6 +552,49 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
               </Link>
             </p>
           </Panel>
+          {runtime.play && (
+            <>
+              <GameplayCombat
+                play={runtime.play}
+                onSaved={runtime.afterMutation}
+              />
+              {runtime.play.turns.some((turn) => turn.mode === "mechanic") && (
+                <details
+                  className="gameplay-transcript"
+                  open={runtime.play.turns.some(
+                    (turn) =>
+                      turn.mode === "mechanic" &&
+                      [
+                        "pending",
+                        "generating",
+                        "awaiting_confirmation",
+                        "failed",
+                      ].includes(turn.status),
+                  )}
+                >
+                  <summary>{t("Mechanical actions and recovery")}</summary>
+                  <GameplayComposer
+                    play={runtime.play}
+                    mode="mechanic"
+                    onSaved={runtime.afterMutation}
+                    historyOnly
+                  />
+                </details>
+              )}
+              <GameplayRest
+                play={runtime.play}
+                onSaved={runtime.afterMutation}
+              />
+              <p>
+                <Link
+                  className="text-link"
+                  href={`/campaigns/${data.campaign.id}/camp`}
+                >
+                  {t("Open Camp")}
+                </Link>
+              </p>
+            </>
+          )}
         </div>
         <aside className="context-column">
           <Panel className="visual-inventory-panel" title={t("Party")}>
@@ -511,6 +614,9 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
                     </p>
                   )}
                   <p>{row.conditions.join(", ") || t("None recorded")}</p>
+                  {row.kind === "companion" && (
+                    <GameplayCompanionTalk entityId={row.id} />
+                  )}
                 </div>
               ))}
             {!data.entities.length && (
@@ -872,31 +978,7 @@ function SupportingRecords({
           </p>
         </Panel>
       )}
-      {screen === "camp" && (
-        <Panel className="empty-state">
-          <Icon name="Flame" size={40} />
-          <h2>{t("Camp is not active")}</h2>
-          <p>
-            {t(
-              "Opening this page does not start a rest or unlock gameplay access to the stash. Rest, cooking and recovery await authoritative rules.",
-            )}
-          </p>
-          <p>
-            <Link
-              className="text-link"
-              href={`/campaigns/${data.campaign.id}/inventory`}
-            >
-              {t("Inspect shared storage records")}
-            </Link>
-          </p>
-          <Link
-            className="text-link"
-            href="/preview/campaigns/long-road-west/game"
-          >
-            {t("Open isolated Phase 0 demonstrations")}
-          </Link>
-        </Panel>
-      )}
+      {screen === "camp" && <GameplayCamp />}
       {quest && (
         <QuestEditor
           row={quest === "new" ? undefined : quest}
