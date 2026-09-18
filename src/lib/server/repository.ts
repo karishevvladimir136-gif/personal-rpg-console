@@ -28,13 +28,13 @@ const columns = {
   storages: `${base},name,kind,entity_id`,
   items: `${base},name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot`,
   sessions: `${base},title,status,recap`,
-  scenes: `${base},session_id,title,body,role,settings_revision,created_at`,
+  scenes: `${base},session_id,title,body,role,settings_revision,created_at,sequence`,
   public_state:
     "campaign_id,revision,updated_at,summary,current_session_id,current_scene_id,current_location_id",
   quests: `${base},title,description,status`,
   locations: `${base},name,description,status`,
   assets: `${base},title,kind,storage_path,description`,
-  dm_feedback: "id,campaign_id,body,created_at",
+  dm_feedback: "id,campaign_id,body,created_at,sequence",
   dm_guides: "campaign_id,document_id",
 };
 // Supabase caps a response page. Traverse complete ordered collections rather than
@@ -121,7 +121,7 @@ export async function readCampaign(
               name === "dm_guides"
             ? "campaign_id"
             : name === "scenes" || name === "dm_feedback"
-              ? "created_at"
+              ? "sequence"
               : "id",
       ),
     ),

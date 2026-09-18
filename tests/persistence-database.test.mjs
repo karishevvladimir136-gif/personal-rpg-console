@@ -959,12 +959,150 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
         }
       },
     );
+    await t.test(
+      "numeric source order survives tied timestamps, reverse UUIDs, correction and retry",
+      async () => {
+        const firstSceneId = "ffffffff-ffff-4fff-afff-fffffffffff1";
+        const secondSceneId = "00000000-0000-4000-8000-000000000001";
+        const requests = Array.from({ length: 5 }, () => randomUUID());
+        const original = {
+          id: firstSceneId,
+          session_id: sessionA.id,
+          title: "Ordered first",
+          body: "Original source wording",
+          role: "player",
+        };
+        const next = {
+          id: secondSceneId,
+          session_id: sessionA.id,
+          title: "Ordered second",
+          body: "Second source wording",
+          role: "narration",
+        };
+        await db.exec("begin");
+        const firstSaved = await mutation(
+          "scene.save",
+          first.id,
+          original,
+          0,
+          requests[0],
+        );
+        await mutation("scene.save", first.id, next, 0, requests[1]);
+        const firstOrder = await one(
+          "select sequence from public.rpg_scenes where id=$1",
+          [firstSceneId],
+        );
+        await mutation(
+          "scene.save",
+          first.id,
+          { ...original, body: "Explicit owner correction" },
+          1,
+          requests[2],
+        );
+        const feedback1 = await mutation(
+          "feedback.send",
+          first.id,
+          { body: "Ordered feedback first" },
+          0,
+          requests[3],
+        );
+        const feedback2 = await mutation(
+          "feedback.send",
+          first.id,
+          { body: "Ordered feedback second" },
+          0,
+          requests[4],
+        );
+        assert.deepEqual(
+          await mutation("scene.save", first.id, original, 0, requests[0]),
+          firstSaved,
+        );
+        await db.exec("commit");
+        const scenes = (
+          await db.query(
+            "select id,body,created_at,sequence,revision from public.rpg_scenes where id=any($1::uuid[]) order by sequence",
+            [[firstSceneId, secondSceneId]],
+          )
+        ).rows;
+        assert.deepEqual(
+          scenes.map((scene) => scene.id),
+          [firstSceneId, secondSceneId],
+        );
+        assert.deepEqual(scenes[0].created_at, scenes[1].created_at);
+        assert.equal(scenes[0].sequence, firstOrder.sequence);
+        assert.equal(scenes[0].body, "Explicit owner correction");
+        assert.equal(scenes[0].revision, 2);
+        assert.ok(scenes[0].sequence < scenes[1].sequence);
+        const feedback = (
+          await db.query(
+            "select id,created_at,sequence from public.rpg_dm_feedback where id=any($1::uuid[]) order by sequence",
+            [[feedback1.id, feedback2.id]],
+          )
+        ).rows;
+        assert.deepEqual(
+          feedback.map((message) => message.id),
+          [feedback1.id, feedback2.id],
+        );
+        assert.deepEqual(feedback[0].created_at, feedback[1].created_at);
+        await assert.rejects(
+          db.query("select nextval('public.rpg_scenes_sequence_seq')"),
+          /permission denied/,
+        );
+        await role("postgres");
+        const receipts = (
+          await db.query(
+            "select campaign_id,request_id,request,result,created_at,sequence from rpg_private.mutation_receipts where request_id=any($1::uuid[]) order by sequence",
+            [requests],
+          )
+        ).rows;
+        assert.equal(receipts.length, 5);
+        assert.deepEqual(
+          receipts.map((receipt) => receipt.request_id),
+          requests,
+        );
+        assert.equal(
+          new Set(receipts.map((receipt) => receipt.created_at.toISOString()))
+            .size,
+          1,
+        );
+        assert.ok(
+          receipts.every((receipt) => receipt.campaign_id === first.id),
+        );
+        assert.equal(
+          receipts[0].request.payload.body,
+          "Original source wording",
+        );
+        assert.equal(
+          receipts[2].request.payload.body,
+          "Explicit owner correction",
+        );
+        assert.equal(receipts[0].result.id, firstSceneId);
+        assert.equal(receipts[2].result.id, firstSceneId);
+        assert.equal(receipts[0].result.revision, 1);
+        assert.equal(receipts[2].result.revision, 2);
+        await assert.rejects(
+          db.query(
+            "update rpg_private.mutation_receipts set request='{}' where request_id=$1",
+            [requests[0]],
+          ),
+          /rpg_immutable_history/,
+        );
+        await assert.rejects(
+          db.query(
+            "update public.rpg_scenes set sequence=default where id=$1",
+            [firstSceneId],
+          ),
+          /rpg_immutable_source_order/,
+        );
+        await role("authenticated", owner);
+      },
+    );
   } finally {
     await db.close();
   }
 });
 
-test("additive DM Guide migration preserves existing campaign documents", async () => {
+test("additive guide and source-order migrations preserve existing campaign history", async () => {
   const db = new PGlite();
   const owner = randomUUID();
   try {
@@ -1042,6 +1180,99 @@ test("additive DM Guide migration preserves existing campaign documents", async 
         )
       ).rows[0].revision,
       1,
+    );
+    async function save(operation, payload, revision = 0) {
+      return (
+        await db.query(
+          "select public.rpg_apply_mutation($1,$2,$3,$4,$5::jsonb) as result",
+          [
+            randomUUID(),
+            operation,
+            campaign.id,
+            revision,
+            JSON.stringify(payload),
+          ],
+        )
+      ).rows[0].result;
+    }
+    const session = await save("session.save", {
+      title: "Existing synthetic session",
+      status: "open",
+      recap: "",
+    });
+    const original = {
+      session_id: session.id,
+      title: "Existing source",
+      body: "Original before ordering migration",
+      role: "player",
+    };
+    const scene = await save("scene.save", original);
+    await save(
+      "scene.save",
+      {
+        ...original,
+        id: scene.id,
+        body: "Correction before ordering migration",
+      },
+      1,
+    );
+    const feedback = await save("feedback.send", {
+      body: "Existing exact feedback",
+    });
+    const auditBefore = (
+      await db.query(
+        "select request_id,request,result,created_at from rpg_private.mutation_receipts order by created_at,request_id",
+      )
+    ).rows;
+    await db.exec(
+      await readFile(
+        new URL(
+          "../supabase/migrations/202609170003_ordered_source_history.sql",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+    );
+    const auditAfter = (
+      await db.query(
+        "select request_id,request,result,created_at from rpg_private.mutation_receipts order by sequence",
+      )
+    ).rows;
+    assert.deepEqual(auditAfter, auditBefore);
+    assert.equal(
+      (
+        await db.query("select body from public.rpg_dm_feedback where id=$1", [
+          feedback.id,
+        ])
+      ).rows[0].body,
+      "Existing exact feedback",
+    );
+    const orderedScene = (
+      await db.query(
+        "select sequence,body,revision from public.rpg_scenes where id=$1",
+        [scene.id],
+      )
+    ).rows[0];
+    assert.equal(orderedScene.body, "Correction before ordering migration");
+    assert.equal(orderedScene.revision, 2);
+    assert.equal(Number(orderedScene.sequence), 1);
+    const added = await save("scene.save", {
+      ...original,
+      title: "After ordering migration",
+    });
+    assert.ok(
+      (
+        await db.query("select sequence from public.rpg_scenes where id=$1", [
+          added.id,
+        ])
+      ).rows[0].sequence > orderedScene.sequence,
+    );
+    await assert.rejects(
+      db.query(
+        "delete from rpg_private.mutation_receipts where request_id=$1",
+        [auditBefore[0].request_id],
+      ),
+      /rpg_immutable_history/,
     );
   } finally {
     await db.close();
