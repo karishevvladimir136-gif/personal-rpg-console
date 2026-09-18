@@ -19,6 +19,9 @@ export type ProviderAttempt = {
   stage: "plan" | "narrate" | "feedback";
   configuredModel: string;
   actualModel: string | null;
+  httpStatus: number | null;
+  providerCode: string | null;
+  providerType: "insufficient_quota" | "rate_limit_error" | null;
   attempted: boolean;
   success: boolean;
   category: TurnFailure | null;
@@ -48,6 +51,9 @@ export function openAiProvider(options: Options): DmProvider {
       stage,
       configuredModel: context.budget.model,
       actualModel: null,
+      httpStatus: null,
+      providerCode: null,
+      providerType: null,
       attempted: false,
       success: false,
       category: null,
@@ -95,10 +101,34 @@ export function openAiProvider(options: Options): DmProvider {
       } catch {
         throw new DmError("provider", true);
       }
+      attempt.httpStatus = response.status;
       if (!response.ok) {
-        // Do not retain provider body; it can quote private prompt fragments.
+        // Inspect only a fixed set of non-content error codes. Never retain or
+        // report the message/body, which can quote private prompt fragments.
         try {
-          await response.body?.cancel();
+          const error = (await response.json())?.error;
+          if (
+            error?.type === "insufficient_quota" ||
+            error?.type === "rate_limit_error"
+          )
+            attempt.providerType = error.type;
+          if (
+            [
+              "insufficient_quota",
+              "rate_limit_exceeded",
+              "invalid_api_key",
+              "model_not_found",
+              "permission_denied",
+              "unsupported_parameter",
+              "credit_balance_exhausted",
+              "organization_spend_limit_exceeded",
+              "project_spend_limit_exceeded",
+              "organization_usage_limit_exceeded",
+              "slow_down",
+              "server_is_overloaded",
+            ].includes(error?.code)
+          )
+            attempt.providerCode = error.code;
         } catch {
           /* No provider details escape. */
         }

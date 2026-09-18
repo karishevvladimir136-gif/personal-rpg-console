@@ -424,6 +424,9 @@ test("authentication setup failures are retryable and failed/successful attempts
         "stage",
         "configuredModel",
         "actualModel",
+        "httpStatus",
+        "providerCode",
+        "providerType",
         "attempted",
         "success",
         "category",
@@ -436,6 +439,51 @@ test("authentication setup failures are retryable and failed/successful attempts
   assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
   assert.ok(!JSON.stringify(observed).includes("PRIVATE_DRAFT"));
 });
+test("provider diagnostics retain only whitelisted error codes, never messages or arbitrary code values", async () => {
+  const { source, input } = runtimeFixture();
+  for (const code of [
+    "insufficient_quota",
+    "rate_limit_exceeded",
+    "credit_balance_exhausted",
+    "SYNTHETIC_PRIVATE_CODE",
+  ]) {
+    const observed = [];
+    const provider = openAiProvider({
+      apiKey: "SYNTHETIC_TEST_ONLY",
+      model: "gpt-6-astra",
+      observer: (attempt) => observed.push(attempt),
+      fetcher: async () =>
+        new Response(
+          JSON.stringify({
+            error: {
+              code,
+              message: "SYNTHETIC_PRIVATE_PROMPT_FRAGMENT",
+              type: code.startsWith("SYNTHETIC_PRIVATE")
+                ? "SYNTHETIC_PRIVATE_TYPE"
+                : "insufficient_quota",
+            },
+          }),
+          { status: 429 },
+        ),
+    });
+    await assert.rejects(provider.plan(source, input), (error) => {
+      assert.equal(error.code, "provider");
+      assert.ok(!JSON.stringify(error).includes(code));
+      return true;
+    });
+    assert.equal(observed[0].httpStatus, 429);
+    assert.equal(
+      observed[0].providerType,
+      code.startsWith("SYNTHETIC_PRIVATE") ? null : "insufficient_quota",
+    );
+    assert.equal(
+      observed[0].providerCode,
+      code.startsWith("SYNTHETIC_PRIVATE") ? null : code,
+    );
+    assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
+  }
+});
+
 test("transport database failures cannot leak SQL payloads, and readiness is separate from rules config", async () => {
   const { source, input } = runtimeFixture();
   const store = createRpcTurnStore(source.ownerId, async () => ({

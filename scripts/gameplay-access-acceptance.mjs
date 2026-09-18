@@ -12,9 +12,16 @@ import {
 } from "./gameplay-acceptance-helpers.mjs";
 
 const { config, base } = acceptanceEnvironment();
-const fixtures = JSON.parse(
-  await readFile("test-results/phase2-fixtures.json", "utf8"),
+const live = process.argv[2] === "--live";
+const fixtureRecord = JSON.parse(
+  await readFile(
+    live
+      ? "test-results/phase2-live-acceptance.json"
+      : "test-results/phase2-fixtures.json",
+    "utf8",
+  ),
 );
+const fixtures = live ? fixtureRecord.fixtures : fixtureRecord;
 assert.equal(fixtures.length, 2);
 const cid = fixtures[0].campaignId;
 const results = [];
@@ -115,7 +122,9 @@ pass(
 );
 
 await writeFile(
-  "test-results/phase2-access-acceptance.json",
+  live
+    ? "test-results/phase2-live-access-acceptance.json"
+    : "test-results/phase2-access-acceptance.json",
   JSON.stringify(
     { at: new Date().toISOString(), providerCalls: 0, checks: results },
     null,

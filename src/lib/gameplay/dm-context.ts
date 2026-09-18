@@ -7,8 +7,69 @@ import type {
   MechanicsResolution,
   RecordedCheck,
 } from "./server-contracts.ts";
+import type { Json, JsonObject } from "./contracts.ts";
 import { DmError } from "./dm-errors.ts";
 import { planSchema, narrationSchema, feedbackSchema } from "./dm-schema.ts";
+import { basicProfile } from "./mechanics/profile.ts";
+
+// Only validated, player-visible state fields may inform final narration.
+// Never serialize an entire resolution: it may also contain check/action metadata.
+function publicResults(resolution: MechanicsResolution | undefined) {
+  if (!resolution) return null;
+  const fields: Record<string, readonly string[]> = {
+    entities: ["name", "hp", "max_hp", "resources", "conditions"],
+    items: [
+      "name",
+      "quantity",
+      "storage_id",
+      "owner_entity_id",
+      "equipped_entity_id",
+      "equipped_slot",
+    ],
+    quests: ["title", "status"],
+    locations: ["name", "status"],
+    public_state: ["current_location_id"],
+    rest_records: ["kind", "status"],
+    encounters: ["status", "round", "outcome"],
+    effects: ["entity_id"],
+    encounter_participants: ["entity_id", "encounter_id"],
+  };
+  return {
+    worldMinutes: resolution.worldMinutes,
+    changes: resolution.changes.flatMap((change) => {
+      const allowed = fields[change.family];
+      if (!allowed) return [];
+      const values = Object.fromEntries(
+        Object.entries(change.values).filter(([key]) => allowed.includes(key)),
+      );
+      function nested(key: string, keys: string[]) {
+        const value: Json | undefined = change.values[key];
+        if (value && typeof value === "object" && !Array.isArray(value)) {
+          const selected: JsonObject = Object.fromEntries(
+            Object.entries(value).filter(([name]) => keys.includes(name)),
+          );
+          if (Object.keys(selected).length) values[key] = selected;
+        }
+      }
+      if (change.family === "effects")
+        nested("definition", ["kind", "status", "remaining"]);
+      if (change.family === "encounter_participants") {
+        nested("public_position", ["position"]);
+        nested("public_resources", [
+          "action",
+          "move",
+          "reaction",
+          "active",
+          "defending",
+          "withdrawn",
+        ]);
+      }
+      return Object.keys(values).length
+        ? [{ family: change.family, id: change.id, values }]
+        : [];
+    }),
+  };
+}
 
 // Limits verified 2026-09-18 against official model pages:
 // https://developers.openai.com/api/docs/models/gpt-6-astra
@@ -126,6 +187,17 @@ export function buildContext(
     throw new DmError("context");
   const companion = request.mode === "companion";
   const feedback = stage === "feedback";
+  function activitySettings(revision: number) {
+    const values =
+      snapshot.settings.revision === revision
+        ? snapshot.settings.values
+        : snapshot.settingsHistory.find(
+            (row) => row.campaign_id === cid && row.revision === revision,
+          )?.values;
+    if (!values || values.rulesSystem.id !== basicProfile.id)
+      throw new DmError("context");
+    return values;
+  }
   if (stage === "plan" && ["feedback", "ooc"].includes(request.mode))
     throw new DmError("validation");
   const mandatory = {
@@ -142,6 +214,40 @@ export function buildContext(
     stateRevision: runtime.revision,
     settingsRevision: snapshot.settings.revision,
     settings: snapshot.settings.values,
+    ...(stage === "plan" && !companion
+      ? {
+          houseRules: {
+            profile: basicProfile,
+            checks:
+              "Every forage patch needs exactly one matching actor skill check using stat skill and profile.forageDc. Every improvised-spear transform needs exactly one transform check using skill and profile.transformDc. Every attack patch needs exactly one matching actor/target attack check using attack and target.stats.defense (default 10). Never invent DCs for these operations. Advantage comes only from advantage:<stat>/disadvantage:<stat> actor conditions; both or neither means normal. Controlled actors have player-visible attack checks; NPC attacks are private. Attack DCs are not public. Use meaningful uncertainty and important=true for these supported actions.",
+            rest: "Enter only at a configured safe location outside encounters; entering grants no recovery. Completing charges the pinned difficulty shortRestSupplyCost/longRestSupplyCost multiplied by participant count, in tagged supplies, then applies profile recovery rounded up and capped at max HP. Leaving grants no recovery. Camp access ends on completion or leaving.",
+            recipes:
+              "Only during active long camp: meal uses exactly one meat; coffee uses exactly one coffee plus one water. Preparation creates one serving in accessible storage; serving consumes it for an explicit participating recipient. Effects remain pending until that rest completes; meal and coffee do not stack with themselves or replace rest supplies.",
+            transformation:
+              "Improvised spear uses one knife and one stick as embedded components on success, one binding consumed on either result, and a retained cutting-tool. It costs profile.transformMinutes on either result. No active encounter; inputs and output storage must be accessible.",
+            storage:
+              "Remote camp-stash deposits are allowed. Withdrawal, use and equipment from camp storage require active long camp. Transport access separately requires nearbyStorageIds. Ordinary packs require a present controlled owner. Do not enter camp or add participants implicitly.",
+            encounter:
+              "Only the active participant may act or move; intercept spends a reaction. Each participant has one action, one move and one reaction. Attacks spend the action even on a miss and require opposing controlled/NPC sides, with neither actor nor target far away. A specified weapon must already be equipped by that actor and tagged weapon; itemId null uses profile.weaponDamage. Never equip a weapon or end a turn unless requested. End-turn rotates the active participant; ending the encounter never heals or restores resources.",
+          },
+          activeActivitySettings: {
+            rests: runtime.restRecords
+              .filter((row) => row.status === "planned")
+              .map((row) => ({
+                id: row.id,
+                revision: row.settings_revision,
+                values: activitySettings(row.settings_revision),
+              })),
+            encounters: runtime.encounters
+              .filter((row) => row.status === "active")
+              .map((row) => ({
+                id: row.id,
+                revision: row.settings_revision,
+                values: activitySettings(row.settings_revision),
+              })),
+          },
+        }
+      : {}),
     guide: {
       id: guide.id,
       version: guide.current_version_id,
@@ -246,6 +352,9 @@ export function buildContext(
     ...(stage === "narrate"
       ? {
           outcomes: options.resolution?.outcomes ?? [],
+          ...(!companion
+            ? { validatedResults: publicResults(options.resolution) }
+            : {}),
           // Presentation can hide numbers, never erase an authorized outcome.
           playerCheckOutcomes: (options.checks ?? [])
             .filter((check) => check.visibility === "player")
@@ -275,7 +384,7 @@ export function buildContext(
         }
       : {}),
   };
-  const instructions = `${boundaries}\n${stages[stage]}`;
+  const instructions = `${boundaries}\n${stages[stage]}${stage === "narrate" ? "\nCurrent state is BEFORE the action. validatedResults contains authoritative AFTER values for the listed changed fields and resulting worldMinutes; omitted fields stay unchanged. Use those exact results rather than inferring numbers from prose or repeating the old state." : ""}`;
   // Select complete committed exchanges; accepted/current or half-finished turns are not history.
   const eligibleTurns = runtime.turns.filter(
     (turn) =>

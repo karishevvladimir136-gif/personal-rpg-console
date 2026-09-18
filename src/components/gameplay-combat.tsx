@@ -112,7 +112,11 @@ export function GameplayCombat({
             </p>
           )}
           <p>{t("Round {number}", { number: encounter.round })}</p>
-          <p>{encounter.public_summary}</p>
+          <p>
+            {encounter.public_summary === "Encounter active."
+              ? t("Encounter active.")
+              : encounter.public_summary}
+          </p>
           <ol className="gameplay-initiative">
             {participants.map((row) => (
               <li
