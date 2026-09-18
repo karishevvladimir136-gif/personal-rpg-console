@@ -220,7 +220,6 @@ export function sceneOrder<T extends { sequence: number; id: string }>(
   scenes: T[],
 ): T[] {
   return [...scenes].sort(
-    (a, b) =>
-      a.sequence - b.sequence || a.id.localeCompare(b.id),
+    (a, b) => a.sequence - b.sequence || a.id.localeCompare(b.id),
   );
 }

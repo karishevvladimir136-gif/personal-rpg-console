@@ -477,6 +477,7 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
             </p>
             <div className="button-group">
               <Button disabled>{t("Send")}</Button>
+              <Button disabled>{t("OOC")}</Button>
               <Button disabled>{t("Roll Dice")}</Button>
               <Button disabled>{t("Rest")}</Button>
               <Button disabled>{t("FRAME")}</Button>

@@ -100,28 +100,10 @@ Phase 0 is approved. Phase 1 persistence is separate from this isolated demonstr
 
 ## For development
 
-Use Node.js 24 and pnpm on a new computer (verified with Node 24.19.0). The translation tests use Node's built-in TypeScript support. This workstation also supports its bundled Codex Node runtime via the Windows launcher.
+Use Node.js 24 and pnpm. Install with pnpm install, run pnpm dev, and leave the loopback preview running. The exact dependency tree is committed in pnpm-lock.yaml. System fonts avoid remote font requests.
 
-```sh
-pnpm install
-pnpm dev
-```
+Run pnpm typecheck, pnpm lint, pnpm test (while a preview is running), and pnpm build. PREVIEW_URL overrides the default test address. Live Supabase tests are separately opt-in and require the disposable setup described in SUPABASE_SETUP.md; a skipped integration is not a pass.
 
-The exact dependency tree is committed in `pnpm-lock.yaml`. Next.js 16.3.5, React 19.3.0, and Tailwind 4.3.3 were the stable registry versions when implemented. TypeScript 6.0 and ESLint 9 match the supported ranges of the Next.js lint toolchain. Frontend dependencies only; no runtime connections to external services. System fonts avoid remote font requests.
+Routes and styles live in src/app. Persistent UI lives in persistent-* components; typed public contracts/client helpers are in src/lib/persistence, and server-only access is in src/lib/server. Supabase migrations are committed in supabase/migrations. The /preview routes, preview-state, camp-preview and combat-preview remain isolated demonstrations with player-readable sample data.
 
-Checks:
-
-```sh
-pnpm typecheck
-pnpm lint
-pnpm build
-pnpm start
-# In a second terminal while the preview is running:
-pnpm test
-```
-
-`pnpm test` runs 60 checks: 19 HTTP route/navigation checks, 4 translation checks, 8 rules tests, 9 dice tests and 9 campaign/inventory/camp/conversation/recipe regressions, plus 11 combat lifecycle/isolation/target/cost/idempotency/presentation/localization tests. Coverage includes presentation independence, DC disclosure, repeated activation, cancellation, and reduced-motion scheduling. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks and unverified physical-device/assistive-technology behavior.
-
-Source layout: `src/app` contains the routes and styles, `src/components` contains reusable UI and screens, and `src/lib/mock-data.ts` contains player-readable sample records. Campaign-scoped records carry `campaign_id`. The registry in `campaign-routing.ts` validates URL identity; `inventory-model.ts` unifies items/entities/storage/equipment; `preview-state.ts` isolates temporary campaign state; `camp-preview.ts` provides authored recipe and access/rest fixtures. `combat-preview.ts` defines the isolated authored encounter and pending-action lifecycle, sharing the existing dice presentation without campaign mutations. There are no server API routes or database migrations in this phase.
-
-Localization uses a small shared React provider and `src/lib/locales/ru.json`: English source phrases are the dictionary keys; Russian phrases are their values. No localization package, duplicate routes, or language-specific screen components are needed. See `src/lib/locales/README.md` before adding text.
+Localization uses the shared React provider and src/lib/locales/ru.json. English source phrases are keys; Russian phrases are values. Worker fragments are retained for focused tests and merged into the central catalog. There are no duplicated language routes or localization framework. See src/lib/locales/README.md before adding text.

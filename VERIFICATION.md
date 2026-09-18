@@ -1,3 +1,29 @@
+# Phase 1 verification — September 18, 2026
+
+Phase 0 approval remains fixed at 96b69dcd63d2fa015f5e75bcc5d632c41e04369e. The earlier implementation checks below are historical, not an independent review. The owner separately reported 41 logic/localization tests, 5 HTTP tests and 14 HTML/status route checks plus typecheck/lint/build; that review did not include visual or image-asset verification.
+
+## Integrated implementation checks
+
+The lead integrated all three workers' commits into main, preserved their separate ownership, and safely merged concurrent remote documentation through f46014d. The merged scope includes Chat with DM and only the Phase 1 source-history foundations of the memory contract. No Phase 2/3 runtime, deployment, model call, real campaign import or paid service was used.
+
+Typecheck, lint, production build and the development/production test suite are run on the integrated tree. Final counts and the current status are recorded in DEV_STATUS.md. Focused coverage includes actual migrations/RLS/SQL constraints in PGlite with explicitly synthetic auth roles, two unrelated campaigns, immutable history/restore, stale revisions, idempotent retries, global/campaign settings separation, shared inventory integrity, private marker isolation, feedback/guide isolation and no gameplay mutation, database restart/serialization, pagination beyond 1,000 records, source ordering/correction history, failed file reads, navigation draft guards, localization, HTTP access/origin/status checks, and preserved preview regressions.
+
+The database engine test is real PostgreSQL SQL execution with test-only auth stubs. It is **not Supabase Auth/PostgREST or signed-in application verification**. The live disposable Supabase suite is explicitly skipped without its opt-in configuration. Missing environment configuration, Docker/Supabase CLI and a local instance prevent that acceptance step.
+
+## Browser observations in this Phase 1 run
+
+- The unconfigured application redirects to the honest Setup screen; its isolated preview link opens the approved main menu.
+- English/Russian preview settings, main menu, campaign selection, Continue the story, Game and mobile navigation were exercised through real UI controls.
+- Russian Game and mobile menu were inspected at an observed 390px viewport; setup was inspected at 320px. No horizontal page overflow in those checks. Setup and Russian Game screenshots were visually inspected.
+- Signed-in campaign creation, editor saves, DM feedback/Guide restore, cookie expiration/relogin, and full persistent desktop/mobile flows were **not** browser-tested because Supabase is unconfigured. Form/model/SQL tests do not substitute for those flows.
+- Physical iPhone/Safari, software keyboard and screen-reader speech remain unverified. Earlier full Phase 0 visual checks are retained below but were not repeated wholesale.
+
+## Remaining acceptance gate
+
+Follow SUPABASE_SETUP.md against a disposable local target, apply every migration in order, configure the one owner with public signup disabled, then run the opt-in real integration and application/browser checklist. Check two unrelated campaigns, explicit guide/message saves, reload/relogin, restore-new-version, failed input retention, direct unauthenticated/non-owner requests and preview isolation before entering real campaign data. Phase 1 owner approval remains pending; do not deploy or start Phase 2.
+
+---
+
 # Phase 0 verification
 
 Checked on September 17, 2026.

@@ -32,7 +32,9 @@ if (!existsSync(next)) {
     }
   }
 
-  console.log(`\nYour Personal RPG Console is at ${address}\nIsolated visual preview: ${address}/preview\n`);
+  console.log(
+    `\nYour Personal RPG Console is at ${address}\nIsolated visual preview: ${address}/preview\n`,
+  );
   if (alreadyRunning) {
     console.log(
       "The preview is already running. Open the address above in your browser.",

@@ -20,8 +20,5 @@ export function campaignFeedback(
 ): DmFeedbackMessage[] {
   return messages
     .filter((message) => message.campaign_id === campaignId)
-    .sort(
-      (a, b) =>
-        a.sequence - b.sequence || a.id.localeCompare(b.id),
-    );
+    .sort((a, b) => a.sequence - b.sequence || a.id.localeCompare(b.id));
 }
