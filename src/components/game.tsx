@@ -6,6 +6,7 @@ import { useState } from "react";
 import { clues } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
 import { usePreview } from "./preview-context";
+import { DicePreviewButton } from "./dice-preview";
 
 export function CharacterSummary() {
   const { t } = useLanguage();
@@ -198,9 +199,7 @@ export function Game() {
               >
                 {t("OOC")} {t(ooc ? "On" : "Off")}
               </button>
-              <button type="button" onClick={() => setDialog("dice")}>
-                <Icon name="Swords" size={14} /> {t("Roll dice")}
-              </button>
+              <DicePreviewButton compact />
               <button type="button" onClick={() => setDialog("note")}>
                 <Icon name="BookOpen" size={14} /> {t("Take note")}
               </button>
@@ -312,11 +311,9 @@ export function Game() {
               ? "New York · Scene frame"
               : dialog === "video"
                 ? "A moment in motion"
-                : dialog === "dice"
-                  ? "Roll dice"
-                  : dialog === "note"
-                    ? "Take a note"
-                    : "What James knows",
+                : dialog === "note"
+                  ? "Take a note"
+                  : "What James knows",
           )}
           onClose={() => setDialog("")}
         >
@@ -350,30 +347,6 @@ export function Game() {
               <Button onClick={() => setDialog("frame")}>
                 {t("View scene frame")}
               </Button>
-            </>
-          )}
-          {dialog === "dice" && (
-            <>
-              <p>
-                {t(
-                  "Dice rolling will use a real server dice function in the playable phase. No dice results are invented in this preview.",
-                )}
-              </p>
-              <label className="field">
-                {t("Example roll")}
-                <select>
-                  <option value="1d20 + 5 · Investigation">
-                    {t("1d20 + 5 · Investigation")}
-                  </option>
-                  <option value="1d20 + 3 · Stealth">
-                    {t("1d20 + 3 · Stealth")}
-                  </option>
-                  <option value="1d10 · Revolver damage">
-                    {t("1d10 · Revolver damage")}
-                  </option>
-                </select>
-              </label>
-              <p className="muted">{t("Rolling is unavailable in Phase 0.")}</p>
             </>
           )}
           {dialog === "note" && (

@@ -61,8 +61,8 @@ test("unknown routes show an honest 404", async () => {
   assert.match(await response.text(), /This road ends here/);
 });
 
-test("the sample game does not expose invented live dice results", async () => {
+test("Game offers an explicitly labeled dice preview without unsolicited live results", async () => {
   const html = await (await fetch(`${base}/game`)).text();
-  assert.ok(html.includes("Roll dice"));
+  assert.ok(html.includes("Dice preview"));
   assert.ok(!/You rolled|Dice result|Critical hit!/i.test(html));
 });

@@ -756,6 +756,8 @@ Do not let the model simply invent visible dice numbers.
 
 Hidden rolls remain server-side.
 
+Campaign **Rules & Play Style → Checks & Dice** controls check frequency and presentation independently of difficulty (section 35). The AI proposes a structured check; the server validates it and produces/records the actual result before narrating the action's outcome. Animation only presents that recorded result and must not generate another roll. Phase 0 is an explicitly labeled fixed-sample exception for UI demonstration, never live gameplay.
+
 ---
 
 # 17. MEMORY ARCHITECTURE
@@ -996,11 +998,10 @@ Import creates an independent restored campaign.
 APPLICATION PREFERENCES — GLOBAL
 - interface language (English / Russian)
 - reading size, suggested actions, and narration display preferences
-- visible dice display
 
 CAMPAIGN SETTINGS — PER CAMPAIGN
 - General: campaign language (independent of interface language) and campaign visual preferences
-- dedicated **Rules & Play Style** tab: difficulty/rules, story structure, player role, world autonomy (section 33)
+- dedicated **Rules & Play Style** tab: difficulty/rules, story structure, player role, world autonomy (section 33), and Checks & Dice (section 35)
 - mature tone
 
 Difficulty is a campaign setting, never a global application preference. Each campaign's rules system determines which mechanical controls apply.
@@ -1403,3 +1404,63 @@ This is a future requirement, not authorization to expand Phase 0. Full recipe s
 Use the same small, validated inventory operation for improvised assembly, cooking, and later approved transformations where appropriate. Future recipe selection or alchemy can supply proposals to this operation without replacing the inventory model. Do not build a general-purpose crafting framework now.
 
 Phase 2 acceptance must cover successful transformation, failed checks with explicit costs, missing or inaccessible materials, retained tools, embedded components, cross-campaign rejection, atomic rollback, and retry/duplicate protection.
+
+---
+
+# 35. SKILL CHECKS & DICE PRESENTATION
+
+This owner-requested consolidation supersedes earlier check-frequency and dice-presentation proposals only. Preserve all difficulty parameters, reroll policies, story structure, player role, autonomy, media-provider/model requirements, and English/Russian preferences. **Checks & Dice** belongs to each campaign's existing Rules & Play Style tab, not global application preferences.
+
+## Independent settings
+
+| Setting | Choices | Initial value |
+| --- | --- | --- |
+| Check Frequency | Narrative / Balanced / Full RPG | Balanced |
+| Dice Presentation | Hidden / Key Rolls / All Player Rolls | Key Rolls |
+| Interactive Dice | On / Off | On |
+| Show DC | On / Off | Off |
+
+- Narrative: rare checks at major uncertain turning points.
+- Balanced: regular checks for meaningful uncertain actions.
+- Full RPG: systematically consider appropriate checks during dialogue, investigation, perception, stealth, exploration, and physical actions. Never require rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts.
+- Frequency does not change difficulty, select Custom, or alter any narrative setting. Difficulty presets do not overwrite these preferences.
+- Hidden resolves player-facing checks through narrative consequences without showing numbers or breakdowns. Key Rolls displays important player-facing rolls; All Player Rolls displays every player-facing roll. Unshown player-facing checks expose only the resulting narrative, with no roll notice.
+- Interactive Dice On uses the interactive window for displayed player-facing rolls. Off resolves displayed rolls automatically and shows a compact result. Hidden disables the Interactive Dice control without discarding its saved value.
+- DC means the target number required to succeed. Show DC only affects displayed player-facing checks whose target is permitted to be disclosed. Hidden disables this control while retaining its saved preference. An undisclosable target is never supplied to the client merely to be visually concealed.
+- Private DM checks, private DCs, and hints that a private check occurred must never be sent or shown regardless of these preferences.
+
+## Phase 0 demonstrator
+
+Use the existing shared campaign state and bilingual dictionaries. Settings and demo selections remain in memory across navigation; refresh may reset them. No backend, API routes, authentication, database, AI, or gameplay engine.
+
+Entry points: **Game → Dice preview** beneath the action input, and **Settings → Campaign settings → Rules & Play Style → Checks & Dice → Open dice preview**. The window is labeled **Demo roll — no campaign effects**. An expandable **Demo setup** contains a small sample selector and important/non-important player-check selector so Key Rolls can be tested.
+
+Fixed sample fixtures, not random dice or AI:
+
+| Sample | Check | Dice / kept | Modifiers | Total | Public DC | Authored outcome |
+| --- | --- | --- | --- | --- | --- | --- |
+| A | Persuasion | 14 | Charisma +3, Proficiency +2 | 19 | 15 | Success |
+| B | Investigation | 6 | Intelligence +1, Proficiency +2 | 9 | 13 | Failure |
+| C | Stealth, advantage | 6, 16 / 16 | Dexterity +3, Proficiency +2 | 21 | 17 | Success |
+| D | Perception, disadvantage | 17, 7 / 7 | Wisdom +2, Proficiency +2 | 11 | 14 | Failure |
+| E | Insight | 12 | Wisdom +2, Proficiency +2 | 16 | Not supplied | Success |
+
+Sample labels omit the outcome so the waiting window does not announce it before Roll. Sample E is a player-facing check with no target supplied, not a private DM check. The fixtures contain no private checks or private targets. Outcome values are authored examples, not universal natural-1/natural-20 skill-check rules.
+
+Honor preferences: Hidden and non-important Key Rolls show only a sample narrative consequence; displayed non-interactive rolls immediately show compact results; eligible interactive rolls begin in a neutral waiting state. Show the skill, action, permitted DC, modifiers with explanations, and advantage/disadvantage when applicable. An original lightweight inline SVG faceted d20 and the prominent Roll button perform the same action. Use a short restrained tumble/rotation, soft bronze glow, and clean reveal, with muted failure styling and no confetti. Show individual dice, kept result, modifier breakdown, total, and success/failure after resolution, plus Continue/Close.
+
+Use real HTML/CSS/SVG; no copied proprietary assets, generated screenshot UI, 3D engine, physics, or heavyweight animation dependency. The modal follows the existing charcoal/bronze, literary journal style.
+
+Explicit **Replay sample animation** shows the same fixed sample and is not a gameplay reroll. It does not consume allowances or change character state, inventory, history, scenes, or canon. Closing during animation cancels it and leaves the sample unrevealed; reopening a completed sample can display its existing result. Switching samples/importance resets only the demonstration. No sample outcome is appended to gameplay.
+
+## Accessibility and verification
+
+Use an accessible native modal with title, focus containment/restoration, Escape handling, and keyboard-operable die and Roll button. Announce only the final result, not animation frames. Respect reduced motion with immediate reveal and no tumble. Guard repeated activation synchronously and disable controls during animation; cancel timers on close/unmount/sample switch. Check English/Russian at desktop, 390px and 320px, including controls inside the scrollable modal.
+
+Regression coverage must include setting independence, all presentation/importance combinations, interaction On/Off, DC disclosure, fixed arithmetic and higher/lower selection, repeated activations, close/reopen cancellation, and both languages. Report unit/policy tests separately from browser checks and disclose unverified device/assistive-technology behavior.
+
+## Future runtime contract and phases
+
+- **Phase 0:** only the above fixed-fixture UI. Separate fixtures, presentation policy, and animation lifecycle from components; animation never chooses a result. Owner approval remains pending.
+- **Phase 1, separately authorized:** persist campaign-scoped choices alongside other rules/play-style settings, including saved toggles while Hidden. Validate independent values and preserve effective revisions. Do not add real check resolution yet.
+- **Phase 2, separately authorized:** the single AI DM proposes a structured check; server code validates rules-system compatibility, stakes, modifiers, visibility, DC disclosure, importance, and whether a roll is appropriate. Do not narrate the action's outcome until the check resolves. The server generates and durably records actual dice/results; the UI presents that result separately. Use stable check IDs and idempotent resolution so double-clicks, retries, navigation, and refresh cannot grant extra rolls. Rerolls require server authorization under the configured campaign policy. Keep private checks/targets entirely server-side, emitting no UI hints. Apply rules-system-specific natural-roll behavior only when explicitly supported. This future contract is documentation, not implementation authorization.

@@ -1,5 +1,13 @@
 "use client";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+import { initialDiceDemo, type DiceDemoState } from "@/lib/dice-preview";
 import { campaign } from "@/lib/mock-data";
 import type { Language } from "@/lib/i18n";
 import {
@@ -9,6 +17,8 @@ import {
   type CampaignSettingsAction,
 } from "@/lib/campaign-settings";
 type PreviewState = {
+  diceDemo: DiceDemoState;
+  setDiceDemo: Dispatch<SetStateAction<DiceDemoState>>;
   campaignSettings: CampaignSettings;
   setCampaignLanguage: (language: Language) => void;
   changeCampaignSettings: (action: CampaignSettingsAction) => void;
@@ -27,6 +37,9 @@ type PreviewState = {
 };
 const Context = createContext<PreviewState | null>(null);
 export function PreviewProvider({ children }: { children: ReactNode }) {
+  const [diceDemo, setDiceDemo] = useState<DiceDemoState>(() => ({
+    ...initialDiceDemo,
+  }));
   const [campaignSettings, setCampaignSettings] = useState(() =>
     createCampaignSettings(campaign.campaign_id),
   );
@@ -41,6 +54,8 @@ export function PreviewProvider({ children }: { children: ReactNode }) {
   return (
     <Context.Provider
       value={{
+        diceDemo,
+        setDiceDemo,
         campaignSettings,
         setCampaignLanguage: (language) =>
           setCampaignSettings((previous) =>

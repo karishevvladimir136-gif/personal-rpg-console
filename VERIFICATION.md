@@ -69,3 +69,31 @@ Browser checks performed on the actual UI:
 - Refresh resets temporary settings and interface language. The final production browser retained Hard and Russian across Library → Settings.
 
 The temporary production server was stopped. Development remains **http://127.0.0.1:3000/settings**. Rules-system incompatibility is tested in pure state transitions; the connected sample uses both HP and damage and has no rules-system editor. No physical Safari/iPhone testing was performed. Numerical tuning is provisional, settings have no gameplay effect, owner approval is pending, and no later phase has begun.
+
+## Final Phase 0 — Checks & Dice
+
+Verified September 17, 2026. `pnpm typecheck`, `pnpm lint` (no warnings), and the optimized production build passed after the final code changes. All **35 tests passed** against both development (3000) and production (3001): 14 HTTP smoke tests, 4 translation tests, 8 earlier campaign-setting tests, and 9 new checks/dice tests.
+
+Automated regression coverage:
+
+- Default Balanced frequency / Key Rolls / Interactive On / Show DC Off; preference edits preserve difficulty and all narrative fields, and presets preserve dice preferences.
+- Full presentation × importance × interaction matrix, private visibility suppression, Show DC eligibility, undisclosed-target omission, and retained preferences while Hidden.
+- Fixed sample arithmetic, both higher/lower kept results, authored outcomes without invented natural-1/natural-20 rules, and unchanged fixture data.
+- Repeated activation schedules one reveal; another presentation requires explicit replay. Close/dispose cancels timers, and a stale queued callback cannot reveal the reopened sample. Reduced motion schedules no animation timer. Completed samples can reopen without another roll.
+- Every data-driven fixture/setting label and description is present in English/Russian; the existing UI AST/catalog checks include the new components and accessible names.
+
+Manual browser checks (Chromium via the in-app browser):
+
+- Both entry points work: Game → Dice preview beneath the composer and campaign Rules & Play Style → Checks & Dice → Open dice preview.
+- Waiting shows the skill/action/modifiers and neutral dice, with no outcome or result announcement. Show DC Off omits the target. Roll works via keyboard and die click; both activation controls are disabled during the animation.
+- Sample A reveals 14 + 3 + 2 = 19, success. Sample B reveals 6 + 1 + 2 = 9, failure. C shows 6/16, keeps 16, total 21. D shows 17/7, keeps 7, total 11. Result and narrative appear only after the animation; the final live region contains the total/outcome, not frame updates.
+- Explicit replay starts the same sample animation. Escape during replay cancels it; reopening is neutral and no stale result appears. Closing restores focus to the opener. Tab/Shift+Tab wrap inside the modal after the focus-boundary fix; Continue receives focus after reveal. The existing Take note modal still opens/closes and restores opener focus.
+- Full RPG leaves Medium and the narrative defaults unchanged. Key Rolls + non-important shows only narrative. All Player Rolls displays non-important checks. Interactive Off shows an immediate compact result without die/Roll controls.
+- Show DC On displays disclosed targets; sample E supplies no DC and never displays one. Hidden shows only a sample narrative with no dice, target, result breakdown, or modifier panel. Its disabled switches retain their saved values and work again when presentation changes.
+- Settings and the completed/selected sample survived Settings → Game and English → Russian. Refresh restores preview defaults. No demo consequence was added to the story, character, inventory, or reroll allowance.
+- English and Russian were reviewed at desktop, 390 × 844 and 320 × 740. Game's original toolbar styles no longer hide the modal SVG on phones because the dialog is portaled outside the toolbar. Page and modal scroll widths showed no horizontal overflow after each resize settled. Narrow dialogs scroll vertically; controls and long Russian labels remain reachable. The Russian Close action uses a separate key from relationship “Close.”
+- Final production verification confirmed a neutral initial window with no result/DC, keyboard die activation, correct 19-point result/live-region text, Continue, and existing note-modal behavior. The temporary production server was stopped; the development preview remains on **127.0.0.1:3000**.
+
+Not verified: actual screen-reader speech, operating-system reduced-motion preference switching or browser media emulation, physical iPhone/Safari/touch/software keyboard, and separate console-log capture for this refinement. Reduced-motion behavior was verified in the lifecycle tests and its CSS media rule inspected. Rapid duplicate activation is covered by the controller regression test; browser checks verified disabled controls while rolling. No real dice, AI, backend, persistence, or rules-engine behavior was tested or implemented. Owner approval of Phase 0 remains pending.
+
+Remote documentation-only item-transformation requirements are preserved alongside the checks contract. Those future Phase 2 capabilities are unimplemented and are not covered by the above application tests.

@@ -15,16 +15,20 @@ If the preview is already running, simply open that address. To stop a preview s
 
 - Explore all screens using the sidebar. On a narrow screen, use the bottom bar and the top-left menu.
 - **Game:** type an action, switch OOC on/off, add a note, inspect what James knows, open the sample frame, or save a moment.
+- **Game → Dice preview** (beneath the action input): click the die or **Roll** for a fixed sample. Expand **Demo setup** to try sample A (success), B (failure), C (advantage), D (disadvantage), or E (no target supplied). **Replay sample animation** repeats the same result; it is not a gameplay reroll.
 - **Character / Inventory:** select equipment slots, switch character tabs, filter or search the inventory, and inspect an item.
 - **Journal:** inspect evidence cards, read the timeline, or add a personal note.
 - **Map:** select a known city and choose a sample destination. Region and Local show illustrative diagrams.
 - **Library:** filter and search sample documents, read them, and open the sample version-history view.
 - **Sessions / Gallery:** read the illustrative recap, open artwork, and find a saved scene in Favorites.
-- **Settings → General → Interface Language:** choose **English** or **Русский**. Navigation, controls, dialogs, and sample content change together. In Russian, this is **Настройки → Общие → Язык интерфейса**.
-- **Settings → Campaign settings → Campaign Language:** choose a separate future story language for The Long Road West. This does not change the interface or generate a story yet.
+- **Settings → Application preferences → General → Interface Language:** choose **English** or **Русский**. Navigation, controls, dialogs, and sample content change together. In Russian, this is **Настройки → Настройки приложения → Общие → Язык интерфейса**.
+- **Settings → Campaign settings → General → Campaign Language:** choose a separate future story language for The Long Road West. This does not change the interface or generate a story yet.
+- **Settings → Campaign settings → Rules & Play Style:** tune difficulty and independent narrative preferences. Under **Checks & Dice**, try Hidden / Key Rolls / All Player Rolls, Interactive Dice, and Show DC, then **Open dice preview**. Key Rolls shows only narrative for a non-important sample. Hidden retains the saved toggle choices while disabling them. Check Frequency is a future preference, not an active check generator.
 - **Settings:** turn on larger story text and optional suggested actions, then return to Game.
 
 Actions, notes, favorites, destination, reading controls, and both language choices are kept in memory while navigating. Refreshing resets the preview, including both languages to English. Your own writing is never translated. New campaign cards and other screen-local sample controls are temporary too. No files or real campaign data are changed by the UI.
+
+Campaign rules/check/dice settings and the selected demo sample also survive navigation. Defaults are Medium / Balanced story / One of many / Moderate autonomy, with Balanced check frequency, Key Rolls, Interactive Dice On, and Show DC Off. Demo results never change the character, inventory, history, or reroll allowance. Refresh resets these choices; closing an unfinished animation cancels it. On narrow screens the dice window scrolls vertically to keep every control reachable.
 
 ## Deliberately outside Phase 0
 
@@ -65,7 +69,7 @@ pnpm start
 pnpm test
 ```
 
-`pnpm test` runs 18 checks: all 11 screen routes, local navigation/art assets, the home redirect, missing-page handling, the absence of invented live dice results, and translation coverage/interpolation. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks.
+`pnpm test` runs 35 checks: 14 HTTP smoke checks, 4 translation checks, 8 campaign rules tests, and 9 checks/dice policy, fixture, and animation-lifecycle tests. Coverage includes presentation independence, DC disclosure, repeated activation, cancellation, and reduced-motion scheduling. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks and unverified physical-device/assistive-technology behavior.
 
 Source layout: `src/app` contains the routes and styles, `src/components` contains reusable UI and screens, and `src/lib/mock-data.ts` contains player-readable sample records. Campaign-scoped records carry `campaign_id`. There are no server API routes or database migrations in this phase.
 

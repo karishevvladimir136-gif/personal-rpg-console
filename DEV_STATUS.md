@@ -6,19 +6,25 @@ Update this file before every milestone-completion commit and after any major ar
 
 ## Current milestone
 
-**Milestone / Phase 0 — Static clickable UI shell, including English/Russian and campaign Rules & Play Style refinements.**
+**Milestone / Phase 0 — Static clickable UI shell, including bilingual Rules & Play Style and the final Checks & Dice demonstrator.**
 
 Scope: a private, single-user campaign preview with realistic James & Jinn sample data. No later milestone has been started.
 
 ## Current status
 
-Phase 0, the bilingual refinement, and the owner-requested Rules & Play Style preview are implemented and verified. Earlier checkpoints were committed and pushed as `ab7b891` (original shell) and `84e73f0` (bilingual refinement). Explicit owner approval remains pending; implementation completion is not owner approval. Phase 1 has not started.
+Phase 0 and all requested refinements, including Checks & Dice and the interactive fixed-sample dice window, are implemented and verified. Earlier checkpoints were committed and pushed as `ab7b891` (original shell), `84e73f0` (bilingual), and `54c1c73` (Rules & Play Style). Explicit owner approval remains pending; implementation completion is not owner approval. Phase 1 has not started.
 
 The local development server was restarted as a background process after the original preview stopped. It uses port **3000**, bound to **127.0.0.1**. Preview: **http://127.0.0.1:3000/campaigns**. The server must be running on this computer for that address to work.
 
 No accounts, API keys, or external service setup are required. This preview is local and has not been deployed.
 
 ## Completed work
+
+- Added independent campaign Check Frequency (Balanced default), Dice Presentation (Key Rolls default), Interactive Dice (On), and Show DC (Off). Difficulty presets and all prior narrative/language settings are preserved. Hidden disables the latter controls while retaining saved preferences.
+- Added **Game → Dice preview** and **Settings → Campaign settings → Rules & Play Style → Checks & Dice → Open dice preview**. The modal is clearly labeled “Demo roll — no campaign effects”; Hidden/non-important Key Rolls show narrative only, non-interactive rolls show compact results, and eligible interactive rolls show the d20 window.
+- Built original faceted SVG dice with restrained CSS tumble/glow, neutral waiting, explained modifiers, eligible DCs, kept/discarded dice, totals/outcomes, and explicit animation replay. Five fixed fixtures cover ordinary success/failure, advantage/disadvantage, and a player check with no target supplied. No randomness, service call, private check data, or campaign mutations.
+- Kept demo selections/completed sample state in memory across navigation. Added synchronous activation guards, timer cleanup, reduced-motion immediate reveal, final-result announcements, keyboard focus wrapping/restoration, and a portal so Game toolbar styles cannot affect the modal.
+- Verified English/Russian on desktop and both 390px/320px widths. Added nine automated tests; updated the original Game smoke test to recognize the labeled demo. Documented the future validated/idempotent server-check contract in MASTER_SPEC section 35 and DEVELOPMENT_PLAN Phases 0–2 without implementing a backend.
 
 - Added **Settings → Campaign settings → Rules & Play Style**, separate from application preferences. Campaign General retains campaign language and visual preferences; the old reading-panel difficulty selector was removed.
 - Added Easy / Medium / Hard / Custom with centralized provisional values and Advanced controls: independent HP/damage, rerolls and conditional allowance, defeat, recovery, scarcity. Every difficulty edit selects Custom.
@@ -43,6 +49,15 @@ No accounts, API keys, or external service setup are required. This preview is l
 - Added four translation regression checks alongside the existing fourteen smoke tests.
 
 ## Files / areas changed
+
+Final Checks & Dice refinement:
+
+- `src/lib/campaign-settings.ts`: four independent preferences, defaults, actions, and choice definitions.
+- `src/lib/dice-preview.ts`: player-visible fixed fixtures, arithmetic, display/DC policy, and guarded/cancelable animation lifecycle, separate from components and future resolution.
+- `src/components/dice-preview.tsx`, `game.tsx`, `campaign-settings.tsx`, `preview-context.tsx`, `ui.tsx`: reusable modal/entries, controls, shared demo state, focus handling, and original SVG.
+- `src/app/globals.css`, `src/lib/locales/ru.json`: responsive animation/presentation styles and Russian catalog additions. No packages or assets added.
+- `tests/dice-preview.test.mjs`, `tests/preview.test.mjs`: nine regressions plus revised Game demo-entry smoke check.
+- `MASTER_SPEC.md`, `DEVELOPMENT_PLAN.md`, `README.md`, `VERIFICATION.md`, `DEV_STATUS.md`: consolidated requirements, future runtime boundary, opening instructions, actual results, and limitations. Media-provider requirements and remote item-transformation documentation are preserved.
 
 Focused Rules & Play Style refinement:
 
@@ -76,12 +91,11 @@ The original `/design` images and `START_HERE.md` are unchanged. `MASTER_SPEC.md
 
 ## Tests and build status
 
-- `pnpm typecheck`: passed after the Rules & Play Style refinement.
-- `pnpm lint`: passed with no warnings after the Rules & Play Style refinement.
-- `pnpm build`: passed after the Rules & Play Style refinement; all eleven screen routes were statically generated.
-- `pnpm test`: all **26 tests passed** against development and the rebuilt production preview (14 HTTP checks, 4 translation checks, and 8 campaign-settings checks).
+- `pnpm typecheck`: passed after the final Checks & Dice refinement.
+- `pnpm lint`: passed with no warnings after the final Checks & Dice refinement.
+- `pnpm build`: passed after the final Checks & Dice refinement; all eleven screen routes were statically generated.
+- `pnpm test`: all **35 tests passed** against development and the rebuilt production preview: 14 HTTP checks, 4 translation checks, 8 rules tests, and 9 new dice/preference/lifecycle tests.
 - Browser checks: navigation and key mock interactions passed on desktop and at 390 × 844 and 320 × 740 phone viewports. No page-wide horizontal overflow at 320px.
-- Production browser console: no errors observed during the final review.
 - Launcher: syntax and existing-server detection checked; server start verified.
 - The restarted background development preview returned HTTP 200 for `/campaigns`.
 
@@ -89,7 +103,16 @@ Language refinement verification: both languages were checked across all eleven 
 
 Rules refinement verification: browser checks passed for defaults; Easy/Medium/Hard application; independent HP/damage and automatic Custom; limited/unlimited allowance visibility; independent narrative choices and campaign language; keyboard tab navigation; client-navigation retention; and refresh reset. Reviewed English/Russian Settings on desktop and at 320px, plus Russian narrative cards at 390px. No page-wide horizontal overflow at either phone width. The final production preview retained Hard and Russian after Library → Settings. The temporary production server is stopped; development remains on port 3000. See `VERIFICATION.md` for the checklist.
 
+Checks & Dice browser verification: both entries, neutral waiting, keyboard/button/die activation, 19-point success, 9-point failure, both kept-die cases, explicit replay, Escape during animation/reopen, focus wrapping/restoration, all presentation modes, conditional DC, retained Hidden preferences, and navigation retention passed. English and Russian page/modal widths were checked at 320px and 390px. Production confirmed waiting without a result/DC, the correct final announcement/result, and the existing note-dialog behavior. Physical devices and actual screen-reader speech remain unverified.
+
 ## Key technical decisions
+
+
+- Dice settings extend the existing campaign object/dictionaries. Check frequency is a future runtime preference; it does not create checks in Phase 0. Presentation settings actively govern only the isolated demonstrator.
+- Sample A is the requested 14 + 3 + 2 = 19 success. Sample B fails; C keeps the higher die; D keeps the lower die. Sample E has no DC in its client fixture at all. Authored outcomes do not impose universal natural-1/natural-20 rules.
+- Fixture data, presentation policy, and animation lifecycle are separate. A roughly 1.15-second CSS animation presents fixed data; a synchronous guard blocks duplicate starts and disposal cancels pending callbacks. Reduced motion skips the timer/tumble. Native HTML/CSS/SVG and existing React are sufficient; no animation/3D/physics dependencies.
+- Demo setup is expandable to keep Roll prominent. Replay is explicitly a replay of the same sample; completed samples remain available across navigation. Closing an unfinished animation leaves that sample unrevealed. No real reroll counters, character data, inventory, or transcript are changed.
+- Future server validation, real dice, recorded results, idempotent check IDs, reroll authorization, and private-check isolation are documented only. Phase 1 will persist preferences; Phase 2 will resolve real checks before outcome narration.
 
 - Rules & Play Style uses a typed object with `campaign_id`, rules capabilities, and independent difficulty, story structure, player role, and autonomy. Definitions/state transitions live outside React presentation. This is temporary state, not a game engine.
 - Provisional tuning: Easy uses 0.75× HP/damage; Medium 1×/1×; Hard 1.5×/1.25×. Other values are explicit in MASTER_SPEC section 33. Custom retains current values. Preview bounds are 0.25–3× in 0.25 steps and 1–20 limited rerolls per session; these are not approved game balance.
@@ -115,6 +138,10 @@ Rules refinement verification: browser checks passed for defaults; Easy/Medium/H
 
 ## Known issues
 
+- All dice examples are fixed demonstrations, not playable checks. Check frequency does not generate checks and the UI cannot adjudicate real actions. No server, account, database, or AI was introduced.
+- Native keyboard focus wrapping, Escape, focus restoration, disabled animation controls, live-region content, and timer cancellation were checked. Actual screen-reader speech, operating-system reduced-motion switching, physical touch/Safari, and the phone software keyboard were not tested. Reduced-motion lifecycle behavior is automated-test covered and the CSS media rule was inspected; browser animation emulation was not used. Browser console logs were not separately captured for this final refinement.
+- Narrow dice dialogs scroll vertically when necessary; horizontal page/modal overflow was checked at 320px and 390px in both languages. Demo selectors and controls remain reachable.
+
 - Rules & Play Style has no gameplay effect. Numerical tuning is provisional, no reroll counters/resources are consumed, and no NPC simulation runs.
 - Rules selections survive navigation but reset on refresh. Returning to Settings opens General; reopening Rules & Play Style reveals the retained selections. Advanced expansion can reset after leaving Settings.
 - Only James & Jinn is connected. Unsupported-rules behavior is covered by pure state tests; Phase 0 has no rules-system editor or second playable campaign.
@@ -130,6 +157,9 @@ Rules refinement verification: browser checks passed for defaults; Easy/Medium/H
 
 ## Remaining work
 
+- Owner click-through and approval of the final dice/check refinement. No Phase 1 work is authorized or started.
+- Real server check resolution and persistence remain future work under the documented phases. Validate assistive technology and physical mobile behavior during later authorized accessibility/device testing.
+
 - Owner reviews the new Rules & Play Style controls and wording in either language; Phase 0 approval remains pending.
 - Validate gameplay balance and supported rules-system behavior during separately authorized runtime work. Preview values are not final mechanics.
 
@@ -139,7 +169,7 @@ Rules refinement verification: browser checks passed for defaults; Easy/Medium/H
 
 ## Recommended next step
 
-Open **http://127.0.0.1:3000/settings**, then **Campaign settings → Rules & Play Style**. Try a preset, expand Advanced, and change a value to see Custom. Change the three narrative choices, visit Library, and return/reopen the tab to check retention. Refresh restores Medium / Balanced / One of many / Moderate. For Russian use **Application preferences → General → Interface Language → Русский**; Campaign Language is separate in campaign General. No manual setup or service keys are needed. Owner approval remains pending. Wait for a separate request before starting Milestone 1.
+Open **http://127.0.0.1:3000/game** and click **Dice preview** beneath the action input. Click the die or **Roll**; expand **Demo setup** to select A (success), B (failure), C (advantage), D (disadvantage), or E (no target supplied). To test display preferences, open **Settings → Campaign settings → Rules & Play Style → Checks & Dice**, change a setting, and click **Open dice preview**. Try non-important + Key Rolls, Hidden, Interactive Dice Off, and Show DC On. For Russian use **Application preferences → General → Interface Language → Русский**. Navigation keeps choices; refresh restores defaults. No setup or keys are needed. Owner approval remains pending; wait for a separate request before starting Phase 1.
 
 ## Documentation-only update — September 18, 2026
 
@@ -150,3 +180,5 @@ Recorded the owner's preliminary media architecture requirement in MASTER_SPEC s
 Recorded the owner's requirement in MASTER_SPEC section 34 and DEVELOPMENT_PLAN Milestone 2: free-text gameplay can propose improvised item transformations, with server validation and atomic, retry-safe inventory changes. Ingredients may be consumed, components embedded, and tools retained; provenance must be recorded. Camp-stored materials are unavailable outside an active long-rest camp. Full crafting/alchemy interfaces and recipe systems remain deferred.
 
 This update changes documentation only. No application code, schema, runtime behavior, or Phase 0 approval status has changed. Tests, typecheck, lint, and build were not rerun for this documentation-only update; prior verification results remain historical results, not verification of the future feature. Implementation requires separate authorization for Phase 2. Continue the currently authorized Phase 0 work; integrate these remote documentation changes before the next push without overwriting local work.
+
+These remote documentation commits are integrated into the final Checks & Dice checkpoint. Item transformations remain section 34; the consolidated dice contract is section 35. The integration changed documentation only, preserving the application code verified by the 35-test/typecheck/lint/build runs above. No future item-transformation feature was implemented or tested.

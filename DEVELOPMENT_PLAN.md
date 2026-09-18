@@ -32,6 +32,15 @@ Owner-requested Phase 0 refinement (MASTER_SPEC section 33):
 - English and Russian labels, responsive desktop/mobile layout, clear preview/no-gameplay-effect notice
 - no migrations, API routes, persistence, authentication, AI, or simulation engine
 
+Final Phase 0 checks/dice refinement (MASTER_SPEC section 35):
+- extend campaign Rules & Play Style with independent Check Frequency (Narrative / Balanced / Full RPG; Balanced default), Dice Presentation (Hidden / Key Rolls / All Player Rolls; Key Rolls default), Interactive Dice (On), and Show DC (Off)
+- Hidden disables the last two controls without discarding preferences; never expose private checks or private DCs, or hint that a private check occurred
+- frequency does not change difficulty or select Custom; Full RPG excludes trivial guaranteed, impossible, and repeated unchanged attempts
+- reusable original HTML/CSS/inline-SVG d20 demo from Game and Settings, using fixed success/failure/advantage/disadvantage samples and important/non-important checks
+- neutral waiting state, modifiers, permitted DC, guarded short animation, result breakdown, final announcement, and explicit sample-animation replay; no campaign effects or allowance consumption
+- honor Hidden, compact automatic, and interactive presentation modes; accessible modal, reduced motion, timer cleanup, shared temporary state, both languages, desktop/390px/320px layouts
+- test presentation/setting independence, DC policy, fixture arithmetic, kept dice, double activation, cancellation/reopen, and translations; distinguish automated coverage from browser/physical-device checks
+
 Acceptance:
 - no broken routes
 - desktop matches mockups closely
@@ -77,6 +86,7 @@ Add:
 - one owner login
 - persist campaign Rules & Play Style and rules-system capabilities separately from global preferences and document context (MASTER_SPEC section 33)
 - validate structured values and record effective settings revisions/history so changes are prospective
+- persist the consolidated Checks & Dice campaign preferences, including the saved Interactive Dice/Show DC values while Hidden; keep presentation separate from difficulty and defer resolution to Phase 2
 
 Acceptance:
 - refresh loses nothing
@@ -113,6 +123,9 @@ Build:
 - pass structured narrative guidance and campaign document context to the single DM while preserving canon and player agency
 - clarify settings/canon conflicts rather than silently rewriting; changes only affect future play
 - advance relevant NPC/faction goals with meaningful events and in-world time according to autonomy, without a background simulator or multiple AI agents
+- validate AI-proposed structured checks server-side before resolution; withhold action outcomes until the server produces and records actual dice results
+- separate check resolution from animation/presentation; stable check IDs and idempotent resolution prevent extra rolls from double-clicks, retries, navigation, or refresh
+- enforce campaign reroll policy in code; private checks/targets remain server-only without UI hints; disclose only permitted player-facing DCs
 
 Acceptance:
 - 20–30 turn test campaign works
@@ -122,6 +135,7 @@ Acceptance:
 - hidden state does not leak
 - failure never destroys player input
 - tests prove supported mechanics are enforced, unsupported HP assumptions are rejected, narrative axes stay independent, and historical outcomes are unchanged by settings edits
+- tests prove check idempotency, authorized reroll limits, no premature outcome narration, no private-check/DC leakage, and correct campaign-specific natural-roll rules
 
 Suggested prompt:
 

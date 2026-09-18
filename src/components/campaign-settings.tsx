@@ -5,6 +5,7 @@ import { useLanguage } from "./language-context";
 import { usePreview } from "./preview-context";
 import { Badge } from "./ui";
 import { languageOptions } from "@/lib/i18n";
+import { DicePreviewButton } from "./dice-preview";
 import {
   autonomyOptions,
   defeatOptions,
@@ -15,6 +16,8 @@ import {
   roleOptions,
   scarcityOptions,
   storyOptions,
+  checkFrequencyOptions,
+  dicePresentationOptions,
 } from "@/lib/campaign-settings";
 
 type Option<T extends string> = {
@@ -134,8 +137,7 @@ function RulesAndPlayStyle() {
         </p>
         <details className="rules-advanced">
           <summary>
-            {t("Advanced")}{" "}
-            <span>{t("Fine-tune difficulty")}</span>
+            {t("Advanced")} <span>{t("Fine-tune difficulty")}</span>
           </summary>
           <p className="muted">
             {t(
@@ -261,6 +263,105 @@ function RulesAndPlayStyle() {
             />
           </div>
         </details>
+      </section>
+      <section
+        className="rules-section checks-dice-settings"
+        aria-labelledby="checks-dice-title"
+      >
+        <h3 id="checks-dice-title">{t("Checks & Dice")}</h3>
+        <p className="muted">
+          {t(
+            "Check frequency and dice presentation are independent of difficulty and all narrative settings.",
+          )}
+        </p>
+        <ChoiceGroup
+          label={t("Check Frequency")}
+          options={checkFrequencyOptions}
+          value={settings.checkFrequency}
+          onChange={(value) => change({ type: "checkFrequency", value })}
+        />
+        <p className="muted">
+          {t(
+            "Full RPG does not call for rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts. Frequency is a preview preference; it does not generate checks yet.",
+          )}
+        </p>
+        <ChoiceGroup
+          label={t("Dice Presentation")}
+          options={dicePresentationOptions}
+          value={settings.dicePresentation}
+          onChange={(value) => change({ type: "dicePresentation", value })}
+        />
+        <div className="dice-preference-toggles">
+          <div className="setting-row">
+            <div>
+              <h4>{t("Interactive Dice")}</h4>
+              <p id="interactive-dice-help">
+                {t(
+                  "On opens an interactive window for displayed player rolls. Off shows an automatic compact result.",
+                )}
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.interactiveDice}
+              aria-label={t("Interactive Dice")}
+              aria-describedby="interactive-dice-help dice-hidden-help"
+              disabled={settings.dicePresentation === "hidden"}
+              className={`toggle ${settings.interactiveDice ? "on" : ""}`}
+              onClick={() =>
+                change({
+                  type: "interactiveDice",
+                  value: !settings.interactiveDice,
+                })
+              }
+            >
+              <span />
+            </button>
+          </div>
+          <div className="setting-row">
+            <div>
+              <h4>{t("Show DC")}</h4>
+              <p id="show-dc-help">
+                {t(
+                  "DC is the target number required to succeed. Show it only for player-facing checks whose target may be disclosed.",
+                )}
+              </p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={settings.showDc}
+              aria-label={t("Show DC")}
+              aria-describedby="show-dc-help dice-hidden-help"
+              disabled={settings.dicePresentation === "hidden"}
+              className={`toggle ${settings.showDc ? "on" : ""}`}
+              onClick={() =>
+                change({ type: "showDc", value: !settings.showDc })
+              }
+            >
+              <span />
+            </button>
+          </div>
+        </div>
+        <p className="muted" id="dice-hidden-help">
+          {t(
+            settings.dicePresentation === "hidden"
+              ? "Hidden presentation disables Interactive Dice and Show DC. Your saved preferences are retained for when rolls are displayed again."
+              : "Private DM checks and private target numbers are never shown, regardless of these preferences.",
+          )}
+        </p>
+        <div className="dice-settings-preview">
+          <div>
+            <h4>{t("Try a sample moment")}</h4>
+            <p className="muted">
+              {t(
+                "Fixed samples only. No changes to your character, history, inventory, or reroll allowance.",
+              )}
+            </p>
+          </div>
+          <DicePreviewButton />
+        </div>
       </section>
       <section className="rules-section">
         <ChoiceGroup

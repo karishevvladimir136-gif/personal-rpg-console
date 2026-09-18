@@ -13,6 +13,45 @@ export type DifficultyPreset = "easy" | "medium" | "hard" | "custom";
 export type StoryStructure = "story-led" | "balanced" | "sandbox";
 export type PlayerRole = "one-of-many" | "significant" | "chosen";
 export type WorldAutonomy = "low" | "moderate" | "high";
+export type CheckFrequency = "narrative" | "balanced" | "full-rpg";
+export type DicePresentation = "hidden" | "key-rolls" | "all-player-rolls";
+
+export const checkFrequencyOptions = [
+  {
+    value: "narrative",
+    label: "Narrative",
+    description: "Rare checks at major uncertain turning points.",
+  },
+  {
+    value: "balanced",
+    label: "Balanced",
+    description: "Regular checks for meaningful uncertain actions.",
+  },
+  {
+    value: "full-rpg",
+    label: "Full RPG",
+    description:
+      "Systematically consider appropriate checks in dialogue, investigation, perception, stealth, exploration, and physical actions.",
+  },
+] as const;
+export const dicePresentationOptions = [
+  {
+    value: "hidden",
+    label: "Hidden",
+    description:
+      "Show the narrative consequence without dice numbers or roll breakdowns.",
+  },
+  {
+    value: "key-rolls",
+    label: "Key Rolls",
+    description: "Display important player-facing rolls.",
+  },
+  {
+    value: "all-player-rolls",
+    label: "All Player Rolls",
+    description: "Display every player-facing roll.",
+  },
+] as const;
 
 // Provisional UI examples only. No game engine consumes these values in Phase 0.
 // The allowance is retained but inactive when rerolls are disabled or unlimited.
@@ -160,6 +199,10 @@ export type CampaignSettings = {
   storyStructure: StoryStructure;
   playerRole: PlayerRole;
   worldAutonomy: WorldAutonomy;
+  checkFrequency: CheckFrequency;
+  dicePresentation: DicePresentation;
+  interactiveDice: boolean;
+  showDc: boolean;
 };
 
 export function createCampaignSettings(
@@ -174,6 +217,10 @@ export function createCampaignSettings(
     storyStructure: "balanced",
     playerRole: "one-of-many",
     worldAutonomy: "moderate",
+    checkFrequency: "balanced",
+    dicePresentation: "key-rolls",
+    interactiveDice: true,
+    showDc: false,
   };
 }
 
@@ -190,7 +237,11 @@ export type CampaignSettingsAction =
   | { type: "language"; value: Language }
   | { type: "storyStructure"; value: StoryStructure }
   | { type: "playerRole"; value: PlayerRole }
-  | { type: "worldAutonomy"; value: WorldAutonomy };
+  | { type: "worldAutonomy"; value: WorldAutonomy }
+  | { type: "checkFrequency"; value: CheckFrequency }
+  | { type: "dicePresentation"; value: DicePresentation }
+  | { type: "interactiveDice"; value: boolean }
+  | { type: "showDc"; value: boolean };
 
 export function supportsDifficultyParameter(
   settings: CampaignSettings,
