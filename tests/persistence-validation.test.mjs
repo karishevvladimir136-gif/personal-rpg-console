@@ -17,6 +17,20 @@ const request = (operation, payload, expectedRevision = 0) => ({
     ? {}
     : { campaignId: cid }),
 });
+test("feedback validates literal messages without allowing gameplay fields or updates", () => {
+  const input = request("feedback.send", {
+    body: "  Literal feedback. Русский текст.  ",
+  });
+  assert.deepEqual(validateMutation(input), input);
+  for (const bad of [
+    request("feedback.send", { body: "" }),
+    request("feedback.send", { body: " " }),
+    request("feedback.send", { body: "ok" }, 1),
+    request("feedback.send", { body: "x".repeat(20001) }),
+    request("feedback.send", { body: "ok", apply: true }),
+  ])
+    assert.throws(() => validateMutation(bad), ValidationError);
+});
 test("mutation validator accepts typed owner corrections without trimming authored text", () => {
   const input = request("document.save", {
     title: "Synthetic notes",

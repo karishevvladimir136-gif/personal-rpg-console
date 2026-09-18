@@ -43,6 +43,56 @@ test(
     const owner = await signInTestOwner(config);
     const [a, b] = await seedSynthetic(owner);
     const cid = a.campaign.id;
+    const guideBefore = await owner
+      .from("rpg_dm_guides")
+      .select("document_id")
+      .eq("campaign_id", cid)
+      .single();
+    assert.equal(guideBefore.error, null);
+    const feedbackRequest = crypto.randomUUID();
+    const feedbackBody = "Literal synthetic feedback. Не менять здоровье.";
+    const feedback = await apply(
+      owner,
+      "feedback.send",
+      cid,
+      { body: feedbackBody },
+      0,
+      feedbackRequest,
+    );
+    assert.deepEqual(
+      await apply(
+        owner,
+        "feedback.send",
+        cid,
+        { body: feedbackBody },
+        0,
+        feedbackRequest,
+      ),
+      feedback,
+    );
+    assert.deepEqual(
+      (await other.from("rpg_dm_feedback").select("id")).data,
+      [],
+    );
+    assert.equal(
+      (
+        await owner
+          .from("rpg_dm_feedback")
+          .select("id")
+          .eq("campaign_id", b.campaign.id)
+      ).data.length,
+      0,
+    );
+    assert.equal(
+      (
+        await owner
+          .from("rpg_documents")
+          .select("revision")
+          .eq("id", guideBefore.data.document_id)
+          .single()
+      ).data.revision,
+      1,
+    );
     const requestId = crypto.randomUUID();
     const p = {
       id: a.document.id,
@@ -143,6 +193,16 @@ test(
     assert.equal(
       (await relogin.from("rpg_campaigns").select("id")).data.length,
       2,
+    );
+    assert.equal(
+      (
+        await relogin
+          .from("rpg_dm_feedback")
+          .select("body")
+          .eq("id", feedback.id)
+          .single()
+      ).data.body,
+      feedbackBody,
     );
     assert.equal(
       (

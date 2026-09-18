@@ -79,3 +79,9 @@ The database applies manual corrections atomically through one allow-listed RPC.
 Future conversations/rest/recipes/effects/encounters/participants/pending actions are inert record structures only. They have no gameplay mutation endpoint. DM-private state has separate storage with no ordinary application accessor. Asset records store metadata and campaign-prefixed paths only; uploads, signed URLs and media generation are not implemented in this phase.
 
 Current implementation follows the primary Supabase documentation for [SSR cookies and verified identity](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [RLS](https://supabase.com/docs/guides/database/postgres/row-level-security), and [database function permissions/search paths](https://supabase.com/docs/guides/database/functions).
+
+## Additive Chat with DM refinement
+
+Migration `202609170002_dm_feedback_guide.sql` adds append-only owner feedback and a stable campaign mapping to a blank **DM Guide** reference document. Existing campaigns receive a new blank guide without changing their documents, scenes, settings or inventory. New campaigns receive one automatically. The guide uses the existing document version/restore system and cannot be switched to canon or archived via Library. Feedback sends only store the exact text: they do not edit the guide, interpret instructions, reply, consume resources or affect gameplay. The application exposes no DM-private content through this panel.
+
+After configuration, save a message, reload, switch campaigns and confirm the thread remains separate. Explicitly save and restore a guide version. Sending feedback must not change guide versions, campaign settings, scenes, character health or items. Repeat message submission with the same request ID must produce one stored message. The SQL test suite verifies these boundaries with synthetic content. Live Supabase/browser verification still requires the local setup above.

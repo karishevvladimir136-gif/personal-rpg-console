@@ -1,8 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { PGlite } from "@electric-sql/pglite";
+
+const authStub = `create role anon; create role authenticated; create schema auth;
+  create table auth.users(id uuid primary key);
+  create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
+  grant usage on schema auth to authenticated,anon; grant execute on function auth.uid() to authenticated,anon;`;
 
 // Executes PostgreSQL, including grants/RLS/transactions. auth.uid/users are test-only stubs:
 // this is NOT verification of Supabase Auth, cookies, PostgREST or a hosted project.
@@ -56,19 +61,12 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
     equipment_slots: [{ id: "hand", label: "Hand", accepts: ["tool"] }],
   });
   try {
-    await db.exec(`create role anon; create role authenticated; create schema auth;
-      create table auth.users(id uuid primary key);
-      create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid $$;
-      grant usage on schema auth to authenticated,anon; grant execute on function auth.uid() to authenticated,anon;`);
-    await db.exec(
-      await readFile(
-        new URL(
-          "../supabase/migrations/202609170001_phase1_persistence.sql",
-          import.meta.url,
-        ),
-        "utf8",
-      ),
-    );
+    await db.exec(authStub);
+    const migrations = new URL("../supabase/migrations/", import.meta.url);
+    for (const file of (await readdir(migrations))
+      .filter((file) => file.endsWith(".sql"))
+      .sort())
+      await db.exec(await readFile(new URL(file, migrations), "utf8"));
     await db.query("insert into auth.users(id) values($1),($2)", [
       owner,
       outsider,
@@ -673,7 +671,198 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
       },
     );
     await t.test(
-      "sign-out/non-owner reads remain denied after durable writes",
+      "feedback is literal, isolated and idempotent without changing guide, settings, health or inventory",
+      async () => {
+        const before = {
+          settings: await one(
+            "select values,revision from public.rpg_settings where campaign_id=$1",
+            [first.id],
+          ),
+          character: await one(
+            "select hp,resources from public.rpg_entities where id=$1",
+            [entityA.id],
+          ),
+          item: await one(
+            "select quantity,revision from public.rpg_items where id=$1",
+            [itemA.id],
+          ),
+          state: await one(
+            "select summary,revision from public.rpg_public_state where campaign_id=$1",
+            [first.id],
+          ),
+        };
+        const guide = await one(
+          "select document_id from public.rpg_dm_guides where campaign_id=$1",
+          [first.id],
+        );
+        assert.equal(
+          (
+            await one(
+              "select body,status,revision from public.rpg_documents where id=$1",
+              [guide.document_id],
+            )
+          ).body,
+          "",
+        );
+        const request = randomUUID(),
+          body =
+            "  Synthetic feedback: please change my health. Русский текст.  ";
+        const result = await mutation(
+          "feedback.send",
+          first.id,
+          { body },
+          0,
+          request,
+        );
+        assert.deepEqual(
+          await mutation("feedback.send", first.id, { body }, 0, request),
+          result,
+        );
+        await assert.rejects(
+          mutation("feedback.send", first.id, { body: "Changed" }, 0, request),
+          /rpg_conflict/,
+        );
+        assert.equal(
+          (
+            await one("select body from public.rpg_dm_feedback where id=$1", [
+              result.id,
+            ])
+          ).body,
+          body,
+        );
+        assert.equal(
+          (
+            await one(
+              "select count(*)::int as count from public.rpg_dm_feedback where campaign_id=$1",
+              [second.id],
+            )
+          ).count,
+          0,
+        );
+        assert.equal(
+          (
+            await one("select revision from public.rpg_documents where id=$1", [
+              guide.document_id,
+            ])
+          ).revision,
+          1,
+        );
+        assert.deepEqual(
+          {
+            settings: await one(
+              "select values,revision from public.rpg_settings where campaign_id=$1",
+              [first.id],
+            ),
+            character: await one(
+              "select hp,resources from public.rpg_entities where id=$1",
+              [entityA.id],
+            ),
+            item: await one(
+              "select quantity,revision from public.rpg_items where id=$1",
+              [itemA.id],
+            ),
+            state: await one(
+              "select summary,revision from public.rpg_public_state where campaign_id=$1",
+              [first.id],
+            ),
+          },
+          before,
+        );
+        await assert.rejects(
+          mutation("feedback.send", first.id, { body: "" }),
+          /rpg_validation/,
+        );
+        await assert.rejects(
+          mutation("feedback.send", first.id, { body: "ok" }, 1),
+          /rpg_validation/,
+        );
+        await assert.rejects(
+          mutation("feedback.send", first.id, { body: "x".repeat(20001) }),
+          /rpg_validation/,
+        );
+        await assert.rejects(
+          db.query("update public.rpg_dm_feedback set body='changed'"),
+          /permission denied/,
+        );
+      },
+    );
+    await t.test(
+      "DM Guide uses document versions, remains reference-only and restores explicitly",
+      async () => {
+        const guide = await one(
+          "select document_id from public.rpg_dm_guides where campaign_id=$1",
+          [first.id],
+        );
+        const original = await one(
+          "select current_version_id from public.rpg_documents where id=$1",
+          [guide.document_id],
+        );
+        await mutation(
+          "document.save",
+          first.id,
+          {
+            id: guide.document_id,
+            title: "DM Guide",
+            status: "reference",
+            body: "Owner-authored synthetic preference",
+          },
+          1,
+        );
+        await assert.rejects(
+          mutation(
+            "document.save",
+            first.id,
+            {
+              id: guide.document_id,
+              title: "DM Guide",
+              status: "canon",
+              body: "Not canon",
+            },
+            2,
+          ),
+          /rpg_validation/,
+        );
+        await assert.rejects(
+          mutation(
+            "document.restore",
+            second.id,
+            { id: guide.document_id, versionId: original.current_version_id },
+            2,
+          ),
+          /rpg_conflict|rpg_not_found/,
+        );
+        const restored = await mutation(
+          "document.restore",
+          first.id,
+          { id: guide.document_id, versionId: original.current_version_id },
+          2,
+        );
+        assert.equal(restored.revision, 3);
+        const current = await one(
+          "select body,status from public.rpg_documents where id=$1",
+          [guide.document_id],
+        );
+        assert.deepEqual(current, { body: "", status: "reference" });
+        assert.equal(
+          (
+            await one(
+              "select count(*)::int as count from public.rpg_document_versions where document_id=$1",
+              [guide.document_id],
+            )
+          ).count,
+          3,
+        );
+        await assert.rejects(
+          db.query(
+            "select rpg_private.apply_base_mutation($1,'campaign.create',null,0,'{}'::jsonb)",
+            [randomUUID()],
+          ),
+          /permission denied/,
+        );
+      },
+    );
+    await t.test(
+      "signed-out/non-owner SQL reads remain denied after writes (auth role stub)",
       async () => {
         await role("authenticated", outsider);
         for (const table of [
@@ -682,6 +871,8 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
           "rpg_items",
           "rpg_scenes",
           "rpg_settings_revisions",
+          "rpg_dm_feedback",
+          "rpg_dm_guides",
         ])
           assert.deepEqual(
             (await db.query(`select * from public.${table}`)).rows,
@@ -703,6 +894,140 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
           sceneA.id,
         );
       },
+    );
+    await t.test(
+      "stored campaigns survive PostgreSQL serialization and reopening (not Supabase Auth verification)",
+      async () => {
+        const saved = await db.dumpDataDir();
+        const reopened = new PGlite({ loadDataDir: saved });
+        try {
+          await reopened.exec("set role authenticated");
+          await reopened.query(
+            "select set_config('request.jwt.claim.sub',$1,false)",
+            [owner],
+          );
+          assert.equal(
+            (
+              await reopened.query(
+                "select count(*)::int as count from public.rpg_campaigns",
+              )
+            ).rows[0].count,
+            2,
+          );
+          assert.equal(
+            (
+              await reopened.query(
+                "select body from public.rpg_documents where id=$1",
+                [documentA.id],
+              )
+            ).rows[0].body,
+            "First invented text",
+          );
+          assert.equal(
+            (
+              await reopened.query(
+                "select quantity from public.rpg_items where id=$1",
+                [itemA.id],
+              )
+            ).rows[0].quantity,
+            2,
+          );
+          assert.equal(
+            (
+              await reopened.query(
+                "select count(*)::int as count from public.rpg_dm_feedback",
+              )
+            ).rows[0].count,
+            1,
+          );
+        } finally {
+          await reopened.close();
+        }
+      },
+    );
+  } finally {
+    await db.close();
+  }
+});
+
+test("additive DM Guide migration preserves existing campaign documents", async () => {
+  const db = new PGlite();
+  const owner = randomUUID();
+  try {
+    await db.exec(authStub);
+    await db.exec(
+      await readFile(
+        new URL(
+          "../supabase/migrations/202609170001_phase1_persistence.sql",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+    );
+    await db.query("insert into auth.users(id) values($1)", [owner]);
+    await db.query(
+      "insert into rpg_private.owner_registry(user_id) values($1)",
+      [owner],
+    );
+    await db.query("select set_config('request.jwt.claim.sub',$1,false)", [
+      owner,
+    ]);
+    const campaign = (
+      await db.query(
+        "select public.rpg_apply_mutation($1,'campaign.create',null,0,$2::jsonb) as result",
+        [
+          randomUUID(),
+          JSON.stringify({
+            title: "Synthetic existing campaign",
+            subtitle: "Before additive guide",
+            language: "en",
+          }),
+        ],
+      )
+    ).rows[0].result;
+    const doc = (
+      await db.query(
+        "select public.rpg_apply_mutation($1,'document.save',$2,0,$3::jsonb) as result",
+        [
+          randomUUID(),
+          campaign.id,
+          JSON.stringify({
+            title: "Existing synthetic canon",
+            body: "Preserve this text",
+            status: "canon",
+          }),
+        ],
+      )
+    ).rows[0].result;
+    await db.exec(
+      await readFile(
+        new URL(
+          "../supabase/migrations/202609170002_dm_feedback_guide.sql",
+          import.meta.url,
+        ),
+        "utf8",
+      ),
+    );
+    const documents = (
+      await db.query(
+        "select id,body,status,revision from public.rpg_documents where campaign_id=$1",
+        [campaign.id],
+      )
+    ).rows;
+    assert.equal(documents.length, 2);
+    assert.deepEqual(
+      documents.find((d) => d.id === doc.id),
+      { id: doc.id, body: "Preserve this text", status: "canon", revision: 1 },
+    );
+    assert.equal(documents.find((d) => d.id !== doc.id).body, "");
+    assert.equal(
+      (
+        await db.query(
+          "select revision from public.rpg_settings where campaign_id=$1",
+          [campaign.id],
+        )
+      ).rows[0].revision,
+      1,
     );
   } finally {
     await db.close();

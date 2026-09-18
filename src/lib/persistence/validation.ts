@@ -150,6 +150,7 @@ export function validateSettings(value: unknown, campaignId: string) {
 }
 
 const payloadKeys: Record<string, string[]> = {
+  "feedback.send": ["body"],
   "campaign.create": ["title", "subtitle", "language"],
   "campaign.save": ["title", "subtitle"],
   "preferences.save": ["language", "largeText", "suggestions"],
@@ -244,6 +245,10 @@ export function validateMutation(value: unknown): Mutation {
   if ("body" in p) str(p.body, 200_000, true);
   if ("language" in p) enumeration(p.language, ["en", "ru"]);
   switch (op) {
+    case "feedback.send":
+      assert(input.expectedRevision === 0);
+      str(p.body, 20_000);
+      break;
     case "campaign.create":
       assert(input.expectedRevision === 0);
       break;
