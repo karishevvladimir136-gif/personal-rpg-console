@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "./language-context";
 import { usePreview } from "./preview-context";
@@ -78,7 +78,7 @@ function ModifierList({ fixture }: { fixture: DemoFixture }) {
   );
 }
 
-function ResultSummary({
+export function ResultSummary({
   fixture,
   announce = false,
 }: {
@@ -162,15 +162,20 @@ function InteractiveRoll({
   fixture,
   dc,
   onClose,
+  revealed: previouslyRevealed,
+  onReveal,
+  onStart,
 }: {
   fixture: DemoFixture;
   dc?: number;
   onClose: () => void;
+  revealed: boolean;
+  onReveal: () => void;
+  onStart?: () => void;
 }) {
   const { t } = useLanguage();
-  const { diceDemo, setDiceDemo } = usePreview();
   const [initialPhase] = useState<"ready" | "revealed">(() =>
-    diceDemo.revealed ? "revealed" : "ready",
+    previouslyRevealed ? "revealed" : "ready",
   );
   const [phase, setPhase] = useState<PlaybackPhase>(initialPhase);
   const playback = useRef<ReturnType<typeof createDicePlayback> | null>(null);
@@ -184,10 +189,8 @@ function InteractiveRoll({
       initialPhase,
       onPhase: (next) => {
         setPhase(next);
-        setDiceDemo((previous) => ({
-          ...previous,
-          revealed: next === "revealed",
-        }));
+        if (next === "rolling") onStart?.();
+        if (next === "revealed") onReveal();
       },
     });
     playback.current = controller;
@@ -195,7 +198,7 @@ function InteractiveRoll({
       controller.dispose();
       playback.current = null;
     };
-  }, [initialPhase, setDiceDemo]);
+  }, [initialPhase, onReveal, onStart]);
   function play(replay = false) {
     playback.current?.play(
       window.matchMedia("(prefers-reduced-motion: reduce)").matches,
@@ -285,6 +288,17 @@ function InteractiveRoll({
 function DicePreviewDialog({ onClose }: { onClose: () => void }) {
   const { t } = useLanguage();
   const { campaignSettings, diceDemo, setDiceDemo } = usePreview();
+  const prepare = useCallback(
+    () => setDiceDemo((previous) => ({ ...previous, revealed: false })),
+    [setDiceDemo],
+  );
+  const reveal = useCallback(
+    () =>
+      setDiceDemo((previous) =>
+        previous.revealed ? previous : { ...previous, revealed: true },
+      ),
+    [setDiceDemo],
+  );
   const fixture: DemoFixture =
     demoFixtures.find((item) => item.id === diceDemo.fixtureId) ??
     demoFixtures[0];
@@ -360,25 +374,17 @@ function DicePreviewDialog({ onClose }: { onClose: () => void }) {
           )}
         </p>
       </details>
-      {presentation === "interactive" && (
-        <InteractiveRoll
-          key={`${fixture.id}-${diceDemo.important}`}
+      {(presentation === "interactive" || presentation === "compact") && (
+        <DiceRollPresentation
+          key={fixture.id + "-" + diceDemo.important}
           fixture={fixture}
           dc={dc}
+          presentation={presentation}
+          revealed={diceDemo.revealed}
+          onStart={prepare}
+          onReveal={reveal}
           onClose={onClose}
         />
-      )}
-      {presentation === "compact" && (
-        <div className="compact-roll">
-          <CheckHeading fixture={fixture} dc={dc} />
-          <ModifierList fixture={fixture} />
-          <ResultSummary fixture={fixture} announce />
-          <div className="dice-window-actions">
-            <Button primary onClick={onClose}>
-              {t("Continue")}
-            </Button>
-          </div>
-        </div>
       )}
       {presentation === "narrative" && (
         <div className="narrative-demo">
@@ -414,5 +420,49 @@ export function DicePreviewButton({ compact = false }: { compact?: boolean }) {
           document.body,
         )}
     </>
+  );
+}
+
+// Shared presentation only: callers own the synthetic result and resolution lifecycle.
+export function DiceRollPresentation({
+  fixture,
+  dc,
+  presentation,
+  revealed,
+  onReveal,
+  onStart,
+  onClose,
+}: {
+  fixture: DemoFixture;
+  dc?: number;
+  presentation: "interactive" | "compact";
+  revealed: boolean;
+  onReveal: () => void;
+  onStart?: () => void;
+  onClose: () => void;
+}) {
+  const { t } = useLanguage();
+  if (presentation === "interactive")
+    return (
+      <InteractiveRoll
+        fixture={fixture}
+        dc={dc}
+        revealed={revealed}
+        onStart={onStart}
+        onReveal={onReveal}
+        onClose={onClose}
+      />
+    );
+  return (
+    <div className="compact-roll">
+      <CheckHeading fixture={fixture} dc={dc} />
+      <ModifierList fixture={fixture} />
+      <ResultSummary fixture={fixture} announce />
+      <div className="dice-window-actions">
+        <Button primary onClick={onClose}>
+          {t("Continue")}
+        </Button>
+      </div>
+    </div>
   );
 }

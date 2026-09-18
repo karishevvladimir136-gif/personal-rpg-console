@@ -2,12 +2,14 @@
 import { useLanguage } from "@/components/language-context";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { clues } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
 import { usePreview } from "./preview-context";
 import { RestAction } from "./camp";
 import { DicePreviewButton } from "./dice-preview";
+import { CombatView } from "./combat-preview";
+import { combatReducer, createCombatPreview } from "@/lib/combat-preview";
 
 export function CharacterSummary() {
   const { t } = useLanguage();
@@ -37,6 +39,18 @@ export function Game() {
   const { t } = useLanguage();
   const { messages, addMessage, saved, setSaved, addNote, suggestions, href } =
     usePreview();
+  const [combat, dispatchCombat] = useReducer(
+    combatReducer,
+    undefined,
+    createCombatPreview,
+  );
+  const combatEntry = useRef<HTMLButtonElement>(null);
+  const wasInCombat = useRef(false);
+  useEffect(() => {
+    if (combat.mode === "game" && wasInCombat.current)
+      combatEntry.current?.focus();
+    wasInCombat.current = combat.mode !== "game";
+  }, [combat.mode]);
   const [draft, setDraft] = useState("");
   const [ooc, setOoc] = useState(false);
   const [dialog, setDialog] = useState("");
@@ -46,6 +60,8 @@ export function Game() {
     addMessage({ text: draft.trim(), ooc });
     setDraft("");
   }
+  if (combat.mode !== "game")
+    return <CombatView state={combat} dispatch={dispatchCombat} />;
   return (
     <>
       <div className="game-title">
@@ -53,6 +69,16 @@ export function Game() {
           <span className="eyebrow">{t("SESSION 04")}</span>
           <h1>{t("The Letter")}</h1>
         </div>
+        <button
+          type="button"
+          className="button combat-entry"
+          ref={combatEntry}
+          onClick={() => dispatchCombat({ type: "enter" })}
+        >
+          <Icon name="Swords" />
+          {t("Preview Combat")}
+          <Badge>{t("Demo")}</Badge>
+        </button>
         <RestAction />
         <Link href={href("sessions")} className="text-link">
           {t("Session recap")} <Icon name="ChevronRight" size={15} />

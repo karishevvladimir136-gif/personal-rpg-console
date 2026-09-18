@@ -86,6 +86,8 @@ test("unknown screens and campaign IDs return 404 without sample campaign fallba
 test("Game has reachable Rest and dice previews without unsolicited live results", async () => {
   const html = await (await fetch(base + prefix + "/game")).text();
   assert.ok(html.includes("Dice preview"));
+  assert.ok(html.includes("Preview Combat"));
+  assert.ok(!html.includes("combat-initiative"));
   assert.ok(html.includes(">Rest<"));
   assert.ok(!/You rolled|Dice result|Critical hit!/i.test(html));
 });

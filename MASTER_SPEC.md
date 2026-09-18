@@ -1503,3 +1503,37 @@ Phase 4: optional asynchronous generation uses the owner-selected supported imag
 - **Phase 4:** optional item imagery alongside the existing visual/media plan; preserve separate later VIDEO requirements.
 
 Keep structured fixtures, preset definitions, and preview policy separate from presentation. English/Russian cover controls, prose, dialogs, errors, and accessibility labels; UI language stays independent from campaign story language. Test route identity/isolation, shared records/state, transfer rules, camp lifecycle, recipe availability/recipients, and dice/difficulty regressions. Use browser checks for desktop, 390px and 320px, keyboard/focus/dialog behavior, reduced motion, and bilingual click-through. Record automated versus browser verification honestly. Update DEV_STATUS and opening instructions; commit/push safely. Owner approval remains pending; do not begin Phase 1.
+
+---
+
+# 37. GAME COMBAT VIEW — PHASE 0 PREVIEW AND FUTURE CONTRACT
+
+Combat is a presentation mode **inside Game**, never a separate top-level navigation tab. In Phase 0, Game → **Preview Combat** enters a visibly labeled synthetic encounter; Exit returns to the normal Game without changing the campaign. Later, actual encounter state controls entry/exit.
+
+## Presentation and interaction
+
+Preserve charcoal/bronze, literary typography and reusable UI patterns. Desktop places portrait initiative order and current round above party details (left), static encounter scene/target cards (center), public action history (right), and active-character controls below. Distinguish the active participant, inspected participant and selected target with explicit text as well as visual emphasis. Party inspection shows only public HP/conditions/details. Enemy health defaults to **Unhurt / Wounded / Near Death**, with Withdrawn for a defeated demo opponent. Public **Nearby / Far Away / In Cover** labels describe positioning; illustration coordinates never determine mechanical distance. No grid, draggable tokens or pathfinding.
+
+Provide Attack, Abilities / Spells, Item, Move, Defend, End Turn and literal free-text Describe your action. Initial interaction is **direct party control**; defer automatic companion control and tactical-grid combat. A D&D-style demonstration displays action, bonus action, reaction and movement; keep resource labels/data separate so future systems need not inherit that budget.
+
+Flow: select an available action → eligible target → explicit cost → confirm → permitted dice presentation → authored public result → isolated resources/health/history update. James and Jinn take individual turns, followed by one explicitly advanced scripted opponent turn and return to party control. No AI interprets free text: preserve it literally and attach a clearly labeled authored demo response without inferred cost/effect.
+
+Mobile keeps scene/targets and controls primary, with accessible Party details and Combat history switches. Preserve English/Russian, keyboard focus/labels, native dialog containment/restoration, reduced motion, public condition badges and brief text feedback for damage/healing. Combat works with the illustration hidden or unavailable; never generate artwork per action.
+
+## Isolation, dice and end states
+
+The demo reducer and fixtures are separate from campaign state. It takes only read-only dice preferences; never writes campaign health, settings, rest, inventory or scenes. Reset/Exit/navigation/refresh discard the encounter. In-memory action IDs, target/cost validation and idempotent completion guard duplicate clicks. Closing an unfinished roll keeps the reserved action; reopening resumes the same fixed sample. Replaying a completed animation never applies damage or costs twice.
+
+Reuse the existing dice dialog/presenter and Hidden / Key Rolls / All Player Rolls, Interactive Dice and Show DC policies. Hidden completes the mock action without opening a modal or exposing roll numbers/breakdowns in history. Interactive Off applies the authored result immediately with compact presentation. The combat sample attacks are important player-facing rolls. They contain **no target number**; Show DC cannot invent one. Existing generic skill-check samples still demonstrate disclosed DCs. Enemy turns supply authored public consequences only; no enemy or DM roll exists in the client payload or log.
+
+**Check Frequency affects discretionary situational checks. It does not remove required attack rolls or saving throws from the selected combat rules.** All prototype data is invented and public. Future hidden state must remain server-side, not merely CSS-hidden or filtered from a browser-owned record.
+
+A mock summary shows outcome, injuries/conditions, spent resources and available loot. No automatic healing or rest. Victory loot can be collected once only inside demo state; withdrawal grants none. Real encounters may end through **victory, escape, surrender, negotiation or objective completion**, not only combat defeat.
+
+## Explicit phases
+
+- **Phase 0 only:** isolated UI with fixed 14 + 4 = 18 player rolls, 6-damage strike, 8-damage invented lantern ability, 4-HP tonic, 10-ft cover move and authored guard/enemy response. These numbers are provisional UI examples, not official D&D mechanics or campaign canon. Enemy responses stop at 1 party HP; no defeat/death engine. No persistence, migrations, routes/API, authentication, AI, server dice, paid media, real combat rules or simulation engine.
+- **Phase 1, separately authorized:** campaign-scoped persistence foundations for encounters/participants, turn order, public positioning, system-specific resources and pending-action identifiers/status. Separate public records from server-private encounter data. Persistence alone must not activate combat resolution.
+- **Phase 2, separately authorized:** authoritative rules-system-aware action/target/cost validation, literal free-text proposals validated through the single DM runtime, server dice, reactions and real campaign consequences. Server-enforced atomic/idempotent resolution prevents duplicate spending/results on retries, navigation and reconnect. Preserve player agency/canon and authorized disclosure; enforce mechanics in code rather than prompts.
+
+Test isolated lifecycle, valid targets/costs, repeated/stale confirmation/completion/turn events, presentation modes, no hidden checks/targets, literal proposals, summary/loot/reset and localization. Verify desktop/mobile and keyboard in a browser; record actual checks and limitations in DEV_STATUS. Implementation completion does not imply owner approval. **Stop for owner review; do not start Phase 1.**

@@ -53,6 +53,16 @@ Consolidated Phase 0 refinement (MASTER_SPEC section 36):
 - honest item-image entry and local demo states only; no provider, persistence, engine, resource mutations, or actual effects
 - retain all existing difficulty/narrative/check/dice behavior; bilingual desktop/390px/320px and keyboard/dialog/reduced-motion verification
 
+Final Phase 0 Combat View refinement (MASTER_SPEC section 37):
+- Game-only Preview Combat entry/exit/reset and visible synthetic indicator; no new navigation tab
+- portrait initiative/round, public party inspection distinct from active character, static scene with selectable qualitative-health enemies and positioning labels, public log, active-character action/bonus/reaction/movement budget
+- action → eligible target → cost confirmation → existing dice presenter → isolated authored consequence; James/Jinn direct control, explicitly advanced enemy response and party return
+- reuse Hidden/Key/All, Interactive and Show DC; Hidden opens no modal, compact needs no roll click, no private checks or targets in client/log; Check Frequency never removes mandatory combat rolls/saves
+- literal free-text proposal with labeled sample response, stable pending action IDs and duplicate protection; no campaign mutations, actual rules, persistence, AI or provider calls
+- summary of injuries/resources/loot, no automatic healing/rest, demo-only loot; reset/exit/navigation discard encounter
+- bilingual desktop/390px/320px, keyboard focus, reduced motion, no-art fallback, mobile party/history switches; isolated lifecycle/idempotency/presentation tests and actual browser results
+- future direct party control first; automatic companions and tactical grids remain deferred
+
 Acceptance:
 - no broken routes
 - desktop matches mockups closely
@@ -96,6 +106,7 @@ Add:
 - inventory editing
 - session persistence
 - one owner login
+- persist campaign-scoped encounter participants, turn order, public positioning, system-specific resources and pending actions/status; separate server-private data (section 37); persistence does not activate combat resolution
 - persist campaign Rules & Play Style and rules-system capabilities separately from global preferences and document context (MASTER_SPEC section 33)
 - validate structured values and record effective settings revisions/history so changes are prospective
 - persist scoped equipment entities/profiles, item ownership/storage/equipped slots, conversation records, recipe/effect data, and required rest-stage records from section 36; keep access-dependent operations disabled until authoritative rules exist
@@ -136,6 +147,8 @@ Build:
 - quest updates
 - private state updates
 - retry/error handling
+- authoritative encounter action/target/cost validation, server dice, reactions, validated literal free-text proposals and atomic/idempotent campaign consequences (section 37); support victory/escape/surrender/negotiation/objective completion, without automatic healing/rest
+- Check Frequency applies to discretionary situational checks and never removes required attack rolls or saves
 - code-enforced, rules-system-aware mechanics for difficulty, reroll limits, recovery, and resource consumption; AI prompts alone must not enforce mechanics
 - pass structured narrative guidance and campaign document context to the single DM while preserving canon and player agency
 - clarify settings/canon conflicts rather than silently rewriting; changes only affect future play

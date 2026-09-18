@@ -132,3 +132,31 @@ Limits of verification:
 - Actual screen-reader speech, OS-level reduced-motion switching, physical iPhone/Safari and software keyboard were not tested. Reduced-motion dice behavior is unit-tested; camp CSS removes its animation under the preference. Browser console logs and a network trace were not separately collected. The image action code has no provider/network path.
 - Full-page screenshot stitching produced duplicate fixed/sticky regions; visual assessment used normal viewport screenshots and DOM width measurements instead.
 - Development remains on loopback port 3000. Temporary production verification uses port 3001 and is stopped after verification. Changes remain temporary; refreshing resets languages and closes demo camp.
+
+## Combat View refinement — September 17, 2026
+
+Owner approval remains pending. Phase 1 has not started. This section records the final combat refinement; previous sections remain historical.
+
+Automated verification:
+
+- `pnpm typecheck`: passed. `pnpm lint`: passed without warnings.
+- Final `pnpm build`: passed; 26 prerender entries plus the validated campaign-root redirect. No API or combat route was added.
+- `pnpm test`: **60 passed** against development and the final production build on port 3001. Existing 49 checks retained, plus 11 combat tests.
+- Combat coverage: enter/exit/withdrawal/reset and campaign-state isolation; valid targets/costs and immutable reducer inputs; reserve/resolve once, repeated/stale confirmation/turn/completion guards; all Hidden/Key/All × interactive combinations across each Check Frequency; missing public target and no enemy roll payload; direct companion control, guard/position transitions, healing/resource caps; literal proposal text and no interpreted effect; full victory/injuries/one-time demo loot; data-driven Russian text. Game HTTP smoke also verifies the entry is present and combat starts closed.
+- Existing dice controller tests retain animation double-activation, cancellation/unmount and reduced-motion coverage. No actual rules engine, backend, AI, server dice or persistence is implemented/tested.
+
+Browser verification through real UI interactions:
+
+- English desktop: internal Game entry, active versus inspected participant, action/eligible target/cost confirmation, fixed 14 + 4 = 18 roll and public breakdown, active-turn budget, qualitative enemy health, James/Jinn turns, scripted enemy response, return to round 2, tonic healing limited to max HP and bonus-action cost.
+- Escape during an unfinished animation leaves damage unapplied and the action reserved. Resume uses the same sample. Review/replay leaves exactly one action history entry and one spent action. Continue restores focus to Review sample roll; Exit restores Preview Combat focus. A focus fallback was added because Confirm disappears after reservation.
+- Literal English/Russian proposal preserved spaces, newline and `<test>` as text, with a labeled authored response and no resource effect. Existing unsent normal Game draft survived entering/exiting combat in production.
+- Full Hidden-mode encounter: no modal or roll details; public damage still appears. James/Jinn defeated the lookout, the remaining sentry injured Jinn, party finished the sentry, and victory summary retained 15/18 Jinn HP with four spent actions and one charge. Demo loot became disabled after one collection. Withdrawal summary grants no loot and retains existing injuries; return restores unchanged campaign HP/pact resources.
+- All Player Rolls + Interactive Off + Show DC On: immediate compact result with no manual Roll control, no invented target number. Key Rolls interactive remains the default. Generic skill-check preview still reveals the original 19-point persuasion sample in production; combat did not replace its fixture/state.
+- English 390px and Russian 390px/320px layout checks: primary scene/actions, accessible party/history switches, inspected Jinn while James remains active, no-art interaction, controls and action confirmation. Russian 320px page scroll width equals client width (305px); dice dialog width/scroll width both 256px. Russian history and summary have no horizontal overflow. Keyboard Enter resolves the Russian production dice sample; Tab from the final replay button wraps to Close. Russian desktop and reset were also checked.
+- Screenshots reviewed at desktop and narrow phone widths. No per-action artwork is generated. CSS disables combat feedback animation for reduced motion; the shared dice lifecycle has automated reduced-motion coverage.
+
+Verification limits:
+
+- Physical iPhone/Safari, real touch/software keyboard, actual screen-reader speech and OS-level reduced-motion switching were not tested. Separate browser console/network tracing was not performed.
+- Enemy actions are a grouped, explicitly triggered sample; no private roll or DM data exists. Demo HP, costs, conditions and loot are provisional and cannot prove real D&D mechanics.
+- Navigation/refresh discards combat; campaign settings still retain their existing temporary navigation behavior. No deployment was made. Development preview remains on loopback port 3000; temporary production verification is stopped after use.

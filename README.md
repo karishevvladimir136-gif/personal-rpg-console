@@ -45,6 +45,18 @@ Campaign rules/check/dice settings and the selected demo sample also survive nav
 
 Shared campaign settings, conversations and camp active state survive navigation. Refresh closes camp and resets temporary state. Recipe/rest-dialog selections and image-demo states are screen-local and may reset on closing. Both languages cover the new screens; interface and story languages remain independent.
 
+## Combat preview walkthrough
+
+Open **http://127.0.0.1:3000/campaigns/long-road-west/game** → **Preview Combat**. This is a separate synthetic demonstration inside Game; nothing changes your campaign.
+
+1. **Attack → Raincoat lookout → Confirm demo action → Roll → Continue**. Review the cost before confirming. If you close before completing a roll, use **Resume sample roll**; reviewing/replaying cannot spend or hit twice.
+2. **End Turn** gives you Jinn. Attack the same lookout; End Turn → **Play scripted enemy turn** returns to James in round 2. Try Item on an injured party member, Move or Defend.
+3. Defeat the remaining sentry to **Show encounter summary** and **Collect demo loot**. Or choose **Finish demo with withdrawal**. The summary retains injuries and lists spent resources; it never heals or rests the party. Loot is demo-only.
+4. Type a free-text proposal, hide the illustration, inspect a companion, or use the mobile Scene & actions / Party details / Combat history switches. **Reset demo** starts fresh; **Exit combat preview** or **Return to Game** restores normal Game. Navigation away and refresh also discard the encounter.
+5. To compare dice styles, leave combat → **Campaign Settings → Rules & Play Style → Checks & Dice**. Hidden resolves with no dice modal or numbers; Interactive Off displays an immediate compact result; Key/All show these important sample attacks. No public target number is supplied for combat attacks, so Show DC adds none. The generic dice preview still demonstrates disclosed DCs. Check Frequency will not remove mandatory combat attacks/saves.
+
+All action values, enemies, abilities, results and loot are invented. Direct control of James/Jinn and one grouped scripted enemy turn illustrate the flow; no actual combat engine, AI, server dice or background simulation exists. English/Russian cover the controls and sample text; your proposal stays literal. Owner review remains pending.
+
 ## Deliberately outside Phase 0
 
 Real story responses, server dice rolls, campaign persistence, uploads and document editing, inventory mutations, backups, AI, authentication, image/video generation, and freeform evidence-board editing are not connected. Their preview controls explain this. There are no invented live dice results and no private DM facts in the client data.
@@ -84,8 +96,8 @@ pnpm start
 pnpm test
 ```
 
-`pnpm test` runs 49 checks: 19 HTTP route/navigation checks, 4 translation checks, 8 rules tests, 9 dice tests and 9 campaign/inventory/camp/conversation/recipe regressions. Coverage includes presentation independence, DC disclosure, repeated activation, cancellation, and reduced-motion scheduling. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks and unverified physical-device/assistive-technology behavior.
+`pnpm test` runs 60 checks: 19 HTTP route/navigation checks, 4 translation checks, 8 rules tests, 9 dice tests and 9 campaign/inventory/camp/conversation/recipe regressions, plus 11 combat lifecycle/isolation/target/cost/idempotency/presentation/localization tests. Coverage includes presentation independence, DC disclosure, repeated activation, cancellation, and reduced-motion scheduling. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks and unverified physical-device/assistive-technology behavior.
 
-Source layout: `src/app` contains the routes and styles, `src/components` contains reusable UI and screens, and `src/lib/mock-data.ts` contains player-readable sample records. Campaign-scoped records carry `campaign_id`. The registry in `campaign-routing.ts` validates URL identity; `inventory-model.ts` unifies items/entities/storage/equipment; `preview-state.ts` isolates temporary campaign state; `camp-preview.ts` provides authored recipe and access/rest fixtures. There are no server API routes or database migrations in this phase.
+Source layout: `src/app` contains the routes and styles, `src/components` contains reusable UI and screens, and `src/lib/mock-data.ts` contains player-readable sample records. Campaign-scoped records carry `campaign_id`. The registry in `campaign-routing.ts` validates URL identity; `inventory-model.ts` unifies items/entities/storage/equipment; `preview-state.ts` isolates temporary campaign state; `camp-preview.ts` provides authored recipe and access/rest fixtures. `combat-preview.ts` defines the isolated authored encounter and pending-action lifecycle, sharing the existing dice presentation without campaign mutations. There are no server API routes or database migrations in this phase.
 
 Localization uses a small shared React provider and `src/lib/locales/ru.json`: English source phrases are the dictionary keys; Russian phrases are their values. No localization package, duplicate routes, or language-specific screen components are needed. See `src/lib/locales/README.md` before adding text.
