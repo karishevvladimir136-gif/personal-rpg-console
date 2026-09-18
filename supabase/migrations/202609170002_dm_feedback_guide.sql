@@ -3,7 +3,7 @@
 begin;
 create table public.rpg_dm_feedback (
   id uuid primary key default gen_random_uuid(), campaign_id uuid not null references public.rpg_campaigns(id),
-  body text not null check(length(btrim(body)) between 1 and 20000), created_at timestamptz not null default now(),
+  body text not null check(length(body) <= 20000 and length(btrim(body)) >= 1), created_at timestamptz not null default now(),
   unique(campaign_id,id)
 );
 create table public.rpg_dm_guides (
@@ -53,7 +53,7 @@ begin
   end if;
   perform rpg_private.assert(p_request_id is not null and p_campaign_id is not null and p_expected_revision=0);
   perform rpg_private.fields(p_payload,array['body']);
-  perform rpg_private.assert(jsonb_typeof(p_payload->'body')='string' and length(btrim(p_payload->>'body')) between 1 and 20000);
+  perform rpg_private.assert(jsonb_typeof(p_payload->'body')='string' and length(p_payload->>'body') <= 20000 and length(btrim(p_payload->>'body')) >= 1);
   req := jsonb_build_object('operation',p_operation,'campaign_id',p_campaign_id,'expected_revision',p_expected_revision,'payload',p_payload);
   perform pg_advisory_xact_lock(hashtextextended(p_request_id::text,0));
   select * into receipt from rpg_private.mutation_receipts where request_id=p_request_id;

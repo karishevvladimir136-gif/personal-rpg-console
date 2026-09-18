@@ -780,6 +780,20 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
           mutation("feedback.send", first.id, { body: "x".repeat(20001) }),
           /rpg_validation/,
         );
+        const paddedOversized = " ".repeat(10000) + "x" + " ".repeat(10000);
+        await assert.rejects(
+          mutation("feedback.send", first.id, { body: paddedOversized }),
+          /rpg_validation/,
+        );
+        await role("postgres");
+        await assert.rejects(
+          db.query(
+            "insert into public.rpg_dm_feedback(campaign_id,body) values($1,$2)",
+            [first.id, paddedOversized],
+          ),
+          /check constraint/,
+        );
+        await role("authenticated", owner);
         await assert.rejects(
           db.query("update public.rpg_dm_feedback set body='changed'"),
           /permission denied/,
