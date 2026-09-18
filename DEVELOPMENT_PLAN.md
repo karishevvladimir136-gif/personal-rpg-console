@@ -138,6 +138,12 @@ Suggested prompt:
 
 > Implement Milestone 1 only using Supabase. Add migrations and persistence for the existing UI. Keep DM Private server-only. Seed realistic demo data. No OpenAI yet. Test campaign isolation and document versioning.
 
+Memory foundations (MASTER_SPEC section 38):
+- Reuse existing records for stable campaign/entity/operation IDs, ordered source history, document/state revisions and public/private boundaries.
+- Preserve originals and correction history; derived summaries must never become the only copy of facts.
+- Coordinate adjustments with the active lead integrator; do not restart workers or add AI summarization/retrieval to Phase 1.
+- Verify ordered history and source/version/campaign relationships using synthetic data.
+
 ---
 
 # MILESTONE 2 — TEXT DM
@@ -187,6 +193,13 @@ Suggested prompt:
 
 > Implement Milestone 2 only. Add one server-side DM runtime using OpenAI. Use structured output with separate narration, public patches and private patches. Add deterministic dice. Validate patches before persistence. No long-term retrieval yet.
 
+Bounded context and turn reliability (MASTER_SPEC section 38):
+- Implement per-model input/output/safety budgets and server-side assembly from current state, approved guidance, selected canon, validated checkpoint and recent complete exchanges.
+- Keep required state/input/pending outcomes intact; pause with input preserved when essential context cannot fit. No silent truncation or automatic model switch.
+- No automatic long-term summarization/search in this milestone. Missing historical evidence requires explicit clarification or a safe pause.
+- Serialize state-changing turns; persist operation identity/status and reuse recorded outcomes on reconnect/retry.
+- Acceptance: deterministic budget, oversized-input, stale-revision, retry/reconnect and public/private serialization tests pass. Report live model checks separately.
+
 ---
 
 # MILESTONE 3 — LONG-TERM MEMORY
@@ -218,6 +231,15 @@ Acceptance:
 Suggested prompt:
 
 > Implement Milestone 3 only. Add session summaries, snapshots and campaign-scoped long-term retrieval. Follow canon priority from MASTER_SPEC. Add tests for cross-campaign leakage and hidden-data leakage.
+
+Detailed implementation and acceptance (MASTER_SPEC section 38):
+- Implement source-linked public/private summaries and exact resume checkpoints with atomic coverage watermarks; END SESSION and budget-pressure triggers are bounded/idempotent.
+- Retrieve exact entity/state records first, then bounded historical excerpts using campaign/visibility/version filters before ranking. Start with database lookups/text search; semantic retrieval requires measured need.
+- Preserve claims, uncertainty, promises, NPC knowledge and source authority; derived text cannot alter exact resources or established state.
+- Invalidate stale summaries/indexes/caches immediately on corrections and restrictive visibility changes. Failed jobs retain prior valid memory and uncovered source events.
+- Exercise at least 1,000 synthetic events/20 sessions, two isolated campaigns, repeated compaction, old promises, corrected canon, bilingual retrieval, private markers, interrupted jobs and pending-roll resume.
+- Evaluate at least 30 labeled retrieval scenarios (>=90% relevant-evidence recall; all critical facts included or safe pause) and 20 continuation/summary cases (>=90% overall rubric pass, zero critical state contradictions/private disclosures in the evaluated suite).
+- Record actual model/configuration, token usage, latency, limitations and failures. Paid evaluations need authorization. Deterministic tests do not substitute for narrative-quality evaluation.
 
 ---
 

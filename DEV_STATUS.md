@@ -1,6 +1,18 @@
 # Development status
 
-Last updated: September 17, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
+Last updated: September 18, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
+
+## Historical remote documentation handoff — September 18, 2026
+
+The owner reports having sent Phase 0 approval and the Phase 1 multi-agent implementation prompt to the local development Codex. The implementation status below records the last published Phase 0 checkpoint, not a verification of the local Phase 1 work. Do not interpret its historical approval-pending/stop statements as revoking the owner's subsequent authorization.
+
+Added MASTER_SPEC section 38 and aligned DEVELOPMENT_PLAN milestones 1–3: exact state versus derived memory, source/visibility/revision tracking, model-specific context budgets, bounded retrieval, validated summary/checkpoint lifecycle, corrections/invalidation, idempotent turn/resume behavior, failure recovery and measurable synthetic acceptance gates. These are requirements, not implemented features or guarantees of perfect recall.
+
+This update changes documentation only; no application code, migrations, dependencies, runtime, credentials or campaign data were changed. Tests/typecheck/lint/build were not rerun for this update. Earlier verification results below remain historical.
+
+For the active lead integrator: fetch and safely merge these remote documentation changes at the next safe checkpoint; preserve local work, including the separately requested Chat with DM refinement. Coordinate overlapping documentation edits. Continue authorized Phase 1; incorporate only its memory foundations now. Phase 2/3 runtime work remains deferred until separately authorized.
+
+---
 
 ## Current milestone
 
@@ -14,6 +26,8 @@ The owner explicitly approved **96b69dcd63d2fa015f5e75bcc5d632c41e04369e**. It r
 - **Independent review reported by the owner:** typecheck, lint, production build, 41 logic/localization tests, 5 HTTP tests and 14 additional HTML/status route checks passed. Independent visual and image-asset verification was **not performed**. Physical iPhone/Safari remains unverified. These records are distinct.
 
 ## Current status
+
+Remote documentation commits through f46014d were safely merged; section 38 remains intact. Our persistence and Chat with DM additions are sections 39 and 40. Only ordered source records and immutable correction-history foundations are added now; no memory runtime is implemented.
 
 Phase 1 code integration and verification are in progress. Three workers used separate worktrees and agreed shared contracts before implementation; the lead owns integration. The queued Chat with DM addition joined the campaigns/documents workstream at a safe checkpoint, with an additive migration from the sole database owner.
 

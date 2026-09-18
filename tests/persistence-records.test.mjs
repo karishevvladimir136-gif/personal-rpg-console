@@ -361,12 +361,14 @@ test("public transcript order is stable and preserves original records/settings 
   const scenes = Object.freeze([
     Object.freeze({
       id: "b",
+      sequence: 1,
       created_at: "2026-09-17T20:00:00Z",
       settings_revision: 2,
       body: "Literal $& {text}",
     }),
     Object.freeze({
       id: "a",
+      sequence: 2,
       created_at: "2026-09-17T19:00:00Z",
       settings_revision: 1,
     }),
@@ -374,10 +376,10 @@ test("public transcript order is stable and preserves original records/settings 
   const sorted = sceneOrder(scenes);
   assert.deepEqual(
     sorted.map((row) => row.id),
-    ["a", "b"],
+    ["b", "a"],
   );
-  assert.equal(sorted[1], scenes[0]);
-  assert.equal(sorted[0].settings_revision, 1);
+  assert.equal(sorted[0], scenes[0]);
+  assert.equal(sorted[1].settings_revision, 1);
   assert.deepEqual(
     scenes.map((row) => row.id),
     ["b", "a"],
