@@ -1,4 +1,6 @@
 "use client";
+import { useLanguage } from "@/components/language-context";
+
 import Link from "next/link";
 import { useState } from "react";
 import { documents } from "@/lib/mock-data";
@@ -6,6 +8,7 @@ import { Art, Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import { usePreview } from "./preview-context";
 
 export function Campaigns() {
+  const { t } = useLanguage();
   const [query, setQuery] = useState("");
   const [dialog, setDialog] = useState("");
   const [newTitle, setNewTitle] = useState("");
@@ -14,93 +17,102 @@ export function Campaigns() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">YOUR STORIES, WAITING</span>
-          <h1>My Campaigns</h1>
-          <p>Worlds to explore. Stories to remember.</p>
+          <span className="eyebrow">{t("YOUR STORIES, WAITING")}</span>
+          <h1>{t("My Campaigns")}</h1>
+          <p>{t("Worlds to explore. Stories to remember.")}</p>
         </div>
         <Button primary onClick={() => setDialog("new")}>
-          + New campaign
+          {t("+ New campaign")}
         </Button>
       </div>
       <div className="campaign-toolbar">
-        <span className="small-quote">“Different worlds. Same stories.”</span>
+        <span className="small-quote">
+          {t("“Different worlds. Same stories.”")}
+        </span>
         <input
-          aria-label="Search campaigns"
-          placeholder="Search campaigns…"
+          aria-label={t("Search campaigns")}
+          placeholder={t("Search campaigns…")}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
       </div>
       {(!query ||
-        "the long road west james jinn".includes(query.toLowerCase())) && (
+        `${t("The Long Road West")} ${t("James")} ${t("Jinn")} the long road west james jinn`
+          .toLocaleLowerCase()
+          .includes(query.toLocaleLowerCase())) && (
         <article className="featured-campaign panel">
           <div className="campaign-cover">
             <Art name="city" />
-            <span className="cover-tag">YOUR CURRENT STORY</span>
+            <span className="cover-tag">{t("YOUR CURRENT STORY")}</span>
             <div className="cover-title">
-              <span className="eyebrow">POST-CONVERGENCE AMERICA</span>
+              <span className="eyebrow">{t("POST-CONVERGENCE AMERICA")}</span>
               <h2>
-                The Long
+                {t("The Long")}
                 <br />
-                Road West
+                {t("Road West")}
               </h2>
-              <p>Still human. Somehow.</p>
+              <p>{t("Still human. Somehow.")}</p>
             </div>
           </div>
           <div className="campaign-info">
-            <Badge green>In progress</Badge>
-            <h2>The Long Road West</h2>
-            <p className="genre">Post-apocalyptic western · Modern fantasy</p>
+            <Badge green>{t("In progress")}</Badge>
+            <h2>{t("The Long Road West")}</h2>
+            <p className="genre">
+              {t("Post-apocalyptic western · Modern fantasy")}
+            </p>
             <p className="campaign-description">
-              Across the ruins, people still search for a better tomorrow. Dust,
-              danger, and hope on the long road west.
+              {t(
+                "Across the ruins, people still search for a better tomorrow. Dust, danger, and hope on the long road west.",
+              )}
             </p>
             <div className="campaign-meta">
               <span>
                 <Icon name="sessions" />
-                Session 4 · The Letter
+                {t("Session 4 · The Letter")}
               </span>
               <span>
                 <Icon name="map" />
-                New York
+                {t("New York")}
               </span>
               <span>
                 <Icon name="Users" />
-                James & Jinn
+                {t("James & Jinn")}
               </span>
               <span>
                 <Icon name="BookOpen" />
-                Last played April 3, 2025
+                {t("Last played April 3, 2025")}
               </span>
             </div>
             <div className="campaign-character">
               <Art name="james" />
               <div>
-                <h3>James</h3>
-                <p>Level 3 · Human · Warlock</p>
+                <h3>{t("James")}</h3>
+                <p>{t("Level 3 · Human · Warlock")}</p>
               </div>
             </div>
             <Link className="button primary continue-button" href="/game">
-              Continue the story <Icon name="ArrowRight" />
+              {t("Continue the story")} <Icon name="ArrowRight" />
             </Link>
             <div className="campaign-links">
-              <Link href="/library">Campaign library</Link>
-              <Link href="/sessions">Previous sessions</Link>
+              <Link href="/library">{t("Campaign library")}</Link>
+              <Link href="/sessions">{t("Previous sessions")}</Link>
             </div>
           </div>
         </article>
       )}
       {query &&
-        !"the long road west james jinn".includes(query.toLowerCase()) && (
+        !`${t("The Long Road West")} ${t("James")} ${t("Jinn")} the long road west james jinn`
+          .toLocaleLowerCase()
+          .includes(query.toLocaleLowerCase()) && (
           <div className="empty-state panel">
-            <h2>No campaigns found</h2>
-            <p>Try “James” or “The Long Road West”.</p>
-            <Button onClick={() => setQuery("")}>Clear search</Button>
+            <h2>{t("No campaigns found")}</h2>
+            <p>{t("Try “James” or “The Long Road West”.")}</p>
+            <Button onClick={() => setQuery("")}>{t("Clear search")}</Button>
           </div>
         )}
       <div className="section-heading">
-        <h2>Other worlds</h2>
-        <span>Visual concepts · Not started</span>
+        <h2>{t("Other worlds")}</h2>
+        <span>{t("Visual concepts · Not started")}</span>
       </div>
       <div className="other-campaigns">
         {[
@@ -124,10 +136,10 @@ export function Campaigns() {
           >
             <Art name={art} />
             <div>
-              <span className="eyebrow">CAMPAIGN CONCEPT</span>
-              <h2>{title}</h2>
-              <p>{genre}</p>
-              <small>{text}</small>
+              <span className="eyebrow">{t("CAMPAIGN CONCEPT")}</span>
+              <h2>{t(title)}</h2>
+              <p>{t(genre)}</p>
+              <small>{t(text)}</small>
             </div>
             <Icon name="ChevronRight" />
           </button>
@@ -135,16 +147,17 @@ export function Campaigns() {
       </div>
       {draftTitle && (
         <Panel title={draftTitle}>
-          <Badge>Preview draft</Badge>
+          <Badge>{t("Preview draft")}</Badge>
           <p>
-            Your title is ready. Full campaign creation is part of the
-            persistence phase.
+            {t(
+              "Your title is ready. Full campaign creation is part of the persistence phase.",
+            )}
           </p>
         </Panel>
       )}
       {dialog && (
         <Modal
-          title={dialog === "new" ? "A new story" : dialog}
+          title={t(dialog === "new" ? "A new story" : dialog)}
           onClose={() => setDialog("")}
         >
           {dialog === "new" ? (
@@ -159,21 +172,22 @@ export function Campaigns() {
               }}
             >
               <p>
-                Try a campaign title. This creates a temporary preview card,
-                without starting or generating a story.
+                {t(
+                  "Try a campaign title. This creates a temporary preview card, without starting or generating a story.",
+                )}
               </p>
               <label className="field">
-                Campaign title
+                {t("Campaign title")}
                 <input
                   autoFocus
                   value={newTitle}
                   onChange={(event) => setNewTitle(event.target.value)}
-                  placeholder="Every road starts with a name…"
+                  placeholder={t("Every road starts with a name…")}
                   maxLength={80}
                 />
               </label>
               <Button primary type="submit" disabled={!newTitle.trim()}>
-                Create preview card
+                {t("Create preview card")}
               </Button>
             </form>
           ) : (
@@ -183,15 +197,16 @@ export function Campaigns() {
                 className="modal-art"
               />
               <p>
-                A glimpse of another world. This concept is not a playable
-                campaign; James & Jinn is the connected Phase 0 sample.
+                {t(
+                  "A glimpse of another world. This concept is not a playable campaign; James & Jinn is the connected Phase 0 sample.",
+                )}
               </p>
               <Link
                 className="button primary"
                 href="/game"
                 onClick={() => setDialog("")}
               >
-                Open James & Jinn
+                {t("Open James & Jinn")}
               </Link>
             </>
           )}
@@ -202,6 +217,7 @@ export function Campaigns() {
 }
 
 export function Library() {
+  const { t } = useLanguage();
   const [filter, setFilter] = useState("All documents");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<(typeof documents)[number] | null>(
@@ -212,16 +228,20 @@ export function Library() {
   const filtered = documents.filter(
     (doc) =>
       (filter === "All documents" || doc.status === filter) &&
-      doc.title.toLowerCase().includes(query.toLowerCase()),
+      t(doc.title).toLocaleLowerCase().includes(query.toLocaleLowerCase()),
   );
   return (
     <>
       <div className="library-banner">
         <Art name="city" />
         <div>
-          <span className="eyebrow">THE LONG ROAD WEST</span>
-          <h1>Campaign Library</h1>
-          <p>The lore, references, and words that hold this world together.</p>
+          <span className="eyebrow">{t("THE LONG ROAD WEST")}</span>
+          <h1>{t("Campaign Library")}</h1>
+          <p>
+            {t(
+              "The lore, references, and words that hold this world together.",
+            )}
+          </p>
         </div>
       </div>
       <div className="page-heading compact">
@@ -232,17 +252,17 @@ export function Library() {
         />
         <div className="button-group">
           <Button onClick={() => setNotice("Upload documents")}>
-            ↑ Upload
+            {t("↑ Upload")}
           </Button>
           <Button primary onClick={() => setNotice("New document")}>
-            + New document
+            {t("+ New document")}
           </Button>
         </div>
       </div>
       <input
         className="library-search"
-        aria-label="Search documents"
-        placeholder="Search your library…"
+        aria-label={t("Search documents")}
+        placeholder={t("Search your library…")}
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
@@ -251,14 +271,16 @@ export function Library() {
         .map((status) => (
           <Panel
             key={status}
-            title={`${status} (${filtered.filter((doc) => doc.status === status).length})`}
+            title={`${t(status)} (${filtered.filter((doc) => doc.status === status).length})`}
             action={
               <span className="muted">
-                {status === "Canon"
-                  ? "The current truth of your campaign"
-                  : status === "Reference"
-                    ? "Supporting material"
-                    : "Retained for history"}
+                {t(
+                  status === "Canon"
+                    ? "The current truth of your campaign"
+                    : status === "Reference"
+                      ? "Supporting material"
+                      : "Retained for history",
+                )}
               </span>
             }
           >
@@ -278,14 +300,19 @@ export function Library() {
                     size={24}
                   />
                   <div>
-                    <h3>{doc.title}</h3>
+                    <h3>{t(doc.title)}</h3>
                     <small>
-                      {status === "Archived"
-                        ? "Earlier concept · Not current canon"
-                        : "Sample campaign document"}
+                      {t(
+                        status === "Archived"
+                          ? "Earlier concept · Not current canon"
+                          : "Sample campaign document",
+                      )}
                     </small>
                   </div>
-                  <span>v{doc.version}</span>
+                  <span>
+                    {t("v")}
+                    {doc.version}
+                  </span>
                   <Icon name="ChevronRight" />
                 </button>
               ))}
@@ -293,52 +320,59 @@ export function Library() {
         ))}
       {!filtered.length && (
         <div className="empty-state panel">
-          <p>No documents match your search.</p>
+          <p>{t("No documents match your search.")}</p>
           <Button
             onClick={() => {
               setQuery("");
               setFilter("All documents");
             }}
           >
-            Clear filters
+            {t("Clear filters")}
           </Button>
         </div>
       )}
       <p className="muted">
-        Player-readable sample documents only. No DM-private material is
-        included.
+        {t(
+          "Player-readable sample documents only. No DM-private material is included.",
+        )}
       </p>
       {selected && (
-        <Modal title={selected.title} onClose={() => setSelected(null)}>
+        <Modal title={t(selected.title)} onClose={() => setSelected(null)}>
           <div className="button-group">
-            <Badge>{selected.status}</Badge>
-            <Badge>Version {selected.version}</Badge>
+            <Badge>{t(selected.status)}</Badge>
+            <Badge>
+              {t("Version")} {selected.version}
+            </Badge>
           </div>
           {history ? (
             <div className="prose">
-              <h3>Version history</h3>
-              <p>v{selected.version} · Current sample version</p>
+              <h3>{t("Version history")}</h3>
+              <p>
+                {t("v")}
+                {selected.version} {t("· Current sample version")}
+              </p>
               <p className="muted">
-                Older document versions will be retained when document editing
-                is connected. This preview contains one sample version.
+                {t(
+                  "Older document versions will be retained when document editing is connected. This preview contains one sample version.",
+                )}
               </p>
             </div>
           ) : (
             <div className="prose">
-              <p>{selected.body}</p>
+              <p>{t(selected.body)}</p>
             </div>
           )}
           <Button onClick={() => setHistory(!history)}>
-            {history ? "Read document" : "Version history"}
+            {t(history ? "Read document" : "Version history")}
           </Button>
         </Modal>
       )}
       {notice && (
-        <Modal title={notice} onClose={() => setNotice("")}>
+        <Modal title={t(notice)} onClose={() => setNotice("")}>
           <p>
-            Document uploads and editing arrive with persistent storage in Phase
-            1. For now, select any sample document to read it and preview the
-            version history.
+            {t(
+              "Document uploads and editing arrive with persistent storage in Phase 1. For now, select any sample document to read it and preview the version history.",
+            )}
           </p>
         </Modal>
       )}
@@ -357,6 +391,7 @@ const galleryItems = [
   { title: "The road west", art: "coast", category: "Locations" },
 ];
 export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
+  const { t } = useLanguage();
   const [tab, setTab] = useState("Session");
   const [selected, setSelected] = useState<
     (typeof galleryItems)[number] | null
@@ -374,12 +409,14 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">THE LONG ROAD WEST · SESSION 04</span>
-          <h1>{galleryOnly ? "Gallery" : "Session Recap & Gallery"}</h1>
-          <p>Some moments stay with you.</p>
+          <span className="eyebrow">
+            {t("THE LONG ROAD WEST · SESSION 04")}
+          </span>
+          <h1>{t(galleryOnly ? "Gallery" : "Session Recap & Gallery")}</h1>
+          <p>{t("Some moments stay with you.")}</p>
         </div>
         <Link className="button primary" href="/game">
-          Resume story <Icon name="ArrowRight" size={16} />
+          {t("Resume story")} <Icon name="ArrowRight" size={16} />
         </Link>
       </div>
       {!galleryOnly && (
@@ -388,18 +425,18 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
             <div className="session-poster">
               <Art name="city" />
               <div className="poster-title">
-                <span>THE LONG ROAD WEST</span>
-                <p>Session 4</p>
-                <h2>The Letter</h2>
+                <span>{t("THE LONG ROAD WEST")}</span>
+                <p>{t("Session 4")}</p>
+                <h2>{t("The Letter")}</h2>
               </div>
               <div className="poster-caption">
-                <p>April 3, 2025 · New York</p>
-                <em>“Every road starts with a question.”</em>
+                <p>{t("April 3, 2025 · New York")}</p>
+                <em>{t("“Every road starts with a question.”")}</em>
               </div>
             </div>
             <Panel
-              title="Key moments"
-              action={<span className="muted">4 moments</span>}
+              title={t("Key moments")}
+              action={<span className="muted">{t("4 moments")}</span>}
             >
               <div className="moment-list">
                 {galleryItems.slice(1, 5).map((item, index) => (
@@ -411,16 +448,16 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
                     <Art name={item.art} />
                     <div>
                       <span className="eyebrow">0{index + 1}</span>
-                      <h3>{item.title}</h3>
+                      <h3>{t(item.title)}</h3>
                       <p>
-                        {
+                        {t(
                           [
                             "A mysterious letter arrives. No return address.",
                             "A shadow in the subway. A question unanswered.",
                             "You sure you want to do this?",
                             "A familiar mark. Different world. Same question.",
-                          ][index]
-                        }
+                          ][index],
+                        )}
                       </p>
                     </div>
                     <Icon name="ChevronRight" />
@@ -430,48 +467,50 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
             </Panel>
           </div>
           <div className="recap-notes">
-            <Panel title="The story so far">
+            <Panel title={t("The story so far")}>
               <p>
-                An unsigned letter finds James in New York. The wax bears an
-                unfamiliar triangle, and the message names a destination far to
-                the west. Jinn’s hesitation makes the question harder to ignore.
+                {t(
+                  "An unsigned letter finds James in New York. The wax bears an unfamiliar triangle, and the message names a destination far to the west. Jinn’s hesitation makes the question harder to ignore.",
+                )}
               </p>
-              <p>Outside the subway, the city waits in the rain.</p>
+              <p>{t("Outside the subway, the city waits in the rain.")}</p>
             </Panel>
-            <Panel title="What changed">
+            <Panel title={t("What changed")}>
               <ul className="change-list">
                 <li>
                   <Icon name="Mail" />
-                  Acquired: the mysterious letter
+                  {t("Acquired: the mysterious letter")}
                 </li>
                 <li>
                   <Icon name="map" />
-                  New lead: San Francisco
+                  {t("New lead: San Francisco")}
                 </li>
                 <li>
                   <Icon name="Users" />
-                  Jinn: close · Relationship unchanged
+                  {t("Jinn: close · Relationship unchanged")}
                 </li>
                 <li>
                   <Icon name="Shield" />
-                  HP 24 / 24 · Pact slots 2 / 2
+                  {t("HP 24 / 24 · Pact slots 2 / 2")}
                 </li>
               </ul>
             </Panel>
-            <Panel title="Where we left off">
-              <Badge>Resume point</Badge>
+            <Panel title={t("Where we left off")}>
+              <Badge>{t("Resume point")}</Badge>
               <p>
-                James and Jinn stand outside the subway. James is checking the
-                street for anyone following them.
+                {t(
+                  "James and Jinn stand outside the subway. James is checking the street for anyone following them.",
+                )}
               </p>
               <Link className="text-link" href="/game">
-                Continue from here <Icon name="ArrowRight" size={14} />
+                {t("Continue from here")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>
           </div>
           <p className="muted">
-            Illustrative recap of the current sample session. No session has
-            been automatically ended or generated.
+            {t(
+              "Illustrative recap of the current sample session. No session has been automatically ended or generated.",
+            )}
           </p>
         </>
       )}
@@ -497,8 +536,8 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
           >
             <Art name={item.art} />
             <span>
-              <small>{item.category}</small>
-              {item.title}
+              <small>{t(item.category)}</small>
+              {t(item.title)}
             </span>
           </button>
         ))}
@@ -507,28 +546,32 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
         <div className="empty-state panel">
           <Icon name={tab === "Videos" ? "Image" : "Bookmark"} size={32} />
           <h2>
-            {tab === "Videos"
-              ? "The moving pictures are still to come."
-              : "A place for your favorite moments."}
+            {t(
+              tab === "Videos"
+                ? "The moving pictures are still to come."
+                : "A place for your favorite moments.",
+            )}
           </h2>
           <p>
-            {tab === "Videos"
-              ? "Video generation is not connected in Phase 0."
-              : "Use Save moment on the Game screen to add the sample scene here."}
+            {t(
+              tab === "Videos"
+                ? "Video generation is not connected in Phase 0."
+                : "Use Save moment on the Game screen to add the sample scene here.",
+            )}
           </p>
           <Link className="button" href="/game">
-            Return to the story
+            {t("Return to the story")}
           </Link>
         </div>
       )}
       {selected && (
-        <Modal title={selected.title} onClose={() => setSelected(null)}>
+        <Modal title={t(selected.title)} onClose={() => setSelected(null)}>
           <Art name={selected.art} className="lightbox-art" />
-          <p className="muted">Session 4 · Supplied sample artwork</p>
+          <p className="muted">{t("Session 4 · Supplied sample artwork")}</p>
           {selected.art === "city" && (
             <Button primary onClick={() => setSaved(!saved)}>
               <Icon name={saved ? "Check" : "Bookmark"} />
-              {saved ? "Remove from favorites" : "Save moment"}
+              {t(saved ? "Remove from favorites" : "Save moment")}
             </Button>
           )}
         </Modal>

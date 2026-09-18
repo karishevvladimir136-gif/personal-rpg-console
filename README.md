@@ -20,9 +20,11 @@ If the preview is already running, simply open that address. To stop a preview s
 - **Map:** select a known city and choose a sample destination. Region and Local show illustrative diagrams.
 - **Library:** filter and search sample documents, read them, and open the sample version-history view.
 - **Sessions / Gallery:** read the illustrative recap, open artwork, and find a saved scene in Favorites.
+- **Settings → General → Interface Language:** choose **English** or **Русский**. Navigation, controls, dialogs, and sample content change together. In Russian, this is **Настройки → Общие → Язык интерфейса**.
+- **Settings → Campaign settings → Campaign Language:** choose a separate future story language for The Long Road West. This does not change the interface or generate a story yet.
 - **Settings:** turn on larger story text and optional suggested actions, then return to Game.
 
-Actions, notes, favorites, destination, and reading controls are kept in memory while navigating. Refreshing resets the preview. New campaign cards and other screen-local sample controls are temporary too. No files or real campaign data are changed by the UI.
+Actions, notes, favorites, destination, reading controls, and both language choices are kept in memory while navigating. Refreshing resets the preview, including both languages to English. Your own writing is never translated. New campaign cards and other screen-local sample controls are temporary too. No files or real campaign data are changed by the UI.
 
 ## Deliberately outside Phase 0
 
@@ -43,7 +45,7 @@ Visual approval by the owner is the remaining Phase 0 acceptance step. No later 
 
 ## For development
 
-Node.js 20.9+ and pnpm are required on a new computer. This workstation also supports its bundled Codex Node runtime via the Windows launcher.
+Use Node.js 24 and pnpm on a new computer (verified with Node 24.19.0). The translation tests use Node's built-in TypeScript support. This workstation also supports its bundled Codex Node runtime via the Windows launcher.
 
 ```sh
 pnpm install
@@ -63,6 +65,8 @@ pnpm start
 pnpm test
 ```
 
-`pnpm test` checks all 11 screen routes, local navigation/art assets, the home redirect, missing-page handling, and the absence of invented live dice results. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks.
+`pnpm test` runs 18 checks: all 11 screen routes, local navigation/art assets, the home redirect, missing-page handling, the absence of invented live dice results, and translation coverage/interpolation. `PREVIEW_URL` can override the default test address. See `VERIFICATION.md` for browser checks.
 
 Source layout: `src/app` contains the routes and styles, `src/components` contains reusable UI and screens, and `src/lib/mock-data.ts` contains player-readable sample records. Campaign-scoped records carry `campaign_id`. There are no server API routes or database migrations in this phase.
+
+Localization uses a small shared React provider and `src/lib/locales/ru.json`: English source phrases are the dictionary keys; Russian phrases are their values. No localization package, duplicate routes, or language-specific screen components are needed. See `src/lib/locales/README.md` before adding text.

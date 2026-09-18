@@ -1,6 +1,9 @@
+"use client";
+import { useLanguage } from "@/components/language-context";
 // A clean illustrative atlas keeps all pins and labels real, accessible controls.
 // It contains only the four locations already known in the sample campaign.
 export function WorldMap() {
+  const { t } = useLanguage();
   const land =
     "M73 91 L115 69 L190 85 L256 92 L329 94 L410 95 L477 90 L526 103 L569 122 L603 125 L618 111 L641 126 L663 117 L681 133 L697 145 L716 153 L750 128 L780 119 L801 123 L827 101 L856 93 L878 63 L900 53 L920 90 L905 118 L884 143 L875 176 L850 186 L827 211 L815 232 L793 250 L785 275 L758 291 L735 329 L716 343 L726 371 L747 412 L746 444 L727 446 L711 416 L687 392 L672 355 L638 359 L604 357 L580 368 L551 354 L528 362 L512 385 L496 418 L480 413 L470 394 L457 373 L428 371 L398 351 L376 335 L345 336 L311 325 L284 312 L248 309 L219 289 L198 279 L167 271 L155 250 L143 237 L127 217 L114 200 L101 183 L95 160 L81 140 Z";
   return (
@@ -9,7 +12,7 @@ export function WorldMap() {
       viewBox="0 0 1000 560"
       preserveAspectRatio="none"
       role="img"
-      aria-label="Illustrative atlas of the Joined America"
+      aria-label={t("Illustrative atlas of the Joined America")}
     >
       <defs>
         <radialGradient id="sea">
@@ -91,22 +94,22 @@ export function WorldMap() {
         letterSpacing="4"
       >
         <text x="357" y="58">
-          CANADIAN REACH
+          {t("CANADIAN REACH")}
         </text>
         <text x="222" y="154" transform="rotate(-12 222 154)">
-          THE WASTES
+          {t("THE WASTES")}
         </text>
         <text x="50" y="339" transform="rotate(-68 50 339)">
-          THE BROKEN COAST
+          {t("THE BROKEN COAST")}
         </text>
         <text x="806" y="391">
-          ATLANTIC
+          {t("ATLANTIC")}
         </text>
         <text x="840" y="412">
-          RIM
+          {t("RIM")}
         </text>
         <text x="473" y="487">
-          GULF REMNANTS
+          {t("GULF REMNANTS")}
         </text>
       </g>
       <g stroke="#bcab83" opacity=".7" transform="translate(915 460)">
@@ -121,7 +124,7 @@ export function WorldMap() {
           fontFamily="Georgia"
           fontSize="12"
         >
-          N
+          {t("N")}
         </text>
       </g>
     </svg>

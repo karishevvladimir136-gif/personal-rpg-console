@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PreviewProvider } from "@/components/preview-context";
 import { Shell } from "@/components/shell";
+import { LanguageProvider } from "@/components/language-context";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "The Long Road West | Personal RPG Console",
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body>
-        <PreviewProvider>
-          <Shell>{children}</Shell>
-        </PreviewProvider>
+        <LanguageProvider>
+          <PreviewProvider>
+            <Shell>{children}</Shell>
+          </PreviewProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

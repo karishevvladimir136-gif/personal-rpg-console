@@ -1,4 +1,6 @@
 "use client";
+import { useLanguage } from "@/components/language-context";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
@@ -7,13 +9,14 @@ import { Art, Icon } from "./ui";
 import { usePreview } from "./preview-context";
 
 export function Shell({ children }: { children: ReactNode }) {
+  const { t } = useLanguage();
   const pathname = usePathname();
   const [menu, setMenu] = useState(false);
   const { largeText } = usePreview();
   return (
     <div className={`app-shell ${largeText ? "large-text" : ""}`}>
       <a className="skip-link" href="#main">
-        Skip to content
+        {t("Skip to content")}
       </a>
       <aside className={`sidebar ${menu ? "mobile-open" : ""}`}>
         <Link
@@ -23,15 +26,16 @@ export function Shell({ children }: { children: ReactNode }) {
         >
           <span className="brand-mark">✧</span>
           <span>
-            PERSONAL<span>RPG CONSOLE</span>
+            {t("PERSONAL")}
+            <span>{t("RPG CONSOLE")}</span>
           </span>
         </Link>
         <p className="brand-motto">
-          SAME MAN.
+          {t("SAME MAN.")}
           <br />
-          DIFFERENT WORLDS.
+          {t("DIFFERENT WORLDS.")}
         </p>
-        <nav aria-label="Main navigation">
+        <nav aria-label={t("Main navigation")}>
           {navigation.map(([path, label]) => (
             <Link
               key={path}
@@ -41,16 +45,16 @@ export function Shell({ children }: { children: ReactNode }) {
               onClick={() => setMenu(false)}
             >
               <Icon name={path} />
-              <span>{label}</span>
+              <span>{t(label)}</span>
               {pathname === `/${path}` && <span className="nav-dot" />}
             </Link>
           ))}
         </nav>
         <div className="sidebar-bottom">
           <p>
-            “Every road starts
+            {t("“Every road starts")}
             <br />
-            with a question.”
+            {t("with a question.”")}
           </p>
           <Link
             href="/campaigns"
@@ -59,7 +63,8 @@ export function Shell({ children }: { children: ReactNode }) {
           >
             <Art name="city" />
             <span>
-              The Long Road West<small>Session 4 · The Letter</small>
+              {t("The Long Road West")}
+              <small>{t("Session 4 · The Letter")}</small>
             </span>
             <Icon name="ChevronRight" size={15} />
           </Link>
@@ -68,7 +73,7 @@ export function Shell({ children }: { children: ReactNode }) {
       {menu && (
         <button
           className="menu-scrim"
-          aria-label="Close navigation"
+          aria-label={t("Close navigation")}
           onClick={() => setMenu(false)}
         />
       )}
@@ -76,33 +81,35 @@ export function Shell({ children }: { children: ReactNode }) {
         <header className="topbar">
           <button
             className="mobile-menu"
-            aria-label={menu ? "Close navigation" : "Open navigation"}
+            aria-label={t(menu ? "Close navigation" : "Open navigation")}
             aria-expanded={menu}
             onClick={() => setMenu(!menu)}
           >
             <Icon name={menu ? "X" : "Menu"} />
           </button>
           <div className="breadcrumbs">
-            <Link href="/campaigns">THE LONG ROAD WEST</Link>
+            <Link href="/campaigns">{t("THE LONG ROAD WEST")}</Link>
             <Icon name="ChevronRight" size={13} />
             <span>
-              {navigation.find(([path]) => pathname === `/${path}`)?.[1] ||
-                "Campaigns"}
+              {t(
+                navigation.find(([path]) => pathname === `/${path}`)?.[1] ||
+                  "Campaigns",
+              )}
             </span>
           </div>
           <span className="preview-indicator">
-            <span /> PHASE 0 · PREVIEW
+            <span /> {t("PHASE 0 · PREVIEW")}
           </span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="page-footer">
-          <span>Same man. Different worlds.</span>
-          <span>Sample campaign · Changes reset on refresh</span>
+          <span>{t("Same man. Different worlds.")}</span>
+          <span>{t("Sample campaign · Changes reset on refresh")}</span>
         </footer>
       </div>
-      <nav className="bottom-nav" aria-label="Mobile navigation">
+      <nav className="bottom-nav" aria-label={t("Mobile navigation")}>
         {(["game", "character", "map", "journal", "library"] as const).map(
           (path) => (
             <Link
@@ -112,7 +119,7 @@ export function Shell({ children }: { children: ReactNode }) {
               aria-current={pathname === `/${path}` ? "page" : undefined}
             >
               <Icon name={path} />
-              <span>{path[0].toUpperCase() + path.slice(1)}</span>
+              <span>{t(path[0].toUpperCase() + path.slice(1))}</span>
             </Link>
           ),
         )}

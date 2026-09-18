@@ -1,4 +1,5 @@
 "use client";
+import { useLanguage } from "@/components/language-context";
 
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import {
@@ -112,6 +113,24 @@ const artwork: Record<
   car: { file: "02_character_inventory", box: "1107 803 160 91" },
   map: { file: "05_map_travel", box: "239 161 921 584" },
 };
+const artLabels: Record<string, string> = {
+  city: "New York",
+  james: "James",
+  figure: "James",
+  jinn: "Jinn",
+  letter: "The Letter",
+  symbol: "The Symbol",
+  meeting: "The meeting",
+  lab: "Convergence Labs",
+  unknown: "Unknown Sender",
+  coast: "San Francisco",
+  chicago: "Chicago",
+  denver: "Denver",
+  moon: "Ashes of the Moon",
+  space: "Void and Dust",
+  car: "Old Ford",
+  map: "The Joined America",
+};
 export function Art({
   name = "city",
   className = "",
@@ -121,6 +140,7 @@ export function Art({
   className?: string;
   label?: string;
 }) {
+  const { t } = useLanguage();
   const art = artwork[name] || artwork.city;
   const clipId = useId();
   const [x, y, width, height] = art.box.split(" ").map(Number);
@@ -132,7 +152,7 @@ export function Art({
         name === "figure" ? "xMidYMid meet" : "xMidYMid slice"
       }
       role="img"
-      aria-label={label || name}
+      aria-label={label || t(artLabels[name] || "Scene artwork")}
     >
       <defs>
         <clipPath id={clipId}>
@@ -209,8 +229,9 @@ export function Tabs({
   value: string;
   onChange: (value: string) => void;
 }) {
+  const { t } = useLanguage();
   return (
-    <div className="tabs" aria-label="View options">
+    <div className="tabs" aria-label={t("View options")}>
       {options.map((option) => (
         <button
           key={option}
@@ -218,7 +239,7 @@ export function Tabs({
           className={value === option ? "active" : ""}
           onClick={() => onChange(option)}
         >
-          {option}
+          {t(option)}
         </button>
       ))}
     </div>
@@ -265,6 +286,7 @@ export function Modal({
   children: ReactNode;
   onClose: () => void;
 }) {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
   useEffect(() => {
@@ -288,7 +310,7 @@ export function Modal({
     >
       <div className="modal-heading">
         <h2 id={titleId}>{title}</h2>
-        <Button label="Close dialog" onClick={onClose}>
+        <Button label={t("Close dialog")} onClick={onClose}>
           <Icon name="X" />
         </Button>
       </div>

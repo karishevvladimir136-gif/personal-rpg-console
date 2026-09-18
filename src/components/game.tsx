@@ -1,4 +1,6 @@
 "use client";
+import { useLanguage } from "@/components/language-context";
+
 import Link from "next/link";
 import { useState } from "react";
 import { clues } from "@/lib/mock-data";
@@ -6,29 +8,31 @@ import { Art, Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
 import { usePreview } from "./preview-context";
 
 export function CharacterSummary() {
+  const { t } = useLanguage();
   return (
     <>
       <div className="identity">
         <Art name="james" />
         <div>
-          <h2>James</h2>
-          <p>Human · Warlock (The Bound)</p>
-          <em>“Still here. That’s something.”</em>
+          <h2>{t("James")}</h2>
+          <p>{t("Human · Warlock (The Bound)")}</p>
+          <em>{t("“Still here. That’s something.”")}</em>
         </div>
       </div>
       <Meter
-        label="Level 3"
-        value="1,250 / 2,000 XP"
+        label={t("Level 3")}
+        value={t("1,250 / 2,000 XP")}
         color="var(--gold)"
         percent={62.5}
       />
-      <Meter label="HP" value="24 / 24" color="var(--red)" />
-      <Meter label="Pact slots" value="2 / 2" color="var(--blue)" />
+      <Meter label={t("HP")} value="24 / 24" color="var(--red)" />
+      <Meter label={t("Pact slots")} value="2 / 2" color="var(--blue)" />
     </>
   );
 }
 
 export function Game() {
+  const { t } = useLanguage();
   const { messages, addMessage, saved, setSaved, addNote, suggestions } =
     usePreview();
   const [draft, setDraft] = useState("");
@@ -37,25 +41,25 @@ export function Game() {
   const [note, setNote] = useState("");
   function send() {
     if (!draft.trim()) return;
-    addMessage(`${ooc ? "Out of character: " : ""}${draft.trim()}`);
+    addMessage({ text: draft.trim(), ooc });
     setDraft("");
   }
   return (
     <>
       <div className="game-title">
         <div>
-          <span className="eyebrow">SESSION 04</span>
-          <h1>The Letter</h1>
+          <span className="eyebrow">{t("SESSION 04")}</span>
+          <h1>{t("The Letter")}</h1>
         </div>
         <Link href="/sessions" className="text-link">
-          Session recap <Icon name="ChevronRight" size={15} />
+          {t("Session recap")} <Icon name="ChevronRight" size={15} />
         </Link>
       </div>
       <div className="game-grid">
         <div className="story-column">
           <details className="mobile-stats panel">
             <summary>
-              James · Level 3 <span>♥ 24 / 24 · Pact 2 / 2</span>
+              {t("James · Level 3")} <span>{t("♥ 24 / 24 · Pact 2 / 2")}</span>
             </summary>
             <CharacterSummary />
           </details>
@@ -63,49 +67,54 @@ export function Game() {
             <div className="scene-art">
               <Art
                 name="city"
-                label="A detective on a rain-soaked street in ruined New York"
+                label={t(
+                  "A detective on a rain-soaked street in ruined New York",
+                )}
               />
               <div className="scene-caption">
                 <div>
-                  <span className="eyebrow">EAST COAST UNION</span>
-                  <h2>New York</h2>
-                  <p>Rain remembers everything.</p>
+                  <span className="eyebrow">{t("EAST COAST UNION")}</span>
+                  <h2>{t("New York")}</h2>
+                  <p>{t("Rain remembers everything.")}</p>
                 </div>
-                <span>Rain · 12°C</span>
+                <span>{t("Rain · 12°C")}</span>
               </div>
             </div>
             <div className="narration">
               <div className="scene-kicker">
-                <span className="eyebrow">THE STORY SO FAR</span>
-                <span>April 3, 2025 · 22:14</span>
+                <span className="eyebrow">{t("THE STORY SO FAR")}</span>
+                <span>{t("April 3, 2025 · 22:14")}</span>
               </div>
               <p>
-                Rain hammers the cracked pavement as you step out of the subway.
-                The air smells of wet metal and ozone. A folded envelope rests
-                in your hand, the ink still fresh.
+                {t(
+                  "Rain hammers the cracked pavement as you step out of the subway. The air smells of wet metal and ozone. A folded envelope rests in your hand, the ink still fresh.",
+                )}
               </p>
               <p>
-                Across the street, the old signage flickers. Somewhere in the
-                darkness, a siren wails — or something that used to be one.
+                {t(
+                  "Across the street, the old signage flickers. Somewhere in the darkness, a siren wails — or something that used to be one.",
+                )}
               </p>
               <blockquote>
-                <span>Jinn</span> “You sure you want to do this?”
+                <span>{t("Jinn")}</span> {t("“You sure you want to do this?”")}
               </blockquote>
               <div className="scene-actions">
                 <Button primary onClick={() => setDialog("frame")}>
                   <Icon name="Image" />
                   <span>
-                    FRAME<small>Capture this moment</small>
+                    {t("FRAME")}
+                    <small>{t("Capture this moment")}</small>
                   </span>
                 </Button>
                 <Button primary onClick={() => setDialog("video")}>
                   <span className="play-symbol">▷</span>
                   <span>
-                    VIDEO<small>A cinematic view</small>
+                    {t("VIDEO")}
+                    <small>{t("A cinematic view")}</small>
                   </span>
                 </Button>
                 <Button
-                  label={saved ? "Unsave moment" : "Save moment"}
+                  label={t(saved ? "Unsave moment" : "Save moment")}
                   onClick={() => setSaved(!saved)}
                 >
                   <Icon name={saved ? "Check" : "Bookmark"} />
@@ -113,7 +122,7 @@ export function Game() {
               </div>
               {saved && (
                 <p className="inline-notice">
-                  Moment saved to Gallery → Favorites for this preview.
+                  {t("Moment saved to Gallery → Favorites for this preview.")}
                 </p>
               )}
             </div>
@@ -122,11 +131,13 @@ export function Game() {
             <Art name="james" />
             <div>
               <div className="reply-heading">
-                <h3>James</h3>
+                <h3>{t("James")}</h3>
                 <small>22:15</small>
               </div>
               <p>
-                I look around the street and check if anyone is following us.
+                {t(
+                  "I look around the street and check if anyone is following us.",
+                )}
               </p>
             </div>
           </div>
@@ -135,12 +146,16 @@ export function Game() {
               <Art name="james" />
               <div>
                 <h3>
-                  James <Badge>Preview action</Badge>
+                  {t("James")} <Badge>{t("Preview action")}</Badge>
                 </h3>
-                <p>{message}</p>
+                <p>
+                  {message.ooc && <>{t("Out of character:")} </>}
+                  {message.text}
+                </p>
                 <small>
-                  Your action is on the page. Story responses arrive in a later
-                  phase.
+                  {t(
+                    "Your action is on the page. Story responses arrive in a later phase.",
+                  )}
                 </small>
               </div>
             </div>
@@ -154,13 +169,13 @@ export function Game() {
           >
             <div className="input-row">
               <textarea
-                aria-label="Your action"
+                aria-label={t("Your action")}
                 value={draft}
                 onChange={(event) => setDraft(event.target.value)}
                 placeholder={
                   ooc
-                    ? "A question outside the story…"
-                    : "What do you do, James?"
+                    ? t("A question outside the story…")
+                    : t("What do you do, James?")
                 }
                 rows={2}
                 maxLength={3000}
@@ -169,7 +184,7 @@ export function Game() {
                 primary
                 type="submit"
                 disabled={!draft.trim()}
-                label="Send action"
+                label={t("Send action")}
               >
                 <Icon name="Send" size={21} />
               </Button>
@@ -181,16 +196,16 @@ export function Game() {
                 className={ooc ? "selected" : ""}
                 onClick={() => setOoc(!ooc)}
               >
-                OOC {ooc ? "On" : "Off"}
+                {t("OOC")} {t(ooc ? "On" : "Off")}
               </button>
               <button type="button" onClick={() => setDialog("dice")}>
-                <Icon name="Swords" size={14} /> Roll dice
+                <Icon name="Swords" size={14} /> {t("Roll dice")}
               </button>
               <button type="button" onClick={() => setDialog("note")}>
-                <Icon name="BookOpen" size={14} /> Take note
+                <Icon name="BookOpen" size={14} /> {t("Take note")}
               </button>
               <button type="button" onClick={() => setDialog("knowledge")}>
-                <Icon name="CircleHelp" size={14} /> What do I know?
+                <Icon name="CircleHelp" size={14} /> {t("What do I know?")}
               </button>
             </div>
             {suggestions && (
@@ -203,9 +218,9 @@ export function Game() {
                   <button
                     type="button"
                     key={text}
-                    onClick={() => setDraft(text)}
+                    onClick={() => setDraft(t(text))}
                   >
-                    {text}
+                    {t(text)}
                   </button>
                 ))}
               </div>
@@ -216,57 +231,59 @@ export function Game() {
           <Panel className="character-quick">
             <CharacterSummary />
             <Link className="text-link" href="/character">
-              Character sheet <Icon name="ChevronRight" size={14} />
+              {t("Character sheet")} <Icon name="ChevronRight" size={14} />
             </Link>
           </Panel>
-          <Panel title="Current scene">
+          <Panel title={t("Current scene")}>
             <div className="location-mini">
               <Icon name="map" />
               <div>
-                <h3>New York</h3>
-                <p>The Letter · Nightfall</p>
+                <h3>{t("New York")}</h3>
+                <p>{t("The Letter · Nightfall")}</p>
               </div>
             </div>
             <Art name="city" className="location-image" />
-            <em className="small-quote">“Rain. Neon. Unfinished business.”</em>
+            <em className="small-quote">
+              {t("“Rain. Neon. Unfinished business.”")}
+            </em>
           </Panel>
-          <Panel title="Current objective">
+          <Panel title={t("Current objective")}>
             <div className="objective">
               <Icon name="Crosshair" size={26} />
               <p>
-                Investigate the letter
+                {t("Investigate the letter")}
                 <br />
-                and find its sender.
+                {t("and find its sender.")}
               </p>
             </div>
             <Link className="text-link" href="/journal">
-              View in journal <Icon name="ArrowRight" size={14} />
+              {t("View in journal")} <Icon name="ArrowRight" size={14} />
             </Link>
           </Panel>
           <Panel
-            title="Traveling together"
+            title={t("Traveling together")}
             action={
               <Link href="/party" className="text-link">
-                View
+                {t("View")}
               </Link>
             }
           >
             <div className="person-row">
               <Art name="james" />
-              <span>James</span>
-              <small>You</small>
+              <span>{t("James")}</span>
+              <small>{t("You")}</small>
             </div>
             <div className="person-row">
               <Art name="jinn" />
-              <span>Jinn</span>
-              <small>Long-term partner</small>
+              <span>{t("Jinn")}</span>
+              <small>{t("Long-term partner")}</small>
             </div>
           </Panel>
           <Panel
-            title="Recent clues"
+            title={t("Recent clues")}
             action={
               <Link href="/journal" className="text-link">
-                View all
+                {t("View all")}
               </Link>
             }
           >
@@ -274,23 +291,23 @@ export function Game() {
               <Link className="clue-row" href="/journal" key={clue.title}>
                 <Art name={clue.art} />
                 <div>
-                  <h3>{clue.title}</h3>
-                  <small>{clue.type}</small>
+                  <h3>{t(clue.title)}</h3>
+                  <small>{t(clue.type)}</small>
                 </div>
                 <Icon name="ChevronRight" size={13} />
               </Link>
             ))}
           </Panel>
           <p className="context-quote">
-            “The city is broken,
+            {t("“The city is broken,")}
             <br />
-            but it’s still ours.”
+            {t("but it’s still ours.”")}
           </p>
         </aside>
       </div>
       {dialog && (
         <Modal
-          title={
+          title={t(
             dialog === "frame"
               ? "New York · Scene frame"
               : dialog === "video"
@@ -299,16 +316,17 @@ export function Game() {
                   ? "Roll dice"
                   : dialog === "note"
                     ? "Take a note"
-                    : "What James knows"
-          }
+                    : "What James knows",
+          )}
           onClose={() => setDialog("")}
         >
           {dialog === "frame" && (
             <>
               <Art name="city" className="modal-art" />
               <p>
-                This is the supplied sample scene artwork. New frame generation
-                will be added in a later phase.
+                {t(
+                  "This is the supplied sample scene artwork. New frame generation will be added in a later phase.",
+                )}
               </p>
               <Button
                 primary
@@ -317,7 +335,7 @@ export function Game() {
                   setDialog("");
                 }}
               >
-                Save sample moment
+                {t("Save sample moment")}
               </Button>
             </>
           )}
@@ -325,29 +343,37 @@ export function Game() {
             <>
               <Art name="city" className="modal-art" />
               <p>
-                Video generation is not connected in Phase 0. This scene is
-                ready to preview as a still image.
+                {t(
+                  "Video generation is not connected in Phase 0. This scene is ready to preview as a still image.",
+                )}
               </p>
               <Button onClick={() => setDialog("frame")}>
-                View scene frame
+                {t("View scene frame")}
               </Button>
             </>
           )}
           {dialog === "dice" && (
             <>
               <p>
-                Dice rolling will use a real server dice function in the
-                playable phase. No dice results are invented in this preview.
+                {t(
+                  "Dice rolling will use a real server dice function in the playable phase. No dice results are invented in this preview.",
+                )}
               </p>
               <label className="field">
-                Example roll
+                {t("Example roll")}
                 <select>
-                  <option>1d20 + 5 · Investigation</option>
-                  <option>1d20 + 3 · Stealth</option>
-                  <option>1d10 · Revolver damage</option>
+                  <option value="1d20 + 5 · Investigation">
+                    {t("1d20 + 5 · Investigation")}
+                  </option>
+                  <option value="1d20 + 3 · Stealth">
+                    {t("1d20 + 3 · Stealth")}
+                  </option>
+                  <option value="1d10 · Revolver damage">
+                    {t("1d10 · Revolver damage")}
+                  </option>
                 </select>
               </label>
-              <p className="muted">Rolling is unavailable in Phase 0.</p>
+              <p className="muted">{t("Rolling is unavailable in Phase 0.")}</p>
             </>
           )}
           {dialog === "note" && (
@@ -362,31 +388,31 @@ export function Game() {
               }}
             >
               <label className="field">
-                Your note
+                {t("Your note")}
                 <textarea
                   autoFocus
                   value={note}
                   onChange={(event) => setNote(event.target.value)}
                   rows={5}
                   maxLength={2000}
-                  placeholder="Something worth remembering…"
+                  placeholder={t("Something worth remembering…")}
                 />
               </label>
               <p className="muted">
-                Available in Journal → Notes until you refresh.
+                {t("Available in Journal → Notes until you refresh.")}
               </p>
               <Button primary type="submit" disabled={!note.trim()}>
-                Add to journal
+                {t("Add to journal")}
               </Button>
             </form>
           )}
           {dialog === "knowledge" && (
             <>
-              <p className="muted">Sample player-discovered notes</p>
+              <p className="muted">{t("Sample player-discovered notes")}</p>
               {clues.slice(0, 4).map((clue) => (
                 <div className="knowledge-entry" key={clue.title}>
-                  <h3>{clue.title}</h3>
-                  <p>{clue.description}</p>
+                  <h3>{t(clue.title)}</h3>
+                  <p>{t(clue.description)}</p>
                 </div>
               ))}
             </>

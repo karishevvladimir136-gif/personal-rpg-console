@@ -1,4 +1,6 @@
 "use client";
+import { useLanguage } from "@/components/language-context";
+
 import { useState } from "react";
 import Link from "next/link";
 import { clues, locations } from "@/lib/mock-data";
@@ -7,13 +9,14 @@ import { usePreview } from "./preview-context";
 import { WorldMap } from "./world-map";
 
 export function Party() {
+  const { t } = useLanguage();
   return (
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">THE PEOPLE BESIDE YOU</span>
-          <h1>Party & Relationships</h1>
-          <p>Trust is something you build along the road.</p>
+          <span className="eyebrow">{t("THE PEOPLE BESIDE YOU")}</span>
+          <h1>{t("Party & Relationships")}</h1>
+          <p>{t("Trust is something you build along the road.")}</p>
         </div>
       </div>
       <div className="party-grid">
@@ -43,23 +46,25 @@ export function Party() {
           <Panel key={name} className="party-card">
             <Art name={art} />
             <div>
-              <Badge green>{relationship}</Badge>
-              <h2>{name}</h2>
-              <p className="gold">{role}</p>
-              <p>{description}</p>
+              <Badge green>{t(relationship)}</Badge>
+              <h2>{t(name)}</h2>
+              <p className="gold">{t(role)}</p>
+              <p>{t(description)}</p>
             </div>
           </Panel>
         ))}
       </div>
       <p className="muted mt-6">
-        Only player-known relationships are shown. All entries are sample
-        campaign data.
+        {t(
+          "Only player-known relationships are shown. All entries are sample campaign data.",
+        )}
       </p>
     </>
   );
 }
 
 export function Journal() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState("Evidence");
   const [selected, setSelected] = useState<(typeof clues)[number] | null>(null);
   const [note, setNote] = useState("");
@@ -68,11 +73,11 @@ export function Journal() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">FOLLOW THE THREAD</span>
-          <h1>Journal</h1>
-          <p>What you’ve seen. What you suspect. What comes next.</p>
+          <span className="eyebrow">{t("FOLLOW THE THREAD")}</span>
+          <h1>{t("Journal")}</h1>
+          <p>{t("What you’ve seen. What you suspect. What comes next.")}</p>
         </div>
-        <Badge>Session 4 · The Letter</Badge>
+        <Badge>{t("Session 4 · The Letter")}</Badge>
       </div>
       <Tabs
         options={[
@@ -91,10 +96,10 @@ export function Journal() {
           <Panel className="evidence-panel">
             <div className="board-heading">
               <div>
-                <h2>The Letter</h2>
-                <p>Case board</p>
+                <h2>{t("The Letter")}</h2>
+                <p>{t("Case board")}</p>
               </div>
-              <em>“Every clue leads somewhere.”</em>
+              <em>{t("“Every clue leads somewhere.”")}</em>
             </div>
             <div className="evidence-board">
               <svg
@@ -113,19 +118,21 @@ export function Journal() {
                 >
                   <span className="pin" />
                   <Art name={clue.art} />
-                  <h3>{clue.title}</h3>
-                  <p>{clue.type}</p>
+                  <h3>{t(clue.title)}</h3>
+                  <p>{t(clue.type)}</p>
                 </button>
               ))}
             </div>
             <div className="board-footer">
-              <Icon name="CircleHelp" size={14} /> Illustrative connections ·
-              Select a card to read the known facts
+              <Icon name="CircleHelp" size={14} />{" "}
+              {t(
+                "Illustrative connections · Select a card to read the known facts",
+              )}
             </div>
           </Panel>
           <aside>
             <Panel
-              title="Discovered clues"
+              title={t("Discovered clues")}
               action={<span className="muted">6</span>}
             >
               {clues.map((clue) => (
@@ -136,26 +143,26 @@ export function Journal() {
                 >
                   <Art name={clue.art} />
                   <div>
-                    <h3>{clue.title}</h3>
-                    <small>{clue.type}</small>
+                    <h3>{t(clue.title)}</h3>
+                    <small>{t(clue.type)}</small>
                   </div>
                   <Icon name="ChevronRight" size={14} />
                 </button>
               ))}
             </Panel>
-            <Panel title="Relationships">
+            <Panel title={t("Relationships")}>
               <div className="person-row">
                 <Art name="jinn" />
-                <span>Jinn</span>
-                <Badge green>Close</Badge>
+                <span>{t("Jinn")}</span>
+                <Badge green>{t("Close")}</Badge>
               </div>
               <div className="person-row">
                 <Art name="meeting" />
-                <span>Goran</span>
-                <Badge green>Friendly</Badge>
+                <span>{t("Goran")}</span>
+                <Badge green>{t("Friendly")}</Badge>
               </div>
               <Link className="text-link" href="/party">
-                All known people <Icon name="ArrowRight" size={14} />
+                {t("All known people")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>
           </aside>
@@ -163,32 +170,35 @@ export function Journal() {
       )}
       {tab === "Quests" && (
         <div className="card-grid">
-          <Panel title="Find the sender">
-            <Badge>Active · Main thread</Badge>
+          <Panel title={t("Find the sender")}>
+            <Badge>{t("Active · Main thread")}</Badge>
             <p>
-              A letter found you in New York. Follow its references to the
-              triangular seal and Convergence Labs.
+              {t(
+                "A letter found you in New York. Follow its references to the triangular seal and Convergence Labs.",
+              )}
             </p>
             <ul className="quest-checklist">
-              <li>✓ Examine the envelope</li>
-              <li>○ Ask Jinn about the symbol</li>
-              <li>○ Follow the road west</li>
+              <li>{t("✓ Examine the envelope")}</li>
+              <li>{t("○ Ask Jinn about the symbol")}</li>
+              <li>{t("○ Follow the road west")}</li>
             </ul>
             <Button onClick={() => setTab("Evidence")}>
-              Open case board <Icon name="ArrowRight" size={15} />
+              {t("Open case board")} <Icon name="ArrowRight" size={15} />
             </Button>
           </Panel>
-          <Panel title="A road worth taking">
-            <Badge>Ongoing</Badge>
-            <p>Keep the Ford running. Find a safe route beyond the city.</p>
+          <Panel title={t("A road worth taking")}>
+            <Badge>{t("Ongoing")}</Badge>
+            <p>
+              {t("Keep the Ford running. Find a safe route beyond the city.")}
+            </p>
             <Link className="button" href="/map">
-              Plan the route
+              {t("Plan the route")}
             </Link>
           </Panel>
         </div>
       )}
       {tab === "Timeline" && (
-        <Panel title="The road so far">
+        <Panel title={t("The road so far")}>
           <div className="timeline">
             {[
               [
@@ -213,9 +223,9 @@ export function Journal() {
               ],
             ].map(([session, title, text]) => (
               <article key={session}>
-                <span className="eyebrow">{session}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
+                <span className="eyebrow">{t(session)}</span>
+                <h3>{t(title)}</h3>
+                <p>{t(text)}</p>
               </article>
             ))}
           </div>
@@ -227,11 +237,11 @@ export function Journal() {
           {locations.map((location) => (
             <Panel key={location.name}>
               <Art name={location.art} className="card-art" />
-              <h2>{location.name}</h2>
-              <Badge>{location.status}</Badge>
-              <p>{location.description}</p>
+              <h2>{t(location.name)}</h2>
+              <Badge>{t(location.status)}</Badge>
+              <p>{t(location.description)}</p>
               <Link href="/map" className="text-link">
-                Open map <Icon name="ArrowRight" size={14} />
+                {t("Open map")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>
           ))}
@@ -239,14 +249,19 @@ export function Journal() {
       )}
       {tab === "Notes" && (
         <div className="notes-layout">
-          <Panel title="Personal notes">
+          <Panel title={t("Personal notes")}>
+            <p className="note-card">
+              {t(
+                "Ask Jinn about the mark on the envelope when we’re somewhere quiet.",
+              )}
+            </p>
             {notes.map((text, index) => (
               <p className="note-card" key={index}>
                 {text}
               </p>
             ))}
           </Panel>
-          <Panel title="Something to remember">
+          <Panel title={t("Something to remember")}>
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -257,30 +272,30 @@ export function Journal() {
               }}
             >
               <label className="field">
-                New note
+                {t("New note")}
                 <textarea
                   value={note}
                   onChange={(event) => setNote(event.target.value)}
                   rows={6}
                   maxLength={2000}
-                  placeholder="Follow the thought…"
+                  placeholder={t("Follow the thought…")}
                 />
               </label>
               <Button primary type="submit" disabled={!note.trim()}>
-                Add note
+                {t("Add note")}
               </Button>
-              <p className="muted">Preview notes reset on refresh.</p>
+              <p className="muted">{t("Preview notes reset on refresh.")}</p>
             </form>
           </Panel>
         </div>
       )}
       {selected && (
-        <Modal title={selected.title} onClose={() => setSelected(null)}>
+        <Modal title={t(selected.title)} onClose={() => setSelected(null)}>
           <Art name={selected.art} className="modal-art" />
-          <Badge>{selected.type}</Badge>
-          <p>{selected.description}</p>
+          <Badge>{t(selected.type)}</Badge>
+          <p>{t(selected.description)}</p>
           <p className="muted">
-            Recorded in Session 4 · Player-discovered sample information
+            {t("Recorded in Session 4 · Player-discovered sample information")}
           </p>
         </Modal>
       )}
@@ -289,6 +304,7 @@ export function Journal() {
 }
 
 export function MapTravel() {
+  const { t } = useLanguage();
   const [tab, setTab] = useState("World");
   const [selected, setSelected] = useState(locations[0]);
   const { destination, setDestination } = usePreview();
@@ -296,19 +312,23 @@ export function MapTravel() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">REMNANTS. ROUTES. POSSIBILITIES.</span>
-          <h1>Map & Travel</h1>
-          <p>Explore a changed America. Find your next road.</p>
+          <span className="eyebrow">
+            {t("REMNANTS. ROUTES. POSSIBILITIES.")}
+          </span>
+          <h1>{t("Map & Travel")}</h1>
+          <p>{t("Explore a changed America. Find your next road.")}</p>
         </div>
       </div>
       <Panel className="map-panel">
         <div className="map-heading">
           <h2>
-            {tab === "World"
-              ? "The Joined America"
-              : tab === "Region"
-                ? "East Coast Union"
-                : "New York · Subway District"}
+            {t(
+              tab === "World"
+                ? "The Joined America"
+                : tab === "Region"
+                  ? "East Coast Union"
+                  : "New York · Subway District",
+            )}
           </h2>
           <Tabs
             options={["World", "Region", "Local"]}
@@ -335,10 +355,12 @@ export function MapTravel() {
                     className={`map-pin ${selected.name === location.name ? "selected" : ""} ${location.name === "New York" ? "current" : ""}`}
                     style={{ left: `${location.x}%`, top: `${location.y}%` }}
                     onClick={() => setSelected(location)}
-                    aria-label={`Select ${location.name}`}
+                    aria-label={t("Select {location}", {
+                      location: t(location.name),
+                    })}
                   >
                     <span>◉</span>
-                    <b>{location.name}</b>
+                    <b>{t(location.name)}</b>
                   </button>
                 ))}
               </>
@@ -353,7 +375,7 @@ export function MapTravel() {
                   <path d="M0 130L600 330M80 0L480 500M0 390L600 160M440 0L170 500" />
                 </svg>
                 <span className="map-region-name">
-                  {tab === "Region" ? "EAST COAST UNION" : "EAST RIVER"}
+                  {t(tab === "Region" ? "EAST COAST UNION" : "EAST RIVER")}
                 </span>
                 {(tab === "Region"
                   ? [
@@ -373,43 +395,49 @@ export function MapTravel() {
                     style={{ left: `${x}%`, top: `${y}%` }}
                   >
                     <span>◉</span>
-                    <b>{name}</b>
+                    <b>{t(name)}</b>
                   </div>
                 ))}
                 <span className="schematic-label">
-                  Illustrative {tab.toLowerCase()} view · Known places only
+                  {t(
+                    tab === "Region"
+                      ? "Illustrative region view · Known places only"
+                      : "Illustrative local view · Known places only",
+                  )}
                 </span>
               </>
             )}
             <div className="map-legend">
               <span>
                 <i className="current-dot" />
-                Current location
+                {t("Current location")}
               </span>
               <span>
                 <i />
-                Known location
+                {t("Known location")}
               </span>
-              <span>┄ Sample route west</span>
+              <span>{t("┄ Sample route west")}</span>
             </div>
           </div>
           <div className="location-detail">
             <Art name={selected.art} />
             <div className="location-detail-body">
               <Badge green={selected.status !== "Known · Not visited"}>
-                {selected.status}
+                {t(selected.status)}
               </Badge>
-              <h2>{selected.name}</h2>
-              <p className="gold">{selected.region}</p>
-              <p>{selected.description}</p>
+              <h2>{t(selected.name)}</h2>
+              <p className="gold">{t(selected.region)}</p>
+              <p>{t(selected.description)}</p>
               <dl className="detail-list">
-                <dt>Resources</dt>
-                <dd>{selected.supplies}</dd>
-                <dt>Travel</dt>
+                <dt>{t("Resources")}</dt>
+                <dd>{t(selected.supplies)}</dd>
+                <dt>{t("Travel")}</dt>
                 <dd>
-                  {selected.name === "New York"
-                    ? "You are here"
-                    : "Road conditions uncertain"}
+                  {t(
+                    selected.name === "New York"
+                      ? "You are here"
+                      : "Road conditions uncertain",
+                  )}
                 </dd>
               </dl>
               <Button
@@ -418,16 +446,20 @@ export function MapTravel() {
                 onClick={() => setDestination(selected.name)}
               >
                 <Icon name={destination === selected.name ? "Check" : "Send"} />
-                {selected.name === "New York"
-                  ? "Current location"
-                  : destination === selected.name
-                    ? "Destination selected"
-                    : "Set destination"}
+                {t(
+                  selected.name === "New York"
+                    ? "Current location"
+                    : destination === selected.name
+                      ? "Destination selected"
+                      : "Set destination",
+                )}
               </Button>
               {destination && (
                 <p className="inline-notice" role="status">
-                  Planned destination: {destination}. Preview only; no travel
-                  has started.
+                  {t(
+                    "Planned destination: {destination}. Preview only; no travel has started.",
+                    { destination: t(destination) },
+                  )}
                 </p>
               )}
             </div>
@@ -435,8 +467,8 @@ export function MapTravel() {
         </div>
       </Panel>
       <Panel
-        title="Discovered locations"
-        action={<span className="muted">4 known places</span>}
+        title={t("Discovered locations")}
+        action={<span className="muted">{t("4 known places")}</span>}
       >
         <div className="location-strip">
           {locations.map((location) => (
@@ -450,8 +482,8 @@ export function MapTravel() {
             >
               <Art name={location.art} />
               <span>
-                {location.name}
-                <small>{location.region}</small>
+                {t(location.name)}
+                <small>{t(location.region)}</small>
               </span>
             </button>
           ))}
