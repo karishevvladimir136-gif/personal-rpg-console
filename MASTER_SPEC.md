@@ -1375,3 +1375,31 @@ Autonomy is event-driven narrative guidance for the one DM runtime. High does no
 - **Phase 3:** include effective settings and their history in snapshots/resume and continuity checks without reinterpreting past facts under new settings.
 
 Future scope in this section is a requirement record, not authorization to begin those phases.
+
+---
+
+# 34. ITEM TRANSFORMATIONS THROUGH GAMEPLAY
+
+## Purpose and scope
+
+Support improvised item transformations through free-text gameplay actions in Phase 2, without requiring a dedicated crafting or alchemy interface. For example, a player may attempt to fasten a knife to a stick using suitable bindings to make an improvised spear. The DM assesses plausibility under campaign rules; a player's description alone does not guarantee success or create an item.
+
+This is a future requirement, not authorization to expand Phase 0. Full recipe systems, crafting progression, alchemy screens, and disassembly are deferred and require separate approval.
+
+## Resolution contract
+
+- The single DM proposes a structured transformation as part of normal gameplay: campaign/action identifiers, source item identifiers and quantities, required tools, proposed output item data, and any required check, time, or resource costs.
+- Distinguish consumed ingredients, embedded components, and retained tools. Embedded components become unavailable as separate usable items; tools remain unless an explicit applicable rule consumes or damages them. Do not automatically grant the ability to recover components later.
+- The server validates the proposal against current campaign state: ownership or permission, accessible inventory, available quantities, applicable rules, output mechanics, and any required server-resolved checks. AI narration alone cannot mutate inventory or award arbitrary bonuses.
+- Camp storage is not a source of usable ingredients or tools outside an active long-rest camp. Being able to send an item to camp does not grant permission to withdraw or use it remotely. Other containers follow their own access rules.
+- Resolve a valid attempt's outcome before applying its inventory changes. A failed in-game attempt may consume materials or time only as allowed by the applicable rules; it does not automatically produce the requested item.
+- Apply all changes for an outcome atomically: input quantities/components, output creation, and associated costs either commit together or do not commit. Technical failures must not leave partial inventory changes.
+- Use an action identifier to make retries and duplicate submissions idempotent. Revalidate current state to prevent the same inputs from being used by overlapping actions.
+- Persist provenance linking the campaign, action/session, source items and quantities, component disposition, and resulting item identifiers. Preserve history even when ingredients are consumed.
+- Separate player-known output descriptions and mechanics from any DM-private properties. Keep hidden information server-side.
+
+## Extension boundary
+
+Use the same small, validated inventory operation for improvised assembly, cooking, and later approved transformations where appropriate. Future recipe selection or alchemy can supply proposals to this operation without replacing the inventory model. Do not build a general-purpose crafting framework now.
+
+Phase 2 acceptance must cover successful transformation, failed checks with explicit costs, missing or inaccessible materials, retained tools, embedded components, cross-campaign rejection, atomic rollback, and retry/duplicate protection.
