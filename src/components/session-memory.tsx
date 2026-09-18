@@ -101,7 +101,7 @@ function PublicResume({ boundary }: { boundary: PublicSessionMemory }) {
       {resume.expectedInput && (
         <div>
           <h3>{t("Waiting for your choice")}</h3>
-          <p className="prose">{resume.expectedInput}</p>
+          <p className="prose">{t(resume.expectedInput)}</p>
         </div>
       )}
       {hasPendingSessionTurn(boundary) && (

@@ -3,7 +3,7 @@ import { publicJson } from "@/lib/persistence/route-response";
 import { readWriteRequest } from "@/lib/persistence/http-policy";
 import { gameplayErrorResponse } from "@/lib/gameplay/http-response";
 export const runtime = "nodejs";
-export const maxDuration = 180;
+export const maxDuration = 300;
 export async function POST(
   request: Request,
   context: { params: Promise<{ campaignId: string }> },

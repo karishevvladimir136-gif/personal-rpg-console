@@ -208,6 +208,8 @@ Bounded context and turn reliability (MASTER_SPEC section 38):
 
 # MILESTONE 3 — LONG-TERM MEMORY
 
+Separately owner-authorized after Phase 2 acceptance at `24fcd405b65b7ddd281837e491f1975e1fe3a765` (acceptance record `ea35b71ad6c95cf63ab40a1a33db4a92041052fc`). Follow PHASE3_CONTRACTS.md. Development workers acknowledged the shared contract before GO; the lead integrates and verifies. The bounded synthetic Astra/xhigh evaluation is authorized up to 48 requests and approximately $15 estimated usage. No deployment or real campaign/private import. Stop for owner acceptance before the queued Phase 3.5 brief can be separately authorized.
+
 Goal:
 New sessions feel like the same campaign.
 
@@ -244,6 +246,15 @@ Detailed implementation and acceptance (MASTER_SPEC section 38):
 - Exercise at least 1,000 synthetic events/20 sessions, two isolated campaigns, repeated compaction, old promises, corrected canon, bilingual retrieval, private markers, interrupted jobs and pending-roll resume.
 - Evaluate at least 30 labeled retrieval scenarios (>=90% relevant-evidence recall; all critical facts included or safe pause) and 20 continuation/summary cases (>=90% overall rubric pass, zero critical state contradictions/private disclosures in the evaluated suite).
 - Record actual model/configuration, token usage, latency, limitations and failures. Paid evaluations need authorization. Deterministic tests do not substitute for narrative-quality evaluation.
+- Implementation notes: complete source selections preserve original qualifiers; public/private jobs and coverage are separate. Relevant obligations, positive NPC knowledge and current source versions control retrieval. Exact current records remain authoritative. Supporting work uses bounded requests and explicit retry, with no automatic background simulation or model switching. See PHASE3_SETUP.md and PHASE3_EVALUATION.md; DEV_STATUS.md records actual final gate results.
+
+---
+
+# MILESTONE 3.5 — SAVE / LOAD / TIMELINE FORK (QUEUED)
+
+Design only: [PHASE3_5_BRIEF.md](PHASE3_5_BRIEF.md), including the dedicated Saves / Сохранения navigation and Save Games / Timelines tabs. Implement only after Phase 3 passes all gates, the owner explicitly accepts Phase 3, and the owner separately authorizes Phase 3.5. Do not redirect active Phase 3 work or add speculative timeline schema now.
+
+Use immutable save points and preserved timeline forks, exact state/private continuity, source-linked memory ancestry filters, bounded autosaves and safety-before-load recovery. Dedicated desktop ordering is Library → Gallery → Sessions → Saves → Campaign Settings; mobile uses More. Full implementation/verification gates remain in the brief. Phase 4, deployment and real imports remain unauthorized.
 
 ---
 

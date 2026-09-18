@@ -33,6 +33,16 @@ function publicSource(source: RuntimeSource): RuntimeSource {
   return {
     ...source,
     privateState: {},
+    memory: source.memory
+      ? {
+          ...source.memory,
+          privateHistorical: [],
+          privateSummary: null,
+          exactEvents: source.memory.exactEvents.filter(
+            (row) => row.ref.visibility === "public",
+          ),
+        }
+      : undefined,
     checkpoint: source.checkpoint
       ? { ...source.checkpoint, privateText: null }
       : null,

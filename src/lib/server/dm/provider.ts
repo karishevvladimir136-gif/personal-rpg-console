@@ -16,7 +16,7 @@ import { modelReasoning } from "./config.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
-  stage: "plan" | "narrate" | "feedback";
+  stage: "plan" | "narrate" | "feedback" | "summary";
   configuredModel: string;
   actualModel: string | null;
   httpStatus: number | null;
@@ -28,9 +28,11 @@ export type ProviderAttempt = {
   inputTokens: number | null;
   outputTokens: number | null;
   latencyMs: number;
+  estimatedInputTokens: number;
+  sourceCount: number;
 };
 
-type Options = {
+export type ProviderOptions = {
   apiKey: string;
   model: string;
   reasoning?: string;
@@ -38,12 +40,13 @@ type Options = {
   timeoutMs?: number;
   observer?: (attempt: ProviderAttempt) => void;
 };
-export function openAiProvider(options: Options): DmProvider {
+export function createStructuredRequester(options: ProviderOptions) {
   const request = async <T>(
     context: BuiltContext,
-    stage: "plan" | "narrate" | "feedback",
+    stage: ProviderAttempt["stage"],
     operationId: string,
     parse: (value: unknown) => T,
+    schema?: Record<string, unknown>,
   ): Promise<ProviderResult<T>> => {
     const started = Date.now();
     const attempt: ProviderAttempt = {
@@ -60,10 +63,13 @@ export function openAiProvider(options: Options): DmProvider {
       inputTokens: null,
       outputTokens: null,
       latencyMs: 0,
+      estimatedInputTokens: context.estimatedTokens,
+      sourceCount: context.sourceCount,
     };
     try {
       if (!options.apiKey || !options.model)
         throw new DmError("configuration", true);
+      if (stage === "summary" && !schema) throw new DmError("configuration");
       const body = {
         model: options.model,
         reasoning: { effort: modelReasoning(options.model, options.reasoning) },
@@ -77,7 +83,8 @@ export function openAiProvider(options: Options): DmProvider {
             type: "json_schema",
             name: `dm_${stage}`,
             strict: true,
-            schema: stageSchema(stage),
+            schema:
+              schema ?? (stage === "summary" ? undefined : stageSchema(stage)),
           },
         },
       };
@@ -234,6 +241,11 @@ export function openAiProvider(options: Options): DmProvider {
       }
     }
   };
+  return request;
+}
+
+export function openAiProvider(options: ProviderOptions): DmProvider {
+  const request = createStructuredRequester(options);
   return {
     plan: (source, input) =>
       request(

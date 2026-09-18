@@ -308,14 +308,15 @@ begin
  recap_status:=case
   when not cp.valid then 'stale'
   when exists(select 1 from rpg_private.memory_jobs where campaign_id=b.campaign_id and boundary_id=b.id and visibility='public' and status='failed') then 'failed'
-  when exists(select 1 from rpg_private.memory_jobs where campaign_id=b.campaign_id and boundary_id=b.id and visibility='public' and status='generating') then 'generating'
+  when exists(select 1 from rpg_private.memory_jobs where campaign_id=b.campaign_id and boundary_id=b.id and visibility='public' and status='generating' and lease_until>now()) then 'generating'
+  when exists(select 1 from rpg_private.memory_jobs where campaign_id=b.campaign_id and boundary_id=b.id and visibility='public' and status='generating') then 'pending'
   when exists(select 1 from rpg_private.memory_jobs where campaign_id=b.campaign_id and boundary_id=b.id and visibility='public' and status='pending') then 'pending'
   when exists(select 1 from rpg_private.memory_public_sources where campaign_id=b.campaign_id and session_id=b.session_id and current and status='valid' and oversized) then 'failed'
   when exists(select 1 from rpg_private.memory_public_sources s join rpg_private.memory_state ms on ms.campaign_id=s.campaign_id where s.campaign_id=b.campaign_id and s.session_id=b.session_id and s.current and s.status='valid' and s.kind in ('scene','document','event') and s.sequence>ms.public_watermark) then 'pending'
   else 'ready' end;
  return jsonb_build_object('id',b.id,'campaign_id',b.campaign_id,'sessionId',b.session_id,'endedAt',b.ended_at,'state',b.state,'nextSessionId',b.next_session_id,
   'checkpointStatus',case when cp.valid then 'ready' else 'rebuild_required' end,'resume',resume,
-  'recap',jsonb_build_object('status',recap_status,'text',recap,'canRetry',recap_status in ('failed','stale')));
+  'recap',jsonb_build_object('status',recap_status,'text',recap,'canRetry',recap_status in ('pending','failed','stale')));
 end $$;
 create function rpg_private.memory_read(cid uuid) returns jsonb language sql stable set search_path='' as $$
  select jsonb_build_object('campaignId',cid,'runtimeRevision',(select revision from rpg_private.runtime_state where campaign_id=cid),
@@ -409,7 +410,9 @@ begin
   select id into bid from rpg_private.memory_boundaries where campaign_id=cid and state<>'continued' order by ended_at desc limit 1;
   perform rpg_private.memory_capture(cid,bid); perform rpg_private.memory_queue(cid,bid); return 'null';
  elsif p_action='claim' then
-  select * into job from rpg_private.memory_jobs where campaign_id=cid and generation=ms.generation and attempts<5 and (status='pending' or (status='generating' and lease_until<=now())) order by from_sequence,case memory_jobs.visibility when 'public' then 0 else 1 end,created_at for update skip locked limit 1;
+  select * into job from rpg_private.memory_jobs where campaign_id=cid and generation=ms.generation and attempts<5
+   and from_sequence=(case memory_jobs.visibility when 'public' then ms.public_watermark else ms.private_watermark end)+1
+   and (status='pending' or (status='generating' and lease_until<=now())) order by from_sequence,case memory_jobs.visibility when 'public' then 0 else 1 end,created_at for update skip locked limit 1;
   if not found then return 'null'; end if;
   update rpg_private.memory_jobs set status='generating',attempts=attempts+1,token=gen_random_uuid(),lease_until=now()+interval '300 seconds',
    state_revision=rev,settings_revision=(select revision from public.rpg_settings where campaign_id=cid),
@@ -489,11 +492,12 @@ begin
    select s.* from rpg_private.memory_sources(cid,visibility) s where
     ((s.current and s.status='valid') or ((p_payload->>'historicalComparison')::boolean and s.status in ('superseded','archived')))
     and not s.oversized and actors<@s.known_by
+    and (not coalesce((p_payload->>'historicalOnly')::boolean,false) or s.kind in ('scene','document','event','private_event','summary'))
     and (s.valid_from is null or s.valid_from<=(p_payload->>'worldMinutes')::integer)
     and (s.valid_to is null or s.valid_to>(p_payload->>'worldMinutes')::integer)
     and rpg_private.memory_refs_valid(cid,s.source_refs,visibility)
   ), ranked as (
-   select s.* from permitted s where id=any(required) or s.entity_ids&&entities or s.unresolved or s.search_vector@@query
+   select s.* from permitted s where id=any(required) or s.entity_ids&&entities or s.search_vector@@query
    order by (id=any(required)) desc,(s.authority in ('correction','state','canon') and (s.entity_ids&&entities or s.search_vector@@query)) desc,
     (s.unresolved and (s.entity_ids&&entities or s.search_vector@@query)) desc,s.significance desc,ts_rank(s.search_vector,query) desc,s.sequence desc limit 48
   ) select coalesce(jsonb_agg(rpg_private.memory_source_json(s,visibility)),'[]') into sources from ranked s;
@@ -526,7 +530,7 @@ end $$;
 -- Backfill only derivative public indexes from existing public originals. No seed,
 -- gameplay change, private import or invented historical witness knowledge.
 insert into rpg_private.memory_state(campaign_id) select id from public.rpg_campaigns on conflict do nothing;
-do $$ declare r record; begin
+do $$ declare r record; ev rpg_private.runtime_events%rowtype; begin
  for r in select * from public.rpg_scenes order by sequence loop
   perform rpg_private.memory_index(r.campaign_id,'scene',r.id,r.revision::text,r.body,'public',r.session_id,'{}','{}','history',case when r.role='player' then 'intention' else 'record' end);
  end loop;
@@ -556,8 +560,8 @@ do $$ declare r record; begin
  where m.request->>'operation'='entity.save' and length(btrim(coalesce(m.request#>>'{payload,name}','')))>0 on conflict do nothing;
  -- Legacy events with pinned participant metadata have explicit witness evidence.
  -- Rows lacking such evidence keep empty NPC knowledge, never inferred familiarity.
- for r in select * from rpg_private.runtime_events order by created_at,id loop
-  perform rpg_private.memory_ingest_event(r);
+ for ev in select * from rpg_private.runtime_events order by created_at,id loop
+  perform rpg_private.memory_ingest_event(ev);
  end loop;
 end $$;
 

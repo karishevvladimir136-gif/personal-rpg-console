@@ -42,7 +42,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
           <Link className="brand" href="/">
             ✧ {t("PERSONAL RPG CONSOLE")}
           </Link>
-          <span className="preview-indicator">{t("PHASE 2 · TEXT DM")}</span>
+          <span className="preview-indicator">{t("PHASE 3 · MEMORY")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
@@ -132,7 +132,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
               )}
             </span>
           </div>
-          <span className="preview-indicator">{t("PHASE 2 · TEXT DM")}</span>
+          <span className="preview-indicator">{t("PHASE 3 · MEMORY")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}

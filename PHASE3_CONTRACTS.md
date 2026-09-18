@@ -17,6 +17,8 @@ Existing DB/DTO/runtime semantics are not independently redefined. A may wrap th
 
 All three workers acknowledged the root contract and concrete DTOs before implementation. The lead approved the scene-FK and revoked-lease details above before GO.
 
+Integration checkpoint: worker turns stopped at the account usage limit. Their preserved commits were integrated in A/B/C order. The lead now owns integration fixes, including sole migration ownership; no workers edit in parallel. Production retrieval uses OR alternatives for bounded bilingual expansion, excludes duplicate current-state rows with `historicalOnly`, and promotes query-relevant unresolved evidence rather than requiring every historical obligation. Exact current state remains mandatory outside the excerpt budget. Complete indivisible source paragraphs have a hard 24,000-byte limit; oversize paragraphs pause without slicing qualifiers. Summary claims serialize each visibility stream and pending batches expose explicit continuation.
+
 ## Data and authority
 
 Use existing gameplay/state/document/source records. Add source-linked derivative indexes, separate public/private summary histories and exact checkpoints, coverage/job/command records, and alias/knowledge metadata only. No second authoritative inventory, HP, quest or clock store. Explicit correction > current structured state > current canon > references/history > derived memory. Source references identify campaign, kind, stable ID, version, chunk and visibility. Raw originals and mutation history are retained. Source sequences are ordered per visibility stream; private sequence/counts never enter public DTOs.

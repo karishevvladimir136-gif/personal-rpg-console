@@ -41,5 +41,7 @@
   "Check saved session": "Проверить сохранённую сессию",
   "Local request storage is unavailable. Keep this page open until the session request is confirmed.": "Локальное сохранение запросов недоступно. Не закрывайте страницу, пока запрос сессии не будет подтверждён.",
   "Saving session request…": "Сохраняем запрос сессии…",
-  "Saved companion action": "Сохранённое действие спутника"
+  "Saved companion action": "Сохранённое действие спутника",
+  "Resume the saved action.": "Продолжите сохранённое действие.",
+  "Choose the next action.": "Выберите следующее действие."
 }

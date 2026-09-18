@@ -39,6 +39,8 @@ export function createRpcTurnStore(
     }
     if (response.error) {
       const message = response.error.message ?? "";
+      if (message.includes("rpg_memory_paused"))
+        throw new DmError("unavailable", true);
       if (message.includes("rpg_conflict")) throw new DmError("conflict");
       if (
         message.includes("rpg_validation") ||

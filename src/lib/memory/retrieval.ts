@@ -81,6 +81,38 @@ function factPriority(left: MemorySource, right: MemorySource): number {
   return 0;
 }
 
+/** Promote relevant obligations from authorized candidates, not every unresolved
+ * thread in the campaign. Call with the original query, before lexical expansion. */
+export function selectCriticalSourceIds(
+  request: RetrievalRequest,
+  batch: MemoryCandidateBatch,
+): string[] {
+  const entities = new Set(mentionedEntityIds(request, batch.aliases));
+  const terms = memoryTerms(request.query);
+  const asksHistory =
+    /\b(remember|earlier|previously|promis(?:e|ed|es)|pledge|owed|obligation)\b|помни|раньше|ранее|обещ|долг/iu.test(
+      request.query,
+    );
+  return [
+    ...new Set([
+      ...request.requiredSourceIds,
+      ...batch.sources
+        .filter((source) => {
+          if (!source.unresolved || !authorized(request, source)) return false;
+          const sourceTerms = new Set(memoryTerms(source.text));
+          const overlap = terms.filter((term) => sourceTerms.has(term)).length;
+          return (
+            (asksHistory &&
+              (overlap > 0 ||
+                source.entityIds.some((id) => entities.has(id)))) ||
+            overlap >= 2
+          );
+        })
+        .map((source) => source.id),
+    ]),
+  ];
+}
+
 /** Pure final selection. The store verifies current source versions/existence in
  * its authorized query; this repeats scope, time, knowledge and derivative checks
  * before any excerpt can reach context. It does not query a provider or database. */

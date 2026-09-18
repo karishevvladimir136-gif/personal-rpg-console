@@ -72,6 +72,8 @@ export type EntityAlias = {
 };
 export type RetrievalRequest = {
   expanded?: boolean;
+  // RuntimeSource already supplies exact current records outside this budget.
+  historicalOnly?: boolean;
   campaignId: string;
   visibility: MemoryVisibility;
   actorIds: string[];

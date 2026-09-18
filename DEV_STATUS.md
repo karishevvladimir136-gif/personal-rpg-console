@@ -4,17 +4,66 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
-**Phase 3 — Long-Term Memory: authorized, implementation in progress.** Preserve Phase 2 implementation `24fcd405b65b7ddd281837e491f1975e1fe3a765` and owner-acceptance record `ea35b71ad6c95cf63ab40a1a33db4a92041052fc`. This authorization supersedes the historical Phase 2 stop instruction below; no Phase 4, deployment, real campaign or real DM-private import is authorized.
+**PHASE 3 READY FOR OWNER ACCEPTANCE — Long-Term Memory implemented and verified; owner approval pending.** Phase 2 implementation `24fcd405b65b7ddd281837e491f1975e1fe3a765` and its owner-acceptance record `ea35b71ad6c95cf63ab40a1a33db4a92041052fc` remain preserved. No Phase 3.5/4 implementation, deployment, real campaign or real DM-private import has begun.
 
-## Phase 3 coordination checkpoint
+## Phase 3 current status and completed work
 
-- Completed: inspected the current Phase 1/2 contracts, specification section 38, plan, runtime/context/provider, public records and four migrations. Created isolated storage, retrieval and UI development worktrees. All three workers acknowledged PHASE3_CONTRACTS.md and lead-owned public/internal DTOs before implementation.
-- Decisions: preserve one gameplay DM and existing authoritative state; separate public/private source-linked memory; Postgres text/exact retrieval first; extractive structured summary selections preserve source wording/qualifiers; immutable exact resume boundaries preserve pending turns/dice; correction invalidation precedes rebuild. See PHASE3_CONTRACTS.md for ownership and shared lifecycle.
-- Files changed at this checkpoint: PHASE3_CONTRACTS.md, src/lib/memory/contracts.ts, src/lib/memory/server-contracts.ts and this status file. No migration or runtime change has been applied yet.
-- Verification: shared contracts formatted and diff checked; no Phase 3 runtime, retrieval, database, model-quality or browser gate is claimed passed yet. Original Phase 2 results below remain distinct.
-- Remaining: implement/integrate the three workstreams and summary/context orchestration; run complete deterministic/build checks, real local Supabase/privacy/browser acceptance, >=1000-event/20-session and >=30-case retrieval evaluation, and the authorized bounded >=20-case live model evaluation. Initial paid-evaluation limit is 48 requests and $15 conservative estimated successful usage; no live Phase 3 calls have run.
-- Known limitations: Phase 3 is incomplete and not owner-accepted. Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation remain unverified. No perfect-memory claim.
-- Recommended next step: implement against the agreed contracts, verify all required gates, then commit/push and stop at PHASE 3 READY FOR OWNER ACCEPTANCE.
+- Three separate-worktree development workers acknowledged PHASE3_CONTRACTS.md and the lead-owned contracts before GO. The lead integrated storage, retrieval and UI checkpoints in order. When workers reached their usage limit, the lead preserved their commits and completed integration and verification locally, taking sole ownership of final migration fixes. The application still has one primary gameplay DM.
+- Source-linked public/private indexes, immutable summary versions, ordered coverage, bounded jobs and correction invalidation extend the existing authoritative records. Original messages, scenes, events, document versions and state revisions remain available; derived memory never becomes the sole truth.
+- END SESSION saves an exact resume boundary before recap generation. Failure/retry does not lose state or input. Continue preserves an unresolved operation and its recorded dice; only explicit resolution/cancellation and a subsequent Continue start the next session. Continuing does not heal, replenish supplies or advance world time.
+- Bounded context retains exact current state, rules, effective guidance, pending checks and valid checkpoint metadata, then selects recent complete exchanges, canon and relevant older evidence. PostgreSQL English/Russian/simple text search and aliases support historical recall without embeddings, a second backend or a second gameplay agent. Missing essential evidence or unsafe size/conflict pauses rather than inventing continuity.
+- Model-generated summaries are strict source/version selections. The server renders original complete source spans, retaining claims, uncertainty, negation and intentions. Separate private planning memory never reaches public narration, ordinary APIs or client bundles. Companion retrieval requires positive knowledge evidence for its listeners. Feedback/OOC/guide text is not world history.
+- Sessions/Game expose saved-point, recap, pending, failure, explicit retry and Continue states in English/Russian, preserving the approved visual design. Correction invalidation withholds stale recaps immediately; rebuilding uses current originals. No Save/Load or timeline UI was added.
+
+## Phase 3 files / areas changed
+
+PHASE3_CONTRACTS.md; shared and pure memory modules in src/lib/memory/; authorized server memory/context/provider orchestration; campaign memory routes and gameplay integration; Sessions/Game components and localized labels; additive migrations 202609180005 through 202609180007; focused storage, populated-upgrade, retrieval, lifecycle, summary and UI tests; synthetic acceptance scripts; PHASE3_SETUP.md, PHASE3_EVALUATION.md, MASTER_SPEC.md, DEVELOPMENT_PLAN.md and this status file. PHASE3_5_BRIEF.md records the complete queued future brief and navigation clarification. Local environments, credentials, backups, reports and logs remain ignored.
+
+## Phase 3 tests and build status
+
+### Automated local verification
+
+- Final Next route type generation, TypeScript check, full ESLint and normal Turbopack production build **passed**, after live/browser verification and the final retry fix. No lint warnings.
+- The final production application also passed **27 HTTP/route checks** (19 preview/route and eight authorization/policy checks), plus the real local application verification below. Its temporary port-3001 server was stopped; the development preview remains on port 3000.
+- Full suite: **266 total, 265 passed, 1 intentionally skipped, 0 failed**. The skip is the opt-in Phase 1 empty-database seed test, already passed at the accepted Phase 1 checkpoint; it must not reseed populated fixtures. Current real Supabase checks are reported separately below.
+- Embedded PostgreSQL tests execute the migrations and production adapters, including upgrade of populated Phase 2 data; owner/campaign/private boundaries; immutable originals; source versions; stale jobs/corrections; ordered coverage; expired and exhausted retry recovery; duplicate requests; and pending recorded dice across END/Continue.
+- Production SQL repeatedly compacted **1,000 events across 20 sessions into at least 42 bounded batches**, preserving exact HP/resources, zero-quantity consumed items and embedded-component provenance. The old promise remained retrievable and its runtime context stayed below the 64,000 operational input cap.
+- The labeled retrieval evaluation contains **43 scenarios, 2,435 sources and 48 sessions across two unrelated campaigns**. Expected-source recall **37/38 (97.37%)**; **43/43 critical cases included required evidence or paused safely**; zero campaign/private leaks. A redundant derived summary was missed while its original promise was retrieved; the miss remains counted. This evaluator uses a dedicated candidate table; separate production-query/adapter/context tests cover the actual runtime path.
+
+### Real disposable local Supabase / application verification
+
+- Backed up the populated local database and applied additive migrations 005–007 without reset. Existing synthetic accounts, the single authorized owner and prior fixtures were preserved. An initial backfill type error rolled the entire first attempt back; it was fixed and covered by a populated-database regression before successful reapplication.
+- Appended only **Synthetic Phase 3 · Lantern Harbor** and **Synthetic Phase 3 · Frost Circuit**. Real Auth logout/relogin, campaign isolation, anonymous/non-owner denial, ordinary-client RPC/private-schema denial, public-summary RLS and feedback exclusion from world retrieval passed.
+- Ten normal owner API responses and all **17 final production client bundles** contained no synthetic private canary or server credential names/values (the earlier build's 20 bundles also passed). Six authenticated production HTML pages and four ordinary application log files likewise contained no marker or credential. No real private material was used. Stable check IDs/results and public records survived refresh/relogin. Final production verification made no model calls.
+- Owner correction of a synthetic promise immediately invalidated old derived memory/checkpoint access. Rebuilding used the corrected red-compass record, while the unrelated campaign remained unchanged. Recap processing/feedback did not change HP, inventory, quests, scenes or time. One public recap failure was deliberately injected to verify recovery; it was not a provider outage.
+
+### Live model-quality verification
+
+- Configured **gpt-6-astra / xhigh**, strict Responses outputs and store:false; every response reported Astra. No fallback or model switch. **25 valid generated cases (21 continuations and four source-selection summaries) passed lead rubric review: 25/25, zero critical state contradictions and zero private disclosures.** One additional invalid-checkpoint case safely paused without a model call.
+- The dedicated harness made 26 successful requests, including one initially misconfigured Russian fixture excluded from scoring. Its configured campaign language was corrected and the replacement answered in Russian. The original output and exclusion remain recorded. This was lead review, not an independent second review.
+- Application acceptance added ten calls, including actual historical recall through the existing planner/narrator and recap recovery. One private-summary output failed validation, leaving coverage unchanged. Tightening the schema to nonempty, allowed source/version selections and explicitly retrying recovered it.
+- Combined **36 generation requests: 35 validated successes, one rejected output; 59,679 input and 12,879 output tokens** including known rejected-output usage. Conservative uncached estimate **$1.24**, latency **2.39–24.18 seconds**, mean **8.65 seconds** per request. Within the authorized 48-request/$15 envelope. Full case/results/limitations are in PHASE3_EVALUATION.md; successful schema validation alone was not counted as quality acceptance.
+
+### Browser verification actually performed
+
+- Exercised END, preparing/ready/failure/retry, saved resume metadata, Sessions history, Continue with an unresolved action, and Continue to the next session. Reopened the same server-recorded **6 + 3 = 9** failed forage roll and explicitly confirmed it. Only completing the action charged its one hour; starting the next session charged nothing and preserved HP/items.
+- After Continue, a real Game question recalled Nera's old unresolved brass-compass promise accurately. Separately rebuilt the corrected second-campaign recap, then continued without changing its HP/time or the other campaign.
+- Inspected desktop, 390px and 320px layouts, English/Russian Game/Sessions and persistent language selection, including refresh. Narrow pages had no horizontal overflow. Restored English and the normal viewport. Owner-authored text and extractive quotations retain their original language.
+- Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation were **not** tested and remain disclosed non-blocking limitations from earlier owner approvals.
+
+## Phase 3 key decisions and known limitations
+
+One Supabase backend, existing authoritative mechanics and one gameplay DM remain. Source/version references and positive knowledge checks precede ranking; exact state and manual corrections outrank summaries. Jobs publish coverage atomically and never rebuild from summaries alone. No private error details or source IDs appear in public failure messages.
+
+The 64,000 application input cap is intentionally smaller than Astra's context window. Each lifecycle request processes at most four jobs; preflight at most two. Polling does not generate. A fresh explicit retry can recover an exhausted attempt window, while duplicate operation IDs cannot reset an active lease. Long backlogs may require another explicit continuation. Complete paragraphs are preserved; an indivisible source exceeding 24,000 UTF-8 bytes pauses safely. These are bounded, inspectable memory aids, not a guarantee of perfect recall.
+
+Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation remain unverified. Quality results are a finite synthetic sample reviewed by the lead. No hosted deployment, real campaign acceptance, semantic/embedding retrieval, Save/Load or timeline restoration is claimed. Session continuation uses current authoritative state; it is not historical rollback.
+
+## Phase 3 remaining work and recommended next step
+
+No required Phase 3 implementation or verification item remains open. **Owner review and explicit Phase 3 acceptance remain pending.** Open http://127.0.0.1:3000/campaigns and follow PHASE3_SETUP.md using the existing synthetic owner account; keep Docker Desktop and the development server running. No new key, provider or manual configuration is needed for this prepared local environment.
+
+The complete queued Phase 3.5 Save/Load/Timeline Fork brief and the dedicated **Saves / Сохранения** navigation requirement are recorded in PHASE3_5_BRIEF.md, MASTER_SPEC §42 and DEVELOPMENT_PLAN. The future screen will have Save Games and Timelines tabs, desktop placement after Sessions, and mobile access through More. This is documentation only. Phase 3 owner acceptance and separate Phase 3.5 authorization are both required before implementation. Stop here; do not deploy, import real material or begin another phase.
 
 ## Accepted Phase 2 checkpoint (historical)
 
