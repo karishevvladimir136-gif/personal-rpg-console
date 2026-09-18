@@ -4,6 +4,23 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
+**Phase 3 — Long-Term Memory: authorized, implementation in progress.** Preserve Phase 2 implementation `24fcd405b65b7ddd281837e491f1975e1fe3a765` and owner-acceptance record `ea35b71ad6c95cf63ab40a1a33db4a92041052fc`. This authorization supersedes the historical Phase 2 stop instruction below; no Phase 4, deployment, real campaign or real DM-private import is authorized.
+
+## Phase 3 coordination checkpoint
+
+- Completed: inspected the current Phase 1/2 contracts, specification section 38, plan, runtime/context/provider, public records and four migrations. Created isolated storage, retrieval and UI development worktrees. All three workers acknowledged PHASE3_CONTRACTS.md and lead-owned public/internal DTOs before implementation.
+- Decisions: preserve one gameplay DM and existing authoritative state; separate public/private source-linked memory; Postgres text/exact retrieval first; extractive structured summary selections preserve source wording/qualifiers; immutable exact resume boundaries preserve pending turns/dice; correction invalidation precedes rebuild. See PHASE3_CONTRACTS.md for ownership and shared lifecycle.
+- Files changed at this checkpoint: PHASE3_CONTRACTS.md, src/lib/memory/contracts.ts, src/lib/memory/server-contracts.ts and this status file. No migration or runtime change has been applied yet.
+- Verification: shared contracts formatted and diff checked; no Phase 3 runtime, retrieval, database, model-quality or browser gate is claimed passed yet. Original Phase 2 results below remain distinct.
+- Remaining: implement/integrate the three workstreams and summary/context orchestration; run complete deterministic/build checks, real local Supabase/privacy/browser acceptance, >=1000-event/20-session and >=30-case retrieval evaluation, and the authorized bounded >=20-case live model evaluation. Initial paid-evaluation limit is 48 requests and $15 conservative estimated successful usage; no live Phase 3 calls have run.
+- Known limitations: Phase 3 is incomplete and not owner-accepted. Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation remain unverified. No perfect-memory claim.
+- Recommended next step: implement against the agreed contracts, verify all required gates, then commit/push and stop at PHASE 3 READY FOR OWNER ACCEPTANCE.
+
+## Accepted Phase 2 checkpoint (historical)
+
+The following Phase 2 sections preserve the accepted checkpoint and its verification. Their next-phase prohibition applied until the new Phase 3 authorization recorded above.
+
+
 **PHASE 2 OWNER-APPROVED.** The owner explicitly accepted Phase 2 at commit `24fcd405b65b7ddd281837e491f1975e1fe3a765` on September 18, 2026. This acceptance is distinct from the implementation and verification results recorded below. The disclosed non-blocking limitations remain unchanged, including physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation, which remain unverified. Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Phase 3 has not begun and is not authorized. Deployment and real campaign/DM-private imports remain prohibited.
 
 ## Phase 2 current status and completed work
