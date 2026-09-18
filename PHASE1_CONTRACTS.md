@@ -38,3 +38,12 @@ Each workstream supplies focused tests and honest failure/empty/loading states. 
 ## Agreed implementation additions
 
 All three workers acknowledged this contract before GO. B also owns `src/lib/persistence/document-model.ts`. Lead client.ts exports `createMutationAttempt(previous: Mutation|null, input: MutationInput): Mutation`, retaining the request ID for unchanged payloads on retry. `useUnsavedChanges` is exported from persistence-context.tsx. Database/access validation uses development-only PGlite to execute PostgreSQL SQL when full Supabase is unavailable; this is never an application backend or a substitute claim for actual Supabase Auth/REST integration. Agent A adds a typed safe PersistenceError and tolerant SSR cookie writes behind a lead-owned refresh proxy.
+
+## Queued owner addition: Chat with DM (agreed at implementation checkpoint)
+
+The owner added Phase 1 feedback without restarting ongoing work. A owns an additive migration and server validation; B owns `persistent-dm-chat.tsx`, feedback helpers/tests, and reuses the existing document editor/version history; lead owns shared types, routing, translations merge and specifications. A accepted this contract before implementation.
+
+- `CampaignSnapshot.feedback` contains append-only `DmFeedbackMessage` public owner messages (`id`, `campaign_id`, `body`, `created_at`). `feedback.send` accepts `{body}` with expectedRevision 0 and the same idempotent request protocol. Message maximum: 20,000 characters. No reply role or AI operation.
+- `CampaignSnapshot.dmGuideDocumentId` points to a stable, ordinary reference document created blank for each campaign. An owner-only campaign/document mapping uses existing documents and immutable versions. Its content and history are edited/restored through existing `document.save` / `document.restore`, with the same revision conflict checks. Guide status remains reference. Sending feedback never edits the guide.
+- Campaign route `/campaigns/[UUID]/dm-chat`: Chat with DM / Чат с DM. Timestamps, explicit saving/errors, drafts preserved on failure; saved messages survive navigation/reload/sign-in. Saved guidance is not applied guidance: Phase 1 has no live DM. This path has no gameplay mutation, private-state projection, spoiler access or companion-conversation linkage.
+- Future Phase 2 uses the same primary DM in separate feedback mode, with explicit owner-approved session/campaign guidance and prospective application only; no AI behavior is implemented here.

@@ -107,6 +107,12 @@ export type Asset = ScopedRow & {
   description: string;
 };
 export type Workspace = { campaigns: Campaign[]; preferences: Preferences };
+export type DmFeedbackMessage = {
+  id: string;
+  campaign_id: string;
+  body: string;
+  created_at: string;
+};
 export type CampaignSnapshot = {
   campaign: Campaign;
   settings: SettingsRecord;
@@ -121,6 +127,8 @@ export type CampaignSnapshot = {
   quests: Quest[];
   locations: Location[];
   assets: Asset[];
+  feedback: DmFeedbackMessage[];
+  dmGuideDocumentId: string;
 };
 export type EntityInput = Omit<Entity, keyof ScopedRow>;
 export type StorageInput = Omit<Storage, keyof ScopedRow>;
@@ -134,6 +142,10 @@ type Save<T> = T & { id?: string };
 type Request = { requestId: string; expectedRevision: number };
 type CampaignRequest = Request & { campaignId: string };
 export type Mutation =
+  | (CampaignRequest & {
+      operation: "feedback.send";
+      payload: { body: string };
+    })
   | (Request & {
       operation: "campaign.create";
       payload: { title: string; subtitle: string; language: Language };
