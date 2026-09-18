@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { PreviewProvider } from "@/components/preview-context";
-import { Shell } from "@/components/shell";
+import { ApplicationFrame } from "@/components/persistent-shell";
+import { WorkspaceProvider } from "@/components/persistence-context";
 import { LanguageProvider } from "@/components/language-context";
 import "./globals.css";
 export const metadata: Metadata = {
   title: "Personal RPG Console",
   description:
-    "A private narrative RPG journal. Phase 0 visual preview with sample data.",
+    "A private narrative RPG journal with owner-controlled campaign records.",
   robots: { index: false, follow: false },
 };
 export default function RootLayout({
@@ -17,7 +18,9 @@ export default function RootLayout({
       <body>
         <LanguageProvider>
           <PreviewProvider>
-            <Shell>{children}</Shell>
+            <WorkspaceProvider>
+              <ApplicationFrame>{children}</ApplicationFrame>
+            </WorkspaceProvider>
           </PreviewProvider>
         </LanguageProvider>
       </body>

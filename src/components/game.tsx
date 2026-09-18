@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "@/components/language-context";
 
-import Link from "next/link";
+import Link from "./preview-link";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { clues } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Meter, Modal, Panel } from "./ui";

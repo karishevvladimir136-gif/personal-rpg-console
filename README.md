@@ -1,4 +1,28 @@
-# Personal RPG Console — Phase 0
+# Personal RPG Console — Phase 1 persistence
+
+A private application for one owner. Phase 0 is approved at commit 96b69dcd63d2fa015f5e75bcc5d632c41e04369e. Phase 1 adds saved records and owner access; gameplay, AI and deployment remain deferred.
+
+## Open the application
+
+Double-click **Start Preview.cmd**, leave its window open, then open **http://127.0.0.1:3000/**. Or run `pnpm dev` in this folder. The local server uses loopback port **3000**.
+
+Persistent screens require a configured Supabase instance and the single owner account. Until then the application displays an honest setup screen. Follow [SUPABASE_SETUP.md](SUPABASE_SETUP.md); it includes setup and real persistence/access checks. No project was deployed or created automatically. Keep real/private campaign material out until those checks pass.
+
+The account-free visual demonstration remains at **http://127.0.0.1:3000/preview**. It is isolated from saved campaigns and never writes gameplay results.
+
+## Phase 1 click-through after setup
+
+1. Sign in, create two unrelated campaigns, and add a different character/document to each. Refresh and sign out/in; verify each retains its own records.
+2. Change global Interface Language independently from a campaign's language/rules settings. Save explicitly.
+3. In Library, save a document twice, inspect version history, and restore an older version. Restoration creates a new version. Try competing edits in two tabs; the stale draft must be preserved.
+4. Correct inventory/storage/equipment manually. Character, Party and Inventory share the same saved item records.
+5. Save a session, scene and public resume point. Game displays stored writing; it does not generate replies or execute actions.
+6. Open **Chat with DM / Чат с DM**. Send feedback, refresh, and inspect the timestamped message. Edit/save **DM Guide**, view history and restore a prior version. Sending chat must not change the guide. Saved guidance is not applied yet.
+7. Disconnect the test service while saving a draft, then retry after reconnecting. Text must remain, and the retry must not duplicate a record. Check both campaigns and narrow-screen English/Russian layouts.
+
+See [DEV_STATUS.md](DEV_STATUS.md) for actual results and remaining verification prerequisites. Phase 1 owner review is pending. No Phase 2 work or deployment is authorized.
+
+## Approved Phase 0 demonstration
 
 A private, clickable James & Jinn campaign preview. No account, API key, database, or external service is required.
 
@@ -6,10 +30,10 @@ A private, clickable James & Jinn campaign preview. No account, API key, databas
 
 1. Open this project folder in File Explorer.
 2. Double-click **Start Preview.cmd**. Leave the small terminal window open.
-3. Open **http://127.0.0.1:3000** in your browser.
+3. Open **http://127.0.0.1:3000/preview** in your browser.
 4. Choose **Campaigns**, then **Continue the story** on The Long Road West card.
 
-Direct Game: **http://127.0.0.1:3000/campaigns/long-road-west/game**. Main menu: **http://127.0.0.1:3000/**.
+Direct Game: **http://127.0.0.1:3000/preview/campaigns/long-road-west/game**. Main menu: **http://127.0.0.1:3000/preview**.
 
 If the preview is already running, simply open that address. To stop a preview started by the launcher, close its terminal window. This is a local preview on this computer, not a deployed website or an iPhone-accessible hosted app. To check the phone layout on this computer, narrow the browser window.
 
@@ -47,7 +71,7 @@ Shared campaign settings, conversations and camp active state survive navigation
 
 ## Combat preview walkthrough
 
-Open **http://127.0.0.1:3000/campaigns/long-road-west/game** → **Preview Combat**. This is a separate synthetic demonstration inside Game; nothing changes your campaign.
+Open **http://127.0.0.1:3000/preview/campaigns/long-road-west/game** → **Preview Combat**. This is a separate synthetic demonstration inside Game; nothing changes your campaign.
 
 1. **Attack → Raincoat lookout → Confirm demo action → Roll → Continue**. Review the cost before confirming. If you close before completing a roll, use **Resume sample roll**; reviewing/replaying cannot spend or hit twice.
 2. **End Turn** gives you Jinn. Attack the same lookout; End Turn → **Play scripted enemy turn** returns to James in round 2. Try Item on an injured party member, Move or Defend.
@@ -55,13 +79,13 @@ Open **http://127.0.0.1:3000/campaigns/long-road-west/game** → **Preview Comba
 4. Type a free-text proposal, hide the illustration, inspect a companion, or use the mobile Scene & actions / Party details / Combat history switches. **Reset demo** starts fresh; **Exit combat preview** or **Return to Game** restores normal Game. Navigation away and refresh also discard the encounter.
 5. To compare dice styles, leave combat → **Campaign Settings → Rules & Play Style → Checks & Dice**. Hidden resolves with no dice modal or numbers; Interactive Off displays an immediate compact result; Key/All show these important sample attacks. No public target number is supplied for combat attacks, so Show DC adds none. The generic dice preview still demonstrates disclosed DCs. Check Frequency will not remove mandatory combat attacks/saves.
 
-All action values, enemies, abilities, results and loot are invented. Direct control of James/Jinn and one grouped scripted enemy turn illustrate the flow; no actual combat engine, AI, server dice or background simulation exists. English/Russian cover the controls and sample text; your proposal stays literal. Owner review remains pending.
+All action values, enemies, abilities, results and loot are invented. Direct control of James/Jinn and one grouped scripted enemy turn illustrate the flow; no actual combat engine, AI, server dice or background simulation exists. English/Russian cover the controls and sample text; your proposal stays literal. Phase 0 is approved at the preserved checkpoint.
 
 ## Deliberately outside Phase 0
 
 Real story responses, server dice rolls, campaign persistence, uploads and document editing, inventory mutations, backups, AI, authentication, image/video generation, and freeform evidence-board editing are not connected. Their preview controls explain this. There are no invented live dice results and no private DM facts in the client data.
 
-Visual approval by the owner is the remaining Phase 0 acceptance step. No later milestone has been started.
+Phase 0 is approved. Phase 1 persistence is separate from this isolated demonstration.
 
 ## Visual and product decisions
 

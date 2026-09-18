@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "@/components/language-context";
 
-import Link from "next/link";
+import Link from "./preview-link";
 import { useState } from "react";
 import { campaignHref } from "@/lib/campaign-routing";
 import { campaign, documents } from "@/lib/mock-data";

@@ -2,7 +2,7 @@
 import { useLanguage } from "@/components/language-context";
 
 import { useState } from "react";
-import Link from "next/link";
+import Link from "./preview-link";
 import { clues, locations } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import { usePreview } from "./preview-context";

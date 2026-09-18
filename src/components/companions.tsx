@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "./preview-link";
 import { useState } from "react";
 import { entities, storages, type Entity } from "@/lib/inventory-model";
 import { useLanguage } from "./language-context";

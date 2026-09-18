@@ -1,26 +1,46 @@
 import { notFound } from "next/navigation";
-import { ScreenView } from "@/components/screens";
+import { PersistentLibrary } from "@/components/persistent-documents";
+import { PersistentCampaignSettings } from "@/components/persistent-settings";
 import {
-  connectedCampaigns,
-  campaignScreens,
-  findCampaign,
-  isCampaignScreen,
-} from "@/lib/campaign-routing";
-
-export function generateStaticParams() {
-  return connectedCampaigns.flatMap((campaign) =>
-    [...campaignScreens.map(([screen]) => screen), "camp"].map((screen) => ({
-      campaignId: campaign.campaign_id,
-      screen,
-    })),
-  );
-}
+  PersistentCharacter,
+  PersistentInventory,
+  PersistentParty,
+} from "@/components/persistent-records";
+import {
+  PersistentGame,
+  PersistentSessions,
+  PersistentSupporting,
+} from "@/components/persistent-game";
+import { PersistentDmChat } from "@/components/persistent-dm-chat";
 export default async function Page({
   params,
 }: {
   params: Promise<{ campaignId: string; screen: string }>;
 }) {
-  const { campaignId, screen } = await params;
-  if (!findCampaign(campaignId) || !isCampaignScreen(screen)) notFound();
-  return <ScreenView screen={screen} />;
+  const { screen } = await params;
+  switch (screen) {
+    case "dm-chat":
+      return <PersistentDmChat />;
+    case "game":
+      return <PersistentGame />;
+    case "character":
+      return <PersistentCharacter />;
+    case "inventory":
+      return <PersistentInventory />;
+    case "party":
+      return <PersistentParty />;
+    case "library":
+      return <PersistentLibrary />;
+    case "settings":
+      return <PersistentCampaignSettings />;
+    case "sessions":
+      return <PersistentSessions />;
+    case "journal":
+    case "map":
+    case "gallery":
+    case "camp":
+      return <PersistentSupporting screen={screen} />;
+    default:
+      notFound();
+  }
 }

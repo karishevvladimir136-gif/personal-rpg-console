@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "./preview-link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "./language-context";

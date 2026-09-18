@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import Link from "./preview-link";
 import { useState } from "react";
 import { useLanguage } from "./language-context";
 import { Button, Icon, Modal } from "./ui";

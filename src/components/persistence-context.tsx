@@ -24,6 +24,11 @@ import type {
   Workspace,
 } from "@/lib/persistence/contracts";
 
+import {
+  installDraftNavigationGuard,
+  registerDirtyDraft,
+} from "@/lib/persistence/navigation-guard";
+
 type DataState<T> = {
   data: T | null;
   loading: boolean;
@@ -37,6 +42,7 @@ const CampaignContext = createContext<
 >(null);
 
 export function WorkspaceProvider({ children }: { children: ReactNode }) {
+  useEffect(() => installDraftNavigationGuard(window), []);
   const pathname = usePathname();
   const enabled =
     !pathname.startsWith("/preview") &&
@@ -68,10 +74,11 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!enabled) return;
     void refresh().catch(() => {});
+    const guard = generation;
     return () => {
-      generation.current++;
+      guard.current++;
     };
-  }, [enabled, refresh]);
+  }, [enabled, refresh, pathname]);
   const mutate = useCallback(
     async (input: Mutation) => {
       const result = await saveMutation(input);
@@ -157,36 +164,11 @@ export function useOptionalCampaignData() {
 
 export function useUnsavedChanges(dirty: boolean) {
   const { t } = useLanguage();
+  const token = useRef(Symbol("draft"));
   useEffect(() => {
     if (!dirty) return;
-    const beforeUnload = (event: BeforeUnloadEvent) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
-    const click = (event: MouseEvent) => {
-      const anchor = (event.target as Element | null)?.closest(
-        "a[href]",
-      ) as HTMLAnchorElement | null;
-      if (
-        !anchor ||
-        anchor.href === window.location.href ||
-        anchor.target === "_blank" ||
-        event.ctrlKey ||
-        event.metaKey ||
-        event.shiftKey ||
-        event.altKey
-      )
-        return;
-      if (!window.confirm(t("Leave this page and discard unsaved changes?"))) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-    window.addEventListener("beforeunload", beforeUnload);
-    document.addEventListener("click", click, true);
-    return () => {
-      window.removeEventListener("beforeunload", beforeUnload);
-      document.removeEventListener("click", click, true);
-    };
+    return registerDirtyDraft(token.current, () =>
+      t("Leave this page and discard unsaved changes?"),
+    );
   }, [dirty, t]);
 }

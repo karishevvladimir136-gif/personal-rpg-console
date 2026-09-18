@@ -55,21 +55,24 @@ test("feedback view remains scoped and chronological without altering either cam
   const rows = Object.freeze([
     Object.freeze({
       id: "second",
+      sequence: 2,
       campaign_id: campaignA,
       body: "Second invented note",
       created_at: "2026-09-17T02:00:00Z",
     }),
     Object.freeze({
       id: "other",
+      sequence: 3,
       campaign_id: campaignB,
       body: "Unrelated invented note",
       created_at: "2026-09-17T00:00:00Z",
     }),
     Object.freeze({
       id: "first",
+      sequence: 1,
       campaign_id: campaignA,
       body: "First invented note",
-      created_at: "2026-09-17T01:00:00Z",
+      created_at: "2026-09-17T03:00:00Z",
     }),
   ]);
   assert.deepEqual(

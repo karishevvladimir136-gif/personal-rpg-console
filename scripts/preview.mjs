@@ -20,7 +20,7 @@ if (!existsSync(next)) {
     });
     const html = await response.text();
     alreadyRunning =
-      html.includes("Personal RPG Console") && html.includes("PHASE 0");
+      html.includes("Personal RPG Console") && /PHASE [01]/.test(html);
     if (!alreadyRunning)
       throw new Error("Port 3000 is being used by another application.");
   } catch (error) {
@@ -32,7 +32,7 @@ if (!existsSync(next)) {
     }
   }
 
-  console.log(`\nYour Personal RPG Console is at ${address}\n`);
+  console.log(`\nYour Personal RPG Console is at ${address}\nIsolated visual preview: ${address}/preview\n`);
   if (alreadyRunning) {
     console.log(
       "The preview is already running. Open the address above in your browser.",

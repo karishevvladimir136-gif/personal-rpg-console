@@ -17,6 +17,7 @@ export function findCampaign(id: string) {
   return connectedCampaigns.find((entry) => entry.campaign_id === id);
 }
 export function campaignFromPath(path: string) {
+  path = path.replace(/^\/preview(?=\/)/, "");
   const match = /^\/campaigns\/([^/]+)\/(?:[^/]+)\/?$/.exec(path);
   return match ? findCampaign(match[1]) : undefined;
 }

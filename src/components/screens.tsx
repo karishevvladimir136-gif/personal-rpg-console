@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "@/components/language-context";
 
-import Link from "next/link";
+import Link from "./preview-link";
 import type { Screen } from "@/lib/mock-data";
 import { Game } from "./game";
 import { Character } from "./character";

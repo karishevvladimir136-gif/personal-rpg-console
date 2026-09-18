@@ -1,11 +1,9 @@
-import { notFound, redirect } from "next/navigation";
-import { campaignHref, findCampaign } from "@/lib/campaign-routing";
+import { redirect } from "next/navigation";
 export default async function Page({
   params,
 }: {
   params: Promise<{ campaignId: string }>;
 }) {
   const { campaignId } = await params;
-  if (!findCampaign(campaignId)) notFound();
-  redirect(campaignHref(campaignId));
+  redirect("/campaigns/" + encodeURIComponent(campaignId) + "/game");
 }

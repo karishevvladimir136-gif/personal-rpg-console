@@ -82,6 +82,20 @@ Suggested agent prompt:
 
 # MILESTONE 1 — PERSISTENCE
 
+Owner authorization: preserve approved Phase 0 commit 96b69dcd63d2fa015f5e75bcc5d632c41e04369e. One lead integrator and three workers agreed PHASE1_CONTRACTS.md before separate-worktree implementation. No Phase 2 or deployment.
+
+Current implementation acceptance also requires:
+- one configured owner, verified server sessions, owner-only RLS and campaign-reference constraints; no public signup or private client projection
+- explicit atomic manual corrections, immutable document/settings history, expected-revision conflict handling, idempotent retries, preserved failed drafts
+- actual campaign identity across persistent screens; two unrelated synthetic test campaigns; approved gameplay demonstrations isolated under /preview
+- **Chat with DM / Чат с DM**: separate timestamped persistent owner feedback, no AI replies; explicit Phase 2 notice and saved-versus-applied guidance distinction
+- campaign-linked reference **DM Guide**, edited/saved/restored through the same document version system; restore creates a new version; chat sends never update it
+- feedback/guide owner and campaign isolation, save-failure retention, and no changes to time, checks, inventory, health, quests, relationships, canon or private disclosure
+- separately report SQL/auth-stub tests, real Supabase Auth/REST, and browser cookie/persistence checks; absent Supabase configuration remains an acceptance blocker
+- setup documentation and non-destructive disposable synthetic seed; no real/private campaign import, paid provider or deployment
+
+See MASTER_SPEC sections 39–40 for the authoritative added boundaries.
+
 Goal:
 Everything the user edits survives refresh.
 
@@ -127,6 +141,8 @@ Suggested prompt:
 ---
 
 # MILESTONE 2 — TEXT DM
+
+Deferred Chat with DM contract (MASTER_SPEC section 40): use the same primary DM in a separate feedback mode, propose concise guidance, and require explicit owner choice of This session or Save for this campaign. Session guidance expires with the session; campaign guidance remains versioned. Gameplay receives effective approved guidance rather than all feedback messages. Apply only prospectively, respecting code-enforced mechanics, agency, canon and secrecy. Keep brief Game OOC. No part of this runtime behavior is authorized in Phase 1.
 
 Goal:
 The app becomes playable.

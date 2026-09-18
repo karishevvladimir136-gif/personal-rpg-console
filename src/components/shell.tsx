@@ -1,7 +1,7 @@
 "use client";
 import { useLanguage } from "@/components/language-context";
 
-import Link from "next/link";
+import Link from "./preview-link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
 import {
@@ -14,7 +14,7 @@ import { usePreferences } from "./preview-context";
 
 export function Shell({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
-  const pathname = usePathname();
+  const pathname = usePathname().replace(/^\/preview(?=\/)/, "");
   const [menu, setMenu] = useState(false);
   const { largeText } = usePreferences();
   const campaign = campaignFromPath(pathname);

@@ -22,6 +22,6 @@ export function campaignFeedback(
     .filter((message) => message.campaign_id === campaignId)
     .sort(
       (a, b) =>
-        a.created_at.localeCompare(b.created_at) || a.id.localeCompare(b.id),
+        a.sequence - b.sequence || a.id.localeCompare(b.id),
     );
 }

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
-const prefix = "/campaigns/long-road-west";
+const prefix = "/preview/campaigns/long-road-west";
 const routes = {
   game: "The Letter",
   character: "Character &amp; Inventory",
@@ -16,9 +16,9 @@ const routes = {
   camp: "Camp",
 };
 const paths = {
-  "/": "Your next chapter awaits.",
-  "/campaigns": "My Campaigns",
-  "/settings": "General Settings",
+  "/preview": "Your next chapter awaits.",
+  "/preview/campaigns": "My Campaigns",
+  "/preview/settings": "General Settings",
   ...Object.fromEntries(
     Object.entries(routes).map(([route, heading]) => [
       prefix + "/" + route,
@@ -55,13 +55,17 @@ for (const [path, heading] of Object.entries(paths))
       assert.ok(!html.includes('class="bottom-nav'));
     }
   });
-test("legacy campaign screens redirect to explicit sample routes", async () => {
-  for (const route of Object.keys(routes).filter(
-    (route) => !["settings", "camp"].includes(route),
-  )) {
+test("protected legacy routes never redirect an owner into sample data", async () => {
+  for (const route of [
+    "game",
+    "character",
+    "inventory",
+    "campaigns",
+    "settings",
+  ]) {
     const response = await fetch(base + "/" + route, { redirect: "manual" });
     assert.ok([307, 308].includes(response.status));
-    assert.equal(response.headers.get("location"), prefix + "/" + route);
+    assert.ok(["/setup", "/login"].includes(response.headers.get("location")));
   }
 });
 test("campaign root continues into its own Game", async () => {
@@ -72,8 +76,8 @@ test("campaign root continues into its own Game", async () => {
 test("unknown screens and campaign IDs return 404 without sample campaign fallback", async () => {
   for (const path of [
     "/not-a-campaign-screen",
-    "/campaigns/unknown/game",
-    "/campaigns/ashes-of-the-moon/game",
+    "/preview/campaigns/unknown/game",
+    "/preview/campaigns/ashes-of-the-moon/game",
     prefix + "/invalid",
   ]) {
     const response = await fetch(base + path);

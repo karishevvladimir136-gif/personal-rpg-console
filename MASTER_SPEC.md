@@ -1537,3 +1537,34 @@ A mock summary shows outcome, injuries/conditions, spent resources and available
 - **Phase 2, separately authorized:** authoritative rules-system-aware action/target/cost validation, literal free-text proposals validated through the single DM runtime, server dice, reactions and real campaign consequences. Server-enforced atomic/idempotent resolution prevents duplicate spending/results on retries, navigation and reconnect. Preserve player agency/canon and authorized disclosure; enforce mechanics in code rather than prompts.
 
 Test isolated lifecycle, valid targets/costs, repeated/stale confirmation/completion/turn events, presentation modes, no hidden checks/targets, literal proposals, summary/loot/reset and localization. Verify desktop/mobile and keyboard in a browser; record actual checks and limitations in DEV_STATUS. Implementation completion does not imply owner approval. **Stop for owner review; do not start Phase 1.**
+
+# 39. Owner-approved Phase 1 persistence boundary
+
+Phase 0 is approved at `96b69dcd63d2fa015f5e75bcc5d632c41e04369e`. Later Phase 0 stop/approval-pending notes above are historical checkpoints superseded by this explicit approval. Phase 1 implementation is authorized; Phase 2 and deployment remain unauthorized.
+
+Use Supabase Postgres/Auth for the private single owner. Verify the signed-in user on every server read/write, match the configured owner and database registry, enforce owner-only RLS, and prevent cross-campaign references. No public registration. Complete owner authentication and access checks before any separately authorized deployment. All credentials remain server-side; DM-private records reside in a separate unexposed schema, with no ordinary client accessor. Media providers/models remain owner-selectable in later phases.
+
+Persist campaigns, separate global preferences, complete campaign settings, documents and immutable versions, generic characters/companions/NPCs/transport, shared inventory/storage/equipment, sessions/public scenes/resume state, quests, locations and asset metadata. Every campaign-owned record includes campaign_id. Manual corrections are explicit owner actions with the highest state authority; revision checks prevent silent overwrite. Stable request IDs and atomic operations prevent duplicate corrections on retry. Document restoration creates a new current version. Settings history applies prospectively and cannot rewrite existing scenes or established facts.
+
+Preserve the approved visual language and bilingual UI. Persistent routes use actual campaign IDs and generic records without hardcoded James & Jinn dependencies; exercise two unrelated synthetic campaigns. The approved Phase 0 gameplay demonstrations remain isolated under `/preview`, with no persistence hooks. No persistence operation resolves combat, rolls dice, rests, cooks, consumes resources, transforms items, generates media or calls AI. Future gameplay record structures remain inert. Asset metadata does not imply uploading or generated media.
+
+Verification must distinguish SQL tests with an auth stub from actual Supabase Auth/REST and application/browser cookie integration. Missing configuration is a blocker to acceptance, not proof of persistence. Never use a mock store as a hidden substitute for the persistent application. Preserve the approved checkpoint, commit migrations, inspect targets before applying them, and do not seed real campaign/private material or destructively reset an existing target.
+
+# 40. Chat with DM and DM Guide
+
+## Purpose and Phase 1 scope
+
+Add a per-campaign **Chat with DM** navigation tab, translated **Чат с DM**. This is a separate out-of-game space for feedback about narration, tone, pacing, companion initiative and DM behavior. Keep Game's existing OOC control for brief remarks.
+
+- Persist literal owner messages separately from gameplay transcripts and companion conversations. Messages survive navigation, refresh and sign-in. Show timestamps, saving/error states, and preserve text after failed saves. There are no fabricated DM replies or AI calls.
+- Clearly display: **DM replies and application of these preferences arrive in Phase 2.**
+- Provide an editable **DM Guide** using the existing documents and immutable version history. Explicit manual Save, inspect history, and restore an older version as a new current version. Keep a stable campaign-to-guide document link; it is a reference document, not established story canon. Sending a feedback message never changes the guide.
+- Distinguish saved guidance from guidance actually applied by a runtime. Phase 1 has no live DM; saved guidance is not being applied yet.
+- Scope all records, reads and writes to the authorized owner and selected campaign. This screen cannot advance game time, trigger checks, alter inventory/health/quests/relationships/canon, reveal DM-private state or provide spoiler access. Reuse the same authorization, revision and retry protections as other persistence operations.
+- Verify message/guide persistence, restoration, campaign isolation, save-failure draft retention, and absence of gameplay mutations. Preserve English/Russian and desktop/mobile usability.
+
+## Future Phase 2 contract — documentation only
+
+The **same primary DM runtime** supports a separate feedback mode. It can discuss preferences and propose concise guidance changes. The owner explicitly chooses **This session** or **Save for this campaign** before a proposal is approved. Approved guidance affects future narration only and cannot override authoritative mechanics, player agency, established canon or secrecy. Conflicts with canon require clarification, never silent rewriting.
+
+Session guidance expires with its session; campaign guidance remains versioned. Ordinary gameplay receives effective approved guidance, not the entire feedback conversation. Campaign documents supply world/story context, structured settings supply explicit mechanics/play-style choices, and approved guidance supplies preferences within those boundaries. There is no second DM agent, simulation engine, automatic guide rewriting, or implemented feedback AI in Phase 1.

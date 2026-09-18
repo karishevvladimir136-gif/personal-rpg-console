@@ -216,11 +216,11 @@ export function itemIcon(category: string) {
   return icons[category.toLowerCase()] || "Package";
 }
 
-export function sceneOrder<T extends { created_at: string; id: string }>(
+export function sceneOrder<T extends { sequence: number; id: string }>(
   scenes: T[],
 ): T[] {
   return [...scenes].sort(
     (a, b) =>
-      a.created_at.localeCompare(b.created_at) || a.id.localeCompare(b.id),
+      a.sequence - b.sequence || a.id.localeCompare(b.id),
   );
 }

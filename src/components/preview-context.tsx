@@ -76,7 +76,8 @@ export function usePreferences() {
 }
 export function usePreview() {
   const store = usePreferences();
-  const campaign = campaignFromPath(usePathname());
+  const pathname = usePathname();
+  const campaign = campaignFromPath(pathname);
   if (!campaign) throw new Error("A valid campaign route is required");
   const id = campaign.campaign_id;
   const state = store.records[id];
@@ -112,7 +113,7 @@ export function usePreview() {
   return {
     ...state,
     campaign,
-    href: (screen: CampaignScreen) => campaignHref(id, screen),
+    href: (screen: CampaignScreen) => (pathname.startsWith("/preview") ? "/preview" : "") + campaignHref(id, screen),
     largeText: store.largeText,
     suggestions: store.suggestions,
     setDiceDemo,

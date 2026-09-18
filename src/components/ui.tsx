@@ -51,6 +51,7 @@ const icons: Record<string, LucideIcon> = {
   character: UserRound,
   inventory: Backpack,
   party: Users,
+  "dm-chat": MessageSquare,
   journal: BookOpen,
   map: Map,
   library: FileText,
