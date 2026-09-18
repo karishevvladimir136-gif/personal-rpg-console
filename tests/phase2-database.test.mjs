@@ -51,6 +51,13 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
     ...overrides,
   });
   const leaseArgs = (claim) => ({ ...claim.lease });
+  const cancelCommand = (operationId, commandId = randomUUID()) => ({
+    commandId,
+    campaignId: cid,
+    operationId,
+    action: "cancel",
+    checkId: null,
+  });
   const packet = (claim, overrides = {}) => ({
     narration: "The synthetic bell rings.",
     visualDescription: "",
@@ -213,7 +220,55 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
           }),
           /rpg_conflict/,
         );
-        await rpc(cid, "cancel", { operationId: accepted.operationId });
+        await rpc(cid, "cancel", cancelCommand(accepted.operationId));
+      },
+    );
+    await t.test(
+      "cancel command IDs cannot be reused for another operation",
+      async () => {
+        const first = await input();
+        await rpc(cid, "begin", first);
+        const command = cancelCommand(first.operationId);
+        const cancelled = await rpc(cid, "cancel", command);
+        assert.deepEqual(await rpc(cid, "cancel", command), cancelled);
+        const second = await input();
+        await rpc(cid, "begin", second);
+        await assert.rejects(
+          rpc(
+            cid,
+            "cancel",
+            cancelCommand(second.operationId, command.commandId),
+          ),
+          /rpg_conflict/,
+        );
+        assert.equal(
+          (await rpc(cid, "get", { operationId: second.operationId })).status,
+          "pending",
+        );
+        await rpc(cid, "cancel", cancelCommand(second.operationId));
+      },
+    );
+    await t.test(
+      "configuration failure preserves the original input and supports the same operation after setup",
+      async () => {
+        const accepted = await input();
+        await rpc(cid, "begin", accepted);
+        const claim = await rpc(cid, "claim", {
+          operationId: accepted.operationId,
+        });
+        const failed = await rpc(cid, "fail", {
+          ...leaseArgs(claim),
+          failure: "configuration",
+          retryable: true,
+        });
+        assert.equal(failed.input, accepted.input);
+        assert.equal(failed.canRetry, true);
+        const retry = await rpc(cid, "claim", {
+          operationId: accepted.operationId,
+        });
+        assert.equal(retry.turn.input.operationId, accepted.operationId);
+        assert.equal(retry.turn.input.input, accepted.input);
+        await rpc(cid, "cancel", cancelCommand(accepted.operationId));
       },
     );
     await t.test(
@@ -283,7 +338,7 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
           }),
           /rpg_validation/,
         );
-        await rpc(cid, "cancel", { operationId: accepted.operationId });
+        await rpc(cid, "cancel", cancelCommand(accepted.operationId));
       },
     );
     await t.test(
@@ -513,11 +568,18 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
           success: true,
           rollNumber: 3,
         };
-        await rpc(cid, "reroll", {
+        const latest = await rpc(cid, "reroll", {
           ...leaseArgs(claim),
           command: second,
           check,
         });
+        const replay = await rpc(cid, "reroll", {
+          ...leaseArgs(claim),
+          command,
+          check: first[0],
+        });
+        assert.deepEqual(replay, latest);
+        assert.equal(replay[0].rollNumber, 3);
         await assert.rejects(
           rpc(cid, "reroll", {
             ...leaseArgs(claim),
@@ -531,7 +593,12 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
         });
         assert.equal(publicTurn.checks[0].dc, null);
         assert.equal(publicTurn.checks[0].canReroll, false);
-        await rpc(cid, "cancel", { operationId: accepted.operationId });
+        await rpc(cid, "checkpoint", {
+          ...leaseArgs(claim),
+          checkpoint: { ...checkpoint, checks: replay },
+          status: "generating",
+        });
+        await rpc(cid, "cancel", cancelCommand(accepted.operationId));
       },
     );
     await t.test(
@@ -583,7 +650,7 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
           operationId: next.operationId,
         });
         assert.equal(nextClaim.source.snapshot.entities[0].hp, 7);
-        await rpc(cid, "cancel", { operationId: next.operationId });
+        await rpc(cid, "cancel", cancelCommand(next.operationId));
       },
     );
     await t.test(
@@ -658,6 +725,67 @@ test("Phase 2 service-only database lifecycle, atomicity and privacy", async (t)
         );
         await role("service_role");
         assert.equal((await rpc(other, "play")).turns.length, 0);
+      },
+    );
+    await t.test(
+      "an old guidance proposal cannot bypass a manual guide edit by supplying the newest revision",
+      async () => {
+        const accepted = await input({
+          mode: "feedback",
+          input: "Try a quieter style.",
+        });
+        await rpc(cid, "begin", accepted);
+        const claim = await rpc(cid, "claim", {
+          operationId: accepted.operationId,
+        });
+        const done = await rpc(cid, "commit", {
+          ...leaseArgs(claim),
+          packet: packet(claim, { guidanceProposal: "Use quieter narration." }),
+        });
+        await role("authenticated", owner);
+        const current = await q(
+          "select d.id,d.revision,d.title,d.status,d.body from public.rpg_documents d join public.rpg_dm_guides g on g.document_id=d.id where g.campaign_id=$1",
+          [cid],
+        );
+        const manual = await mutation(
+          "document.save",
+          cid,
+          {
+            id: current.id,
+            title: current.title,
+            status: current.status,
+            body: "Manual guidance takes priority.",
+          },
+          current.revision,
+        );
+        await role("service_role");
+        await assert.rejects(
+          rpc(cid, "guidance", {
+            requestId: randomUUID(),
+            campaignId: cid,
+            operationId: accepted.operationId,
+            proposalId: done.proposal.id,
+            scope: "campaign",
+            sessionId: null,
+            expectedGuideRevision: manual.revision,
+          }),
+          /rpg_conflict/,
+        );
+        assert.equal(
+          (await rpc(cid, "get", { operationId: accepted.operationId }))
+            .proposal.status,
+          "proposed",
+        );
+        await role("authenticated", owner);
+        assert.equal(
+          (
+            await q("select body from public.rpg_documents where id=$1", [
+              current.id,
+            ])
+          ).body,
+          "Manual guidance takes priority.",
+        );
+        await role("service_role");
       },
     );
     await t.test(

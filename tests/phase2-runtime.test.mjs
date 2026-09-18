@@ -165,8 +165,94 @@ test("missing configuration blocks a provider call without fallback or network a
       return response({});
     },
   });
-  await assert.rejects(provider.plan(source, input), { code: "configuration" });
+  await assert.rejects(provider.plan(source, input), {
+    code: "configuration",
+    retryable: true,
+  });
   assert.equal(calls, 0);
+  for (const model of ["", "unsupported-model", "toString"]) {
+    const unavailable = openAiProvider({
+      apiKey: "SYNTHETIC_TEST_ONLY",
+      model,
+      fetcher: async () => {
+        calls++;
+        return response({});
+      },
+    });
+    await assert.rejects(async () => unavailable.plan(source, input), {
+      code: "configuration",
+      retryable: true,
+    });
+  }
+  assert.equal(calls, 0);
+});
+
+test("authentication setup failures are retryable and failed/successful attempts report only safe metadata", async () => {
+  const { source, input, plan } = runtimeFixture();
+  const observed = [];
+  const observer = (attempt) => observed.push(attempt);
+  for (const status of [401, 403]) {
+    const provider = openAiProvider({
+      apiKey: "SYNTHETIC_PRIVATE_KEY",
+      model: "gpt-5.4-mini",
+      observer,
+      fetcher: async () => new Response("SYNTHETIC_PRIVATE_ERROR", { status }),
+    });
+    await assert.rejects(provider.plan(source, input), {
+      code: "configuration",
+      retryable: true,
+    });
+  }
+  const incomplete = openAiProvider({
+    apiKey: "SYNTHETIC_PRIVATE_KEY",
+    model: "gpt-5.4-mini",
+    observer,
+    fetcher: async () =>
+      new Response(
+        JSON.stringify({
+          model: "gpt-5.4-mini-2026-03-17",
+          status: "incomplete",
+          usage: { input_tokens: 120, output_tokens: 40 },
+          output: [{ text: "SYNTHETIC_PRIVATE_PARTIAL" }],
+        }),
+      ),
+  });
+  await assert.rejects(incomplete.plan(source, input), { code: "provider" });
+  const success = openAiProvider({
+    apiKey: "SYNTHETIC_PRIVATE_KEY",
+    model: "gpt-5.4-mini",
+    observer,
+    fetcher: async () => response(plan),
+  });
+  await success.plan(source, input);
+  assert.equal(observed.length, 4);
+  assert.equal(observed.filter((attempt) => attempt.success).length, 1);
+  assert.equal(observed[2].inputTokens, 120);
+  assert.equal(observed[2].outputTokens, 40);
+  assert.equal(observed[2].actualModel, "gpt-5.4-mini-2026-03-17");
+  for (const attempt of observed) {
+    assert.equal(attempt.operationId, input.operationId);
+    assert.equal(attempt.stage, "plan");
+    assert.equal(attempt.attempted, true);
+    assert.equal(typeof attempt.latencyMs, "number");
+    assert.deepEqual(
+      Object.keys(attempt).sort(),
+      [
+        "operationId",
+        "stage",
+        "configuredModel",
+        "actualModel",
+        "attempted",
+        "success",
+        "category",
+        "inputTokens",
+        "outputTokens",
+        "latencyMs",
+      ].sort(),
+    );
+  }
+  assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
+  assert.ok(!JSON.stringify(observed).includes("PRIVATE_DRAFT"));
 });
 test("transport database failures cannot leak SQL payloads, and readiness is separate from rules config", async () => {
   const { source, input } = runtimeFixture();

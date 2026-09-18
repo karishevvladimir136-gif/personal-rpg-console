@@ -275,9 +275,19 @@ begin
     return jsonb_build_object('lease',jsonb_build_object('campaignId',cid,'operationId',operation_id,'token',token,'expectedRevision',turn.expected_revision),'turn',jsonb_build_object('input',turn.input,'public',rpg_private.runtime_public_turn(turn),'checkpoint',turn.checkpoint),'source',turn.source);
   end if;
   if p_action='cancel' then
+    perform rpg_private.fields(p_payload,array['commandId','campaignId','operationId','action','checkId']);
+    request_id:=(p_payload->>'commandId')::uuid;
+    perform rpg_private.assert(request_id is not null and p_payload->>'campaignId'=cid::text and p_payload->>'action'='cancel' and p_payload->'checkId'='null');
+    select * into saved from rpg_private.runtime_commands where id=request_id;
+    if found then
+      if saved.owner_id<>uid or saved.campaign_id<>cid or saved.request<>p_payload then raise exception 'rpg_conflict'; end if;
+      return rpg_private.runtime_public_turn(turn);
+    end if;
     if turn.status='committed' then raise exception 'rpg_conflict'; end if;
     if turn.status<>'cancelled' then update rpg_private.turns set status='cancelled',lease_token=null,lease_until=null,retryable=false,updated_at=now() where id=operation_id returning * into turn; end if;
-    return rpg_private.runtime_public_turn(turn);
+    result:=rpg_private.runtime_public_turn(turn);
+    insert into rpg_private.runtime_commands(id,campaign_id,owner_id,operation_id,request,result) values(request_id,cid,uid,operation_id,p_payload,result);
+    return result;
   end if;
   if p_action='guidance' then
     request_id:=(p_payload->>'requestId')::uuid;
@@ -286,7 +296,7 @@ begin
     perform rpg_private.fields(p_payload,array['requestId','campaignId','operationId','proposalId','scope','sessionId','expectedGuideRevision']);
     perform rpg_private.assert(request_id is not null and p_payload->>'campaignId'=cid::text and turn.status='committed' and turn.input->>'mode'='feedback' and turn.proposal is not null and turn.proposal->>'id'=p_payload->>'proposalId' and turn.proposal->>'status'='proposed' and p_payload->>'scope' in ('session','campaign'));
     select d.* into strict guide from public.rpg_documents d join public.rpg_dm_guides g on g.document_id=d.id and g.campaign_id=d.campaign_id where g.campaign_id=cid for update of d;
-    if guide.revision<>(p_payload->>'expectedGuideRevision')::integer then raise exception 'rpg_conflict'; end if;
+    if guide.revision is distinct from (p_payload->>'expectedGuideRevision')::integer or (turn.proposal->>'documentRevision')::integer is distinct from (p_payload->>'expectedGuideRevision')::integer then raise exception 'rpg_conflict'; end if;
     if p_payload->>'scope'='session' then
       sid:=(p_payload->>'sessionId')::uuid;
       perform rpg_private.assert(sid is not null and sid=turn.session_id and exists(select 1 from public.rpg_public_state p join public.rpg_sessions s on s.id=p.current_session_id and s.campaign_id=p.campaign_id where p.campaign_id=cid and s.id=sid and s.status='open'));
@@ -331,7 +341,7 @@ begin
     if p_action='reroll' then
       data:=p_payload->'command'; request_id:=(data->>'commandId')::uuid;
       select * into saved from rpg_private.runtime_commands where id=request_id;
-      if found then if saved.owner_id<>uid or saved.campaign_id<>cid or saved.request<>data then raise exception 'rpg_conflict'; end if; return saved.result; end if;
+      if found then if saved.owner_id<>uid or saved.campaign_id<>cid or saved.request<>data then raise exception 'rpg_conflict'; end if; return turn.checkpoint->'checks'; end if;
       perform rpg_private.assert(request_id is not null and data->>'action'='reroll' and data->>'campaignId'=cid::text and data->>'operationId'=operation_id::text and turn.status='awaiting_confirmation');
       select c into old_check from jsonb_array_elements(turn.checkpoint->'checks') c where c->>'id'=data->>'checkId';
       perform rpg_private.assert(old_check is not null and old_check->>'visibility'='player' and turn.settings->>'dicePresentation'<>'hidden' and (turn.settings->>'dicePresentation'='all-player-rolls' or (old_check->>'important')::boolean));

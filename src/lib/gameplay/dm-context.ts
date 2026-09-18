@@ -19,8 +19,8 @@ const models: Record<string, number> = {
   "gpt-5.4-mini": 400000,
 };
 export function modelBudget(model: string): ModelBudget {
-  const contextLimit = models[model];
-  if (!contextLimit) throw new DmError("configuration");
+  const contextLimit = Object.hasOwn(models, model) ? models[model] : undefined;
+  if (!contextLimit) throw new DmError("configuration", true);
   return {
     model,
     contextLimit,
