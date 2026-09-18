@@ -59,7 +59,6 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
     } catch (cause) {
       if (request === generation.current) {
         setError(errorMessage(cause));
-        setData(null);
       }
       throw cause;
     } finally {

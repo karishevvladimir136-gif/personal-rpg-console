@@ -20,8 +20,10 @@ const safeMessages: Record<string, string> = {
     "The save could not be confirmed. Your draft is preserved. Please retry.",
 };
 export class ClientPersistenceError extends Error {
-  constructor(public code: string) {
+  code: string;
+  constructor(code: string) {
     super(safeMessages[code] ?? safeMessages.unavailable);
+    this.code = code;
   }
 }
 export function errorMessage(error: unknown) {
