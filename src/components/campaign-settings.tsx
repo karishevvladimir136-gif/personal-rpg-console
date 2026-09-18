@@ -18,6 +18,8 @@ import {
   storyOptions,
   checkFrequencyOptions,
   dicePresentationOptions,
+  type CampaignSettings,
+  type CampaignSettingsAction,
 } from "@/lib/campaign-settings";
 
 type Option<T extends string> = {
@@ -102,20 +104,34 @@ function SelectSetting<T extends string>({
   );
 }
 
-function RulesAndPlayStyle() {
+function RulesAndPlayStyle({
+  settings,
+  change,
+  preview,
+}: {
+  settings: CampaignSettings;
+  change: (action: CampaignSettingsAction) => void;
+  preview: boolean;
+}) {
   const { t, language } = useLanguage();
-  const { campaignSettings: settings, changeCampaignSettings: change } =
-    usePreview();
   const { difficulty, rulesSystem } = settings;
   const format = (value: number) =>
     new Intl.NumberFormat(language, { maximumFractionDigits: 2 }).format(value);
   return (
     <>
       <div className="rules-preview-note">
-        <Badge>{t("Preview only")}</Badge>
+        <Badge>
+          {t(
+            preview
+              ? "Preview only"
+              : "Saved preferences · gameplay unavailable",
+          )}
+        </Badge>
         <p>
           {t(
-            "These settings do not affect gameplay yet. Numerical tuning is provisional. Choices stay while you browse and reset on refresh.",
+            preview
+              ? "These settings do not affect gameplay yet. Numerical tuning is provisional. Choices stay while you browse and reset on refresh."
+              : "Save preserves these campaign preferences. Numerical tuning is provisional; rules enforcement and gameplay begin in a later phase.",
           )}
         </p>
       </div>
@@ -141,7 +157,9 @@ function RulesAndPlayStyle() {
           </summary>
           <p className="muted">
             {t(
-              "HP and damage scaling are separate and depend on the campaign’s rules system. Unsupported controls are unavailable; these preview rules use both.",
+              preview
+                ? "HP and damage scaling are separate and depend on the campaign’s rules system. Unsupported controls are unavailable; these preview rules use both."
+                : "HP and damage scaling are independent. Only controls supported by this campaign’s rules system are available.",
             )}
           </p>
           <div className="rules-fields">
@@ -385,17 +403,19 @@ function RulesAndPlayStyle() {
               : "Private DM checks and private target numbers are never shown, regardless of these preferences.",
           )}
         </p>
-        <div className="dice-settings-preview">
-          <div>
-            <h4>{t("Try a sample moment")}</h4>
-            <p className="muted">
-              {t(
-                "Fixed samples only. No changes to your character, history, inventory, or reroll allowance.",
-              )}
-            </p>
+        {preview && (
+          <div className="dice-settings-preview">
+            <div>
+              <h4>{t("Try a sample moment")}</h4>
+              <p className="muted">
+                {t(
+                  "Fixed samples only. No changes to your character, history, inventory, or reroll allowance.",
+                )}
+              </p>
+            </div>
+            <DicePreviewButton />
           </div>
-          <DicePreviewButton />
-        </div>
+        )}
       </section>
       <section className="rules-section">
         <ChoiceGroup
@@ -445,14 +465,18 @@ function RulesAndPlayStyle() {
   );
 }
 
-export function CampaignSettingsPanel() {
+export function CampaignSettingsEditor({
+  title,
+  settings: campaignSettings,
+  onChange: change,
+  preview = false,
+}: {
+  title: string;
+  settings: CampaignSettings;
+  onChange: (action: CampaignSettingsAction) => void;
+  preview?: boolean;
+}) {
   const { t } = useLanguage();
-  const {
-    campaignSettings,
-    setCampaignLanguage,
-    changeCampaignSettings: change,
-    campaign,
-  } = usePreview();
   const [tab, setTab] = useState("general");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const tabs = [
@@ -467,7 +491,7 @@ export function CampaignSettingsPanel() {
       <div className="campaign-settings-heading">
         <div>
           <span className="eyebrow">{t("Campaign settings")}</span>
-          <h2 id="campaign-settings-title">{t(campaign.title)}</h2>
+          <h2 id="campaign-settings-title">{title}</h2>
         </div>
         <Badge>{t("This campaign only")}</Badge>
       </div>
@@ -527,7 +551,10 @@ export function CampaignSettingsPanel() {
               <select
                 value={campaignSettings.language}
                 onChange={(event) =>
-                  setCampaignLanguage(event.target.value === "ru" ? "ru" : "en")
+                  change({
+                    type: "language",
+                    value: event.target.value === "ru" ? "ru" : "en",
+                  })
                 }
               >
                 {languageOptions.map((option) => (
@@ -539,7 +566,9 @@ export function CampaignSettingsPanel() {
             </label>
             <p className="muted">
               {t(
-                "A separate preference for this campaign’s future story language. It does not change the interface or generate text yet. AI support arrives in Phase 2; this preview choice resets on refresh.",
+                preview
+                  ? "A separate preference for this campaign’s future story language. It does not change the interface or generate text yet. AI support arrives in Phase 2; this preview choice resets on refresh."
+                  : "Saved for this campaign only. Campaign Language does not change Interface Language. Story generation is not available in Phase 1.",
               )}
             </p>
           </div>
@@ -603,7 +632,11 @@ export function CampaignSettingsPanel() {
               </label>
             </div>
             <p className="muted">
-              {t("Sample preferences only; media generation is not connected.")}
+              {t(
+                preview
+                  ? "Sample preferences only; media generation is not connected."
+                  : "Visual preferences are saved. Media providers and models remain owner-selectable; generation is not connected.",
+              )}
             </p>
           </div>
         </div>
@@ -615,8 +648,25 @@ export function CampaignSettingsPanel() {
         hidden={tab !== "rules"}
         tabIndex={0}
       >
-        <RulesAndPlayStyle />
+        <RulesAndPlayStyle
+          settings={campaignSettings}
+          change={change}
+          preview={preview}
+        />
       </div>
     </section>
+  );
+}
+
+export function CampaignSettingsPanel() {
+  const { t } = useLanguage();
+  const { campaignSettings, changeCampaignSettings, campaign } = usePreview();
+  return (
+    <CampaignSettingsEditor
+      title={t(campaign.title)}
+      settings={campaignSettings}
+      onChange={changeCampaignSettings}
+      preview
+    />
   );
 }

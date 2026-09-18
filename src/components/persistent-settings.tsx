@@ -1,0 +1,493 @@
+"use client";
+
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { useLanguage } from "./language-context";
+import {
+  useCampaignData,
+  useWorkspaceData,
+  useUnsavedChanges,
+} from "./persistence-context";
+import { Badge, Button, Panel } from "./ui";
+import { CampaignSettingsEditor } from "./campaign-settings";
+import { updateCampaignSettings } from "@/lib/campaign-settings";
+import { languageOptions } from "@/lib/i18n";
+import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
+import type {
+  Campaign,
+  CampaignSnapshot,
+  Mutation,
+  MutationInput,
+  MutationResult,
+  Preferences,
+} from "@/lib/persistence/contracts";
+
+// Keep one request identity until its payload changes or the server acknowledges it.
+function useSave(mutate: (input: Mutation) => Promise<MutationResult>) {
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [saved, setSaved] = useState(false);
+  const attempt = useRef<Mutation | null>(null);
+  const busy = useRef(false);
+  return {
+    saving,
+    error,
+    saved,
+    clearSaved: () => setSaved(false),
+    async save(input: MutationInput) {
+      if (busy.current) return null;
+      busy.current = true;
+      setSaving(true);
+      setError("");
+      setSaved(false);
+      attempt.current = createMutationAttempt(attempt.current, input);
+      try {
+        const result = await mutate(attempt.current);
+        attempt.current = null;
+        setSaved(true);
+        return result;
+      } catch (cause) {
+        setError(errorMessage(cause));
+        return null;
+      } finally {
+        busy.current = false;
+        setSaving(false);
+      }
+    },
+  };
+}
+
+function PreferenceForm({ current }: { current: Preferences }) {
+  const { t, setLanguage } = useLanguage();
+  const { mutate, refresh } = useWorkspaceData();
+  const [draft, setDraft] = useState(current);
+  const [baseline, setBaseline] = useState(current);
+  const state = useSave(mutate);
+  const dirty =
+    draft.language !== baseline.language ||
+    draft.largeText !== baseline.largeText ||
+    draft.suggestions !== baseline.suggestions;
+  useUnsavedChanges(dirty);
+  const newer = current.revision !== baseline.revision;
+  return (
+    <form
+      onSubmit={async (event) => {
+        event.preventDefault();
+        const result = await state.save({
+          operation: "preferences.save",
+          expectedRevision: baseline.revision,
+          payload: {
+            language: draft.language,
+            largeText: draft.largeText,
+            suggestions: draft.suggestions,
+          },
+        });
+        if (result) {
+          const next = { ...draft, revision: result.revision };
+          setBaseline(next);
+          setDraft(next);
+          setLanguage(next.language);
+        }
+      }}
+    >
+      <fieldset disabled={state.saving} className="persistence-fields">
+        <Panel title={t("General")}>
+          <label className="field">
+            {t("Interface Language")}
+            <select
+              value={draft.language}
+              onChange={(event) => {
+                state.clearSaved();
+                setDraft({
+                  ...draft,
+                  language: event.target.value === "ru" ? "ru" : "en",
+                });
+              }}
+            >
+              {languageOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className="muted">
+            {t(
+              "Saved interface preferences apply across campaigns. Your writing and each campaign’s story language stay unchanged.",
+            )}
+          </p>
+          {(["largeText", "suggestions"] as const).map((key) => (
+            <div className="setting-row" key={key}>
+              <div>
+                <h3>
+                  {t(
+                    key === "largeText"
+                      ? "Larger story text"
+                      : "Suggested actions",
+                  )}
+                </h3>
+                <p>
+                  {t(
+                    key === "largeText"
+                      ? "Give the narration a little more breathing room."
+                      : "Saved for future play; suggested actions are unavailable until gameplay is connected.",
+                  )}
+                </p>
+              </div>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={draft[key]}
+                aria-label={t(
+                  key === "largeText"
+                    ? "Larger story text"
+                    : "Suggested actions",
+                )}
+                className={`toggle ${draft[key] ? "on" : ""}`}
+                onClick={() => {
+                  state.clearSaved();
+                  setDraft({ ...draft, [key]: !draft[key] });
+                }}
+              >
+                <span />
+              </button>
+            </div>
+          ))}
+        </Panel>
+        {state.error && <p role="alert">{t(state.error)}</p>}
+        {newer && (
+          <p role="alert">
+            {t(
+              "Saved preferences changed elsewhere. Your draft is retained; reload saved values before editing again.",
+            )}
+          </p>
+        )}
+        <div className="button-row">
+          <Button type="submit" primary disabled={!dirty || newer}>
+            {t(state.saving ? "Saving…" : "Save preferences")}
+          </Button>
+          <Button onClick={() => void refresh().catch(() => {})}>
+            {t("Refresh saved data")}
+          </Button>
+          <Button
+            onClick={() => {
+              if (
+                !dirty ||
+                window.confirm(t("Discard your unsaved changes?"))
+              ) {
+                setDraft(current);
+                setBaseline(current);
+                state.clearSaved();
+              }
+            }}
+          >
+            {t("Use saved values")}
+          </Button>
+        </div>
+        <p role="status">
+          {t(
+            dirty
+              ? "Unsaved changes"
+              : state.saved
+                ? "Saved"
+                : "Changes take effect after Save.",
+          )}
+        </p>
+      </fieldset>
+    </form>
+  );
+}
+
+export function PersistentGeneralSettings() {
+  const { t } = useLanguage();
+  const { data, loading, error, refresh } = useWorkspaceData();
+  return (
+    <>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">{t("MAKE ROOM FOR YOUR STORY")}</span>
+          <h1>{t("General Settings")}</h1>
+          <p>{t("A few quiet preferences for the road ahead.")}</p>
+        </div>
+        <Badge>{t("Application preferences")}</Badge>
+      </div>
+      <Link className="text-link" href="/">
+        {t("Back to main menu")}
+      </Link>
+      {loading && <p role="status">{t("Loading saved preferences…")}</p>}
+      {error && (
+        <Panel>
+          <p role="alert">{t(error)}</p>
+          <Button onClick={() => void refresh().catch(() => {})}>
+            {t("Retry loading")}
+          </Button>
+        </Panel>
+      )}
+      {data && <PreferenceForm current={data.preferences} />}
+    </>
+  );
+}
+
+function CampaignIdentityForm({ current }: { current: Campaign }) {
+  const { t } = useLanguage();
+  const { mutate, refresh } = useCampaignData();
+  const [draft, setDraft] = useState({
+    title: current.title,
+    subtitle: current.subtitle,
+  });
+  const [baseline, setBaseline] = useState(current);
+  const state = useSave(mutate);
+  const dirty =
+    draft.title !== baseline.title || draft.subtitle !== baseline.subtitle;
+  useUnsavedChanges(dirty);
+  const newer = current.revision !== baseline.revision;
+  return (
+    <Panel title={t("Campaign identity")}>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          const result = await state.save({
+            operation: "campaign.save",
+            campaignId: current.id,
+            expectedRevision: baseline.revision,
+            payload: draft,
+          });
+          if (result)
+            setBaseline({ ...baseline, ...draft, revision: result.revision });
+        }}
+      >
+        <fieldset className="persistence-fields" disabled={state.saving}>
+          <label className="field">
+            {t("Campaign title")}
+            <input
+              required
+              maxLength={200}
+              value={draft.title}
+              onChange={(event) => {
+                state.clearSaved();
+                setDraft({ ...draft, title: event.target.value });
+              }}
+            />
+          </label>
+          <label className="field">
+            {t("Subtitle")}
+            <input
+              maxLength={500}
+              value={draft.subtitle}
+              onChange={(event) => {
+                state.clearSaved();
+                setDraft({ ...draft, subtitle: event.target.value });
+              }}
+            />
+          </label>
+          {state.error && <p role="alert">{t(state.error)}</p>}
+          {newer && (
+            <p role="alert">
+              {t(
+                "Campaign details changed elsewhere. Your draft is retained. Refresh and use saved values to review the current record.",
+              )}
+            </p>
+          )}
+          <div className="button-row">
+            <Button
+              type="submit"
+              primary
+              disabled={!dirty || newer || !draft.title.trim()}
+            >
+              {t(state.saving ? "Saving…" : "Save campaign details")}
+            </Button>
+            <Button onClick={() => void refresh().catch(() => {})}>
+              {t("Refresh saved data")}
+            </Button>
+            <Button
+              onClick={() => {
+                if (
+                  !dirty ||
+                  window.confirm(t("Discard your unsaved changes?"))
+                ) {
+                  setDraft({
+                    title: current.title,
+                    subtitle: current.subtitle,
+                  });
+                  setBaseline(current);
+                  state.clearSaved();
+                }
+              }}
+            >
+              {t("Use saved values")}
+            </Button>
+          </div>
+          <p role="status">
+            {t(
+              dirty
+                ? "Unsaved changes"
+                : state.saved
+                  ? "Saved"
+                  : "Changes take effect after Save.",
+            )}
+          </p>
+        </fieldset>
+      </form>
+    </Panel>
+  );
+}
+
+function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
+  const { t, language } = useLanguage();
+  const { mutate, refresh } = useCampaignData();
+  const [draft, setDraft] = useState(current.settings.values);
+  const [baseline, setBaseline] = useState(current.settings);
+  const state = useSave(mutate);
+  const dirty = JSON.stringify(draft) !== JSON.stringify(baseline.values);
+  useUnsavedChanges(dirty);
+  const newer = current.settings.revision !== baseline.revision;
+  return (
+    <>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault();
+          const result = await state.save({
+            operation: "settings.save",
+            campaignId: current.campaign.id,
+            expectedRevision: baseline.revision,
+            payload: draft,
+          });
+          if (result)
+            setBaseline({
+              ...baseline,
+              values: draft,
+              revision: result.revision,
+            });
+        }}
+      >
+        <fieldset className="persistence-fields" disabled={state.saving}>
+          <CampaignSettingsEditor
+            title={current.campaign.title}
+            settings={draft}
+            onChange={(action) => {
+              state.clearSaved();
+              setDraft((previous) => updateCampaignSettings(previous, action));
+            }}
+          />
+          {state.error && <p role="alert">{t(state.error)}</p>}
+          {newer && (
+            <p role="alert">
+              {t(
+                "Saved preferences changed elsewhere. Your draft is retained; reload saved values before editing again.",
+              )}
+            </p>
+          )}
+          <div className="button-row">
+            <Button type="submit" primary disabled={!dirty || newer}>
+              {t(state.saving ? "Saving…" : "Save campaign settings")}
+            </Button>
+            <Button onClick={() => void refresh().catch(() => {})}>
+              {t("Refresh saved data")}
+            </Button>
+            <Button
+              onClick={() => {
+                if (
+                  !dirty ||
+                  window.confirm(t("Discard your unsaved changes?"))
+                ) {
+                  setDraft(current.settings.values);
+                  setBaseline(current.settings);
+                  state.clearSaved();
+                }
+              }}
+            >
+              {t("Use saved values")}
+            </Button>
+          </div>
+          <p role="status">
+            {t(
+              dirty
+                ? "Unsaved changes"
+                : state.saved
+                  ? "Saved"
+                  : "Changes take effect after Save.",
+            )}
+          </p>
+        </fieldset>
+      </form>
+      <Panel title={t("Settings history")}>
+        <p className="muted">
+          {t(
+            "Each save records a new effective revision. Existing scenes keep the revision they were created with.",
+          )}
+        </p>
+        {current.settingsHistory.length ? (
+          current.settingsHistory.map((revision) => (
+            <details key={revision.id} className="rules-advanced">
+              <summary>
+                {t("Revision {number}", { number: revision.revision })} ·{" "}
+                {new Date(revision.created_at).toLocaleString(language)}
+              </summary>
+              <dl className="detail-list">
+                <dt>{t("Campaign Language")}</dt>
+                <dd>
+                  {revision.values.language === "ru"
+                    ? t("Russian")
+                    : t("English")}
+                </dd>
+                <dt>{t("Difficulty preset")}</dt>
+                <dd>
+                  {t(
+                    {
+                      easy: "Easy",
+                      medium: "Medium",
+                      hard: "Hard",
+                      custom: "Custom",
+                    }[revision.values.difficulty.preset],
+                  )}
+                </dd>
+                <dt>{t("Narrative style")}</dt>
+                <dd>{t(revision.values.narrativeStyle)}</dd>
+                <dt>{t("Dice Presentation")}</dt>
+                <dd>
+                  {t(
+                    {
+                      hidden: "Hidden",
+                      "key-rolls": "Key Rolls",
+                      "all-player-rolls": "All Player Rolls",
+                    }[revision.values.dicePresentation],
+                  )}
+                </dd>
+                <dt>{t("Interactive Dice")}</dt>
+                <dd>{t(revision.values.interactiveDice ? "On" : "Off")}</dd>
+                <dt>{t("Show DC")}</dt>
+                <dd>{t(revision.values.showDc ? "On" : "Off")}</dd>
+              </dl>
+            </details>
+          ))
+        ) : (
+          <p>{t("No saved settings revisions yet.")}</p>
+        )}
+      </Panel>
+    </>
+  );
+}
+
+export function PersistentCampaignSettings() {
+  const { t } = useLanguage();
+  const { data, loading, error, refresh, campaignId } = useCampaignData();
+  return (
+    <>
+      {loading && <p role="status">{t("Loading campaign settings…")}</p>}
+      {error && (
+        <Panel>
+          <p role="alert">{t(error)}</p>
+          <Button onClick={() => void refresh().catch(() => {})}>
+            {t("Retry loading")}
+          </Button>
+        </Panel>
+      )}
+      {data && (
+        <div key={campaignId}>
+          <CampaignIdentityForm current={data.campaign} />
+          <CampaignPreferencesForm current={data} />
+        </div>
+      )}
+    </>
+  );
+}
