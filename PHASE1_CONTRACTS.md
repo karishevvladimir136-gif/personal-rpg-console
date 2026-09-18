@@ -34,3 +34,7 @@ Persistent routes keep `/campaigns/[UUID]/...`; registered sample IDs never reso
 ## Acceptance and current environment
 
 Each workstream supplies focused tests and honest failure/empty/loading states. Final integrated typecheck/lint/test/build required. Live Supabase tests must verify owner/unauth/non-owner direct requests, two campaigns/references, persistence/relogin, document restore/history/conflicts/idempotency, settings separation/history, inventory integrity, no private marker leakage and gameplay endpoint rejection. Browser desktop/mobile English/Russian checks are separate. Missing local Docker/Supabase configuration is currently an external verification prerequisite, not a passing integration result; finish authorized code and instructions before reporting the smallest setup checklist.
+
+## Agreed implementation additions
+
+All three workers acknowledged this contract before GO. B also owns `src/lib/persistence/document-model.ts`. Lead client.ts exports `createMutationAttempt(previous: Mutation|null, input: MutationInput): Mutation`, retaining the request ID for unchanged payloads on retry. `useUnsavedChanges` is exported from persistence-context.tsx. Database/access validation uses development-only PGlite to execute PostgreSQL SQL when full Supabase is unavailable; this is never an application backend or a substitute claim for actual Supabase Auth/REST integration. Agent A adds a typed safe PersistenceError and tolerant SSR cookie writes behind a lead-owned refresh proxy.
