@@ -143,7 +143,9 @@ Build:
 - approved references
 - FRAME button
 - spoiler-safe visual scene builder
-- OpenAI image generation
+- owner-selectable supported image provider/model, with campaign default and per-generation override
+- server-side spoiler-safe text-model prompt preparation with optional review/edit
+- small model registry and provider adapters (MASTER_SPEC section 32)
 - gallery
 - Set as Canon Reference
 
@@ -154,7 +156,7 @@ Acceptance:
 
 Suggested prompt:
 
-> Implement Milestone 4 only. Add Visual Bible and FRAME generation using server-side OpenAI image generation. Use approved references and spoiler-safe visible scene data only. Save generated assets to campaign Gallery.
+> Implement Milestone 4 only. Add Visual Bible and FRAME generation using owner-selected supported provider/model integrations as specified in MASTER_SPEC section 32. Verify provider capabilities and model choices with the owner before integration. Use approved references and spoiler-safe visible scene data only. Save generated assets to campaign Gallery.
 
 ---
 
@@ -164,13 +166,15 @@ Goal:
 One click turns a scene into a short cinematic clip.
 
 Build:
-- fal server integration
+- owner-selected supported video provider/model integration
+- campaign default and manual per-generation model override
+- video-specific spoiler-safe prompt preparation
 - queue submit/status
 - video jobs table
 - current frame as preferred source
 - hidden keyframe fallback
 - character/location references
-- 5/10/15 sec options
+- model-supported duration/audio/reference options (5/10/15 seconds only where supported)
 - async status
 - gallery video
 
@@ -182,7 +186,7 @@ Acceptance:
 
 Suggested prompt:
 
-> Implement Milestone 5 only using fal Seedance. Keep FAL_KEY server-side. Use queue-based async generation. Prefer current scene frame and canonical references. Default 10 seconds. Do not block gameplay.
+> Implement Milestone 5 only following MASTER_SPEC section 32. Confirm the owner's video providers/models and their API capabilities first; fal is a candidate, not a fixed exclusive choice. Keep all keys server-side. Use asynchronous generation with explicit model choice and optional prompt review. Prefer current scene frame and canonical references. Default to 10 seconds only when supported. Do not block gameplay.
 
 ---
 
@@ -203,3 +207,8 @@ Add only after core system is stable:
 
 Acceptance:
 The owner prefers playing here over managing the same campaign manually in ChatGPT.
+
+
+## Preliminary media selection decision
+
+FRAME and VIDEO must support owner choice of supported providers/models, independently, with campaign defaults and per-generation overrides. Optional Fast / Quality / Key Scene profiles supplement rather than replace manual selection. Exact providers/models are undecided. Follow MASTER_SPEC section 32, including spoiler-safe prompt expansion, capability validation, cost transparency, and no silent model fallback. This decision adds no implementation work to Phase 0 and does not authorize starting later milestones.
