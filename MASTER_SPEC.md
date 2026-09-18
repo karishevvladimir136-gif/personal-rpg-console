@@ -910,8 +910,8 @@ Status:
 - Ready
 - Failed / Retry
 
-Preferred initial provider:
-fal / Seedance reference-to-video.
+Provider and model:
+Owner-selectable from supported integrations; fal is a candidate, not a required exclusive provider. See section 32.
 
 Use references for:
 - James
@@ -1050,10 +1050,12 @@ AI text:
 - OpenAI server-side API
 
 Image:
-- OpenAI image generation
+- owner-selected supported image provider/model (OpenAI and fal are candidates)
 
 Video:
-- fal API / Seedance
+- owner-selected supported video provider/model (fal is a candidate)
+
+Keep provider integrations replaceable through small server-side adapters; see section 32.
 
 Use current stable packages.
 Do not introduce microservices.
@@ -1159,8 +1161,8 @@ James stays recognizably consistent across several scenes.
 ## PHASE 5 — VIDEO
 
 Add:
-- fal queue
-- Seedance reference/image-to-video
+- selected provider asynchronous jobs
+- owner-selected supported reference/image-to-video models
 - progress jobs
 - video gallery
 
@@ -1272,3 +1274,36 @@ Version 1 is successful when:
 10. Backups exist.
 
 Everything else is optional.
+
+
+---
+
+# 32. SELECTABLE MEDIA MODELS & PROMPT PREPARATION
+
+Owner-approved preliminary requirement. Model/provider selection is required; the concrete integrations and model identifiers remain undecided. This is documentation only for now, not authorization to expand Phase 0. Implement FRAME in Phase 4 and VIDEO in Phase 5.
+
+## Owner control
+
+Campaign visual settings must provide independent default provider/model selections for FRAME and VIDEO. Each generation may override its campaign default without changing that default. Always allow manual selection from supported, configured models, not only fixed quality presets.
+
+Optional convenience profiles: Fast / Quality / Key Scene. The owner assigns supported models and options to these profiles. These names are labels, not guaranteed rankings or prices. Never silently substitute a different model/provider, especially a more expensive one; explain unavailability and ask for a choice.
+
+OpenAI, fal, and Magnific are candidates only. Magnific may serve a separate enhancement/upscaling step if its verified API supports it. Do not assume every provider supports both image and video generation. The owner's examples of model families or versions are not verified API identifiers. Before implementation, confirm available endpoints, capabilities, pricing, and owner choices.
+
+## Generation pipeline
+
+1. Build a campaign/scene-scoped, spoiler-safe visual brief using only player-visible scene facts and approved visual references.
+2. A server-side text-model call expands the brief into a model-appropriate generation prompt: composition, lighting, atmosphere, and (for video) camera movement and motion. This is prompt preparation, not another story DM or a separate chat the owner must manage.
+3. Offer optional prompt inspection/editing before submission; ordinary one-click generation uses the campaign default.
+4. Validate supported parameters and submit to the explicitly selected generation provider/model.
+5. Track the asynchronous job and attach its result to the originating campaign/scene and Gallery even if the player navigates elsewhere.
+
+Expansion must preserve canonical appearance, equipment, participants, actions, and scene facts. It must not invent plot events, reveal unseen enemies or hidden identities, or access private DM context. Apply the same spoiler-safe boundary to reference assets and any automatically created video keyframe. Generated media and prompt edits do not automatically change story canon or approved references.
+
+## Small, replaceable integration boundary
+
+Use a simple model registry plus small server-side provider adapters, not a generic plugin platform or new backend. Separate prompt preparation from image/video submission and status retrieval. Record the selected provider/model, final prompt, supported parameters, reference asset IDs, job status, and resulting asset metadata per generation, scoped to campaign and scene. Keep credentials server-only.
+
+Expose only options supported by the selected model: reference images, image-to-video, aspect ratio, resolution, duration, and audio. Earlier 10-second/audio-on defaults and 5/10/15-second options apply only when supported; otherwise show a supported choice explicitly. Do not claim an unsupported capability or silently discard references/options.
+
+Display expected cost when a reliable estimate is available, otherwise label cost as unknown. Any fallback keyframe/enhancement step must be disclosed before paid submission. Avoid duplicate paid submissions on repeated clicks/retries; failures preserve gameplay and allow an explicit retry.
