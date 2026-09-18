@@ -3,11 +3,14 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { buildContext, modelBudget } from "../src/lib/gameplay/dm-context.ts";
 import { runtimeFixture } from "./phase2-runtime-fixtures.mjs";
-const model = "gpt-5.4-mini";
+const model = "gpt-6-astra";
 test("verified per-model limits reserve output and at least five percent safety without fallback", () => {
-  assert.equal(modelBudget(model).contextLimit, 400000);
+  assert.equal(modelBudget("gpt-5.4-mini").contextLimit, 400000);
   assert.equal(modelBudget("gpt-5.4").contextLimit, 1050000);
-  assert.equal(modelBudget(model).safetyMargin, 20000);
+  assert.equal(modelBudget(model).contextLimit, 1050000);
+  assert.equal(modelBudget(model).safetyMargin, 52500);
+  assert.equal(modelBudget(model).outputReserve, 4096);
+  assert.equal(modelBudget(model).inputCap, 64000);
   assert.throws(() => modelBudget("unknown-model"), { code: "configuration" });
 });
 test("public narrator and feedback are constructed without private state, private checkpoints or plan prose", () => {

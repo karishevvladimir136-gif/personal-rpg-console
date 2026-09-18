@@ -3,6 +3,7 @@ import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { createRpcTurnStore } from "../../gameplay/dm-store.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { modelBudget } from "../../gameplay/dm-context.ts";
+import { modelReasoning } from "./config.ts";
 
 export function createTurnStore(
   ownerId: string,
@@ -12,6 +13,10 @@ export function createTurnStore(
   let model: string | null = null;
   if (process.env.OPENAI_API_KEY && process.env.OPENAI_DM_MODEL) {
     try {
+      modelReasoning(
+        process.env.OPENAI_DM_MODEL,
+        process.env.OPENAI_DM_REASONING,
+      );
       model = modelBudget(process.env.OPENAI_DM_MODEL).model;
     } catch {
       /* Safe configuration status; no fallback. */

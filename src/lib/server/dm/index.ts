@@ -10,6 +10,7 @@ export function createDmProvider(): DmProvider {
     openAiProvider({
       apiKey: process.env.OPENAI_API_KEY ?? "",
       model: process.env.OPENAI_DM_MODEL ?? "",
+      reasoning: process.env.OPENAI_DM_REASONING,
       observer: (attempt) =>
         console.info(
           JSON.stringify({ event: "dm_provider_attempt", ...attempt }),

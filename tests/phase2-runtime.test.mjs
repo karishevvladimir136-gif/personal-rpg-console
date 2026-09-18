@@ -14,10 +14,13 @@ const hook = registerHooks({
   },
 });
 const { openAiProvider } = await import("../src/lib/server/dm/provider.ts");
+const { createDmProvider, createTurnStore } =
+  await import("../src/lib/server/dm/index.ts");
 hook.deregister();
-const response = (output) =>
+const response = (output, model) =>
   new Response(
     JSON.stringify({
+      model,
       status: "completed",
       output: [
         {
@@ -95,6 +98,185 @@ test("Responses uses strict JSON, no tools/store/stream, bounded output and expl
   assert.equal(body.text.format.schema.additionalProperties, false);
   assert.equal(body.tools, undefined);
   assert.equal(body.stream, undefined);
+  assert.deepEqual(body.reasoning, { effort: "none" });
+});
+
+test("Astra defaults to xhigh for every stage while preserving strict and bounded Responses requests", async () => {
+  const { source, input, plan, resolution } = runtimeFixture();
+  const narration = {
+    narration: "Only the public bell rings.",
+    visualDescription: "A bell.",
+    clarification: null,
+  };
+  const feedback = { narration: "Understood.", guidanceProposal: null };
+  const outputs = [plan, narration, feedback];
+  const requests = [];
+  const provider = openAiProvider({
+    apiKey: "SYNTHETIC_TEST_ONLY",
+    model: "gpt-6-astra",
+    fetcher: async (url, request) => {
+      assert.equal(url, "https://api.openai.com/v1/responses");
+      requests.push(JSON.parse(request.body));
+      return response(outputs[requests.length - 1], "gpt-6-astra");
+    },
+  });
+  assert.deepEqual((await provider.plan(source, input)).output, plan);
+  assert.deepEqual(
+    (await provider.narrate(source, input, resolution, [])).output,
+    narration,
+  );
+  assert.deepEqual(
+    (await provider.feedback(source, { ...input, mode: "feedback" })).output,
+    feedback,
+  );
+  assert.equal(requests.length, 3);
+  for (const body of requests) {
+    assert.equal(body.model, "gpt-6-astra");
+    assert.deepEqual(body.reasoning, { effort: "xhigh" });
+    assert.equal(body.max_output_tokens, 4096);
+    assert.equal(body.store, false);
+    assert.equal(body.truncation, "disabled");
+    assert.equal(body.text.format.type, "json_schema");
+    assert.equal(body.text.format.strict, true);
+    assert.equal(body.text.format.schema.additionalProperties, false);
+    for (const forbidden of [
+      "temperature",
+      "top_p",
+      "top_logprobs",
+      "include",
+      "tools",
+      "stream",
+    ])
+      assert.equal(body[forbidden], undefined);
+  }
+  assert.ok(!requests[1].input.includes("SYNTHETIC_PRIVATE"));
+  assert.ok(!requests[2].input.includes("SYNTHETIC_PRIVATE"));
+});
+
+test("explicit supported reasoning is sent unchanged for the owner's selected model", async () => {
+  const { source, input, plan } = runtimeFixture();
+  for (const [model, efforts] of [
+    ["gpt-6-astra", ["low", "medium", "high", "xhigh", "max"]],
+    ["gpt-5.4", ["none", "low", "medium", "high", "xhigh"]],
+    ["gpt-5.4-mini", ["none", "low", "medium", "high", "xhigh"]],
+  ]) {
+    for (const reasoning of efforts) {
+      let calls = 0;
+      const provider = openAiProvider({
+        apiKey: "SYNTHETIC_TEST_ONLY",
+        model,
+        reasoning,
+        fetcher: async (_url, request) => {
+          const body = JSON.parse(request.body);
+          assert.equal(body.model, model);
+          assert.deepEqual(body.reasoning, { effort: reasoning });
+          calls++;
+          return response(plan, model);
+        },
+      });
+      await provider.plan(source, input);
+      assert.equal(calls, 1);
+    }
+  }
+});
+
+test("unsupported reasoning fails safely before transport without dropping it or switching models", async () => {
+  const { source, input } = runtimeFixture();
+  let calls = 0;
+  for (const [model, reasoning] of [
+    ["gpt-6-astra", "none"],
+    ["gpt-6-astra", "minimal"],
+    ["gpt-6-astra", "ultra"],
+    ["gpt-6-astra", ""],
+    ["gpt-6-astra", "XHIGH"],
+    ["gpt-6-astra", "SYNTHETIC_PRIVATE_BAD_SETTING"],
+    ["gpt-5.4", "max"],
+    ["gpt-5.4-mini", "max"],
+  ]) {
+    const observed = [];
+    const provider = openAiProvider({
+      apiKey: "SYNTHETIC_TEST_ONLY",
+      model,
+      reasoning,
+      observer: (attempt) => observed.push(attempt),
+      fetcher: async () => {
+        calls++;
+        throw new Error("Must not call transport");
+      },
+    });
+    await assert.rejects(provider.plan(source, input), {
+      code: "configuration",
+      retryable: true,
+    });
+    assert.equal(observed[0].attempted, false);
+    assert.equal(observed[0].configuredModel, model);
+    assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
+  }
+  assert.equal(calls, 0);
+});
+
+test("actual Astra aliases and dated responses are reported safely, never arbitrary provider text", async () => {
+  const { source, input, plan } = runtimeFixture();
+  for (const actual of [
+    "gpt-6-astra",
+    "gpt-6-astra-2026-09-18", // Synthetic reporting format, not an advertised selectable snapshot.
+    "gpt-6-astra-SYNTHETIC_PRIVATE_MODEL",
+    "gpt-6-astra\nSYNTHETIC_PRIVATE_MODEL",
+    "SYNTHETIC_PRIVATE_MODEL",
+  ]) {
+    const observed = [];
+    const provider = openAiProvider({
+      apiKey: "SYNTHETIC_TEST_ONLY",
+      model: "gpt-6-astra",
+      observer: (attempt) => observed.push(attempt),
+      fetcher: async () => response(plan, actual),
+    });
+    const result = await provider.plan(source, input);
+    const safe = actual.includes("SYNTHETIC_PRIVATE") ? null : actual;
+    assert.equal(observed[0].actualModel, safe);
+    assert.equal(result.usage.model, safe ?? "gpt-6-astra");
+    assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
+    assert.ok(!JSON.stringify(result.usage).includes("SYNTHETIC_PRIVATE"));
+  }
+});
+
+test("server environment drives provider reasoning and readiness rejects invalid configuration", async (t) => {
+  const { source, input, plan } = runtimeFixture();
+  const names = ["OPENAI_API_KEY", "OPENAI_DM_MODEL", "OPENAI_DM_REASONING"];
+  const previous = names.map((name) => process.env[name]);
+  t.after(() =>
+    names.forEach((name, index) => {
+      if (previous[index] === undefined) delete process.env[name];
+      else process.env[name] = previous[index];
+    }),
+  );
+  process.env.OPENAI_API_KEY = "SYNTHETIC_TEST_ONLY";
+  process.env.OPENAI_DM_MODEL = "gpt-6-astra";
+  process.env.OPENAI_DM_REASONING = "high";
+  const bodies = [];
+  t.mock.method(globalThis, "fetch", async (_url, request) => {
+    bodies.push(JSON.parse(request.body));
+    return response(plan, "gpt-6-astra");
+  });
+  t.mock.method(console, "info", () => {});
+  const client = { rpc: async () => ({ data: source.runtime }) };
+  const read = () =>
+    createTurnStore(source.ownerId, client).readPlay(input.campaignId);
+  assert.equal((await read()).configured, true);
+  await createDmProvider().plan(source, input);
+  assert.deepEqual(bodies[0].reasoning, { effort: "high" });
+  delete process.env.OPENAI_DM_REASONING;
+  assert.equal((await read()).model, "gpt-6-astra");
+  await createDmProvider().plan(source, input);
+  assert.deepEqual(bodies[1].reasoning, { effort: "xhigh" });
+  process.env.OPENAI_DM_REASONING = "none";
+  const unavailable = await read();
+  assert.equal(unavailable.configured, false);
+  assert.equal(unavailable.model, null);
+  await assert.rejects(createDmProvider().plan(source, input), {
+    code: "configuration",
+  });
+  assert.equal(bodies.length, 2);
 });
 test("public provider stage cannot receive planner/private data despite hostile quoted text", async () => {
   const { source, input, resolution } = runtimeFixture();

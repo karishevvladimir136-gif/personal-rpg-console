@@ -11,10 +11,13 @@ import { DmError } from "./dm-errors.ts";
 import { planSchema, narrationSchema, feedbackSchema } from "./dm-schema.ts";
 
 // Limits verified 2026-09-18 against official model pages:
+// https://developers.openai.com/api/docs/models/gpt-6-astra
 // https://developers.openai.com/api/docs/models/gpt-5.4
 // https://developers.openai.com/api/docs/models/gpt-5.4-mini
-// 128k provider output maximum is deliberately capped to 4096 per application call.
+// 128k provider output maximum is deliberately capped to 4096 per application call,
+// including reasoning tokens. The operational input cap stays independent of C.
 const models: Record<string, number> = {
+  "gpt-6-astra": 1050000,
   "gpt-5.4": 1050000,
   "gpt-5.4-mini": 400000,
 };

@@ -12,6 +12,7 @@ import {
 } from "../../gameplay/dm-schema.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type { TurnFailure } from "../../gameplay/contracts.ts";
+import { modelReasoning } from "./config.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
@@ -29,6 +30,7 @@ export type ProviderAttempt = {
 type Options = {
   apiKey: string;
   model: string;
+  reasoning?: string;
   fetcher?: typeof fetch;
   timeoutMs?: number;
   observer?: (attempt: ProviderAttempt) => void;
@@ -58,6 +60,7 @@ export function openAiProvider(options: Options): DmProvider {
         throw new DmError("configuration", true);
       const body = {
         model: options.model,
+        reasoning: { effort: modelReasoning(options.model, options.reasoning) },
         instructions: context.instructions,
         input: context.input,
         max_output_tokens: context.budget.outputReserve,
@@ -119,7 +122,9 @@ export function openAiProvider(options: Options): DmProvider {
       }
       if (
         typeof payload?.model === "string" &&
-        /^gpt-5\.4(?:-mini)?(?:-\d{4}-\d{2}-\d{2})?$/.test(payload.model)
+        /^(?:gpt-6-astra|gpt-5\.4(?:-mini)?)(?:-\d{4}-\d{2}-\d{2})?$/.test(
+          payload.model,
+        )
       )
         attempt.actualModel = payload.model;
       const rawUsage = payload?.usage as Record<string, unknown> | null;
@@ -176,7 +181,7 @@ export function openAiProvider(options: Options): DmProvider {
       return {
         output,
         usage: {
-          model: options.model,
+          model: attempt.actualModel ?? options.model,
           inputTokens: usage.input_tokens as number,
           outputTokens: usage.output_tokens as number,
           calls: 1,

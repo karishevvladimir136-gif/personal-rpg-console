@@ -11,7 +11,7 @@ The existing local Supabase database and owner account remain in place. Do not r
 The agent can obtain the disposable local Supabase service credential from the existing CLI and place it directly in ignored `.env.local`. You should not copy it into chat. The application's server needs these names:
 
 - Existing: `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` (or `SUPABASE_ANON_KEY`), `RPG_OWNER_USER_ID`.
-- New: `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY`, `OPENAI_DM_MODEL`.
+- New: `SUPABASE_SERVICE_ROLE_KEY`, `OPENAI_API_KEY`, `OPENAI_DM_MODEL`, `OPENAI_DM_REASONING`.
 
 None uses a `NEXT_PUBLIC_` prefix. `.env*`, backups, test credentials and local acceptance outputs are ignored by Git. Never put credentials in source files, documentation, screenshots or chat.
 
@@ -22,17 +22,32 @@ Do this when the agent reports that deterministic integration is green and asks 
 1. Open [OpenAI Platform API keys](https://platform.openai.com/api-keys) in your browser and sign in. API billing is separate from a ChatGPT subscription. If the Platform says billing is required, use its Billing page to set up API billing and a spending budget you are comfortable with.
 2. Create a project API key using **Create new secret key**. Name it something recognizable, such as `Personal RPG Console local`. Keep the key in that browser until the next steps are ready. Do not send it to the agent.
 3. Open **File Explorer** and go to `C:\Users\karis\OneDrive\Documents\GitHub\personal-rpg-console`. Right-click `.env.local`, choose **Open with**, then **Notepad**. If it is not listed, use Notepad's **File → Open**, select **All files**, and open `.env.local` in that folder.
-4. Preserve the existing lines. Add or replace these two lines locally:
+4. Preserve the existing lines. Add or replace these three lines locally:
 
    ```dotenv
    OPENAI_API_KEY=PASTE_YOUR_NEW_KEY_HERE_ONLY_IN_THIS_LOCAL_FILE
-   OPENAI_DM_MODEL=gpt-5.4-mini
+   OPENAI_DM_MODEL=gpt-6-astra
+   OPENAI_DM_REASONING=xhigh
    ```
 
-   Replace only the placeholder after `OPENAI_API_KEY=` with your actual key. No spaces around `=` are needed. `gpt-5.4-mini` is the lower-cost supported starting choice; `gpt-5.4` is also supported if you prefer it. The application never switches models automatically. Supported limits are verified against the official [mini model page](https://developers.openai.com/api/docs/models/gpt-5.4-mini) and [GPT-5.4 model page](https://developers.openai.com/api/docs/models/gpt-5.4).
+   Replace only the placeholder after `OPENAI_API_KEY=` with your actual key. No spaces around `=` are needed. The owner-selected baseline is **GPT-6 Astra with xhigh reasoning**. The [official Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra) confirms this model ID, `xhigh`, Structured Outputs and a 1,050,000-token context window (verified September 18, 2026). The [official migration guidance](https://developers.openai.com/api/docs/guides/latest-model) specifies `reasoning.effort` for Responses; the server sends `reasoning: { effort: "xhigh" }`.
 5. Press **Ctrl+S**, close Notepad, and tell the agent only **“OpenAI is configured locally.”** Do not paste the file or key. The agent will check presence without displaying values, restart the local application, and perform the authorized small synthetic live test.
 
 If a key was accidentally shared, revoke it on the API keys page and create a replacement. Do not send the replacement in chat.
+
+## Explicit model and reasoning choices
+
+`OPENAI_DM_MODEL` is required; a missing or unknown model never falls back to another model. `OPENAI_DM_REASONING` is server-only and applies to planning, narration and feedback alike. Supported values are lowercase:
+
+| Explicit model | Reasoning choices | If reasoning is omitted | Verified context window |
+| --- | --- | --- | --- |
+| `gpt-6-astra` | `low`, `medium`, `high`, `xhigh`, `max` | `xhigh` (application baseline) | 1,050,000 |
+| `gpt-5.4` | `none`, `low`, `medium`, `high`, `xhigh` | `none` (preserves previous behavior) | 1,050,000 |
+| `gpt-5.4-mini` | `none`, `low`, `medium`, `high`, `xhigh` | `none` (preserves previous behavior) | 400,000 |
+
+The previous models remain explicit owner-selectable alternatives, verified against their official [GPT-5.4](https://developers.openai.com/api/docs/models/gpt-5.4) and [mini](https://developers.openai.com/api/docs/models/gpt-5.4-mini) pages. Astra does not support `none` or `minimal`; the 5.4 alternatives do not support `max`. Invalid values, including a blank reasoning assignment, stop with a configuration error before a provider call. There is no automatic fallback, effort reduction or model switching.
+
+The larger model window does not expand the application's context policy: the conservative 64,000 input cap, 5% model-window safety margin, complete-exchange limit and safe continuity pauses remain. The existing **4,096-token output reserve includes reasoning and the visible response**, with the existing 60-second request timeout. Incomplete or timed-out responses preserve input for retry; real Astra latency/output sufficiency and quality remain unverified until a separately resumed live acceptance run. Strict Structured Outputs and public/private boundaries are unchanged. No live OpenAI call is part of this compatibility update.
 
 ## Opening the application
 
