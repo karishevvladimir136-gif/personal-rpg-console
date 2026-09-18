@@ -149,5 +149,7 @@
   "The DM Guide changed after this proposal. Request a new proposal based on the current guide; your saved guidance is unchanged.": "Руководство DM изменилось после этого предложения. Запросите новое предложение с учётом текущего руководства; сохранённые указания не изменены.",
   "Saved rest settings are unavailable here. The server will verify the original supply cost.": "Сохранённые настройки отдыха здесь недоступны. Сервер проверит исходную стоимость припасов.",
   "This rest keeps the rules saved when it began. New settings apply to the next rest.": "Этот отдых использует правила, сохранённые в момент его начала. Новые настройки действуют со следующего отдыха.",
-  "This encounter keeps its starting damage and defeat rules. New settings apply to the next encounter.": "В этом столкновении сохраняются исходные правила урона и поражения. Новые настройки действуют со следующего столкновения."
+  "This encounter keeps its starting damage and defeat rules. New settings apply to the next encounter.": "В этом столкновении сохраняются исходные правила урона и поражения. Новые настройки действуют со следующего столкновения.",
+  "Use supports one configured healing item at a time. Other quantities remain available for transfers.": "Использовать можно один предмет с явно заданным лечебным свойством за раз. При перемещении можно выбрать другое количество.",
+  "Session guidance requires the same open session as this proposal.": "Указания на сессию требуют той же открытой сессии, в которой создано предложение."
 }

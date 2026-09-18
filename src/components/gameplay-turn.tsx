@@ -37,7 +37,9 @@ export function GameplayGuidanceProposal({
   if (!proposal) return null;
   const session = data?.sessions.find(
     (row) =>
-      row.id === data.publicState.current_session_id && row.status === "open",
+      row.id === data.publicState.current_session_id &&
+      row.id === turn.session_id &&
+      row.status === "open",
   );
   const approve = async (scope: "session" | "campaign") => {
     if (guard.current) return;
@@ -134,7 +136,9 @@ export function GameplayGuidanceProposal({
           </div>
           {!session && (
             <p className="muted">
-              {t("Session guidance requires an open resume session.")}
+              {t(
+                "Session guidance requires the same open session as this proposal.",
+              )}
             </p>
           )}
         </>

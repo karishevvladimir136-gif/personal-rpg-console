@@ -278,7 +278,7 @@ export function GameplayComposer({
           )}
         </p>
       )}
-      {!historyOnly && !currentSession && (
+      {!historyOnly && mode !== "feedback" && !currentSession && (
         <p className="muted">
           {t("Choose an open resume session before sending an action.")}
         </p>
@@ -362,7 +362,7 @@ export function GameplayComposer({
               disabled={
                 !ready ||
                 busy ||
-                !currentSession ||
+                (mode !== "feedback" && !currentSession) ||
                 (!journal.attempt &&
                   (!journal.text.trim() || stateChangingBusy))
               }

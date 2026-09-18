@@ -118,6 +118,12 @@ export function GameplayItemActions({ item }: { item: Item }) {
   );
   const actor = actors.find((row) => row.id === actorId) ?? actors[0];
   const destinationRow = data.storages.find((row) => row.id === destination);
+  const canUse =
+    quantity === 1 &&
+    item.quantity >= 1 &&
+    play.configuration?.itemRules.some(
+      (rule) => rule.itemId === item.id && rule.tag === "healing",
+    );
   return (
     <details className="gameplay-item-actions">
       <summary>{t("Use, transfer or equip")}</summary>
@@ -153,13 +159,20 @@ export function GameplayItemActions({ item }: { item: Item }) {
             quantity,
           }}
           label={t("Use item")}
-          disabled={quantity < 1 || quantity > item.quantity}
+          disabled={!canUse}
           onSaved={runtime.afterMutation}
         >
           <p>
             {item.name} × {quantity}
           </p>
         </GameplayMechanicAction>
+      )}
+      {!canUse && (
+        <p className="muted">
+          {t(
+            "Use supports one configured healing item at a time. Other quantities remain available for transfers.",
+          )}
+        </p>
       )}
       <RecordSelect
         label={t("Destination storage")}
