@@ -1,32 +1,37 @@
 "use client";
 import { useLanguage } from "@/components/language-context";
 
-import { useState } from "react";
+import Link from "next/link";
 import type { Screen } from "@/lib/mock-data";
 import { Game } from "./game";
 import { Character } from "./character";
-import { Journal, MapTravel, Party } from "./journal-map";
+import { Journal, MapTravel } from "./journal-map";
 import { Campaigns, Library, Sessions } from "./collections";
 import { Badge, Panel } from "./ui";
-import { usePreview } from "./preview-context";
+import { usePreferences } from "./preview-context";
 import { languageOptions } from "@/lib/i18n";
+import { InventoryScreen } from "./inventory";
+import { Party } from "./companions";
+import { Camp } from "./camp";
 import { CampaignSettingsPanel } from "./campaign-settings";
 
-function Settings() {
+export function GeneralSettings() {
   const { t, language, setLanguage } = useLanguage();
-  const { largeText, setLargeText, suggestions, setSuggestions } = usePreview();
-  const [verbosity, setVerbosity] = useState("Literary");
+  const { largeText, setLargeText, suggestions, setSuggestions } =
+    usePreferences();
   return (
     <>
       <div className="page-heading">
         <div>
           <span className="eyebrow">{t("MAKE ROOM FOR YOUR STORY")}</span>
-          <h1>{t("Settings")}</h1>
+          <h1>{t("General Settings")}</h1>
           <p>{t("A few quiet preferences for the road ahead.")}</p>
         </div>
         <Badge>{t("Preview settings")}</Badge>
       </div>
-      <CampaignSettingsPanel />
+      <Link className="text-link" href="/">
+        {t("Back to main menu")}
+      </Link>
       <h2 className="application-settings-heading">
         {t("Application preferences")}
       </h2>
@@ -85,22 +90,6 @@ function Settings() {
                 <span />
               </button>
             </div>
-            <label className="field">
-              {t("Narrative style")}
-              <select
-                value={verbosity}
-                onChange={(event) => setVerbosity(event.target.value)}
-              >
-                <option value="Literary">{t("Literary")}</option>
-                <option value="Concise">{t("Concise")}</option>
-                <option value="Detailed">{t("Detailed")}</option>
-              </select>
-            </label>
-            <p className="muted">
-              {t(
-                "Reading controls work in this preview. Narrative style is a sample preference for future narration.",
-              )}
-            </p>
           </Panel>
         </div>
         <div>
@@ -146,7 +135,8 @@ function Settings() {
     </>
   );
 }
-export function ScreenView({ screen }: { screen: Screen }) {
+export function ScreenView({ screen }: { screen: Screen | "camp" }) {
+  const { t } = useLanguage();
   switch (screen) {
     case "campaigns":
       return <Campaigns />;
@@ -155,7 +145,7 @@ export function ScreenView({ screen }: { screen: Screen }) {
     case "character":
       return <Character />;
     case "inventory":
-      return <Character inventoryOnly />;
+      return <InventoryScreen />;
     case "party":
       return <Party />;
     case "journal":
@@ -169,6 +159,15 @@ export function ScreenView({ screen }: { screen: Screen }) {
     case "gallery":
       return <Sessions galleryOnly />;
     case "settings":
-      return <Settings />;
+      return (
+        <>
+          <div className="page-heading">
+            <h1>{t("Campaign Settings")}</h1>
+          </div>
+          <CampaignSettingsPanel />
+        </>
+      );
+    case "camp":
+      return <Camp />;
   }
 }

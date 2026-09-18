@@ -6,69 +6,15 @@ import Link from "next/link";
 import { clues, locations } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import { usePreview } from "./preview-context";
+import { Party } from "./companions";
 import { WorldMap } from "./world-map";
-
-export function Party() {
-  const { t } = useLanguage();
-  return (
-    <>
-      <div className="page-heading">
-        <div>
-          <span className="eyebrow">{t("THE PEOPLE BESIDE YOU")}</span>
-          <h1>{t("Party & Relationships")}</h1>
-          <p>{t("Trust is something you build along the road.")}</p>
-        </div>
-      </div>
-      <div className="party-grid">
-        {[
-          [
-            "James",
-            "james",
-            "You",
-            "Human · Warlock · Level 3",
-            "A private detective, 32. Still asking questions.",
-          ],
-          [
-            "Jinn",
-            "jinn",
-            "Close",
-            "Long-term partner",
-            "A familiar presence in an unfamiliar world. He recognized something about the letter’s seal.",
-          ],
-          [
-            "Goran",
-            "meeting",
-            "Friendly",
-            "Known contact · Not traveling",
-            "A source of useful road information. Last encountered in Chicago.",
-          ],
-        ].map(([name, art, relationship, role, description]) => (
-          <Panel key={name} className="party-card">
-            <Art name={art} />
-            <div>
-              <Badge green>{t(relationship)}</Badge>
-              <h2>{t(name)}</h2>
-              <p className="gold">{t(role)}</p>
-              <p>{t(description)}</p>
-            </div>
-          </Panel>
-        ))}
-      </div>
-      <p className="muted mt-6">
-        {t(
-          "Only player-known relationships are shown. All entries are sample campaign data.",
-        )}
-      </p>
-    </>
-  );
-}
 
 export function Journal() {
   const { t } = useLanguage();
   const [tab, setTab] = useState("Evidence");
   const [selected, setSelected] = useState<(typeof clues)[number] | null>(null);
   const [note, setNote] = useState("");
-  const { notes, addNote } = usePreview();
+  const { notes, addNote, href } = usePreview();
   return (
     <>
       <div className="page-heading">
@@ -161,7 +107,7 @@ export function Journal() {
                 <span>{t("Goran")}</span>
                 <Badge green>{t("Friendly")}</Badge>
               </div>
-              <Link className="text-link" href="/party">
+              <Link className="text-link" href={href("party")}>
                 {t("All known people")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>
@@ -191,7 +137,7 @@ export function Journal() {
             <p>
               {t("Keep the Ford running. Find a safe route beyond the city.")}
             </p>
-            <Link className="button" href="/map">
+            <Link className="button" href={href("map")}>
               {t("Plan the route")}
             </Link>
           </Panel>
@@ -240,7 +186,7 @@ export function Journal() {
               <h2>{t(location.name)}</h2>
               <Badge>{t(location.status)}</Badge>
               <p>{t(location.description)}</p>
-              <Link href="/map" className="text-link">
+              <Link href={href("map")} className="text-link">
                 {t("Open map")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>

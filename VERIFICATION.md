@@ -97,3 +97,38 @@ Manual browser checks (Chromium via the in-app browser):
 Not verified: actual screen-reader speech, operating-system reduced-motion preference switching or browser media emulation, physical iPhone/Safari/touch/software keyboard, and separate console-log capture for this refinement. Reduced-motion behavior was verified in the lifecycle tests and its CSS media rule inspected. Rapid duplicate activation is covered by the controller regression test; browser checks verified disabled controls while rolling. No real dice, AI, backend, persistence, or rules-engine behavior was tested or implemented. Owner approval of Phase 0 remains pending.
 
 Remote documentation-only item-transformation requirements are preserved alongside the checks contract. Those future Phase 2 capabilities are unimplemented and are not covered by the above application tests.
+
+## Consolidated Phase 0 refinement — September 17, 2026
+
+This section supersedes earlier opening/navigation instructions; earlier verification sections are historical. Owner Phase 0 approval remains pending.
+
+Automated verification:
+
+- `pnpm typecheck`: passed.
+- `pnpm lint`: passed without warnings.
+- `pnpm build`: passed, including app-level routes, scoped campaign screens, legacy redirects and campaign-root redirect. The final build includes the Russian conversation-starter wrapping fix.
+- `pnpm test`: **49 passed** against development and production. Breakdown: 19 HTTP, 4 dictionary/source localization, 8 difficulty/rules, 9 dice/presentation/lifecycle, 9 consolidated-refinement tests.
+- HTTP checks cover the three navigation levels, all screens and local artwork, legacy redirects, campaign-root continuation, unknown/concept campaign rejection, reachable Game Rest/dice entries, and direct Camp starting closed.
+- New pure-model tests cover campaign URL identity; shared/scoped equipment and storage references; absent/no-equipment entities; deposits versus camp-only withdrawals and cargo proximity; invalid quantities and cross-campaign rejection; sample camp transitions without inventory mutation; zero-capable separate costs and Custom behavior; independent/eligible conversations; recipe access, recipients, insufficiency and unchanged stock; translated data-driven content; and the image demonstration's lack of provider/network/persistence code.
+- Existing dice tests still cover fixed arithmetic, higher/lower kept die, private-check/DC filtering, setting independence, duplicate activation, cancellation and reduced-motion scheduling. Unit tests do not substitute for the React/browser checks below.
+
+Browser checks (performed through the browser UI, not claimed as automated test-suite coverage):
+
+- Main menu has only Campaigns, General Settings and Exit. Exit explains the missing sign-out without closing/clearing anything. Selection → Continue opens the scoped Game route; campaign sidebar/bottom navigation is absent outside campaigns. Mobile menu links reach all original screens.
+- Desktop item grids and player paper doll reviewed visually. Item click/keyboard focus, short tooltip, expanded amulet history, separated mechanics/flavor, quantity/owner/storage and image explanation/local demo/restore all checked. Focus returns to the invoking item.
+- Remote notebook deposit shows an unchanged-inventory sample outcome. Closed-camp stash transfer/use/equip are disabled. Active camp enables the spare-coat previews; cargo remains unavailable. Companion inventory from Camp selects Jinn's shared belongings.
+- Party → Jinn accepts literal English/Russian player text and retains it in Camp. Starters populate free text. Goran Talk/Inventory are disabled. Food/drink Talk uses the same history and additional optional starters without a reply.
+- Unsafe sample prevents entry; quiet sample enters. Short Rest shows no stash supply availability and causes no recovery/unlock. Long Rest lists participants and stash supplies; completion closes access and reports no real changes. Leave returns to Game without recovery.
+- Grilled meal and coffee are available; stew shows missing vegetables. Selected recipients appear in the simulated preparation outcome. Provisional bonus, one-meal/one-drink limits, after-rest activation/expiry, separate preparation/consumption and no-cost-rest caveats are visible.
+- Long-rest cost 0 selects Custom, preserves other settings and remains after Library → Campaign Settings. Campaign Language changed independently while the interface remained English. Interface Russian switches app/campaign labels without translating entered messages.
+- React dice regression caught during the state refactor: unstable setter identity cancelled the reveal timer. Fixed with stable campaign-store callbacks. Development and production now reveal 14 + 3 + 2 = 19; production keyboard Enter activation and Hidden narrative-only presentation also passed.
+- Nested dialog regression caught: Escape in an item detail also closed its stash parent. Stop propagation now keeps Tab/Shift+Tab in the top dialog; first Escape restores item focus inside stash, second Escape closes stash. Confirmed in browser.
+- Desktop and 390px/320px layouts reviewed. All ten sidebar campaign screens plus Camp fit Russian 320px without page-wide horizontal overflow. General Settings also fits. Camp/cooking, companion conversation, transfer and item-image dialogs checked at phone widths. Long food-conversation starters originally caused 15px internal overflow at 320px; wrapping fixed it, and dialog scroll width now equals client width (256px) for conversation and nested item/stash dialogs. At 390px cooking dialog widths were 326px with no horizontal overflow.
+
+Limits of verification:
+
+- Real gameplay, access security, persistence, AI, provider calls, item transfer effects, buffs and server dice do not exist and were not tested as implemented features.
+- No second playable campaign is provided. Isolation is covered by invalid/other-ID model tests and HTTP rejection of unknown/concept routes.
+- Actual screen-reader speech, OS-level reduced-motion switching, physical iPhone/Safari and software keyboard were not tested. Reduced-motion dice behavior is unit-tested; camp CSS removes its animation under the preference. Browser console logs and a network trace were not separately collected. The image action code has no provider/network path.
+- Full-page screenshot stitching produced duplicate fixed/sticky regions; visual assessment used normal viewport screenshots and DOM width measurements instead.
+- Development remains on loopback port 3000. Temporary production verification uses port 3001 and is stopped after verification. Changes remain temporary; refreshing resets languages and closes demo camp.

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { clues } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
 import { usePreview } from "./preview-context";
+import { RestAction } from "./camp";
 import { DicePreviewButton } from "./dice-preview";
 
 export function CharacterSummary() {
@@ -34,7 +35,7 @@ export function CharacterSummary() {
 
 export function Game() {
   const { t } = useLanguage();
-  const { messages, addMessage, saved, setSaved, addNote, suggestions } =
+  const { messages, addMessage, saved, setSaved, addNote, suggestions, href } =
     usePreview();
   const [draft, setDraft] = useState("");
   const [ooc, setOoc] = useState(false);
@@ -52,7 +53,8 @@ export function Game() {
           <span className="eyebrow">{t("SESSION 04")}</span>
           <h1>{t("The Letter")}</h1>
         </div>
-        <Link href="/sessions" className="text-link">
+        <RestAction />
+        <Link href={href("sessions")} className="text-link">
           {t("Session recap")} <Icon name="ChevronRight" size={15} />
         </Link>
       </div>
@@ -229,7 +231,7 @@ export function Game() {
         <aside className="context-column">
           <Panel className="character-quick">
             <CharacterSummary />
-            <Link className="text-link" href="/character">
+            <Link className="text-link" href={href("character")}>
               {t("Character sheet")} <Icon name="ChevronRight" size={14} />
             </Link>
           </Panel>
@@ -255,14 +257,14 @@ export function Game() {
                 {t("and find its sender.")}
               </p>
             </div>
-            <Link className="text-link" href="/journal">
+            <Link className="text-link" href={href("journal")}>
               {t("View in journal")} <Icon name="ArrowRight" size={14} />
             </Link>
           </Panel>
           <Panel
             title={t("Traveling together")}
             action={
-              <Link href="/party" className="text-link">
+              <Link href={href("party")} className="text-link">
                 {t("View")}
               </Link>
             }
@@ -281,13 +283,17 @@ export function Game() {
           <Panel
             title={t("Recent clues")}
             action={
-              <Link href="/journal" className="text-link">
+              <Link href={href("journal")} className="text-link">
                 {t("View all")}
               </Link>
             }
           >
             {clues.slice(0, 3).map((clue) => (
-              <Link className="clue-row" href="/journal" key={clue.title}>
+              <Link
+                className="clue-row"
+                href={href("journal")}
+                key={clue.title}
+              >
                 <Art name={clue.art} />
                 <div>
                   <h3>{t(clue.title)}</h3>

@@ -253,6 +253,40 @@ function RulesAndPlayStyle() {
                 change({ type: "difficulty", key: "recovery", value })
               }
             />
+            {(["shortRestSupplyCost", "longRestSupplyCost"] as const).map(
+              (key) => (
+                <label className="field" key={key}>
+                  {t(
+                    key === "shortRestSupplyCost"
+                      ? "Short-rest supply cost"
+                      : "Long-rest supply cost",
+                  )}
+                  <select
+                    value={difficulty[key]}
+                    onChange={(event) =>
+                      change({
+                        type: "difficulty",
+                        key,
+                        value: Number(event.target.value),
+                      })
+                    }
+                  >
+                    {[0, 1, 2, 3, 4, 5].map((cost) => (
+                      <option key={cost} value={cost}>
+                        {cost === 0
+                          ? t("No cost")
+                          : t("{count} per participant", { count: cost })}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ),
+            )}
+            <p className="muted">
+              {t(
+                "Supply units per participating character, separate from Recovery. Recipe ingredients are additional and never counted twice. All values are provisional.",
+              )}
+            </p>
             <SelectSetting
               label={t("Resource scarcity")}
               options={scarcityOptions}
@@ -413,7 +447,12 @@ function RulesAndPlayStyle() {
 
 export function CampaignSettingsPanel() {
   const { t } = useLanguage();
-  const { campaignSettings, setCampaignLanguage } = usePreview();
+  const {
+    campaignSettings,
+    setCampaignLanguage,
+    changeCampaignSettings: change,
+    campaign,
+  } = usePreview();
   const [tab, setTab] = useState("general");
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const tabs = [
@@ -428,7 +467,7 @@ export function CampaignSettingsPanel() {
       <div className="campaign-settings-heading">
         <div>
           <span className="eyebrow">{t("Campaign settings")}</span>
-          <h2 id="campaign-settings-title">{t("The Long Road West")}</h2>
+          <h2 id="campaign-settings-title">{t(campaign.title)}</h2>
         </div>
         <Badge>{t("This campaign only")}</Badge>
       </div>
@@ -506,8 +545,28 @@ export function CampaignSettingsPanel() {
           </div>
           <div>
             <label className="field">
+              {t("Narrative style")}
+              <select
+                value={campaignSettings.narrativeStyle}
+                onChange={(event) =>
+                  change({ type: "narrativeStyle", value: event.target.value })
+                }
+              >
+                {["Literary", "Concise", "Detailed"].map((value) => (
+                  <option key={value} value={value}>
+                    {t(value)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="field">
               {t("Campaign visual style")}
-              <select defaultValue="Cinematic noir">
+              <select
+                value={campaignSettings.visualStyle}
+                onChange={(event) =>
+                  change({ type: "visualStyle", value: event.target.value })
+                }
+              >
                 <option value="Cinematic noir">{t("Cinematic noir")}</option>
                 <option value="Painterly western">
                   {t("Painterly western")}
@@ -518,7 +577,12 @@ export function CampaignSettingsPanel() {
             <div className="form-grid">
               <label className="field">
                 {t("Frame ratio")}
-                <select defaultValue="16:9">
+                <select
+                  value={campaignSettings.frameRatio}
+                  onChange={(event) =>
+                    change({ type: "frameRatio", value: event.target.value })
+                  }
+                >
                   <option value="16:9">16:9</option>
                   <option value="4:3">4:3</option>
                   <option value="1:1">1:1</option>
@@ -526,7 +590,12 @@ export function CampaignSettingsPanel() {
               </label>
               <label className="field">
                 {t("Video duration")}
-                <select defaultValue="10 seconds">
+                <select
+                  value={campaignSettings.videoDuration}
+                  onChange={(event) =>
+                    change({ type: "videoDuration", value: event.target.value })
+                  }
+                >
                   <option value="5 seconds">{t("5 seconds")}</option>
                   <option value="10 seconds">{t("10 seconds")}</option>
                   <option value="15 seconds">{t("15 seconds")}</option>

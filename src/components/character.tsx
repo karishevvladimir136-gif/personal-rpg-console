@@ -2,154 +2,18 @@
 import { useLanguage } from "@/components/language-context";
 
 import { useState } from "react";
-import { items } from "@/lib/mock-data";
-import { Art, Badge, Button, Icon, Meter, Modal, Panel, Tabs } from "./ui";
+import { entities } from "@/lib/inventory-model";
+import { EquipmentDoll, StorageInventory } from "./inventory";
+import { Badge, Icon, Meter, Panel, Tabs } from "./ui";
 import { usePreview } from "./preview-context";
 
-export function Inventory({ compact = false }: { compact?: boolean }) {
-  const { t, language } = useLanguage();
-  const [category, setCategory] = useState("All");
-  const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<(typeof items)[number] | null>(null);
-  const filtered = items.filter(
-    (item) =>
-      (category === "All" || item.category === category) &&
-      t(item.name)
-        .toLocaleLowerCase(language)
-        .includes(query.toLocaleLowerCase(language)),
-  );
+function Inventory() {
+  const { campaign } = usePreview();
   return (
-    <Panel
-      className="inventory-panel"
-      title={t("Inventory")}
-      action={<span className="muted">{t("1,250 credits")}</span>}
-    >
-      <div className="inventory-controls">
-        <input
-          aria-label={t("Search inventory")}
-          placeholder={t("Find an item…")}
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-        />
-        <div className="filter-chips">
-          {[
-            "All",
-            "Equipped",
-            "Weapons",
-            "Ammunition",
-            "Gear",
-            "Consumables",
-            "Quest Items",
-            "Key Items",
-            "Money",
-            "Vehicle Storage",
-          ].map((value) => (
-            <button
-              key={value}
-              className={category === value ? "active" : ""}
-              aria-pressed={category === value}
-              onClick={() => setCategory(value)}
-            >
-              {t(value)}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="inventory-table">
-        <div className="item-table-head">
-          <span>{t("Item")}</span>
-          <span>{t("Type")}</span>
-          <span>{t("Qty")}</span>
-        </div>
-        {filtered.map((item) => (
-          <button
-            className="item-row"
-            key={item.id}
-            onClick={() => setSelected(item)}
-          >
-            <span className="item-name">
-              <span className="item-icon">
-                <Icon name={item.icon} size={23} />
-              </span>
-              {t(item.name)}
-            </span>
-            <span className="item-type">{t(item.category)}</span>
-            <span>
-              {item.quantity.toLocaleString(
-                language === "ru" ? "ru-RU" : "en-US",
-              )}
-            </span>
-          </button>
-        ))}
-        {!filtered.length && (
-          <div className="empty-state">
-            <p>{t("No items match this search.")}</p>
-            <Button
-              onClick={() => {
-                setQuery("");
-                setCategory("All");
-              }}
-            >
-              {t("Clear filters")}
-            </Button>
-          </div>
-        )}
-      </div>
-      {!compact && (
-        <p className="muted inventory-hint">
-          {t("Select an item to inspect its details, location, and history.")}
-        </p>
-      )}
-      <div className="vehicle-storage">
-        <div className="panel-heading">
-          <h2>{t("Vehicle storage")}</h2>
-          <Badge>{t("17 / 28 slots")}</Badge>
-        </div>
-        <div className="vehicle-row">
-          <Art name="car" />
-          <div>
-            <h3>{t("Old Ford")}</h3>
-            <p>{t("Modified · Still running")}</p>
-            <Button
-              onClick={() => {
-                setCategory("Vehicle Storage");
-                setQuery("");
-              }}
-            >
-              {t("View storage")} <Icon name="ArrowRight" size={14} />
-            </Button>
-          </div>
-        </div>
-      </div>
-      {selected && (
-        <Modal title={t(selected.name)} onClose={() => setSelected(null)}>
-          <div className="item-detail-icon">
-            <Icon name={selected.icon} size={42} />
-          </div>
-          <Badge>{t(selected.category)}</Badge>
-          <p>{t(selected.detail)}</p>
-          <dl className="detail-list">
-            <dt>{t("Quantity")}</dt>
-            <dd>
-              {selected.quantity.toLocaleString(
-                language === "ru" ? "ru-RU" : "en-US",
-              )}
-            </dd>
-            <dt>{t("Carried in")}</dt>
-            <dd>{t(selected.storage)}</dd>
-            <dt>{t("Acquired")}</dt>
-            <dd>{t("Session {number}", { number: selected.acquired })}</dd>
-            <dt>{t("Mechanics")}</dt>
-            <dd>{t(selected.mechanics)}</dd>
-          </dl>
-          <p className="muted">
-            {t(
-              "Sample inventory. Editing and using items arrive with persistent campaign state.",
-            )}
-          </p>
-        </Modal>
-      )}
-    </Panel>
+    <StorageInventory
+      storageId={`${campaign.campaign_id}:player`}
+      showDoll={false}
+    />
   );
 }
 
@@ -160,8 +24,7 @@ export function Character({
 }) {
   const { t } = useLanguage();
   const [tab, setTab] = useState("Character");
-  const [equipment, setEquipment] = useState<string[]>([]);
-  const { notes } = usePreview();
+  const { notes, campaign } = usePreview();
   return (
     <>
       <div className="page-heading">
@@ -258,44 +121,15 @@ export function Character({
                   <h3 className="section-label">{t("Conditions")}</h3>
                   <Badge green>{t("None · Ready for the road")}</Badge>
                 </div>
-                <div className="paper-doll">
-                  <Art
-                    name="figure"
-                    label={t("James in a weathered coat, hat, and boots")}
-                  />
-                  <div className="equipment-slots">
-                    {[
-                      ["Head", "Weathered hat", "UserRound"],
-                      ["Neck", "Pact amulet", "Sparkles"],
-                      ["Coat / Armor", "Weathered coat", "Shirt"],
-                      ["Off hand", "Empty", "X"],
-                      ["Main hand", "Custom revolver", "Crosshair"],
-                      ["Legs", "Travel trousers", "Shield"],
-                      ["Belt", "Ammunition belt", "Package"],
-                      ["Boots", "Worn leather boots", "Shield"],
-                    ].map(([slot, name, icon]) => (
-                      <button
-                        key={slot}
-                        className="equipment-slot"
-                        onClick={() => setEquipment([slot, name])}
-                        aria-label={`${t(slot)}: ${t(name)}`}
-                      >
-                        <span>{t(slot)}</span>
-                        <span className="equipment-icon">
-                          <Icon name={icon} size={27} />
-                        </span>
-                        <small>{t(name)}</small>
-                      </button>
-                    ))}
-                  </div>
-                  <p>
-                    {t("“Some truths are better left in the dark.")}
-                    <br />
-                    {t("But I carry them anyway.”")}
-                  </p>
-                </div>
+                <EquipmentDoll
+                  entity={entities.find(
+                    (entity) =>
+                      entity.campaign_id === campaign.campaign_id &&
+                      entity.kind === "player",
+                  )!}
+                />
               </Panel>
-              <Inventory compact />
+              <Inventory />
             </div>
           ) : (
             <Panel className="character-tab-content" title={t(tab)}>
@@ -400,23 +234,6 @@ export function Character({
             </Panel>
           )}
         </>
-      )}
-      {equipment.length > 0 && (
-        <Modal
-          title={equipment.map((tKey) => t(tKey)).join(" · ")}
-          onClose={() => setEquipment([])}
-        >
-          <p>
-            {t(
-              equipment.includes("Empty")
-                ? "Nothing equipped in this slot."
-                : "Currently equipped by James. Select items in the inventory to read their details.",
-            )}
-          </p>
-          <p className="muted">
-            {t("Equipment changes will be available in a later phase.")}
-          </p>
-        </Modal>
       )}
     </>
   );

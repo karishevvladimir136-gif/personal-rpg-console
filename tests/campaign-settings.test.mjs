@@ -23,6 +23,8 @@ test("campaign defaults match the owner request and are independent copies", () 
   assert.equal(settings.language, "en");
   assert.deepEqual(settings.difficulty, {
     preset: "medium",
+    shortRestSupplyCost: 0,
+    longRestSupplyCost: 1,
     enemyHpMultiplier: 1,
     enemyDamageMultiplier: 1,
     rerolls: "limited",
@@ -84,6 +86,8 @@ test("each preset replaces all difficulty values, preserves narrative choices an
 test("every individual difficulty parameter selects Custom without changing other parameters", () => {
   const original = createCampaignSettings("long-road-west");
   const changes = {
+    shortRestSupplyCost: 1,
+    longRestSupplyCost: 0,
     enemyHpMultiplier: 2,
     enemyDamageMultiplier: 0.5,
     rerolls: "disabled",

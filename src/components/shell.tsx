@@ -4,15 +4,42 @@ import { useLanguage } from "@/components/language-context";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, type ReactNode } from "react";
-import { navigation } from "@/lib/mock-data";
+import {
+  campaignFromPath,
+  campaignHref,
+  campaignScreens,
+} from "@/lib/campaign-routing";
 import { Art, Icon } from "./ui";
-import { usePreview } from "./preview-context";
+import { usePreferences } from "./preview-context";
 
 export function Shell({ children }: { children: ReactNode }) {
   const { t } = useLanguage();
   const pathname = usePathname();
   const [menu, setMenu] = useState(false);
-  const { largeText } = usePreview();
+  const { largeText } = usePreferences();
+  const campaign = campaignFromPath(pathname);
+  const href = (screen: Parameters<typeof campaignHref>[1]) =>
+    campaignHref(campaign!.campaign_id, screen);
+  if (!campaign)
+    return (
+      <div className={`app-level-shell ${largeText ? "large-text" : ""}`}>
+        <a className="skip-link" href="#main">
+          {t("Skip to content")}
+        </a>
+        <header className="app-level-header">
+          <Link className="brand" href="/">
+            ✧ {t("PERSONAL RPG CONSOLE")}
+          </Link>
+          <span className="preview-indicator">{t("PHASE 0 · PREVIEW")}</span>
+        </header>
+        <main id="main" tabIndex={-1}>
+          {children}
+        </main>
+        <footer className="page-footer">
+          {t("Preview only · Changes reset on refresh")}
+        </footer>
+      </div>
+    );
   return (
     <div className={`app-shell ${largeText ? "large-text" : ""}`}>
       <a className="skip-link" href="#main">
@@ -35,18 +62,27 @@ export function Shell({ children }: { children: ReactNode }) {
           <br />
           {t("DIFFERENT WORLDS.")}
         </p>
-        <nav aria-label={t("Main navigation")}>
-          {navigation.map(([path, label]) => (
+        <Link
+          href="/campaigns"
+          className="back-campaigns"
+          onClick={() => setMenu(false)}
+        >
+          {t("Back to campaigns")}
+        </Link>
+        <nav aria-label={t("Campaign navigation")}>
+          {campaignScreens.map(([path, label]) => (
             <Link
               key={path}
-              href={`/${path}`}
-              className={`nav-link ${pathname === `/${path}` ? "active" : ""} ${path === "settings" ? "settings-link" : ""}`}
-              aria-current={pathname === `/${path}` ? "page" : undefined}
+              href={href(path)}
+              className={`nav-link ${pathname === href(path) ? "active" : ""} ${path === "settings" ? "settings-link" : ""}`}
+              aria-current={pathname === href(path) ? "page" : undefined}
               onClick={() => setMenu(false)}
             >
               <Icon name={path} />
-              <span>{t(label)}</span>
-              {pathname === `/${path}` && <span className="nav-dot" />}
+              <span>
+                {t(path === "settings" ? "Campaign Settings" : label)}
+              </span>
+              {pathname === href(path) && <span className="nav-dot" />}
             </Link>
           ))}
         </nav>
@@ -63,7 +99,7 @@ export function Shell({ children }: { children: ReactNode }) {
           >
             <Art name="city" />
             <span>
-              {t("The Long Road West")}
+              {t(campaign.title)}
               <small>{t("Session 4 · The Letter")}</small>
             </span>
             <Icon name="ChevronRight" size={15} />
@@ -88,12 +124,14 @@ export function Shell({ children }: { children: ReactNode }) {
             <Icon name={menu ? "X" : "Menu"} />
           </button>
           <div className="breadcrumbs">
-            <Link href="/campaigns">{t("THE LONG ROAD WEST")}</Link>
+            <Link href={href("game")}>{t(campaign.title)}</Link>
             <Icon name="ChevronRight" size={13} />
             <span>
               {t(
-                navigation.find(([path]) => pathname === `/${path}`)?.[1] ||
-                  "Campaigns",
+                campaignScreens.find(
+                  ([path]) => pathname === href(path),
+                )?.[1] ||
+                  (pathname.endsWith("/camp") ? "Camp" : "Campaign Settings"),
               )}
             </span>
           </div>
@@ -114,9 +152,9 @@ export function Shell({ children }: { children: ReactNode }) {
           (path) => (
             <Link
               key={path}
-              href={`/${path}`}
-              className={pathname === `/${path}` ? "active" : ""}
-              aria-current={pathname === `/${path}` ? "page" : undefined}
+              href={href(path)}
+              className={pathname === href(path) ? "active" : ""}
+              aria-current={pathname === href(path) ? "page" : undefined}
             >
               <Icon name={path} />
               <span>{t(path[0].toUpperCase() + path.slice(1))}</span>

@@ -3,12 +3,14 @@ import { useLanguage } from "@/components/language-context";
 
 import Link from "next/link";
 import { useState } from "react";
-import { documents } from "@/lib/mock-data";
+import { campaignHref } from "@/lib/campaign-routing";
+import { campaign, documents } from "@/lib/mock-data";
 import { Art, Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import { usePreview } from "./preview-context";
 
 export function Campaigns() {
   const { t } = useLanguage();
+  const [managementNotice, setManagementNotice] = useState("");
   const [query, setQuery] = useState("");
   const [dialog, setDialog] = useState("");
   const [newTitle, setNewTitle] = useState("");
@@ -25,6 +27,9 @@ export function Campaigns() {
           {t("+ New campaign")}
         </Button>
       </div>
+      <Link href="/" className="text-link">
+        {t("Back to main menu")}
+      </Link>
       <div className="campaign-toolbar">
         <span className="small-quote">
           {t("“Different worlds. Same stories.”")}
@@ -90,12 +95,22 @@ export function Campaigns() {
                 <p>{t("Level 3 · Human · Warlock")}</p>
               </div>
             </div>
-            <Link className="button primary continue-button" href="/game">
+            <Link
+              className="button primary continue-button"
+              href={campaignHref(campaign.campaign_id, "game")}
+            >
               {t("Continue the story")} <Icon name="ArrowRight" />
             </Link>
             <div className="campaign-links">
-              <Link href="/library">{t("Campaign library")}</Link>
-              <Link href="/sessions">{t("Previous sessions")}</Link>
+              <Button onClick={() => setDialog("manage")}>
+                {t("Manage campaign")}
+              </Button>
+              <Link href={campaignHref(campaign.campaign_id, "library")}>
+                {t("Campaign library")}
+              </Link>
+              <Link href={campaignHref(campaign.campaign_id, "sessions")}>
+                {t("Previous sessions")}
+              </Link>
             </div>
           </div>
         </article>
@@ -157,10 +172,43 @@ export function Campaigns() {
       )}
       {dialog && (
         <Modal
-          title={t(dialog === "new" ? "A new story" : dialog)}
+          title={t(
+            dialog === "new"
+              ? "A new story"
+              : dialog === "manage"
+                ? "Manage campaign"
+                : dialog,
+          )}
           onClose={() => setDialog("")}
         >
-          {dialog === "new" ? (
+          {dialog === "manage" ? (
+            <>
+              <p>
+                {t(
+                  "Management preview only. These actions are not connected and will not change or export the campaign.",
+                )}
+              </p>
+              <div className="button-group">
+                {["Rename", "Duplicate", "Archive", "Export", "Delete"].map(
+                  (action) => (
+                    <Button
+                      key={action}
+                      onClick={() => setManagementNotice(action)}
+                    >
+                      {t(action)}
+                    </Button>
+                  ),
+                )}
+              </div>
+              {managementNotice && (
+                <p role="status">
+                  {t("{action} is not connected in Phase 0.", {
+                    action: t(managementNotice),
+                  })}
+                </p>
+              )}
+            </>
+          ) : dialog === "new" ? (
             <form
               onSubmit={(event) => {
                 event.preventDefault();
@@ -203,7 +251,7 @@ export function Campaigns() {
               </p>
               <Link
                 className="button primary"
-                href="/game"
+                href={campaignHref(campaign.campaign_id, "game")}
                 onClick={() => setDialog("")}
               >
                 {t("Open James & Jinn")}
@@ -396,7 +444,7 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
   const [selected, setSelected] = useState<
     (typeof galleryItems)[number] | null
   >(null);
-  const { saved, setSaved } = usePreview();
+  const { saved, setSaved, href } = usePreview();
   const shown =
     tab === "Favorites"
       ? saved
@@ -415,7 +463,7 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
           <h1>{t(galleryOnly ? "Gallery" : "Session Recap & Gallery")}</h1>
           <p>{t("Some moments stay with you.")}</p>
         </div>
-        <Link className="button primary" href="/game">
+        <Link className="button primary" href={href("game")}>
           {t("Resume story")} <Icon name="ArrowRight" size={16} />
         </Link>
       </div>
@@ -502,7 +550,7 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
                   "James and Jinn stand outside the subway. James is checking the street for anyone following them.",
                 )}
               </p>
-              <Link className="text-link" href="/game">
+              <Link className="text-link" href={href("game")}>
                 {t("Continue from here")} <Icon name="ArrowRight" size={14} />
               </Link>
             </Panel>
@@ -559,7 +607,7 @@ export function Sessions({ galleryOnly = false }: { galleryOnly?: boolean }) {
                 : "Use Save moment on the Game screen to add the sample scene here.",
             )}
           </p>
-          <Link className="button" href="/game">
+          <Link className="button" href={href("game")}>
             {t("Return to the story")}
           </Link>
         </div>

@@ -3,6 +3,9 @@ import { useLanguage } from "@/components/language-context";
 
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import {
+  Coffee,
+  Utensils,
+  LogOut,
   ArrowRight,
   Backpack,
   BookOpen,
@@ -39,6 +42,10 @@ import {
 } from "lucide-react";
 
 const icons: Record<string, LucideIcon> = {
+  Coffee,
+  Utensils,
+  Exit: LogOut,
+  camp: Flame,
   campaigns: Compass,
   game: Compass,
   character: UserRound,
@@ -306,8 +313,15 @@ export function Modal({
       className={`modal ${className}`}
       aria-labelledby={titleId}
       tabIndex={-1}
-      onCancel={onClose}
+      onCancel={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onClose();
+      }}
       onKeyDown={(event) => {
+        // A nested item dialog owns its keyboard interaction; its parent stash
+        // must not also trap Tab or react to the same Escape/cancel event.
+        event.stopPropagation();
         if (event.key !== "Tab") return;
         const dialog = event.currentTarget;
         const controls = Array.from(

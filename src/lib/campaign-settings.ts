@@ -1,6 +1,8 @@
 import type { Language } from "./i18n";
 
 export type DifficultyValues = {
+  shortRestSupplyCost: number;
+  longRestSupplyCost: number;
   enemyHpMultiplier: number;
   enemyDamageMultiplier: number;
   rerolls: "disabled" | "limited" | "unlimited";
@@ -57,6 +59,8 @@ export const dicePresentationOptions = [
 // The allowance is retained but inactive when rerolls are disabled or unlimited.
 export const difficultyPresets = {
   easy: {
+    shortRestSupplyCost: 0,
+    longRestSupplyCost: 0,
     enemyHpMultiplier: 0.75,
     enemyDamageMultiplier: 0.75,
     rerolls: "unlimited",
@@ -66,6 +70,8 @@ export const difficultyPresets = {
     scarcity: "abundant",
   },
   medium: {
+    shortRestSupplyCost: 0,
+    longRestSupplyCost: 1,
     enemyHpMultiplier: 1,
     enemyDamageMultiplier: 1,
     rerolls: "limited",
@@ -75,6 +81,8 @@ export const difficultyPresets = {
     scarcity: "standard",
   },
   hard: {
+    shortRestSupplyCost: 1,
+    longRestSupplyCost: 2,
     enemyHpMultiplier: 1.5,
     enemyDamageMultiplier: 1.25,
     rerolls: "disabled",
@@ -187,6 +195,7 @@ export const previewRulesSystem: RulesSystem = {
   enemyDamageScaling: true,
 };
 export const previewLimits = {
+  restSupplyCost: { min: 0, max: 5, step: 1 },
   multiplier: { min: 0.25, max: 3, step: 0.25 },
   rerollsPerSession: { min: 1, max: 20, step: 1 },
 } as const;
@@ -203,6 +212,10 @@ export type CampaignSettings = {
   dicePresentation: DicePresentation;
   interactiveDice: boolean;
   showDc: boolean;
+  visualStyle: string;
+  frameRatio: string;
+  videoDuration: string;
+  narrativeStyle: string;
 };
 
 export function createCampaignSettings(
@@ -221,6 +234,10 @@ export function createCampaignSettings(
     dicePresentation: "key-rolls",
     interactiveDice: true,
     showDc: false,
+    visualStyle: "Cinematic noir",
+    frameRatio: "16:9",
+    videoDuration: "10 seconds",
+    narrativeStyle: "Literary",
   };
 }
 
@@ -241,7 +258,11 @@ export type CampaignSettingsAction =
   | { type: "checkFrequency"; value: CheckFrequency }
   | { type: "dicePresentation"; value: DicePresentation }
   | { type: "interactiveDice"; value: boolean }
-  | { type: "showDc"; value: boolean };
+  | { type: "showDc"; value: boolean }
+  | {
+      type: "visualStyle" | "frameRatio" | "videoDuration" | "narrativeStyle";
+      value: string;
+    };
 
 export function supportsDifficultyParameter(
   settings: CampaignSettings,
@@ -279,7 +300,10 @@ export function updateCampaignSettings(
       const limits =
         action.key === "rerollsPerSession"
           ? previewLimits.rerollsPerSession
-          : previewLimits.multiplier;
+          : action.key === "shortRestSupplyCost" ||
+              action.key === "longRestSupplyCost"
+            ? previewLimits.restSupplyCost
+            : previewLimits.multiplier;
       if (
         !Number.isFinite(action.value) ||
         action.value < limits.min ||

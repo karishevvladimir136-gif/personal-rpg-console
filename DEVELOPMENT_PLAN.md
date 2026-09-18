@@ -41,6 +41,18 @@ Final Phase 0 checks/dice refinement (MASTER_SPEC section 35):
 - honor Hidden, compact automatic, and interactive presentation modes; accessible modal, reduced motion, timer cleanup, shared temporary state, both languages, desktop/390px/320px layouts
 - test presentation/setting independence, DC policy, fixture arithmetic, kept dice, double activation, cancellation/reopen, and translations; distinguish automated coverage from browser/physical-device checks
 
+Consolidated Phase 0 refinement (MASTER_SPEC section 36):
+- separate main menu / campaign selection / URL-scoped campaign navigation, honest Exit, unknown-ID 404s and legacy redirects; preserve concept isolation
+- split global interface/reading preferences from campaign story language, narrative/rules/play style, and visual settings
+- replace primary inventory tables with reusable icon grids and shared item details; storage views, translated search/category filters, player/companion paper dolls and configurable transport profiles
+- one campaign-scoped model for item identity, ownership, storage, and equipment; retain Old Ford without inventing mounts; respect absent companions and unestablished anatomy
+- Party/Camp free-text conversation preview with stored sample exchange and temporary campaign/companion messages
+- Game Rest → compact Short Rest / dedicated warm Camp; explicit demo entry/eligibility/leave/complete; separate short/long supply costs including zero select Custom independently of Recovery
+- remote deposit preview from accessible inventories; stash inspect always, withdraw/use/equip only during active long-rest camp; cargo proximity remains independent
+- small optional grilled meal/stew/coffee samples with accessible ingredients, quantities, recipients, provisional effects, insufficient state, and shared Talk over food/drink
+- honest item-image entry and local demo states only; no provider, persistence, engine, resource mutations, or actual effects
+- retain all existing difficulty/narrative/check/dice behavior; bilingual desktop/390px/320px and keyboard/dialog/reduced-motion verification
+
 Acceptance:
 - no broken routes
 - desktop matches mockups closely
@@ -86,6 +98,7 @@ Add:
 - one owner login
 - persist campaign Rules & Play Style and rules-system capabilities separately from global preferences and document context (MASTER_SPEC section 33)
 - validate structured values and record effective settings revisions/history so changes are prospective
+- persist scoped equipment entities/profiles, item ownership/storage/equipped slots, conversation records, recipe/effect data, and required rest-stage records from section 36; keep access-dependent operations disabled until authoritative rules exist
 - persist the consolidated Checks & Dice campaign preferences, including the saved Interactive Dice/Show DC values while Hidden; keep presentation separate from difficulty and defer resolution to Phase 2
 
 Acceptance:
@@ -109,6 +122,10 @@ The app becomes playable.
 
 Build:
 - server-side OpenAI DM endpoint
+- section 36 companion conversations through the same DM, contextual knowledge/listeners, non-guaranteed trust, public session history, and serialized state-changing Game/conversation turns
+- authoritative rest/camp eligibility and lifecycle, explicit completion/recovery/time, no recovery on leave, access closure, and no refresh/direct-route bypass; preserve completed activities, keep hidden interruptions server-only
+- code-enforced remote deposits, active-camp-only stash withdrawal/use/equip, independent cargo access, campaign/quantity validation, and atomic/idempotent operations
+- optional small recipe system with explicit preparation versus consumption, validated stock/recipients, modest rules-compatible temporary effects, one meal + one drink maximum, replace/refresh not stacking, activation after creating rest and explicit expiry, no duplicate charges or double counting as rest supplies
 - structured schema
 - dice tool
 - player input
@@ -159,6 +176,7 @@ Build:
 - NPC memory retrieval
 - canon priority
 - conflict checks
+- retrieve scoped companion conversations, trust-relevant events, rest/cooking outcomes and item provenance without private/cross-campaign leakage
 - effective campaign settings/history included in snapshots and resume without retroactively reinterpreting prior facts
 
 Acceptance:
@@ -180,6 +198,8 @@ Goal:
 Scene images feel consistent.
 
 Build:
+- optional asynchronous item art from known appearance/safe references using owner-selected supported image model; category fallbacks remain immediately usable, assets follow item identity, generic icons may be reused, unique art cannot affect unrelated items
+- item generation only by explicit request, duplicate-job protection, cost estimate/unknown disclosure, preserved prior asset on regeneration/failure, no mechanics/canon changes (section 36)
 - Visual Bible UI
 - approved references
 - FRAME button

@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 import { translate, type Language } from "@/lib/i18n";
+import { campaignFromPath } from "@/lib/campaign-routing";
 import { usePathname } from "next/navigation";
 
 type LanguageState = {
@@ -25,7 +26,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language;
     document.title = translate(
       language,
-      "The Long Road West | Personal RPG Console",
+      campaignFromPath(pathname)
+        ? "The Long Road West | Personal RPG Console"
+        : "PERSONAL RPG CONSOLE",
     );
   }, [language, pathname]);
   return (

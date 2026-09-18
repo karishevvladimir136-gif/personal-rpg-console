@@ -4,7 +4,7 @@ import { Shell } from "@/components/shell";
 import { LanguageProvider } from "@/components/language-context";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "The Long Road West | Personal RPG Console",
+  title: "Personal RPG Console",
   description:
     "A private narrative RPG journal. Phase 0 visual preview with sample data.",
   robots: { index: false, follow: false },

@@ -226,43 +226,15 @@ Campaign art creates identity; the overall app shell stays consistent.
 
 ---
 
-# 6. MAIN DESKTOP NAVIGATION
+# 6. NAVIGATION HIERARCHY
 
-Persistent left sidebar:
+The app has three distinct levels (consolidated owner requirement, section 36):
 
-- Campaigns
-- Game
-- Character
-- Inventory
-- Party
-- Journal
-- Map
-- Library
-- Gallery
-- Sessions
-- Settings
+- **Main menu:** Campaigns, General Settings, Exit. No campaign sidebar, character data, or gameplay bottom navigation. Before authentication, Exit explains that sign-out is unavailable; it never closes the browser, stops the server, or erases preview state.
+- **Campaign selection:** existing cards, management previews, New Campaign preview, and Back to main menu. Continue opens the selected campaign's Game. Concepts remain clearly unstarted and cannot resolve to another campaign's data.
+- **Inside a campaign:** Game, Character, Inventory, Party, Journal, Map, Library, Gallery, Sessions, Campaign Settings, and a separate Back to campaigns control. Show the active campaign name. Mobile bottom navigation is restricted to this level. Camp is entered from Game → Rest → Long Rest, not a permanent recovery shortcut.
 
-Bottom/sidebar campaign card:
-- campaign title;
-- current session;
-- small cover image;
-- quick switch.
-
-Mobile bottom navigation:
-
-- Game
-- Character
-- Map
-- Journal
-- Library
-
-More menu:
-- Inventory
-- Party
-- Gallery
-- Sessions
-- Settings
-- Campaign switcher
+Use explicit campaign-scoped URLs and resolve campaign identity from the URL. Unknown IDs return a missing-page response, never the sample campaign. Reuse layouts/screens and retain useful legacy redirects. Global interface language and reading/accessibility preferences have one source of truth, separate from campaign story language, rules/play style, narrative style, and visual preferences.
 
 ---
 
@@ -481,6 +453,8 @@ Structured categories:
 - Money
 - Vehicle Storage
 - Other Storage
+
+The primary inventory presentation is a responsive icon-slot grid, with storage views separate from category filters and search. Player, companion, stash, and applicable transport views share equipment and item records; see section 36.
 
 Each item supports:
 - icon/image;
@@ -1335,6 +1309,8 @@ Explicit Phase 0 preview values, centralized in `src/lib/campaign-settings.ts`:
 
 Selecting a preset replaces all applicable difficulty parameters; selecting Custom retains them. Editing any individual difficulty parameter selects Custom. Changing story structure, player role, world autonomy, or campaign language does not change difficulty. Preview multiplier controls allow 0.25–3× in 0.25 steps; a limited allowance is 1–20 per session. An inactive allowance is remembered when changing reroll mode but grants no rerolls.
 
+Separate rest-supply costs also belong to difficulty: Easy short/long = 0/0, Medium = 0/1, Hard = 1/2 supply units per participating character. Custom preserves both. The preview allows 0–5 whole units for each cost; zero explicitly means no cost. Editing either selects Custom without changing Recovery, recipe requirements, or narrative/dice settings.
+
 These numbers and bounds are provisional examples, not calibrated game balance or final rules. Phase 0 must clearly state that no setting affects gameplay. The James & Jinn sample uses an illustrative rules profile supporting both HP and numerical damage. HP controls are not universally applicable: rules capabilities independently determine HP and damage support. Unsupported controls are unavailable, and preset/manual edits must not silently apply unsupported mechanics. Future supported systems may need different mechanical controls; do not force HP semantics onto them.
 
 ## Story Structure
@@ -1433,7 +1409,7 @@ This owner-requested consolidation supersedes earlier check-frequency and dice-p
 
 Use the existing shared campaign state and bilingual dictionaries. Settings and demo selections remain in memory across navigation; refresh may reset them. No backend, API routes, authentication, database, AI, or gameplay engine.
 
-Entry points: **Game → Dice preview** beneath the action input, and **Settings → Campaign settings → Rules & Play Style → Checks & Dice → Open dice preview**. The window is labeled **Demo roll — no campaign effects**. An expandable **Demo setup** contains a small sample selector and important/non-important player-check selector so Key Rolls can be tested.
+Entry points: **Game → Dice preview** beneath the action input, and **Campaign Settings → Rules & Play Style → Checks & Dice → Open dice preview**. The window is labeled **Demo roll — no campaign effects**. An expandable **Demo setup** contains a small sample selector and important/non-important player-check selector so Key Rolls can be tested.
 
 Fixed sample fixtures, not random dice or AI:
 
@@ -1464,3 +1440,66 @@ Regression coverage must include setting independence, all presentation/importan
 - **Phase 0:** only the above fixed-fixture UI. Separate fixtures, presentation policy, and animation lifecycle from components; animation never chooses a result. Owner approval remains pending.
 - **Phase 1, separately authorized:** persist campaign-scoped choices alongside other rules/play-style settings, including saved toggles while Hidden. Validate independent values and preserve effective revisions. Do not add real check resolution yet.
 - **Phase 2, separately authorized:** the single AI DM proposes a structured check; server code validates rules-system compatibility, stakes, modifiers, visibility, DC disclosure, importance, and whether a roll is appropriate. Do not narrate the action's outcome until the check resolves. The server generates and durably records actual dice/results; the UI presents that result separately. Use stable check IDs and idempotent resolution so double-clicks, retries, navigation, and refresh cannot grant extra rolls. Rerolls require server authorization under the configured campaign policy. Keep private checks/targets entirely server-side, emitting no UI hints. Apply rules-system-specific natural-roll behavior only when explicitly supported. This future contract is documentation, not implementation authorization.
+
+
+---
+
+# 36. CONSOLIDATED PHASE 0 — NAVIGATION, POSSESSIONS & CAMP
+
+This owner-approved requirement supersedes overlapping fragmented refinement proposals. Approval of the requirement is **not** approval of Phase 0 delivery. Preserve sections 32–35, the media-model plan, and existing working features. Implement only Phase 0 until the owner separately authorizes another phase.
+
+## Shared records and visual inventory
+
+Use small, reusable item-grid, detail, equipment-profile, conversation, transfer-preview, rest/camp, and recipe components. Items, entities, storage locations, conversations, and settings are campaign-scoped; ownership, current storage, and equipped entity/slot are distinct. Character, Party, Inventory, and Camp reference the same records. Never create a second copy of a character inventory.
+
+Storage views: Player; Companions with selector; Camp / Shared Stash; Transport & Mounts only when applicable. Categories filter within storage; retain translated search. Each cell has a persistent icon, relevant quantity, restrained rarity, equipped/status indication, and an accessible name. No inventory Tetris or arbitrary capacity limits. Static artwork or silhouettes and compatible equipment slots replace any need for 3D. Characters with no established slots, including non-humanoid companions, must not acquire assumed humanoid equipment.
+
+Transport is an entity, not a universal car panel. Show name, local image, compatible slots, cargo grid, and known location/availability. Small profiles can cover vehicle protection/utility/cargo fittings/compatible talisman, horse saddle/barding/saddlebags/charm, or explicitly configured anatomy- and rules-appropriate mount slots. Profiles are examples, not universal rules. James & Jinn retains Old Ford; do not invent a horse or dragon in canon. No transport simulator, breeding, mount combat, or capacity game.
+
+Hover and keyboard focus show stored short descriptions; click/tap opens accessible details with larger icon, name/type/rarity, quantity/storage, known mechanics separated from flavor, and known acquisition/provenance. Ordinary flavor is concise; long legendary history may expand. Never infer mechanical powers from prose or reveal unknown properties/curses/identities. Added sample possessions, rarity, supplies, and descriptions are explicitly illustrative, not imported canon.
+
+## Companion conversation
+
+Party cards expose Talk and Inventory. Talk opens free text with portrait, name, player-known relationship, and optional input-populating starters: what happened, next move, or tell me about yourself. Only available companions can be approached; absent contacts cannot be summoned. Phase 0 uses authored labeled sample exchanges and literal temporary player messages, keyed by campaign and companion and shared between Party and Camp. No fabricated live AI reply or relationship change.
+
+Future conversations use the **same primary DM runtime**, respecting personality, knowledge, history, goals, nearby listeners, and circumstances. Record them in campaign/session history. Trust may improve or worsen; affection is not guaranteed and repetition must not farm relationships. Never expose DM-private facts. Social checks obey section 35. Serialize state-changing turns across Game and companion conversations; do not create an agent per companion.
+
+## Rest and focused Camp
+
+Game has reachable Short Rest and Long Rest / Enter Camp actions. Short Rest is a compact dialog. Long Rest leads to a dedicated campaign-scoped Camp scene: warm central fire or setting-appropriate gathering point, available companion portraits/silhouettes, dark surroundings, restrained glow, readable controls, and original RPG-journal composition. Use local HTML/CSS/SVG/artwork; no paid art or 3D engine. At mobile widths arrange characters vertically with large labeled alternatives to hotspots.
+
+Show participants, illustrative duration, expected recovery under the existing Recovery preference, separate short/long supply costs and cost basis, available sources, and known restrictions. Both costs support zero and select Custom when edited (section 33). Cost does not determine recovery. Actual recovery must later respect the chosen system/edition, class features, and explicit house rules; never promise universal full healing or spell-slot restoration.
+
+Camp offers Talk, companion inventory, Camp Stash, Cook / Prepare a drink, rest review, explicit Complete Long Rest, and Leave Camp / Cancel. The sample fire is illustrative, not a new canon location; future settings may use inns, ships, or shelters. Phase 0 has explicit temporary active/closed camp state with quiet/unsafe sample eligibility scenarios. Direct navigation or a refresh starts closed; opening a rest dialog alone does not unlock the stash. Confirmations show simulated outcomes only. Never alter HP, spells, stock, time, or history.
+
+Future authoritative flow: validate eligibility → enter active camp/rest stage → manage accessible items, talk, optionally cook → explicitly complete to apply recovery and advance time. Leaving grants no recovery. Completed transfers, conversations, and cooking must not be silently undone by leaving. Access closes on leave/completion; refresh/direct navigation cannot bypass authoritative eligibility. Hidden threats and interruption checks remain server-only. The UI demonstrator is not a rest engine.
+
+## Owner-selected camp-stash convenience rule
+
+Remote deposits are allowed at any time from an otherwise accessible, controllable inventory, with no physical delivery. This supersedes any blanket no-remote-deposits rule. Inspection is always allowed. Withdrawal, use, and equipment assignment from the stash require an active long-rest camp stage; short rest never unlocks them. Vehicle/mount cargo retains its own proximity/access restrictions. Long-rest supplies may be selected from the stash during active-camp confirmation. The rule also governs source ingredients/tools for section 34 transformations.
+
+Phase 0 shows item/source/destination/quantity and access explanations without inventory mutation. Future transfers must validate campaign, ownership/permission, accessibility, quantity, and equipment compatibility; commit atomically and idempotently. Stash access is authoritative state, never permission granted solely by opening a dialog.
+
+## Simple optional cooking and drinks
+
+Use a small fixed campaign-appropriate recipe set, not crafting, survival simulation, or a minigame. James & Jinn preview examples: known edible meat → grilled meal; suitable ingredients → stew; coffee supplies + water → coffee. Coffee is not assumed in every world, and unfamiliar creatures are not assumed edible. Each recipe exposes ingredient quantities and accessible sources (including stash), servings, selected eligible recipients, flavor, one modest temporary benefit, Prepare, and insufficient-ingredients feedback. Talk over food/drink reuses the same conversation panel, with cuisine/creature/discovery starters, never another AI.
+
+Future operations validate and consume ingredients and grant the prepared item/effect atomically. Explicit preparation-versus-consumption semantics prevent charging ingredients or servings twice. At most one meal and one drink benefit per character; repeated servings refresh/replace rather than stack. No permanent stat increases, no numbers inferred from generated flavor. Define activation and expiry: bonuses for the next adventure survive the rest that created them. Current illustrative effects are 2 temporary HP for a meal and +1 to one eligible skill check for coffee, activated after the creating rest and expiring at the next long rest (or first use for coffee). These numbers are provisional and are **not official D&D rules**; system-compatible effects require later validation.
+
+Cooking remains optional. Zero rest cost does not make recipe ingredients free. Do not also count meal ingredients/servings as rest supplies unless a later explicit rule permits substitution. Phase 0 creates no food, consumes no ingredients, applies no effects, changes no dice, and generates no AI response.
+
+## Optional item imagery — Phase 4 contract only
+
+Items are awarded and usable immediately with fallback category icons. Generate image appears in item details, not every cell. Phase 0 explains that no provider is connected or charged; optional local illustration demo states alone expose Regenerate and Restore default icon.
+
+Phase 4: optional asynchronous generation uses the owner-selected supported image model consistent with section 32, preparing prompts only from known appearance and safe references. Save assets against the intended item identity so ownership/storage/equipment transfers retain its image. Reuse generic icons for identical ordinary items; unique art must not replace unrelated items. Failure retains the current icon; regeneration preserves the prior asset. Navigation, hover, and refresh never start paid generation. Deduplicate jobs and disclose reliable cost estimates or explicitly unknown cost. Art neither changes mechanics nor establishes new canon. All credentials/providers stay server-side.
+
+## Phase boundaries and verification
+
+- **Phase 0:** bilingual interfaces, authored fixtures, temporary state only. No persistence, auth, APIs, real dice, provider calls, AI, migrations, or actual gameplay operations.
+- **Phase 1, separately authorized:** persistent entities/settings/items/storage/equipment/conversation records and recipe/effect structures. Access-dependent actions remain unavailable until authoritative rules/state exist; persistence alone must not enable them.
+- **Phase 2:** real single-DM conversations, checks, rest/camp lifecycle, resource consumption, cooking effects, and validated atomic/idempotent operations.
+- **Phase 3:** long-term conversation/event memory and continuity.
+- **Phase 4:** optional item imagery alongside the existing visual/media plan; preserve separate later VIDEO requirements.
+
+Keep structured fixtures, preset definitions, and preview policy separate from presentation. English/Russian cover controls, prose, dialogs, errors, and accessibility labels; UI language stays independent from campaign story language. Test route identity/isolation, shared records/state, transfer rules, camp lifecycle, recipe availability/recipients, and dice/difficulty regressions. Use browser checks for desktop, 390px and 320px, keyboard/focus/dialog behavior, reduced motion, and bilingual click-through. Record automated versus browser verification honestly. Update DEV_STATUS and opening instructions; commit/push safely. Owner approval remains pending; do not begin Phase 1.

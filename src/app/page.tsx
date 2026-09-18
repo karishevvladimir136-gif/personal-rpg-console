@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation";
+import { MainMenu } from "@/components/main-menu";
 export default function Home() {
-  redirect("/campaigns");
+  return <MainMenu />;
 }
