@@ -738,6 +738,8 @@ Campaign **Rules & Play Style → Checks & Dice** controls check frequency and p
 
 Do not resend the entire campaign transcript every turn.
 
+Detailed budgeting, retrieval, summary lifecycle, failure handling and acceptance requirements are specified in section 38. Recent-scene counts below are targets subject to token budgets, not unlimited input.
+
 ## Always available
 - core instructions;
 - current character;
@@ -1537,3 +1539,179 @@ A mock summary shows outcome, injuries/conditions, spent resources and available
 - **Phase 2, separately authorized:** authoritative rules-system-aware action/target/cost validation, literal free-text proposals validated through the single DM runtime, server dice, reactions and real campaign consequences. Server-enforced atomic/idempotent resolution prevents duplicate spending/results on retries, navigation and reconnect. Preserve player agency/canon and authorized disclosure; enforce mechanics in code rather than prompts.
 
 Test isolated lifecycle, valid targets/costs, repeated/stale confirmation/completion/turn events, presentation modes, no hidden checks/targets, literal proposals, summary/loot/reset and localization. Verify desktop/mobile and keyboard in a browser; record actual checks and limitations in DEV_STATUS. Implementation completion does not imply owner approval. **Stop for owner review; do not start Phase 1.**
+
+---
+
+# 38. CONTEXT BUDGET, MEMORY AND CONTINUITY CONTRACT
+
+This section makes sections 15, 17, 18, 22 and 23 operational. It specifies future behavior, not a claim of implementation or perfect model recall. Supabase stores durable records; application code chooses authorized context. Do not send the entire campaign transcript indefinitely or depend on a provider conversation thread, prompt cache, chat memory, or a summary as the only copy of history.
+
+## 38.1 Minimal architecture and phase boundaries
+
+Use the existing application server and Supabase. One primary DM runtime remains responsible for play. Summarization is a bounded supporting task, not an autonomous agent or world simulator. Start with structured lookups and database text search; add semantic retrieval in the same storage system only when evaluated recall requires it. No separate vector service, graph database, or orchestration platform is required.
+
+- Phase 1: durable campaign-scoped records, immutable document versions, ordered messages/scenes, visibility boundaries, state revisions and stable IDs. Reuse existing entities; these requirements do not authorize a new memory UI or an AI/indexing subsystem. Coordinate any foundation adjustments with the current lead integrator at a safe checkpoint.
+- Phase 2: bounded server-side context assembly, current structured state, approved instructions, selected canonical excerpts, a validated/imported checkpoint and recent complete exchanges; budget checks, serialized state-changing turns and safe recovery. Read checkpoints without requiring automated summarization or historical semantic search. If relevant older material is unavailable, request clarification instead of pretending it was retrieved. Do not silently drop necessary history to continue indefinitely.
+- Phase 3: automatic summaries/checkpoints, older-event retrieval, correction-driven invalidation, continuity evaluation and reliable resume. Implement the complete lifecycle below.
+- Later public knowledge and media features must use the same visibility boundaries when separately authorized.
+
+Keep these boundaries in DEVELOPMENT_PLAN. Do not interrupt active Phase 1 workers or restart completed work merely to implement Phase 3 early.
+
+## 38.2 Sources of truth and record identity
+
+Maintain these logical categories using existing tables where practical:
+1. Exact structured state: HP, resources, quantities, ownership, equipment, conditions/expiry, time/location, quest status, encounter/turn state, rest stage and pending actions.
+2. Source history: committed player inputs, public narration, companion dialogue with known participants/listeners, validated outcomes and state changes, and separately stored private DM events.
+3. Versioned documents: current canon, references, explicit corrections and approved DM guidance.
+4. Derived memory: summaries, checkpoints, extracted facts and search indexes, always linked to source records and their versions.
+
+Each campaign-owned record has campaign_id; relevant derived records also carry source IDs/version or source range, visibility, source state revision, schema/generator version, creation time and validity status. Use stable entity IDs, aliases and ordered event/turn identifiers; names and timestamps alone are not identity or ordering.
+
+Exact game state is never reconstructed solely from prose summaries. Summarization cannot consume items, restore HP, advance time, kill/revive NPCs or complete quests. Such changes require the normal validated state operation. Preserve source history after summarization. A record's absence from the current prompt does not delete it.
+
+Sections 22's authority order applies. Summaries and embeddings are derivative evidence and never outrank their sources. Distinguish:
+- a confirmed event;
+- a speaker's claim, lie or rumor;
+- a player hypothesis;
+- a pending intention;
+- an unresolved question.
+
+Keep attribution, negation, uncertainty, conditions and temporal scope. "The witness says X" does not become confirmed X. A plan is not a completed action. Silence does not mean an NPC forgot or an obligation was fulfilled.
+
+## 38.3 Visibility and knowledge
+
+Authorize campaign and owner before retrieval. Apply campaign, visibility, source-version and status filters in the data query, before ranking/limits; validate referenced records again before use. Privileged database credentials do not replace authorization.
+
+Maintain separate public/player-known and DM-private source paths, derived summaries, indexes, caches and response serializers. A whole DM prompt must never be sent to the browser. Public recap, What Do I Know, public search and media briefs must be built from authorized public inputs, not a private-inclusive draft that is later cosmetically redacted. A private-derived artifact remains private unless specific facts are explicitly revealed through validated gameplay.
+
+Model knowledge is not NPC knowledge. Record which participants witnessed or were told a fact when relevant; companion speech must not inherit another NPC's secrets or a private conversation automatically. Distinguish player-known facts from what a particular NPC knows.
+
+Do not expose private titles, snippets, citation IDs, scores, counts, job names or error payloads through ordinary UI. Context diagnostics may show neutral status/token totals, never private content. Full prompts and private model responses are excluded from ordinary logs and analytics.
+
+## 38.4 Building one bounded request
+
+Build context on the server from a consistent campaign state revision:
+1. Trusted runtime instructions: security, tool permissions, output schema and rules enforcement.
+2. Effective approved DM guidance and campaign settings.
+3. Compact current state and continuity anchors: active entities, current scene/time/location, urgent unresolved obligations, encounter/rest state and pending checks/actions.
+4. Valid checkpoint plus any exact committed events after its source watermark.
+5. Selected current canonical excerpts and relevant older memories, with source identity and visibility.
+6. Recent complete exchanges, preserving necessary dialogue and tool/check results.
+7. Current player input.
+
+Imported documents, quoted dialogue and retrieved text are data, not instructions granting access or tool authority. Approved guidance cannot override security, structured mechanics, player agency or established facts. The separate Chat with DM history does not become in-world events; only explicitly approved effective guidance belongs in gameplay context.
+
+Budget configuration is per selected model:
+- C = verified usable context limit.
+- O = reserved maximum output, including any reasoning allowance counted by that provider/model.
+- S = explicit safety margin; initial policy is 5% of C, rounded up, adjustable after measurement.
+- Input budget B = C - O - S.
+- Count the fully serialized input, tool schemas, message framing and attachments using supported accounting, not only narration characters.
+
+Verify actual model accounting/limits against official provider documentation at implementation time. Store tokenizer/accounting version and measured usage. Do not hardcode a universal model limit. Use a documented conservative estimate if exact counting is unavailable; reject invalid budgets. Recalculate on model/settings changes and before every continuation after tool results.
+
+Treat the last 10–20 scenes as a recency target, never a guarantee they fit. Preserve complete exchange/tool-result groups; do not cut halfway through an unresolved check or replace its recorded result with an invented one. Large documents and tool results must be selected/chunked, not blindly appended.
+
+Mandatory context includes trusted boundaries, current action/input, relevant exact state, effective rules/guidance, pending action/check details, and facts necessary to avoid immediate contradiction. Optional context includes redundant old prose and tangential retrieved excerpts.
+
+When over budget:
+1. Deduplicate source spans and remove irrelevant/low-priority optional excerpts.
+2. Replace older covered exchanges with a valid source-backed summary, retaining recent relevant dialogue and post-summary deltas.
+3. Retrieve smaller targeted excerpts instead of entire documents, without losing essential qualifications.
+4. Recount and retry assembly with a fixed bounded attempt limit.
+5. If mandatory context still does not fit, do not call the model or mutate the world. Preserve input and offer a neutral actionable explanation: shorten input, narrow the requested task, or choose a supported larger-context model explicitly.
+
+Never silently truncate player input, authorization instructions, required rules, pending outcomes or necessary state. Do not silently switch models or create unlimited summarization/retrieval loops. A provider context-limit error receives at most one smaller safe reassembly retry for that request; otherwise preserve the turn for retry.
+
+## 38.5 Retrieval policy
+
+Build retrieval candidates from current scene participants/location, active quests, named/aliased entities, the player's explicit question and unresolved obligations. Load exact relevant records first. Rank historical candidates by entity/event relevance, authority, temporal validity and significance, with recency as one factor. Old promises must not disappear merely because newer chatter exists.
+
+Return a bounded, source-linked, deduplicated set within the remaining token budget. Initial tunable policy: at most 12 historical excerpts per assembly, with at most one query expansion if essential evidence is absent. These are limits, not a requirement to fill every slot. Allow explicit entity-linked facts to displace lower-value results.
+
+Retrieval returns the latest applicable facts while retaining earlier versions as history where needed. Exclude archived/superseded material from current canon unless explicitly requested for historical comparison. Historical retrieval must still respect campaign and visibility permissions. Track valid-in-world time separately from when a record was saved.
+
+Test English/Russian queries, aliases, renamed entities and paraphrases. Avoid copying full old conversations when a short sourced excerpt suffices. Search scores are not factual confidence.
+
+On low recall or conflicting evidence, perform one bounded targeted lookup; if unresolved, ask a non-spoiling clarification or acknowledge uncertainty. Do not invent the missing promise, identity or outcome. A retrieval outage may degrade to current state/recent context only when the action does not require missing history; otherwise pause that action.
+
+## 38.6 Summaries and checkpoints
+
+Phase 3 triggers:
+- END SESSION.
+- Before accepting the next turn when selected context exceeds 80% of B and older unsummarized committed exchanges can safely be compacted.
+- Recovery/rebuild after invalidation where needed.
+
+Use configurable thresholds and source-watermark deduplication. No timer-only summarization loop and no summary job for every keystroke. Incremental jobs read previous valid summaries plus exact newly committed source ranges; periodically rebuild affected summaries from originals to avoid repeated summary-of-summary drift.
+
+A checkpoint records:
+- exact source/state watermark and version;
+- current scene, time, location and participants;
+- concise current situation and last committed action/outcome;
+- unanswered question or next expected input;
+- pending action/check identifiers/status;
+- unresolved promises, clues and immediate goals;
+- public/private separation and links to exact structured state;
+- effective settings/guidance revision references.
+
+Summaries retain consequential dialogue, decisions, relationship events, promises, discoveries and unresolved threads with source references. Every durable factual assertion must be traceable to supplied source records; separate atmospheric paraphrase from facts.
+
+Generate public recaps using public sources only. Generate private continuity summaries separately. Validate schema, source existence, source campaign/visibility, numeric/state references and source coverage before activation. Reject unsupported material changes; do not repair them by inventing facts.
+
+Schema validation cannot prove narrative accuracy. Add targeted contradiction checks against authoritative records and evaluate summaries on labeled continuity cases. On failure, keep the last valid summary plus uncovered source events. Do not mark a range covered until a valid replacement is committed.
+
+Publish the new summary/checkpoint and its coverage watermark atomically. Keep version history and link superseded entries. Raw events remain available for reconstruction.
+
+END SESSION must be idempotent. Record the gameplay boundary and exact resume metadata durably even if an AI recap job fails. A failed recap remains pending/retryable; it does not lose gameplay or falsely claim completion. Pending rolls/actions must be preserved for resume, never auto-resolved by ending a session.
+
+## 38.7 Corrections, conflicts and stale memory
+
+Explicit owner corrections are versioned and authoritative, but validate the operation and its scope. A style request is not a canon correction. Do not silently treat contradictory imported documents as owner corrections.
+
+When source documents/state are corrected, archived or deleted, invalidate affected summaries, extracted facts, search entries and caches through source references. Exclude stale derivatives immediately, even if rebuilding is delayed. Visibility becoming more restrictive must revoke public derivative access before those artifacts can be served again.
+
+If a checkpoint is invalid, rebuild from valid sources/current state or pause safely; never quietly resume from stale facts. Preserve an audit trail without exposing private facts.
+
+Resolve conflicts by authority and applicable time. For equally authoritative contradictions, request clarification instead of silently retconning. Clarification itself must not reveal a private contradiction; use a neutral prompt or retain valid existing canon. Corrections do not undo unrelated completed events.
+
+## 38.8 Turns, retries and resume
+
+Serialize state-changing Game and companion turns per campaign. Associate each accepted action with a stable operation ID and expected state revision. Reject/reconcile stale updates rather than committing a model response generated from superseded state.
+
+Persist accepted input and operation status before external calls. A timeout or closed browser must not lose the input, duplicate a committed turn, or roll again. Reload/reconnect retrieves the existing operation and recorded result.
+
+Use a bounded lifecycle such as pending / awaiting-check / generating / committed / failed. Provider calls occur outside long database transactions; commit validated narration, state changes and event linkage atomically at the applicable operation boundary. Recorded rolls and already committed actions are reused on retry, never replayed as new mutations.
+
+Do not publish unvalidated private-inclusive streams or claim uncommitted mechanical outcomes as final. Resume uses the last committed revision and pending operation, not a newly improvised reconstruction.
+
+Derived summary/index jobs use source revisions. A stale job must not overwrite newer state or mark unseen events covered; discard or supersede it safely. Cache keys include campaign, visibility, relevant source/state/guidance revisions and model/accounting version; no cross-campaign cache reuse.
+
+## 38.9 Failure handling and observability
+
+Gameplay records must remain durable if summarization, indexing or model calls fail. Retry supporting jobs with bounded backoff and persistent status using the smallest adequate infrastructure. If sufficient valid context cannot be built, pause safely rather than fabricate continuity.
+
+Record content-minimized diagnostics: operation ID, context budget/usage, selected source counts and revisions, summary coverage lag, retries, latency and failure category. No raw private text, secrets or full prompts. Owners see plain-language status, not internal DM details. Prompt caching is optional optimization, never durable memory.
+
+Schema snapshots/checkpoints are not substitutes for backups. Preserve recovery source records and document how to restore/rebuild memory without changing canon. Full export/import UI remains in its separately authorized phase.
+
+## 38.10 Acceptance and regression gates
+
+Use synthetic campaigns only. Keep deterministic storage/security/budget tests separate from model-quality evaluations.
+
+Required cases:
+- At least two campaigns containing similarly named NPCs/items, with zero cross-campaign retrieval, cache or update leakage.
+- Seed unique private markers; verify no disclosure in public search/recaps/media inputs/browser responses/errors/logs. Include NPC knowledge and quoted-instruction attacks.
+- Structured resources/quantities remain exact over repeated summaries; consumed items stay consumed, embedded components stay unavailable, and old checkpoints cannot restore them.
+- An old promise survives hundreds of distracting events; distinguish rumor from fact, intention from completion, negation, renamed entities, and corrected/retracted canon.
+- Test English/Russian paraphrases and aliases.
+- A fixture of at least 1,000 synthetic events across 20 sessions forces several compactions; final assembly remains within B without dropping mandatory context.
+- Test a very long document, oversized player input, smaller-model switch, tool-result growth and provider context-limit rejection.
+- Test failed/stale summary jobs, stale indexes, restrictive visibility changes, invalid sources and equally authoritative conflicts.
+- Test double submission, two browser tabs, timeout after commit, reconnect during a roll, repeated END SESSION, and resume with pending actions; no duplicate mutation or reroll.
+- Resume a new session at the exact last committed point, preserving participants, resources, unresolved decisions and operation status.
+
+For retrieval evaluation, maintain at least 30 labeled scenarios with expected source facts, including old relevant evidence and irrelevant recent decoys. Initial acceptance target: at least 90% retrieval recall of labeled relevant evidence within the configured budget, and 100% inclusion of designated critical facts needed for the next action or an explicit safe pause. Source inclusion does not itself prove model use.
+
+Evaluate at least 20 representative continuation/summary cases with a rubric for factual continuity, uncertainty, NPC knowledge, tone, player agency and spoiler safety. At least 90% must pass the overall rubric, with zero critical state contradictions or private disclosures in the evaluated suite. Report the model/configuration, sample size, failures, latency and token usage honestly. Passing finite tests is not a guarantee of perfect memory.
+
+Do not conduct paid model evaluation without authorization and configured credentials. If only deterministic tests can run, report model-quality verification as blocked, not passed. No real campaign import until the relevant persistence, secrecy and continuity gates pass on synthetic data.
