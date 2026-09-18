@@ -42,15 +42,13 @@ export function PersistentShell({ children }: { children: ReactNode }) {
           <Link className="brand" href="/">
             ✧ {t("PERSONAL RPG CONSOLE")}
           </Link>
-          <span className="preview-indicator">
-            {t("PHASE 1 · PERSISTENCE")}
-          </span>
+          <span className="preview-indicator">{t("PHASE 2 · TEXT DM")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="page-footer">
-          {t("Private owner application · Gameplay is not active")}
+          {t("Private owner application · Your campaigns and stories")}
         </footer>
       </div>
     );
@@ -134,15 +132,13 @@ export function PersistentShell({ children }: { children: ReactNode }) {
               )}
             </span>
           </div>
-          <span className="preview-indicator">
-            {t("PHASE 1 · PERSISTENCE")}
-          </span>
+          <span className="preview-indicator">{t("PHASE 2 · TEXT DM")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="page-footer">
-          {t("Manual owner records · Gameplay is not active")}
+          {t("Saved campaign · Text adventures and owner corrections")}
         </footer>
       </div>
       <nav className="bottom-nav" aria-label={t("Mobile navigation")}>

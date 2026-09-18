@@ -120,18 +120,12 @@ function RulesAndPlayStyle({
   return (
     <>
       <div className="rules-preview-note">
-        <Badge>
-          {t(
-            preview
-              ? "Preview only"
-              : "Saved preferences · gameplay unavailable",
-          )}
-        </Badge>
+        <Badge>{t(preview ? "Preview only" : "Saved campaign rules")}</Badge>
         <p>
           {t(
             preview
               ? "These settings do not affect gameplay yet. Numerical tuning is provisional. Choices stay while you browse and reset on refresh."
-              : "Save preserves these campaign preferences. Numerical tuning is provisional; rules enforcement and gameplay begin in a later phase.",
+              : "Saved changes apply to future turns. Gameplay requires a supported rules profile; its mechanics enforce the applicable settings. Past scenes and rolls stay unchanged.",
           )}
         </p>
       </div>
@@ -334,7 +328,9 @@ function RulesAndPlayStyle({
         />
         <p className="muted">
           {t(
-            "Full RPG does not call for rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts. Frequency is a preview preference; it does not generate checks yet.",
+            preview
+              ? "Full RPG does not call for rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts. Frequency is a preview preference; it does not generate checks yet."
+              : "Full RPG considers meaningful uncertain actions. Trivial, impossible, or unchanged repeated attempts do not get discretionary rolls. Required attacks and saves still follow the rules.",
           )}
         </p>
         <ChoiceGroup
@@ -568,7 +564,7 @@ export function CampaignSettingsEditor({
               {t(
                 preview
                   ? "A separate preference for this campaign’s future story language. It does not change the interface or generate text yet. AI support arrives in Phase 2; this preview choice resets on refresh."
-                  : "Saved for this campaign only. Campaign Language does not change Interface Language. Story generation is not available in Phase 1.",
+                  : "The DM uses this language for future narration. Campaign Language is separate from Interface Language and does not translate existing records.",
               )}
             </p>
           </div>

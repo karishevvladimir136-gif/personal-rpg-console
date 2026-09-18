@@ -1325,5 +1325,14 @@
   "This storage contains equipped items. Correct their equipment records before changing its assignment.": "В этом хранилище есть экипированные предметы. Исправьте их записи снаряжения, прежде чем менять принадлежность хранилища.",
   "Clear the equipment profile before changing this record to a known NPC.": "Очистите профиль снаряжения, прежде чем менять тип записи на известного NPC.",
   "NPC equipment is not available in Phase 1. Keep known NPC details in the public record.": "Снаряжение NPC недоступно на этапе 1. Сохраняйте известные сведения об NPC в открытой записи.",
-  "Shared stash storage is not assigned to a character.": "Общий тайник не закреплён за персонажем."
+  "Shared stash storage is not assigned to a character.": "Общий тайник не закреплён за персонажем.",
+  "PHASE 2 · TEXT DM": "ЭТАП 2 · ТЕКСТОВЫЙ DM",
+  "Private owner application · Your campaigns and stories": "Личное приложение · Ваши кампании и истории",
+  "Saved campaign · Text adventures and owner corrections": "Сохранённая кампания · Текстовые приключения и ваши исправления",
+  "Save or restore guidance explicitly for future turns. Sending feedback alone never changes this guide. Guidance cannot override mechanics, your choices, established canon, or secrets.": "Сохраняйте или восстанавливайте руководство явно: изменения действуют на будущие ходы. Отправка отзыва сама по себе не меняет руководство. Указания не могут отменить механику, ваши решения, установленный канон или защиту секретов.",
+  "Saved campaign rules": "Сохранённые правила кампании",
+  "Saved changes apply to future turns. Gameplay requires a supported rules profile; its mechanics enforce the applicable settings. Past scenes and rolls stay unchanged.": "Сохранённые изменения действуют на будущие ходы. Для игры нужен поддерживаемый набор правил: его механика учитывает применимые настройки. Прошлые сцены и броски не меняются.",
+  "Full RPG considers meaningful uncertain actions. Trivial, impossible, or unchanged repeated attempts do not get discretionary rolls. Required attacks and saves still follow the rules.": "Полный RPG учитывает значимые действия с неопределённым исходом. Простые, невозможные и неизменные повторные попытки не требуют дополнительных проверок. Обязательные атаки и спасброски выполняются по правилам.",
+  "The DM uses this language for future narration. Campaign Language is separate from Interface Language and does not translate existing records.": "DM использует этот язык для будущего повествования. Язык кампании не зависит от языка интерфейса и не переводит существующие записи.",
+  "Saved for future support. Free-form text is the primary way to play; generated action suggestions are not available yet.": "Настройка сохранена для будущей поддержки. Основной способ игры — свободный текст; автоматически предложенные действия пока недоступны."
 }

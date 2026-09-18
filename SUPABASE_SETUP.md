@@ -1,5 +1,7 @@
 # Phase 1 persistence setup
 
+This document preserves the accepted Phase 1 setup procedure. For the authorized Phase 2 additions, use [PHASE2_SETUP.md](PHASE2_SETUP.md): the server runtime also needs a local service credential and an owner-configured OpenAI key/model. Do not repeat the empty-database seed or reset the accepted local database. Actual results are in `DEV_STATUS.md`.
+
 No hosted project was created or deployed. The application needs one Supabase database and one owner account before persistent screens can save. The approved synthetic Phase 0 preview remains separate.
 
 The disposable environment on this machine is now configured and verified; see [DEV_STATUS.md](DEV_STATUS.md) for actual results and remaining limitations. Open `http://127.0.0.1:3000/campaigns` for owner review. Do not repeat account creation, migrations or synthetic seeding on the populated acceptance database. Test sign-in details are in the ignored local `test-results/LOCAL_TEST_LOGIN.txt` file; enter them only in the application, never in chat.

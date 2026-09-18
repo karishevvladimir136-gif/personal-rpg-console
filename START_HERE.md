@@ -3,6 +3,8 @@
 
 You do NOT need to learn programming before starting.
 
+**Current local work:** Phase 1 is owner-approved and Phase 2 is authorized. Follow [PHASE2_SETUP.md](PHASE2_SETUP.md) for secure local text-DM setup and [DEV_STATUS.md](DEV_STATUS.md) for actual progress. The steps below are the original staged build guide; do not recreate accounts or reset the existing database. Deployment and real campaign imports remain prohibited.
+
 Your job is:
 - product owner;
 - tester;

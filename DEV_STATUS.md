@@ -8,12 +8,12 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Phase 2 coordination checkpoint
 
-- **Current status:** inspecting the integrated architecture and agreeing [PHASE2_CONTRACTS.md](PHASE2_CONTRACTS.md) before parallel implementation. No worker has GO yet; shared DTOs and mechanics details must be agreed first.
-- **Completed / files changed:** repository/specification review, shared lifecycle/privacy/context/ownership contract and phase-boundary documentation. No Phase 2 runtime is claimed complete.
-- **Verification:** the results below are the accepted Phase 1 results, not Phase 2 verification. Phase 2 deterministic integration, live OpenAI and the 20–30 turn synthetic campaign remain pending.
+- **Current status:** all three workers acknowledged the shared contract and concrete DTOs at `c7c46e6` before GO. Separate worktrees are active for runtime/database, mechanics/turns and UI. Lead owns API integration and translations; only worker A edits migrations.
+- **Completed / files changed:** repository/specification review, shared lifecycle/privacy/context/ownership contract, public/internal DTOs, explicit house-profile vocabulary, phase-boundary documentation and lead API/request validation. No Phase 2 runtime is claimed complete.
+- **Verification so far:** 18 targeted request-validation, localization and campaign-settings tests pass; targeted ESLint passes. New HTTP authorization checks await integrated worker modules. The historical results below are accepted Phase 1 results, not Phase 2 verification. Full Phase 2 deterministic integration, live OpenAI and the 20–30 turn synthetic campaign remain pending.
 - **Key decisions:** one primary DM runtime; service-only private access after verified owner authorization; durable fenced operations and recorded dice; atomic validated consequences; separate public-only narration stage; bounded model-specific context. Reuse existing records, no Phase 3 memory runtime.
-- **Known limitations:** live provider configuration and model access must be verified without printing secrets. Missing setup will block live verification, not be replaced by fake production replies. Physical iPhone/Safari and optional conflict-rebase confirmation remain non-blocking unverified Phase 1 items.
-- **Remaining / next step:** finalize public/internal interfaces, collect all three worker acknowledgements, then issue GO in isolated worktrees. Integrate, verify deterministically before live calls, update actual results, and stop for Phase 2 owner acceptance. No deployment or real-data import.
+- **Known limitations:** a names-only check found no configured OpenAI API key/model or runtime service credential. Local service setup will be coordinated after additive migrations; the owner will receive secure OpenAI setup instructions before live verification. Missing setup is not replaced by fake production replies. Physical iPhone/Safari and optional conflict-rebase confirmation remain non-blocking unverified Phase 1 items.
+- **Remaining / next step:** finish assigned workstreams, integrate runtime/database then mechanics then UI, and verify deterministically before live calls. Record actual results and stop for Phase 2 owner acceptance after the gates pass. No deployment or real-data import.
 
 ## Approved Phase 0 checkpoint
 

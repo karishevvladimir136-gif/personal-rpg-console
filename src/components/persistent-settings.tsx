@@ -130,7 +130,7 @@ function PreferenceForm({ current }: { current: Preferences }) {
                   {t(
                     key === "largeText"
                       ? "Give the narration a little more breathing room."
-                      : "Saved for future play; suggested actions are unavailable until gameplay is connected.",
+                      : "Saved for future support. Free-form text is the primary way to play; generated action suggestions are not available yet.",
                   )}
                 </p>
               </div>

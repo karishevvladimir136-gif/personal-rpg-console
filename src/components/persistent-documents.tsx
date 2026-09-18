@@ -299,7 +299,7 @@ export function DocumentEditor({
         {guide && (
           <p className="muted">
             {t(
-              "Saved guidance is not applied to gameplay in Phase 1. Edit and save this reference explicitly; sending feedback never changes it.",
+              "Save or restore guidance explicitly for future turns. Sending feedback alone never changes this guide. Guidance cannot override mechanics, your choices, established canon, or secrets.",
             )}
           </p>
         )}
