@@ -1,0 +1,80 @@
+"use client";
+
+import { useCallback, useEffect, useMemo, useSyncExternalStore } from "react";
+import { useCampaignData } from "./persistence-context";
+import { loadMemory, memoryErrorMessage } from "@/lib/memory/client";
+import {
+  createMemoryReader,
+  initialMemoryReadState,
+} from "@/lib/memory/client-state";
+
+const readers = new Map<string, ReturnType<typeof makeReader>>();
+function makeReader(campaignId: string) {
+  const reader = createMemoryReader(campaignId, loadMemory, memoryErrorMessage);
+  let subscribers = 0;
+  let timer: ReturnType<typeof setInterval> | null = null;
+  const refresh = () => {
+    void reader.refresh().catch(() => {});
+  };
+  const gameplayChanged = (event: Event) => {
+    if ((event as CustomEvent).detail === campaignId) refresh();
+  };
+  const entry = {
+    ...reader,
+    subscribe(listener: () => void) {
+      const unsubscribe = reader.subscribe(listener);
+      subscribers++;
+      if (subscribers === 1) {
+        readers.set(campaignId, entry);
+        window.addEventListener("focus", refresh);
+        window.addEventListener("rpg-gameplay-changed", gameplayChanged);
+        // Reads only. A pending recap never starts generation from a timer.
+        timer = setInterval(() => {
+          const snapshot = reader.getSnapshot().snapshot;
+          if (
+            snapshot?.currentBoundary?.state === "resuming" ||
+            snapshot?.sessions.some((row) =>
+              ["pending", "generating"].includes(row.recap.status),
+            )
+          )
+            refresh();
+        }, 2500);
+      }
+      return () => {
+        unsubscribe();
+        subscribers--;
+        if (!subscribers) {
+          if (timer) clearInterval(timer);
+          timer = null;
+          window.removeEventListener("focus", refresh);
+          window.removeEventListener("rpg-gameplay-changed", gameplayChanged);
+          readers.delete(campaignId);
+        }
+      };
+    },
+  };
+  return entry;
+}
+export function useSessionMemory() {
+  const { campaignId, data } = useCampaignData();
+  const reader = useMemo(() => {
+    const existing = readers.get(campaignId);
+    if (existing) return existing;
+    const next = makeReader(campaignId);
+    readers.set(campaignId, next);
+    return next;
+  }, [campaignId]);
+  const subscribe = useCallback(
+    (listener: () => void) => reader.subscribe(listener),
+    [reader],
+  );
+  const state = useSyncExternalStore(
+    subscribe,
+    reader.getSnapshot,
+    () => initialMemoryReadState,
+  );
+  useEffect(() => {
+    void reader.refresh().catch(() => {});
+  }, [reader, data]);
+  return { ...state, refresh: reader.refresh, accept: reader.accept };
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { useLanguage } from "./language-context";
 import { useCampaignData, useUnsavedChanges } from "./persistence-context";
 import { Button, Icon } from "./ui";
@@ -32,6 +33,12 @@ import type {
   TurnMode,
 } from "@/lib/gameplay/contracts";
 import { GameplayTurn } from "./gameplay-turn";
+import { useSessionMemory } from "./session-memory-runtime";
+import {
+  sessionGate,
+  sessionGateLabels,
+  turnAllowedBySession,
+} from "@/lib/memory/client-state";
 
 function localStorageForDraft() {
   try {
@@ -61,6 +68,7 @@ export function GameplayComposer({
 }) {
   const { campaignId, data } = useCampaignData();
   const { t } = useLanguage();
+  const memory = useSessionMemory();
   const [journal, setJournal] = useState<DraftJournal>(emptyJournal);
   const current = useRef(journal);
   const busyRef = useRef(false);
@@ -130,6 +138,16 @@ export function GameplayComposer({
   };
   const send = () =>
     run(async () => {
+      if (
+        !sessionGate(
+          memory.error ? null : memory.snapshot,
+          mode,
+          current.current.command?.operationId ??
+            current.current.attempt?.operationId ??
+            null,
+        )
+      )
+        return;
       if (current.current.command) {
         const result = await resumeTurn(current.current.command);
         write({ ...current.current, command: null });
@@ -195,6 +213,8 @@ export function GameplayComposer({
     checkId: string | null = null,
   ) =>
     run(async () => {
+      if (!turnAllowedBySession(memory.error ? null : memory.snapshot, turn))
+        return;
       // Recovered durable turns need no copy of private or provider context in the browser.
       const attempt = current.current.attempt ?? {
         operationId: turn.id,
@@ -234,8 +254,39 @@ export function GameplayComposer({
         ["game", "companion", "mechanic"].includes(turn.mode) &&
         isUnresolved(turn),
     );
+  const sessionAllowed = sessionGate(
+    memory.error ? null : memory.snapshot,
+    mode,
+    journal.command?.operationId ?? journal.attempt?.operationId ?? null,
+  );
+  const sessionPaused = !sessionGate(
+    memory.error ? null : memory.snapshot,
+    mode,
+  );
   return (
     <div className="gameplay-channel">
+      {sessionPaused && (
+        <div className="session-saved-note" role="status">
+          <p>
+            {t(
+              memory.error ||
+                (!memory.snapshot
+                  ? sessionGateLabels.loading
+                  : memory.snapshot.currentBoundary?.state === "resuming"
+                    ? sessionGateLabels.resuming
+                    : sessionGateLabels.ended),
+            )}
+          </p>
+          <Link className="text-link" href={`/campaigns/${campaignId}/game`}>
+            {t("Game")}
+          </Link>
+          {memory.error && (
+            <Button onClick={() => void memory.refresh().catch(() => {})}>
+              {t("Retry loading")}
+            </Button>
+          )}
+        </div>
+      )}
       {!compact && (
         <div
           className="gameplay-turns"
@@ -249,27 +300,49 @@ export function GameplayComposer({
           )}
         >
           {turns.map((turn) => (
-            <GameplayTurn
+            <div
               key={turn.id}
-              turn={turn}
-              busy={busy}
-              onCommand={(action, checkId) =>
-                void command(turn, action, checkId)
-              }
-              onSaved={onSaved}
-            />
+              id={`saved-turn-${turn.id}`}
+              className="session-saved-turn"
+            >
+              <GameplayTurn
+                turn={turn}
+                busy={
+                  busy ||
+                  !turnAllowedBySession(
+                    memory.error ? null : memory.snapshot,
+                    turn,
+                  )
+                }
+                onCommand={(action, checkId) =>
+                  void command(turn, action, checkId)
+                }
+                onSaved={onSaved}
+              />
+            </div>
           ))}
         </div>
       )}
       {compact && (unresolved || turns.at(-1)) && (
-        <GameplayTurn
-          turn={(unresolved || turns.at(-1))!}
-          busy={busy}
-          onCommand={(action, checkId) =>
-            void command((unresolved || turns.at(-1))!, action, checkId)
-          }
-          onSaved={onSaved}
-        />
+        <div
+          id={`saved-turn-${(unresolved || turns.at(-1))!.id}`}
+          className="session-saved-turn"
+        >
+          <GameplayTurn
+            turn={(unresolved || turns.at(-1))!}
+            busy={
+              busy ||
+              !turnAllowedBySession(
+                memory.error ? null : memory.snapshot,
+                (unresolved || turns.at(-1))!,
+              )
+            }
+            onCommand={(action, checkId) =>
+              void command((unresolved || turns.at(-1))!, action, checkId)
+            }
+            onSaved={onSaved}
+          />
+        </div>
       )}
       {!historyOnly && !play.configured && mode !== "mechanic" && (
         <p role="status" className="rules-preview-note">
@@ -362,6 +435,7 @@ export function GameplayComposer({
               disabled={
                 !ready ||
                 busy ||
+                !sessionAllowed ||
                 (mode !== "feedback" && !currentSession) ||
                 (!journal.attempt &&
                   (!journal.text.trim() || stateChangingBusy))

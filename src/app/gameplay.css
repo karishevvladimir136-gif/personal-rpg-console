@@ -208,3 +208,85 @@
     animation: none;
   }
 }
+
+/* Public session continuity uses the existing story panels and bronze palette. */
+.session-memory {
+  min-width: 0;
+  padding: 20px;
+  margin: 18px 0;
+  border-color: #635137;
+}
+.session-memory .panel-heading {
+  padding: 0 0 14px;
+}
+.session-memory .prose,
+.session-memory p,
+.session-memory dd {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.session-memory-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.session-public-recap {
+  line-height: 1.75;
+  margin: 18px 0;
+}
+.session-saved-note {
+  border-left: 2px solid #9d7b46;
+  padding-left: 12px;
+  color: #cbbda4;
+}
+.session-resume-details {
+  margin: 18px 0;
+}
+.session-resume-details summary {
+  cursor: pointer;
+  color: #c5aa77;
+  padding: 10px 0;
+}
+.session-resume-facts {
+  display: grid;
+  grid-template-columns: minmax(85px, 1fr) minmax(0, 3fr);
+  gap: 8px 14px;
+}
+.session-resume-facts dt {
+  color: var(--muted);
+}
+.session-resume-facts dd {
+  margin: 0;
+}
+.session-memory .button-group {
+  flex-wrap: wrap;
+}
+.session-memory .button {
+  min-height: 44px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.session-request-recovery {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #4a453a;
+}
+.session-saved-turn {
+  scroll-margin-top: 90px;
+}
+@media (max-width: 760px) {
+  .session-memory {
+    padding: 14px;
+  }
+  .session-resume-facts {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .session-resume-facts dd {
+    margin-bottom: 8px;
+  }
+}

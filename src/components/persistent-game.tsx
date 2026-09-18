@@ -13,6 +13,7 @@ import {
   GameplayRest,
 } from "./gameplay-actions";
 import { GameplayCombat } from "./gameplay-combat";
+import { SessionMemoryPanel, SessionPendingCompanion } from "./session-memory";
 import {
   RecordBoundary,
   RecordEditor,
@@ -386,6 +387,7 @@ function SessionRecords({ data }: { data: CampaignSnapshot }) {
               {t("Add transcript record")}
             </Button>
           </Panel>
+          <SessionMemoryPanel sessionId={selected.id} />
           <Transcript data={data} session={selected} onEdit={setSceneEditor} />
         </>
       )}
@@ -440,6 +442,13 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
       />
       <div className="game-grid gameplay-live">
         <div className="story-column">
+          <SessionMemoryPanel sessionId={session?.id ?? null} />
+          {runtime.play && (
+            <SessionPendingCompanion
+              play={runtime.play}
+              onSaved={runtime.afterMutation}
+            />
+          )}
           <Panel
             className="visual-inventory-panel"
             title={session?.title || t("Choose a resume session")}
