@@ -77,3 +77,29 @@ export function rebaseDocumentDraft(
   if (draft.id !== current.id) throw new Error("This is a different document.");
   return { ...draft, expectedRevision: current.revision };
 }
+
+// File reads may finish after cancellation, navigation, or a second selection.
+// Only the current read is allowed to replace the owner's draft.
+export function createDocumentFileReader() {
+  let generation = 0;
+  return {
+    cancel() {
+      generation += 1;
+    },
+    async read(
+      readText: () => Promise<string>,
+    ): Promise<
+      { status: "ready"; body: string } | { status: "failed" | "stale" }
+    > {
+      const request = ++generation;
+      try {
+        const body = await readText();
+        return request === generation
+          ? { status: "ready", body }
+          : { status: "stale" };
+      } catch {
+        return { status: request === generation ? "failed" : "stale" };
+      }
+    },
+  };
+}

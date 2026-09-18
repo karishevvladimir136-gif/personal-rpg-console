@@ -10,6 +10,7 @@ import {
   documentRestore,
   isDocumentDirty,
   rebaseDocumentDraft,
+  createDocumentFileReader,
 } from "../src/lib/persistence/document-model.ts";
 import {
   createMutationAttempt,
@@ -166,6 +167,56 @@ test("explicit conflict rebase keeps owner text while adopting only the reviewed
   assert.throws(() =>
     rebaseDocumentDraft(draft, { ...latest, id: "another-document" }),
   );
+});
+
+test("cancelled or superseded file reads cannot replace a newer owner draft", async () => {
+  const reader = createDocumentFileReader();
+  let completeOld;
+  const oldRead = reader.read(
+    () =>
+      new Promise((resolve) => {
+        completeOld = resolve;
+      }),
+  );
+  reader.cancel();
+  const typedAfterCancel = "My newer unsaved draft";
+  completeOld("Old file content");
+  const oldResult = await oldRead;
+  assert.equal(oldResult.status, "stale");
+  assert.equal(
+    oldResult.status === "ready" ? oldResult.body : typedAfterCancel,
+    typedAfterCancel,
+  );
+
+  let completeFirst;
+  const first = reader.read(
+    () =>
+      new Promise((resolve) => {
+        completeFirst = resolve;
+      }),
+  );
+  const second = await reader.read(async () => "Second selected file");
+  completeFirst("First selected file");
+  assert.deepEqual(second, { status: "ready", body: "Second selected file" });
+  assert.equal((await first).status, "stale");
+});
+
+test("file read failures preserve the draft and cancelled errors stay silent", async () => {
+  const reader = createDocumentFileReader();
+  const result = await reader.read(async () => {
+    throw new Error("unreadable file");
+  });
+  assert.deepEqual(result, { status: "failed" });
+  let failOld;
+  const old = reader.read(
+    () =>
+      new Promise((_, reject) => {
+        failOld = reject;
+      }),
+  );
+  reader.cancel();
+  failOld(new Error("late file error"));
+  assert.deepEqual(await old, { status: "stale" });
 });
 
 test("persistent campaign, document and settings messages have matching Russian interpolation", () => {

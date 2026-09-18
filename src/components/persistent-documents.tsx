@@ -15,6 +15,7 @@ import {
   documentSave,
   isDocumentDirty,
   rebaseDocumentDraft,
+  createDocumentFileReader,
 } from "@/lib/persistence/document-model";
 import type {
   DocumentRecord,
@@ -168,10 +169,14 @@ export function DocumentEditor({
   const [error, setError] = useState("");
   const [saved, setSaved] = useState(false);
   const [history, setHistory] = useState(false);
+  const [reading, setReading] = useState(false);
+  const [fileReader] = useState(createDocumentFileReader);
+  const fileInput = useRef<HTMLInputElement>(null);
   const attempt = useRef<Mutation | null>(null);
   const busy = useRef(false);
   const dirty = isDocumentDirty(draft, baseline);
-  useUnsavedChanges(dirty);
+  useUnsavedChanges(dirty || reading);
+  useEffect(() => () => fileReader.cancel(), [fileReader]);
   const newer = Boolean(
     record && record.revision !== baseline.expectedRevision,
   );
@@ -180,6 +185,41 @@ export function DocumentEditor({
     setDraft(next);
     onDirty(isDocumentDirty(next, baseline));
     setSaved(false);
+  };
+  const readFile = async (file: File) => {
+    if (busy.current) return;
+    if (file.size > 200000 || !/\.(txt|md)$/i.test(file.name)) {
+      setError("Choose a TXT or MD file smaller than 200 KB.");
+      if (fileInput.current) fileInput.current.value = "";
+      return;
+    }
+    busy.current = true;
+    setReading(true);
+    onSaving(true);
+    setError("");
+    const result = await fileReader.read(() => file.text());
+    if (result.status === "stale") return;
+    if (result.status === "ready") {
+      change({
+        body: result.body,
+        ...(draft.title.trim()
+          ? {}
+          : { title: file.name.replace(/\.(txt|md)$/i, "") }),
+      });
+    } else {
+      setError("The file could not be read. Your existing draft is unchanged.");
+    }
+    busy.current = false;
+    setReading(false);
+    onSaving(false);
+    if (fileInput.current) fileInput.current.value = "";
+  };
+  const cancelFileRead = () => {
+    fileReader.cancel();
+    busy.current = false;
+    setReading(false);
+    onSaving(false);
+    if (fileInput.current) fileInput.current.value = "";
   };
   const save = async () => {
     if (busy.current) return;
@@ -250,7 +290,7 @@ export function DocumentEditor({
     }
   };
   return (
-    <div>
+    <div className="persistent-documents">
       <Panel
         title={t(
           guide ? "DM Guide" : record ? "Edit document" : "New Document",
@@ -269,7 +309,7 @@ export function DocumentEditor({
             void save();
           }}
         >
-          <fieldset className="persistence-fields" disabled={saving}>
+          <fieldset className="persistence-fields" disabled={saving || reading}>
             <label className="field">
               {t("Document title")}
               <input
@@ -310,27 +350,11 @@ export function DocumentEditor({
               {t("Read a text or Markdown file")}
               <input
                 type="file"
+                ref={fileInput}
                 accept=".txt,.md,text/plain,text/markdown"
-                onChange={async (event) => {
+                onChange={(event) => {
                   const file = event.target.files?.[0];
-                  if (!file) return;
-                  if (file.size > 200000 || !/\.(txt|md)$/i.test(file.name)) {
-                    setError("Choose a TXT or MD file smaller than 200 KB.");
-                    return;
-                  }
-                  try {
-                    const body = await file.text();
-                    change({
-                      body,
-                      ...(draft.title.trim()
-                        ? {}
-                        : { title: file.name.replace(/\.(txt|md)$/i, "") }),
-                    });
-                  } catch {
-                    setError(
-                      "The file could not be read. Your existing draft is unchanged.",
-                    );
-                  }
+                  if (file) void readFile(file);
                 }}
               />
             </label>
@@ -422,6 +446,16 @@ export function DocumentEditor({
             )}
           </fieldset>
         </form>
+        {reading && (
+          <div className="button-row">
+            <p role="status">
+              {t(
+                "Reading file… Your draft stays unchanged until reading finishes.",
+              )}
+            </p>
+            <Button onClick={cancelFileRead}>{t("Cancel file read")}</Button>
+          </div>
+        )}
       </Panel>
       {record && history && (
         <>
@@ -431,7 +465,7 @@ export function DocumentEditor({
           </p>
           <VersionHistory
             record={record}
-            disabled={saving || dirty || newer}
+            disabled={saving || reading || dirty || newer}
             onRestore={restore}
           />
         </>
@@ -492,7 +526,7 @@ export function PersistentLibrary() {
         </Panel>
       )}
       {data && (
-        <div className="settings-grid" key={campaignId}>
+        <div className="settings-grid persistent-documents" key={campaignId}>
           <Panel title={t("Campaign documents")}>
             <label className="field">
               {t("Search documents")}

@@ -50,6 +50,8 @@
   "Unsaved changes": "Есть несохранённые изменения",
   "Saved": "Сохранено",
   "Document saved.": "Документ сохранён.",
+  "Reading file… Your draft stays unchanged until reading finishes.": "Чтение файла… Ваш черновик не изменится, пока чтение не завершится.",
+  "Cancel file read": "Отменить чтение файла",
   "Changes take effect after Save.": "Изменения вступят в силу после сохранения.",
   "Hide history": "Скрыть историю",
   "Save or discard your draft before restoring a version.": "Перед восстановлением версии сохраните или отмените черновик.",
