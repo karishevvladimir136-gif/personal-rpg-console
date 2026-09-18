@@ -189,6 +189,7 @@ test("persistent campaign, document and settings messages have matching Russian 
     "persistent-campaigns",
     "persistent-documents",
     "persistent-settings",
+    "persistent-dm-chat",
   ]) {
     const file = new URL(`../src/components/${filename}.tsx`, import.meta.url);
     const ast = ts.createSourceFile(

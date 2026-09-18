@@ -147,16 +147,18 @@ function VersionHistory({
   );
 }
 
-function DocumentEditor({
+export function DocumentEditor({
   record,
-  onSaved,
-  onDirty,
-  onSaving,
+  onSaved = () => {},
+  onDirty = () => {},
+  onSaving = () => {},
+  guide = false,
 }: {
   record?: DocumentRecord;
-  onSaved: (id: string) => void;
-  onDirty: (dirty: boolean) => void;
-  onSaving: (saving: boolean) => void;
+  onSaved?: (id: string) => void;
+  onDirty?: (dirty: boolean) => void;
+  onSaving?: (saving: boolean) => void;
+  guide?: boolean;
 }) {
   const { t } = useLanguage();
   const { campaignId, mutate, refresh } = useCampaignData();
@@ -188,7 +190,10 @@ function DocumentEditor({
     setSaved(false);
     attempt.current = createMutationAttempt(
       attempt.current,
-      documentSave(campaignId, draft),
+      documentSave(
+        campaignId,
+        guide ? { ...draft, status: "reference" } : draft,
+      ),
     );
     try {
       const result = await mutate(attempt.current);
@@ -246,7 +251,18 @@ function DocumentEditor({
   };
   return (
     <div>
-      <Panel title={t(record ? "Edit document" : "New Document")}>
+      <Panel
+        title={t(
+          guide ? "DM Guide" : record ? "Edit document" : "New Document",
+        )}
+      >
+        {guide && (
+          <p className="muted">
+            {t(
+              "Saved guidance is not applied to gameplay in Phase 1. Edit and save this reference explicitly; sending feedback never changes it.",
+            )}
+          </p>
+        )}
         <form
           onSubmit={(event) => {
             event.preventDefault();
@@ -267,6 +283,7 @@ function DocumentEditor({
               {t("Document status")}
               <select
                 value={draft.status}
+                disabled={guide}
                 onChange={(event) =>
                   change({
                     status: event.target.value as DocumentRecord["status"],
@@ -532,6 +549,7 @@ export function PersistentLibrary() {
             <DocumentEditor
               key={`${campaignId}:${selected?.id ?? "new"}`}
               record={selected}
+              guide={selected?.id === data.dmGuideDocumentId}
               onDirty={setDirty}
               onSaving={setSaving}
               onSaved={(id) => {
