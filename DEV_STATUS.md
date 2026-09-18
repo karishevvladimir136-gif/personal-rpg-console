@@ -4,7 +4,7 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
-**PHASE 2 READY FOR OWNER ACCEPTANCE.** Implementation, deterministic verification and the bounded synthetic live acceptance gate are complete. This is not owner approval. Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Stop for owner review. Phase 3, deployment and real campaign/DM-private imports remain prohibited.
+**PHASE 2 OWNER-APPROVED.** The owner explicitly accepted Phase 2 at commit `24fcd405b65b7ddd281837e491f1975e1fe3a765` on September 18, 2026. This acceptance is distinct from the implementation and verification results recorded below. The disclosed non-blocking limitations remain unchanged, including physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation, which remain unverified. Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Phase 3 has not begun and is not authorized. Deployment and real campaign/DM-private imports remain prohibited.
 
 ## Phase 2 current status and completed work
 
@@ -21,9 +21,13 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 Integrated implementation: PHASE2_CONTRACTS.md; shared DTOs/context/schema/mechanics/turn modules in src/lib/gameplay/; server-only src/lib/server/dm/ and gameplay service; campaign play/turn/resume/guidance routes; additive migration 202609180004_phase2_runtime.sql; Game/Chat/Camp/actions/configuration UI and existing Party/Inventory/Settings integration; gameplay.css; EN/RU strings; tests and synthetic acceptance scripts; specification/plan/setup/status documentation.
 
-This live-acceptance follow-up changes the context builder, provider diagnostics, focused regressions, combat system-label localization, scripts/gameplay-live-acceptance.mjs, scripts/gameplay-access-acceptance.mjs, locale documentation, PHASE2_CONTRACTS.md, PHASE2_SETUP.md and this status file. No new migration or mechanic was introduced. Local environment, credentials, reports, logs and backups remain ignored.
+The live-acceptance follow-up at `24fcd405b65b7ddd281837e491f1975e1fe3a765` changed the context builder, provider diagnostics, focused regressions, combat system-label localization, scripts/gameplay-live-acceptance.mjs, scripts/gameplay-access-acceptance.mjs, locale documentation, PHASE2_CONTRACTS.md, PHASE2_SETUP.md and this status file. No new migration or mechanic was introduced. Local environment, credentials, reports, logs and backups remain ignored.
+
+This owner-acceptance follow-up changes **only DEV_STATUS.md** to record approval of that exact checkpoint. No application code, configuration, migrations, runtime or campaign data changed.
 
 ## Phase 2 tests and build status
+
+The results below belong to the owner-approved implementation checkpoint `24fcd405b65b7ddd281837e491f1975e1fe3a765`. Tests, typecheck, lint, build and live API checks were not rerun for this status-only acceptance record; its diff was checked and restricted to DEV_STATUS.md.
 
 ### Automated local verification
 
@@ -74,9 +78,9 @@ Before billing was fixed, the application had two failed attempts on the first o
 
 ## Phase 2 remaining work and recommended next step
 
-No required implementation or local acceptance gate remains open. **Owner review and explicit Phase 2 acceptance remain pending.** Open the local preview, choose the latest Synthetic Phase 2 Glass Orchard campaign, inspect Game's persisted action/results and Chat with DM's approved guidance/version history, and switch EN/RU if desired. Existing records can be reviewed without making another paid model request. The synthetic Quiet Comet campaign provides the isolation/Russian comparison.
+No required Phase 2 implementation or acceptance gate remains open. **Explicit owner acceptance is recorded at `24fcd405b65b7ddd281837e491f1975e1fe3a765`.** The known limitations above remain disclosed; acceptance does not claim additional verification. Await separate owner authorization before starting any next phase.
 
-Stop here. Do not begin Phase 3, deploy or import real campaign/DM-private material. Only the owner may approve Phase 2.
+Stop after recording and pushing this acceptance. Do not begin Phase 3, deploy or import real campaign/DM-private material.
 
 ## Approved Phase 0 checkpoint
 
