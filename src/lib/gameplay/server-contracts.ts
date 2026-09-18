@@ -1,5 +1,6 @@
 // Lead-owned INTERNAL TYPE-ONLY contracts. Do not import runtime values into a client.
 import type { CampaignSnapshot } from "../persistence/contracts.ts";
+import type { ContextMemory } from "../memory/server-contracts.ts";
 import type {
   ConfigurePlayInput,
   GuidanceApprovalInput,
@@ -80,6 +81,7 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  memory?: ContextMemory;
   ownerId: string;
   snapshot: CampaignSnapshot;
   runtime: PlaySnapshot;

@@ -1,6 +1,9 @@
 // Lead-owned INTERNAL type-only contract. Browser modules must not import this file.
 import type { JsonObject } from "../gameplay/contracts.ts";
-import type { ProviderUsage } from "../gameplay/server-contracts.ts";
+import type {
+  ProviderUsage,
+  RuntimeSource,
+} from "../gameplay/server-contracts.ts";
 import type {
   ContinueSessionInput,
   EndSessionInput,
@@ -176,6 +179,10 @@ export type ContextMemory = {
   complete: boolean;
 };
 export interface MemoryStore {
+  source(
+    campaignId: string,
+    mode: "game" | "companion" | "mechanic",
+  ): Promise<RuntimeSource>;
   read(campaignId: string): Promise<MemorySnapshot>;
   end(input: EndSessionInput): Promise<MemorySnapshot>;
   continueSession(input: ContinueSessionInput): Promise<MemorySnapshot>;
