@@ -1,0 +1,71 @@
+# Phase 2 shared implementation contract
+
+Owner-authorized Text DM only. Preserve Phase 1 implementation `a0c7a815b413251df45a961af8c77986975e546f` and acceptance `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Development workers are separate from the product's **one primary DM runtime**. No Phase 3, deployment, media generation, real campaign/private import, second backend, or gameplay agents.
+
+## Coordination gate and ownership
+
+The lead owns this contract and all amendments. Workers first read the current specification (§§33–40), Phase 1 contracts and integrated code, report acknowledgement/required clarifications, then wait for an explicit GO. No implementation before that gate. Each uses a `codex/phase2-*` branch and separate `.worktrees/phase2-*` checkout. No worker pushes or applies migrations to the owner's running database.
+
+| Owner | Exclusive files/areas |
+| --- | --- |
+| Lead | This file; `src/lib/gameplay/contracts.ts`, `server-contracts.ts`; API routes and route integration; existing auth/repository/providers; package/config/environment coordination; merged `ru.json`; specification/plan/status/setup docs; integrated acceptance scripts/tests; final commit/push |
+| A — runtime/context/database | `supabase/**`; `src/lib/server/dm/**`; `src/lib/gameplay/dm-*`; `tests/phase2-runtime*.mjs`, `phase2-context*.mjs`, `phase2-database*.mjs`; a private-runtime adapter, provider, schema validation and bounded context |
+| B — mechanics/turns | `src/lib/gameplay/mechanics/**`, `src/lib/gameplay/turn-engine.ts`, `dice.ts`, `turn-errors.ts`; `tests/phase2-mechanics*.mjs`, `phase2-turn*.mjs`, `phase2-dice*.mjs`; pure authoritative mechanics plus dependency-injected turn orchestration |
+| C — UI | `src/components/persistent-game.tsx`, `persistent-dm-chat.tsx`, new `src/components/gameplay-*.tsx`; `src/lib/gameplay/client.ts`, `client-state.ts`; `src/lib/locales/phase2-c-ru.json`; `tests/phase2-ui*.mjs`; new `src/app/gameplay.css` (lead imports it) |
+
+C supplies small Party/Inventory/Camp integration components; lead mounts these in existing `persistent-records.tsx` and routing. C does not edit the shared dictionary; lead merges the fragment. A alone changes migrations, including any request from B routed through the lead. Existing Phase 1 tests may be adjusted by lead for explicitly superseded expectations, never weakened to hide regressions. Each worker reports commit SHA, files, checks and blockers. Integrate A then B then C, resolving shared changes centrally.
+
+## Shared transport and authority
+
+`src/lib/gameplay/contracts.ts` contains **public-only** DTOs. `server-contracts.ts` contains type-only internal interfaces and is never imported as a browser runtime value. DTOs are defined by the lead before GO; workers request amendments rather than inventing alternatives.
+
+Existing `/api/mutations` remains explicit owner corrections. New owner-authorized, same-origin, bounded JSON routes are `/api/campaigns/[campaignId]/play` (GET runtime snapshot), `/turns` (POST accepted action), `/turns/[operationId]` (GET status), `/turns/[operationId]/resume` (POST retry/continue/reroll/cancel), and `/guidance` (POST explicit approval). Ordinary routes never accept raw model patches, private records or client-provided dice. All responses are no-store and allow-listed; errors are neutral codes with no provider/SQL payload.
+
+`TurnInput` identifies operation UUID, campaign UUID, expected runtime revision, mode (`game`, `companion`, `feedback`, `ooc`, `mechanic`), literal input and optional companion/explicit mechanic choice. Identity and original input are immutable; reuse with different content fails. Modes share the same runtime/provider; feedback/OOC cannot execute mechanics or receive DM-private context. Companion availability/knowledge/listeners are checked, with public dialogue persisted separately and linked into the session.
+
+Runtime revision is campaign-wide and distinct from individual record/settings revisions. Relevant manual corrections and document/settings/session/guidance changes invalidate in-flight state snapshots. Settings and guidance versions used by a turn are pinned. Explicit owner correction has higher authority than proposed DM output; a stale turn cannot replay its proposal against corrected state.
+
+## Durable turn and dice lifecycle
+
+1. Authorize owner/campaign; atomically begin or return the existing operation, persisting literal input before any external call. Only one unresolved state-changing Game/companion/mechanic operation per campaign. Feedback remains separate but cannot silently alter guidance.
+2. Claim a bounded durable lease with a fencing token. External calls occur outside transactions. Expired leases can be reclaimed; old claimants cannot checkpoint or commit.
+3. Load a consistent authorized snapshot and pinned settings/guidance. Plan through the one DM runtime. Persist validated plan before any roll. No proposed irreversible outcome is published.
+4. Validate supported rules/checks and proposed mechanics; generate real server randomness and durably record stable operation/index check IDs. Reload recorded results before retry. A visible eligible check can pause for explicit continue/reroll; hidden checks never produce an identifiable client check or awaiting-check hint. Rerolls are explicit, policy/allowance enforced, recorded once per unique command, and cannot undo committed consequences.
+5. Compute code-authorized outcomes from recorded checks. Generate final public narration using **public-only** context and validated public consequences. Private planning text/context never flows into that public call or response. This is a second stage of the same DM runtime, not another agent. If a required check remains unresolved, final narration/commit is forbidden.
+6. Atomically commit public narration/source links, validated state updates, private patches, original/correction receipts and operation completion against expected revision. Technical failure rolls back the entire outcome; accepted input/recorded checks remain durable. Committed operations return the original result on retry.
+
+Public statuses: `pending`, `generating`, `awaiting_confirmation` (visible check only), `committed`, `failed`, `cancelled`. Public failure categories are bounded (`configuration`, `provider`, `context`, `validation`, `conflict`, `unavailable`); never expose private plan/roll counts. Transient failures retain the same input, operation, pinned context and checks. Revision conflict is terminal for that proposal and needs an explicit new action after refresh. Cancel releases the operation without pretending any uncommitted outcome happened.
+
+## Structured output and public/private boundary
+
+The lead's typed schema vocabulary separates `narration`, `checks`, `publicPatches`, `privatePatches`, `visualDescription`, `clarification`, and optional feedback `guidanceProposal`. Strict JSON Schema, all required keys, no additional properties, bounded arrays/strings and independent server validation. Refusal/incomplete/malformed/provider errors never become public narration. Unknown mechanics or arbitrary paths are rejected.
+
+Planning may use authorized private facts; its narration and visual draft are **not public output**. Final public narration/visual description is produced from public sources and code-validated player-visible outcomes only. No private identifiers, titles, snippets, roll/DC details or diagnostics appear in normal payloads. Synthetic private markers cover serialization/prompt-injection regressions; finite tests are not a claim that schema validation proves prose correctness. Model output is untrusted data, never SQL/HTML/instructions.
+
+Checks carry stable local identity, actor/target, supported kind, reason/stakes, visibility/importance, modifier source, DC disclosure and advantage mode. Server verifies references, meaningful uncertainty, rules, modifiers and cost. Check Frequency filters discretionary situations only; attacks/saves required by supported actions remain mandatory. Natural-roll behavior is rules-specific. Hidden/Key/All and Show DC filter **server serialization**; Interactive Dice affects presentation of an already recorded result only.
+
+## Persistence adapter and mechanics boundary
+
+A implements one service-only runtime RPC/adapter in the existing Supabase/private architecture. Normal authenticated/anonymous database callers have no execution or private read permissions. Lead authorizes via the existing verified owner cookie and registry first; adapter independently validates owner/campaign. Server service credentials never enter browser/public DTOs. No private schema is exposed through PostgREST. Public runtime projection and private operational checkpoints are separate.
+
+A owns database persistence, leases, revision triggers and atomic commit. B owns `runTurn`/resume orchestration and pure validators producing a bounded `CommitPacket`, never arbitrary SQL/table writes. Their adapter types are lead-owned. The database validates the packet's campaign references/revision/claim and applies only explicit allowed record families atomically. Reuse existing conversations/rest/recipes/effects/encounters/participants/pending actions, items/entities/quests/state and document history; do not create parallel inventory or guide systems.
+
+Initial supported mechanics are an explicit, documented small rules profile; unsupported systems/actions pause instead of silently applying D&D or inferred prose powers. B proposes exact profile/operation definitions for lead approval before implementation. Required coverage includes independent HP/damage scaling, defeat/recovery/scarcity/reroll policy, resource/item use, quest/location changes, action/target/budget/reaction validation, encounter endings, rest enter/leave/complete and supply costs, remote deposit versus camp-only withdrawal/use/equip, independent cargo proximity, recipe preparation versus consumption/one meal+drink effects/expiry, and input/tool/component-aware transformations with provenance and rules-defined failed costs. All mutations are atomic, idempotent and prospective.
+
+## Context and provider interface
+
+A provides `buildContext(source, request, stage)` and a `DmProvider` with injected deterministic substitutes for tests. The context source contains exact current structured state, approved effective guide/session guidance, pinned settings, current canonical source versions, authorized private state for planning only, current session and bounded **complete exchanges**, relevant loaded entity/item/location records, recorded outcomes and optional validated checkpoint. Feedback gets public context and its own bounded conversation, never gameplay-private context. Game gets approved guidance, never the whole feedback conversation.
+
+Per-model registry includes verified context limit C, output reserve O, safety margin S (at least 5% C), input bound B=C−O−S, accounting/version and tighter operational input cap. Count full serialized instructions/schema/framing, not just prose. Conservatively count UTF-8 bytes when no exact tokenizer is available and document overestimation. Preserve mandatory input/state/rules/pending outcomes intact; select only whole optional exchanges/excerpts. If necessary history/canon cannot be included safely, pause/clarify without world changes or invented continuity. No automated summary, compaction, historical/semantic retrieval, embeddings or automatic model switching.
+
+Use Responses API, strict structured JSON, `store:false`, no provider tools, no private-inclusive streaming. Owner configures `OPENAI_API_KEY` and `OPENAI_DM_MODEL` locally; no API key is needed for deterministic work. Missing credentials block **live verification**, not a hidden fake runtime. Cap attempts/timeouts and record only content-minimized model/token/latency/failure metrics. Live OpenAI calls start only after integrated deterministic checks pass; report calls/model/usage/failures separately, with no large paid evaluation without approval.
+
+## Guidance and UI
+
+Feedback replies may propose concise guidance, never apply it. Explicit `This session` approval is scoped to the current open session and expires when it closes. `Save for this campaign` appends to the linked DM Guide as a new immutable version using the existing version infrastructure; approval is idempotent and revision checked. Manual guide Save/Restore remains explicit. Approved guidance is subordinate to mechanics, agency, canon and secrecy; original feedback is never interpreted as an owner canon correction.
+
+Reuse the approved Game layout and EN/RU strings. Preserve unsent text through errors/navigation with campaign-scoped local draft state; accepted input/status survives reload from the database. Poll/resume existing operations, do not generate new IDs on uncertain retries. Show only eligible recorded dice and a distinct explicit reroll action where permitted; animation cannot call RNG or mutate gameplay. FRAME/VIDEO remain inactive. Keep manual correction editors and isolated `/preview` available.
+
+## Verification gate
+
+Focused worker tests do not replace the integrated full typecheck/lint/test/build and browser checks. Cover serialization, duplicate/retry/lease interruption, stale manual correction, stable dice/hidden DC, patch rejection, private markers, authorization/campaign isolation, all supported mechanics and atomic failures, setting/guidance pinning, context overflow, and draft preservation. Inspect and back up the disposable local database before additive migrations. Use synthetic campaigns only. Run a 20–30 turn synthetic acceptance after deterministic integration, distinguish scripted-provider tests from real-model tests, and stop only at **PHASE 2 READY FOR OWNER ACCEPTANCE** once available gates are complete. Missing owner setup is reported honestly; never self-approve Phase 2 or begin Phase 3.

@@ -148,6 +148,10 @@ Memory foundations (MASTER_SPEC section 38):
 
 # MILESTONE 2 — TEXT DM
 
+The owner now explicitly authorizes this milestone after accepting Phase 1 at `a0c7a815b413251df45a961af8c77986975e546f` (acceptance record `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`). Preserve that checkpoint. One lead and up to three development workers use separate worktrees, acknowledge [PHASE2_CONTRACTS.md](PHASE2_CONTRACTS.md) before GO, and share one centrally defined contract; only the database owner edits migrations. The product still has exactly one primary DM runtime.
+
+Run full integrated deterministic checks before live OpenAI calls. Complete a synthetic 20–30 turn campaign and report scripted-provider versus real-model results, actual model/call count/usage/failures separately. Missing secure local setup is a disclosed blocker; no production fake replies. Preserve the approved visual direction and English/Russian support. No Phase 3, deployment, media generation, real campaign/private import or large paid evaluation without separate authorization. Stop at PHASE 2 READY FOR OWNER ACCEPTANCE, not owner approval.
+
 Deferred Chat with DM contract (MASTER_SPEC section 40): use the same primary DM in a separate feedback mode, propose concise guidance, and require explicit owner choice of This session or Save for this campaign. Session guidance expires with the session; campaign guidance remains versioned. Gameplay receives effective approved guidance rather than all feedback messages. Apply only prospectively, respecting code-enforced mechanics, agency, canon and secrecy. Keep brief Game OOC. No part of this runtime behavior is authorized in Phase 1.
 
 Goal:

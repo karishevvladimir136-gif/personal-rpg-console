@@ -1743,8 +1743,18 @@ Add a per-campaign **Chat with DM** navigation tab, translated **Чат с DM**.
 - Scope all records, reads and writes to the authorized owner and selected campaign. This screen cannot advance game time, trigger checks, alter inventory/health/quests/relationships/canon, reveal DM-private state or provide spoiler access. Reuse the same authorization, revision and retry protections as other persistence operations.
 - Verify message/guide persistence, restoration, campaign isolation, save-failure draft retention, and absence of gameplay mutations. Preserve English/Russian and desktop/mobile usability.
 
-## Future Phase 2 contract — documentation only
+## Phase 2 contract
 
 The **same primary DM runtime** supports a separate feedback mode. It can discuss preferences and propose concise guidance changes. The owner explicitly chooses **This session** or **Save for this campaign** before a proposal is approved. Approved guidance affects future narration only and cannot override authoritative mechanics, player agency, established canon or secrecy. Conflicts with canon require clarification, never silent rewriting.
 
 Session guidance expires with its session; campaign guidance remains versioned. Ordinary gameplay receives effective approved guidance, not the entire feedback conversation. Campaign documents supply world/story context, structured settings supply explicit mechanics/play-style choices, and approved guidance supplies preferences within those boundaries. There is no second DM agent, simulation engine, automatic guide rewriting, or implemented feedback AI in Phase 1.
+
+# 41. Authorized Phase 2 implementation boundary
+
+The owner approved Phase 1 at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`, and separately authorized **Phase 2 — Text DM**. Earlier phase-stop statements are historical, not a revocation of this authorization. [PHASE2_CONTRACTS.md](PHASE2_CONTRACTS.md) defines the lead-approved shared lifecycle, structured output, dice, privacy, bounded context and development file ownership.
+
+Implement one server-side OpenAI DM runtime, durable serialized/idempotent turns, real recorded server checks, validated atomic public/private consequences, supported rules/inventory/quest/encounter/rest/storage/transformation/companion mechanics, and explicit session/campaign DM-guidance approval. Preserve manual correction authority, existing records, bilingual UI and visual design. Reuse private storage without exposing it to ordinary database callers or browser/API payloads. Free text remains primary. Unsupported mechanics and unavailable essential context pause safely instead of being improvised as authoritative state.
+
+Use synthetic campaigns only, including a 20–30 turn acceptance campaign. Integrated deterministic checks precede live OpenAI verification; record actual model, call count, usage/cost where available and failures separately. Credentials remain in ignored server environment files. Stop for owner setup when live credentials are required; never ask for a key in chat. No large paid evaluation without explicit approval. Do not claim deterministic model substitutes prove live quality.
+
+Phase 3 automatic summaries, retrieval/indexing/embeddings, world simulation, media generation, deployment, real James & Jinn/private imports, voice, multiplayer and multi-agent gameplay remain outside authorization. Development workers are not gameplay agents. Stop at PHASE 2 READY FOR OWNER ACCEPTANCE; do not self-approve the phase.

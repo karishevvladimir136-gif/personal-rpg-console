@@ -4,7 +4,16 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
-**Phase 1 — Persistence: complete and explicitly owner-approved.** Phase 2, deployment, real campaign imports and real DM-private imports are not authorized.
+**Phase 2 — Text DM: explicitly authorized, implementation in progress.** Phase 1 remains owner-approved at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`. Phase 3, deployment and real campaign/DM-private imports are not authorized.
+
+## Phase 2 coordination checkpoint
+
+- **Current status:** inspecting the integrated architecture and agreeing [PHASE2_CONTRACTS.md](PHASE2_CONTRACTS.md) before parallel implementation. No worker has GO yet; shared DTOs and mechanics details must be agreed first.
+- **Completed / files changed:** repository/specification review, shared lifecycle/privacy/context/ownership contract and phase-boundary documentation. No Phase 2 runtime is claimed complete.
+- **Verification:** the results below are the accepted Phase 1 results, not Phase 2 verification. Phase 2 deterministic integration, live OpenAI and the 20–30 turn synthetic campaign remain pending.
+- **Key decisions:** one primary DM runtime; service-only private access after verified owner authorization; durable fenced operations and recorded dice; atomic validated consequences; separate public-only narration stage; bounded model-specific context. Reuse existing records, no Phase 3 memory runtime.
+- **Known limitations:** live provider configuration and model access must be verified without printing secrets. Missing setup will block live verification, not be replaced by fake production replies. Physical iPhone/Safari and optional conflict-rebase confirmation remain non-blocking unverified Phase 1 items.
+- **Remaining / next step:** finalize public/internal interfaces, collect all three worker acknowledgements, then issue GO in isolated worktrees. Integrate, verify deterministically before live calls, update actual results, and stop for Phase 2 owner acceptance. No deployment or real-data import.
 
 ## Approved Phase 0 checkpoint
 
@@ -13,7 +22,7 @@ The owner explicitly approved **96b69dcd63d2fa015f5e75bcc5d632c41e04369e**. It r
 - **Original implementation verification:** typecheck, lint, production build and 60 automated tests, plus the implementation browser checks recorded in the historical VERIFICATION.md.
 - **Independent review reported by the owner:** typecheck, lint, production build, 41 logic/localization tests, 5 HTTP tests and 14 additional HTML/status route checks passed. Independent visual and image-asset verification was **not performed**. Physical iPhone/Safari remains unverified. These records are distinct.
 
-## Current status
+## Accepted Phase 1 status (historical checkpoint)
 
 Remote documentation commits through f46014d were safely merged; section 38 remains intact. Our persistence and Chat with DM additions are sections 39 and 40. Only ordered source records and immutable correction-history foundations are added now; no memory runtime is implemented.
 
