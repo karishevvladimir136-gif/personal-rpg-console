@@ -30,6 +30,54 @@ Retain domain-specific `DmProvider` and `SummaryProvider` methods as thin caller
 
 Require a task-compatible output contract: use native constrained output where supported, then strict local schema parsing in every adapter. A supported alternate transport must still return one validated bounded structured payload; raw prose, malformed/tool-executing output and unsupported schema fields fail closed. Do not silently strip constraints to make an incompatible model work. Schema validity does not prove causality, canon fidelity or truth; task-specific evaluation remains necessary.
 
+## Optional Decision Model capability — design only
+
+Leave an optional capability for specialized non-generative classification/ranking models. **Disabled by default, never a required dependency and never a replacement for the primary reasoning model.** Jev (TypeSafe) is an owner-nominated candidate, not a hardcoded adapter, verified capability claim or ontology dependency. Adoption is conditional on the future evaluation spike below. This optimization serves quality-preserving relevance selection; it does not change the owner's preference for strong reasoning where needed.
+
+Conceptual path: **authoritative Postgres state → deterministic eligibility filtering → optional Decision Model filtering/ranking → frontier reasoning model when deep reasoning is required → server validation → authoritative commit**. Deterministic/no-op outcomes still need no model call. Without a classifier, the existing authorized deterministic/strong-reasoning path remains complete.
+
+Possible uses are World Thread and World Actor relevance, Canon Compiler passage/chunk classification, retrieval pre-filtering/reranking, identifying relevant Memory/source candidates, and classifying similarities/divergences between parallel simulation outcomes. Similarity labels are comparison aids, not truth, canon, a model-winner decision or permission to merge branches.
+
+### Small vendor-neutral classification contract
+
+Add a distinct optional Model Registry capability, conceptually **`classify(inputs, labels, instructions?)`**. Do not force a non-generative classifier to support narration, generative structured-output APIs or reasoning-effort settings. Reuse server authorization, task/execution profiles, budgets, normalized errors and provenance; the classification adapter has no database connection, mutation tool or provider-specific world object.
+
+| Boundary | Logical content |
+| --- | --- |
+| Inputs | Stable candidate IDs, minimal authorized evidence/features and exact source versions; fixed label-set/schema version; optional trusted task instructions, distinct from untrusted source text |
+| Per-candidate result | Candidate ID, selected label(s), explicit abstention/unknown status, confidence or equivalent uncertainty if supported, optional per-label scores with documented semantics |
+| Provenance | Provider/model requested and actual where available, task/contract/instruction/label versions, calibration and threshold-policy versions, input/source/timeline revision, operation/attempt identity and available latency/usage |
+
+Absent confidence is **unknown**, never fabricated certainty. Raw scores or logits are not calibrated probabilities merely because an adapter rescales them. Preserve score meaning and record calibration method/version when verified on relevant fixtures. Models without useful uncertainty may rank or classify for inspection, but must not prune unless a separately evaluated conservative policy supplies a defensible uncertainty bound. Strictly validate candidate membership, unique IDs, allowed labels, completeness and score shape/range; never accept invented entities or source references. Partial, malformed, contradictory, out-of-distribution or unsupported responses leave affected candidates uncertain; an unusable response bypasses the optimization altogether.
+
+### Recall-first admission and authority boundaries
+
+| Decision | Routing behavior |
+| --- | --- |
+| Confident relevant | Retain for applicable strong reasoning/evidence selection |
+| Uncertain, abstained, omitted, failed or uncalibrated | Retain; never silently discard |
+| Sufficiently confident irrelevant under the evaluated task policy | May be excluded from this request's optional candidate set, never deleted from original records or treated as resolved |
+
+Authorize owner, campaign/timeline, source validity, visibility and actor knowledge **before** a candidate reaches a classifier, then revalidate before context use/commit. Fail-open means retain already-authorized candidates for reasoning; access control and public/private validation still fail closed. Public comparison, narration and actor-specific classification cannot receive private-inclusive inputs. A private-task classifier may receive only explicitly permitted private evidence through an approved transport; its results/IDs/counts remain private too.
+
+Code pins mandatory candidates outside pruning: crossed deadlines, required warning/agency obligations, direct action targets and evidence/dependencies necessary to avoid contradiction. Ranking must not turn into an unexamined top-k cutoff. Relevant and uncertain candidates that exceed the established workload/context budget trigger existing bounded segmentation or a pause/clarification, not silent loss. For example, 300 Threads might deterministically become 50 eligible, then yield 8 relevant + 5 uncertain: retain all 13 plus any mandatory dependencies, even if a single evaluation can process only 12. Process a coherent bounded interval or pause; do not discard the thirteenth or increase work indefinitely. A pruned Thread remains available for later triggers, corrections and evaluation.
+
+A Decision Model must never directly create a World Event; kill, move or change an entity; modify inventory/player state; alter timelines; decide canon; bypass knowledge validation; perform an irreversible consequence; or write persistent state. A classification output is advisory routing metadata, not a gameplay patch, factual Memory assertion or source of truth. The application may retain a safe server-side evaluation/routing audit through existing job/provenance patterns; only normal domain validation and authoritative commit can change world state. No second DM, agent swarm or autonomous classifier loop.
+
+The optional execution policy is explicit and pinned per operation. Disabled/unavailable/timed-out classification bypasses only the optimization and retains authorized candidates; it never changes the selected frontier model. If full evidence cannot fit safely, pause. This defined bypass is not silent provider fallback. No automatic retry storm, substitute classifier or background call on settings/page load. Any reused result must match source versions, campaign/timeline/knowledge scope, model, labels and calibration policy; stale classification cannot prune new evidence.
+
+### External surfaces and future adoption gate
+
+`classifier.dev` is only an owner-nominated possible development/evaluation surface. It is **not required in production and is not contacted in this pass**. Any future external proxy use needs explicit authorization and a separate review of destination, retention/training/logging, licensing and allowed data scope. Synthetic spike permission never authorizes real source libraries or campaign/private material. A direct provider adapter, a different approved implementation or no Decision Model must remain possible. Credentials follow the same application-level server-secret onboarding rules; campaigns store configuration IDs only.
+
+Plan a small optional **3.75A1 Decision Model evaluation spike** before adopting any live World Engine pruning. Use RPG Console-specific synthetic, labelled fixtures for (1) World Thread relevance, (2) World Actor relevance, (3) canon/source passages, (4) parallel-simulation similarity/divergence, (5) English and Russian, and (6) adversarial/ambiguous cases. Include paraphrases, negation, conflicting sources, rare but consequential deadlines, noisy distractors, unknown labels, prompt-injection text and synthetic private/branch markers.
+
+Compare deterministic filtering only, the candidate Decision Model and the selected frontier reasoning baseline on the same authorized input snapshots and owner-reviewed expected relevance labels. The frontier answer is a comparator, not automatically ground truth. Measure relevant-item recall/false negatives and precision, uncertainty/abstention and calibration, latency (including tail latency), strong-model context avoided and actual cost where available. Report both raw classifier results and end-to-end behavior with mandatory-candidate protection, including all uncertain items and classifier overhead; unsupported cost/score metrics remain unknown, not zero.
+
+Before evaluation, define a task-specific extremely-high-recall target and non-prunable critical fixtures; freeze thresholds/calibration on a calibration set and evaluate separately held-out English/Russian and adversarial cases. Report sample sizes, misses and confidence limits rather than claiming finite zero misses prove perfect recall. No arbitrary universal confidence cutoff or forced adoption target is set in this design. False negatives in world causality matter more than extra candidates. Verify failure bypass, bounded overflow, secrecy and no gameplay mutations independently of accuracy. A useful result may justify reranking only, not pruning.
+
+Adopt only after the spike demonstrates meaningful benefit over deterministic filtering without unacceptable recall loss, a separate owner-reviewed go/no-go decision and explicit implementation authorization. If benefit is absent, uncertainty is unreliable or important evidence is missed, keep the layer disabled. No benchmark, live classifier, dependency or runtime code is added in this documentation pass.
+
 ## Non-technical provider onboarding — future implementation
 
 Routine connection and model selection must not require TypeScript, request code, HTTP knowledge, database edits or browser-visible credentials. Adding a genuinely unsupported provider adapter remains a development task; connecting an already-supported adapter or choosing its registered compatible models is an owner settings task. Do not imply that an arbitrary model name automatically satisfies the required contracts.
@@ -82,6 +130,7 @@ Campaign model policy has a primary model plus optional overrides:
 | What If | Campaign primary; a Lab run explicitly pins its chosen configuration |
 | Canon Compiler | Campaign primary when compiling in that campaign's scope; otherwise World Library's explicit choice or global primary |
 | Memory | Campaign primary |
+| Optional Decision Model | Disabled; enable only an explicitly selected compatible classification capability after its evaluation/adoption gate; do not inherit the primary reasoning model as an automatic substitute |
 
 Resolution order is explicit operation/Lab selection → campaign task override → campaign primary → approved global default. An unavailable or incompatible explicit selection pauses; it does **not** fall through this order to a different model. Inheritance is used only when a value is deliberately unset. Display the effective choice before an important run.
 

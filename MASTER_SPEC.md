@@ -1682,6 +1682,8 @@ Retrieval returns the latest applicable facts while retaining earlier versions a
 
 Test English/Russian queries, aliases, renamed entities and paraphrases. Avoid copying full old conversations when a short sourced excerpt suffices. Search scores are not factual confidence.
 
+Proposed Phase 3.75 may evaluate an optional Decision Model for authorized candidate classification/reranking; it does not replace accepted retrieval or become a new memory service. Section 44.5.1 defines the adoption gate. Apply scope/knowledge validation before classification, retain mandatory evidence and uncertain candidates, and never treat a relevance label as canon or a reason to delete original sources.
+
 On low recall or conflicting evidence, perform one bounded targeted lookup; if unresolved, ask a non-spoiling clarification or acknowledge uncertainty. Do not invent the missing promise, identity or outcome. A retrieval outage may degrade to current state/recent context only when the action does not require missing history; otherwise pause that action.
 
 ## 38.6 Summaries and checkpoints
@@ -1890,6 +1892,18 @@ The supported-provider flow is key obtained → documented line in the running c
 Configured and tested/usable status are distinct. No provider request on status-page load. A Test Connection request uses synthetic bounded input, discloses potential cost and returns sanitized status without touching gameplay. Adding an unsupported adapter is development work; routine connection/selection for supported adapters requires no TypeScript, request code or database editing.
 
 Tasks inherit the campaign primary unless explicitly overridden; global defaults apply only when unset. Resolve and pin execution profiles before requests. An unavailable explicit choice pauses rather than silently falling back. Record provider, requested/actual model or unknown, relevant options, task/prompt/contract versions, source/checkpoint identity and time, without chain-of-thought or secret payloads. Safe model reporting and provider budgets require verified capabilities during later implementation.
+
+### 44.5.1 Optional Decision Model layer
+
+Design an optional vendor-neutral classification capability within [Model Runtime](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only), **disabled by default and never a required dependency or replacement for the primary reasoning model**. The conceptual flow is authoritative Postgres state → deterministic eligibility filtering → optional Decision Model filtering/ranking → frontier reasoning when needed → server validation → authoritative commit. Candidate uses: Thread/Actor relevance, Canon Compiler passages, retrieval/Memory candidate selection and parallel-simulation similarity/divergence classification.
+
+The conceptual `classify(inputs, labels, instructions?)` boundary returns validated candidate IDs, selected labels, confidence/equivalent uncertainty and per-label scores where supported, plus provider/model/input/contract provenance. Missing or uncalibrated scores are not certainty. Relevant and uncertain candidates pass through; only sufficiently confident irrelevant optional candidates may be pruned under an evaluated policy. Mandatory deadlines, warning/agency obligations and necessary evidence bypass pruning. Capacity overflow segments or pauses; no hidden top-k loss. Authorization, visibility and knowledge checks still fail closed before and after classification. Failure bypasses the optimization without changing the explicitly selected strong model.
+
+A Decision Model cannot create World Events, kill/move/change entities, modify inventory/player state, alter timelines, decide canon, bypass knowledge validation, impose irreversible consequences or write directly to persistent state. Classification is routing metadata, not an authoritative patch or factual Memory record. Existing server validation/commit remains the only mutation path.
+
+Jev (TypeSafe) is an owner-nominated candidate, not verified or integrated here. `classifier.dev` is a possible future development/evaluation surface, never a required production dependency. Any external proxy use needs separate explicit approval and data/retention/licensing review; sensitive source libraries and campaign/private state are not authorized inputs by default. A direct adapter, alternative implementation or no classifier remains possible. No call, provider dependency or integration is made in this pass.
+
+Plan a small optional 3.75A Model Runtime evaluation spike on synthetic Thread relevance, Actor relevance, source/passages, simulation comparison, English/Russian and adversarial/ambiguous fixtures. Compare deterministic filtering only, candidate Decision Model and frontier baseline against reviewed labels. Measure recall/false negatives, precision, uncertainty/abstention/calibration, latency, expensive-model context avoided and cost where available. Prioritize extremely high recall; define task-specific thresholds and critical fixtures before held-out evaluation. Finite zero misses do not prove perfect recall. Adopt only with meaningful measured benefit and a separate explicit go/no-go decision; otherwise keep disabled. The spike is future work, not authorization to execute it now.
 
 ## 44.6 Review boundary
 

@@ -49,6 +49,8 @@ Use resumable bounded jobs and [Model Runtime](MODEL_RUNTIME_BRIEF.md), within t
 
 Each pass has input/version digests, stable operation IDs, checkpoints, bounded context and idempotent outputs. Retry reuses completed valid work; source changes invalidate dependent work. No whole-book prompt or endless automatic fan-out. “Most detailed” means preserving fine-grained recoverable evidence with a visible coverage report, not a guarantee of exhaustive or perfect extraction. Report unreadable/omitted sections, unresolved entities, conflicting facts and unprocessed assets. Publication as an approved reusable pack waits for the owner's review of material uncertainties.
 
+The optional [Decision Model capability](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only) may later classify/rank authorized source passages or retrieval candidates after deterministic scope/visibility/version filtering. It cannot decide canon, erase source coverage, resolve contradictions or replace the Canon Compiler's deep reasoning. Retain uncertain passages and mandatory evidence; a classifier failure bypasses optimization, not access controls. Originals remain available regardless of routing labels. Any external proxy evaluation requires separate explicit approval; no source/private library is sent to `classifier.dev` by this proposal. Adoption depends on the Phase 3.75A synthetic benchmark, not technology novelty.
+
 ## Four origins of a fact
 
 | Origin | Authority and evidence |

@@ -284,6 +284,18 @@ Independently reviewable slices:
 
 Future gate: existing Phase 0–3.5 tests pass unchanged in meaning; configured supported-provider onboarding/selection works without source edits; safe status/Test Connection and no secret leakage; strict unsupported-model rejection/no fallback; World Logic and bounded Custom synthetic campaigns work alongside the house profile; no mandatory HP/d20/class UI; old save compatibility and exact quantities/knowledge remain. At least two actually verified providers are needed before claiming working provider replaceability. Full official 5e coverage must be separately enumerated/tested before advertising it.
 
+### Optional A1 Decision Model evaluation spike — future, separately authorized
+
+Define an optional vendor-neutral `classify` capability as specified in [Model Runtime](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only). Jev (TypeSafe) is one candidate, not a required provider; `classifier.dev` is at most a separately approved evaluation surface, never production infrastructure by default. No dependencies, live calls or benchmark execution are authorized by this documentation addition. The spike and any adoption are optional; other A–E work must remain viable without a classifier.
+
+Use only labelled synthetic RPG Console fixtures covering World Thread relevance; World Actor relevance; canon/source passage classification; parallel-simulation similarities/divergences; English and Russian; and adversarial/ambiguous cases. Include critical deadlines, rare relevant actors, distractors, negation, conflicting passages, source-instruction attacks, unknowns and synthetic private/timeline markers.
+
+Compare **deterministic filtering only**, the **candidate Decision Model** and the **frontier reasoning baseline** using identical authorized snapshots and independently reviewed relevance labels. Measure recall/false negatives, precision, calibrated uncertainty/abstention, latency including tail behavior, strong-model context avoided and cost where applicable, including classifier overhead. Report raw classifier quality and end-to-end protected behavior, sample sizes and confidence limits. A frontier answer is not automatically ground truth; unavailable metrics remain unknown.
+
+Freeze task-specific high-recall thresholds/calibration before held-out bilingual/adversarial evaluation. Critical World Engine deadlines/agency evidence must bypass pruning; relevant and uncertain candidates are retained, with bounded segmentation/pause on overflow. Test unavailable/malformed/stale classification, safe bypass without model switching, secrecy and zero gameplay mutation. Very high recall outweighs aggressive filtering; finite zero misses do not guarantee perfect causality. No universal numeric confidence cutoff is assumed here.
+
+Deliver a small evidence report and explicit **adopt / reranking-only / do not adopt** recommendation. A separate owner-reviewed decision and implementation scope are required before live World Engine pruning. Reject adoption if the measured benefit is not meaningful, uncertainty is unreliable or relevant world causality is lost. Retain deterministic eligibility and strong reasoning as the complete baseline. Any external proxy requires separate approval of destination/data handling; synthetic evaluation never authorizes real source/private uploads.
+
 ## 3.75B — World Library, World Packs and source contracts
 
 Reference: [World Library / World Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md).
@@ -303,6 +315,8 @@ Reference: [World Engine](WORLD_ENGINE_BRIEF.md).
 Stable entity/faction Actor references, persistent Threads (including clocks/deadlines) and immutable validated Events. Select due work in code on meaningful in-world triggers; zero requests for no-op/deterministic cases. Different bounded Low/Moderate/High scopes, fair warning and hard deadlines, explicit On/Off behavior, bounded causal catch-up and no wall-clock progression. Extend the existing pending turn to stage and atomically commit player/world settlement, preserving input/dice on failure. Index committed events via existing Memory. Add world record families with versioned manifest compatibility; preserve accepted v1 saves.
 
 Depends on A1/A2; source-grounded use also depends on B contracts. A tightly scoped synthetic existing-campaign engine can be reviewed without waiting for every source format. Initial workload ceilings are proposed in the brief and must be tested for correctness, not treated as a cost-saving mandate.
+
+The Decision Model spike is not a C prerequisite unless optional classification is explicitly proposed for adoption. No live pruning before its recall/privacy/failure gates and separate approval; deterministic filtering and the selected strong resolver remain sufficient without it.
 
 Future gate: time/no-op/autonomy/deadline/fair-warning behavior, long skips stopping honestly at evaluated horizons, no autonomous PC decisions, duplicate/failed/stale settlement without partial mutation/reroll, private events/actor knowledge isolation, exact old/new save restore and source invalidation. World/Мир → Live World is public-only and bilingual/mobile. No agent-per-NPC, full economy or continuous simulator.
 
