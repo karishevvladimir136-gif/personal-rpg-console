@@ -7,7 +7,7 @@ import {digest,generateFixtures,payload} from '../src/fixtures.mjs';
 import {questions} from '../src/requests.mjs';
 import {executionProfile} from '../src/transport.mjs';
 import {RESERVATION} from '../src/plan.mjs';
-import {recoveryRequests,requestHash,verifyFrozen,verifyHistory,recoveryGate,runRecovery,fileHash,PROTOCOL_HASH,metadataFailure} from '../src/smoke-recovery.mjs';
+import {recoveryRequests,requestHash,verifyFrozen,verifyHistory,recoveryGate,runRecovery,fileHash,PROTOCOL_HASH,metadataFailure,RECOVERY_2_ID} from '../src/smoke-recovery.mjs';
 import * as domain from '../../../src/lib/gameplay/dm-schema.ts';
 import * as summary from '../../../src/lib/memory/summary.ts';
 import {runtimeFixture} from '../../../tests/phase2-runtime-fixtures.mjs';
@@ -116,4 +116,58 @@ test('metadata gates reject missing counts, invalid cost and multiple provider/m
   const p=executionProfile('astra'),m={routingVerified:true,finalProvider:'openai',actualModel:'gpt-6-astra',modelAttempts:1,providerAttempts:1,costUSD:0,inputTokens:0,outputTokens:0};
   assert.equal(metadataFailure(m,p),null);
   for(const patch of [{modelAttempts:2},{providerAttempts:2},{costUSD:null},{inputTokens:null},{providerAttempts:null}])assert.notEqual(metadataFailure({...m,...patch},p),null);
+});
+
+const frozen2=JSON.parse(readFileSync(new URL('../fixtures/smoke-recovery-2.json',import.meta.url),'utf8'));
+const requests2=await recoveryRequests(RECOVERY_2_ID);
+function setup2(t){
+ const p=setup(t),dir=p.outputDir;
+ writeFileSync(join(dir,'smoke-plan-recovery-1.json'),JSON.stringify({id:'smoke-plan-recovery-1',status:'failed',error:{category:'unverified_routing'},httpStatus:200,metadata:{actualModel:null,costUSD:0.0283175}})+'\n');
+ writeFileSync(join(dir,'smoke-recovery-1-reservations.jsonl'),JSON.stringify({requestId:'smoke-plan-recovery-1',kind:'astra',protocolHash:PROTOCOL_HASH,reserveUSD:RESERVATION.astra})+'\n');
+ for(const n of ['smoke-recovery-1-manifest.json','smoke-recovery-1-results.jsonl'])writeFileSync(join(dir,n),JSON.stringify({historical:true})+'\n');
+ const manifest=structuredClone(frozen2);manifest.historyHashes=Object.fromEntries(Object.keys(frozen2.historyHashes).map(n=>[n,fileHash(join(dir,n))]));
+ return {...p,manifest,approvedHash:digest(manifest)};
+}
+function unknownModelBody(i){
+ const b=body(i),r=b.providerMetadata.gateway.routing,p=requests2[i].profile;
+ delete r.resolvedProviderApiModelId;delete r.modelAttempts[0].providerAttempts[0].providerApiModelId;
+ r.originalModelId=p.model;r.canonicalSlug=p.model;r.modelAttempts[0].canonicalSlug=p.model;r.modelAttempts[0].modelId=p.model.replace('/',':');return b;
+}
+test('recovery 2 preserves exact request hashes/parsers and all seven old artifacts; only new IDs',()=>{
+ verifyFrozen(frozen2,requests2);
+ for(let i=0;i<5;i++){assert.notEqual(requests2[i].id,requests[i].id);assert.equal(requestHash(requests2[i]),requestHash(requests[i]));if(i<3)assert.equal(requests2[i].parse,requests[i].parse);}
+});
+test('recovery 2 all-five success supports UNKNOWN actual model; counts all 3 old reservations and old funded cost',async t=>{
+ const p=setup2(t);let calls=0,inFlight=0;
+ const result=await runRecovery({...p,fetcher:async(_url,init)=>{
+   assert.equal(inFlight++,0);const i=calls++;assert.deepEqual(JSON.parse(init.body).providerOptions,requests2[i].profile.providerOptions);
+   await new Promise(resolve=>setTimeout(resolve,1));inFlight--;return response(unknownModelBody(i));
+ }});
+ assert.equal(calls,5);assert.equal(result.status,'RECOVERY_SMOKE_PASSED');assert.equal(result.cumulativeHTTPRequests,8);assert.ok(Math.abs(result.cumulativeReservedUSD-2.43696)<1e-9);
+ assert.equal(result.reportedHistoricalCostUSD,0.0283175);assert.ok(Math.abs(result.reportedCumulativeKnownCostUSD-0.0283675)<1e-12);verifyHistory(p.manifest,p.outputDir);
+ assert.equal(JSON.parse(readFileSync(join(p.outputDir,'smoke-plan-recovery-1.json'),'utf8')).status,'failed');
+ for(const r of requests2){const row=JSON.parse(readFileSync(join(p.outputDir,r.id+'.json'),'utf8'));assert.equal(row.metadata.actualModel,null);assert.equal(row.metadata.gatewayCanonicalModel,r.profile.model);assert.equal(row.status,'success');}
+ const before=Object.fromEntries(readdirSync(p.outputDir).map(n=>[n,fileHash(join(p.outputDir,n))]));
+ await assert.rejects(()=>runRecovery({...p,fetcher:async()=>{throw new Error('MUST_NOT_CALL');}}));assert.deepEqual(Object.fromEntries(readdirSync(p.outputDir).map(n=>[n,fileHash(join(p.outputDir,n))])),before);
+});
+for(const mode of ['canonical','provider','extra-attempt','billing','usage','schema','transport','reservation'])test('recovery 2 stops before remaining calls on '+mode,async t=>{
+ const p=setup2(t);let calls=0;
+ const result=await runRecovery({...p,fetcher:async()=>{
+   calls++;if(mode==='transport')return new Response('{}',{status:503});
+   const b=unknownModelBody(0),r=b.providerMetadata.gateway.routing;
+   if(mode==='canonical')r.modelAttempts[0].canonicalSlug='openai/gpt-5.4';
+   if(mode==='provider')r.finalProvider='azure';
+   if(mode==='extra-attempt')r.modelAttempts[0].providerAttempts.push({provider:'openai',success:false});
+   if(mode==='billing')delete b.providerMetadata.gateway.cost;
+   if(mode==='usage')b.usage.inputTokens.total=undefined;
+   if(mode==='schema')b.content=[{type:'text',text:'{"wrong":true}'}];
+   if(mode==='reservation')b.providerMetadata.gateway.cost='0.4';
+   return response(b);
+ }});
+ assert.equal(calls,1);assert.equal(result.status,'RECOVERY_SMOKE_STOPPED');assert.equal(result.capabilities.narration,'not_attempted');verifyHistory(p.manifest,p.outputDir);
+});
+test('recovery 2 refuses old IDs, sixth request, missing old reservations or altered historical gate rejection',t=>{
+ const p=setup2(t),gate=recoveryGate(p.manifest,p.outputDir);assert.throws(()=>gate.reserve('smoke-plan-recovery-1','astra'));
+ for(const r of requests2)gate.reserve(r.id,r.kind);assert.throws(()=>gate.reserve('extra','astra'));
+ writeFileSync(join(p.outputDir,'smoke-plan-recovery-1.json'),'{}');assert.throws(()=>verifyHistory(p.manifest,p.outputDir));
 });

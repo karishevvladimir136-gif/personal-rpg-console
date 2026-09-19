@@ -47,12 +47,34 @@ export function safeMetadata(metadata,usage,profile,latencyMs){
   const gateway=record(record(metadata).gateway),routing=record(gateway.routing),u=record(usage);
   const finalProvider=routing.finalProvider===profile.provider?profile.provider:null;
   const attempts=Array.isArray(routing.modelAttempts)?routing.modelAttempts.map(record):[];
-  const successful=attempts.flatMap(a=>Array.isArray(a.providerAttempts)?a.providerAttempts.map(record):[]).filter(a=>a.success===true);
-  const last=successful.at(-1),reported=last?.providerApiModelId??routing.resolvedProviderApiModelId;
+  const providers=attempts.flatMap(a=>Array.isArray(a.providerAttempts)?a.providerAttempts.map(record):[]);
+  const successful=providers.filter(a=>a.success===true),attempt=attempts[0],last=successful[0];
+  // These are documented Gateway routing fields, NOT SDK response.modelId or provider API names.
+  // https://vercel.com/docs/ai-gateway/models-and-providers/provider-filtering-and-ordering
+  const canonicalValues=[routing.originalModelId,routing.canonicalSlug,...attempts.map(a=>a.canonicalSlug)];
+  const modelIds=[profile.model,profile.model.replace('/',':')];
+  const canonicalRoutingMatches=canonicalValues.every(v=>v==null||v===profile.model)
+    &&attempts.every(a=>a.modelId==null||modelIds.includes(/** @type {string} */(a.modelId)));
   const pattern=profile.kind==='language'?/^(?:openai\/)?gpt-6-astra(?:-\d{4}-\d{2}-\d{2})?$/:/^(?:typesafe-ai\/)?jev(?:-[\d.]+)?$/;
+  const reported=last?.providerApiModelId??routing.resolvedProviderApiModelId;
   const actualModel=typeof reported==='string'&&pattern.test(reported)?reported:null;
+  // Missing provider-internal naming is explicitly UNKNOWN. Conflicting supplied names still fail closed.
+  const apiNamesMatch=[last?.providerApiModelId,routing.resolvedProviderApiModelId].every(v=>v==null||(typeof v==='string'&&pattern.test(v)));
+  const profileMatches=JSON.stringify(profile)===JSON.stringify(executionProfile(profile.kind==='language'?'astra':'jev',{timeoutMs:profile.timeoutMs}));
+  const routingVerified=Boolean(profileMatches&&finalProvider&&canonicalRoutingMatches&&apiNamesMatch
+    &&(routing.resolvedProvider==null||routing.resolvedProvider===profile.provider)
+    &&routing.modelAttemptCount===1&&attempts.length===1
+    &&(attempt.success==null||attempt.success===true)
+    &&(attempt.providerAttemptCount==null||attempt.providerAttemptCount===1)
+    &&routing.totalProviderAttemptCount===1&&providers.length===1&&successful.length===1&&last.provider===profile.provider);
   const cost=typeof gateway.cost==='string'&&/^\d+(\.\d+)?$/.test(gateway.cost)?Number(gateway.cost):typeof gateway.cost==='number'?gateway.cost:null;
-  return {requestedModel:profile.model,actualModel,finalProvider,modelAttempts:count(routing.modelAttemptCount),providerAttempts:count(routing.totalProviderAttemptCount),inputTokens:count(u.inputTokens),outputTokens:count(u.outputTokens),costUSD:typeof cost==='number'&&Number.isFinite(cost)&&cost>=0&&cost<=100?cost:null,latencyMs:Math.round(latencyMs),profileHash:digest(profile),routingVerified:Boolean(finalProvider&&actualModel&&routing.modelAttemptCount===1&&successful.every(a=>a.provider===profile.provider))};
+  return {requestedModel:profile.model,actualModel,finalProvider,
+    gatewayOriginalModel:routing.originalModelId===profile.model?profile.model:null,
+    gatewayCanonicalModel:routing.canonicalSlug===profile.model?profile.model:null,
+    modelAttemptCanonicalModel:attempt?.canonicalSlug===profile.model?profile.model:null,
+    modelAttemptId:typeof attempt?.modelId==='string'&&modelIds.includes(attempt.modelId)?attempt.modelId:null,
+    canonicalRoutingMatches,successfulProvider:last?.provider===profile.provider?profile.provider:null,successfulProviderAttempts:successful.length,
+    modelAttempts:count(routing.modelAttemptCount),providerAttempts:count(routing.totalProviderAttemptCount),inputTokens:count(u.inputTokens),outputTokens:count(u.outputTokens),costUSD:typeof cost==='number'&&Number.isFinite(cost)&&cost>=0&&cost<=100?cost:null,latencyMs:Math.round(latencyMs),profileHash:digest(profile),routingVerified};
 }
 /** Injectable fetch is mandatory: importing this module can never contact a provider.
  * @param {{apiKey:string,fetcher:typeof fetch}} options

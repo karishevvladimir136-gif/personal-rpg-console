@@ -1,0 +1,66 @@
+{
+  "id": "smoke-recovery-2",
+  "baseCommit": "62772744d48a9c20611bd0c973dea9d0c7ba45cb",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "additionalCalls": 5,
+  "totalCalls": 8,
+  "cumulativeUSD": 3,
+  "retries": 0,
+  "concurrency": 1,
+  "historyHashes": {
+    "reservations.jsonl": "d162d10f09e44c6fbdd0694063055bf682a1db4b6f14b78dedb8ba425ce27210",
+    "smoke-narration.json": "e796f229d0b79c695a3167fe7bba9818d6da95cda33474aaced285115e3212a4",
+    "smoke-plan-recovery-1.json": "cbee4af2bf17703c2a902c2c3b38bcbfbbed46bec0a754fba5b3fd15b709f18a",
+    "smoke-plan.json": "273119cf63616958dc62b835f19f034b2237997316988254c71c220f4c67ac01",
+    "smoke-recovery-1-manifest.json": "6300cf1d74455abe5258588a8458f4ccdf2112e3be2a2aca3f5d115d5de0bb51",
+    "smoke-recovery-1-reservations.jsonl": "ab3eb19725181cdc97642d663d6c78dfbfb6cee6ff3cf8b0024b77d9e74c1d8e",
+    "smoke-recovery-1-results.jsonl": "5865debb18436fa8d9d78d946a576e90f8749a9a52ff1debc6db16bc77186831"
+  },
+  "historyEvidence": {
+    "source": "owner_report",
+    "httpStatus": 403,
+    "providerSpendUSD": 0,
+    "description": "Owner reports both original requests were denied before inference; original normalized observations are preserved, not rewritten.",
+    "fundedOldGateObservation": {
+      "id": "smoke-plan-recovery-1",
+      "httpStatus": 200,
+      "status": "failed",
+      "category": "unverified_routing",
+      "reportedCostUSD": 0.0283175,
+      "description": "Historical rejection by the old actual-model-name gate; preserved exactly, not relabeled."
+    }
+  },
+  "requests": [
+    {
+      "id": "smoke-plan-recovery-2",
+      "capability": "plan",
+      "kind": "astra",
+      "requestHash": "14edc1b7b8af755ce6adb6b5f366d0759e456c6352d9fafbad3b2fa1d005ba1c"
+    },
+    {
+      "id": "smoke-narration-recovery-2",
+      "capability": "narration",
+      "kind": "astra",
+      "requestHash": "93de9ebf539631ec470d821d2180244e676fc466b7e98ed06e1c179c0adcf124"
+    },
+    {
+      "id": "smoke-feedback-recovery-2",
+      "capability": "feedback",
+      "kind": "astra",
+      "requestHash": "3ff6525d92fc7ae0edfa4ca044c57a1ce2804a9ba1b3f260fcd72a7e9f9d1cd4"
+    },
+    {
+      "id": "smoke-summary-recovery-2",
+      "capability": "summary",
+      "kind": "astra",
+      "requestHash": "28ab77e8f24fc0aadd8fa778635cf8e8432f0ed8f31b25e35d0102d789e7b332"
+    },
+    {
+      "id": "smoke-jev-recovery-2",
+      "capability": "jev",
+      "kind": "jev",
+      "requestHash": "10ad298347814cfa3426548ff8792c76095d35b46998d5b8d20f66b2d53dd2ff"
+    }
+  ],
+  "policy": "Only five newly identified requests, in order. All seven prior artifacts and both ledgers are read-only. Count all historical reservations. Nullable actualModel; documented canonical routing and exactly one pinned successful provider attempt required. Stop on first failure, incomplete billing/routing, or budget risk. No retry, fallback, diagnostics or full benchmark."
+}

@@ -1,0 +1,47 @@
+{
+  "scope": "EXPERIMENT_ONLY_SMOKE_GATE_CORRECTION_PRE_CALL",
+  "baseCommit": "62772744d48a9c20611bd0c973dea9d0c7ba45cb",
+  "priorRecoveryCommit": "2bf147d7c03e0f0eea596674b0a38e5791f489bf",
+  "priorRecoveryCommitPushed": true,
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "recoveryManifestHash": "b2f728a0607debd9f97a84d2e272353896674b30bb740637c23503857c9f10b1",
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "tests": {
+    "command": "node --test test/*.test.mjs",
+    "passed": 111,
+    "failed": 0,
+    "skipped": 0,
+    "newTests": 34,
+    "network": "injected mock HTTP only; global fetch disabled by test modules"
+  },
+  "historicalRequests": 3,
+  "historicalKnownGatewayCostUSD": 0.0283175,
+  "historical403Spend": {
+    "source": "owner-reported dashboard",
+    "USD": 0
+  },
+  "historicalReservationsUSD": 1.03584,
+  "historicalArtifacts": 7,
+  "historicalHashesVerified": true,
+  "additionalLiveRequestsBeforeCommit": 0,
+  "maxAdditionalCalls": 5,
+  "maxCumulativeCalls": 8,
+  "maxCumulativeUSD": 3,
+  "maxCumulativeReservationsUSD": 2.43696,
+  "changedFrozenBenchmark": false,
+  "changedProduction": false,
+  "changedArchitecture": false,
+  "rootApplicationChecks": "not rerun; experiment source/tests only",
+  "pricingReview": {
+    "date": "2026-09-19",
+    "astra": "Official catalog $10/M input, $50/M output.",
+    "jev": "Public catalog currently displays free promotional pricing through September 25, contrary to earlier paid-price observation. Frozen conservative paid reservation remains unchanged; require per-call Gateway cost, including explicit zero.",
+    "sources": [
+      "https://vercel.com/ai-gateway/models/gpt-6-astra",
+      "https://vercel.com/ai-gateway/models/jev"
+    ]
+  },
+  "next": "Commit and push correction, execute only recovery 2 once, report and stop. Full benchmark and implementation unauthorized."
+}

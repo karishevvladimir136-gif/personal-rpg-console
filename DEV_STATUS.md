@@ -4,6 +4,26 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**Phase 3.75 experiment-only smoke gate correction — deterministic checks passed; bounded recovery 2 authorized after commit/push.** Pre-call checkpoint, not a claim of new smoke success. Base `62772744d48a9c20611bd0c973dea9d0c7ba45cb`; prior recovery commit `2bf147d7c03e0f0eea596674b0a38e5791f489bf` has been pushed unchanged. Worktree: `C:\Dev\personal-rpg-console-phase375-bakeoff`.
+
+### Completed work / files and areas changed
+
+Corrected only the experiment routing/provenance gate: missing provider API model names remain null/UNKNOWN while documented canonical routing, exact provider/model attempt counts, hard pins, frozen profiles, schema parsers and billing checks qualify execution. SDK response.modelId is not proof. Added separate recovery-2 manifest, focused tests, [correction record](experiments/phase375-bakeoff/SMOKE_GATE_CORRECTION.md) and verification artifact; reused the existing recovery runner without altering frozen request contents. Production, migrations, root dependencies, architecture documents and frozen benchmark inputs/thresholds/split/resolver gold remain unchanged.
+
+### Tests and build status
+
+Experiment typecheck, lint, build and **111 deterministic tests passed**, zero failures/skips, 34 new tests. [Actual verification record](experiments/phase375-bakeoff/results/smoke-recovery-2-verification.json). Original request parity and all seven historical file hashes verified. Root application/browser/database checks were not rerun for this isolated correction.
+
+### Key decisions / known issues
+
+Three historical requests remain intact: two owner-reported pre-inference HTTP 403/$0 failures, then a funded HTTP-200 plan request rejected by the old gate ($0.0283175 Gateway-reported cost). The funded observation remains status failed with its original ID and bytes. No ledger reservation is reclaimed. At most five new requests, all new IDs, serialized/no retries/no fallback/no diagnostics; cumulative reservations at most $2.43696 and eight total requests under the unchanged $3/no-refresh key cap. Unknown provider API naming never becomes a fabricated identity. Stop on first failure; all five capabilities must pass anew. Jev public catalog currently shows a free promotion, differing from earlier paid-price evidence; retain the conservative frozen paid reservation and require reported billing. Physical iPhone/Safari, historical optional conflict-rebase, finite-test and real-data/deployment limitations remain unchanged. The original checkout's pre-existing documentation edits remain untouched.
+
+### Remaining work / recommended next step
+
+Commit and push this correction before any new live call. Execute only the authorized recovery-2 manifest once, preserve its append-only evidence, report actual routing/schema/usage/cost results, then stop for owner review. No full benchmark, production adoption, implementation sprint, deployment or real campaign/private/source import.
+
+## Prior funded recovery 1 — historical pre-call checkpoint
+
 **Phase 3.75 funded smoke recovery — recovery-only harness verified; owner-authorized execution follows its commit.** This record is the pre-call checkpoint, not a claim that funded smoke passed. Base commit `62772744d48a9c20611bd0c973dea9d0c7ba45cb`; local worktree `C:\Dev\personal-rpg-console-phase375-bakeoff`; branch `codex/phase375-technical-bakeoff`.
 
 ### Completed work / files and areas changed
