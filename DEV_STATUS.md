@@ -4,6 +4,32 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B LIVE RUN STOPPED AT THE FIRST ROOM WORLD-METADATA VALIDATION; OWNER REVIEW REQUIRED.** Execution SHA `2f8f82edb5d5f3c960d45922b71c543e99208192`, protocol SHA-256 `496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb`. Owner confirmed keys/funding; exact clean checkout verified and live ledger initialized once. One room submission completed the polling flow but failed its required world metadata validation. This is not spatial acceptance and does not authorize the remaining jobs.
+
+### Completed work and files / areas changed
+
+Added [live report](experiments/phase38-spatial/results/LIVE_RUN_001.md), [structured results](experiments/phase38-spatial/results/live-run-001.json) and a sanitized, byte-identical [40-entry ledger copy](experiments/phase38-spatial/results/live-run-001-ledger.jsonl), plus this status. Evidence commits are on separate `codex/phase38-spatial-evidence`; frozen code/protocol, the exact execution checkout, original live journal/witness/anchor, earlier setup report and historical evidence are preserved.
+
+### Actual results and verification
+
+One attempted, zero accepted, one stopped at `world`, three not attempted. Requested World Labs `marble-1.1`; actual internal model UNKNOWN. One submission + 16 polls + one world read = 18 recorded HTTP-200 responses; no downloads/fal/diagnostics/retry/fallback. Recorded provider charge **$1.264 / 1,580 credits**; full **$1.30 reservation retained**, no unknown attempted-job charge. Account funding/dashboard totals remain unobserved. Room completion observed by 329.745 seconds; this includes polling rather than measuring internal provider time.
+
+Post-run: **91 deterministic tests passed**, zero failed/skipped; experiment typecheck, lint and build passed. Real ledger hash-chain/witness integrity and pure stop gate verified with no network or durable byte mutation. Full production suite/build not repeated for status/evidence-only changes; earlier preparation verification remains below.
+
+### Key decisions, known issues and remaining work
+
+Stop on the first rejected required response, regardless of HTTP success. The frozen harness discarded the raw world response and specific assertion; only its 3,868-byte size/hash and generic stop remain. Exact root cause and world ID are therefore UNKNOWN in retained evidence. Do not infer provider failure, fabricate an ID, loosen validation or fetch again. Re-open, SPZ/collider/panorama availability, all asset formats/sizes/hashes, visual adherence, panorama compatibility/sharing, fal usability, chest PBR/lid, scale and binding remain unverified or not attempted. No manual approval was written.
+
+Production main/runtime/dependencies/schema/UI and original uncommitted documentation are unchanged. No real/private data, production EXPLORE acceptance, Phase 4, renderer or deployment. Physical iPhone/Safari, optional historical conflict-rebase confirmation and finite synthetic-evaluation limitations remain disclosed.
+
+### Recommended next step
+
+**Stop for owner review of the evidence and missing diagnostic detail.** No automatic continuation, retry, further generation, recovery or provider read. Any follow-up investigation or harness change requires separately scoped owner instruction; do not work around the stop.
+
+---
+
+## Historical setup pause — preserved zero-call observation
+
 **PHASE 3.8B LIVE EXECUTION OWNER-AUTHORIZED; STOPPED BEFORE GENERATION FOR MISSING LOCAL SETUP.** Exact authorized execution SHA: `2f8f82edb5d5f3c960d45922b71c543e99208192`; protocol SHA-256: `496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb`. The clean execution checkout and all 17 frozen files passed verification. Neither provider credential was configured; account funding remains unverified. No execution permission beyond the four frozen jobs is inferred.
 
 ### Completed work and files / areas changed

@@ -1,0 +1,130 @@
+{
+  "recordId": "live-run-001",
+  "recordedAt": "2026-09-19T23:49:01.111231+00:00",
+  "executionSHA": "2f8f82edb5d5f3c960d45922b71c543e99208192",
+  "protocolSHA256": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "initializationCount": 1,
+  "executionCheckoutClean": true,
+  "frozenFilesVerified": 17,
+  "ownerFundingReadinessConfirmed": true,
+  "dashboardFundingObserved": false,
+  "status": "STOPPED_AT_FIRST_WORLD_METADATA_VALIDATION",
+  "scope": {
+    "syntheticOnly": true,
+    "maxSubmissions": 4,
+    "maxReservationMicroUSD": 4750000
+  },
+  "attempted": 1,
+  "passedFrozenAcceptance": 0,
+  "stoppedOrFailedAcceptance": 1,
+  "notAttempted": 3,
+  "providerOperationCompleted": 1,
+  "providerOperationFailureProven": false,
+  "requestCounts": {
+    "submit": 1,
+    "poll": 16,
+    "world": 1
+  },
+  "authenticatedAPIRequests": 18,
+  "http200Responses": 18,
+  "assetDownloads": 0,
+  "retries": 0,
+  "fallbacksObserved": 0,
+  "additionalDiagnostics": 0,
+  "requestedProvider": "worldlabs",
+  "requestedModel": "marble-1.1",
+  "observedDirectAPIHost": "api.worldlabs.ai",
+  "providerInternalActualModel": null,
+  "operationId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+  "worldId": null,
+  "worldIdReason": "Not retained before rejection; request URL is hashed only. No further fetch performed.",
+  "startedAt": "2026-09-19T23:39:37.422000+00:00",
+  "completionObservedBy": "2026-09-19T23:45:07.167000+00:00",
+  "clientObservedCompletionUpperBoundMs": 329745,
+  "latencyQualification": "Includes submission and polling; provider internal generation duration is unknown.",
+  "billing": {
+    "reportedCredits": 1580,
+    "reportedMicroUSD": 1264000,
+    "source": "provider cost.total_credits processed by frozen harness",
+    "requestId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+    "providerObservationSHA256": "85b8378b8b10258dcf257ac93ea618405033bd9f43d352c21037b1f95f02616d",
+    "reservedMicroUSD": 1300000,
+    "unknownAttemptCharges": [],
+    "dashboardSpend": null,
+    "accountFundingSpend": null,
+    "reservationRetained": true
+  },
+  "stop": {
+    "billing": "REPORTED",
+    "jobId": "spatial-room-1",
+    "reason": "unexplained_or_invalid_response",
+    "stage": "world"
+  },
+  "lastWorldResponse": {
+    "bodyHash": "b47fd9cf01c6d05bbe95ca844540df27df5edd27bcf183c9b30aa8d35a103fe4",
+    "bytes": 3868,
+    "jobId": "spatial-room-1",
+    "status": 200,
+    "type": "world"
+  },
+  "ledgerSHA256": {
+    "identity.json": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d",
+    "journal.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "witness.jsonl": "0b446a934d34dc0e63c5cfa595bfd777c55660c0a02ac62012dcb136a3ad3a4f",
+    "../private-run.anchor": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+  },
+  "ledgerEntries": 40,
+  "sanitizedLedgerCopy": "live-run-001-ledger.jsonl",
+  "rawProviderBodiesPersisted": false,
+  "specificValidationErrorPersisted": false,
+  "capabilities": {
+    "worldReopen": "NOT_REACHED",
+    "worldPersistence": "UNVERIFIED_SINGLE_HTTP_200_READ_ONLY",
+    "marbleAssets": "NO_ASSETS_DOWNLOADED_OR_RETAINED",
+    "spzColliderPanoramaAvailability": "UNKNOWN",
+    "panoramaCompatibilitySharing": "UNVERIFIED_NOT_SENT_TO_FAL",
+    "falWorldOutputTypeUsability": "NOT_ATTEMPTED",
+    "chestGLBPBRIndependentLid": "NOT_ATTEMPTED",
+    "scaleColliderBinding": "UNVERIFIED",
+    "visualPromptAdherence": "UNVERIFIED_NO_VISUAL_REVIEW",
+    "assets": []
+  },
+  "jobs": [
+    {
+      "id": "spatial-room-1",
+      "status": "STOPPED_WORLD_METADATA_VALIDATION",
+      "providerCompletedButNotAccepted": true,
+      "reportedMicroUSD": 1264000,
+      "reservedMicroUSD": 1300000
+    },
+    {
+      "id": "spatial-courtyard-1",
+      "status": "NOT_ATTEMPTED",
+      "generationLatencyMs": null
+    },
+    {
+      "id": "spatial-fal-world-1",
+      "status": "NOT_ATTEMPTED"
+    },
+    {
+      "id": "spatial-chest-1",
+      "status": "NOT_ATTEMPTED"
+    }
+  ],
+  "verification": {
+    "mockTestsPassed": 91,
+    "mockTestsFailed": 0,
+    "mockTestsSkipped": 0,
+    "experimentTypecheck": "PASS",
+    "experimentLint": "PASS",
+    "experimentBuild": "PASS",
+    "ledgerChainAndWitness": "PASS",
+    "nextJobBlockedWithoutNetwork": "PASS",
+    "originalLedgerBytesUnchangedByAudit": "PASS",
+    "fullProductionSuite": "NOT_RERUN_STATUS_EVIDENCE_ONLY"
+  },
+  "productionChanged": false,
+  "frozenHarnessChanged": false,
+  "realCampaignOrPrivateDataUsed": false,
+  "productionExploreAccepted": false
+}
