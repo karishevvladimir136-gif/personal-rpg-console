@@ -4,6 +4,42 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8A OWNER-APPROVED at `444f6836a5abce2014c3de4b6f234bf2a75399af`. PHASE 3.8B PREPARATION COMPLETE — FROZEN FOR OWNER REVIEW; LIVE EXECUTION NOT AUTHORIZED.** This is an isolated experiment preparation on `codex/phase38-spatial-preparation`. Production acceptance checkpoints and earlier verification boundaries remain unchanged. The owner must explicitly authorize the exact final preparation SHA before any live generation.
+
+### Completed work and files / areas changed
+
+Built a dependency-free experiment harness with the four unchanged reviewed prompts/endpoints/options, integer reservations, exclusive one-job execution, append-only evidence/ledger/witness/anchor, strict URL/model and output checks, bounded reads/downloads, manual output/billing review and an exact-clean-SHA execution acknowledgement. First failure/uncertain submission prevents the next job and cannot be reset through rerunning. Unknown billing remains UNKNOWN with its full reservation.
+
+Recorded the owner roadmap in MASTER_SPEC / DEVELOPMENT_PLAN, updated the live protocol's preparation boundary and this status. All code, synthetic fixtures, freeze, evidence and operating instructions are inside `experiments/phase38-spatial/`. The [preparation report](experiments/phase38-spatial/PREPARATION_RESULTS.md) lists every changed file, checks and limitations; no production code, migrations, UI, root dependencies or configuration is changed.
+
+### Actual verification
+
+- 91 deterministic/mock experiment tests passed, zero failures/skips.
+- Existing offline suite: 255 passed, 1 live Supabase check intentionally skipped, zero failures. Three HTTP-dependent test files excluded; no browser/server/live database acceptance rerun.
+- Full project typecheck and ESLint passed; isolated TypeScript build and default Next.js production build passed. Initial linked dependency-folder build issue resolved with an identical local dependency copy; no package/version/configuration change. Generated declarations restored before commit.
+- Public official endpoint/model/price recheck found no material change. Zero live generation/model calls; no credentials requested/read/created; no real campaign/private data used. No live ledger initialized.
+- Original checkout's dirty DEV_STATUS.md / PHASE3_EVALUATION.md, all 29 old experiment artifacts/ledgers and 17 tracked result files preserved. Production main and closed bake-off branch unchanged.
+
+Protocol SHA-256: `496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb`. Detailed file hashes are in [freeze.json](experiments/phase38-spatial/freeze.json).
+
+### Key decisions and known issues
+
+The maximum is four serialized submissions, $4.75 cumulative reservations, zero automatic retry/fallback. Read limits: 45 polls/job every 20 seconds / 15 minutes, two fal result reads, four world reads, 190 API requests and 14 asset downloads. All prior reservations remain counted. Fal server retry/fallback opt-outs are explicit; direct HTTPS only. Unsupported output/host ends the run, without a codec install, conversion or substitute image. Success pauses for output review; absent billing pauses for a request-matched manual receipt.
+
+Published selected-option maximum is $4.553. World Labs minimum API purchase is $5; fal minimum top-up remains UNKNOWN from public official sources. Account funding and generation spend are separate; no purchase requested. Entitlement, actual outputs/quality/geometry, articulation, sharing terms, receipts and browser usability remain live unknowns. Structural fixture checks cannot establish these.
+
+EXPLORE is committed v1 with Marble intended initially absent a concrete blocker, asset-first and after Phase 4 Visual Bible / canonical assets. Text RPG remains permanently first-class and independent of EXPLORE/2D. Future 2D is optional, style-agnostic presentation over authoritative state; named games are interaction/presentation references only. These constraints add no renderer architecture or implementation now.
+
+Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified. Finite synthetic/model tests do not guarantee perfect memory, branching, isolation, causality or universal recovery. No hosted deployment or real campaign/private-data acceptance has occurred. Original checkout edits are not staged, overwritten, reconciled or attributed to this phase.
+
+### Remaining work and recommended next step
+
+Owner reviews the exact preparation commit and frozen protocol. No manual setup or keys are needed now. **Stop after commit/push.** Do not execute spatial jobs until the owner authorizes that exact SHA, and do not start Phase 4, EXPLORE implementation, 2D architecture/frontend, an implementation sprint, deployment or real import.
+
+---
+
+## Historical Phase 3.8A preparation status — now owner-approved above
+
 **PHASE 3.75 ARCHITECTURE DECISION OWNER-ACCEPTED; PHASE 3.8A DOCUMENTATION READY FOR OWNER REVIEW.** The owner independently reviewed evidence 9d5a99c0e93917190f415eedab3d4067c63b8ee2 and execution/stop-guard 8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23 against production main cb7f6be2fb513de13604d381046a3240f3261383. The incomplete benchmark is accepted as sufficient for an architecture decision only; it is not relabelled complete or successful. [Final freeze](PHASE375_ARCHITECTURE_DECISION.md) is authoritative over older candidate/spike wording below.
 
 ### Completed work

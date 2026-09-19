@@ -1,6 +1,6 @@
-# Phase 3.8B — minimal synthetic spatial test proposal
+# Phase 3.8B — minimal synthetic spatial test protocol
 
-2026-09-19. **PROPOSAL ONLY: zero calls executed; no credentials requested.** Owner review must precede any experiment preparation requiring new dependencies, credentials or paid work. This protocol does not reopen Phase 3.75 or spend its budget. No production runtime/UI/migrations/data changes are included. Research basis: [provider matrix](PHASE38_PROVIDER_CAPABILITIES.md); required invariants: [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md).
+2026-09-19. **PREPARATION AUTHORIZED; LIVE EXECUTION NOT AUTHORIZED.** Phase 3.8A is owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. The isolated harness is frozen for exact-SHA owner review; zero live calls executed and no credentials requested. No production dependencies or runtime changes. Paid execution requires a separate explicit approval of that preparation SHA. This protocol does not reopen Phase 3.75 or spend its budget. No production runtime/UI/migrations/data changes are included. Research basis: [provider matrix](PHASE38_PROVIDER_CAPABILITIES.md); required invariants: [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md).
 
 ## Questions and smallest useful workload
 
@@ -71,3 +71,13 @@ Report capability observations separately from visual quality (prompt adherence,
 If this exact proposal is later authorized, needed accounts are World Labs API access and fal. Proposed local server-secret convention follows [Model Runtime onboarding](MODEL_RUNTIME_BRIEF.md): ignored .env.local in the isolated running experiment checkout, placeholder names WORLD_LABS_API_KEY and FAL_KEY (World Labs adapter maps its value to WLT-Api-Key). Final prep must give the owner the exact absolute Notepad path and verified restart action. Do not reuse the production secret file, overwrite existing keys, place credentials in browser config or request them in chat. No file/key/account is created now.
 
 Before using any content, record permissions/private flag, applicable account terms and sharing of synthetic panorama to fal. Before live execution, obtain explicit owner approval of frozen commit, four calls, all read/download bounds, $4.75 reservation ceiling and any account-funding implications. Stop after results for owner review; no second batch, Phase 4 start or EXPLORE implementation follows automatically.
+
+## Preparation freeze and current official recheck
+
+The four reviewed inputs, endpoints, options, prices and $4.75 reservation ceiling above are unchanged. The isolated [harness](experiments/phase38-spatial/README.md), [machine-readable protocol](experiments/phase38-spatial/protocol.json), [freeze manifest](experiments/phase38-spatial/freeze.json) and [dated official evidence](experiments/phase38-spatial/OFFICIAL_EVIDENCE.md) add executable offline guards. The manifest pins source, synthetic fixtures and official evidence. Documentation is not proof that a provider has passed this experiment.
+
+Explicit fal `X-Fal-No-Retry: 1` and `x-app-fal-disable-fallback: true` headers enforce the already-reviewed no-retry/no-fallback restriction against documented platform defaults. No extra request is added. Each successful job pauses for manual output review; unknown per-request charges also require a matching manual receipt before the next submission. Unsupported encodings/asset hosts stop, with no conversion, substitution or extra call. Known costs never release reservations.
+
+Additional download byte guards: JSON responses at most 2 MiB; individual assets at most 256 MiB; cumulative downloaded asset bodies at most 1 GiB, checked against remaining allowance before transfer. The supported happy path downloads ten files; fourteen is a ceiling, not a requirement to fetch more. No viewer or codec dependency is installed. Future rendering/quality and the chest's articulation remain explicitly unverified.
+
+World Labs' minimum API funding is $5 (6,250 credits). Fal's current minimum top-up is UNKNOWN from public official evidence. Funding, taxes and unrelated account charges are distinct from the generation reservation cap; no purchase or credentials are requested now. This preparation must stop after commit/push for owner review.

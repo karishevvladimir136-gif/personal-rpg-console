@@ -2,7 +2,7 @@
 ## Product specification — accepted foundation and proposed World architecture
 ### Private single-user home application
 
-**Scope as of September 19, 2026:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. Production main for this pass is cb7f6be2fb513de13604d381046a3240f3261383. The [Phase 3.75 owner architecture freeze](PHASE375_ARCHITECTURE_DECISION.md) accepts incomplete evidence for a decision, not benchmark completion or World Engine implementation. Phase 3.8A is authorized documentation/research/offline test-plan work only; §45 defines Spatial Runtime / EXPLORE, with production after Phase 4 FRAME / Visual Bible. Other §44 implementation slices remain separately gated. Earlier phase instructions are historical, not permission for calls, imports or deployment.
+**Scope as of September 19, 2026:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. Production main for this pass is cb7f6be2fb513de13604d381046a3240f3261383. The [Phase 3.75 owner architecture freeze](PHASE375_ARCHITECTURE_DECISION.md) accepts incomplete evidence for a decision, not benchmark completion or World Engine implementation. Phase 3.8A is owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af; Phase 3.8B isolated preparation/mock tests only are now authorized; §45 defines Spatial Runtime / EXPLORE, with production after Phase 4 FRAME / Visual Bible. Other §44 implementation slices remain separately gated. Earlier phase instructions are historical, not permission for calls, imports or deployment.
 
 ---
 
@@ -1935,3 +1935,14 @@ Research covers Marble/current World API and Atlas successor, HY-World 2.x, Worl
 ## 45.4 Later diagnostics and evaluation
 
 Owner Diagnostics / System Inspector is late-stage sanitized operational visibility, not a spoiler or key viewer. AutoEval / autoresearch is a future bounded, separately owner-authorized experimentation capability with explicit datasets, budgets, frozen contracts and review. It never autonomously edits/adopts production code, changes authoritative state or runs paid background probes. Stop after 3.8A for owner review; do not begin Phase 4 or production implementation.
+
+## Owner roadmap clarification — Phase 3.8B preparation
+
+Phase 3.8A is owner-approved at `444f6836a5abce2014c3de4b6f234bf2a75399af`. Phase 3.8B is authorized for isolated harness preparation and deterministic tests only. Future paid generation requires explicit owner approval of the exact preparation SHA; see [frozen experiment](experiments/phase38-spatial/README.md). No credentials or live calls are authorized by this record.
+
+- EXPLORE is a committed v1 capability. Marble is the intended initial EXPLORE provider unless testing reveals a concrete blocker.
+- Asset-first remains mandatory. Production EXPLORE does not precede Phase 4 Visual Bible / canonical asset foundation.
+- **Text RPG mode is a permanent first-class gameplay mode and must never depend on the 2D renderer or EXPLORE.**
+- A future 2D Rendering Engine is an optional presentation mode over the same authoritative RPG state. It must remain visual-style agnostic, without a pixel-art, painterly-art or existing-game aesthetic lock-in.
+- Everweave, Sorcery!, Duskpunk, Quest for Infamy, Fabled Lands, Sunless Sea and Sunless Skies are interaction/presentation references, not a prescribed visual style.
+- These are roadmap constraints only. No 2D renderer architecture, frontend implementation or further product implementation begins in this preparation.

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "files": {
+    ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    ".gitignore": "96ff3b0429afd57038d23c6ebe72cf39d3d5530bc384ec056916f5ca07b7741c",
+    "OFFICIAL_EVIDENCE.md": "ef9deb8cc29a8de5a72ab815eb2e9a23acc30f73bc21f1ed0e1a36271795793f",
+    "PREPARATION_RESULTS.md": "d76e8641f7c2c4b0b3ef669f0298ddf1384de8d8219265edf39adec91e75fdce",
+    "README.md": "488f072879c6d8df0a70ff6e6db67067d4e1bd356a02e17f9b234a64b5d58ff9",
+    "package.json": "7a307d9fe0739d395f69e7b98abc49b434fafbc9e1d3626da78fbf4e1b6a08a4",
+    "protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+    "src/cli.ts": "c38bad52567d1a50df195e96745029bfb64933e7b35b6e8e8626c141a2bb2cb3",
+    "src/freeze.ts": "b9741a7923c7d64f32800599d8025574e9a264a25b124150c82667a3ddc8e5b1",
+    "src/ledger.ts": "84c466cb1c3d91c8d41c229ccd50a63c9fc6125be1bfd2f711961cd8e3688162",
+    "src/outputs.ts": "1a74f653c7a48a3b01509008b5ec5a6d1784f2669efa4b0021d37f4fec47a43f",
+    "src/protocol.ts": "9b25ceaa15b7c1530ab0c72e21131376cf40e1986ff28dcf178cfc49d963d922",
+    "src/runner.ts": "42814c3a2503607858191413ab07cc11e16d90387e27413cf3c16b86a576a690",
+    "src/transport.ts": "6adb327b2b6616e9270aaad42e35564492a5f8f8c00bceebc2d4070e807c7338",
+    "tests/fixtures.mjs": "61c0086fff61a5e914a81474477fe8ea23ca79629f256a505cc1ad867f56528b",
+    "tests/guards.test.mjs": "d137741ea109230474701cc93298fe8cdd30aed400f1f5776342003bc296db59",
+    "tsconfig.json": "55f4aca748fee844c6b8ff19ddccca3003d938fef3a1b6443df66d3b9a499454"
+  }
+}

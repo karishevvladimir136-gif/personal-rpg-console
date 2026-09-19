@@ -1,7 +1,7 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
-**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) keeps direct OpenAI Responses, preserves the abstraction seam and closes Jev without adoption; incomplete benchmark evidence is sufficient for that architecture decision only. Phase 3.8A documentation/research/offline planning is authorized now. Production EXPLORE is part of v1 after Phase 4 FRAME / Visual Bible; no production slice, new model call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
+**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) keeps direct OpenAI Responses, preserves the abstraction seam and closes Jev without adoption; incomplete benchmark evidence is sufficient for that architecture decision only. Phase 3.8A is owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. Phase 3.8B isolated preparation/mock tests only are authorized now; future live jobs require approval of the exact preparation SHA. Production EXPLORE is part of v1 after Phase 4 FRAME / Visual Bible; no production slice, new model call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
 
 ---
 
@@ -475,3 +475,14 @@ The owner prefers playing here over managing the same campaign manually in ChatG
 ## Preliminary media selection decision
 
 FRAME and VIDEO must support owner choice of supported providers/models, independently, with campaign defaults and per-generation overrides. Optional Fast / Quality / Key Scene profiles supplement rather than replace manual selection. Exact providers/models are undecided. Follow MASTER_SPEC section 32, including spoiler-safe prompt expansion, capability validation, cost transparency, and no silent model fallback. This decision adds no implementation work to Phase 0 and does not authorize starting later milestones.
+
+## Owner roadmap clarification — Phase 3.8B preparation
+
+Phase 3.8A is owner-approved at `444f6836a5abce2014c3de4b6f234bf2a75399af`. Phase 3.8B is authorized for isolated harness preparation and deterministic tests only. Future paid generation requires explicit owner approval of the exact preparation SHA; see [frozen experiment](experiments/phase38-spatial/README.md). No credentials or live calls are authorized by this record.
+
+- EXPLORE is a committed v1 capability. Marble is the intended initial EXPLORE provider unless testing reveals a concrete blocker.
+- Asset-first remains mandatory. Production EXPLORE does not precede Phase 4 Visual Bible / canonical asset foundation.
+- **Text RPG mode is a permanent first-class gameplay mode and must never depend on the 2D renderer or EXPLORE.**
+- A future 2D Rendering Engine is an optional presentation mode over the same authoritative RPG state. It must remain visual-style agnostic, without a pixel-art, painterly-art or existing-game aesthetic lock-in.
+- Everweave, Sorcery!, Duskpunk, Quest for Infamy, Fabled Lands, Sunless Sea and Sunless Skies are interaction/presentation references, not a prescribed visual style.
+- These are roadmap constraints only. No 2D renderer architecture, frontend implementation or further product implementation begins in this preparation.

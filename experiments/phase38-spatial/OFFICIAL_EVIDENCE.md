@@ -1,0 +1,24 @@
+# Official documentation recheck — 2026-09-19
+
+Preparation only. Public documentation GETs; no authenticated/API generation, billing probe, account access or credentials. No material endpoint/model/price change was found against approved Phase 3.8A. Existing unknowns remain unknown. Freeze includes this evidence digest, not copied vendor pages.
+
+| Job | Verified pin / price | Official sources |
+| --- | --- | --- |
+| Room | POST https://api.worldlabs.ai/marble/v1/worlds:generate, marble-1.1; text total 1,580 credits = $1.264 | [models](https://docs.worldlabs.ai/api/models), [generate schema](https://docs.worldlabs.ai/api/reference/worlds/generate), [pricing](https://docs.worldlabs.ai/api/pricing) |
+| Courtyard | Same endpoint, marble-1.1-plus; text 1,580–3,080 credits, maximum $2.464 | Same World Labs sources; budget the variable maximum, never the mean |
+| fal world | POST https://queue.fal.run/fal-ai/hunyuan_world/image-to-world; $0.30/request; image_url, labels_fg1, labels_fg2, classes and export_drc | [official endpoint/pricing text](https://fal.ai/models/fal-ai/hunyuan_world/image-to-world/llms.txt), [schema](https://fal.ai/models/fal-ai/hunyuan_world/image-to-world/api) |
+| fal chest | POST https://queue.fal.run/fal-ai/hunyuan-3d/v3.1/pro/text-to-3d; Normal $0.375 + PBR $0.15 = $0.525; no custom face-count/multi-view add-on | [official pricing/options](https://fal.ai/models/fal-ai/hunyuan-3d/v3.1/pro/text-to-3d/llms.txt), [schema](https://fal.ai/models/fal-ai/hunyuan-3d/v3.1/pro/text-to-3d/api) |
+
+World Labs API minimum funding: **6,250 credits / $5**, distinct from Marble web subscription credits. Turning off auto-refill is not a hard spend cap. The two proposed jobs consume at most $3.728 at published prices. This is not a request to fund an account. [World Labs pricing](https://docs.worldlabs.ai/api/pricing).
+
+Fal uses prepaid credits. A current universal minimum purchase amount was **not established from official public billing docs**; owner/account-specific funding remains unverified until later setup. Do not infer a $0 funding requirement from “no minimum commitment” marketing. The two proposed calls total $0.825. [Fal billing](https://fal.ai/docs/documentation/model-apis/pricing), [FAQ](https://fal.ai/docs/documentation/model-apis/faq).
+
+## Explicit transport constraints, not changes to the reviewed jobs
+
+Fal queue retries/fallbacks are enabled by default. To enforce the already-approved zero-retry/no-fallback policy the frozen raw HTTP submissions set **X-Fal-No-Retry: 1** and **x-app-fal-disable-fallback: true**. No SDK/back-up-domain behavior, redirects, retries, alternate model or billing/diagnostic endpoints. This is a documented opt-out, not proof of inspecting a provider's internal infrastructure. Unexpected reported attempts/fallbacks stop the run. [Platform headers](https://fal.ai/docs/documentation/model-apis/common-parameters), [reliability](https://fal.ai/docs/documentation/model-apis/inference/reliability).
+
+Async status/result receipt shapes: [fal queue](https://fal.ai/docs/documentation/model-apis/inference/queue), [World Labs operation](https://docs.worldlabs.ai/api/reference/operations/get), [world metadata](https://docs.worldlabs.ai/api/reference/worlds/get). Fal queue submit need not include status; poll its returned request-bound URL. Completed World Labs operation can return id or world_id; definitive world metadata must match requested model, prompt, name, private permission, timestamp and world ID on both reads. A null actual provider-internal model stays null; world metadata is recorded as a consistency check, not manufactured execution proof. Fal billable units alone cannot prove PBR-inclusive dollars; pause for a matched manual receipt.
+
+Only documented asset host families are frozen: wlt-ai-cdn.art from [World Labs complete official documentation/examples](https://docs.worldlabs.ai/llms-full.txt); fal.media, v3.fal.media and v3b.fal.media from fal endpoint/queue examples. Exact HTTPS hosts only, no redirects, credentials, alternate ports, fragments, encoded path traversal or wildcard domains. A newly returned CDN host stops the run for review; no automatic allowlist expansion. Query-bearing provider asset links remain only in ignored local evidence, never console output/public reports. [Marble scale conventions](https://docs.worldlabs.ai/api/rendering-spz) and [SPZ format](https://github.com/nianticlabs/spz) inform structural checks.
+
+Remaining live unknowns are unchanged: provider entitlement, billing receipts, actual generated file encodings, browser rendering/quality, visual safety and sharing rights. Generic world_file/DRC is not assumed to be GLB. The harness accepts structurally checked GLB/SPZ geometry and PNG/JPEG images; unknown DRC/archives/other formats stop rather than masquerade as navigable worlds. No format conversion, remote viewer, extra export, upload or paid generation is added to make a sample pass.

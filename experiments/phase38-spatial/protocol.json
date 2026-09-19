@@ -1,0 +1,102 @@
+{
+  "version": "phase38b-v1",
+  "architectureCommit": "444f6836a5abce2014c3de4b6f234bf2a75399af",
+  "syntheticOnly": true,
+  "limits": {
+    "submissions": 4,
+    "reservedMicroUSD": 4750000,
+    "automaticRetries": 0,
+    "fallbacks": 0,
+    "concurrentGenerations": 1,
+    "pollsPerJob": 45,
+    "pollIntervalMs": 20000,
+    "jobDeadlineMs": 900000,
+    "falResultReads": 2,
+    "worldReads": 4,
+    "apiRequests": 190,
+    "downloads": 14,
+    "maxJsonBytes": 2097152,
+    "maxAssetBytes": 268435456,
+    "maxTotalAssetBytes": 1073741824
+  },
+  "assetHosts": {
+    "worldlabs": ["wlt-ai-cdn.art"],
+    "fal": ["fal.media", "v3.fal.media", "v3b.fal.media"]
+  },
+  "falHeaders": {
+    "X-Fal-No-Retry": "1",
+    "x-app-fal-disable-fallback": "true"
+  },
+  "jobs": [
+    {
+      "id": "spatial-room-1",
+      "provider": "worldlabs",
+      "model": "marble-1.1",
+      "endpoint": "https://api.worldlabs.ai/marble/v1/worlds:generate",
+      "reserveMicroUSD": 1300000,
+      "maxPriceMicroUSD": 1264000,
+      "input": {
+        "model": "marble-1.1",
+        "permission": {
+          "public": false
+        },
+        "seed": 38001,
+        "display_name": "spatial-room-1",
+        "world_prompt": {
+          "type": "text",
+          "text_prompt": "A simple rectangular furnished reading room, roughly six by eight metres. One visible wooden door in the north wall, two windows in the east wall, one plain table with two chairs, and one closed undecorated wooden chest by the west wall. Warm daylight, pale plaster walls, stone floor. No people, lettering, concealed compartments, additional rooms or objects. Show only this single room."
+        }
+      }
+    },
+    {
+      "id": "spatial-courtyard-1",
+      "provider": "worldlabs",
+      "model": "marble-1.1-plus",
+      "endpoint": "https://api.worldlabs.ai/marble/v1/worlds:generate",
+      "reserveMicroUSD": 2500000,
+      "maxPriceMicroUSD": 2464000,
+      "input": {
+        "model": "marble-1.1-plus",
+        "permission": {
+          "public": false
+        },
+        "seed": 38002,
+        "display_name": "spatial-courtyard-1",
+        "world_prompt": {
+          "type": "text",
+          "text_prompt": "An open rectangular stone courtyard, roughly thirty by forty metres, with a central dry fountain, four plain benches and two small trees. A continuous low wall surrounds the space, with one visible open archway facing an empty sky backdrop. Daylight. No people, inscriptions, interiors, tunnels or hidden spaces. Show only the courtyard and its visible boundary."
+        }
+      }
+    },
+    {
+      "id": "spatial-fal-world-1",
+      "provider": "fal",
+      "model": "fal-ai/hunyuan_world/image-to-world",
+      "endpoint": "https://queue.fal.run/fal-ai/hunyuan_world/image-to-world",
+      "reserveMicroUSD": 350000,
+      "maxPriceMicroUSD": 300000,
+      "input": {
+        "image_url": {
+          "$dependency": "spatial-room-1:pano"
+        },
+        "labels_fg1": "table, chair, wooden chest",
+        "labels_fg2": "door, window",
+        "classes": "indoor room, furniture, architecture",
+        "export_drc": true
+      }
+    },
+    {
+      "id": "spatial-chest-1",
+      "provider": "fal",
+      "model": "fal-ai/hunyuan-3d/v3.1/pro/text-to-3d",
+      "endpoint": "https://queue.fal.run/fal-ai/hunyuan-3d/v3.1/pro/text-to-3d",
+      "reserveMicroUSD": 600000,
+      "maxPriceMicroUSD": 525000,
+      "input": {
+        "prompt": "A single undecorated wooden storage chest with iron corner bands and a visibly separate closed lid, shown as one isolated object. No contents, text, symbols, surrounding room or people.",
+        "generate_type": "Normal",
+        "enable_pbr": true
+      }
+    }
+  ]
+}
