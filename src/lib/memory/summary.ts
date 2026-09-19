@@ -6,6 +6,7 @@ import type {
   MemorySource,
   SummaryOutput,
 } from "./server-contracts.ts";
+import { sameTimeline, sourceOnTimeline } from "./timeline.ts";
 
 export const summarySchema = {
   type: "object",
@@ -66,6 +67,7 @@ function keys(value: Record<string, unknown>, expected: string[]) {
   );
 }
 export function assertSummaryJob(job: MemoryJob) {
+  valid(sameTimeline(job.timeline, job.timeline));
   valid(job.sources.length <= 24);
   valid(Number.isSafeInteger(job.generation) && job.generation >= 0);
   valid(Number.isSafeInteger(job.stateRevision) && job.stateRevision > 0);
@@ -77,6 +79,7 @@ export function assertSummaryJob(job: MemoryJob) {
   for (const source of job.sources) {
     valid(
       source.campaignId === job.campaignId &&
+        sourceOnTimeline(job.timeline, source) &&
         source.ref.campaignId === job.campaignId,
     );
     valid(

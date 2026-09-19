@@ -5,6 +5,7 @@ import type {
 } from "../gameplay/server-contracts.ts";
 import type { TurnInput } from "../gameplay/contracts.ts";
 import type { MemorySource } from "./server-contracts.ts";
+import { sameTimeline, refsOnTimeline, sourceOnTimeline } from "./timeline.ts";
 
 // This boundary is independent of SQL retrieval. Public narration and companion
 // calls receive only directly public, positively authorized sources.
@@ -15,12 +16,17 @@ export function projectMemory(
 ) {
   const memory = source.memory;
   if (!memory || stage === "feedback") return null;
+  const timeline = source.runtime.timeline;
   if (
     !memory.complete ||
+    !sameTimeline(timeline, input.timeline) ||
+    !sameTimeline(timeline, memory.timeline) ||
     memory.campaignId !== input.campaignId ||
     memory.stateRevision !== source.runtime.revision ||
     (memory.checkpoint &&
       (!memory.checkpoint.valid ||
+        !sameTimeline(timeline, memory.checkpoint.timeline) ||
+        !refsOnTimeline(timeline, memory.checkpoint.sourceRefs) ||
         memory.checkpoint.campaignId !== input.campaignId))
   )
     throw new DmError("context");
@@ -33,6 +39,7 @@ export function projectMemory(
     return rows.flatMap((row) => {
       if (
         row.campaignId !== input.campaignId ||
+        !sourceOnTimeline(timeline, row) ||
         row.ref.campaignId !== input.campaignId ||
         row.ref.visibility !== visibility ||
         !row.current ||
@@ -65,7 +72,14 @@ export function projectMemory(
   const publicSummary = memory.publicSummary;
   const privateSummary = memory.privateSummary;
   for (const summary of [publicSummary, privateSummary]) {
-    if (summary && (!summary.valid || summary.campaignId !== input.campaignId))
+    if (
+      summary &&
+      (!summary.valid ||
+        summary.generation !== memory.generation ||
+        summary.campaignId !== input.campaignId ||
+        !sameTimeline(timeline, summary.timeline) ||
+        !refsOnTimeline(timeline, summary.sourceRefs))
+    )
       throw new DmError("context");
   }
   if (

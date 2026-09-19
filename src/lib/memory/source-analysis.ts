@@ -1,4 +1,5 @@
 import type { EntityAlias, RetrievalRequest } from "./server-contracts.ts";
+import { sameTimeline } from "./timeline.ts";
 
 // Search normalization is a relevance hint, never a change to source text or truth.
 export function normalizeMemoryText(value: string): string {
@@ -98,7 +99,11 @@ export function mentionedEntityIds(
       ...request.entityIds,
       ...aliases
         .filter((alias) => {
-          if (alias.campaignId !== request.campaignId) return false;
+          if (
+            alias.campaignId !== request.campaignId ||
+            !sameTimeline(request.timeline, alias.timeline)
+          )
+            return false;
           return [alias.alias, alias.currentName].some((name) => {
             const normalized = memoryTerms(name).join(" ");
             return normalized.length > 0 && query.includes(` ${normalized} `);
@@ -120,6 +125,7 @@ export function expandRetrievalRequest(
     .filter(
       (alias) =>
         alias.campaignId === request.campaignId &&
+        sameTimeline(request.timeline, alias.timeline) &&
         entityIds.includes(alias.entityId),
     )
     .flatMap((alias) => memoryTerms(`${alias.alias} ${alias.currentName}`));

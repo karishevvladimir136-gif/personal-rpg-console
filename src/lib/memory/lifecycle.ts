@@ -5,6 +5,7 @@ import type { DmProvider } from "../gameplay/server-contracts.ts";
 import type { MemoryStore, SummaryProvider } from "./server-contracts.ts";
 import { withMemory } from "./context.ts";
 import { processMemoryJobs } from "./jobs.ts";
+import { sameTimeline } from "./timeline.ts";
 
 export function memoryAwareProvider(
   provider: DmProvider,
@@ -32,10 +33,15 @@ export async function preflightMemory(
 ) {
   if (input.mode !== "game" && input.mode !== "companion") return;
   // An ended session cannot start paid preflight work before the runtime gate.
-  if ((await store.read(input.campaignId)).currentBoundary)
-    throw new DmError("unavailable", true);
+  const status = await store.read(input.campaignId);
+  if (!sameTimeline(input.timeline, status.timeline))
+    throw new DmError("conflict");
+  if (status.currentBoundary) throw new DmError("unavailable", true);
   const source = await store.source(input.campaignId, input.mode);
-  if (source.runtime.revision !== input.expectedRevision)
+  if (
+    source.runtime.revision !== input.expectedRevision ||
+    !sameTimeline(input.timeline, source.runtime.timeline)
+  )
     throw new DmError("conflict");
   const budget = modelBudget(model);
   let pressure = false;
@@ -57,10 +63,19 @@ export async function preflightMemory(
   if (!pressure && !rebuild) return;
   await store.enqueue(input.campaignId, rebuild ? "rebuild" : "pressure");
   // Two bounded batches leave room for the ordinary planner/narrator timeout.
-  const result = await processMemoryJobs(input.campaignId, store, summaries, 2);
+  const result = await processMemoryJobs(
+    input.campaignId,
+    store,
+    summaries,
+    2,
+    input.timeline,
+  );
   if (result.failed) throw new DmError("context", true);
   const refreshed = await store.source(input.campaignId, input.mode);
-  if (refreshed.runtime.revision !== input.expectedRevision)
+  if (
+    refreshed.runtime.revision !== input.expectedRevision ||
+    !sameTimeline(input.timeline, refreshed.runtime.timeline)
+  )
     throw new DmError("conflict");
   buildContext(await withMemory(refreshed, input, store), input, "plan", {
     model,

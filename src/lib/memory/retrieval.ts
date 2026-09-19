@@ -6,6 +6,7 @@ import type {
   RetrievalResult,
 } from "./server-contracts.ts";
 import { memoryTerms, mentionedEntityIds } from "./source-analysis.ts";
+import { sameTimeline, sourceOnTimeline } from "./timeline.ts";
 export { expandRetrievalRequest } from "./source-analysis.ts";
 
 const authority = {
@@ -25,6 +26,7 @@ const exactIdentity = (ref: MemorySourceRef) =>
 
 function authorized(request: RetrievalRequest, source: MemorySource): boolean {
   if (
+    !sourceOnTimeline(request.timeline, source) ||
     source.campaignId !== request.campaignId ||
     source.ref.campaignId !== request.campaignId ||
     source.ref.visibility !== request.visibility ||
@@ -87,6 +89,8 @@ export function selectCriticalSourceIds(
   request: RetrievalRequest,
   batch: MemoryCandidateBatch,
 ): string[] {
+  if (!sameTimeline(request.timeline, batch.timeline))
+    return [...request.requiredSourceIds];
   const entities = new Set(mentionedEntityIds(request, batch.aliases));
   const terms = memoryTerms(request.query);
   const asksHistory =
@@ -130,6 +134,7 @@ export function retrieveMemory(
     bytes: 2,
   });
   if (
+    !sameTimeline(request.timeline, batch.timeline) ||
     batch.campaignId !== request.campaignId ||
     !request.campaignId ||
     !Number.isSafeInteger(request.maxBytes) ||

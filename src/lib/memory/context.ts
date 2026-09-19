@@ -11,6 +11,7 @@ import {
   retrieveMemory,
   selectCriticalSourceIds,
 } from "./retrieval.ts";
+import { sameTimeline, refsOnTimeline, sourceOnTimeline } from "./timeline.ts";
 
 export async function withMemory(
   source: RuntimeSource,
@@ -20,6 +21,8 @@ export async function withMemory(
 ): Promise<RuntimeSource> {
   if (input.mode === "feedback" || input.mode === "ooc") return source;
   const cid = input.campaignId;
+  const timeline = source.runtime.timeline;
+  if (!sameTimeline(timeline, input.timeline)) throw new DmError("conflict");
   const companion = input.mode === "companion";
   const actors = companion
     ? [...new Set([input.companionId!, ...input.listenerIds])]
@@ -28,13 +31,22 @@ export async function withMemory(
   const memory = await store.context(cid, actors, privateAllowed);
   if (
     memory.campaignId !== cid ||
+    !sameTimeline(timeline, memory.timeline) ||
     memory.stateRevision !== source.runtime.revision ||
     memory.overflow ||
-    (memory.checkpoint && !memory.checkpoint.valid)
+    memory.aliases.some(
+      (alias) =>
+        alias.campaignId !== cid || !sameTimeline(timeline, alias.timeline),
+    ) ||
+    (memory.checkpoint &&
+      (!memory.checkpoint.valid ||
+        !sameTimeline(timeline, memory.checkpoint.timeline) ||
+        !refsOnTimeline(timeline, memory.checkpoint.sourceRefs)))
   )
     throw new DmError("context", true);
   const known = (item: MemorySource, visibility: "public" | "private") =>
     item.campaignId === cid &&
+    sourceOnTimeline(timeline, item) &&
     item.ref.campaignId === cid &&
     item.ref.visibility === visibility &&
     item.current &&
@@ -53,6 +65,7 @@ export async function withMemory(
   // in RuntimeSource; named aliases and the explicit target seed history search.
   const entityIds = companion ? [input.companionId!] : [];
   const query: RetrievalRequest = {
+    timeline,
     campaignId: cid,
     visibility: "public",
     actorIds: actors,
@@ -67,7 +80,11 @@ export async function withMemory(
   };
   async function search(request: RetrievalRequest) {
     const first = await store.search(request);
-    if (first.campaignId !== cid || first.generation !== memory.generation)
+    if (
+      first.campaignId !== cid ||
+      first.generation !== memory.generation ||
+      !sameTimeline(timeline, first.timeline)
+    )
       throw new DmError("context", true);
     const original = { ...request, query: input.input };
     let result = retrieveMemory(
@@ -80,7 +97,11 @@ export async function withMemory(
     if (result.paused && result.reason === "missing" && !request.expanded) {
       const expanded = expandRetrievalRequest(request, first.aliases);
       const second = await store.search(expanded);
-      if (second.campaignId !== cid || second.generation !== memory.generation)
+      if (
+        second.campaignId !== cid ||
+        second.generation !== memory.generation ||
+        !sameTimeline(timeline, second.timeline)
+      )
         throw new DmError("context", true);
       result = retrieveMemory(
         {
@@ -117,6 +138,9 @@ export async function withMemory(
   if (
     publicSummary &&
     (publicSummary.campaignId !== cid ||
+      publicSummary.generation !== memory.generation ||
+      !sameTimeline(timeline, publicSummary.timeline) ||
+      !refsOnTimeline(timeline, publicSummary.sourceRefs) ||
       publicSummary.visibility !== "public" ||
       publicSummary.entries.some((item) => !known(item, "public")))
   ) {
@@ -127,6 +151,9 @@ export async function withMemory(
   if (
     privateSummary &&
     (privateSummary.campaignId !== cid ||
+      privateSummary.generation !== memory.generation ||
+      !sameTimeline(timeline, privateSummary.timeline) ||
+      !refsOnTimeline(timeline, privateSummary.sourceRefs) ||
       privateSummary.visibility !== "private" ||
       privateSummary.entries.some((item) => !known(item, "private")))
   )
@@ -136,6 +163,7 @@ export async function withMemory(
     historyComplete: true,
     checkpoint: null,
     memory: {
+      timeline,
       campaignId: cid,
       generation: memory.generation,
       stateRevision: memory.stateRevision,

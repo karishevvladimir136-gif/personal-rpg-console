@@ -1,11 +1,14 @@
 import type { MemoryStore } from "./server-contracts.ts";
 import { DmError } from "../gameplay/dm-errors.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
+import { sameTimeline, validTimeline } from "./timeline.ts";
 
 export type MemoryRpc = (args: {
   p_owner_id: string;
   p_campaign_id: string;
   p_action: string;
   p_payload: unknown;
+  p_timeline?: TimelineFence | null;
 }) => Promise<{
   data: unknown;
   error?: { message?: string; code?: string } | null;
@@ -14,19 +17,35 @@ export type MemoryRpc = (args: {
 export function createRpcMemoryStore(
   ownerId: string,
   execute: MemoryRpc,
+  timeline?: TimelineFence,
 ): MemoryStore {
+  const boundTimelines = new Map<string, TimelineFence>();
+  if (timeline !== undefined && !validTimeline(timeline))
+    throw new DmError("validation");
   async function rpc<T>(
     campaignId: string,
     action: string,
     payload: unknown = {},
   ): Promise<T> {
+    let boundTimeline = boundTimelines.get(campaignId) ?? timeline;
+    const body = payload as Record<string, unknown>;
+    const { timeline: requestedTimeline, ...legacyPayload } = body;
+    if (requestedTimeline !== undefined && !validTimeline(requestedTimeline))
+      throw new DmError("validation");
+    if (requestedTimeline !== undefined) {
+      if (boundTimeline && !sameTimeline(boundTimeline, requestedTimeline))
+        throw new DmError("conflict");
+      boundTimeline ??= requestedTimeline;
+      boundTimelines.set(campaignId, boundTimeline);
+    }
     let response: Awaited<ReturnType<MemoryRpc>>;
     try {
       response = await execute({
         p_owner_id: ownerId,
         p_campaign_id: campaignId,
         p_action: action,
-        p_payload: payload,
+        p_payload: legacyPayload,
+        p_timeline: boundTimeline ?? null,
       });
     } catch (error) {
       if (error instanceof DmError) throw error;
@@ -50,6 +69,25 @@ export function createRpcMemoryStore(
           !message.includes("rpg_not_found"),
       );
     }
+    if (response.data && typeof response.data === "object") {
+      const data = response.data as {
+        timeline?: TimelineFence;
+        runtime?: { timeline?: TimelineFence };
+      };
+      const received = data.timeline ?? data.runtime?.timeline;
+      if (received !== undefined) {
+        if (
+          !validTimeline(received) ||
+          (boundTimeline && !sameTimeline(boundTimeline, received))
+        )
+          throw new DmError("conflict");
+        // Bind once. A later callback may never migrate itself to a new branch.
+        boundTimeline ??= received;
+        boundTimelines.set(campaignId, boundTimeline);
+      } else if (boundTimeline) {
+        throw new DmError("context");
+      }
+    }
     return response.data as T;
   }
   return {
@@ -62,12 +100,14 @@ export function createRpcMemoryStore(
     claim: (id) => rpc(id, "claim"),
     publish: (job, summary) =>
       rpc(job.campaignId, "publish", {
+        timeline: job.timeline,
         jobId: job.id,
         token: job.token,
         summary,
       }),
     fail: (job, category) =>
       rpc(job.campaignId, "fail", {
+        timeline: job.timeline,
         jobId: job.id,
         token: job.token,
         category,
