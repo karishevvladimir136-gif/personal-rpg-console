@@ -3,7 +3,12 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
-import { useCampaignData, useUnsavedChanges } from "./persistence-context";
+import {
+  useCampaignData,
+  useCampaignDraftScope,
+  TimelineDraftNotice,
+  useUnsavedChanges,
+} from "./persistence-context";
 import { Button, Icon } from "./ui";
 import {
   GameplayClientError,
@@ -23,6 +28,8 @@ import {
   prepareCommand,
   reconcileJournal,
   saveJournal,
+  journalNeedsTimelineReview,
+  reviewJournalForTimeline,
   type DraftJournal,
 } from "@/lib/gameplay/client-state";
 import type {
@@ -39,6 +46,7 @@ import {
   sessionGateLabels,
   turnAllowedBySession,
 } from "@/lib/memory/client-state";
+import { sameTimeline, timelineChangedMessage } from "@/lib/saves/client-state";
 
 function localStorageForDraft() {
   try {
@@ -67,6 +75,7 @@ export function GameplayComposer({
   historyOnly?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
+  const scope = useCampaignDraftScope();
   const { t } = useLanguage();
   const memory = useSessionMemory();
   const [journal, setJournal] = useState<DraftJournal>(emptyJournal);
@@ -77,8 +86,10 @@ export function GameplayComposer({
   const [stored, setStored] = useState(true);
   const [error, setError] = useState("");
   const [listeners, setListeners] = useState<string[]>([]);
-  const key = journalKey(campaignId, mode, companionId);
+  const [reviewAbsent, setReviewAbsent] = useState(false);
+  const key = journalKey(campaignId, mode, companionId, scope.timeline);
   const write = (next: DraftJournal) => {
+    next = { ...next, timeline: next.timeline ?? scope.timeline };
     current.current = next;
     setJournal(next);
     setStored(saveJournal(localStorageForDraft(), key, next));
@@ -92,8 +103,12 @@ export function GameplayComposer({
         campaignId,
         mode,
         companionId,
+        scope.timeline,
       );
-      if (!next.text && !next.attempt) next.text = initialText;
+      if (!next.text && !next.attempt) {
+        next.text = initialText;
+        next.timeline = scope.timeline;
+      }
       current.current = next;
       setJournal(next);
       setReady(true);
@@ -101,7 +116,7 @@ export function GameplayComposer({
     return () => {
       live = false;
     };
-  }, [campaignId, mode, companionId, initialText]);
+  }, [campaignId, mode, companionId, initialText, scope.timeline]);
   useUnsavedChanges(!stored && journal.text.length > 0);
   const turns = play.turns.filter((turn) =>
     belongsToChannel(turn, mode, companionId),
@@ -111,13 +126,13 @@ export function GameplayComposer({
     journal.attempt &&
     play.turns.find((turn) => turn.id === journal.attempt?.operationId);
   useEffect(() => {
-    if (!knownAttempt) return;
+    if (!knownAttempt || scope.stale) return;
     const next = reconcileJournal(current.current, knownAttempt);
     if (next === current.current) return;
     current.current = next;
     saveJournal(localStorageForDraft(), key, next);
     queueMicrotask(() => setJournal(next));
-  }, [knownAttempt, key]);
+  }, [knownAttempt, key, scope.stale]);
   const accept = async (turn: PublicTurn) => {
     write(reconcileJournal(current.current, turn));
     await onSaved();
@@ -139,6 +154,14 @@ export function GameplayComposer({
   const send = () =>
     run(async () => {
       if (
+        scope.stale ||
+        journalNeedsTimelineReview(current.current, play.timeline) ||
+        !sameTimeline(data?.timeline, play.timeline)
+      ) {
+        setError(timelineChangedMessage);
+        return;
+      }
+      if (
         !sessionGate(
           memory.error ? null : memory.snapshot,
           mode,
@@ -157,6 +180,7 @@ export function GameplayComposer({
       const previous = current.current.attempt;
       if (previous && current.current.recovered) {
         const pending = prepareCommand(null, {
+          timeline: play.timeline,
           campaignId,
           operationId: previous.operationId,
           action: "retry",
@@ -170,6 +194,7 @@ export function GameplayComposer({
       }
       if (!previous && (!current.current.text.trim() || unresolved)) return;
       const attempt = prepareAttempt(previous, {
+        timeline: play.timeline,
         campaignId,
         expectedRevision: play.revision,
         mode,
@@ -213,10 +238,19 @@ export function GameplayComposer({
     checkId: string | null = null,
   ) =>
     run(async () => {
+      if (
+        scope.stale ||
+        !sameTimeline(data?.timeline, turn.timeline) ||
+        journalNeedsTimelineReview(current.current, play.timeline)
+      ) {
+        setError(timelineChangedMessage);
+        return;
+      }
       if (!turnAllowedBySession(memory.error ? null : memory.snapshot, turn))
         return;
       // Recovered durable turns need no copy of private or provider context in the browser.
       const attempt = current.current.attempt ?? {
+        timeline: turn.timeline,
         operationId: turn.id,
         campaignId,
         expectedRevision: turn.expectedRevision,
@@ -227,6 +261,7 @@ export function GameplayComposer({
         mechanic: null,
       };
       const pending = prepareCommand(current.current.command, {
+        timeline: turn.timeline,
         campaignId,
         operationId: turn.id,
         action,
@@ -259,12 +294,33 @@ export function GameplayComposer({
     mode,
     journal.command?.operationId ?? journal.attempt?.operationId ?? null,
   );
+  const timelineBlocked =
+    scope.stale ||
+    !sameTimeline(data?.timeline, play.timeline) ||
+    journalNeedsTimelineReview(journal, play.timeline);
   const sessionPaused = !sessionGate(
     memory.error ? null : memory.snapshot,
     mode,
   );
   return (
     <div className="gameplay-channel">
+      <TimelineDraftNotice stale={scope.stale} />
+      {!scope.stale && timelineBlocked && (
+        <div className="timeline-draft-notice" role="alert">
+          <p>{t(timelineChangedMessage)}</p>
+          <Button
+            disabled={
+              busy || (!!journal.attempt && !knownAttempt && !reviewAbsent)
+            }
+            onClick={() => {
+              write(reviewJournalForTimeline(current.current, play.timeline));
+              setReviewAbsent(false);
+            }}
+          >
+            {t("Use this draft after reviewing the timeline")}
+          </Button>
+        </div>
+      )}
       {sessionPaused && (
         <div className="session-saved-note" role="status">
           <p>
@@ -309,6 +365,7 @@ export function GameplayComposer({
                 turn={turn}
                 busy={
                   busy ||
+                  timelineBlocked ||
                   !turnAllowedBySession(
                     memory.error ? null : memory.snapshot,
                     turn,
@@ -332,6 +389,7 @@ export function GameplayComposer({
             turn={(unresolved || turns.at(-1))!}
             busy={
               busy ||
+              timelineBlocked ||
               !turnAllowedBySession(
                 memory.error ? null : memory.snapshot,
                 (unresolved || turns.at(-1))!,
@@ -434,6 +492,7 @@ export function GameplayComposer({
               type="submit"
               disabled={
                 !ready ||
+                timelineBlocked ||
                 busy ||
                 !sessionAllowed ||
                 (mode !== "feedback" && !currentSession) ||
@@ -459,11 +518,23 @@ export function GameplayComposer({
                 disabled={busy}
                 onClick={() =>
                   void run(async () => {
-                    const turn = await loadTurn(
-                      campaignId,
-                      journal.attempt!.operationId,
-                    );
-                    await accept(turn);
+                    try {
+                      const turn = await loadTurn(
+                        campaignId,
+                        journal.attempt!.operationId,
+                      );
+                      await accept(turn);
+                      if (sameTimeline(turn.timeline, play.timeline))
+                        setReviewAbsent(true);
+                    } catch (cause) {
+                      if (
+                        cause instanceof GameplayClientError &&
+                        cause.code === "not_found" &&
+                        !scope.stale
+                      )
+                        setReviewAbsent(true);
+                      throw cause;
+                    }
                   })
                 }
               >

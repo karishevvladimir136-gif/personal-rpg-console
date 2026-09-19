@@ -31,6 +31,7 @@ import type {
   PublicSessionMemory,
 } from "@/lib/memory/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import { sameTimeline } from "@/lib/saves/client-state";
 
 function localStorageForSession() {
   try {
@@ -122,6 +123,7 @@ export function SessionMemoryPanel({
 }) {
   const { t, language } = useLanguage();
   const { campaignId, data, refresh: refreshRecords } = useCampaignData();
+  const timeline = data?.timeline;
   const memory = useSessionMemory();
   const router = useRouter();
   const [busy, setBusy] = useState(false);
@@ -143,14 +145,20 @@ export function SessionMemoryPanel({
   const writeAttempt = (next: MemoryAttempt | null) => {
     current.current = next;
     setAttempt(next);
-    setStored(saveMemoryAttempt(localStorageForSession(), campaignId, next));
+    setStored(
+      saveMemoryAttempt(localStorageForSession(), campaignId, next, timeline),
+    );
   };
   useUnsavedChanges(!stored && !!attempt);
   useEffect(() => {
     let live = true;
     queueMicrotask(() => {
       if (!live) return;
-      const recovered = loadMemoryAttempt(localStorageForSession(), campaignId);
+      const recovered = loadMemoryAttempt(
+        localStorageForSession(),
+        campaignId,
+        timeline,
+      );
       current.current = recovered;
       setAttempt(recovered);
       setReady(true);
@@ -158,14 +166,14 @@ export function SessionMemoryPanel({
     return () => {
       live = false;
     };
-  }, [campaignId]);
+  }, [campaignId, timeline]);
   useEffect(() => {
     if (!snapshot || !attempt || !memoryAttemptConfirmed(attempt, snapshot))
       return;
     current.current = null;
-    saveMemoryAttempt(localStorageForSession(), campaignId, null);
+    saveMemoryAttempt(localStorageForSession(), campaignId, null, timeline);
     queueMicrotask(() => setAttempt(null));
-  }, [attempt, snapshot, campaignId]);
+  }, [attempt, snapshot, campaignId, timeline]);
   useEffect(() => {
     if (!busy) return;
     const timer = setInterval(() => {
@@ -182,8 +190,10 @@ export function SessionMemoryPanel({
     guard.current = true;
     setBusy(true);
     setError("");
-    writeAttempt(command);
     try {
+      if (!sameTimeline(command.input.timeline, timeline))
+        throw new MemoryClientError("conflict");
+      writeAttempt(command);
       let result: MemorySnapshot;
       if (command.kind === "end") result = await endSession(command.input);
       else if (command.kind === "continue")
@@ -218,6 +228,7 @@ export function SessionMemoryPanel({
       prepareMemoryAttempt(current.current, {
         kind: "end",
         input: {
+          timeline: snapshot.timeline,
           campaignId,
           sessionId,
           expectedRevision: snapshot.runtimeRevision,
@@ -232,6 +243,7 @@ export function SessionMemoryPanel({
         kind: "continue",
         fromState: boundary.state,
         input: {
+          timeline: snapshot.timeline,
           campaignId,
           boundaryId: boundary.id,
           expectedRevision: snapshot.runtimeRevision,
@@ -244,11 +256,20 @@ export function SessionMemoryPanel({
     void run(
       prepareMemoryAttempt(current.current, {
         kind: "retry",
-        input: { campaignId, boundaryId: boundary.id },
+        input: {
+          campaignId,
+          timeline: snapshot?.timeline,
+          boundaryId: boundary.id,
+        },
       }),
     );
   };
-  const disabled = busy || !ready || !!attempt || !!memory.error;
+  const disabled =
+    busy ||
+    !ready ||
+    !!attempt ||
+    !!memory.error ||
+    !sameTimeline(snapshot?.timeline, timeline);
   return (
     <Panel
       className="session-memory"

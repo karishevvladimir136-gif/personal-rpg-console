@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "./language-context";
-import { useCampaignData, useUnsavedChanges } from "./persistence-context";
+import {
+  useCampaignData,
+  useCampaignDraftScope,
+  TimelineDraftNotice,
+  useUnsavedChanges,
+} from "./persistence-context";
 import { Badge, Button, Icon, Modal, Panel } from "./ui";
 import {
   createMutationAttempt,
@@ -163,6 +168,7 @@ export function DocumentEditor({
 }) {
   const { t } = useLanguage();
   const { campaignId, mutate, refresh } = useCampaignData();
+  const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(() => documentDraft(record));
   const [baseline, setBaseline] = useState(() => documentDraft(record));
   const [saving, setSaving] = useState(false);
@@ -178,7 +184,7 @@ export function DocumentEditor({
   useUnsavedChanges(dirty || reading);
   useEffect(() => () => fileReader.cancel(), [fileReader]);
   const newer = Boolean(
-    record && record.revision !== baseline.expectedRevision,
+    scope.stale || (record && record.revision !== baseline.expectedRevision),
   );
   const change = (patch: Partial<typeof draft>) => {
     const next = { ...draft, ...patch };
@@ -230,9 +236,12 @@ export function DocumentEditor({
     setSaved(false);
     attempt.current = createMutationAttempt(
       attempt.current,
-      documentSave(
-        campaignId,
-        guide ? { ...draft, status: "reference" } : draft,
+      scope.bind(
+        documentSave(
+          campaignId,
+          guide ? { ...draft, status: "reference" } : draft,
+        ),
+        guide ? "timeline" : "campaign",
       ),
     );
     try {
@@ -266,7 +275,10 @@ export function DocumentEditor({
     try {
       attempt.current = createMutationAttempt(
         attempt.current,
-        documentRestore(campaignId, record, version),
+        scope.bind(
+          documentRestore(campaignId, record, version),
+          guide ? "timeline" : "campaign",
+        ),
       );
       const result = await mutate(attempt.current);
       const next = {
@@ -296,6 +308,14 @@ export function DocumentEditor({
           guide ? "DM Guide" : record ? "Edit document" : "New Document",
         )}
       >
+        <TimelineDraftNotice stale={scope.stale} />
+        <p className="muted">
+          {t(
+            guide
+              ? "Guidance changes apply to the current timeline."
+              : "Canon and reference corrections apply across this campaign's timelines.",
+          )}
+        </p>
         {guide && (
           <p className="muted">
             {t(
@@ -372,9 +392,10 @@ export function DocumentEditor({
                   )}
                 </p>
                 <h3>{record?.title}</h3>
-                <Badge>{t(statusLabels[record!.status])}</Badge>
+                {record && <Badge>{t(statusLabels[record.status])}</Badge>}
                 <div className="persistence-document-body">{record?.body}</div>
                 <Button
+                  disabled={scope.stale}
                   onClick={() => {
                     if (
                       !record ||
@@ -385,6 +406,7 @@ export function DocumentEditor({
                       )
                     )
                       return;
+                    if (scope.stale) return;
                     const next = rebaseDocumentDraft(draft, record);
                     const latest = documentDraft(record);
                     setDraft(next);
@@ -417,6 +439,7 @@ export function DocumentEditor({
                       window.confirm(t("Discard your unsaved changes?"))
                     ) {
                       const next = documentDraft(record);
+                      scope.reset();
                       setDraft(next);
                       setBaseline(next);
                       onDirty(false);

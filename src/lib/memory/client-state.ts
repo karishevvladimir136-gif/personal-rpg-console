@@ -7,6 +7,8 @@ import type {
   RecapStatus,
   RetryMemoryInput,
 } from "./contracts.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
+import { sameTimeline } from "../saves/client-state.ts";
 
 export type MemoryAttempt =
   | { kind: "end"; input: EndSessionInput }
@@ -25,8 +27,11 @@ type NewAttempt =
     }
   | { kind: "retry"; input: Omit<RetryMemoryInput, "requestId"> };
 type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
-export const memoryAttemptKey = (campaignId: string) =>
-  `rpg-session-request-v1:${campaignId}`;
+export const memoryAttemptKey = (
+  campaignId: string,
+  timeline?: TimelineFence,
+) =>
+  `rpg-session-request-v1:${campaignId}${timeline ? `:${timeline.timelineId}` : ""}`;
 export function prepareMemoryAttempt(
   previous: MemoryAttempt | null,
   next: NewAttempt,
@@ -44,15 +49,17 @@ export function prepareMemoryAttempt(
 export function loadMemoryAttempt(
   storage: StorageLike | null,
   campaignId: string,
+  timeline?: TimelineFence,
 ): MemoryAttempt | null {
   try {
     const value = JSON.parse(
-      storage?.getItem(memoryAttemptKey(campaignId)) || "null",
+      storage?.getItem(memoryAttemptKey(campaignId, timeline)) || "null",
     ) as MemoryAttempt | null;
     if (
       !value ||
       !["end", "continue", "retry"].includes(value.kind) ||
       value.input?.campaignId !== campaignId ||
+      value.input?.timeline?.timelineId !== timeline?.timelineId ||
       typeof value.input.requestId !== "string" ||
       !value.input.requestId
     )
@@ -88,12 +95,18 @@ export function saveMemoryAttempt(
   storage: StorageLike | null,
   campaignId: string,
   attempt: MemoryAttempt | null,
+  timeline?: TimelineFence,
 ): boolean {
   try {
     if (!storage) return false;
+    if (attempt && attempt.input.timeline?.timelineId !== timeline?.timelineId)
+      return false;
     if (attempt)
-      storage.setItem(memoryAttemptKey(campaignId), JSON.stringify(attempt));
-    else storage.removeItem(memoryAttemptKey(campaignId));
+      storage.setItem(
+        memoryAttemptKey(campaignId, timeline),
+        JSON.stringify(attempt),
+      );
+    else storage.removeItem(memoryAttemptKey(campaignId, timeline));
     return true;
   } catch {
     return false;
@@ -104,6 +117,7 @@ export function memoryAttemptConfirmed(
   snapshot: MemorySnapshot,
 ): boolean {
   if (attempt.input.campaignId !== snapshot.campaignId) return false;
+  if (!sameTimeline(attempt.input.timeline, snapshot.timeline)) return false;
   const boundaries = snapshot.currentBoundary
     ? [snapshot.currentBoundary, ...snapshot.sessions]
     : snapshot.sessions;
@@ -151,7 +165,10 @@ export function turnAllowedBySession(
   snapshot: MemorySnapshot | null,
   turn: PublicTurn,
 ): boolean {
-  return sessionGate(snapshot, turn.mode, turn.id);
+  return (
+    sameTimeline(snapshot?.timeline, turn.timeline) &&
+    sessionGate(snapshot, turn.mode, turn.id)
+  );
 }
 export function sessionBoundaryView(boundary: PublicSessionMemory) {
   const pending = hasPendingSessionTurn(boundary);
@@ -197,6 +214,7 @@ export function createMemoryReader(
   campaignId: string,
   read: (campaignId: string) => Promise<MemorySnapshot>,
   errorMessage: (error: unknown) => string,
+  timeline?: TimelineFence,
 ) {
   let state = initialMemoryReadState;
   let generation = 0;
@@ -207,7 +225,10 @@ export function createMemoryReader(
     listeners.forEach((fn) => fn());
   };
   const accept = (snapshot: MemorySnapshot) => {
-    if (snapshot.campaignId !== campaignId)
+    if (
+      snapshot.campaignId !== campaignId ||
+      !sameTimeline(snapshot.timeline, timeline)
+    )
       throw Error("Invalid campaign response");
     generation++;
     if (
@@ -222,7 +243,10 @@ export function createMemoryReader(
     const request = ++generation;
     pending = read(campaignId)
       .then((snapshot) => {
-        if (snapshot.campaignId !== campaignId)
+        if (
+          snapshot.campaignId !== campaignId ||
+          !sameTimeline(snapshot.timeline, timeline)
+        )
           throw Error("Invalid campaign response");
         if (
           request === generation &&

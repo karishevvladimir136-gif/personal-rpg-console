@@ -3,7 +3,12 @@
 import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
-import { useCampaignData, useUnsavedChanges } from "./persistence-context";
+import {
+  useCampaignData,
+  useCampaignDraftScope,
+  TimelineDraftNotice,
+  useUnsavedChanges,
+} from "./persistence-context";
 import { Badge, Button, Icon, Meter, Modal, Panel } from "./ui";
 import { GameplayCompanionTalk, GameplayItemActions } from "./gameplay-actions";
 import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
@@ -120,6 +125,7 @@ export function RecordEditor<T>({
 }) {
   const { t } = useLanguage();
   const { mutate } = useCampaignData();
+  const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(initial);
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -150,9 +156,13 @@ export function RecordEditor<T>({
           setBusy(true);
           setError("");
           try {
+            const input = build(draft);
             attempt.current = createMutationAttempt(
               attempt.current,
-              build(draft),
+              scope.bind(
+                input,
+                input.operation === "asset.save" ? undefined : "timeline",
+              ),
             );
             await mutate(attempt.current);
             setSaved(true);
@@ -173,6 +183,7 @@ export function RecordEditor<T>({
           style={{ border: 0, padding: 0, minWidth: 0 }}
         >
           {children(draft, setDraft)}
+          <TimelineDraftNotice stale={scope.stale} />
           {error && <p role="alert">{t(error)}</p>}
           {!saved && (
             <p className="muted">
@@ -184,7 +195,7 @@ export function RecordEditor<T>({
           {!saved && (
             <div className="button-group">
               <Button onClick={close}>{t("Cancel")}</Button>
-              <Button primary type="submit">
+              <Button primary type="submit" disabled={scope.stale}>
                 {t(busy ? "Saving…" : "Save owner correction")}
               </Button>
             </div>

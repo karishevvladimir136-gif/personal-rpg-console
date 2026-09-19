@@ -10,7 +10,12 @@ import type {
 } from "@/lib/gameplay/contracts";
 import { configurePlay, gameplayErrorMessage } from "@/lib/gameplay/client";
 import { useLanguage } from "./language-context";
-import { useCampaignData, useUnsavedChanges } from "./persistence-context";
+import {
+  useCampaignData,
+  useCampaignDraftScope,
+  TimelineDraftNotice,
+  useUnsavedChanges,
+} from "./persistence-context";
 import { Button, Panel } from "./ui";
 import { useGameplayRuntime } from "./gameplay-runtime";
 
@@ -46,6 +51,7 @@ function ConfigurationForm({
   onSaved: () => Promise<void>;
 }) {
   const { t } = useLanguage();
+  const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState<MechanicsConfiguration>(() =>
     structuredClone(play.configuration ?? blankConfiguration()),
   );
@@ -92,11 +98,13 @@ function ConfigurationForm({
       onSubmit={async (event) => {
         event.preventDefault();
         if (guard.current || !agreed) return;
+        if (scope.stale) return;
         guard.current = true;
         setBusy(true);
         setError("");
         setSaved(false);
         const input = {
+          timeline: scope.timeline,
           campaignId: data.campaign.id,
           expectedRevision: baseline,
           configuration: draft,
@@ -104,6 +112,7 @@ function ConfigurationForm({
         if (
           !attempt.current ||
           JSON.stringify({
+            timeline: attempt.current.timeline,
             campaignId: attempt.current.campaignId,
             expectedRevision: attempt.current.expectedRevision,
             configuration: attempt.current.configuration,
@@ -126,6 +135,7 @@ function ConfigurationForm({
       }}
     >
       <fieldset className="persistence-fields" disabled={busy}>
+        <TimelineDraftNotice stale={scope.stale} />
         <label className="gameplay-checkbox">
           <input
             type="checkbox"
@@ -288,7 +298,7 @@ function ConfigurationForm({
           </p>
         )}
         {error && <p role="alert">{t(error)}</p>}
-        <Button primary type="submit" disabled={!agreed}>
+        <Button primary type="submit" disabled={!agreed || scope.stale}>
           {t(busy ? "Saving…" : "Save play configuration")}
         </Button>
         {saved && (
@@ -304,17 +314,18 @@ export function GameplayConfiguration() {
   const { t } = useLanguage();
   const { data } = useCampaignData();
   const runtime = useGameplayRuntime();
+  const formPlay = runtime.play ?? runtime.configurationDraftSource;
   return (
     <Panel
       className="visual-inventory-panel"
       title={t("Authoritative play rules")}
     >
       {runtime.error && <p role="alert">{t(runtime.error)}</p>}
-      {data && runtime.play ? (
+      {data && formPlay ? (
         <ConfigurationForm
           key={data.campaign.id}
           data={data}
-          play={runtime.play}
+          play={formPlay}
           onSaved={runtime.afterMutation}
         />
       ) : (

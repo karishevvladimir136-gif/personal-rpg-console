@@ -57,6 +57,7 @@ const icons: Record<string, LucideIcon> = {
   library: FileText,
   gallery: ImageIcon,
   sessions: ScrollText,
+  saves: Bookmark,
   settings: Settings,
   ArrowRight,
   Bookmark,
@@ -85,6 +86,7 @@ const icons: Record<string, LucideIcon> = {
   Zap,
   Mail,
   BookOpen,
+  ScrollText,
 };
 export function Icon({ name, size = 18 }: { name: string; size?: number }) {
   const Component = icons[name] || CircleHelp;

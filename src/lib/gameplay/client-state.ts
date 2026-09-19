@@ -4,9 +4,12 @@ import type {
   TurnInput,
   TurnMode,
 } from "./contracts.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
+import { sameTimeline } from "../saves/client-state.ts";
 
 export const actionMaxCharacters = 20_000;
 export type DraftJournal = {
+  timeline?: TimelineFence;
   text: string;
   attempt: TurnInput | null;
   command: ResumeInput | null;
@@ -23,8 +26,9 @@ export function journalKey(
   campaignId: string,
   mode: TurnMode,
   companionId: string | null = null,
+  timeline?: TimelineFence,
 ) {
-  return `rpg-play-draft-v1:${campaignId}:${mode}:${companionId ?? ""}`;
+  return `rpg-play-draft-v1:${campaignId}:${timeline ? `${timeline.timelineId}:` : ""}${mode}:${companionId ?? ""}`;
 }
 // Public owner input only. This local journal is a recovery aid, never game authority.
 export function loadJournal(
@@ -32,11 +36,16 @@ export function loadJournal(
   campaignId: string,
   mode: TurnMode,
   companionId: string | null = null,
+  timeline?: TimelineFence,
 ): DraftJournal {
   try {
-    const raw = storage?.getItem(journalKey(campaignId, mode, companionId));
+    const raw = storage?.getItem(
+      journalKey(campaignId, mode, companionId, timeline),
+    );
     if (!raw) return emptyJournal();
     const value = JSON.parse(raw) as DraftJournal;
+    if (value.timeline?.timelineId !== timeline?.timelineId)
+      return emptyJournal();
     if (
       typeof value.text !== "string" ||
       value.text.length > actionMaxCharacters
@@ -47,17 +56,25 @@ export function loadJournal(
       attempt &&
       (attempt.campaignId !== campaignId ||
         attempt.mode !== mode ||
+        attempt.timeline?.timelineId !== timeline?.timelineId ||
         attempt.companionId !== companionId ||
         typeof attempt.operationId !== "string" ||
         typeof attempt.input !== "string")
     )
-      return { text: value.text, attempt: null, command: null };
+      return {
+        ...(value.timeline ? { timeline: value.timeline } : {}),
+        text: value.text,
+        attempt: null,
+        command: null,
+      };
     const command = value.command;
     return {
+      ...(value.timeline ? { timeline: value.timeline } : {}),
       text: value.text,
       attempt: attempt ?? null,
       command:
         command?.campaignId === campaignId &&
+        sameTimeline(command.timeline, attempt?.timeline) &&
         command.operationId === attempt?.operationId
           ? command
           : null,
@@ -95,6 +112,7 @@ export function reconcileJournal(
   if (journal.attempt?.operationId !== turn.id) return journal;
   if (turn.status === "committed")
     return {
+      ...(journal.timeline ? { timeline: journal.timeline } : {}),
       text: journal.text === turn.input ? "" : journal.text,
       attempt: null,
       command: null,
@@ -103,8 +121,34 @@ export function reconcileJournal(
     turn.status === "cancelled" ||
     (turn.status === "failed" && !turn.canRetry)
   )
-    return { text: journal.text || turn.input, attempt: null, command: null };
+    return {
+      ...(journal.timeline ? { timeline: journal.timeline } : {}),
+      text: journal.text || turn.input,
+      attempt: null,
+      command: null,
+    };
   return journal;
+}
+export function journalNeedsTimelineReview(
+  journal: DraftJournal,
+  timeline?: TimelineFence,
+) {
+  return (
+    !!(journal.text || journal.attempt || journal.command) &&
+    !sameTimeline(journal.timeline, timeline)
+  );
+}
+// Explicit owner review may reuse the text, never a former activation's command.
+export function reviewJournalForTimeline(
+  journal: DraftJournal,
+  timeline?: TimelineFence,
+): DraftJournal {
+  return {
+    text: journal.text,
+    attempt: null,
+    command: null,
+    ...(timeline ? { timeline } : {}),
+  };
 }
 export function prepareCommand(
   previous: ResumeInput | null,

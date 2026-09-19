@@ -7,10 +7,18 @@ import {
   createMemoryReader,
   initialMemoryReadState,
 } from "@/lib/memory/client-state";
+import type { TimelineFence } from "@/lib/saves/contracts";
+import { timelineKey } from "@/lib/saves/client-state";
 
 const readers = new Map<string, ReturnType<typeof makeReader>>();
-function makeReader(campaignId: string) {
-  const reader = createMemoryReader(campaignId, loadMemory, memoryErrorMessage);
+function makeReader(campaignId: string, timeline?: TimelineFence) {
+  const key = `${campaignId}:${timelineKey(timeline)}`;
+  const reader = createMemoryReader(
+    campaignId,
+    loadMemory,
+    memoryErrorMessage,
+    timeline,
+  );
   let subscribers = 0;
   let timer: ReturnType<typeof setInterval> | null = null;
   const refresh = () => {
@@ -25,7 +33,7 @@ function makeReader(campaignId: string) {
       const unsubscribe = reader.subscribe(listener);
       subscribers++;
       if (subscribers === 1) {
-        readers.set(campaignId, entry);
+        readers.set(key, entry);
         window.addEventListener("focus", refresh);
         window.addEventListener("rpg-gameplay-changed", gameplayChanged);
         // Reads only. A pending recap never starts generation from a timer.
@@ -48,7 +56,7 @@ function makeReader(campaignId: string) {
           timer = null;
           window.removeEventListener("focus", refresh);
           window.removeEventListener("rpg-gameplay-changed", gameplayChanged);
-          readers.delete(campaignId);
+          readers.delete(key);
         }
       };
     },
@@ -57,13 +65,15 @@ function makeReader(campaignId: string) {
 }
 export function useSessionMemory() {
   const { campaignId, data } = useCampaignData();
+  const timeline = data?.timeline;
+  const key = `${campaignId}:${timelineKey(timeline)}`;
   const reader = useMemo(() => {
-    const existing = readers.get(campaignId);
+    const existing = readers.get(key);
     if (existing) return existing;
-    const next = makeReader(campaignId);
-    readers.set(campaignId, next);
+    const next = makeReader(campaignId, timeline);
+    readers.set(key, next);
     return next;
-  }, [campaignId]);
+  }, [campaignId, key, timeline]);
   const subscribe = useCallback(
     (listener: () => void) => reader.subscribe(listener),
     [reader],

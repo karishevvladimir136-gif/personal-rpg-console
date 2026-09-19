@@ -5,6 +5,7 @@ import { useCampaignData } from "./persistence-context";
 import { loadPlay, gameplayErrorMessage } from "@/lib/gameplay/client";
 import { isUnresolved } from "@/lib/gameplay/client-state";
 import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
+import { sameTimeline } from "@/lib/saves/client-state";
 
 const changedEvent = "rpg-gameplay-changed";
 export function notifyGameplayChanged(campaignId: string) {
@@ -21,11 +22,19 @@ export function useGameplayRuntime() {
     const sequence = ++generation.current;
     try {
       const next = await loadPlay(campaignId);
-      if (sequence === generation.current && next.campaignId === campaignId) {
+      if (
+        sequence === generation.current &&
+        next.campaignId === campaignId &&
+        sameTimeline(next.timeline, data?.timeline)
+      ) {
         snapshot.current = next;
         setPlay(next);
         setError("");
-      }
+      } else if (
+        sequence === generation.current &&
+        !sameTimeline(next.timeline, data?.timeline)
+      )
+        void refreshRecords().catch(() => {});
       return next;
     } catch (cause) {
       if (sequence === generation.current)
@@ -34,7 +43,7 @@ export function useGameplayRuntime() {
     } finally {
       if (sequence === generation.current) setLoading(false);
     }
-  }, [campaignId]);
+  }, [campaignId, data, refreshRecords]);
   useEffect(() => {
     const guard = generation;
     void refresh().catch(() => {});
@@ -73,5 +82,12 @@ export function useGameplayRuntime() {
     notifyGameplayChanged(campaignId);
     await Promise.allSettled([refresh(), refreshRecords()]);
   }, [campaignId, refresh, refreshRecords]);
-  return { play, error, loading, refresh, afterMutation };
+  return {
+    play: play && sameTimeline(play.timeline, data?.timeline) ? play : null,
+    configurationDraftSource: play,
+    error,
+    loading,
+    refresh,
+    afterMutation,
+  };
 }

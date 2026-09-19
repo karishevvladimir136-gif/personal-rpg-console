@@ -19,6 +19,7 @@ import {
   turnFailureLabels,
   turnStatusLabels,
 } from "@/lib/gameplay/client-state";
+import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
 
 export function GameplayGuidanceProposal({
   turn,
@@ -46,7 +47,7 @@ export function GameplayGuidanceProposal({
     guard.current = true;
     setBusy(true);
     setError("");
-    const key = `rpg-guidance-approval:${campaignId}:${proposal.id}`;
+    const key = `rpg-guidance-approval:${campaignId}:${timelineKey(turn.timeline)}:${proposal.id}`;
     try {
       if (!attempt.current) {
         try {
@@ -55,6 +56,7 @@ export function GameplayGuidanceProposal({
           ) as GuidanceApprovalInput | null;
           if (
             stored?.campaignId === campaignId &&
+            sameTimeline(stored.timeline, turn.timeline) &&
             stored.proposalId === proposal.id
           )
             attempt.current = stored;
@@ -63,6 +65,7 @@ export function GameplayGuidanceProposal({
         }
       }
       attempt.current ??= {
+        timeline: turn.timeline,
         requestId: crypto.randomUUID(),
         campaignId,
         operationId: turn.id,

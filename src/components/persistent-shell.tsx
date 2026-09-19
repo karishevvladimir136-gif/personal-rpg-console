@@ -7,15 +7,11 @@ import {
   useOptionalCampaignData,
   useWorkspaceData,
 } from "./persistence-context";
-import { campaignScreens } from "@/lib/campaign-routing";
+import { mobileCampaignScreens, saveNavigation } from "@/lib/saves/navigation";
 import { Icon } from "./ui";
 import { Shell } from "./shell";
 
-const persistentNavigation = [
-  ...campaignScreens.filter(([screen]) => screen !== "settings"),
-  ["dm-chat", "Chat with DM"],
-  ["settings", "Campaign Settings"],
-] as const;
+const persistentNavigation = saveNavigation;
 
 export function ApplicationFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -42,7 +38,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
           <Link className="brand" href="/">
             ✧ {t("PERSONAL RPG CONSOLE")}
           </Link>
-          <span className="preview-indicator">{t("PHASE 3 · MEMORY")}</span>
+          <span className="preview-indicator">{t("PHASE 3.5 · SAVES")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
@@ -132,7 +128,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
               )}
             </span>
           </div>
-          <span className="preview-indicator">{t("PHASE 3 · MEMORY")}</span>
+          <span className="preview-indicator">{t("PHASE 3.5 · SAVES")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
@@ -142,19 +138,27 @@ export function PersistentShell({ children }: { children: ReactNode }) {
         </footer>
       </div>
       <nav className="bottom-nav" aria-label={t("Mobile navigation")}>
-        {(["game", "character", "map", "journal", "library"] as const).map(
-          (screen) => (
-            <Link
-              key={screen}
-              href={href(screen)}
-              aria-current={pathname === href(screen) ? "page" : undefined}
-              className={pathname === href(screen) ? "active" : ""}
-            >
-              <Icon name={screen} />
-              <span>{t(screen[0].toUpperCase() + screen.slice(1))}</span>
-            </Link>
-          ),
-        )}
+        {mobileCampaignScreens.map((screen) => (
+          <Link
+            key={screen}
+            href={href(screen)}
+            aria-current={pathname === href(screen) ? "page" : undefined}
+            className={pathname === href(screen) ? "active" : ""}
+          >
+            <Icon name={screen} />
+            <span>{t(screen[0].toUpperCase() + screen.slice(1))}</span>
+          </Link>
+        ))}
+        <button
+          type="button"
+          className={`more-campaign-nav ${!mobileCampaignScreens.some((screen) => pathname === href(screen)) ? "active" : ""}`}
+          aria-label={t("More campaign screens")}
+          aria-expanded={menu}
+          onClick={() => setMenu(!menu)}
+        >
+          <Icon name="MoreHorizontal" />
+          <span>{t("More")}</span>
+        </button>
       </nav>
     </div>
   );

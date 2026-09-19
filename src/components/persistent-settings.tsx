@@ -7,6 +7,8 @@ import {
   useCampaignData,
   useWorkspaceData,
   useUnsavedChanges,
+  useCampaignDraftScope,
+  TimelineDraftNotice,
 } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
 import { CampaignSettingsEditor } from "./campaign-settings";
@@ -232,6 +234,7 @@ export function PersistentGeneralSettings() {
 function CampaignIdentityForm({ current }: { current: Campaign }) {
   const { t } = useLanguage();
   const { mutate, refresh } = useCampaignData();
+  const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState({
     title: current.title,
     subtitle: current.subtitle,
@@ -241,14 +244,16 @@ function CampaignIdentityForm({ current }: { current: Campaign }) {
   const dirty =
     draft.title !== baseline.title || draft.subtitle !== baseline.subtitle;
   useUnsavedChanges(dirty);
-  const newer = current.revision !== baseline.revision;
+  const newer = scope.stale || current.revision !== baseline.revision;
   return (
     <Panel title={t("Campaign identity")}>
+      <TimelineDraftNotice stale={scope.stale} />
       <form
         onSubmit={async (event) => {
           event.preventDefault();
           const result = await state.save({
             operation: "campaign.save",
+            timeline: scope.timeline,
             campaignId: current.id,
             expectedRevision: baseline.revision,
             payload: draft,
@@ -310,6 +315,7 @@ function CampaignIdentityForm({ current }: { current: Campaign }) {
                     title: current.title,
                     subtitle: current.subtitle,
                   });
+                  scope.reset();
                   setBaseline(current);
                   state.clearSaved();
                 }
@@ -336,12 +342,13 @@ function CampaignIdentityForm({ current }: { current: Campaign }) {
 function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
   const { t, language } = useLanguage();
   const { mutate, refresh } = useCampaignData();
+  const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(current.settings.values);
   const [baseline, setBaseline] = useState(current.settings);
   const state = useSave(mutate);
   const dirty = JSON.stringify(draft) !== JSON.stringify(baseline.values);
   useUnsavedChanges(dirty);
-  const newer = current.settings.revision !== baseline.revision;
+  const newer = scope.stale || current.settings.revision !== baseline.revision;
   return (
     <>
       <form
@@ -349,6 +356,8 @@ function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
           event.preventDefault();
           const result = await state.save({
             operation: "settings.save",
+            timeline: scope.timeline,
+            correctionScope: "timeline",
             campaignId: current.campaign.id,
             expectedRevision: baseline.revision,
             payload: draft,
@@ -370,6 +379,7 @@ function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
               setDraft((previous) => updateCampaignSettings(previous, action));
             }}
           />
+          <TimelineDraftNotice stale={scope.stale} />
           {state.error && <p role="alert">{t(state.error)}</p>}
           {newer && (
             <p role="alert">
@@ -392,6 +402,7 @@ function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
                   window.confirm(t("Discard your unsaved changes?"))
                 ) {
                   setDraft(current.settings.values);
+                  scope.reset();
                   setBaseline(current.settings);
                   state.clearSaved();
                 }
