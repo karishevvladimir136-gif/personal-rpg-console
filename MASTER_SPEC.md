@@ -1800,6 +1800,14 @@ The **same primary DM runtime** supports a separate feedback mode. It can discus
 
 Session guidance expires with its session; campaign guidance remains versioned. Ordinary gameplay receives effective approved guidance, not the entire feedback conversation. Campaign documents supply world/story context, structured settings supply explicit mechanics/play-style choices, and approved guidance supplies preferences within those boundaries. There is no second DM agent, simulation engine, automatic guide rewriting, or implemented feedback AI in Phase 1.
 
+### Future World Authoring extension — after World Engine implementation
+
+Chat with DM may later accept explicit owner authoring directions that intentionally change the **future opportunity space** without pretending the player character learned hidden facts. Examples: “this region feels empty; add more mysteries,” “give this city several grounded detective hooks,” “less random bandit combat, more social intrigue,” or “seed a few dangerous places I should not know the truth about yet.”
+
+Treat this separately from ordinary tone/pacing guidance. A world-authoring request may create a bounded set of **latent DM-private Adventure Hooks / Points of Interest seeds** attached to an authorized region/location and future World Threads, but it does not directly reveal them, add player-visible quest journal entries, advance world time, force encounters or rewrite established canon. The owner may specify density, themes, danger, scale or exclusions in natural language; the runtime converts that into a small reviewable authoring operation. Hidden truth and unrevealed hooks remain private until ordinary in-world discovery makes an appropriate projection player-known.
+
+Do not eagerly expand every seed into a complete quest, cast and dungeon. Persist enough identity/provenance to make a discovered or revisited hook stable, then elaborate details lazily when play reaches them. Explicit owner authoring may intentionally add new possibilities; normal DM feedback must never silently perform this mutation. This extension requires the World Engine authority/privacy rules and separate implementation authorization.
+
 # 41. Authorized Phase 2 implementation boundary
 
 Historical implemented/accepted scope: OpenAI below names the initial adapter. Section 44 proposes future provider independence without changing this accepted checkpoint or reopening its live-call authorization.
@@ -1935,3 +1943,78 @@ Research covers Marble/current World API and Atlas successor, HY-World 2.x, Worl
 ## 45.4 Later diagnostics and evaluation
 
 Owner Diagnostics / System Inspector is late-stage sanitized operational visibility, not a spoiler or key viewer. AutoEval / autoresearch is a future bounded, separately owner-authorized experimentation capability with explicit datasets, budgets, frozen contracts and review. It never autonomously edits/adopts production code, changes authoritative state or runs paid background probes. Stop after 3.8A for owner review; do not begin Phase 4 or production implementation.
+
+# 46. FUTURE 2D PRESENTATION, TRAVEL & ADVENTURE DISCOVERY
+
+**Roadmap/product direction only. No 2D renderer implementation is authorized by this section.** Text gameplay remains a permanent first-class mode. A future 2D presentation runtime and EXPLORE are optional views over the same authoritative RPG state; neither may become required to load, continue or understand a campaign.
+
+Detailed product direction: [2D Rendering Direction](2D_RENDERING_DIRECTION.md). The references below describe interaction/presentation ideas, not a fixed art style or instruction to copy proprietary assets.
+
+## 46.1 Permanent presentation modes
+
+The same campaign may be played through:
+
+- **Text** — the current free-form narrative RPG experience; always available and complete enough to continue play.
+- **2D Live** — a future style-agnostic 2D presentation of travel, locations, actors, objects, checks and combat.
+- **EXPLORE** — optional spatial presentation through the separately defined Spatial Runtime.
+
+Switching presentation does not create a new timeline, change canon or grant knowledge. A visual layer may fail or be unavailable while Text continues normally.
+
+## 46.2 First 2D target and references
+
+The first useful 2D target is deliberately modest: **Fabled Lands-like open exploration and map hierarchy + Sorcery!-like encounters/checks/combat + unrestricted free-form AI-DM input**. It is not a Skyrim/GTA-style seamless simulation and does not require 3D.
+
+Interaction/presentation references:
+
+- **Everweave** — AI-RPG presentation baseline and cinematic narrative framing;
+- **Sorcery!** — gamebook flow, checks and compact combat/event presentation;
+- **Duskpunk** — dialogue/check/RPG presentation;
+- **Quest for Infamy** — local 2D scenes, character presence and object interaction;
+- **Fabled Lands** — open-world freedom and world/region/town/local navigation;
+- **Sunless Sea** — atmospheric 2D travel, discoveries and encounters;
+- **Sunless Skies** — region traversal, points of interest and environmental presentation.
+
+The renderer must remain **visual-style agnostic**. Pixel art, painterly illustration, graphic-novel treatment, dark atmospheric art or another approved campaign style use the same gameplay semantics. Do not make any named reference game's aesthetic part of authoritative state.
+
+## 46.3 World → region → town → local scene
+
+Support different presentation scales rather than simulating every metre continuously. Example: the player says “we drive to Chicago”; a vehicle marker follows a route on a region/world map while bounded travel events may occur. The player may interrupt the route, investigate a visible place, enter a town overview, choose a district such as the market, then enter a local scene.
+
+The authoritative model supplies locations, route/state, known entities, time/weather and discoveries. The renderer presents them. Maps and generated images never become the source of connectivity, inventory, quest truth or hidden geography. New detail may be created **lazily**: a town can first exist as a stable overview/graph; a market, tavern, alley or basement becomes visually detailed only when play requires it. Once meaningful generated detail is accepted, preserve stable IDs/provenance so revisits remain coherent.
+
+## 46.4 Points of Interest and Adventure Hooks
+
+Absolute freedom must not become an empty world. The World Engine may maintain a bounded set of potential **Adventure Hooks / POIs** appropriate to a meaningful region/location. A POI is an invitation to investigate, not automatically a quest or a mandatory objective.
+
+Possible player-visible projections include landmark, rumor, discovery, unusual activity, lead and unknown/question-mark style signals; exact labels/UI are a later design choice. Examples include an old cemetery, abandoned vault, strange radio tower, sealed mine, travelling antiquarian, suspicious house, local fight club or magical anomaly.
+
+Separate **latent truth** from **player knowledge**:
+
+- a hidden Adventure Hook or linked World Thread may exist in DM-private state;
+- obvious geography may be visible immediately;
+- an NPC rumor, map, clue, direct observation or prior event may reveal only an appropriate player-known projection;
+- only then may the corresponding POI appear on the player's map/journal;
+- additional rumors/evidence can enrich the same stable POI without revealing its private resolution.
+
+POIs may evolve or expire with World Threads. Ignoring a mine, caravan, cult activity or warning does not freeze the world; later public state may show smoke, collapse, departure or another consequence if normal World Engine progression justifies it. Never fabricate background advancement from wall-clock time.
+
+Avoid checklist-marker spam. Later UX may offer owner preferences such as Minimal / Normal / Explorer visibility or equivalent, but the default should preserve discovery and uncertainty rather than expose every latent hook.
+
+## 46.5 Owner-directed adventure density through Chat with DM
+
+After the World Engine exists, the owner may explicitly ask Chat with DM for more/fewer or different kinds of opportunities in a region: more mysteries, social intrigue, dangerous places, grounded detective stories, fewer generic bandits, several possible adventures within a day's travel, and so on.
+
+This is a deliberate **world-authoring request**, not merely narration guidance. The system may seed a bounded number of latent private hooks/threads under the requested constraints without revealing their truths or forcing them into the journal. A request such as “add five interesting things; make one potentially much larger but don't tell me which” is valid: the player should still discover them organically in-world.
+
+Generation is lazy and finite. A latent hook needs only enough stable identity, theme, location relationship and private premise to remain coherent. Detailed NPCs, interiors, encounters and assets can be elaborated when the player engages. No autonomous infinite quest generation or paid background loop.
+
+## 46.6 Combat and free-form actions
+
+The first 2D combat presentation should remain compact rather than becoming a tactical-grid dependency. Sorcery!-style readable exchanges/checks are the baseline inspiration, while the player retains free-form input alongside convenience actions. An unusual action such as jumping onto a table, dropping a chandelier or attacking the environment is resolved by normal DM/rules/dice authority first; the renderer only presents the validated result.
+
+## 46.7 Future semantic visual mutations
+
+A later renderer may translate validated world deltas into visual mutations using the cheapest safe method: ordinary sprite/state swaps, decals/particles/lights, reusable asset variants, bounded local generative image edits, or rare scene recomposition. Do not regenerate an entire scene for every action and do not infer authoritative state from pixels. Example: graffiti can be a runtime decal immediately, while damage to a unique statue may later receive a local AI-assisted asset edit after the authoritative damage state already committed.
+
+This visual-mutation concept is future work, not permission to choose an image model, add dependencies or implement a renderer now.
+

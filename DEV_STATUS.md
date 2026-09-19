@@ -4,6 +4,8 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**OWNER PRODUCT DIRECTION ADDENDUM — 2D presentation and Adventure Hooks recorded.** A documentation-only follow-up records permanent first-class Text mode; a future style-agnostic 2D target inspired by Fabled Lands exploration + Sorcery! encounters/combat; world/region/town/local lazy presentation; player-knowledge-gated POIs; DM-private latent Adventure Hooks; and a future Chat with DM world-authoring path for explicit owner requests such as increasing regional quest/mystery density. Everweave, Sorcery!, Duskpunk, Quest for Infamy, Fabled Lands, Sunless Sea and Sunless Skies are interaction/presentation references, not a fixed aesthetic. No renderer/frontend/runtime/migration/provider call is authorized or implemented by this addendum. Phase 3.8B remains separately gated exactly as before.
+
 **PHASE 3.75 ARCHITECTURE DECISION OWNER-ACCEPTED; PHASE 3.8A DOCUMENTATION READY FOR OWNER REVIEW.** The owner independently reviewed evidence 9d5a99c0e93917190f415eedab3d4067c63b8ee2 and execution/stop-guard 8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23 against production main cb7f6be2fb513de13604d381046a3240f3261383. The incomplete benchmark is accepted as sufficient for an architecture decision only; it is not relabelled complete or successful. [Final freeze](PHASE375_ARCHITECTURE_DECISION.md) is authoritative over older candidate/spike wording below.
 
 ### Completed work

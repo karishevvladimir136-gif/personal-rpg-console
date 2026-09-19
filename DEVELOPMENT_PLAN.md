@@ -411,6 +411,29 @@ Suggested prompt:
 
 ---
 
+
+# POST-PHASE-4 V1 SLICE — 2D PRESENTATION / RENDERING ENGINE
+
+Separate authorization after Phase 4 Visual Bible / canonical asset foundation. This is the **primary optional visual gameplay presentation**, while Text remains a permanent complete first-class mode. It may be developed before, after or in parallel with the separately authorized EXPLORE production slice; neither depends on the other beyond shared Phase 4 assets and authoritative state.
+
+First target: **Fabled Lands-like world/region/town exploration + Sorcery!-like encounters/checks/combat + unrestricted AI-DM input**. References and product direction are documented in [2D Rendering Direction](2D_RENDERING_DIRECTION.md) and MASTER_SPEC §46. They define interaction patterns, not a fixed art style.
+
+Initial build should stay small:
+- world/region travel map with route and moving character/vehicle marker;
+- interruptible travel and bounded encounter/discovery presentation;
+- generated/persisted town or area overview with districts/known POIs;
+- local 2D scene presentation with exits, known actors/objects and narrative/dialogue overlay;
+- light animation such as camera movement, parallax, weather, particles and lighting where useful;
+- compact checks/combat presentation; free-form actions remain valid;
+- style profiles/assets remain campaign-specific rather than hardcoding pixel or painterly art;
+- player-visible POIs only; latent Adventure Hooks stay private until discovered.
+
+Do not require seamless movement, tactical grids, 3D, a second game-state store or renderer-owned quest/world logic. The renderer consumes authorized public state and emits typed player intents; normal RPG rules/DM/server validation remain authoritative.
+
+Acceptance for the first slice should prove text-mode independence, world→town→local transitions, route interruption, stable discovered POIs, free-form interaction fallback, save/load consistency and graceful renderer failure. Visual polish/animation can iterate after this minimal playable loop.
+
+---
+
 # POST-PHASE-4 V1 SLICE — EXPLORE PRODUCTION
 
 Separate authorization only after FRAME / Visual Bible and reviewed spatial evidence. Choose the smallest measured hosted/exported presentation path, reuse approved references and Storage, implement public-only artifacts/bindings and normal-game typed interactions, preserve old saves and provider-independent campaign load. Natural language stays primary. No universal D&D/HP or provider ontology. Detailed phase numbering/order relative to VIDEO may be scoped later; production EXPLORE cannot precede Phase 4.

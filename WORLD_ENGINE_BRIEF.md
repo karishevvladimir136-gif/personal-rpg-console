@@ -88,6 +88,19 @@ Register actor control, threads/progress/deadlines, events, warning/awareness ev
 
 Current manifest validation accepts only schema version 1 and an exact record-family list. Adding families without a versioned reader would break old saves. A future migration must retain v1 loading, derive an explicit empty/unconfigured World Engine state for old saves, and create new versioned manifests without mutating old manifests. Never infer past autonomous events that were never simulated.
 
+
+## Adventure hooks, Points of Interest and owner-directed density
+
+A large generative world needs **interesting opportunity density**, not just physical freedom. Represent potential adventures as bounded latent hooks associated with a region/location and optionally one or more Threads. A hook is not automatically a quest, event or discovered fact. It may be a place, rumor, unusual activity, person, object, danger, mystery or other reason to investigate.
+
+Create hooks from established geography/history/factions/Threads or from an explicit owner world-authoring request. Do not run an autonomous background “content generator.” Generate a finite batch when a separately authorized operation needs it, such as first meaningful location authoring or the owner saying in Chat with DM that an area feels empty. Respect requested themes/density/exclusions while preserving canon, agency and secrecy.
+
+Keep latent premise/truth private. A player-visible POI is a knowledge-filtered projection created only through a valid discovery source such as direct observation, public geography, NPC rumor, clue, map/document or an already public event. Record stable identity and provenance so multiple rumors enrich the same POI instead of spawning duplicates. A POI can be unvisited, visited, changed, resolved, expired or no longer relevant without deleting its history.
+
+Lazy elaboration is preferred. Seed enough to make the opportunity coherent; expand characters, interiors, encounters and detailed consequences only when play approaches them. Hooks may connect to persistent Threads, but the hook itself has no authority to settle consequences. The ordinary World Engine resolver/validation path remains responsible for causal progression.
+
+The UI should not expose every latent hook or private count. It may later distinguish obvious landmarks, rumors, discoveries, activity, leads or unknown signals and offer owner-controlled visibility density. Ignoring a hook may allow its underlying Thread to progress under the normal fairness/deadline rules; wall-clock time and Chat with DM still do not advance world time.
+
 ## Future UX and non-goals
 
 Inside-campaign **World / Мир** contains **Live World / Живой мир** and **What If / Что, если…**. Live World offers simulation On/Off, autonomy and player-known developments/warnings. It is not a debug dashboard or a private-state viewer. Natural-language requests such as “let the factions pursue their goals while we travel” become a small reviewable change, not a large configuration form. Preserve existing navigation/Saves and mobile More behavior; no UI is built now.
