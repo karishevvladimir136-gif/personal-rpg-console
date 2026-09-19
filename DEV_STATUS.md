@@ -4,7 +4,20 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
-**PHASE 3 READY FOR OWNER ACCEPTANCE — Long-Term Memory implemented and verified; owner approval pending.** Phase 2 implementation `24fcd405b65b7ddd281837e491f1975e1fe3a765` and its owner-acceptance record `ea35b71ad6c95cf63ab40a1a33db4a92041052fc` remain preserved. No Phase 3.5/4 implementation, deployment, real campaign or real DM-private import has begun.
+**PHASE 3 OWNER-APPROVED — Long-Term Memory.** The owner explicitly accepted implementation checkpoint `ca4499bc279d37eb52c0a36b0524eb19322071b0` on September 18, 2026. This acceptance is separate from implementation verification and does not claim additional testing. Phase 2 and earlier approved checkpoints remain preserved.
+
+## Phase 3 owner-acceptance record
+
+This status-only acceptance commit changes **only DEV_STATUS.md**. Application code, migrations, runtime, tests, configuration, Phase 3 contracts and campaign data are unchanged. The implementation verification results and their boundaries at the accepted checkpoint remain preserved; tests, typecheck, lint, production build, live model evaluation and browser checks were not rerun for this documentation-only acceptance. Verification for this commit is restricted to its diff and single-file scope.
+
+All disclosed limitations remain in effect:
+
+- Physical iPhone/Safari remains unverified.
+- The optional historical Phase 1 conflict-rebase confirmation remains unverified.
+- Finite synthetic retrieval/model evaluation is not a guarantee of perfect memory; the disclosed sample, failures, lead-review boundary and operational limits remain unchanged.
+- No hosted deployment or real campaign/private-data acceptance has occurred. No real campaign or real DM-private material has been imported.
+
+Phase 3 has no remaining owner-acceptance gate. **Stop after recording and pushing this acceptance.** Phase 3.5, Phase 4, World Engine, deployment and real campaign/private-data import are not authorized by this acceptance. Await a separate owner instruction before any further work.
 
 ## Phase 3 current status and completed work
 
@@ -61,9 +74,9 @@ Physical iPhone/Safari and the optional Phase 1 conflict-rebase confirmation rem
 
 ## Phase 3 remaining work and recommended next step
 
-No required Phase 3 implementation or verification item remains open. **Owner review and explicit Phase 3 acceptance remain pending.** Open http://127.0.0.1:3000/campaigns and follow PHASE3_SETUP.md using the existing synthetic owner account; keep Docker Desktop and the development server running. No new key, provider or manual configuration is needed for this prepared local environment.
+No required Phase 3 implementation, verification or owner-acceptance gate remains open. **Explicit owner acceptance is recorded at `ca4499bc279d37eb52c0a36b0524eb19322071b0`.** Open http://127.0.0.1:3000/campaigns and follow PHASE3_SETUP.md using the existing synthetic owner account; keep Docker Desktop and the development server running. No new key, provider or manual configuration is needed for this prepared local environment.
 
-The complete queued Phase 3.5 Save/Load/Timeline Fork brief and the dedicated **Saves / Сохранения** navigation requirement are recorded in PHASE3_5_BRIEF.md, MASTER_SPEC §42 and DEVELOPMENT_PLAN. The future screen will have Save Games and Timelines tabs, desktop placement after Sessions, and mobile access through More. This is documentation only. Phase 3 owner acceptance and separate Phase 3.5 authorization are both required before implementation. Stop here; do not deploy, import real material or begin another phase.
+The complete queued Phase 3.5 Save/Load/Timeline Fork brief and the dedicated **Saves / Сохранения** navigation requirement are recorded in PHASE3_5_BRIEF.md, MASTER_SPEC §42 and DEVELOPMENT_PLAN. The future screen will have Save Games and Timelines tabs, desktop placement after Sessions, and mobile access through More. This is documentation only. Phase 3 owner acceptance is now recorded; separate Phase 3.5 authorization is still required before implementation. Stop here; do not deploy, import real material or begin another phase.
 
 ## Accepted Phase 2 checkpoint (historical)
 
