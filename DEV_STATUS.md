@@ -4,6 +4,28 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**Phase 3.75 funded smoke recovery — recovery-only harness verified; owner-authorized execution follows its commit.** This record is the pre-call checkpoint, not a claim that funded smoke passed. Base commit `62772744d48a9c20611bd0c973dea9d0c7ba45cb`; local worktree `C:\Dev\personal-rpg-console-phase375-bakeoff`; branch `codex/phase375-technical-bakeoff`.
+
+### Completed work / files and areas changed
+
+The first live smoke stopped after two failed requests (plan and narration), with unavailable routing/billing in the frozen normalized records. The owner reports both were pre-inference HTTP 403/$0 spend and has now funded Gateway credits, retaining the $3/no-refresh key cap. Original observations and their ledger remain unchanged. Added only a separate recovery manifest, runner/helper, focused tests, new verification artifacts and [recovery instructions](experiments/phase375-bakeoff/SMOKE_RECOVERY.md), plus this status update.
+
+### Tests and build status
+
+Experiment typecheck, lint, build and **77 deterministic tests passed**, including 13 recovery tests. Exact request/prompt/schema/parser parity is verified against the original smoke block. Mock tests prove immutable history, cumulative reservation accounting, serialization, five-capability qualification, no retry/overwrite, and immediate stops for 403/missing metadata/fallback/warnings. No funded recovery inference has occurred at this commit. [Verification](experiments/phase375-bakeoff/results/smoke-recovery-1-verification.json). Root application/HTTP/browser/database checks were not rerun: production is unchanged.
+
+### Key decisions / known issues
+
+A separate append-only recovery ledger retains the original $0.69056 reservation in full. At most five additional calls reserve $1.40112, giving seven total requests and $2.09168 reserved under $3. No old request ID is reused; only plan/narration receive new recovery IDs. The exact existing synthetic packets/profiles/transport/parsers are reused. A response-clone audit records safe HTTP status/metadata without storing raw provider errors or secrets. Stop on the first recovery failure; no diagnostics, fallback or automatic retry. Full benchmark protocol, dataset/split/thresholds/gold, original results, accepted contracts and dependencies are unchanged. No production runtime change or real data is authorized.
+
+The original 403/$0 facts are owner-reported dashboard evidence; they do not replace missing metadata in historical files. Funded routing/usage/cost/compatibility remain unverified until execution. Success requires all five capabilities and does not unlock a full benchmark. Both ledgers must be considered for any future separately authorized evaluation.
+
+### Remaining work / recommended next step
+
+Commit this recovery-only change before making calls, then execute the bounded recovery once with the saved local key. Actual observations will append to ignored `private-live-results/smoke-recovery-1-results.jsonl`; preserve the original history. Report actual results and stop for owner review. No full evaluation or implementation sprint. Physical iPhone/Safari, historical optional Phase 1 conflict-rebase, finite synthetic-test limitations and absence of deployment/real campaign acceptance remain disclosed. Original checkout dirty documents remain untouched.
+
+## Prior offline correction checkpoint — historical record
+
 **PHASE 3.75 PRE-IMPLEMENTATION TECHNICAL BAKE-OFF — focused offline correction complete; awaiting owner review.** The owner accepted offline foundation `68126be972b2fdecfd650fde08d64f8b768eec01` as a good experimental foundation. This correction is not owner-approved and is not a live benchmark, production adoption or implementation sprint. Exact architecture baseline `cb7f6be2fb513de13604d381046a3240f3261383`; branch `codex/phase375-technical-bakeoff`. Do not merge experiments into main.
 
 ### Completed work and files / areas changed

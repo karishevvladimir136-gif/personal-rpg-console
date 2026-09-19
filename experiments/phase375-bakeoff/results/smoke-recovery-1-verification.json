@@ -1,0 +1,31 @@
+{
+  "scope": "SMOKE_RECOVERY_ONLY_PRE_CALL_VERIFICATION",
+  "baseCommit": "62772744d48a9c20611bd0c973dea9d0c7ba45cb",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "recoveryManifestHash": "412550784325a58110beb7f2034eee460d4180ad6593a358cf60dded795a06bb",
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "tests": {
+    "passed": 77,
+    "failed": 0,
+    "skipped": 0,
+    "newRecoveryTests": 13,
+    "raw": "smoke-recovery-1-tests.tap"
+  },
+  "originalSmokeRequests": 2,
+  "historicalDashboardEvidence": {
+    "source": "owner report",
+    "httpStatus": 403,
+    "providerSpendUSD": 0
+  },
+  "recoveryLiveRequestsBeforeCommit": 0,
+  "frozenBenchmarkChanged": false,
+  "productionChanged": false,
+  "originalHistoryHashesVerified": true,
+  "maxAdditionalCalls": 5,
+  "maxTotalRequests": 8,
+  "maxCumulativeUSD": 3,
+  "maxCumulativeReservationsUSD": 2.09168,
+  "nextAction": "Commit recovery-only addition; run authorized recovery once; stop for owner review. No full benchmark."
+}

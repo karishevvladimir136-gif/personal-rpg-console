@@ -1,0 +1,472 @@
+TAP version 13
+# Subtest: explicit approval and isolated credential required; no existing app environment is loaded
+ok 1 - explicit approval and isolated credential required; no existing app environment is loaded
+  ---
+  duration_ms: 3.104
+  type: 'test'
+  ...
+# Subtest: CLI without approval stops before credentials, provider calls or ledger writes
+ok 2 - CLI without approval stops before credentials, provider calls or ledger writes
+  ---
+  duration_ms: 156.0242
+  type: 'test'
+  ...
+# Subtest: request budget survives restart; reservations and failed/uncertain requests cannot be retried
+ok 3 - request budget survives restart; reservations and failed/uncertain requests cannot be retried
+  ---
+  duration_ms: 22.5222
+  type: 'test'
+  ...
+# Subtest: unknown model and stale ledger cannot borrow approval
+ok 4 - unknown model and stale ledger cannot borrow approval
+  ---
+  duration_ms: 17.2927
+  type: 'test'
+  ...
+# Subtest: dollar limit rejects a call before reservation even with request headroom
+ok 5 - dollar limit rejects a call before reservation even with request headroom
+  ---
+  duration_ms: 18.425
+  type: 'test'
+  ...
+# Subtest: frozen data matches generator, opaque IDs have no shared label code, all requests fit cap
+ok 6 - frozen data matches generator, opaque IDs have no shared label code, all requests fit cap
+  ---
+  duration_ms: 11.8484
+  type: 'test'
+  ...
+# Subtest: 125 normal reservations plus three separately approved diagnostics fit 128 calls and $30 including smoke
+ok 7 - 125 normal reservations plus three separately approved diagnostics fit 128 calls and $30 including smoke
+  ---
+  duration_ms: 41.5817
+  type: 'test'
+  ...
+# Subtest: synthetic transport privacy omission never confers production eligibility or weakens provider pins
+ok 8 - synthetic transport privacy omission never confers production eligibility or weakens provider pins
+  ---
+  duration_ms: 0.8584
+  type: 'test'
+  ...
+# Subtest: reproducible disjoint development/held-out fixture families, balanced EN/RU and substantial critical subset
+ok 9 - reproducible disjoint development/held-out fixture families, balanced EN/RU and substantial critical subset
+  ---
+  duration_ms: 20.8704
+  type: 'test'
+  ...
+# Subtest: model payload excludes gold, protection flags, private/foreign/stale/unknown-actor records
+ok 10 - model payload excludes gold, protection flags, private/foreign/stale/unknown-actor records
+  ---
+  duration_ms: 0.9748
+  type: 'test'
+  ...
+# Subtest: a classifier marking every item irrelevant still cannot remove mandatory evidence
+ok 11 - a classifier marking every item irrelevant still cannot remove mandatory evidence
+  ---
+  duration_ms: 0.7191
+  type: 'test'
+  ...
+# Subtest: uncalibrated probabilities retain every eligible candidate
+ok 12 - uncalibrated probabilities retain every eligible candidate
+  ---
+  duration_ms: 0.1829
+  type: 'test'
+  ...
+# Subtest: failure cannot silently discard evidence
+ok 13 - failure cannot silently discard evidence
+  ---
+  duration_ms: 0.1674
+  type: 'test'
+  ...
+# Subtest: omitted cannot silently discard evidence
+ok 14 - omitted cannot silently discard evidence
+  ---
+  duration_ms: 0.1155
+  type: 'test'
+  ...
+# Subtest: malformed cannot silently discard evidence
+ok 15 - malformed cannot silently discard evidence
+  ---
+  duration_ms: 0.1304
+  type: 'test'
+  ...
+# Subtest: stale cannot silently discard evidence
+ok 16 - stale cannot silently discard evidence
+  ---
+  duration_ms: 0.0983
+  type: 'test'
+  ...
+# Subtest: duplicate cannot silently discard evidence
+ok 17 - duplicate cannot silently discard evidence
+  ---
+  duration_ms: 0.096
+  type: 'test'
+  ...
+# Subtest: unknown-id cannot silently discard evidence
+ok 18 - unknown-id cannot silently discard evidence
+  ---
+  duration_ms: 0.2169
+  type: 'test'
+  ...
+# Subtest: abstention cannot silently discard evidence
+ok 19 - abstention cannot silently discard evidence
+  ---
+  duration_ms: 0.175
+  type: 'test'
+  ...
+# Subtest: missing-confidence cannot silently discard evidence
+ok 20 - missing-confidence cannot silently discard evidence
+  ---
+  duration_ms: 0.0992
+  type: 'test'
+  ...
+# Subtest: invalid-sum cannot silently discard evidence
+ok 21 - invalid-sum cannot silently discard evidence
+  ---
+  duration_ms: 0.1019
+  type: 'test'
+  ...
+# Subtest: nan cannot silently discard evidence
+ok 22 - nan cannot silently discard evidence
+  ---
+  duration_ms: 0.7859
+  type: 'test'
+  ...
+# Subtest: stale decisions cannot prune revised text, branch, audience or source revision
+ok 23 - stale decisions cannot prune revised text, branch, audience or source revision
+  ---
+  duration_ms: 0.5852
+  type: 'test'
+  ...
+# Subtest: pruning cannot admit forbidden critical-looking records, write canon, or mutate inputs
+ok 24 - pruning cannot admit forbidden critical-looking records, write canon, or mutate inputs
+  ---
+  duration_ms: 0.7441
+  type: 'test'
+  ...
+# Subtest: overflow pauses with all retained IDs instead of truncating; no cost-free world transition
+ok 25 - overflow pauses with all retained IDs instead of truncating; no cost-free world transition
+  ---
+  duration_ms: 0.1211
+  type: 'test'
+  ...
+# Subtest: strict classifier output rejects invented/duplicate IDs, extra keys, bad labels and scores
+ok 26 - strict classifier output rejects invented/duplicate IDs, extra keys, bad labels and scores
+  ---
+  duration_ms: 0.4283
+  type: 'test'
+  ...
+# Subtest: metrics use known ground truth, expose raw misses, and never call uncertain outputs perfect precision
+ok 27 - metrics use known ground truth, expose raw misses, and never call uncertain outputs perfect precision
+  ---
+  duration_ms: 0.2939
+  type: 'test'
+  ...
+# Subtest: calibration and intervals have known numeric answers and disclose finite-sample uncertainty
+ok 28 - calibration and intervals have known numeric answers and disclose finite-sample uncertainty
+  ---
+  duration_ms: 2.5634
+  type: 'test'
+  ...
+# Subtest: raw label confusion/abstentions differ from protected admission recall
+ok 29 - raw label confusion/abstentions differ from protected admission recall
+  ---
+  duration_ms: 1.3914
+  type: 'test'
+  ...
+# Subtest: paired paths count classifier overhead and null unknown billing
+ok 30 - paired paths count classifier overhead and null unknown billing
+  ---
+  duration_ms: 1.057
+  type: 'test'
+  ...
+# Subtest: missing sentinel resolver does not report classifier-only billing as the full path cost
+ok 31 - missing sentinel resolver does not report classifier-only billing as the full path cost
+  ---
+  duration_ms: 0.2828
+  type: 'test'
+  ...
+# Subtest: recovery packets equal the original frozen smoke block: prompts, inputs, pins, schemas and parsers
+ok 32 - recovery packets equal the original frozen smoke block: prompts, inputs, pins, schemas and parsers
+  ---
+  duration_ms: 27.4686
+  type: 'test'
+  ...
+# Subtest: recovery keeps original history byte-identical and counts all old reservations without refund
+ok 33 - recovery keeps original history byte-identical and counts all old reservations without refund
+  ---
+  duration_ms: 10.6386
+  type: 'test'
+  ...
+# Subtest: old IDs, out-of-order checks, changed history and reused observation IDs cannot reserve
+ok 34 - old IDs, out-of-order checks, changed history and reused observation IDs cannot reserve
+  ---
+  duration_ms: 3.6127
+  type: 'test'
+  ...
+# Subtest: all five exact capabilities must pass, serialized; observation history is never overwritten
+ok 35 - all five exact capabilities must pass, serialized; observation history is never overwritten
+  ---
+  duration_ms: 136.3944
+  type: 'test'
+  ...
+# Subtest: funded 403 stops after one request with safe metadata and no remaining calls
+ok 36 - funded 403 stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 37.0554
+  type: 'test'
+  ...
+# Subtest: funded routing stops after one request with safe metadata and no remaining calls
+ok 37 - funded routing stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 23.6218
+  type: 'test'
+  ...
+# Subtest: funded billing stops after one request with safe metadata and no remaining calls
+ok 38 - funded billing stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 31.3022
+  type: 'test'
+  ...
+# Subtest: funded attempt-count stops after one request with safe metadata and no remaining calls
+ok 39 - funded attempt-count stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 24.3181
+  type: 'test'
+  ...
+# Subtest: funded fallback stops after one request with safe metadata and no remaining calls
+ok 40 - funded fallback stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 33.1565
+  type: 'test'
+  ...
+# Subtest: funded wrong-provider stops after one request with safe metadata and no remaining calls
+ok 41 - funded wrong-provider stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 23.862
+  type: 'test'
+  ...
+# Subtest: funded warnings stops after one request with safe metadata and no remaining calls
+ok 42 - funded warnings stops after one request with safe metadata and no remaining calls
+  ---
+  duration_ms: 30.1059
+  type: 'test'
+  ...
+# Subtest: missing approval, changed prompt, changed limit and active shared run lock block before provider calls
+ok 43 - missing approval, changed prompt, changed limit and active shared run lock block before provider calls
+  ---
+  duration_ms: 44.1161
+  type: 'test'
+  ...
+# Subtest: metadata gates reject missing counts, invalid cost and multiple provider/model attempts
+ok 44 - metadata gates reject missing counts, invalid cost and multiple provider/model attempts
+  ---
+  duration_ms: 0.246
+  type: 'test'
+  ...
+# Subtest: eight held-out sentinels have balanced families/languages, 48 explicit gold findings and no gold in payloads
+ok 45 - eight held-out sentinels have balanced families/languages, 48 explicit gold findings and no gold in payloads
+  ---
+  duration_ms: 17.0543
+  type: 'test'
+  ...
+# Subtest: authored oracle scores exactly; this tests the rubric and is not a model-quality result
+ok 46 - authored oracle scores exactly; this tests the rubric and is not a model-quality result
+  ---
+  duration_ms: 0.5235
+  type: 'test'
+  ...
+# Subtest: unsupported claims, unresolved misses, missing evidence and incorrect scope lose quality
+ok 47 - unsupported claims, unresolved misses, missing evidence and incorrect scope lose quality
+  ---
+  duration_ms: 0.17
+  type: 'test'
+  ...
+# Subtest: resolver output rejects invented evidence/probe IDs, duplicated IDs and extra/private fields
+ok 48 - resolver output rejects invented evidence/probe IDs, duplicated IDs and extra/private fields
+  ---
+  duration_ms: 0.2026
+  type: 'test'
+  ...
+# Subtest: paired quality detects pruning a nonmandatory dependency even if the model guesses the right conclusion
+ok 49 - paired quality detects pruning a nonmandatory dependency even if the model guesses the right conclusion
+  ---
+  duration_ms: 0.4843
+  type: 'test'
+  ...
+# Subtest: missing or failed baselines never imply an improving comparison or complete evidence
+ok 50 - missing or failed baselines never imply an improving comparison or complete evidence
+  ---
+  duration_ms: 0.2191
+  type: 'test'
+  ...
+# Subtest: real SDK transport preserves the existing plan strict schema and independent parser (mock HTTP only)
+ok 51 - real SDK transport preserves the existing plan strict schema and independent parser (mock HTTP only)
+  ---
+  duration_ms: 26.1875
+  type: 'test'
+  ...
+# Subtest: real SDK transport preserves the existing narration strict schema and independent parser (mock HTTP only)
+ok 52 - real SDK transport preserves the existing narration strict schema and independent parser (mock HTTP only)
+  ---
+  duration_ms: 1.7682
+  type: 'test'
+  ...
+# Subtest: real SDK transport preserves the existing feedback strict schema and independent parser (mock HTTP only)
+ok 53 - real SDK transport preserves the existing feedback strict schema and independent parser (mock HTTP only)
+  ---
+  duration_ms: 0.9599
+  type: 'test'
+  ...
+# Subtest: real SDK transport preserves the existing summary strict schema and independent parser (mock HTTP only)
+ok 54 - real SDK transport preserves the existing summary strict schema and independent parser (mock HTTP only)
+  ---
+  duration_ms: 1.0607
+  type: 'test'
+  ...
+# Subtest: frozen registry/profile is data only; unknown models/options rejected before fetch
+ok 55 - frozen registry/profile is data only; unknown models/options rejected before fetch
+  ---
+  duration_ms: 0.3419
+  type: 'test'
+  ...
+# Subtest: domain parser transformations occur only on the raw schema shape, not on transformed DTOs
+ok 56 - domain parser transformations occur only on the raw schema shape, not on transformed DTOs
+  ---
+  duration_ms: 1.0168
+  type: 'test'
+  ...
+# Subtest: request overflow rejects before the injectable HTTP transport
+ok 57 - request overflow rejects before the injectable HTTP transport
+  ---
+  duration_ms: 0.3647
+  type: 'test'
+  ...
+# Subtest: Jev calls installed experimental evaluation API with hard TypeSafe pin and typed choices
+ok 58 - Jev calls installed experimental evaluation API with hard TypeSafe pin and typed choices
+  ---
+  duration_ms: 2.5205
+  type: 'test'
+  ...
+# Subtest: HTTP 400 safely fails once without model/provider fallback or error leakage
+ok 59 - HTTP 400 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 2.007
+  type: 'test'
+  ...
+# Subtest: HTTP 401 safely fails once without model/provider fallback or error leakage
+ok 60 - HTTP 401 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 0.9865
+  type: 'test'
+  ...
+# Subtest: HTTP 403 safely fails once without model/provider fallback or error leakage
+ok 61 - HTTP 403 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 0.9423
+  type: 'test'
+  ...
+# Subtest: HTTP 404 safely fails once without model/provider fallback or error leakage
+ok 62 - HTTP 404 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 1.0958
+  type: 'test'
+  ...
+# Subtest: HTTP 402 safely fails once without model/provider fallback or error leakage
+ok 63 - HTTP 402 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 0.8897
+  type: 'test'
+  ...
+# Subtest: HTTP 429 safely fails once without model/provider fallback or error leakage
+ok 64 - HTTP 429 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 0.8555
+  type: 'test'
+  ...
+# Subtest: HTTP 503 safely fails once without model/provider fallback or error leakage
+ok 65 - HTTP 503 safely fails once without model/provider fallback or error leakage
+  ---
+  duration_ms: 0.8697
+  type: 'test'
+  ...
+# Subtest: malformed is a controlled failure; no raw SDK payload enters the safe error
+ok 66 - malformed is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 1.3676
+  type: 'test'
+  ...
+# Subtest: refusal is a controlled failure; no raw SDK payload enters the safe error
+ok 67 - refusal is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 0.6519
+  type: 'test'
+  ...
+# Subtest: incomplete is a controlled failure; no raw SDK payload enters the safe error
+ok 68 - incomplete is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 0.5767
+  type: 'test'
+  ...
+# Subtest: warning is a controlled failure; no raw SDK payload enters the safe error
+ok 69 - warning is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 0.5712
+  type: 'test'
+  ...
+# Subtest: wrong-provider is a controlled failure; no raw SDK payload enters the safe error
+ok 70 - wrong-provider is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 0.6943
+  type: 'test'
+  ...
+# Subtest: wrong-model is a controlled failure; no raw SDK payload enters the safe error
+ok 71 - wrong-model is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 1.7077
+  type: 'test'
+  ...
+# Subtest: missing-routing is a controlled failure; no raw SDK payload enters the safe error
+ok 72 - missing-routing is a controlled failure; no raw SDK payload enters the safe error
+  ---
+  duration_ms: 0.4957
+  type: 'test'
+  ...
+# Subtest: bounded timeout maps safely; the original provider is not replaced
+ok 73 - bounded timeout maps safely; the original provider is not replaced
+  ---
+  duration_ms: 15.05
+  type: 'test'
+  ...
+# Subtest: Jev pinned outage fails once without substitution
+ok 74 - Jev pinned outage fails once without substitution
+  ---
+  duration_ms: 0.7199
+  type: 'test'
+  ...
+# Subtest: Jev unsupported question configuration fails locally with no HTTP call
+ok 75 - Jev unsupported question configuration fails locally with no HTTP call
+  ---
+  duration_ms: 0.2294
+  type: 'test'
+  ...
+# Subtest: Jev response model echo without verified routing cannot establish actual provider
+ok 76 - Jev response model echo without verified routing cannot establish actual provider
+  ---
+  duration_ms: 0.5065
+  type: 'test'
+  ...
+# Subtest: untrusted diagnostic values, SDK model echo and absent usage are never fabricated as safe metadata
+ok 77 - untrusted diagnostic values, SDK model echo and absent usage are never fabricated as safe metadata
+  ---
+  duration_ms: 0.1627
+  type: 'test'
+  ...
+1..77
+# tests 77
+# suites 0
+# pass 77
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 751.4668
