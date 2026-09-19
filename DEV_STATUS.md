@@ -1,8 +1,49 @@
 # Development status
 
-Last updated: September 18, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.75 ARCHITECTURE DOCUMENTATION — design pass completed; pending owner review.** The proposed World Engine / World Lab / Source Worlds layer is neither implemented nor owner-approved. Only documentation work is authorized in this pass. Latest accepted implementation remains Phase 3.5 `8099e0cca1463f767476190c456d4f3947e7c84e`, with explicit acceptance at `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Earlier accepted checkpoints and their actual verification records remain below.
+
+### Completed work and inspected foundations
+
+Read the specification, development plan and agent instructions, then inspected accepted runtime/mechanics, Memory, save contracts/adapters and migrations, followed by the current status record. The resulting architecture deliberately extends existing systems:
+
+- World Actors reference stable entities; Threads hold goals/deadlines; Events are validated factual history. Bounded in-world triggers and staged turn settlement preserve recorded dice, agency and private knowledge.
+- World Lab uses existing timeline identities, immutable row versions/manifests and source membership. Concurrent non-canon runs require a future detached-manifest reader/writer and per-run head/lease fencing; the current single active campaign projection cannot support them by switching live timelines. Enter This World creates a validated playable child while preserving the original and simulation.
+- World Library/Packs preserve originals, evidence, conflicts and approved visuals. Reusable owner-scoped versions bind into isolated campaign instances. Entry anchors distinguish current canon/character knowledge from later source events; original/canon/simulated character selection and literal/native scenario composition preserve provenance and agency.
+- D&D is a selectable ruleset, not universal ontology. The accepted `console-basic-v1` remains a house-profile compatibility baseline, not full official 5e. Proposed World Logic/custom profiles and bounded sheet/inventory components remove future compulsory HP/d20 assumptions without rewriting accepted behavior.
+- Model Runtime extends current DmProvider/SummaryProvider seams with provider/task selection, pinned execution profiles, verified budgets and provenance. One primary DM, no silent fallback or automatic cheap-model routing. Supported-provider onboarding uses one ignored local server-secret file, future safe example/instructions and Settings → AI Providers with explicit Test Connection. Campaigns never contain keys; no configuration/setup implementation was added.
+
+### Files / areas changed
+
+Exactly eight documentation files: [MASTER_SPEC.md](MASTER_SPEC.md), [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md), this DEV_STATUS.md, and new [WORLD_ENGINE_BRIEF.md](WORLD_ENGINE_BRIEF.md), [WORLD_LAB_WHAT_IF_BRIEF.md](WORLD_LAB_WHAT_IF_BRIEF.md), [WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md), [RULESETS_AND_DYNAMIC_UI_BRIEF.md](RULESETS_AND_DYNAMIC_UI_BRIEF.md), [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md). The specification explicitly revises former universal rules/provider assumptions; the plan proposes separately reviewed A–E slices and records remaining owner decisions. Accepted Phase 2/3/3.5 contract files are unchanged.
+
+### Verification for this documentation pass
+
+**Passed:** documentation whitespace/diff check; all 44 relative Markdown file links across the eight changed documents resolve; code fences are balanced; no conflict markers or encoding replacement characters; exact eight-file documentation scope. Inspected code/migration references match the accepted repository. The prior Phase 3.5 acceptance and all following historical status/verification text are unchanged. SHA-256 checks confirm the original checkout's two pre-existing edited documents are byte-for-byte unchanged. Runtime, migrations, tests, configuration and accepted contracts have no changes in this checkout.
+
+No application test suite, typecheck, lint, production build, browser acceptance or live integration was rerun: no executable/configuration change was made. Historical passing results below belong to their original accepted checkpoints, not this design pass. No app/provider/model API calls, migrations, database operations, runtime/UI implementation, synthetic fixture changes, deployment or real-data imports occurred. Git fetch/push is solely repository synchronization.
+
+### Key decisions and known limitations
+
+- Reuse existing Memory, authority/knowledge filters and save vault/manifests. Version-1 manifest validation uses a fixed family list; future world/profile families need compatible versioned readers, not silent invalidation of accepted saves.
+- Pin complete source/contract/profile versions for comparisons; a save ID alone cannot pin ordinary canon documents outside rollback. Global canon corrections retain authority and invalidate affected derived work; a What If premise remains a local assumption.
+- Canon before entry is history; future source outcomes do not force choices. Model pretraining knowledge cannot be guaranteed erased. Exact state never comes solely from a generated recap, and source originals survive compilation/summarization.
+- Use the existing Next.js/Supabase application with small adapters and bounded jobs. No new backend, swarm, graph database, alternate branch system or general low-code platform.
+- No tracked `.env.example` currently exists. The future Model Runtime slice must supply a placeholder-only example, keep real secrets ignored and provide exact nontechnical file/variable/restart instructions. Proposed providers are candidates, not newly verified working integrations. Test Connection is future explicit synthetic work, never automatic probing or a call made here.
+- Physical iPhone/Safari remains unverified. The historical optional Phase 1 conflict-rebase confirmation remains unverified. Finite synthetic/model tests do not guarantee perfect memory, branching, simulation causality or universal recovery. No hosted deployment or real campaign/private-data acceptance has occurred.
+
+The work uses an isolated `codex/world-architecture-docs` checkout based on the accepted checkpoint. The original checkout's pre-existing uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md are outside this pass: not staged, overwritten, reconciled or attributed to it. Original acceptance/implementation verification text remains preserved below.
+
+### Remaining work and recommended next step
+
+Owner review of the five briefs and the decision table in DEVELOPMENT_PLAN: phase/order naming, canon-continuation policy, default imported-world ruleset, Live World/Off behavior, visual association scope, default simulation count, initial model/provider task policy and ruleset breadth. Suggested defaults are explicit proposals, not owner decisions. Review does not require source-code inspection or manual setup.
+
+Stop after the documentation commit/push. A later explicit instruction may scope A1 or another agreed slice with concrete contracts, compatibility gates and independently authorized live evaluation. Do not begin Phase 3.75 implementation, Phase 4, FRAME, VIDEO, deployment or real campaign/private import now.
+
+## Accepted Phase 3.5 checkpoint — preserved historical record
 
 **PHASE 3.5 OWNER-APPROVED — Save / Load / Timeline Forks.** The owner explicitly accepted implementation checkpoint `8099e0cca1463f767476190c456d4f3947e7c84e` on September 18, 2026. This acceptance is separate from the implementation verification recorded below and does not claim additional testing. Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`, plus all earlier accepted checkpoints.
 

@@ -1,12 +1,18 @@
 # PERSONAL RPG CONSOLE
-## Final Product Specification v1.0
+## Product specification — accepted foundation and proposed World architecture
 ### Private single-user home application
+
+**Scope as of September 19, 2026:** Phases 0–3.5 are owner-accepted. Latest implementation: `8099e0cca1463f767476190c456d4f3947e7c84e`; acceptance: `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Section 44 and the five linked briefs describe **proposed Phase 3.75 architecture only**, pending owner review and separate implementation authorization. Earlier phase instructions describe historical scope, not a fresh instruction to rerun imports, model evaluations or deployment. No new runtime, migrations or UI are implemented in this documentation pass.
 
 ---
 
 # 1. PRODUCT GOAL
 
-Build a private personal RPG application that replaces the current manual workflow built around ChatGPT Projects, World Bibles, Character Bibles, Campaign Briefs, Checkpoints and DM Ledgers.
+Build a private source-grounded narrative world application that replaces the current manual RPG workflow built around World Bibles, Character Bibles, Campaign Briefs, Checkpoints and DM Ledgers, and can grow into reusable source worlds, scenario composition and bounded counterfactual simulation.
+
+The intended product supports traditional fantasy, literary and relationship-focused play, historical/alternate-history worlds, military and political scenarios, civilization-scale counterfactuals and freeform worlds. Natural language remains the main interface: **natural language in → structured reality underneath → natural language out**. The new World capabilities are design targets, not claims about the accepted runtime.
+
+The future path is **World Library → World Pack → Scenario Composition → Divergence / What If → Enter This World → Ruleset → RPG**. An owner can compile uploaded sources or describe a new world, explore consequences with one to three explicitly selected models, then play from a chosen exact checkpoint. Ordinary gameplay retains one primary DM.
 
 The finished experience should feel like opening a living campaign world rather than opening a generic chatbot.
 
@@ -65,7 +71,7 @@ Campaign A must never leak:
 
 into Campaign B.
 
-Every important database object must belong to a `campaign_id`.
+Every campaign-owned database object must belong to a `campaign_id`. Future reusable World Library sources and World Pack versions are owner-scoped, with explicit authorized campaign bindings and separate instantiated campaign identities. This is an intentional extension of the old campaign-only assumption, not permission to share mutable campaign state. See section 44 and the World Library brief.
 
 ## 2.3 Free-form RPG
 
@@ -91,16 +97,24 @@ Generated images and videos should use canonical character/location/item referen
 
 Visual generation must never reveal secrets the player has not discovered.
 
+## 2.7 Ruleset and provider independence
+
+No world, campaign, character, save, timeline, World Thread or What If simulation may depend structurally on D&D 5e. D&D 5e is one selectable full ruleset, alongside World Logic and approved custom profiles. Existing fixed d20/HP UI and the `console-basic-v1` house profile require a future compatibility refactor; they are not a complete official 5e implementation or proof that decoupling already exists.
+
+No durable world architecture may depend on a particular AI provider/model. Model choice is execution policy and provenance. The accepted runtime uses OpenAI; future small server adapters and a verified model registry permit replacement without changing world identity or history. Quality takes priority over token-cost savings; use the owner's strongest configured preference rather than automatic economy routing. Keep bounded context, one gameplay DM and no silent fallback. Avoid commercial concurrency economics and infrastructure sprawl.
+
 ---
 
 # 3. CORE INFORMATION MODEL
 
-The hierarchy is:
+The accepted campaign hierarchy is:
 
 APP
 → CAMPAIGNS
 → SESSIONS
 → SCENES
+
+The proposed authoring layer adds owner-scoped World Library → immutable World Pack versions → approved Scenario/Divergence contracts → isolated campaign/timeline instances. Existing campaign timelines contain sessions/scenes and exact save manifests. World Actors reference stable entities; Threads represent goals/clocks; Events record validated facts. Source packs are not live campaigns, summaries or a second branching system. The five section 44 briefs define these future extensions.
 
 Each Campaign contains:
 
@@ -232,7 +246,9 @@ The app has three distinct levels (consolidated owner requirement, section 36):
 
 - **Main menu:** Campaigns, General Settings, Exit. No campaign sidebar, character data, or gameplay bottom navigation. Before authentication, Exit explains that sign-out is unavailable; it never closes the browser, stops the server, or erases preview state.
 - **Campaign selection:** existing cards, management previews, New Campaign preview, and Back to main menu. Continue opens the selected campaign's Game. Concepts remain clearly unstarted and cannot resolve to another campaign's data.
-- **Inside a campaign:** Game, Character, Inventory, Party, Journal, Map, Library, Gallery, Sessions, Campaign Settings, and a separate Back to campaigns control. Show the active campaign name. Mobile bottom navigation is restricted to this level. Camp is entered from Game → Rest → Long Rest, not a permanent recovery shortcut.
+- **Inside a campaign:** Game, Chat with DM, Character, Inventory, Party, Journal, Map, Library, Gallery, Sessions, Saves, Campaign Settings, and a separate Back to campaigns control. Show the active campaign name. Mobile bottom navigation is restricted to this level; Saves uses More. Camp is entered from Game → Rest → Long Rest, not a permanent recovery shortcut.
+
+Future design adds **World / Мир**, containing Live World and What If, without replacing Saves. Owner-level World Library is distinct from campaign Library. Preserve the current hierarchy, bilingual presentation and mobile More pattern; this document adds no navigation implementation.
 
 Use explicit campaign-scoped URLs and resolve campaign identity from the URL. Unknown IDs return a missing-page response, never the sample campaign. Reuse layouts/screens and retain useful legacy redirects. Global interface language and reading/accessibility preferences have one source of truth, separate from campaign story language, rules/play style, narrative style, and visual preferences.
 
@@ -250,7 +266,7 @@ Show campaign cards with:
 - title;
 - genre/subtitle;
 - current character;
-- level;
+- level or another profile-appropriate descriptor, if applicable;
 - session number;
 - current known location;
 - last played;
@@ -300,7 +316,7 @@ Actions:
 
 DM PRIVATE does not appear in the normal Library list.
 
-Supported initial files:
+Intended document/asset formats (not a claim that every importer already exists):
 - TXT
 - MD
 - PDF
@@ -308,6 +324,8 @@ Supported initial files:
 - PNG/JPG/WebP
 
 Every edit creates a new version rather than destructively overwriting history.
+
+Reusable source ingestion, including EPUB, compiler passes and World Pack provenance are separately scoped in [WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md). They extend existing document versioning and Memory rather than duplicating them.
 
 ---
 
@@ -346,8 +364,7 @@ Player reply appears below as a distinct card.
 
 The input stays pinned at bottom.
 
-Placeholder:
-“What do you do, James?”
+Placeholder uses the current character name; “What do you do, James?” is a sample campaign example, not a hardcoded identity.
 
 Controls:
 - Send
@@ -362,6 +379,8 @@ Suggested actions are optional and never exhaustive.
 ## Context-sensitive right panel
 
 Do not always show the same information.
+
+The following HP/combat/resource examples apply only to compatible ruleset profiles. A literary or historical World Logic campaign may instead show relationships, injuries, reputation, possessions or current commitments. Do not force empty D&D panels into every campaign.
 
 NORMAL SCENE
 - HP/resources
@@ -403,7 +422,7 @@ Reference:
 
 ## Character
 
-Show:
+Keep identity and source facts stable; derive mechanics panels from the selected versioned Ruleset Profile. The following is the fantasy/house-profile example, not the universal character ontology:
 - portrait / full-body approved art;
 - name;
 - species;
@@ -419,7 +438,7 @@ Show:
 - spell/pact resources;
 - active conditions.
 
-Simple visual paper-doll:
+Simple visual paper-doll for compatible bodies/equipment:
 - Head
 - Neck/Amulet
 - Armor/Coat
@@ -431,7 +450,7 @@ Simple visual paper-doll:
 
 Do NOT build a 3D character system.
 
-Use a static character image with surrounding equipment slots.
+Use a static character image with surrounding equipment slots when appropriate. Other profiles may use a loadout, documents/possessions or relationship-focused sheet. Use bounded reusable field/component types, not generated executable UI or a low-code platform; see [RULESETS_AND_DYNAMIC_UI_BRIEF.md](RULESETS_AND_DYNAMIC_UI_BRIEF.md).
 
 Tabs:
 - Character
@@ -454,7 +473,7 @@ Structured categories:
 - Vehicle Storage
 - Other Storage
 
-The primary inventory presentation is a responsive icon-slot grid, with storage views separate from category filters and search. Player, companion, stash, and applicable transport views share equipment and item records; see section 36.
+The accepted adventure-profile inventory presentation is a responsive icon-slot grid, with storage views separate from category filters and search. Player, companion, stash, and applicable transport views share equipment and item records; see section 36. Future profiles may use military loadouts, social documents, attunement, cargo, survival resources or abstract possessions while retaining stable ownership/provenance and exact saves.
 
 Each item supports:
 - icon/image;
@@ -633,11 +652,15 @@ Step 2:
 Documents
 - upload world/instruction files
 - mark Canon or Reference
+- future: select a pinned World Pack, describe a world from scratch, or approve a composed Scenario Contract
 
 Step 3:
 Character
 - upload/paste Character Bible
 - optional portrait/reference images
+- future origin choices: Original Character or Existing Canon Character, with an explicit date/age/chapter/event continuity anchor
+- derive an evidence-backed snapshot of identity, location, capabilities, possessions, relationships and character knowledge at entry; do not leak later source outcomes
+- reuse an existing world entity on takeover, with branch-local player control; personality informs play without forcing source plot
 
 Step 4:
 Campaign Brief
@@ -654,6 +677,8 @@ Option:
 Step 6:
 Review and Create
 
+Future creation/Enter This World selects an available Full Ruleset, World Logic or approved Custom Ruleset and a primary model configuration with optional task overrides. Campaigns hold configuration IDs, never provider keys. Canon before the entry point is history; subsequent outcomes can diverge. Source fidelity does not override player agency. These new creation paths are design-only under section 44; they do not authorize importing real private state through the historical Step 5 example.
+
 No campaign should auto-generate a story unless user explicitly requests it.
 
 ---
@@ -661,6 +686,8 @@ No campaign should auto-generate a story unless user explicitly requests it.
 # 15. GAME / DM RUNTIME
 
 The DM is one primary AI runtime.
+
+It uses the campaign's selected execution policy and applicable ruleset. OpenAI is the accepted initial transport, not a universal dependency. Future World Resolver/Compiler/Memory tasks return bounded validated proposals through the shared Model Runtime; they are not autonomous DMs. Models never write state directly. Proposed world settlement extends the durable turn lifecycle with atomic player/world outcomes, recorded dice and the existing timeline fences (World Engine brief).
 
 Do not begin with a swarm of agents.
 
@@ -711,7 +738,7 @@ Private fields are processed server-side and never rendered to the player.
 
 # 16. DICE
 
-Use a deterministic server dice tool.
+Use real server-generated randomness with durably recorded results and deterministic validation/application. Retry reuses the recorded roll. The selected ruleset defines eligible dice/check methods; World Logic may resolve actions without dice. Current d20 mechanics remain a compatibility profile rather than a universal rule.
 
 Examples:
 - 1d20+5
@@ -908,7 +935,7 @@ Documents must be editable.
 
 Saving creates a new immutable version.
 
-Only current version is canonical.
+Only the applicable approved version is current canon in its declared scope. Existing campaign-wide owner corrections remain authoritative across restored timelines; ordinary documents remain outside historical save rollback. Future reusable source versions and Scenario Contracts are explicitly pinned; changing a pack alone does not change campaigns. A divergence is a branch-local assumption, not a global canon correction.
 
 Statuses:
 - CANON
@@ -922,6 +949,8 @@ Priority:
 4. Campaign Brief;
 5. Reference docs;
 6. archived docs are excluded unless requested.
+
+Preserve source conflicts and the owner's explicit source-priority policy. Distinguish source facts, source inferences, approved scenario assumptions and committed simulation facts, in addition to Memory's statement kinds. A whole corpus may describe a future that has not happened at the campaign anchor. Canon-at-entry, character knowledge and future source events must be filtered separately; no silent rewriting to reconcile contradictions.
 
 ---
 
@@ -983,8 +1012,11 @@ CAMPAIGN SETTINGS — PER CAMPAIGN
 Difficulty is a campaign setting, never a global application preference. Each campaign's rules system determines which mechanical controls apply.
 
 AI
-- text model
-- context depth
+- future global **AI Providers**: safe connection status, exact local setup instructions and explicit Test Connection; never show stored keys
+- future campaign primary model and optional DM Reasoning, Narration, World Engine, What If, Canon Compiler and Memory overrides; unset tasks inherit, unavailable explicit choices pause without fallback
+- verified per-model context accounting and bounded task budgets; do not ask the owner to manage token windows
+
+Supported-provider onboarding must require only obtaining a key, adding its documented line to the running checkout's ignored `.env.local`, restarting through an explained simple workflow, then testing/selecting models in Settings. No TypeScript, HTTP or database editing. Credentials are application-level server secrets; campaigns/save exports contain only configuration IDs/options. No tracked `.env.example` exists today: future Model Runtime implementation must add a placeholder-only template with a narrow Git exception while retaining real secret-file exclusion. Test Connection is an explicit synthetic, bounded request with possible-charge disclosure; status-page rendering makes no provider calls. See [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md) for status semantics, secret handling and future acceptance gates. None of this settings UI is implemented here.
 
 VISUAL
 - campaign visual style
@@ -995,7 +1027,7 @@ VISUAL
 DATA
 - export
 - import
-- restore snapshot
+- open Saves for existing Save/Load/Timeline management (primary experience stays outside Settings)
 - archive
 
 ADVANCED
@@ -1004,6 +1036,8 @@ ADVANCED
 - rebuild index
 
 DM Private Data requires double spoiler confirmation.
+
+This historical advanced-access idea is not authorization to expose secrets or build a bypass. Ordinary APIs, future World/What If and provider diagnostics retain current server-only privacy. Any future private-data inspection/export needs a separate explicit security design and owner authorization.
 
 ---
 
@@ -1029,7 +1063,8 @@ Hosting:
 - Vercel
 
 AI text:
-- OpenAI server-side API
+- accepted initial implementation: OpenAI server-side API
+- future: small provider adapters, model registry and task contracts from [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md); provider/model selection is independent of world storage
 
 Image:
 - owner-selected supported image provider/model (OpenAI and fal are candidates)
@@ -1051,12 +1086,13 @@ Do not build a separate Python backend unless a real need appears.
 Mandatory:
 
 - API keys only in server environment variables.
-- `.env*` excluded from git.
+- real `.env*` secret files excluded from git; future placeholder-only `.env.example` may have a narrow explicit exception, never real values.
 - never send Supabase service-role key to client.
 - never send OpenAI key to client.
 - never send fal key to client.
+- never send any other provider key to client; no credentials duplicated in campaigns or exported model settings.
 - never send DM private state in normal browser payloads.
-- all DB rows scoped by campaign.
+- every campaign-owned row scoped by campaign and authorized owner; proposed reusable source/pack records owner-scoped with explicit versioned bindings, never implicit cross-campaign access.
 - all destructive data actions require confirmation.
 - create snapshot before restore/migration when practical.
 
@@ -1106,7 +1142,7 @@ Refresh browser and nothing disappears.
 ## PHASE 2 — TEXT DM
 
 Add:
-- server-side OpenAI call
+- server-side OpenAI call as the accepted initial provider (future adapters are separate scope)
 - structured output
 - dice tool
 - public/private patches
@@ -1129,6 +1165,14 @@ Add:
 Success:
 Start a second session and the campaign continues correctly without manual copying.
 
+## PHASE 3.5 — SAVES / TIMELINE FORKS
+
+Owner-accepted exact-state manifests, preserved branches, epoch/lease fencing, source membership and safety-before-load behavior. See section 42 and the accepted contracts; extend this system instead of creating a second branch engine.
+
+## PROPOSED PHASE 3.75 — WORLD ENGINE / WORLD LAB / SOURCE WORLDS
+
+Architecture only, pending review and separate implementation authorization. Proposed order: A Model Runtime/onboarding and ruleset decoupling; B World Library/Packs and entry/scenario contracts; C bounded World Engine; D detached simulation branches and 1–3 model comparison; E Enter This World, canon-character takeover and full composition UX. DEVELOPMENT_PLAN defines dependencies and independent review gates. No media, deployment or real import is authorized by this proposal.
+
 ## PHASE 4 — FRAME
 
 Add:
@@ -1138,7 +1182,7 @@ Add:
 - gallery
 
 Success:
-James stays recognizably consistent across several scenes.
+The selected character stays recognizably consistent across several scenes, using approved Visual Bible/World Pack associations. James is one separately authorized future acceptance example.
 
 ## PHASE 5 — VIDEO
 
@@ -1185,13 +1229,13 @@ Do not allow the coding agent to expand scope into:
 - custom vector database
 - custom video infrastructure
 
-If a feature is not necessary for the user to play their own campaign, it can wait.
+Only the explicitly authorized milestone may be implemented. The section 44 world architecture is a planned product direction; it does not authorize future work merely because it would be useful.
 
 ---
 
 # 30. FIRST CAMPAIGN ACCEPTANCE TEST
 
-Use the existing James & Jinn campaign.
+This is a **future real-data acceptance scenario**, requiring separate explicit owner authorization. No real campaign/private-data acceptance or deployment has occurred. Current development/evaluation uses synthetic records only. When later authorized, use the existing James & Jinn campaign as one compatibility test, not the universal world model.
 
 Import:
 - RPG Engine
@@ -1242,7 +1286,7 @@ Verify:
 
 This project does not need to become a spaceship.
 
-Version 1 is successful when:
+The original RPG baseline aimed for:
 
 1. Multiple campaigns work.
 2. James campaign can be played comfortably.
@@ -1255,7 +1299,7 @@ Version 1 is successful when:
 9. Mobile is usable.
 10. Backups exist.
 
-Everything else is optional.
+These baseline goals do not replace the broader owner-requested direction in section 44. World creation, source grounding, diverse rulesets and provider-independent simulations are planned requirements with separately reviewable implementation slices; none is silently considered implemented or approved. Keep the private single-user architecture simple.
 
 
 ---
@@ -1337,7 +1381,7 @@ Player role is independent of difficulty and story structure. Choosing a role mu
 - **Moderate (default):** relevant goals can also progress off-screen as in-world time and meaningful events advance.
 - **High:** important NPCs and factions pursue their goals more actively; consequences surface through relevant events.
 
-Autonomy is event-driven narrative guidance for the one DM runtime. High does not imply a full-world simulator, continuous background processing, or multiple AI agents.
+In the accepted runtime autonomy is event-driven narrative guidance for the one DM. Proposed Phase 3.75 adds bounded code-selected World Threads and validated World Events, with separate simulation On/Off and explicit in-world triggers. High still does not imply a full-world simulator, wall-clock progression, continuous background processing or multiple AI agents. See [WORLD_ENGINE_BRIEF.md](WORLD_ENGINE_BRIEF.md) for deadlines, fair warning, capacity limits and failure-safe settlement.
 
 ## Authority and prospective application
 
@@ -1448,6 +1492,8 @@ Regression coverage must include setting independence, all presentation/importan
 
 # 36. CONSOLIDATED PHASE 0 — NAVIGATION, POSSESSIONS & CAMP
 
+This is the preserved adventure/house-profile requirement and historical preview scope. Its slot grid, camp-stash convenience rules, cooking benefits and rest resources are not universal physics for every future world. Phase 3.75 must retain accepted compatibility while making such mechanics/presentation conditional on a versioned ruleset, with explicit mappings for old saves. It does not rewrite the accepted preview.
+
 This owner-approved requirement supersedes overlapping fragmented refinement proposals. Approval of the requirement is **not** approval of Phase 0 delivery. Preserve sections 32–35, the media-model plan, and existing working features. Implement only Phase 0 until the owner separately authorizes another phase.
 
 ## Shared records and visual inventory
@@ -1554,13 +1600,14 @@ Use the existing application server and Supabase. One primary DM runtime remains
 - Phase 2: bounded server-side context assembly, current structured state, approved instructions, selected canonical excerpts, a validated/imported checkpoint and recent complete exchanges; budget checks, serialized state-changing turns and safe recovery. Read checkpoints without requiring automated summarization or historical semantic search. If relevant older material is unavailable, request clarification instead of pretending it was retrieved. Do not silently drop necessary history to continue indefinitely.
 - Phase 3: automatic summaries/checkpoints, older-event retrieval, correction-driven invalidation, continuity evaluation and reliable resume. Implement the complete lifecycle below.
 - Later public knowledge and media features must use the same visibility boundaries when separately authorized.
+- Proposed Phase 3.75 extends the same Memory paths for source/pack provenance, entry-point knowledge, World Events and detached simulation manifests. No parallel memory service; owner-library authorization and exact campaign/timeline membership remain distinct.
 
 Keep these boundaries in DEVELOPMENT_PLAN. Do not interrupt active Phase 1 workers or restart completed work merely to implement Phase 3 early.
 
 ## 38.2 Sources of truth and record identity
 
 Maintain these logical categories using existing tables where practical:
-1. Exact structured state: HP, resources, quantities, ownership, equipment, conditions/expiry, time/location, quest status, encounter/turn state, rest stage and pending actions.
+1. Exact structured state: identity, relationships, quantities, ownership, time/location, commitments and pending actions; plus profile-specific resources, equipment, conditions, encounter/rest state (HP is one supported profile example, not a universal requirement).
 2. Source history: committed player inputs, public narration, companion dialogue with known participants/listeners, validated outcomes and state changes, and separately stored private DM events.
 3. Versioned documents: current canon, references, explicit corrections and approved DM guidance.
 4. Derived memory: summaries, checkpoints, extracted facts and search indexes, always linked to source records and their versions.
@@ -1585,6 +1632,8 @@ Authorize campaign and owner before retrieval. Apply campaign, visibility, sourc
 Maintain separate public/player-known and DM-private source paths, derived summaries, indexes, caches and response serializers. A whole DM prompt must never be sent to the browser. Public recap, What Do I Know, public search and media briefs must be built from authorized public inputs, not a private-inclusive draft that is later cosmetically redacted. A private-derived artifact remains private unless specific facts are explicitly revealed through validated gameplay.
 
 Model knowledge is not NPC knowledge. Record which participants witnessed or were told a fact when relevant; companion speech must not inherit another NPC's secrets or a private conversation automatically. Distinguish player-known facts from what a particular NPC knows.
+
+For future source worlds, distinguish full Source Knowledge, Canon at Entry, Character Knowledge at Entry and Future Source Events. Apply world-time and positive-knowledge eligibility before ranking. A later source event is not current reality or an inevitable plan; model pretraining does not grant actor knowledge. World Engine actors and Lab comparisons use the same boundary. See section 44 for source-origin classifications and detached timeline extensions.
 
 Do not expose private titles, snippets, citation IDs, scores, counts, job names or error payloads through ordinary UI. Context diagnostics may show neutral status/token totals, never private content. Full prompts and private model responses are excluded from ordinary logs and analytics.
 
@@ -1701,7 +1750,7 @@ Use synthetic campaigns only. Keep deterministic storage/security/budget tests s
 Required cases:
 - At least two campaigns containing similarly named NPCs/items, with zero cross-campaign retrieval, cache or update leakage.
 - Seed unique private markers; verify no disclosure in public search/recaps/media inputs/browser responses/errors/logs. Include NPC knowledge and quoted-instruction attacks.
-- Structured resources/quantities remain exact over repeated summaries; consumed items stay consumed, embedded components stay unavailable, and old checkpoints cannot restore them.
+- Structured resources/quantities remain exact over repeated summaries; consumed items stay consumed and embedded components stay unavailable. Old **Memory** checkpoints cannot restore them. An explicitly authorized Phase 3.5 save load is different: it restores exact saved state into a fork through validated manifests, never by trusting a summary.
 - An old promise survives hundreds of distracting events; distinguish rumor from fact, intention from completion, negation, renamed entities, and corrected/retracted canon.
 - Test English/Russian paraphrases and aliases.
 - A fixture of at least 1,000 synthetic events across 20 sessions forces several compactions; final assembly remains within B without dropping mandatory context.
@@ -1751,6 +1800,8 @@ Session guidance expires with its session; campaign guidance remains versioned. 
 
 # 41. Authorized Phase 2 implementation boundary
 
+Historical implemented/accepted scope: OpenAI below names the initial adapter. Section 44 proposes future provider independence without changing this accepted checkpoint or reopening its live-call authorization.
+
 The owner approved Phase 1 at `a0c7a815b413251df45a961af8c77986975e546f`, recorded in `1a4fee6cc7e3827a51749e23fe1b00a7eee78b1a`, and separately authorized **Phase 2 — Text DM**. Earlier phase-stop statements are historical, not a revocation of this authorization. [PHASE2_CONTRACTS.md](PHASE2_CONTRACTS.md) defines the lead-approved shared lifecycle, structured output, dice, privacy, bounded context and development file ownership.
 
 Implement one server-side OpenAI DM runtime, durable serialized/idempotent turns, real recorded server checks, validated atomic public/private consequences, supported rules/inventory/quest/encounter/rest/storage/transformation/companion mechanics, and explicit session/campaign DM-guidance approval. Preserve manual correction authority, existing records, bilingual UI and visual design. Reuse private storage without exposing it to ordinary database callers or browser/API payloads. Free text remains primary. Unsupported mechanics and unavailable essential context pause safely instead of being improvised as authoritative state.
@@ -1761,6 +1812,8 @@ At the Phase 2 checkpoint, Phase 3 automatic summaries and retrieval remained ou
 
 
 # 42. Authorized Phase 3.5 — Save / Load / Timeline Fork
+
+**Current acceptance:** implementation `8099e0cca1463f767476190c456d4f3947e7c84e` is owner-approved, recorded at `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. The milestone's former readiness/stop wording below is historical. Section 44 authorizes documentation only and leaves accepted contracts/implementation unchanged. Future world families and concurrent inactive branches require versioned manifest compatibility and detached readers/commits; the current single active projection cannot be used concurrently by toggling its active timeline.
 
 The owner accepted Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0`, recorded at `96964964a7d5046ff34b6b6ae695ecf494885cc4`, and separately authorized Phase 3.5. Preserve those and all earlier accepted checkpoints. [PHASE3_5_BRIEF.md](PHASE3_5_BRIEF.md) remains the requirement record; [PHASE3_5_CONTRACTS.md](PHASE3_5_CONTRACTS.md) defines the inspected architecture, shared DTOs, ownership and acceptance gates. All three separate-worktree development workers acknowledged the committed contract before GO. The product retains one gameplay DM.
 
@@ -1774,6 +1827,8 @@ Saves / Сохранения is a first-class inside-campaign navigation entry. 
 
 # 43. Authorized Phase 3 — Long-Term Memory
 
+Historical accepted scope: implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0`, acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`. The old evaluation envelope and phase-stop instructions below do not authorize fresh model calls in this documentation pass. Phase 3.5 separately added exact save rollback/forks; Memory checkpoints remain derived evidence, not rollback commands.
+
 The owner accepted Phase 2 implementation `24fcd405b65b7ddd281837e491f1975e1fe3a765`, recorded at `ea35b71ad6c95cf63ab40a1a33db4a92041052fc`, then separately authorized Phase 3 and its bounded synthetic live evaluation. Preserve both checkpoints. [PHASE3_CONTRACTS.md](PHASE3_CONTRACTS.md) defines shared lifecycle and development ownership; §38 remains the memory/continuity acceptance contract.
 
 Keep one gameplay DM. Supporting summaries select complete original source spans through strict structured output; the server validates selections and renders original wording, retaining attribution, negation and uncertainty. Public recaps use public originals; private continuity has separate storage/jobs and never enters public narration or companion context. Exact current records, not a digest or old checkpoint, determine resources and mechanics. Immutable checkpoints are audit/resume references, never rollback commands.
@@ -1783,3 +1838,59 @@ Use authorized PostgreSQL text/alias retrieval first, bounded source-linked exce
 END SESSION records the boundary before generation; pending operations and recorded dice remain unchanged. Explicit Continue resumes that same operation or starts exactly one next session after it is terminal. Recap failure does not discard progress. Work runs in bounded batches on explicit lifecycle triggers, with ordered coverage, lease fencing and fresh-revision validation. An explicit retry starts a fresh bounded attempt window; repeating its command ID cannot reset an active lease or duplicate work. There is no timer-driven generation, new backend, provider conversation memory, automatic model switch or vector service.
 
 Verification uses synthetic records only and separates deterministic/storage tests, labeled retrieval recall, live model rubric review and real browser checks. The authorized initial live envelope is at most 48 generation requests and approximately $15 conservatively estimated usage. Report actual failures and limitations; passing finite samples does not guarantee perfect memory. Stop at PHASE 3 READY FOR OWNER ACCEPTANCE only after all gates pass. No self-approval, Phase 3.5 implementation, Phase 4, deployment or real campaign/private import.
+
+---
+
+# 44. PROPOSED PHASE 3.75 — WORLD ENGINE / WORLD LAB / SOURCE WORLDS
+
+**Documentation and architecture design only; implementation and design acceptance remain pending owner review.** The product requirements in this section broaden the original RPG direction without pretending that the accepted OpenAI/d20 implementation has already been generalized. Do not begin any sub-phase, change contracts/migrations, make model calls, deploy, generate media or import real campaign/private data on the authority of this design pass.
+
+## 44.1 Connected architecture and reuse
+
+| Design brief | Future responsibility | Accepted foundation / required extension |
+| --- | --- | --- |
+| [World Engine](WORLD_ENGINE_BRIEF.md) | Stable Actor references → persistent Threads → immutable validated Events; bounded causal world progression | Extend durable turn settlement, private state and Memory; add versioned world manifest families |
+| [World Lab / What If](WORLD_LAB_WHAT_IF_BRIEF.md) | Non-canon divergence, coherent checkpoints, 1–3 independent model runs, comparison and Enter This World | Reuse existing timeline IDs/vault/manifests; add detached reads/branch-head commits and per-run fencing without toggling live projection |
+| [World Library / World Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md) | Original sources, evidence-backed reusable worlds, source conflicts, scratch worlds, entry anchors, composition and approved visuals | Reuse immutable versions, source references and correction authority; add owner-scoped packs and authorized campaign bindings |
+| [Rulesets / Dynamic UI](RULESETS_AND_DYNAMIC_UI_BRIEF.md) | Full Ruleset / World Logic / Custom; stable identity with optional mechanics and bounded component-driven sheets/inventory | Retain house-profile behavior, introduce versioned profile adapters/mappings and preserve old saves |
+| [Model Runtime](MODEL_RUNTIME_BRIEF.md) | Server adapters, verified model registry, task contracts, explicit selection and provenance; nontechnical onboarding | Extend existing DmProvider/SummaryProvider seams; current OpenAI-only configuration remains until separately authorized refactoring |
+
+All remain modules within the existing Next.js server and Supabase/Postgres/Storage/Auth architecture. No second backend, autonomous agent swarm, general low-code platform, graph database or external vector service. Natural-language authoring produces short reviewable contracts; validated structured state is authoritative; narration presents it. One chosen primary DM configuration handles normal gameplay. The owner values quality over small token savings, with finite workloads and explicit expensive operations.
+
+## 44.2 World progression and privacy
+
+Only meaningful in-world actions/time advances and causal events trigger evaluation. Code filters due threads, prerequisites, control and already-applied events before an optional bounded resolver request. Proposed Low/Moderate/High ceilings are 3/8/12 threads and 8/16/24 actors, at most eight events and normally zero or one resolver call per segment; these are reviewable operational limits, not established game balance. Capacity must pause rather than omit mandatory consequences. Large skips use ordered causal boundaries, not hourly loops or unlimited hidden continuation.
+
+Background consequences may complete; major interactable catastrophes require recorded warning/opportunity under Surface Before Complete; established Hard Deadlines can genuinely occur. Hidden deadlines cannot bypass a declared fairness policy. Wall-clock time, closed apps, provider tests and Chat with DM never advance the world. Future Live World shows only player-known developments, On/Off and autonomy. No secret threads, private counts or raw resolver output.
+
+The resolver proposes; code validates against rules, agency, chronology and visibility. Extend the pending turn with staged world settlement; failures preserve input/dice and commit no partial player/world outcome. Final state, public narration and source-linked events commit atomically behind existing authorization and fresh timeline fences. Reuse public/private Memory and positive actor knowledge; do not let privileged resolver context become everyone's knowledge.
+
+## 44.3 Source continuity, composition and visuals
+
+Preserve originals and exact source-version locators. World Packs contain structured entities/relationships/history/geography/rules, explicit contradictions, coverage gaps and approved asset associations. Compiler passes are bounded, resumable and auditable. Source Facts, Source Inferences, Scenario Assumptions and Simulation Facts remain distinct; this origin classification supplements rather than replaces existing Memory statement kinds.
+
+Source Knowledge, Canon at Entry, Character Knowledge at Entry and Future Source Events are distinct projections. Existing Canon Character entry derives a snapshot at an explicit date/age/chapter/event with no automatic knowledge of later source events. Canon before entry is history; after entry, player choices and world outcomes may diverge. Model pretraining cannot be guaranteed erased; future evaluations must disclose that limit.
+
+Scenario Composition supports literal crossover and native adaptation with ingredient provenance, identity mappings, assumptions and pinned source priorities. A Divergence Contract records base, change, start, assumptions and constraints. Neither can drift silently mid-simulation. Full composition UX can arrive in E, but minimum contracts and entry cutoff validation are prerequisites for D.
+
+Owner-provided/approved images bind versioned appearance variants to entities, locations and objects; for example an uploaded adaptation's character appearance. Preserve provenance, approval, temporal/visibility restrictions and authoring versus player knowledge. Reuse Visual Bible/Storage for later FRAME/VIDEO grounding. No unrestricted scraping, image generation or current media implementation is implied.
+
+## 44.4 Exact simulations and playable entry
+
+Lab simulations are NON-CANON until explicitly entered. Runs share one approved exact manifest plus pinned source/contract/guidance/profile input versions; each independently advances its own head and provenance. Current active-projection RPCs are insufficient: implement detached manifest access and compare-and-swap head updates under per-run lease/branch revision fencing before parallelism. Preserve the existing active epoch for live activation. Keep old version-1 manifests loadable through versioned family mappings; never expand a fixed allowlist and silently invalidate accepted saves.
+
+Compare shared outcomes and divergences at comparable world times, with clear failed/incomplete runs and no model-winner claim. Fork any coherent simulation checkpoint to continue with other explicitly selected models. No automatic fallback; a changed model has an explicit provenance boundary. Global corrections invalidate affected runs, while local divergence assumptions do not retcon live canon.
+
+Enter This World validates an exact checkpoint, selected existing/simulated/current/new PC and chosen profile, creates a playable child and activates it through existing safety/fork machinery. Preserve original and simulation history, public/private knowledge, provenance and pending-result semantics. Existing-entity takeover changes branch-local control, not identity; autonomous decisions stop for that PC. Missing playable facts require approved supplements, not reconstruction from prose or invented past. Ruleset choice governs future mechanics without rewriting world history.
+
+## 44.5 Model onboarding, selection and authority
+
+The supported-provider flow is key obtained → documented line in the running checkout's `.env.local` → explained restart → Settings → AI Providers → explicit Test Connection → global/campaign model choice. Future implementation supplies a placeholder-only example and exact nontechnical local instructions; never ask for a key in chat or expose stored values to the browser. App-level credentials are referenced server-side; campaign policies contain safe provider/model IDs and supported options only.
+
+Configured and tested/usable status are distinct. No provider request on status-page load. A Test Connection request uses synthetic bounded input, discloses potential cost and returns sanitized status without touching gameplay. Adding an unsupported adapter is development work; routine connection/selection for supported adapters requires no TypeScript, request code or database editing.
+
+Tasks inherit the campaign primary unless explicitly overridden; global defaults apply only when unset. Resolve and pin execution profiles before requests. An unavailable explicit choice pauses rather than silently falling back. Record provider, requested/actual model or unknown, relevant options, task/prompt/contract versions, source/checkpoint identity and time, without chain-of-thought or secret payloads. Safe model reporting and provider budgets require verified capabilities during later implementation.
+
+## 44.6 Review boundary
+
+DEVELOPMENT_PLAN proposes independently reviewable A–E slices and lists owner decisions. Every future slice requires explicit scope authorization, coordinated contracts, compatibility/migration planning, synthetic regression/privacy/failure checks and separately authorized live quality evaluation. The brief acceptance lists are future tests, not results from this pass. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified; finite synthetic/model evaluations guarantee neither perfect memory nor universal branching/recovery. No hosted deployment or real campaign/private-data acceptance has occurred. Stop after this documentation commit for owner review.

@@ -1,6 +1,8 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
+**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. Phase 3.5 implementation `8099e0cca1463f767476190c456d4f3947e7c84e` and acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e` remain the baseline. Earlier prompts below record historical milestone scope; they are not current implementation instructions. Proposed Phase 3.75 is **documentation/design only, pending owner review**, with no runtime, migration, UI, configuration or model-call authorization. Media, deployment and real campaign/private imports remain unauthorized. MASTER_SPEC §44 and the five briefs define the proposed direction.
+
 ---
 
 # MILESTONE 0 — UI SHELL
@@ -250,7 +252,9 @@ Detailed implementation and acceptance (MASTER_SPEC section 38):
 
 ---
 
-# MILESTONE 3.5 — SAVE / LOAD / TIMELINE FORKS (AUTHORIZED)
+# MILESTONE 3.5 — SAVE / LOAD / TIMELINE FORKS (OWNER-ACCEPTED)
+
+Implementation `8099e0cca1463f767476190c456d4f3947e7c84e` was owner-accepted at `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Preserve the following original scope/verification requirements as history, not a fresh instruction to implement or repeat live checks. Actual results and remaining limitations are in DEV_STATUS.md. Current documentation work leaves PHASE3_5_CONTRACTS.md and the implementation untouched.
 
 The owner explicitly accepted Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` (acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`) and separately authorized this milestone. Follow [PHASE3_5_BRIEF.md](PHASE3_5_BRIEF.md) and the committed [PHASE3_5_CONTRACTS.md](PHASE3_5_CONTRACTS.md). One lead plus three separate-worktree development workers acknowledged the concrete shared contracts before GO; only the storage worker edits migrations. Preserve all earlier checkpoints and the original checkout's pre-existing documentation edits exactly, outside milestone commits.
 
@@ -262,7 +266,95 @@ Acceptance: run full Phase 0–3 regressions and new save/branch suites; upgrade
 
 ---
 
+# PROPOSED PHASE 3.75 — WORLD ENGINE / WORLD LAB / SOURCE WORLDS
+
+**Design only. No sub-phase is implemented, owner-approved or authorized to start by this plan.** The documentation pass stops for review. Each future slice needs its own concrete scope, shared contracts and acceptance record; completing one does not authorize the next. Keep one primary gameplay DM, existing Memory and one Saves/Timelines system.
+
+Direction: **World Library → World Pack → Scenario Composition → Divergence / What If → Enter This World → Ruleset → RPG**. Natural language stays primary. D&D is a selectable ruleset, not universal ontology; providers/models are execution policy, not world identity. Optimize for this owner's quality preference and simple local operation, not cheap-model defaults or commercial scale.
+
+## 3.75A — Model Runtime and ruleset compatibility
+
+References: [Model Runtime](MODEL_RUNTIME_BRIEF.md), [Rulesets / Dynamic UI](RULESETS_AND_DYNAMIC_UI_BRIEF.md).
+
+Independently reviewable slices:
+
+- **A1: provider/task boundary and onboarding.** Wrap the existing DmProvider/SummaryProvider seams in a small server adapter/registry; preserve accepted OpenAI behavior. Add approved supported providers only after official capability verification. Global defaults, per-campaign primary and task overrides resolve explicit versioned execution profiles. Unavailable explicit choices pause without fallback. Preserve bounded context, strict schemas, privacy and model provenance.
+- **A1 owner setup:** one ignored `.env.local` in the running checkout; future placeholder-only `.env.example` and narrow Git exception; exact file/variable and simple verified restart instructions. Settings → AI Providers distinguishes configured from successfully tested; explicit synthetic Test Connection with charge disclosure, no calls on page load and no gameplay mutation. Keys never enter campaigns, exports, browser configuration or chat. Routine supported model selection requires no code, HTTP or SQL edits; a new adapter still requires development.
+- **A2: ruleset-neutral foundation.** Separate stable identity/control/capabilities from optional versioned mechanical components. Keep `console-basic-v1` compatibility; do not call it full official D&D 5e. Define Full Ruleset, World Logic and bounded declarative Custom profiles, with code-enforced mechanics and no model-authored executable plugins. Adapt character/inventory/resource views using a finite set of reusable components. Profile conversion is explicit and prospective; old saves and recorded checks remain valid.
+
+Future gate: existing Phase 0–3.5 tests pass unchanged in meaning; configured supported-provider onboarding/selection works without source edits; safe status/Test Connection and no secret leakage; strict unsupported-model rejection/no fallback; World Logic and bounded Custom synthetic campaigns work alongside the house profile; no mandatory HP/d20/class UI; old save compatibility and exact quantities/knowledge remain. At least two actually verified providers are needed before claiming working provider replaceability. Full official 5e coverage must be separately enumerated/tested before advertising it.
+
+## 3.75B — World Library, World Packs and source contracts
+
+Reference: [World Library / World Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md).
+
+- **B1: evidence and authoring foundations.** Preserve original source versions and accurate format-specific locators; owner-scoped reusable packs bind explicitly into campaign-owned records. Bounded resumable compiler passes extract/index entities, relationships, timelines, geography/rules and contradictions, with visible coverage/unknowns. Scratch-world premises are approved authored assumptions. Distinguish fact origin from Memory epistemic status; reuse source-linked invalidation and privacy.
+- **B1 also supplies prerequisites for Lab:** versioned Scenario/Divergence contracts, source priorities, identity mappings, temporal entry anchors and Source Knowledge / Canon at Entry / Character Knowledge / Future Source Events separation. Minimum approved composition contracts cannot wait until E; only their complete UX can.
+- **B2: visual reference associations.** Owner-provided/approved images, versioned entity/location/object bindings and visibility/time/appearance variants through existing Storage/Visual Bible concepts. Manual association is the proposed first scope. No image/video generation or automatic scraping.
+
+Depends on A1 for model-backed compilation and A2's neutral identity/capability contracts. Document/version ingestion can be reviewed before model extraction if explicitly scoped. No real-data import authorization is implied.
+
+Future gate: supported formats retain originals and evidence; malformed/partial extraction reports gaps; contradictory claims and uncertain aliases are not silently resolved; two unrelated campaigns/packs isolate their facts; entry at an earlier source point excludes later outcomes/knowledge; literal crossover and native adaptation are distinguishable; visual references preserve approval/provenance and never reveal later/private appearance. Detailed compiler quality is evaluated separately from parser/schema correctness.
+
+## 3.75C — Bounded World Engine
+
+Reference: [World Engine](WORLD_ENGINE_BRIEF.md).
+
+Stable entity/faction Actor references, persistent Threads (including clocks/deadlines) and immutable validated Events. Select due work in code on meaningful in-world triggers; zero requests for no-op/deterministic cases. Different bounded Low/Moderate/High scopes, fair warning and hard deadlines, explicit On/Off behavior, bounded causal catch-up and no wall-clock progression. Extend the existing pending turn to stage and atomically commit player/world settlement, preserving input/dice on failure. Index committed events via existing Memory. Add world record families with versioned manifest compatibility; preserve accepted v1 saves.
+
+Depends on A1/A2; source-grounded use also depends on B contracts. A tightly scoped synthetic existing-campaign engine can be reviewed without waiting for every source format. Initial workload ceilings are proposed in the brief and must be tested for correctness, not treated as a cost-saving mandate.
+
+Future gate: time/no-op/autonomy/deadline/fair-warning behavior, long skips stopping honestly at evaluated horizons, no autonomous PC decisions, duplicate/failed/stale settlement without partial mutation/reroll, private events/actor knowledge isolation, exact old/new save restore and source invalidation. World/Мир → Live World is public-only and bilingual/mobile. No agent-per-NPC, full economy or continuous simulator.
+
+## 3.75D — World Lab / What If and parallel realities
+
+Reference: [World Lab / What If](WORLD_LAB_WHAT_IF_BRIEF.md).
+
+- **D1: detached branch foundation.** Extend the accepted vault/manifests and timeline identities with simulation purpose, detached authorized reads, immutable append/branch-head compare-and-swap, per-run lease/expected-head fencing and pinned complete comparison inputs. Never simulate by changing the live active projection. Current active-epoch fencing alone is insufficient. Prove these mechanics with deterministic synthetic fixtures before model runs.
+- **D2: one run, then 2–3 independent models.** NON-CANON finite-horizon experiments using approved Scenario/Divergence contracts and World Engine state. Coherent intermediate checkpoints, independent concurrent requests/failures, safe pause/retry/cancel and provenance. Compare public shared outcomes and major divergences at matched horizons; no winner or accuracy guarantee. Continue from another model's checkpoint by creating children. Use simple durable jobs in the existing app/Postgres, no orchestration platform.
+
+Depends on A model policy/budgets, B minimum source/entry/scenario contracts and C world settlement. Extend existing MemoryStore/TurnStore adapters for detached inputs without creating another retrieval system. New source/correction invalidation and old-manifest compatibility must be tested before concurrent execution.
+
+Future gate: 1–3 identical-base runs progress independently without live/sibling contamination; one provider failure does not stop others; stable divergence, bounded workload, correct source/epoch/lease rejection and no private comparison/count leakage; old saves remain loadable; Model-A checkpoint continued by A/B/C retains exact ancestry and provenance. Separately authorize paid quality evaluation only after deterministic/security gates.
+
+## 3.75E — Enter This World, canon-character control and composition UX
+
+References: [World Lab](WORLD_LAB_WHAT_IF_BRIEF.md), [World Library](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md), [Rulesets](RULESETS_AND_DYNAMIC_UI_BRIEF.md).
+
+Enter a coherent intermediate checkpoint as the current PC, an existing canon/simulated person or a new original character. Validate exact state and missing details, profile mappings and knowledge, create a playable child and activate through existing safety-save/fork/epoch mechanisms. Preserve original and simulation history. Transfer branch-local control on an existing identity; never autonomously decide for that PC. Support Original Character / Existing Canon Character creation with precise continuity anchors and agency after entry. Finish natural-language scenario composition UX for literal crossover/native adaptation over the already implemented contracts.
+
+Depends on A2, B entry/contracts and D structured checkpoints, not generated prose. Missing playable fields require explicitly approved supplements; incompatible pending checks or mappings pause safely. No history rewrite or branch merge. Selecting a ruleset defines future mechanics, not past world truth.
+
+Future gate: intermediate exact-state promotion, atomic/idempotent failure/retry, coherent session start/resume, no duplicate character, no source-future/sibling/private leak, no autonomous PC actions, no changes to original/simulation manifests, and faithful profile-driven sheets/inventory across synthetic fantasy, literary and historical worlds. Model-training knowledge leakage remains a measured limitation, not a solved theorem.
+
+## Shared review and verification policy
+
+Before any slice starts, agree on the smallest contract/schema extension and file ownership, with one migration owner if development workers are separately authorized. Do not independently redefine timeline identity, Memory authority or mutation semantics. Retain immutable originals and documented legacy readers; back up local data before future schema changes. Do not silently convert legacy private prose into structured facts.
+
+Each authorized implementation slice runs typecheck, lint, relevant tests and production build, then appropriate populated-local storage/Auth/privacy and English/Russian desktop/mobile checks. Keep deterministic tests, live-provider quality evaluations and owner/browser acceptance separate. Use synthetic worlds and private markers until real import is separately authorized. Finite evaluations do not prove perfect memory, causality, recovery or branching. A documentation pass runs documentation-safe checks only and must not claim runtime verification.
+
+Physical iPhone/Safari and the optional historical Phase 1 conflict-rebase confirmation remain unverified; no hosted deployment or real campaign/private-data acceptance has occurred. Those boundaries carry forward. Stop at each readiness gate for explicit owner acceptance.
+
+## Remaining owner decisions — proposed defaults, not blockers to this design pass
+
+| Decision | Proposed choice for review |
+| --- | --- |
+| Phase/sub-phase names and order | Keep 3.75 A–E, with A1/A2, B1/B2 and D1/D2 independently scoped; minimal scenario/entry contracts in B before full UX in E |
+| Canon continuation strictness | Canon before entry, emergent future; any future constraint explicitly approved and subordinate to player agency |
+| Imported-world ruleset default | World Logic unless the owner requests a particular supported tabletop/custom profile |
+| Live World visibility and Off/re-enable behavior | Known developments/warnings only; no hidden progression while Off and explicit reconciliation when re-enabled |
+| Visual association scope | Manual approval first; automatic association suggestions a later reviewed addition |
+| Default Lab run count | One, with explicit comparison selecting two or three |
+| Initial providers/models and task policy | Owner's strongest configured primary inherited by all tasks; explicit overrides, verified adapters, no automatic fallback |
+| First full/custom ruleset breadth | Preserve house-profile compatibility; separately agree on complete ruleset coverage and the initial bounded custom primitives |
+
+The owner already requires nontechnical onboarding and secret-free campaign settings; those are fixed design requirements, not optional choices in this table. No answer is required to finish the documentation; implementation waits for a new scoped instruction after review.
+
+---
+
 # MILESTONE 4 — FRAME + VISUAL BIBLE
+
+Future separately authorized media phase. Reuse approved World Pack/Visual Bible reference associations and the shared model capability/selection boundary if implemented; do not create a competing asset registry. No FRAME work is authorized by Phase 3.75 design.
 
 Goal:
 Scene images feel consistent.
@@ -281,7 +373,7 @@ Build:
 - Set as Canon Reference
 
 Acceptance:
-- 5 generated James scenes look recognizably consistent
+- 5 generated scenes of the selected synthetic/authorized character look recognizably consistent; real James material requires separate import permission
 - hidden NPC/secret details never appear
 - failed generation does not affect game
 
@@ -292,6 +384,8 @@ Suggested prompt:
 ---
 
 # MILESTONE 5 — VIDEO
+
+Future separately authorized phase; reuse approved source-grounded character/location/object references and shared provider selection without exposing private appearances or duplicating the asset system.
 
 Goal:
 One click turns a scene into a short cinematic clip.
@@ -331,7 +425,7 @@ Add only after core system is stable:
 - travel route polish
 - global search
 - export/import
-- restore snapshot
+- backup recovery/export UX integrated with existing Saves/Timelines; no second historical rollback engine
 - accessibility
 - mobile refinements
 - subtle animations
