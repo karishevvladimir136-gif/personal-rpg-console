@@ -4,7 +4,21 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
-**PHASE 3.5 READY FOR OWNER ACCEPTANCE — Save / Load / Timeline Forks.** Implementation and the available required verification gates are complete. Owner acceptance is pending; this record does not grant it. Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`, plus all earlier accepted checkpoints. No World Engine, Phase 4, deployment or real campaign/private import.
+**PHASE 3.5 OWNER-APPROVED — Save / Load / Timeline Forks.** The owner explicitly accepted implementation checkpoint `8099e0cca1463f767476190c456d4f3947e7c84e` on September 18, 2026. This acceptance is separate from the implementation verification recorded below and does not claim additional testing. Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`, plus all earlier accepted checkpoints.
+
+## Phase 3.5 owner-acceptance record
+
+This status-only acceptance commit changes **only DEV_STATUS.md in the isolated phase35-lead checkout**. Application code, migrations, runtime, tests, configuration, Phase 3/3.5 contracts, save/timeline data and synthetic fixtures are unchanged. Tests, typecheck, lint, production build, live integration and browser checks were not rerun for this documentation-only acceptance. Verification is limited to the exact checkpoint, single-file diff, preserved verification text and original-document hashes. All implementation results below belong to the accepted implementation checkpoint.
+
+All disclosed limitations and verification boundaries remain in effect:
+
+- Physical iPhone/Safari remains unverified.
+- The historical optional Phase 1 conflict-rebase confirmation remains unverified.
+- Finite synthetic tests do not guarantee perfect branching, memory isolation or universal recovery.
+- No hosted deployment or real campaign/private-data acceptance has occurred.
+- The original checkout's pre-existing uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md remain byte-for-byte untouched. They are not staged, overwritten, reconciled or attributed to Phase 3.5; their recorded hashes are checked for this acceptance commit as well.
+
+This acceptance authorizes no further implementation. Do not begin World Engine, Phase 4, FRAME, VIDEO, deployment or real campaign/private-data import. Stop after committing and pushing this acceptance record.
 
 ## Phase 3.5 completed work
 
@@ -58,9 +72,9 @@ The original checkout's uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md were 
 
 ## Phase 3.5 remaining work and recommended next step
 
-No required available implementation or verification gate remains open. **Owner review and explicit acceptance remain pending.** Open **http://127.0.0.1:3001/campaigns** with Docker Desktop running, select a synthetic Phase 3.5 campaign and follow **PHASE3_5_SETUP.md**. The verified production preview remains running on localhost port **3001** from the isolated lead checkout; the original port-3000 preview was left untouched. No manual configuration is required for the prepared preview.
+No required available implementation, verification or owner-acceptance gate remains open. **Explicit owner acceptance is recorded at `8099e0cca1463f767476190c456d4f3947e7c84e`.** The prepared local preview and restart instructions remain in **PHASE3_5_SETUP.md**; preview/runtime state was not changed or reverified for this status-only acceptance.
 
-Stop at **PHASE 3.5 READY FOR OWNER ACCEPTANCE**. Do not self-approve, begin World Engine/Phase 4, deploy or import real campaign/private material.
+**Stop after recording and pushing this acceptance.** Await a separate owner instruction before any further work. World Engine, Phase 4, FRAME, VIDEO, deployment and real campaign/private-data import remain unauthorized.
 
 ## Accepted Phase 3 checkpoint (historical)
 
