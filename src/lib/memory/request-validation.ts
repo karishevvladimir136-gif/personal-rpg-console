@@ -1,4 +1,5 @@
 import { isUuid } from "../persistence/validation.ts";
+import { isTimelineFence } from "../saves/fence.ts";
 import { DmError } from "../gameplay/dm-errors.ts";
 import type {
   ContinueSessionInput,
@@ -34,6 +35,7 @@ export function validateMemoryRequest(
     "campaignId",
     ...(action === "retry" ? [] : ["expectedRevision"]),
     action === "end" ? "sessionId" : "boundaryId",
+    ...(Object.hasOwn(input, "timeline") ? ["timeline"] : []),
   ];
   if (
     Object.keys(input).length !== allowed.length ||
@@ -42,6 +44,8 @@ export function validateMemoryRequest(
     input.campaignId !== campaignId ||
     !isUuid(input.requestId)
   )
+    throw new DmError("validation");
+  if (Object.hasOwn(input, "timeline") && !isTimelineFence(input.timeline))
     throw new DmError("validation");
   if (
     action !== "retry" &&

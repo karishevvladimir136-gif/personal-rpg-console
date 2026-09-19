@@ -18,6 +18,7 @@ import {
   mechanicalNarration,
 } from "./mechanics/messages.ts";
 import { requireRule, safeTurnFailure, TurnError } from "./turn-errors.ts";
+import { requireClaimTimeline, requireTurnTimeline } from "./timeline.ts";
 
 /** Safe text is trusted application copy, never the private-inclusive planner's clarification. */
 export const clarificationNarration = clarificationMessages.en;
@@ -267,7 +268,12 @@ export async function runTurn(
   input: TurnInput,
   dependencies: TurnDependencies,
 ): Promise<PublicTurn> {
-  const current = await dependencies.store.begin(input);
+  const current = requireTurnTimeline(
+    await dependencies.store.begin(input),
+    input.campaignId,
+    input.operationId,
+    input.timeline,
+  );
   if (
     ["committed", "cancelled", "awaiting_confirmation"].includes(
       current.status,
@@ -279,21 +285,42 @@ export async function runTurn(
     input.campaignId,
     input.operationId,
   );
-  return claim
+  if (claim)
+    requireClaimTimeline(
+      claim,
+      input.campaignId,
+      input.operationId,
+      input.timeline,
+    );
+  const result = await (claim
     ? execute(claim, dependencies, null)
-    : dependencies.store.getPublic(input.campaignId, input.operationId);
+    : dependencies.store.getPublic(input.campaignId, input.operationId));
+  return requireTurnTimeline(
+    result,
+    input.campaignId,
+    input.operationId,
+    input.timeline,
+  );
 }
 
 export async function resumeTurn(
   command: ResumeInput,
   dependencies: TurnDependencies,
 ): Promise<PublicTurn> {
-  const current = await dependencies.store.getPublic(
+  const current = requireTurnTimeline(
+    await dependencies.store.getPublic(command.campaignId, command.operationId),
     command.campaignId,
     command.operationId,
+    command.timeline,
   );
   if (["committed", "cancelled"].includes(current.status)) return current;
-  if (command.action === "cancel") return dependencies.store.cancel(command);
+  if (command.action === "cancel")
+    return requireTurnTimeline(
+      await dependencies.store.cancel(command),
+      command.campaignId,
+      command.operationId,
+      command.timeline,
+    );
   if (command.action === "retry") {
     if (current.status === "awaiting_confirmation") return current;
     requireRule(current.status !== "failed" || current.canRetry);
@@ -302,7 +329,20 @@ export async function resumeTurn(
     command.campaignId,
     command.operationId,
   );
-  return claim
+  if (claim)
+    requireClaimTimeline(
+      claim,
+      command.campaignId,
+      command.operationId,
+      command.timeline,
+    );
+  const result = await (claim
     ? execute(claim, dependencies, command)
-    : dependencies.store.getPublic(command.campaignId, command.operationId);
+    : dependencies.store.getPublic(command.campaignId, command.operationId));
+  return requireTurnTimeline(
+    result,
+    command.campaignId,
+    command.operationId,
+    command.timeline,
+  );
 }

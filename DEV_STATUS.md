@@ -2,19 +2,65 @@
 
 Last updated: September 18, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
 
-## Current milestone
+## Current milestone and status
 
-**Phase 3.5 — Save / Load / Timeline Forks: authorized; contract checkpoint, implementation not yet started.** Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`. No World Engine, Phase 4, deployment or real campaign/private import.
+**PHASE 3.5 READY FOR OWNER ACCEPTANCE — Save / Load / Timeline Forks.** Implementation and the available required verification gates are complete. Owner acceptance is pending; this record does not grant it. Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`, plus all earlier accepted checkpoints. No World Engine, Phase 4, deployment or real campaign/private import.
 
-## Phase 3.5 coordination checkpoint
+## Phase 3.5 completed work
 
-- Completed: fetched origin/main and inspected the integrated Phase 3 architecture, contracts, memory/runtime paths and migrations 001–007. Three separate-worktree workers supplied read-only architecture reviews; implementation awaits shared-contract acknowledgements and explicit GO.
-- Files/areas changed: PHASE3_5_CONTRACTS.md, lead-owned save DTOs and optional timeline-fence extensions of existing shared contracts, and this status record. No database or gameplay change at this checkpoint.
-- Technical decision: existing active campaign projection plus deduplicated immutable row-version vault and save/head manifests; exact ancestry membership excludes abandoned future state, knowledge and public/private memory. Monotonic activation fences prevent stale browser/provider writes. See PHASE3_5_CONTRACTS.md.
-- Pre-existing owner edits: original checkout DEV_STATUS.md and PHASE3_EVALUATION.md remain byte-for-byte untouched and outside Phase 3.5 commits. Their SHA-256 hashes and isolation handling are recorded in the contract. Work proceeds from the accepted committed documents in .worktrees/phase35-lead; workers use their own phase35-* worktrees. These original edits are not attributed to this milestone or silently reconciled.
-- Verification: read-only architecture review and shared-contract diff review only; no Phase 3.5 runtime, migration, browser or integration gate is claimed passed yet. Previous accepted verification records below remain distinct.
-- Known limitations: implementation is pending; finite tests will not guarantee perfect branching/memory. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified. No hosted/real-data acceptance.
-- Remaining/recommended next step: obtain all contract ACKs, commit the coordination checkpoint, give GO, integrate storage/memory/UI and complete the required deterministic/local Supabase/privacy/browser gates. Update this record with actual results before completion, then commit/push and stop at PHASE 3.5 READY FOR OWNER ACCEPTANCE.
+- Contract/types checkpoint `73d4ab2b7bb38f76aa9528afb68c323a1e674124` was committed first. All three separate-worktree development workers acknowledged that exact checkpoint before GO. The lead integrated storage, memory and UI commits and completed the shared routing, authorization, translation and verification work. Only Worker A changed supabase/**. The product still has one gameplay DM.
+- Dedicated bilingual Saves screen with Save Games and Timelines tabs, Quick Save, named manual saves, bounded autosaves, safety-before-load records, load confirmation and preserved-timeline switching. Desktop placement follows Sessions; mobile uses More and retains five bottom controls. The existing charcoal/bronze design is preserved.
+- Immutable deduplicated record-version manifests restore exact structured state, consumed/equipped/stored items, quests, time/location, rests/encounters/effects, pending operations/checks, effective settings/guidance and public/private memory membership. Loading forks a path; switching restores a preserved head. Neither regenerates narration, replays mutations or rerolls recorded dice.
+- Exact inherited source/version membership excludes abandoned public/private history, summaries, aliases and NPC knowledge before retrieval limits. Phase 3 bounded context and manual-correction authority remain. Explicit campaign-wide canon corrections propagate on activation; branch corrections preserve siblings.
+- Stable request IDs, atomic safety/fork/load/switch, monotonic activation fences and revoked execution leases protect retries and concurrent tabs. Operation IDs used in an abandoned future cannot become fresh actions. Stale provider/job callbacks and browser writes fail closed. Drafts and uncertain requests remain available for explicit review/retry.
+
+## Phase 3.5 files / areas changed
+
+PHASE3_5_CONTRACTS.md; shared save DTOs and timeline envelopes; src/lib/saves/ and src/lib/server/saves/; campaign Saves routes/page; authorized repository/gameplay/memory services and RPC adapters; Phase 3 memory filtering/context/jobs; client draft/recovery providers and Saves UI/navigation/styles; merged Russian strings; migrations 202609190008_phase35_timelines.sql and 202609190009_phase35_fencing.sql; focused Phase 3.5 tests and updated prior compatibility fixtures; synthetic application/privacy acceptance scripts; MASTER_SPEC.md §42, DEVELOPMENT_PLAN.md, PHASE3_5_BRIEF.md, PHASE3_5_SETUP.md and this record. Local environments, credentials, backups, logs, reports and build output remain ignored.
+
+## Phase 3.5 tests and build status
+
+### Automated local verification
+
+- Final Next route type generation, TypeScript check, full ESLint and normal Turbopack production build **passed**. The final build followed live/browser verification; no lint warnings. Worker-local tests were followed by the full integrated gate.
+- Full integrated suite: **303 total, 302 passed, 1 intentionally skipped, 0 failed**. The skip is the historical opt-in Phase 1 empty-database seed test; the populated database was not reset or reseeded. HTTP tests targeted the integrated production preview on port 3001. Existing Phase 0–3 regressions passed alongside the new save/branch suites.
+- The final rebuilt production preview also passed all **27 HTTP/route checks**, with no failures or skips.
+- Embedded PostgreSQL executes all committed migrations and production adapters: populated upgrade, immutable saves, Quick Save replacement, bounded retention, exact restoration, active rests/encounters/effects/component provenance, preserved pending dice versus fresh future rolls, stale leases, idempotency, owner/campaign boundaries, correction scopes and global version allocation. Existing upgrade assertions still compare all original gameplay fields; they additionally validate new serving fences. Old memory fixtures now carry the required authorized campaign fence.
+- The production SQL branch test adds **1,000 later events**, processes **at least 42 bounded memory batches**, forks repeatedly and returns to preserved heads. Exact mechanics and original public/private summaries return on the old timeline; abandoned secrets, NPC knowledge and summaries remain absent on the fork. The old promise remains retrievable below the existing **64,000** operational input cap. A separate mixed-history retrieval test rejects stale/sibling sources and nested references.
+
+### Populated disposable local Supabase and application verification
+
+- Created an ignored local database backup before applying committed migrations 008–009 atomically, without reset. All **40 pre-existing table row counts and content fingerprints matched exactly before/after migration**. Eight existing synthetic campaigns and their accounts/history were preserved, with one root timeline backfilled per campaign. The backup is 922,432 bytes; SHA-256 `FDE0E6815BC33FD7EF1D65DF6D4F8A5B5A559C50C529F253AB9F0339533A9867`.
+- Appended only two unrelated fixtures: **Synthetic Phase 3.5 · Amber Observatory** and **Synthetic Phase 3.5 · Silver Current**. Real Auth/API acceptance passed **11 scenario groups**, covering manual/quick/replacement, safety/fork/switch, exact restored state and public/private/NPC/summary boundaries, duplicate and stale writes, saved pending dice/new future check identity, effective settings/guide restoration with new immutable versions, canon/branch corrections, logout/relogin and unrelated-campaign isolation.
+- Anonymous/non-owner access, direct ordinary-owner privileged RPC/private-schema access, cross-campaign requests and foreign-origin writes were denied. The main harness inspected **199 ordinary API responses, six authenticated HTML pages and 20 production client bundles**, with no synthetic private marker exposed.
+- A final read-only privacy pass inspected **11 additional Auth/API/error responses, 12 authenticated HTML pages, all 20 final client bundles and six ordinary application stdout/stderr logs**. No synthetic canary, server credential name or configured secret value appeared. Save/Timeline DOM checks also contained no canary. No real private material was used.
+- **Zero OpenAI calls** during Phase 3.5 implementation acceptance. Deterministic synthetic fixture packets and source selections exercise the persistence/runtime boundary without inventing product replies or making paid model requests. The final preview retains the existing local provider configuration; no new key or model change is required.
+
+### Browser verification actually performed
+
+- Created manual saves, loaded a new named path, verified the safety/preserved-timeline UI, and switched back to the original timeline. English and Russian save titles persist after refresh.
+- In a second tab, an unsaved character description survived a timeline change and its stale save control was blocked. This is a real two-tab browser check, separate from API/SQL conflict tests.
+- Deliberately stopped only the temporary localhost test server, submitted a manual save and verified the title and original request were retained. Restarted it, chose **Retry same request**, observed exactly one resulting save card, then refreshed successfully. The ordinary error revealed no private detail.
+- Changed and saved the synthetic campaign's autosave policy, confirmed its persisted values and restored the defaults. Saved Russian through General Settings and confirmed it across navigation; restored English afterward.
+- Inspected **both tabs in English and Russian at desktop, 390px and 320px**, including narrow Save Games controls, timeline cards and mobile More navigation. No horizontal overflow; no sixth permanent bottom item. Restored the normal viewport. This is desktop browser resizing, not physical-device verification.
+
+## Phase 3.5 key decisions and known limitations
+
+- One existing active campaign projection, a private immutable row-version vault and exact manifests avoid copying the entire database per save. Atomic reads prevent mixed snapshots during activation. Technical revision/lease/fence rebinding never changes recorded outcomes or mechanics.
+- Campaign identity, global preferences, ordinary canon/reference documents, feedback history and immutable document/settings histories remain outside historical rollback. Saved effective settings/guide versions control future play; new edits allocate versions above all preserved siblings. Feedback is never world history.
+- Default autosaves occur at successful session boundaries, with **15** recent slots per timeline (configurable **10–20**, or off). Optional turn autosaves exclude feedback/OOC. Retention bounds the visible recent slots; immutable history referenced by saves/branches is preserved, so storage can grow. This is not a backup/export system.
+- If campaign-wide canon changed after a saved unresolved proposal was generated, loading that stale proposal fails atomically instead of silently treating it as current. Input, checks and old history remain preserved; the app does not rebuild a plan, reroll or call AI merely to load. Owner recovery bypasses only soft policy, never consistency or authorization.
+- Physical iPhone/Safari remains unverified. The optional historical Phase 1 conflict-rebase confirmation remains unverified; the new timeline stale-draft check is a different test. Finite synthetic branching/model evaluations are not a guarantee of perfect memory or universal recovery. No hosted deployment or real campaign/private-data acceptance has occurred.
+
+## Preserved pre-existing owner edits
+
+The original checkout's uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md were preserved **byte-for-byte**, not staged, overwritten, attributed to this milestone or silently reconciled. Their original SHA-256 values were rechecked after implementation and browser verification and still match the record in PHASE3_5_CONTRACTS.md. Phase 3.5 uses the accepted committed documents in **.worktrees/phase35-lead** and separate worker checkouts. The original dirty main checkout remains at its prior accepted commit; the integrated lead branch is pushed safely to origin/main without modifying it or force-pushing. Deliberate reconciliation of those unrelated local edits remains separate from this milestone.
+
+## Phase 3.5 remaining work and recommended next step
+
+No required available implementation or verification gate remains open. **Owner review and explicit acceptance remain pending.** Open **http://127.0.0.1:3001/campaigns** with Docker Desktop running, select a synthetic Phase 3.5 campaign and follow **PHASE3_5_SETUP.md**. The verified production preview remains running on localhost port **3001** from the isolated lead checkout; the original port-3000 preview was left untouched. No manual configuration is required for the prepared preview.
+
+Stop at **PHASE 3.5 READY FOR OWNER ACCEPTANCE**. Do not self-approve, begin World Engine/Phase 4, deploy or import real campaign/private material.
 
 ## Accepted Phase 3 checkpoint (historical)
 

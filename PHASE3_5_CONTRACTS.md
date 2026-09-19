@@ -6,6 +6,8 @@ Owner-authorized after Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb193
 
 The lead inspected the integrated Phase 3 source/index/context/checkpoint/runtime paths and migrations 001–007. Three workers provided read-only reviews before this decision. No worker implements until this contract and concrete shared DTOs are committed, all workers acknowledge the exact checkpoint, and the lead sends GO. Contract/schema changes require lead agreement. Workers commit locally and never push or modify the running database.
 
+Gate completed: contract/types checkpoint `73d4ab2b7bb38f76aa9528afb68c323a1e674124` was committed first. A, B and C explicitly acknowledged that exact checkpoint before the lead sent each GO. Initial type generation/typecheck and the contract diff passed. The following agreed wrapper details and minimal UI ownership expansion clarify implementation without changing the contract.
+
 Original checkout remains at the accepted checkpoint with pre-existing, uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md edits. They are not Phase 3.5 work, are not discarded, staged or copied into implementation commits. Lead and workers use separate `.worktrees/phase35-*` checkouts from fetched origin/main. Original file SHA-256 values: DEV_STATUS `ED3E5A3F2CC63E9E3D0191111F518BA839F0AE8698CF4D67B20F258306C64A7B`; evaluation `4258D581FD8570BB4B194EDA95170CBDDA1F05359B334E6A48865879092A46E0`. Recheck before completion; document deliberate handling in DEV_STATUS. Push the integrated lead branch to main safely; do not overwrite the original dirty checkout to update it.
 
 | Owner | Exclusive implementation ownership |
@@ -16,6 +18,8 @@ Original checkout remains at the accepted checkpoint with pre-existing, uncommit
 | C — UI | New `src/components/persistent-saves.tsx`, `src/app/saves.css`; `src/lib/saves/{client,client-state,navigation}.ts`; persistent-shell/ui icons; persistence-context, gameplay runtime/composer and client draft/journal modules, session-memory provider/client modules as needed for timeline cache/draft boundaries; `src/lib/locales/phase35-c-ru.json`; `tests/phase35-ui*.mjs` |
 
 C coordinates edits to existing components; B never edits client modules; lead alone changes shared DTOs/validators. Only A creates/edits migrations, including lead-requested integration fixes. Integrate A, B, C, then lead changes; focused passes never replace integrated checks.
+
+C also owns the original-draft fence capture in `persistent-records.tsx`, `persistent-documents.tsx`, `persistent-settings.tsx`, `gameplay-configuration.tsx`, `gameplay-turn.tsx` and `session-memory.tsx`. A provider's latest closure alone cannot safely fence a form that was edited before a branch change.
 
 ## Storage decision and immutable identity
 
@@ -65,6 +69,8 @@ A campaign-global canon/restriction generation is outside snapshots. Such a corr
 
 Saved settings and approved guide versions determine restored future play; saved rest/encounter/pending-turn pins keep their original effective values. Session guidance remains scoped to its saved session; normal session Continue expires it as before. Feedback history stays out of gameplay context. No new AI approval behavior.
 
+A canon-generation change also makes a previously generated unresolved proposal unsafe: do not mark its cached plan/resolution/narration current by rebinding revisions. If the target contains such a non-feedback pending proposal, reject activation atomically with a neutral conflict before creating safety/new-branch records. Preserve its input/checks/history; do not erase a checkpoint, reroll or call AI to manufacture coherence. Targets without that stale pending proposal can receive the normal global-canon overlay. An operation UUID used in an abandoned future remains reserved outside the active projection; it cannot become a fresh future operation by attaching a new fence.
+
 ## Saves, policy and navigation
 
 One current Quick Save pointer per timeline; replacement leaves prior immutable record intact. Unlimited practical manual saves with owner titles. Autosave policy is campaign-level and not rolled back: `autosave: off | session | turn`, default `session`; retention integer 10–20, default 15; `loadMode: unrestricted | checkpoints | restricted`, default `unrestricted`. Session triggers are successful END/new-session Continue; optional turn trigger is committed non-feedback/non-OOC gameplay only, deduplicated by source operation/boundary. No autosave from polling/render/provider request. Retention bounds the visible/eligible recent autosave slots; never destroys original version history needed by branches/saves.
@@ -78,6 +84,8 @@ Load confirmation states that current timeline is preserved and a safety save is
 ## Shared interfaces and verification
 
 Lead-owned `src/lib/saves/contracts.ts` and `server-contracts.ts` define DTOs and `SaveStore`. Service-only RPC `rpg_saves(p_owner_id,p_campaign_id,p_action,p_payload)` handles read/create/load/switch/policy and an internal fence/atomic public campaign snapshot read. Lead routes GET `/api/campaigns/[id]/saves`, POST `/saves/{create,load,switch,policy}`. New saves commands include requestId, campaignId, timeline, expectedRevision (runtime), expectedSavesRevision (catalog) and strict action-specific fields. Results include snapshot plus affected save/timeline/safety IDs, never private data. A and lead agree any wrapper argument amendments before code.
+
+Agreed RPC wrappers: `rpg_runtime` and `rpg_memory` retain owner/campaign/action/payload arguments and add `p_timeline jsonb default null`; `rpg_apply_mutation` retains its five arguments and adds `p_timeline jsonb default null, p_correction_scope text default null`. No older public bypass overload remains. Adapters remove these envelope fields from legacy payloads. Provided fences are checked even on reads; omitted read fences mean the current authorized snapshot, omitted write fences are allowed only by the untouched-root compatibility rule above. HTTP campaign writes require a valid incoming fence. Server turn/memory factories accept `(ownerId, suppliedClient?, timeline?)` and bind callbacks once; they never replace stale client fences with newly fetched ones.
 
 Required gates: unchanged prior regressions; populated Phase 3 migration/backfill; manual/quick/replacement; autosave retention and zero provider calls; safety/atomic load/fork/switch; exact HP/resources/equipment/storage/quests/time/location/rest/encounter/provenance; saved pending roll reused versus genuinely new future roll; source/public/private/summary/NPC knowledge ancestry; sibling isolation; explicit global versus branch correction; stale/duplicate requests, provider/job fencing, two-tab concurrency and relogin. Long-history test includes >=1,000 events with repeated forks and bounded Phase 3 retrieval. Synthetic canaries must be absent from public Save/Timeline/API/HTML/JS/errors/ordinary logs. Full typegen/typecheck/lint/tests/build, backed-up populated local Supabase/Auth/privacy and desktop/390px/320px English/Russian browser checks are separate gates. No new paid evaluation merely to save/load. Do not weaken old tests.
 

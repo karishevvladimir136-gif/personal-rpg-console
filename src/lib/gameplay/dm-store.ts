@@ -1,11 +1,14 @@
 import type { TurnStore } from "./server-contracts.ts";
 import { DmError } from "./dm-errors.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
+import { isTimelineFence, sameTimeline } from "../saves/fence.ts";
 
 export type RuntimeRpc = (args: {
   p_owner_id: string;
   p_campaign_id: string;
   p_action: string;
   p_payload: unknown;
+  p_timeline?: TimelineFence;
 }) => Promise<{
   data: unknown;
   error?: { message?: string; code?: string } | null;
@@ -14,6 +17,7 @@ export function createRpcTurnStore(
   ownerId: string,
   execute: RuntimeRpc,
   model: string | null = null,
+  timeline?: TimelineFence,
 ): TurnStore {
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
@@ -25,13 +29,28 @@ export function createRpcTurnStore(
     action: string,
     payload: unknown = {},
   ): Promise<T> {
+    const body =
+      payload && typeof payload === "object"
+        ? (payload as Record<string, unknown>)
+        : {};
+    const { timeline: payloadTimeline, ...legacyPayload } = body;
+    if (
+      payloadTimeline !== undefined &&
+      (!isTimelineFence(payloadTimeline) ||
+        (timeline && !sameTimeline(timeline, payloadTimeline)))
+    )
+      throw new DmError("conflict");
+    const fence =
+      timeline ??
+      (isTimelineFence(payloadTimeline) ? payloadTimeline : undefined);
     let response: Awaited<ReturnType<RuntimeRpc>>;
     try {
       response = await execute({
         p_owner_id: ownerId,
         p_campaign_id: campaignId,
         p_action: action,
-        p_payload: payload,
+        p_payload: legacyPayload,
+        ...(fence ? { p_timeline: fence } : {}),
       });
     } catch (error) {
       if (error instanceof DmError) throw error;

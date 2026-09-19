@@ -181,6 +181,7 @@ test("Phase 3 PostgreSQL memory lifecycle, visibility and exact pending resume",
       "database text search filters visibility and knowledge before old-obligation ranking",
       async () => {
         const request = {
+          timeline: (await store.read(cid)).timeline,
           campaignId: cid,
           visibility: "public",
           actorIds: [],
@@ -213,8 +214,13 @@ test("Phase 3 PostgreSQL memory lifecycle, visibility and exact pending resume",
         });
         assert.equal(privateBatch.sources.length, 1);
         assert.equal(
-          (await store.search({ ...request, campaignId: other })).sources
-            .length,
+          (
+            await store.search({
+              ...request,
+              campaignId: other,
+              timeline: (await store.read(other)).timeline,
+            })
+          ).sources.length,
           0,
         );
         const expanded = expandRetrievalRequest(
@@ -739,6 +745,7 @@ test("Phase 3 PostgreSQL memory lifecycle, visibility and exact pending resume",
           expectedRevision: (await runtime(other, "play")).revision,
           mode: "game",
           input: "What did Neri promise about the blue lantern?",
+          timeline: (await store.read(other)).timeline,
           companionId: null,
           listenerIds: [],
           mechanic: null,

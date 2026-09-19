@@ -4,10 +4,12 @@ import { createRpcTurnStore } from "../../gameplay/dm-store.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { modelBudget } from "../../gameplay/dm-context.ts";
 import { modelReasoning } from "./config.ts";
+import type { TimelineFence } from "../../saves/contracts.ts";
 
 export function createTurnStore(
   ownerId: string,
   suppliedClient?: SupabaseClient,
+  timeline?: TimelineFence,
 ) {
   let client = suppliedClient;
   let model: string | null = null;
@@ -41,5 +43,6 @@ export function createTurnStore(
       return await client.rpc("rpg_runtime", args);
     },
     model,
+    timeline,
   );
 }

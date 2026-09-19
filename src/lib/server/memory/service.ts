@@ -21,6 +21,7 @@ export async function mutateMemory(
   action: "end" | "continue" | "retry",
   value: unknown,
 ) {
+  const { user } = await authorizeCampaign(campaignId);
   const input =
     action === "end"
       ? validateMemoryRequest(value, campaignId, "end")
@@ -28,7 +29,7 @@ export async function mutateMemory(
         ? validateMemoryRequest(value, campaignId, "continue")
         : validateMemoryRequest(value, campaignId, "retry");
   if (!input.timeline) throw new DmError("validation");
-  const store = await authorizedMemory(campaignId, input.timeline);
+  const store = createMemoryStore(user.id, undefined, input.timeline);
   const snapshot =
     action === "end"
       ? await store.end(validateMemoryRequest(value, campaignId, "end"))

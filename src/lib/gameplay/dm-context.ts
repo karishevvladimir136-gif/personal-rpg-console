@@ -12,6 +12,7 @@ import { DmError } from "./dm-errors.ts";
 import { planSchema, narrationSchema, feedbackSchema } from "./dm-schema.ts";
 import { basicProfile } from "./mechanics/profile.ts";
 import { projectMemory } from "../memory/projection.ts";
+import { requireSourceTimeline } from "./timeline.ts";
 
 // Only validated, player-visible state fields may inform final narration.
 // Never serialize an entire resolution: it may also contain check/action metadata.
@@ -119,6 +120,11 @@ export function buildContext(
     budget?: ModelBudget;
   },
 ): BuiltContext {
+  try {
+    requireSourceTimeline(source, request.timeline);
+  } catch {
+    throw new DmError("context");
+  }
   const budget = options.budget ?? modelBudget(options.model);
   const inputBudget = Math.min(
     budget.inputCap,

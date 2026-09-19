@@ -1,4 +1,5 @@
 import type { Mutation } from "./contracts.ts";
+import { isTimelineFence } from "../saves/fence.ts";
 
 export class ValidationError extends Error {
   readonly code = "validation";
@@ -211,13 +212,20 @@ export function validateMutation(value: unknown): Mutation {
   );
   const op = input.operation;
   const scoped = !["campaign.create", "preferences.save"].includes(op);
-  fields(input, [
-    "requestId",
-    "expectedRevision",
-    "operation",
-    "payload",
-    ...(scoped ? ["campaignId"] : []),
-  ]);
+  fields(
+    input,
+    [
+      "requestId",
+      "expectedRevision",
+      "operation",
+      "payload",
+      ...(scoped ? ["campaignId"] : []),
+    ],
+    scoped ? ["timeline", "correctionScope"] : [],
+  );
+  if (input.timeline !== undefined) assert(isTimelineFence(input.timeline));
+  if (input.correctionScope !== undefined)
+    enumeration(input.correctionScope, ["campaign", "timeline"]);
   uuid(input.requestId);
   number(input.expectedRevision, 0, 2_147_483_646);
   if (scoped) uuid(input.campaignId);

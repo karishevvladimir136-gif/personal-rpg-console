@@ -250,11 +250,15 @@ Detailed implementation and acceptance (MASTER_SPEC section 38):
 
 ---
 
-# MILESTONE 3.5 — SAVE / LOAD / TIMELINE FORK (QUEUED)
+# MILESTONE 3.5 — SAVE / LOAD / TIMELINE FORKS (AUTHORIZED)
 
-Design only: [PHASE3_5_BRIEF.md](PHASE3_5_BRIEF.md), including the dedicated Saves / Сохранения navigation and Save Games / Timelines tabs. Implement only after Phase 3 passes all gates, the owner explicitly accepts Phase 3, and the owner separately authorizes Phase 3.5. Do not redirect active Phase 3 work or add speculative timeline schema now.
+The owner explicitly accepted Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` (acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`) and separately authorized this milestone. Follow [PHASE3_5_BRIEF.md](PHASE3_5_BRIEF.md) and the committed [PHASE3_5_CONTRACTS.md](PHASE3_5_CONTRACTS.md). One lead plus three separate-worktree development workers acknowledged the concrete shared contracts before GO; only the storage worker edits migrations. Preserve all earlier checkpoints and the original checkout's pre-existing documentation edits exactly, outside milestone commits.
 
 Use immutable save points and preserved timeline forks, exact state/private continuity, source-linked memory ancestry filters, bounded autosaves and safety-before-load recovery. Dedicated desktop ordering is Library → Gallery → Sessions → Saves → Campaign Settings; mobile uses More. Full implementation/verification gates remain in the brief. Phase 4, deployment and real imports remain unauthorized.
+
+Build exact deduplicated record-version manifests over the existing active campaign projection, a stable timeline identity and monotonic activation epoch, atomic safety/fork/load/switch, Quick Save pointer replacement and default 15-slot bounded autosaves. Restore effective settings/guidance and pending operation/check results without replay or new AI calls. Fence every write and job; preserve drafts and reject stale two-tab submissions. Scope source/summary/checkpoint/alias/NPC knowledge to exact inherited membership before retrieval limits. Campaign-wide canon corrections remain effective across restored branches; timeline corrections preserve sibling history. No second memory system, branch simulation or graph UI.
+
+Acceptance: run full Phase 0–3 regressions and new save/branch suites; upgrade a backed-up populated local Phase 3 database without resetting data; verify real Auth, owner/campaign/private denial, exact state and recorded dice, correction scope, idempotency/concurrency, failure recovery, logout/relogin and absence of private canaries in public APIs/HTML/JS/logs. Include repeated forks over at least 1,000 events while retaining bounded Phase 3 context. Verify English/Russian desktop, 390px and 320px in the browser. Run final type generation/typecheck/lint/tests/production build. Report deterministic versus live/browser evidence and remaining limitations separately. Commit/push and stop at PHASE 3.5 READY FOR OWNER ACCEPTANCE, never self-approval. No World Engine, Phase 4, deployment or real import.
 
 ---
 

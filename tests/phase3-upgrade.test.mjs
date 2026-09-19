@@ -6,6 +6,21 @@ import { createGameplayFixtures } from "../scripts/gameplay-acceptance-helpers.m
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
 import { runTurn } from "../src/lib/gameplay/turn-engine.ts";
+import { isTimelineFence } from "../src/lib/saves/fence.ts";
+
+// Phase 3.5 adds serving metadata; every pre-existing gameplay field must still match exactly.
+function withoutServingFence(value, expectedFence) {
+  if (Array.isArray(value))
+    return value.map((row) => withoutServingFence(row, expectedFence));
+  if (!value || typeof value !== "object") return value;
+  if (Object.hasOwn(value, "timeline"))
+    assert.deepEqual(value.timeline, expectedFence);
+  return Object.fromEntries(
+    Object.entries(value)
+      .filter(([key]) => key !== "timeline")
+      .map(([key, child]) => [key, withoutServingFence(child, expectedFence)]),
+  );
+}
 
 test("migration upgrades populated Phase 2 history without changing exact state or inventing knowledge", async () => {
   const db = new PGlite();
@@ -94,8 +109,16 @@ test("migration upgrades populated Phase 2 history without changing exact state 
     const beforeB = await turns.readPlay(b.campaignId);
     for (const file of files.filter((f) => f >= "202609180005"))
       await db.exec(await readFile(new URL(file, folder), "utf8"));
-    assert.deepEqual(await turns.readPlay(a.campaignId), before);
-    assert.deepEqual(await turns.readPlay(b.campaignId), beforeB);
+    const after = await turns.readPlay(a.campaignId),
+      afterB = await turns.readPlay(b.campaignId);
+    assert.ok(
+      isTimelineFence(after.timeline) && isTimelineFence(afterB.timeline),
+    );
+    assert.equal(after.timeline.epoch, 1);
+    assert.equal(afterB.timeline.epoch, 1);
+    assert.notEqual(after.timeline.timelineId, afterB.timeline.timelineId);
+    assert.deepEqual(withoutServingFence(after, after.timeline), before);
+    assert.deepEqual(withoutServingFence(afterB, afterB.timeline), beforeB);
     const memory = createRpcMemoryStore(owner, rpc("rpg_memory"));
     const selected = await memory.search({
       campaignId: a.campaignId,

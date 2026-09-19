@@ -376,6 +376,10 @@ export function PersistentSaves() {
     setError("");
   };
   const currentTimeline = snapshot?.timelines.find((row) => row.active);
+  const timelineLabel = (timeline: PublicTimeline) =>
+    timeline.parentTimelineId === null && timeline.label === "Main timeline"
+      ? t("Main timeline")
+      : timeline.label;
   const activeSaves =
     snapshot?.saves.filter(
       (row) => row.timelineId === snapshot.timeline.timelineId,
@@ -481,7 +485,7 @@ export function PersistentSaves() {
         <>
           <div className="saves-current">
             <Badge green>{t("Current Timeline")}</Badge>
-            <strong>{currentTimeline?.label}</strong>
+            <strong>{currentTimeline && timelineLabel(currentTimeline)}</strong>
             <Button
               disabled={busy}
               onClick={() => void refresh().catch(() => {})}
@@ -635,7 +639,7 @@ export function PersistentSaves() {
                   <article key={timeline.id} className="saved-game-card">
                     <div className="saved-game-heading">
                       <Icon name="ScrollText" />
-                      <h2>{timeline.label}</h2>
+                      <h2>{timelineLabel(timeline)}</h2>
                     </div>
                     <Badge green={timeline.active}>
                       {t(
@@ -685,7 +689,7 @@ export function PersistentSaves() {
               ? confirmation.save.kind === "manual"
                 ? confirmation.save.name
                 : t(saveKindLabels[confirmation.save.kind])
-              : confirmation.timeline.label}
+              : timelineLabel(confirmation.timeline)}
           </h3>
           <p>
             {t(

@@ -12,6 +12,7 @@ import {
   PersistentSupporting,
 } from "@/components/persistent-game";
 import { PersistentDmChat } from "@/components/persistent-dm-chat";
+import { PersistentSaves } from "@/components/persistent-saves";
 export default async function Page({
   params,
 }: {
@@ -19,6 +20,8 @@ export default async function Page({
 }) {
   const { screen } = await params;
   switch (screen) {
+    case "saves":
+      return <PersistentSaves />;
     case "dm-chat":
       return <PersistentDmChat />;
     case "game":

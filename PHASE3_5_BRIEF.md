@@ -1,6 +1,6 @@
-# Queued Phase 3.5 — Save / Load / Timeline Fork
+# Phase 3.5 — Save / Load / Timeline Fork
 
-Design brief only. No implementation is authorized until Phase 3 is complete, all its gates pass, the owner explicitly accepts Phase 3, and the owner separately authorizes Phase 3.5. Current Phase 3 workers and contracts are unchanged.
+Now explicitly authorized after Phase 3 owner acceptance at implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0`, recorded in `96964964a7d5046ff34b6b6ae695ecf494885cc4`. The original queued brief below is preserved as the requirement history; its prerequisite stop is satisfied by that acceptance and the separate Phase 3.5 authorization. Follow PHASE3_5_CONTRACTS.md for the inspected architecture, concrete shared interfaces, worker ownership and acceptance gates. No later phase, World Engine, deployment or real-data import is authorized.
 
 ## Campaign navigation clarification
 

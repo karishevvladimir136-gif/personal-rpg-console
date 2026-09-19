@@ -16,6 +16,9 @@ import {
 import { requireOwner } from "./auth";
 import { databaseError, PersistenceError } from "./errors";
 import { collectPages } from "./pagination";
+import { authorizeCampaign } from "./campaign-authorization";
+import { createSaveStore } from "./saves/store";
+import { isTimelineFence } from "../saves/fence";
 
 // Explicit projections are a privacy boundary. Adding a database column never exposes it by default.
 const base = "id,campaign_id,revision,updated_at";
@@ -82,73 +85,11 @@ export async function readWorkspace(): Promise<Workspace> {
 export async function readCampaign(
   campaignId: string,
 ): Promise<CampaignSnapshot> {
-  id(campaignId);
-  const { client } = await requireOwner();
-  const campaign = await client
-    .from("rpg_campaigns")
-    .select(columns.campaigns)
-    .eq("id", campaignId)
-    .maybeSingle();
-  if (campaign.error) throw databaseError(campaign.error);
-  if (!campaign.data) throw new PersistenceError("not_found");
-  const names = [
-    "settings",
-    "settings_revisions",
-    "documents",
-    "entities",
-    "storages",
-    "items",
-    "sessions",
-    "scenes",
-    "public_state",
-    "quests",
-    "locations",
-    "assets",
-    "dm_feedback",
-    "dm_guides",
-  ] as const;
-  const results = await Promise.all(
-    names.map((name) =>
-      rows(
-        client,
-        `rpg_${name}`,
-        columns[name],
-        { campaign_id: campaignId },
-        name === "settings_revisions"
-          ? "revision"
-          : name === "settings" ||
-              name === "public_state" ||
-              name === "dm_guides"
-            ? "campaign_id"
-            : name === "scenes" || name === "dm_feedback"
-              ? "sequence"
-              : "id",
-      ),
-    ),
-  );
-  const data = Object.fromEntries(
-    names.map((name, index) => [name, results[index]]),
-  );
-  if (!data.settings?.[0] || !data.public_state?.[0] || !data.dm_guides?.[0])
-    throw new PersistenceError("unavailable");
-  return {
-    campaign: campaign.data,
-    settings: data.settings[0],
-    settingsHistory: data.settings_revisions,
-    documents: data.documents,
-    entities: data.entities,
-    storages: data.storages,
-    items: data.items,
-    sessions: data.sessions,
-    scenes: data.scenes,
-    publicState: data.public_state[0],
-    quests: data.quests,
-    locations: data.locations,
-    assets: data.assets,
-    feedback: data.dm_feedback,
-    dmGuideDocumentId: data.dm_guides[0].document_id,
-  } as unknown as CampaignSnapshot;
+  const { user } = await authorizeCampaign(campaignId);
+  // One database snapshot prevents mixing rows from opposite sides of activation.
+  return createSaveStore(user.id).campaign(campaignId);
 }
+
 export async function readDocumentVersions(
   campaignId: string,
   documentId: string,
@@ -183,12 +124,17 @@ export async function applyMutation(value: unknown): Promise<MutationResult> {
       throw new PersistenceError("validation");
     throw error;
   }
+  if ("campaignId" in input && !isTimelineFence(input.timeline))
+    throw new PersistenceError("validation");
   const result = await client.rpc("rpg_apply_mutation", {
     p_request_id: input.requestId,
     p_operation: input.operation,
     p_campaign_id: "campaignId" in input ? input.campaignId : null,
     p_expected_revision: input.expectedRevision,
     p_payload: input.payload,
+    p_timeline: "timeline" in input ? input.timeline : null,
+    p_correction_scope:
+      "correctionScope" in input ? input.correctionScope : null,
   });
   if (result.error) throw databaseError(result.error);
   const data = result.data as MutationResult | null;
@@ -197,6 +143,7 @@ export async function applyMutation(value: unknown): Promise<MutationResult> {
   return {
     id: data.id,
     revision: data.revision,
+    ...(isTimelineFence(data.timeline) ? { timeline: data.timeline } : {}),
     ...(data.campaign_id ? { campaign_id: data.campaign_id } : {}),
   };
 }

@@ -1,4 +1,5 @@
 import { isUuid } from "../persistence/validation.ts";
+import { isTimelineFence } from "../saves/fence.ts";
 import type {
   ConfigurePlayInput,
   GuidanceApprovalInput,
@@ -52,6 +53,13 @@ function ids(value: unknown, max = 50) {
 }
 function scope(row: Record<string, unknown>, campaignId: string) {
   assert(isUuid(campaignId) && row.campaignId === campaignId);
+}
+function scopedObject(value: unknown, keys: string[]): Record<string, unknown> {
+  const hasTimeline =
+    !!value && typeof value === "object" && Object.hasOwn(value, "timeline");
+  const row = object(value, hasTimeline ? [...keys, "timeline"] : keys);
+  if (hasTimeline) assert(isTimelineFence(row.timeline));
+  return row;
 }
 function choices(value: unknown, allowed: readonly string[]) {
   assert(typeof value === "string" && allowed.includes(value));
@@ -149,7 +157,7 @@ export function validateTurnInput(
   value: unknown,
   campaignId: string,
 ): TurnInput {
-  const row = object(value, [
+  const row = scopedObject(value, [
     "operationId",
     "campaignId",
     "expectedRevision",
@@ -178,7 +186,7 @@ export function validateResumeInput(
   campaignId: string,
   operationId: string,
 ): ResumeInput {
-  const row = object(value, [
+  const row = scopedObject(value, [
     "commandId",
     "campaignId",
     "operationId",
@@ -243,7 +251,7 @@ export function validateConfigurePlayInput(
   value: unknown,
   campaignId: string,
 ): ConfigurePlayInput {
-  const row = object(value, [
+  const row = scopedObject(value, [
     "requestId",
     "campaignId",
     "expectedRevision",
@@ -259,7 +267,7 @@ export function validateGuidanceApproval(
   value: unknown,
   campaignId: string,
 ): GuidanceApprovalInput {
-  const row = object(value, [
+  const row = scopedObject(value, [
     "requestId",
     "campaignId",
     "operationId",
