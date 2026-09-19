@@ -1,0 +1,97 @@
+{
+  "status": "STOPPED_PARTIAL_FULL_BENCHMARK_EVIDENCE_VALIDATED",
+  "date": "2026-09-19",
+  "branch": "codex/phase375-technical-bakeoff",
+  "executionCommit": "8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23",
+  "ownerAuthorizedBase": "b3e0d5e65fedf1b85c6f526bee563c25cb24b34e",
+  "ownerApprovedDeviation": "Approve the stop-guard correction, then run",
+  "scope": "Sanitized evidence and offline report validation only after the stop; no changes to frozen execution or production.",
+  "checks": {
+    "typecheck": {
+      "command": "pnpm typecheck",
+      "exitCode": 0,
+      "result": "passed"
+    },
+    "lint": {
+      "command": "pnpm lint",
+      "exitCode": 0,
+      "result": "passed"
+    },
+    "test": {
+      "command": "pnpm test",
+      "exitCode": 0,
+      "result": "passed"
+    },
+    "build": {
+      "command": "pnpm build",
+      "exitCode": 0,
+      "result": "passed"
+    }
+  },
+  "tests": {
+    "passed": 167,
+    "failed": 0,
+    "skipped": 0,
+    "addedReportTests": 12,
+    "preLiveGuardTestsPassed": 155
+  },
+  "counts": {
+    "additionalLiveAttempts": 13,
+    "successful": 12,
+    "failed": 1,
+    "notAttempted": 107,
+    "cumulativeAttempts": 21,
+    "liveCallsDuringReportAndValidation": 0,
+    "retriesMade": 0,
+    "diagnosticCalls": 0,
+    "smokeReruns": 0
+  },
+  "cost": {
+    "newKnownReportedUSD": 0,
+    "cumulativeKnownReportedUSD": 0.0969725,
+    "actualCumulativeTotalUSD": null,
+    "cumulativeReservedUSD": 2.69696,
+    "unknownChargeRequestIds": [
+      "smoke-plan",
+      "smoke-narration",
+      "beacon-batteries-jev"
+    ],
+    "dashboardObservedDuringThisRun": false
+  },
+  "preservation": {
+    "acceptedHistoricalArtifactsVerified": 15,
+    "totalOriginalArtifactsVerified": 29,
+    "allLedgerAndObservationBytesUnchanged": true,
+    "originalSmokeSummarySynthesized": false,
+    "frozenInputsScoringAndRuntimeUnchanged": true,
+    "productionChanges": false,
+    "rootDependencyChanges": false,
+    "keyEnvironmentBillingChanges": false,
+    "originalCheckoutDirtyDocumentsUnchanged": {
+      "DEV_STATUS.md": "ed3e5a3f2cc63e9e3d0191111f518ba839f0ae8698cf4d67b20f258306c64a7b",
+      "PHASE3_EVALUATION.md": "4258d581fd8570bb4b194eda95170cbdda1f05359b334e6a48865879092a46e0"
+    }
+  },
+  "githubMainVerified": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "localMainRefPreserved": "96964964a7d5046ff34b6b6ae695ecf494885cc4",
+  "rootApplicationBrowserDatabaseChecks": "Not rerun: unchanged production; experiment results do not imply product acceptance.",
+  "limitations": [
+    "13th attempt has no retained HTTP/routing/usage/cost metadata; root cause unresolved",
+    "Calibration incomplete; no Astra classifier, held-out or sentinel results",
+    "Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified",
+    "Finite synthetic evaluation does not guarantee quality, memory, branching or recovery",
+    "No hosted deployment or real campaign/private-data acceptance"
+  ],
+  "changedFiles": [
+    "DEV_STATUS.md",
+    "PHASE375_TECHNICAL_BAKEOFF.md",
+    "experiments/phase375-bakeoff/results/full-gate-verification.json",
+    "experiments/phase375-bakeoff/results/full-run-analysis.json",
+    "experiments/phase375-bakeoff/results/full-run-observations.json",
+    "experiments/phase375-bakeoff/results/full-run-verification.json",
+    "experiments/phase375-bakeoff/src/partial-report.mjs",
+    "experiments/phase375-bakeoff/test/full-gate.test.mjs",
+    "experiments/phase375-bakeoff/test/partial-report.test.mjs"
+  ],
+  "next": "Push sanitized evidence only to bake-off branch; stop for owner review. No additional calls or implementation."
+}

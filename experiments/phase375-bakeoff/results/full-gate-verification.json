@@ -86,7 +86,6 @@
   "credentialsLoaded": false,
   "rootApplicationChecks": "not rerun; production unchanged",
   "frozenAlgorithmsAndProtocolUnchanged": true,
-  "mainUnchanged": "96964964a7d5046ff34b6b6ae695ecf494885cc4",
   "changedFiles": [
     "DEV_STATUS.md",
     "experiments/phase375-bakeoff/FULL_GATE_BOOKKEEPING.md",
@@ -101,5 +100,8 @@
     "experiments/phase375-bakeoff/test/gate.test.mjs",
     "experiments/phase375-bakeoff/test/helpers/accepted-history.mjs"
   ],
-  "next": "Push bookkeeping correction to bake-off branch only, then stop for owner review. No full benchmark or implementation authorization."
+  "next": "Push bookkeeping correction to bake-off branch only, then stop for owner review. No full benchmark or implementation authorization.",
+  "localMainRefUnchangedAtVerification": "96964964a7d5046ff34b6b6ae695ecf494885cc4",
+  "githubMainVerified": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "mainReportingCorrection": "The former mainUnchanged field reported the local main ref, not GitHub main. Both refs were preserved; this correction changes only their description."
 }

@@ -1,4 +1,134 @@
-# Phase 3.75 technical bake-off — corrected offline protocol
+# Phase 3.75 technical bake-off — stopped partial live evaluation
+
+September 19, 2026. Branch: **codex/phase375-technical-bakeoff**. **STOPPED / INCOMPLETE — no implementation or production adoption.**
+
+The owner authorized the frozen 120-request benchmark at **b3e0d5e65fedf1b85c6f526bee563c25cb24b34e**. Offline preflight reproduced that the original runner could continue after invalid structured output. The owner explicitly approved “Approve the stop-guard correction, then run.” The minimal first-failure guard was tested, committed and pushed at **8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23** before execution. That is the execution checkpoint. Dataset, split, prompts, profiles, thresholds, schemas, calibration method and resolver gold remained frozen.
+
+**13 new attempts: 12 successful Jev development requests and 1 failed request.** The guard stopped immediately after recording the failure. **107 authorized requests were not attempted.** No retry, fallback, diagnostic, smoke rerun, model judge, implementation or Spatial work followed.
+
+## Request results and transport evidence
+
+All successful rows below requested **typesafe-ai/jev**; Gateway original/canonical/model-attempt slugs all report **typesafe-ai/jev**. Final and successful provider: **typesafe-ai**. Each has **1 model attempt, 1 provider attempt and 1 successful provider attempt**. Actual provider-internal API model is **UNKNOWN/null**, as permitted; SDK model echo is not used as evidence. The frozen profile retains the hard provider-only pin, no alternate model/provider and maxRetries 0. The strict warning gate passed for every success.
+
+| Attempt ID | Result | Input tokens | Output tokens | Gateway USD | Wall ms |
+| --- | --- | ---: | ---: | ---: | ---: |
+| tidal-bell-jev | success | 3,134 | 1,000 | 0 | 840.8914 |
+| guild-ballot-jev | success | 3,130 | 1,000 | 0 | 268.3931 |
+| salt-road-jev | success | 3,551 | 998 | 0 | 354.1787 |
+| silent-rehearsal-jev | success | 3,602 | 1,000 | 0 | 281.1466 |
+| canal-audit-jev | success | 3,115 | 993 | 0 | 308.6468 |
+| wedding-letter-jev | success | 3,159 | 1,002 | 0 | 278.2677 |
+| clinic-interpreter-jev | success | 3,623 | 999 | 0 | 405.8998 |
+| workshop-custody-jev | success | 3,611 | 999 | 0 | 316.0841 |
+| railway-manual-jev | success | 3,186 | 1,002 | 0 | 342.8338 |
+| seed-license-jev | success | 3,126 | 994 | 0 | 233.7618 |
+| water-charter-jev | success | 3,712 | 996 | 0 | 290.1482 |
+| museum-loan-jev | success | 3,711 | 1,002 | 0 | 266.3892 |
+| beacon-batteries-jev | failed; stopped | UNKNOWN | UNKNOWN | UNKNOWN | 353.1238 |
+
+The last row was the first comparison-family development attempt. Its preserved safe error is **provider / request_failed / retryable: true**. The descriptive retryable flag did not cause a retry. There is no retained HTTP status, usage, routing, warning count or cost for this failure. Its requested model/pin are known from the frozen profile, but its final provider, actual model and internal attempt counts are unknown. The safe category cannot distinguish a provider/transport failure from a local post-response validation exception: the runner applies fromJev after transport metadata extraction and a generic exception loses that metadata. No raw response was retained. **Root cause is unresolved; this report does not claim a 403, outage or malformed provider response.** No new diagnostic request was made.
+
+13 is the exact harness invocation/reservation count. Twelve have verified single-provider execution; the failed invocation has no wire-attempt telemetry. No retry or fallback was configured or made by the runner; no fallback was observed in the twelve verified results, while failed-request provider routing cannot be verified.
+
+[Sanitized observations, reservation entries and immutable file fingerprints](experiments/phase375-bakeoff/results/full-run-observations.json) contain synthetic IDs, normalized labels/scores and allow-listed metadata only. They contain no key, raw provider payload, header, reasoning text, real campaign data or source-library data.
+
+## Accounting — reservations are not charges
+
+| Stage | Attempts | Reserved USD | Known reported Gateway USD |
+| --- | ---: | ---: | ---: |
+| Original smoke | 2 | 0.69056 | unknown machine billing |
+| Recovery 1 | 1 | 0.34528 | 0.0283175 |
+| Recovery 2 | 5 | 1.40112 | 0.068655 |
+| Stopped full run | 13 | 0.26 | 0 on 12 successes; failed charge unknown |
+| Cumulative | **21** | **2.69696** | **0.0969725 known; total unknown** |
+
+Successful new usage totals **40,660 input / 11,985 output tokens**. The failed attempt's usage and charge are not included as zero. The original smoke-plan and smoke-narration machine charges also remain unknown; the owner's earlier dashboard observation of $0 for those two 403s is separately attributed and does not replace missing API metadata. No current dashboard spend was inspected.
+
+All three historical ledgers and their 15 original artifacts passed accepted-recovery verification byte-for-byte. The new ledger and 13 observations remain unchanged, with hashes covering all 29 original files. The cumulative reservation allowance is $30; $27.30304 remains arithmetically below that ceiling, **not permission for further calls**. No key, environment, budget, top-up or billing setting was changed.
+
+## Development diagnostics — incomplete, not a calibration qualification
+
+Only 12 of 16 Jev development snapshots completed: four Threads, four Actors and four Sources, with six English and six Russian scenarios. There are **216 scored binary relevance outcomes of the 288 required**, excluding 24 gold-uncertain candidates. No comparison-family result completed. **Astra classification: 0/16 development snapshots, ECE/Brier unknown.** No calibration-frozen artifact was written and neither classifier qualifies for pruning.
+
+For the completed Jev subset, identity-score **ECE = 0.145741**, **Brier = 0.119811**. These partial diagnostics exceed the frozen ECE <= 0.05 / Brier <= 0.1 bounds, but they are not presented as a completed calibration result. No fitted transform, threshold search, prompt adjustment or held-out tuning was performed.
+
+Raw label accuracy is **177/240 = 73.75%**. Of 144 relevant candidates, 100 were labelled relevant, 2 uncertain and 42 irrelevant. The label confusion matrix is distinct from threshold-based admission: most incorrect irrelevant labels do not reach the 0.99 pruning threshold. Nine candidates were labelled uncertain; zero choices were omitted or missing probabilities among the successful responses. Of 24 gold-uncertain candidates, 7 were labelled uncertain, 7 relevant and 10 irrelevant; all 24 survive the frozen threshold diagnostic and protected replay.
+
+| Completed subset | Scenarios | Label accuracy | ECE | Brier | Raw threshold recall | Raw FN / critical misses | Protected replay FN |
+| --- | ---: | ---: | ---: | ---: | --- | --- | ---: |
+| Threads | 4 | 61/80 (76.25%) | 0.152222 | 0.105675 | 48/48 | 0 / 0 | 0 |
+| Actors | 4 | 65/80 (81.25%) | 0.070139 | 0.062288 | 48/48 | 0 / 0 | 0 |
+| Sources | 4 | 51/80 (63.75%) | 0.223750 | 0.191471 | 45/48 | 3 / 0 | 0 |
+| Comparisons | 0 | not measured | unknown | unknown | not measured | unknown | unknown |
+| English | 6 | 97/120 (80.83%) | 0.120926 | 0.095287 | 72/72 | 0 / 0 | 0 |
+| Russian | 6 | 80/120 (66.67%) | 0.170556 | 0.144335 | 69/72 | 3 / 0 | 0 |
+
+The offline replay of the frozen raw threshold, without mandatory protection and assuming calibration solely for this diagnostic, retains **141/144 relevant items (97.9167%; Wilson 95% interval 94.0542–99.2890%)**. It misses three nonmandatory Russian source passages in water-charter: c9e35ced5, ca59935d5 and c7034ee35. No raw critical miss occurs among the 24 completed-subset critical items. That small zero-miss sample is not evidence of universal safety.
+
+The protected replay correctly uses **calibrated: false**, retains all 240 authorized candidates, and therefore retains 144/144 relevant, 24/24 critical and 24/24 uncertain items with zero scope leaks. This is a deterministic offline replay on observed development outputs, **not a live held-out or end-to-end resolver result**. Its perfect retention comes from bypassing pruning; it does not rescue classifier quality. Omitted/malformed responses were not experimentally substituted into live results; their retention behavior remains covered by offline policy tests.
+
+## Reduction, overhead and missing downstream evaluation
+
+On the completed development subset, the raw threshold diagnostic would remove **36/240 candidates (15%)** and **3,289/23,963 serialized candidate bytes (13.73%)**, including the three relevant misses. The protected uncalibrated replay removes **0 candidates and 0 bytes**.
+
+The classifier adds **104,036 serialized input bytes +26,799 normalized-output bytes =130,835 bytes** across these twelve requests. These are local UTF-8 serialization measurements using the frozen measurement convention, not actual HTTP wire sizes or interchangeable model tokens. With no protected reduction, the corresponding net serialized byte saving is **negative 130,835**. There is no measured reduction in strong-model tokens, money or end-to-end latency because no resolver was called.
+
+Successful classifier wall-time **p50 =290.1482 ms; p95 =840.8914 ms (n=12)** using the frozen nearest-rank quantile convention. Failed wall time is 353.1238 ms. These are observed sequential call durations, not a concurrency/load benchmark. Paired A/B/C latency and cost remain unknown.
+
+**Held out: 0/64 classifier calls.** Relevant recall, false negatives, critical misses, uncertainty losses and scope/timeline failures are **not measured**, not zero. No protected held-out performance or frontier classifier comparison is available.
+
+| Sentinel | A | B | C | Lost findings vs A / unsupported claims / scope-timeline failures |
+| --- | --- | --- | --- | --- |
+| orchard-smoke | not run | not run | not run | unknown |
+| ferry-debt | not run | not run | not run | unknown |
+| treaty-release | not run | not run | not run | unknown |
+| archive-witness | not run | not run | not run | unknown |
+| island-veto | not run | not run | not run | unknown |
+| hospital-generator | not run | not run | not run | unknown |
+| flood-branches | not run | not run | not run | unknown |
+| embassy-delay | not run | not run | not run | unknown |
+
+No baseline A result exists; B/C cannot claim parity, improvement or a downstream failure rate. [Recomputed metrics, confusion matrices, Wilson/cluster intervals and explicit nulls](experiments/phase375-bakeoff/results/full-run-analysis.json).
+
+## Recommendations for owner review
+
+| Task family | Recommendation | Evidence |
+| --- | --- | --- |
+| World Thread relevance | **DO NOT ADOPT** | Incomplete calibration and no held-out or downstream benefit evidence; subset ECE exceeds bound |
+| World Actor relevance | **DO NOT ADOPT** | Best observed subset accuracy does not establish calibrated pruning or ranking benefit; no held-out evaluation |
+| Canon/source classification | **DO NOT ADOPT** | Three relevant raw-threshold misses, poor partial calibration and no validated protected savings |
+| Parallel outcome comparisons | **DO NOT ADOPT** | First attempt failed; no successful quality measurement |
+
+These are current adoption decisions for the tested Jev configuration, not universal claims about the vendor or proof that an untested reranking workflow would fail. **Reranking/prioritization is not approved by this incomplete run either.** Keep deterministic eligibility and the owner's strong reasoning model as the unaltered baseline.
+
+| Architecture item | Recommendation from this evidence |
+| --- | --- |
+| Vercel AI Gateway | Retain as a candidate transport for a separately authorized Model Runtime sprint. Accepted recovery-2 proves the four unchanged schema capabilities plus Jev evaluation transport; twelve further Jev calls verify pinned routing/billing. The incomplete benchmark does not establish all-provider reliability, model replaceability or real-data privacy. Do not adopt into production in this task. |
+| AI SDK | Keep it behind the small server-only transport adapter. Domain schemas/parsers, authoritative state, provenance, provider pins, budgets and no-fallback policy remain application responsibilities. No SDK types or routing authority in durable world ontology. |
+| Jev | Disabled for production and live pruning. Synthetic quality gate incomplete/unmet; the optional layer is unnecessary for continuing the architecture. |
+| classifier.dev | Not required or contacted; no demonstrated need for another proxy. Any comparator needs separate authorization and privacy review. |
+| OpenRouter | Defer; this run demonstrates no Gateway capability gap requiring a second transport. It was not evaluated. |
+| GLiNER | Defer to a separately scoped source-extraction evaluation if needed; this relevance benchmark supplies no extraction-quality evidence. |
+| Vercel Workflows | Defer; no evidence here that existing Postgres operation/job patterns are insufficient. No hosted orchestration or second backend added. |
+
+**Privacy is a separate gate.** Jev remains NOT_ELIGIBLE for real campaign, private or uploaded-source inputs under the unresolved exact-route privacy policy recorded in the frozen documentation. Synthetic accuracy or transport success cannot resolve conflicting retention/training evidence. No real material was used or authorized.
+
+## Verification, reporting correction and stop boundary
+
+The stop-guard checkpoint passed **155 deterministic tests, typecheck, lint and experiment build before the run**. After the stopped run, **167 deterministic tests, experiment typecheck, lint and build passed** (12 added report tests; zero skipped/failed in the final run). Report generation and validation made zero live calls; the final verification artifact records the exact rerun results. [Final verification and changed-file scope](experiments/phase375-bakeoff/results/full-run-verification.json). The report tests recompute metrics, enforce missing-data semantics, verify artifact anchors, preserve the frozen protocol and reject altered observations. Application/browser/database suites are not rerun or relabelled as passed by this isolated experiment.
+
+**GitHub main was verified as cb7f6be2fb513de13604d381046a3240f3261383.** The stale prior mainUnchanged field had reported the distinct local main ref 96964964a7d5046ff34b6b6ae695ecf494885cc4; the historical verification record now labels both accurately. Neither main ref was moved. The original checkout's pre-existing documentation edits remain untouched and unattributed.
+
+Limitations: stopping before the comparison family creates selection/coverage bias. Authored scenarios and within-scenario candidates are correlated; descriptive Wilson and cluster intervals are not natural-campaign guarantees. Partial development accuracy cannot stand in for held-out performance. Strict synthetic gold is finite; no paired resolver benefit, universal privacy, perfect memory, branching or recovery claim follows. Physical iPhone/Safari and the optional historical Phase 1 conflict-rebase confirmation remain unverified. No hosted deployment or real campaign/private-data acceptance occurred.
+
+**Stop for owner review.** The unresolved failure and incomplete calibration/held-out/sentinel coverage block benchmark qualification. Any future diagnosis or additional execution requires a new explicit scoped authorization; existing reservations/results must not be repeated, erased or reinterpreted as successes. Do not start implementation, Spatial/EXPLORE, later milestones, deployment or import.
+
+---
+
+# Historical offline checkpoint — preserved record
+
+The following was written before any live smoke or full-run attempt. Its zero-call figures, test counts, “awaiting approval” language and catalog observations describe that earlier checkpoint only; current outcomes and owner authorizations are recorded above.
+
 
 September 19, 2026. Branch: `codex/phase375-technical-bakeoff`. Exact architecture baseline: `cb7f6be2fb513de13604d381046a3240f3261383`. The owner accepted the offline foundation at `68126be972b2fdecfd650fde08d64f8b768eec01`; **this correction awaits owner review**.
 

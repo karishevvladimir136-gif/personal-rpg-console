@@ -1,0 +1,2786 @@
+{
+  "version": "partial-full-run-evidence-v1",
+  "executionCommit": "8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "history": {
+    "requestIds": [
+      "smoke-plan",
+      "smoke-narration",
+      "smoke-plan-recovery-1",
+      "smoke-plan-recovery-2",
+      "smoke-narration-recovery-2",
+      "smoke-feedback-recovery-2",
+      "smoke-summary-recovery-2",
+      "smoke-jev-recovery-2"
+    ],
+    "attempts": 8,
+    "reservedUSD": 2.43696,
+    "knownReportedCostUSD": 0.0969725,
+    "reportedCostUSD": null,
+    "unknownChargeRequestIds": [
+      "smoke-plan",
+      "smoke-narration"
+    ],
+    "ledgerTotals": [
+      {
+        "name": "reservations.jsonl",
+        "attempts": 2,
+        "reservedUSD": 0.69056
+      },
+      {
+        "name": "smoke-recovery-1-reservations.jsonl",
+        "attempts": 1,
+        "reservedUSD": 0.34528
+      },
+      {
+        "name": "smoke-recovery-2-reservations.jsonl",
+        "attempts": 5,
+        "reservedUSD": 1.40112
+      }
+    ],
+    "remainingReservationUSD": 27.56304,
+    "evidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+    "qualifyingSmoke": "smoke-recovery-2",
+    "executionCommit": "65a90280b01e7d461cc62c0580d50d810b6818a6",
+    "qualifyingCapabilities": [
+      "plan",
+      "narration",
+      "feedback",
+      "summary",
+      "jev"
+    ],
+    "ownerReportedPrior403SpendUSD": 0,
+    "ownerReportedPrior403Source": "owner_report"
+  },
+  "fullLedger": [
+    {
+      "requestId": "tidal-bell-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "guild-ballot-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "salt-road-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "silent-rehearsal-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "canal-audit-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "wedding-letter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "clinic-interpreter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "workshop-custody-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "railway-manual-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "seed-license-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "water-charter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "museum-loan-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    },
+    {
+      "requestId": "beacon-batteries-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "acceptedSmokeEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+      "reserveUSD": 0.02
+    }
+  ],
+  "observations": [
+    {
+      "id": "tidal-bell-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 840.8914,
+      "result": {
+        "envelope": {
+          "snapshotHash": "fb3307a87f7fbc90eaec88628e732bbb7b1f86d1b9d884d836b1494717191397",
+          "decisions": [
+            {
+              "id": "cf5a3d10e",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.21,
+                "uncertain": 0.27,
+                "relevant": 0.52
+              }
+            },
+            {
+              "id": "c745af853",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.22,
+                "uncertain": 0.34,
+                "relevant": 0.44
+              }
+            },
+            {
+              "id": "c4bf5d14d",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.32,
+                "uncertain": 0.17,
+                "relevant": 0.51
+              }
+            },
+            {
+              "id": "c77a33682",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c64721ce2",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c9ecf198b",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "uncertain": 0.07,
+                "relevant": 0.93
+              }
+            },
+            {
+              "id": "cf66c4d94",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c96f880ee",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.28,
+                "uncertain": 0.13,
+                "relevant": 0.59
+              }
+            },
+            {
+              "id": "cf5cb9f6d",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.78,
+                "uncertain": 0.14,
+                "relevant": 0.08
+              }
+            },
+            {
+              "id": "c739102f5",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.11,
+                "uncertain": 0.31,
+                "relevant": 0.58
+              }
+            },
+            {
+              "id": "cd47877ac",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.38,
+                "uncertain": 0.14,
+                "relevant": 0.48
+              }
+            },
+            {
+              "id": "c54870079",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "ca3d9c06b",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.79,
+                "uncertain": 0.18,
+                "relevant": 0.03
+              }
+            },
+            {
+              "id": "ce8bd4acb",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.07,
+                "uncertain": 0.57,
+                "relevant": 0.36
+              }
+            },
+            {
+              "id": "cf452ba75",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.94,
+                "uncertain": 0.03,
+                "relevant": 0.03
+              }
+            },
+            {
+              "id": "cbc00bede",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.96,
+                "uncertain": 0.01,
+                "relevant": 0.03
+              }
+            },
+            {
+              "id": "c3b90c524",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "uncertain": 0.01,
+                "relevant": 0.99
+              }
+            },
+            {
+              "id": "ca4db2a8f",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.34,
+                "uncertain": 0.65,
+                "relevant": 0.01
+              }
+            },
+            {
+              "id": "c4d902a0b",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.33,
+                "uncertain": 0.31,
+                "relevant": 0.36
+              }
+            },
+            {
+              "id": "c9d10c75f",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.02,
+                "uncertain": 0.14,
+                "relevant": 0.84
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3134,
+          "outputTokens": 1000,
+          "costUSD": 0,
+          "latencyMs": 840,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "guild-ballot-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 268.3931,
+      "result": {
+        "envelope": {
+          "snapshotHash": "57372777917dcc2c2eeb95f09a6702572b845dc8640de661d365d079e3c11154",
+          "decisions": [
+            {
+              "id": "c51019fe4",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.99,
+                "relevant": 0,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c2ac0bf8e",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.18,
+                "relevant": 0.75,
+                "uncertain": 0.07
+              }
+            },
+            {
+              "id": "c09796550",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.39,
+                "relevant": 0.41,
+                "uncertain": 0.2
+              }
+            },
+            {
+              "id": "c76ec8a2e",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.02,
+                "relevant": 0.69,
+                "uncertain": 0.29
+              }
+            },
+            {
+              "id": "c910b836f",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.04,
+                "relevant": 0.83,
+                "uncertain": 0.13
+              }
+            },
+            {
+              "id": "c5fa0a88b",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.01,
+                "relevant": 0.91,
+                "uncertain": 0.08
+              }
+            },
+            {
+              "id": "c7134b766",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.99,
+                "relevant": 0,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c9a052d59",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.2,
+                "relevant": 0.5,
+                "uncertain": 0.3
+              }
+            },
+            {
+              "id": "cec90f99e",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "relevant": 1,
+                "uncertain": 0
+              }
+            },
+            {
+              "id": "cb1e5fa11",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.71,
+                "relevant": 0.15,
+                "uncertain": 0.14
+              }
+            },
+            {
+              "id": "c15c0aa96",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.21,
+                "relevant": 0.42,
+                "uncertain": 0.37
+              }
+            },
+            {
+              "id": "c4acb51ff",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "relevant": 0.99,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "cc54c0664",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.94,
+                "relevant": 0.02,
+                "uncertain": 0.04
+              }
+            },
+            {
+              "id": "c4e4c88e0",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "relevant": 0.99,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c8ed190f5",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.02,
+                "relevant": 0.64,
+                "uncertain": 0.34
+              }
+            },
+            {
+              "id": "c68ffcc77",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.23,
+                "relevant": 0.66,
+                "uncertain": 0.11
+              }
+            },
+            {
+              "id": "c9fed7889",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.98,
+                "relevant": 0.01,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "cb2fb6670",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.01,
+                "relevant": 0.93,
+                "uncertain": 0.06
+              }
+            },
+            {
+              "id": "c565b9b5a",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.02,
+                "relevant": 0.95,
+                "uncertain": 0.03
+              }
+            },
+            {
+              "id": "cfadff531",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.72,
+                "relevant": 0.05,
+                "uncertain": 0.23
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3130,
+          "outputTokens": 1000,
+          "costUSD": 0,
+          "latencyMs": 268,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "salt-road-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 354.17869999999994,
+      "result": {
+        "envelope": {
+          "snapshotHash": "19f01b926f629ec3c6b0f290c9063006d4e66623e1ae3aaee16a89cd46e7ae08",
+          "decisions": [
+            {
+              "id": "c54af0276",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.39,
+                "irrelevant": 0.48,
+                "uncertain": 0.13
+              }
+            },
+            {
+              "id": "ce58fc5ba",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.68,
+                "irrelevant": 0.19,
+                "uncertain": 0.13
+              }
+            },
+            {
+              "id": "c055c0da1",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "irrelevant": 0.99,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c672c35ba",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.06,
+                "irrelevant": 0.84,
+                "uncertain": 0.1
+              }
+            },
+            {
+              "id": "c6ba5dc9f",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.87,
+                "irrelevant": 0.04,
+                "uncertain": 0.09
+              }
+            },
+            {
+              "id": "c9c6de9cb",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.05,
+                "irrelevant": 0.84,
+                "uncertain": 0.11
+              }
+            },
+            {
+              "id": "c00750ae9",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.08,
+                "irrelevant": 0.77,
+                "uncertain": 0.15
+              }
+            },
+            {
+              "id": "cae91c606",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.21,
+                "irrelevant": 0.66,
+                "uncertain": 0.13
+              }
+            },
+            {
+              "id": "c8821ebe5",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "irrelevant": 0.99,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c1eda0ac7",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.96,
+                "irrelevant": 0.01,
+                "uncertain": 0.03
+              }
+            },
+            {
+              "id": "c4cc70a80",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "irrelevant": 0.99,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c14405d13",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.16,
+                "irrelevant": 0.48,
+                "uncertain": 0.36
+              }
+            },
+            {
+              "id": "cc28f89c7",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.73,
+                "irrelevant": 0.11,
+                "uncertain": 0.16
+              }
+            },
+            {
+              "id": "c5d865045",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.93,
+                "irrelevant": 0.02,
+                "uncertain": 0.05
+              }
+            },
+            {
+              "id": "c524245d2",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.76,
+                "irrelevant": 0.05,
+                "uncertain": 0.19
+              }
+            },
+            {
+              "id": "c6b3185ea",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.12,
+                "irrelevant": 0.79,
+                "uncertain": 0.09
+              }
+            },
+            {
+              "id": "cc4ad4c35",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.95,
+                "irrelevant": 0.01,
+                "uncertain": 0.04
+              }
+            },
+            {
+              "id": "c279d34e3",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.74,
+                "irrelevant": 0.12,
+                "uncertain": 0.14
+              }
+            },
+            {
+              "id": "c58c7c1d1",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "irrelevant": 0.97,
+                "uncertain": 0.02
+              }
+            },
+            {
+              "id": "c0bbdc5ab",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.9,
+                "irrelevant": 0.04,
+                "uncertain": 0.06
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3551,
+          "outputTokens": 998,
+          "costUSD": 0,
+          "latencyMs": 354,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "silent-rehearsal-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 281.14660000000003,
+      "result": {
+        "envelope": {
+          "snapshotHash": "6a9fc049be7bc641d9c3abf6ea1ac08068adbbdc33a8425373e46ddf7d8e8f7e",
+          "decisions": [
+            {
+              "id": "ce27841ff",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.12,
+                "uncertain": 0.11,
+                "irrelevant": 0.77
+              }
+            },
+            {
+              "id": "cf46b92ec",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.69,
+                "uncertain": 0.09,
+                "irrelevant": 0.22
+              }
+            },
+            {
+              "id": "c0cb08a75",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.09,
+                "uncertain": 0.07,
+                "irrelevant": 0.84
+              }
+            },
+            {
+              "id": "cb07654f4",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.02,
+                "uncertain": 0.03,
+                "irrelevant": 0.95
+              }
+            },
+            {
+              "id": "c7fc9548f",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.26,
+                "uncertain": 0.17,
+                "irrelevant": 0.57
+              }
+            },
+            {
+              "id": "ce7328554",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.97,
+                "uncertain": 0.02,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "c0b06b212",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.02,
+                "uncertain": 0.07,
+                "irrelevant": 0.91
+              }
+            },
+            {
+              "id": "c0e15ec79",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.88,
+                "uncertain": 0.07,
+                "irrelevant": 0.05
+              }
+            },
+            {
+              "id": "c164aa7fb",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.37,
+                "uncertain": 0.18,
+                "irrelevant": 0.45
+              }
+            },
+            {
+              "id": "c39a7321e",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.76,
+                "uncertain": 0.12,
+                "irrelevant": 0.12
+              }
+            },
+            {
+              "id": "ce88e1a8a",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.11,
+                "uncertain": 0.23,
+                "irrelevant": 0.66
+              }
+            },
+            {
+              "id": "c2a2bffaa",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.87,
+                "uncertain": 0.08,
+                "irrelevant": 0.05
+              }
+            },
+            {
+              "id": "cd1e6fcc5",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.45999999999999996,
+                "uncertain": 0.36,
+                "irrelevant": 0.18
+              }
+            },
+            {
+              "id": "ccf2265dd",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.24,
+                "uncertain": 0.22,
+                "irrelevant": 0.54
+              }
+            },
+            {
+              "id": "c6163b7c2",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.33,
+                "uncertain": 0.25,
+                "irrelevant": 0.42
+              }
+            },
+            {
+              "id": "c458280d2",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.03,
+                "irrelevant": 0.96
+              }
+            },
+            {
+              "id": "c811644d2",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.37,
+                "uncertain": 0.15,
+                "irrelevant": 0.48
+              }
+            },
+            {
+              "id": "ce8d8f324",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.25,
+                "uncertain": 0.11,
+                "irrelevant": 0.64
+              }
+            },
+            {
+              "id": "c7dad6765",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "c84518f41",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.03,
+                "irrelevant": 0.96
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3602,
+          "outputTokens": 1000,
+          "costUSD": 0,
+          "latencyMs": 281,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "canal-audit-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 308.6468,
+      "result": {
+        "envelope": {
+          "snapshotHash": "cedf9e9a8d69f093f23efc8b1869a9294b35d9cbe43e3bc7fe431505969fa06e",
+          "decisions": [
+            {
+              "id": "ce5232511",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.1,
+                "irrelevant": 0.89
+              }
+            },
+            {
+              "id": "ca44dd1fe",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.21,
+                "uncertain": 0.19,
+                "irrelevant": 0.6
+              }
+            },
+            {
+              "id": "cbd051ecf",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.88,
+                "uncertain": 0.09,
+                "irrelevant": 0.03
+              }
+            },
+            {
+              "id": "c991eb29c",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.99,
+                "uncertain": 0.01,
+                "irrelevant": 0
+              }
+            },
+            {
+              "id": "ce4060210",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "c86b68bba",
+              "label": "uncertain",
+              "probabilities": {
+                "relevant": 0.15,
+                "uncertain": 0.8,
+                "irrelevant": 0.05
+              }
+            },
+            {
+              "id": "c23246bd4",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.01,
+                "irrelevant": 0.98
+              }
+            },
+            {
+              "id": "c4d563aa1",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "ca58ebc7e",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.07,
+                "uncertain": 0.13,
+                "irrelevant": 0.8
+              }
+            },
+            {
+              "id": "cba90e818",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.94,
+                "uncertain": 0.05,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "c2ad191f1",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.86,
+                "uncertain": 0.12,
+                "irrelevant": 0.02
+              }
+            },
+            {
+              "id": "c194e0303",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "c43a7694c",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "c3d69900c",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.93,
+                "uncertain": 0.05,
+                "irrelevant": 0.02
+              }
+            },
+            {
+              "id": "cc35bea97",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.98,
+                "uncertain": 0.02,
+                "irrelevant": 0
+              }
+            },
+            {
+              "id": "ccad7bf6e",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.98,
+                "uncertain": 0.01,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "cb0e97600",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.99,
+                "uncertain": 0.01,
+                "irrelevant": 0
+              }
+            },
+            {
+              "id": "c08baeadf",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.97,
+                "uncertain": 0.03,
+                "irrelevant": 0
+              }
+            },
+            {
+              "id": "cff3ffdf2",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.97,
+                "uncertain": 0.02,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "c8c6a63ac",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0,
+                "uncertain": 0,
+                "irrelevant": 1
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3115,
+          "outputTokens": 993,
+          "costUSD": 0,
+          "latencyMs": 308,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "wedding-letter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 278.2676999999999,
+      "result": {
+        "envelope": {
+          "snapshotHash": "bd4cbe316f55612296582e9bb6062a6c5944cd3b45873de3039cdd04c903ce0b",
+          "decisions": [
+            {
+              "id": "cf7781baf",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.21,
+                "uncertain": 0.27,
+                "relevant": 0.52
+              }
+            },
+            {
+              "id": "cf6792329",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.04,
+                "uncertain": 0.15,
+                "relevant": 0.81
+              }
+            },
+            {
+              "id": "c1014c7ce",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.98,
+                "uncertain": 0.02,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "ce623f9be",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.04,
+                "uncertain": 0.06,
+                "relevant": 0.9
+              }
+            },
+            {
+              "id": "c279daad7",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.33,
+                "uncertain": 0.43,
+                "relevant": 0.24
+              }
+            },
+            {
+              "id": "c695770e0",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.98,
+                "uncertain": 0.01,
+                "relevant": 0.01
+              }
+            },
+            {
+              "id": "c035d30d5",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.36,
+                "uncertain": 0.29,
+                "relevant": 0.35
+              }
+            },
+            {
+              "id": "c22e34a39",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.99,
+                "uncertain": 0,
+                "relevant": 0.01
+              }
+            },
+            {
+              "id": "cf8e8a1f2",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.11,
+                "uncertain": 0.17,
+                "relevant": 0.72
+              }
+            },
+            {
+              "id": "c60ac53e1",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.33,
+                "uncertain": 0.22,
+                "relevant": 0.45
+              }
+            },
+            {
+              "id": "c18bada10",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.01,
+                "uncertain": 0.02,
+                "relevant": 0.97
+              }
+            },
+            {
+              "id": "c7b11b444",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.35,
+                "uncertain": 0.41,
+                "relevant": 0.24
+              }
+            },
+            {
+              "id": "cc298a58c",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.31,
+                "uncertain": 0.12,
+                "relevant": 0.57
+              }
+            },
+            {
+              "id": "c76906eed",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.01,
+                "uncertain": 0.06,
+                "relevant": 0.93
+              }
+            },
+            {
+              "id": "cbe4685f6",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.2,
+                "uncertain": 0.58,
+                "relevant": 0.22
+              }
+            },
+            {
+              "id": "c58bb730f",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.87,
+                "uncertain": 0.1,
+                "relevant": 0.03
+              }
+            },
+            {
+              "id": "c86c39611",
+              "label": "uncertain",
+              "probabilities": {
+                "irrelevant": 0.22,
+                "uncertain": 0.49,
+                "relevant": 0.29
+              }
+            },
+            {
+              "id": "cb6b10896",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.08,
+                "uncertain": 0.24,
+                "relevant": 0.68
+              }
+            },
+            {
+              "id": "cefc5c009",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.8,
+                "uncertain": 0.05,
+                "relevant": 0.15
+              }
+            },
+            {
+              "id": "caa97e8c6",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.05,
+                "uncertain": 0.21,
+                "relevant": 0.74
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3159,
+          "outputTokens": 1002,
+          "costUSD": 0,
+          "latencyMs": 278,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "clinic-interpreter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 405.89980000000014,
+      "result": {
+        "envelope": {
+          "snapshotHash": "580506e25e4eb3ba0de618accf0461b9b4fed76ea21947acb911b474e480d3f9",
+          "decisions": [
+            {
+              "id": "ccf6ea813",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.22,
+                "relevant": 0.17,
+                "irrelevant": 0.61
+              }
+            },
+            {
+              "id": "c716f7c2e",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "relevant": 0.13,
+                "irrelevant": 0.86
+              }
+            },
+            {
+              "id": "c3056357a",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.21,
+                "relevant": 0.31,
+                "irrelevant": 0.48
+              }
+            },
+            {
+              "id": "c55bb00cb",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.14,
+                "relevant": 0.71,
+                "irrelevant": 0.15
+              }
+            },
+            {
+              "id": "c1f3d88e4",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.14,
+                "relevant": 0.77,
+                "irrelevant": 0.09
+              }
+            },
+            {
+              "id": "c136e76f4",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.14,
+                "relevant": 0.82,
+                "irrelevant": 0.04
+              }
+            },
+            {
+              "id": "c9b447cd4",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.13,
+                "relevant": 0.79,
+                "irrelevant": 0.08
+              }
+            },
+            {
+              "id": "cdf021ab4",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.11,
+                "relevant": 0.84,
+                "irrelevant": 0.05
+              }
+            },
+            {
+              "id": "cbe61d6fa",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.07,
+                "relevant": 0.88,
+                "irrelevant": 0.05
+              }
+            },
+            {
+              "id": "ce8b9d75a",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.1,
+                "relevant": 0.86,
+                "irrelevant": 0.04
+              }
+            },
+            {
+              "id": "c7193a4dd",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.28,
+                "relevant": 0.07,
+                "irrelevant": 0.65
+              }
+            },
+            {
+              "id": "ca7cbcc1a",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.21,
+                "relevant": 0.59,
+                "irrelevant": 0.2
+              }
+            },
+            {
+              "id": "c4b7b8dcd",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.13,
+                "relevant": 0.8,
+                "irrelevant": 0.07
+              }
+            },
+            {
+              "id": "c936e2b2d",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.02,
+                "relevant": 0.06,
+                "irrelevant": 0.92
+              }
+            },
+            {
+              "id": "cbae06154",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.02,
+                "relevant": 0.02,
+                "irrelevant": 0.96
+              }
+            },
+            {
+              "id": "c3ebed941",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.92,
+                "relevant": 0.07,
+                "uncertain": 0.01
+              }
+            },
+            {
+              "id": "c3766b0b1",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "relevant": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "cba6f3aae",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.03,
+                "relevant": 0.95,
+                "irrelevant": 0.02
+              }
+            },
+            {
+              "id": "ce82f0614",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.13,
+                "relevant": 0.81,
+                "irrelevant": 0.06
+              }
+            },
+            {
+              "id": "c24c2d297",
+              "label": "uncertain",
+              "probabilities": {
+                "uncertain": 0.44,
+                "relevant": 0.31,
+                "irrelevant": 0.25
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3623,
+          "outputTokens": 999,
+          "costUSD": 0,
+          "latencyMs": 406,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "workshop-custody-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 316.0840999999996,
+      "result": {
+        "envelope": {
+          "snapshotHash": "dfa0f0111d76c09acc6330ab69ae658a6c1810147a231d4b06d0d6c281712b46",
+          "decisions": [
+            {
+              "id": "c7938373c",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "cfa1f9926",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.12,
+                "uncertain": 0.1,
+                "relevant": 0.78
+              }
+            },
+            {
+              "id": "c62a11946",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0,
+                "uncertain": 0.01,
+                "relevant": 0.99
+              }
+            },
+            {
+              "id": "ca834d291",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.43,
+                "uncertain": 0.2,
+                "relevant": 0.37
+              }
+            },
+            {
+              "id": "ca96becc2",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c7b011454",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.99,
+                "uncertain": 0.01,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "cea571e05",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.02,
+                "uncertain": 0.05,
+                "relevant": 0.93
+              }
+            },
+            {
+              "id": "cfef48f1c",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.03,
+                "uncertain": 0.12,
+                "relevant": 0.85
+              }
+            },
+            {
+              "id": "c90e7f83f",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.22,
+                "uncertain": 0.15,
+                "relevant": 0.63
+              }
+            },
+            {
+              "id": "c7a3fce35",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.06,
+                "uncertain": 0.09,
+                "relevant": 0.85
+              }
+            },
+            {
+              "id": "cf665e0b7",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.01,
+                "uncertain": 0.04,
+                "relevant": 0.95
+              }
+            },
+            {
+              "id": "c929ee344",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.32,
+                "uncertain": 0.25,
+                "relevant": 0.43
+              }
+            },
+            {
+              "id": "c1feaa4c4",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.62,
+                "uncertain": 0.02,
+                "relevant": 0.36
+              }
+            },
+            {
+              "id": "c9fa947d2",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.84,
+                "uncertain": 0.12,
+                "relevant": 0.04
+              }
+            },
+            {
+              "id": "c9c620e52",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.06,
+                "uncertain": 0.08,
+                "relevant": 0.86
+              }
+            },
+            {
+              "id": "cdfa4d377",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c96f74ee1",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.38,
+                "uncertain": 0.18,
+                "relevant": 0.44
+              }
+            },
+            {
+              "id": "ce1413bfd",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.09,
+                "uncertain": 0.13,
+                "relevant": 0.78
+              }
+            },
+            {
+              "id": "c49d9bde1",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 1,
+                "uncertain": 0,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "cdc0842b1",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.59,
+                "uncertain": 0.31,
+                "relevant": 0.1
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3611,
+          "outputTokens": 999,
+          "costUSD": 0,
+          "latencyMs": 316,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "railway-manual-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 342.83380000000034,
+      "result": {
+        "envelope": {
+          "snapshotHash": "343ec229f092f1fd297dc2d37763a79460e137823c562a9772ec8d12aa96107b",
+          "decisions": [
+            {
+              "id": "c0baf1e61",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.03,
+                "irrelevant": 0.96,
+                "relevant": 0.01
+              }
+            },
+            {
+              "id": "c9f2b1308",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 0.99,
+                "relevant": 0.01
+              }
+            },
+            {
+              "id": "c74f68bc4",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.05,
+                "irrelevant": 0.02,
+                "relevant": 0.93
+              }
+            },
+            {
+              "id": "ca1c057e7",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.09,
+                "irrelevant": 0.83,
+                "relevant": 0.08
+              }
+            },
+            {
+              "id": "c3eccb3c3",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.04,
+                "irrelevant": 0,
+                "relevant": 0.96
+              }
+            },
+            {
+              "id": "c009fc312",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.07,
+                "irrelevant": 0.85,
+                "relevant": 0.08
+              }
+            },
+            {
+              "id": "cbb97e177",
+              "label": "uncertain",
+              "probabilities": {
+                "uncertain": 0.58,
+                "irrelevant": 0.29,
+                "relevant": 0.13
+              }
+            },
+            {
+              "id": "c87ef6140",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.07,
+                "irrelevant": 0.01,
+                "relevant": 0.92
+              }
+            },
+            {
+              "id": "c25f159db",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.21,
+                "irrelevant": 0.02,
+                "relevant": 0.77
+              }
+            },
+            {
+              "id": "c685212a1",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.03,
+                "irrelevant": 0.95,
+                "relevant": 0.02
+              }
+            },
+            {
+              "id": "cc254ad87",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.25,
+                "irrelevant": 0.42,
+                "relevant": 0.33
+              }
+            },
+            {
+              "id": "c284e1c07",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.05,
+                "irrelevant": 0,
+                "relevant": 0.95
+              }
+            },
+            {
+              "id": "c5dd9ed07",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.02,
+                "irrelevant": 0,
+                "relevant": 0.98
+              }
+            },
+            {
+              "id": "cbbf0e814",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.12,
+                "irrelevant": 0.04,
+                "relevant": 0.84
+              }
+            },
+            {
+              "id": "c7b9782ea",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.35,
+                "irrelevant": 0.29,
+                "relevant": 0.36
+              }
+            },
+            {
+              "id": "c3c09f7c9",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 1,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "ccb38f214",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.02,
+                "irrelevant": 0.98,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c94064a58",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.03,
+                "irrelevant": 0.01,
+                "relevant": 0.96
+              }
+            },
+            {
+              "id": "cf9387e3a",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 1,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c3ae9cfdb",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.16,
+                "irrelevant": 0.41,
+                "relevant": 0.43
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3186,
+          "outputTokens": 1002,
+          "costUSD": 0,
+          "latencyMs": 343,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "seed-license-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 233.7617999999993,
+      "result": {
+        "envelope": {
+          "snapshotHash": "f1e54fa60e4240c0245320f70d9121339e219aa1bde060a9c9483df32417223b",
+          "decisions": [
+            {
+              "id": "c42afd32d",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.02,
+                "irrelevant": 0.96,
+                "relevant": 0.02
+              }
+            },
+            {
+              "id": "cf46ed893",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.11,
+                "irrelevant": 0.8,
+                "relevant": 0.09
+              }
+            },
+            {
+              "id": "c22e0fbd1",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.99,
+                "uncertain": 0.01,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c15da3106",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.16,
+                "irrelevant": 0.73,
+                "relevant": 0.11
+              }
+            },
+            {
+              "id": "cb66500be",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 1,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c3ddfddfd",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.28,
+                "irrelevant": 0.43,
+                "relevant": 0.29
+              }
+            },
+            {
+              "id": "ce8aad8ed",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.04,
+                "irrelevant": 0,
+                "relevant": 0.96
+              }
+            },
+            {
+              "id": "cf928940a",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.17,
+                "irrelevant": 0.62,
+                "relevant": 0.21
+              }
+            },
+            {
+              "id": "c06a19872",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.35,
+                "irrelevant": 0.39,
+                "relevant": 0.26
+              }
+            },
+            {
+              "id": "c1abbce8f",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "irrelevant": 0,
+                "relevant": 0.99
+              }
+            },
+            {
+              "id": "c2892f990",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.33,
+                "irrelevant": 0.02,
+                "relevant": 0.65
+              }
+            },
+            {
+              "id": "c14a1930e",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.06,
+                "irrelevant": 0.84,
+                "relevant": 0.1
+              }
+            },
+            {
+              "id": "c4e950288",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.18,
+                "uncertain": 0.24,
+                "relevant": 0.58
+              }
+            },
+            {
+              "id": "c93c3140c",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 1,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c4ad0a691",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.04,
+                "irrelevant": 0.96,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c9611bb50",
+              "label": "irrelevant",
+              "probabilities": {
+                "irrelevant": 0.87,
+                "uncertain": 0.05,
+                "relevant": 0.08
+              }
+            },
+            {
+              "id": "cc45e3173",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "irrelevant": 1,
+                "relevant": 0
+              }
+            },
+            {
+              "id": "c0709ce62",
+              "label": "relevant",
+              "probabilities": {
+                "irrelevant": 0.19,
+                "uncertain": 0.32,
+                "relevant": 0.49
+              }
+            },
+            {
+              "id": "cf5ffd3ff",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.3,
+                "irrelevant": 0.19,
+                "relevant": 0.51
+              }
+            },
+            {
+              "id": "c2aa14be1",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.05,
+                "irrelevant": 0.91,
+                "relevant": 0.04
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3126,
+          "outputTokens": 994,
+          "costUSD": 0,
+          "latencyMs": 233,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "water-charter-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 290.14819999999963,
+      "result": {
+        "envelope": {
+          "snapshotHash": "cfb3cbdb466090d8bce4f7f0ce9af3ad9409ed1af8d839292e609bbebbd3e2fa",
+          "decisions": [
+            {
+              "id": "c8b5b76d8",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.11,
+                "relevant": 0.14,
+                "irrelevant": 0.75
+              }
+            },
+            {
+              "id": "c260be0b8",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.15,
+                "relevant": 0.08,
+                "irrelevant": 0.77
+              }
+            },
+            {
+              "id": "c171df07e",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.13,
+                "relevant": 0.21,
+                "irrelevant": 0.66
+              }
+            },
+            {
+              "id": "c67568433",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.29,
+                "relevant": 0.52,
+                "irrelevant": 0.19
+              }
+            },
+            {
+              "id": "cb0f0f25b",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.26,
+                "relevant": 0.65,
+                "irrelevant": 0.09
+              }
+            },
+            {
+              "id": "c699dc5dc",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "relevant": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "c9e35ced5",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "relevant": 0,
+                "irrelevant": 0.99
+              }
+            },
+            {
+              "id": "ca59935d5",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "relevant": 0,
+                "irrelevant": 0.99
+              }
+            },
+            {
+              "id": "cecb2f8e1",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.21,
+                "relevant": 0.15,
+                "irrelevant": 0.64
+              }
+            },
+            {
+              "id": "c8f7aef37",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.13,
+                "relevant": 0.01,
+                "irrelevant": 0.86
+              }
+            },
+            {
+              "id": "c867085c1",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0,
+                "relevant": 0,
+                "irrelevant": 1
+              }
+            },
+            {
+              "id": "cc365ccde",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.31,
+                "relevant": 0.35,
+                "irrelevant": 0.34
+              }
+            },
+            {
+              "id": "c5194df7d",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.09,
+                "relevant": 0.87,
+                "irrelevant": 0.04
+              }
+            },
+            {
+              "id": "ce5b22de9",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.19,
+                "relevant": 0.04,
+                "irrelevant": 0.77
+              }
+            },
+            {
+              "id": "c18ee82db",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.28,
+                "relevant": 0.44,
+                "irrelevant": 0.28
+              }
+            },
+            {
+              "id": "c6f078ed2",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.11,
+                "relevant": 0.87,
+                "irrelevant": 0.02
+              }
+            },
+            {
+              "id": "c7034ee35",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "relevant": 0,
+                "irrelevant": 0.99
+              }
+            },
+            {
+              "id": "ceb1ee45c",
+              "label": "relevant",
+              "probabilities": {
+                "uncertain": 0.31,
+                "relevant": 0.55,
+                "irrelevant": 0.14
+              }
+            },
+            {
+              "id": "ce1280e66",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.01,
+                "relevant": 0,
+                "irrelevant": 0.99
+              }
+            },
+            {
+              "id": "cb9ed804a",
+              "label": "irrelevant",
+              "probabilities": {
+                "uncertain": 0.07,
+                "relevant": 0.08,
+                "irrelevant": 0.85
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3712,
+          "outputTokens": 996,
+          "costUSD": 0,
+          "latencyMs": 290,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "museum-loan-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "success",
+      "wallMs": 266.3891999999996,
+      "result": {
+        "envelope": {
+          "snapshotHash": "2224b685e1507fb91967ff51310e9e13c57ad1d86d03216c88afc6fe023c34bd",
+          "decisions": [
+            {
+              "id": "c9f58277c",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.29,
+                "uncertain": 0.14,
+                "irrelevant": 0.57
+              }
+            },
+            {
+              "id": "c74fadca7",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.06,
+                "uncertain": 0.02,
+                "irrelevant": 0.92
+              }
+            },
+            {
+              "id": "c6e02d9ce",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.35,
+                "uncertain": 0.18,
+                "irrelevant": 0.47000000000000003
+              }
+            },
+            {
+              "id": "c82146a5e",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.76,
+                "uncertain": 0.14,
+                "irrelevant": 0.1
+              }
+            },
+            {
+              "id": "ca22781a0",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.96,
+                "uncertain": 0.03,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "c0cd48b51",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.02,
+                "uncertain": 0.1,
+                "irrelevant": 0.88
+              }
+            },
+            {
+              "id": "c981dc892",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.19,
+                "uncertain": 0.05,
+                "irrelevant": 0.76
+              }
+            },
+            {
+              "id": "c2388f1d9",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.03,
+                "irrelevant": 0.96
+              }
+            },
+            {
+              "id": "c2f4f179d",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0.03,
+                "irrelevant": 0.96
+              }
+            },
+            {
+              "id": "cf2cf0aee",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.07,
+                "uncertain": 0.08,
+                "irrelevant": 0.85
+              }
+            },
+            {
+              "id": "c91ae40a2",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.57,
+                "uncertain": 0.39,
+                "irrelevant": 0.04
+              }
+            },
+            {
+              "id": "c9fe85e6d",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.38,
+                "uncertain": 0.12,
+                "irrelevant": 0.5
+              }
+            },
+            {
+              "id": "c41b25cea",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.16,
+                "uncertain": 0.14,
+                "irrelevant": 0.7
+              }
+            },
+            {
+              "id": "c928aab9f",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.37,
+                "uncertain": 0.23,
+                "irrelevant": 0.4
+              }
+            },
+            {
+              "id": "cee43a1ac",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.02,
+                "uncertain": 0.06,
+                "irrelevant": 0.92
+              }
+            },
+            {
+              "id": "c3d633d04",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.33,
+                "uncertain": 0.14,
+                "irrelevant": 0.53
+              }
+            },
+            {
+              "id": "cf03f049a",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.98,
+                "uncertain": 0.01,
+                "irrelevant": 0.01
+              }
+            },
+            {
+              "id": "c26a65b04",
+              "label": "relevant",
+              "probabilities": {
+                "relevant": 0.95,
+                "uncertain": 0.03,
+                "irrelevant": 0.02
+              }
+            },
+            {
+              "id": "c0bc32197",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.01,
+                "uncertain": 0,
+                "irrelevant": 0.99
+              }
+            },
+            {
+              "id": "c7b701ca6",
+              "label": "irrelevant",
+              "probabilities": {
+                "relevant": 0.03,
+                "uncertain": 0.06,
+                "irrelevant": 0.91
+              }
+            }
+          ]
+        },
+        "metadata": {
+          "requestedModel": "typesafe-ai/jev",
+          "actualModel": null,
+          "finalProvider": "typesafe-ai",
+          "gatewayOriginalModel": "typesafe-ai/jev",
+          "gatewayCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptCanonicalModel": "typesafe-ai/jev",
+          "modelAttemptId": null,
+          "canonicalRoutingMatches": true,
+          "successfulProvider": "typesafe-ai",
+          "successfulProviderAttempts": 1,
+          "modelAttempts": 1,
+          "providerAttempts": 1,
+          "inputTokens": 3711,
+          "outputTokens": 1002,
+          "costUSD": 0,
+          "latencyMs": 266,
+          "profileHash": "56c33921bad14db5a0b8d56878412c4ff9581c9bf22bd024a8bac3c1e2375b7b",
+          "routingVerified": true
+        }
+      }
+    },
+    {
+      "id": "beacon-batteries-jev",
+      "kind": "jev",
+      "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+      "status": "failed",
+      "wallMs": 353.1238000000003,
+      "error": {
+        "code": "provider",
+        "category": "request_failed",
+        "retryable": true
+      }
+    }
+  ],
+  "observationDigests": {
+    "tidal-bell-jev": "2eb5e905d53dc138e2e05a09c768fe3d5edb3be06054b8b5f5823c35507c419d",
+    "guild-ballot-jev": "8bb156d0ebde98c41623947e8660c0632bba9b8906f230800027e9be2fa892e1",
+    "salt-road-jev": "1c6c55dd26348555afe6e0184b39e22ef1be4173cd78360cd7337a614b71e2a5",
+    "silent-rehearsal-jev": "1b719568cf13bf430927991a3a407cdc72b90194c41ca1d1003ac6dfc355e6da",
+    "canal-audit-jev": "8a4f5af7e9cb805cc8456da4a222fe6a8735529e5fba7db88912c8432a2562e0",
+    "wedding-letter-jev": "fa106eaa14ba9d32b21127596c1b61e108e2c9cf64cb6d94017bd1844286d329",
+    "clinic-interpreter-jev": "ec3ef679f744cf8010181a0268dd10e01b85579eeb5880197f68e2f53873d174",
+    "workshop-custody-jev": "775edb4fcd94dcfb99f8007de334514aed373b8b206851991afb0e74874c9775",
+    "railway-manual-jev": "7a6d5394f90b30442fcfca47c40a02155715b986c21dc64e50fe2da3632a56b6",
+    "seed-license-jev": "a2f056b2283f32113657de796cf1869835ad770850e71316ecc2af3750a5b772",
+    "water-charter-jev": "d378567f0a761fbd6132b273b383b03679c0c5df628845076016934c9caa1d62",
+    "museum-loan-jev": "c14873a9aeecd9d1f55706277facb7aefda2e9a0f0f0bbb89cb64bc0e44d7567",
+    "beacon-batteries-jev": "036a3613a7811da834e6f2097bc8410b2feb1d9329c8ae190c51633d47dfb9ea"
+  },
+  "originalArtifactSHA256": {
+    "beacon-batteries-jev.json": "9716fc82773c49305025e5304493909a3fa6d8b04196fae1888a4f5b6cb45da7",
+    "canal-audit-jev.json": "1f19218e0e0d554d8c17131eb6de2434e68b622e89343f76f3d0959e8af27653",
+    "clinic-interpreter-jev.json": "bff4fa162e614c193a77fc687b9165f7a5bca93be82ef662bf1df4d2cb6e9efb",
+    "full-reservations.jsonl": "0b2ad0ccf017e54fdfb249d968ae8889f02f01d3e9245d2dd67ba3e8ba377197",
+    "guild-ballot-jev.json": "c5526e50861fc79f5fdf345c08cbdac7623140a768537a8bdd4dec188468f697",
+    "museum-loan-jev.json": "8aafd8a1b346c1908a6b331f0f9dcf3179ba752d5e8ac52abdd7e856b0763cb6",
+    "railway-manual-jev.json": "6d25a4ffbcbcab578ce5f23f972b5c31b55bc2e49b401fa3ecef6b34c650d69e",
+    "reservations.jsonl": "d162d10f09e44c6fbdd0694063055bf682a1db4b6f14b78dedb8ba425ce27210",
+    "salt-road-jev.json": "821a5f547f65a59cc76b8202991c3fdfe9d8fca659888410ad746b9d30ebe649",
+    "seed-license-jev.json": "923f9a8b486b0ed51b9ee9d5ab698faaa6855e35ad5bbc5d6a06338cfa65371b",
+    "silent-rehearsal-jev.json": "950e356e35bdb5ea7f1e18419d01df550ca4b896e9e29ecaa4e8aa8313802e96",
+    "smoke-feedback-recovery-2.json": "8330c9e32c818862cddce996b89b4b84c111b30e80763ced015d9cf7c0376a3a",
+    "smoke-jev-recovery-2.json": "96f90ea7c2e1ddfc3660f7567c0c6e9eb7f1044b7ae19a6b5a461f9465832b8a",
+    "smoke-narration-recovery-2.json": "39cb879faef87312d013327c840985fc5b393617602154a06b30eb6aaedc3127",
+    "smoke-narration.json": "e796f229d0b79c695a3167fe7bba9818d6da95cda33474aaced285115e3212a4",
+    "smoke-plan-recovery-1.json": "cbee4af2bf17703c2a902c2c3b38bcbfbbed46bec0a754fba5b3fd15b709f18a",
+    "smoke-plan-recovery-2.json": "6a99cd6d16a4deec81e285007058f7a6e62ea21f11ee4af0ce4e663b5834dc2d",
+    "smoke-plan.json": "273119cf63616958dc62b835f19f034b2237997316988254c71c220f4c67ac01",
+    "smoke-recovery-1-manifest.json": "6300cf1d74455abe5258588a8458f4ccdf2112e3be2a2aca3f5d115d5de0bb51",
+    "smoke-recovery-1-reservations.jsonl": "ab3eb19725181cdc97642d663d6c78dfbfb6cee6ff3cf8b0024b77d9e74c1d8e",
+    "smoke-recovery-1-results.jsonl": "5865debb18436fa8d9d78d946a576e90f8749a9a52ff1debc6db16bc77186831",
+    "smoke-recovery-2-manifest.json": "72cc4e6c69dffb4f8e709e16a69b03044e25e2b0852af2d9be252166e9269d47",
+    "smoke-recovery-2-reservations.jsonl": "678207cee7d3c872353c2ae2f4b40e1208f183587c12ec1d374233b06c334a27",
+    "smoke-recovery-2-results.jsonl": "ba999a7133ea62902d6dfd87b9660e873b2b43436a05059158b0a4886b5ac15c",
+    "smoke-summary-recovery-2.json": "f2a70b4c9fd25efe45d60c5810bc09bdf1604ba3cfdac4e0c911eb9ee8e6dae2",
+    "tidal-bell-jev.json": "0cfdab061ca28fcf1ffd238faaf442edde6b033ee939d15591524b1f18bfdd08",
+    "water-charter-jev.json": "9d12fe27b7f7b3df6f20c3de5b3b83f39000522279aa03c122879690748142ca",
+    "wedding-letter-jev.json": "2f4e0bebadb5f5da2c1f87785dcc012de260b9cb869df8b8e8b6992594ff4d9c",
+    "workshop-custody-jev.json": "9b13ea6e4f4272e1c6c1f77c7e3f59fd53cd03dbb8739f97777257dea130ed38"
+  },
+  "boundaries": {
+    "syntheticOnly": true,
+    "rawProviderBodiesIncluded": false,
+    "credentialFilesReadForReport": false,
+    "liveCallsDuringAnalysis": 0,
+    "automaticRetries": 0,
+    "fallbackConfigured": false
+  },
+  "githubMain": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "localMainRef": "96964964a7d5046ff34b6b6ae695ecf494885cc4"
+}

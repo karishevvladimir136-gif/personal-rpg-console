@@ -103,10 +103,10 @@ test('cached observations need a reservation and validated pinned metadata; UNKN
 test('full CLI without approval makes no call and writes no ledger',()=>{
  const r=spawnSync(process.execPath,['src/run-live.mjs','--full'],{cwd:new URL('..',import.meta.url),encoding:'utf8',env:{PATH:process.env.PATH}});assert.equal(r.status,2);assert.match(r.stdout,/BLOCKED/);assert.equal(r.stderr,'');
 });
-test('correction changes only experiment files and status; frozen algorithms and production files untouched',()=>{
+test('experiment changes only experiment files, status and authorized evidence report; frozen algorithms and production files untouched',()=>{
  const root=new URL('../../../',import.meta.url),base='65a90280b01e7d461cc62c0580d50d810b6818a6';
  const git=(...args)=>execFileSync('git',['-c','core.safecrlf=false',...args],{cwd:root,encoding:'utf8'}).trim();
- const paths=git('diff','--name-only',base).split('\n').filter(Boolean);assert.ok(paths.every(p=>p==='DEV_STATUS.md'||p.startsWith('experiments/phase375-bakeoff/')));
+ const paths=git('diff','--name-only',base).split('\n').filter(Boolean);assert.ok(paths.every(p=>p==='DEV_STATUS.md'||p==='PHASE375_TECHNICAL_BAKEOFF.md'||p.startsWith('experiments/phase375-bakeoff/')));
  const frozen=['fixtures/frozen-protocol.json','src/fixtures.mjs','src/policy.mjs','src/plan.mjs','src/resolver.mjs','src/requests.mjs','src/transport.mjs','package.json','pnpm-lock.yaml'];
  for(const p of frozen)assert.equal(git('diff',base,'--','experiments/phase375-bakeoff/'+p),'');
  const source=readFileSync(new URL('../src/run-live.mjs',import.meta.url),'utf8'),prior=git('show',base+':experiments/phase375-bakeoff/src/run-live.mjs');

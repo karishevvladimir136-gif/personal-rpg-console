@@ -4,6 +4,38 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**Phase 3.75 synthetic bake-off STOPPED / INCOMPLETE; awaiting owner review.** Execution checkpoint: **8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23**, the separately owner-approved first-failure guard based on b3e0d5e65fedf1b85c6f526bee563c25cb24b34e. The owner authorized the frozen full workload; this is not implementation or production adoption approval.
+
+### Completed work / actual live outcome
+
+Executed the frozen full runner once: **13 new attempts, 12 successful Jev development observations, 1 failed beacon-batteries-jev attempt**, then immediate stop. **107 requests were not attempted**; Astra classifier, all held-out calls and all 24 A/B/C resolver calls remain unrun. Zero retries, fallback, diagnostics or smoke reruns. No further live calls during evidence analysis.
+
+The safe failed record is provider/request_failed with no retained HTTP status, routing, usage or cost. Root cause is unresolved: it cannot distinguish transport failure from local post-response validation. The retryable flag did not trigger a retry. Original results and reservation ledgers remain byte-for-byte preserved; accepted recovery-2 still qualifies transport smoke.
+
+### Accounting / verification boundaries
+
+New known Gateway cost **$0 on the twelve successes**; failed cost unknown. Historical known cost **$0.0969725**, cumulative known cost unchanged; actual cumulative total remains unknown. The original two 403 charges remain unknown in machine records, with the owner's $0 dashboard observation separately preserved. **21 cumulative attempts; $2.69696 cumulative reservations** ($0.26 new), under the $30 ceiling. No leftover headroom is permission to call again. No current dashboard total was inspected.
+
+Completed-subset Jev diagnostics: ECE **0.145741**, Brier **0.119811**, 216/288 required scores. Raw threshold replay loses three relevant noncritical Russian source passages; uncalibrated protection retains everything with zero context saving. These are partial development observations/offline replay, not held-out or downstream results. No calibration was frozen. All four task families: **DO NOT ADOPT** with current incomplete evidence. Jev real-data privacy eligibility remains a separate unmet gate.
+
+### Files / technical decisions
+
+Updated [final partial evidence report](PHASE375_TECHNICAL_BAKEOFF.md), this status file and experiment-only sanitized observations/metrics/verification. Added offline report analysis and regression coverage; the existing scope test now permits the explicitly requested report document. Corrected the old verification field to distinguish actual **GitHub main cb7f6be2fb513de13604d381046a3240f3261383** from the preserved local main ref 96964964a7d5046ff34b6b6ae695ecf494885cc4.
+
+No post-result changes to frozen inputs, split, thresholds, calibration, prompts, profiles, schema parsers, resolver gold, transport/runner, production runtime, migrations, root dependencies, architecture contracts or either main ref. Keys/environment/billing and all source observations stay unchanged. The original checkout's existing documentation edits remain untouched and unattributed.
+
+### Tests and build status
+
+Pre-run guard: **155 deterministic tests, experiment typecheck, lint and build passed**. Final evidence verification: **167 deterministic tests, experiment typecheck, lint and build passed**, zero skipped/failed in the final run; 12 new report tests. They recompute actual metrics, preserve unknown/unrun semantics and verify historical hashes/frozen contracts. [Actual verification record](experiments/phase375-bakeoff/results/full-run-verification.json). An initial report test assertion and the historical file-scope test needed report-only corrections; no live or frozen benchmark behavior was changed. Root application, browser and database acceptance suites were not rerun.
+
+### Known issues / remaining work / recommended next step
+
+Stop for owner review of the incomplete benchmark and unresolved failure. Further diagnosis or execution requires a fresh explicit scope; do not rerun reserved calls or relax validation to complete this dataset. No proven held-out recall, calibrated pruning, A/B/C quality, downstream latency/cost benefit or alternate-provider coverage. Gateway remains a transport candidate behind a server-only SDK adapter; no production adoption or implementation sprint begins.
+
+Physical iPhone/Safari and the optional historical Phase 1 conflict-rebase confirmation remain unverified. Finite synthetic tests do not guarantee perfect memory, branching or recovery. No hosted deployment, real campaign/private-data acceptance or import occurred. Do not start Spatial/EXPLORE, World implementation, media or later milestones.
+
+## Prior owner-approved stop-guard checkpoint (before live execution)
+
 **Phase 3.75 full synthetic benchmark authorized; owner-approved first-failure guard verified before execution.** Base `b3e0d5e65fedf1b85c6f526bee563c25cb24b34e`. Preflight reproduced a mismatch: the frozen runner could continue after its first structured-output failure. The owner explicitly approved a minimal experiment-only stop correction, commit/push, then execution from that checkpoint. No live calls yet at this commit.
 
 Completed/changed: only the runner's failure stop, its focused regression tests, [guard verification](experiments/phase375-bakeoff/results/full-stop-verification.json), and this status record. Typecheck, lint, build and **155 deterministic tests passed** (8 added). Invalid output, routing/provider failures, quota, unsupported options and missing billing stop before another request; failed results/reservations stay preserved. All request contents, profiles, schema parsers, dataset/split/calibration/thresholds/gold/resolver contracts and production files remain unchanged.

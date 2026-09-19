@@ -1,0 +1,1479 @@
+{
+  "status": "STOPPED_INCOMPLETE",
+  "executionCommit": "8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "counts": {
+    "plannedNew": 120,
+    "attempted": 13,
+    "successful": 12,
+    "failed": 1,
+    "notAttempted": 107,
+    "development": {
+      "planned": 32,
+      "attempted": 13
+    },
+    "heldout": {
+      "planned": 64,
+      "attempted": 0
+    },
+    "sentinel": {
+      "planned": 24,
+      "attempted": 0
+    },
+    "cumulativeAttempts": 21
+  },
+  "money": {
+    "newReservedUSD": 0.26,
+    "cumulativeReservedUSD": 2.69696,
+    "newKnownReportedCostUSD": 0,
+    "newTotalCostUSD": null,
+    "cumulativeKnownReportedCostUSD": 0.0969725,
+    "cumulativeTotalCostUSD": null,
+    "unknownChargeRequestIds": [
+      "smoke-plan",
+      "smoke-narration",
+      "beacon-batteries-jev"
+    ],
+    "unspentReservationCeilingUSD": 27.30304,
+    "permissionToUseHeadroom": false
+  },
+  "usage": {
+    "successfulInputTokens": 40660,
+    "successfulOutputTokens": 11985,
+    "failedInputTokens": null,
+    "failedOutputTokens": null
+  },
+  "routing": {
+    "requestedModel": "typesafe-ai/jev",
+    "verifiedCanonical": "typesafe-ai/jev",
+    "verifiedFinalProvider": "typesafe-ai",
+    "verifiedRequests": 12,
+    "modelAttemptsPerVerifiedRequest": 1,
+    "providerAttemptsPerVerifiedRequest": 1,
+    "successfulProviderAttemptsPerVerifiedRequest": 1,
+    "actualModel": null,
+    "failedRouting": null,
+    "retriesMade": 0,
+    "fallbackObserved": false,
+    "failedFallbackObservability": "unknown",
+    "warningsForSuccessfulRequests": "none (strict transport warning gate passed)",
+    "failedWarnings": null
+  },
+  "development": {
+    "jev": {
+      "requiredSnapshots": 16,
+      "successfulSnapshots": 12,
+      "requiredScores": 288,
+      "observedScores": 216,
+      "calibrationFrozen": false,
+      "calibrated": false,
+      "subset": {
+        "snapshots": 12,
+        "candidates": 240,
+        "calibrationDiagnostic": {
+          "n": 216,
+          "brier": 0.11981111111111112,
+          "ece": 0.14574074074074087,
+          "bins": [
+            {
+              "n": 61,
+              "predicted": 1.4000000000000008,
+              "observed": 7,
+              "rate": 0.11475409836065574,
+              "rateWilson95": [
+                0.05671202660732208,
+                0.21844308472401078
+              ]
+            },
+            {
+              "n": 13,
+              "predicted": 2.07,
+              "observed": 7,
+              "rate": 0.5384615384615384,
+              "rateWilson95": [
+                0.29143795714506004,
+                0.7679393219046169
+              ]
+            },
+            {
+              "n": 11,
+              "predicted": 2.66,
+              "observed": 6,
+              "rate": 0.5454545454545454,
+              "rateWilson95": [
+                0.280091537409322,
+                0.7872872837754024
+              ]
+            },
+            {
+              "n": 9,
+              "predicted": 3.1899999999999995,
+              "observed": 5,
+              "rate": 0.5555555555555556,
+              "rateWilson95": [
+                0.26665129349549305,
+                0.8112214789023355
+              ]
+            },
+            {
+              "n": 5,
+              "predicted": 2.1400000000000006,
+              "observed": 5,
+              "rate": 1,
+              "rateWilson95": [
+                0.5655175352168251,
+                1
+              ]
+            },
+            {
+              "n": 11,
+              "predicted": 6.03,
+              "observed": 10,
+              "rate": 0.9090909090909091,
+              "rateWilson95": [
+                0.6226415635484043,
+                0.9837678271141151
+              ]
+            },
+            {
+              "n": 13,
+              "predicted": 8.450000000000001,
+              "observed": 12,
+              "rate": 0.9230769230769231,
+              "rateWilson95": [
+                0.6668604907890041,
+                0.9862895787574435
+              ]
+            },
+            {
+              "n": 9,
+              "predicted": 6.92,
+              "observed": 9,
+              "rate": 1,
+              "rateWilson95": [
+                0.7008549515804559,
+                1
+              ]
+            },
+            {
+              "n": 16,
+              "predicted": 13.500000000000002,
+              "observed": 16,
+              "rate": 1,
+              "rateWilson95": [
+                0.8063923194655637,
+                1
+              ]
+            },
+            {
+              "n": 68,
+              "predicted": 66.15999999999997,
+              "observed": 67,
+              "rate": 0.9852941176470589,
+              "rateWilson95": [
+                0.9212902687183916,
+                0.9973993164238933
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 240,
+          "correct": 177,
+          "accuracy": 0.7375,
+          "accuracyWilson95": [
+            0.6784063015089737,
+            0.7891105865187859
+          ],
+          "uncertain": 9,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "relevant->relevant": 100,
+            "irrelevant->irrelevant": 70,
+            "relevant->irrelevant": 42,
+            "uncertain->uncertain": 7,
+            "uncertain->relevant": 7,
+            "uncertain->irrelevant": 10,
+            "relevant->uncertain": 2,
+            "irrelevant->relevant": 2
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 144,
+          "truePositive": 141,
+          "falseNegative": 3,
+          "recall": 0.9791666666666666,
+          "recallWilson95": [
+            0.9405424671304959,
+            0.992889880607427
+          ],
+          "precision": 0.7833333333333333,
+          "critical": 24,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.8620237953250198,
+            1
+          ],
+          "uncertain": 24,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 12,
+          "samples": 2000,
+          "percentile95": [
+            0.9375,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 144,
+          "truePositive": 144,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9740163628569635,
+            1
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 24,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.8620237953250198,
+            1
+          ],
+          "uncertain": 24,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [
+          {
+            "snapshot": "water-charter",
+            "candidate": "c9e35ced5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "ca59935d5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "c7034ee35",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          }
+        ],
+        "candidateReduction": {
+          "baseline": 240,
+          "rawRetained": 204,
+          "rawAvoided": 36,
+          "protectedRetained": 240,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 23963,
+          "rawBytes": 20674,
+          "rawAvoided": 3289,
+          "protectedBytes": 23963,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 104036,
+          "normalizedOutputBytes": 26799,
+          "protectedNetSerializedBytesAvoided": -130835
+        }
+      }
+    },
+    "astra": {
+      "successfulSnapshots": 0,
+      "calibrationFrozen": false,
+      "calibration": null
+    },
+    "byFamily": {
+      "thread": {
+        "snapshots": 4,
+        "candidates": 80,
+        "calibrationDiagnostic": {
+          "n": 72,
+          "brier": 0.10567500000000002,
+          "ece": 0.1522222222222222,
+          "bins": [
+            {
+              "n": 19,
+              "predicted": 0.4800000000000003,
+              "observed": 1,
+              "rate": 0.05263157894736842,
+              "rateWilson95": [
+                0.009351994062300362,
+                0.24638731166898786
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 0.4800000000000001,
+              "observed": 1,
+              "rate": 0.3333333333333333,
+              "rateWilson95": [
+                0.06149194472039621,
+                0.7923403991979522
+              ]
+            },
+            {
+              "n": 7,
+              "predicted": 1.67,
+              "observed": 5,
+              "rate": 0.7142857142857143,
+              "rateWilson95": [
+                0.35893445183261935,
+                0.9177810759959433
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 1.04,
+              "observed": 1,
+              "rate": 0.3333333333333333,
+              "rateWilson95": [
+                0.06149194472039621,
+                0.7923403991979522
+              ]
+            },
+            {
+              "n": 1,
+              "predicted": 0.43000000000000005,
+              "observed": 1,
+              "rate": 1,
+              "rateWilson95": [
+                0.20654931437723745,
+                1
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 2.17,
+              "observed": 4,
+              "rate": 1,
+              "rateWilson95": [
+                0.5101091635454027,
+                1
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 2.5799999999999996,
+              "observed": 4,
+              "rate": 1,
+              "rateWilson95": [
+                0.5101091635454027,
+                1
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 4.63,
+              "observed": 6,
+              "rate": 1,
+              "rateWilson95": [
+                0.6096657120978346,
+                1
+              ]
+            },
+            {
+              "n": 7,
+              "predicted": 5.97,
+              "observed": 7,
+              "rate": 1,
+              "rateWilson95": [
+                0.6456695649333126,
+                1
+              ]
+            },
+            {
+              "n": 18,
+              "predicted": 17.67,
+              "observed": 18,
+              "rate": 1,
+              "rateWilson95": [
+                0.8241207763533425,
+                1
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 80,
+          "correct": 61,
+          "accuracy": 0.7625,
+          "accuracyWilson95": [
+            0.6585922106615945,
+            0.8423532713322537
+          ],
+          "uncertain": 2,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "relevant->relevant": 35,
+            "irrelevant->irrelevant": 24,
+            "relevant->irrelevant": 13,
+            "uncertain->uncertain": 2,
+            "uncertain->relevant": 4,
+            "uncertain->irrelevant": 2
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 48,
+          "truePositive": 48,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9258998703338824,
+            0.9999999999999999
+          ],
+          "precision": 0.7741935483870968,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 4,
+          "samples": 2000,
+          "percentile95": [
+            1,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 48,
+          "truePositive": 48,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9258998703338824,
+            0.9999999999999999
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [],
+        "candidateReduction": {
+          "baseline": 80,
+          "rawRetained": 70,
+          "rawAvoided": 10,
+          "protectedRetained": 80,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 7500,
+          "rawBytes": 6684,
+          "rawAvoided": 816,
+          "protectedBytes": 7500,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 34220,
+          "normalizedOutputBytes": 8956,
+          "protectedNetSerializedBytesAvoided": -43176
+        }
+      },
+      "actor": {
+        "snapshots": 4,
+        "candidates": 80,
+        "calibrationDiagnostic": {
+          "n": 72,
+          "brier": 0.0622875,
+          "ece": 0.07013888888888885,
+          "bins": [
+            {
+              "n": 18,
+              "predicted": 0.28,
+              "observed": 0,
+              "rate": 0,
+              "rateWilson95": [
+                0,
+                0.17587922364665765
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 0.6699999999999999,
+              "observed": 1,
+              "rate": 0.25,
+              "rateWilson95": [
+                0.04558726080970055,
+                0.6993581574175981
+              ]
+            },
+            {
+              "n": 0,
+              "predicted": 0,
+              "observed": 0,
+              "rate": null,
+              "rateWilson95": null
+            },
+            {
+              "n": 2,
+              "predicted": 0.77,
+              "observed": 1,
+              "rate": 0.5,
+              "rateWilson95": [
+                0.09453120573423074,
+                0.9054687942657693
+              ]
+            },
+            {
+              "n": 2,
+              "predicted": 0.81,
+              "observed": 2,
+              "rate": 1,
+              "rateWilson95": [
+                0.34238022750665303,
+                1
+              ]
+            },
+            {
+              "n": 2,
+              "predicted": 1.09,
+              "observed": 2,
+              "rate": 1,
+              "rateWilson95": [
+                0.34238022750665303,
+                1
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 4,
+              "observed": 5,
+              "rate": 0.8333333333333334,
+              "rateWilson95": [
+                0.43649717781352987,
+                0.9699466302516935
+              ]
+            },
+            {
+              "n": 2,
+              "predicted": 1.57,
+              "observed": 2,
+              "rate": 1,
+              "rateWilson95": [
+                0.34238022750665303,
+                1
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 3.42,
+              "observed": 4,
+              "rate": 1,
+              "rateWilson95": [
+                0.5101091635454027,
+                1
+              ]
+            },
+            {
+              "n": 32,
+              "predicted": 30.900000000000002,
+              "observed": 31,
+              "rate": 0.96875,
+              "rateWilson95": [
+                0.8425573617998744,
+                0.9944621398359969
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 80,
+          "correct": 65,
+          "accuracy": 0.8125,
+          "accuracyWilson95": [
+            0.7134167737100688,
+            0.8829468953302267
+          ],
+          "uncertain": 6,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "uncertain->irrelevant": 3,
+            "relevant->irrelevant": 7,
+            "relevant->relevant": 39,
+            "irrelevant->irrelevant": 22,
+            "uncertain->uncertain": 4,
+            "relevant->uncertain": 2,
+            "irrelevant->relevant": 2,
+            "uncertain->relevant": 1
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 48,
+          "truePositive": 48,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9258998703338824,
+            0.9999999999999999
+          ],
+          "precision": 0.8,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 4,
+          "samples": 2000,
+          "percentile95": [
+            1,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 48,
+          "truePositive": 48,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9258998703338824,
+            0.9999999999999999
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [],
+        "candidateReduction": {
+          "baseline": 80,
+          "rawRetained": 68,
+          "rawAvoided": 12,
+          "protectedRetained": 80,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 7956,
+          "rawBytes": 6854,
+          "rawAvoided": 1102,
+          "protectedBytes": 7956,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 34591,
+          "normalizedOutputBytes": 8890,
+          "protectedNetSerializedBytesAvoided": -43481
+        }
+      },
+      "source": {
+        "snapshots": 4,
+        "candidates": 80,
+        "calibrationDiagnostic": {
+          "n": 72,
+          "brier": 0.19147083333333337,
+          "ece": 0.22375,
+          "bins": [
+            {
+              "n": 24,
+              "predicted": 0.6400000000000001,
+              "observed": 6,
+              "rate": 0.25,
+              "rateWilson95": [
+                0.11999366228595004,
+                0.44899444005154004
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 0.92,
+              "observed": 5,
+              "rate": 0.8333333333333334,
+              "rateWilson95": [
+                0.43649717781352987,
+                0.9699466302516935
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 0.99,
+              "observed": 1,
+              "rate": 0.25,
+              "rateWilson95": [
+                0.04558726080970055,
+                0.6993581574175981
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 1.3800000000000001,
+              "observed": 3,
+              "rate": 0.75,
+              "rateWilson95": [
+                0.30064184258240184,
+                0.9544127391902995
+              ]
+            },
+            {
+              "n": 2,
+              "predicted": 0.9,
+              "observed": 2,
+              "rate": 1,
+              "rateWilson95": [
+                0.34238022750665303,
+                1
+              ]
+            },
+            {
+              "n": 5,
+              "predicted": 2.7700000000000005,
+              "observed": 4,
+              "rate": 0.8,
+              "rateWilson95": [
+                0.37553462976252533,
+                0.9637758913675698
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 1.87,
+              "observed": 3,
+              "rate": 1,
+              "rateWilson95": [
+                0.4385029682449546,
+                1
+              ]
+            },
+            {
+              "n": 1,
+              "predicted": 0.72,
+              "observed": 1,
+              "rate": 1,
+              "rateWilson95": [
+                0.20654931437723745,
+                1
+              ]
+            },
+            {
+              "n": 5,
+              "predicted": 4.11,
+              "observed": 5,
+              "rate": 1,
+              "rateWilson95": [
+                0.5655175352168251,
+                1
+              ]
+            },
+            {
+              "n": 18,
+              "predicted": 17.59,
+              "observed": 18,
+              "rate": 1,
+              "rateWilson95": [
+                0.8241207763533425,
+                1
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 80,
+          "correct": 51,
+          "accuracy": 0.6375,
+          "accuracyWilson95": [
+            0.5281079450222215,
+            0.7342920693555084
+          ],
+          "uncertain": 1,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "irrelevant->irrelevant": 24,
+            "relevant->relevant": 26,
+            "relevant->irrelevant": 22,
+            "uncertain->uncertain": 1,
+            "uncertain->relevant": 2,
+            "uncertain->irrelevant": 5
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 48,
+          "truePositive": 45,
+          "falseNegative": 3,
+          "recall": 0.9375,
+          "recallWilson95": [
+            0.8316456194505365,
+            0.9785167670916107
+          ],
+          "precision": 0.7758620689655172,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 4,
+          "samples": 2000,
+          "percentile95": [
+            0.8125,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 48,
+          "truePositive": 48,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9258998703338824,
+            0.9999999999999999
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 8,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.6755924351161198,
+            1
+          ],
+          "uncertain": 8,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [
+          {
+            "snapshot": "water-charter",
+            "candidate": "c9e35ced5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "ca59935d5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "c7034ee35",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          }
+        ],
+        "candidateReduction": {
+          "baseline": 80,
+          "rawRetained": 66,
+          "rawAvoided": 14,
+          "protectedRetained": 80,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 8507,
+          "rawBytes": 7136,
+          "rawAvoided": 1371,
+          "protectedBytes": 8507,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 35225,
+          "normalizedOutputBytes": 8953,
+          "protectedNetSerializedBytesAvoided": -44178
+        }
+      },
+      "comparison": null
+    },
+    "byLanguage": {
+      "en": {
+        "snapshots": 6,
+        "candidates": 120,
+        "calibrationDiagnostic": {
+          "n": 108,
+          "brier": 0.09528703703703705,
+          "ece": 0.12092592592592595,
+          "bins": [
+            {
+              "n": 31,
+              "predicted": 0.5300000000000004,
+              "observed": 2,
+              "rate": 0.06451612903225806,
+              "rateWilson95": [
+                0.017874783521914572,
+                0.20718636736298127
+              ]
+            },
+            {
+              "n": 7,
+              "predicted": 1.1799999999999997,
+              "observed": 5,
+              "rate": 0.7142857142857143,
+              "rateWilson95": [
+                0.35893445183261935,
+                0.9177810759959433
+              ]
+            },
+            {
+              "n": 5,
+              "predicted": 1.27,
+              "observed": 2,
+              "rate": 0.4,
+              "rateWilson95": [
+                0.11762077423264783,
+                0.769275718723987
+              ]
+            },
+            {
+              "n": 1,
+              "predicted": 0.38,
+              "observed": 1,
+              "rate": 1,
+              "rateWilson95": [
+                0.20654931437723745,
+                1
+              ]
+            },
+            {
+              "n": 1,
+              "predicted": 0.4,
+              "observed": 1,
+              "rate": 1,
+              "rateWilson95": [
+                0.20654931437723745,
+                1
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 1.7400000000000002,
+              "observed": 2,
+              "rate": 0.6666666666666666,
+              "rateWilson95": [
+                0.2076596008020477,
+                0.9385080552796037
+              ]
+            },
+            {
+              "n": 10,
+              "predicted": 6.510000000000001,
+              "observed": 9,
+              "rate": 0.9,
+              "rateWilson95": [
+                0.5958499732047615,
+                0.9821237869049271
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 4.640000000000001,
+              "observed": 6,
+              "rate": 1,
+              "rateWilson95": [
+                0.6096657120978346,
+                1
+              ]
+            },
+            {
+              "n": 7,
+              "predicted": 5.84,
+              "observed": 7,
+              "rate": 1,
+              "rateWilson95": [
+                0.6456695649333126,
+                1
+              ]
+            },
+            {
+              "n": 37,
+              "predicted": 36.449999999999996,
+              "observed": 37,
+              "rate": 1,
+              "rateWilson95": [
+                0.9059421741627975,
+                1
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 120,
+          "correct": 97,
+          "accuracy": 0.8083333333333333,
+          "accuracyWilson95": [
+            0.7287884399579756,
+            0.8687497407504907
+          ],
+          "uncertain": 8,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "relevant->relevant": 56,
+            "irrelevant->irrelevant": 35,
+            "relevant->irrelevant": 14,
+            "uncertain->uncertain": 6,
+            "uncertain->relevant": 3,
+            "uncertain->irrelevant": 3,
+            "relevant->uncertain": 2,
+            "irrelevant->relevant": 1
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 72,
+          "truePositive": 72,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9493488274035422,
+            1
+          ],
+          "precision": 0.8089887640449438,
+          "critical": 12,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.7575059933447592,
+            1
+          ],
+          "uncertain": 12,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 6,
+          "samples": 2000,
+          "percentile95": [
+            1,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 72,
+          "truePositive": 72,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9493488274035422,
+            1
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 12,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.7575059933447592,
+            1
+          ],
+          "uncertain": 12,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [],
+        "candidateReduction": {
+          "baseline": 120,
+          "rawRetained": 101,
+          "rawAvoided": 19,
+          "protectedRetained": 120,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 9772,
+          "rawBytes": 8430,
+          "rawAvoided": 1342,
+          "protectedBytes": 9772,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 49669,
+          "normalizedOutputBytes": 13321,
+          "protectedNetSerializedBytesAvoided": -62990
+        }
+      },
+      "ru": {
+        "snapshots": 6,
+        "candidates": 120,
+        "calibrationDiagnostic": {
+          "n": 108,
+          "brier": 0.1443351851851852,
+          "ece": 0.17055555555555557,
+          "bins": [
+            {
+              "n": 30,
+              "predicted": 0.8700000000000001,
+              "observed": 5,
+              "rate": 0.16666666666666666,
+              "rateWilson95": [
+                0.0733654237184855,
+                0.3356435050641603
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 0.8900000000000001,
+              "observed": 2,
+              "rate": 0.3333333333333333,
+              "rateWilson95": [
+                0.09677141110578041,
+                0.700006684861608
+              ]
+            },
+            {
+              "n": 6,
+              "predicted": 1.39,
+              "observed": 4,
+              "rate": 0.6666666666666666,
+              "rateWilson95": [
+                0.299993315138392,
+                0.9032285888942195
+              ]
+            },
+            {
+              "n": 8,
+              "predicted": 2.8099999999999996,
+              "observed": 4,
+              "rate": 0.5,
+              "rateWilson95": [
+                0.21521606221387757,
+                0.7847839377861224
+              ]
+            },
+            {
+              "n": 4,
+              "predicted": 1.74,
+              "observed": 4,
+              "rate": 1,
+              "rateWilson95": [
+                0.5101091635454027,
+                1
+              ]
+            },
+            {
+              "n": 8,
+              "predicted": 4.29,
+              "observed": 8,
+              "rate": 1,
+              "rateWilson95": [
+                0.6755924351161198,
+                1
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 1.94,
+              "observed": 3,
+              "rate": 1,
+              "rateWilson95": [
+                0.4385029682449546,
+                1
+              ]
+            },
+            {
+              "n": 3,
+              "predicted": 2.2800000000000002,
+              "observed": 3,
+              "rate": 1,
+              "rateWilson95": [
+                0.4385029682449546,
+                1
+              ]
+            },
+            {
+              "n": 9,
+              "predicted": 7.659999999999999,
+              "observed": 9,
+              "rate": 1,
+              "rateWilson95": [
+                0.7008549515804559,
+                1
+              ]
+            },
+            {
+              "n": 31,
+              "predicted": 29.709999999999997,
+              "observed": 30,
+              "rate": 0.967741935483871,
+              "rateWilson95": [
+                0.838058948352751,
+                0.9942827784745831
+              ]
+            }
+          ]
+        },
+        "labels": {
+          "n": 120,
+          "correct": 80,
+          "accuracy": 0.6666666666666666,
+          "accuracyWilson95": [
+            0.5783110162063498,
+            0.7446825949874156
+          ],
+          "uncertain": 1,
+          "omitted": 0,
+          "missingScores": 0,
+          "failedSnapshots": 0,
+          "confusion": {
+            "relevant->irrelevant": 28,
+            "relevant->relevant": 44,
+            "irrelevant->irrelevant": 35,
+            "uncertain->irrelevant": 7,
+            "uncertain->relevant": 4,
+            "irrelevant->relevant": 1,
+            "uncertain->uncertain": 1
+          }
+        },
+        "rawThresholdDiagnostic": {
+          "relevant": 72,
+          "truePositive": 69,
+          "falseNegative": 3,
+          "recall": 0.9583333333333334,
+          "recallWilson95": [
+            0.8845072325868389,
+            0.9857291925330748
+          ],
+          "precision": 0.7582417582417582,
+          "critical": 12,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.7575059933447592,
+            1
+          ],
+          "uncertain": 12,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "rawRecallClusterInterval": {
+          "clusters": 6,
+          "samples": 2000,
+          "percentile95": [
+            0.875,
+            1
+          ],
+          "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+        },
+        "protectedUncalibratedReplay": {
+          "relevant": 72,
+          "truePositive": 72,
+          "falseNegative": 0,
+          "recall": 1,
+          "recallWilson95": [
+            0.9493488274035422,
+            1
+          ],
+          "precision": 0.6666666666666666,
+          "critical": 12,
+          "criticalMisses": 0,
+          "criticalRetentionWilson95": [
+            0.7575059933447592,
+            1
+          ],
+          "uncertain": 12,
+          "uncertainLost": 0,
+          "scopeLeaks": 0
+        },
+        "falseNegatives": [
+          {
+            "snapshot": "water-charter",
+            "candidate": "c9e35ced5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "ca59935d5",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          },
+          {
+            "snapshot": "water-charter",
+            "candidate": "c7034ee35",
+            "language": "ru",
+            "family": "source",
+            "critical": false
+          }
+        ],
+        "candidateReduction": {
+          "baseline": 120,
+          "rawRetained": 103,
+          "rawAvoided": 17,
+          "protectedRetained": 120,
+          "protectedAvoided": 0
+        },
+        "byteReduction": {
+          "baselineBytes": 14191,
+          "rawBytes": 12244,
+          "rawAvoided": 1947,
+          "protectedBytes": 14191,
+          "protectedAvoided": 0,
+          "classifierInputBytes": 54367,
+          "normalizedOutputBytes": 13478,
+          "protectedNetSerializedBytesAvoided": -67845
+        }
+      }
+    }
+  },
+  "heldout": {
+    "status": "NOT_RUN",
+    "recall": null,
+    "falseNegatives": null,
+    "criticalMisses": null,
+    "uncertainLosses": null,
+    "scopeTimelineFailures": null,
+    "contextReduction": null
+  },
+  "sentinels": [
+    {
+      "id": "orchard-smoke",
+      "family": "thread",
+      "language": "en",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "ferry-debt",
+      "family": "thread",
+      "language": "ru",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "treaty-release",
+      "family": "actor",
+      "language": "en",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "archive-witness",
+      "family": "actor",
+      "language": "ru",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "island-veto",
+      "family": "source",
+      "language": "en",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "hospital-generator",
+      "family": "source",
+      "language": "ru",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "flood-branches",
+      "family": "comparison",
+      "language": "en",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "embassy-delay",
+      "family": "comparison",
+      "language": "ru",
+      "A": null,
+      "B": null,
+      "C": null,
+      "lostFindingsVersusA": null,
+      "unsupportedClaims": null,
+      "scopeTimelineFailures": null,
+      "status": "NOT_RUN"
+    }
+  ],
+  "latency": {
+    "unit": "ms",
+    "successfulRequests": 12,
+    "p50": 290.14819999999963,
+    "p95": 840.8914,
+    "failedAttempt": 353.1238000000003,
+    "pairedPipelineSavings": null
+  },
+  "failure": {
+    "requestId": "beacon-batteries-jev",
+    "error": {
+      "code": "provider",
+      "category": "request_failed",
+      "retryable": true
+    },
+    "httpStatus": null,
+    "routing": null,
+    "billing": null,
+    "rootCause": "Unresolved: generic safe error does not distinguish provider transport from local post-response validation."
+  },
+  "recommendations": {
+    "thread": "DO NOT ADOPT",
+    "actor": "DO NOT ADOPT",
+    "source": "DO NOT ADOPT",
+    "comparison": "DO NOT ADOPT"
+  }
+}
