@@ -7,6 +7,7 @@ import { protect,rawAdmission } from './policy.mjs';
 import { INSTRUCTIONS,questions,classificationSchema,parseClassification,fromJev,requestContractHash } from './requests.mjs';
 import { admissionMetrics,calibration,quantile,clusterRecallInterval } from './metrics.mjs';
 import { liveGate } from './live-gate.mjs';
+import { money } from './smoke-evidence.mjs';
 import { classificationMeasurements,pipelineMeasurements } from './measurements.mjs';
 import { buildPlan } from './plan.mjs';
 import { RESOLVER_INSTRUCTIONS,resolverInput,resolverSchema,parseResolver,scoreResolver,summarizeResolver,resolverContractHash } from './resolver.mjs';
@@ -37,7 +38,7 @@ try{
   /** @param {string} id @param {'astra'|'jev'} kind @param {()=>Promise<Record<string,any>>} call */
   async function attempt(id,kind,call){
     const target=new URL(`${id}.json`,outputDir);
-    if(existsSync(target)){const prior=JSON.parse(readFileSync(target,'utf8'));if(prior.protocolHash!==approvedHash)throw new Error('prior_protocol_mismatch');observations.push(prior);return prior;}
+    if(existsSync(target)){const prior=JSON.parse(readFileSync(target,'utf8'));if(prior.protocolHash!==approvedHash)throw new Error('prior_protocol_mismatch');if('validateObservation' in gate)gate.validateObservation(id,kind,prior);observations.push(prior);return prior;}
     gate.reserve(id,kind);
     newRequests++;
     const started=performance.now();
@@ -66,9 +67,8 @@ try{
     await attempt('smoke-jev','jev',()=>port.classify(profiles.jev,payload(data[0]),questions(data[0])));
     save('smoke-summary.json',{protocolHash:approvedHash,newRequestsThisInvocation:newRequests,recordedRequests:observations.length,privacyCapability:EXTERNAL_FACTS,observations:observations.map(x=>({id:x.id,status:x.status,error:x.error??null})),note:'Synthetic transport only. Review routing and billing before any full-run approval; success cannot establish production privacy eligibility.'});
   }else{
-    if(!existsSync(new URL('smoke-summary.json',outputDir)))throw new Error('smoke_required');
-    const smoke=JSON.parse(readFileSync(new URL('smoke-summary.json',outputDir),'utf8'));
-    if(smoke.protocolHash!==approvedHash||smoke.observations.some((/** @type {{status:string}} */ x)=>x.status!=='success'))throw new Error('successful_matching_smoke_required');
+    // liveGate has already verified the accepted recovery-2 evidence and all historical ledgers.
+    if(!('history' in gate))throw new Error('accepted_smoke_gate_required');
     const development=data.filter(s=>s.split==='development'),held=data.filter(s=>s.split==='heldout');
     const sentinels=held.filter(s=>s.sentinel),sentinelIds=new Set(sentinels.map(s=>s.id));
     const requiredScores=development.reduce((n,s)=>n+eligible(s).filter(c=>s.truth[c.id].relevance!=='uncertain').length,0);
@@ -132,7 +132,10 @@ try{
       rawLabels:{jev:classificationMeasurements(held,observations,'jev'),frontier:classificationMeasurements(held,observations,'astra')},
       pairedSentinelPaths:pipelineMeasurements(sentinels,observations,decisions.filter(d=>sentinelIds.has(d.snapshot))),downstreamQuality,privacyEligibility:EXTERNAL_FACTS.jev.productionPrivacyEligibility,
       newRequestsThisInvocation:newRequests,uniqueRecordedRequests:observations.length,
-      billingScope:'Full evaluation stage only; add smoke-summary request metadata for cumulative reported charges. The durable reservation ledger enforces the cumulative smoke + full ceiling, including uncertain billing.',
+      billingScope:'Full-stage charges below; cumulative accounting includes original smoke and both recoveries. Unknown historical Gateway charges remain unknown, independently of owner-reported $0 and conservative reservations.',
+      qualifyingSmoke:gate.history.qualifyingSmoke,acceptedSmokeEvidenceHash:gate.history.evidenceHash,cumulativeAccounting:gate.snapshot(),
+      cumulativeKnownReportedCostUSD:money(gate.history.knownReportedCostUSD+metadata.reduce((n,x)=>n+(typeof x.costUSD==='number'?x.costUSD:0),0)),
+      cumulativeReportedCostUSD:gate.history.reportedCostUSD!==null&&observations.every(x=>x.status==='success')&&metadata.length===observations.length&&metadata.every(x=>x.costUSD!==null)?money(gate.history.reportedCostUSD+metadata.reduce((n,x)=>n+x.costUSD,0)):null,
       reportedCostUSD:observations.every(x=>x.status==='success')&&metadata.length===observations.length&&metadata.every(x=>x.costUSD!==null)?metadata.reduce((n,x)=>n+x.costUSD,0):null,
       failedOrUnknownBilling:observations.some(x=>x.status!=='success')||metadata.some(x=>x.costUSD===null),
       recommendation:'REQUIRES HUMAN REVIEW: examine per-case errors, intervals, calibration, resolver failures and paired overhead before any adoption. No production changes.'});

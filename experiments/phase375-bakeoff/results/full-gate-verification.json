@@ -1,0 +1,105 @@
+{
+  "scope": "EXPERIMENT_ONLY_FULL_GATE_BOOKKEEPING_NO_LIVE_CALLS",
+  "baseCommit": "65a90280b01e7d461cc62c0580d50d810b6818a6",
+  "ownerAcceptedSmoke": "smoke-recovery-2",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "acceptedEvidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "tests": {
+    "passed": 147,
+    "failed": 0,
+    "skipped": 0,
+    "newTests": 36,
+    "raw": "full-gate-tests.tap",
+    "rawSHA256": "7127cf17fec032b016bf0a5f8378285a4494f342c6b71685b18c4d362538aa6e"
+  },
+  "historicalAccounting": {
+    "requestIds": [
+      "smoke-plan",
+      "smoke-narration",
+      "smoke-plan-recovery-1",
+      "smoke-plan-recovery-2",
+      "smoke-narration-recovery-2",
+      "smoke-feedback-recovery-2",
+      "smoke-summary-recovery-2",
+      "smoke-jev-recovery-2"
+    ],
+    "attempts": 8,
+    "reservedUSD": 2.43696,
+    "knownReportedCostUSD": 0.0969725,
+    "reportedCostUSD": null,
+    "unknownChargeRequestIds": [
+      "smoke-plan",
+      "smoke-narration"
+    ],
+    "ledgerTotals": [
+      {
+        "name": "reservations.jsonl",
+        "attempts": 2,
+        "reservedUSD": 0.69056
+      },
+      {
+        "name": "smoke-recovery-1-reservations.jsonl",
+        "attempts": 1,
+        "reservedUSD": 0.34528
+      },
+      {
+        "name": "smoke-recovery-2-reservations.jsonl",
+        "attempts": 5,
+        "reservedUSD": 1.40112
+      }
+    ],
+    "remainingReservationUSD": 27.56304,
+    "evidenceHash": "70f16e5dc11484779329aab5326e75edc83210d4c68967b950410ef57d4dae24",
+    "qualifyingSmoke": "smoke-recovery-2",
+    "executionCommit": "65a90280b01e7d461cc62c0580d50d810b6818a6",
+    "qualifyingCapabilities": [
+      "plan",
+      "narration",
+      "feedback",
+      "summary",
+      "jev"
+    ],
+    "ownerReportedPrior403SpendUSD": 0,
+    "ownerReportedPrior403Source": "owner_report"
+  },
+  "fullWorkload": {
+    "requestCount": 120,
+    "counts": {
+      "development": 32,
+      "heldout": 64,
+      "sentinel": 24
+    },
+    "maximumReservedUSD": 25.82016,
+    "projectedCumulativeAttempts": 128,
+    "projectedCumulativeReservedUSD": 28.25712,
+    "maximumReservationBudgetRemainingBeforeFull": 27.56304
+  },
+  "historicalArtifactsVerified": 15,
+  "allHistoricalBytesPreserved": true,
+  "fullLedgerCreated": false,
+  "originalSmokeSummaryCreated": false,
+  "liveProviderCallsDuringCorrection": 0,
+  "newSpendDuringCorrectionUSD": 0,
+  "credentialsLoaded": false,
+  "rootApplicationChecks": "not rerun; production unchanged",
+  "frozenAlgorithmsAndProtocolUnchanged": true,
+  "mainUnchanged": "96964964a7d5046ff34b6b6ae695ecf494885cc4",
+  "changedFiles": [
+    "DEV_STATUS.md",
+    "experiments/phase375-bakeoff/FULL_GATE_BOOKKEEPING.md",
+    "experiments/phase375-bakeoff/fixtures/accepted-smoke-recovery-2.json",
+    "experiments/phase375-bakeoff/results/full-gate-tests.tap",
+    "experiments/phase375-bakeoff/results/full-gate-verification.json",
+    "experiments/phase375-bakeoff/src/full-gate.mjs",
+    "experiments/phase375-bakeoff/src/live-gate.mjs",
+    "experiments/phase375-bakeoff/src/run-live.mjs",
+    "experiments/phase375-bakeoff/src/smoke-evidence.mjs",
+    "experiments/phase375-bakeoff/test/full-gate.test.mjs",
+    "experiments/phase375-bakeoff/test/gate.test.mjs",
+    "experiments/phase375-bakeoff/test/helpers/accepted-history.mjs"
+  ],
+  "next": "Push bookkeeping correction to bake-off branch only, then stop for owner review. No full benchmark or implementation authorization."
+}

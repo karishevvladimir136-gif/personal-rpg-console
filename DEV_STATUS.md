@@ -4,6 +4,28 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**Phase 3.75 accepted transport smoke — final experiment-only full-run bookkeeping correction complete; awaiting owner review.** The owner explicitly accepts recovery 2 executed at `65a90280b01e7d461cc62c0580d50d810b6818a6` as qualifying transport smoke. This is not product-phase approval or permission to run the full benchmark. This correction made **zero live model calls** and $0 new spend.
+
+### Completed work / files and areas changed
+
+The full runner now verifies the accepted recovery-2 artifacts instead of requiring an original successful smoke-summary. Added read-only cumulative accounting across the original, recovery-1 and recovery-2 ledgers; new full-run reservations use a separate durable ledger. Historical hashes, manifests, protocol, execution lineage, all five successful capabilities, provider pins/counts and billing are checked. UNKNOWN actual provider API naming remains valid under the unchanged corrected transport. No historical observation or ledger was changed and no original smoke-summary was synthesized. [Bookkeeping details](experiments/phase375-bakeoff/FULL_GATE_BOOKKEEPING.md), [exact 12 changed files and verification](experiments/phase375-bakeoff/results/full-gate-verification.json).
+
+### Tests and build status
+
+Experiment typecheck, lint, build and **147 deterministic tests passed**, zero failures/skips (36 added). Tests cover accepted/partial/altered evidence, hashes and lineage, routing/billing/UNKNOWN provenance, duplicate IDs, all-ledger costs, cumulative ceilings, restart/no-retry behavior, immutable historical bytes and the unchanged 120-request full workload. The real local history passed read-only validation: **15 artifacts, 8 prior requests, $2.43696 reserved, $0.0969725 known Gateway-reported spend**. [TAP evidence](experiments/phase375-bakeoff/results/full-gate-tests.tap). No credentials loaded, live calls made or full-run ledger created. Root application/browser/database suites were not rerun; production is unchanged.
+
+### Key decisions / known issues
+
+Missing historical Gateway charges remain unknown, never zero: the original two 403 observations lack cost metadata; the owner's $0 dashboard report stays separately attributed. All reservations count in full. Under the cumulative $30 ceiling, remaining reservation allowance is **$27.56304**. The frozen 120-request normal workload (32 development +64 held-out classifiers +24 resolvers) requires at most **$25.82016**, yielding 128 cumulative attempts/$28.25712 maximum reserved. No smoke is rescheduled and no diagnostic IDs are admitted. Existing $3/no-refresh key configuration is unchanged. Historical failures remain failures; accepted smoke is not model-quality or production-privacy acceptance.
+
+Dataset/split/calibration/thresholds/sentinel gold/resolver contracts, Model Runtime architecture, corrected transport, production runtime, migrations, root dependencies and main remain unchanged. Original checkout pre-existing documentation edits remain untouched. Physical iPhone/Safari, optional historical Phase 1 conflict-rebase, finite-test limits and absence of hosted deployment or real campaign/private-data acceptance remain disclosed.
+
+### Remaining work / recommended next step
+
+Push only this bookkeeping correction to codex/phase375-technical-bakeoff, then stop for owner review. Full live benchmark, implementation sprint, production adoption, deployment and real campaign/private import have not started and are not authorized by this correction.
+
+## Prior smoke-gate correction — historical pre-call checkpoint
+
 **Phase 3.75 experiment-only smoke gate correction — deterministic checks passed; bounded recovery 2 authorized after commit/push.** Pre-call checkpoint, not a claim of new smoke success. Base `62772744d48a9c20611bd0c973dea9d0c7ba45cb`; prior recovery commit `2bf147d7c03e0f0eea596674b0a38e5791f489bf` has been pushed unchanged. Worktree: `C:\Dev\personal-rpg-console-phase375-bakeoff`.
 
 ### Completed work / files and areas changed

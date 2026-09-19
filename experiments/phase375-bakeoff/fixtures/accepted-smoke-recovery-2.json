@@ -1,0 +1,31 @@
+{
+  "version": "accepted-recovery-2-v1",
+  "status": "OWNER_ACCEPTED_QUALIFYING_TRANSPORT_SMOKE",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "baseCommit": "62772744d48a9c20611bd0c973dea9d0c7ba45cb",
+  "executionCommit": "65a90280b01e7d461cc62c0580d50d810b6818a6",
+  "priorRecoveryCommit": "2bf147d7c03e0f0eea596674b0a38e5791f489bf",
+  "manifestHashes": {
+    "smoke-recovery-1": "412550784325a58110beb7f2034eee460d4180ad6593a358cf60dded795a06bb",
+    "smoke-recovery-2": "b2f728a0607debd9f97a84d2e272353896674b30bb740637c23503857c9f10b1"
+  },
+  "artifactHashes": {
+    "reservations.jsonl": "d162d10f09e44c6fbdd0694063055bf682a1db4b6f14b78dedb8ba425ce27210",
+    "smoke-feedback-recovery-2.json": "8330c9e32c818862cddce996b89b4b84c111b30e80763ced015d9cf7c0376a3a",
+    "smoke-jev-recovery-2.json": "96f90ea7c2e1ddfc3660f7567c0c6e9eb7f1044b7ae19a6b5a461f9465832b8a",
+    "smoke-narration-recovery-2.json": "39cb879faef87312d013327c840985fc5b393617602154a06b30eb6aaedc3127",
+    "smoke-narration.json": "e796f229d0b79c695a3167fe7bba9818d6da95cda33474aaced285115e3212a4",
+    "smoke-plan-recovery-1.json": "cbee4af2bf17703c2a902c2c3b38bcbfbbed46bec0a754fba5b3fd15b709f18a",
+    "smoke-plan-recovery-2.json": "6a99cd6d16a4deec81e285007058f7a6e62ea21f11ee4af0ce4e663b5834dc2d",
+    "smoke-plan.json": "273119cf63616958dc62b835f19f034b2237997316988254c71c220f4c67ac01",
+    "smoke-recovery-1-manifest.json": "6300cf1d74455abe5258588a8458f4ccdf2112e3be2a2aca3f5d115d5de0bb51",
+    "smoke-recovery-1-reservations.jsonl": "ab3eb19725181cdc97642d663d6c78dfbfb6cee6ff3cf8b0024b77d9e74c1d8e",
+    "smoke-recovery-1-results.jsonl": "5865debb18436fa8d9d78d946a576e90f8749a9a52ff1debc6db16bc77186831",
+    "smoke-recovery-2-manifest.json": "72cc4e6c69dffb4f8e709e16a69b03044e25e2b0852af2d9be252166e9269d47",
+    "smoke-recovery-2-reservations.jsonl": "678207cee7d3c872353c2ae2f4b40e1208f183587c12ec1d374233b06c334a27",
+    "smoke-recovery-2-results.jsonl": "ba999a7133ea62902d6dfd87b9660e873b2b43436a05059158b0a4886b5ac15c",
+    "smoke-summary-recovery-2.json": "f2a70b4c9fd25efe45d60c5810bc09bdf1604ba3cfdac4e0c911eb9ee8e6dae2"
+  },
+  "fullLiveAuthorization": false,
+  "note": "Owner accepts recovery 2 only as transport smoke. Exact historical bytes remain read-only. This bookkeeping correction authorizes no live calls."
+}

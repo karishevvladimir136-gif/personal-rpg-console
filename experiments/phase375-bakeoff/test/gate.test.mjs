@@ -49,7 +49,7 @@ test('dollar limit rejects a call before reservation even with request headroom'
   assert.throws(()=>liveGate(p).reserve('smoke-plan','astra'),e=>e.category==='approved_budget_exhausted');
   assert.equal(readFileSync(p.ledgerPath,'utf8').trim().split('\n').length,1);
   writeFileSync(p.ledgerPath,JSON.stringify({requestId:'previous',protocolHash,reserveUSD:29.99})+'\n');
-  assert.throws(()=>liveGate({...p,phase:'full'}).reserve('smoke-plan','astra'),e=>e.category==='approved_budget_exhausted');
+  assert.throws(()=>liveGate({...p,phase:'full'}),/ENOENT|configuration/); // Full mode requires the accepted recovery artifacts first.
 });
 test('frozen data matches generator, opaque IDs have no shared label code, all requests fit cap',()=>{
   const data=generateFixtures();assert.equal(digest(data),protocol.datasetHash);
@@ -59,16 +59,10 @@ test('frozen data matches generator, opaque IDs have no shared label code, all r
   assert.equal(digest(plan),protocol.planHash);
 });
 
-test('125 normal reservations plus three separately approved diagnostics fit 128 calls and $30 including smoke',t=>{
-  const p={...setup(t),phase:'full'},gate=liveGate(p);let last;
-  for(const r of plan.manifest.filter(r=>r.stage!=='diagnostic-separate-approval'))last=gate.reserve(r.id,r.kind);
-  assert.equal(last.count,125);assert.ok(last.reservedUSD<30);
-  assert.throws(()=>gate.reserve('diagnostic-1','astra'),e=>e.category==='request_outside_approved_manifest');
-  assert.throws(()=>gate.reserve('tidal-bell-resolver-A','astra'),e=>e.category==='request_outside_approved_manifest');
-  const explicit=liveGate({...p,approvedDiagnosticIds:diagnostics.map(r=>r.id)});
-  for(const r of diagnostics)last=explicit.reserve(r.id,r.kind);
-  assert.equal(last.count,128);assert.ok(Math.abs(last.reservedUSD-28.25712)<1e-8);
-  assert.equal(plan.manifest.filter(r=>r.stage==='sentinel').length,24);
+test('frozen original call plan remains unchanged; recovery-aware full mode cannot reuse smoke-only history',t=>{
+  assert.equal(plan.manifest.length,128);assert.equal(plan.manifest.filter(r=>r.stage==='sentinel').length,24);
+  assert.ok(Math.abs(plan.maximumReservedUSD-28.25712)<1e-8);
+  assert.throws(()=>liveGate({...setup(t),phase:'full'}),/ENOENT|configuration/);
 });
 
 test('synthetic transport privacy omission never confers production eligibility or weakens provider pins',()=>{

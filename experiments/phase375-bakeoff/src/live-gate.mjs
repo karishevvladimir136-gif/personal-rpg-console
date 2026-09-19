@@ -4,12 +4,15 @@ import { digest } from './fixtures.mjs';
 import { SafeFailure } from './transport.mjs';
 import { buildPlan, LIMITS, RESERVATION } from './plan.mjs';
 import { generateFixtures } from './fixtures.mjs';
+import { fullRunGate } from './full-gate.mjs';
 
 /** Durable request reservation prevents repeated CLI invocation from resetting the approved budget.
  * Failure/uncertain billing keeps its full reservation; no retries or implicit budget replenishment.
  * @param {{approved:boolean,apiKey:string|undefined,protocolHash:string,ledgerPath:string,phase:'smoke'|'full',approvedDiagnosticIds?:string[]}} options
  */
 export function liveGate({approved,apiKey,protocolHash,ledgerPath,phase,approvedDiagnosticIds=[]}){
+  // Full mode cannot bypass recovery qualification or append to a historical smoke ledger.
+  if(phase==='full')return fullRunGate({approved,apiKey,protocolHash,outputDir:dirname(ledgerPath)});
   if(!approved||!apiKey)throw new SafeFailure('configuration','owner_approval_and_gateway_key_required');
   const protocol=JSON.parse(readFileSync(new URL('../fixtures/frozen-protocol.json',import.meta.url),'utf8'));
   const plan=JSON.parse(readFileSync(new URL('../results/live-plan.json',import.meta.url),'utf8'));
@@ -28,7 +31,7 @@ export function liveGate({approved,apiKey,protocolHash,ledgerPath,phase,approved
       const planned=expected.manifest.find(r=>r.id===requestId&&r.kind===kind);
       if(!planned||phase==='smoke'&&!['smoke','diagnostic-separate-approval'].includes(planned.stage)||planned.stage==='diagnostic-separate-approval'&&!approvedDiagnosticIds.includes(requestId))throw new SafeFailure('configuration','request_outside_approved_manifest');
       const reserveUSD=RESERVATION[kind];
-      if(count>= (phase==='smoke'?LIMITS.smokeCalls:LIMITS.totalCalls)||cost+reserveUSD> (phase==='smoke'?LIMITS.smokeUSD:LIMITS.totalUSD))throw new SafeFailure('configuration','approved_budget_exhausted');
+      if(count>=LIMITS.smokeCalls||cost+reserveUSD>LIMITS.smokeUSD)throw new SafeFailure('configuration','approved_budget_exhausted');
       mkdirSync(dirname(ledgerPath),{recursive:true});
       appendFileSync(ledgerPath,JSON.stringify({requestId,kind,protocolHash,reserveUSD})+'\n');
       count++;cost+=reserveUSD;used.add(requestId);return {count,reservedUSD:cost};
