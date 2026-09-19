@@ -1,0 +1,227 @@
+{
+  "recordId": "recovery-001",
+  "checkpoint": "2f8f82edb5d5f3c960d45922b71c543e99208192",
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "operationId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+  "startedAt": "2026-09-19T23:54:59.625Z",
+  "requests": [
+    {
+      "kind": "operation",
+      "method": "GET",
+      "urlHash": "d0be92929778282dfd2687855fc60690e87352feead0a9497ef81188485a09cd",
+      "at": "2026-09-19T23:54:59.626Z",
+      "httpStatus": 200,
+      "bodySHA256": "c3029796db88f74e47050d9377282fa5ff8cf54fb845ec5201f8a598c32c7cdb",
+      "bodyBytes": 3178
+    },
+    {
+      "kind": "world",
+      "method": "GET",
+      "urlHash": "eeddd56a502fe87a4c99dea62516275a7849c13f20c564e5746294b3867003a4",
+      "at": "2026-09-19T23:54:59.843Z",
+      "httpStatus": 200,
+      "bodySHA256": "b47fd9cf01c6d05bbe95ca844540df27df5edd27bcf183c9b30aa8d35a103fe4",
+      "bodyBytes": 3868
+    }
+  ],
+  "generationCalls": 0,
+  "assetDownloads": 0,
+  "exports": 0,
+  "falCalls": 0,
+  "retries": 0,
+  "originalHashes": {
+    "experiments/phase38-spatial/private-run/journal.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "experiments/phase38-spatial/private-run/witness.jsonl": "0b446a934d34dc0e63c5cfa595bfd777c55660c0a02ac62012dcb136a3ad3a4f",
+    "experiments/phase38-spatial/private-run/identity.json": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d",
+    "experiments/phase38-spatial/private-run.anchor": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+  },
+  "operation": {
+    "done": true,
+    "errorPresent": false,
+    "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e",
+    "costCredits": 1580,
+    "snapshot": {
+      "envelope": {
+        "world_id": "string",
+        "id": "missing",
+        "nestedWorld": "missing"
+      },
+      "worldIdMatches": true,
+      "displayNameType": "string",
+      "displayNameMatches": false,
+      "modelType": "null",
+      "reportedModel": null,
+      "modelMatches": false,
+      "permissionType": "object",
+      "public": false,
+      "allowIdAccess": false,
+      "createdAtType": "null",
+      "createdAt": null,
+      "promptType": "null",
+      "promptKind": null,
+      "promptMatches": false,
+      "promptHash": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+      "promptFields": null,
+      "hostedLocatorMatches": true,
+      "assets": {
+        "type": "object",
+        "spz": {
+          "100k": {
+            "type": "string",
+            "present": true,
+            "allowlisted": false,
+            "sha256": "24fb7c261c87f6dff4a1f0f4372449669024cb9b9a4dfe046ae76d87c8018f66"
+          },
+          "500k": {
+            "type": "string",
+            "present": true,
+            "allowlisted": false,
+            "sha256": "cd1e765e218e81de11dc203a13f652e38b233eadc4db756513d113209d059453"
+          },
+          "full_res": {
+            "type": "string",
+            "present": true,
+            "allowlisted": false,
+            "sha256": "09d886592bd28e6fb45e1107b47ccb2a154c40765f765210cef9441eb2d13bc0"
+          }
+        },
+        "collider": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "3af46800b0845848d1ffe6c517cd3ab86f2c6a360ff7bc1e6eeb86769b06f4a8"
+        },
+        "panorama": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "a7ad1e5f6659f492840d64c817ddc82ec99f647ad46b99755b90235a69d213d1"
+        },
+        "thumbnail": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "6415a543dcb924054fa42a84ace7022724acc89ca7a6fc7353f14c077ff0873e"
+        }
+      },
+      "scale": {
+        "present": true,
+        "metricScaleFactor": 2.2681818,
+        "groundPlaneOffset": 1.5374286
+      }
+    },
+    "createdAtType": "string"
+  },
+  "world": {
+    "envelope": {
+      "world_id": "string",
+      "id": "missing",
+      "nestedWorld": "missing"
+    },
+    "worldIdMatches": true,
+    "displayNameType": "string",
+    "displayNameMatches": true,
+    "modelType": "string",
+    "reportedModel": "marble-1.1",
+    "modelMatches": true,
+    "permissionType": "object",
+    "public": false,
+    "allowIdAccess": false,
+    "createdAtType": "string",
+    "createdAt": "2026-09-19T23:39:39Z",
+    "promptType": "object",
+    "promptKind": "text",
+    "promptMatches": false,
+    "promptHash": "eb15e47ad97fb4933ca3e25b269538fa4a479efbbe95080b5724f06954290ac6",
+    "promptFields": {
+      "type": "string",
+      "text_prompt": "string"
+    },
+    "hostedLocatorMatches": true,
+    "assets": {
+      "type": "object",
+      "spz": {
+        "100k": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "24fb7c261c87f6dff4a1f0f4372449669024cb9b9a4dfe046ae76d87c8018f66"
+        },
+        "500k": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "cd1e765e218e81de11dc203a13f652e38b233eadc4db756513d113209d059453"
+        },
+        "full_res": {
+          "type": "string",
+          "present": true,
+          "allowlisted": false,
+          "sha256": "09d886592bd28e6fb45e1107b47ccb2a154c40765f765210cef9441eb2d13bc0"
+        }
+      },
+      "collider": {
+        "type": "string",
+        "present": true,
+        "allowlisted": false,
+        "sha256": "3af46800b0845848d1ffe6c517cd3ab86f2c6a360ff7bc1e6eeb86769b06f4a8"
+      },
+      "panorama": {
+        "type": "string",
+        "present": true,
+        "allowlisted": false,
+        "sha256": "a7ad1e5f6659f492840d64c817ddc82ec99f647ad46b99755b90235a69d213d1"
+      },
+      "thumbnail": {
+        "type": "string",
+        "present": true,
+        "allowlisted": false,
+        "sha256": "6415a543dcb924054fa42a84ace7022724acc89ca7a6fc7353f14c077ff0873e"
+      }
+    },
+    "scale": {
+      "present": true,
+      "metricScaleFactor": 2.268181800842285,
+      "groundPlaneOffset": 1.537428617477417
+    }
+  },
+  "frozenValidator": {
+    "accepted": false,
+    "firstFailure": "stale_prompt"
+  },
+  "independentAssertions": [
+    {
+      "code": "stale_world_id",
+      "pass": true
+    },
+    {
+      "code": "world_scope",
+      "pass": true
+    },
+    {
+      "code": "model_pin",
+      "pass": true
+    },
+    {
+      "code": "stale_prompt",
+      "pass": false
+    },
+    {
+      "code": "stale_world_time",
+      "pass": true
+    },
+    {
+      "code": "hosted_world_url",
+      "pass": true
+    },
+    {
+      "code": "invalid_scale",
+      "pass": true
+    }
+  ],
+  "currentWorldBodyMatchesOriginal": true,
+  "worldReadURLMatchesOriginal": true,
+  "status": "READ_ONLY_RECOVERY_COMPLETED",
+  "finishedAt": "2026-09-19T23:54:59.988Z",
+  "originalLedgerUnchanged": true
+}

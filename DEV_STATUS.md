@@ -4,6 +4,28 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B READ-ONLY RECOVERY COMPLETED; NO GENERATION CONTINUATION AUTHORIZED.** Owner-reviewed live evidence `3a94308e92e9454f056eac899a91ba0d366ee111` remains intact. The authorized two GETs recovered world `82a0e059-50a4-41a4-8565-5e516ffadc0e` from operation `6719be80-101e-45a6-b27a-6905ebc183c1`; both returned HTTP 200. Zero new submissions/retries/assets/exports/fal calls.
+
+### Completed work and files / areas changed
+
+Added sanitized [recovery report](experiments/phase38-spatial/results/RECOVERY_001.md) and [structural observations](experiments/phase38-spatial/results/recovery-001.json), plus this status. No frozen source/protocol changes in this evidence commit. The separate experiment-only correction is pending its own checkpoint and tests.
+
+### Findings and verification
+
+The recovered world response hash exactly matches the original rejected response. Replaying only the original pure validator identifies `stale_prompt`: it assumed the returned prompt object must exactly equal the submitted prompt. Current official documentation permits recaptioning, so this is a local compatibility defect, not evidence of missing output. Identity/private/model/time/locator/scale checks examined independently pass. Snapshot model remains UNKNOWN; full Get World reports `marble-1.1`. Prior settled charge remains $1.264; full $1.30 original reservation retained.
+
+SPZ (100k/500k/full_res), collider, panorama and thumbnail URL fields and valid scale metadata are present. Their actual assets remain uninspected. All observed URLs also fail the frozen URL policy; exact URL predicate/host was not retained. That guard remains unchanged. Room reuse is possible in principle without regeneration, but URL eligibility, asset usability and manual review are unresolved.
+
+Original journal/witness/identity/anchor hashes unchanged; original code/protocol frozen; production and earlier evidence untouched. Raw provider bodies and signed URLs were not persisted. Original 91-test/typecheck/lint/build verification is historical; correction-specific regression results will be recorded separately.
+
+### Key decisions, limitations and next step
+
+Replace unsupported prompt-echo identity with durable operation/world/request-hash fencing; nullable provenance stays UNKNOWN. Metadata can report unknown privacy, but output use must remain blocked until privacy is proven. No URL allowlist weakening or automatic continuation. Prepare the separately authorized minimal correction and deterministic tests, then stop for owner review. All prior physical-device/real-data/production-acceptance limitations remain. No Phase 4, renderer, EXPLORE implementation or deployment.
+
+---
+
+## Historical original live stop — preserved outcome
+
 **PHASE 3.8B LIVE RUN STOPPED AT THE FIRST ROOM WORLD-METADATA VALIDATION; OWNER REVIEW REQUIRED.** Execution SHA `2f8f82edb5d5f3c960d45922b71c543e99208192`, protocol SHA-256 `496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb`. Owner confirmed keys/funding; exact clean checkout verified and live ledger initialized once. One room submission completed the polling flow but failed its required world metadata validation. This is not spatial acceptance and does not authorize the remaining jobs.
 
 ### Completed work and files / areas changed
