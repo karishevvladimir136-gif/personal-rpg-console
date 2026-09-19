@@ -34,7 +34,7 @@ try{
   const port=experimentalTransport({apiKey:process.env.AI_GATEWAY_API_KEY??'',fetcher:fetch});
   const profiles={astra:executionProfile('astra'),jev:executionProfile('jev')};
   /** @type {(import('./measurements.mjs').Observation & Record<string,any>)[]} */ const observations=[];
-  let failures=0,newRequests=0;
+  let newRequests=0;
   /** @param {string} id @param {'astra'|'jev'} kind @param {()=>Promise<Record<string,any>>} call */
   async function attempt(id,kind,call){
     const target=new URL(`${id}.json`,outputDir);
@@ -43,11 +43,11 @@ try{
     newRequests++;
     const started=performance.now();
     /** @type {import('./measurements.mjs').Observation & Record<string,any>} */ let row={id,kind,protocolHash:approvedHash,status:'reserved',wallMs:0};
-    try {row={...row,status:'success',result:await call(),wallMs:performance.now()-started};failures=0;}
-    catch(error){row={...row,status:'failed',error:safeError(error),wallMs:performance.now()-started};failures++;}
+    try {row={...row,status:'success',result:await call(),wallMs:performance.now()-started};}
+    catch(error){row={...row,status:'failed',error:safeError(error),wallMs:performance.now()-started};}
     save(`${id}.json`,row);observations.push(row);
-    // Unknown routing is a blocker, never grounds for bypassing a privacy/provider pin.
-    if(failures>=2||row.error?.category==='unverified_routing')throw new Error('live_safety_stop');
+    // Owner-authorized stop guard: persist the failure, then stop before any next reservation/request.
+    if(row.status!=='success')throw new Error('live_safety_stop');
     if(row.status==='success'&&['costUSD','inputTokens','outputTokens'].some(key=>row.result?.metadata?.[key]==null))throw new Error('unverified_billing_stop');
     return row;
   }

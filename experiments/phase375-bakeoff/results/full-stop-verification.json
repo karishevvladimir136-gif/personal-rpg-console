@@ -1,0 +1,23 @@
+{
+  "scope": "OWNER_APPROVED_FIRST_FAILURE_STOP_GUARD_PRE_LIVE",
+  "baseCommit": "b3e0d5e65fedf1b85c6f526bee563c25cb24b34e",
+  "ownerApproval": "Approve the stop-guard correction, then run",
+  "tests": {
+    "passed": 155,
+    "failed": 0,
+    "skipped": 0,
+    "added": 8
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "build": "passed",
+  "liveCallsBeforeCommit": 0,
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "historicalAttempts": 8,
+  "historicalReservedUSD": 2.43696,
+  "historicalKnownCostUSD": 0.0969725,
+  "requestContentChanges": false,
+  "frozenScoringChanges": false,
+  "behavior": "Persist the first failed result and stop before another request/reservation. No validation, routing, billing or privacy guard relaxed.",
+  "next": "Commit and push guard, then execute only the owner-authorized frozen full stage once."
+}

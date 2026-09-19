@@ -4,6 +4,14 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**Phase 3.75 full synthetic benchmark authorized; owner-approved first-failure guard verified before execution.** Base `b3e0d5e65fedf1b85c6f526bee563c25cb24b34e`. Preflight reproduced a mismatch: the frozen runner could continue after its first structured-output failure. The owner explicitly approved a minimal experiment-only stop correction, commit/push, then execution from that checkpoint. No live calls yet at this commit.
+
+Completed/changed: only the runner's failure stop, its focused regression tests, [guard verification](experiments/phase375-bakeoff/results/full-stop-verification.json), and this status record. Typecheck, lint, build and **155 deterministic tests passed** (8 added). Invalid output, routing/provider failures, quota, unsupported options and missing billing stop before another request; failed results/reservations stay preserved. All request contents, profiles, schema parsers, dataset/split/calibration/thresholds/gold/resolver contracts and production files remain unchanged.
+
+Historical evidence remains accepted and read-only: 8 attempts, $2.43696 reserved, $0.0969725 known Gateway cost; original 403 costs remain unknown in machine records with owner $0 evidence separate. Next: push guard, run only the frozen 120 normal calls (maximum new reservation $25.82016, cumulative ceiling $30), then sanitize/validate evidence, commit/push and stop. No retries/fallback/diagnostics/smoke reruns, implementation or Spatial work. Existing device, finite-test, privacy and real-data/deployment limitations persist. Key, billing and environment configuration stay unchanged.
+
+## Prior accepted-smoke bookkeeping checkpoint
+
 **Phase 3.75 accepted transport smoke — final experiment-only full-run bookkeeping correction complete; awaiting owner review.** The owner explicitly accepts recovery 2 executed at `65a90280b01e7d461cc62c0580d50d810b6818a6` as qualifying transport smoke. This is not product-phase approval or permission to run the full benchmark. This correction made **zero live model calls** and $0 new spend.
 
 ### Completed work / files and areas changed
