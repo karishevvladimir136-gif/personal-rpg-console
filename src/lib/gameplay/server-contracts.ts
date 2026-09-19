@@ -1,3 +1,4 @@
+import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned INTERNAL TYPE-ONLY contracts. Do not import runtime values into a client.
 import type { CampaignSnapshot } from "../persistence/contracts.ts";
 import type { ContextMemory } from "../memory/server-contracts.ts";
@@ -135,6 +136,8 @@ export type StoredTurn = {
   checkpoint: TurnCheckpoint;
 };
 export type TurnLease = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   operationId: string;
   token: string;

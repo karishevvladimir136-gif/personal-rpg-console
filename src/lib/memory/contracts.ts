@@ -1,3 +1,4 @@
+import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned public DTOs. Never expose private jobs, sources, coverage or diagnostics.
 import type { TurnStatus } from "../gameplay/contracts.ts";
 
@@ -27,24 +28,32 @@ export type PublicSessionMemory = {
   recap: { status: RecapStatus; text: string | null; canRetry: boolean };
 };
 export type MemorySnapshot = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   runtimeRevision: number;
   currentBoundary: PublicSessionMemory | null;
   sessions: PublicSessionMemory[];
 };
 export type EndSessionInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   requestId: string;
   campaignId: string;
   expectedRevision: number;
   sessionId: string;
 };
 export type ContinueSessionInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   requestId: string;
   campaignId: string;
   expectedRevision: number;
   boundaryId: string;
 };
 export type RetryMemoryInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   requestId: string;
   campaignId: string;
   boundaryId: string | null;

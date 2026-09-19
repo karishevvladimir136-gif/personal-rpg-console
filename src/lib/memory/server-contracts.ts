@@ -1,3 +1,4 @@
+import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned INTERNAL type-only contract. Browser modules must not import this file.
 import type { JsonObject } from "../gameplay/contracts.ts";
 import type {
@@ -34,6 +35,8 @@ export type MemorySourceKind =
   | "private_event"
   | "summary";
 export type MemorySourceRef = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   kind: MemorySourceKind;
   id: string;
@@ -42,6 +45,8 @@ export type MemorySourceRef = {
   visibility: MemoryVisibility;
 };
 export type MemorySource = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaignId: string;
   ref: MemorySourceRef;
@@ -65,12 +70,16 @@ export type MemorySource = {
   sourceRefs: MemorySourceRef[];
 };
 export type EntityAlias = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   entityId: string;
   alias: string;
   currentName: string;
 };
 export type RetrievalRequest = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   expanded?: boolean;
   // RuntimeSource already supplies exact current records outside this budget.
   historicalOnly?: boolean;
@@ -86,6 +95,8 @@ export type RetrievalRequest = {
   historicalComparison: boolean;
 };
 export type MemoryCandidateBatch = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   generation: number;
   sources: MemorySource[];
@@ -99,6 +110,8 @@ export type RetrievalResult = {
   bytes: number;
 };
 export type ExactMemoryCheckpoint = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaignId: string;
   boundaryId: string | null;
@@ -124,6 +137,8 @@ export type SummaryOutput = {
   selections: SummarySelection[];
 };
 export type MemorySummary = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaignId: string;
   visibility: MemoryVisibility;
@@ -137,6 +152,8 @@ export type MemorySummary = {
   createdAt: string;
 };
 export type MemoryJob = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaignId: string;
   boundaryId: string | null;
@@ -153,6 +170,8 @@ export type MemoryJob = {
   requiredSourceIds: string[];
 };
 export type MemoryReadContext = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   generation: number;
   stateRevision: number;
@@ -169,6 +188,8 @@ export type MemoryReadContext = {
   aliases: EntityAlias[];
 };
 export type ContextMemory = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   generation: number;
   stateRevision: number;

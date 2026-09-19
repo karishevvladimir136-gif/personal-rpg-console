@@ -1,3 +1,4 @@
+import type { TimelineFence, CorrectionScope } from "../saves/contracts.ts";
 import type { CampaignSettings } from "../campaign-settings.ts";
 import type { Language } from "../i18n.ts";
 
@@ -116,6 +117,8 @@ export type DmFeedbackMessage = {
   created_at: string;
 };
 export type CampaignSnapshot = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaign: Campaign;
   settings: SettingsRecord;
   settingsHistory: SettingsRevision[];
@@ -142,7 +145,11 @@ export type SceneInput = Omit<
 >;
 type Save<T> = T & { id?: string };
 type Request = { requestId: string; expectedRevision: number };
-type CampaignRequest = Request & { campaignId: string };
+type CampaignRequest = Request & {
+  campaignId: string;
+  timeline?: TimelineFence;
+  correctionScope?: CorrectionScope;
+};
 export type Mutation =
   | (CampaignRequest & {
       operation: "feedback.send";
@@ -204,6 +211,8 @@ export type Mutation =
       payload: Save<Omit<Asset, keyof ScopedRow>>;
     });
 export type MutationResult = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaign_id?: string;
   revision: number;

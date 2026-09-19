@@ -1,3 +1,4 @@
+import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned PUBLIC transport contract. Never add private fields or provider payloads.
 export type Json =
   null | boolean | number | string | Json[] | { [key: string]: Json };
@@ -100,12 +101,16 @@ export type MechanicsConfiguration = {
   itemRules: ItemRule[];
 };
 export type ConfigurePlayInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   requestId: string;
   campaignId: string;
   expectedRevision: number;
   configuration: MechanicsConfiguration;
 };
 export type TurnInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   operationId: string;
   campaignId: string;
   expectedRevision: number;
@@ -116,6 +121,8 @@ export type TurnInput = {
   mechanic: MechanicChoice | null;
 };
 export type ResumeInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   commandId: string;
   campaignId: string;
   operationId: string;
@@ -147,6 +154,8 @@ export type GuidanceProposal = {
   documentRevision: number;
 };
 export type PublicTurn = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   id: string;
   campaign_id: string;
   session_id: string | null;
@@ -243,6 +252,8 @@ export type ProvenanceRecord = {
   outputItemIds: string[];
 };
 export type PlaySnapshot = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   campaignId: string;
   revision: number;
   configured: boolean;
@@ -261,6 +272,8 @@ export type PlaySnapshot = {
   provenance: ProvenanceRecord[];
 };
 export type GuidanceApprovalInput = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   requestId: string;
   campaignId: string;
   operationId: string;
@@ -270,6 +283,8 @@ export type GuidanceApprovalInput = {
   expectedGuideRevision: number;
 };
 export type GuidanceApprovalResult = {
+  // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
+  timeline?: TimelineFence;
   proposal: GuidanceProposal;
   revision: number;
 };

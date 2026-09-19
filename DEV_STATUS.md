@@ -4,6 +4,24 @@ Last updated: September 18, 2026. Update before milestone-completion commits and
 
 ## Current milestone
 
+**Phase 3.5 — Save / Load / Timeline Forks: authorized; contract checkpoint, implementation not yet started.** Preserve Phase 3 implementation `ca4499bc279d37eb52c0a36b0524eb19322071b0` and owner acceptance `96964964a7d5046ff34b6b6ae695ecf494885cc4`. No World Engine, Phase 4, deployment or real campaign/private import.
+
+## Phase 3.5 coordination checkpoint
+
+- Completed: fetched origin/main and inspected the integrated Phase 3 architecture, contracts, memory/runtime paths and migrations 001–007. Three separate-worktree workers supplied read-only architecture reviews; implementation awaits shared-contract acknowledgements and explicit GO.
+- Files/areas changed: PHASE3_5_CONTRACTS.md, lead-owned save DTOs and optional timeline-fence extensions of existing shared contracts, and this status record. No database or gameplay change at this checkpoint.
+- Technical decision: existing active campaign projection plus deduplicated immutable row-version vault and save/head manifests; exact ancestry membership excludes abandoned future state, knowledge and public/private memory. Monotonic activation fences prevent stale browser/provider writes. See PHASE3_5_CONTRACTS.md.
+- Pre-existing owner edits: original checkout DEV_STATUS.md and PHASE3_EVALUATION.md remain byte-for-byte untouched and outside Phase 3.5 commits. Their SHA-256 hashes and isolation handling are recorded in the contract. Work proceeds from the accepted committed documents in .worktrees/phase35-lead; workers use their own phase35-* worktrees. These original edits are not attributed to this milestone or silently reconciled.
+- Verification: read-only architecture review and shared-contract diff review only; no Phase 3.5 runtime, migration, browser or integration gate is claimed passed yet. Previous accepted verification records below remain distinct.
+- Known limitations: implementation is pending; finite tests will not guarantee perfect branching/memory. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified. No hosted/real-data acceptance.
+- Remaining/recommended next step: obtain all contract ACKs, commit the coordination checkpoint, give GO, integrate storage/memory/UI and complete the required deterministic/local Supabase/privacy/browser gates. Update this record with actual results before completion, then commit/push and stop at PHASE 3.5 READY FOR OWNER ACCEPTANCE.
+
+## Accepted Phase 3 checkpoint (historical)
+
+The following acceptance and verification belong to the preserved Phase 3 checkpoint. Its next-phase stop applied until the explicit Phase 3.5 authorization above.
+
+### Phase 3 acceptance status
+
 **PHASE 3 OWNER-APPROVED — Long-Term Memory.** The owner explicitly accepted implementation checkpoint `ca4499bc279d37eb52c0a36b0524eb19322071b0` on September 18, 2026. This acceptance is separate from implementation verification and does not claim additional testing. Phase 2 and earlier approved checkpoints remain preserved.
 
 ## Phase 3 owner-acceptance record
