@@ -4,10 +4,10 @@ import { digest, eligible, payload } from './fixtures.mjs';
 /** @typedef {{id:string,label:Label,probabilities:Record<string,number>|null}} Decision */
 /** @typedef {{snapshotHash:string,decisions:Decision[]}} Envelope */
 export const POLICY = Object.freeze({
-  version:'recall-first-v1', labels:['relevant','irrelevant','uncertain','similar','divergent'],
+  version:'recall-first-v2-sentinels', labels:['relevant','irrelevant','uncertain','similar','divergent'],
   irrelevantThreshold:0.99, relevanceThreshold:0.01, maxCandidates:24, maxBytes:12000,
   calibration:'identity probabilities; development ECE<=0.05 and Brier<=0.1; no raw critical miss; fixed policy, no held-out tuning',
-  adoption:'held-out recall>=0.995 and Wilson lower bound>=0.99; zero raw/protected critical misses; positive paired context savings >=10%; review calibration/latency/cost',
+  adoption:'held-out recall>=0.995 and Wilson lower bound>=0.99; zero raw/protected critical misses, required-uncertainty losses or scope leaks; complete sentinel transports, baseline A all required findings correct, no per-finding loss versus A, zero unsupported claims/scope failures; positive paired context savings >=10%; review calibration, latency/cost and per-case errors. Baseline failures require review, never relaxation of gold after seeing held-out results. Synthetic quality does not establish production privacy eligibility.',
 });
 /** @param {Snapshot} snapshot */
 export const snapshotKey=snapshot=>digest({campaign:snapshot.campaign,timeline:snapshot.timeline,revision:snapshot.revision,actor:snapshot.actor,payload:payload(snapshot)});

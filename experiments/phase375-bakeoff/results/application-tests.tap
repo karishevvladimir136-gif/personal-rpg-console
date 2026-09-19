@@ -1,0 +1,136 @@
+TAP version 13
+# Subtest: strict independent schemas reject extra keys, malformed types and invalid private operations
+ok 1 - strict independent schemas reject extra keys, malformed types and invalid private operations
+  ---
+  duration_ms: 2.361
+  type: 'test'
+  ...
+# Subtest: Responses uses strict JSON, no tools/store/stream, bounded output and explicit model
+ok 2 - Responses uses strict JSON, no tools/store/stream, bounded output and explicit model
+  ---
+  duration_ms: 18.6765
+  type: 'test'
+  ...
+# Subtest: Astra defaults to xhigh for every stage while preserving strict and bounded Responses requests
+ok 3 - Astra defaults to xhigh for every stage while preserving strict and bounded Responses requests
+  ---
+  duration_ms: 2.1598
+  type: 'test'
+  ...
+# Subtest: explicit supported reasoning is sent unchanged for the owner's selected model
+ok 4 - explicit supported reasoning is sent unchanged for the owner's selected model
+  ---
+  duration_ms: 6.3862
+  type: 'test'
+  ...
+# Subtest: unsupported reasoning fails safely before transport without dropping it or switching models
+ok 5 - unsupported reasoning fails safely before transport without dropping it or switching models
+  ---
+  duration_ms: 1.734
+  type: 'test'
+  ...
+# Subtest: actual Astra aliases and dated responses are reported safely, never arbitrary provider text
+ok 6 - actual Astra aliases and dated responses are reported safely, never arbitrary provider text
+  ---
+  duration_ms: 1.6434
+  type: 'test'
+  ...
+# Subtest: server environment drives provider reasoning and readiness rejects invalid configuration
+ok 7 - server environment drives provider reasoning and readiness rejects invalid configuration
+  ---
+  duration_ms: 3.5395
+  type: 'test'
+  ...
+# Subtest: public provider stage cannot receive planner/private data despite hostile quoted text
+ok 8 - public provider stage cannot receive planner/private data despite hostile quoted text
+  ---
+  duration_ms: 0.6103
+  type: 'test'
+  ...
+# Subtest: provider failures/refusals/incomplete/malformed outputs are neutral and preserve input
+ok 9 - provider failures/refusals/incomplete/malformed outputs are neutral and preserve input
+  ---
+  duration_ms: 2.0343
+  type: 'test'
+  ...
+# Subtest: missing configuration blocks a provider call without fallback or network activity
+ok 10 - missing configuration blocks a provider call without fallback or network activity
+  ---
+  duration_ms: 0.5502
+  type: 'test'
+  ...
+# Subtest: authentication setup failures are retryable and failed/successful attempts report only safe metadata
+ok 11 - authentication setup failures are retryable and failed/successful attempts report only safe metadata
+  ---
+  duration_ms: 1.1604
+  type: 'test'
+  ...
+# Subtest: provider diagnostics retain only whitelisted error codes, never messages or arbitrary code values
+ok 12 - provider diagnostics retain only whitelisted error codes, never messages or arbitrary code values
+  ---
+  duration_ms: 0.9813
+  type: 'test'
+  ...
+# Subtest: transport database failures cannot leak SQL payloads, and readiness is separate from rules config
+ok 13 - transport database failures cannot leak SQL payloads, and readiness is separate from rules config
+  ---
+  duration_ms: 0.214
+  type: 'test'
+  ...
+# Subtest: extractive summaries preserve full attribution, negation, condition and intention
+ok 14 - extractive summaries preserve full attribution, negation, condition and intention
+  ---
+  duration_ms: 3.1763
+  type: 'test'
+  ...
+# Subtest: summary sources validate campaign, visibility, range, revision and current validity
+ok 15 - summary sources validate campaign, visibility, range, revision and current validity
+  ---
+  duration_ms: 0.3539
+  type: 'test'
+  ...
+# Subtest: failed generation retains previous coverage; explicit later retry uses same source identity
+ok 16 - failed generation retains previous coverage; explicit later retry uses same source identity
+  ---
+  duration_ms: 0.3994
+  type: 'test'
+  ...
+# Subtest: one request cannot run an unbounded summary loop or pay for empty private history
+ok 17 - one request cannot run an unbounded summary loop or pay for empty private history
+  ---
+  duration_ms: 0.181
+  type: 'test'
+  ...
+# Subtest: public memory projection excludes private paths and unknown companion knowledge
+ok 18 - public memory projection excludes private paths and unknown companion knowledge
+  ---
+  duration_ms: 0.7255
+  type: 'test'
+  ...
+# Subtest: validated memory admits bounded recent exchanges without dropping exact uncovered evidence
+ok 19 - validated memory admits bounded recent exchanges without dropping exact uncovered evidence
+  ---
+  duration_ms: 4.5092
+  type: 'test'
+  ...
+# Subtest: memory commands reject cross-campaign IDs, extra fields and forged state
+ok 20 - memory commands reject cross-campaign IDs, extra fields and forged state
+  ---
+  duration_ms: 0.4574
+  type: 'test'
+  ...
+# Subtest: summary Responses requests reuse Astra/xhigh strict output without public/private draft mixing
+ok 21 - summary Responses requests reuse Astra/xhigh strict output without public/private draft mixing
+  ---
+  duration_ms: 26.6132
+  type: 'test'
+  ...
+1..21
+# tests 21
+# suites 0
+# pass 21
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 258.8773

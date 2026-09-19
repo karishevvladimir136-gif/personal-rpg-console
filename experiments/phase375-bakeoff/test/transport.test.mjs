@@ -27,7 +27,7 @@ for(const [stage,schema,value,parse] of examples){
     const result=await t.structured(profile,'Use synthetic fixtures only.',{stage},schema,parse);
     assert.equal(calls,1);assert.deepEqual(result.output,value);assert.deepEqual(wire.responseFormat.schema,schema);
     assert.deepEqual(wire.providerOptions.gateway.only,['openai']);assert.equal(wire.providerOptions.gateway.models,undefined);assert.equal(wire.providerOptions.gateway.order,undefined);
-    assert.equal(wire.providerOptions.gateway.zeroDataRetention,true);assert.equal(wire.providerOptions.gateway.disallowPromptTraining,true);
+    assert.equal(wire.providerOptions.gateway.zeroDataRetention,undefined);assert.equal(wire.providerOptions.gateway.disallowPromptTraining,undefined);
     assert.equal(wire.providerOptions.openai.reasoningEffort,'xhigh');assert.equal(wire.providerOptions.openai.store,false);
     assert.equal(result.metadata.actualModel,'gpt-6-astra');assert.equal(result.metadata.finalProvider,'openai');assert.equal(result.metadata.inputTokens,20);
     assert.equal(JSON.stringify(result.metadata).includes(secret),false);

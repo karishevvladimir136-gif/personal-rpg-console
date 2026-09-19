@@ -57,7 +57,7 @@ export function pipelineMeasurements(snapshots,observations,decisions){
     /** @param {number[]} values */ const latency=values=>({n:values.length,p50:quantile(values,0.5),p95:quantile(values,0.95)});
     const metadata=rows.map(r=>r.result?.metadata);
     /** @param {'costUSD'|'inputTokens'|'outputTokens'} key */
-    const sum=key=>rows.length>0&&rows.every((r,i)=>r.status==='success'&&typeof metadata[i]?.[key]==='number')?metadata.reduce((n,m)=>n+m?.[key],0):null;
+    const sum=key=>failed===0&&rows.length>0&&rows.every((r,i)=>r.status==='success'&&typeof metadata[i]?.[key]==='number')?metadata.reduce((n,m)=>n+m?.[key],0):null;
     paths[path]={snapshots:snapshots.length,failedOrIncompleteSnapshots:failed,wallTimeMs:latency(total),resolverMs:latency(resolver),classifierOverheadMs:latency(overhead),strongCandidateBytes:bytes,strongCandidateBytesAvoided:baseline-bytes,strongCandidateFractionAvoided:baseline?1-bytes/baseline:null,classifierInputBytes:requestBytes,normalizedClassifierOutputBytes:classificationOutputBytes,netSerializedBytesAvoided:baseline-bytes-requestBytes-classificationOutputBytes,reportedCostUSD:sum('costUSD'),inputTokens:sum('inputTokens'),outputTokens:sum('outputTokens')};
   }
   return paths;

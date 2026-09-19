@@ -1,512 +1,334 @@
 {
   "baseline": "cb7f6be2fb513de13604d381046a3240f3261383",
-  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
-  "datasetHash": "135aff41d0559064e73f2f1806805bd38ef8832b476d725a39699c76663e2490",
+  "foundation": "68126be972b2fdecfd650fde08d64f8b768eec01",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "datasetHash": "1c57829b8fd65158b6f299bbf4db936c362e0a04fce65832a124fa23d5f9cff5",
   "counts": {
     "development": {
-      "snapshots": 32,
-      "candidates": 672,
-      "authorized": 512,
-      "critical": 160,
-      "english": 16,
-      "russian": 16
+      "snapshots": 16,
+      "candidates": 400,
+      "authorized": 320,
+      "relevant": 192,
+      "critical": 32,
+      "english": 8,
+      "russian": 8
     },
     "heldout": {
-      "snapshots": 64,
-      "candidates": 1344,
-      "authorized": 1024,
-      "critical": 320,
-      "english": 32,
-      "russian": 32
+      "snapshots": 32,
+      "candidates": 800,
+      "authorized": 640,
+      "relevant": 384,
+      "critical": 80,
+      "english": 16,
+      "russian": 16
     }
   },
+  "sentinels": [
+    "orchard-smoke",
+    "ferry-debt",
+    "treaty-release",
+    "archive-witness",
+    "island-veto",
+    "hospital-generator",
+    "flood-branches",
+    "embassy-delay"
+  ],
   "requestBytes": [
     {
-      "id": "thread-en-0",
-      "jev": 7602,
-      "frontier": 3723
+      "id": "tidal-bell",
+      "jev": 8118,
+      "frontier": 2955,
+      "resolver": null
     },
     {
-      "id": "thread-en-1",
-      "jev": 7602,
-      "frontier": 3723
+      "id": "guild-ballot",
+      "jev": 8275,
+      "frontier": 3112,
+      "resolver": null
     },
     {
-      "id": "thread-en-2",
-      "jev": 7602,
-      "frontier": 3723
+      "id": "salt-road",
+      "jev": 8911,
+      "frontier": 3748,
+      "resolver": null
     },
     {
-      "id": "thread-en-3",
-      "jev": 7590,
-      "frontier": 3711
+      "id": "silent-rehearsal",
+      "jev": 8916,
+      "frontier": 3753,
+      "resolver": null
     },
     {
-      "id": "thread-en-4",
-      "jev": 7606,
-      "frontier": 3727
+      "id": "orchard-smoke",
+      "jev": 8379,
+      "frontier": 3216,
+      "resolver": 3818
     },
     {
-      "id": "thread-en-5",
-      "jev": 7618,
-      "frontier": 3739
+      "id": "mint-strike",
+      "jev": 8264,
+      "frontier": 3101,
+      "resolver": null
     },
     {
-      "id": "thread-en-6",
-      "jev": 7622,
-      "frontier": 3743
+      "id": "watershed-election",
+      "jev": 8328,
+      "frontier": 3165,
+      "resolver": null
     },
     {
-      "id": "thread-en-7",
-      "jev": 7602,
-      "frontier": 3723
+      "id": "comet-observatory",
+      "jev": 8319,
+      "frontier": 3156,
+      "resolver": null
     },
     {
-      "id": "thread-en-8",
-      "jev": 7626,
-      "frontier": 3747
+      "id": "ferry-debt",
+      "jev": 9265,
+      "frontier": 4102,
+      "resolver": 4915
     },
     {
-      "id": "thread-en-9",
-      "jev": 7594,
-      "frontier": 3715
+      "id": "glasshouse-heat",
+      "jev": 9147,
+      "frontier": 3984,
+      "resolver": null
     },
     {
-      "id": "thread-en-10",
-      "jev": 7614,
-      "frontier": 3735
+      "id": "census-amnesty",
+      "jev": 9273,
+      "frontier": 4110,
+      "resolver": null
     },
     {
-      "id": "thread-en-11",
-      "jev": 7634,
-      "frontier": 3755
+      "id": "marsh-rescue",
+      "jev": 9117,
+      "frontier": 3954,
+      "resolver": null
     },
     {
-      "id": "thread-ru-0",
-      "jev": 9406,
-      "frontier": 5527
+      "id": "canal-audit",
+      "jev": 8184,
+      "frontier": 3021,
+      "resolver": null
     },
     {
-      "id": "thread-ru-1",
-      "jev": 9426,
-      "frontier": 5547
+      "id": "wedding-letter",
+      "jev": 8323,
+      "frontier": 3160,
+      "resolver": null
     },
     {
-      "id": "thread-ru-2",
-      "jev": 9438,
-      "frontier": 5559
+      "id": "clinic-interpreter",
+      "jev": 9084,
+      "frontier": 3921,
+      "resolver": null
     },
     {
-      "id": "thread-ru-3",
-      "jev": 9398,
-      "frontier": 5519
+      "id": "workshop-custody",
+      "jev": 9000,
+      "frontier": 3837,
+      "resolver": null
     },
     {
-      "id": "thread-ru-4",
-      "jev": 9474,
-      "frontier": 5595
+      "id": "treaty-release",
+      "jev": 8461,
+      "frontier": 3298,
+      "resolver": 3902
     },
     {
-      "id": "thread-ru-5",
-      "jev": 9458,
-      "frontier": 5579
+      "id": "radio-blackout",
+      "jev": 8402,
+      "frontier": 3239,
+      "resolver": null
     },
     {
-      "id": "thread-ru-6",
-      "jev": 9470,
-      "frontier": 5591
+      "id": "inheritance-portrait",
+      "jev": 8393,
+      "frontier": 3230,
+      "resolver": null
     },
     {
-      "id": "thread-ru-7",
-      "jev": 9362,
-      "frontier": 5483
+      "id": "orbital-water",
+      "jev": 8456,
+      "frontier": 3293,
+      "resolver": null
     },
     {
-      "id": "thread-ru-8",
-      "jev": 9458,
-      "frontier": 5579
+      "id": "archive-witness",
+      "jev": 9473,
+      "frontier": 4310,
+      "resolver": 5262
     },
     {
-      "id": "thread-ru-9",
-      "jev": 9486,
-      "frontier": 5607
+      "id": "winter-orchestra",
+      "jev": 9578,
+      "frontier": 4415,
+      "resolver": null
     },
     {
-      "id": "thread-ru-10",
-      "jev": 9534,
-      "frontier": 5655
+      "id": "mine-air",
+      "jev": 9199,
+      "frontier": 4036,
+      "resolver": null
     },
     {
-      "id": "thread-ru-11",
-      "jev": 9470,
-      "frontier": 5591
+      "id": "market-truce",
+      "jev": 9341,
+      "frontier": 4178,
+      "resolver": null
     },
     {
-      "id": "actor-en-0",
-      "jev": 7969,
-      "frontier": 4090
+      "id": "railway-manual",
+      "jev": 8437,
+      "frontier": 3274,
+      "resolver": null
     },
     {
-      "id": "actor-en-1",
-      "jev": 7969,
-      "frontier": 4090
+      "id": "seed-license",
+      "jev": 8332,
+      "frontier": 3169,
+      "resolver": null
     },
     {
-      "id": "actor-en-2",
-      "jev": 7969,
-      "frontier": 4090
+      "id": "water-charter",
+      "jev": 9225,
+      "frontier": 4062,
+      "resolver": null
     },
     {
-      "id": "actor-en-3",
-      "jev": 7957,
-      "frontier": 4078
+      "id": "museum-loan",
+      "jev": 9231,
+      "frontier": 4068,
+      "resolver": null
     },
     {
-      "id": "actor-en-4",
-      "jev": 7973,
-      "frontier": 4094
+      "id": "island-veto",
+      "jev": 8403,
+      "frontier": 3240,
+      "resolver": 3853
     },
     {
-      "id": "actor-en-5",
-      "jev": 7985,
-      "frontier": 4106
+      "id": "cave-map",
+      "jev": 8307,
+      "frontier": 3144,
+      "resolver": null
     },
     {
-      "id": "actor-en-6",
-      "jev": 7989,
-      "frontier": 4110
+      "id": "succession-codex",
+      "jev": 8416,
+      "frontier": 3253,
+      "resolver": null
     },
     {
-      "id": "actor-en-7",
-      "jev": 7969,
-      "frontier": 4090
+      "id": "storm-insurance",
+      "jev": 8345,
+      "frontier": 3182,
+      "resolver": null
     },
     {
-      "id": "actor-en-8",
-      "jev": 7993,
-      "frontier": 4114
+      "id": "hospital-generator",
+      "jev": 9653,
+      "frontier": 4490,
+      "resolver": 5417
     },
     {
-      "id": "actor-en-9",
-      "jev": 7961,
-      "frontier": 4082
+      "id": "bridge-treaty",
+      "jev": 9141,
+      "frontier": 3978,
+      "resolver": null
     },
     {
-      "id": "actor-en-10",
-      "jev": 7981,
-      "frontier": 4102
+      "id": "poison-index",
+      "jev": 9433,
+      "frontier": 4270,
+      "resolver": null
     },
     {
-      "id": "actor-en-11",
-      "jev": 8001,
-      "frontier": 4122
+      "id": "border-calendar",
+      "jev": 9117,
+      "frontier": 3954,
+      "resolver": null
     },
     {
-      "id": "actor-ru-0",
-      "jev": 10221,
-      "frontier": 6342
+      "id": "beacon-batteries",
+      "jev": 8837,
+      "frontier": 3309,
+      "resolver": null
     },
     {
-      "id": "actor-ru-1",
-      "jev": 10241,
-      "frontier": 6362
+      "id": "courtroom-seating",
+      "jev": 8766,
+      "frontier": 3238,
+      "resolver": null
     },
     {
-      "id": "actor-ru-2",
-      "jev": 10253,
-      "frontier": 6374
+      "id": "grain-reserve",
+      "jev": 9540,
+      "frontier": 4012,
+      "resolver": null
     },
     {
-      "id": "actor-ru-3",
-      "jev": 10213,
-      "frontier": 6334
+      "id": "duel-cancellation",
+      "jev": 9611,
+      "frontier": 4083,
+      "resolver": null
     },
     {
-      "id": "actor-ru-4",
-      "jev": 10289,
-      "frontier": 6410
+      "id": "flood-branches",
+      "jev": 8941,
+      "frontier": 3413,
+      "resolver": 3924
     },
     {
-      "id": "actor-ru-5",
-      "jev": 10273,
-      "frontier": 6394
+      "id": "treaty-translations",
+      "jev": 8896,
+      "frontier": 3368,
+      "resolver": null
     },
     {
-      "id": "actor-ru-6",
-      "jev": 10285,
-      "frontier": 6406
+      "id": "adoption-records",
+      "jev": 8892,
+      "frontier": 3364,
+      "resolver": null
     },
     {
-      "id": "actor-ru-7",
-      "jev": 10177,
-      "frontier": 6298
+      "id": "reactor-cooling",
+      "jev": 8766,
+      "frontier": 3238,
+      "resolver": null
     },
     {
-      "id": "actor-ru-8",
-      "jev": 10273,
-      "frontier": 6394
+      "id": "embassy-delay",
+      "jev": 9965,
+      "frontier": 4437,
+      "resolver": 5259
     },
     {
-      "id": "actor-ru-9",
-      "jev": 10301,
-      "frontier": 6422
+      "id": "dam-maintenance",
+      "jev": 9733,
+      "frontier": 4205,
+      "resolver": null
     },
     {
-      "id": "actor-ru-10",
-      "jev": 10349,
-      "frontier": 6470
+      "id": "witness-relocation",
+      "jev": 9869,
+      "frontier": 4341,
+      "resolver": null
     },
     {
-      "id": "actor-ru-11",
-      "jev": 10285,
-      "frontier": 6406
-    },
-    {
-      "id": "source-en-0",
-      "jev": 7778,
-      "frontier": 3899
-    },
-    {
-      "id": "source-en-1",
-      "jev": 7778,
-      "frontier": 3899
-    },
-    {
-      "id": "source-en-2",
-      "jev": 7778,
-      "frontier": 3899
-    },
-    {
-      "id": "source-en-3",
-      "jev": 7766,
-      "frontier": 3887
-    },
-    {
-      "id": "source-en-4",
-      "jev": 7782,
-      "frontier": 3903
-    },
-    {
-      "id": "source-en-5",
-      "jev": 7794,
-      "frontier": 3915
-    },
-    {
-      "id": "source-en-6",
-      "jev": 7798,
-      "frontier": 3919
-    },
-    {
-      "id": "source-en-7",
-      "jev": 7778,
-      "frontier": 3899
-    },
-    {
-      "id": "source-en-8",
-      "jev": 7802,
-      "frontier": 3923
-    },
-    {
-      "id": "source-en-9",
-      "jev": 7770,
-      "frontier": 3891
-    },
-    {
-      "id": "source-en-10",
-      "jev": 7790,
-      "frontier": 3911
-    },
-    {
-      "id": "source-en-11",
-      "jev": 7810,
-      "frontier": 3931
-    },
-    {
-      "id": "source-ru-0",
-      "jev": 9934,
-      "frontier": 6055
-    },
-    {
-      "id": "source-ru-1",
-      "jev": 9954,
-      "frontier": 6075
-    },
-    {
-      "id": "source-ru-2",
-      "jev": 9966,
-      "frontier": 6087
-    },
-    {
-      "id": "source-ru-3",
-      "jev": 9926,
-      "frontier": 6047
-    },
-    {
-      "id": "source-ru-4",
-      "jev": 10002,
-      "frontier": 6123
-    },
-    {
-      "id": "source-ru-5",
-      "jev": 9986,
-      "frontier": 6107
-    },
-    {
-      "id": "source-ru-6",
-      "jev": 9998,
-      "frontier": 6119
-    },
-    {
-      "id": "source-ru-7",
-      "jev": 9890,
-      "frontier": 6011
-    },
-    {
-      "id": "source-ru-8",
-      "jev": 9986,
-      "frontier": 6107
-    },
-    {
-      "id": "source-ru-9",
-      "jev": 10014,
-      "frontier": 6135
-    },
-    {
-      "id": "source-ru-10",
-      "jev": 10062,
-      "frontier": 6183
-    },
-    {
-      "id": "source-ru-11",
-      "jev": 9998,
-      "frontier": 6119
-    },
-    {
-      "id": "comparison-en-0",
-      "jev": 8627,
-      "frontier": 4471
-    },
-    {
-      "id": "comparison-en-1",
-      "jev": 8627,
-      "frontier": 4471
-    },
-    {
-      "id": "comparison-en-2",
-      "jev": 8627,
-      "frontier": 4471
-    },
-    {
-      "id": "comparison-en-3",
-      "jev": 8615,
-      "frontier": 4459
-    },
-    {
-      "id": "comparison-en-4",
-      "jev": 8631,
-      "frontier": 4475
-    },
-    {
-      "id": "comparison-en-5",
-      "jev": 8643,
-      "frontier": 4487
-    },
-    {
-      "id": "comparison-en-6",
-      "jev": 8647,
-      "frontier": 4491
-    },
-    {
-      "id": "comparison-en-7",
-      "jev": 8627,
-      "frontier": 4471
-    },
-    {
-      "id": "comparison-en-8",
-      "jev": 8651,
-      "frontier": 4495
-    },
-    {
-      "id": "comparison-en-9",
-      "jev": 8619,
-      "frontier": 4463
-    },
-    {
-      "id": "comparison-en-10",
-      "jev": 8639,
-      "frontier": 4483
-    },
-    {
-      "id": "comparison-en-11",
-      "jev": 8659,
-      "frontier": 4503
-    },
-    {
-      "id": "comparison-ru-0",
-      "jev": 10848,
-      "frontier": 6692
-    },
-    {
-      "id": "comparison-ru-1",
-      "jev": 10868,
-      "frontier": 6712
-    },
-    {
-      "id": "comparison-ru-2",
-      "jev": 10880,
-      "frontier": 6724
-    },
-    {
-      "id": "comparison-ru-3",
-      "jev": 10840,
-      "frontier": 6684
-    },
-    {
-      "id": "comparison-ru-4",
-      "jev": 10916,
-      "frontier": 6760
-    },
-    {
-      "id": "comparison-ru-5",
-      "jev": 10900,
-      "frontier": 6744
-    },
-    {
-      "id": "comparison-ru-6",
-      "jev": 10912,
-      "frontier": 6756
-    },
-    {
-      "id": "comparison-ru-7",
-      "jev": 10804,
-      "frontier": 6648
-    },
-    {
-      "id": "comparison-ru-8",
-      "jev": 10900,
-      "frontier": 6744
-    },
-    {
-      "id": "comparison-ru-9",
-      "jev": 10928,
-      "frontier": 6772
-    },
-    {
-      "id": "comparison-ru-10",
-      "jev": 10976,
-      "frontier": 6820
-    },
-    {
-      "id": "comparison-ru-11",
-      "jev": 10912,
-      "frontier": 6756
+      "id": "harvest-machinery",
+      "jev": 9803,
+      "frontier": 4275,
+      "resolver": null
     }
   ],
   "liveCalls": 0,
   "liveCostUSD": 0,
   "modelMetrics": {
     "jev": null,
-    "frontier": null
+    "frontier": null,
+    "resolverQuality": null
   },
-  "reason": "Live calls require owner cost/credential approval. No classifier results fabricated."
+  "reason": "Offline correction only; owner review required before credentials/live authorization."
 }

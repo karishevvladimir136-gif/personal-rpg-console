@@ -1,33 +1,769 @@
 {
-  "status": "AWAITING_OWNER_AUTHORIZATION",
-  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
+  "version": "owner-correction-v2",
+  "status": "OWNER_REVIEW_REQUIRED_BEFORE_CREDENTIALS_OR_LIVE_CALLS",
   "calls": {
+    "smokeNormal": 5,
     "smokeMaximum": 8,
-    "developmentClassification": 64,
-    "heldoutClassificationAndResolver": 320,
-    "totalMaximum": 392,
-    "jevMaximum": 97,
-    "astraMaximum": 295,
+    "developmentClassification": 32,
+    "heldoutClassification": 64,
+    "sentinelResolvers": 24,
+    "explicitDiagnosticHeadroom": 3,
+    "normalTotal": 125,
+    "totalMaximum": 128,
+    "astraMaximum": 79,
+    "jevMaximum": 49,
     "retries": 0,
     "concurrency": 1
   },
   "limits": {
-    "maxSerializedRequestBytes": 12000,
-    "astraMaxOutputTokens": 4096,
-    "maxSecondsPerCall": 60,
-    "keySpendCapUSD": 125,
-    "stopOnConsecutiveFailures": 2
+    "requestBytes": 12000,
+    "framingTokenReserve": 2048,
+    "maxOutputTokens": 4096,
+    "timeoutMs": 60000,
+    "smokeCalls": 8,
+    "smokeUSD": 3,
+    "totalCalls": 128,
+    "totalUSD": 30
   },
-  "estimate": {
-    "astraInputUSDPerMillion": 10,
-    "astraOutputUSDPerMillion": 50,
-    "jevCatalogPricingObserved": "Free promotion ending September 25, 2026; reverify before live work",
-    "jevContingencyPerCallUSD": 0.01,
-    "astraWorstCaseUSD": 95.816,
-    "jevContingencyUSD": 0.97,
-    "proposedTotalBudgetUSD": 125,
-    "caveat": "Conservative application estimate, not a provider billing guarantee. Jev contingency is an internal reservation, not a claim about post-promotion pricing. Unknown tariff/usage, routing or privacy support stops the run; verify dashboard budget before calls."
+  "reservationsUSD": {
+    "astra": 0.34528,
+    "jev": 0.02
   },
-  "noOtherProviders": true,
-  "plannedNotExecuted": true
+  "maximumReservedUSD": 28.257119999999997,
+  "pricing": {
+    "retrievedAtUTC": "2026-09-19T19:03:41Z",
+    "directPublicFetchesUTC": {
+      "providerListing": "2026-09-19T19:03:18.6868831Z",
+      "modelPage": "2026-09-19T19:03:41.8389150Z"
+    },
+    "sources": {
+      "jev": "https://vercel.com/ai-gateway/models/jev",
+      "provider": "https://vercel.com/ai-gateway/models/providers/typesafe-ai",
+      "evaluation": "https://vercel.com/docs/ai-gateway/modalities/evaluation",
+      "training": "https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training",
+      "routing": "https://vercel.com/docs/ai-gateway/models-and-providers/provider-filtering-and-ordering",
+      "astra": "https://vercel.com/ai-gateway/models/gpt-6-astra",
+      "announcement": "https://vercel.com/changelog/typesafe-ai-jev-now-available-on-ai-gateway",
+      "budgets": "https://vercel.com/docs/ai-gateway/observability-and-spend/budgets"
+    },
+    "jev": {
+      "model": "typesafe-ai/jev",
+      "provider": "typesafe-ai",
+      "api": "experimental_evaluate",
+      "displayedInputUSDPerMillion": 0.04,
+      "embeddedInputUSDPerMillion": 0.042,
+      "embeddedOutputUSDPerMillion": 0,
+      "priceBasis": "Use paid embedded rate, not promotion; recheck immediately before any approved live run.",
+      "providerListingPrivacy": {
+        "zdr": "NOT_LISTED",
+        "noTraining": "NOT_LISTED"
+      },
+      "conflictingEvidence": "The directly fetched model page still contained promotional text and positive zeroDataRetention/disallowPromptTraining metadata; the announcement also claims privacy support. The current provider listing displays neither privacy indicator and its paid embedded input rate is 0.042. These official sources conflict; exact-route privacy support is unverified, not positively established or proved absent.",
+      "productionPrivacyEligibility": "NOT_ELIGIBLE",
+      "reason": "Privacy eligibility not established for real campaign/private/source inputs; synthetic quality cannot promote this result."
+    },
+    "astra": {
+      "model": "openai/gpt-6-astra",
+      "provider": "openai",
+      "inputUSDPerMillion": 10,
+      "outputUSDPerMillion": 50
+    },
+    "syntheticPolicy": "Fixtures authored in this repository only. No ZDR or no-training guarantee is requested or claimed. Hard provider pin and no fallback remain mandatory. No subscription upgrade is required for this synthetic policy."
+  },
+  "sentinelIds": [
+    "orchard-smoke",
+    "ferry-debt",
+    "treaty-release",
+    "archive-witness",
+    "island-veto",
+    "hospital-generator",
+    "flood-branches",
+    "embassy-delay"
+  ],
+  "resolverOrders": {
+    "orchard-smoke": [
+      "A",
+      "B",
+      "C"
+    ],
+    "ferry-debt": [
+      "B",
+      "C",
+      "A"
+    ],
+    "treaty-release": [
+      "C",
+      "A",
+      "B"
+    ],
+    "archive-witness": [
+      "A",
+      "B",
+      "C"
+    ],
+    "island-veto": [
+      "B",
+      "C",
+      "A"
+    ],
+    "hospital-generator": [
+      "C",
+      "A",
+      "B"
+    ],
+    "flood-branches": [
+      "A",
+      "B",
+      "C"
+    ],
+    "embassy-delay": [
+      "B",
+      "C",
+      "A"
+    ]
+  },
+  "manifest": [
+    {
+      "id": "smoke-plan",
+      "kind": "astra",
+      "stage": "smoke"
+    },
+    {
+      "id": "smoke-narration",
+      "kind": "astra",
+      "stage": "smoke"
+    },
+    {
+      "id": "smoke-feedback",
+      "kind": "astra",
+      "stage": "smoke"
+    },
+    {
+      "id": "smoke-summary",
+      "kind": "astra",
+      "stage": "smoke"
+    },
+    {
+      "id": "smoke-jev",
+      "kind": "jev",
+      "stage": "smoke"
+    },
+    {
+      "id": "tidal-bell-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "tidal-bell-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "guild-ballot-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "guild-ballot-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "salt-road-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "salt-road-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "silent-rehearsal-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "silent-rehearsal-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "orchard-smoke-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "orchard-smoke-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "mint-strike-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "mint-strike-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "watershed-election-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "watershed-election-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "comet-observatory-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "comet-observatory-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "ferry-debt-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "ferry-debt-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "glasshouse-heat-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "glasshouse-heat-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "census-amnesty-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "census-amnesty-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "marsh-rescue-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "marsh-rescue-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "canal-audit-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "canal-audit-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "wedding-letter-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "wedding-letter-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "clinic-interpreter-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "clinic-interpreter-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "workshop-custody-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "workshop-custody-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "treaty-release-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "treaty-release-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "radio-blackout-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "radio-blackout-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "inheritance-portrait-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "inheritance-portrait-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "orbital-water-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "orbital-water-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "archive-witness-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "archive-witness-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "winter-orchestra-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "winter-orchestra-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "mine-air-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "mine-air-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "market-truce-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "market-truce-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "railway-manual-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "railway-manual-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "seed-license-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "seed-license-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "water-charter-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "water-charter-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "museum-loan-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "museum-loan-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "island-veto-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "island-veto-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "cave-map-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "cave-map-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "succession-codex-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "succession-codex-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "storm-insurance-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "storm-insurance-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "hospital-generator-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "hospital-generator-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "bridge-treaty-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "bridge-treaty-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "poison-index-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "poison-index-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "border-calendar-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "border-calendar-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "beacon-batteries-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "beacon-batteries-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "courtroom-seating-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "courtroom-seating-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "grain-reserve-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "grain-reserve-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "duel-cancellation-jev",
+      "kind": "jev",
+      "stage": "development"
+    },
+    {
+      "id": "duel-cancellation-astra",
+      "kind": "astra",
+      "stage": "development"
+    },
+    {
+      "id": "flood-branches-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "flood-branches-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "treaty-translations-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "treaty-translations-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "adoption-records-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "adoption-records-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "reactor-cooling-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "reactor-cooling-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "embassy-delay-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "embassy-delay-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "dam-maintenance-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "dam-maintenance-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "witness-relocation-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "witness-relocation-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "harvest-machinery-jev",
+      "kind": "jev",
+      "stage": "heldout"
+    },
+    {
+      "id": "harvest-machinery-astra",
+      "kind": "astra",
+      "stage": "heldout"
+    },
+    {
+      "id": "orchard-smoke-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "orchard-smoke-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "orchard-smoke-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "ferry-debt-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "ferry-debt-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "ferry-debt-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "treaty-release-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "treaty-release-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "treaty-release-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "archive-witness-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "archive-witness-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "archive-witness-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "island-veto-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "island-veto-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "island-veto-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "hospital-generator-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "hospital-generator-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "hospital-generator-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "flood-branches-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "flood-branches-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "flood-branches-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "embassy-delay-resolver-A",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "embassy-delay-resolver-B",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "embassy-delay-resolver-C",
+      "kind": "astra",
+      "stage": "sentinel"
+    },
+    {
+      "id": "diagnostic-1",
+      "kind": "astra",
+      "stage": "diagnostic-separate-approval"
+    },
+    {
+      "id": "diagnostic-2",
+      "kind": "astra",
+      "stage": "diagnostic-separate-approval"
+    },
+    {
+      "id": "diagnostic-3",
+      "kind": "astra",
+      "stage": "diagnostic-separate-approval"
+    }
+  ],
+  "notes": "128 includes smoke and 3 separately authorized diagnostics. No automatic use of headroom. No subscription upgrade for synthetic privacy profile. API-key quota is defense in depth, not a guarantee against billing lag. Stop if current tariffs exceed reservations.",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d"
 }

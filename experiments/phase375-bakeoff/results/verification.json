@@ -2,7 +2,7 @@
   "date": "2026-09-19",
   "baseline": "cb7f6be2fb513de13604d381046a3240f3261383",
   "branch": "codex/phase375-technical-bakeoff",
-  "scope": "OFFLINE_EXPERIMENT_ONLY",
+  "scope": "OFFLINE_EXPERIMENT_CORRECTION_ONLY",
   "versions": {
     "node": "24.19.0",
     "pnpm": "11.19.0",
@@ -19,14 +19,28 @@
     "typecheck": "passed",
     "lint": "passed",
     "build": "passed",
-    "tests": { "passed": 55, "failed": 0, "skipped": 0, "raw": "harness-tests.tap" },
+    "tests": {
+      "passed": 64,
+      "failed": 0,
+      "skipped": 0,
+      "raw": "harness-tests.tap"
+    },
     "offlineEvaluation": "passed; raw decisions in offline-decisions.json, not model predictions"
   },
   "unchangedApplicationChecks": {
     "typecheck": "passed",
     "lint": "passed; experimental directory linted separately",
     "productionBuild": "passed",
-    "focusedTests": { "passed": 21, "failed": 0, "skipped": 0, "files": ["tests/phase2-runtime.test.mjs", "tests/phase3-summary.test.mjs"] },
+    "focusedTests": {
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "files": [
+        "tests/phase2-runtime.test.mjs",
+        "tests/phase3-summary.test.mjs"
+      ],
+      "raw": "application-tests.tap"
+    },
     "fullApplicationSuite": "not rerun",
     "httpBrowserAndDatabaseAcceptance": "not rerun"
   },
@@ -39,5 +53,41 @@
   "actualFrontierResults": null,
   "privacyControlsLiveVerified": false,
   "providerReplaceabilityEstablished": false,
-  "nextGate": "Explicit owner smoke-test credential/cost authorization; no implementation sprint"
+  "nextGate": "Owner review of correction before requesting any key or authorizing smoke; no implementation sprint",
+  "acceptedOfflineFoundation": "68126be972b2fdecfd650fde08d64f8b768eec01",
+  "actualResolverResults": null,
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
+  "productionPrivacyEligibility": {
+    "jev": "NOT_ELIGIBLE",
+    "reason": "Conflicting official capability evidence; synthetic quality cannot promote eligibility."
+  },
+  "fixtureCounts": {
+    "development": 16,
+    "heldout": 32,
+    "authorizedPerSnapshot": 20,
+    "heldoutRelevant": 384,
+    "heldoutCritical": 80,
+    "sentinels": 8,
+    "findingsPerSentinel": 6
+  },
+  "plan": {
+    "normalCallsIncludingSmoke": 125,
+    "maximumCallsIncludingSmoke": 128,
+    "smokeMaximumCalls": 8,
+    "smokeBudgetUSD": 3,
+    "totalBudgetUSD": 30,
+    "maximumReservedUSD": 28.25712,
+    "retries": 0,
+    "concurrency": 1
+  },
+  "scopeChecks": {
+    "changedFiles": 34,
+    "fileManifest": "changed-files.txt",
+    "relativeDocumentationLinks": 25,
+    "historicalStatusPreserved": true,
+    "originalDocumentHashesPreserved": true,
+    "productionContractsDependenciesUnchanged": true,
+    "protocolArtifactsConsistent": true,
+    "noLiveArtifacts": true
+  }
 }

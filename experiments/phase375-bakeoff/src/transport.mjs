@@ -7,16 +7,16 @@ globalThis.AI_SDK_LOG_WARNINGS = false;
 /** @template T @param {T} object @returns {Readonly<T>} */
 export function freeze(object){if(object&&typeof object==='object'){for(const value of Object.values(object))freeze(value);Object.freeze(object);}return object;}
 // Descriptive, immutable data; not a provider, executor, state store or orchestration engine.
-export const REGISTRY=freeze({version:'bakeoff-registry-v1',astra:{kind:'language',model:'openai/gpt-6-astra',provider:'openai'},jev:{kind:'evaluation',model:'typesafe-ai/jev',provider:'typesafe-ai'}});
-/** @typedef {{version:string,kind:string,model:string,provider:string,reasoning:'xhigh'|null,maxRetries:0,maxOutputTokens:number,timeoutMs:number,providerOptions:{gateway:{only:string[],zeroDataRetention:boolean,disallowPromptTraining:boolean},openai?:{reasoningEffort:'xhigh',store:false}}}} Profile */
+export const REGISTRY=freeze({version:'bakeoff-registry-v2-synthetic-only',astra:{kind:'language',model:'openai/gpt-6-astra',provider:'openai'},jev:{kind:'evaluation',model:'typesafe-ai/jev',provider:'typesafe-ai'}});
+/** @typedef {{version:string,scope:'authored-synthetic-only',kind:string,model:string,provider:string,reasoning:'xhigh'|null,maxRetries:0,maxOutputTokens:number,timeoutMs:number,providerOptions:{gateway:{only:string[]},openai?:{reasoningEffort:'xhigh',store:false}}}} Profile */
 /** @param {string} key @param {Record<string,unknown>} [options] @returns {Readonly<Profile>} */
 export function executionProfile(key,options={}){
   if(!['astra','jev'].includes(key)||Object.keys(options).some(k=>!['timeoutMs'].includes(k)))throw new SafeFailure('configuration','unsupported_configuration');
   const entry=key==='astra'?REGISTRY.astra:REGISTRY.jev;
   const timeoutMs=options.timeoutMs??60000;
   if(typeof timeoutMs!=='number'||timeoutMs<1||timeoutMs>60000)throw new SafeFailure('configuration','unsupported_configuration');
-  return freeze({version:REGISTRY.version,kind:entry.kind,model:entry.model,provider:entry.provider,reasoning:key==='astra'?'xhigh':null,maxRetries:0,maxOutputTokens:key==='astra'?4096:0,timeoutMs,
-    providerOptions:{gateway:{only:[entry.provider],zeroDataRetention:true,disallowPromptTraining:true},...(key==='astra'?{openai:{reasoningEffort:/** @type {const} */('xhigh'),store:/** @type {const} */(false)}}:{})}});
+  return freeze({version:REGISTRY.version,scope:'authored-synthetic-only',kind:entry.kind,model:entry.model,provider:entry.provider,reasoning:key==='astra'?'xhigh':null,maxRetries:0,maxOutputTokens:key==='astra'?4096:0,timeoutMs,
+    providerOptions:{gateway:{only:[entry.provider]},...(key==='astra'?{openai:{reasoningEffort:/** @type {const} */('xhigh'),store:/** @type {const} */(false)}}:{})}});
 }
 export class SafeFailure extends Error {
   /** @param {'configuration'|'provider'|'validation'|'context'} code @param {string} category @param {boolean} [retryable] */

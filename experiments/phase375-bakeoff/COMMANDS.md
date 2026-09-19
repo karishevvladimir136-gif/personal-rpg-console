@@ -1,8 +1,8 @@
-# Bake-off command record
+# Correction command record
 
-Windows PowerShell, Node `v24.19.0`, pnpm `11.19.0`. No app `.env` file was copied or loaded. Public documentation/npm metadata and package downloads are not model inference. No live command below was executed.
+September 19, 2026. Branch `codex/phase375-technical-bakeoff`, correction based on accepted offline foundation `68126be972b2fdecfd650fde08d64f8b768eec01`. Node `24.19.0`, pnpm `11.19.0`. No application environment/key was loaded; no live inference command was executed. No dependency install occurred in this correction.
 
-## Paths used
+## Paths
 
 ```powershell
 $bakeoffRoot = 'C:\Users\karis\OneDrive\Documents\GitHub\personal-rpg-console\.worktrees\phase375-bakeoff'
@@ -10,24 +10,20 @@ $bakeoffPnpm = 'C:\Users\karis\.cache\codex-runtimes\codex-primary-runtime\depen
 Set-Location "$bakeoffRoot\experiments\phase375-bakeoff"
 ```
 
-All paths are local; a fresh clone may use a different Node/pnpm installation. Pinned package/lockfile contents, not the mutable `latest` tag, define this experiment.
+The pinned package/lockfile is unchanged. A fresh checkout may need the foundation's isolated install (`pnpm install --frozen-lockfile --ignore-scripts`); that is not a command run during this correction.
 
-## Executed experiment commands
+## Executed offline checks
 
 ```powershell
-& $bakeoffPnpm install --ignore-scripts
-& $bakeoffPnpm prepare-evaluation
+node src/prepare.mjs
+node src/offline.mjs
 & $bakeoffPnpm typecheck
 & $bakeoffPnpm lint
-& $bakeoffPnpm test
+node --test --test-reporter=tap test/*.test.mjs > results/harness-tests.tap
 & $bakeoffPnpm build
-& $bakeoffPnpm offline
-node --test --test-reporter=tap test/*.test.mjs
 ```
 
-The last TAP output is saved in `results/harness-tests.tap`; the ordinary test command ran during iteration too. Generated JSON includes the exact frozen dataset/request/policy/profile hashes, split membership, each authorized/rejected candidate and offline decisions. `dist/` remains ignored; run source scripts, whose relative fixture paths are intentional.
-
-Initial tooling issues: `npm` was absent from PATH, so public npm metadata was inspected without npm and installation used the bundled pnpm. The first pnpm install discovered the parent workspace and installed its **unchanged existing** application dependencies locally; no root manifest/lockfile changed. A nested `pnpm-workspace.yaml` then isolated the experimental dependencies. pnpm recorded narrow release-age exceptions for the pinned current SDK packages. No dependency install scripts were enabled. Initial harness syntax/type errors and a wrapped-timeout normalization failure were fixed before the final successful checks.
+Final result: **64 tests passed; typecheck, lint, build and offline replay passed.** Tests use injected synthetic HTTP, never provider inference. During correction, an inherited test that searched ordinary prose for the word “truth” was updated to check forbidden JSON keys; no payload boundary was relaxed. A wrong working-directory path in an editing command was corrected before final generation. Generated JSON freezes dataset/request/profile/policy/plan/resolver hashes, split membership, rejected candidates and deterministic decisions. `dist/` remains ignored; scripts run from source so relative fixture paths are correct.
 
 ## Executed unchanged-application checks
 
@@ -35,28 +31,27 @@ Initial tooling issues: `npm` was absent from PATH, so public npm metadata was i
 Set-Location $bakeoffRoot
 & $bakeoffPnpm typecheck
 & $bakeoffPnpm lint --ignore-pattern 'experiments/**'
-node --test tests/phase2-runtime.test.mjs tests/phase3-summary.test.mjs
+node --test --test-reporter=tap tests/phase2-runtime.test.mjs tests/phase3-summary.test.mjs > experiments/phase375-bakeoff/results/application-tests.tap
 & $bakeoffPnpm build
+git restore --worktree -- next-env.d.ts
 git diff --check
-git diff --name-only cb7f6be2fb513de13604d381046a3240f3261383 -- src supabase tests scripts package.json pnpm-lock.yaml PHASE2_CONTRACTS.md PHASE3_CONTRACTS.md PHASE3_5_CONTRACTS.md next-env.d.ts
+git diff --name-only 68126be972b2fdecfd650fde08d64f8b768eec01 -- src supabase tests scripts package.json pnpm-lock.yaml PHASE2_CONTRACTS.md PHASE3_CONTRACTS.md PHASE3_5_CONTRACTS.md next-env.d.ts
 ```
 
-`pnpm exec eslint src tests scripts *.mjs` initially could not resolve the executable; the existing `lint` script above succeeded. App checks use the app's existing lint/TypeScript versions; experimental checks use their isolated versions. Next's generated `next-env.d.ts` route-path changes were restored to baseline after the build. The production diff command is empty. No running server was restarted, no database touched, and no complete HTTP/live/browser acceptance suite was invoked.
+**21 tests passed**, with application typecheck, lint and production build passing. The final production diff is empty. Only this experiment checkout's generated Next declaration was restored; original dirty documentation was untouched. No server restart, database operation, full application suite or HTTP/browser/device acceptance occurred.
 
-## Not executed — requires explicit owner approval first
+## Not executed — owner review and stage approval required
 
-The owner follows [OWNER_SETUP.md](OWNER_SETUP.md); Codex runs these only after the applicable stage is approved. Never put a credential on a command line or print the environment file. The protocol hash below is public, not a key.
+No key is requested now. A future owner-approved stage may follow [OWNER_SETUP.md](OWNER_SETUP.md). Do not print its secret file or put credentials on command lines. This protocol hash is public:
 
 ```powershell
 Set-Location "$bakeoffRoot\experiments\phase375-bakeoff"
-# Only after smoke approval, configured key quota, tariff/privacy review:
-node --env-file=.env.bakeoff.local src/run-live.mjs --smoke --approved=a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9
+# Only after owner review, smoke approval, budget and fresh tariff check:
+node --env-file=.env.bakeoff.local src/run-live.mjs --smoke --approved=5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d
 # Only after successful smoke review AND separate full-run approval:
-node --env-file=.env.bakeoff.local src/run-live.mjs --full --approved=a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9
+node --env-file=.env.bakeoff.local src/run-live.mjs --full --approved=5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d
 ```
 
-CLI approval flags are an operator guard, not owner authorization by themselves. The runner acquires a single-process file lock and appends a durable reservation before each request. Re-running does not reset budget, retry failed/uncertain calls or silently pay twice: saved results are reused; an unresolved reservation needs review. Never delete its ledger to evade a cap. Live artifacts remain ignored under `private-live-results/` pending manual safe-field/billing review before any report is committed. No raw HTTP responses/headers or chain of thought are persisted.
+CLI flags are an operator guard, not authorization by themselves. There is no diagnostic CLI switch: extra requests require a separately reviewed diagnostic command and explicit manifest-slot approval, not automatic retries. A file lock serializes the process and a durable ledger reserves each request first. Saved results are reused; failed/uncertain reservations remain spent. Never delete results/ledger to reset approval. Live artifacts remain ignored under `private-live-results/`; only safe fields can enter a later reviewed report. No raw headers, errors or chain of thought are persisted.
 
-## Repository isolation
-
-Created `codex/phase375-technical-bakeoff` in its own worktree at the exact baseline. No merge to main or force-push. Only experiment files and focused report/status/architecture notes belong in the commit; the original checkout's unrelated DEV_STATUS.md / PHASE3_EVALUATION.md remain untouched. The final response identifies the resulting commit SHA.
+Only experiment/report/status files belong in this correction. No main merge or force-push. See [exact changed files](results/changed-files.txt) and [verification](results/verification.json).

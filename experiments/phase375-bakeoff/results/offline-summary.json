@@ -1,24 +1,24 @@
 {
   "baseline": "cb7f6be2fb513de13604d381046a3240f3261383",
   "evidenceKind": "DETERMINISTIC_HARNESS_ONLY_NOT_MODEL_BENCHMARK",
-  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
+  "protocolHash": "5b8f0afccc8c2c4eeddbadb098188d1127cd3c3b58c7c98840706b171aac0a5d",
   "liveCalls": 0,
   "liveCostUSD": 0,
   "deterministicAdmission": {
-    "relevant": 576,
-    "truePositive": 576,
+    "relevant": 384,
+    "truePositive": 384,
     "falseNegative": 0,
     "recall": 1,
     "recallWilson95": [
-      0.9933749842094647,
+      0.9900952857583228,
       0.9999999999999999
     ],
-    "precision": 0.6,
-    "critical": 320,
+    "precision": 0.6666666666666666,
+    "critical": 80,
     "criticalMisses": 0,
     "criticalRetentionWilson95": [
-      0.9881378411686904,
-      1
+      0.9541818704644728,
+      0.9999999999999999
     ],
     "uncertain": 64,
     "uncertainLost": 0,
@@ -27,40 +27,40 @@
   "adversarialStub": {
     "description": "Artificial all-irrelevant answers to stress mandatory protection, NOT Jev output. Noncritical false negatives are expected and demonstrate why calibration/adoption gates matter.",
     "raw": {
-      "relevant": 576,
+      "relevant": 384,
       "truePositive": 0,
-      "falseNegative": 576,
+      "falseNegative": 384,
       "recall": 0,
       "recallWilson95": [
-        0,
-        0.0066250157905353045
+        8.673617379884035e-19,
+        0.009904714241677031
       ],
       "precision": null,
-      "critical": 320,
-      "criticalMisses": 320,
+      "critical": 80,
+      "criticalMisses": 80,
       "criticalRetentionWilson95": [
         0,
-        0.011862158831309737
+        0.0458181295355271
       ],
       "uncertain": 64,
       "uncertainLost": 64,
       "scopeLeaks": 0
     },
     "protected": {
-      "relevant": 576,
-      "truePositive": 320,
-      "falseNegative": 256,
-      "recall": 0.5555555555555556,
+      "relevant": 384,
+      "truePositive": 80,
+      "falseNegative": 304,
+      "recall": 0.20833333333333334,
       "recallWilson95": [
-        0.5147407213330262,
-        0.5956342769124698
+        0.17070140352603533,
+        0.25174301311494296
       ],
       "precision": 1,
-      "critical": 320,
+      "critical": 80,
       "criticalMisses": 0,
       "criticalRetentionWilson95": [
-        0.9881378411686904,
-        1
+        0.9541818704644728,
+        0.9999999999999999
       ],
       "uncertain": 64,
       "uncertainLost": 64,
@@ -68,13 +68,13 @@
     }
   },
   "recallClusterInterval": {
-    "clusters": 8,
+    "clusters": 32,
     "samples": 2000,
     "percentile95": [
       1,
       1
     ],
-    "caveat": "Template-generated clusters are not independent natural campaigns; degenerate zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+    "caveat": "Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
   },
   "pendingLive": {
     "jev": null,

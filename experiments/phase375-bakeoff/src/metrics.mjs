@@ -36,7 +36,7 @@ export function calibration(pairs) {
   const ece=bins.reduce((n,b)=>n+(b.n?Math.abs(b.predicted-b.observed)/pairs.length:0),0);
   return {n:pairs.length,brier:squared/pairs.length,ece,bins:bins.map(b=>({...b,rate:b.n?b.observed/b.n:null,rateWilson95:wilson(b.observed,b.n)}))};
 }
-/** Seeded cluster bootstrap retains EN/RU pairs and candidate dependence within a scenario.
+/** Seeded cluster bootstrap preserves candidate dependence within each authored scenario.
  * @param {{cluster:string,hit:number,total:number}[]} rows @param {number} [samples]
  */
 export function clusterRecallInterval(rows,samples=2000){
@@ -44,5 +44,5 @@ export function clusterRecallInterval(rows,samples=2000){
   const groupsArray=[...groups.values()];if(!groupsArray.length)return null;
   let seed=375;const random=()=>{seed=(1664525*seed+1013904223)>>>0;return seed/4294967296;};
   const values=[];for(let i=0;i<samples;i++){let hit=0,total=0;for(let j=0;j<groupsArray.length;j++){const g=groupsArray[Math.floor(random()*groupsArray.length)];hit+=g.hit;total+=g.total;}if(total)values.push(hit/total);}
-  return {clusters:groupsArray.length,samples,percentile95:[quantile(values,0.025),quantile(values,0.975)],caveat:'Template-generated clusters are not independent natural campaigns; degenerate zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals.'};
+  return {clusters:groupsArray.length,samples,percentile95:[quantile(values,0.025),quantile(values,0.975)],caveat:'Authored synthetic scenarios are not natural campaigns; candidates within a scenario are dependent. A zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals.'};
 }
