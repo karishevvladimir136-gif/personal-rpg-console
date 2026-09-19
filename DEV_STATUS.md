@@ -1,8 +1,60 @@
 # Development status
 
-Last updated: September 19, 2026. Update before milestone-completion commits and after architectural changes. Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026. Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.75 ARCHITECTURE DECISION OWNER-ACCEPTED; PHASE 3.8A DOCUMENTATION READY FOR OWNER REVIEW.** The owner independently reviewed evidence 9d5a99c0e93917190f415eedab3d4067c63b8ee2 and execution/stop-guard 8c5a9f7e731a9ab2ce24b17a61423fe7b46e1e23 against production main cb7f6be2fb513de13604d381046a3240f3261383. The incomplete benchmark is accepted as sufficient for an architecture decision only; it is not relabelled complete or successful. [Final freeze](PHASE375_ARCHITECTURE_DECISION.md) is authoritative over older candidate/spike wording below.
+
+### Completed work
+
+- Recorded direct OpenAI Responses as v1 baseline and preserved the server-only DmProvider / structured requester seam. No Vercel AI SDK/Gateway production adoption. Jev is DO NOT ADOPT for Thread relevance, Actor relevance, Canon/source classification and parallel comparison; disabled for production/real/private data and its benchmark closed. No additional calls, diagnostics, retries or reruns. classifier.dev, OpenRouter, GLiNER and Vercel Workflows remain deferred and were not contacted.
+- Inspected accepted runtime, Memory and Saves/Timelines; designed optional Spatial Runtime capabilities, immutable artifact/binding versions, public knowledge filtering, normal-game typed interactions, source/epoch fences and compatible future save references. No implementation or schema change.
+- Researched current official world/object/realtime provider documentation, dated 2026-09-19; distinguished hosted APIs, weights, research/access-gated surfaces, evidence and unknowns. Current hosted Hunyuan3D 3.1, HY-World 2.x and Atlas availability are distinguished from older fal World 1.0 and realtime video.
+- Proposed four synthetic spatial generation jobs with a $4.75 reservation ceiling. Not run, not authorized by this record; no new keys requested. Exact endpoints/options, bounded read/download counts, cost arithmetic, stop-first-failure and acceptance questions are in the proposal.
+- Added EXPLORE to v1 after Phase 4 FRAME / Visual Bible. Owner Diagnostics/System Inspector remains late-stage; AutoEval/autoresearch remains future bounded owner-authorized experimentation, never autonomous production changes.
+
+### Files / areas changed
+
+Exactly twelve Markdown documents in isolated codex/phase38-spatial-architecture, based on production main cb7f6be2fb513de13604d381046a3240f3261383:
+
+1. [PHASE375_ARCHITECTURE_DECISION.md](PHASE375_ARCHITECTURE_DECISION.md) — new final decision and evidence checkpoints.
+2. [PHASE38_SPATIAL_RUNTIME.md](PHASE38_SPATIAL_RUNTIME.md) — new architecture/contracts and offline acceptance plan.
+3. [PHASE38_PROVIDER_CAPABILITIES.md](PHASE38_PROVIDER_CAPABILITIES.md) — new dated official-source matrix.
+4. [PHASE38B_LIVE_PROTOCOL.md](PHASE38B_LIVE_PROTOCOL.md) — new proposed minimal paid study, not execution.
+5. [MASTER_SPEC.md](MASTER_SPEC.md) — current scope, closed classifier decision and §45 spatial invariants.
+6. [DEVELOPMENT_PLAN.md](DEVELOPMENT_PLAN.md) — freeze, 3.8A/B gates and post-FRAME EXPLORE/late diagnostics ordering.
+7. [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md) — baseline freeze and no scheduled Jev continuation.
+8. [WORLD_ENGINE_BRIEF.md](WORLD_ENGINE_BRIEF.md) — remove obsolete pending Jev-spike prerequisite.
+9. [WORLD_LAB_WHAT_IF_BRIEF.md](WORLD_LAB_WHAT_IF_BRIEF.md) — same closed decision for comparison classification.
+10. [WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md) — same closed decision for source classification.
+11. [START_HERE.md](START_HERE.md) — current owner guidance, no setup needed for document review.
+12. [DEV_STATUS.md](DEV_STATUS.md) — this actual status; earlier acceptance/verification records remain historical below.
+
+### Verification for this pass
+
+Documentation checks passed: twelve-file Markdown-only scope; 97 relative links including five heading anchors; balanced fences; no conflict markers, replacement characters or whitespace errors; unchanged accepted Phase 3.5-and-earlier status content; $4.553 published maximum generation-cost arithmetic and $4.75 reservation ceiling. All 29 original local experiment artifacts/reservation files match SHA-256 values in the pushed evidence record. Seventeen tracked experiment-result documents and both original-checkout dirty documents also retain their pre-task hashes. Remote production main and bake-off head match the owner checkpoints. No live spatial/model tests were run.
+
+Application typecheck, lint, tests and production build are **not rerun**: only Markdown is changed; no tooling/configuration/runtime edit makes those checks relevant under this task's instruction. Historical implementation/test results below belong to their own checkpoints. No browser/spatial/mobile acceptance or provider/account capability has been tested here. Public documentation reads are research, not paid/model calls.
+
+### Key technical decisions and known issues
+
+- Authoritative RPG state is unchanged by spatial geometry/video. All actions use normal authorization, rules, recorded checks and commit semantics. Provider IDs/coordinates remain versioned presentation metadata; no universal 3D format, D&D ontology or provider dependency is introduced.
+- Reuse source versions/Memory authority and existing save/timeline membership, leases/revisions/epoch fences. The future manifest extension needs compatible versioned readers; no new rollback engine and no claim spatial records already persist.
+- Only player-discovered inputs and safe browser-delivered geometry. A provider can invent spaces even from safe input, so output review/withholding is required. Hosted privacy, export/storage rights, actual model identity, object binding and browser usability must be measured; UNKNOWN stays explicit.
+- Provider API availability and price are dated documentation evidence, not guarantees. Fal's part-splitter requirements do not directly match its 3.1 generator outputs. Realtime video does not establish persistent editable objects or save fidelity. No provider winner or production readiness is asserted.
+- Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified. Finite synthetic/model tests do not guarantee perfect memory, branching, isolation, causality or recovery. No hosted deployment or real campaign/private-data acceptance has occurred.
+- Original checkout uncommitted DEV_STATUS.md and PHASE3_EVALUATION.md are not staged, overwritten, reconciled or attributed to this work. Original benchmark branch/artifacts are preserved; no runner/dependencies are merged into production. No production main mutation, campaign data or synthetic fixture changes.
+
+### Remaining work and recommended next step
+
+Owner reviews the Phase 3.8A documents and proposed minimal 3.8B scope. No manual setup is needed now. Any experiment preparation, credentials, paid execution or production dependency needs a later scoped authorization; no permission is inferred from a remaining Phase 3.75 budget. Production EXPLORE waits until after separately authorized Phase 4 FRAME / Visual Bible. Broader World Engine/Library/Lab/ruleset implementation also remains separately gated.
+
+Stop for owner review after this documentation checkpoint. Do not begin Phase 4, EXPLORE implementation, deployment or real import.
+
+---
+
+## Historical pre-bake-off architecture design pass — superseded status, preserved record
 
 **PHASE 3.75 ARCHITECTURE DOCUMENTATION — design pass completed; pending owner review.** The proposed World Engine / World Lab / Source Worlds layer is neither implemented nor owner-approved. Only documentation work is authorized in this pass. Latest accepted implementation remains Phase 3.5 `8099e0cca1463f767476190c456d4f3947e7c84e`, with explicit acceptance at `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Earlier accepted checkpoints and their actual verification records remain below.
 

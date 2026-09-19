@@ -3,7 +3,7 @@
 
 You do NOT need to learn programming before starting.
 
-**Current local work:** Phase 1 is owner-approved and Phase 2 is authorized. Follow [PHASE2_SETUP.md](PHASE2_SETUP.md) for secure local text-DM setup and [DEV_STATUS.md](DEV_STATUS.md) for actual progress. The steps below are the original staged build guide; do not recreate accounts or reset the existing database. Deployment and real campaign imports remain prohibited.
+**Current work:** Phases 0–3.5 are owner-accepted. The [Phase 3.75 decision](PHASE375_ARCHITECTURE_DECISION.md) keeps the current direct OpenAI runtime and closes Jev evaluation. [Phase 3.8A](PHASE38_SPATIAL_RUNTIME.md) is architecture/research only; review the [small proposed spatial test](PHASE38B_LIVE_PROTOCOL.md). No new keys, accounts, installs or paid calls are needed now. EXPLORE production waits until after FRAME / Visual Bible. See [DEV_STATUS.md](DEV_STATUS.md) for actual results. The original staged guide below is historical, not an instruction to reset the database, start another phase, deploy or import real material.
 
 Your job is:
 - product owner;

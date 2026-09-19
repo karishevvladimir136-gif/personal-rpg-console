@@ -1,7 +1,7 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
-**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. Phase 3.5 implementation `8099e0cca1463f767476190c456d4f3947e7c84e` and acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e` remain the baseline. Earlier prompts below record historical milestone scope; they are not current implementation instructions. Proposed Phase 3.75 is **documentation/design only, pending owner review**, with no runtime, migration, UI, configuration or model-call authorization. Media, deployment and real campaign/private imports remain unauthorized. MASTER_SPEC §44 and the five briefs define the proposed direction.
+**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) keeps direct OpenAI Responses, preserves the abstraction seam and closes Jev without adoption; incomplete benchmark evidence is sufficient for that architecture decision only. Phase 3.8A documentation/research/offline planning is authorized now. Production EXPLORE is part of v1 after Phase 4 FRAME / Visual Bible; no production slice, new model call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
 
 ---
 
@@ -268,7 +268,7 @@ Acceptance: run full Phase 0–3 regressions and new save/branch suites; upgrade
 
 # PROPOSED PHASE 3.75 — WORLD ENGINE / WORLD LAB / SOURCE WORLDS
 
-**Design only. No sub-phase is implemented, owner-approved or authorized to start by this plan.** The documentation pass stops for review. Each future slice needs its own concrete scope, shared contracts and acceptance record; completing one does not authorize the next. Keep one primary gameplay DM, existing Memory and one Saves/Timelines system.
+**Broader A–E implementation remains design only and separately gated. The owner has now frozen the Model Runtime baseline and rejected Jev adoption; see the final decision above.** The documentation pass stops for review. Each future slice needs its own concrete scope, shared contracts and acceptance record; completing one does not authorize the next. Keep one primary gameplay DM, existing Memory and one Saves/Timelines system.
 
 Direction: **World Library → World Pack → Scenario Composition → Divergence / What If → Enter This World → Ruleset → RPG**. Natural language stays primary. D&D is a selectable ruleset, not universal ontology; providers/models are execution policy, not world identity. Optimize for this owner's quality preference and simple local operation, not cheap-model defaults or commercial scale.
 
@@ -284,9 +284,9 @@ Independently reviewable slices:
 
 Future gate: existing Phase 0–3.5 tests pass unchanged in meaning; configured supported-provider onboarding/selection works without source edits; safe status/Test Connection and no secret leakage; strict unsupported-model rejection/no fallback; World Logic and bounded Custom synthetic campaigns work alongside the house profile; no mandatory HP/d20/class UI; old save compatibility and exact quantities/knowledge remain. At least two actually verified providers are needed before claiming working provider replaceability. Full official 5e coverage must be separately enumerated/tested before advertising it.
 
-### Optional A1 Decision Model evaluation spike — future, separately authorized
+### Decision Model evaluation — Jev closed; future candidates separately authorized
 
-Define an optional vendor-neutral `classify` capability as specified in [Model Runtime](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only). Jev (TypeSafe) is one candidate, not a required provider; `classifier.dev` is at most a separately approved evaluation surface, never production infrastructure by default. No dependencies, live calls or benchmark execution are authorized by this documentation addition. The spike and any adoption are optional; other A–E work must remain viable without a classifier.
+Define an optional vendor-neutral `classify` capability as specified in [Model Runtime](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only). **Jev (TypeSafe) is DO NOT ADOPT** for Thread/Actor relevance, Canon/source classification and parallel comparison. The owner accepts the incomplete Phase 3.75 evidence for this decision; no continuation/rerun/diagnostic calls. classifier.dev, OpenRouter, GLiNER and Vercel Workflows remain deferred and are not contacted. The generic criteria below apply only to a newly authorized future candidate, not an outstanding Jev task. No dependencies, live calls or benchmark execution are authorized by this documentation addition. Any newly authorized spike and adoption remain optional; other A–E work must remain viable without a classifier.
 
 Use only labelled synthetic RPG Console fixtures covering World Thread relevance; World Actor relevance; canon/source passage classification; parallel-simulation similarities/divergences; English and Russian; and adversarial/ambiguous cases. Include critical deadlines, rare relevant actors, distractors, negation, conflicting passages, source-instruction attacks, unknowns and synthetic private/timeline markers.
 
@@ -316,7 +316,7 @@ Stable entity/faction Actor references, persistent Threads (including clocks/dea
 
 Depends on A1/A2; source-grounded use also depends on B contracts. A tightly scoped synthetic existing-campaign engine can be reviewed without waiting for every source format. Initial workload ceilings are proposed in the brief and must be tested for correctness, not treated as a cost-saving mandate.
 
-The Decision Model spike is not a C prerequisite unless optional classification is explicitly proposed for adoption. No live pruning before its recall/privacy/failure gates and separate approval; deterministic filtering and the selected strong resolver remain sufficient without it.
+No Decision Model spike is a C prerequisite. Jev evaluation is closed and cannot become a dependency of C. No live pruning before its recall/privacy/failure gates and separate approval; deterministic filtering and the selected strong resolver remain sufficient without it.
 
 Future gate: time/no-op/autonomy/deadline/fair-warning behavior, long skips stopping honestly at evaluated horizons, no autonomous PC decisions, duplicate/failed/stale settlement without partial mutation/reroll, private events/actor knowledge isolation, exact old/new save restore and source invalidation. World/Мир → Live World is public-only and bilingual/mobile. No agent-per-NPC, full economy or continuous simulator.
 
@@ -366,9 +366,23 @@ The owner already requires nontechnical onboarding and secret-free campaign sett
 
 ---
 
+# PHASE 3.8A — SPATIAL RUNTIME ARCHITECTURE / RESEARCH
+
+Authorized now, documentation/offline test-plan only. Deliver [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [dated official capability evidence](PHASE38_PROVIDER_CAPABILITIES.md), [proposed minimal 3.8B](PHASE38B_LIVE_PROTOCOL.md), and the [Phase 3.75 freeze](PHASE375_ARCHITECTURE_DECISION.md). Inspect accepted DM, Memory, save/timeline contracts first. No live calls, paid generation, credentials, runtime/UI/configuration/dependency changes or migrations.
+
+Gate: capability-dependent provider/artifact/binding contracts; source/knowledge/version/epoch fencing; return-visit/correction/regeneration/provider-switch behavior; input and output spoiler controls; failures independent of text/DM/saves/media; current official availability/price/license/hardware/privacy evidence with explicit unknowns. Owner reviews documentation before any next stage.
+
+# PHASE 3.8B — PROPOSED SYNTHETIC LIVE SPATIAL CAPABILITY TEST
+
+Not authorized to execute. First separately prepare/freeze experiment-only inputs/receipts/parsers and offline guard tests. Then obtain explicit owner approval of exact commit, endpoints, call/read/download counts and cost ceiling. Proposed workload: two Marble worlds (room/courtyard), one fal Hunyuan World export probe using the synthetic panorama, one fal Hunyuan3D 3.1 object; at most four serialized paid submissions, $4.75 total reservation ceiling. Stop on first unexplained failure, no retries/fallback/diagnostics. Unknown charges remain unknown and reserved. No real data or production merge.
+
+Gate: observed formats/persistence/scale/bindings/viewing/privacy and cost, separately from visual quality and unknowns. Do not interpret finite synthetic success as production acceptance. No automatic follow-on batch or implementation. Realtime/object articulation can remain deferred.
+
+---
+
 # MILESTONE 4 — FRAME + VISUAL BIBLE
 
-Future separately authorized media phase. Reuse approved World Pack/Visual Bible reference associations and the shared model capability/selection boundary if implemented; do not create a competing asset registry. No FRAME work is authorized by Phase 3.75 design.
+Future separately authorized media phase. Reuse approved World Pack/Visual Bible reference associations and the shared model capability/selection boundary if implemented; do not create a competing asset registry. No FRAME work is authorized by Phase 3.75 decisions or Phase 3.8A research.
 
 Goal:
 Scene images feel consistent.
@@ -394,6 +408,14 @@ Acceptance:
 Suggested prompt:
 
 > Implement Milestone 4 only. Add Visual Bible and FRAME generation using owner-selected supported provider/model integrations as specified in MASTER_SPEC section 32. Verify provider capabilities and model choices with the owner before integration. Use approved references and spoiler-safe visible scene data only. Save generated assets to campaign Gallery.
+
+---
+
+# POST-PHASE-4 V1 SLICE — EXPLORE PRODUCTION
+
+Separate authorization only after FRAME / Visual Bible and reviewed spatial evidence. Choose the smallest measured hosted/exported presentation path, reuse approved references and Storage, implement public-only artifacts/bindings and normal-game typed interactions, preserve old saves and provider-independent campaign load. Natural language stays primary. No universal D&D/HP or provider ontology. Detailed phase numbering/order relative to VIDEO may be scoped later; production EXPLORE cannot precede Phase 4.
+
+Acceptance includes no spatial-authoritative mutations; source/branch/epoch fencing; known-only geometry; safe item/door/location changes and rebinding; failure isolation; EN/RU desktop/mobile; explicitly disclosed physical iPhone/Safari results. No continuous world simulator or mandatory realtime model.
 
 ---
 
@@ -443,6 +465,8 @@ Add only after core system is stable:
 - accessibility
 - mobile refinements
 - subtle animations
+- late-stage Owner Diagnostics / System Inspector: sanitized operations, source/model provenance and failures; no secrets, private-state browser or spoilers
+- later separately scoped AutoEval / autoresearch: bounded owner-authorized experiments with frozen inputs/budgets and review, never autonomous production self-modification, deployment or paid probing
 
 Acceptance:
 The owner prefers playing here over managing the same campaign manually in ChatGPT.

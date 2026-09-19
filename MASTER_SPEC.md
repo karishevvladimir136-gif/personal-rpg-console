@@ -2,7 +2,7 @@
 ## Product specification — accepted foundation and proposed World architecture
 ### Private single-user home application
 
-**Scope as of September 19, 2026:** Phases 0–3.5 are owner-accepted. Latest implementation: `8099e0cca1463f767476190c456d4f3947e7c84e`; acceptance: `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Section 44 and the five linked briefs describe **proposed Phase 3.75 architecture only**, pending owner review and separate implementation authorization. Earlier phase instructions describe historical scope, not a fresh instruction to rerun imports, model evaluations or deployment. No new runtime, migrations or UI are implemented in this documentation pass.
+**Scope as of September 19, 2026:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. Production main for this pass is cb7f6be2fb513de13604d381046a3240f3261383. The [Phase 3.75 owner architecture freeze](PHASE375_ARCHITECTURE_DECISION.md) accepts incomplete evidence for a decision, not benchmark completion or World Engine implementation. Phase 3.8A is authorized documentation/research/offline test-plan work only; §45 defines Spatial Runtime / EXPLORE, with production after Phase 4 FRAME / Visual Bible. Other §44 implementation slices remain separately gated. Earlier phase instructions are historical, not permission for calls, imports or deployment.
 
 ---
 
@@ -1682,7 +1682,7 @@ Retrieval returns the latest applicable facts while retaining earlier versions a
 
 Test English/Russian queries, aliases, renamed entities and paraphrases. Avoid copying full old conversations when a short sourced excerpt suffices. Search scores are not factual confidence.
 
-Proposed Phase 3.75 may evaluate an optional Decision Model for authorized candidate classification/reranking; it does not replace accepted retrieval or become a new memory service. Section 44.5.1 defines the adoption gate. Apply scope/knowledge validation before classification, retain mandatory evidence and uncertain candidates, and never treat a relevance label as canon or a reason to delete original sources.
+The Phase 3.75 Decision Model evaluation is closed with Jev DO NOT ADOPT. A future newly authorized candidate could use the optional classification/reranking seam without replacing accepted retrieval or becoming a new memory service. Section 44.5.1 records the decision and future gates. Apply scope/knowledge validation before classification, retain mandatory evidence and uncertain candidates, and never treat a relevance label as canon or a reason to delete original sources.
 
 On low recall or conflicting evidence, perform one bounded targeted lookup; if unresolved, ask a non-spoiling clarification or acknowledge uncertainty. Do not invent the missing promise, identity or outcome. A retrieval outage may degrade to current state/recent context only when the action does not require missing history; otherwise pause that action.
 
@@ -1845,7 +1845,7 @@ Verification uses synthetic records only and separates deterministic/storage tes
 
 # 44. PROPOSED PHASE 3.75 — WORLD ENGINE / WORLD LAB / SOURCE WORLDS
 
-**Documentation and architecture design only; implementation and design acceptance remain pending owner review.** The product requirements in this section broaden the original RPG direction without pretending that the accepted OpenAI/d20 implementation has already been generalized. Do not begin any sub-phase, change contracts/migrations, make model calls, deploy, generate media or import real campaign/private data on the authority of this design pass.
+**World architecture implementation remains separately gated. The Model Runtime baseline and Decision Model disposition are now frozen by the owner; broader A–E implementation is not approved by that decision.** The product requirements in this section broaden the original RPG direction without pretending that the accepted OpenAI/d20 implementation has already been generalized. Do not begin any sub-phase, change contracts/migrations, make model calls, deploy, generate media or import real campaign/private data on the authority of this design pass.
 
 ## 44.1 Connected architecture and reuse
 
@@ -1901,10 +1901,37 @@ The conceptual `classify(inputs, labels, instructions?)` boundary returns valida
 
 A Decision Model cannot create World Events, kill/move/change entities, modify inventory/player state, alter timelines, decide canon, bypass knowledge validation, impose irreversible consequences or write directly to persistent state. Classification is routing metadata, not an authoritative patch or factual Memory record. Existing server validation/commit remains the only mutation path.
 
-Jev (TypeSafe) is an owner-nominated candidate, not verified or integrated here. `classifier.dev` is a possible future development/evaluation surface, never a required production dependency. Any external proxy use needs separate explicit approval and data/retention/licensing review; sensitive source libraries and campaign/private state are not authorized inputs by default. A direct adapter, alternative implementation or no classifier remains possible. No call, provider dependency or integration is made in this pass.
+The [final Phase 3.75 owner decision](PHASE375_ARCHITECTURE_DECISION.md) is **Jev DO NOT ADOPT** for Thread relevance, Actor relevance, Canon/source classification and parallel outcome comparison. Its incomplete benchmark is closed, and it remains disabled for production/real/private data. classifier.dev, OpenRouter, GLiNER and Vercel Workflows are deferred and must not be contacted or integrated in this task. Any external proxy use needs separate explicit approval and data/retention/licensing review; sensitive source libraries and campaign/private state are not authorized inputs by default. A direct adapter, alternative implementation or no classifier remains possible. No call, provider dependency or integration is made in this pass.
 
-Plan a small optional 3.75A Model Runtime evaluation spike on synthetic Thread relevance, Actor relevance, source/passages, simulation comparison, English/Russian and adversarial/ambiguous fixtures. Compare deterministic filtering only, candidate Decision Model and frontier baseline against reviewed labels. Measure recall/false negatives, precision, uncertainty/abstention/calibration, latency, expensive-model context avoided and cost where available. Prioritize extremely high recall; define task-specific thresholds and critical fixtures before held-out evaluation. Finite zero misses do not prove perfect recall. Adopt only with meaningful measured benefit and a separate explicit go/no-go decision; otherwise keep disabled. The spike is future work, not authorization to execute it now.
+No further Phase 3.75 live requests, diagnostics, retries, smoke or benchmark attempts. A future different, explicitly authorized evaluation may reuse the following criteria on synthetic Thread relevance, Actor relevance, source/passages, simulation comparison, English/Russian and adversarial/ambiguous fixtures. Compare deterministic filtering only, candidate Decision Model and frontier baseline against reviewed labels. Measure recall/false negatives, precision, uncertainty/abstention/calibration, latency, expensive-model context avoided and cost where available. Prioritize extremely high recall; define task-specific thresholds and critical fixtures before held-out evaluation. Finite zero misses do not prove perfect recall. Adopt only with meaningful measured benefit and a separate explicit go/no-go decision; otherwise keep disabled. These retained criteria neither reopen Jev nor authorize another spike.
 
 ## 44.6 Review boundary
 
 DEVELOPMENT_PLAN proposes independently reviewable A–E slices and lists owner decisions. Every future slice requires explicit scope authorization, coordinated contracts, compatibility/migration planning, synthetic regression/privacy/failure checks and separately authorized live quality evaluation. The brief acceptance lists are future tests, not results from this pass. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase confirmation remain unverified; finite synthetic/model evaluations guarantee neither perfect memory nor universal branching/recovery. No hosted deployment or real campaign/private-data acceptance has occurred. Stop after this documentation commit for owner review.
+
+
+# 45. SPATIAL RUNTIME / EXPLORE — v1 roadmap, design only
+
+**Owner-authorized Phase 3.8A now: architecture, current official provider research and offline test plan. Production EXPLORE only after Phase 4 FRAME / Visual Bible and separate implementation authorization.** [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [dated capability matrix](PHASE38_PROVIDER_CAPABILITIES.md) and [minimal 3.8B proposal](PHASE38B_LIVE_PROTOCOL.md) are the detailed contracts/evidence. No UI, dependencies, migrations, runtime changes, paid calls, keys, deployment or real data in this pass.
+
+## 45.1 Authority and optional presentation
+
+Generated space is a versioned projection of canonical Location state, never its authority. Providers cannot change inventory, canon, quests, authoritative entities/NPCs/relationships/time/discoveries or saves/timelines, or expose private facts. Player interaction emits a typed reference to existing campaign/location/entity and binding versions; server authorization/revision/knowledge/rules checks and the normal DM/mechanics commit path resolve it before presentation updates. A generated object does not create a canonical entity. Camera motion and streaming video are not game progression.
+
+EXPLORE failure never blocks text, DM, campaign load, Saves, FRAME or VIDEO. Use existing Next.js/Supabase/Storage, small adapters and bounded durable jobs; no new authoritative database, microservices, orchestration infrastructure or game-engine server.
+
+## 45.2 Capabilities, artifacts and bindings
+
+Keep create/reconstruct/extend/hosted world, splat, mesh/scene, panorama, realtime stream, object, parts, articulation, topology and PBR capabilities distinct and optional. Do not force one universal format. Stable app Location/entity IDs are independent of provider IDs. Immutable artifact versions pin source scene/location/reference versions, campaign/timeline/knowledge scope, provider/model requested and safely reported actual or null, job/world IDs, formats/assets, non-secret config, provenance, review/status and cost/usage where available.
+
+Versioned Spatial Bindings map authoritative entity IDs to an exact artifact's local objects/parts/anchors/transforms. Regeneration or provider change requires verification/rebinding without changing RPG identity. Existing save/timeline membership, revision and activation-epoch fencing reject stale selection/callbacks; future compatible manifest versions may pin artifact/binding references. Old saves remain loadable without spatial media. No parallel save system or historical retcon. Current state wins when items are removed, doors change, locations are corrected or more areas are discovered; stale unsafe geometry is withheld until safely updated.
+
+## 45.3 Public knowledge and research gates
+
+V1 spatial inputs and all browser-delivered geometry use only player-discovered information. Exclude hidden rooms/enemies/identities/objects, future transformations and private plans before provider submission; never generate a private-inclusive world and visually hide its secrets. Review/quarantine output, since models can invent geometry. If unseen regions cannot safely be excluded, withhold the artifact. Future server-private generation needs its own authorization, storage/access and provider privacy gates.
+
+Research covers Marble/current World API and Atlas successor, HY-World 2.x, WorldPlay, fal Hunyuan World, current Hunyuan3D and Seed3D, plus a later Reactor/WorldPlay/Genie-style stream slot. Documentation availability, public API/weights/research access and measured evidence stay distinct. 3.8B proposes four serialized synthetic submissions with a $4.75 reservation ceiling; no test is authorized until frozen preparation and explicit owner approval. No automatic retry/fallback or real/private input.
+
+## 45.4 Later diagnostics and evaluation
+
+Owner Diagnostics / System Inspector is late-stage sanitized operational visibility, not a spoiler or key viewer. AutoEval / autoresearch is a future bounded, separately owner-authorized experimentation capability with explicit datasets, budgets, frozen contracts and review. It never autonomously edits/adopts production code, changes authoritative state or runs paid background probes. Stop after 3.8A for owner review; do not begin Phase 4 or production implementation.
