@@ -1,0 +1,92 @@
+{
+  "baseline": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "evidenceKind": "DETERMINISTIC_HARNESS_ONLY_NOT_MODEL_BENCHMARK",
+  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
+  "liveCalls": 0,
+  "liveCostUSD": 0,
+  "deterministicAdmission": {
+    "relevant": 576,
+    "truePositive": 576,
+    "falseNegative": 0,
+    "recall": 1,
+    "recallWilson95": [
+      0.9933749842094647,
+      0.9999999999999999
+    ],
+    "precision": 0.6,
+    "critical": 320,
+    "criticalMisses": 0,
+    "criticalRetentionWilson95": [
+      0.9881378411686904,
+      1
+    ],
+    "uncertain": 64,
+    "uncertainLost": 0,
+    "scopeLeaks": 0
+  },
+  "adversarialStub": {
+    "description": "Artificial all-irrelevant answers to stress mandatory protection, NOT Jev output. Noncritical false negatives are expected and demonstrate why calibration/adoption gates matter.",
+    "raw": {
+      "relevant": 576,
+      "truePositive": 0,
+      "falseNegative": 576,
+      "recall": 0,
+      "recallWilson95": [
+        0,
+        0.0066250157905353045
+      ],
+      "precision": null,
+      "critical": 320,
+      "criticalMisses": 320,
+      "criticalRetentionWilson95": [
+        0,
+        0.011862158831309737
+      ],
+      "uncertain": 64,
+      "uncertainLost": 64,
+      "scopeLeaks": 0
+    },
+    "protected": {
+      "relevant": 576,
+      "truePositive": 320,
+      "falseNegative": 256,
+      "recall": 0.5555555555555556,
+      "recallWilson95": [
+        0.5147407213330262,
+        0.5956342769124698
+      ],
+      "precision": 1,
+      "critical": 320,
+      "criticalMisses": 0,
+      "criticalRetentionWilson95": [
+        0.9881378411686904,
+        1
+      ],
+      "uncertain": 64,
+      "uncertainLost": 64,
+      "scopeLeaks": 0
+    }
+  },
+  "recallClusterInterval": {
+    "clusters": 8,
+    "samples": 2000,
+    "percentile95": [
+      1,
+      1
+    ],
+    "caveat": "Template-generated clusters are not independent natural campaigns; degenerate zero-miss bootstrap is not proof of perfect recall. Also report Wilson intervals."
+  },
+  "pendingLive": {
+    "jev": null,
+    "frontierClassification": null,
+    "strongResolverA": null,
+    "strongResolverB": null,
+    "strongResolverC": null,
+    "p50ProviderLatency": null,
+    "p95ProviderLatency": null,
+    "contextSavings": null,
+    "calibration": null,
+    "providerCost": null
+  },
+  "recommendation": "DO NOT ADOPT for live pruning pending authorized live evidence; no efficacy conclusion about Jev can be drawn from deterministic checks."
+}

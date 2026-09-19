@@ -4,6 +4,33 @@ Last updated: September 19, 2026. Update before milestone-completion commits and
 
 ## Current milestone and status
 
+**PHASE 3.75 PRE-IMPLEMENTATION TECHNICAL BAKE-OFF — offline checkpoint verified; live evaluation pending owner credential/cost authorization.** Exact review baseline `cb7f6be2fb513de13604d381046a3240f3261383`; isolated branch `codex/phase375-technical-bakeoff`. This is not a completed live benchmark, production adoption, implementation sprint or owner acceptance. Do not merge experimental code/dependencies into main. Accepted Phase 3.5 implementation and all historical acceptance/verification records below remain unchanged.
+
+### Bake-off completed work / changed areas
+
+- Added [PHASE375_TECHNICAL_BAKEOFF.md](PHASE375_TECHNICAL_BAKEOFF.md), an isolated `experiments/phase375-bakeoff/` package/lockfile, synthetic fixture generator, frozen protocol, mock SDK transport tests, guarded future live runner, raw offline results, exact command record and nontechnical setup/cost instructions.
+- Reused unchanged DM plan/narration/feedback and summary schemas/parsers at the existing provider seams. Added no application adapter binding, API, migration, database state or production dependency.
+- 96 synthetic bilingual snapshots: 512 authorized development decisions and 1024 held-out decisions, including 320 held-out critical items. Deterministic scope checks exclude synthetic private/foreign/branch/stale/unknown-actor records. Critical protection, fail-open uncertainty, stale-result rejection, bounded overflow and budget/idempotency guards have focused tests.
+- MODEL_RUNTIME_BRIEF and DEVELOPMENT_PLAN narrowly clarify descriptive registry versus executable adapters / optional ClassificationProvider, primary Jev-through-Gateway evaluation, and the experimental/live/production authorization boundaries. No accepted Phase 2/3/3.5 contract was changed.
+
+### Bake-off verification actually performed
+
+- Experimental typecheck, lint, build and **55 deterministic harness tests passed**. Raw offline results are explicitly labelled as harness simulations; Jev/frontier metrics are null, not invented.
+- Unchanged application's typecheck, lint (experimental tree checked separately), production build and **21 direct-provider/summary unit tests passed**. Root dependency manifests/lockfile are unchanged; generated Next route declarations restored after verification.
+- No live model inference: **0 calls, $0 model charges**. No real campaign/source/private material, classifier.dev, OpenRouter, new backend, deployment or database operations. Existing application HTTP/browser/live-Supabase suites were not rerun; no fresh UI or physical-device acceptance is claimed.
+
+### Bake-off decisions, limitations and remaining work
+
+Gateway remains an experimental candidate behind existing domain providers; AI SDK must remain transport/schema plumbing. Registry data never executes or mutates state. Pin provider with `only`, no fallback model list, frozen profile, zero retries and strict local parsing. Requested ZDR/no-training flags are verified on mocked requests only. Live entitlement/compliance, actual routing, usage and pinned outages remain unverified. The installed Jev adapter's model echo is not accepted as proof of execution; missing routing stops the run.
+
+**Decision Model recommendation: DO NOT ADOPT for live pruning pending measured evidence.** No efficacy verdict about Jev is inferred from mocks. Eight held-out premise clusters share templates across families/languages; finite synthetic intervals do not guarantee causality or perfect recall. Resolver coverage is not semantic correctness. Calibration, actual p50/p95 latency, paired context savings, overhead, cost and model-quality review still require the approved live comparison. Future GLiNER/OpenRouter/Workflows remain deferred as described in the report.
+
+Recommended next step: owner review, then optionally follow [setup instructions](experiments/phase375-bakeoff/OWNER_SETUP.md) and authorize only a smoke test capped at **8 calls / $3**. Full comparison is a separate gate (maximum **392 total calls / proposed $125 total**, including smoke). No model calls until authorization; never ask for secrets in chat. Stop before the Phase 3.75 implementation sprint.
+
+The original checkout's pre-existing DEV_STATUS.md and PHASE3_EVALUATION.md are outside this change. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. No hosted deployment or real campaign/private-data acceptance has occurred; prior finite-test limitations remain in force.
+
+## Prior architecture documentation checkpoint — historical record
+
 **PHASE 3.75 ARCHITECTURE DOCUMENTATION — design pass completed; pending owner review.** The proposed World Engine / World Lab / Source Worlds layer is neither implemented nor owner-approved. Only documentation work is authorized in this pass. Latest accepted implementation remains Phase 3.5 `8099e0cca1463f767476190c456d4f3947e7c84e`, with explicit acceptance at `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Earlier accepted checkpoints and their actual verification records remain below.
 
 ### Completed work and inspected foundations

@@ -4,6 +4,8 @@
 
 > No durable world architecture may depend on a specific AI provider or model. Model choice is execution policy and provenance, not world ontology.
 
+**Isolated pre-implementation bake-off:** [PHASE375_TECHNICAL_BAKEOFF.md](PHASE375_TECHNICAL_BAKEOFF.md) records the separately authorized experiment from `cb7f6be2fb513de13604d381046a3240f3261383`. Its SDK dependencies and executable adapter are experimental only; production remains unchanged. Offline checks are complete, live evaluation awaits credential/cost approval. No production adoption or implementation sprint is authorized by that experiment.
+
 Use the smallest internal adapter interface that can serve the existing single DM, source-grounded Memory, future Canon Compiler and World Resolver. No agent framework, hosted orchestration product or second backend is required. The private owner's quality preference takes precedence over cheap-model routing or commercial concurrency economics.
 
 ## Accepted implementation and extension points
@@ -19,7 +21,8 @@ OpenAI, Anthropic, Google and Kimi are candidate integrations, not verified capa
 | Concept | Responsibility |
 | --- | --- |
 | Provider Adapter | Server-only authenticated request/response transport, provider schema translation, timeout/refusal/error normalization, usage and actual-model reporting |
-| Model Registry | Versioned configured provider/model identity, supported task capabilities/options, verified context/output accounting, attachment support and owner quality preference |
+| Model Registry | Descriptive versioned provider/model identity, capabilities/compatibility, verified context/output accounting, attachment support and owner quality preference; no calls, mutable runtime authority or state writes |
+| Optional DecisionModelProvider / ClassificationProvider | Executes classify/evaluate through an approved adapter; normalizes labels/scores/provenance, with no domain mutation authority |
 | Task Profile | Purpose, input/output contract version, mandatory evidence, visibility boundary, validation policy and operational budget |
 | Execution Profile | Resolved provider/model/options plus policy/registry versions, frozen before an operation calls a provider |
 | Model Artifact Provenance | Traceable link between validated artifact, execution profile, input snapshot/source versions and accepted operation/checkpoint |
@@ -40,7 +43,7 @@ Possible uses are World Thread and World Actor relevance, Canon Compiler passage
 
 ### Small vendor-neutral classification contract
 
-Add a distinct optional Model Registry capability, conceptually **`classify(inputs, labels, instructions?)`**. Do not force a non-generative classifier to support narration, generative structured-output APIs or reasoning-effort settings. Reuse server authorization, task/execution profiles, budgets, normalized errors and provenance; the classification adapter has no database connection, mutation tool or provider-specific world object.
+Describe classification as a distinct optional capability in the Model Registry. A separate **DecisionModelProvider / ClassificationProvider** executes the conceptual **`classify(inputs, labels, instructions?)`** operation; the registry itself never executes it. Do not force a non-generative classifier to support narration, generative structured-output APIs or reasoning-effort settings. Reuse server authorization, task/execution profiles, budgets, normalized errors and provenance; the classification adapter has no database connection, mutation tool or provider-specific world object.
 
 | Boundary | Logical content |
 | --- | --- |
@@ -67,6 +70,8 @@ A Decision Model must never directly create a World Event; kill, move or change 
 The optional execution policy is explicit and pinned per operation. Disabled/unavailable/timed-out classification bypasses only the optimization and retains authorized candidates; it never changes the selected frontier model. If full evidence cannot fit safely, pause. This defined bypass is not silent provider fallback. No automatic retry storm, substitute classifier or background call on settings/page load. Any reused result must match source versions, campaign/timeline/knowledge scope, model, labels and calibration policy; stale classification cannot prune new evidence.
 
 ### External surfaces and future adoption gate
+
+For the authorized technical bake-off, the primary candidate transport is **TypeSafe Jev through Vercel AI Gateway / AI SDK's documented evaluation API**, not classifier.dev. Exact pinned dependencies, provider/model IDs, frozen protocol, offline evidence and remaining live blockers are in the bake-off report. This selection for testing does not adopt a production dependency. classifier.dev is only an optional, separately authorized external comparator; its smart tier is out of scope.
 
 `classifier.dev` is only an owner-nominated possible development/evaluation surface. It is **not required in production and is not contacted in this pass**. Any future external proxy use needs explicit authorization and a separate review of destination, retention/training/logging, licensing and allowed data scope. Synthetic spike permission never authorizes real source libraries or campaign/private material. A direct provider adapter, a different approved implementation or no Decision Model must remain possible. Credentials follow the same application-level server-secret onboarding rules; campaigns store configuration IDs only.
 

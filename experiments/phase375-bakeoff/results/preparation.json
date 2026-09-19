@@ -1,0 +1,512 @@
+{
+  "baseline": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
+  "datasetHash": "135aff41d0559064e73f2f1806805bd38ef8832b476d725a39699c76663e2490",
+  "counts": {
+    "development": {
+      "snapshots": 32,
+      "candidates": 672,
+      "authorized": 512,
+      "critical": 160,
+      "english": 16,
+      "russian": 16
+    },
+    "heldout": {
+      "snapshots": 64,
+      "candidates": 1344,
+      "authorized": 1024,
+      "critical": 320,
+      "english": 32,
+      "russian": 32
+    }
+  },
+  "requestBytes": [
+    {
+      "id": "thread-en-0",
+      "jev": 7602,
+      "frontier": 3723
+    },
+    {
+      "id": "thread-en-1",
+      "jev": 7602,
+      "frontier": 3723
+    },
+    {
+      "id": "thread-en-2",
+      "jev": 7602,
+      "frontier": 3723
+    },
+    {
+      "id": "thread-en-3",
+      "jev": 7590,
+      "frontier": 3711
+    },
+    {
+      "id": "thread-en-4",
+      "jev": 7606,
+      "frontier": 3727
+    },
+    {
+      "id": "thread-en-5",
+      "jev": 7618,
+      "frontier": 3739
+    },
+    {
+      "id": "thread-en-6",
+      "jev": 7622,
+      "frontier": 3743
+    },
+    {
+      "id": "thread-en-7",
+      "jev": 7602,
+      "frontier": 3723
+    },
+    {
+      "id": "thread-en-8",
+      "jev": 7626,
+      "frontier": 3747
+    },
+    {
+      "id": "thread-en-9",
+      "jev": 7594,
+      "frontier": 3715
+    },
+    {
+      "id": "thread-en-10",
+      "jev": 7614,
+      "frontier": 3735
+    },
+    {
+      "id": "thread-en-11",
+      "jev": 7634,
+      "frontier": 3755
+    },
+    {
+      "id": "thread-ru-0",
+      "jev": 9406,
+      "frontier": 5527
+    },
+    {
+      "id": "thread-ru-1",
+      "jev": 9426,
+      "frontier": 5547
+    },
+    {
+      "id": "thread-ru-2",
+      "jev": 9438,
+      "frontier": 5559
+    },
+    {
+      "id": "thread-ru-3",
+      "jev": 9398,
+      "frontier": 5519
+    },
+    {
+      "id": "thread-ru-4",
+      "jev": 9474,
+      "frontier": 5595
+    },
+    {
+      "id": "thread-ru-5",
+      "jev": 9458,
+      "frontier": 5579
+    },
+    {
+      "id": "thread-ru-6",
+      "jev": 9470,
+      "frontier": 5591
+    },
+    {
+      "id": "thread-ru-7",
+      "jev": 9362,
+      "frontier": 5483
+    },
+    {
+      "id": "thread-ru-8",
+      "jev": 9458,
+      "frontier": 5579
+    },
+    {
+      "id": "thread-ru-9",
+      "jev": 9486,
+      "frontier": 5607
+    },
+    {
+      "id": "thread-ru-10",
+      "jev": 9534,
+      "frontier": 5655
+    },
+    {
+      "id": "thread-ru-11",
+      "jev": 9470,
+      "frontier": 5591
+    },
+    {
+      "id": "actor-en-0",
+      "jev": 7969,
+      "frontier": 4090
+    },
+    {
+      "id": "actor-en-1",
+      "jev": 7969,
+      "frontier": 4090
+    },
+    {
+      "id": "actor-en-2",
+      "jev": 7969,
+      "frontier": 4090
+    },
+    {
+      "id": "actor-en-3",
+      "jev": 7957,
+      "frontier": 4078
+    },
+    {
+      "id": "actor-en-4",
+      "jev": 7973,
+      "frontier": 4094
+    },
+    {
+      "id": "actor-en-5",
+      "jev": 7985,
+      "frontier": 4106
+    },
+    {
+      "id": "actor-en-6",
+      "jev": 7989,
+      "frontier": 4110
+    },
+    {
+      "id": "actor-en-7",
+      "jev": 7969,
+      "frontier": 4090
+    },
+    {
+      "id": "actor-en-8",
+      "jev": 7993,
+      "frontier": 4114
+    },
+    {
+      "id": "actor-en-9",
+      "jev": 7961,
+      "frontier": 4082
+    },
+    {
+      "id": "actor-en-10",
+      "jev": 7981,
+      "frontier": 4102
+    },
+    {
+      "id": "actor-en-11",
+      "jev": 8001,
+      "frontier": 4122
+    },
+    {
+      "id": "actor-ru-0",
+      "jev": 10221,
+      "frontier": 6342
+    },
+    {
+      "id": "actor-ru-1",
+      "jev": 10241,
+      "frontier": 6362
+    },
+    {
+      "id": "actor-ru-2",
+      "jev": 10253,
+      "frontier": 6374
+    },
+    {
+      "id": "actor-ru-3",
+      "jev": 10213,
+      "frontier": 6334
+    },
+    {
+      "id": "actor-ru-4",
+      "jev": 10289,
+      "frontier": 6410
+    },
+    {
+      "id": "actor-ru-5",
+      "jev": 10273,
+      "frontier": 6394
+    },
+    {
+      "id": "actor-ru-6",
+      "jev": 10285,
+      "frontier": 6406
+    },
+    {
+      "id": "actor-ru-7",
+      "jev": 10177,
+      "frontier": 6298
+    },
+    {
+      "id": "actor-ru-8",
+      "jev": 10273,
+      "frontier": 6394
+    },
+    {
+      "id": "actor-ru-9",
+      "jev": 10301,
+      "frontier": 6422
+    },
+    {
+      "id": "actor-ru-10",
+      "jev": 10349,
+      "frontier": 6470
+    },
+    {
+      "id": "actor-ru-11",
+      "jev": 10285,
+      "frontier": 6406
+    },
+    {
+      "id": "source-en-0",
+      "jev": 7778,
+      "frontier": 3899
+    },
+    {
+      "id": "source-en-1",
+      "jev": 7778,
+      "frontier": 3899
+    },
+    {
+      "id": "source-en-2",
+      "jev": 7778,
+      "frontier": 3899
+    },
+    {
+      "id": "source-en-3",
+      "jev": 7766,
+      "frontier": 3887
+    },
+    {
+      "id": "source-en-4",
+      "jev": 7782,
+      "frontier": 3903
+    },
+    {
+      "id": "source-en-5",
+      "jev": 7794,
+      "frontier": 3915
+    },
+    {
+      "id": "source-en-6",
+      "jev": 7798,
+      "frontier": 3919
+    },
+    {
+      "id": "source-en-7",
+      "jev": 7778,
+      "frontier": 3899
+    },
+    {
+      "id": "source-en-8",
+      "jev": 7802,
+      "frontier": 3923
+    },
+    {
+      "id": "source-en-9",
+      "jev": 7770,
+      "frontier": 3891
+    },
+    {
+      "id": "source-en-10",
+      "jev": 7790,
+      "frontier": 3911
+    },
+    {
+      "id": "source-en-11",
+      "jev": 7810,
+      "frontier": 3931
+    },
+    {
+      "id": "source-ru-0",
+      "jev": 9934,
+      "frontier": 6055
+    },
+    {
+      "id": "source-ru-1",
+      "jev": 9954,
+      "frontier": 6075
+    },
+    {
+      "id": "source-ru-2",
+      "jev": 9966,
+      "frontier": 6087
+    },
+    {
+      "id": "source-ru-3",
+      "jev": 9926,
+      "frontier": 6047
+    },
+    {
+      "id": "source-ru-4",
+      "jev": 10002,
+      "frontier": 6123
+    },
+    {
+      "id": "source-ru-5",
+      "jev": 9986,
+      "frontier": 6107
+    },
+    {
+      "id": "source-ru-6",
+      "jev": 9998,
+      "frontier": 6119
+    },
+    {
+      "id": "source-ru-7",
+      "jev": 9890,
+      "frontier": 6011
+    },
+    {
+      "id": "source-ru-8",
+      "jev": 9986,
+      "frontier": 6107
+    },
+    {
+      "id": "source-ru-9",
+      "jev": 10014,
+      "frontier": 6135
+    },
+    {
+      "id": "source-ru-10",
+      "jev": 10062,
+      "frontier": 6183
+    },
+    {
+      "id": "source-ru-11",
+      "jev": 9998,
+      "frontier": 6119
+    },
+    {
+      "id": "comparison-en-0",
+      "jev": 8627,
+      "frontier": 4471
+    },
+    {
+      "id": "comparison-en-1",
+      "jev": 8627,
+      "frontier": 4471
+    },
+    {
+      "id": "comparison-en-2",
+      "jev": 8627,
+      "frontier": 4471
+    },
+    {
+      "id": "comparison-en-3",
+      "jev": 8615,
+      "frontier": 4459
+    },
+    {
+      "id": "comparison-en-4",
+      "jev": 8631,
+      "frontier": 4475
+    },
+    {
+      "id": "comparison-en-5",
+      "jev": 8643,
+      "frontier": 4487
+    },
+    {
+      "id": "comparison-en-6",
+      "jev": 8647,
+      "frontier": 4491
+    },
+    {
+      "id": "comparison-en-7",
+      "jev": 8627,
+      "frontier": 4471
+    },
+    {
+      "id": "comparison-en-8",
+      "jev": 8651,
+      "frontier": 4495
+    },
+    {
+      "id": "comparison-en-9",
+      "jev": 8619,
+      "frontier": 4463
+    },
+    {
+      "id": "comparison-en-10",
+      "jev": 8639,
+      "frontier": 4483
+    },
+    {
+      "id": "comparison-en-11",
+      "jev": 8659,
+      "frontier": 4503
+    },
+    {
+      "id": "comparison-ru-0",
+      "jev": 10848,
+      "frontier": 6692
+    },
+    {
+      "id": "comparison-ru-1",
+      "jev": 10868,
+      "frontier": 6712
+    },
+    {
+      "id": "comparison-ru-2",
+      "jev": 10880,
+      "frontier": 6724
+    },
+    {
+      "id": "comparison-ru-3",
+      "jev": 10840,
+      "frontier": 6684
+    },
+    {
+      "id": "comparison-ru-4",
+      "jev": 10916,
+      "frontier": 6760
+    },
+    {
+      "id": "comparison-ru-5",
+      "jev": 10900,
+      "frontier": 6744
+    },
+    {
+      "id": "comparison-ru-6",
+      "jev": 10912,
+      "frontier": 6756
+    },
+    {
+      "id": "comparison-ru-7",
+      "jev": 10804,
+      "frontier": 6648
+    },
+    {
+      "id": "comparison-ru-8",
+      "jev": 10900,
+      "frontier": 6744
+    },
+    {
+      "id": "comparison-ru-9",
+      "jev": 10928,
+      "frontier": 6772
+    },
+    {
+      "id": "comparison-ru-10",
+      "jev": 10976,
+      "frontier": 6820
+    },
+    {
+      "id": "comparison-ru-11",
+      "jev": 10912,
+      "frontier": 6756
+    }
+  ],
+  "liveCalls": 0,
+  "liveCostUSD": 0,
+  "modelMetrics": {
+    "jev": null,
+    "frontier": null
+  },
+  "reason": "Live calls require owner cost/credential approval. No classifier results fabricated."
+}

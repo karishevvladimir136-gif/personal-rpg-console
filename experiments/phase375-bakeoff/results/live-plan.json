@@ -1,0 +1,33 @@
+{
+  "status": "AWAITING_OWNER_AUTHORIZATION",
+  "protocolHash": "a0e853cbd6bcab495af5ef428712a74f1e0ee70a01d9adf8d7bed250074fdbc9",
+  "calls": {
+    "smokeMaximum": 8,
+    "developmentClassification": 64,
+    "heldoutClassificationAndResolver": 320,
+    "totalMaximum": 392,
+    "jevMaximum": 97,
+    "astraMaximum": 295,
+    "retries": 0,
+    "concurrency": 1
+  },
+  "limits": {
+    "maxSerializedRequestBytes": 12000,
+    "astraMaxOutputTokens": 4096,
+    "maxSecondsPerCall": 60,
+    "keySpendCapUSD": 125,
+    "stopOnConsecutiveFailures": 2
+  },
+  "estimate": {
+    "astraInputUSDPerMillion": 10,
+    "astraOutputUSDPerMillion": 50,
+    "jevCatalogPricingObserved": "Free promotion ending September 25, 2026; reverify before live work",
+    "jevContingencyPerCallUSD": 0.01,
+    "astraWorstCaseUSD": 95.816,
+    "jevContingencyUSD": 0.97,
+    "proposedTotalBudgetUSD": 125,
+    "caveat": "Conservative application estimate, not a provider billing guarantee. Jev contingency is an internal reservation, not a claim about post-promotion pricing. Unknown tariff/usage, routing or privacy support stops the run; verify dashboard budget before calls."
+  },
+  "noOtherProviders": true,
+  "plannedNotExecuted": true
+}

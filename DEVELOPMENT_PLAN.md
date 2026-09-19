@@ -5,6 +5,8 @@
 
 ---
 
+**Separately authorized pre-implementation exception:** the owner requested an isolated technical bake-off from exact documentation baseline `cb7f6be2fb513de13604d381046a3240f3261383`. See [PHASE375_TECHNICAL_BAKEOFF.md](PHASE375_TECHNICAL_BAKEOFF.md). Vercel AI Gateway / stable AI SDK 7 transport and TypeSafe Jev evaluation are experimental work only; no production Model Runtime, rulesets or A–E sprint starts. Deterministic preparation is complete; live calls require a separate bounded-cost approval. Do not merge experimental code/dependencies to main.
+
 # MILESTONE 0 — UI SHELL
 
 Goal:
@@ -285,6 +287,8 @@ Independently reviewable slices:
 Future gate: existing Phase 0–3.5 tests pass unchanged in meaning; configured supported-provider onboarding/selection works without source edits; safe status/Test Connection and no secret leakage; strict unsupported-model rejection/no fallback; World Logic and bounded Custom synthetic campaigns work alongside the house profile; no mandatory HP/d20/class UI; old save compatibility and exact quantities/knowledge remain. At least two actually verified providers are needed before claiming working provider replaceability. Full official 5e coverage must be separately enumerated/tested before advertising it.
 
 ### Optional A1 Decision Model evaluation spike — future, separately authorized
+
+The isolated bake-off now prepares this gate using Gateway's Jev evaluation API as the primary candidate, with deterministic and frontier comparators. Actual Jev/frontier measurements remain pending. Registry entries describe capabilities; adapters and an optional ClassificationProvider execute requests. classifier.dev, OpenRouter, GLiNER and Workflows are not integrated. GLiNER needs a separate future B extraction benchmark; OpenRouter needs a measured Gateway gap; Workflows needs demonstrated insufficiency of existing Postgres jobs.
 
 Define an optional vendor-neutral `classify` capability as specified in [Model Runtime](MODEL_RUNTIME_BRIEF.md#optional-decision-model-capability--design-only). Jev (TypeSafe) is one candidate, not a required provider; `classifier.dev` is at most a separately approved evaluation surface, never production infrastructure by default. No dependencies, live calls or benchmark execution are authorized by this documentation addition. The spike and any adoption are optional; other A–E work must remain viable without a classifier.
 
