@@ -1,0 +1,95 @@
+{
+  "recordId": "setup-stop-001",
+  "recordedAt": "2026-09-19T23:14:41.102091+00:00",
+  "status": "STOPPED_BEFORE_GENERATION_MISSING_LOCAL_SETUP",
+  "authorizedExecutionSHA": "2f8f82edb5d5f3c960d45922b71c543e99208192",
+  "protocolSHA256": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "verifiedCleanExecutionCheckout": true,
+  "verifiedFrozenFileCount": 17,
+  "credentialsAtPreflight": {
+    "worldLabsConfigured": false,
+    "falConfigured": false,
+    "secretFileExisted": false
+  },
+  "accountFunding": "UNKNOWN_NOT_INSPECTED",
+  "setupAction": "Created only an ignored .env.local with two empty values in the execution checkout; no credentials copied/read/logged.",
+  "liveLedgerInitialized": false,
+  "liveAnchorCreated": false,
+  "attempted": 0,
+  "succeeded": 0,
+  "failedSubmissions": 0,
+  "notAttempted": 4,
+  "generationRequests": 0,
+  "providerPolls": 0,
+  "providerResultReads": 0,
+  "providerWorldReads": 0,
+  "assetDownloads": 0,
+  "reservationMicroUSD": 0,
+  "generationSpendIncurredMicroUSD": 0,
+  "providerReportedCharges": null,
+  "providerReportedChargesReason": "NOT_APPLICABLE_NO_PROVIDER_REQUESTS",
+  "unknownAttemptCharges": [],
+  "retryCount": 0,
+  "fallbackCount": 0,
+  "jobs": [
+    {
+      "jobId": "spatial-room-1",
+      "status": "NOT_ATTEMPTED",
+      "actualProvider": null,
+      "actualModel": null,
+      "worldId": null,
+      "latencyMs": null,
+      "assets": []
+    },
+    {
+      "jobId": "spatial-courtyard-1",
+      "status": "NOT_ATTEMPTED",
+      "actualProvider": null,
+      "actualModel": null,
+      "worldId": null,
+      "latencyMs": null,
+      "assets": []
+    },
+    {
+      "jobId": "spatial-fal-world-1",
+      "status": "NOT_ATTEMPTED",
+      "actualProvider": null,
+      "actualModel": null,
+      "worldId": null,
+      "latencyMs": null,
+      "assets": []
+    },
+    {
+      "jobId": "spatial-chest-1",
+      "status": "NOT_ATTEMPTED",
+      "actualProvider": null,
+      "actualModel": null,
+      "worldId": null,
+      "latencyMs": null,
+      "assets": []
+    }
+  ],
+  "observations": {
+    "worldPersistence": "UNVERIFIED",
+    "marbleSPZColliderPanorama": "NO_OUTPUTS",
+    "visualPromptAdherence": "UNVERIFIED",
+    "panoramaCompatibilityAndSharing": "UNVERIFIED",
+    "falWorldFormatAndUsability": "NO_OUTPUT",
+    "chestGLBPBRLidAddressability": "NO_OUTPUT",
+    "scaleColliderBinding": "UNVERIFIED"
+  },
+  "verification": {
+    "mockTests": {
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0
+    },
+    "experimentTypecheck": "PASS",
+    "experimentLint": "PASS",
+    "experimentBuild": "PASS",
+    "fullProductionBuildThisTurn": "NOT_RERUN_UNCHANGED_CODE_PREPARATION_BUILD_PASSED"
+  },
+  "productionChanges": false,
+  "frozenChanges": false,
+  "secretsIncluded": false
+}

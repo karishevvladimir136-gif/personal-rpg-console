@@ -4,6 +4,30 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B LIVE EXECUTION OWNER-AUTHORIZED; STOPPED BEFORE GENERATION FOR MISSING LOCAL SETUP.** Exact authorized execution SHA: `2f8f82edb5d5f3c960d45922b71c543e99208192`; protocol SHA-256: `496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb`. The clean execution checkout and all 17 frozen files passed verification. Neither provider credential was configured; account funding remains unverified. No execution permission beyond the four frozen jobs is inferred.
+
+### Completed work and files / areas changed
+
+Recorded sanitized [setup-stop evidence](experiments/phase38-spatial/results/SETUP_STOP_001.md) and [machine-readable observation](experiments/phase38-spatial/results/setup-stop-001.json) on separate `codex/phase38-spatial-evidence`, plus this status. Created only an ignored blank local secret template in the execution checkout. The execution worktree remains at the exact approved SHA; frozen files were not edited. No live ledger/anchor was initialized, and no credential value was read, written, logged or committed.
+
+### Actual verification and results
+
+91 deterministic experiment tests passed, zero failures/skips. Experiment typecheck, lint and isolated build passed. Full application checks were not repeated for status/evidence-only changes; their successful preparation results remain below. Zero generation submissions, zero successes, zero failed submissions, four not attempted; zero reservations and zero generation spend incurred. No provider billing was queried and no purchase made. No polling, world/result reads, downloads, retries or fallback occurred.
+
+### Key decisions, known issues and remaining work
+
+Preserve the exact execution checkout while committing reports separately. All world IDs/persistence, output assets and hashes, generation latency, visual quality, panorama compatibility/sharing, fal format/usability, chest PBR/lid, scale/collider/binding and provider-internal model provenance remain unobserved. Missing credentials are a setup pause, not a failed generation. Account funding is UNKNOWN; owner setup instructions use the World Labs API platform ($5 minimum purchase if needed), API-scoped fal key and one ignored local file. The $4.75 cumulative generation reservation ceiling and every frozen stop/review condition remain in force.
+
+Production main/runtime/dependencies/schema/UI/deployment, original dirty documents and historical evidence remain unchanged. Physical iPhone/Safari and historical optional conflict-rebase confirmation remain unverified. No real data, production EXPLORE acceptance, Phase 4 or 2D renderer work occurred.
+
+### Recommended next step
+
+Owner saves credentials locally and confirms funding readiness without sharing secrets. Then recheck the exact authorized clean execution SHA before initializing the ledger once and attempting job 1. Stop now for owner setup; do not circumvent the missing prerequisites or run diagnostic generations.
+
+---
+
+## Historical preparation checkpoint — preserved verification record
+
 **PHASE 3.8A OWNER-APPROVED at `444f6836a5abce2014c3de4b6f234bf2a75399af`. PHASE 3.8B PREPARATION COMPLETE — FROZEN FOR OWNER REVIEW; LIVE EXECUTION NOT AUTHORIZED.** This is an isolated experiment preparation on `codex/phase38-spatial-preparation`. Production acceptance checkpoints and earlier verification boundaries remain unchanged. The owner must explicitly authorize the exact final preparation SHA before any live generation.
 
 ### Completed work and files / areas changed
