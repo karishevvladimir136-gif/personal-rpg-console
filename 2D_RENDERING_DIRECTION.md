@@ -22,6 +22,12 @@ The same authoritative campaign may be viewed as Text, future 2D Live presentati
 
 Do not copy proprietary assets/UI. The renderer itself must be style-agnostic: pixel, painterly, illustrated, graphic-novel or another campaign style can all sit on the same semantics.
 
+## Systemic references, not visual references
+
+**Terra Randoma** and **Approaching Infinity** are additional systemic references. Their graphics are not targets. Use them for procedural world density, travel incidents, settlement/faction state, hidden discoveries, selective simulation and multi-scale abstraction. Detailed lessons live in [Systemic World References](SYSTEMIC_WORLD_REFERENCES.md).
+
+Especially important: a world/region/town/local view does not need physically continuous scale. A future renderer may deliberately abstract distance/time between presentation scales while authoritative Location relationships and consequences remain exact.
+
 ## Minimal gameplay loop
 
 Example:

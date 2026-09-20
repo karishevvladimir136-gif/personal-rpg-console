@@ -89,6 +89,10 @@ Register actor control, threads/progress/deadlines, events, warning/awareness ev
 Current manifest validation accepts only schema version 1 and an exact record-family list. Adding families without a versioned reader would break old saves. A future migration must retain v1 loading, derive an explicit empty/unconfigured World Engine state for old saves, and create new versioned manifests without mutating old manifests. Never infer past autonomous events that were never simulated.
 
 
+## Systemic/procedural references
+
+See [Systemic World References](SYSTEMIC_WORLD_REFERENCES.md) for extracted design lessons from **Terra Randoma** and **Approaching Infinity**. They are references for procedural density, selective simulation, faction/world interactions, discovery and lazy generation—not visual-style targets. The binding principles are: structured procgen + AI semantics; bounded opportunity density; selective simulation only where it creates meaningful affordances; multi-scale maps over one authority; knowledge-gated discovery; and lazy elaboration rather than eager infinite content.
+
 ## Adventure hooks, Points of Interest and owner-directed density
 
 A large generative world needs **interesting opportunity density**, not just physical freedom. Represent potential adventures as bounded latent hooks associated with a region/location and optionally one or more Threads. A hook is not automatically a quest, event or discovered fact. It may be a place, rumor, unusual activity, person, object, danger, mystery or other reason to investigate.
