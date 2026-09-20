@@ -4,6 +4,42 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B EXACT FAL ARTIFACT RETRIEVAL PREPARED OFFLINE; STOP FOR OWNER REVIEW.** Dedicated branch `codex/phase38-fal-artifact-preparation` starts from accepted diagnostic evidence `745ee77f32ca61f795948f1292f7921d4fe406e7`. No live retrieval, new ledger initialization, provider/result/asset/DNS/network request, credential read, reservation, generation or chest call occurred. Commit remains local because this task requires zero network activity. No main merge or production work.
+
+### Completed work and files / areas changed
+
+Added isolated `phase38b-fal-exact-artifact-1`: [frozen manifest](experiments/phase38-spatial/fal-exact-artifact.json), [preparation instructions](experiments/phase38-spatial/FAL_EXACT_ARTIFACT_PREPARATION.md), six experiment-only modules for the exact capability, source/ledger verification, streaming download, ZIP inspection, runner and CLI, plus deterministic synthetic tests. Experiment `.gitignore`, freeze input registration and `freeze.json` include the new preparation; this status is the only changed root document. All 27 prior committed evidence files and all original STOPPED/status/retrieval/diagnostic histories were verified unchanged. Original checkout's pre-existing documentation edits remain byte-for-byte untouched.
+
+### Tests and build status
+
+**674 deterministic experiment tests passed (549 existing + 125 new), zero failures/skips/cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** Regression coverage includes exact evidence/body/descriptor pins, changed queries/objects, credential isolation, redirects, public-only pinned DNS, single-use/crash/partial attempts, byte overflow, private storage, ZIP traversal/special files/duplicates/corruption/bombs, retained safe inventory before geometry failure and unchanged accounting. Full production suite/build not run; production is unchanged. No dependencies were installed.
+
+### Key technical decisions and frozen checkpoint
+
+Manifest identity hash: `310e802e1df5781a97336f9915668855421a50ff17e0c74532c44fc5df647f53`.
+Manifest file SHA-256: `2015ddbc3b0b233d37e297ef951b8856c8d9f047fed6583de22b02f53950244a`.
+Freeze-file SHA-256: `643ae14cbd2974992f1860e46a38b7059c627aa84c5284ba265a5f0f53e4fb15` (63 inputs).
+
+Future separately authorized scope is at most **one exact fal result GET + one exact artifact GET**. Result must retain prior body hash `5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6` before parsing. The opaque one-use capability pins the complete URL, hostname, pathname and descriptor from accepted evidence; no CLI substitute URL/hash/pin exists. **Global/persistent GCS allowlists remain unchanged.** A shared GCS hostname is not a generic trust grant. All prior protocol/continuation/diagnostic hashes remain unchanged.
+
+Future result bound: 60 seconds / 2 MiB. Asset: 300 seconds including at most one public-address DNS resolution, 90 MiB hard stream ceiling; final bytes and any Content-Length must equal **85,481,294**. No Authorization/header secret reaches GCS. Partial bytes/hash remain private and cannot be retried. ZIP: at most 1,024 entries, 4 MiB central directory, 256 MiB per entry, 512 MiB aggregate, 200:1 ratio, 120-second inspection bound; no extraction or execution. Whole operation deadline 900 seconds. Zero retries/fallback/redirect following/polling/billing/generation/next/chest capabilities.
+
+Accounting remains **$4.15 / $4.75 reserved; $2.528 known reported billing; fal-world billing UNKNOWN; original $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. Historical totals remain 46 API requests, 8 downloads and 3 generations. No refund or unknown-as-zero assumption.
+
+### Known issues and remaining work
+
+Actual asset bytes, archive contents, integrity and world usability remain unverified because the download has not occurred. Signed URLs may expire or rotate; any changed body/fingerprint or failed asset request stops without refresh/retry. ZIP64/encryption/unsupported compression and ambiguous paths fail closed. DRC inspection recognizes a bounded DRACO header, not full geometry decoding. Larger/other format candidates remain explicitly unverified; GLB/glTF checks are bounded. No visual, navigation or production quality is claimed. Future retrieval ends at manual owner review and never releases chest or another job.
+
+Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests do not guarantee universal recovery or format support; no hosted deployment or real campaign/private-data acceptance. Earlier room/courtyard approval remains synthetic-experiment-only. Production runtime, schema, UI, root dependencies, main and roadmap branch remain unchanged.
+
+### Recommended next step
+
+**STOP for owner review of the exact preparation SHA and manifest/freeze hashes.** Do not initialize, retrieve, download, poll, retry, change host policy, run chest/next, begin EXPLORE/renderer/Phase 4, merge main, deploy or import real data without separate authorization.
+
+---
+
+## Historical fal asset-host diagnostic evidence checkpoint
+
 **PHASE 3.8B ONE-READ FAL ASSET-HOST DIAGNOSTIC OBSERVED; STOP FOR OWNER REVIEW.** Executed once from exact clean approved SHA adebc5e5d9c8e83c1ed6ace277582147b37d5901, diagnostic phase38b-fal-host-diagnostic-1, hash 8de9ecf328aa6459ea09d7686533cf1e34f86bf0b04978846c1d87f197fc3602. HTTP **200**, exact response URL, no redirect; prior body SHA-256 **matched exactly before interpretation**, then frozen optional-field result identity validation passed.
 
 The required world_file descriptor reports hostname **storage.googleapis.com**. The unchanged frozen host policy returned **clearly_unapproved_or_unsafe_host / host_not_approved**. This identifies the rejected host; it does not prove maliciousness, provider ownership, a failed generation or artifact usability. **No artifact download or asset DNS lookup occurred. No allowlist correction was made.**
