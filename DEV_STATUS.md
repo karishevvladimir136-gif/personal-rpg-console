@@ -1,10 +1,69 @@
-# Development status — Production Foundation Wave 4 — implementation in progress
+# Development status — Production Foundation Wave 4 — ready for owner review
 
 Started September 20, 2026 from freshly fetched exact remote main `7f4b65ea60e0e497f27528c9efcf73ececa6e360` in isolated branch `codex/production-foundation-wave4`. Main and the original dirty checkout remain untouched. Waves 1–3 stay owner accepted; Wave 4 is not owner accepted.
 
-The minimum additions and exclusive worker ownership are frozen in `WAVE4_CONTRACTS.md`. Three separate-worktree Astra Max workers are implementing Pack preparation, progression/rewards and commerce. Lead owns shared contracts, the additive disposable-only migration, atomic settlement/save integration and this status file. Currency uses existing entity resources, merchant stock uses existing items/storage, and receipts/history use existing World Events, commands and save manifests. No second wallet, inventory, reward ledger or Actor database.
+Updated September 20, 2026. The bounded playable-world, rewards/progression and commerce foundation is implemented and integrated. This is not Phase 4 / FRAME. The final integration SHA is reported in the handoff after committing this status; the integration and six worker branches are published for owner review, with main left at the authorized base.
 
-Current status: implementation in progress, not yet integrated or verified. No fresh Wave 4 test/build/browser result is claimed. No live provider calls, real-data migration/import, deployment, World Lab, Enter This World or next phase. Remaining work includes owner surfaces, natural-language action integration, adversarial QA, full deterministic verification, EN/RU desktop/mobile browser checks and branch publication for owner review.
+## Milestone status
+
+- **Implemented:** explicit approved-Pack preparation; owner-editable Actors/capabilities/Threads and merchant participation; bounded rewards, progression and advancement choices; profile currencies, buy/sell/barter and valuation; normal Game price inquiries, negotiation and theft/robbery proposals.
+- **Integrated:** all six isolated worker branches, Lead-owned migration 13, normal turn/World Event settlement, save/timeline integration, application routes and existing shell surfaces. Lead repaired production defects centrally.
+- **Deterministically verified:** final complete suite **863 collected, 862 passed, 0 failed, 1 skipped**, plus passing typecheck, repository-wide zero-warning lint and production build. Disposable legacy/Wave 1/2/3 upgrades, the full objective-to-reward-to-trade loop, privacy/import checks and scripted provider transports are included.
+- **Browser checked:** actual components/styles and pure planners using synthetic process-memory fixtures in EN/RU across desktop and 390×844 mobile viewports. Manual edits, exchanges, advancement, retry and timeline freezing were exercised. This is not hosted database/Auth verification or physical iPhone testing.
+- **Not live-model-quality evaluated:** no live provider/model calls, paid evaluation, real database migration, real/private data import, web research or deployment.
+- **Not owner accepted:** Waves 1–3 remain accepted. Wave 4 awaits explicit owner review. A/B/C are not declared universally complete. World Lab, Enter This World and further implementation have not started.
+
+Owner instructions: [WAVE4_OWNER_GUIDE.md](WAVE4_OWNER_GUIDE.md). Separate browser evidence: [WAVE4_BROWSER_REVIEW.md](WAVE4_BROWSER_REVIEW.md). Frozen ownership and final additions: [WAVE4_CONTRACTS.md](WAVE4_CONTRACTS.md). Independent security findings: [WAVE4_QA_REVIEW.md](WAVE4_QA_REVIEW.md).
+
+## What is usable
+
+- **Campaign Settings → World Packs → Prepare for campaign:** review a selected subset of an approved, explicitly pinned Pack. Edit display names, aliases, bounded kinds, public descriptions, capabilities/limitations, Thread title/goal/policy, and merchant participation/label before creation. Preparation records exact Pack/source provenance and stable campaign identities. Corrections preserve history; repeated preparation does not duplicate entities. Private/future-source content remains excluded. Existing inventory/storage controls supply possessions and merchant stock rather than inventing them from prose.
+- **Campaign Settings → foundation settings:** configure profile-owned currency labels/resources, item valuations and restrictions, merchant stock sources/availability/funds/capacity/modifiers/stolen-item policy, progression tracks, approved reward definitions and bounded manual progress corrections. Inputs are named fields rather than editable authority IDs or JSON. Definitions and corrections remain versioned through existing events/commands/save history.
+- **Inventory → Trade:** choose quantities on either side, review a frozen quote, and confirm a purchase, sale or barter. Stock, ownership, payment, restrictions and merchant policy commit atomically. Stale quotes fail without repricing or partial transfer. Lost replies retain an exact retry; timeline changes freeze old forms. Currency is defined by the active profile, not a universal gold balance.
+- **Character → Progression:** claim eligible approved rewards, view configured tracks and pending advancement, and choose a supported capability when required. Classic-XP, milestone and generic tracks have deterministic fixtures; Off/zero-track mode suppresses progression without losing eligible item/currency rewards. One source entitlement pays at most once; forks inherit committed receipts and isolate later ones.
+- **Normal Game composer:** free-form price inquiries, offers, negotiation and theft/robbery remain ordinary actions. The existing DM/World Logic runtime may supply strict semantic proposals; trusted validators derive money, quantities and effects from approved definitions, recorded checks and established capabilities. Theft cannot use a privileged trade API. Successful transfers retain stolen provenance; failures produce no partial transfer. No HP/d20 assumptions are added to World Logic.
+
+## Authority, integration and repairs
+
+Migration `supabase/migrations/202609200013_production_wave4.sql` adds a nullable versioned `loop_state` to the existing `world_foundations` save family and the bounded merchant-storage kind. Currency balances remain `Entity.resources`; stock remains ordinary `Item`/`Storage`; reward receipts remain private World Events and exact operations remain existing command receipts. There is no second inventory, wallet, reward ledger, Actor database, DM, Memory pipeline or save engine. Migration 13 was executed only in disposable synthetic PGlite databases.
+
+Normal Game foundation proposals use the existing runtime task boundaries. Their exact typed checkpoint, original action/checks and campaign/head/timeline/epoch fences are retained through retry. Ordinary resolution, foundation transfers, receipts, World Events and the final autosave commit in one transaction. Stale staged foundation proposals fail safely rather than being rebased or force-applied. Public narration sees only approved public result text; private options, detection data and receipts stay server-side.
+
+Changed areas: new `foundation-loop`, `playable-world`, `progression`, `commerce` and `foundation-actions` modules; their owner/player components; existing gameplay/production/provider adapters, persistence shell/routes and localization; migration 13; focused domain, SQL, provider, UI and independent QA tests. Shared inert field parsing was separated from private Library modules to preserve client import boundaries.
+
+Independent QA reproduced and verified central fixes for hidden merchant stock and private reward references, unsafe ruleset switching after loop configuration, unchanged preparation, inconsistent progression bounds, unordered history, and forged trade/reward plans. SQL now independently checks payment, stock debit, transfer identity, reward totals, pending choices and unchanged unrelated state. The final full suite reruns all independent QA cases after the final repairs. Browser review also caught an unsaved Pack draft being reloaded on language switching; the corrected editor preserves the draft and renders status/errors in the current language.
+
+## Fresh final verification
+
+- `node --test --test-concurrency=2 tests/*.test.mjs`, with a credential-free loopback application server for existing HTTP checks: **863 tests, 862 passed, 0 failed, 1 skipped**, duration **113.987 seconds**. The sole skip is the explicitly opt-in live Supabase Auth/PostgREST test; it is not counted as passed. Phase 0–3.5 and Waves 1–3 regressions are included.
+- Route type generation and non-incremental TypeScript `--noEmit`: **passed**. The final production build also completed TypeScript validation.
+- Repository-wide ESLint `--max-warnings 0`: **passed, zero warnings**, including the finalized local verification helpers.
+- `next build --webpack`: **passed** compilation, TypeScript, page generation and route generation. The existing external `node_modules` junction prevents default Turbopack use; webpack builds the same source without changing dependencies/configuration. No default Turbopack success is claimed.
+- Disposable PGlite upgrades from migration prefixes **1–9, 1–10, 1–11 and 1–12 through 13** preserve old records, manifests, digests, source/Pack pins and immutable vault history. Missing/null loop state restores as empty/off without fabricated receipts.
+- The deterministic complete loop executes an actual normal Game objective resolution, claims approved rewards into ordinary inventory/resources, trades a rewarded item, saves/loads, retries without duplicate grants and checks pre/post-reward fork isolation. Normal Game SQL cases cover console-basic and World Logic, paid trade, quote, haggle, theft/robbery, failure/rollback, closure, one final autosave and duplicate callbacks.
+- Security cases cover owner/campaign isolation, private/future sources and hidden stock, RLS/runtime/Memory projections, forged service plans, controlled-PC agency, wrong currency/ownership, stolen/quest restrictions, quantity races, price changes, stale heads/timelines/epochs, progression Off/thresholds/choices, exact entitlements, prompt/proposal boundaries and provider no-fallback. Browser client imports do not reach private planners/service authority. Providers are scripted; no live requests are used.
+- Separate browser verification exercised EN/RU purchases/sales, progression and manual preparation/configuration edits, lost-reply retry, unavailable/insufficient-funds cases and timeline freezing. No horizontal overflow was observed at 390×844. Details and synthetic-only boundaries are recorded in `WAVE4_BROWSER_REVIEW.md`.
+
+## Worker handoffs
+
+Astra Max was used for domain/actions/security work; bounded UI used Astra Extra High. Three worker slots were reused alongside Lead. All workers had separate branches/worktrees and exclusive ownership; Lead alone merged, owned SQL/shared surfaces and updated this file.
+
+| Worker branch             | Integrated handoff SHA                     |
+| ------------------------- | ------------------------------------------ |
+| `codex/wave4-preparation` | `81bd38dce417fbcdc80f3f9a5559b8fdd0618798` |
+| `codex/wave4-progression` | `a12587fa6919b4eec4901c59b7c0554e66be86af` |
+| `codex/wave4-commerce`    | `551ad016d7e356ca1f5931591ae1b80a1f770493` |
+| `codex/wave4-ui`          | `54b7051dd7e89590995f1d65ab646b33c3924b87` |
+| `codex/wave4-actions`     | `4726ebb31d18b0020c13b8ba3c2886f3996cb5c2` |
+| `codex/wave4-qa`          | `aa1b82ddddb0507b4babba80b2036c4ddc3c130f` |
+
+## Limits and owner-review stop
+
+This establishes bounded playable-world, progression and economy authorities and proves their joined loop. It does not implement every RPG rule or complete all A/B/C product scope. Preparation selects eligible public Pack content; it does not automatically extract arbitrary possessions/relationships or transfer control to canon characters. Stock and mechanics need explicit owner definitions. Rewards use approved fixed definitions tied to supported completed quests, resolved Threads or eligible committed World Events; no general encounter valuation/pacing engine or official D&D 5e progression is claimed. Advancement grants bounded capabilities, not arbitrary prerequisite graphs or a universal reputation system.
+
+Commerce supports explicit profile resources, values and coarse merchant availability/modifiers. No universal currency, continuous economy, autonomous merchants or general crime/wanted simulation is added. Once loop definitions/state exist, changing the active ruleset is blocked to protect balances/history; profile migration is not implemented. Unsupported/ambiguous Game consequences pause, and materially stale foundation stages require review/new action rather than forced continuation. Live model quality and hosted Supabase/Auth behavior remain unevaluated in this sprint.
+
+Next step: owner review of the synthetic preview and these disclosed limits, then a separate explicit acceptance/publication decision. Real use would require the normal migration/configuration release process, which has not been run. Main stays at `7f4b65ea60e0e497f27528c9efcf73ececa6e360`; the original checkout's two pre-existing dirty files retain their recorded hashes. Do not begin World Lab, Enter This World or another wave automatically.
 
 ---
 

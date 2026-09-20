@@ -25,6 +25,7 @@ export type PrepareWorldLogic = (
   previous: JsonObject | null,
 ) => Promise<{
   proposal: JsonObject;
+  foundationAction?: JsonObject | null;
   resolution: MechanicsResolution | null;
   usage: ProviderUsage | null;
 } | null>;

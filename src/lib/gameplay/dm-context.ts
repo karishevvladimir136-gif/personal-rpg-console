@@ -9,7 +9,12 @@ import type {
 } from "./server-contracts.ts";
 import type { Json, JsonObject } from "./contracts.ts";
 import { DmError } from "./dm-errors.ts";
-import { planSchema, narrationSchema, feedbackSchema } from "./dm-schema.ts";
+import {
+  planSchema,
+  foundationPlanSchema,
+  narrationSchema,
+  feedbackSchema,
+} from "./dm-schema.ts";
 import { basicProfile } from "./mechanics/profile.ts";
 import { projectMemory } from "../memory/projection.ts";
 import { requireSourceTimeline } from "./timeline.ts";
@@ -96,9 +101,11 @@ export function modelBudget(model: string): ModelBudget {
     accountingVersion: "utf8-byte-upper-bound-v1+2048-framing",
   };
 }
-export const stageSchema = (stage: ContextStage) =>
+export const stageSchema = (stage: ContextStage, foundation = false) =>
   stage === "plan"
-    ? planSchema
+    ? foundation
+      ? foundationPlanSchema
+      : planSchema
     : stage === "narrate"
       ? narrationSchema
       : feedbackSchema;
@@ -332,6 +339,11 @@ export function buildContext(
                 }))
             : runtime.participants,
           pendingActions: companion ? [] : runtime.pendingActions,
+          ...(stage === "plan" &&
+          request.mode === "game" &&
+          source.foundationOptions
+            ? { foundationOptions: source.foundationOptions }
+            : {}),
         },
     canon: feedback
       ? []
@@ -476,18 +488,26 @@ export function buildContext(
     exchanges,
   };
   const input = JSON.stringify(payload);
+  const finalInstructions =
+    instructions +
+    (stage === "plan" && request.mode === "game" && source.foundationOptions
+      ? "\nFor a literal trade, price inquiry, haggle, theft or robbery use the optional foundationAction proposal and only the supplied public foundationOptions. Copy the original input exactly. Code owns numeric pricing and all transfers. Do not duplicate those transfers in publicPatches. Use only a matching recorded player skill check for an uncertain house-profile action; no hidden detection result may authorize a transfer. Otherwise foundationAction=null. Unsupported or ambiguous requests require clarification, never fabricated options."
+      : "");
   // One byte per token deliberately overestimates English/Russian text. Count the
   // whole body including schema/instructions/JSON framing, plus a framing reserve.
   const body = {
     model: budget.model,
-    instructions,
+    instructions: finalInstructions,
     input,
     text: {
       format: {
         type: "json_schema",
         name: `dm_${stage}`,
         strict: true,
-        schema: stageSchema(stage),
+        schema: stageSchema(
+          stage,
+          request.mode === "game" && !!source.foundationOptions,
+        ),
       },
     },
     max_output_tokens: budget.outputReserve,
@@ -500,7 +520,7 @@ export function buildContext(
   // input, exact uncovered events, required state, or pending outcomes.
   if (estimatedTokens > inputBudget) throw new DmError("context");
   return {
-    instructions,
+    instructions: finalInstructions,
     input,
     estimatedTokens,
     budget,

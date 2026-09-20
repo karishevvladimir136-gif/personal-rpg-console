@@ -4,6 +4,10 @@ import type {
   NarrationResult,
 } from "./server-contracts.ts";
 import { DmError } from "./dm-errors.ts";
+import {
+  foundationActionSchema,
+  parseFoundationActionProposal,
+} from "../foundation-actions/index.ts";
 
 type Schema = {
   type?:
@@ -169,6 +173,10 @@ export const narrationSchema = obj({
   visualDescription: str(2000),
   clarification: nullable(str(1000)),
 });
+export const foundationPlanSchema = obj({
+  ...planSchema.properties!,
+  foundationAction: nullable(foundationActionSchema),
+});
 export const feedbackSchema = obj({
   narration: { ...str(6000), minLength: 1 },
   guidanceProposal: nullable(str(2000)),
@@ -228,8 +236,15 @@ export function validates(schema: Schema, value: unknown, depth = 0): boolean {
   }
 }
 export function parsePlan(value: unknown): DmPlan {
-  if (!validates(planSchema, value)) throw new DmError("validation");
+  const extended =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "foundationAction");
+  if (!validates(extended ? foundationPlanSchema : planSchema, value))
+    throw new DmError("validation");
   const plan = value as DmPlan;
+  if (plan.foundationAction)
+    parseFoundationActionProposal(plan.foundationAction);
   if (
     new Set(plan.checks.map((check) => check.index)).size !==
       plan.checks.length ||

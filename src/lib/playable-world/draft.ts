@@ -12,7 +12,7 @@ import {
   text,
   unique,
   uuid,
-} from "../world-library/validation.ts";
+} from "../foundation-loop/fields.ts";
 
 // Browser-safe field validation only. Server selection/provenance validation is separate.
 export const PREPARATION_LIMITS = {

@@ -3,6 +3,7 @@ import type { FoundationCommand } from "../production/contracts.ts";
 import type { LoopContext, LoopPlan } from "./contracts.ts";
 import { parseCommerceDefinitions } from "../commerce/index.ts";
 import { assertLoopCommand, LoopError } from "./authority.ts";
+import { hiddenFoundationItems } from "./visibility.ts";
 
 function revisions<T extends { version: number }>(
   previous: T[],
@@ -31,7 +32,18 @@ export function planCommerceConfiguration(
   const state = structuredClone(context.state),
     world = structuredClone(context.world);
   // Public authoring DTOs never include hidden stock. Preserve those policies.
-  const hidden = state.itemPolicies.filter((p) => p.visibility === "private");
+  const hiddenIds = hiddenFoundationItems(context);
+  const hidden = state.itemPolicies.filter((p) => hiddenIds.has(p.itemId));
+  const hiddenMerchants = state.merchants.filter((m) =>
+    world.actors.some((a) => a.id === m.actorId && a.publicName === null),
+  );
+  if (
+    values.merchants.some((m) =>
+      hiddenMerchants.some((h) => h.actorId === m.actorId),
+    )
+  )
+    throw new LoopError();
+  values.merchants.push(...hiddenMerchants);
   if (
     values.itemPolicies.some(
       (p) =>

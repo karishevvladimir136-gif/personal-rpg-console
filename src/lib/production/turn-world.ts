@@ -28,7 +28,11 @@ import type { JsonObject } from "../gameplay/contracts.ts";
 export type WorldTurnOptions = {
   action?: (
     input: WorldLogicInput,
-  ) => Promise<ProviderResult<WorldLogicProposal>>;
+  ) => Promise<
+    ProviderResult<
+      WorldLogicProposal & { foundationAction?: JsonObject | null }
+    >
+  >;
   resolve?: (
     input: WorldStageInput,
   ) => Promise<{ result: ResolverStageResult; usage: ProviderUsage | null }>;
@@ -68,17 +72,21 @@ export function worldLogicTurnPreparer(
       claim.turn.input.mode !== "game"
     )
       throw new TurnError("configuration");
+    let foundationAction: JsonObject | null | undefined;
     let proposal: unknown = previous,
       usage: ProviderUsage | null = null;
     if (!proposal) {
       if (!options.action) throw new TurnError("configuration");
       const response = await options.action(input);
-      proposal = response.output;
+      const { foundationAction: action, ...base } = response.output;
+      foundationAction = action;
+      proposal = base;
       usage = response.usage;
     }
     const result = resolveWorldLogic(input, proposal);
     return {
       proposal: proposal as JsonObject,
+      ...(foundationAction !== undefined ? { foundationAction } : {}),
       resolution: result.status === "staged" ? result.resolution : null,
       usage,
     };

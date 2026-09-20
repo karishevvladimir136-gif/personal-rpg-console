@@ -114,7 +114,7 @@ export function parseOptions(value: unknown): AdvancementOption[] {
     const row = fields(entry, ["id", "label", "capability"]);
     identifier(row.id);
     textValue(row.label);
-    textValue(row.capability, 100);
+    textValue(row.capability, 200);
     return structuredClone(row) as AdvancementOption;
   });
   unique(result.map((row) => row.id));

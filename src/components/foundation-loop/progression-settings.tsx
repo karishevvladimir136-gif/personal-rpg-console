@@ -189,7 +189,7 @@ export function ProgressionSettings({
           setDraft({ ...draft, progression: on ? "on" : "off" })
         }
       />
-      <p className="muted">{c.offHelp}</p>
+      {draft.progression === "off" && <p className="muted">{c.offHelp}</p>}
       <h4>{c.tracks}</h4>
       {draft.tracks.map((row, index) => (
         <RowEditor

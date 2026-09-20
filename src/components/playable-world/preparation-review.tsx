@@ -43,7 +43,7 @@ function PreparationReviewSession({
   const [uncertain, setUncertain] = useState(false);
   const [review, setReview] = useState(false);
   const [error, setError] = useState("");
-  const [notice, setNotice] = useState("");
+  const [notice, setNotice] = useState(false);
   const working = useRef(false);
   const mounted = useRef(true);
   const attempt = useRef<{
@@ -73,15 +73,10 @@ function PreparationReviewSession({
         setBaseline(structuredClone(parsed));
       })
       .catch(() => {
-        if (!controller.signal.aborted)
-          setError(
-            ru
-              ? "Не удалось загрузить подготовку мира."
-              : "World preparation could not be loaded.",
-          );
+        if (!controller.signal.aborted) setError("load");
       });
     return () => controller.abort();
-  }, [load, ru]);
+  }, [load]);
 
   async function reload() {
     if (working.current || uncertain) return;
@@ -96,15 +91,10 @@ function PreparationReviewSession({
       setBaseline(structuredClone(value));
       setReview(false);
       setError("");
-      setNotice("");
+      setNotice(false);
       attempt.current = null;
     } catch {
-      if (mounted.current)
-        setError(
-          ru
-            ? "Не удалось загрузить подготовку мира."
-            : "World preparation could not be loaded.",
-        );
+      if (mounted.current) setError("load");
     } finally {
       working.current = false;
       if (mounted.current) setBusy(false);
@@ -121,7 +111,7 @@ function PreparationReviewSession({
           ),
         },
     );
-    setNotice("");
+    setNotice(false);
   }
   function editThread(id: string, update: Partial<PreparationThreadEdit>) {
     if (locked) return;
@@ -134,7 +124,7 @@ function PreparationReviewSession({
           ),
         },
     );
-    setNotice("");
+    setNotice(false);
   }
   async function save() {
     if (working.current || review || !draft) return;
@@ -142,11 +132,7 @@ function PreparationReviewSession({
     try {
       valid = parsePreparationDraft(draft);
     } catch {
-      setError(
-        ru
-          ? "Проверьте названия, длину полей и повторяющиеся строки."
-          : "Check the names, field lengths, and duplicate lines.",
-      );
+      setError("fields");
       return;
     }
     if (
@@ -157,7 +143,7 @@ function PreparationReviewSession({
     working.current = true;
     setBusy(true);
     setError("");
-    setNotice("");
+    setNotice(false);
     attempt.current ??= {
       operationId: crypto.randomUUID(),
       draft: structuredClone(valid),
@@ -174,11 +160,7 @@ function PreparationReviewSession({
       setBaseline(structuredClone(saved));
       attempt.current = null;
       setUncertain(false);
-      setNotice(
-        ru
-          ? "Выбранные записи мира сохранены. Игру можно продолжать."
-          : "Selected world records are saved. You can continue playing.",
-      );
+      setNotice(true);
     } catch (cause) {
       if (!mounted.current) return;
       const code =
@@ -197,17 +179,7 @@ function PreparationReviewSession({
       if (known) attempt.current = null;
       if (code === "conflict") setReview(true);
       setError(
-        code === "conflict"
-          ? ru
-            ? "Мир изменился. Загрузите актуальные записи и проверьте выбор."
-            : "The world changed. Reload its current records and review your selection."
-          : known
-            ? ru
-              ? "Проверьте выбранные записи и связанные места. Изменение типа уже созданного персонажа или места недоступно."
-              : "Review your selected records and related places. An existing person or place cannot change its record type."
-            : ru
-              ? "Сохранение не подтверждено. Повторите тот же запрос."
-              : "The save is unconfirmed. Retry the same request.",
+        code === "conflict" ? "conflict" : known ? "selection" : "uncertain",
       );
     } finally {
       working.current = false;
@@ -216,6 +188,25 @@ function PreparationReviewSession({
   }
 
   const splitLines = (value: string) => value.split("\n");
+  const errors: Record<string, string> = ru
+    ? {
+        load: "Не удалось загрузить подготовку мира.",
+        fields: "Проверьте названия, длину полей и повторяющиеся строки.",
+        conflict:
+          "Мир изменился. Загрузите актуальные записи и проверьте выбор.",
+        selection:
+          "Проверьте выбранные записи и связанные места. Изменение типа уже созданного персонажа или места недоступно.",
+        uncertain: "Сохранение не подтверждено. Повторите тот же запрос.",
+      }
+    : {
+        load: "World preparation could not be loaded.",
+        fields: "Check the names, field lengths, and duplicate lines.",
+        conflict:
+          "The world changed. Reload its current records and review your selection.",
+        selection:
+          "Review your selected records and related places. An existing person or place cannot change its record type.",
+        uncertain: "The save is unconfirmed. Retry the same request.",
+      };
   const kindLabels = ru
     ? {
         npc: "Персонаж",
@@ -245,12 +236,14 @@ function PreparationReviewSession({
       </p>
       {error && (
         <p role="alert" className={styles.message}>
-          {error}
+          {errors[error]}
         </p>
       )}
       {notice && (
         <p role="status" className={styles.message}>
-          {notice}
+          {ru
+            ? "Выбранные записи мира сохранены. Игру можно продолжать."
+            : "Selected world records are saved. You can continue playing."}
         </p>
       )}
       {!draft ? (

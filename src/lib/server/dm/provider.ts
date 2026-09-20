@@ -252,7 +252,26 @@ export function openAiProvider(options: ProviderOptions): DmProvider {
         buildContext(source, input, "plan", { model: options.model }),
         "plan",
         input.operationId,
-        parsePlan,
+        (raw) => {
+          const extended = input.mode === "game" && !!source.foundationOptions;
+          if (
+            !raw ||
+            typeof raw !== "object" ||
+            Object.hasOwn(raw, "foundationAction") !== extended
+          )
+            throw new DmError("validation");
+          const plan = parsePlan(raw);
+          if (
+            plan.foundationAction &&
+            plan.foundationAction.input !== input.input
+          )
+            throw new DmError("validation");
+          return plan;
+        },
+        stageSchema(
+          "plan",
+          input.mode === "game" && !!source.foundationOptions,
+        ),
       ),
     narrate: (source, input, resolution, checks) =>
       request(

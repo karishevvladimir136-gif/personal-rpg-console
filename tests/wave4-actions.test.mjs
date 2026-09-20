@@ -69,6 +69,22 @@ test("buy/sell/barter reuse ordinary quote and atomic transfer authority", () =>
   assert.equal(result.events[0].payload.lines.length, 2);
 });
 
+test("a price inquiry needs no funds and never authorizes an unaffordable purchase", () => {
+  for (const profile of ["console_basic", "world_logic"]) {
+    const f = fixture("quote", profile);
+    f.context.snapshot.entities.find(
+      (e) => e.id === id("player"),
+    ).resources.credits = 0;
+    const before = structuredClone(f.context);
+    const quote = run(f);
+    assert.equal(quote.events[0].payload.payment, 40);
+    assert.deepEqual(quote.changes, []);
+    assert.deepEqual(f.context, before);
+    f.proposal.action = "trade";
+    rejects(f);
+  }
+});
+
 test("exact expected price/currency constraints pause; no invented conversion or price override", () => {
   const wrong = fixture("trade");
   wrong.proposal.expectedPayment = 1;

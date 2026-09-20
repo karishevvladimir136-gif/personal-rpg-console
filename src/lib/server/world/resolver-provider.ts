@@ -1,4 +1,9 @@
 import "server-only";
+import {
+  foundationActionSchema,
+  parseFoundationActionProposal,
+} from "../../foundation-actions/index.ts";
+import type { JsonObject } from "../../gameplay/contracts.ts";
 import { modelBudget } from "../../gameplay/dm-context.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type {
@@ -123,13 +128,36 @@ export function buildResolverContext(
   data: unknown,
   instructions: string,
   sourceCount: number,
+  schema: Record<string, unknown> = worldLogicSchema,
 ): BuiltContext {
   const budget = modelBudget(model);
   const input = JSON.stringify(data);
-  const fullInstructions = `${boundary}\n${instructions}`;
+  const foundation =
+    !!data &&
+    typeof data === "object" &&
+    Object.hasOwn(data, "foundationOptions");
+  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated schemaVersion=2 World Logic proposal; foundationAction is null or the bounded trade/haggle/theft/robbery proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : ""}`;
   // UTF-8 bytes upper-bound token usage, including framing; never cut mandatory work.
   const estimatedTokens =
-    Buffer.byteLength(input + fullInstructions, "utf8") + 2048;
+    Buffer.byteLength(
+      JSON.stringify({
+        model,
+        instructions: fullInstructions,
+        input,
+        text: {
+          format: {
+            type: "json_schema",
+            name: "dm_plan",
+            strict: true,
+            schema,
+          },
+        },
+        max_output_tokens: budget.outputReserve,
+        store: false,
+        truncation: "disabled",
+      }),
+      "utf8",
+    ) + 2048;
   if (
     estimatedTokens >
     Math.min(
@@ -175,26 +203,76 @@ export function createWorldResolverProvider(options: ProviderOptions) {
   return {
     async action(
       input: WorldLogicInput,
-    ): Promise<ProviderResult<WorldLogicProposal>> {
+    ): Promise<
+      ProviderResult<
+        WorldLogicProposal & { foundationAction?: JsonObject | null }
+      >
+    > {
       const context = worldLogicContext(input);
+      const extended = !!input.source.foundationOptions;
+      const schema = extended
+        ? strictObject({
+            action: worldLogicSchema,
+            foundationAction: {
+              anyOf: [foundationActionSchema, { type: "null" }],
+            },
+          })
+        : worldLogicSchema;
       const { request, validate } = checkedRequest();
       const response = await request(
         buildResolverContext(
           options.model,
-          context,
+          extended
+            ? { ...context, foundationOptions: input.source.foundationOptions }
+            : context,
           "Return schemaVersion=2. Interpret only input verbatim for one listed controlled actor. Copy input exactly. capabilityRefs must be exact capabilities of that actor; circumstanceRefs must name supplied circumstances; evidenceIndexes refer only to that actor's evidence. State uncertainty before proposing effects. Non-resolved proposals have elapsedMinutes=0, destinationId=null and consequences=[]. Blocked actions have consequences=[]. Choose at most six supplied consequenceOptions only when the literal request calls for them, with no duplicate targets and no values beyond their maximum. A capability permits an operation; it never chooses a player action. condition effects are physical statuses only. quest.complete requires action=attempt; no timed completion or expiry. fact.observe refers to already authorized current public text, never a hidden discovery. publicText is advisory observable narration and grants no authority. A completed move requires a supplied travelOptions entry for this actor, its exact route capability, an existing destinationId and positive elapsedMinutes; every other outcome has destinationId=null. Missing capabilities, prerequisites or ambiguous player intent require explicit uncertainty, not a partial result.",
           context.circumstances.length +
             context.actors.reduce((n, a) => n + a.evidence.length, 0),
+          schema,
         ),
         "plan",
         input.command.operationId,
         (raw) => {
-          const proposal = parseWorldLogicProposal(raw);
+          const envelope = raw as {
+            action?: unknown;
+            foundationAction?: unknown;
+          };
+          if (
+            extended &&
+            (!envelope ||
+              typeof envelope !== "object" ||
+              Array.isArray(envelope) ||
+              Object.keys(envelope).length !== 2 ||
+              !Object.hasOwn(envelope, "foundationAction") ||
+              !Object.hasOwn(envelope, "action"))
+          )
+            throw new DmError("validation");
+          const proposal = parseWorldLogicProposal(
+            extended ? envelope.action : raw,
+          );
           if (proposal.schemaVersion !== 2) throw new DmError("validation");
           resolveWorldLogic(input, proposal);
-          return proposal;
+          const foundationAction =
+            extended && envelope.foundationAction !== null
+              ? parseFoundationActionProposal(envelope.foundationAction)
+              : null;
+          if (
+            foundationAction &&
+            (foundationAction.input !== proposal.input ||
+              ("intent" in foundationAction
+                ? foundationAction.intent.playerEntityId
+                : foundationAction.playerEntityId) !== proposal.actorId)
+          )
+            throw new DmError("validation");
+          return extended
+            ? {
+                ...proposal,
+                foundationAction:
+                  foundationAction as unknown as JsonObject | null,
+              }
+            : proposal;
         },
-        worldLogicSchema,
+        schema,
       );
       validate(response.usage);
       return response;
@@ -214,6 +292,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
           { schemaVersion: 1, candidates: selected.candidates },
           "For every supplied candidate return exactly one decision with the exact threadId and stepId. Only approve the already established typed consequences and circumstance when actor capabilities, currentRecords, currentFacts, knowledge and evidence support them. currentRecords, currentFacts and consequences are server-selected authority; prose cannot add effects. Do not add or rewrite consequences. capabilityRefs use actorId:capability from supplied actors and must acknowledge every requiredCapabilityRefs entry when advancing; evidenceIndexes must acknowledge every supplied evidence entry when advancing. If uncertain, unsupported, contradictory or missing prerequisites, decision=pause with explicit uncertainty; never omit mandatory candidates. Actor knowledge has already been bounded by server selection. This task emits no player narration or player decisions.",
           selected.candidates.reduce((n, c) => n + c.evidence.length, 0),
+          worldResolverSchema,
         ),
         "plan",
         selected.operationId,

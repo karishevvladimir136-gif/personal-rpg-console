@@ -10,6 +10,7 @@ import {
   ClientPersistenceError,
 } from "@/lib/persistence/client";
 import { sameTimeline } from "@/lib/saves/fence";
+import { CampaignPreparation } from "./playable-world/campaign-preparation";
 import type {
   CampaignPackSettings,
   BindCampaignPackInput,
@@ -156,6 +157,7 @@ export function CampaignPackSettingsPanel() {
                   </li>
                 ))}
               </ol>
+              <CampaignPreparation bindingId={pin.bindingId} />
             </details>
           ))}
           <form

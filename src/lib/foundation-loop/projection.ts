@@ -4,12 +4,14 @@ import type { LoopContext } from "./contracts.ts";
 import { projectCommerce, CommerceValidationError } from "../commerce/index.ts";
 import { planReward, projectPublicProgression } from "../progression/index.ts";
 import { loopCommand } from "./authority.ts";
+import { hiddenFoundationItems } from "./visibility.ts";
 
 /** Public and owner-authoring fields only. There is no projection of a private receipt. */
 export function foundationLoopProjection(
   context: LoopContext,
 ): FoundationLoopView {
   const { foundation, state, snapshot, world } = context;
+  const privateIds = hiddenFoundationItems(context);
   const player = snapshot.entities.find((e) => e.kind === "player");
   let commerce: FoundationLoopView["commerce"] = null;
   if (player) {
@@ -44,8 +46,14 @@ export function foundationLoopProjection(
       )
       .map((e) => ({ kind: "event" as const, id: e.id, label: e.text })),
   ];
-  const rewards = state.rewards.filter((r) =>
-    sources.some((s) => s.kind === r.source.kind && s.id === r.source.id),
+  const rewards = state.rewards.filter(
+    (r) =>
+      sources.some((s) => s.kind === r.source.kind && s.id === r.source.id) &&
+      r.entries.every((e) => e.kind !== "item" || !privateIds.has(e.itemId)) &&
+      r.recipientIds.every(
+        (id) =>
+          !world.actors.some((a) => a.entityId === id && a.publicName === null),
+      ),
   );
   const availableRewards = rewards.flatMap((r) => {
     try {
@@ -58,11 +66,8 @@ export function foundationLoopProjection(
       return [];
     }
   });
-  const policies = state.itemPolicies.filter((p) => p.visibility === "public");
-  const privateIds = new Set(
-    state.itemPolicies
-      .filter((p) => p.visibility === "private")
-      .map((p) => p.itemId),
+  const policies = state.itemPolicies.filter(
+    (p) => p.visibility === "public" && !privateIds.has(p.itemId),
   );
   const command = loopCommand(context, randomUUID());
   const { operationId: _operation, ...fence } = command;

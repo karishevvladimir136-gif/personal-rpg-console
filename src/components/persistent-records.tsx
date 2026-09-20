@@ -1,4 +1,5 @@
 "use client";
+import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
 
 import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -1116,7 +1117,10 @@ export function PersistentCharacter() {
   return (
     <RecordBoundary>
       {(data) => (
-        <EntityCollection key={data.campaign.id} data={data} players />
+        <>
+          <EntityCollection key={data.campaign.id} data={data} players />
+          <FoundationLoopPanel section="progression" />
+        </>
       )}
     </RecordBoundary>
   );
@@ -1249,7 +1253,12 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
 export function PersistentInventory() {
   return (
     <RecordBoundary>
-      {(data) => <InventoryRecords key={data.campaign.id} data={data} />}
+      {(data) => (
+        <>
+          <InventoryRecords key={data.campaign.id} data={data} />
+          <FoundationLoopPanel section="trade" />
+        </>
+      )}
     </RecordBoundary>
   );
 }

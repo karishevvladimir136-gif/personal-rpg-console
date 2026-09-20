@@ -1,4 +1,5 @@
 "use client";
+import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
 
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -541,6 +542,7 @@ export function PersistentCampaignSettings() {
             afterSave={refresh}
           />
           <CampaignPackSettingsPanel />
+          <FoundationLoopPanel section="settings" />
           {activeProduction?.ruleset.id === "console-basic-v1" && (
             <GameplayConfiguration />
           )}

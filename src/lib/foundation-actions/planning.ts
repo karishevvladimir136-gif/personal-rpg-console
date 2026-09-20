@@ -170,7 +170,12 @@ export function planFoundationAction(
           options.inventory.some((item) => item.id === line.itemId),
         ),
     );
-    const quote = createTradeQuote(context, command, proposal.intent);
+    const quote = createTradeQuote(
+      context,
+      command,
+      proposal.intent,
+      proposal.action === "quote" ? "inquiry" : "transaction",
+    );
     requireAction(
       proposal.expectedPayment === null ||
         proposal.expectedPayment === quote.payment,

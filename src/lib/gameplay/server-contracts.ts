@@ -52,6 +52,7 @@ export type PrivatePatch = {
   amount: number | null;
 };
 export type DmPlan = {
+  foundationAction?: JsonObject | null;
   narration: string;
   checks: CheckProposal[];
   publicPatches: MechanicChoice[];
@@ -87,6 +88,7 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  foundationOptions?: JsonObject;
   memory?: ContextMemory;
   ownerId: string;
   snapshot: CampaignSnapshot;
@@ -129,6 +131,9 @@ export type MechanicsResolution = {
   outcomes: PublicOutcome[];
 };
 export type TurnCheckpoint = {
+  foundationAction?: JsonObject | null;
+  foundationSettlement?:
+    import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;
   worldLogic?: JsonObject | null;
   worldSettlement?: WorldSettlement | null;
   plan: DmPlan | null;
@@ -157,6 +162,8 @@ export type TurnClaim = {
   source: RuntimeSource;
 };
 export type CommitPacket = {
+  foundationSettlement?:
+    import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;
   worldSettlement?: WorldSettlement | null;
   narration: string;
   visualDescription: string;
@@ -213,6 +220,7 @@ export interface DmProvider {
   ): Promise<ProviderResult<FeedbackResult>>;
 }
 export type TurnDependencies = {
+  prepareFoundation?: import("../foundation-loop/turn.ts").PrepareFoundation;
   store: TurnStore;
   provider: DmProvider;
   prepareWorld?: PrepareWorld;

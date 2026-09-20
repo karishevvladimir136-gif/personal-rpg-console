@@ -19,6 +19,11 @@ import { executionProviderOptions } from "./model-runtime/profiles";
 import { DmError } from "../gameplay/dm-errors";
 import { createDmProvider } from "./dm";
 import { createSummaryProvider } from "./memory/provider";
+import type { RuntimeSource } from "../gameplay/server-contracts";
+import type { JsonObject } from "../gameplay/contracts";
+import { readFoundationLoop } from "../foundation-loop/authority";
+import { foundationTurnPreparer } from "../foundation-loop/turn";
+import { foundationActionContext } from "../foundation-actions";
 
 // Call only after authorizeCampaign. RPC rechecks owner and activation fence.
 export function productionServices(
@@ -84,10 +89,47 @@ export function productionServices(
   };
   const worldOptions: WorldTurnOptions = {
     action: async (input) =>
-      (await resolver(input.command.operationId)).action(input),
+      (await resolver(input.command.operationId)).action({
+        ...input,
+        source: await withFoundation(input.source),
+      }),
     resolve: async (input) =>
       (await resolver(input.command.operationId)).resolve(input),
   };
+  async function withFoundation(source: RuntimeSource): Promise<RuntimeSource> {
+    const context = await readFoundationLoop(
+      world,
+      ownerId,
+      campaignId,
+      timeline,
+    );
+    if (!context.state.merchants.length) return source;
+    const actorId =
+      source.runtime.configuration?.controlledEntityIds[0] ??
+      source.snapshot.entities.find((e) => e.kind === "player")?.id;
+    if (
+      !actorId ||
+      !context.world.actors.some(
+        (a) => a.id === actorId && a.control === "player",
+      )
+    )
+      return source;
+    return {
+      ...source,
+      foundationOptions: foundationActionContext(
+        context,
+        actorId,
+      ) as unknown as JsonObject,
+    };
+  }
+  const dm = createDmProvider({
+    resolveProfile: async (task, _source, input) => {
+      const values = await resolve(input.operationId, await tasks(input.mode));
+      const profile = values[task];
+      if (!profile) throw new DmError("configuration");
+      return profile;
+    },
+  });
   return {
     planModel: async () => {
       const snapshot = await readWorldFoundation(
@@ -136,17 +178,18 @@ export function productionServices(
     },
     prepareWorld: worldTurnPreparer(world, worldOptions),
     prepareWorldLogic: worldLogicTurnPreparer(world, worldOptions),
-    provider: createDmProvider({
-      resolveProfile: async (task, _source, input) => {
-        const values = await resolve(
-          input.operationId,
-          await tasks(input.mode),
-        );
-        const profile = values[task];
-        if (!profile) throw new DmError("configuration");
-        return profile;
-      },
-    }),
+    prepareFoundation: foundationTurnPreparer(world),
+    provider: {
+      ...dm,
+      plan: async (
+        source: RuntimeSource,
+        input: import("../gameplay/contracts").TurnInput,
+      ) =>
+        dm.plan(
+          input.mode === "game" ? await withFoundation(source) : source,
+          input,
+        ),
+    },
     summaries: createSummaryProvider({
       resolveProfile: async (job) => {
         const values = await resolve(job.id, ["memory.summary"], job.token);

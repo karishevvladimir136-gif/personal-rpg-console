@@ -149,6 +149,8 @@ async function execute(
           command?.action !== "continue",
       );
       checkpoint.worldLogic = logic.proposal;
+      if (logic.foundationAction !== undefined)
+        checkpoint.foundationAction = logic.foundationAction;
       checkpoint.resolution = logic.resolution;
       if (logic.usage) checkpoint.usage.push(logic.usage);
       // A neutral legacy envelope lets old checkpoint/save readers retain their
@@ -262,6 +264,16 @@ async function execute(
         await store.checkpoint(lease, checkpoint, "generating");
       }
     }
+    if (dependencies.prepareFoundation) {
+      const prepared = await dependencies.prepareFoundation({
+        ...claim,
+        turn: { ...claim.turn, checkpoint },
+      });
+      if (prepared) {
+        checkpoint.foundationSettlement = prepared;
+        await store.checkpoint(lease, checkpoint, "generating");
+      }
+    }
     if (!checkpoint.narration) {
       if (input.mode === "mechanic")
         checkpoint.narration = {
@@ -276,7 +288,22 @@ async function execute(
         const response = await provider.narrate(
           publicSource(source),
           input,
-          checkpoint.resolution,
+          checkpoint.foundationSettlement
+            ? {
+                ...checkpoint.resolution,
+                outcomes: [
+                  ...checkpoint.resolution.outcomes,
+                  ...checkpoint.foundationSettlement.plan.events
+                    .filter((e) => e.visibility === "public")
+                    .map((e) => ({
+                      kind: e.kind,
+                      text: e.text,
+                      entityIds: e.actorIds,
+                      itemIds: [],
+                    })),
+                ],
+              }
+            : checkpoint.resolution,
           checkpoint.checks,
         );
         checkpoint.narration = response.output;
@@ -286,6 +313,11 @@ async function execute(
       const observations = checkpoint.resolution.outcomes
         .filter((row) => row.kind === "world.observed")
         .map((row) => row.text);
+      observations.push(
+        ...(checkpoint.foundationSettlement?.plan.events
+          .filter((e) => e.visibility === "public")
+          .map((e) => e.text) ?? []),
+      );
       for (const text of observations) {
         if (!checkpoint.narration.narration.includes(text))
           checkpoint.narration.narration += "\n\n" + text;
@@ -306,6 +338,9 @@ async function execute(
       resolution: checkpoint.resolution,
       privatePatches: checkpoint.plan?.privatePatches ?? [],
       checks: checkpoint.checks,
+      ...(checkpoint.foundationSettlement
+        ? { foundationSettlement: checkpoint.foundationSettlement }
+        : {}),
       guidanceProposal: null,
     });
   } catch (error) {

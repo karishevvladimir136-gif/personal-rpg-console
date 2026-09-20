@@ -56,7 +56,9 @@ export function createTradeQuote(
   context: LoopContext,
   rawCommand: FoundationCommand,
   rawIntent: TradeIntent,
+  purpose: "transaction" | "inquiry" = "transaction",
 ): TradeQuote {
+  requireCommerce(purpose === "transaction" || purpose === "inquiry");
   validateCommerceContext(context);
   const command = validateCommerceFence(context, rawCommand),
     intent = parseTradeIntent(rawIntent);
@@ -146,12 +148,13 @@ export function createTradeQuote(
     sum(lines.filter((l) => l.direction === "take").map((l) => l.totalValue)) -
     sum(lines.filter((l) => l.direction === "give").map((l) => l.totalValue));
   const playerBalance = currencyBalance(player.entity, currency.resourceKey);
-  requireCommerce(
-    playerBalance - payment >= 0 &&
-      playerBalance - payment <= COMMERCE_LIMITS.balance,
-    "unavailable",
-  );
-  if (merchant.usesFunds) {
+  if (purpose === "transaction")
+    requireCommerce(
+      playerBalance - payment >= 0 &&
+        playerBalance - payment <= COMMERCE_LIMITS.balance,
+      "unavailable",
+    );
+  if (purpose === "transaction" && merchant.usesFunds) {
     const merchantBalance = currencyBalance(entity, currency.resourceKey);
     requireCommerce(
       merchantBalance + payment >= 0 &&
@@ -159,7 +162,7 @@ export function createTradeQuote(
       "unavailable",
     );
   }
-  if (merchant.capacity !== null) {
+  if (purpose === "transaction" && merchant.capacity !== null) {
     const occupied = sum(
       context.snapshot.items
         .filter((i) => i.storage_id === merchant.storageId)
