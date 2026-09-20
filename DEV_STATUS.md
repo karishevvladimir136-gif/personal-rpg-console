@@ -4,6 +4,41 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B FAL-WORLD SUBMITTED ONCE; STOPPED AT FIRST STATUS-POLL TRANSPORT GATE; AWAITING OWNER REVIEW.** Exact clean execution `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, continuation `9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1`. No repair, retry, additional next or chest job followed the stop.
+
+- **spatial-room-1:** narrowly owner-approved for synthetic experiment continuation only.
+- **spatial-courtyard-1:** narrowly owner-approved for synthetic experiment continuation only; review durably appended and reopened/verified before fal submission.
+- **spatial-fal-world-1:** executed once as a submission; stopped on first status poll, awaiting manual owner review. No result was captured or approved.
+- **spatial-chest-1:** unreleased and unattempted.
+
+### Completed work and files / areas changed
+
+Exactly one frozen next submitted fal-ai/hunyuan_world/image-to-world using the retained room panorama and unchanged labels/classes/export_drc=true. Request ID `01a0bc76-ae7f-7e02-960b-a207094622d2`. Submission HTTP 200; first poll failed frozen `http_or_redirect_failure`. Exact failed HTTP status/URL not retained by the harness; provider completion is unknown. [Sanitized fal evidence](experiments/phase38-spatial/results/FAL_WORLD_001.md) records counts, input lineage, accounting, source hashes and limitations.
+
+Only sanitized evidence, the owner's courtyard review record and this status changed in the separate evidence worktree. No private local continuation state, keys, environment files, signed URLs, raw provider bodies or binary assets were copied into this commit. Previous evidence and original STOPPED history preserved; execution source/protocol, production main/runtime/schema/UI/dependencies and roadmap branches unchanged.
+
+### Tests and actual verification
+
+After the stop: **273 deterministic tests passed; zero failures/skips; experiment typecheck, zero-warning lint and isolated build passed.** Production full suite/build not rerun because production remained unchanged. New live requests: **1 submission + 1 status poll; zero result reads/downloads/retries/fallbacks/diagnostics/World Labs/chest/separate-export calls**. No further provider requests after stop.
+
+### Accounting and key decisions
+
+Retained original room/courtyard reservation $3.80 plus fal-world $0.35 = **$4.15 cumulative reservation**, against the unchanged **$4.75 ceiling**. Known reported billing remains **$2.528**, with fal billing **UNKNOWN**; full $0.35 retained, no zero-charge assumption. $0.30 is a frozen expected maximum, not an observed fal charge. Remaining $0.60 is the unreleased chest allocation, not authorization. No billing request made. Lifetime totals: 43 API requests + 8 downloads, 3 generation submissions, 7 world reads.
+
+### Known issues and remaining work
+
+First poll began 20.636 seconds after reservation/start; no qualifying completion response, result identity, artifact format/size/hash, usable 3D/world artifact or DRC-export observation exists. Actual model and provider compute/completion time remain UNKNOWN. This does not establish that the provider failed to generate an output. The original frozen gate stopped safely; no research, correction or diagnostic cycle was begun.
+
+Room/courtyard structural approvals do not establish final visual/prompt quality, production EXPLORE, Gaussian rendering, collider navigation or independent metric/cross-asset alignment. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic checks are not universal guarantees. No hosted or real campaign/private-data acceptance.
+
+### Recommended next step
+
+Stop for owner review of the actual failed-poll evidence. No retry, repair/reset, further next, chest/fal continuation, renderer/EXPLORE implementation, roadmap integration, deployment or real-data import is authorized by this completed task.
+
+---
+
+## Historical courtyard checkpoint and subsequent limited owner approval
+
 **PHASE 3.8B COURTYARD SUCCEEDED STRUCTURALLY; STOP FOR OWNER REVIEW.** At the exact clean execution SHA `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, the owner's explicit room review was durably appended and reopened/verified, followed by exactly one authorized next operation for `spatial-courtyard-1`. Room approval is solely for the synthetic capability experiment, not final visual/prompt fidelity, production EXPLORE, navigation or metric alignment. No courtyard approval or second next occurred.
 
 ### Completed work and files / areas changed

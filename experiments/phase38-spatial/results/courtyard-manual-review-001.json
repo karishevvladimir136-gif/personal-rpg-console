@@ -1,0 +1,12 @@
+{
+  "jobId": "spatial-courtyard-1",
+  "resultSHA256": "869dbfa0a9833e24f140958b63d59fcfea77541f0be1b56e017de887ee6cc2da",
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "syntheticOnly": true,
+  "safeVisibleEnvelope": true,
+  "requiredOutputsUsable": true,
+  "assetFirst": true,
+  "noUnexpectedRouting": true,
+  "scope": "Owner-approved narrowly for Phase 3.8B experiment continuation: expected output classes, stable identity, structural checks and bounded accounting only. No final visual quality, full prompt fidelity, production EXPLORE readiness, Gaussian rendering, collider navigation, independent metric-scale or cross-asset alignment acceptance."
+}

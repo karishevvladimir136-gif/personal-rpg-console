@@ -1,0 +1,142 @@
+{
+  "version": "phase38b-fal-world-evidence-1",
+  "recordedAtUTC": "2026-09-20T01:42:54.248192+00:00",
+  "executionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "freezeFileSHA256": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e",
+  "productionMainReference": "cb7f6be2fb513de13604d381046a3240f3261383",
+  "priorCourtyardEvidenceCommit": "420a94e3d13232d2b0f86bdb389770e77486e7a2",
+  "jobId": "spatial-fal-world-1",
+  "status": "STOPPED_AWAITING_OWNER_REVIEW",
+  "resultAvailable": false,
+  "courtyardApproval": {
+    "resultSHA256": "869dbfa0a9833e24f140958b63d59fcfea77541f0be1b56e017de887ee6cc2da",
+    "recordSHA256": "70aa2030afbb9f83c5eb5450bede20230a6565786f020e82d3974cc203d17acb",
+    "recordFile": "courtyard-manual-review-001.json",
+    "durablyAppendedAndReopenedBeforeSubmission": true,
+    "scope": "Owner-approved narrowly for Phase 3.8B experiment continuation: expected output classes, stable identity, structural checks and bounded accounting only. No final visual quality, full prompt fidelity, production EXPLORE readiness, Gaussian rendering, collider navigation, independent metric-scale or cross-asset alignment acceptance."
+  },
+  "provider": "fal",
+  "requestedModel": "fal-ai/hunyuan_world/image-to-world",
+  "safelyReportedActualModel": null,
+  "actualModelAvailability": "UNKNOWN; no safely reported actual model retained",
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "inputDependency": {
+    "source": "spatial-room-1:pano",
+    "sha256": "aeb206aa80a770dfb859448c083c9d0ca7405073e69e17e7b544907abcd738ac",
+    "providerURLHash": "a7ad1e5f6659f492840d64c817ddc82ec99f647ad46b99755b90235a69d213d1",
+    "substitution": false,
+    "labels_fg1": "table, chair, wooden chest",
+    "labels_fg2": "door, window",
+    "classes": "indoor room, furniture, architecture",
+    "export_drc": true
+  },
+  "network": {
+    "generationSubmissions": 1,
+    "statusPollRequests": 1,
+    "resultReads": 0,
+    "assetDownloads": 0,
+    "totalNewProviderRequests": 2,
+    "worldLabsCalls": 0,
+    "chestCalls": 0,
+    "separateExportRequests": 0,
+    "automaticRetries": 0,
+    "fallbacks": 0,
+    "redirectsFollowed": 0,
+    "diagnosticRequests": 0,
+    "nextInvocations": 1
+  },
+  "observations": {
+    "submissionHTTPStatus": 200,
+    "submissionBodySHA256": "da022c5eb160a104a04262098b72f21a0daf1b9946171e99326910f53913f867",
+    "submissionResponseBytes": 445,
+    "firstPollHTTPStatus": null,
+    "firstPollResponseURL": null,
+    "firstPollRawBodyRetained": false,
+    "stopStage": "poll",
+    "stopReason": "http_or_redirect_failure",
+    "reasonMeaning": "Frozen transport requires HTTP 200 and unchanged response URL. One of those conditions failed; exact failed status/URL was not retained.",
+    "generationCompletion": "UNKNOWN; no qualifying completion response retained",
+    "timing": {
+      "reservedAtUnixMs": 1789868289825,
+      "submissionStartedAfterMs": 20,
+      "firstPollStartedAfterMs": 20636,
+      "completionIntervalMs": null,
+      "providerComputeTime": null,
+      "limitation": "Only request-start timing is retained. First poll began after 20.636 seconds; no completed-generation timing was observed."
+    }
+  },
+  "output": {
+    "retainedResultSHA256": null,
+    "artifactFormats": null,
+    "artifactBytes": null,
+    "artifactSHA256": null,
+    "structuralMetadata": null,
+    "usableWorldArtifact": "UNVERIFIED; result not fetched, not a finding that no artifact exists",
+    "drcExport": "UNVERIFIED; requested true, no result read or download permitted after STOP"
+  },
+  "accounting": {
+    "falWorldRetainedReservationMicroUSD": 350000,
+    "frozenMaximumExpectedPriceMicroUSD": 300000,
+    "falWorldReportedChargeMicroUSD": null,
+    "falWorldReportedCredits": null,
+    "falWorldChargeStatus": "UNKNOWN",
+    "fullReservationRetained": true,
+    "cumulativeReservedMicroUSD": 4150000,
+    "cumulativeKnownReportedMicroUSD": 2528000,
+    "cumulativeTotalReportedMicroUSD": null,
+    "unknownChargeJobs": [
+      "spatial-fal-world-1"
+    ],
+    "originalReservationCeilingMicroUSD": 4750000,
+    "remainingChestAllocationMicroUSD": 600000,
+    "remainingAllocationIsAuthorization": false,
+    "billingRequests": 0
+  },
+  "cumulativeCounts": {
+    "historicalAPIRequests": 21,
+    "continuationAPIRequests": 22,
+    "lifetimeAPIRequests": 43,
+    "lifetimeDownloads": 8,
+    "lifetimeWorldReads": 7,
+    "lifetimeGenerationSubmissions": 3
+  },
+  "milestones": {
+    "spatial-room-1": "Narrowly owner-approved for experiment continuation only",
+    "spatial-courtyard-1": "Narrowly owner-approved for experiment continuation only",
+    "spatial-fal-world-1": "Submitted once; stopped at first status-poll transport gate; awaiting owner review; no result approval",
+    "spatial-chest-1": "Unreleased and unattempted"
+  },
+  "preservation": {
+    "originalStoppedHistoryUnchanged": true,
+    "previousCourtyardJournalAndWitnessExactPrefixes": true,
+    "priorRoomAndCourtyardRawAssetsUnchanged": true,
+    "originalProtocolAndFrozenHarnessUnchanged": true,
+    "privateLocalContinuationStateNotCopiedIntoThisCommit": true,
+    "noURLsKeysOrBinariesIncluded": true
+  },
+  "liveSourceHashes": {
+    "journal.jsonl": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508",
+    "witness.jsonl": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758",
+    "identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+  },
+  "verification": {
+    "performedAfterStop": true,
+    "deterministicTestsPassed": 273,
+    "failed": 0,
+    "skipped": 0,
+    "typecheck": "passed",
+    "lint": "passed; zero warnings",
+    "build": "isolated experiment passed",
+    "productionBuild": "not rerun; production unchanged"
+  },
+  "limitations": [
+    "Exact failed poll HTTP status/response URL not retained by frozen harness; no extra diagnostic request authorized.",
+    "Provider job completion and actual charge remain unknown. An accepted submission is not a completed generation.",
+    "No world artifact, DRC output, format, size, asset hash or structural usability finding is available.",
+    "No automatic repair/retry/history reset; no fal output approval, chest execution or second next.",
+    "Room/courtyard approvals do not establish final visual/prompt fidelity, production EXPLORE, Gaussian quality, collider navigation or independent metric/cross-asset alignment correctness.",
+    "Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified; no hosted or real campaign/private-data acceptance."
+  ]
+}
