@@ -1,0 +1,734 @@
+{
+  "source": {
+    "evidenceBaseSHA": "e74f98070a35506bdb0401e2d2db2e492c9f8da4",
+    "evidenceSHA256": "ea6188f69a302918afc592c25d44995d007a88a6c17cdc37a96f3a7b12f972f9",
+    "artifactBytes": 85481294,
+    "artifactSHA256": "721f2afef8c2c045566e20f203557c549d712eef430edd671e5bb2c00b2de331"
+  },
+  "recoveryIdentity": "phase38b-fal-exact-artifact-recovery-1",
+  "recoveryHash": "6c4762d090718fe11188f4d777eb51a1dd37ff515e14eeab6159f80c7d42ed98",
+  "artifactRevalidated": true,
+  "inspectedAtUTC": "2026-09-20T05:04:18.540Z",
+  "zipIntegrity": "PASS_REVALIDATED",
+  "entryCount": 17,
+  "totalUncompressedBytes": 152960818,
+  "formatInventory": {
+    "png": 12,
+    "ply": 3,
+    "json": 2,
+    "drc": 0,
+    "glb": 0,
+    "gltf": 0
+  },
+  "limits": {
+    "bytes": 134217728,
+    "headerBytes": 65536,
+    "elements": 8,
+    "properties": 32,
+    "records": 8000000,
+    "elementRecords": 4000000,
+    "listLength": 64,
+    "values": 80000000,
+    "timeoutMs": 60000
+  },
+  "layers": [
+    {
+      "index": 5,
+      "bytes": 4988607,
+      "sha256": "049c9f02b7410eec5070c2c59020d7e308f7ee6d4735634ab98ea557fe04b0c1",
+      "pathSHA256": "02c6270dff7e4f1e4048561e04242c07bfcc4838c5806f53f93cfefb600e5dc4",
+      "magicValid": true,
+      "headerValid": true,
+      "version": "1.0",
+      "encoding": "binary_little_endian",
+      "headerBytes": 325,
+      "payloadBytes": 4988282,
+      "fullyParsed": true,
+      "elements": [
+        {
+          "type": "vertex",
+          "count": 61347,
+          "properties": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            },
+            {
+              "name": "nx",
+              "type": "double"
+            },
+            {
+              "name": "ny",
+              "type": "double"
+            },
+            {
+              "name": "nz",
+              "type": "double"
+            },
+            {
+              "name": "red",
+              "type": "uchar"
+            },
+            {
+              "name": "green",
+              "type": "uchar"
+            },
+            {
+              "name": "blue",
+              "type": "uchar"
+            }
+          ]
+        },
+        {
+          "type": "face",
+          "count": 143045,
+          "properties": [
+            {
+              "name": "vertex_indices",
+              "type": "uint",
+              "countType": "uchar"
+            }
+          ]
+        }
+      ],
+      "vertexCount": 61347,
+      "faceCount": 143045,
+      "positions": true,
+      "normals": true,
+      "colors": true,
+      "uvProperties": [],
+      "faceIndexLists": true,
+      "boundingBox": {
+        "min": [
+          0.32311031222343445,
+          -1.5295979976654053,
+          -0.6433991193771362
+        ],
+        "max": [
+          1.9385883808135986,
+          1.789443850517273,
+          -0.24273748695850372
+        ]
+      },
+      "coordinateValuesChecked": 184041,
+      "finiteCoordinateValues": 184041,
+      "nanCoordinates": 0,
+      "infiniteCoordinates": 0,
+      "coordinatesFinite": true,
+      "nonfiniteNormals": 0,
+      "minFaceVertices": 3,
+      "maxFaceVertices": 3,
+      "invalidIndices": 0,
+      "invalidFaces": 0,
+      "repeatedIndexFaces": 0,
+      "structuralClassification": "VALID_NONEMPTY_MESH_STRUCTURE"
+    },
+    {
+      "index": 14,
+      "bytes": 97639951,
+      "sha256": "097c1da725a549f1380113af256f125cad8f53bc3a74ecde3234feaf2878f18a",
+      "pathSHA256": "cbe81e1398fc527a885e3e99c098257198b1c2ab03f4264492fa5172ae0b1829",
+      "magicValid": true,
+      "headerValid": true,
+      "version": "1.0",
+      "encoding": "binary_little_endian",
+      "headerBytes": 271,
+      "payloadBytes": 97639680,
+      "fullyParsed": true,
+      "elements": [
+        {
+          "type": "vertex",
+          "count": 1843200,
+          "properties": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            },
+            {
+              "name": "red",
+              "type": "uchar"
+            },
+            {
+              "name": "green",
+              "type": "uchar"
+            },
+            {
+              "name": "blue",
+              "type": "uchar"
+            }
+          ]
+        },
+        {
+          "type": "face",
+          "count": 3682560,
+          "properties": [
+            {
+              "name": "vertex_indices",
+              "type": "uint",
+              "countType": "uchar"
+            }
+          ]
+        }
+      ],
+      "vertexCount": 1843200,
+      "faceCount": 3682560,
+      "positions": true,
+      "normals": false,
+      "colors": true,
+      "uvProperties": [],
+      "faceIndexLists": true,
+      "boundingBox": {
+        "min": [
+          -2.698611259460449,
+          -2.698611259460449,
+          -2.6986148357391357
+        ],
+        "max": [
+          2.698611259460449,
+          2.698611259460449,
+          2.6986148357391357
+        ]
+      },
+      "coordinateValuesChecked": 5529600,
+      "finiteCoordinateValues": 5529600,
+      "nanCoordinates": 0,
+      "infiniteCoordinates": 0,
+      "coordinatesFinite": true,
+      "nonfiniteNormals": 0,
+      "minFaceVertices": 3,
+      "maxFaceVertices": 3,
+      "invalidIndices": 0,
+      "invalidFaces": 0,
+      "repeatedIndexFaces": 0,
+      "structuralClassification": "VALID_NONEMPTY_MESH_STRUCTURE"
+    },
+    {
+      "index": 15,
+      "bytes": 4693739,
+      "sha256": "0b241dc4e68168573ea679d8f1d4bcc41a2050ab02948f21df34e9a4dc89b233",
+      "pathSHA256": "101048dd1d060cc3a9c7eedd2faa85e9d963f6d6c0080fb32e3b40558feb7cc8",
+      "magicValid": true,
+      "headerValid": true,
+      "version": "1.0",
+      "encoding": "binary_little_endian",
+      "headerBytes": 325,
+      "payloadBytes": 4693414,
+      "fullyParsed": true,
+      "elements": [
+        {
+          "type": "vertex",
+          "count": 59412,
+          "properties": [
+            {
+              "name": "x",
+              "type": "double"
+            },
+            {
+              "name": "y",
+              "type": "double"
+            },
+            {
+              "name": "z",
+              "type": "double"
+            },
+            {
+              "name": "nx",
+              "type": "double"
+            },
+            {
+              "name": "ny",
+              "type": "double"
+            },
+            {
+              "name": "nz",
+              "type": "double"
+            },
+            {
+              "name": "red",
+              "type": "uchar"
+            },
+            {
+              "name": "green",
+              "type": "uchar"
+            },
+            {
+              "name": "blue",
+              "type": "uchar"
+            }
+          ]
+        },
+        {
+          "type": "face",
+          "count": 127954,
+          "properties": [
+            {
+              "name": "vertex_indices",
+              "type": "uint",
+              "countType": "uchar"
+            }
+          ]
+        }
+      ],
+      "vertexCount": 59412,
+      "faceCount": 127954,
+      "positions": true,
+      "normals": true,
+      "colors": true,
+      "uvProperties": [],
+      "faceIndexLists": true,
+      "boundingBox": {
+        "min": [
+          -1.9279118776321411,
+          -0.6542750000953674,
+          -0.5293338894844055
+        ],
+        "max": [
+          2.423952341079712,
+          2.252389669418335,
+          0.28920111060142517
+        ]
+      },
+      "coordinateValuesChecked": 178236,
+      "finiteCoordinateValues": 178236,
+      "nanCoordinates": 0,
+      "infiniteCoordinates": 0,
+      "coordinatesFinite": true,
+      "nonfiniteNormals": 0,
+      "minFaceVertices": 3,
+      "maxFaceVertices": 3,
+      "invalidIndices": 0,
+      "invalidFaces": 0,
+      "repeatedIndexFaces": 0,
+      "structuralClassification": "VALID_NONEMPTY_MESH_STRUCTURE"
+    }
+  ],
+  "png": [
+    {
+      "index": 0,
+      "bytes": 8942162,
+      "sha256": "df843c52388d9befbf312a5fdeb70b45b210b4454b91ec2c8f044567d11e7acd",
+      "pathSHA256": "931d3477b40f2e13c937e98f429de601f8df6fabfd1847d7afeb6c9ec432aced",
+      "signatureIHDRValid": true,
+      "width": 4064,
+      "height": 2016,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 1,
+      "bytes": 2105789,
+      "sha256": "7111ceb4fdaca5bccd0df99a5924dfa5f55a8f263e078cfdf51c680651dabd3f",
+      "pathSHA256": "7dc902429e4a34283caafe9cbbd37f2698bf8d8ad52d172139cd0eb95c6c120c",
+      "signatureIHDRValid": true,
+      "width": 2036,
+      "height": 1018,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 2,
+      "bytes": 8865703,
+      "sha256": "4b9df9f2db65349ce287e8f1bb06cc0176764a4055f5153fa94d3ce3bcc7a77d",
+      "pathSHA256": "e169843e02582fd9cf267cdea6613a909480801f5f625506b23771a165fa448b",
+      "signatureIHDRValid": true,
+      "width": 4072,
+      "height": 2036,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 3,
+      "bytes": 2032574,
+      "sha256": "4d3d0e07fdf130d257754f2f23ca7b47272dd58915ff805279e7d039b5c04fee",
+      "pathSHA256": "6e1dfd4f10a69d6f1f9e31046c130eb428b8b35ef8118d8b667b078bbc60f4cc",
+      "signatureIHDRValid": true,
+      "width": 2032,
+      "height": 1008,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 4,
+      "bytes": 2105789,
+      "sha256": "7111ceb4fdaca5bccd0df99a5924dfa5f55a8f263e078cfdf51c680651dabd3f",
+      "pathSHA256": "4ee84a82b5e4c9e6651b13fd27dcf615e427ec584929f2cef7167aa99151a77a",
+      "signatureIHDRValid": true,
+      "width": 2036,
+      "height": 1018,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 6,
+      "bytes": 8021,
+      "sha256": "3342e13ecfc44d571553b2dd1df7ef2832f0e765ca4597fdda91636af445b1ee",
+      "pathSHA256": "60f1c689bf8f14826580f5fc4a0ce85e3c6eea8211ce049613196c2ca1d904d9",
+      "signatureIHDRValid": true,
+      "width": 4064,
+      "height": 2016,
+      "bitDepth": 8,
+      "colorType": 0,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 7,
+      "bytes": 2023153,
+      "sha256": "c36fc8c67b56f16b55b987c9efeac6b84278a575b1787afb296fa6f574d92c93",
+      "pathSHA256": "9c9d10a380b84333318171411d6550360e43f5577f5360bc0d10993874570ee0",
+      "signatureIHDRValid": true,
+      "width": 2032,
+      "height": 1008,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 9,
+      "bytes": 2064771,
+      "sha256": "ae2fa045e493a649cfdfead8997453408cba7c4037f785708904fee0fa9fad33",
+      "pathSHA256": "30e3e3a3b4dd96ddbd099c5d273e3fdd892ccd4012d6d79244fee4e3914010ef",
+      "signatureIHDRValid": true,
+      "width": 2032,
+      "height": 1008,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 10,
+      "bytes": 11792,
+      "sha256": "3923bc127be5805fdcb1e8d9bec5ff8a2a84e2981780027d01261a8fb01273f2",
+      "pathSHA256": "b6b39d3d854b56c2469ab89505207c26c76114936e4cf50b23d5fe68a2d5fdea",
+      "signatureIHDRValid": true,
+      "width": 4072,
+      "height": 2036,
+      "bitDepth": 8,
+      "colorType": 0,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 12,
+      "bytes": 9740,
+      "sha256": "9eb35072b296557c260a8cce706f32c844627c815c9760053d0c8eed9b334b94",
+      "pathSHA256": "4e739cd6e93aac6e3b91103d9a498d1d86a8d513bd7e0fadba77f6c7ec058d08",
+      "signatureIHDRValid": true,
+      "width": 4064,
+      "height": 2016,
+      "bitDepth": 8,
+      "colorType": 0,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 13,
+      "bytes": 8688378,
+      "sha256": "fee0acfaf72c990af53a9b0fdbab0ab0cbf4c985961e97b6431481714266a524",
+      "pathSHA256": "02aab7e1db7d396f49fc68496211e4213a92ec8366c2f30ea41fa327363e6014",
+      "signatureIHDRValid": true,
+      "width": 4064,
+      "height": 2016,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    },
+    {
+      "index": 16,
+      "bytes": 8778269,
+      "sha256": "4985dbabd17727b10de04583752320dc0ae89c08c0da579ce7898c6aaaea54c9",
+      "pathSHA256": "388e5fc77dd641639bcf8f2e398f82a994142dfcd5f72c95e91d08c883ae8ad2",
+      "signatureIHDRValid": true,
+      "width": 4064,
+      "height": 2016,
+      "bitDepth": 8,
+      "colorType": 2,
+      "interlace": 0,
+      "fullDecode": false
+    }
+  ],
+  "json": [
+    {
+      "index": 8,
+      "bytes": 1189,
+      "sha256": "76d091387a4ec51674469702c86f19c1d66ae65acf85ec7c5b6404703949657d",
+      "pathSHA256": "6a095b1afb87dc2b0e92a4738656e024d472aee33f6c008911e3bd6b779b40b6",
+      "parseValid": true,
+      "rootType": "object",
+      "topLevelCount": 1,
+      "topLevelValueTypes": {
+        "array": 1
+      },
+      "namesAndValuesWithheld": true
+    },
+    {
+      "index": 11,
+      "bytes": 1191,
+      "sha256": "dd2e06487b51b86d35ea27e84396d7bfa6ababe297d63be8e17bc0fceb958ee1",
+      "pathSHA256": "9bc7b0e4ed345c55631a131495547a7e3df000dae44e7750551e92cba2c667fe",
+      "parseValid": true,
+      "rootType": "object",
+      "topLevelCount": 1,
+      "topLevelValueTypes": {
+        "array": 1
+      },
+      "namesAndValuesWithheld": true
+    }
+  ],
+  "classification": "STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE",
+  "drc": {
+    "requestedExportDRC": true,
+    "returnedDRC": false,
+    "returnedPLYCount": 3,
+    "retryJustifiedSolelyForDRC": false,
+    "futurePlanning": "Support observed PLY or an offline validated conversion path; do not require DRC exclusively."
+  },
+  "visualQuality": "UNVERIFIED",
+  "navigationQuality": "UNVERIFIED",
+  "limitations": [
+    "No rendering, geometry execution, extraction or full image decode.",
+    "Mesh structure and references do not establish topology, manifoldness, triangle-area validity, metric scale, collider alignment or navigability.",
+    "JSON reports only root/count/type metadata, never arbitrary keys or values.",
+    "Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees. No hosted deployment or real campaign/private-data acceptance."
+  ],
+  "network": {
+    "providerCalls": 0,
+    "resultGETs": 0,
+    "assetGETs": 0,
+    "dnsCalls": 0,
+    "reservations": 0,
+    "generations": 0,
+    "chestCalls": 0
+  },
+  "accounting": {
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 46,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "refunds": 0,
+    "changed": false,
+    "newGenerations": 0,
+    "chestAttempted": false,
+    "billingReconciled": false,
+    "falBilling": "UNKNOWN",
+    "currentAPIRequestsExcludingAssetDownloads": 47,
+    "currentCompletedDownloads": 9,
+    "currentGenerationSubmissions": 3,
+    "unknownNotTreatedAsZero": true
+  },
+  "chestAttempted": false,
+  "approval": false,
+  "nextReleased": false,
+  "verification": {
+    "tests": {
+      "passed": 746,
+      "existing": 704,
+      "new": 42,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "command": "node --test --test-reporter=tap experiments/phase38-spatial/tests/*.test.mjs experiments/phase38-spatial/tests/offline/*.test.mjs"
+    },
+    "typecheck": "PASS: existing experiment and offline/tsconfig.json",
+    "lint": "PASS: zero warnings across experiment",
+    "build": "PASS: isolated existing experiment and offline inspector",
+    "productionTestsBuild": "NOT_RUN_PRODUCTION_UNCHANGED",
+    "performedAfterInspection": true
+  },
+  "preservation": {
+    "previousEvidence": [
+      {
+        "path": "experiments/phase38-spatial/results/COURTYARD_001.md",
+        "sha256": "9cbf1a607c0af3ae458f66e654e3d70e71283b050397ef506417a1d411aa10f2"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_001.md",
+        "sha256": "5b6e80114b2cb779560da314449ca578db521b9934cc1486f4de0f4d5654a437"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_RECOVERY_001.md",
+        "sha256": "fde2ecb3e845b27dcb5e0820cdc667dcccdb1b74fbdcec515ccb33a019d34254"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_HOST_DIAGNOSTIC_001.md",
+        "sha256": "679df9c2442ab683d87284f58fe83ed7fa975974b02ad95fe1c840f726ea8049"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_RETRIEVAL_001.md",
+        "sha256": "d4a0ef52520fa728c52f934cf9ee190fa5628cd45fe61777abad31cb6cd460fb"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_STATUS_OBSERVATION_001.md",
+        "sha256": "9a0fe29138944fb15b889945fee1ab88eb20847e808840dd55a641505d115c9c"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_WORLD_001.md",
+        "sha256": "499db054d515140fd99841a5942e3dd00e4397fefc85215e6a1373b12c6eb516"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/LIVE_RUN_001.md",
+        "sha256": "f8095644157e626b3323b7b5c989a9c0209f3e7e8d239df40a91eb3eb443f811"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/RECOVERY_001.md",
+        "sha256": "a950570eedbfe77252107f8bf109a3d7abc288a69884e10c66ffa2f2ff42a4d8"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/ROOM_RECOVERY_001.md",
+        "sha256": "91f302b36b319321d8f4153a8408983b24a2a720219b7246d9771f02be712397"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/SETUP_STOP_001.md",
+        "sha256": "16d94388fbcb156604fa4ad2bcf239cee62a38e774a59625f78c2ca51f0a5797"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/URL_DIAGNOSIS_001.md",
+        "sha256": "c0735a147b341bebcecad734366a15c48f93195dde2ed42e8123dad1c1f255a8"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001-ledger.jsonl",
+        "sha256": "58ddabf60311a3f6f2b77e1667ac841c9743a0c0c70d0a9b7bf77cbd45c120ee"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001-witness.jsonl",
+        "sha256": "62675f4e042586634c2a954fbf481608ccec506b549a516fea751f15db3515f7"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001.json",
+        "sha256": "8b746e88df7310019db02ab88f1b0adddb94cdc71a39ae047d8525a7dcd8550c"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-manual-review-001.json",
+        "sha256": "70aa2030afbb9f83c5eb5450bede20230a6565786f020e82d3974cc203d17acb"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-exact-artifact-001.json",
+        "sha256": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-exact-artifact-recovery-001.json",
+        "sha256": "ea6188f69a302918afc592c25d44995d007a88a6c17cdc37a96f3a7b12f972f9"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-host-diagnostic-001.json",
+        "sha256": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-retrieval-001.json",
+        "sha256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-status-observation-001.json",
+        "sha256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-world-001.json",
+        "sha256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/live-run-001-ledger.jsonl",
+        "sha256": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/live-run-001.json",
+        "sha256": "05936d6837c5dd5536417bd7d2b1cdaf9cd8603ddfeb47ae2e36a738e372fd88"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/recovery-001.json",
+        "sha256": "4848f48b8db139fca613e0c14c324eabb4f26119ad94aaf653f255e281084a0b"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-manual-review-001.json",
+        "sha256": "9d7e614424bb97e8f5fab719f3d9f5fdb9648e7ba5367fc358fda8e54f4a7071"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001-ledger.jsonl",
+        "sha256": "95a00680d7240d33e64aa7a84eb68a0760276ed02da2f960c924d1997df4de45"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001-witness.jsonl",
+        "sha256": "301bf7f53b877f74d394a445730724ba78d80fa0e3d0361c51096cd177a96746"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001.json",
+        "sha256": "4cf4352474714e064cfd3c3bdb7e71dc9917a48e2f966836fb0fa6f279a77200"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/setup-stop-001.json",
+        "sha256": "c982487bc5884d8593c3e1a0e2443115e1c32ef1ec0b1b20f3df3088e88d8f6e"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/url-diagnosis-001.json",
+        "sha256": "610abc717c7fed6bc023f8669a38d5413e0ac1a4fd4be3c24ceb3c1f9f0ef04a"
+      }
+    ],
+    "oldSources": {
+      "originalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+      "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+      "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+      "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+      "retrievalEvidenceSHA256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+      "diagnosticTerminalDigest": "1746edd7614017df229651b6da3c6796b9df94a2556f093b4e1ad60723a37879",
+      "diagnosticEvidenceSHA256": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115",
+      "artifactStopEvidenceSHA256": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760"
+    },
+    "recoveryPrivateFileHashes": {
+      "journal.jsonl": "90fe2ada172ac6df563dd41bfbdeda0f49a816a92f8a8795df98f36dab6047da",
+      "witness.jsonl": "10e607b02258af9e8d2a726e61b53d9d7cdea6d88532fadd00149776b5325fa1",
+      "identity.json": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195",
+      "../private-fal-artifact.anchor": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    },
+    "originalStoppedHistoryUnchanged": true,
+    "recoveryHistoryUnchanged": true,
+    "originalStoppedRootAndAnchorAbsent": true,
+    "executionCheckpointUnchanged": true,
+    "freezeFileSHA256": "27ed701679ff4b369c720d6ce10368a4f87d9f38f6284beb4bf7c59f0c6774ae",
+    "frozenInputsUnchanged": 67,
+    "globalAllowlistUnchanged": true,
+    "productionMainDependenciesUnchanged": true,
+    "originalCheckoutDocumentationUnchanged": true
+  },
+  "offlineInspectorSources": {
+    "offline/ply.ts": "3291d2de4578dd89e5479dbe5c658375bce32b406206b24617ed467edd62e266",
+    "offline/inspect-ply-world.ts": "7463adce4d6c3b605d53bc14939bac7bd11756f26746d255c00862182d366582",
+    "offline/tsconfig.json": "181544231e4c186244b17d39479ae94e22fe6d3d5dca32fd9c5115056fbe89b9",
+    "tests/offline/ply.test.mjs": "2868c5a31e88cdaf89a082c7accbfbe0c0351851595fbc7e7e6f5878d2d4c17c"
+  },
+  "inspectionInvocations": 1,
+  "networkScope": "No inspection/provider/result/asset/DNS requests. Only the separately requested GitHub evidence push uses network."
+}

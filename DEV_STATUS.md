@@ -4,6 +4,36 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B FINAL OFFLINE PLY INSPECTION COMPLETE — A: STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE. STOP FOR OWNER REVIEW.** Based on accepted recovery evidence **e74f98070a35506bdb0401e2d2db2e492c9f8da4**. Exact retained ZIP size/hash revalidated before/after; all three PLY layers fully parsed once offline as nonempty mesh structures with finite coordinates and valid face references. Visual quality and navigation quality remain **UNVERIFIED**. No approval/next/chest release.
+
+### Completed work and files / areas changed
+
+Added only experiment offline PLY/parser entry point/config, 42 synthetic regression tests, [sanitized measurements](experiments/phase38-spatial/results/fal-ply-inspection-001.json), [readable report](experiments/phase38-spatial/results/FAL_PLY_INSPECTION_001.md) and this status. Reused the unchanged bounded ZIP validator. No extraction, renderer, dependency installation, credentials, provider/asset/DNS requests or production edits. Frozen live code, tests, configuration, freeze and protocol remain byte-identical; offline files are deliberately outside its flat source enumeration.
+
+Observed PLY 1.0 binary little-endian: archive indices **5: 61,347 vertices / 143,045 faces; 14: 1,843,200 / 3,682,560; 15: 59,412 / 127,954**. All have double x/y/z, unsigned-byte RGB and unsigned-int face indices. Indices 5/15 have double nx/ny/nz; 14 has no normals. No UV properties. All 5,891,877 coordinates finite; NaN/Infinity and invalid face/index counts zero; all faces triangular. Bounding boxes and content hashes retained without filenames/private values. PNG headers passed for all 12; both small JSON entries parsed with only shape metadata retained.
+
+### Tests and build status
+
+After inspection: **746 deterministic experiment tests passed (704 existing + 42 new); zero failures/skips/cancellations. Existing experiment and offline-inspector typechecks/builds passed; lint passed with zero warnings.** Coverage includes supported encodings, bounds, truncation/trailers, malformed declarations, finite coordinates, index validation, safe metadata and unchanged freeze. No production tests/build because production is unchanged.
+
+### Key technical decisions and accounting
+
+The request used **export_drc:true**, but the archive returned **3 PLY files and no DRC**, GLB or glTF. PLY is acceptable for this capability review. Record DRC absence as a provider/export limitation; do not retry just to obtain it. Future adapter/renderer planning must support observed PLY or an offline validated conversion path, not DRC exclusively. No production implementation added. Mesh validation does not establish visual coherence, manifoldness, triangle areas, metric scale, collider alignment or navigation.
+
+All 31 prior evidence files, original stopped histories, recovery ledgers/anchor and 67 frozen inputs remain unchanged. Original execution checkout stays clean at **0c6ee50ef82a8d2b0423a31bf75ab402cfa492c5**. Accounting unchanged: **$4.15 / $4.75 reserved; $2.528 known billing; fal UNKNOWN; $0.35 fal reservation retained; $0.60 chest unreleased**. Zero new reservations/generations/network calls during inspection; only the requested GitHub evidence push uses network. No credentials read or secrets/binary/private contents committed.
+
+### Known issues and remaining work
+
+Visual/navigation/scale quality remains unverified. Structural class A is not production EXPLORE acceptance. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified; finite synthetic tests do not guarantee universal recovery/branching/memory isolation. No hosted deployment or real campaign/private-data acceptance. Main/production/global allowlists/dependencies and original checkout's pre-existing documentation remain untouched.
+
+### Recommended next step
+
+**STOP for owner review. Chest remains unattempted.** No provider request, result refresh/download, retry/resubmission, next/chest, renderer implementation, deployment or real import without new authorization.
+
+---
+
+## Historical exact fal artifact recovery evidence checkpoint
+
 **PHASE 3.8B EXACT FAL ARTIFACT RECOVERY RETRIEVED; STOP FOR OWNER REVIEW.** Executed the separately owner-authorized clean checkpoint **0c6ee50ef82a8d2b0423a31bf75ab402cfa492c5**, identity **phase38b-fal-exact-artifact-recovery-1**, manifest hash **6c4762d090718fe11188f4d777eb51a1dd37ff515e14eeab6159f80c7d42ed98**. Initialization succeeded once with zero requests/DNS/reservations/generations. The sole recovery attempt made **1 exact fal result GET + 1 exact artifact GET**, both HTTP 200; one bounded asset DNS lookup; no retry or redirect. Raw result SHA-256 exactly matched the frozen expected bytes before parsing. Actual provider API model remains **UNKNOWN/null**.
 
 ### Completed work and files / areas changed
