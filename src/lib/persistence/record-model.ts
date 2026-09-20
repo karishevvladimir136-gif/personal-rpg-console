@@ -20,6 +20,7 @@ export const storageKindLabels = {
   companion: "Companion",
   camp: "Camp / Shared Stash",
   transport: "Transport & Mounts",
+  merchant: "Merchant stock",
 } as const;
 export const sceneRoleLabels = {
   narration: "Narration record",
@@ -57,7 +58,9 @@ export function storageAcceptsEntity(
 ) {
   return kind === "transport"
     ? entity.kind === "transport" || entity.kind === "mount"
-    : kind !== "camp" && entity.kind === kind;
+    : kind === "merchant"
+      ? entity.kind === "npc"
+      : kind !== "camp" && entity.kind === kind;
 }
 
 export function equipmentProfileForCorrection(
