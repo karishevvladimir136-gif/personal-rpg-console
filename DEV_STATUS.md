@@ -2,9 +2,77 @@
 
 Started September 20, 2026 from exact authorized remote main `b7b065726ac1e0f64056e1970c8390f8448b4875` in isolated branch `codex/production-mega-sprint-wave3`. Waves 1 and 2 remain owner accepted. The original dirty checkout is untouched.
 
-Status: bounded implementation and shared integration are complete; final verification and browser review are in progress. Wave 3 is not owner accepted. Minimum ownership/additions are frozen in [WAVE3_CONTRACTS.md](WAVE3_CONTRACTS.md). Existing Library/compiler, World Logic/settlement, runtime, campaign documents and save/timeline authorities remain singular. Lead owns additive migration 12 and integration repairs. No live provider/model requests, real database migration, research, import or deployment. No World Lab, Enter This World or Wave 4.
+Updated September 20, 2026. Implementation and independent QA checkpoint: `1763cd4820e14cd9cfd6633284ded2d7aa6460d6`. The completion commit only records this verified handoff. Main stays at the authorized base; Wave 3 requires separate owner acceptance.
 
-Integrated work: natural-language owner sources and strict assisted compiler proposals; guided immutable Pack review; advisory versioned campaign premises; finite World Logic action/resolver consequences with independent SQL validation; explicit prospective overdue reconciliation. Save recovery compares unordered record sets canonically without changing original checks/events/proofs. Independent QA defects in model identity, stripped resolver metadata, JSON numeric types and initial Pack origin/privacy enforcement are repaired. Legacy client-import analysis exposed a premise validation import across the private boundary; public input validation is now isolated. Focused tests, typecheck and disposable legacy/Wave1/Wave2 migration upgrades pass. The first complete suite found that import issue and an invalid new recovery-test fixture; both are fixed, with fresh full-suite/build/browser results pending. Final verification and limitations will replace this interim section before completion. Owner instructions: [WAVE3_OWNER_GUIDE.md](WAVE3_OWNER_GUIDE.md).
+## Milestone status
+
+- **Implemented:** bounded natural-language World authoring, assisted compiler proposals, guided Pack review, campaign premises, typed World Logic consequences and overdue reconciliation.
+- **Integrated:** all six worker handoffs, Lead-owned shared contracts, additive migration 12, application wiring and central production repairs in the isolated integration branch.
+- **Deterministically verified:** fresh complete suite, disposable migration upgrades, typecheck, repository-wide zero-warning lint, production build and privacy/import analysis pass. The exact results and boundaries are below.
+- **Browser checked:** actual application components with synthetic data and scripted responses, in English and Russian at desktop 1440×960 and mobile 390×844 viewports. No horizontal overflow was observed in the checked flows. This is not physical iPhone testing or authenticated live-database testing.
+- **Not live-model-quality evaluated:** no live provider/model requests, paid evaluation, real database migration, real source/campaign import, web research or deployment occurred.
+- **Not owner accepted:** Waves 1 and 2 remain accepted. Wave 3 awaits owner review. A/B/C are not declared fully complete. World Lab, What-If, Enter This World and Wave 4 remain unstarted.
+
+Owner instructions: [WAVE3_OWNER_GUIDE.md](WAVE3_OWNER_GUIDE.md). Frozen ownership: [WAVE3_CONTRACTS.md](WAVE3_CONTRACTS.md). Independent security review: [WAVE3_QA_REVIEW.md](WAVE3_QA_REVIEW.md).
+
+## What is usable
+
+- **World Library → Describe From Scratch** preserves exact multiline EN/RU owner text, language, digest, evidence locators and immutable provenance as an authored premise, never an external source fact. Upload Sources and Combine share the existing Source Store/compiler. TXT/Markdown remain the supported local formats; Research is visibly unavailable.
+- **Configured model assistance** uses the existing Model Runtime through the strict `canon.compile` task. The configured application model is pinned to the job; bounded structured entities, relationships, geography, timeline, rules, assumptions and gaps stop for review. Explicit request/retry checkpoints prevent automatic invocation or fallback. Deterministic/scripted providers cover the complete flow.
+- **Guided Pack review** presents people, factions, places, assumptions, source priority, evidence, contradictions, unknowns and coverage before approval. Owners can edit, reject, keep uncertainty, select eligible Canon claims or ask for refinement. Immutable history, explicit approval and separate campaign pinning remain authoritative. Corrections invalidate stale pending work; newer source versions never repin a campaign.
+- **Create campaign / Campaign Settings → Campaign premise** provides a substantial free-form field backed by the existing versioned document authority. Save, review, paginated history, restore-as-new-version and exact-operation retry preserve original wording and provenance. The premise is advisory; it neither applies structured settings nor enters DM context/Memory or campaign-state rollback.
+- **World Logic** accepts free-form actions without mandatory HP, d20, classes or initiative. Typed v2 consequences cover established travel, autonomous actor relocation, exact public observations, owned inventory consumption, established integer resource spending, a bounded physical-condition vocabulary and open objective completion, alongside existing Thread/Hook/warning progression. Server and SQL independently validate settlement, source/current-state evidence, bounds and controlled-PC agency. Ambiguous or unsupported proposals pause without applying state.
+- **AI, World & Rules → Before the world resumes** requires an explicit prospective restart choice when simulation/deadline policy expands. Owners select a fictional-time allowance and acknowledge the restart. Saving advances no events, reveals no private schedules and applies no overdue backlog. Active schedules and warning opportunities remain intact; autonomy does not bypass deadline policy.
+- **Staged recovery** also handles equivalent restored snapshots whose unordered record collections arrive in a different order. Original checks, stages, event identities, ordered history and captured proofs are preserved. Materially changed authority still requires review; typed costs/effects commit once after valid continuation across save/head/load/branch/epoch changes.
+
+## Authority and changed areas
+
+Lead owns the only additive migration, `supabase/migrations/202609200012_production_wave3.sql`. It extends the existing document-purpose/version commands for premises, validates typed world settlement, applies prospective policy reconciliation and independently reconstructs initial compiler Pack claims, evidence, coverage and privacy constraints. Existing saves, readers, source history and campaign pins are preserved. It was applied only to synthetic disposable PGlite databases.
+
+Changed areas include `src/lib/world-library`, `rulesets/world-logic*`, `world/resolver*`, `world/reconciliation*`, the existing model-runtime/production adapters and turn bridge, campaign premise and Library client components/locales, application routes, migration 12, deterministic tests and review documentation. Public premise input validation is isolated from private modules. Identity, Canon/source provenance, rulesets, provider profiles, campaign/character/inventory state, World Events, Memory and Saves/Timelines retain one authority each. No dependency, backend, agent framework, second DM or deployment configuration was added.
+
+Independent QA reproduced four defects, all repaired centrally and reverified: wrong/missing provider response model identity; stripping typed resolver metadata to reach a legacy validation path; JSON numeric strings accepted as quantities; and initial assisted Pack origin/privacy tampering at the SQL boundary. SQL now verifies the bounded compiler derivation before the first immutable draft is inserted. No outstanding reproduced QA defect remains.
+
+## Fresh integrated verification
+
+- `node --test --test-concurrency=2 tests/*.test.mjs`: **673 collected, 672 passed, 0 failed, 1 skipped**, duration **78.539 seconds**. The skip is the existing opt-in live Supabase test; it is not counted as passed. This run includes Phase 0–3.5 and Wave 1–2 regressions and the Wave 3 integration/QA additions.
+- `next typegen` followed by TypeScript `--noEmit`: **passed**. Independent QA also passed a non-incremental integration typecheck.
+- Repository-wide ESLint `--max-warnings 0`: **passed, zero warnings**, rerun after the disposable browser harness was finalized.
+- Next.js production build `next build --webpack`: **passed**. Default Turbopack rejects this environment's external `node_modules` junction; webpack builds the same application without changing dependencies or project configuration. A default Turbopack success is not claimed.
+- Disposable PGlite applies migrations 1–12 and upgrades populated legacy/v1, Wave 1 and Wave 2 states. Four dedicated upgrade cases preserve manifests, hashes, document history and Pack/source pins, including a pending Wave 2 stage recovered after upgrade and save fork. Other SQL cases cover atomic rejection, owner/campaign isolation, duplicate operations, legacy saves and timeline/head/epoch fencing.
+- The suite exercises authored source → scripted assisted compilation → review → explicit Canon → immutable Pack → campaign pin; EN/RU premise save/review/restore/history; typed action and action-plus-resolver settlement without HP/d20; prospective overdue reconciliation; and typed continuation after manual save or load/branch with no provider replay, reroll, repeated costs or duplicate events.
+- Privacy/security coverage includes source/prompt injection as data, private/future evidence, cross-owner/campaign records, model no-fallback and response attribution, stale approvals/source correction, immutable history, controlled-PC protection, public World Event filtering and current/legacy client import graphs. Independent QA's final focused run passed **34/34 owned tests plus 4/4 integration/boundary cases**; those counts are separate from, and included in, the complete suite.
+- Git whitespace checks pass. Generated `next-env.d.ts` output is restored rather than committed. The original checkout's two pre-existing dirty files remain untouched; their recorded SHA-256 hashes are checked again during publication verification.
+
+## Separate browser review
+
+The ignored local harness at `test-results/wave3-owner-review` imports current application components/styles. It uses in-memory synthetic records and a scripted compiler provider, an allowlisted credential-free environment and outbound-network guards. It runs locally at `http://127.0.0.1:3093/preview/owner`. The toolbar and turn-state selectors are demo-only. This loopback URL is for the host computer, not a phone's `127.0.0.1`.
+
+- **Library:** saved exact English and Russian multiline descriptions; completed the explicit scripted assisted-job lifecycle in English; materialized, reviewed unknowns/coverage and approved a reference-only immutable Pack without selecting Canon. Inspected evidence/edit controls, assumptions, source priority, coverage, unknowns and the separate Canon/approval summary in both languages. Creation modes and description/Pack panels fit desktop and mobile layouts.
+- **Premise:** saved an English draft, explicitly reviewed it into a new version and loaded older history through the original version. Saved Russian text with a simulated lost response, observed frozen editing and recovered the same version through retry without duplication. Inspected campaign-creation forms and existing-campaign panels in both languages and viewport sizes. Browser creation-form checks did not submit a new campaign; its persistence is covered by deterministic SQL tests.
+- **Reconciliation:** changed Off to On/increased pressure, observed Save disabled before consent, chose future allowances and saved acknowledged changes in English and Russian. Inspected the explanation and controls at both widths. Actual schedule settlement is verified in the disposable SQL tests, not inferred from this synthetic settings API.
+- **World Logic/recovery:** inspected completed, resumable, review-required, missing-evidence and unsupported-effect states in EN/RU, including mobile presentation. These are scripted display scenarios; engine/dice/model execution is not claimed as browser verification.
+
+Campaign Pack binding is intentionally blocked in the synthetic harness; its real authoring-to-pin database path passes deterministic tests. Early disposable-preview hot-reload/state-reset problems were repaired in the ignored harness, then the affected click-throughs were repeated against a frozen production build. No production-code change was needed for those harness problems. No physical iPhone, live Auth/Supabase or live model-quality result is claimed.
+
+## Worker handoffs
+
+Requested Astra reasoning was used: Max for difficult compiler/logic/security/integration work, Extra High for UI work. Three worker slots were reused alongside Lead; each workstream had isolated branches/worktrees and exclusive ownership. Lead alone integrated and repaired shared production surfaces.
+
+| Worker branch | Final handoff SHA |
+| --- | --- |
+| `codex/wave3-compiler` | `11c5478ab5688fa69411387e63750cec51f0589b` |
+| `codex/wave3-logic` | `cbc0ebbbb823555cf0b76306b895ad14b89961f8` |
+| `codex/wave3-reconciliation` | `4cdc1156bdedf0ddc6a84b227d8a0cccb032ca85` |
+| `codex/wave3-premise-ui` | `a8038389cd32ff5aef542ed1c104816729d4f88a` |
+| `codex/wave3-library-ui` | `c27a54264d00a3b2fedca3fd3f07fb276b40f163` |
+| `codex/wave3-qa` | `ba71fbe13062432ce5f061b0a609f561f220124f` |
+
+## Remaining limits and next step
+
+Natural-language output quality is not live-evaluated; bounded TXT/Markdown inputs and model proposals always need owner review. Pack pinning does not automatically compose playable actors, capabilities or schedules. Consequence types are finite; arbitrary relationship systems, resource creation and tabletop mechanics remain unsupported. Premises remain advisory composition input. Reconciliation exposes a uniform prospective choice, not private schedule details or a hidden-work indicator. Recovery requires equivalent authority; legacy stages without captured proof cannot cross changed fences.
+
+Real installation requires a separate reviewed release and additive migration 12; this sprint does neither. Owner review is next. A possible later bounded wave is reviewed authoring of playable actors, capabilities and causal Threads from an approved Pack, with deterministic consequence examples. This recommendation does not start Wave 4, World Lab or Enter This World. Publish the clean integration and worker branches, verify main remains exactly the authorized base, and stop.
 
 ---
 
