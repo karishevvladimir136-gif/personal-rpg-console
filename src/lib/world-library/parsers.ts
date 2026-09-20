@@ -65,6 +65,10 @@ export function parseEvidence(value: unknown): EvidenceLocator {
   };
 }
 export function parseSource(value: unknown): SourceBody {
+  const hasKnowledge =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "knowledge");
   const v = object(value, [
     "schemaVersion",
     "title",
@@ -74,6 +78,7 @@ export function parseSource(value: unknown): SourceBody {
     "attribution",
     "visibility",
     "extraction",
+    ...(hasKnowledge ? ["knowledge"] : []),
   ]);
   ensure(v.original !== null && typeof v.original === "object");
   const kind = (v.original as Record<string, unknown>).kind;
@@ -135,6 +140,11 @@ export function parseSource(value: unknown): SourceBody {
       canonicalUrl,
     },
     visibility: visibility(v.visibility),
+    ...(hasKnowledge
+      ? {
+          knowledge: literal(v.knowledge, ["source", "future_source"] as const),
+        }
+      : {}),
     extraction: {
       version: text(e.version, 80),
       status: literal(e.status, [

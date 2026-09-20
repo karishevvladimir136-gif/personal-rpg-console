@@ -22,6 +22,8 @@ export type SourceBody = {
     canonicalUrl: string | null;
   };
   visibility: "public" | "private";
+  // Absent on Wave 1 sources; both scopes remain authoring-only.
+  knowledge?: "source" | "future_source";
   extraction: {
     version: string;
     status: "unprocessed" | "partial" | "complete" | "unreadable";
