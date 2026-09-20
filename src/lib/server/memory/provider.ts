@@ -8,7 +8,15 @@ import {
   parseSummary,
   summarySchemaFor,
 } from "../../memory/summary.ts";
-import type { SummaryProvider } from "../../memory/server-contracts.ts";
+import type {
+  MemoryJob,
+  SummaryProvider,
+} from "../../memory/server-contracts.ts";
+import type { ExecutionProfile } from "../../production/contracts.ts";
+import {
+  environmentProfileResolver,
+  executionProviderOptions,
+} from "../model-runtime/profiles.ts";
 
 export function openAiSummaryProvider(
   options: ProviderOptions,
@@ -25,14 +33,36 @@ export function openAiSummaryProvider(
       ),
   };
 }
-export function createSummaryProvider(): SummaryProvider {
-  return openAiSummaryProvider({
-    apiKey: process.env.OPENAI_API_KEY ?? "",
-    model: process.env.OPENAI_DM_MODEL ?? "",
-    reasoning: process.env.OPENAI_DM_REASONING,
-    observer: (attempt) =>
-      console.info(
-        JSON.stringify({ event: "memory_provider_attempt", ...attempt }),
-      ),
-  });
+
+export function createSummaryProvider(
+  options: {
+    resolveProfile?: (
+      job: MemoryJob,
+    ) => ExecutionProfile | Promise<ExecutionProfile>;
+    fetcher?: ProviderOptions["fetcher"];
+    observer?: ProviderOptions["observer"];
+  } = {},
+): SummaryProvider {
+  const environmentProfile = environmentProfileResolver();
+  return {
+    summarize: async (job) => {
+      const profile = options.resolveProfile
+        ? await options.resolveProfile(job)
+        : environmentProfile("memory.summary");
+      return openAiSummaryProvider(
+        executionProviderOptions(profile, "memory.summary", {
+          fetcher: options.fetcher,
+          observer:
+            options.observer ??
+            ((attempt) =>
+              console.info(
+                JSON.stringify({
+                  event: "memory_provider_attempt",
+                  ...attempt,
+                }),
+              )),
+        }),
+      ).summarize(job);
+    },
+  };
 }

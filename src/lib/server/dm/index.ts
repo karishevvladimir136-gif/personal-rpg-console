@@ -1,25 +1,65 @@
 import "server-only";
-import type { DmProvider } from "../../gameplay/server-contracts.ts";
-import { openAiProvider } from "./provider.ts";
+import type {
+  DmProvider,
+  RuntimeSource,
+} from "../../gameplay/server-contracts.ts";
+import type { TurnInput } from "../../gameplay/contracts.ts";
+import type {
+  ExecutionProfile,
+  RuntimeTask,
+} from "../../production/contracts.ts";
+import {
+  environmentProfileResolver,
+  executionProviderOptions,
+} from "../model-runtime/profiles.ts";
+import { openAiProvider, type ProviderOptions } from "./provider.ts";
 export { createTurnStore } from "./store.ts";
 
-// Configuration is checked only when a provider method is used, so begin() can
-// durably preserve input first and mechanic-only actions never need an API key.
-export function createDmProvider(): DmProvider {
-  const provider = () =>
-    openAiProvider({
-      apiKey: process.env.OPENAI_API_KEY ?? "",
-      model: process.env.OPENAI_DM_MODEL ?? "",
-      reasoning: process.env.OPENAI_DM_REASONING,
-      observer: (attempt) =>
-        console.info(
-          JSON.stringify({ event: "dm_provider_attempt", ...attempt }),
-        ),
-    });
+// The integration callback resolves/persists a profile in the accepted operation
+// ledger before returning. Retries must return that exact recorded profile.
+export function createDmProvider(
+  options: {
+    resolveProfile?: (
+      task: Exclude<RuntimeTask, "memory.summary">,
+      source: RuntimeSource,
+      input: TurnInput,
+    ) => ExecutionProfile | Promise<ExecutionProfile>;
+    fetcher?: ProviderOptions["fetcher"];
+    observer?: ProviderOptions["observer"];
+  } = {},
+): DmProvider {
+  const environmentProfile = environmentProfileResolver();
+  const provider = async (
+    task: Exclude<RuntimeTask, "memory.summary">,
+    source: RuntimeSource,
+    input: TurnInput,
+  ) => {
+    const profile = options.resolveProfile
+      ? await options.resolveProfile(task, source, input)
+      : environmentProfile(task);
+    return openAiProvider(
+      executionProviderOptions(profile, task, {
+        fetcher: options.fetcher,
+        observer:
+          options.observer ??
+          ((attempt) =>
+            console.info(
+              JSON.stringify({ event: "dm_provider_attempt", ...attempt }),
+            )),
+      }),
+    );
+  };
   return {
-    plan: (source, input) => provider().plan(source, input),
-    narrate: (source, input, resolution, checks) =>
-      provider().narrate(source, input, resolution, checks),
-    feedback: (source, input) => provider().feedback(source, input),
+    plan: async (source, input) =>
+      (await provider("dm.plan", source, input)).plan(source, input),
+    narrate: async (source, input, resolution, checks) =>
+      (await provider("dm.narrate", source, input)).narrate(
+        source,
+        input,
+        resolution,
+        checks,
+      ),
+    feedback: async (source, input) =>
+      (await provider("dm.feedback", source, input)).feedback(source, input),
   };
 }
