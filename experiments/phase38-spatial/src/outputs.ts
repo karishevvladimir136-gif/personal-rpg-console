@@ -16,6 +16,21 @@ export type Asset = {
   url: string;
   kind: "image" | "geometry" | "splat" | "glb";
 };
+const retainedAssets = new WeakMap<Asset, { url: string; provider: string }>();
+function retainAssets(assets: Asset[], provider: string): Asset[] {
+  for (const asset of assets) {
+    retainedAssets.set(asset, { url: asset.url, provider });
+    Object.freeze(asset);
+  }
+  return assets;
+}
+// Only objects emitted by successful provider-output validation can authorize a download.
+// JSON clones, arbitrary strings and caller-created descriptors carry no authority.
+export function validatedAssetURL(asset: Asset): string {
+  const retained = retainedAssets.get(asset);
+  must(retained && asset.url === retained.url, "asset_provenance_required");
+  return assetUrl(retained.url, retained.provider);
+}
 export function worldOutput(value: unknown, job: Job, fence: WorldFence) {
   const metadata = inspectWorldMetadata(value, job, fence);
   const w = object(value);
@@ -65,7 +80,7 @@ export function worldOutput(value: unknown, job: Job, fence: WorldFence) {
     })),
   };
   return {
-    assets,
+    assets: retainAssets(assets, job.provider),
     metadata,
     identityHash: hash(canonical(identity)),
     worldId: fence.worldId,
@@ -83,20 +98,26 @@ export function falOutput(value: unknown, job: Job): Asset[] {
   if (o.endpoint_id !== undefined)
     must(o.endpoint_id === job.model, "endpoint_pin");
   if (job.id === "spatial-fal-world-1")
-    return [
+    return retainAssets(
+      [
+        {
+          role: "world",
+          url: assetUrl(object(o.world_file).url, "fal"),
+          kind: "geometry",
+        },
+      ],
+      job.provider,
+    );
+  return retainAssets(
+    [
       {
-        role: "world",
-        url: assetUrl(object(o.world_file).url, "fal"),
-        kind: "geometry",
+        role: "object",
+        url: assetUrl(object(o.model_glb).url, "fal"),
+        kind: "glb",
       },
-    ];
-  return [
-    {
-      role: "object",
-      url: assetUrl(object(o.model_glb).url, "fal"),
-      kind: "glb",
-    },
-  ];
+    ],
+    job.provider,
+  );
 }
 function image(bytes: Buffer): Dict {
   if (

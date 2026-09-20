@@ -4,6 +4,28 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B URL DIAGNOSIS AND EXPERIMENT CORRECTION COMPLETE; STOPPED FOR OWNER REVIEW.** Metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` is explicitly owner-accepted. New sanitized one-read evidence is pushed at `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`; prior evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` remains intact. This is not EXPLORE/production acceptance.
+
+### Completed work and files / areas changed
+
+Exactly one authenticated Get World succeeded. All four required URLs use `cdn.marble.worldlabs.ai`; the exact original rejection was `asset_host_not_allowed`. Added that observed exact hostname to the bounded experiment policy, plus validated-result URL binding, strict URL normalization checks, public-only DNS validation pinned to a single HTTPS connection, and no credential/redirect/retry bypass. Details: [URL correction](experiments/phase38-spatial/URL_CORRECTION.md). Changed experiment source/tests/instructions/freeze and this status only. Workload protocol, ledger, prompts/options/models/prices/limits and binary format validators unchanged.
+
+### Tests and actual verification
+
+**223 deterministic tests passed (141 existing + 82 new), zero failures/skips; experiment typecheck, zero-warning lint and isolated emit/build passed.** DNS/HTTP/socket calls are mocked in security tests. Production full suite/build not repeated. Actual live work: 1 authorized metadata GET, 0 generations/downloads/exports/fal/retries, no asset DNS/probes. Original ledger, prior evidence and original 17-file execution freeze remain unchanged; production and original dirty documents preserved.
+
+### Decisions, known issues and remaining work
+
+Small exact-host allowlist is experiment-specific, not an invented exclusive provider contract. Only authenticated, identity/private-fenced returned asset descriptors can authorize their exact URL; changed/forged URLs fail. The observed world remains retrievable and the URL shapes now qualify under the proposed correction, but asset bytes, DNS/reachability, formats, visuals, collider/scale usability, panorama sharing and manual review remain unverified. Thumbnail URL suffix is .webp while the frozen image parser supports PNG/JPEG; that possible format barrier is deliberately disclosed, not bypassed. Original $1.264 cost/$1.30 reservation remain recorded. No stopped-ledger clearing, replacement run or regeneration.
+
+### Recommended next step
+
+Stop for owner review. One-GET authorization exhausted; do not continue any job, fetch assets, regenerate the room, start Phase 4/EXPLORE/renderer or deploy. All historical physical iPhone/Safari, optional Phase 1 conflict-rebase, finite synthetic-evaluation and lack of real-data/hosted/private-data acceptance limitations remain.
+
+---
+
+## Historical one-read URL evidence checkpoint
+
 **PHASE 3.8B URL DIAGNOSIS COMPLETE; STOPPED FOR EXPERIMENT CORRECTION/OWNER REVIEW.** Owner explicitly accepted metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3`; prior recovery evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` is preserved. This acceptance is experiment-only, not spatial/production acceptance.
 
 Completed: the single newly authorized authenticated Get World returned HTTP 200 and the same body hash. All four required asset URLs use `cdn.marble.worldlabs.ai`; exact rejected assertion is `asset_host_not_allowed`, because the old list guessed only `wlt-ai-cdn.art`. Sanitized structures/hashes only are in [diagnostic evidence](experiments/phase38-spatial/results/URL_DIAGNOSIS_001.md) and its JSON; no full URLs/credentials/tokens. Zero generations/downloads/exports/fal/retries, no asset-host probes. Original ledger unchanged.

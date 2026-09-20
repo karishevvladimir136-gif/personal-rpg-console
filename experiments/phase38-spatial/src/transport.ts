@@ -1,5 +1,8 @@
 import { must, protocol } from "./protocol.ts";
+import { type Asset } from "./outputs.ts";
+import { assetDownloadTransport } from "./asset-download.ts";
 export type Request = {
+  asset?: Asset;
   url: string;
   method: "GET" | "POST";
   headers: Record<string, string>;
@@ -14,8 +17,17 @@ export type Reply = {
   bytes: Buffer;
 };
 export type Transport = (request: Request) => Promise<Reply>;
-export function httpTransport(fetcher: typeof fetch = fetch): Transport {
+export function httpTransport(
+  fetcher: typeof fetch = fetch,
+  download: Transport = assetDownloadTransport(),
+): Transport {
   return async (request) => {
+    if (request.asset) return download(request);
+    // The generic JSON transport cannot be used to bypass asset provenance/DNS checks.
+    must(
+      /^https:\/\/(?:api\.worldlabs\.ai|queue\.fal\.run)\//.test(request.url),
+      "asset_provenance_required",
+    );
     const response = await fetcher(request.url, {
       method: request.method,
       headers: request.headers,

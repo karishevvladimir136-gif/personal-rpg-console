@@ -1,6 +1,6 @@
 # Phase 3.8B — isolated experiment
 
-**Current checkpoint: proposed metadata correction, offline verified; STOP FOR OWNER REVIEW.** Recovery evidence is separately committed at `98eb76618503dd2382ef97aaabfcb1377cab26e1`. See [correction scope and verification](CORRECTION_PROPOSAL.md). The two authorized diagnostic GETs are exhausted. Do not initialize a replacement ledger, run `next`, retry the room, download assets or continue other jobs. No new live permission follows from this correction.
+**Current checkpoint: proposed URL correction, offline verified; STOP FOR OWNER REVIEW.** Metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` is owner-accepted. One-read URL evidence is separately committed at `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`. See [URL correction and limits](URL_CORRECTION.md). The one-GET authorization is exhausted. Do not initialize a replacement ledger, run `next`, regenerate the room, download assets or continue jobs. No live permission follows from this correction. Earlier [metadata correction](CORRECTION_PROPOSAL.md) remains historical.
 
 ## Historical preparation instructions (not current execution permission)
 

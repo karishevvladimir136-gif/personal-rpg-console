@@ -31,6 +31,13 @@ const safeCodes = new Set([
   "invalid_scale",
   "world_changed_on_reopen",
   "unsafe_url",
+  "asset_provenance_required",
+  "asset_request_mismatch",
+  "asset_credentials_forbidden",
+  "asset_destination_not_public",
+  "asset_dns_failure",
+  "asset_network_failure",
+  "asset_timeout",
   "asset_host_not_allowed",
   "invalid_asset_path",
   "unsafe_api_url",
@@ -170,22 +177,41 @@ export function assetUrl(value: unknown, provider: string): string {
   } catch {
     must(false, "unsafe_url");
   }
+  const raw = s.match(/^https:\/\/([^/?#]+)([^?#]*)(?:\?[^#]*)?$/);
+  // Reject parser normalization tricks before trusting parsed URL components.
   must(
-    u.protocol === "https:" &&
+    raw &&
+      !/[\s\u0000-\u001f\u007f\\]/.test(s) &&
+      !/[%@:\[\]]/.test(raw[1]) &&
+      u.protocol === "https:" &&
       !u.username &&
       !u.password &&
       !u.port &&
-      !u.hash &&
-      !s.includes("\\") &&
-      !/%(?:2e|2f|5c)/i.test(s.split("?")[0]) &&
-      !/\/\.\.?\//.test(s.split("?")[0]),
+      !u.hash,
     "unsafe_url",
   );
+  const path = raw[2];
   must(
-    protocol.assetHosts[provider]?.includes(u.hostname),
-    "asset_host_not_allowed",
+    path.startsWith("/") &&
+      path !== "/" &&
+      !path.includes("//") &&
+      !/\/(?:\.|\.\.)(?:\/|$)/.test(path) &&
+      !/%(?:2e|2f|5c|25|0[0-9a-f]|1[0-9a-f]|7f)/i.test(path) &&
+      !/%(?![0-9a-f]{2})/i.test(path),
+    "unsafe_url",
   );
-  must(u.pathname !== "/", "invalid_asset_path");
+  try {
+    decodeURIComponent(path);
+  } catch {
+    must(false, "unsafe_url");
+  }
+  must(u.href === s, "unsafe_url");
+  // Observed in authenticated Get World; a bounded experiment policy, not an API-wide guarantee.
+  const hosts =
+    provider === "worldlabs"
+      ? [...protocol.assetHosts.worldlabs, "cdn.marble.worldlabs.ai"]
+      : protocol.assetHosts[provider];
+  must(hosts?.includes(u.hostname), "asset_host_not_allowed");
   return s;
 }
 export function apiUrl(

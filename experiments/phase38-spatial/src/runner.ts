@@ -16,7 +16,13 @@ import {
   text,
   type Dict,
 } from "./protocol.ts";
-import { falOutput, inspectAsset, worldOutput, type Asset } from "./outputs.ts";
+import {
+  falOutput,
+  inspectAsset,
+  worldOutput,
+  validatedAssetURL,
+  type Asset,
+} from "./outputs.ts";
 import { authHeaders, type Transport } from "./transport.ts";
 import { worldFence } from "./world-metadata.ts";
 export type Clock = { now: () => number; sleep: (ms: number) => Promise<void> };
@@ -173,14 +179,19 @@ export async function runNext(
     type: "submit" | "poll" | "world" | "result" | "download",
     url: string,
     id?: string,
+    asset?: Asset,
   ) => {
     stage = type;
     must(
       clock.now() - started <= protocol.limits.jobDeadlineMs,
       "job_deadline",
     );
-    if (type === "download") assetUrl(url, job.provider);
-    else apiUrl(url, job, type, id);
+    if (type === "download") {
+      must(
+        asset && validatedAssetURL(asset) === url,
+        "asset_provenance_required",
+      );
+    } else apiUrl(url, job, type, id);
     const byteLimit = responseByteLimit(ledger, type);
     ledger.append("request", {
       jobId: job.id,
@@ -189,6 +200,7 @@ export async function runNext(
       at: clock.now(),
     });
     const response = await transport({
+      ...(asset ? { asset } : {}),
       url,
       method: type === "submit" ? "POST" : "GET",
       headers:
@@ -345,7 +357,7 @@ export async function runNext(
     }
     const retained: Dict[] = [];
     for (const asset of assets) {
-      const response = await request("download", asset.url);
+      const response = await request("download", asset.url, undefined, asset);
       stage = "output";
       const total = ledger
         .rows("response")
