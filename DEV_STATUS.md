@@ -1,17 +1,23 @@
 # Development status — Production Mega Coding Sprint, Wave 2
 
-Updated September 20, 2026. Authorized base and remote main: `0e52f446753caba88e98870c8785107aae92aa23`, fetched and reverified before delivery. Integration branch: `codex/production-mega-sprint-wave2`. Implementation/QA checkpoint: `f9b8ce3b7c1329f2be502cfdf3d12adcbc8d8742`; the final documentation commit is the delivery head reported to the owner. Main and the original checkout's existing documentation edits remain unchanged.
+Updated September 20, 2026. Owner-approved Wave 2 checkpoint: `d59d1f49f1bc44f9369baa3cdd541173eee5fd3f`. Integration branch: `codex/production-mega-sprint-wave2`. Implementation/QA checkpoint: `f9b8ce3b7c1329f2be502cfdf3d12adcbc8d8742`. Authorized base and remote main before approval: `0e52f446753caba88e98870c8785107aae92aa23`, fetched and reverified for this status-only approval. The owner authorizes fast-forwarding remote main from that exact base to the resulting approval commit. The original dirty checkout remains untouched.
 
 ## Milestone status
 
 - **Implemented:** the bounded Wave 2 configuration, local Library/compiler, World Logic/resolver, and staged recovery slices below.
 - **Integrated:** worker handoffs and Lead-owned shared contracts, migration, application routes, UI wiring, and production repairs on the isolated integration branch.
-- **Deterministically verified:** fresh complete suite, SQL upgrade/turn/authoring/recovery tests, typecheck, zero-warning lint, build, and privacy/import checks pass.
-- **Browser checked:** actual settings components with synthetic callbacks, desktop and 390×844, English/Russian. This was a temporary local harness, now removed; the dev server was stopped.
+- **Deterministically verified:** the complete suite, SQL upgrade/turn/authoring/recovery tests, typecheck, zero-warning lint, build, and privacy/import checks passed for the accepted implementation. They were not rerun for this status-only approval.
+- **Browser checked:** implementation checks covered actual settings components with synthetic callbacks, desktop and 390×844, English/Russian. The owner subsequently visually reviewed the disposable Wave 2 synthetic preview and approved the implemented UI direction and disclosed limitations.
 - **Not live-model-quality evaluated:** no provider requests, benchmarks, model bake-off, hosted database verification, real source/campaign imports, or production migration.
-- **Not owner accepted:** Wave 1 remains accepted. Wave 2 awaits owner review; A/B/C are not declared fully complete. World Lab, What-If, and Enter This World remain unstarted. Wave 3 has not started.
+- **Owner accepted:** the owner explicitly approves Wave 2 at exact SHA `d59d1f49f1bc44f9369baa3cdd541173eee5fd3f`, including the implemented UI direction and disclosed limitations after visual review of the synthetic preview. Wave 1 remains accepted; A/B/C are not declared fully complete. World Lab, What-If, and Enter This World remain unstarted. Wave 3 has not started.
 
 Owner click-through instructions and setup limits: [WAVE2_OWNER_GUIDE.md](WAVE2_OWNER_GUIDE.md). Frozen ownership/addendum: [WAVE2_CONTRACTS.md](WAVE2_CONTRACTS.md). Independent audit: [WAVE2_QA_REVIEW.md](WAVE2_QA_REVIEW.md).
+
+## Explicit owner acceptance and publication scope
+
+The owner explicitly accepts the bounded Wave 2 implementation at `d59d1f49f1bc44f9369baa3cdd541173eee5fd3f` after visually reviewing its synthetic preview. This acceptance changes only `DEV_STATUS.md` in one status-only commit on `codex/production-mega-sprint-wave2`. It authorizes a fast-forward of remote main only from `0e52f446753caba88e98870c8785107aae92aa23` to the resulting approved Wave 2 head, preserving the accepted checkpoint in ancestry.
+
+Approval verification checks the documentation diff, unchanged implementation tree, one direct approval commit, ancestry, clean integration worktree and exact remote main after the fast-forward. Application tests, typecheck, lint and build are not rerun for this documentation-only approval; the results below remain evidence from the accepted implementation. No force push, squash, rebase, implementation change, Wave 3 work, migration execution, deployment, provider/model call or real-data import is part of this approval task.
 
 ## What is usable
 
@@ -26,15 +32,15 @@ Lead owns the only additive migration, `supabase/migrations/202609200011_product
 
 Main areas: `src/lib/production`, `production-adapters`, `model-runtime/registry`, `rulesets/world-logic*`, `world/resolver`, `world-library`, `world-packs`, existing gameplay turn/runtime services and UI. New owner routes are `/api/settings/ai`, campaign `/production` and `/packs`, and `/api/world-library`; `/world-library` is owner guarded. Browser helpers/locales live outside the private Library subtree. Identity, World Events, Memory, Saves/Timelines, campaign/character/inventory state, provider profiles and Pack/source provenance retain one authority each. No dependency, backend, save engine, DM, deployment or framework configuration replacement was introduced.
 
-## Fresh verification
+## Implementation verification recorded at the accepted checkpoint
 
-- `node --test --test-concurrency=2 tests/*.test.mjs`: **530 collected, 529 passed, 0 failed, 1 skipped**. The skip is the existing opt-in live Supabase test and is not claimed as passed. These are fresh integrated results, including 126 additional Wave 2 cases.
+- `node --test --test-concurrency=2 tests/*.test.mjs`: **530 collected, 529 passed, 0 failed, 1 skipped**. The skip is the existing opt-in live Supabase test and is not claimed as passed. These are the recorded integrated implementation results, including 126 additional Wave 2 cases; they are not a fresh run for this approval commit.
 - `next typegen` then TypeScript `--noEmit`: **passed**, run sequentially after the final build to avoid generated-type output races.
 - Repository-wide ESLint `--max-warnings 0`: **passed, zero warnings**.
 - Next.js 16.3.5 production build, `next build --webpack`: **passed**. This worktree uses the existing dependency junction; default Turbopack rejects an external dependency junction. Webpack builds the same application without changing dependencies/configuration. A successful default Turbopack build is not claimed.
 - Disposable PGlite applies migrations 1–11 and exercises populated Wave 1 and older v1 save upgrades; settings ownership/revisions; actual compiler/source/Pack approval/pinning; no automatic Canon; source invalidation; full World Logic/resolver turn settlement; recovery across manual save/load/branch/head/epoch; cancellation/new action, duplicate callbacks and atomic rollback. No production data was used.
 - Independent E tests: **19 passed**; combined with five Lead turn integration cases, **24 passed**. All five recorded findings were repaired by Lead and verified: stale compiler approval, private-stage metadata leakage, exact-text SQL evidence mismatch, missing World Logic settlement bypass, and mixed-type resolver evidence indexes. Full-suite privacy/client-import and EN/RU checks also pass.
-- Separate browser checks: settings model/ruleset/world-policy changes, inherited/unavailable status, English/Russian, frozen controls after an unconfirmed write and exact-operation retry; no horizontal overflow at 390×844 and no console warnings/errors. Authenticated owner/database authoring and physical iPhone tests were not performed.
+- Separate implementation browser checks: settings model/ruleset/world-policy changes, inherited/unavailable status, English/Russian, frozen controls after an unconfirmed write and exact-operation retry; no horizontal overflow at 390×844 and no console warnings/errors. Those agent-run checks did not include authenticated owner/database authoring or physical iPhone testing. The subsequent owner visual review and acceptance of the synthetic preview are recorded above and do not establish live database or model-quality verification.
 - Git whitespace checks pass. Generated `next-env.d.ts` changes are restored. Original checkout `DEV_STATUS.md` and `PHASE3_EVALUATION.md` hashes match the recorded starting values.
 
 ## Worker handoffs
@@ -53,7 +59,7 @@ All coding/review work used requested Astra / Extra High. Three worker slots ran
 
 Global credential/default editing remains server configuration; the owner UI displays availability and campaign choices. No Test Connection button was added. The compiler is deterministic and limited to bounded TXT/Markdown patterns, not general natural-language Canon extraction, research, PDF/OCR, or arbitrary formats. Pack pinning does not build a complete playable world automatically; richer actor/thread authoring remains future work. World Logic effects/resolver decisions remain narrow; custom tabletop mechanics are not supported. Enabling overdue world schedules can stop for reconciliation that this wave does not expose. Legacy stages without captured proof cannot continue across changed fences; changed authoritative inputs require cancellation/review and an explicit new action.
 
-Owner review is the next gate. Using this branch against a real installation requires the normal reviewed migration/release step; no real database was upgraded or app deployed here. After review, recommend a bounded wave for richer reviewed capabilities/consequences, explicit overdue-schedule reconciliation and guided Pack review/pinning. Do not start World Lab, Enter This World or Wave 3 without owner review.
+Wave 2 owner review is complete. Publication is limited to the status-only approval commit and authorized fast-forward of main. Using the accepted implementation against a real installation still requires a separately reviewed migration/release step; no real database was upgraded or app deployed here. A possible next bounded wave remains richer reviewed capabilities/consequences, explicit overdue-schedule reconciliation and guided Pack review/pinning, subject to a new owner instruction. Stop after approval publication verification; do not start World Lab, Enter This World or Wave 3.
 
 ---
 
