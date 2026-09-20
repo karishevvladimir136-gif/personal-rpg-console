@@ -1,0 +1,29 @@
+# Production Mega Sprint — Wave 2 ownership and addendum
+
+Authorized base: `0e52f446753caba88e98870c8785107aae92aa23`, fetched and verified September 20, 2026. Wave 1 is owner accepted. This addendum extends, rather than replaces, `PRODUCTION_SPRINT_CONTRACTS.md`. No A/B/C completion, World Lab, Enter This World, live evaluation, real import, media, deployment or production migration is authorized.
+
+## Authority and execution
+
+Reuse canonical IDs, World Events/settlement, Memory, Saves/Timelines, campaign/character/inventory state, immutable Library/Pack provenance and ruleset/execution profiles. Lead alone owns migrations, shared contract surfaces, integration and DEV_STATUS. All workers use `gpt-6-astra` / `xhigh`. Three concurrent worker slots are available: B/C/D start immediately; A and independent E follow at the first available slots. Every worker uses an isolated branch/worktree. Workers commit, never merge; Lead integrates and pushes all branches.
+
+## Minimal shared additions
+
+- Add only `world.resolve` to the Lead-owned RuntimeTask/registry, retaining existing task contracts and registry compatibility for old profiles. Both bounded World Logic action interpretation and resolver proposals use this server-only structured seam. No compiler model task is necessary for the deterministic local compiler.
+- World Logic uses an optional internal turn checkpoint/proposal and dependency seam. Existing `DmPlan`, d20 checks and console-basic-v1 behavior remain intact. Worker C supplies strict pure validators and a requester adapter; Lead wires the existing turn engine and atomic settlement. Model prose cannot mutate state; unsupported consequences/uncertainty pause explicitly. Narration sees only validated public outcomes.
+- Recovery retains original input, checks, model profiles and staged provenance. Re-stage only after exact authoritative-input equality and current membership/fence validation; changing only a serving head/epoch is not permission to apply the old envelope. Record origin and continuation fences. Material changes yield a safe recovery state, cancel or an explicit new action. No reroll, duplicate event, sibling import or history rewrite.
+- Owner UI receives small allowlisted configuration/pinning DTOs, never FoundationSnapshot or private library/campaign material. Runtime credentials remain server environment only. Global default remains the accepted server setting; UI clearly shows inheritance and configured/unavailable status without automatic requests. Only console-basic-v1 and implemented World Logic are selectable.
+- World configuration changes one authoritative policy. Reconcile existing autonomy preference atomically with foundation policy; profile changes require a coherent idle boundary and retain historical state. No profile conversion or arbitrary custom mechanics.
+- Library authoring is explicitly owner scoped, separate from campaign Library. TXT/Markdown extraction preserves exact originals, SHA-256 digests, immutable versions and evidence locators. Compiler outputs reviewable drafts, contradictions, unknowns and coverage; never automatically approves Canon. Campaign binding pins approved immutable versions explicitly and does not repin after source changes.
+
+## Exclusive worker ownership
+
+| Worker | Files / duties |
+| --- | --- |
+| Lead | `src/lib/production/**`, `src/lib/model-runtime/registry.ts`, existing shared gameplay/persistence/memory/save contracts and turn engine, `src/lib/server/production-service.ts`, `supabase/**`, shell/navigation integration, cross-subsystem routes/services, `DEV_STATUS.md`, final production repairs |
+| A — configuration UI | New `src/components/production-settings.tsx`, new client configuration helpers, focused `tests/wave2-config*`; delegated existing settings components and styles after Lead coordination. Campaign model/task/inheritance/world/rules controls and global AI settings. No shared/migration edits. |
+| B — Library/compiler | `src/lib/world-library/**`, `src/lib/world-packs/**`, corresponding server adapters; new owner authoring service/routes/components under `world-library`; `tests/wave2-library*`, `tests/wave2-compiler*`. Lead connects shell/routes where shared. No ruleset/shared/migration edits. |
+| C — World Logic/resolver | New `src/lib/rulesets/world-logic*`, new `src/lib/world/resolver*`, new `src/lib/server/world/resolver*`; `tests/wave2-logic*`, `tests/wave2-resolver*`. Propose precise shared seam changes to Lead; no existing shared turn/store/migration edits. |
+| D — recovery | New `src/lib/production-adapters/world-recovery.ts` and focused `tests/wave2-recovery*`; inspect existing save/stage/lease SQL, supply a concrete minimal integration proposal and test fixtures. Lead implements shared turn/SQL/public recovery hooks. No migration or shared-contract edits. |
+| E — independent QA | `tests/wave2-qa*`, `WAVE2_QA_REVIEW.md`; adversarial tests and defect reports only. Lead owns production repairs. |
+
+Workers read the applicable specs and actual Wave 1 code, run focused tests, report exact branch/SHA/files/results/limitations and request only genuinely necessary shared additions. No live provider requests, web research, or real credentials/data use. Lead runs fresh complete suite, typecheck, zero-warning repository lint, production build, synthetic SQL upgrade/integration/privacy checks, then reports any separate synthetic browser checks. Implementation, integration, deterministic verification, browser checks, live quality and owner acceptance remain separate statuses.
