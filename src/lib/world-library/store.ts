@@ -145,6 +145,33 @@ export function createRpcLibraryStore(ownerId: string, execute: FoundationRpc) {
         e.visibility === "private" || source.body.visibility === "public",
         "scope",
       );
+      ensure(
+        source.body.knowledge !== "future_source" ||
+          e.knowledge === "future_source",
+        "scope",
+      );
+      // Wave 1 text locators were opaque. The local compiler declares exact UTF-16 spans.
+      if (
+        source.body.extraction.version === "text-evidence-v1" &&
+        source.body.original.kind === "text" &&
+        e.locator.kind === "text"
+      ) {
+        const span = /^(0|[1-9]\d*):(0|[1-9]\d*)$/.exec(e.locator.value);
+        ensure(span, "scope");
+        const start = Number(span[1]),
+          end = Number(span[2]);
+        ensure(
+          Number.isSafeInteger(start) &&
+            Number.isSafeInteger(end) &&
+            end > start &&
+            end <= source.body.original.text.length,
+          "scope",
+        );
+        ensure(
+          sha256(source.body.original.text.slice(start, end)) === e.digest,
+          "conflict",
+        );
+      }
     }
     if (record.kind === "compiler_job")
       ensure(
