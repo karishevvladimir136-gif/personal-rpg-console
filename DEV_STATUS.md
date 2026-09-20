@@ -1,8 +1,38 @@
 # Development status
 
-Last updated: September 19, 2026 (local; prior completed-status observation September 20 UTC). Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026 (local; retrieval September 20 UTC). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.8B FAL RESULT RETRIEVAL STOPPED AT ASSET-HOST POLICY; STOP FOR OWNER REVIEW.** Executed once from exact clean approved SHA `9160d9766559d38139a51516384461958399defc`, retrieval identity `phase38b-fal-retrieval-1`, hash `546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a`. Initialization occurred once with zero requests/reservations/generations. The single result GET returned **HTTP 200, exact response URL, no redirect**, and passed frozen optional result-identity validation. Parsing `world_file.url` then stopped with **B_INVALID_OUTPUT_OR_ASSET_URL / asset_host_not_allowed**. **Zero artifact downloads.**
+
+### Completed work and files / areas changed
+
+Retained permitted safe HTTP/identity/body-hash metadata and the exact stop reason in the new append-only local retrieval journal. No artifact bytes or raw provider body were retained. [Retrieval evidence report](experiments/phase38-spatial/results/FAL_RETRIEVAL_001.md) and [sanitized JSON](experiments/phase38-spatial/results/fal-retrieval-001.json) record actual observations, bounds and limitations. Only these two evidence documents plus this status changed in a separate evidence worktree. No harness repair, host-policy expansion, protocol, production, dependency, schema or UI change.
+
+### Tests and build status
+
+After the live stop, **441 deterministic tests passed; zero failures/skips/cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** Checks ran on unchanged approved code in the separate evidence worktree without deleting or editing live journals. All 47 frozen preparation inputs, original histories and 23 prior evidence files verified unchanged. Production full suite/build not rerun; production unchanged. Execution remains clean at the exact approved SHA.
+
+### Key decisions and accounting
+
+The frozen host policy was enforced exactly, then live activity stopped. No retry, diagnostic, research cycle, policy broadening or second retrieval. Safely reported actual model remains UNKNOWN/null; provider-reported request ID was null in the retained identity record, while the result route was pinned to the exact existing request. No model provenance is inferred. The returned expected-field path reached asset-host validation, but no asset descriptor qualified for download. The rejected hostname and further response fields were not retained by the frozen harness.
+
+**Accounting unchanged: $4.15 reserved / $4.75 ceiling; $2.528 known reported billing; fal-world charge UNKNOWN; $0.35 fal reservation counted once; $0.60 chest allocation unreleased.** No new reservation/refund or zero-charge assumption. Exactly one new result GET; lifetime totals are 45 API requests, eight downloads and three historical generation submissions. Zero polling, POST, generation, retry/resubmission, fallback, redirect following, artifact download, World Labs/billing/cancel/export/chest calls, next actions or approval records. Chest remains unattempted.
+
+### Known issues and remaining work
+
+Final finding **B** is an asset-policy rejection after result identity passed; it does not establish provider-generation failure. Historical queue-level COMPLETED and both older histories remain unchanged. No artifact bytes were downloaded: format, size, hash, structural/navigation usability and DRC availability are **UNVERIFIED**. Historical `export_drc=true` does not establish an actual DRC output. No C unsupported-format or D structural-pass finding was reached. Legitimate-host compatibility cannot be determined from the retained metadata alone.
+
+Prior room/courtyard acceptance remains narrow synthetic experiment approval, not final visual quality, collider navigation, metric alignment or production EXPLORE acceptance. Physical iPhone/Safari and the historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees; no hosted or real campaign/private-data acceptance. Main, roadmap branch, production and original checkout's pre-existing documentation edits remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of this exact result and host-policy stop.** Do not poll, retrieve again, download, broaden policy, reset history, generate, export, run chest/next, implement EXPLORE/renderer or deploy without new explicit authorization.
+
+---
+
+## Historical offline fal result retrieval preparation checkpoint
 
 **PHASE 3.8B OFFLINE FAL RESULT RETRIEVAL PREPARED; STOP FOR OWNER REVIEW.** The existing fal-world request `01a0bc76-ae7f-7e02-960b-a207094622d2` is confirmed **COMPLETED at queue level** by evidence `3371a20427c33abed810ff0af83a031c943090ac` (HTTP 200, exact response URL, no redirect, validated ID/state). **No result or artifact has yet been retrieved.** The original STOPPED continuation and completed-status recovery journal remain unchanged.
 

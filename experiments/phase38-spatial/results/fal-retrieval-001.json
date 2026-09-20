@@ -1,0 +1,190 @@
+{
+  "version": "phase38b-fal-retrieval-evidence-1",
+  "recordedAtUTC": "2026-09-20T02:54:57.280Z",
+  "executionSHA": "9160d9766559d38139a51516384461958399defc",
+  "executionBranch": "codex/phase38-fal-retrieval-preparation",
+  "cleanExecutionVerifiedBeforeAndAfter": true,
+  "retrievalIdentity": "phase38b-fal-retrieval-1",
+  "retrievalHash": "546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a",
+  "freezeFileSHA256": "c787942ded0ed6af03a179cd68e15afd4f282e75537bfce4a3e8b64cef7b8c10",
+  "completedStatusEvidenceCommit": "3371a20427c33abed810ff0af83a031c943090ac",
+  "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+  "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "originalStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "provider": "fal",
+  "requestedModel": "fal-ai/hunyuan_world/image-to-world",
+  "actualModel": null,
+  "actualModelAvailability": "UNKNOWN",
+  "initialization": {
+    "count": 1,
+    "rootAndAnchorAbsentBefore": true,
+    "emptyJournalVerified": true,
+    "providerRequests": 0,
+    "newReservations": 0,
+    "generations": 0
+  },
+  "observation": {
+    "startedAtUTC": "2026-09-20T02:52:17.912Z",
+    "resultRequestAtUTC": "2026-09-20T02:52:17.917Z",
+    "http": {
+      "classification": "exact_response_url",
+      "httpStatus": 200,
+      "location": {
+        "present": false,
+        "valid": false
+      },
+      "redirect": false,
+      "requestedURLHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+      "response": {
+        "allowedQueuePath": true,
+        "credentialsPresent": false,
+        "fragmentPresent": false,
+        "hostname": "queue.fal.run",
+        "hostnameHash": "cd914202c0e392feec9617458b9f655a91a2f45ca631c057bf5ae0a6bd336832",
+        "path": "/fal-ai/hunyuan_world/requests/01a0bc76-ae7f-7e02-960b-a207094622d2",
+        "pathHash": "fa72af9048155e86eb2b727ffc98b4335e135847ce69c36592522e1c1f42c535",
+        "portPresent": false,
+        "present": true,
+        "queryPresent": false,
+        "scheme": "https",
+        "urlHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+        "valid": true
+      },
+      "responseURLMatches": true,
+      "stage": "result",
+      "statusQualification": "provisional_200_candidate"
+    },
+    "identity": {
+      "actualModel": null,
+      "bodyHash": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+      "providerReportedRequestId": null,
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2"
+    },
+    "identityValidation": "PASSED under frozen optional-field contract; providerReportedRequestId and actualModel are null, not inferred from route",
+    "terminal": {
+      "billing": "UNKNOWN",
+      "finding": "B_INVALID_OUTPUT_OR_ASSET_URL",
+      "reason": "asset_host_not_allowed",
+      "stage": "result",
+      "status": "STOPPED_AWAITING_OWNER_REVIEW"
+    }
+  },
+  "output": {
+    "relevantField": "world_file.url",
+    "fieldObservationBasis": "The frozen falOutput path reached assetUrl for world_file.url and failed asset_host_not_allowed. This identifies the parser path; raw body and further field metadata were not retained.",
+    "acceptedAssetDescriptor": false,
+    "assetHost": null,
+    "assetHostAvailability": "UNKNOWN; rejected host was not retained by the frozen harness",
+    "signedURLRetained": false,
+    "drcRequestedHistorically": true,
+    "drcActuallyObserved": "UNVERIFIED",
+    "artifactDownloads": 0,
+    "detectedFormat": null,
+    "bytes": null,
+    "sha256": null,
+    "structuralMetadata": null,
+    "structuralUsability": "UNVERIFIED; no asset downloaded",
+    "navigationUsability": "UNVERIFIED",
+    "providerGenerationFailureEstablished": false
+  },
+  "network": {
+    "newProviderRequests": 1,
+    "resultGETs": 1,
+    "artifactDownloads": 0,
+    "statusGETs": 0,
+    "POSTs": 0,
+    "generationSubmissions": 0,
+    "retries": 0,
+    "resubmissions": 0,
+    "fallbacks": 0,
+    "redirectsFollowed": 0,
+    "worldLabsCalls": 0,
+    "billingEndpointCalls": 0,
+    "cancellations": 0,
+    "chestCalls": 0,
+    "exportCalls": 0,
+    "nextInvocations": 0,
+    "retrieveInvocations": 1,
+    "additionalRetrievals": 0
+  },
+  "accounting": {
+    "unchanged": true,
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 44,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "refunds": 0,
+    "falBillingStatus": "UNKNOWN",
+    "fullFalReservationRetainedOnce": true,
+    "cumulativeAPIRequestsAfter": 45,
+    "cumulativeDownloadsAfter": 8,
+    "generationSubmissionsAfter": 3,
+    "chestAttempted": false
+  },
+  "integrity": {
+    "verifiedSources": {
+      "originalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+      "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+      "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e"
+    },
+    "sourceFiles": {
+      "experiments/phase38-spatial/private-continuation/journal.jsonl": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508",
+      "experiments/phase38-spatial/private-continuation/witness.jsonl": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758",
+      "experiments/phase38-spatial/private-continuation/identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+      "experiments/phase38-spatial/private-continuation.anchor": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+      "experiments/phase38-spatial/continuation.json": "debb7c56ea75d4d6efd5b78d2b9d0544b94e6e0913f4f53408a66b49257ee31b",
+      "experiments/phase38-spatial/protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+      "experiments/phase38-spatial/freeze.json": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e"
+    },
+    "priorRecoveryFiles": {
+      "journal.jsonl": "f017d56724bc75ee6b38522a4b439c890f9d74868f2b47fd0d0f72d6e7e701e6",
+      "witness.jsonl": "27c26e496201a6a1880bf1bdb9fb57725ecc6a250cff753704714318cf837b81",
+      "identity.json": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d",
+      "../private-fal-recovery.anchor": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+    },
+    "retrievalJournalSHA256": "ba680b1974f1e31e884dbe97c43b4734390d365a0f341e449a92dcccab2d6d4a",
+    "retrievalWitnessSHA256": "34b6f7f260f4995af7a961b8adeca8b66eff5694effef04db4757a90d8a5f0fc",
+    "retrievalIdentitySHA256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a",
+    "retrievalAnchorSHA256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a",
+    "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+    "retrievalJournalEntries": 5,
+    "originalRoomStoppedHistoryUnchanged": true,
+    "priorEvidenceFilesUnchanged": 23,
+    "approvedFreezeInputsUnchanged": 47
+  },
+  "verification": {
+    "afterLiveStop": true,
+    "deterministicTests": {
+      "passed": 441,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS with zero warnings",
+    "isolatedExperimentBuild": "PASS",
+    "location": "separate evidence worktree at unchanged approved code; live journal kept intact in execution worktree",
+    "productionSuiteAndBuild": "NOT RERUN; production unchanged",
+    "productionUnchanged": true,
+    "originalDocumentationEditsUntouched": true,
+    "roadmapBranchUntouched": true
+  },
+  "limitations": [
+    "Asset-host policy rejected the returned world_file URL; no policy broadening, diagnosis, repair or retry was attempted.",
+    "Actual rejected hostname and additional output fields are unavailable in retained safe evidence.",
+    "No artifact format, bytes, hash, DRC availability, structural or navigation usability can be claimed.",
+    "Historical COMPLETED status and original STOPPED history remain unchanged; this is not a finding that generation failed.",
+    "Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified; no hosted or real campaign/private-data acceptance."
+  ],
+  "nextStep": "STOP for owner review. No further provider calls, second retrieval, polling, chest, regeneration, export, policy change or deployment."
+}
