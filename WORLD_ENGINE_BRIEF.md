@@ -8,6 +8,8 @@ Natural language in → structured reality underneath → natural language out. 
 
 The primary gameplay DM remains one runtime. A World Resolver is a bounded structured decision task used by it and by the future Lab. It has no personality, player conversation or autonomous agenda. There is no LLM per NPC and no second DM.
 
+Future [DM Craft](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design) supplies compact approved Doctrine and relevant stage-specific techniques to this same DM after foundations/integration begin. Owner-scoped global Craft and campaign-scoped DM Style remain separate from Actor/Thread/Event/Hook state, Canon and Memory. Guidance may improve proposed consequences or presentation but cannot create an Event, grant knowledge, override Deadline Pressure/World Autonomy or commit world mutations. Explicit World Authoring remains a separate validated operation; approving a card or style preference never invokes it. See the [progressive roadmap](DEVELOPMENT_PLAN.md#progressive-dm-craft-slices-after-world-engine-foundations); Craft is not a new foundational dependency or implementation authorization.
+
 Related proposals: [World Library / Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md), [World Lab / What If](WORLD_LAB_WHAT_IF_BRIEF.md), [Rulesets / Dynamic UI](RULESETS_AND_DYNAMIC_UI_BRIEF.md), and [Model Runtime](MODEL_RUNTIME_BRIEF.md). MASTER_SPEC §44 is the design entry point; DEVELOPMENT_PLAN lists separately reviewable implementation slices. The following names describe logical contracts, not new SQL tables or executable DTOs.
 
 ## What the accepted implementation actually provides

@@ -14,6 +14,34 @@ These are useful seams, not an existing multi-provider runtime. Model budgets an
 
 OpenAI, Anthropic, Google and Kimi are candidate integrations, not verified capability or availability claims in this design. Verify official provider documentation, actual API identifiers, data controls, context accounting and supported reasoning/options when a specific implementation is authorized. No universal reasoning-effort string or context-window size is assumed here.
 
+## DM Craft context and authority — future design
+
+The existing `DmProvider.plan()`, `narrate()` and `feedback()` remain the single DM boundary. DM Craft is reusable owner-approved guidance for the frontier reasoning/generative model, not a second DM, agent, factual Memory store or fine-tuned replacement. Product/approval semantics live in [MASTER_SPEC](MASTER_SPEC.md#dm-craft-and-campaign-dm-style--future-product-design) and [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md#36-dm-craft--reusable-owner-approved-education).
+
+Conceptual flow: **authoritative RPG state + Canon / Memory + approved Global DM Craft + Campaign DM Style → existing DmProvider stages → server validation of consequences → authoritative commit**. These inputs retain separate authority and visibility; this is not permission to send private planning context to every stage. `feedback()` returns proposals for explicitly approved preferences/Craft, never world mutations. `plan()` and `narrate()` retain their existing structured plan/result contracts and validated public/private patch separation.
+
+| Stage | Relevant Craft emphasis |
+| --- | --- |
+| `plan()` | Quest structure, systemic freedom, world consequences, Actor/Thread interactions, investigation, factions, fail-forward, alternate approaches, agency and recovery from unexpected actions |
+| `narrate()` | Scene directing, dialogue, NPC initiative, pacing, sensory presentation, dramatic tension, companion spotlight, callbacks and tone |
+| `feedback()` | Owner's explicit teaching/style request and the small applicable approved guidance set; propose a reviewable scoped change, never self-approve it |
+
+A card may apply to both planning and narration. Keep Core Doctrine compact and versioned; retrieve only a small relevant, approved subset of the larger Craft Library for each stage. Never send the full library every turn or displace mandatory rules, current state or required evidence. Prefer ordinary Supabase/Postgres structures and the existing authorized retrieval capabilities with a distinct guidance record kind/filter, not a new vector database, backend, agent framework, hosted orchestration product or knowledge SaaS. Stage tags, relevance conditions and bounded text selection can provide an initial path without a classifier dependency.
+
+Conceptual storage separates owner-scoped Doctrine, Craft Cards, Craft Packs, source provenance and owner-approved examples from campaign-scoped DM Style, feedback and overrides (all with `campaign_id`). Authoritative world/campaign state is separate from both. A Craft Pack is not a World Pack: it supplies techniques, not entities, source-world facts or campaign truth. Campaign-derived examples retain restricted provenance; only explicitly approved, sanitized/generalized examples may become global material. Imported source text is untrusted data, not executable instruction or automatic approval.
+
+Authorize scope, active approval/version and stage eligibility before retrieval. Revalidate effective revisions at the operation boundary. No card grants tools, bypasses actor knowledge/secrecy, invents established facts, changes dice or directly creates/persists canonical state. Manual owner corrections/decisions outrank Craft; explicit campaign style specializes general guidance but cannot override mechanics, canon, agency, privacy, autonomy/deadline policies or authoritative commit. Resolve incompatible preference proposals explicitly, not through hidden rule rewriting. Missing optional Craft material must not fabricate instructions or facts; use an explicitly defined bounded policy and record absence without weakening mandatory context checks.
+
+### Craft trace, saves and retry provenance
+
+Keep a bounded server-side trace of selected Doctrine/Card/Pack IDs and exact versions, applicable stage, campaign-style revision and existing operation/execution identity. For example a plan may select `systemic-alternate-solution v3`, `witness-propagation v2` and `persistent-consequence v1`; these illustrate metadata only, not implemented cards. A selection trace shows what was supplied, not proof that the model used it correctly. Paired with permitted outcomes/evaluation, it helps distinguish missed retrieval, wrong selection, poor application and pack regressions.
+
+This is not chain-of-thought. Never request, store or expose model private reasoning. Selected IDs/versions can themselves reveal private routing, so keep detailed traces server-only; any later owner-facing diagnostics use a separately validated spoiler-safe projection without private IDs, counts or raw context.
+
+Future campaign DM Style revisions extend existing saved effective settings/guidance and timeline fencing with compatible readers; old saves remain loadable. Global Craft version history is not rolled back by loading a campaign. Pin approved guidance versions per operation: pending/retried operations keep their original versions unless an explicit validated continuation boundary is approved, while the next new operation resolves current approved global Craft plus restored effective campaign style. No mid-turn rule switch, past-event reinterpretation, model call merely to load, or second save system. Corrections/authorization are still revalidated; an unsafe pending continuation pauses rather than bypassing them.
+
+Lightweight [Craft Academy scenarios](RPG_DESIGN_DOCTRINE.md#owner-feedback-corpus-and-dm-craft-evaluation--academy) compare baseline and candidate packs outside gameplay. Deterministic approval/scope/provenance/privacy checks and separately authorized model-quality evaluation are different gates. Fine-tuning is optional and late, after Doctrine, cards, retrieval, owner feedback and evaluation; it requires a separate provider/model/data/privacy/cost review and is never a runtime dependency. No schema, retrieval, provider call or behavior is implemented by this addition.
+
 ## Minimal logical contracts
 
 | Concept | Responsibility |

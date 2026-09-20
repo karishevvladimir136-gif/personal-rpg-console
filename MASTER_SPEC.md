@@ -244,9 +244,9 @@ Campaign art creates identity; the overall app shell stays consistent.
 
 The app has three distinct levels (consolidated owner requirement, section 36):
 
-- **Main menu:** Campaigns, General Settings, Exit. No campaign sidebar, character data, or gameplay bottom navigation. Before authentication, Exit explains that sign-out is unavailable; it never closes the browser, stops the server, or erases preview state.
+- **Main menu:** Campaigns, future **DM Craft**, General Settings, Exit. DM Craft is a first-class owner-scoped application destination outside campaigns. No campaign sidebar, character data, or gameplay bottom navigation. Before authentication, Exit explains that sign-out is unavailable; it never closes the browser, stops the server, or erases preview state.
 - **Campaign selection:** existing cards, management previews, New Campaign preview, and Back to main menu. Continue opens the selected campaign's Game. Concepts remain clearly unstarted and cannot resolve to another campaign's data.
-- **Inside a campaign:** Game, Chat with DM, Character, Inventory, Party, Journal, Map, Library, Gallery, Sessions, Saves, Campaign Settings, and a separate Back to campaigns control. Show the active campaign name. Mobile bottom navigation is restricted to this level; Saves uses More. Camp is entered from Game → Rest → Long Rest, not a permanent recovery shortcut.
+- **Inside a campaign:** Game, Chat with DM, future **DM Style**, Character, Inventory, Party, Journal, Map, Library, Gallery, Sessions, Saves, Campaign Settings, and a separate Back to campaigns control. DM Style is a first-class campaign section, never a global preference. Show the active campaign name. Mobile bottom navigation is restricted to this level; Saves uses More. Camp is entered from Game → Rest → Long Rest, not a permanent recovery shortcut.
 
 Future design adds **World / Мир**, containing Live World and What If, without replacing Saves. Owner-level World Library is distinct from campaign Library. Preserve the current hierarchy, bilingual presentation and mobile More pattern; this document adds no navigation implementation.
 
@@ -687,6 +687,8 @@ No campaign should auto-generate a story unless user explicitly requests it.
 
 The DM is one primary AI runtime.
 
+Future DM Craft adds non-canonical guidance to that same runtime: **authoritative RPG state + Canon / Memory + approved Global DM Craft + Campaign DM Style → existing DmProvider plan / narrate / feedback → server-validated consequences → authoritative commit**. Stage-specific privacy still applies; feedback proposes preferences, not gameplay consequences. The frontier model remains the reasoning/generative engine. See [DM Craft runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design).
+
 It uses the campaign's selected execution policy and applicable ruleset. OpenAI is the accepted initial transport, not a universal dependency. Future World Resolver/Compiler/Memory tasks return bounded validated proposals through the shared Model Runtime; they are not autonomous DMs. Models never write state directly. Proposed world settlement extends the durable turn lifecycle with atomic player/world outcomes, recorded dice and the existing timeline fences (World Engine brief).
 
 Do not begin with a swarm of agents.
@@ -1008,6 +1010,8 @@ CAMPAIGN SETTINGS — PER CAMPAIGN
 - General: campaign language (independent of interface language) and campaign visual preferences
 - dedicated **Rules & Play Style** tab: difficulty/rules, story structure, player role, world autonomy (section 33), and Checks & Dice (section 35)
 - mature tone
+
+Future **Campaign → DM Style** provides a small understandable home for DM behavior preferences, integrating existing narrative settings/approved guidance without duplicating their sources of truth. Global **Main menu → DM Craft** is separate: reusable owner-approved education, not campaign settings or canon. See [the DM Craft product contract](#dm-craft-and-campaign-dm-style--future-product-design).
 
 Difficulty is a campaign setting, never a global application preference. Each campaign's rules system determines which mechanical controls apply.
 
@@ -1802,6 +1806,28 @@ Preserve the approved visual language and bilingual UI. Persistent routes use ac
 Verification must distinguish SQL tests with an auth stub from actual Supabase Auth/REST and application/browser cookie integration. Missing configuration is a blocker to acceptance, not proof of persistence. Never use a mock store as a hidden substitute for the persistent application. Preserve the approved checkpoint, commit migrations, inspect targets before applying them, and do not seed real campaign/private material or destructively reset an existing target.
 
 # 40. Chat with DM and DM Guide
+
+The Phase 1/2 contracts below describe existing foundations. The future DM Craft extension is additive design, not a claim that the new screens, controls or retrieval already exist.
+
+## DM Craft and Campaign DM Style — future product design
+
+**DM Craft = what my DM has learned. Campaign DM Style = how I want my DM to run this particular campaign.**
+
+Application/main menu → **DM Craft** is owner-scoped and reusable across campaigns. Possible internal sections are Doctrine, Craft Library, Teach DM, Sources / Packs, Approved Examples and Evaluation. These can arrive progressively; the first implementation need not provide all sections. This destination is not campaign canon, Memory, DM-private state, a campaign setting, a second DM, an autonomous agent or direct fine-tuning. [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md#36-dm-craft--reusable-owner-approved-education) defines the compact Core Doctrine, relevant Craft Cards, approval/version history, sources, examples and Academy.
+
+Selected Campaign → **DM Style** is campaign-scoped (`campaign_id`) and controls future conduct in that campaign. Prefer a small set of understandable controls plus natural-language feedback, not dozens of mandatory sliders. Directional examples include NPC Initiative and Companion Agency (Low / Normal / High), World Reactivity, Description Density, Dialogue Density, Dramatic Pace, Humor, Mystery, Combat Frequency, Romance, Fail-Forward Strength, Systemic Freedom emphasis, narrative tone and DM presence/conversational style. These are not a mandatory enumeration. Style cannot override authoritative mechanics, actor knowledge, committed consequences, explicit World Autonomy or Deadline Pressure policies.
+
+Integrate existing campaign guidance/settings history: approved style revisions follow the existing timeline-specific effective settings/guide model. Saves pin their effective revisions; load/fork/switch restores the applicable style for future play while preserving immutable history and `campaign_id`. Session-only feedback still expires with its session. Global Craft versions remain owner-scoped outside campaign rollback; an old save cannot rewrite the owner's global library. Runtime provenance pins the versions used by historical/pending operations; see [runtime save and retry rules](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design). This is a future extension requiring compatible save readers, not a change to accepted manifests today.
+
+Chat with DM uses the same `feedback()` boundary to propose reviewable changes with explicit scope:
+
+- “Companions are too passive. Let them initiate conversations more often.” → propose **Companion Agency: Normal → High** for this campaign; the owner explicitly applies it.
+- “Make this campaign more slow-burn and mysterious.” → propose Campaign DM Style or other appropriate campaign-scoped guidance, prospectively only.
+- “I hate quests where there is only one intended solution in any of my campaigns.” → with explicit global teaching intent, propose a Global DM Craft Card; require explicit owner approval before activation.
+
+Never silently promote campaign feedback into global doctrine. Ambiguous scope stays a proposal until the owner chooses it. Teach DM offers Approve / Edit / Reject without prompt, JSON or code editing. Only approved material is active; durable edits are versioned and reversible, and manual owner decisions take precedence over Craft. A guidance approval cannot create a world fact. The separate World Authoring extension below still requires its bounded validated mutation path; neither teaching nor style changes invoke it implicitly.
+
+Implementation follows [progressive DM Craft slices](DEVELOPMENT_PLAN.md#progressive-dm-craft-slices-after-world-engine-foundations) after World Engine foundations begin. No fine-tuning, retrieval, runtime, database or UI work is implemented by this specification update.
 
 ## Purpose and Phase 1 scope
 

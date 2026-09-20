@@ -515,3 +515,65 @@ Never conflate:
 - quest/deadline pressure.
 
 They are separate design dimensions.
+
+## 36. DM Craft — reusable owner-approved education
+
+**Future product architecture only.** The owner should progressively teach and shape the DM over years without editing prompts, JSON or source code. The frontier model remains the reasoning/generative engine; DM Craft supplies reusable principles and techniques, not model fine-tuning or authoritative world state.
+
+**DM Craft = what my DM has learned. Campaign DM Style = how I want my DM to run this particular campaign.** Global DM Craft is an owner-scoped, first-class main-menu destination outside campaigns. Campaign → DM Style belongs inside the selected campaign. See [product navigation and feedback](MASTER_SPEC.md#dm-craft-and-campaign-dm-style--future-product-design), [runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design) and [progressive roadmap](DEVELOPMENT_PLAN.md#progressive-dm-craft-slices-after-world-engine-foundations).
+
+Global DM Craft is neither campaign canon, campaign Memory, DM-private world state, a campaign setting, a second DM, an autonomous agent nor direct fine-tuning. It cannot mutate the game. Manual owner corrections/decisions have highest authority over Craft, while code-enforced mechanics, secrecy and authoritative world facts remain binding.
+
+### Core Doctrine and Craft Library
+
+**Core Doctrine** is a deliberately short, high-value, versioned set of approved principles supplied broadly to relevant planning. The full design document is source material, not an enormous permanent system prompt. A future compact selection may say:
+
+- Respect plausible free-form intent; systems define constraints and authoritative state defines truth.
+- Present problems with alternate approaches, not single intended puzzle solutions.
+- Unexpected valid actions create consequences, not invisible walls; failure usually changes the situation rather than halting play.
+- NPC knowledge is not world truth; rumors remain claims and POV boundaries remain binding.
+- Companions/NPCs have goals and initiative; persistent consequences remain persistent.
+- Never repair a quest by silently invalidating player choices.
+
+**Craft Library** is a larger versioned collection of structured Craft Cards, retrieved only when relevant. A conceptual card contains stable ID, title, category, when relevant, guidance, avoid/anti-patterns, optional examples, source/provenance, version, approval status and applicable DM stages. Only approved versions are active; cards are guidance, never facts about the current campaign.
+
+Categories may include Quest Structure, Systemic Play, Investigation, Failure / Recovery, Factions, NPC / Companion Behavior, Scene Directing / DM Performance, Dialogue, Dramatic Pacing, Mystery, Exploration, Political / Strategic Play and World Reactivity. Material can cover player agency, fail-forward, quest resilience, honeycomb structures, actor autonomy, knowledge/POV boundaries, fair warning/urgency, micro-reactivity, moral conflict, delayed consequences and spotlight management. Categories are organizational aids, not mandatory subsystems.
+
+### Teach DM and Sources / Packs
+
+In the future **Teach DM** workflow, the owner can say: “I like how systemic games let me solve problems in unexpected ways. The DM should not force me back onto the intended route.” The same DM feedback boundary proposes a structured card; the owner can **Approve, Edit or Reject** in ordinary language. Only an explicitly approved version becomes active. All durable changes, including doctrine edits and pack activation, are versioned and reversible; restoring an older choice creates a new effective revision and preserves history. The AI cannot silently rewrite its own rules.
+
+A bounded Sources / Packs workflow may accept owner notes, documents, analysis, appropriate references and separately authorized research/import results. It extracts proposed techniques into a pack such as **Modern Systemic RPG Quest Design v1**. Review must identify which card versions the owner is approving; unapproved cards remain inactive. Sources themselves never automatically become runtime instructions. Preserve references/provenance, owner-authored notes and derived principles rather than proprietary scripts, complete quest text or long actual-play transcripts. Import or research requires its own authorization; this addition starts neither.
+
+Scene Directing / DM Performance explicitly supports general techniques from tabletop GM practice and owner-approved actual-play analysis, including Critical Role: NPC initiative, scene breathing room, tension escalation, delayed reveals, companion spotlight, distinct NPC goals, callback payoff, character-driven detours and maintaining momentum during improvisation. It is not “imitate Matt Mercer” or reproduction of a living creator's distinctive expression. These techniques primarily inform narration and appropriate social/scene planning.
+
+### Initial candidate material — not implemented cards
+
+The existing roadmap already supplies candidate material for a future owner-approved **RPG Console Core Craft** pack. The principles above, [Systemic World References](SYSTEMIC_WORLD_REFERENCES.md) and [POV / World Leverage](POV_AND_WORLD_LEVERAGE.md) contain lessons derived from:
+
+- Larian / BG3 player-first systemic freedom; Deus Ex / immersive-sim problems-not-puzzles and recovery.
+- New Vegas honeycomb quests; Disco Elysium micro-reactivity and fail-forward; Wildermyth character consistency.
+- Pathfinder: Wrath of the Righteous embodied/strategic scale and transformative identity.
+- Kingmaker realm-as-Actor, delegation and fair urgency; Rogue Trader jurisdictional authority, rumors ≠ facts, holdings/projects and officer companions.
+- POV / World Leverage, selective simulation, persistent consequences and campaign resilience after unexpected actions, plus other approved roadmap research.
+
+These are documented sources from which cards can later be produced and reviewed, not an active library or an already-approved pack. No new research cycle is needed for this design addition.
+
+### Owner feedback corpus and DM Craft evaluation / Academy
+
+Later, **Great DM response**, **Bad DM behavior** and an explanation of why may create non-canonical improvement/evaluation examples with provenance and approval status. They are not world canon, Memory facts or private campaign truth. A campaign-linked example retains its campaign/timeline/operation scope; promotion into the global approved corpus requires explicit owner approval and removal of campaign/private facts, preferably by synthetic abstraction. An approval never waives secrecy or permits cross-campaign retrieval of original facts.
+
+Examples may later support relevant retrieval, regression fixtures, preference evaluation and an optional future fine-tuning dataset. Evaluation uses synthetic or explicitly approved scenarios in development/QA, never authoritative gameplay. A lightweight Academy should test:
+
+- A previously killed quest-giver leaves only causally plausible recovery paths, without resurrection or erased consequences.
+- An unexpected infiltration approach is judged against constraints rather than an intended route.
+- Failed persuasion creates a plausible complication rather than an automatic dead end.
+- A companion with relevant expertise gets an opportunity for initiative without deciding for the player.
+- An NPC cannot know DM-private information; rival factions retain independent interests.
+- Prior player consequences remain committed rather than silently undone.
+
+Where useful, compare baseline DM against DM plus a proposed Craft Pack on the same frozen scenarios/model/context, record expected behavior, regressions and limits, and review before declaring benefit. Candidate versions may enter isolated evaluation without becoming active gameplay guidance. No evaluation or model call is executed by this documentation pass.
+
+### Fine-tuning is optional and late
+
+First build compact Doctrine, Craft Cards, relevant retrieval, owner feedback and synthetic evaluation. Only sufficient owner-approved/evaluated data could justify later consideration of supported fine-tuning or preference training. A possible record is world/context + player action → preferred plan, or same context → response A versus B → owner preference. A separate provider/model/data/privacy/cost review and explicit authorization are required. The application must remain fully functional without fine-tuning; it is neither a dependency nor current implementation work.

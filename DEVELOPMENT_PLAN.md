@@ -322,6 +322,24 @@ No Decision Model spike is a C prerequisite. Jev evaluation is closed and cannot
 
 Future gate: time/no-op/autonomy/deadline/fair-warning behavior, long skips stopping honestly at evaluated horizons, no autonomous PC decisions, duplicate/failed/stale settlement without partial mutation/reroll, private events/actor knowledge isolation, exact old/new save restore and source invalidation. World/Мир → Live World is public-only and bilingual/mobile. No agent-per-NPC, full economy or continuous simulator.
 
+## Progressive DM Craft slices after World Engine foundations
+
+This is an incremental addition to the World Engine/DM roadmap, not a giant separate milestone or a prerequisite blocking core production. The letters below describe this sequence, not replacements for Phase 3.75 A–E. Each implementation slice still needs separate scope/authorization; this pass changes documentation only. References: [DM Craft product/navigation](MASTER_SPEC.md#dm-craft-and-campaign-dm-style--future-product-design), [Doctrine and teaching workflow](RPG_DESIGN_DOCTRINE.md#36-dm-craft--reusable-owner-approved-education), [single-DM runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design).
+
+| Order | Small future slice | Review outcome |
+| --- | --- | --- |
+| A | World Engine foundations: Actors → Threads → Events → Hooks and authoritative consequences | Stable identities, bounded causal settlement and privacy; no Craft-owned world state |
+| B | DM / World Engine integration | Existing DmProvider plans/narrates validated outcomes through one authoritative commit path |
+| C | DM Craft v1: compact Core Doctrine, initial owner-approved Craft Cards, stage-aware plan/narrate retrieval, provenance and synthetic regression/eval coverage | Approved versions only, small relevant subsets, unchanged authority/secrecy, baseline-versus-pack comparison where useful |
+| D | Campaign DM Style integration | Small understandable controls and natural-language proposals; explicit application, campaign isolation and correct saved/timeline effective revisions |
+| E | Global DM Craft UI / Teach DM | First-class application main-menu destination; Approve / Edit / Reject, version history and reversible changes without prompt/JSON editing |
+| F | Sources / Craft Packs and owner feedback corpus | Bounded separately authorized imports, provenance, explicit activation, non-canonical examples and safe generalization before global reuse |
+| G | Optional fine-tuning evaluation much later | Sufficient approved/evaluated data plus separate provider/model/data/privacy/cost review; product remains complete without training |
+
+The first **RPG Console Core Craft** pack can later be produced from existing documented RPG references and doctrine; no cards or pack are implemented or automatically approved by this roadmap. Scene Directing / DM Performance is supported alongside systemic/quest techniques. Sources, examples and Evaluation/Academy screens can arrive progressively after the conceptual global destination is established; do not require every section for v1.
+
+Preserve **Application → DM Craft** versus **Campaign → DM Style**, the single DM and the separation of guidance from Canon / Memory / private truth regardless of exact implementation slicing. Candidate packs are tested only in isolated synthetic or explicitly approved evaluation; Academy is QA, not gameplay authority. Do not restart research, execute evaluations, add infrastructure or alter Phase 3.8B as part of this documentation addition.
+
 ## 3.75D — World Lab / What If and parallel realities
 
 Reference: [World Lab / What If](WORLD_LAB_WHAT_IF_BRIEF.md).
