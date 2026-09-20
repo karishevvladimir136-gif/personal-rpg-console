@@ -4,6 +4,34 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B EXACT FAL ARTIFACT RETRIEVAL STOPPED BEFORE INITIALIZATION / NETWORK; STOP FOR OWNER REVIEW.** Approved clean execution SHA dcbf8105ce7e18928901620dcf899d76ec000e8b, retrieval identity phase38b-fal-exact-artifact-1, manifest hash 310e802e1df5781a97336f9915668855421a50ff17e0c74532c44fc5df647f53. Initial local preflight passed. The single init invocation then failed the frozen **artifact_private_ignore_required** assertion: the ignore check matched the anchor but not the absent directory argument (1 match, expected 2). **Successful initializations: 0. Result GETs: 0. Artifact GETs: 0. Asset DNS: 0.** No ledger/anchor/artifact was created; no retry or harness repair occurred.
+
+### Completed work and files / areas changed
+
+Verified exact clean HEAD, 63 frozen inputs, manifest/freeze hashes, accepted diagnostic evidence 745ee77f32ca61f795948f1292f7921d4fe406e7, all prior history bindings and unchanged accounting. After the CLI stop, read-only evaluation identified the exact failing guard at src/fal-artifact-cli.ts:89. Retained [sanitized stop report](experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_001.md) and [JSON evidence](experiments/phase38-spatial/results/fal-exact-artifact-001.json). Only those two files and this status changed in a separate evidence worktree. The approved execution branch remains clean and unchanged; all prior evidence/history is preserved.
+
+### Tests and build status
+
+After the stop: **674 deterministic experiment tests passed; zero failures, skips or cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** The suite does not cover this failing fresh CLI initialization guard: it checks ignored child artifact paths and anchor, rather than the CLI's absent directory argument. Passing deterministic tests do not establish successful live retrieval. No production suite/build rerun; production unchanged.
+
+### Key technical decisions and accounting
+
+The owner authorized execution of the frozen checkpoint only, so the local failure was preserved without repair, reset, directory creation or replay. Initialization was invoked once but failed before initializeArtifact; retrieve/audit were not invoked. Credential presence was verified locally without disclosure; no credential was sent anywhere. Provider HTTP outcomes, current body equality, artifact size/hash, ZIP inventory, DRC/GLB/glTF findings and structural/visual/navigation usability remain **UNOBSERVED / UNVERIFIED** for this attempt. Global/persistent host allowlists are unchanged.
+
+Accounting remains **$4.15 / $4.75 reserved; $2.528 known reported billing; fal-world billing UNKNOWN; original $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. Historical totals remain 46 API requests, 8 downloads and 3 generations. Zero reservations/refunds/billing mutations, polling, POSTs, retries, redirects followed, result/asset GETs, asset DNS, resubmissions, next, World Labs or chest calls. Chest remains unattempted.
+
+### Known issues and remaining work
+
+A local ignore-check defect blocks fresh initialization before any provider request. It requires a separately authorized offline correction and regression coverage; none is implemented in this evidence commit. The artifact was not downloaded and ZIP/DRC integrity or usability cannot be assessed. The existing generation is not reclassified as failed. Previous room/courtyard acceptance remains synthetic-experiment-only. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic checks are not universal guarantees; no hosted or real campaign/private-data acceptance. Production, main, roadmap and original checkout's pre-existing documentation edits remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of this evidence.** Do not repair/retry initialization, retrieve an artifact, run chest/next, change host policy, begin further implementation, deploy or import real data without new authorization.
+
+---
+
+## Historical offline exact fal artifact preparation checkpoint
+
 **PHASE 3.8B EXACT FAL ARTIFACT RETRIEVAL PREPARED OFFLINE; STOP FOR OWNER REVIEW.** Dedicated branch `codex/phase38-fal-artifact-preparation` starts from accepted diagnostic evidence `745ee77f32ca61f795948f1292f7921d4fe406e7`. No live retrieval, new ledger initialization, provider/result/asset/DNS/network request, credential read, reservation, generation or chest call occurred. Commit remains local because this task requires zero network activity. No main merge or production work.
 
 ### Completed work and files / areas changed
