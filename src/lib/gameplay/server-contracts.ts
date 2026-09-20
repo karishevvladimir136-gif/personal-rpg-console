@@ -97,6 +97,7 @@ export type RuntimeSource = {
 };
 export type RecordFamily =
   | "entities"
+  | "storages"
   | "items"
   | "quests"
   | "locations"

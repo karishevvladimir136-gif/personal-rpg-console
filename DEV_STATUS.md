@@ -1,4 +1,14 @@
-# Development status — Production Mega Coding Sprint, Wave 3 — owner accepted
+# Development status — Production Foundation Wave 4 — implementation in progress
+
+Started September 20, 2026 from freshly fetched exact remote main `7f4b65ea60e0e497f27528c9efcf73ececa6e360` in isolated branch `codex/production-foundation-wave4`. Main and the original dirty checkout remain untouched. Waves 1–3 stay owner accepted; Wave 4 is not owner accepted.
+
+The minimum additions and exclusive worker ownership are frozen in `WAVE4_CONTRACTS.md`. Three separate-worktree Astra Max workers are implementing Pack preparation, progression/rewards and commerce. Lead owns shared contracts, the additive disposable-only migration, atomic settlement/save integration and this status file. Currency uses existing entity resources, merchant stock uses existing items/storage, and receipts/history use existing World Events, commands and save manifests. No second wallet, inventory, reward ledger or Actor database.
+
+Current status: implementation in progress, not yet integrated or verified. No fresh Wave 4 test/build/browser result is claimed. No live provider calls, real-data migration/import, deployment, World Lab, Enter This World or next phase. Remaining work includes owner surfaces, natural-language action integration, adversarial QA, full deterministic verification, EN/RU desktop/mobile browser checks and branch publication for owner review.
+
+---
+
+# Previous milestone — Production Mega Coding Sprint, Wave 3 — owner accepted
 
 Started September 20, 2026 from exact authorized remote main `b7b065726ac1e0f64056e1970c8390f8448b4875` in isolated branch `codex/production-mega-sprint-wave3`. Waves 1 and 2 remain owner accepted. The original dirty checkout is untouched.
 

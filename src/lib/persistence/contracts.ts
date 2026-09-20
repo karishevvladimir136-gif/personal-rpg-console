@@ -58,7 +58,7 @@ export type Entity = ScopedRow & {
 };
 export type Storage = ScopedRow & {
   name: string;
-  kind: "player" | "companion" | "camp" | "transport";
+  kind: "player" | "companion" | "camp" | "transport" | "merchant";
   entity_id: string | null;
 };
 export type Item = ScopedRow & {
@@ -158,7 +158,12 @@ export type Mutation =
     })
   | (Request & {
       operation: "campaign.create";
-      payload: { title: string; subtitle: string; language: Language; premise?: CampaignPremiseInput };
+      payload: {
+        title: string;
+        subtitle: string;
+        language: Language;
+        premise?: CampaignPremiseInput;
+      };
     })
   | (CampaignRequest & {
       operation: "campaign.save";

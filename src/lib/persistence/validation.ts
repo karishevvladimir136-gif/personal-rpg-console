@@ -305,7 +305,13 @@ export function validateMutation(value: unknown): Mutation {
       break;
     }
     case "storage.save":
-      enumeration(p.kind, ["player", "companion", "camp", "transport"]);
+      enumeration(p.kind, [
+        "player",
+        "companion",
+        "camp",
+        "transport",
+        "merchant",
+      ]);
       nullableId(p.entity_id);
       assert((p.kind === "camp") === (p.entity_id === null));
       break;
