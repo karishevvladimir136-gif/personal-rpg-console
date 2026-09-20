@@ -14,6 +14,7 @@ import { Badge, Button, Panel } from "./ui";
 import { CampaignSettingsEditor } from "./campaign-settings";
 import { GameplayConfiguration } from "./gameplay-configuration";
 import { CampaignPackSettingsPanel } from "./campaign-pack-settings";
+import { CampaignPremisePanel } from "./campaign-premise";
 import {
   AIProviderSettings,
   CampaignProductionSettingsPanel,
@@ -524,6 +525,11 @@ export function PersistentCampaignSettings() {
       {data && (
         <div key={campaignId}>
           <CampaignIdentityForm current={data.campaign} />
+          <CampaignPremisePanel
+            campaignId={campaignId}
+            timeline={data.timeline}
+            defaultLanguage={data.campaign.language}
+          />
           <CampaignPreferencesForm
             current={data}
             production={activeProduction}
