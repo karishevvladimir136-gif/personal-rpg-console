@@ -1019,6 +1019,14 @@ AI
 Supported-provider onboarding must require only obtaining a key, adding its documented line to the running checkout's ignored `.env.local`, restarting through an explained simple workflow, then testing/selecting models in Settings. No TypeScript, HTTP or database editing. Credentials are application-level server secrets; campaigns/save exports contain only configuration IDs/options. No tracked `.env.example` exists today: future Model Runtime implementation must add a placeholder-only template with a narrow Git exception while retaining real secret-file exclusion. Test Connection is an explicit synthetic, bounded request with possible-charge disclosure; status-page rendering makes no provider calls. See [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md) for status semantics, secret handling and future acceptance gates. None of this settings UI is implemented here.
 
 
+TIME PRESSURE / DEADLINES
+- campaign setting: **Off / Critical Only / Normal**
+- **Off:** no quest, Adventure Hook or autonomous World Thread may fail, expire or irreversibly complete solely because in-world time passed; no hidden countdown may punish exploration/rest/travel; player-created immediate causal processes (for example a lit fuse, an active fire, an attack already underway) still resolve normally
+- **Critical Only:** ordinary quests/hooks do not expire from time alone; only explicitly established scenario-critical deadlines may advance to irreversible completion, with fair player-known warning when the character should know
+- **Normal:** ordinary bounded World Engine deadlines may operate under the normal knowledge/fair-warning rules
+- changing this setting is prospective and never rewrites already committed Events; the setting must survive saves/timeline restores
+- this setting is independent from World Autonomy: the world may remain reactive and actors may still respond to causal events even when deadline pressure is Off
+
 MAP / EXPLORATION
 - quest & POI marker visibility: **Off / Tracked Only / Standard / All Known**
 - marker visibility is presentation only and may be changed at any time without changing canon, discovery state or quest state
@@ -1386,6 +1394,8 @@ All modes preserve player agency. Story-led must never mean predetermined player
 Player role is independent of difficulty and story structure. Choosing a role must not silently invent or rewrite established campaign canon.
 
 ## World Autonomy
+
+**Deadline Pressure is a separate campaign preference.** World Autonomy controls how broadly important Actors/Threads may react; it must not silently re-enable quest timers. With Deadline Pressure Off, autonomous time passage cannot expire quests/hooks or complete irreversible player-relevant Threads solely due elapsed in-world time. Direct causal processes already initiated by play still resolve.
 
 - **Low:** important NPCs and factions act mostly near the current story as time and events advance.
 - **Moderate (default):** relevant goals can also progress off-screen as in-world time and meaningful events advance.
@@ -1889,7 +1899,7 @@ Future World Engine and primary DM behavior must follow the player-agency princi
 
 Only meaningful in-world actions/time advances and causal events trigger evaluation. Code filters due threads, prerequisites, control and already-applied events before an optional bounded resolver request. Proposed Low/Moderate/High ceilings are 3/8/12 threads and 8/16/24 actors, at most eight events and normally zero or one resolver call per segment; these are reviewable operational limits, not established game balance. Capacity must pause rather than omit mandatory consequences. Large skips use ordered causal boundaries, not hourly loops or unlimited hidden continuation.
 
-Background consequences may complete; major interactable catastrophes require recorded warning/opportunity under Surface Before Complete; established Hard Deadlines can genuinely occur. Hidden deadlines cannot bypass a declared fairness policy. Wall-clock time, closed apps, provider tests and Chat with DM never advance the world. Future Live World shows only player-known developments, On/Off and autonomy. No secret threads, private counts or raw resolver output.
+Background consequences may complete; major interactable catastrophes require recorded warning/opportunity under Surface Before Complete; established Hard Deadlines can genuinely occur. **When Deadline Pressure is Off, this general deadline behavior is suppressed for quests, Adventure Hooks and autonomous Threads: elapsed in-world time alone cannot fail/expire them or trigger irreversible completion.** Critical Only allows only explicitly established scenario-critical deadlines. Normal uses the full policy. Hidden deadlines cannot bypass a declared fairness policy. Wall-clock time, closed apps, provider tests and Chat with DM never advance the world. Future Live World shows only player-known developments, On/Off and autonomy. No secret threads, private counts or raw resolver output.
 
 The resolver proposes; code validates against rules, agency, chronology and visibility. Extend the pending turn with staged world settlement; failures preserve input/dice and commit no partial player/world outcome. Final state, public narration and source-linked events commit atomically behind existing authorization and fresh timeline fences. Reuse public/private Memory and positive actor knowledge; do not let privileged resolver context become everyone's knowledge.
 

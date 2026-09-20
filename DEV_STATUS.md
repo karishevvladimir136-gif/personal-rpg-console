@@ -4,6 +4,8 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**TIME PRESSURE / DEADLINES ADDENDUM — owner preference recorded.** Future campaigns expose Off / Critical Only / Normal deadline pressure independently from World Autonomy. Off means no quest/Adventure Hook/autonomous Thread can fail, expire or irreversibly complete solely because in-world time passed; exploration/rest/travel cannot be punished by hidden countdowns. Immediate causal processes already in motion still resolve normally. Re-enabling never executes a retroactive hidden backlog. Documentation only; no implementation authorized.
+
 **KINGMAKER / ROGUE TRADER REFERENCE ADDENDUM — realm/delegation/rumour lessons recorded.** Documentation-only: adds realm/holding-as-World-Actor, advisor/officer delegation, causal linking of episodic hooks, fair urgency/signposting, optional management abstraction, jurisdictional power, rumors-as-fallible-claims, colony/project opportunity costs, player-facing major-decision provenance and adversarial testing for unexpected system combinations. Pathfinder/40K rules complexity and separate mandatory management minigames are explicit non-targets. No implementation is authorized.
 
 **WRATH OF THE RIGHTEOUS REFERENCE ADDENDUM — scale/identity lessons recorded.** Documentation-only: added lessons from Owlcat's Pathfinder: Wrath of the Righteous about one Actor operating across embodied and strategic scales, transformative identity/progression changing world affordances/reactivity, and the risk of a disconnected mandatory strategy minigame. Pathfinder rules density/alignment/class proliferation are explicitly not universal targets. No implementation is authorized.

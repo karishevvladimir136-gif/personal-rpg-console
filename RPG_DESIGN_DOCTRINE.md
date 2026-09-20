@@ -496,3 +496,22 @@ For any state-mutating subsystem:
 - test extreme combinations;
 - keep caps/rules explicit;
 - accept clever valid interactions instead of blocking them merely for being unexpected.
+
+
+## 35. Time pressure is optional
+
+A living world does not require mandatory quest timers.
+
+Campaigns support **Off / Critical Only / Normal** deadline pressure.
+
+With **Off**, exploration, travel and rest should not silently destroy content because a hidden clock advanced. The world can still react causally to actions and immediate hazards; this is not temporal stasis.
+
+This preference is especially important for players who enjoy exploration, experimentation and role-play without optimization anxiety.
+
+Never conflate:
+- world reactivity;
+- world autonomy;
+- explicit immediate causal danger;
+- quest/deadline pressure.
+
+They are separate design dimensions.

@@ -310,6 +310,8 @@ Future gate: supported formats retain originals and evidence; malformed/partial 
 
 ## 3.75C — Bounded World Engine
 
+- Campaign-level **deadline pressure: Off / Critical Only / Normal** must be independent from World Autonomy. Off disables quest/hook/autonomous-thread expiry from elapsed in-world time while preserving direct causal resolution; no retroactive backlog when re-enabled.
+
 Reference: [World Engine](WORLD_ENGINE_BRIEF.md).
 
 Stable entity/faction Actor references, persistent Threads (including clocks/deadlines) and immutable validated Events. Select due work in code on meaningful in-world triggers; zero requests for no-op/deterministic cases. Different bounded Low/Moderate/High scopes, fair warning and hard deadlines, explicit On/Off behavior, bounded causal catch-up and no wall-clock progression. Extend the existing pending turn to stage and atomically commit player/world settlement, preserving input/dice on failure. Index committed events via existing Memory. Add world record families with versioned manifest compatibility; preserve accepted v1 saves.

@@ -66,11 +66,21 @@ Proposed initial workload limits, subject to synthetic evaluation rather than pr
 
 Cap each segment at eight committed events and normally zero or one resolver request. These are maximums, not targets or token-cost optimization. Allocate the strongest configured task model an adequate context budget. Mandatory deadlines and consequences cannot be silently discarded when capacity is reached: persist remaining work and pause or propose a smaller interval. Multiple changes from one cause are validated together; a partial cap cannot sever required consequences.
 
+## Deadline-pressure preference
+
+Deadline pressure is orthogonal to World Autonomy and simulation On/Off.
+
+- **Off:** elapsed in-world time alone cannot fail, expire or irreversibly complete quests, Adventure Hooks or autonomous Threads. Do not accrue a hidden backlog of missed deadlines. Exploration, resting and travel cannot punish the player through unseen countdowns. Direct causal processes initiated/entered by play still resolve: a lit fuse can explode, an active battle can finish, a burning room can burn, and a ship the player is currently watching depart can leave when that immediate scene logically resolves.
+- **Critical Only:** suppress ordinary timed expiry; permit only scenario-critical deadlines that were explicitly established as part of the premise/current state. Apply normal knowledge/fair-warning rules.
+- **Normal:** use the full bounded deadline policy below.
+
+Deadline mode is a campaign setting captured by Saves/Timelines and applied prospectively. Changing it never rewrites committed history. Re-enabling deadlines does not execute a retroactive backlog; future deadlines resume from current authoritative state under an explicit reconciliation step.
+
 ## Consequence policy and fair warning
 
 - **Background:** ordinary off-screen developments can complete: a merchant leaves or smugglers relocate. Disclosure still requires observable evidence or an authorized recipient.
 - **Surface Before Complete:** an interactable, major player-relevant catastrophe can progress, but irreversible completion requires recorded warning and a meaningful chance to respond. A private clue existing somewhere is not proof the player was warned. Persist the warning's public event/recipient and opportunity boundary. The policy is a narrative constraint, not a promise that every tragedy is avoidable.
-- **Hard Deadline:** an established deadline genuinely occurs when crossed. Record what is known, by whom, and any explicit commitment such as “the ship leaves at sunset.” Hidden deadlines can have private consequences, but cannot be used to disguise a surface-before-complete player arc as an unavoidable surprise. The owner can explicitly approve a harsher premise in the scenario contract.
+- **Hard Deadline:** under **Normal**, an established deadline genuinely occurs when crossed. Under **Critical Only**, only explicitly scenario-critical deadlines use this behavior. Under **Off**, autonomous/quest hard-deadline completion is disabled. Record what is known, by whom, and any explicit commitment such as “the ship leaves at sunset.” Hidden deadlines can have private consequences only when the selected deadline mode permits them, and cannot be used to disguise a surface-before-complete player arc as an unavoidable surprise.
 
 Before a requested long skip, surface known consequential deadlines without revealing hidden ones. Where warning/agency is needed, offer the last coherent stopping point rather than secretly choosing the player's response or fabricating a past warning. A deadline is a conditional consequence with prerequisites, not permission to ignore changed circumstances.
 
