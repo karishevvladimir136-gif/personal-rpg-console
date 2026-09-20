@@ -8,14 +8,29 @@ import type {
   OwnerLibraryResult,
   OwnerPackDetail,
   OwnerSourceDetail,
+  OwnerSourceSummary,
 } from "@/lib/world-library/owner-contracts";
 import {
   ownerLibraryAttempt,
+  ownerPackDraft,
+  ownerClaimCanonEligible,
   readOwnerLibrary,
   readOwnerPack,
   readOwnerSource,
   writeOwnerLibrary,
 } from "@/lib/world-library-client";
+import { worldAuthoringText } from "@/lib/world-library-i18n";
+import {
+  AuthoringModes,
+  DescriptionEditor,
+  type AuthoringMode,
+} from "./authoring";
+import { CompilerPanel } from "./compiler-panel";
+import {
+  ReviewOverview,
+  RefinementEditor,
+  CanonPreview,
+} from "./guided-review";
 import { useUnsavedChanges } from "../persistence-context";
 import styles from "./world-library.module.css";
 import { useLanguage } from "../language-context";
@@ -28,8 +43,9 @@ function useWorldLibraryText() {
   const { language } = useLanguage();
   return {
     language,
+    w: (key: string) => worldAuthoringText(language, key),
     t: (key: string, values?: Record<string, string | number>) =>
-      worldLibraryText(language, key, values),
+      worldAuthoringText(language, worldLibraryText(language, key, values)),
   };
 }
 
@@ -40,16 +56,18 @@ const message = (cause: unknown) =>
   cause instanceof Error ? cause.message : "World Library is unavailable.";
 
 export function WorldLibrary() {
-  const { t } = useWorldLibraryText();
+  const { t, w, language } = useWorldLibraryText();
+  const [mode, setMode] = useState<AuthoringMode>("describe");
   const [index, setIndex] = useState<OwnerLibraryIndex | null>(null);
   const [source, setSource] = useState<OwnerSourceDetail | null>(null);
   const [pack, setPack] = useState<OwnerPackDetail | null>(null);
-  const [newSource, setNewSource] = useState(false);
+  const [newSource, setNewSource] = useState<"upload" | "describe" | null>(
+    "describe",
+  );
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
   const [selected, setSelected] = useState<string[]>([]);
-  const [maxUnits, setMaxUnits] = useState(180);
   const attempt = useRef<OwnerLibraryCommand | null>(null);
   const pending = useRef(false);
   const selection = useRef(0);
@@ -83,14 +101,14 @@ export function WorldLibrary() {
         if (token === selection.current) {
           setSource(detail);
           setPack(null);
-          setNewSource(false);
+          setNewSource(null);
         }
       } else {
         const detail = await readOwnerPack(versionId);
         if (token === selection.current) {
           setPack(detail);
           setSource(null);
-          setNewSource(false);
+          setNewSource(null);
         }
       }
     } catch (cause) {
@@ -117,13 +135,13 @@ export function WorldLibrary() {
         setIndex(await readOwnerLibrary());
         if (result.kind === "source") {
           setSource(await readOwnerSource(result.versionId));
-          setNewSource(false);
+          setNewSource(null);
           setPack(null);
         }
         if (result.kind === "pack") {
           setPack(await readOwnerPack(result.versionId));
           setSource(null);
-          setNewSource(false);
+          setNewSource(null);
         }
       } catch (cause) {
         setNotice(
@@ -185,293 +203,192 @@ export function WorldLibrary() {
       {!index ? (
         <p>{t("Loading owner library…")}</p>
       ) : (
-        <div className={styles.columns}>
-          <aside className={styles.sidebar}>
-            <section className={styles.panel}>
-              <h2>{t("Sources")}</h2>
-              <button
-                disabled={busy || dirty}
-                onClick={() => {
-                  ++selection.current;
-                  setSource(null);
-                  setPack(null);
-                  setNewSource(true);
-                }}
-              >
-                {" "}
-                {t("Add TXT / Markdown")}{" "}
-              </button>
-              {!index.sources.length && (
-                <p>{t("Start with a short text source or a Markdown file.")}</p>
-              )}
-              {index.sources.map((s) => (
-                <div className={styles.row} key={s.id}>
-                  <label className={styles.check}>
-                    <input
-                      type="checkbox"
-                      disabled={
-                        busy ||
-                        (selected.length >= 8 &&
-                          !selected.includes(s.versionId))
-                      }
-                      checked={selected.includes(s.versionId)}
-                      onChange={(e) =>
-                        setSelected(
-                          e.target.checked
-                            ? [...selected, s.versionId]
-                            : selected.filter((id) => id !== s.versionId),
-                        )
-                      }
-                    />
-                    <span className={styles.srOnly}>
-                      {" "}
-                      {t("Include")} {s.title}{" "}
-                      {t("in the next compilation")}{" "}
-                    </span>
-                  </label>
+        <>
+          <AuthoringModes
+            language={language}
+            mode={mode}
+            disabled={busy || dirty}
+            onSelect={(next) => {
+              ++selection.current;
+              setMode(next);
+              setSource(null);
+              setPack(null);
+              setNewSource(next === "upload" ? "upload" : "describe");
+            }}
+          />
+          <div className={styles.columns}>
+            <aside className={styles.sidebar}>
+              <section className={styles.panel}>
+                <h2>{t("Sources")}</h2>
+                <button
+                  disabled={busy || dirty}
+                  onClick={() => {
+                    ++selection.current;
+                    setSource(null);
+                    setPack(null);
+                    setNewSource("upload");
+                  }}
+                >
+                  {" "}
+                  {t("Add TXT / Markdown")}{" "}
+                </button>
+                {mode === "combine" && (
                   <button
-                    className={styles.linkButton}
                     disabled={busy || dirty}
-                    onClick={() => open("source", s.versionId)}
+                    onClick={() => {
+                      ++selection.current;
+                      setSource(null);
+                      setPack(null);
+                      setNewSource("describe");
+                    }}
                   >
-                    {s.title}
+                    {w("Add your description")}
+                  </button>
+                )}
+                {!index.sources.length && (
+                  <p>
+                    {t("Start with a short text source or a Markdown file.")}
+                  </p>
+                )}
+                {index.sources.map((s) => (
+                  <div className={styles.row} key={s.id}>
+                    <label className={styles.check}>
+                      <input
+                        type="checkbox"
+                        disabled={
+                          busy ||
+                          (selected.length >= 8 &&
+                            !selected.includes(s.versionId))
+                        }
+                        checked={selected.includes(s.versionId)}
+                        onChange={(e) =>
+                          setSelected(
+                            e.target.checked
+                              ? [...selected, s.versionId]
+                              : selected.filter((id) => id !== s.versionId),
+                          )
+                        }
+                      />
+                      <span className={styles.srOnly}>
+                        {" "}
+                        {t("Include")} {s.title}{" "}
+                        {t("in the next compilation")}{" "}
+                      </span>
+                    </label>
+                    <button
+                      className={styles.linkButton}
+                      disabled={busy || dirty}
+                      onClick={() => open("source", s.versionId)}
+                    >
+                      {s.title}
+                      <small>
+                        {" "}
+                        {t("Version")} {s.version} · {t(s.visibility)} ·{" "}
+                        {w(
+                          s.provenance
+                            ? "Owner-authored description"
+                            : "Uploaded source",
+                        )}{" "}
+                        ·{" "}
+                        {s.knowledge === "future_source"
+                          ? t("Future reference")
+                          : t("Source knowledge")}
+                      </small>
+                    </button>
+                  </div>
+                ))}
+              </section>
+              <CompilerPanel
+                language={language}
+                index={index}
+                selected={selected}
+                setSelected={setSelected}
+                busy={busy}
+                dirty={dirty}
+                save={save}
+              />
+              <section className={styles.panel}>
+                <h2>{t("World Packs")}</h2>
+                {!index.packs.length && (
+                  <p>
+                    {" "}
+                    {t(
+                      "Completed compiler passes produce an unapproved draft here.",
+                    )}{" "}
+                  </p>
+                )}
+                {index.packs.map((p) => (
+                  <button
+                    key={p.id}
+                    className={styles.packButton}
+                    disabled={busy || dirty}
+                    onClick={() => open("pack", p.versionId)}
+                  >
+                    {p.title}
                     <small>
                       {" "}
-                      {t("Version")} {s.version} · {t(s.visibility)} ·{" "}
-                      {s.knowledge === "future_source"
-                        ? t("Future reference")
-                        : t("Source knowledge")}
+                      {t("Version")} {p.version} · {t(p.status)}
                     </small>
                   </button>
-                </div>
-              ))}
-            </section>
-            <section className={styles.panel}>
-              <h2>{t("Compile a draft")}</h2>
-              <p>
-                {" "}
-                {t(
-                  "Select up to eight sources. Order them from highest to lowest priority. Conflicting alternatives remain visible.",
-                )}{" "}
-              </p>
-              <ol className={styles.priority}>
-                {selected.map((id, i) => (
-                  <li key={id}>
-                    <span>
-                      {index.sources.find((s) => s.versionId === id)?.title ??
-                        t("Selected historical source")}
-                    </span>
-                    <button
-                      aria-label={t("Raise priority of source {n}", {
-                        n: i + 1,
-                      })}
-                      disabled={busy || i === 0}
-                      onClick={() =>
-                        setSelected((ids) => {
-                          const next = [...ids];
-                          [next[i - 1], next[i]] = [next[i], next[i - 1]];
-                          return next;
-                        })
-                      }
-                    >
-                      ↑
-                    </button>
-                    <button
-                      aria-label={t("Remove source {n} from compilation", {
-                        n: i + 1,
-                      })}
-                      disabled={busy}
-                      onClick={() =>
-                        setSelected(selected.filter((entry) => entry !== id))
-                      }
-                    >
-                      {" "}
-                      {t("Remove")}{" "}
-                    </button>
-                  </li>
                 ))}
-              </ol>
-              <label>
-                {" "}
-                {t("Work budget (three passes)")}{" "}
-                <input
-                  type="number"
-                  min={3}
-                  max={480}
-                  step={3}
-                  value={maxUnits}
-                  disabled={busy}
-                  onChange={(e) => setMaxUnits(Number(e.target.value))}
-                />
-              </label>
-              <p>
-                {" "}
-                {t("Up to")} {Math.floor(maxUnits / 3) || 0}{" "}
-                {t(
-                  "source lines are indexed. Omitted lines appear in coverage.",
-                )}{" "}
-              </p>
-              <button
-                disabled={
-                  busy ||
-                  dirty ||
-                  selected.length === 0 ||
-                  maxUnits < 3 ||
-                  maxUnits > 480
-                }
-                onClick={() =>
-                  save({
-                    action: "compiler.start",
-                    sourcePriority: selected,
-                    maxUnits,
-                  })
-                }
-              >
-                {" "}
-                {t("Create compiler job")}{" "}
-              </button>
-              <details>
-                <summary>{t("What this compiler understands")}</summary>
                 <p>
                   {" "}
                   {t(
-                    "This local compiler preserves lines and recognizes explicit headings such as",
-                  )}{" "}
-                  <code>person: Mara</code>
-                  {t(", followed by fields such as")}{" "}
-                  <code>location: Harbor</code> {t("or")}{" "}
-                  <code>alias: Captain</code>
-                  {t(
-                    ". Ordinary prose stays a source assertion. Relationships, chronology, rules and geography need review. No model request is made.",
-                  )}{" "}
-                </p>
-              </details>
-              {index.jobs.map((job) => (
-                <div className={styles.job} key={job.id}>
-                  <strong>{t(job.status)}</strong>
-                  <small>
-                    {" "}
-                    {t("Version")} {job.version} · {job.checkpoints.length}
-                    {t("/3 checkpoints")}{" "}
-                  </small>
-                  {![
-                    "awaiting_review",
-                    "completed",
-                    "failed",
-                    "invalidated",
-                  ].includes(job.status) && (
-                    <button
-                      disabled={busy || dirty}
-                      onClick={() =>
-                        save({
-                          action: "compiler.step",
-                          expectedVersionId: job.versionId,
-                        })
-                      }
-                    >
-                      {job.status === "queued"
-                        ? t("Begin extraction")
-                        : job.status === "extracting"
-                          ? t("Extract source lines")
-                          : job.status === "indexing"
-                            ? t("Index draft claims")
-                            : t("Audit and prepare review")}
-                    </button>
-                  )}
-                  {job.status === "awaiting_review" && (
-                    <>
-                      <p>{t("Compilation stops here for owner review.")}</p>
-                      <button
-                        disabled={busy || dirty}
-                        onClick={() =>
-                          save({
-                            action: "compiler.step",
-                            expectedVersionId: job.versionId,
-                          })
-                        }
-                      >
-                        {" "}
-                        {t("Open or recover review draft")}{" "}
-                      </button>
-                    </>
-                  )}
-                  {job.status === "invalidated" && (
-                    <p>
-                      {" "}
-                      {t(
-                        "A source changed. Select current source versions and start a new job.",
-                      )}{" "}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </section>
-            <section className={styles.panel}>
-              <h2>{t("World Packs")}</h2>
-              {!index.packs.length && (
-                <p>
-                  {" "}
-                  {t(
-                    "Completed compiler passes produce an unapproved draft here.",
-                  )}{" "}
-                </p>
-              )}
-              {index.packs.map((p) => (
-                <button
-                  key={p.id}
-                  className={styles.packButton}
-                  disabled={busy || dirty}
-                  onClick={() => open("pack", p.versionId)}
-                >
-                  {p.title}
-                  <small>
-                    {" "}
-                    {t("Version")} {p.version} · {t(p.status)}
-                  </small>
-                </button>
-              ))}
-              <p>
-                {" "}
-                {t(
-                  "Approve a reviewed version here, then explicitly pin it from campaign settings. New source and Pack versions never advance a campaign pin.",
-                )}{" "}
-              </p>
-            </section>
-          </aside>
-          <div className={styles.detail}>
-            {(newSource || source) && (
-              <SourceEditor
-                key={source?.versionId ?? "new"}
-                detail={source}
-                busy={busy}
-                save={save}
-                setDirty={setDirty}
-                onVersion={(id) => open("source", id)}
-              />
-            )}
-            {pack && (
-              <PackEditor
-                key={pack.versionId}
-                detail={pack}
-                busy={busy}
-                save={save}
-                setDirty={setDirty}
-                onVersion={(id) => open("pack", id)}
-              />
-            )}
-            {!newSource && !source && !pack && (
-              <section className={styles.empty}>
-                <h2>{t("Build from preserved evidence")}</h2>
-                <p>
-                  {" "}
-                  {t(
-                    "Add a source, choose its priority and run the bounded compiler passes. Open a draft to read its evidence, gaps and possible contradictions before approving an immutable Pack version.",
+                    "Approve a reviewed version here, then explicitly pin it from campaign settings. New source and Pack versions never advance a campaign pin.",
                   )}{" "}
                 </p>
               </section>
-            )}
+            </aside>
+            <div className={styles.detail}>
+              {(source?.provenance ||
+                (!source && newSource === "describe")) && (
+                <DescriptionEditor
+                  key={source?.versionId ?? "new-description"}
+                  language={language}
+                  detail={source}
+                  busy={busy}
+                  save={save}
+                  setDirty={setDirty}
+                  onVersion={(id) => open("source", id)}
+                />
+              )}
+              {(newSource === "upload" || source) &&
+                !source?.provenance &&
+                newSource !== "describe" && (
+                  <SourceEditor
+                    key={source?.versionId ?? "new"}
+                    detail={source}
+                    busy={busy}
+                    save={save}
+                    setDirty={setDirty}
+                    onVersion={(id) => open("source", id)}
+                  />
+                )}
+              {pack && (
+                <PackEditor
+                  key={pack.versionId}
+                  detail={pack}
+                  sources={index.sources}
+                  busy={busy}
+                  save={save}
+                  setDirty={setDirty}
+                  onVersion={(id) => open("pack", id)}
+                />
+              )}
+              {!newSource && !source && !pack && (
+                <section className={styles.empty}>
+                  <h2>{t("Build from preserved evidence")}</h2>
+                  <p>
+                    {" "}
+                    {t(
+                      "Add a source, choose its priority and run the bounded compiler passes. Open a draft to read its evidence, gaps and possible contradictions before approving an immutable Pack version.",
+                    )}{" "}
+                  </p>
+                </section>
+              )}
+            </div>
           </div>
-        </div>
+        </>
       )}
     </main>
   );
@@ -727,32 +644,42 @@ function SourceEditor({
   );
 }
 
-function PackEditor({
+export function PackEditor({
   detail,
+  sources,
   busy,
   save,
   setDirty,
   onVersion,
 }: {
   detail: OwnerPackDetail;
+  sources: OwnerSourceSummary[];
   busy: boolean;
   save: Save;
   setDirty: (value: boolean) => void;
   onVersion: (id: string) => void;
 }) {
-  const { t, language } = useWorldLibraryText();
+  const { t, w, language } = useWorldLibraryText();
   const [body, setBody] = useState(detail.body);
+  const [rejectedIds, setRejectedIds] = useState<string[]>([]);
+  const [refining, setRefining] = useState(false);
   const [reviewedConflicts, setReviewedConflicts] = useState<string[]>([]);
   const [reviewedUnknowns, setReviewedUnknowns] = useState<string[]>([]);
   const [coverageReviewed, setCoverageReviewed] = useState(false);
   const [canonIds, setCanonIds] = useState<string[]>([]);
-  const dirty = JSON.stringify(body) !== JSON.stringify(detail.body);
+  const dirty =
+    rejectedIds.length > 0 ||
+    JSON.stringify(body) !== JSON.stringify(detail.body);
   const latest = detail.history[0]?.versionId === detail.versionId;
   const toggle = (list: string[], id: string) =>
     list.includes(id) ? list.filter((v) => v !== id) : [...list, id];
-  function change(next: typeof body) {
+  function change(next: typeof body, rejected = rejectedIds) {
     setBody(next);
-    setDirty(JSON.stringify(next) !== JSON.stringify(detail.body));
+    setDirty(
+      refining ||
+        rejected.length > 0 ||
+        JSON.stringify(next) !== JSON.stringify(detail.body),
+    );
     setReviewedConflicts([]);
     setReviewedUnknowns([]);
     setCoverageReviewed(false);
@@ -777,7 +704,7 @@ function PackEditor({
         {t("Version history")}{" "}
         <select
           value={detail.versionId}
-          disabled={busy || dirty}
+          disabled={busy || dirty || refining}
           onChange={(e) => onVersion(e.target.value)}
         >
           {detail.history.map((p) => (
@@ -795,7 +722,14 @@ function PackEditor({
           )}
         </p>
       )}
-      <fieldset disabled={busy || !latest}>
+      <ReviewOverview
+        language={language}
+        detail={detail}
+        body={body}
+        sources={sources}
+        rejectedIds={rejectedIds}
+      />
+      <fieldset disabled={busy || !latest || refining}>
         <label>
           {" "}
           {t("Pack title")}{" "}
@@ -806,6 +740,7 @@ function PackEditor({
             onChange={(e) => change({ ...body, title: e.target.value })}
           />
         </label>
+        <h3>{w("2 · Evidence and open questions")}</h3>
         <h3>{t("Coverage")}</h3>
         {body.coverage.map((c) => (
           <div key={c.sourceVersionId} className={styles.coverage}>
@@ -892,7 +827,13 @@ function PackEditor({
             </span>
           </label>
         ))}
+        <h3>{w("3 · Choose Canon, then approve")}</h3>
         <h3>{t("Claims and preserved evidence")}</h3>
+        <p>
+          {w(
+            "Nothing is deleted from earlier versions. Save a new draft to apply edits or rejections, then review that version before approval.",
+          )}
+        </p>
         <p>
           {" "}
           {t(
@@ -909,14 +850,14 @@ function PackEditor({
               ),
             });
           const eligible =
-            ["canon_at_entry", "character"].includes(claim.knowledge) &&
-            claim.validFrom !== null &&
-            claim.epistemic === "fact" &&
-            !body.contradictions.some(
-              (c) => c.status === "unresolved" && c.claimIds.includes(claim.id),
-            );
+            ownerClaimCanonEligible(body, claim) &&
+            !rejectedIds.includes(claim.id);
           return (
-            <details key={claim.id} className={styles.claim}>
+            <details
+              key={claim.id}
+              className={styles.claim}
+              id={`claim-${claim.id}`}
+            >
               <summary>
                 {entity?.name}: {claim.text.slice(0, 120)}
                 {claim.text.length > 120 ? "…" : ""}
@@ -925,254 +866,287 @@ function PackEditor({
                   {t(claim.knowledge)} · {t(claim.authority)}
                 </small>
               </summary>
-              <label>
-                {" "}
-                {t("Claim text")}{" "}
-                <textarea
-                  rows={3}
-                  maxLength={4000}
-                  value={claim.text}
-                  onChange={(e) => update({ text: e.target.value })}
-                />
-              </label>
-              <div className={styles.twoFields}>
-                <label>
-                  {" "}
-                  {t("Origin")}{" "}
-                  <select
-                    value={claim.origin}
-                    onChange={(e) =>
-                      update({ origin: e.target.value as typeof claim.origin })
-                    }
-                  >
-                    <option value="source_fact">
-                      {t("Exact source assertion")}
-                    </option>
-                    <option value="source_inference">
-                      {t("Source inference")}
-                    </option>
-                    <option value="scenario_assumption">
-                      {" "}
-                      {t("Owner-authored assumption")}{" "}
-                    </option>
-                  </select>
-                </label>
-                <label>
-                  {" "}
-                  {t("Epistemic status")}{" "}
-                  <select
-                    value={claim.epistemic}
-                    onChange={(e) =>
-                      update({
-                        epistemic: e.target.value as typeof claim.epistemic,
-                      })
-                    }
-                  >
-                    {[
-                      "unknown",
-                      "fact",
-                      "rumor",
-                      "lie",
-                      "hypothesis",
-                      "intention",
-                    ].map((s) => (
-                      <option value={s} key={s}>
-                        {t(s)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-              <div className={styles.twoFields}>
-                <label>
-                  {" "}
-                  {t("Visibility")}{" "}
-                  <select
-                    value={t(claim.visibility)}
-                    onChange={(e) =>
-                      update({
-                        visibility: e.target.value as typeof claim.visibility,
-                      })
-                    }
-                  >
-                    <option value="private">{t("Private")}</option>
-                    <option value="public">
-                      {t("Public eligible evidence")}
-                    </option>
-                  </select>
-                </label>
-                <label>
-                  {" "}
-                  {t("Knowledge")}{" "}
-                  <select
-                    value={claim.knowledge}
-                    onChange={(e) =>
-                      update({
-                        knowledge: e.target.value as typeof claim.knowledge,
-                        knownByEntityIds: [],
-                      })
-                    }
-                  >
-                    <option value="source">{t("Source knowledge")}</option>
-                    <option value="future_source">{t("Future source")}</option>
-                    <option value="canon_at_entry">
-                      {t("Canon at entry")}
-                    </option>
-                    <option value="character">
-                      {" "}
-                      {t("Character knowledge at entry")}{" "}
-                    </option>
-                  </select>
-                </label>
-              </div>
-              <div className={styles.twoFields}>
-                <label>
-                  {" "}
-                  {t("Valid from (world minute)")}{" "}
-                  <input
-                    type="number"
-                    min={0}
-                    value={claim.validFrom ?? ""}
-                    onChange={(e) =>
-                      update({
-                        validFrom:
-                          e.target.value === "" ? null : Number(e.target.value),
-                      })
-                    }
-                  />
-                </label>
-                <label>
-                  {" "}
-                  {t("Valid until (optional)")}{" "}
-                  <input
-                    type="number"
-                    min={0}
-                    value={claim.validUntil ?? ""}
-                    onChange={(e) =>
-                      update({
-                        validUntil:
-                          e.target.value === "" ? null : Number(e.target.value),
-                      })
-                    }
-                  />
-                </label>
-              </div>
-              {claim.knowledge === "character" && (
-                <label>
-                  {" "}
-                  {t("Known by")}{" "}
-                  <select
-                    value={claim.knownByEntityIds[0] ?? ""}
-                    onChange={(e) =>
-                      update({
-                        knownByEntityIds: e.target.value
-                          ? [e.target.value]
-                          : [],
-                      })
-                    }
-                  >
-                    <option value="">
-                      {" "}
-                      {t("Choose an entity with evidenced knowledge")}{" "}
-                    </option>
-                    {body.entities.map((e) => (
-                      <option key={e.id} value={e.id}>
-                        {e.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+              {rejectedIds.includes(claim.id) && (
+                <p role="status">{w("Rejected for the next draft")}</p>
               )}
-              <label>
-                {" "}
-                {t("Uncertainty / inference justification")}{" "}
-                <input
-                  maxLength={240}
-                  value={claim.uncertainty ?? ""}
-                  onChange={(e) =>
-                    update({ uncertainty: e.target.value || null })
+              <div className={styles.actions}>
+                <button
+                  disabled={rejectedIds.includes(claim.id)}
+                  onClick={() =>
+                    update({
+                      epistemic: "hypothesis",
+                      knowledge: "source",
+                      knownByEntityIds: [],
+                      uncertainty:
+                        claim.uncertainty ??
+                        w(
+                          "Keep this claim uncertain until the owner resolves it.",
+                        ),
+                    })
                   }
-                />
-              </label>
-              {detail.evidence
-                .filter((e) => e.claimId === claim.id)
-                .map((e, i) => (
-                  <div
-                    className={styles.evidence}
-                    key={`${e.sourceVersionId}:${e.locator}:${i}`}
-                  >
-                    <strong>
-                      {e.sourceTitle} {t("· text offsets")} {e.locator}
-                    </strong>
-                    <pre>{e.excerpt}</pre>
-                    <small className={styles.digest}>
-                      {" "}
-                      {t("Version")} {e.sourceVersionId} {t("· SHA-256")}{" "}
-                      {e.digest}
-                    </small>
-                  </div>
-                ))}
-              <label className={styles.check}>
-                <input
-                  type="checkbox"
-                  disabled={dirty || !eligible || detail.status === "approved"}
-                  checked={canonIds.includes(claim.id)}
-                  onChange={() => setCanonIds(toggle(canonIds, claim.id))}
-                />{" "}
-                {t(
-                  "Explicitly approve this claim as canon with this Pack.",
-                )}{" "}
-              </label>
-              {!eligible && (
-                <small>
+                >
+                  {w("Keep uncertain")}
+                </button>
+                <button
+                  disabled={rejectedIds.includes(claim.id)}
+                  onClick={() =>
+                    update({ knowledge: "source", knownByEntityIds: [] })
+                  }
+                >
+                  {w("Retain as reference")}
+                </button>
+                <button
+                  onClick={() => {
+                    const next = toggle(rejectedIds, claim.id);
+                    setRejectedIds(next);
+                    change(body, next);
+                  }}
+                >
+                  {w(
+                    rejectedIds.includes(claim.id)
+                      ? "Undo rejection"
+                      : "Reject",
+                  )}
+                </button>
+              </div>
+              <fieldset disabled={rejectedIds.includes(claim.id)}>
+                <label>
                   {" "}
-                  {t(
-                    "Canon needs a reviewed fact, entry/character scope, a start time and no unresolved conflict.",
-                  )}{" "}
-                </small>
-              )}
+                  {t("Claim text")}{" "}
+                  <textarea
+                    rows={3}
+                    maxLength={4000}
+                    value={claim.text}
+                    onChange={(e) =>
+                      update({
+                        text: e.target.value,
+                        origin:
+                          claim.origin === "source_fact"
+                            ? "scenario_assumption"
+                            : claim.origin,
+                      })
+                    }
+                  />
+                </label>
+                <div className={styles.twoFields}>
+                  <label>
+                    {" "}
+                    {t("Origin")}{" "}
+                    <select
+                      value={claim.origin}
+                      onChange={(e) =>
+                        update({
+                          origin: e.target.value as typeof claim.origin,
+                        })
+                      }
+                    >
+                      <option
+                        value="source_fact"
+                        disabled={
+                          detail.body.claims.find(
+                            (original) => original.id === claim.id,
+                          )?.origin !== "source_fact"
+                        }
+                      >
+                        {t("Exact source assertion")}
+                      </option>
+                      <option value="source_inference">
+                        {t("Source inference")}
+                      </option>
+                      <option value="scenario_assumption">
+                        {" "}
+                        {t("Owner-authored assumption")}{" "}
+                      </option>
+                    </select>
+                  </label>
+                  <label>
+                    {" "}
+                    {t("Epistemic status")}{" "}
+                    <select
+                      value={claim.epistemic}
+                      onChange={(e) =>
+                        update({
+                          epistemic: e.target.value as typeof claim.epistemic,
+                        })
+                      }
+                    >
+                      {[
+                        "unknown",
+                        "fact",
+                        "rumor",
+                        "lie",
+                        "hypothesis",
+                        "intention",
+                      ].map((s) => (
+                        <option value={s} key={s}>
+                          {t(s)}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={styles.twoFields}>
+                  <label>
+                    {" "}
+                    {t("Visibility")}{" "}
+                    <select
+                      value={claim.visibility}
+                      onChange={(e) =>
+                        update({
+                          visibility: e.target.value as typeof claim.visibility,
+                        })
+                      }
+                    >
+                      <option value="private">{t("Private")}</option>
+                      <option value="public">
+                        {t("Public eligible evidence")}
+                      </option>
+                    </select>
+                  </label>
+                  <label>
+                    {" "}
+                    {t("Knowledge")}{" "}
+                    <select
+                      value={claim.knowledge}
+                      onChange={(e) =>
+                        update({
+                          knowledge: e.target.value as typeof claim.knowledge,
+                          knownByEntityIds: [],
+                        })
+                      }
+                    >
+                      <option value="source">{t("Source knowledge")}</option>
+                      <option value="future_source">
+                        {t("Future source")}
+                      </option>
+                      <option value="canon_at_entry">
+                        {t("Canon at entry")}
+                      </option>
+                      <option value="character">
+                        {" "}
+                        {t("Character knowledge at entry")}{" "}
+                      </option>
+                    </select>
+                  </label>
+                </div>
+                <div className={styles.twoFields}>
+                  <label>
+                    {" "}
+                    {t("Valid from (world minute)")}{" "}
+                    <input
+                      type="number"
+                      min={0}
+                      value={claim.validFrom ?? ""}
+                      onChange={(e) =>
+                        update({
+                          validFrom:
+                            e.target.value === ""
+                              ? null
+                              : Number(e.target.value),
+                        })
+                      }
+                    />
+                  </label>
+                  <label>
+                    {" "}
+                    {t("Valid until (optional)")}{" "}
+                    <input
+                      type="number"
+                      min={0}
+                      value={claim.validUntil ?? ""}
+                      onChange={(e) =>
+                        update({
+                          validUntil:
+                            e.target.value === ""
+                              ? null
+                              : Number(e.target.value),
+                        })
+                      }
+                    />
+                  </label>
+                </div>
+                {claim.knowledge === "character" && (
+                  <label>
+                    {" "}
+                    {t("Known by")}{" "}
+                    <select
+                      value={claim.knownByEntityIds[0] ?? ""}
+                      onChange={(e) =>
+                        update({
+                          knownByEntityIds: e.target.value
+                            ? [e.target.value]
+                            : [],
+                        })
+                      }
+                    >
+                      <option value="">
+                        {" "}
+                        {t("Choose an entity with evidenced knowledge")}{" "}
+                      </option>
+                      {body.entities.map((e) => (
+                        <option key={e.id} value={e.id}>
+                          {e.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                <label>
+                  {" "}
+                  {t("Uncertainty / inference justification")}{" "}
+                  <input
+                    maxLength={240}
+                    value={claim.uncertainty ?? ""}
+                    onChange={(e) =>
+                      update({ uncertainty: e.target.value || null })
+                    }
+                  />
+                </label>
+                {detail.evidence
+                  .filter((e) => e.claimId === claim.id)
+                  .map((e, i) => (
+                    <div
+                      className={styles.evidence}
+                      key={`${e.sourceVersionId}:${e.locator}:${i}`}
+                    >
+                      <strong>
+                        {e.sourceTitle} {t("· text offsets")} {e.locator}
+                      </strong>
+                      <pre>{e.excerpt}</pre>
+                      <small className={styles.digest}>
+                        {" "}
+                        {t("Version")} {e.sourceVersionId} {t("· SHA-256")}{" "}
+                        {e.digest}
+                      </small>
+                    </div>
+                  ))}
+                <label className={styles.check}>
+                  <input
+                    type="checkbox"
+                    disabled={
+                      dirty || !eligible || detail.status === "approved"
+                    }
+                    checked={canonIds.includes(claim.id)}
+                    onChange={() => setCanonIds(toggle(canonIds, claim.id))}
+                  />{" "}
+                  {w("Mark as Canon on approval")}{" "}
+                </label>
+                {!eligible && (
+                  <small>
+                    {" "}
+                    {t(
+                      "Canon needs a reviewed fact, entry/character scope, a start time and no unresolved conflict.",
+                    )}{" "}
+                  </small>
+                )}
+              </fieldset>
             </details>
           );
         })}
         <div className={styles.actions}>
           <button
             disabled={!dirty || !body.title.trim()}
-            onClick={() =>
-              save({
-                action: "pack.save",
-                expectedVersionId: detail.versionId,
-                title: body.title,
-                claims: body.claims.map(
-                  ({
-                    id,
-                    text,
-                    origin,
-                    epistemic,
-                    visibility,
-                    knowledge,
-                    validFrom,
-                    validUntil,
-                    knownByEntityIds,
-                    uncertainty,
-                  }) => ({
-                    id,
-                    text,
-                    origin,
-                    epistemic,
-                    visibility,
-                    knowledge,
-                    validFrom,
-                    validUntil,
-                    knownByEntityIds,
-                    uncertainty,
-                  }),
-                ),
-                resolutions: body.contradictions.map(({ id, resolution }) => ({
-                  id,
-                  resolution,
-                })),
-              })
-            }
+            onClick={() => save(ownerPackDraft(detail, body, rejectedIds))}
           >
             {" "}
             {t("Save new draft version")}{" "}
@@ -1180,7 +1154,8 @@ function PackEditor({
           <button
             disabled={!dirty}
             onClick={() => {
-              change(detail.body);
+              setRejectedIds([]);
+              change(detail.body, []);
               setDirty(false);
             }}
           >
@@ -1190,6 +1165,12 @@ function PackEditor({
         </div>
         {detail.status === "draft" && (
           <div className={styles.approval}>
+            <CanonPreview
+              language={language}
+              body={body}
+              canonIds={canonIds}
+              rejectedIds={rejectedIds}
+            />
             <label className={styles.check}>
               <input
                 type="checkbox"
@@ -1231,6 +1212,16 @@ function PackEditor({
           </div>
         )}
       </fieldset>
+      <RefinementEditor
+        language={language}
+        detail={detail}
+        disabled={busy || dirty || !latest}
+        save={save}
+        onDirty={(value) => {
+          setRefining(value);
+          setDirty(value || dirty);
+        }}
+      />
     </section>
   );
 }
