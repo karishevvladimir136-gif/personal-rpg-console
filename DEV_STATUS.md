@@ -4,6 +4,34 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B COURTYARD SUCCEEDED STRUCTURALLY; STOP FOR OWNER REVIEW.** At the exact clean execution SHA `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, the owner's explicit room review was durably appended and reopened/verified, followed by exactly one authorized next operation for `spatial-courtyard-1`. Room approval is solely for the synthetic capability experiment, not final visual/prompt fidelity, production EXPLORE, navigation or metric alignment. No courtyard approval or second next occurred.
+
+### Completed work and files / areas changed
+
+World Labs request `69f68655-5e62-4275-910b-d6e9b9b9235d` produced world `fedc9eef-f123-4f96-b00a-bd9e955a9326`. Requested and Get World-reported model: `marble-1.1-plus`. Completion observed after approximately 5 minutes 10 seconds; both world reads were stable/byte-identical and private. Retained SPZ v2 / 98,304 points, GLB collider (1 mesh / 2 nodes / 0 materials), PNG panorama 4608 × 2304 and WebP/VP8 thumbnail 720 × 480. [Sanitized courtyard evidence](experiments/phase38-spatial/results/COURTYARD_001.md) records exact counts, scale values, hashes and limitations.
+
+Only sanitized experiment evidence, the owner's review record and this status changed in the separate evidence worktree. Raw provider URLs and binary assets stay ignored/local. Frozen execution source, original STOPPED history and earlier recovery evidence remain unchanged; earlier continuation records are an exact prefix of the appended journal.
+
+### Tests and build status
+
+**273 deterministic tests passed; zero failures/skips; experiment typecheck, zero-warning lint and isolated build passed.** Offline checks ran during generation; final freeze/history/evidence verification followed completion. No code changed. Production full-suite/build not rerun; production unchanged.
+
+Courtyard live scope: **1 submission, 15 polls, 2 world GETs, 4 downloads; all 22 successful. Zero retries, fallback, exports, fal calls or chest calls.** No additional next operation or courtyard approval.
+
+### Key decisions and cumulative accounting
+
+Provider reported **1,580 credits**, converted at the frozen rate to **$1.264**, below the courtyard's frozen $2.464 maximum. The observation is retained as reported; no dashboard query was made. Room $1.30 reservation plus courtyard $2.50 = **$3.80 cumulative reservation** against the unchanged **$4.75 ceiling**. Room $1.264 plus courtyard $1.264 = **$2.528 known reported billing**. No unknown attempted-job charges, refunds or reservation reset. Lifetime counts: 2 generation submissions, 41 API requests plus 8 downloads, 7 world reads. Remaining $0.95 is the original allocation, not new authorization.
+
+### Known issues, remaining work and recommended next step
+
+Stop for owner courtyard review. Structural success does not establish final visual quality/prompt adherence, pixel decoding, collider navigation, Gaussian rendering, panorama projection or verified metric scale/alignment. Exact provider compute duration was not reported; latency is a client-observed completion interval with 20-second polling. Courtyard is not approved; fal-world/chest remain unattempted and blocked. No further next, fal, chest, EXPLORE/Phase 4/renderer, deployment or real-data import is authorized here.
+
+Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic tests do not guarantee universal correctness. No hosted deployment or real campaign/private-data acceptance occurred.
+
+---
+
+## Historical room-recovery checkpoint and subsequent limited owner approval
+
 **PHASE 3.8B EXISTING-ROOM RECOVERY SUCCEEDED STRUCTURALLY; AWAITING MANUAL OWNER REVIEW.** The owner accepted and authorized room-only execution of `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`. Separate continuation initialization and room recovery each ran exactly once at that clean SHA. No manual approval or next job was released.
 
 ### Completed work and files / areas changed

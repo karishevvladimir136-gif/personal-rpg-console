@@ -1,0 +1,193 @@
+{
+  "version": "phase38b-courtyard-evidence-1",
+  "recordedAtUTC": "2026-09-20T01:31:35.157082+00:00",
+  "executionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "precedingRoomEvidenceCommit": "d6a420056ea2eaca326567a914d5c070a43d0a82",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "freezeFileSHA256": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e",
+  "status": "awaiting_output_review",
+  "resultSHA256": "869dbfa0a9833e24f140958b63d59fcfea77541f0be1b56e017de887ee6cc2da",
+  "rawResultBytes": 2627,
+  "rawResultAndAssetsRetainedLocallyOnly": true,
+  "requestId": "69f68655-5e62-4275-910b-d6e9b9b9235d",
+  "worldId": "fedc9eef-f123-4f96-b00a-bd9e955a9326",
+  "provider": "worldlabs",
+  "requestedModel": "marble-1.1-plus",
+  "safelyReportedActualModel": "marble-1.1-plus",
+  "actualModelProvenance": "Get World model field; no inferred model from request echo",
+  "world": {
+    "identityHash": "4190982156f7e0198b7bab30077515fb02a393e9a68667d67eb57408653f7bdd",
+    "metadata": {
+      "actualModel": "marble-1.1-plus",
+      "assetsPresent": true,
+      "createdAt": "2026-09-20T01:23:20Z",
+      "displayNameMatches": true,
+      "privacy": "private",
+      "promptEchoMatches": false,
+      "requestId": "69f68655-5e62-4275-910b-d6e9b9b9235d",
+      "returnedPromptHash": "bffdaf3d2b4f622d0d1755828142b22eb832cef11a25e584d3ed4ec6fc472f56",
+      "worldId": "fedc9eef-f123-4f96-b00a-bd9e955a9326"
+    },
+    "scale": {
+      "ground_plane_offset": 2.742072582244873,
+      "metric_scale_factor": 4.759617805480957
+    },
+    "worldId": "fedc9eef-f123-4f96-b00a-bd9e955a9326"
+  },
+  "worldReadBodyHashes": [
+    "ff551767633039bc13da241d71f145270ab68e828d8bdb1921a19a1c7846e64f",
+    "ff551767633039bc13da241d71f145270ab68e828d8bdb1921a19a1c7846e64f"
+  ],
+  "reopenIdentityStable": true,
+  "worldReadBodiesIdentical": true,
+  "assets": [
+    {
+      "role": "splat",
+      "kind": "splat",
+      "bytes": 1240698,
+      "sha256": "c60cbfdaefa1f9e8c7408a524284173523bc2e5e54651390135937f15ae0e6b3",
+      "metadata": {
+        "format": "spz",
+        "points": 98304,
+        "structuralOnly": true,
+        "version": 2
+      }
+    },
+    {
+      "role": "collider",
+      "kind": "geometry",
+      "bytes": 1061592,
+      "sha256": "fca6d0d6b49db5075c89068feeac8db98e8c361161bffb9d5a7decb905c01693",
+      "metadata": {
+        "format": "glb",
+        "materials": 0,
+        "meshes": 1,
+        "nodes": 2,
+        "structuralOnly": true
+      }
+    },
+    {
+      "role": "pano",
+      "kind": "image",
+      "bytes": 9935205,
+      "sha256": "012c20d829c293c6e0e3db91e9cdab1c6b5dda2a6f8e9487e8ccf021f0e72cb0",
+      "metadata": {
+        "format": "png",
+        "height": 2304,
+        "width": 4608
+      }
+    },
+    {
+      "role": "thumbnail",
+      "kind": "image",
+      "bytes": 17828,
+      "sha256": "04fa1ceffd6e45c8859ab742746175e7d2818efe0be5483f492b192d3d893427",
+      "metadata": {
+        "alphaHint": null,
+        "chunks": 1,
+        "codec": "VP8",
+        "format": "webp",
+        "height": 480,
+        "structuralOnly": true,
+        "width": 720
+      }
+    }
+  ],
+  "assetBytes": 12255323,
+  "network": {
+    "courtyardSubmissions": 1,
+    "operationStatusPolls": 15,
+    "worldGETs": 2,
+    "assetDownloads": 4,
+    "successfulResponses": 22,
+    "apiRequestsExcludingDownloads": 18,
+    "totalRequestsIncludingDownloads": 22,
+    "retries": 0,
+    "fallbacks": 0,
+    "falCalls": 0,
+    "exports": 0,
+    "chestCalls": 0,
+    "nextInvocations": 1
+  },
+  "timing": {
+    "reservationStartedUnixMs": 1789867398874,
+    "lastCompletionPollStartedUnixMs": 1789867708538,
+    "firstWorldReadStartedUnixMs": 1789867708719,
+    "completionObservedIntervalMs": [
+      309664,
+      309845
+    ],
+    "allOutputsRetainedAfterMs": 311951,
+    "limitation": "Client-observed completion polling interval, including queuing and polling cadence; exact provider compute latency not reported."
+  },
+  "billing": {
+    "courtyardReportedCredits": 1580,
+    "USDConversionMicroUSDPerCredit": 800,
+    "courtyardLedgerUSD": 1.264,
+    "source": "provider cost.total_credits converted at frozen rate",
+    "courtyardFrozenMaximumUSD": 2.464,
+    "courtyardRetainedReservationUSD": 2.5,
+    "lowerReportedChargePreserved": true,
+    "dashboardQueried": false,
+    "rawUSDReportedDirectly": false
+  },
+  "cumulative": {
+    "roomReservedMicroUSD": 1300000,
+    "courtyardReservedMicroUSD": 2500000,
+    "totalReservedMicroUSD": 3800000,
+    "roomReportedMicroUSD": 1264000,
+    "courtyardReportedMicroUSD": 1264000,
+    "totalKnownReportedMicroUSD": 2528000,
+    "unknownChargeJobs": [],
+    "originalCeilingMicroUSD": 4750000,
+    "unreservedOriginalAllocationMicroUSD": 950000,
+    "historicalAPIRequests": 21,
+    "continuationAPIRequests": 20,
+    "lifetimeAPIRequests": 41,
+    "continuationDownloads": 8,
+    "lifetimeWorldReads": 7,
+    "lifetimeGenerationSubmissions": 2
+  },
+  "roomApproval": {
+    "recordSHA256": "9d7e614424bb97e8f5fab719f3d9f5fdb9648e7ba5367fc358fda8e54f4a7071",
+    "recordFile": "room-manual-review-001.json",
+    "durablyAppendedAndReopenedBeforeNext": true,
+    "scope": "Phase 3.8B synthetic capability experiment continuation only. No final visual quality, full prompt fidelity, production EXPLORE acceptance, collider navigation quality or verified metric alignment claim. Panorama sharing only for this synthetic output and the frozen fal probe."
+  },
+  "guardResults": {
+    "noCourtyardApproval": true,
+    "onlyRoomApprovalPresent": true,
+    "noSecondNext": true,
+    "remainingFalAndChestUnattempted": true,
+    "originalStoppedHistoryUnchanged": true,
+    "previousRecoveryJournalAndWitnessExactPrefixes": true,
+    "frozenExecutionUnchanged": true,
+    "productionUnchanged": true
+  },
+  "liveSourceHashes": {
+    "journal.jsonl": "58ddabf60311a3f6f2b77e1667ac841c9743a0c0c70d0a9b7bf77cbd45c120ee",
+    "witness.jsonl": "62675f4e042586634c2a954fbf481608ccec506b549a516fea751f15db3515f7",
+    "identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+  },
+  "verification": {
+    "deterministicTestsPassed": 273,
+    "failures": 0,
+    "skipped": 0,
+    "typecheck": "passed",
+    "lint": "passed, zero warnings",
+    "build": "isolated experiment passed",
+    "timing": "Offline checks ran during generation; freeze and evidence integrity checked after completion. No code changed.",
+    "productionBuild": "not rerun; production unchanged"
+  },
+  "limitations": [
+    "Structural success only; no final visual/prompt-fidelity or production EXPLORE acceptance.",
+    "Exact provider compute duration unknown; reported completion is client-observed with 20-second polling cadence.",
+    "Courtyard charge lower than frozen maximum; actual reported credits retained, no dashboard reconciliation request made.",
+    "Scale values are reported metadata, not independently verified metric alignment.",
+    "GLB structure does not establish collision/navigation usability; SPZ rendering unverified.",
+    "PNG/WebP header/structural checks passed; courtyard full image decoding and owner visual review not performed.",
+    "Panorama 2:1 dimensions do not independently establish visual projection correctness.",
+    "No hosted deployment or real campaign/private-data acceptance; physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified."
+  ]
+}

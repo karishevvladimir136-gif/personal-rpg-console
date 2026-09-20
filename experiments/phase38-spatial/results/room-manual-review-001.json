@@ -1,0 +1,14 @@
+{
+  "jobId": "spatial-room-1",
+  "resultSHA256": "b2a74c1f1325699ad6c5e8505d3ec09a73a7c8af299f03bce824a5cd38973066",
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "syntheticOnly": true,
+  "safeVisibleEnvelope": true,
+  "requiredOutputsUsable": true,
+  "assetFirst": true,
+  "noUnexpectedRouting": true,
+  "panoramaCompatible": true,
+  "panoramaSharingPermitted": true,
+  "scope": "Phase 3.8B synthetic capability experiment continuation only. No final visual quality, full prompt fidelity, production EXPLORE acceptance, collider navigation quality or verified metric alignment claim. Panorama sharing only for this synthetic output and the frozen fal probe."
+}
