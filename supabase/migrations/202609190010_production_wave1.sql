@@ -172,7 +172,7 @@ declare snapshot jsonb; begin
 end $$;
 create function public.rpg_world(p_owner_id uuid,p_campaign_id uuid,p_action text,p_payload jsonb default '{}',p_timeline jsonb default null) returns jsonb language plpgsql security definer set search_path='' as $$
 #variable_conflict use_column
-declare command jsonb; snap jsonb; binding jsonb; pack jsonb; scenario jsonb; v jsonb; result jsonb; saved rpg_private.world_commands%rowtype; op uuid; w jsonb; actor jsonb; cid uuid:=p_campaign_id; sources jsonb; turn rpg_private.turns%rowtype; begin
+declare command jsonb; snap jsonb; binding jsonb; pack jsonb; scenario jsonb; pack_sources jsonb; pack_entities jsonb; candidate jsonb; pv text; v jsonb; result jsonb; saved rpg_private.world_commands%rowtype; op uuid; w jsonb; actor jsonb; cid uuid:=p_campaign_id; sources jsonb; turn rpg_private.turns%rowtype; begin
  if p_owner_id is null or not exists(select 1 from rpg_private.owner_registry where user_id=p_owner_id) then raise exception 'rpg_forbidden' using errcode='42501'; end if;
  perform 1 from public.rpg_campaigns where id=cid for update; if not found then raise exception 'rpg_not_found'; end if;
  perform rpg_private.timeline_assert(cid,p_timeline,p_action<>'read');
@@ -196,15 +196,26 @@ declare command jsonb; snap jsonb; binding jsonb; pack jsonb; scenario jsonb; v 
   perform rpg_private.fields(binding,array['schemaVersion','id','campaignId','ownerId','packId','packVersionId','scenarioVersionId','sourceVersionIds','sourcePriority','entry','mappings']);
   perform rpg_private.assert(binding->>'schemaVersion'='1' and binding->>'campaignId'=cid::text and binding->>'ownerId'=p_owner_id::text);
   pack:=rpg_private.library_ref(p_owner_id,binding->>'packVersionId','pack');
-  perform rpg_private.assert(pack->>'id'=binding->>'packId' and pack#>>'{body,status}'='approved' and pack#>'{body,sourceVersionIds}'@>(binding->'sourceVersionIds') and (binding->'sourceVersionIds')@>(pack#>'{body,sourceVersionIds}'));
+  perform rpg_private.assert(pack->>'id'=binding->>'packId' and pack#>>'{body,status}'='approved');
+  pack_sources:=pack#>'{body,sourceVersionIds}'; pack_entities:=pack#>'{body,entities}';
+  if binding->>'scenarioVersionId' is not null then
+   scenario:=rpg_private.library_ref(p_owner_id,binding->>'scenarioVersionId','scenario');
+   perform rpg_private.assert(scenario#>>'{body,status}'='approved' and scenario#>'{body,packVersionIds}' ? (binding->>'packVersionId') and scenario#>'{body,entry}'=binding->'entry' and scenario#>'{body,sourcePriority}'=binding->'sourcePriority');
+   pack_sources:='[]';pack_entities:='[]';
+   for pv in select jsonb_array_elements_text(scenario#>'{body,packVersionIds}') loop
+    candidate:=rpg_private.library_ref(p_owner_id,pv,'pack');perform rpg_private.assert(candidate#>>'{body,status}'='approved');
+    pack_sources:=pack_sources||(candidate#>'{body,sourceVersionIds}');pack_entities:=pack_entities||(candidate#>'{body,entities}');
+   end loop;
+  end if;
+  perform rpg_private.assert(pack_sources@>(binding->'sourceVersionIds') and (binding->'sourceVersionIds')@>pack_sources);
   perform rpg_private.source_set(p_owner_id,binding->'sourceVersionIds',binding->'sourcePriority');
   perform rpg_private.library_evidence(p_owner_id,binding#>'{entry,evidence}',binding->'sourceVersionIds');
   perform rpg_private.assert((binding#>>'{entry,worldMinutes}')::bigint>=0 and length(binding#>>'{entry,label}') between 1 and 200);
   if binding->>'scenarioVersionId' is not null then scenario:=rpg_private.library_ref(p_owner_id,binding->>'scenarioVersionId','scenario'); perform rpg_private.assert(scenario#>>'{body,status}'='approved' and scenario#>'{body,packVersionIds}' ? (binding->>'packVersionId')); end if;
-  perform rpg_private.assert(jsonb_array_length(binding->'mappings')=jsonb_array_length(pack#>'{body,entities}'));
+  perform rpg_private.assert(jsonb_array_length(binding->'mappings')=jsonb_array_length(pack_entities));
   perform rpg_private.assert(jsonb_typeof(binding->'mappings')='array' and jsonb_array_length(binding->'mappings')<=500 and (select count(*)=count(distinct value->>'packEntityId') and count(*)=count(distinct value->>'entityId') from jsonb_array_elements(binding->'mappings')));
   for v in select value from jsonb_array_elements(binding->'mappings') loop
-   perform rpg_private.assert(exists(select 1 from jsonb_array_elements(pack#>'{body,entities}') e where e->>'id'=v->>'packEntityId') and (v->>'entityId')::uuid<>(v->>'packEntityId')::uuid);
+   perform rpg_private.assert(exists(select 1 from jsonb_array_elements(pack_entities) e where e->>'id'=v->>'packEntityId') and (v->>'entityId')::uuid<>(v->>'packEntityId')::uuid);
    perform rpg_private.assert(not exists(select 1 from public.rpg_entities e where e.id=(v->>'entityId')::uuid and e.campaign_id<>cid));
    perform rpg_private.assert(not exists(select 1 from rpg_private.world_foundations f,jsonb_array_elements(f.bindings) b,jsonb_array_elements(b->'mappings') m where f.campaign_id<>cid and m->>'entityId'=v->>'entityId'));
   end loop;
@@ -269,9 +280,15 @@ declare a jsonb; t jsonb; s jsonb; h jsonb; v text; sources jsonb; begin
   if h->'discovery'<>'null' then perform rpg_private.library_evidence(uid,h#>'{discovery,evidence}',sources,true); end if;
  end loop;
 end $$;
+create function rpg_private.world_event_id(op uuid,thread_id text,step_id text,audience text) returns uuid language plpgsql immutable set search_path='' as $$
+declare h text; begin
+ h:=substr(encode(sha256(convert_to('rpg-v1:'||op::text||':world-v1:'||thread_id||':'||step_id||':'||audience,'UTF8')),'hex'),1,32);
+ h:=overlay(h placing '5' from 13 for 1); h:=overlay(h placing to_hex((get_byte(decode(substr(h,17,2),'hex'),0)>>4 & 3)|8) from 17 for 1);
+ return h::uuid;
+end $$;
 create function rpg_private.world_validate_settlement(uid uuid,cid uuid,p jsonb,t rpg_private.turns) returns void language plpgsql stable set search_path='' as $$
 #variable_conflict use_column
-declare snap jsonb; e jsonb; a jsonb; oldw jsonb; neww jsonb; thread jsonb; changed jsonb; step jsonb; sources jsonb; begin
+declare snap jsonb; e jsonb; a jsonb; oldw jsonb; neww jsonb; thread jsonb; changed jsonb; step jsonb; sources jsonb; n integer; idx integer; peer jsonb; hook jsonb; receipt jsonb; expected_warnings jsonb; begin
  perform rpg_private.fields(p,array['operationId','campaignId','timeline','expectedRevision','expectedRuntimeRevision','expectedHeadId','schemaVersion','status','fromWorldMinutes','throughWorldMinutes','sourceVersionIds','events','nextWorld']);
  snap:=rpg_private.foundation_fence(uid,cid,p); oldw:=snap->'world'; neww:=p->'nextWorld';
  perform rpg_private.assert(oldw<>'null' and p->>'schemaVersion'='1' and p->>'status'='staged' and p->>'operationId'=t.id::text and t.input->>'mode' in ('game','companion','mechanic'));
@@ -287,7 +304,12 @@ declare snap jsonb; e jsonb; a jsonb; oldw jsonb; neww jsonb; thread jsonb; chan
   select value into changed from jsonb_array_elements(neww->'threads') where value->>'id'=thread->>'id';
   perform rpg_private.assert(changed is not null and (changed-array['cursor','revision','status'])=(thread-array['cursor','revision','status']) and (changed->>'cursor')::integer between (thread->>'cursor')::integer and jsonb_array_length(thread->'steps'));
   if changed<>thread then
-   perform rpg_private.assert((changed->>'revision')::integer>(thread->>'revision')::integer and exists(select 1 from jsonb_array_elements(p->'events') x where x->>'kind'='world.thread.advanced' and x->'threadIds'=jsonb_build_array(thread->>'id')));
+   n:=(changed->>'cursor')::integer-(thread->>'cursor')::integer;
+   perform rpg_private.assert(thread->>'status'='active' and n>0 and (changed->>'revision')::integer=(thread->>'revision')::integer+n and changed->>'status'=case when (changed->>'cursor')::integer=jsonb_array_length(thread->'steps') then 'resolved' else 'active' end);
+   perform rpg_private.assert((select count(*) from jsonb_array_elements(p->'events') x where x->>'kind'='world.thread.advanced' and x->'threadIds'=jsonb_build_array(thread->>'id'))=n);
+   for idx in (thread->>'cursor')::integer..(changed->>'cursor')::integer-1 loop
+    perform rpg_private.assert((select count(*) from jsonb_array_elements(p->'events') x where x->>'kind'='world.thread.advanced' and x->'threadIds'=jsonb_build_array(thread->>'id') and (x#>>'{payload,previousCursor}')::integer=idx)=1);
+   end loop;
   end if;
  end loop;
  for e in select value from jsonb_array_elements(p->'events') loop
@@ -302,6 +324,11 @@ declare snap jsonb; e jsonb; a jsonb; oldw jsonb; neww jsonb; thread jsonb; chan
    select value into thread from jsonb_array_elements(oldw->'threads') where value->'id'=e->'threadIds'->0;
    perform rpg_private.assert(thread is not null and thread->'actorIds'=e->'actorIds');
    step:=thread->'steps'->(e#>>'{payload,previousCursor}')::integer;
+   perform rpg_private.fields(e->'payload',array['schemaVersion','stepId','previousCursor','nextCursor','hookChanges']);
+   perform rpg_private.assert(e#>>'{payload,schemaVersion}'='1' and e#>'{payload,hookChanges}'=step->'hookChanges');
+   perform rpg_private.assert(e->>'id'=rpg_private.world_event_id(t.id,thread->>'id',step->>'id','private')::text);
+   perform rpg_private.assert(not exists(select 1 from jsonb_array_elements(oldw->'actors') actor where thread->'decisionActorIds' ? (actor->>'id') and not (actor->'knowledge'@>(step->'evidence'))));
+   perform rpg_private.assert(not exists(select 1 from jsonb_array_elements(step->'evidence') evidence join rpg_private.library_records old on old.version_id=(evidence->>'sourceVersionId')::uuid where exists(select 1 from rpg_private.library_records newer where newer.owner_id=old.owner_id and newer.kind=old.kind and newer.id=old.id and newer.version>old.version)));
    if step#>>'{trigger,kind}'='deadline' then
     perform rpg_private.assert(oldw#>>'{policy,simulation}'='true' and (step#>>'{trigger,atWorldMinutes}')::bigint<=(p->>'throughWorldMinutes')::bigint and (oldw#>>'{policy,deadlinePressure}'='normal' or (oldw#>>'{policy,deadlinePressure}'='critical_only' and step#>>'{trigger,scenarioCritical}'='true' and step#>>'{trigger,established}'='true')));
    elsif step#>>'{trigger,kind}'='autonomy' then
@@ -314,9 +341,34 @@ declare snap jsonb; e jsonb; a jsonb; oldw jsonb; neww jsonb; thread jsonb; chan
    perform rpg_private.assert(not exists(select 1 from jsonb_array_elements(step->'evidence') locator where locator->>'knowledge' in ('source','future_source')));
    perform rpg_private.assert(step->>'id'=e#>>'{payload,stepId}' and step->>'resolution'='deterministic' and (e#>>'{payload,nextCursor}')::integer=(e#>>'{payload,previousCursor}')::integer+1 and step->>'privateText'=e->>'text' and step->'evidence'=e->'evidence');
   else
-   perform rpg_private.assert(e->>'visibility'='public' and e->'payload'='{}' and exists(select 1 from jsonb_array_elements(oldw->'threads') x,jsonb_array_elements(x->'steps') s where s#>>'{publicOutcome,text}'=e->>'text' and s#>'{publicOutcome,evidence}'=e->'evidence' and s#>'{publicOutcome,actorIds}'=e->'actorIds'));
+   perform rpg_private.assert(e->>'visibility'='public' and e->'payload'='{}' and not exists(select 1 from jsonb_array_elements(e->'evidence') loc where loc->>'knowledge'<>'character'));
+   perform rpg_private.assert(exists(select 1 from jsonb_array_elements(p->'events') priv,jsonb_array_elements(oldw->'threads') th,jsonb_array_elements(th->'steps') st
+    where priv->>'kind'='world.thread.advanced' and priv->'threadIds'=jsonb_build_array(th->>'id') and priv#>>'{payload,stepId}'=st->>'id'
+     and e->>'id'=rpg_private.world_event_id(t.id,th->>'id',st->>'id','public')::text and e->'worldMinutes'=priv->'worldMinutes'
+     and e->'threadIds'=case when th->>'publicTitle' is null then '[]'::jsonb else jsonb_build_array(th->>'id') end
+     and st#>>'{publicOutcome,text}'=e->>'text' and st#>'{publicOutcome,evidence}'=e->'evidence' and st#>'{publicOutcome,actorIds}'=e->'actorIds'));
   end if;
  end loop;
+ -- A configured public consequence cannot be omitted while its private step commits.
+ for e in select value from jsonb_array_elements(p->'events') where value->>'kind'='world.thread.advanced' loop
+  select value into thread from jsonb_array_elements(oldw->'threads') where value->'id'=e->'threadIds'->0;
+  step:=thread->'steps'->(e#>>'{payload,previousCursor}')::integer;
+  if step->'publicOutcome'<>'null' then perform rpg_private.assert(exists(select 1 from jsonb_array_elements(p->'events') pub where pub->>'id'=rpg_private.world_event_id(t.id,thread->>'id',step->>'id','public')::text)); end if;
+ end loop;
+ for hook in select value from jsonb_array_elements(oldw->'hooks') loop
+  select value into changed from jsonb_array_elements(neww->'hooks') where value->>'id'=hook->>'id';
+  perform rpg_private.assert(changed is not null and changed-'status'=hook-'status');
+  if changed->>'status'<>hook->>'status' then perform rpg_private.assert(hook->>'status' not in ('resolved','expired') and exists(select 1 from jsonb_array_elements(p->'events') ev,jsonb_array_elements(ev#>'{payload,hookChanges}') ch where ch->>'hookId'=hook->>'id' and ch->>'status'=changed->>'status')); end if;
+ end loop;
+ expected_warnings:=oldw->'warnings';
+ for e in select value from jsonb_array_elements(p->'events') where value->>'kind'='world.thread.advanced' loop
+  select value into thread from jsonb_array_elements(oldw->'threads') where value->'id'=e->'threadIds'->0;
+  step:=thread->'steps'->(e#>>'{payload,previousCursor}')::integer;
+  if step->'warning'<>'null' then
+   expected_warnings:=expected_warnings||jsonb_build_array(jsonb_build_object('stepId',step#>'{warning,forStepId}','eventId',rpg_private.world_event_id(t.id,thread->>'id',step->>'id','public'),'atWorldMinutes',e->'worldMinutes','opportunityUntilWorldMinutes',(e->>'worldMinutes')::bigint+(step#>>'{warning,opportunityMinutes}')::bigint,'recipientActorIds',step#>'{warning,recipientActorIds}'));
+  end if;
+ end loop;
+ perform rpg_private.assert(neww->'warnings'=expected_warnings);
 end $$;
 -- Add optional staged-world packet fields to the accepted validator (all old fields remain required).
 do $$ declare d text; begin
