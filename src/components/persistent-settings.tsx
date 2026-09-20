@@ -13,6 +13,13 @@ import {
 import { Badge, Button, Panel } from "./ui";
 import { CampaignSettingsEditor } from "./campaign-settings";
 import { GameplayConfiguration } from "./gameplay-configuration";
+import {
+  AIProviderSettings,
+  CampaignProductionSettingsPanel,
+} from "./production-settings";
+import type { CampaignProductionSettings } from "@/lib/production/configuration-contracts";
+import { productionScopeMatches } from "@/lib/production-client";
+import { wave2ConfigText } from "@/lib/locales/wave2-config";
 import { updateCampaignSettings } from "@/lib/campaign-settings";
 import { languageOptions } from "@/lib/i18n";
 import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
@@ -227,6 +234,7 @@ export function PersistentGeneralSettings() {
         </Panel>
       )}
       {data && <PreferenceForm current={data.preferences} />}
+      {data && <AIProviderSettings />}
     </>
   );
 }
@@ -339,8 +347,15 @@ function CampaignIdentityForm({ current }: { current: Campaign }) {
   );
 }
 
-function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
+function CampaignPreferencesForm({
+  current,
+  production,
+}: {
+  current: CampaignSnapshot;
+  production: CampaignProductionSettings | null;
+}) {
   const { t, language } = useLanguage();
+  const configText = wave2ConfigText(language);
   const { mutate, refresh } = useCampaignData();
   const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(current.settings.values);
@@ -374,6 +389,11 @@ function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
           <CampaignSettingsEditor
             title={current.campaign.title}
             settings={draft}
+            showWorldAutonomy={false}
+            showMechanics={production?.ruleset.id === "console-basic-v1"}
+            managedRulesNote={
+              production ? configText.logicManaged : configText.loading
+            }
             onChange={(action) => {
               state.clearSaved();
               setDraft((previous) => updateCampaignSettings(previous, action));
@@ -483,6 +503,12 @@ function CampaignPreferencesForm({ current }: { current: CampaignSnapshot }) {
 export function PersistentCampaignSettings() {
   const { t } = useLanguage();
   const { data, loading, error, refresh, campaignId } = useCampaignData();
+  const [production, setProduction] =
+    useState<CampaignProductionSettings | null>(null);
+  const activeProduction =
+    production && productionScopeMatches(production, campaignId, data?.timeline)
+      ? production
+      : null;
   return (
     <>
       {loading && <p role="status">{t("Loading campaign settings…")}</p>}
@@ -497,8 +523,19 @@ export function PersistentCampaignSettings() {
       {data && (
         <div key={campaignId}>
           <CampaignIdentityForm current={data.campaign} />
-          <CampaignPreferencesForm current={data} />
-          <GameplayConfiguration />
+          <CampaignPreferencesForm
+            current={data}
+            production={activeProduction}
+          />
+          <CampaignProductionSettingsPanel
+            campaignId={campaignId}
+            timeline={data.timeline}
+            onLoaded={setProduction}
+            afterSave={refresh}
+          />
+          {activeProduction?.ruleset.id === "console-basic-v1" && (
+            <GameplayConfiguration />
+          )}
         </div>
       )}
     </>
