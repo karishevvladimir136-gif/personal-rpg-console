@@ -9,6 +9,8 @@ export function freezeInputs() {
     "continuation.json",
     "fal-recovery.json",
     "fal-retrieval.json",
+    "fal-host-diagnostic.json",
+    "FAL_HOST_DIAGNOSTIC_PREPARATION.md",
     "FAL_RETRIEVAL_PREPARATION.md",
     "FAL_RECOVERY_PREPARATION.md",
     "package.json",

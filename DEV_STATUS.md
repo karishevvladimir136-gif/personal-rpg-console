@@ -1,8 +1,42 @@
 # Development status
 
-Last updated: September 19, 2026 (local; retrieval September 20 UTC). Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026 (local; previous live observations September 20 UTC). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.8B OFFLINE ONE-READ FAL ASSET-HOST DIAGNOSTIC PREPARED; STOP FOR OWNER REVIEW.** Hunyuan fal-world remains **queue-COMPLETED**. Prior result HTTP 200 / exact response URL / optional identity validation passed, and `world_file` exists. The current blocker is the unknown hostname rejected by the existing asset-host policy, not established provider-generation failure. **No fal-world artifact download has occurred; chest remains unattempted.**
+
+### Completed work and files / areas changed
+
+Prepared distinct append-only `phase38b-fal-host-diagnostic-1`, manifest hash `8de9ecf328aa6459ea09d7686533cf1e34f86bf0b04978846c1d87f197fc3602`. [Preparation document](experiments/phase38-spatial/FAL_HOST_DIAGNOSTIC_PREPARATION.md) and [manifest](experiments/phase38-spatial/fal-host-diagnostic.json) bind original execution/protocol/continuation, completed-status evidence, retrieval preparation/hash, finding-B evidence, exact prior result body hash and prior retrieval journal/identity/terminal/accounting.
+
+The future capability may make one exact result GET after separate authorization, record bounded sanitized `world_file` descriptor metadata, classify the host, then stop. It exposes no asset download/DNS, status polling, POST, generation, next, retry, fallback, cancellation, billing, World Labs or chest operation. Only experiment state/metadata/GET-only runner/CLI modules, synthetic tests, manifest/preparation instructions, ignore/freeze bookkeeping and this status changed. No production, root dependencies, schema, UI or existing asset-host policy changes.
+
+### Tests and build status
+
+**549 deterministic experiment tests passed (441 existing + 108 new); zero failures, skips or cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** Coverage includes exact evidence/history binding, body hash comparison before interpretation (including changed malformed bodies), GET-only exact route/model, sanitized hostname/path/query/MIME/extension/size handling, unsafe URLs, manual redirects, single-read/duplicate/crash guards, unchanged accounting and absence of download/DNS capability. Mock verifier/reader seams are unit-only and never exposed by CLI flags. Production full suite/build not rerun; production unchanged.
+
+### Key technical decisions and accounting
+
+The result body must exactly match prior SHA-256 `5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6` before JSON parsing/identity/descriptor interpretation. Any changed bytes, including signed-URL rotation, stop as changed provider result; no replacement-hash override. Sanitized descriptor metadata is appended before existing host-policy classification. Query contents, signed URLs, arbitrary names/fields, credentials and raw bodies are never retained. Pathnames are retained only for a small generic vocabulary; other paths are hash-only. Same-provider-looking hostname classification is only a lexical review hint, not provider ownership/DNS proof or download authorization. No allowlist widening or asset-policy repair is included.
+
+Original STOPPED continuation, completed-status recovery and prior retrieval finding B remain byte-for-byte preserved and are checked read-only before future requests. A new ignored diagnostic directory/anchor may be initialized once only after separate owner authorization of the exact preparation SHA. **No live diagnostic initialization, provider request, artifact/DNS request, generation or reservation occurred in this preparation. No credentials were accessed/requested.**
+
+Accounting remains **$4.15 / $4.75 reserved; $2.528 known reported billing; fal charge UNKNOWN; existing $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. No refund or zero-charge assumption. Historical counts remain three submissions, 45 API requests and eight downloads.
+
+### Known issues and remaining work
+
+Actual rejected asset hostname, artifact/DRC format, byte size/hash, structural/navigation usability and model/billing remain unverified. The future diagnostic cannot retrieve an artifact or establish provider ownership. A host-policy change would require a subsequent owner-reviewed checkpoint with concrete hostname evidence and regression tests. An unchanged result body is not guaranteed; any change must stop without descriptor interpretation. No live diagnostic compatibility is claimed yet.
+
+Earlier room/courtyard acceptance remains narrow synthetic experiment approval, not final visual/prompt quality, collider navigation, metric alignment or production EXPLORE. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees; no hosted or real campaign/private-data acceptance. Main, roadmap branch, production and original checkout's pre-existing documentation edits remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of the exact offline diagnostic preparation SHA.** Do not initialize or run the diagnostic live, download an artifact, change host policy, poll/resubmit, run chest/next, implement EXPLORE/renderer, merge main or deploy without separate explicit authorization.
+
+---
+
+## Historical fal result retrieval evidence checkpoint
 
 **PHASE 3.8B FAL RESULT RETRIEVAL STOPPED AT ASSET-HOST POLICY; STOP FOR OWNER REVIEW.** Executed once from exact clean approved SHA `9160d9766559d38139a51516384461958399defc`, retrieval identity `phase38b-fal-retrieval-1`, hash `546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a`. Initialization occurred once with zero requests/reservations/generations. The single result GET returned **HTTP 200, exact response URL, no redirect**, and passed frozen optional result-identity validation. Parsing `world_file.url` then stopped with **B_INVALID_OUTPUT_OR_ASSET_URL / asset_host_not_allowed**. **Zero artifact downloads.**
 
