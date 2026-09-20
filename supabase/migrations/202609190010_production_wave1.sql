@@ -251,7 +251,7 @@ declare a jsonb; t jsonb; s jsonb; h jsonb; v text; sources jsonb; begin
  perform rpg_private.assert(w->>'schemaVersion'='1' and w->>'campaignId'=cid::text and octet_length(w::text)<=1048576);
  perform rpg_private.fields(w->'policy',array['simulation','autonomy','deadlinePressure']);
  perform rpg_private.assert(jsonb_typeof(w#>'{policy,simulation}')='boolean' and w#>>'{policy,autonomy}' in ('low','moderate','high') and w#>>'{policy,deadlinePressure}' in ('off','critical_only','normal'));
- perform rpg_private.assert((w->>'policyChangedAtWorldMinutes')::bigint>=0 and jsonb_array_length(w->'actors')<=500 and jsonb_array_length(w->'threads')<=300 and jsonb_array_length(w->'hooks')<=500 and jsonb_array_length(w->'warnings')<=500);
+ perform rpg_private.assert((w->>'policyChangedAtWorldMinutes')::bigint>=0 and jsonb_array_length(w->'actors')<=256 and jsonb_array_length(w->'threads')<=128 and jsonb_array_length(w->'hooks')<=128 and jsonb_array_length(w->'warnings')<=1024);
  select coalesce(jsonb_agg(distinct src.value),'[]') into sources from jsonb_array_elements(bindings) b,jsonb_array_elements(b->'sourceVersionIds') src(value);
  foreach v in array array['actors','threads','hooks'] loop
   perform rpg_private.assert(jsonb_typeof(w->v)='array' and (select count(*)=count(distinct value->>'id') from jsonb_array_elements(w->v)));
@@ -262,7 +262,7 @@ declare a jsonb; t jsonb; s jsonb; h jsonb; v text; sources jsonb; begin
   if a->>'entityId' is not null then
    perform rpg_private.assert(a->>'kind'='entity' and a->>'entityId'=a->>'id' and exists(select 1 from public.rpg_entities e where e.campaign_id=cid and e.id=(a->>'entityId')::uuid));
    if exists(select 1 from rpg_private.runtime_state r where r.campaign_id=cid and (r.configuration->'controlledEntityIds' ? (a->>'entityId') or exists(select 1 from public.rpg_entities pe where pe.campaign_id=cid and pe.id=(a->>'entityId')::uuid and pe.kind='player'))) then perform rpg_private.assert(a->>'control'='player'); end if;
-  else perform rpg_private.assert(a->>'kind'<>'entity' and a->>'control'='autonomous'); end if;
+  else perform rpg_private.assert(a->>'kind'<>'entity'); end if;
   if a->>'locationId' is not null then perform rpg_private.assert(exists(select 1 from public.rpg_locations l where l.campaign_id=cid and l.id=(a->>'locationId')::uuid)); end if;
   perform rpg_private.library_evidence(uid,a->'knowledge',sources);
  end loop;
@@ -404,6 +404,8 @@ declare result jsonb; t rpg_private.turns%rowtype; p jsonb; staged jsonb; e json
     insert into rpg_private.world_events(id,campaign_id,operation_id,event) values(eid,p_campaign_id,t.id,e);
     -- Reuse existing Memory authority. No actor-involvement => witness inference.
     perform rpg_private.memory_index(p_campaign_id,case when e->>'visibility'='public' then 'event' else 'private_event' end,eid,'1',e->>'text',e->>'visibility',t.session_id,'{}','{}','history','record');
+    update rpg_private.memory_public_sources set valid_from=(e->>'worldMinutes')::integer where campaign_id=p_campaign_id and source_id=eid and kind='event';
+    update rpg_private.memory_private_sources set valid_from=(e->>'worldMinutes')::integer where campaign_id=p_campaign_id and source_id=eid and kind='private_event';
    end loop;
   end if;
  end if;
