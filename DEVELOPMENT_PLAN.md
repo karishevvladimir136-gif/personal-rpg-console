@@ -1,7 +1,7 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
-**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) keeps direct OpenAI Responses, preserves the abstraction seam and closes Jev without adoption; incomplete benchmark evidence is sufficient for that architecture decision only. Phase 3.8A documentation/research/offline planning is authorized now. Production EXPLORE is part of v1 after Phase 4 FRAME / Visual Bible; no production slice, new model call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
+**Current boundary:** This documentation-only integration candidate preserves the complete owner-approved roadmap `a3d0fa66da42f36a5401c3513e3484e83150f9d3` on production base `cb7f6be2fb513de13604d381046a3240f3261383`. Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Phase 3.8B final freeze](PHASE38B_ARCHITECTURE_FREEZE.md) is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**. Main has not advanced; review and explicit owner approval are required. No feature coding, provider call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
 
 ---
 
@@ -9,7 +9,21 @@
 
 The Progression / Rewards / Challenge Scaling addition is the **final planned foundational product-architecture addendum before the separately scoped production multi-agent coding sprint**, unless implementation reveals a genuine architectural blocker. No coding or multi-agent work starts in this documentation task. Do not begin another broad product research/design cycle.
 
-Remaining pre-coding work is limited to completing separately authorized Phase 3.8B capability checks, final architecture/source-of-truth freeze, safe roadmap integration into main, and starting the separately scoped production coding sprint. This list is not permission for this documentation pass to execute experiments, merge main or begin implementation. Preserve the existing DM Craft sequence and all experiment acceptance boundaries.
+Phase 3.8B capability evidence and its architecture freeze are complete with documented limitations. This candidate completes source-of-truth reconciliation; the remaining integration gate is owner review and explicit approval to advance main. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next phase after approved integration is the **Production Multi-Agent Coding Sprint**, with separately authorized bounded scope. No additional Phase 3.8B experiment, chest recovery or fal retry is planned. Preserve the DM Craft sequence and all experiment acceptance boundaries.
+
+## Production Multi-Agent Coding Sprint — handoff only
+
+This records intended development workstreams, not feature implementation or agent dispatch. Natural-language gameplay still uses one primary DM runtime. Establish shared contracts before broad parallel implementation and preserve the existing A–E and media/presentation sequencing below; team roles are not replacement milestones.
+
+| Workstream | Initial responsibility |
+| --- | --- |
+| Lead / Integrator | Establish and version shared contracts first; scope work, assign file ownership, coordinate migrations, integrate and verify changes |
+| World Engine | Implement the approved Actors / Threads / Events / Hooks and world-state slices within lead-owned contracts |
+| World Library / Packs / Rulesets | Implement approved source ingestion, Canon Compiler, pack and ruleset slices with shared identity/provenance boundaries |
+| Runtime / Memory / Saves integration | Reuse accepted DM, memory, persistence and timeline systems; integrate new state without competing authority or rollback systems |
+| QA / Security / Recovery | Independently verify isolation, privacy, authority, migration/save compatibility, deterministic failure/recovery and scoped acceptance |
+
+Parallel workers must **not independently mutate database migrations, core event schemas, save/timeline schemas, shared authority contracts or canonical entity identity contracts**. The Lead/Integrator resolves proposed changes to those shared contracts before dependent work proceeds. Use separately owned files/worktrees and controlled integration; passing worker checks do not replace integrated verification. No team is started by this documentation task.
 
 # MILESTONE 0 — UI SHELL
 
@@ -409,17 +423,21 @@ The owner already requires nontechnical onboarding and secret-free campaign sett
 
 ---
 
-# PHASE 3.8A — SPATIAL RUNTIME ARCHITECTURE / RESEARCH
+# PHASE 3.8A — SPATIAL RUNTIME ARCHITECTURE / RESEARCH — COMPLETE
 
-Authorized now, documentation/offline test-plan only. Deliver [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [dated official capability evidence](PHASE38_PROVIDER_CAPABILITIES.md), [proposed minimal 3.8B](PHASE38B_LIVE_PROTOCOL.md), and the [Phase 3.75 freeze](PHASE375_ARCHITECTURE_DECISION.md). Inspect accepted DM, Memory, save/timeline contracts first. No live calls, paid generation, credentials, runtime/UI/configuration/dependency changes or migrations.
+The owner-approved architecture and dated official research are preserved in [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [provider capability snapshot](PHASE38_PROVIDER_CAPABILITIES.md) and the [historical 3.8B proposal](PHASE38B_LIVE_PROTOCOL.md). Accepted DM, Memory and Saves/Timelines remain the reused foundation. Historical research and proposed test instructions are closed, not current permission for more calls or design work.
 
-Gate: capability-dependent provider/artifact/binding contracts; source/knowledge/version/epoch fencing; return-visit/correction/regeneration/provider-switch behavior; input and output spoiler controls; failures independent of text/DM/saves/media; current official availability/price/license/hardware/privacy evidence with explicit unknowns. Owner reviews documentation before any next stage.
+# PHASE 3.8B — FINAL ARCHITECTURE / CAPABILITY EVIDENCE FREEZE
 
-# PHASE 3.8B — PROPOSED SYNTHETIC LIVE SPATIAL CAPABILITY TEST
+**ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** See [final decisions](PHASE38B_ARCHITECTURE_FREEZE.md) and historical freeze `3c99552a66d9b4b270b3a7a8552c709cf9faf73e`, identity `phase38b-final-architecture-evidence-freeze-1`, canonical hash `eef894c15e27bc167cf3bbcbaaf99dd51ec640f545b1a16cd1b2e539da239119`. Historical experiment files remain on their exact Git checkpoints, outside this production candidate.
 
-Not authorized to execute. First separately prepare/freeze experiment-only inputs/receipts/parsers and offline guard tests. Then obtain explicit owner approval of exact commit, endpoints, call/read/download counts and cost ceiling. Proposed workload: two Marble worlds (room/courtyard), one fal Hunyuan World export probe using the synthetic panorama, one fal Hunyuan3D 3.1 object; at most four serialized paid submissions, $4.75 total reservation ceiling. Stop on first unexplained failure, no retries/fallback/diagnostics. Unknown charges remain unknown and reserved. No real data or production merge.
+Room/courtyard establish bounded World Labs capability for architecture only. Fal-world is `STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE`: support observed PLY or a validated offline conversion path; do not require DRC exclusively. No fal retry. Chest POST entered the queue but the first poll stopped locally; completion/charge UNKNOWN, no GLB retrieved, object/PBR/articulation UNVERIFIED, lid `STRUCTURE_UNVERIFIED`, separate lid not proven. No chest recovery; object generation is not an architecture dependency. None of this establishes final visual quality, navigation, canonical metric correctness or production EXPLORE readiness.
 
-Gate: observed formats/persistence/scale/bindings/viewing/privacy and cost, separately from visual quality and unknowns. Do not interpret finite synthetic success as production acceptance. No automatic follow-on batch or implementation. Realtime/object articulation can remain deferred.
+Four submissions consumed the **$4.75 / $4.75 permanent reservation allocation** with $0 remaining. Known reported billing is **$2.528**; both fal charges remain UNKNOWN and reserved. No reservation reuse/refund, replenishment, fifth generation or additional Phase 3.8B experiment is planned. Future provider issues are bounded implementation blocker investigations, not continuation of this bake-off.
+
+Authoritative world/RPG state remains truth; generated assets are projections. Provider IDs never replace canonical identity; Interaction Bindings use verified addressable nodes/parts/anchors. Text is permanently first-class and spatial-independent; 2D Live is the planned primary visual layer; EXPLORE is optional/progressive and asset-first after Phase 4. Spatial providers do not gate World Engine, Rulesets, DM, Memory, Saves/Timelines or progression.
+
+The current gate is owner review of this integration candidate and explicit approval before main advances. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next development phase is the **Production Multi-Agent Coding Sprint** described above; no coding starts during integration.
 
 ---
 

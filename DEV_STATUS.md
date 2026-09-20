@@ -1,3 +1,50 @@
+# Development status — source-of-truth integration candidate
+
+## Current milestone and status
+
+Final source-of-truth integration before production implementation. **Candidate prepared for owner review; main is not advanced and this candidate is not yet owner-accepted.** Branch: `codex/source-of-truth-integration`. Base main: `cb7f6be2fb513de13604d381046a3240f3261383`; complete approved roadmap: `a3d0fa66da42f36a5401c3513e3484e83150f9d3`; historical final freeze: `3c99552a66d9b4b270b3a7a8552c709cf9faf73e`. Exact candidate commit is the commit containing this record and is reported after creation.
+
+Phase 3.8B status is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**. Phases 0–3.5 remain owner-accepted at their recorded checkpoints. Phase 3.75 decisions are unchanged. Broad product research/design is closed unless implementation reveals a genuine architectural blocker.
+
+## Completed work and files / areas changed
+
+Integrated the full roadmap history; manually reconciled current status and final spatial decisions in MASTER_SPEC.md, DEVELOPMENT_PLAN.md, PHASE38_SPATIAL_RUNTIME.md and this file. Updated START_HERE.md and added historical notices to PHASE38B_LIVE_PROTOCOL.md / PHASE38_PROVIDER_CAPABILITIES.md. Added production-safe PHASE38B_ARCHITECTURE_FREEZE.md and [SOURCE_OF_TRUTH_INTEGRATION.md](SOURCE_OF_TRUTH_INTEGRATION.md), which contains the exact 19-file comparison to main, coverage map and reconciliation decisions. Historical evidence uses exact commit references; no experiment tree is imported.
+
+## Tests and build status — this integration only
+
+**PASS: 23 local documentation/integration assertions.** Verified exact source commits and ancestry; recomputed the historical canonical freeze hash; checked preservation of roadmap requirements and accepted capability/authority/accounting decisions; confirmed the entire experiment tree is absent. All **240 non-Markdown Git objects** match production main. Ten complete roadmap briefs are unchanged; MASTER_SPEC sections 1–44, the content of section 46, plan milestones 0–3.5/A–E and 4+ sequencing, prior DEV_STATUS history, and historical proposal/research bodies are preserved.
+
+Checked **33 Markdown documents / 301 links**, including **8 immutable evidence links** whose commit/path targets exist in local Git. No broken local links/anchors or pre-existing unrelated documentation failures were found. Strict UTF-8, conflict-marker, fenced-block and Git whitespace checks pass. One trailing blank line inherited from the roadmap's MASTER_SPEC was removed; section content is unchanged. Main and the original checkout's two dirty-document hashes remain unchanged.
+
+There is no existing documentation-check command. Application tests/typecheck/lint/build were not rerun: all changes are Markdown and production code/test/config/dependency blobs remain identical to exact base main. No test success from an older phase is presented as a fresh run. No live or browser acceptance is performed in this task.
+
+## Key technical decisions
+
+- Preserve all roadmap product requirements and future sequencing; do not replace newer roadmap briefs with the older experiment-side versions.
+- Authoritative RPG/world state is truth; spatial artifacts are projections. Bind only structurally verified addressable provider parts/nodes/anchors to canonical entities/actions; provider IDs are not canonical IDs.
+- Text remains independent; 2D Live is the planned primary visual layer; optional EXPLORE follows Phase 4 canonical assets. Spatial providers and object generation are not prerequisites for World Engine, Rulesets, DM, Memory, Saves/Timelines or progression.
+- Fal-world's accepted PLY candidate requires PLY support or validated offline conversion, not DRC exclusively. Chest POST entered the queue then the first poll stopped locally; completion/charge UNKNOWN, no GLB, PBR/articulation unverified, lid STRUCTURE_UNVERIFIED. Do not infer provider generation failure or a separate lid.
+- Four submissions permanently reserve $4.75 / $4.75, leaving $0. Known billing $2.528; both fal charges UNKNOWN. No extra experiment, chest recovery, fal retry or reservation reuse.
+- Historical canonical freeze hash `eef894c15e27bc167cf3bbcbaaf99dd51ec640f545b1a16cd1b2e539da239119` identifies the historical artifact, not the reconciled production Markdown copy.
+
+## Known issues and verification limits
+
+Physical iPhone/Safari and the optional historical Phase 1 conflict-rebase confirmation remain unverified. Finite synthetic/model evidence cannot guarantee perfect memory, branching, isolation, geometry, provider behavior or universal recovery. Marble evidence is architecture-only; visual quality, navigation, canonical metric correctness and production EXPLORE readiness are not accepted. No hosted deployment or real campaign/private-data acceptance has occurred. No broad design work is reopened to resolve these limitations.
+
+The original local checkout is older than GitHub main and has pre-existing uncommitted documentation; that checkout and its files remain untouched. The integration candidate uses exact remote main. See the review for the verification scope and any pre-existing documentation issues.
+
+## Remaining work and recommended next step
+
+Owner reviews the integration diff and verification, then explicitly approves advancing main. Until then, main stays at the supplied production checkpoint. The next phase is the **Production Multi-Agent Coding Sprint**, separately scoped, with Lead/Integrator establishing shared contracts before World Engine, World Library/Packs/Rulesets, Runtime/Memory/Saves and QA/Security/Recovery workstreams begin. Shared migrations/event/save-timeline/authority/canonical-identity contracts cannot be independently changed by workers. No implementation or worker dispatch begins in this task.
+
+Zero provider/paid/experiment calls, asset/DNS access, generations, polling, downloads, exports, billing requests, ledger mutations, production coding, deployment or real-data import. Only GitHub source synchronization and candidate-branch publication use network.
+
+---
+
+## Historical roadmap status — preserved verbatim below
+
+The following entries describe their original checkpoints. Earlier proposed/preparation/not-authorized Phase 3.8 wording is superseded by the current integration status above; it is not a new execution instruction.
+
 # Development status
 
 Last updated: September 19, 2026. Never include secrets, credentials or DM-private content.

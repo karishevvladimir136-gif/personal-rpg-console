@@ -3,7 +3,7 @@
 
 You do NOT need to learn programming before starting.
 
-**Current work:** Phases 0–3.5 are owner-accepted. The [Phase 3.75 decision](PHASE375_ARCHITECTURE_DECISION.md) keeps the current direct OpenAI runtime and closes Jev evaluation. [Phase 3.8A](PHASE38_SPATIAL_RUNTIME.md) is architecture/research only; review the [small proposed spatial test](PHASE38B_LIVE_PROTOCOL.md). No new keys, accounts, installs or paid calls are needed now. EXPLORE production waits until after FRAME / Visual Bible. See [DEV_STATUS.md](DEV_STATUS.md) for actual results. The original staged guide below is historical, not an instruction to reset the database, start another phase, deploy or import real material.
+**Current work: review the source-of-truth integration candidate.** Phases 0–3.5 remain owner-accepted and the [Phase 3.75 decision](PHASE375_ARCHITECTURE_DECISION.md) is unchanged. The complete owner-approved roadmap is integrated with the [final Phase 3.8B decisions](PHASE38B_ARCHITECTURE_FREEZE.md): architecture/capability evidence is complete with documented limitations. Main has not advanced. Review the [integration summary](SOURCE_OF_TRUTH_INTEGRATION.md) and [actual verification](DEV_STATUS.md); explicit owner approval is required before main changes. Broad product research/design is closed. The next phase after approved integration is the separately scoped Production Multi-Agent Coding Sprint. No new spatial experiment, keys, accounts, installs or paid calls are needed now. Text remains independent; 2D Live is the planned primary visual layer; optional EXPLORE follows FRAME / Visual Bible. The staged guide below is historical, not an instruction to reset the database, start coding, deploy or import real material.
 
 Your job is:
 - product owner;

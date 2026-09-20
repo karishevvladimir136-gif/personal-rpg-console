@@ -1,8 +1,8 @@
-# Phase 3.8A — Spatial Runtime / EXPLORE architecture
+# Spatial Runtime / EXPLORE — final Phase 3.8 architecture
 
-2026-09-19. **Documentation and offline test-plan complete for owner review; no implementation or live spatial evaluation.** [Phase 3.75 final decision](PHASE375_ARCHITECTURE_DECISION.md) is fixed. [Provider evidence](PHASE38_PROVIDER_CAPABILITIES.md) distinguishes current documentation from unknowns; [3.8B proposal](PHASE38B_LIVE_PROTOCOL.md) is not permission to call providers.
+**Current status: ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** The [production-safe Phase 3.8B final record](PHASE38B_ARCHITECTURE_FREEZE.md) references the exact historical freeze and evidence. [Phase 3.75 final decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Provider research](PHASE38_PROVIDER_CAPABILITIES.md) and the [original 3.8B proposal](PHASE38B_LIVE_PROTOCOL.md) are historical; neither authorizes another experiment. The authority and privacy design below is preserved; implementation remains pending.
 
-EXPLORE is part of v1. Natural language and normal Game remain primary. Production EXPLORE comes **after Phase 4 FRAME / Visual Bible**, reusing approved visual references. Spatial research now does not start Phase 4, a World Engine, media generation or a production sprint.
+EXPLORE is part of v1, optional and progressive. Natural language remains the primary interface. Text is permanently first-class and spatial-independent; 2D Live is the primary planned visual gameplay layer over the same state and remains visual-style agnostic. Production EXPLORE is asset-first **after Phase 4 FRAME / Visual Bible**. Marble is the intended initial EXPLORE provider unless implementation reveals a concrete blocker. World Engine, Rulesets, DM, Memory, Saves/Timelines and progression never depend on a spatial provider or object generation. No implementation starts in this integration task.
 
 ## Inspected foundation and reuse
 
@@ -89,6 +89,14 @@ Text, normal DM, Saves, FRAME, VIDEO and campaign load never await an EXPLORE pr
 
 A future save extension stores selected artifact/binding version references, not remote mutable world state as truth. Accepted manifests have versioned fixed-family validation: introduce compatible readers/new schema only in the authorized implementation, preserving old saves. Old saves with no spatial reference load normally and may later request an optional projection. Immutable assets can be shared physically by hash, but branch access/membership and binding selection stay scoped. No provider call, rerender or dice replay is required by load. No new timeline system and no edits to Phase 3/3.5 contracts now.
 
+## Accepted capability findings and binding limits
+
+The [final evidence record](PHASE38B_ARCHITECTURE_FREEZE.md) distinguishes measured structure from quality. Marble room/courtyard are sufficient for the architecture decision only, not production rendering, visual quality, navigation, canonical metric correctness or production EXPLORE readiness. Fal-world is `STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE`; adapters/renderers must support observed PLY or a validated offline conversion path, never DRC exclusively. Requested DRC was absent; visual/navigation remain unverified and no retry is planned.
+
+Chest POST was accepted into the queue; the first poll stopped locally. Completion/charge are UNKNOWN; no GLB was retrieved; object/PBR/articulation are UNVERIFIED. Lid `STRUCTURE_UNVERIFIED` means a separate lid is not proven. This is not a provider-generation failure finding, and no recovery is planned. Missing/fused parts must not become a production architecture dependency.
+
+Interaction Bindings are the Spatial Bindings described above, not a second subsystem. They connect structurally verified addressable provider nodes/parts/anchors to stable canonical entities/actions. Provider IDs are never canonical IDs. Names, colors or model descriptions do not prove an independently addressable lid; unsupported interactions remain available through the normal text/rules/DM authority path.
+
 ## Offline acceptance plan — specified, not executed runtime tests
 
 Use two unrelated synthetic campaigns and two branches each. These are fixture descriptions only; no database records are created here.
@@ -110,8 +118,8 @@ Future browser gates include English/Russian labels, keyboard/touch controls, re
 
 ## Roadmap and review boundary
 
-3.8A now: this brief, official capability evidence and minimal proposed 3.8B. 3.8B only after new owner authorization: frozen synthetic inputs, explicit endpoints/cost caps and an isolated experiment; no production dependencies. Phase 4 FRAME / Visual Bible remains separately scoped. After Phase 4, propose the smallest hosted/static EXPLORE implementation using its approved references and the measured 3.8B findings. Realtime streams, articulation/physics and private spatial generation need later independent gates.
+Phase 3.8A research and Phase 3.8B capability evidence are closed. The four submissions permanently consumed $4.75 / $4.75 in reservations ($0 remaining); known reported billing is $2.528 and both fal charges remain UNKNOWN. No additional 3.8B experiment, fifth generation, chest recovery or fal retry is planned. A future provider issue is a bounded implementation blocker investigation, not continuation of this bake-off. Phase 4 FRAME / Visual Bible remains separately scoped; EXPLORE implementation follows its canonical asset foundation. Realtime streams, articulation/physics and private spatial generation need later independent gates.
 
 Owner Diagnostics / System Inspector remains late-stage: owner-readable sanitized provider/job/provenance/failure information, never keys, chain-of-thought or a spoiler/private-state browser. AutoEval / autoresearch remains future bounded owner-authorized experiments with frozen inputs, budgets and review; never autonomous production self-modification, automatic adoption or continuous paid probing.
 
-Open decisions for later implementation: viewer/export path, source-safe rendering limits, artifact lifecycle and storage quotas, minimal accepted formats and interaction set. No keys/setup required to review these documents. Stop before paid generation, production changes, deployment or real data.
+**Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. Viewer/export integration, source-safe rendering limits, artifact lifecycle/storage limits, supported formats and interaction coverage are bounded implementation decisions under the approved architecture. After owner approval to advance main, the next phase is the Production Multi-Agent Coding Sprint with lead-owned shared contracts first. No keys/setup, provider calls, coding, deployment or real data are needed for this review.

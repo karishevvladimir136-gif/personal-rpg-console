@@ -1,5 +1,7 @@
 # Phase 3.8B — minimal synthetic spatial test proposal
 
+> **Historical proposal — superseded as current status by the [final Phase 3.8B architecture record](PHASE38B_ARCHITECTURE_FREEZE.md).** The original dated body below is retained for provenance. Its proposed/not-authorized/untested statements describe that earlier checkpoint, not current experiment status. All four generation slots are now consumed; no additional 3.8B experiment or provider call is authorized by this document.
+
 2026-09-19. **PROPOSAL ONLY: zero calls executed; no credentials requested.** Owner review must precede any experiment preparation requiring new dependencies, credentials or paid work. This protocol does not reopen Phase 3.75 or spend its budget. No production runtime/UI/migrations/data changes are included. Research basis: [provider matrix](PHASE38_PROVIDER_CAPABILITIES.md); required invariants: [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md).
 
 ## Questions and smallest useful workload

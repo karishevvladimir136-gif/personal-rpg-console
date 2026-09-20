@@ -1,5 +1,7 @@
 # Phase 3.8A — provider capability / evidence matrix
 
+> **Historical research snapshot — superseded as current status by the [final Phase 3.8B architecture record](PHASE38B_ARCHITECTURE_FREEZE.md).** The original dated body below is retained for provenance. Its proposed/not-authorized/untested statements describe that earlier checkpoint, not current experiment status. All four generation slots are now consumed; no additional 3.8B experiment or provider call is authorized by this document.
+
 **Official public documentation checked 2026-09-19.** This is an offline research snapshot, not measured output quality, a procurement decision or production approval. “Documented” means supported by the linked official source; “unknown” means not established by this review, not necessarily impossible. Availability to this owner's account, current entitlement and real billing remain untested. Vendor latency/quality claims are not our results. No authenticated provider requests, generation, weights downloads or credentials were used.
 
 Different products solve different problems. Persistent world assets, navigable generated video and simulation-ready objects must remain separate capabilities. No overall provider score is meaningful. [Architecture](PHASE38_SPATIAL_RUNTIME.md) defines the authority boundary; [3.8B](PHASE38B_LIVE_PROTOCOL.md) proposes only four paid jobs after separate approval.
