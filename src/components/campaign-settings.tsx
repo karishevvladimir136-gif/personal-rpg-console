@@ -108,10 +108,16 @@ function RulesAndPlayStyle({
   settings,
   change,
   preview,
+  showWorldAutonomy,
+  showMechanics,
+  managedRulesNote,
 }: {
   settings: CampaignSettings;
   change: (action: CampaignSettingsAction) => void;
   preview: boolean;
+  showWorldAutonomy: boolean;
+  showMechanics: boolean;
+  managedRulesNote?: string;
 }) {
   const { t, language } = useLanguage();
   const { difficulty, rulesSystem } = settings;
@@ -129,290 +135,296 @@ function RulesAndPlayStyle({
           )}
         </p>
       </div>
-      <section className="rules-section">
-        <h3>{t("Difficulty & Rules")}</h3>
-        <p className="muted">
-          {t("Rules system: {system}", { system: t(rulesSystem.label) })}
-        </p>
-        <ChoiceGroup
-          label={t("Difficulty preset")}
-          options={difficultyOptions}
-          value={difficulty.preset}
-          onChange={(value) => change({ type: "preset", value })}
-        />
-        <p className="muted">
-          {t(
-            "Presets set the applicable rules below. Custom keeps your current values; adjusting any difficulty parameter selects Custom.",
-          )}
-        </p>
-        <details className="rules-advanced">
-          <summary>
-            {t("Advanced")} <span>{t("Fine-tune difficulty")}</span>
-          </summary>
-          <p className="muted">
-            {t(
-              preview
-                ? "HP and damage scaling are separate and depend on the campaign’s rules system. Unsupported controls are unavailable; these preview rules use both."
-                : "HP and damage scaling are independent. Only controls supported by this campaign’s rules system are available.",
-            )}
-          </p>
-          <div className="rules-fields">
-            <label className="field">
-              <span>
-                {t("Enemy HP multiplier")}{" "}
-                <strong>
-                  {rulesSystem.enemyHpScaling
-                    ? `${format(difficulty.enemyHpMultiplier)}×`
-                    : t("Not applicable")}
-                </strong>
-              </span>
-              <input
-                aria-label={t("Enemy HP multiplier")}
-                type="range"
-                {...previewLimits.multiplier}
-                value={difficulty.enemyHpMultiplier}
-                disabled={!rulesSystem.enemyHpScaling}
-                onChange={(event) =>
-                  change({
-                    type: "difficulty",
-                    key: "enemyHpMultiplier",
-                    value: Number(event.target.value),
-                  })
-                }
-              />
-              {!rulesSystem.enemyHpScaling && (
-                <small>
-                  {t("This rules system does not use enemy HP scaling.")}
-                </small>
+      {showMechanics ? (
+        <>
+          <section className="rules-section">
+            <h3>{t("Difficulty & Rules")}</h3>
+            <p className="muted">
+              {t("Rules system: {system}", { system: t(rulesSystem.label) })}
+            </p>
+            <ChoiceGroup
+              label={t("Difficulty preset")}
+              options={difficultyOptions}
+              value={difficulty.preset}
+              onChange={(value) => change({ type: "preset", value })}
+            />
+            <p className="muted">
+              {t(
+                "Presets set the applicable rules below. Custom keeps your current values; adjusting any difficulty parameter selects Custom.",
               )}
-            </label>
-            <label className="field">
-              <span>
-                {t("Enemy damage multiplier")}{" "}
-                <strong>
-                  {rulesSystem.enemyDamageScaling
-                    ? `${format(difficulty.enemyDamageMultiplier)}×`
-                    : t("Not applicable")}
-                </strong>
-              </span>
-              <input
-                aria-label={t("Enemy damage multiplier")}
-                type="range"
-                {...previewLimits.multiplier}
-                value={difficulty.enemyDamageMultiplier}
-                disabled={!rulesSystem.enemyDamageScaling}
-                onChange={(event) =>
-                  change({
-                    type: "difficulty",
-                    key: "enemyDamageMultiplier",
-                    value: Number(event.target.value),
-                  })
-                }
-              />
-              {!rulesSystem.enemyDamageScaling && (
-                <small>
-                  {t(
-                    "This rules system does not use numerical enemy damage scaling.",
-                  )}
-                </small>
-              )}
-            </label>
-            <SelectSetting
-              label={t("Rerolls")}
-              options={rerollOptions}
-              value={difficulty.rerolls}
-              onChange={(value) =>
-                change({ type: "difficulty", key: "rerolls", value })
-              }
-            />
-            {difficulty.rerolls === "limited" && (
-              <label className="field">
-                {t("Reroll allowance per session")}
-                <select
-                  value={difficulty.rerollsPerSession}
-                  onChange={(event) =>
-                    change({
-                      type: "difficulty",
-                      key: "rerollsPerSession",
-                      value: Number(event.target.value),
-                    })
-                  }
-                >
-                  {Array.from(
-                    { length: previewLimits.rerollsPerSession.max },
-                    (_, index) => index + 1,
-                  ).map((number) => (
-                    <option key={number} value={number}>
-                      {number}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            )}
-            <SelectSetting
-              label={t("Defeat consequences")}
-              options={defeatOptions}
-              value={difficulty.defeat}
-              onChange={(value) =>
-                change({ type: "difficulty", key: "defeat", value })
-              }
-            />
-            <SelectSetting
-              label={t("Recovery")}
-              options={recoveryOptions}
-              value={difficulty.recovery}
-              onChange={(value) =>
-                change({ type: "difficulty", key: "recovery", value })
-              }
-            />
-            {(["shortRestSupplyCost", "longRestSupplyCost"] as const).map(
-              (key) => (
-                <label className="field" key={key}>
-                  {t(
-                    key === "shortRestSupplyCost"
-                      ? "Short-rest supply cost"
-                      : "Long-rest supply cost",
-                  )}
-                  <select
-                    value={difficulty[key]}
+            </p>
+            <details className="rules-advanced">
+              <summary>
+                {t("Advanced")} <span>{t("Fine-tune difficulty")}</span>
+              </summary>
+              <p className="muted">
+                {t(
+                  preview
+                    ? "HP and damage scaling are separate and depend on the campaign’s rules system. Unsupported controls are unavailable; these preview rules use both."
+                    : "HP and damage scaling are independent. Only controls supported by this campaign’s rules system are available.",
+                )}
+              </p>
+              <div className="rules-fields">
+                <label className="field">
+                  <span>
+                    {t("Enemy HP multiplier")}{" "}
+                    <strong>
+                      {rulesSystem.enemyHpScaling
+                        ? `${format(difficulty.enemyHpMultiplier)}×`
+                        : t("Not applicable")}
+                    </strong>
+                  </span>
+                  <input
+                    aria-label={t("Enemy HP multiplier")}
+                    type="range"
+                    {...previewLimits.multiplier}
+                    value={difficulty.enemyHpMultiplier}
+                    disabled={!rulesSystem.enemyHpScaling}
                     onChange={(event) =>
                       change({
                         type: "difficulty",
-                        key,
+                        key: "enemyHpMultiplier",
                         value: Number(event.target.value),
                       })
                     }
-                  >
-                    {[0, 1, 2, 3, 4, 5].map((cost) => (
-                      <option key={cost} value={cost}>
-                        {cost === 0
-                          ? t("No cost")
-                          : t("{count} per participant", { count: cost })}
-                      </option>
-                    ))}
-                  </select>
+                  />
+                  {!rulesSystem.enemyHpScaling && (
+                    <small>
+                      {t("This rules system does not use enemy HP scaling.")}
+                    </small>
+                  )}
                 </label>
-              ),
-            )}
+                <label className="field">
+                  <span>
+                    {t("Enemy damage multiplier")}{" "}
+                    <strong>
+                      {rulesSystem.enemyDamageScaling
+                        ? `${format(difficulty.enemyDamageMultiplier)}×`
+                        : t("Not applicable")}
+                    </strong>
+                  </span>
+                  <input
+                    aria-label={t("Enemy damage multiplier")}
+                    type="range"
+                    {...previewLimits.multiplier}
+                    value={difficulty.enemyDamageMultiplier}
+                    disabled={!rulesSystem.enemyDamageScaling}
+                    onChange={(event) =>
+                      change({
+                        type: "difficulty",
+                        key: "enemyDamageMultiplier",
+                        value: Number(event.target.value),
+                      })
+                    }
+                  />
+                  {!rulesSystem.enemyDamageScaling && (
+                    <small>
+                      {t(
+                        "This rules system does not use numerical enemy damage scaling.",
+                      )}
+                    </small>
+                  )}
+                </label>
+                <SelectSetting
+                  label={t("Rerolls")}
+                  options={rerollOptions}
+                  value={difficulty.rerolls}
+                  onChange={(value) =>
+                    change({ type: "difficulty", key: "rerolls", value })
+                  }
+                />
+                {difficulty.rerolls === "limited" && (
+                  <label className="field">
+                    {t("Reroll allowance per session")}
+                    <select
+                      value={difficulty.rerollsPerSession}
+                      onChange={(event) =>
+                        change({
+                          type: "difficulty",
+                          key: "rerollsPerSession",
+                          value: Number(event.target.value),
+                        })
+                      }
+                    >
+                      {Array.from(
+                        { length: previewLimits.rerollsPerSession.max },
+                        (_, index) => index + 1,
+                      ).map((number) => (
+                        <option key={number} value={number}>
+                          {number}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                )}
+                <SelectSetting
+                  label={t("Defeat consequences")}
+                  options={defeatOptions}
+                  value={difficulty.defeat}
+                  onChange={(value) =>
+                    change({ type: "difficulty", key: "defeat", value })
+                  }
+                />
+                <SelectSetting
+                  label={t("Recovery")}
+                  options={recoveryOptions}
+                  value={difficulty.recovery}
+                  onChange={(value) =>
+                    change({ type: "difficulty", key: "recovery", value })
+                  }
+                />
+                {(["shortRestSupplyCost", "longRestSupplyCost"] as const).map(
+                  (key) => (
+                    <label className="field" key={key}>
+                      {t(
+                        key === "shortRestSupplyCost"
+                          ? "Short-rest supply cost"
+                          : "Long-rest supply cost",
+                      )}
+                      <select
+                        value={difficulty[key]}
+                        onChange={(event) =>
+                          change({
+                            type: "difficulty",
+                            key,
+                            value: Number(event.target.value),
+                          })
+                        }
+                      >
+                        {[0, 1, 2, 3, 4, 5].map((cost) => (
+                          <option key={cost} value={cost}>
+                            {cost === 0
+                              ? t("No cost")
+                              : t("{count} per participant", { count: cost })}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  ),
+                )}
+                <p className="muted">
+                  {t(
+                    "Supply units per participating character, separate from Recovery. Recipe ingredients are additional and never counted twice. All values are provisional.",
+                  )}
+                </p>
+                <SelectSetting
+                  label={t("Resource scarcity")}
+                  options={scarcityOptions}
+                  value={difficulty.scarcity}
+                  onChange={(value) =>
+                    change({ type: "difficulty", key: "scarcity", value })
+                  }
+                />
+              </div>
+            </details>
+          </section>
+          <section
+            className="rules-section checks-dice-settings"
+            aria-labelledby="checks-dice-title"
+          >
+            <h3 id="checks-dice-title">{t("Checks & Dice")}</h3>
             <p className="muted">
               {t(
-                "Supply units per participating character, separate from Recovery. Recipe ingredients are additional and never counted twice. All values are provisional.",
+                "Check frequency and dice presentation are independent of difficulty and all narrative settings.",
               )}
             </p>
-            <SelectSetting
-              label={t("Resource scarcity")}
-              options={scarcityOptions}
-              value={difficulty.scarcity}
-              onChange={(value) =>
-                change({ type: "difficulty", key: "scarcity", value })
-              }
+            <ChoiceGroup
+              label={t("Check Frequency")}
+              options={checkFrequencyOptions}
+              value={settings.checkFrequency}
+              onChange={(value) => change({ type: "checkFrequency", value })}
             />
-          </div>
-        </details>
-      </section>
-      <section
-        className="rules-section checks-dice-settings"
-        aria-labelledby="checks-dice-title"
-      >
-        <h3 id="checks-dice-title">{t("Checks & Dice")}</h3>
-        <p className="muted">
-          {t(
-            "Check frequency and dice presentation are independent of difficulty and all narrative settings.",
-          )}
-        </p>
-        <ChoiceGroup
-          label={t("Check Frequency")}
-          options={checkFrequencyOptions}
-          value={settings.checkFrequency}
-          onChange={(value) => change({ type: "checkFrequency", value })}
-        />
-        <p className="muted">
-          {t(
-            preview
-              ? "Full RPG does not call for rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts. Frequency is a preview preference; it does not generate checks yet."
-              : "Full RPG considers meaningful uncertain actions. Trivial, impossible, or unchanged repeated attempts do not get discretionary rolls. Required attacks and saves still follow the rules.",
-          )}
-        </p>
-        <ChoiceGroup
-          label={t("Dice Presentation")}
-          options={dicePresentationOptions}
-          value={settings.dicePresentation}
-          onChange={(value) => change({ type: "dicePresentation", value })}
-        />
-        <div className="dice-preference-toggles">
-          <div className="setting-row">
-            <div>
-              <h4>{t("Interactive Dice")}</h4>
-              <p id="interactive-dice-help">
-                {t(
-                  "On opens an interactive window for displayed player rolls. Off shows an automatic compact result.",
-                )}
-              </p>
+            <p className="muted">
+              {t(
+                preview
+                  ? "Full RPG does not call for rolls for trivial guaranteed actions, impossible actions, or repeated unchanged attempts. Frequency is a preview preference; it does not generate checks yet."
+                  : "Full RPG considers meaningful uncertain actions. Trivial, impossible, or unchanged repeated attempts do not get discretionary rolls. Required attacks and saves still follow the rules.",
+              )}
+            </p>
+            <ChoiceGroup
+              label={t("Dice Presentation")}
+              options={dicePresentationOptions}
+              value={settings.dicePresentation}
+              onChange={(value) => change({ type: "dicePresentation", value })}
+            />
+            <div className="dice-preference-toggles">
+              <div className="setting-row">
+                <div>
+                  <h4>{t("Interactive Dice")}</h4>
+                  <p id="interactive-dice-help">
+                    {t(
+                      "On opens an interactive window for displayed player rolls. Off shows an automatic compact result.",
+                    )}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={settings.interactiveDice}
+                  aria-label={t("Interactive Dice")}
+                  aria-describedby="interactive-dice-help dice-hidden-help"
+                  disabled={settings.dicePresentation === "hidden"}
+                  className={`toggle ${settings.interactiveDice ? "on" : ""}`}
+                  onClick={() =>
+                    change({
+                      type: "interactiveDice",
+                      value: !settings.interactiveDice,
+                    })
+                  }
+                >
+                  <span />
+                </button>
+              </div>
+              <div className="setting-row">
+                <div>
+                  <h4>{t("Show DC")}</h4>
+                  <p id="show-dc-help">
+                    {t(
+                      "DC is the target number required to succeed. Show it only for player-facing checks whose target may be disclosed.",
+                    )}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={settings.showDc}
+                  aria-label={t("Show DC")}
+                  aria-describedby="show-dc-help dice-hidden-help"
+                  disabled={settings.dicePresentation === "hidden"}
+                  className={`toggle ${settings.showDc ? "on" : ""}`}
+                  onClick={() =>
+                    change({ type: "showDc", value: !settings.showDc })
+                  }
+                >
+                  <span />
+                </button>
+              </div>
             </div>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={settings.interactiveDice}
-              aria-label={t("Interactive Dice")}
-              aria-describedby="interactive-dice-help dice-hidden-help"
-              disabled={settings.dicePresentation === "hidden"}
-              className={`toggle ${settings.interactiveDice ? "on" : ""}`}
-              onClick={() =>
-                change({
-                  type: "interactiveDice",
-                  value: !settings.interactiveDice,
-                })
-              }
-            >
-              <span />
-            </button>
-          </div>
-          <div className="setting-row">
-            <div>
-              <h4>{t("Show DC")}</h4>
-              <p id="show-dc-help">
-                {t(
-                  "DC is the target number required to succeed. Show it only for player-facing checks whose target may be disclosed.",
-                )}
-              </p>
-            </div>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={settings.showDc}
-              aria-label={t("Show DC")}
-              aria-describedby="show-dc-help dice-hidden-help"
-              disabled={settings.dicePresentation === "hidden"}
-              className={`toggle ${settings.showDc ? "on" : ""}`}
-              onClick={() =>
-                change({ type: "showDc", value: !settings.showDc })
-              }
-            >
-              <span />
-            </button>
-          </div>
-        </div>
-        <p className="muted" id="dice-hidden-help">
-          {t(
-            settings.dicePresentation === "hidden"
-              ? "Hidden presentation disables Interactive Dice and Show DC. Your saved preferences are retained for when rolls are displayed again."
-              : "Private DM checks and private target numbers are never shown, regardless of these preferences.",
-          )}
-        </p>
-        {preview && (
-          <div className="dice-settings-preview">
-            <div>
-              <h4>{t("Try a sample moment")}</h4>
-              <p className="muted">
-                {t(
-                  "Fixed samples only. No changes to your character, history, inventory, or reroll allowance.",
-                )}
-              </p>
-            </div>
-            <DicePreviewButton />
-          </div>
-        )}
-      </section>
+            <p className="muted" id="dice-hidden-help">
+              {t(
+                settings.dicePresentation === "hidden"
+                  ? "Hidden presentation disables Interactive Dice and Show DC. Your saved preferences are retained for when rolls are displayed again."
+                  : "Private DM checks and private target numbers are never shown, regardless of these preferences.",
+              )}
+            </p>
+            {preview && (
+              <div className="dice-settings-preview">
+                <div>
+                  <h4>{t("Try a sample moment")}</h4>
+                  <p className="muted">
+                    {t(
+                      "Fixed samples only. No changes to your character, history, inventory, or reroll allowance.",
+                    )}
+                  </p>
+                </div>
+                <DicePreviewButton />
+              </div>
+            )}
+          </section>
+        </>
+      ) : managedRulesNote ? (
+        <p className="rules-canon-note">{managedRulesNote}</p>
+      ) : null}
       <section className="rules-section">
         <ChoiceGroup
           label={t("Story Structure")}
@@ -439,19 +451,21 @@ function RulesAndPlayStyle({
           )}
         </p>
       </section>
-      <section className="rules-section">
-        <ChoiceGroup
-          label={t("World Autonomy")}
-          options={autonomyOptions}
-          value={settings.worldAutonomy}
-          onChange={(value) => change({ type: "worldAutonomy", value })}
-        />
-        <p className="muted">
-          {t(
-            "Autonomy follows in-world time and meaningful events. High autonomy does not mean a full-world simulator, continuous background processing, or multiple AI agents.",
-          )}
-        </p>
-      </section>
+      {showWorldAutonomy && (
+        <section className="rules-section">
+          <ChoiceGroup
+            label={t("World Autonomy")}
+            options={autonomyOptions}
+            value={settings.worldAutonomy}
+            onChange={(value) => change({ type: "worldAutonomy", value })}
+          />
+          <p className="muted">
+            {t(
+              "Autonomy follows in-world time and meaningful events. High autonomy does not mean a full-world simulator, continuous background processing, or multiple AI agents.",
+            )}
+          </p>
+        </section>
+      )}
       <p className="rules-canon-note">
         {t(
           "Future changes apply only going forward. Established scenes, rolls, and facts remain intact. Narrative preferences respect campaign canon and your agency; conflicts require clarification.",
@@ -466,11 +480,17 @@ export function CampaignSettingsEditor({
   settings: campaignSettings,
   onChange: change,
   preview = false,
+  showWorldAutonomy = true,
+  showMechanics = true,
+  managedRulesNote,
 }: {
   title: string;
   settings: CampaignSettings;
   onChange: (action: CampaignSettingsAction) => void;
   preview?: boolean;
+  showWorldAutonomy?: boolean;
+  showMechanics?: boolean;
+  managedRulesNote?: string;
 }) {
   const { t } = useLanguage();
   const [tab, setTab] = useState("general");
@@ -648,6 +668,9 @@ export function CampaignSettingsEditor({
           settings={campaignSettings}
           change={change}
           preview={preview}
+          showWorldAutonomy={showWorldAutonomy}
+          showMechanics={showMechanics}
+          managedRulesNote={managedRulesNote}
         />
       </div>
     </section>
