@@ -157,6 +157,29 @@ test("manual/quick save may advance only the head after exact authority and memb
   }
 });
 
+test("save recovery ignores unordered record-set order but preserves every value and nested sequence", () => {
+  const args = recovery();
+  const rows = structuredClone(args.original.stage.source.snapshot.locations);
+  assert.equal(rows.length, 2);
+  args.original.stage.source.snapshot.locations = structuredClone(rows);
+  args.current.stage.source.snapshot.locations =
+    structuredClone(rows).reverse();
+  manualSave(args);
+  assert.equal(assessWorldRecovery(args).status, "restage");
+  args.current.stage.source.snapshot.locations[0].description =
+    "Material correction";
+  paused(args);
+  args.current.stage.source.snapshot.locations =
+    structuredClone(rows).reverse();
+  args.original.stage.source.runtime.recipes = [
+    { id: id("recipe"), ingredients: ["a", "b"] },
+  ];
+  args.current.stage.source.runtime.recipes = [
+    { id: id("recipe"), ingredients: ["b", "a"] },
+  ];
+  paused(args);
+});
+
 test("load into child and switching back to original timeline retain origin while authorizing fresh continuation", () => {
   for (const branch of ["child-timeline", "timeline"]) {
     const args = recovery();

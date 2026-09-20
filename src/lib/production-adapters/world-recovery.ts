@@ -188,6 +188,44 @@ function authoritativeInputs(
     timeline,
   ) as WorldStageInput["source"];
   result.stage.source.runtime.revision = 0;
+  // Match SQL's proof comparison for record sets returned without ORDER BY.
+  // Keep turns, checks, scenes and nested authored/history arrays in exact order.
+  for (const [section, fields] of [
+    [
+      "snapshot",
+      [
+        "documents",
+        "entities",
+        "storages",
+        "items",
+        "sessions",
+        "quests",
+        "locations",
+      ],
+    ],
+    [
+      "runtime",
+      [
+        "recipes",
+        "effects",
+        "encounters",
+        "pendingActions",
+        "conversations",
+        "sessionGuidance",
+        "provenance",
+      ],
+    ],
+  ] as const) {
+    const records = result.stage.source[section] as unknown as Record<
+      string,
+      unknown
+    >;
+    for (const field of fields) {
+      const rows = records[field];
+      if (Array.isArray(rows))
+        rows.sort((a, b) => String(a.id).localeCompare(String(b.id)));
+    }
+  }
   // The pending operation's progress is not a second copy of game authority.
   // Its input, plan, checks, profiles, membership and lease are compared separately.
   result.stage.source.runtime.turns = result.stage.source.runtime.turns.filter(

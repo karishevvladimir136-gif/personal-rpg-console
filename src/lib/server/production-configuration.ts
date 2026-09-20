@@ -87,6 +87,7 @@ export async function saveProductionSettings(
     worldPolicy,
     ruleset,
     executionPolicy: runtimePolicy,
+    reconciliation: input.reconciliation ?? null,
   };
   const response = await rpc({
     p_owner_id: user.id,

@@ -1,6 +1,11 @@
 // Explicit owner configuration DTOs. No private foundation, source body or credentials.
-import type { ModelSelection, RulesetProfileRef, RuntimePolicy } from "./contracts.ts";
+import type {
+  ModelSelection,
+  RulesetProfileRef,
+  RuntimePolicy,
+} from "./contracts.ts";
 import type { TimelineFence } from "../saves/contracts.ts";
+import type { WorldReconciliationChoice } from "../world/reconciliation-contracts.ts";
 
 export type CampaignWorldPolicy = {
   simulation: boolean;
@@ -9,8 +14,17 @@ export type CampaignWorldPolicy = {
 };
 export type ProviderSettings = {
   schemaVersion: 1;
-  providers: { id: string; label: string; status: "configured_not_tested" | "unavailable" }[];
-  models: { providerId: string; id: string; label: string; reasoning: string[] }[];
+  providers: {
+    id: string;
+    label: string;
+    status: "configured_not_tested" | "unavailable";
+  }[];
+  models: {
+    providerId: string;
+    id: string;
+    label: string;
+    reasoning: string[];
+  }[];
   globalDefault: ModelSelection | null;
   globalDefaultStatus: "configured_not_tested" | "unavailable";
 };
@@ -33,6 +47,7 @@ export type CampaignProductionSettings = {
   providers: ProviderSettings;
 };
 export type ConfigureProductionInput = {
+  reconciliation?: WorldReconciliationChoice | null;
   operationId: string;
   timeline: TimelineFence;
   expectedRevision: number;

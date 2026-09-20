@@ -1,4 +1,6 @@
 import { isDeepStrictEqual } from "node:util";
+import { mergeConsequenceChanges } from "../world/consequences.ts";
+import type { RecordChange } from "../gameplay/server-contracts.ts";
 import { readWorldFoundation } from "../server/world/store.ts";
 import { stageWorldTransition } from "../world/stage.ts";
 import {
@@ -102,6 +104,46 @@ function resolverProposal(previous: WorldSettlement): ResolverProposal {
   };
 }
 
+function withoutPriorResolverChanges(
+  changes: RecordChange[],
+  previous: WorldSettlement,
+): RecordChange[] {
+  const result = structuredClone(changes);
+  for (const event of previous.events) {
+    if (event.kind !== "world.thread.advanced") continue;
+    const authority = event.payload.consequenceAuthority;
+    if (!Array.isArray(authority)) continue;
+    for (const raw of authority) {
+      if (
+        !raw ||
+        typeof raw !== "object" ||
+        Array.isArray(raw) ||
+        raw.family === "world.actors"
+      )
+        continue;
+      const change = result.find(
+        (r) => r.family === raw.family && r.id === raw.id,
+      );
+      if (
+        !change ||
+        !raw.after ||
+        typeof raw.after !== "object" ||
+        Array.isArray(raw.after)
+      )
+        throw new TurnError("conflict");
+      for (const [field, value] of Object.entries(raw.after)) {
+        if (
+          change.expectedRevision !== raw.expectedRevision ||
+          !isDeepStrictEqual(change.values[field], value)
+        )
+          throw new TurnError("conflict");
+        delete change.values[field];
+      }
+    }
+  }
+  return result.filter((r) => Object.keys(r.values).length > 0);
+}
+
 /** The only world/turn bridge. No private state is added to RuntimeSource. */
 function prepareWorldUnsafe(
   rpc: FoundationRpc,
@@ -110,9 +152,16 @@ function prepareWorldUnsafe(
   return async (claim, resolution, previous) => {
     const input = await authority(rpc, claim);
     const { snapshot, command } = input;
+    const action = claim.turn.checkpoint.worldLogic
+      ? resolveWorldLogic(input, claim.turn.checkpoint.worldLogic)
+      : null;
     const usage: ProviderUsage[] = [];
     const base = {
       ...resolution,
+      changes:
+        previous && !action
+          ? withoutPriorResolverChanges(resolution.changes, previous)
+          : resolution.changes,
       outcomes: resolution.outcomes.filter(
         (row) => row.kind !== "world.observed",
       ),
@@ -129,9 +178,6 @@ function prepareWorldUnsafe(
             ? "state_change"
             : "action",
     };
-    const action = claim.turn.checkpoint.worldLogic
-      ? resolveWorldLogic(input, claim.turn.checkpoint.worldLogic)
-      : null;
     if (
       action &&
       (action.status !== "staged" ||
@@ -158,13 +204,36 @@ function prepareWorldUnsafe(
       result.status === "staged" ? [...result.publicEvents] : [];
     if (action?.status === "staged") {
       publicEvents.unshift(...action.publicEvents);
+      const originalActors = snapshot.world?.actors;
+      const actionActors = action.settlement.nextWorld.actors;
+      const resolverActors = settlement?.nextWorld.actors;
+      let actors = actionActors;
+      if (settlement) {
+        if (
+          !Array.isArray(originalActors) ||
+          !Array.isArray(actionActors) ||
+          !Array.isArray(resolverActors) ||
+          originalActors.length !== actionActors.length ||
+          originalActors.length !== resolverActors.length
+        )
+          throw new TurnError("validation");
+        actors = originalActors.map((original, index) => {
+          const actionActor = actionActors[index],
+            resolverActor = resolverActors[index];
+          const byAction = !isDeepStrictEqual(original, actionActor),
+            byResolver = !isDeepStrictEqual(original, resolverActor);
+          if (byAction && byResolver)
+            throw new TurnError("configuration", false);
+          return byAction ? actionActor : resolverActor;
+        });
+      }
       settlement = settlement
         ? {
             ...settlement,
             events: [...action.settlement.events, ...settlement.events],
             nextWorld: {
               ...settlement.nextWorld,
-              actors: action.settlement.nextWorld.actors,
+              actors,
             },
           }
         : action.settlement;
@@ -202,6 +271,10 @@ function prepareWorldUnsafe(
       usage,
       resolution: {
         ...base,
+        changes: mergeConsequenceChanges(
+          base.changes,
+          result.status === "staged" ? (result.consequenceChanges ?? []) : [],
+        ),
         outcomes: [
           ...base.outcomes,
           ...publicEvents.map((event) => ({

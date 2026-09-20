@@ -1,6 +1,6 @@
 import type { Mutation } from "./contracts.ts";
 import { isTimelineFence } from "../saves/fence.ts";
-import { parseCampaignPremiseInput } from "../production/premise.ts";
+import { isCampaignPremiseInput } from "../campaign-premise-input.ts";
 
 export class ValidationError extends Error {
   readonly code = "validation";
@@ -237,7 +237,11 @@ export function validateMutation(value: unknown): Mutation {
   const p = fields(
     input.payload,
     payloadKeys[op],
-    optionalId.includes(op) ? ["id"] : op === "campaign.create" ? ["premise"] : [],
+    optionalId.includes(op)
+      ? ["id"]
+      : op === "campaign.create"
+        ? ["premise"]
+        : [],
   );
   if (p.id !== undefined) uuid(p.id);
   if (input.expectedRevision !== 0 && optionalId.includes(op)) uuid(p.id);
@@ -261,7 +265,7 @@ export function validateMutation(value: unknown): Mutation {
     case "campaign.create":
       assert(input.expectedRevision === 0);
       if (Object.hasOwn(p, "premise")) {
-        try { parseCampaignPremiseInput(p.premise); } catch { throw new ValidationError(); }
+        if (!isCampaignPremiseInput(p.premise)) throw new ValidationError();
       }
       break;
     case "preferences.save":

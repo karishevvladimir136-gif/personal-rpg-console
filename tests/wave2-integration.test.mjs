@@ -43,6 +43,11 @@ test("Wave 2 owner configuration is idempotent, fenced, secret-free and reconcil
       p_action: "owner_configure",
       p_payload: {
         command,
+        reconciliation: {
+          schemaVersion: 1,
+          kind: "restart_overdue",
+          graceMinutes: 60,
+        },
         worldPolicy: {
           simulation: true,
           autonomy: "high",

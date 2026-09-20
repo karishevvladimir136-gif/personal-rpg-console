@@ -4,7 +4,7 @@ import type {
   CampaignPremiseInput,
   CampaignPremiseVersion,
 } from "./production/premise-contracts.ts";
-import { parseCampaignPremiseInput } from "./production/premise.ts";
+import { isCampaignPremiseInput } from "./campaign-premise-input.ts";
 import type { TimelineFence } from "./saves/contracts.ts";
 import { isTimelineFence, sameTimeline } from "./saves/fence.ts";
 
@@ -25,6 +25,11 @@ export class PremiseClientError extends Error {
     super(codes.has(code) ? code : "unavailable");
     this.code = this.message;
   }
+}
+function parseCampaignPremiseInput(value: unknown): CampaignPremiseInput {
+  if (!isCampaignPremiseInput(value))
+    throw new PremiseClientError("validation");
+  return { text: value.text, language: value.language };
 }
 function requireValue(condition: unknown): asserts condition {
   if (!condition) throw new PremiseClientError();

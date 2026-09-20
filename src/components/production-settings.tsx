@@ -20,6 +20,7 @@ import {
   loadProviderSettings,
   ProductionClientError,
   productionDraft,
+  productionNeedsReconciliation,
   productionScopeMatches,
   productionTasks,
   sameProductionDraft,
@@ -289,6 +290,12 @@ export function ProductionSettingsEditor({
   const [saved, setSaved] = useState(false);
   const [uncertain, setUncertain] = useState(false);
   const [review, setReview] = useState(false);
+  const [resumeConsent, setResumeConsent] = useState(false);
+  const [graceMinutes, setGraceMinutes] = useState(60);
+  const needsReconciliation = productionNeedsReconciliation(
+    baseline.worldPolicy,
+    draft.worldPolicy,
+  );
   const pending = useRef<ConfigureProductionInput | null>(null);
   const lock = useRef(false);
   const scope = useRef(activeTimeline);
@@ -333,6 +340,7 @@ export function ProductionSettingsEditor({
                   ? c.uncertain
                   : "";
   const edit = (next: ProductionDraft) => {
+    setResumeConsent(false);
     setDraft(next);
     setSaved(false);
     setError("");
@@ -358,13 +366,22 @@ export function ProductionSettingsEditor({
     });
   };
   const save = async () => {
+    if (!pending.current && needsReconciliation && !resumeConsent) return;
     if (lock.current || stale || review || (!uncertain && (changed || !dirty)))
       return;
     lock.current = true;
     setBusy(true);
     setError("");
     setSaved(false);
-    pending.current = createProductionAttempt(pending.current, baseline, draft);
+    if (!pending.current) {
+      pending.current = createProductionAttempt(null, baseline, draft);
+      if (needsReconciliation)
+        pending.current.reconciliation = {
+          schemaVersion: 1,
+          kind: "restart_overdue",
+          graceMinutes,
+        };
+    }
     try {
       const result = await onSave(pending.current);
       if (!mounted.current) return;
@@ -380,6 +397,7 @@ export function ProductionSettingsEditor({
       setUncertain(false);
       setBaseline(result);
       setDraft(productionDraft(result));
+      setResumeConsent(false);
       setSaved(true);
       try {
         await afterSave?.();
@@ -562,6 +580,60 @@ export function ProductionSettingsEditor({
             </div>
           </section>
           <section className={styles.section}>
+            {needsReconciliation && (
+              <div className={styles.notice}>
+                <h3>
+                  {language === "ru"
+                    ? "Прежде чем возобновить ход мира"
+                    : "Before the world resumes"}
+                </h3>
+                <p>
+                  {language === "ru"
+                    ? "Пока ход мира или сроки были отключены, некоторые события могли стать просроченными по игровому времени. Их выполнение не будет наверстываться. Сохранение настроек не продвигает события и не раскрывает скрытые планы."
+                    : "While simulation or deadlines were off, schedules may have become overdue in story time. They will not catch up. Saving these settings advances no events and reveals no hidden plans."}
+                </p>
+                <p>
+                  {language === "ru"
+                    ? "Просроченные сроки, которые включаются сейчас, начнутся заново в будущем. Уже действующие сроки и сделанные предупреждения сохраняются. Скрытое расписание не показывается."
+                    : "Overdue schedules enabled now will restart in the future. Already active schedules and recorded warnings stay intact. Private schedule details are not shown."}
+                </p>
+                <label className="field">
+                  {language === "ru"
+                    ? "Минимальное время до возобновлённых событий"
+                    : "Minimum time before restarted events"}
+                  <select
+                    value={graceMinutes}
+                    onChange={(event) => {
+                      setGraceMinutes(Number(event.target.value));
+                      setResumeConsent(false);
+                    }}
+                  >
+                    <option value={60}>
+                      {language === "ru" ? "1 игровой час" : "1 story hour"}
+                    </option>
+                    <option value={240}>
+                      {language === "ru" ? "4 игровых часа" : "4 story hours"}
+                    </option>
+                    <option value={1440}>
+                      {language === "ru" ? "1 игровой день" : "1 story day"}
+                    </option>
+                    <option value={10080}>
+                      {language === "ru" ? "1 игровая неделя" : "1 story week"}
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={resumeConsent}
+                    onChange={(event) => setResumeConsent(event.target.checked)}
+                  />{" "}
+                  {language === "ru"
+                    ? "Я согласен возобновить просроченные события с новым запасом времени."
+                    : "I agree to restart overdue schedules with this new time allowance."}
+                </label>
+              </div>
+            )}
             <h3>{c.rulesTitle}</h3>
             <label className="field">
               {c.rulesTitle}
@@ -619,6 +691,7 @@ export function ProductionSettingsEditor({
                 refreshing ||
                 stale ||
                 review ||
+                (!uncertain && needsReconciliation && !resumeConsent) ||
                 (!uncertain && (!dirty || changed))
               }
             >

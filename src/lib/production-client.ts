@@ -208,7 +208,7 @@ export function validateProductionSettings(
       CampaignProductionSettings["runtimePolicy"]
     >["taskOverrides"] = {};
     for (const [task, value] of Object.entries(runtime.taskOverrides)) {
-      requireValue(productionTasks.includes(task as RuntimeTask));
+      requireValue(productionTasks.some((supported) => supported === task));
       const chosen = selection(value);
       requireValue(chosen);
       taskOverrides[task as RuntimeTask] = chosen;
@@ -255,6 +255,18 @@ export function productionDraft(
     ruleset: settings.ruleset,
     runtimePolicy: settings.runtimePolicy,
   });
+}
+/** Public policy only; this must never depend on whether hidden work exists. */
+export function productionNeedsReconciliation(
+  previous: ProductionDraft["worldPolicy"],
+  next: ProductionDraft["worldPolicy"],
+): boolean {
+  const rank = { off: 0, critical_only: 1, normal: 2 };
+  return (
+    next.simulation &&
+    (!previous.simulation ||
+      rank[next.deadlinePressure] > rank[previous.deadlinePressure])
+  );
 }
 export function sameProductionDraft(
   a: ProductionDraft,

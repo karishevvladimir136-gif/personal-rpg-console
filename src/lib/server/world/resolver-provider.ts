@@ -149,13 +149,36 @@ export function buildResolverContext(
 
 /** Options must be constructed from the operation's pinned world.resolve profile by the caller. */
 export function createWorldResolverProvider(options: ProviderOptions) {
-  const request = createStructuredRequester(options);
+  const checkedRequest = () => {
+    let actualModel: string | null = null;
+    const request = createStructuredRequester({
+      ...options,
+      observer: (attempt) => {
+        actualModel = attempt.actualModel;
+        options.observer?.(attempt);
+      },
+    });
+    const validate = (usage: ProviderUsage) => {
+      const matches = (model: string) =>
+        model === options.model ||
+        (model.startsWith(options.model) &&
+          /^-\d{4}-\d{2}-\d{2}$/.test(model.slice(options.model.length)));
+      if (
+        actualModel === null ||
+        !matches(actualModel) ||
+        !matches(usage.model)
+      )
+        throw new DmError("configuration");
+    };
+    return { request, validate };
+  };
   return {
     async action(
       input: WorldLogicInput,
     ): Promise<ProviderResult<WorldLogicProposal>> {
       const context = worldLogicContext(input);
-      return request(
+      const { request, validate } = checkedRequest();
+      const response = await request(
         buildResolverContext(
           options.model,
           context,
@@ -173,6 +196,8 @@ export function createWorldResolverProvider(options: ProviderOptions) {
         },
         worldLogicSchema,
       );
+      validate(response.usage);
+      return response;
     },
     async resolve(input: WorldStageInput): Promise<{
       result: ResolverStageResult;
@@ -182,6 +207,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
       const selected = selectWorldResolverWork(input);
       if (selected.status !== "ready")
         return { result: selected, proposal: null, usage: null };
+      const { request, validate } = checkedRequest();
       const response = await request(
         buildResolverContext(
           options.model,
@@ -198,6 +224,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
         },
         worldResolverSchema,
       );
+      validate(response.usage);
       return {
         result: stageResolvedWorldTransition(input, response.output),
         proposal: response.output,
