@@ -1,0 +1,63 @@
+{
+  "version": "phase38b-fal-retrieval-1",
+  "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "originalStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+  "originalStopEvidenceSHA256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+  "recoveryPreparationSHA": "115dcf0c50a8b815e61d597970101898a7723bcf",
+  "recoveryIdentity": "phase38b-fal-recovery-1",
+  "recoveryHash": "0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a",
+  "completedStatusEvidenceCommit": "3371a20427c33abed810ff0af83a031c943090ac",
+  "completedStatusEvidenceFile": "results/fal-status-observation-001.json",
+  "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+  "completedBodySHA256": "aa0b4ea61115e93b202b7630801e934dc3af3f6488d5035a6f49cd91a454ed98",
+  "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+  "recoveryFiles": {
+    "journal.jsonl": "f017d56724bc75ee6b38522a4b439c890f9d74868f2b47fd0d0f72d6e7e701e6",
+    "witness.jsonl": "27c26e496201a6a1880bf1bdb9fb57725ecc6a250cff753704714318cf837b81",
+    "identity.json": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d",
+    "../private-fal-recovery.anchor": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+  },
+  "originalSourceFiles": {
+    "experiments/phase38-spatial/private-continuation/journal.jsonl": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508",
+    "experiments/phase38-spatial/private-continuation/witness.jsonl": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758",
+    "experiments/phase38-spatial/private-continuation/identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+    "experiments/phase38-spatial/private-continuation.anchor": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+    "experiments/phase38-spatial/continuation.json": "debb7c56ea75d4d6efd5b78d2b9d0544b94e6e0913f4f53408a66b49257ee31b",
+    "experiments/phase38-spatial/protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+    "experiments/phase38-spatial/freeze.json": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e"
+  },
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "provider": "fal",
+  "model": "fal-ai/hunyuan_world/image-to-world",
+  "jobId": "spatial-fal-world-1",
+  "resultURL": "https://queue.fal.run/fal-ai/hunyuan_world/requests/01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "limits": {
+    "resultReads": 1,
+    "artifactDownloads": 1,
+    "statusReads": 0,
+    "submissions": 0,
+    "retries": 0,
+    "fallbacks": 0,
+    "requestTimeoutMs": 60000,
+    "operationDeadlineMs": 900000,
+    "maxJsonBytes": 2097152,
+    "maxAssetBytes": 268435456
+  },
+  "accounting": {
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 44,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "refunds": 0
+  },
+  "release": "OFFLINE_PREPARATION_ONLY; exact clean SHA requires separate owner authorization before initialization or retrieval",
+  "formatPolicy": "GLB and accepted SPZ use existing bounded inspection; opaque DRC/archive/JSON glTF/other unsupported geometry retain local bytes and safe metadata, structural/navigation usability UNVERIFIED; no external glTF resource fetches."
+}

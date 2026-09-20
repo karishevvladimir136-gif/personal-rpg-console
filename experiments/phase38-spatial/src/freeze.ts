@@ -8,6 +8,8 @@ export function freezeInputs() {
     "protocol.json",
     "continuation.json",
     "fal-recovery.json",
+    "fal-retrieval.json",
+    "FAL_RETRIEVAL_PREPARATION.md",
     "FAL_RECOVERY_PREPARATION.md",
     "package.json",
     "tsconfig.json",

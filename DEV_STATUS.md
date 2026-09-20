@@ -1,8 +1,42 @@
 # Development status
 
-Last updated: September 19, 2026 (local; observation September 20 UTC). Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026 (local; prior completed-status observation September 20 UTC). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.8B OFFLINE FAL RESULT RETRIEVAL PREPARED; STOP FOR OWNER REVIEW.** The existing fal-world request `01a0bc76-ae7f-7e02-960b-a207094622d2` is confirmed **COMPLETED at queue level** by evidence `3371a20427c33abed810ff0af83a031c943090ac` (HTTP 200, exact response URL, no redirect, validated ID/state). **No result or artifact has yet been retrieved.** The original STOPPED continuation and completed-status recovery journal remain unchanged.
+
+### Completed work and files / areas changed
+
+Prepared distinct `phase38b-fal-retrieval-1`, manifest hash `546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a`. [Preparation instructions and exact source bindings](experiments/phase38-spatial/FAL_RETRIEVAL_PREPARATION.md) and [manifest](experiments/phase38-spatial/fal-retrieval.json) freeze the one existing request, accepted status body/evidence and previous history/identity/terminal hashes.
+
+New experiment-only contract, source verifier, append-only ledger, result-only transport and CLI permit a separately authorized future **one result GET followed by at most one validated artifact download**, then stop. Zero status polling/submission capability through this retrieval CLI. No new reservation, retry, fallback, World Labs, chest, cancellation or next action. Only experiment files (five new modules, one new test file, manifest/preparation document, local ignore rules and freeze inputs/output) plus this status changed. No production files, root dependencies or schema changed; main and `chatgpt/poi-2d-roadmap` untouched.
+
+### Tests and build status
+
+**441 deterministic tests passed (336 existing + 105 new); zero failures, skips or cancellations. Typecheck, lint with zero warnings, and isolated experiment build passed.** The full suite includes existing hostile URL/DNS/redirect/SSRF checks, exact completed-history binding, request/method/model fencing, one-shot/crash guards, safe metadata retention, unsupported format handling and unchanged accounting. All tests use synthetic fixtures/mock transports only. Real original source hashes and completed recovery hashes were also read/verified locally without network or journal mutation. Production full suite/build not rerun because production is unchanged.
+
+### Key technical decisions and accounting
+
+The accepted completed-status observation replaces any need to poll again. The future result route is exact and fixed, not operator-supplied. Prior history is checked read-only; only a new ignored retrieval identity/journal may be initialized after explicit owner authorization of this exact preparation checkpoint. Initialization has not occurred during this preparation. Request intent is durable before transport; a partial attempt cannot be resumed or repeated. Source verifier injection exists for synthetic unit fixtures only and is not exposed by the CLI.
+
+Result identity is validated before the existing bounded `world_file` output/URL parser authorizes a download. Actual-model provenance stays UNKNOWN if absent/null. Signature-detected format, size, SHA-256 and URL/provenance hash are retained before structural inspection; binary bytes stay ignored/local. Existing GLB/SPZ inspectors are reused, with no decoder/viewer dependencies. Opaque DRC/archive/JSON glTF/other unsupported geometry stops with retained observations and usability UNVERIFIED; it is not labeled a provider-generation failure. `export_drc=true` is not proof DRC was returned. Invalid result, invalid output/URL, unsupported artifact and structural success remain distinct findings.
+
+**Accounting unchanged: $4.15 reserved / $4.75 ceiling; $2.528 known reported billing; fal charge UNKNOWN; existing $0.35 fal reservation retained once; $0.60 chest allocation unreleased.** No new reservation/refund, zero-charge assumption or billing call. Historical totals remain three generation submissions, 44 API requests and eight downloads. Preparation made **zero provider/DNS/result/asset/generation/export/billing calls**, accessed/requested no credentials, and initialized no live retrieval identity.
+
+### Known issues and remaining work
+
+Future live result/output compatibility remains unverified. Standalone JSON glTF is outside the existing binary GLB inspector; external buffers/images are never fetched. Unsupported Draco/archive geometry is not decoded or rendered. Structural success alone cannot establish navigation, visual quality or production EXPLORE acceptance. Actual fal billing/model and artifact type, bytes, hash and usability remain UNKNOWN until separately authorized observations. Chest remains unattempted.
+
+Physical iPhone/Safari and the historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees. No hosted deployment or real campaign/private-data acceptance. Original checkout documentation edits and all earlier evidence remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of the offline preparation SHA.** Do not initialize or retrieve live until that checkpoint is explicitly authorized. Do not poll status, resubmit, run chest/next, merge to main, touch the roadmap branch, implement EXPLORE/renderer or deploy.
+
+---
+
+## Historical single fal status observation checkpoint
 
 **PHASE 3.8B SINGLE FAL STATUS OBSERVATION COMPLETE; STOP FOR OWNER REVIEW.** Owner-authorized exact execution `115dcf0c50a8b815e61d597970101898a7723bcf` stayed clean and unchanged. Recovery `phase38b-fal-recovery-1`, hash `0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a`, initialized once without a provider request or reservation.
 
