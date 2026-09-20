@@ -460,6 +460,14 @@ Tabs:
 - Background
 - Notes
 
+### Spells and spellcasting — future product design
+
+For spell-capable profiles, **Character → Spells** is a first-class Ruleset-driven view over authoritative Ability Definitions, Actor ownership/unlock state, preparation state and current resources. It is not a free-form DM list. A profile may distinguish **known**, **spellbook-owned**, **prepared/selected**, **available by source**, and **currently castable** spells; expose only distinctions that actually exist in that Ruleset. A wizard-like profile can present a Spellbook plus prepared subset, while another caster may expose only known spells, a class-granted available list, pact/invocation resources, mana, cooldowns or another profile-specific model.
+
+Where applicable, the authoritative spellcasting contract includes spell/ability source and version, prerequisites, class/domain/school access, preparation rules, slots/charges/mana or other costs, components, concentration/maintenance, ritual or alternate casting, range/targets/area, duration, checks/saves/resistance, upcasting/scaling and recovery policy. **Can Cast Now** is derived server-side from the current character, world and Ruleset state; the DM cannot invent access to a spell or ignore a missing resource. Acquisition through level-up, teacher/training, scroll/book, research, pact, artifact or another validated source preserves provenance.
+
+High-level magic is not artificially limited to encounter-scale presentation. If the active World Magic Rules and Ruleset genuinely authorize a large effect, casting can enter the same bounded [world-scale settlement](WORLD_ENGINE_BRIEF.md#progression-rewards-and-world-scale-settlement) as any other powerful action and persistently alter Locations, infrastructure, terrain or other world state. Text, 2D, video and future EXPLORE visualize committed consequences; they never decide what the spell accomplished.
+
 ### Progression and advancement — future product design
 
 **Character → Progression** is a first-class profile-driven experience. Progression is required for RPG-capable Rulesets, but XP/levels/classes/skill trees are not universal. XP profiles can show level, current XP, next threshold and a progress bar; milestone profiles show actual milestones without fake numeric XP. Multi-track profiles show only relevant tracks in a readable compact view; Off/zero-track profiles do not display empty fantasy mechanics.

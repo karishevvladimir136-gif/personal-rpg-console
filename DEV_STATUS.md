@@ -4,6 +4,14 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+### Spellcasting / World Magic / semantic causality — final clarification
+
+Docs-only clarification on `chatgpt/poi-2d-roadmap` after accepted Progression architecture; this is **not a new research cycle or new foundational subsystem**. It makes three already-intended boundaries explicit: Character → Spells derives from authoritative known/spellbook/prepared/resource state; magic is split between campaign **World Magic Rules** (what is possible) and the active **Ruleset** (how an Actor accesses/pays/targets/resolves it); and the World Engine may use the selected strong reasoning model for bounded semantic/causal physical consequences while deterministic code and authoritative Events remain the authority.
+
+High-scale supported magic may therefore persistently change terrain, Locations, infrastructure and downstream world state instead of being forced into encounter-only flavor. The reasoning model is not an engineering-grade physics solver: exact calculable mechanics stay in code, causal proposals use selective simulation and explicit uncertainty, and visual frames/video are generated only from committed state. Provider choice remains replaceable even if the current owner configuration uses an Astra-class model.
+
+No production/runtime/database/UI/provider/Phase 3.8B work is part of this clarification. `main` remains untouched; the existing final-addendum boundary still stands.
+
 ### Progression / Rewards / Challenge Scaling — final planned foundational addendum
 
 Documentation-only work on `chatgpt/poi-2d-roadmap`, starting at exactly `fb97364f707f40e35e4e9480265be0e4041e83c1` in the existing isolated roadmap checkout. The requested product decisions are documented; no production coding has started and owner acceptance of the resulting documents remains separate.
