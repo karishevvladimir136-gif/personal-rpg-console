@@ -1,4 +1,14 @@
-# Development status — Production Foundation Wave 4 — owner accepted
+# Development status — World Lab D1 — implementation in progress
+
+Authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` was freshly fetched and verified. Work is isolated on `codex/world-lab-d1-detached-foundation`; main and the original dirty checkout remain untouched. Waves 1–4 are owner accepted. Only detached D1 read/write/fencing/checkpoint foundations are authorized, with deterministic execution and no provider calls.
+
+Minimum additions and exclusive ownership are frozen in `D1_CONTRACTS.md`. Lead owns shared contracts, SQL/migration, integration and this status. Six distinct workstreams reuse the environment's three worker slots alongside Lead; this capacity limit does not reduce independent QA or required verification. D1 is not yet integrated, verified, browser checked or owner accepted. No historical test count is claimed as fresh D1 evidence.
+
+Remaining work: authorized exact detached manifest reads; immutable input/run ledger; branch-only CAS writer and independent leases; existing World/Memory adapters; EN/RU NON-CANON UI; adversarial isolation/privacy/compatibility proofs; final tests/typecheck/lint/build and separate synthetic browser review. No D2, comparison, Enter This World, FRAME, deployment, production migration or real/private import is started.
+
+---
+
+# Previous milestone — Production Foundation Wave 4 — owner accepted
 
 Started September 20, 2026 from freshly fetched exact remote main `7f4b65ea60e0e497f27528c9efcf73ececa6e360` in isolated branch `codex/production-foundation-wave4`. Implementation left main at that base and the original dirty checkout untouched. Waves 1–3 remain owner accepted; Wave 4 is now owner accepted at exact SHA `38e6ef22138412ed29b4999126000e5c2a6f287c`.
 
