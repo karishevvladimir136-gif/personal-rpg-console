@@ -360,3 +360,84 @@ Before accepting a World Engine/DM/quest feature, ask:
 The same world should feel materially different when played as a ruler, commander, ordinary soldier, investigator or other Actor. Do not equate narrative importance with authority or authority with knowledge. Use the controlled Actor's actual capabilities, command/resource relationships, jurisdiction and information access. See [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md).
 
 The best outcome is not merely different dialogue. Different POVs should expose different **affordances, information and scales of consequence** while preserving one authoritative world.
+
+
+## 22. Power progression can change affordances, not just numbers
+
+**Pathfinder: Wrath of the Righteous** is a useful reference for separating ordinary class/build progression from a higher-level identity path. Its Mythic Paths are valuable as a design lesson because they change narrative branches, world reactions, available solutions, allies and the player's relationship to the setting rather than merely increasing combat statistics.
+
+RPG Console should generalize the useful principle without copying Mythic Paths as a mandatory mechanic:
+
+- a major transformation, office, curse, faction allegiance, divine status, technology, reputation tier or other campaign-specific change may unlock new **affordances**;
+- these affordances can affect what the character can perceive, attempt, command, negotiate, survive or transform;
+- the world should react socially and causally to major identity changes;
+- the change must be stored as authoritative world/character state with provenance and history;
+- characters who reject or lose such power remain valid play paths when the campaign permits it.
+
+Do not create one universal “mythic” subsystem for every campaign. The ruleset/world determines what kinds of progression exist.
+
+## 23. One character may legitimately operate at multiple scales
+
+Wrath of the Righteous combines party-scale adventuring with the Knight Commander's strategic control of the crusade. The useful principle is not the specific crusade minigame; it is that **the same controlled Actor may have both embodied/local and institutional/strategic affordances**.
+
+RPG Console should support scale changes when the Actor's world leverage justifies them:
+
+- local: talk, investigate, fight, move, manipulate objects;
+- operational: direct a squad/unit/expedition, allocate local resources;
+- strategic: command armies, set policy, negotiate between institutions, assign high-level resources.
+
+All scales use the same authoritative world and Event/Thread history. Do not create an unrelated strategy-game state store.
+
+## 24. Major identity paths should have world reactivity
+
+When a character becomes meaningfully different, the change should not live only on the character sheet.
+
+Relevant Actors may:
+- trust or fear them differently;
+- grant or remove access;
+- join or leave;
+- offer different solutions;
+- reinterpret prior actions;
+- change political or religious responses;
+- create new Threads or close old ones.
+
+This can arise from mythic transformation, political office, faction allegiance, public reputation, technological augmentation, social status or another campaign-specific identity shift.
+
+Use the same micro/macro-reactivity rules already defined; do not hard-code one fantasy morality tree.
+
+## 25. Alternate control/presentation modes should share one state
+
+Wrath of the Righteous demonstrates that different combat/control modes can coexist over the same encounter state. RPG Console generalizes this principle:
+
+- Text, 2D Live and EXPLORE are views over one authoritative campaign;
+- future detailed/fast combat presentations may differ without creating different outcomes or duplicate rolls;
+- strategic and embodied views must resolve against the same Actor/Thread/Event state;
+- switching presentation alone never changes canon, time, knowledge or timeline.
+
+## 26. Strategic layers must remain integrated and optional where possible
+
+Wrath of the Righteous is also a caution: a secondary strategy layer can become friction when it feels disconnected from the main RPG. Owlcat publicly reworked Crusade after feedback that it did not intertwine enough with story/companions and later provided an auto-crusade option.
+
+For RPG Console:
+- do not build a separate grand-strategy minigame merely because a ruler/commander POV exists;
+- prefer natural-language orders + compact structured controls + World Engine resolution;
+- expose detailed strategic UI only when it materially helps the campaign;
+- keep Text capable of issuing the same legitimate orders;
+- strategic consequences should feed companions, factions, locations and Threads rather than live in an isolated subsystem;
+- allow campaigns to abstract low-value management instead of forcing repetitive administration.
+
+The desired feeling is **greater leverage**, not more bureaucracy.
+
+## 27. Complexity should follow the world, not the engine
+
+Pathfinder's rich build system is useful for players who want that rules density, but RPG Console must not universalize it.
+
+The engine should support:
+- simple World Logic;
+- full imported/implemented rulesets;
+- campaign-specific mechanics;
+- optional advanced progression.
+
+Do not expose feats, subclasses, prestige layers, alignment matrices or other rule concepts unless the selected ruleset actually uses them.
+
+Depth should come from meaningful choices and world reactivity, not from mandatory configuration complexity.

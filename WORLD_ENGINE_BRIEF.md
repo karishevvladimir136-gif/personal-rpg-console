@@ -24,6 +24,9 @@ Current private `fact/clock/npc/faction/consequence` patches are not already a f
 
 ## POV, authority and world leverage
 
+**Wrath of the Righteous** is a useful scale reference: one player-controlled Actor may validly act both locally and strategically when their actual authority supports it. Preserve one Actor/state history across those scales. Do not copy a mandatory detached crusade minigame; strategic orders should flow through normal World Actor/Thread/Event resolution and remain expressible in Text.
+
+
 See [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md). World Actors may differ radically in knowledge, capabilities, institutional authority, command scope, jurisdiction, resources and information access. These are orthogonal to narrative prominence. A player-controlled monarch, colonel and private soldier therefore receive different authorized contexts and can cause different classes of in-world action while sharing one World Engine. Orders are validated actions that create intentions/events and consequences through normal settlement; they are never magical direct edits of remote state. Owner-side World Authoring remains out-of-character and separate.
 
 ## Small core: Actor → Thread → Event

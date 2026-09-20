@@ -103,6 +103,14 @@ Authority can raise compliance dramatically without becoming magical remote stat
 
 Orders may be delayed, misunderstood, resisted, partially executed or impossible when world state justifies it.
 
+## Multiple legitimate scales for one POV
+
+Wrath of the Righteous is a useful precedent for a controlled character who is simultaneously an embodied adventurer and an institutional commander. The key rule is that **scale follows actual authority**, not a separate game mode permission.
+
+A commander can personally enter a ruin and later issue an army order because both affordances belong to the same Actor. A private soldier does not gain strategic controls simply because the world contains armies. If a soldier is promoted, appointed or otherwise gains authority, the available scale can change prospectively.
+
+Avoid copying a separate mandatory strategy minigame. Natural-language orders and compact projections should be sufficient for ordinary play; specialized operational/strategic UI is an optional convenience over the same state.
+
 ## Strategic versus embodied play
 
 The same engine may support different interaction scales without creating separate games.

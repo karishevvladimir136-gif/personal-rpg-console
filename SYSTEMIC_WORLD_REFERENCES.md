@@ -299,3 +299,31 @@ World/region/town/local maps and later 2D/EXPLORE presentations can use differen
 - infinite content generation merely because models can generate it.
 
 These references show useful systemic patterns. RPG Console keeps natural-language freedom, persistent AI semantics, source/canon authority, versioning, privacy and player-controlled presentation.
+
+
+## Pathfinder: Wrath of the Righteous — scale, identity and integration
+
+Wrath of the Righteous is not a visual reference and its Pathfinder rules density is not a default target. It is useful for three systemic ideas:
+
+### 1. Local and strategic agency can belong to one character
+
+The Knight Commander remains a party character while also commanding a crusade. RPG Console should likewise allow one Actor to operate across embodied, operational and strategic scales when their actual authority/resources justify it.
+
+### 2. Transformative progression should change the world
+
+WotR's Mythic Paths alter more than combat abilities: they affect narrative branches, appearance, reactions and available approaches. Generalize this into campaign-specific identity/progression state that changes affordances and world reactivity.
+
+### 3. Secondary systems must feed the RPG
+
+Owlcat's own development notes acknowledged that Crusade initially did not intertwine enough with story and companions, and later added auto-crusade. Treat this as a warning: strategic simulation should feed normal Actors/Threads/Events and remain abstractable, not become an obligatory parallel game.
+
+### Explicit non-copy
+
+Do not copy:
+- Pathfinder's mandatory rules complexity;
+- class/archetype/prestige proliferation as a universal UI;
+- alignment grids as universal morality;
+- a separate army-management state store;
+- repetitive decree/building administration unless a specific campaign wants it.
+
+Use leverage and reactivity; leave the bureaucracy optional.
