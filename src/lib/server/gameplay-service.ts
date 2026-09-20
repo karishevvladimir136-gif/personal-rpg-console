@@ -5,10 +5,10 @@ import { isUuid } from "../persistence/validation";
 import type { TimelineFence } from "../saves/contracts";
 import { isTimelineFence } from "../saves/fence";
 import { createSaveStore } from "./saves/store";
-import { createDmProvider, createTurnStore } from "./dm";
+import { createTurnStore } from "./dm";
+import { productionServices } from "./production-service";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { createMemoryStore } from "./memory/store";
-import { createSummaryProvider } from "./memory/provider";
 import { memoryAwareProvider, preflightMemory } from "../memory/lifecycle";
 import {
   validateConfigurePlayInput,
@@ -47,6 +47,11 @@ export async function submitTurn(campaignId: string, value: unknown) {
   const { user } = await authorizeCampaign(campaignId);
   const input = validateTurnInput(value, campaignId);
   const { store, memory } = storesFor(user.id, requireTimeline(input));
+  const production = productionServices(
+    user.id,
+    campaignId,
+    requireTimeline(input),
+  );
   let existing = false;
   try {
     await store.getPublic(campaignId, input.operationId);
@@ -58,12 +63,14 @@ export async function submitTurn(campaignId: string, value: unknown) {
     await preflightMemory(
       input,
       memory,
-      createSummaryProvider(),
-      process.env.OPENAI_DM_MODEL,
+      production.summaries,
+      await production.planModel(),
     );
   return runTurn(input, {
     store,
-    provider: memoryAwareProvider(createDmProvider(), memory),
+    provider: memoryAwareProvider(production.provider, memory),
+    prepareWorld: production.prepareWorld,
+    validateFoundation: production.validateFoundation,
   });
 }
 export async function continueTurn(
@@ -74,9 +81,16 @@ export async function continueTurn(
   const { user } = await authorizeCampaign(campaignId);
   const input = validateResumeInput(value, campaignId, operationId);
   const { store, memory } = storesFor(user.id, requireTimeline(input));
+  const production = productionServices(
+    user.id,
+    campaignId,
+    requireTimeline(input),
+  );
   return resumeTurn(input, {
     store,
-    provider: memoryAwareProvider(createDmProvider(), memory),
+    provider: memoryAwareProvider(production.provider, memory),
+    prepareWorld: production.prepareWorld,
+    validateFoundation: production.validateFoundation,
   });
 }
 export async function configurePlay(campaignId: string, value: unknown) {

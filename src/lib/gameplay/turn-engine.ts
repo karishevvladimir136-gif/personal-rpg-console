@@ -109,6 +109,7 @@ async function execute(
   const checkpoint = structuredClone(claim.turn.checkpoint);
   try {
     validateMode(source, input);
+    await dependencies.validateFoundation?.(claim);
     if (input.mode === "feedback" || input.mode === "ooc") {
       requireRule(
         command?.action !== "reroll" && command?.action !== "continue",
@@ -214,6 +215,18 @@ async function execute(
       );
       await store.checkpoint(lease, checkpoint, "generating");
     }
+    if (dependencies.prepareWorld) {
+      const prepared = await dependencies.prepareWorld(
+        claim,
+        checkpoint.resolution,
+        checkpoint.worldSettlement ?? null,
+      );
+      if (prepared) {
+        checkpoint.worldSettlement = prepared.settlement;
+        checkpoint.resolution = prepared.resolution;
+        await store.checkpoint(lease, checkpoint, "generating");
+      }
+    }
     if (!checkpoint.narration) {
       if (input.mode === "mechanic")
         checkpoint.narration = {
@@ -242,6 +255,9 @@ async function execute(
       await store.checkpoint(lease, checkpoint, "generating");
     }
     return await store.commit(lease, {
+      ...(checkpoint.worldSettlement
+        ? { worldSettlement: checkpoint.worldSettlement }
+        : {}),
       narration: checkpoint.narration.narration,
       visualDescription: checkpoint.narration.visualDescription,
       resolution: checkpoint.resolution,
