@@ -4,7 +4,8 @@ import type { TimelineFence } from "../saves/contracts.ts";
 
 export type CanonicalId = string; // Validated application UUID; never a provider identifier.
 export type Visibility = "public" | "private";
-export type KnowledgeScope = "source" | "canon_at_entry" | "character" | "future_source";
+export type KnowledgeScope =
+  "source" | "canon_at_entry" | "character" | "future_source";
 export type EvidenceLocator = {
   ownerId: string;
   sourceId: string;
@@ -20,8 +21,13 @@ export type RulesetProfileRef = {
   mode: "full_ruleset" | "world_logic" | "custom_ruleset";
   validatorVersion: string;
 };
-export type RuntimeTask = "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary";
-export type ModelSelection = { providerId: string; modelId: string; reasoning: string | null };
+export type RuntimeTask =
+  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary";
+export type ModelSelection = {
+  providerId: string;
+  modelId: string;
+  reasoning: string | null;
+};
 export type RuntimePolicy = {
   schemaVersion: 1;
   revision: number;
@@ -54,7 +60,8 @@ export type CampaignPackBinding = {
   entry: TemporalEntryAnchor;
   mappings: PackEntityMapping[];
 };
-export type LibraryRecordKind = "source" | "pack" | "scenario" | "divergence" | "compiler_job";
+export type LibraryRecordKind =
+  "source" | "pack" | "scenario" | "divergence" | "compiler_job";
 export type LibraryRecord = {
   schemaVersion: 1;
   ownerId: string;
@@ -122,4 +129,7 @@ export type FoundationRpc = (args: {
   p_action: string;
   p_payload: unknown;
   p_timeline?: TimelineFence | null;
-}) => Promise<{ data: unknown; error?: { message?: string; code?: string } | null }>;
+}) => Promise<{
+  data: unknown;
+  error?: { message?: string; code?: string } | null;
+}>;

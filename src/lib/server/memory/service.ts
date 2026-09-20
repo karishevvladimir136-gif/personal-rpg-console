@@ -1,7 +1,7 @@
 import "server-only";
 import { authorizeCampaign } from "../campaign-authorization";
 import { createMemoryStore } from "./store";
-import { createSummaryProvider } from "./provider";
+import { productionServices } from "../production-service";
 import { processMemoryJobs } from "../../memory/jobs";
 import { validateMemoryRequest } from "../../memory/request-validation";
 import type { TimelineFence } from "../../saves/contracts";
@@ -30,6 +30,7 @@ export async function mutateMemory(
         : validateMemoryRequest(value, campaignId, "retry");
   if (!input.timeline) throw new DmError("validation");
   const store = createMemoryStore(user.id, undefined, input.timeline);
+  const production = productionServices(user.id, campaignId, input.timeline);
   const snapshot =
     action === "end"
       ? await store.end(validateMemoryRequest(value, campaignId, "end"))
@@ -46,7 +47,7 @@ export async function mutateMemory(
         await processMemoryJobs(
           campaignId,
           store,
-          createSummaryProvider(),
+          production.summaries,
           4,
           snapshot.timeline,
         );
