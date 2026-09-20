@@ -1,0 +1,79 @@
+{
+  "version": "phase38b-continuation-1",
+  "originalExecutionSHA": "2f8f82edb5d5f3c960d45922b71c543e99208192",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "originalRunRelativePath": "experiments/phase38-spatial/private-run",
+  "originalFileHashes": {
+    "experiments/phase38-spatial/private-run/journal.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "experiments/phase38-spatial/private-run/witness.jsonl": "0b446a934d34dc0e63c5cfa595bfd777c55660c0a02ac62012dcb136a3ad3a4f",
+    "experiments/phase38-spatial/private-run/identity.json": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d",
+    "experiments/phase38-spatial/private-run.anchor": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+  },
+  "evidenceHashes": {
+    "live-run-001-ledger.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "live-run-001.json": "05936d6837c5dd5536417bd7d2b1cdaf9cd8603ddfeb47ae2e36a738e372fd88",
+    "recovery-001.json": "4848f48b8db139fca613e0c14c324eabb4f26119ad94aaf653f255e281084a0b",
+    "url-diagnosis-001.json": "610abc717c7fed6bc023f8669a38d5413e0ac1a4fd4be3c24ceb3c1f9f0ef04a"
+  },
+  "acceptedMetadataSHA": "32b2effdc8aeae525fe28dda3f09c73b04773cb3",
+  "acceptedURLSHA": "c94d4e588981d94d6679ba76861cc5776f7bfc3d",
+  "recoveryEvidenceSHA": "98eb76618503dd2382ef97aaabfcb1377cab26e1",
+  "urlEvidenceSHA": "dec27b8f566bea3412ba6afb80d3e17379c1fcd1",
+  "room": {
+    "jobId": "spatial-room-1",
+    "operationId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+    "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e",
+    "reservedMicroUSD": 1300000,
+    "reportedMicroUSD": 1264000,
+    "reportedCredits": 1580
+  },
+  "historical": {
+    "generationSubmissions": 1,
+    "apiRequests": 21,
+    "worldReads": 3,
+    "downloads": 0,
+    "originalStatus": "STOPPED"
+  },
+  "recovery": {
+    "attempts": 1,
+    "worldReads": 2,
+    "downloads": 4,
+    "assetRoles": [
+      "splat",
+      "collider",
+      "pano",
+      "thumbnail"
+    ],
+    "generationSubmissions": 0,
+    "exports": 0,
+    "falCalls": 0,
+    "automaticRetries": 0,
+    "deadlineMs": 900000,
+    "requestTimeoutMs": 60000
+  },
+  "remainingJobIds": [
+    "spatial-courtyard-1",
+    "spatial-fal-world-1",
+    "spatial-chest-1"
+  ],
+  "cumulative": {
+    "reservedMicroUSD": 4750000,
+    "generationSubmissions": 4,
+    "additionalSubmissions": 3,
+    "apiRequests": 190,
+    "newAPIRequestsMaximum": 144,
+    "worldReadsMaximum": 7,
+    "downloadsMaximum": 10,
+    "maxJsonBytes": 2097152,
+    "maxAssetBytes": 268435456,
+    "maxTotalAssetBytes": 1073741824
+  },
+  "webp": {
+    "thumbnailOnly": true,
+    "maxChunks": 64,
+    "maxDimension": 16384,
+    "maxPixels": 67108864,
+    "animation": false,
+    "decodePixels": false
+  }
+}

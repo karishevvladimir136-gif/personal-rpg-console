@@ -40,7 +40,7 @@ function durable(path: string, content: string, flag: "wx" | "a") {
     closeSync(fd);
   }
 }
-export function initialize(root: string, commit: string) {
+export function initialize(root: string, commit: string, continuation?: Dict) {
   must(/^[a-f0-9]{40}$/.test(commit), "invalid_commit");
   must(
     !existsSync(root) && !existsSync(root + ".anchor"),
@@ -48,14 +48,24 @@ export function initialize(root: string, commit: string) {
   );
   durable(
     root + ".anchor",
-    canonical({ version: 1, protocolHash, commit }) + "\n",
+    canonical({
+      version: 1,
+      protocolHash,
+      commit,
+      ...(continuation ? { continuation } : {}),
+    }) + "\n",
     "wx",
   );
   mkdirSync(root);
   mkdirSync(join(root, "evidence"));
   durable(
     join(root, "identity.json"),
-    canonical({ version: 1, protocolHash, commit }) + "\n",
+    canonical({
+      version: 1,
+      protocolHash,
+      commit,
+      ...(continuation ? { continuation } : {}),
+    }) + "\n",
     "wx",
   );
   durable(join(root, "journal.jsonl"), "", "wx");
@@ -66,7 +76,7 @@ export class Ledger {
   readonly commit: string;
   entries: Entry[] = [];
   private lock: number | undefined;
-  constructor(root: string, commit: string) {
+  constructor(root: string, commit: string, continuation?: Dict) {
     this.commit = commit;
     this.root = resolve(root);
     must(!lstatSync(root).isSymbolicLink(), "symlink_run");
@@ -82,6 +92,11 @@ export class Ledger {
       must(
         readFileSync(root + ".anchor", "utf8").trim() === canonical(identity),
         "run_anchor_mismatch",
+      );
+      must(
+        canonical(identity.continuation ?? null) ===
+          canonical(continuation ?? null),
+        "continuation_identity_mismatch",
       );
       const raw = readFileSync(join(root, "journal.jsonl"), "utf8"),
         witness = readFileSync(join(root, "witness.jsonl"), "utf8");

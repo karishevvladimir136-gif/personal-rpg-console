@@ -6,6 +6,7 @@ export const experimentRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 export function freezeInputs() {
   const paths = [
     "protocol.json",
+    "continuation.json",
     "package.json",
     "tsconfig.json",
     ".gitignore",
@@ -15,6 +16,7 @@ export function freezeInputs() {
     "OFFICIAL_EVIDENCE.md",
     "CORRECTION_PROPOSAL.md",
     "URL_CORRECTION.md",
+    "CONTINUATION_PREPARATION.md",
     ...readdirSync(join(experimentRoot, "src"))
       .filter((x) => x.endsWith(".ts"))
       .map((x) => `src/${x}`),

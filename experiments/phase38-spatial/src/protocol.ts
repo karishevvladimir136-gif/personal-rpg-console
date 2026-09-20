@@ -10,6 +10,25 @@ export function must(ok: unknown, code: string): asserts ok {
   }
 }
 const safeCodes = new Set([
+  "invalid_webp_container",
+  "invalid_webp_chunk",
+  "unsupported_webp_animation",
+  "duplicate_webp_chunk",
+  "invalid_webp_extended",
+  "invalid_webp_image",
+  "invalid_webp_vp8",
+  "invalid_webp_vp8l",
+  "invalid_webp_alpha",
+  "invalid_webp_metadata",
+  "invalid_webp_dimensions",
+  "invalid_webp_features",
+  "continuation_identity_mismatch",
+  "continuation_history_changed",
+  "continuation_prefix_mismatch",
+  "room_recovery_already_attempted",
+  "room_regeneration_forbidden",
+  "recovery_incomplete",
+
   "invalid_object",
   "invalid_text",
   "invalid_integer",

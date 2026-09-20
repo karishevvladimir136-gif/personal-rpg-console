@@ -43,6 +43,10 @@ export async function main(args = process.argv.slice(2)) {
     );
     return;
   }
+  must(
+    !existsSync(join(experimentRoot, "continuation.json")),
+    "continuation_cli_required",
+  );
   const git = (...params: string[]) =>
     execFileSync("git", params, { cwd: repo, encoding: "utf8" }).trim();
   const head = git("rev-parse", "HEAD");

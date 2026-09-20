@@ -1,3 +1,4 @@
+import { inspectWebP } from "./webp.ts";
 import { gunzipSync, zstdDecompressSync } from "node:zlib";
 import {
   assetUrl,
@@ -279,7 +280,10 @@ function spz(bytes: Buffer): Dict {
 export function inspectAsset(bytes: Buffer, asset: Asset, job: Job): Dict {
   must(bytes.length > 0, "empty_asset");
   if (asset.kind === "image") {
-    const r = image(bytes);
+    const r =
+      asset.role === "thumbnail" && bytes.toString("latin1", 0, 4) === "RIFF"
+        ? inspectWebP(bytes)
+        : image(bytes);
     if (asset.role === "pano")
       must(Number(r.width) === 2 * Number(r.height), "incompatible_panorama");
     return r;

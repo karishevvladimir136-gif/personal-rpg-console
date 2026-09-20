@@ -395,7 +395,7 @@ test("ordinary fetch path cannot bypass asset transport; approved descriptors us
   assert.equal(mock.calls.length, 1);
 });
 
-test("URL suffix is not proof of binary image compatibility; WebP remains outside this URL-only change", () => {
+test("URL suffix is not proof of binary image compatibility; malformed WebP remains rejected", () => {
   const { w, fence } = source();
   const thumb = worldOutput(w, job, fence).assets.find(
     (a) => a.role === "thumbnail",
@@ -403,6 +403,6 @@ test("URL suffix is not proof of binary image compatibility; WebP remains outsid
   assert.equal(thumb.url.endsWith(".webp"), true);
   assert.throws(
     () => inspectAsset(Buffer.from("RIFFsyntheticWEBP"), thumb, job),
-    /unsupported_or_invalid_image/,
+    /invalid_webp_container/,
   );
 });

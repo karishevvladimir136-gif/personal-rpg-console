@@ -4,6 +4,40 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B OFFLINE CONTINUATION PREPARATION COMPLETE; STOP FOR OWNER REVIEW.** The owner explicitly accepted experiment-only asset URL correction `c94d4e588981d94d6679ba76861cc5776f7bfc3d`. URL evidence `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`, metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` and recovery evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` remain historical, unchanged. No live continuation is authorized by this preparation.
+
+### Completed work and files / areas changed
+
+Added a separately identified, frozen continuation manifest, append-only continuation ledger, exact existing-room recovery operation, gated CLI, Node-only structural WebP thumbnail inspection and deterministic regression coverage. Changes are confined to `experiments/phase38-spatial/` and this status. [Continuation preparation](experiments/phase38-spatial/CONTINUATION_PREPARATION.md) records the full identity, accounting, limits and future manual workflow. The old live CLI cannot initialize a fresh room run at this checkpoint.
+
+The continuation verifies the original execution/protocol, stopped ledger and sanitized evidence hashes, operation `6719be80-101e-45a6-b27a-6905ebc183c1` and world `82a0e059-50a4-41a4-8565-5e516ffadc0e`. Original evidence is read-only; its STOPPED status is preserved. A new journal carries the original attempt, reservation and settled bill exactly once. It cannot regenerate the room, erase history or replenish reservations.
+
+### Tests and build status
+
+**273 deterministic tests passed, zero failures/skips; isolated experiment typecheck, zero-warning lint and isolated TypeScript emit/build passed.** Tests use synthetic bytes, temporary copied histories, fake clocks and mocked transport/DNS. They cover immutable history, exact identities, single carry-forward, manual review gating, three remaining jobs, cumulative budget, failure stops, duplicate/crash prevention and WebP container/header rejection. Existing URL/DNS/redirect/SSRF tests remain green. Production full suite/build was not repeated because production is unchanged; this is an isolated harness build, not a new production verification claim.
+
+**Current task: 0 provider calls, 0 generations, 0 downloads, 0 retries, no credentials requested/read, no live continuation initialization.** Original stopped journal, witness, identity, anchor, historical results and accepted freezes are unchanged. The original checkout's pre-existing uncommitted documents are untouched.
+
+### Key technical decisions
+
+Cumulative reservation accounting remains room **$1.30** + courtyard **$2.50** + fal world **$0.35** + chest **$0.60** = **$4.75**. The original room's reported **$1.264 / 1,580 credits** is retained separately. The remaining $3.45 is part of that original ceiling, not a fresh budget; no slot/refund/retry/fallback is available. Unknown later charges retain their full reservations.
+
+A separately authorized room recovery permits at most **2 exact-world GETs and 4 validated asset downloads**, with zero generation/export/fal calls. It stops on any failure; successful structural inspection still requires explicit manual room review before the three original remaining jobs can proceed. Historical 21 API requests / 3 world reads remain counted. The new operation adds at most 144 API requests across recovery and remaining jobs (165 including history, below the original 190 ceiling), 7 lifetime world reads including earlier diagnostics, and 10 total downloads. Each operation is limited to 15 minutes, each request to 60 seconds, JSON to 2 MiB, each asset to 256 MiB, and retained assets to 1 GiB total. The new read allowance is explicit and does not rewrite the old stopped protocol.
+
+WebP inspection is thumbnail-only, validates RIFF/WEBP, VP8/VP8L/VP8X static headers, dimensions, lengths and chunk structure, and rejects animation/malformed/truncated/oversized structures. Bounds: 64 chunks, 16,384 maximum dimension, 67,108,864 pixels. It does not decode compressed pixels or execute content. Panorama remains a supported PNG/JPEG equirectangular image with 2:1 dimensions. Accepted URL provenance, allowlisting, public DNS and no-redirect guards remain intact.
+
+### Known issues and remaining work
+
+No asset has been downloaded or visually reviewed in this task. Actual WebP/image decodability, SPZ/collider/panorama usability, visual adherence, scale/binding and panorama sharing remain unverified. Structural validation is not visual acceptance. Physical iPhone/Safari and the historical optional Phase 1 conflict-rebase confirmation remain unverified. Finite synthetic tests do not guarantee universal recovery, branching or memory correctness. No hosted deployment or real campaign/private-data acceptance has occurred.
+
+### Recommended next step
+
+Stop for owner review of this exact preparation checkpoint. Future live room recovery requires separate explicit SHA approval, then a successful manual room review before any remaining generation. Do not regenerate the room, initialize the live continuation now, begin EXPLORE/Phase 4/renderer work, deploy or import real data.
+
+---
+
+## Historical accepted URL-correction checkpoint
+
 **PHASE 3.8B URL DIAGNOSIS AND EXPERIMENT CORRECTION COMPLETE; STOPPED FOR OWNER REVIEW.** Metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` is explicitly owner-accepted. New sanitized one-read evidence is pushed at `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`; prior evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` remains intact. This is not EXPLORE/production acceptance.
 
 ### Completed work and files / areas changed

@@ -1,5 +1,9 @@
 # Phase 3.8B — isolated experiment
 
+**Current checkpoint: OFFLINE continuation preparation; STOP FOR OWNER REVIEW.** URL correction `c94d4e588981d94d6679ba76861cc5776f7bfc3d` is owner-accepted. [Continuation contract/instructions](CONTINUATION_PREPARATION.md) preserve the original stopped ledger, carry $1.30/$1.264 once, bind the exact existing room and allow at most the three remaining jobs only after separately authorized recovery and manual review. No provider calls or live initialization in this task. Legacy live CLI is disabled here; use only the separately gated continuation CLI after exact-SHA approval. Historical preparation/correction instructions below are not current live permission.
+
+## Historical accepted URL-correction instructions
+
 **Current checkpoint: proposed URL correction, offline verified; STOP FOR OWNER REVIEW.** Metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` is owner-accepted. One-read URL evidence is separately committed at `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`. See [URL correction and limits](URL_CORRECTION.md). The one-GET authorization is exhausted. Do not initialize a replacement ledger, run `next`, regenerate the room, download assets or continue jobs. No live permission follows from this correction. Earlier [metadata correction](CORRECTION_PROPOSAL.md) remains historical.
 
 ## Historical preparation instructions (not current execution permission)
