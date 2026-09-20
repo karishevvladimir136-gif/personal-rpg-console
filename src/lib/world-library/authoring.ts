@@ -16,6 +16,8 @@ import type { LibraryStore } from "./store.ts";
 import { canonical, compilerInputDigest } from "./store.ts";
 import { parseLibraryRecord, parsePack, sha256 } from "./parsers.ts";
 import { advanceCompilerJob } from "./compiler.ts";
+import type { AssistedCompiler } from "./assisted-contracts.ts";
+import { createAssistedAuthoring } from "./assisted-authoring.ts";
 import {
   compileTextDraft,
   libraryId,
@@ -45,6 +47,15 @@ const sourceSummary = (r: TypedRecord<"source">): OwnerSourceSummary => ({
   visibility: r.body.visibility,
   knowledge: r.body.knowledge ?? "source",
   digest: r.body.digest,
+  ...(r.body.provenance
+    ? {
+        provenance: {
+          kind: r.body.provenance.kind,
+          method: r.body.provenance.method,
+          language: r.body.provenance.language,
+        },
+      }
+    : {}),
 });
 const packSummary = (r: TypedRecord<"pack">): OwnerPackSummary => ({
   id: r.id,
@@ -63,6 +74,16 @@ const jobSummary = (r: TypedRecord<"compiler_job">): OwnerJobSummary => ({
   maxUnits: r.body.budget.maxUnits,
   checkpoints: r.body.checkpoints.map((c) => ({ ...c })),
   errorCode: r.body.errorCode,
+  ...(r.body.assistance
+    ? {
+        mode: "assisted" as const,
+        executionProfile: r.body.assistance.executionProfile,
+        refinement: r.body.assistance.refinement,
+        requestPending:
+          r.body.status === "indexing" &&
+          r.body.checkpoints.some((c) => c.pass === "indexing"),
+      }
+    : {}),
 });
 function latest<T extends TypedLibraryRecord>(records: T[]): T[] {
   const values = new Map<string, T>();
@@ -74,6 +95,7 @@ function latest<T extends TypedLibraryRecord>(records: T[]): T[] {
 export function createOwnerLibraryAuthoring(
   ownerId: string,
   store: LibraryStore,
+  provider?: AssistedCompiler,
 ) {
   uuid(ownerId);
   function record<K extends LibraryRecordKind>(
@@ -178,21 +200,34 @@ export function createOwnerLibraryAuthoring(
     ensure(input !== null && typeof input === "object");
     const action = literal((input as Record<string, unknown>).action, [
       "source.save",
+      "source.describe",
       "compiler.start",
       "compiler.step",
+      "compiler.retry",
+      "pack.refine",
       "pack.save",
       "pack.approve",
     ] as const);
-    if (action === "source.save") {
+    const assisted = createAssistedAuthoring(
+      ownerId,
+      store,
+      record,
+      put,
+      provider,
+    );
+    if (action === "pack.refine") return assisted.refine(input);
+    if (action === "compiler.retry") return assisted.retry(input);
+    if (action === "source.save" || action === "source.describe") {
+      const describe = action === "source.describe";
       const v = object(input, [
         "action",
         "operationId",
         "sourceId",
         "expectedVersionId",
         "title",
-        "format",
+        ...(describe ? ["language"] : ["format"]),
         "text",
-        "author",
+        ...(describe ? [] : ["author"]),
         "visibility",
         "knowledge",
       ]);
@@ -204,6 +239,7 @@ export function createOwnerLibraryAuthoring(
         ? await store.get("source", previousId)
         : null;
       ensure(!previous || previous.id === sourceId, "scope");
+      ensure(!previous || !!previous.body.provenance === describe, "conflict");
       const original = text(v.text, 250_000);
       const row = record(
         "source",
@@ -212,16 +248,26 @@ export function createOwnerLibraryAuthoring(
         {
           schemaVersion: 1,
           title: text(v.title, 240),
-          format: literal(v.format, ["txt", "md"] as const),
+          format: describe ? "txt" : literal(v.format, ["txt", "md"] as const),
           digest: sha256(original),
           original: { kind: "text", text: original },
           attribution: {
-            author: nullable(v.author, (a) => text(a, 240)),
+            author: describe ? null : nullable(v.author, (a) => text(a, 240)),
             publisher: previous?.body.attribution.publisher ?? null,
             canonicalUrl: previous?.body.attribution.canonicalUrl ?? null,
           },
           visibility: literal(v.visibility, ["public", "private"] as const),
           knowledge: literal(v.knowledge, ["source", "future_source"] as const),
+          ...(describe
+            ? {
+                provenance: {
+                  kind: "owner_authored" as const,
+                  method: "describe" as const,
+                  language: literal(v.language, ["en", "ru"] as const),
+                  authoredBy: ownerId,
+                },
+              }
+            : {}),
           extraction: {
             version: LOCAL_COMPILER_VERSION,
             status: "complete",
@@ -262,12 +308,19 @@ export function createOwnerLibraryAuthoring(
       return result;
     }
     if (action === "compiler.start") {
+      const hasMode = Object.hasOwn(input, "mode");
       const v = object(input, [
         "action",
         "operationId",
         "sourcePriority",
         "maxUnits",
+        ...(hasMode ? ["mode"] : []),
       ]);
+      if (
+        hasMode &&
+        literal(v.mode, ["deterministic", "assisted"] as const) === "assisted"
+      )
+        return assisted.start(v);
       const op = uuid(v.operationId),
         sourcePriority = ids(v.sourcePriority, LOCAL_COMPILER_LIMITS.sources);
       ensure(sourcePriority.length > 0);
@@ -298,6 +351,7 @@ export function createOwnerLibraryAuthoring(
       const v = object(input, ["action", "operationId", "expectedVersionId"]);
       const op = uuid(v.operationId),
         current = await store.get("compiler_job", uuid(v.expectedVersionId));
+      if (current.body.assistance) return assisted.step(v, current);
       const sources = await Promise.all(
         current.body.sourceVersionIds.map((id) => store.get("source", id)),
       );
@@ -407,6 +461,7 @@ export function createOwnerLibraryAuthoring(
       return result;
     }
     if (action === "pack.save") {
+      const hasRejected = Object.hasOwn(input, "rejectedClaimIds");
       const v = object(input, [
         "action",
         "operationId",
@@ -414,9 +469,14 @@ export function createOwnerLibraryAuthoring(
         "title",
         "claims",
         "resolutions",
+        ...(hasRejected ? ["rejectedClaimIds"] : []),
       ]);
       const op = uuid(v.operationId),
         previous = await store.get("pack", uuid(v.expectedVersionId));
+      const rejected = hasRejected ? ids(v.rejectedClaimIds, 1000) : [];
+      ensure(
+        rejected.every((id) => previous.body.claims.some((c) => c.id === id)),
+      );
       const edits = list(
         v.claims,
         (entry) =>
@@ -440,7 +500,9 @@ export function createOwnerLibraryAuthoring(
             edits.map((e) => e.id),
             1000,
           ),
-          previous.body.claims.map((c) => c.id),
+          previous.body.claims
+            .filter((c) => !rejected.includes(c.id))
+            .map((c) => c.id),
         ),
       );
       const resolutions = list(v.resolutions, (entry) => {
@@ -456,32 +518,42 @@ export function createOwnerLibraryAuthoring(
           previous.body.contradictions.map((c) => c.id),
         ),
       );
-      const claims = previous.body.claims.map((claim) => {
-        const edit = edits.find((e) => e.id === claim.id)!;
-        return {
-          ...claim,
-          ...edit,
-          authority: "reference",
-          evidence: claim.evidence.map((e) => ({
-            ...e,
-            knowledge: edit.knowledge,
-          })),
-        };
-      });
+      const claims = previous.body.claims
+        .filter((c) => !rejected.includes(c.id))
+        .map((claim) => {
+          const edit = edits.find((e) => e.id === claim.id)!;
+          return {
+            ...claim,
+            ...edit,
+            authority: "reference",
+            evidence: claim.evidence.map((e) => ({
+              ...e,
+              knowledge: edit.knowledge,
+            })),
+          };
+        });
       const body = parsePack({
         ...previous.body,
         title: text(v.title, 240),
         status: "draft",
         approval: null,
         claims,
-        contradictions: previous.body.contradictions.map((c) => {
-          const resolution = resolutions.find((r) => r.id === c.id)!.resolution;
-          return {
+        contradictions: previous.body.contradictions
+          .map((c) => ({
             ...c,
-            status: resolution === null ? "unresolved" : "resolved",
-            resolution,
-          };
-        }),
+            claimIds: c.claimIds.filter((id) => !rejected.includes(id)),
+          }))
+          .filter((c) => c.claimIds.length >= 2)
+          .map((c) => {
+            const resolution = resolutions.find(
+              (r) => r.id === c.id,
+            )!.resolution;
+            return {
+              ...c,
+              status: resolution === null ? "unresolved" : "resolved",
+              resolution,
+            };
+          }),
       });
       const sources = await Promise.all(
         body.sourceVersionIds.map((id) => store.get("source", id)),

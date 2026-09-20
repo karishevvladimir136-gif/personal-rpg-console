@@ -27,6 +27,27 @@ export function validateCompilerTransition(
     "budget",
   ] as const)
     ensure(JSON.stringify(old[key]) === JSON.stringify(next[key]), "conflict");
+  ensure(!!old.assistance === !!next.assistance, "conflict");
+  if (old.assistance && next.assistance) {
+    ensure(
+      JSON.stringify({ ...old.assistance, result: null }) ===
+        JSON.stringify({ ...next.assistance, result: null }),
+      "conflict",
+    );
+    if (old.assistance.result !== null)
+      ensure(
+        JSON.stringify(old.assistance.result) ===
+          JSON.stringify(next.assistance.result),
+        "conflict",
+      );
+    else if (next.assistance.result !== null)
+      ensure(
+        old.status === "indexing" &&
+          next.status === "auditing" &&
+          old.checkpoints.some((c) => c.pass === "indexing" && c.cursor === 0),
+        "conflict",
+      );
+  }
   ensure(
     next.checkpoints.length >= old.checkpoints.length &&
       old.checkpoints.every(
@@ -70,7 +91,8 @@ export function validateCompilerTransition(
 export function advanceCompilerJob(
   record: TypedRecord<"compiler_job">,
   versionId: string,
-  next: Pick<CompilerJobBody, "status" | "checkpoints" | "errorCode">,
+  next: Pick<CompilerJobBody, "status" | "checkpoints" | "errorCode"> &
+    Partial<Pick<CompilerJobBody, "assistance">>,
 ): TypedRecord<"compiler_job"> {
   const current = parseLibraryRecord(record);
   ensure(current.kind === "compiler_job");

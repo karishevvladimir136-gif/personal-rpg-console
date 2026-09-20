@@ -14,6 +14,10 @@ import {
   uuid,
 } from "./validation.ts";
 import { validateCompilerTransition } from "./compiler.ts";
+import {
+  compileAssistedDraft,
+  prepareAssistedCompilation,
+} from "./assisted-compiler.ts";
 
 export type LibraryFilter = {
   kind?: LibraryRecordKind;
@@ -130,11 +134,30 @@ export function createRpcLibraryStore(ownerId: string, execute: FoundationRpc) {
     ensure(records.length === 1, "scope");
     return records[0] as TypedRecord<K>;
   }
+  async function requireFresh(record: TypedLibraryRecord) {
+    const history = await read({ kind: record.kind, id: record.id });
+    ensure(
+      history.every((r) => r.version <= record.version),
+      "conflict",
+    );
+  }
   async function validateReferences(record: TypedLibraryRecord): Promise<void> {
     const sourceIds =
       "sourceVersionIds" in record.body ? record.body.sourceVersionIds : [];
     const sources = await Promise.all(sourceIds.map((id) => get("source", id)));
     ensure(new Set(sources.map((s) => s.id)).size === sources.length);
+    if (record.kind === "pack")
+      for (const claim of record.body.claims) {
+        ensure(
+          claim.origin !== "source_fact" ||
+            claim.evidence.every(
+              (e) =>
+                !sources.find((s) => s.versionId === e.sourceVersionId)?.body
+                  .provenance,
+            ),
+          "conflict",
+        );
+      }
     for (const e of recordEvidence(record)) {
       const source = sources.find((s) => s.versionId === e.sourceVersionId);
       ensure(
@@ -173,12 +196,60 @@ export function createRpcLibraryStore(ownerId: string, execute: FoundationRpc) {
         );
       }
     }
-    if (record.kind === "compiler_job")
+    if (record.kind === "compiler_job") {
       ensure(
         record.body.inputDigest ===
           compilerInputDigest(sources, record.body.sourcePriority),
         "conflict",
       );
+      if (record.body.assistance) {
+        const a = record.body.assistance;
+        const basePack = a.refinement
+          ? await get("pack", a.refinement.packVersionId)
+          : null;
+        if (basePack)
+          ensure(
+            basePack.id === record.body.targetPackId &&
+              canonical(basePack.body.sourcePriority) ===
+                canonical(record.body.sourcePriority),
+            "scope",
+          );
+        const input = {
+          operationId: a.executionProfile.id,
+          job: record.body,
+          sources,
+          basePack,
+        };
+        const prepared = prepareAssistedCompilation(input);
+        const checkpoints = record.body.checkpoints;
+        if (checkpoints.length)
+          ensure(
+            canonical(checkpoints[0]) ===
+              canonical({
+                pass: "extracting",
+                cursor: prepared.evidence.length,
+                digest: sha256(canonical(prepared.data)),
+              }),
+            "conflict",
+          );
+        if (a.result) {
+          const compiled = compileAssistedDraft(input, a.result.proposal);
+          ensure(
+            canonical(checkpoints[2]) === canonical(compiled.checkpoints[1]),
+            "conflict",
+          );
+          if (checkpoints.length === 4)
+            ensure(
+              canonical(checkpoints[3]) === canonical(compiled.checkpoints[2]),
+              "conflict",
+            );
+        }
+        if (!["failed", "invalidated"].includes(record.body.status)) {
+          await Promise.all(sources.map(requireFresh));
+          if (basePack) await requireFresh(basePack);
+        }
+      }
+    }
     if (record.kind === "pack" && record.body.compilerJobVersionId !== null) {
       const job = await get("compiler_job", record.body.compilerJobVersionId);
       ensure(
@@ -192,7 +263,40 @@ export function createRpcLibraryStore(ownerId: string, execute: FoundationRpc) {
         ["awaiting_review", "completed"].includes(job.body.status),
         "conflict",
       );
+      if (job.body.assistance) {
+        const previous = record.previousVersionId
+          ? await get("pack", record.previousVersionId)
+          : null;
+        if (previous?.body.compilerJobVersionId !== job.versionId) {
+          const refinement = job.body.assistance.refinement;
+          ensure(
+            record.previousVersionId === (refinement?.packVersionId ?? null),
+            "conflict",
+          );
+          const compiled = compileAssistedDraft(
+            {
+              operationId: job.body.assistance.executionProfile.id,
+              job: job.body,
+              sources,
+              basePack: previous,
+            },
+            job.body.assistance.result?.proposal,
+          );
+          ensure(
+            canonical(record.body) ===
+              canonical({
+                ...compiled.pack,
+                compilerJobVersionId: job.versionId,
+              }),
+            "conflict",
+          );
+          await requireFresh(job);
+          await Promise.all(sources.map(requireFresh));
+        }
+      }
     }
+    if (record.kind === "pack" && record.body.status === "approved")
+      await Promise.all(sources.map(requireFresh));
     if (record.kind === "scenario") {
       const packs = await Promise.all(
         record.body.packVersionIds.map((id) => get("pack", id)),
@@ -264,7 +368,24 @@ export function createRpcLibraryStore(ownerId: string, execute: FoundationRpc) {
         } else
           ensure(
             record.body.status === "queued" &&
-              record.body.checkpoints.length === 0,
+              record.body.checkpoints.length === 0 &&
+              (!record.body.assistance ||
+                record.body.assistance.result === null),
+          );
+      }
+      if (record.kind === "source" && latest) {
+        ensure(latest.kind === "source", "scope");
+        ensure(
+          !!latest.body.provenance === !!record.body.provenance,
+          "conflict",
+        );
+        if (latest.body.provenance && record.body.provenance)
+          ensure(
+            latest.body.provenance.kind === record.body.provenance.kind &&
+              latest.body.provenance.method === record.body.provenance.method &&
+              latest.body.provenance.authoredBy ===
+                record.body.provenance.authoredBy,
+            "conflict",
           );
       }
       await validateReferences(record);

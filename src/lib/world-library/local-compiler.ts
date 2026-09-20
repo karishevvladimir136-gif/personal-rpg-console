@@ -228,7 +228,9 @@ export function compileTextDraft(
       subjectId: id,
       predicate,
       text: passage.text,
-      origin: "source_fact",
+      origin: passage.source.body.provenance
+        ? "scenario_assumption"
+        : "source_fact",
       epistemic: "unknown",
       authority: "reference",
       visibility: evidence.visibility,
@@ -237,8 +239,9 @@ export function compileTextDraft(
       validUntil: null,
       knownByEntityIds: [],
       evidence: [evidence],
-      uncertainty:
-        "Source assertion only. Truth, time and character knowledge require owner review.",
+      uncertainty: passage.source.body.provenance
+        ? "Owner-authored premise, not an external source fact. Truth, time and character knowledge require owner review."
+        : "Source assertion only. Truth, time and character knowledge require owner review.",
     });
   }
   const contradictions: PackBody["contradictions"] = [];

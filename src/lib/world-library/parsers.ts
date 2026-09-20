@@ -13,6 +13,11 @@ import type {
 } from "./types.ts";
 import { COMPILER_STATES } from "./types.ts";
 import {
+  matchesCompilerModel,
+  parseCompilerProposal,
+} from "./assisted-parser.ts";
+import { validateExecutionProfile } from "../model-runtime/registry.ts";
+import {
   digest,
   ensure,
   ids,
@@ -65,6 +70,10 @@ export function parseEvidence(value: unknown): EvidenceLocator {
   };
 }
 export function parseSource(value: unknown): SourceBody {
+  const hasProvenance =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "provenance");
   const hasKnowledge =
     value !== null &&
     typeof value === "object" &&
@@ -79,6 +88,7 @@ export function parseSource(value: unknown): SourceBody {
     "visibility",
     "extraction",
     ...(hasKnowledge ? ["knowledge"] : []),
+    ...(hasProvenance ? ["provenance"] : []),
   ]);
   ensure(v.original !== null && typeof v.original === "object");
   const kind = (v.original as Record<string, unknown>).kind;
@@ -119,6 +129,9 @@ export function parseSource(value: unknown): SourceBody {
     );
   }
   const e = object(v.extraction, ["version", "status", "gaps"]);
+  const provenance = hasProvenance
+    ? object(v.provenance, ["kind", "method", "language", "authoredBy"])
+    : null;
   const result: SourceBody = {
     schemaVersion: literal(v.schemaVersion, [1]),
     title: shortText(v.title),
@@ -140,6 +153,16 @@ export function parseSource(value: unknown): SourceBody {
       canonicalUrl,
     },
     visibility: visibility(v.visibility),
+    ...(provenance
+      ? {
+          provenance: {
+            kind: literal(provenance.kind, ["owner_authored"] as const),
+            method: literal(provenance.method, ["describe"] as const),
+            language: literal(provenance.language, ["en", "ru"] as const),
+            authoredBy: uuid(provenance.authoredBy),
+          },
+        }
+      : {}),
     ...(hasKnowledge
       ? {
           knowledge: literal(v.knowledge, ["source", "future_source"] as const),
@@ -157,6 +180,9 @@ export function parseSource(value: unknown): SourceBody {
     },
   };
   ensure(original.kind !== "text" || ["txt", "md"].includes(result.format));
+  ensure(
+    !result.provenance || (original.kind === "text" && result.format === "txt"),
+  );
   ensure(
     result.extraction.status !== "complete" ||
       result.extraction.gaps.length === 0,
@@ -177,6 +203,10 @@ export function parseApproval(value: unknown): Approval | null {
   };
 }
 function parseClaim(value: unknown): PackClaim {
+  const hasStructure =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "structure");
   const v = object(value, [
     "id",
     "subjectId",
@@ -192,6 +222,7 @@ function parseClaim(value: unknown): PackClaim {
     "knownByEntityIds",
     "evidence",
     "uncertainty",
+    ...(hasStructure ? ["structure"] : []),
   ]);
   const result: PackClaim = {
     id: uuid(v.id),
@@ -219,6 +250,7 @@ function parseClaim(value: unknown): PackClaim {
     knownByEntityIds: ids(v.knownByEntityIds),
     evidence: list(v.evidence, parseEvidence, 32),
     uncertainty: nullable(v.uncertainty, shortText),
+    ...(hasStructure ? { structure: parseClaimStructure(v.structure) } : {}),
   };
   ensure(
     result.validFrom === null ||
@@ -241,6 +273,29 @@ function parseClaim(value: unknown): PackClaim {
     ),
   );
   return result;
+}
+function parseClaimStructure(
+  value: unknown,
+): NonNullable<PackClaim["structure"]> {
+  ensure(value !== null && typeof value === "object");
+  const kind = literal((value as Record<string, unknown>).kind, [
+    "description",
+    "premise",
+    "rule",
+    "relationship",
+    "geography",
+    "timeline",
+  ] as const);
+  if (kind === "relationship" || kind === "geography") {
+    const v = object(value, ["kind", "objectId"]);
+    return { kind, objectId: uuid(v.objectId) };
+  }
+  if (kind === "timeline") {
+    const v = object(value, ["kind", "position"]);
+    return { kind, position: shortText(v.position) };
+  }
+  object(value, ["kind"]);
+  return { kind };
 }
 function parseCoverage(value: unknown): Coverage {
   const v = object(value, [
@@ -358,6 +413,9 @@ export function parsePack(value: unknown): PackBody {
     claims.every(
       (c) =>
         entities.some((e) => e.id === c.subjectId) &&
+        (!c.structure ||
+          !("objectId" in c.structure) ||
+          entities.map((e) => e.id).includes(c.structure.objectId)) &&
         c.knownByEntityIds.every((id) => entities.some((e) => e.id === id)) &&
         c.evidence.every((e) => sourceVersionIds.includes(e.sourceVersionId)),
     ),
@@ -516,6 +574,10 @@ export function parseDivergence(value: unknown): DivergenceBody {
   };
 }
 export function parseCompilerJob(value: unknown): CompilerJobBody {
+  const hasAssistance =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "assistance");
   const v = object(value, [
     "schemaVersion",
     "targetPackId",
@@ -526,6 +588,7 @@ export function parseCompilerJob(value: unknown): CompilerJobBody {
     "budget",
     "checkpoints",
     "errorCode",
+    ...(hasAssistance ? ["assistance"] : []),
   ]);
   const sourceVersionIds = ids(v.sourceVersionIds),
     b = object(v.budget, ["maxUnits", "maxPasses"]);
@@ -553,13 +616,16 @@ export function parseCompilerJob(value: unknown): CompilerJobBody {
         "unsupported",
         "budget",
         "invalidated",
+        "provider",
+        "configuration",
+        "validation",
       ] as const),
     );
   ensure(
     (status === "failed" || status === "invalidated") === (errorCode !== null),
   );
   ensure((status === "invalidated") === (errorCode === "invalidated"));
-  return {
+  const result: CompilerJobBody = {
     schemaVersion: literal(v.schemaVersion, [1]),
     targetPackId: uuid(v.targetPackId),
     sourceVersionIds,
@@ -569,6 +635,89 @@ export function parseCompilerJob(value: unknown): CompilerJobBody {
     budget,
     checkpoints,
     errorCode,
+    ...(hasAssistance ? { assistance: parseAssistance(v.assistance) } : {}),
+  };
+  if (result.assistance) {
+    ensure(sourceVersionIds.length > 0 && sourceVersionIds.length <= 8);
+    ensure(
+      budget.maxPasses === 4 && budget.maxUnits >= 3 && budget.maxUnits <= 480,
+    );
+    const count = checkpoints.length;
+    ensure((result.assistance.result !== null) === count >= 3);
+    ensure(
+      status === "failed" ||
+        status === "invalidated" ||
+        ((status === "queued" || status === "extracting") && count === 0) ||
+        (status === "indexing" && (count === 1 || count === 2)) ||
+        (status === "auditing" && count === 3) ||
+        ((status === "awaiting_review" || status === "completed") &&
+          count === 4),
+    );
+    if (count) {
+      const cursor = checkpoints[0].cursor;
+      ensure(cursor > 0 && cursor * 3 <= budget.maxUnits);
+      const shape = [
+        ["extracting", cursor],
+        ["indexing", 0],
+        ["indexing", cursor],
+        ["auditing", cursor],
+      ];
+      ensure(
+        checkpoints.every(
+          (c, i) => c.pass === shape[i][0] && c.cursor === shape[i][1],
+        ),
+      );
+    }
+  }
+  return result;
+}
+function parseAssistance(
+  value: unknown,
+): NonNullable<CompilerJobBody["assistance"]> {
+  const a = object(value, [
+    "schemaVersion",
+    "executionProfile",
+    "refinement",
+    "result",
+  ]);
+  const refinement = nullable(a.refinement, (value) => {
+    const r = object(value, ["packVersionId", "text"]);
+    return { packVersionId: uuid(r.packVersionId), text: text(r.text, 4000) };
+  });
+  const result = nullable(a.result, (value) => {
+    const r = object(value, ["proposal", "usage"]),
+      u = object(r.usage, [
+        "model",
+        "inputTokens",
+        "outputTokens",
+        "calls",
+        "latencyMs",
+      ]);
+    return {
+      proposal: parseCompilerProposal(r.proposal),
+      usage: {
+        model: text(u.model, 100),
+        inputTokens: integer(u.inputTokens, 0, 2_000_000),
+        outputTokens: integer(u.outputTokens, 0, 2_000_000),
+        calls: integer(u.calls, 1, 1),
+        latencyMs: integer(u.latencyMs, 0, 3_600_000),
+      },
+    };
+  });
+  const executionProfile = validateExecutionProfile(
+    a.executionProfile,
+    "canon.compile",
+  );
+  ensure(
+    !result ||
+      matchesCompilerModel(result.usage.model, executionProfile.modelId),
+    "configuration",
+  );
+  return {
+    schemaVersion: literal(a.schemaVersion, [1]),
+    executionProfile,
+    refinement,
+    result,
   };
 }
 export function parseLibraryRecord(
@@ -615,6 +764,11 @@ export function parseLibraryRecord(
   switch (kind) {
     case "source":
       result = { ...base, kind, body: parseSource(v.body) };
+      ensure(
+        !result.body.provenance ||
+          result.body.provenance.authoredBy === base.ownerId,
+        "scope",
+      );
       if (result.body.original.kind === "storage")
         ensure(
           result.body.original.path.startsWith(

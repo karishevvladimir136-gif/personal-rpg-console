@@ -1,7 +1,10 @@
 import type {
   EvidenceLocator,
   LibraryRecord,
+  ExecutionProfile,
 } from "../production/contracts.ts";
+import type { CompilerProposal } from "./assisted-contracts.ts";
+import type { ProviderUsage } from "../gameplay/server-contracts.ts";
 
 export type SourceBody = {
   schemaVersion: 1;
@@ -24,6 +27,12 @@ export type SourceBody = {
   visibility: "public" | "private";
   // Absent on Wave 1 sources; both scopes remain authoring-only.
   knowledge?: "source" | "future_source";
+  provenance?: {
+    kind: "owner_authored";
+    method: "describe";
+    language: "en" | "ru";
+    authoredBy: string;
+  };
   extraction: {
     version: string;
     status: "unprocessed" | "partial" | "complete" | "unreadable";
@@ -52,6 +61,10 @@ export type PackClaim = {
   knownByEntityIds: string[];
   evidence: EvidenceLocator[];
   uncertainty: string | null;
+  structure?:
+    | { kind: "description" | "premise" | "rule" }
+    | { kind: "relationship" | "geography"; objectId: string }
+    | { kind: "timeline"; position: string };
 };
 export type PackEntity = {
   id: string;
@@ -143,7 +156,21 @@ export type CompilerJobBody = {
     cursor: number;
     digest: string;
   }[];
-  errorCode: "unreadable" | "unsupported" | "budget" | "invalidated" | null;
+  errorCode:
+    | "unreadable"
+    | "unsupported"
+    | "budget"
+    | "invalidated"
+    | "provider"
+    | "configuration"
+    | "validation"
+    | null;
+  assistance?: {
+    schemaVersion: 1;
+    executionProfile: ExecutionProfile;
+    refinement: { packVersionId: string; text: string } | null;
+    result: { proposal: CompilerProposal; usage: ProviderUsage } | null;
+  };
 };
 export type BodyMap = {
   source: SourceBody;
