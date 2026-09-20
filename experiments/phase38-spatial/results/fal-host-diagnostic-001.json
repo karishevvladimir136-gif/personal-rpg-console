@@ -1,0 +1,193 @@
+{
+  "version": "phase38b-fal-host-diagnostic-evidence-1",
+  "recordedAtUTC": "2026-09-20T03:45:00.191Z",
+  "executionSHA": "adebc5e5d9c8e83c1ed6ace277582147b37d5901",
+  "executionBranch": "codex/phase38-fal-host-diagnostic-preparation",
+  "cleanExecutionVerifiedBeforeAndAfter": true,
+  "diagnosticIdentity": "phase38b-fal-host-diagnostic-1",
+  "diagnosticHash": "8de9ecf328aa6459ea09d7686533cf1e34f86bf0b04978846c1d87f197fc3602",
+  "freezeFileSHA256": "3a7535cc8de4a8e239287331f67acdc356fe66f9116d3a589e5052acee823914",
+  "bindings": {
+    "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+    "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+    "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+    "originalStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+    "originalStopEvidenceSHA256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+    "recoveryPreparationSHA": "115dcf0c50a8b815e61d597970101898a7723bcf",
+    "recoveryIdentity": "phase38b-fal-recovery-1",
+    "recoveryHash": "0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a",
+    "completedStatusEvidenceCommit": "3371a20427c33abed810ff0af83a031c943090ac",
+    "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+    "completedBodySHA256": "aa0b4ea61115e93b202b7630801e934dc3af3f6488d5035a6f49cd91a454ed98",
+    "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+    "retrievalPreparationSHA": "9160d9766559d38139a51516384461958399defc",
+    "retrievalIdentity": "phase38b-fal-retrieval-1",
+    "retrievalHash": "546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a",
+    "retrievalEvidenceCommit": "31d6431002b32060d4a1f365fc8b06b90f841a00",
+    "retrievalEvidenceFile": "results/fal-retrieval-001.json",
+    "retrievalEvidenceSHA256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+    "previousResultBodySHA256": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+    "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+    "retrievalFiles": {
+      "journal.jsonl": "ba680b1974f1e31e884dbe97c43b4734390d365a0f341e449a92dcccab2d6d4a",
+      "witness.jsonl": "34b6f7f260f4995af7a961b8adeca8b66eff5694effef04db4757a90d8a5f0fc",
+      "identity.json": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a",
+      "../private-fal-retrieval.anchor": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    }
+  },
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "provider": "fal",
+  "requestedModel": "fal-ai/hunyuan_world/image-to-world",
+  "actualModel": null,
+  "actualModelAvailability": "UNKNOWN",
+  "initialization": {
+    "count": 1,
+    "rootAndAnchorAbsentBefore": true,
+    "emptyJournalVerified": true,
+    "providerRequests": 0,
+    "dnsRequests": 0,
+    "newReservations": 0,
+    "generations": 0
+  },
+  "observation": {
+    "startedAtUTC": "2026-09-20T03:41:54.609Z",
+    "resultRequestAtUTC": "2026-09-20T03:41:54.614Z",
+    "http": {
+      "classification": "exact_response_url",
+      "httpStatus": 200,
+      "location": {
+        "present": false,
+        "valid": false
+      },
+      "redirect": false,
+      "requestedURLHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+      "response": {
+        "allowedQueuePath": true,
+        "credentialsPresent": false,
+        "fragmentPresent": false,
+        "hostname": "queue.fal.run",
+        "hostnameHash": "cd914202c0e392feec9617458b9f655a91a2f45ca631c057bf5ae0a6bd336832",
+        "path": "/fal-ai/hunyuan_world/requests/01a0bc76-ae7f-7e02-960b-a207094622d2",
+        "pathHash": "fa72af9048155e86eb2b727ffc98b4335e135847ce69c36592522e1c1f42c535",
+        "portPresent": false,
+        "present": true,
+        "queryPresent": false,
+        "scheme": "https",
+        "urlHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+        "valid": true
+      },
+      "responseURLMatches": true,
+      "stage": "result",
+      "statusQualification": "provisional_200_candidate"
+    },
+    "body": {
+      "bodyHash": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+      "matchesPrevious": true
+    },
+    "identity": {
+      "actualModel": null,
+      "providerReportedRequestId": null,
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2"
+    },
+    "identityValidation": "PASSED_FROZEN_OPTIONAL_FIELD_VALIDATOR",
+    "descriptor": {
+      "contentType": "application/octet-stream",
+      "credentialsPresent": false,
+      "explicitPortPresent": false,
+      "fileExtension": "zip",
+      "fileSize": 85481294,
+      "fragmentPresent": false,
+      "hostname": "storage.googleapis.com",
+      "hostnameSHA256": "df8ab3acb3324531fb5c42308bf6cc9cac1e499d1f3e2268243a1dd4072e58d4",
+      "pathname": null,
+      "pathSHA256": "8437ed77f94ab487679dd8f75014ee3448af3eaf18d63c67037e7d11648d2723",
+      "queryPresent": true,
+      "scheme": "https",
+      "urlSHA256": "28e7ae50a56a53c390eaf1da596976d58f4e1b4273d28a0255d9cd6ab293d771"
+    },
+    "terminal": {
+      "billing": "UNKNOWN",
+      "classification": "clearly_unapproved_or_unsafe_host",
+      "downloadAuthorized": false,
+      "reason": "host_not_approved",
+      "status": "STOPPED_AWAITING_OWNER_REVIEW"
+    }
+  },
+  "network": {
+    "providerHTTPRequests": 1,
+    "resultGETs": 1,
+    "statusPolls": 0,
+    "POSTs": 0,
+    "retries": 0,
+    "secondResultGETs": 0,
+    "redirectsFollowed": 0,
+    "artifactDownloads": 0,
+    "assetDNSRequests": 0,
+    "generationSubmissions": 0,
+    "resubmissions": 0,
+    "fallbacks": 0,
+    "nextCalls": 0,
+    "cancellations": 0,
+    "billingRequests": 0,
+    "worldLabsCalls": 0,
+    "chestCalls": 0
+  },
+  "accounting": {
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 45,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "refunds": 0,
+    "cumulativeAPIRequestsAfter": 46,
+    "cumulativeDownloadsAfter": 8,
+    "cumulativeGenerationsAfter": 3,
+    "billingChanged": false,
+    "newReservationCount": 0,
+    "refundCount": 0,
+    "chestAttempted": false
+  },
+  "history": {
+    "originalHistoryPreservedByteForByte": true,
+    "sourceVerification": {
+      "originalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+      "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+      "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+      "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+      "retrievalEvidenceSHA256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6"
+    },
+    "terminalDigest": "1746edd7614017df229651b6da3c6796b9df94a2556f093b4e1ad60723a37879",
+    "localDiagnosticHashes": {
+      "journal.jsonl": "049695142e9685f5c9e5edb566c7dd30eb1817343abdd589e6e1d6c297b7cc8d",
+      "witness.jsonl": "177a1dddb8826a9a7a7f7141a3080f603253ecace7fc83e2f3ac1a4db4aa9a5e",
+      "identity.json": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699",
+      "../private-fal-host-diagnostic.anchor": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699"
+    }
+  },
+  "verification": {
+    "deterministicTests": 549,
+    "passed": 549,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "typecheck": "PASS",
+    "lint": "PASS_ZERO_WARNINGS",
+    "isolatedExperimentBuild": "PASS",
+    "productionSuiteRerun": false,
+    "productionUnchanged": true,
+    "assetHostPolicyUnchanged": true
+  },
+  "limitations": [
+    "Host classification is a frozen policy result, not proof that the host is malicious or proof of provider ownership.",
+    "No asset DNS resolution, artifact bytes, archive contents or usability verification. ZIP extension, MIME and size are provider-reported descriptor values only.",
+    "Actual provider API model and fal billing remain UNKNOWN; optional provider-reported request ID is absent.",
+    "No allowlist correction, artifact request, chest or continuation is authorized by this observation."
+  ],
+  "ownerReviewRequired": true
+}

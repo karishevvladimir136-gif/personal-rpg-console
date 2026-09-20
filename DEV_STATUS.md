@@ -4,6 +4,36 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B ONE-READ FAL ASSET-HOST DIAGNOSTIC OBSERVED; STOP FOR OWNER REVIEW.** Executed once from exact clean approved SHA adebc5e5d9c8e83c1ed6ace277582147b37d5901, diagnostic phase38b-fal-host-diagnostic-1, hash 8de9ecf328aa6459ea09d7686533cf1e34f86bf0b04978846c1d87f197fc3602. HTTP **200**, exact response URL, no redirect; prior body SHA-256 **matched exactly before interpretation**, then frozen optional-field result identity validation passed.
+
+The required world_file descriptor reports hostname **storage.googleapis.com**. The unchanged frozen host policy returned **clearly_unapproved_or_unsafe_host / host_not_approved**. This identifies the rejected host; it does not prove maliciousness, provider ownership, a failed generation or artifact usability. **No artifact download or asset DNS lookup occurred. No allowlist correction was made.**
+
+### Completed work and files / areas changed
+
+Initialized a distinct append-only diagnostic exactly once, after checking the approved preparation, 54 freeze inputs, history/evidence hashes, prior finding B and accounting. Init made zero requests/DNS/reservations/generations. One observe-host result GET retained only approved sanitized HTTP/body-hash/identity/descriptor/classification evidence. See [diagnostic report](experiments/phase38-spatial/results/FAL_HOST_DIAGNOSTIC_001.md) and [sanitized JSON](experiments/phase38-spatial/results/fal-host-diagnostic-001.json). Only those evidence files and this status changed in a separate evidence worktree. Original STOPPED continuation, completed-status recovery, prior retrieval and prior committed evidence remain byte-for-byte preserved. The approved execution checkpoint remains clean and unchanged.
+
+### Tests and build status
+
+After observation: **549 deterministic experiment tests passed; zero failures, skips or cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** Production suite/build was not rerun; production is unchanged.
+
+### Key technical decisions and accounting
+
+The body matched 5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6; no replacement hash or relaxed validation. Descriptor metadata: HTTPS; query present; no fragment, embedded credentials or explicit port; application/octet-stream; ZIP extension classification; **85,481,294 reported bytes**. Path retained as hash only. These are provider-reported metadata, not inspected archive contents. Actual provider API model remains **UNKNOWN**; optional provider-reported request ID absent. No raw response, signed URL, query contents, arbitrary filename, secret or binary artifact is retained in committed evidence.
+
+Accounting remains **$4.15 / $4.75 reserved; $2.528 known reported billing; fal-world billing UNKNOWN; original $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. No reservation/refund/billing mutation. This diagnostic added exactly **1 result GET**, zero downloads; cumulative history is **46 API requests, 8 downloads and 3 generation submissions**. Zero polling, POST, retry, second GET, redirect follow, artifact download, asset DNS, resubmission, fallback, next, cancel, billing endpoint, World Labs or chest call.
+
+### Known issues and remaining work
+
+Fal artifact bytes, actual container/DRC contents, integrity and structural/navigation usability remain unverified. Host trust/ownership was not assessed. The current allowlist still rejects this descriptor; no further request is authorized. Chest remains unattempted. Earlier room/courtyard acceptance remains narrow synthetic experiment approval, not final visual/prompt quality, collider navigation, metric alignment or production EXPLORE. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees; no hosted or real campaign/private-data acceptance. Main, roadmap branch, production and original checkout's pre-existing documentation edits remain untouched.
+
+### Recommended next step
+
+**STOP for owner review.** Any host-policy assessment/correction or artifact retrieval requires new authorization. No polling, retries, downloads, chest/next, EXPLORE, renderer, Phase 4, deployment or real campaign import.
+
+---
+
+## Historical offline fal asset-host diagnostic preparation
+
 **PHASE 3.8B OFFLINE ONE-READ FAL ASSET-HOST DIAGNOSTIC PREPARED; STOP FOR OWNER REVIEW.** Hunyuan fal-world remains **queue-COMPLETED**. Prior result HTTP 200 / exact response URL / optional identity validation passed, and `world_file` exists. The current blocker is the unknown hostname rejected by the existing asset-host policy, not established provider-generation failure. **No fal-world artifact download has occurred; chest remains unattempted.**
 
 ### Completed work and files / areas changed
