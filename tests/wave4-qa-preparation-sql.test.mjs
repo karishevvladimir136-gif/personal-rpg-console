@@ -159,7 +159,7 @@ test("QA SQL Pack: explicit selection creates one person, location, merchant sto
   }
 });
 
-test("QA SQL Pack: saving an unchanged reviewed preparation succeeds without duplicate records or events", async () => {
+test("QA SQL Pack: saving an unchanged reviewed preparation succeeds without duplicate world records or events", async () => {
   const f = await fixture();
   try {
     const draft = await f.draft();
@@ -175,7 +175,11 @@ test("QA SQL Pack: saving an unchanged reviewed preparation succeeds without dup
       undefined,
       "Unchanged preparation must be a valid no-op at the service boundary",
     );
-    assert.deepEqual(await persistedState(f), before);
+    const after = await persistedState(f);
+    assert.deepEqual(after, { ...before, receipts: before.receipts + 1 });
+    assert.deepEqual(await f.store.receipt(repeated.request), result.data);
+    assert.deepEqual(await f.rawCommit(repeated), result);
+    assert.deepEqual(await persistedState(f), after);
   } finally {
     await f.db.close();
   }

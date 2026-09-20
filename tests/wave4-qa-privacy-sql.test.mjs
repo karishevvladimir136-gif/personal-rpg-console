@@ -196,3 +196,39 @@ test("QA privacy SQL: undisclosed merchant Actor stock is excluded consistently 
     await f.db.close();
   }
 });
+
+test("QA history SQL: public foundation history contains the latest twenty committed events in sequence order", async () => {
+  const f = await commerceFixture();
+  try {
+    const context = await f.read(),
+      parent = context.events[0].operationId;
+    for (let n = 1; n <= 25; n += 1) {
+      const id = randomUUID();
+      const event = {
+        schemaVersion: 1,
+        id,
+        campaignId: f.cid,
+        originTimelineId: context.foundation.timeline.timelineId,
+        operationId: parent,
+        worldMinutes: 0,
+        kind: "qa.synthetic.public",
+        actorIds: [],
+        threadIds: [],
+        visibility: "public",
+        text: `Synthetic public event ${n}`,
+        evidence: [],
+        payload: {},
+      };
+      await f.one(
+        "insert into rpg_private.world_events(id,campaign_id,operation_id,event) values($1,$2,$3,$4::jsonb)",
+        [id, f.cid, parent, JSON.stringify(event)],
+      );
+    }
+    assert.deepEqual(
+      foundationLoopProjection(await f.read()).history.map((e) => e.text),
+      Array.from({ length: 20 }, (_, i) => `Synthetic public event ${i + 6}`),
+    );
+  } finally {
+    await f.db.close();
+  }
+});

@@ -48,7 +48,9 @@ export async function qaFixture() {
       );
       return { data: row.result };
     } catch (error) {
-      return { error: { message: error.message, code: error.code } };
+      return {
+        error: { message: error.message, code: error.code, where: error.where },
+      };
     }
   };
   const read = async () =>
