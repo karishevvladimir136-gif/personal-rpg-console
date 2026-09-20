@@ -12,6 +12,29 @@ Future sources include TXT, Markdown, PDF, EPUB, DOCX, notes and reference files
 
 Natural language is the primary interface: “Build a detailed world from these books; treat these two as primary canon.” The app proposes a short source-priority and coverage plan, asks only about consequential ambiguities, and exposes evidence for review. It must not require the owner to edit a graph, JSON or database rows.
 
+### Research from Web / agentic source acquisition
+
+World Library may gain an explicit owner-triggered **Research from Web** ingestion path alongside uploaded sources and scratch-world authoring. This is a source-acquisition front end to the **same Source Store and Canon Compiler**, not a second canon system and not the gameplay DM browsing opportunistically during a turn.
+
+Conceptual creation choices:
+
+- **Upload Sources**
+- **Research from Web**
+- **Describe From Scratch**
+- **Combine** uploaded/owner-authored sources with bounded web research used to fill identified gaps
+
+The owner can state a natural-language research goal such as “Build a detailed source-grounded World Pack for the Battle of Kursk around Prokhorovka, including order of battle, commanders, equipment, terrain, logistics, weather, chronology and major historiographical disputes.” A bounded **Research Orchestrator** decomposes that request into a finite reviewable plan and may run several specialized research workers in parallel. Workers search/read only the scopes authorized by the plan, return candidate sources and claims with citations/evidence, and never directly write canon.
+
+Research jobs must be **bounded and resumable**, with explicit limits such as query/deep-read/source counts, parallelism, time/model budget and optional cost ceiling. They stop with a coverage report rather than spawning an open-ended autonomous swarm. The owner may explicitly choose **Deepen Research** to start another bounded pass. Do not use unrestricted crawling, bypass access controls/paywalls, or treat search snippets as sufficient evidence when the underlying source has not been reviewed.
+
+Every accepted web source enters the ordinary immutable source/provenance pipeline with enough metadata to audit it later: canonical URL where available, title, author/publisher/institution when available, publication/version date when available, retrieval date, source type, evidence locator and preserved permitted source content/metadata. Deduplicate copies/mirrors and retain source priority. A web source never becomes authoritative merely because many pages repeat the same claim.
+
+Research workers preserve disagreement rather than averaging it away. Conflicting historical claims remain separate source-backed claims for the Canon Compiler's contradiction audit and owner review. For example, incompatible force-strength estimates remain attributed alternatives; the compiler can recommend a campaign interpretation according to explicit source priorities, but must not invent an arithmetic compromise.
+
+Historical research should preserve temporal knowledge separation already required by Scenario Composition: a source corpus may know later outcomes, while **Canon at Entry**, **Character Knowledge** and future historical reference events remain separately scoped. Researching the entire war is not permission to leak post-entry outcomes to a character in 1943 or to force the historical future after player-caused divergence.
+
+This capability should reuse the existing Model Runtime, source provenance, versioning, retrieval, correction invalidation and Canon Compiler jobs. Do not add a commercial crawler stack, a second vector database or a permanent research-agent swarm. Ordinary gameplay still uses one primary DM; web research is an explicit World Library authoring/import operation.
+
 ## Reuse and the necessary scope extension
 
 The accepted system already has immutable document versions, stable campaign/entity/source IDs, source references, public/private Memory records, correction invalidation and exact save membership. Reuse their versioning, authorization and source-validation patterns. Do not create a second summarizer, vector service, correction authority or timeline engine.

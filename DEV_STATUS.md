@@ -4,6 +4,14 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+### World Library web-research ingestion — final clarification
+
+Docs-only clarification on `chatgpt/poi-2d-roadmap`; this is **not a new research/design cycle or foundational subsystem**. Future World Library creation can use **Upload Sources / Research from Web / Describe From Scratch / Combine**. Research from Web is an explicit owner-triggered bounded source-acquisition job: a finite orchestrator may parallelize specialized workers, preserve source provenance/citations and disagreements, and feed reviewed results into the existing Source Store + Canon Compiler. It never writes canon directly, never becomes the ordinary gameplay DM, and never runs as an unlimited autonomous crawler/swarm.
+
+Research plans expose bounded coverage/budget and stop with gaps/uncertainties; **Deepen Research** starts another explicit bounded pass. Historical packs preserve Source Knowledge / Canon at Entry / Character Knowledge / future-event separation so later research cannot leak future outcomes into the played perspective. Reuse existing Model Runtime, provenance, retrieval/versioning and correction machinery; no second vector DB/backend is introduced.
+
+No implementation, provider/search call, real source ingestion, production/main mutation or Phase 3.8B work occurs in this clarification. The existing final foundational architecture boundary remains in force.
+
 ### Spellcasting / World Magic / semantic causality — final clarification
 
 Docs-only clarification on `chatgpt/poi-2d-roadmap` after accepted Progression architecture; this is **not a new research cycle or new foundational subsystem**. It makes three already-intended boundaries explicit: Character → Spells derives from authoritative known/spellbook/prepared/resource state; magic is split between campaign **World Magic Rules** (what is possible) and the active **Ruleset** (how an Actor accesses/pays/targets/resolves it); and the World Engine may use the selected strong reasoning model for bounded semantic/causal physical consequences while deterministic code and authoritative Events remain the authority.

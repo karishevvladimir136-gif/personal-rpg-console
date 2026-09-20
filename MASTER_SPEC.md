@@ -327,6 +327,8 @@ Every edit creates a new version rather than destructively overwriting history.
 
 Reusable source ingestion, including EPUB, compiler passes and World Pack provenance are separately scoped in [WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md). They extend existing document versioning and Memory rather than duplicating them.
 
+Future **World Library → New World Pack** may offer **Upload Sources / Research from Web / Describe From Scratch / Combine**. Research from Web is an explicit owner-triggered bounded research job: the system proposes a finite research plan, may use parallel specialized workers to find/read public sources, preserves citations/provenance and disagreements, then feeds approved sources into the same Canon Compiler. It is not unrestricted scraping, not a second canon authority and not the gameplay DM silently browsing during ordinary turns. The owner sees coverage/gaps and may explicitly run another bounded **Deepen Research** pass.
+
 ---
 
 # 8. SCREEN B — GAME
