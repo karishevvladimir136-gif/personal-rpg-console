@@ -4,6 +4,42 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B EXACT FAL ARTIFACT RECOVERY CORRECTION PREPARED OFFLINE; STOP FOR OWNER REVIEW.** New candidate identity **`phase38b-fal-exact-artifact-recovery-1`**, branch `codex/phase38-fal-artifact-recovery-preparation`. Original `phase38b-fal-exact-artifact-1` remains permanently **STOPPED before initialization/network** at evidence commit `5c01cb463ea677186de5ed85aba874a4a363c746`; it is not reclassified or reused as success. No live recovery initialization, provider/result/asset request, asset DNS, reservation, generation or chest call occurred. Only the requested GitHub push uses network traffic.
+
+### Completed work and files / areas changed
+
+Fixed the exact fresh-initialization ignore guard: two independent `git check-ignore -q --` checks now verify the fixed future child `private-fal-artifact/artifact.zip.partial` and sibling `private-fal-artifact.anchor`. The guard creates no files/directories, accepts no operator-selected private path and leaves `.gitignore` unchanged. Extracted the existing exact-SHA/live/clean authorization condition into the helper used by the CLI and regression tests.
+
+Added [recovery manifest](experiments/phase38-spatial/fal-exact-artifact-recovery.json), [recovery preparation](experiments/phase38-spatial/FAL_EXACT_ARTIFACT_RECOVERY_PREPARATION.md), one preflight helper and 30 regression tests. Updated only experiment CLI/contract/source-evidence binding modules, freeze registration/manifest and this status. The original manifest, stopped evidence and original execution checkout remain unchanged. New identity/anchors bind the original preparation, old manifest and exact stop evidence; old identities cannot be reset/opened as the recovery.
+
+### Tests and build status
+
+**704 deterministic experiment tests passed (674 existing + 30 new), zero failures/skips/cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** A synthetic Git fixture reproduces the old one-match failure while both directory and anchor are absent, exercises the actual corrected CLI helper and proves it creates nothing. Missing either ignore rule, a nonignored alternate path, dirty tracked/untracked checkout, wrong SHA and missing authorization fail closed. Actual CLI negative tests reject URL/hash/limit/path/manifest overrides. New tests bind the exact STOP evidence and prevent old-identity reuse. Full production suite/build not run; production unchanged.
+
+### Key technical decisions and frozen hashes
+
+New manifest identity hash: `6c4762d090718fe11188f4d777eb51a1dd37ff515e14eeab6159f80c7d42ed98`.
+New manifest file SHA-256: `585525468d336981c535b2bca23d9fb1c6dc61c7211f676cb5ff476445840183`.
+New freeze-file SHA-256: `27ed701679ff4b369c720d6ce10368a4f87d9f38f6284beb4bf7c59f0c6774ae` (67 inputs).
+
+Stop binding: original preparation `dcbf8105ce7e18928901620dcf899d76ec000e8b`, evidence commit `5c01cb463ea677186de5ed85aba874a4a363c746`, file `results/fal-exact-artifact-001.json`, exact file SHA-256 `a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760`. Original manifest/hash remain unchanged. All 29 previous evidence files and all source histories were verified byte-identical. Both original and new live private root/anchor are absent.
+
+Network/artifact capability is inherited exactly: at most one pinned result GET and one provenance-bound artifact GET; exact body/hostname/URL/path/descriptor hashes; same existing request; expected final bytes 85,481,294; 90 MiB ceiling; same public-DNS pinning, empty asset credentials, byte/deadline/ZIP bounds and manual STOP. No retry, redirect, result refresh, fallback, second object, automatic approval or next/chest release. Download, ZIP, runner and existing host-policy modules are byte-for-byte unchanged. No global GCS allowlist expansion or production changes.
+
+Accounting remains **$4.15 / $4.75 reserved; $2.528 known reported billing; fal charge UNKNOWN; original $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. Historical totals remain 46 API requests, 8 downloads and 3 generations. No refund or unknown-as-zero assumption. No credentials read/requested, dependency installation, real campaign or private-data access.
+
+### Known issues and remaining work
+
+This is an offline correction checkpoint, not live retrieval acceptance. Artifact bytes, archive contents/integrity, DRC/GLB/glTF usability and visual/navigation quality remain unverified. Any future changed result/signature or failed request still stops with no refresh/retry. Full Draco decoding remains outside the existing bounded header inspection. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests do not guarantee universal recovery or format support; no hosted deployment or real campaign/private-data acceptance. Main, production, roadmap and original checkout's pre-existing uncommitted documentation remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of the new correction SHA and hashes.** Separate exact-checkpoint authorization is required before live init/retrieve. Do not operate the old stopped worktree, download an artifact, run chest/next, change host policy, start further phases, merge main, deploy or import real data.
+
+---
+
+## Historical exact fal artifact initialization stop evidence checkpoint
+
 **PHASE 3.8B EXACT FAL ARTIFACT RETRIEVAL STOPPED BEFORE INITIALIZATION / NETWORK; STOP FOR OWNER REVIEW.** Approved clean execution SHA dcbf8105ce7e18928901620dcf899d76ec000e8b, retrieval identity phase38b-fal-exact-artifact-1, manifest hash 310e802e1df5781a97336f9915668855421a50ff17e0c74532c44fc5df647f53. Initial local preflight passed. The single init invocation then failed the frozen **artifact_private_ignore_required** assertion: the ignore check matched the anchor but not the absent directory argument (1 match, expected 2). **Successful initializations: 0. Result GETs: 0. Artifact GETs: 0. Asset DNS: 0.** No ledger/anchor/artifact was created; no retry or harness repair occurred.
 
 ### Completed work and files / areas changed

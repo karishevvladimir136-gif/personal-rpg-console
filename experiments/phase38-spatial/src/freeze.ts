@@ -11,6 +11,8 @@ export function freezeInputs() {
     "fal-retrieval.json",
     "fal-host-diagnostic.json",
     "fal-exact-artifact.json",
+    "fal-exact-artifact-recovery.json",
+    "FAL_EXACT_ARTIFACT_RECOVERY_PREPARATION.md",
     "FAL_EXACT_ARTIFACT_PREPARATION.md",
     "FAL_HOST_DIAGNOSTIC_PREPARATION.md",
     "FAL_RETRIEVAL_PREPARATION.md",

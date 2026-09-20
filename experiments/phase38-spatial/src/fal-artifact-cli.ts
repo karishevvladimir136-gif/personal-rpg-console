@@ -8,6 +8,10 @@ import { requireRetrieval as check } from "./fal-retrieval-contract.ts";
 import { artifact as c, artifactHash } from "./fal-artifact-contract.ts";
 import { initializeArtifact, ArtifactLedger } from "./fal-artifact-state.ts";
 import { runExactArtifact } from "./fal-artifact.ts";
+import {
+  requireArtifactPrivateIgnore,
+  requireArtifactCheckout,
+} from "./fal-artifact-preflight.ts";
 export async function main(args = process.argv.slice(2)) {
   verifyFreeze();
   const action = args[0] ?? "inspect";
@@ -56,39 +60,41 @@ export async function main(args = process.argv.slice(2)) {
         ),
     "artifact_arguments",
   );
-  check(
-    flag("--approved-sha") === head && !git("status", "--porcelain"),
-    "artifact_authorization_required",
+  requireArtifactCheckout(
+    repo,
+    flag("--approved-sha"),
+    args.includes("--live"),
   );
-  execFileSync(
-    "git",
-    ["merge-base", "--is-ancestor", c.sourceEvidenceCommit, head],
-    { cwd: repo, stdio: "pipe" },
-  );
-  check(
-    hash(
-      execFileSync(
-        "git",
-        [
-          "show",
-          `${c.sourceEvidenceCommit}:experiments/phase38-spatial/${c.sourceEvidenceFile}`,
-        ],
-        { cwd: repo },
-      ),
-    ) === c.sourceEvidenceSHA256,
-    "artifact_evidence_commit",
-  );
+  for (const [commit, file, sha256] of [
+    [c.sourceEvidenceCommit, c.sourceEvidenceFile, c.sourceEvidenceSHA256],
+    [
+      c.recovery.stopEvidenceCommit,
+      c.recovery.stopEvidenceFile,
+      c.recovery.stopEvidenceSHA256,
+    ],
+  ]) {
+    execFileSync("git", ["merge-base", "--is-ancestor", commit, head], {
+      cwd: repo,
+      stdio: "pipe",
+    });
+    check(
+      hash(
+        execFileSync(
+          "git",
+          ["show", `${commit}:experiments/phase38-spatial/${file}`],
+          { cwd: repo },
+        ),
+      ) === sha256,
+      "artifact_evidence_commit",
+    );
+  }
   const sources = {
       continuationRoot: resolve(flag("--continuation-root")),
       recoveryRoot: resolve(flag("--recovery-root")),
       retrievalRoot: resolve(flag("--retrieval-root")),
       diagnosticRoot: resolve(flag("--diagnostic-root")),
     },
-    root = join(experimentRoot, "private-fal-artifact");
-  check(
-    git("check-ignore", root, root + ".anchor").split("\n").length === 2,
-    "artifact_private_ignore_required",
-  );
+    root = requireArtifactPrivateIgnore(repo);
   if (action === "init") {
     initializeArtifact(root, head, sources);
     console.log(

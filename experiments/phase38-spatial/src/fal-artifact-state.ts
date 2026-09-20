@@ -40,7 +40,52 @@ export function verifyArtifactEvidence(bytes: Buffer) {
   );
   return e;
 }
+export function verifyArtifactStopEvidence(bytes: Buffer) {
+  check(
+    hash(bytes) === c.recovery.stopEvidenceSHA256,
+    "artifact_stop_evidence_hash",
+  );
+  const e = object(JSON.parse(bytes.toString("utf8")));
+  const init = object(e.initialization),
+    terminal = object(e.terminal),
+    net = object(e.network);
+  check(
+    e.executionSHA === c.recovery.originalPreparationSHA &&
+      e.retrievalIdentity === c.recovery.originalIdentity &&
+      e.retrievalHash === c.recovery.originalManifestHash &&
+      e.requestId === c.requestId &&
+      e.expectedResultBodySHA256 === c.resultBodySHA256 &&
+      canonical(e.bindings) === canonical(c.bindings),
+    "artifact_stop_evidence_binding",
+  );
+  check(
+    init.invocations === 1 &&
+      init.successfulInitializations === 0 &&
+      init.failedBeforeInitializeFunction === true &&
+      init.journalCreated === false &&
+      init.rootExistsAfter === false &&
+      init.anchorExistsAfter === false &&
+      terminal.status === "STOPPED_BEFORE_INITIALIZATION_AND_NETWORK" &&
+      terminal.assertion === "artifact_private_ignore_required",
+    "artifact_stop_required",
+  );
+  check(
+    Object.values(net).every((value) => value === 0),
+    "artifact_stop_network",
+  );
+  const account = object(e.accounting);
+  for (const [key, value] of Object.entries(c.accounting))
+    check(account[key] === value, "artifact_stop_accounting");
+  check(
+    account.changed === false && account.chestAttempted === false,
+    "artifact_stop_accounting",
+  );
+  return e;
+}
 export function verifyArtifactSources(s: ArtifactSources) {
+  verifyArtifactStopEvidence(
+    readFileSync(join(experimentRoot, c.recovery.stopEvidenceFile)),
+  );
   const prior = verifyDiagnosticSources(s),
     e = verifyArtifactEvidence(
       readFileSync(join(experimentRoot, c.sourceEvidenceFile)),
@@ -74,6 +119,7 @@ export function verifyArtifactSources(s: ArtifactSources) {
     ...prior,
     diagnosticTerminalDigest: c.diagnosticTerminalDigest,
     diagnosticEvidenceSHA256: c.sourceEvidenceSHA256,
+    artifactStopEvidenceSHA256: c.recovery.stopEvidenceSHA256,
   };
 }
 type Verify = typeof verifyArtifactSources;

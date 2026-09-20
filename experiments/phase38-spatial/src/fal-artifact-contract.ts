@@ -10,6 +10,18 @@ import {
 } from "./fal-retrieval-contract.ts";
 export type ArtifactContract = {
   version: string;
+  recovery: {
+    originalPreparationSHA: string;
+    originalIdentity: string;
+    originalManifestFile: string;
+    originalManifestHash: string;
+    originalManifestFileSHA256: string;
+    stopEvidenceCommit: string;
+    stopEvidenceFile: string;
+    stopEvidenceSHA256: string;
+    privateRoot: string;
+    originalInitializationSucceeded: boolean;
+  };
   sourceEvidenceCommit: string;
   sourceEvidenceFile: string;
   sourceEvidenceSHA256: string;
@@ -30,7 +42,10 @@ export type ArtifactContract = {
   accounting: Dict;
 };
 export const artifact = JSON.parse(
-  readFileSync(join(experimentRoot, "fal-exact-artifact.json"), "utf8"),
+  readFileSync(
+    join(experimentRoot, "fal-exact-artifact-recovery.json"),
+    "utf8",
+  ),
 ) as ArtifactContract;
 function freeze(x: unknown) {
   if (x && typeof x === "object") {
@@ -40,6 +55,27 @@ function freeze(x: unknown) {
 }
 freeze(artifact);
 export const artifactHash = hash(canonical(artifact));
+const originalBytes = readFileSync(
+  join(experimentRoot, "fal-exact-artifact.json"),
+);
+export const originalArtifact = JSON.parse(
+  originalBytes.toString("utf8"),
+) as Omit<ArtifactContract, "recovery">;
+freeze(originalArtifact);
+const { recovery, ...inherited } = artifact;
+check(
+  artifact.version === "phase38b-fal-exact-artifact-recovery-1" &&
+    recovery.originalIdentity === originalArtifact.version &&
+    recovery.originalManifestFile === "fal-exact-artifact.json" &&
+    recovery.privateRoot === "private-fal-artifact" &&
+    recovery.originalInitializationSucceeded === false &&
+    hash(originalBytes) === recovery.originalManifestFileSHA256 &&
+    hash(canonical(originalArtifact)) === recovery.originalManifestHash &&
+    canonical({ ...inherited, version: originalArtifact.version }) ===
+      canonical(originalArtifact),
+  "artifact_recovery_inheritance",
+);
+
 check(
   artifact.diagnosticHash === diagnosticHash &&
     artifact.diagnosticIdentity === diagnostic.version &&
