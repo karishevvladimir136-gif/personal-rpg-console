@@ -238,3 +238,85 @@ test("durable execution pin selects campaign overrides once and reuses both stag
     await f.db.close();
   }
 });
+
+test("actual turn engine and SQL bridge commit one causal world settlement with zero provider requests", async () => {
+  const [{ createRpcTurnStore }, { runTurn }, { worldTurnPreparer }] =
+    await Promise.all([
+      import("../src/lib/gameplay/dm-store.ts"),
+      import("../src/lib/gameplay/turn-engine.ts"),
+      import("../src/lib/production/turn-world.ts"),
+    ]);
+  const f = await waveFixture();
+  try {
+    const w = await configuredWorld(f);
+    const state = structuredClone(w.state);
+    state.threads[0].steps[0].trigger = {
+      kind: "causal",
+      family: "quests",
+      recordId: w.quest,
+    };
+    await f.write(w.cid, "configure", { world: state });
+    const timeline = await f.fence(w.cid);
+    const rpc = async (args) => {
+      try {
+        return {
+          data: await f.runtime(
+            args.p_campaign_id,
+            args.p_action,
+            args.p_payload,
+            args.p_timeline,
+          ),
+        };
+      } catch (e) {
+        return { error: { message: e.message } };
+      }
+    };
+    const store = createRpcTurnStore(f.owner, rpc, null, timeline);
+    let calls = 0;
+    const forbidden = async () => {
+      calls++;
+      throw new Error("Unexpected provider request");
+    };
+    const input = {
+      timeline,
+      operationId: randomUUID(),
+      campaignId: w.cid,
+      expectedRevision: (await store.readPlay(w.cid)).revision,
+      mode: "mechanic",
+      input: "Complete the synthetic delivery.",
+      companionId: null,
+      listenerIds: [],
+      mechanic: {
+        kind: "quest.transition",
+        questId: w.quest,
+        status: "complete",
+      },
+    };
+    const deps = {
+      store,
+      provider: { plan: forbidden, narrate: forbidden, feedback: forbidden },
+      prepareWorld: worldTurnPreparer(f.rpc),
+    };
+    const result = await runTurn(input, deps);
+    assert.equal(result.status, "committed");
+    assert.match(result.narration, /bell/);
+    assert.equal(calls, 0);
+    assert.equal((await f.read(w.cid)).world.threads[0].cursor, 1);
+    assert.equal(
+      (
+        await f.one("select status from public.rpg_quests where id=$1", [
+          w.quest,
+        ])
+      ).status,
+      "complete",
+    );
+    await runTurn(input, deps);
+    assert.equal(
+      (await f.one("select count(*) n from rpg_private.world_events")).n,
+      2,
+    );
+    assert.equal(calls, 0);
+  } finally {
+    await f.db.close();
+  }
+});

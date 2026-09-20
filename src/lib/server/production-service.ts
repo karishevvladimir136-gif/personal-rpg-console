@@ -81,6 +81,7 @@ export function productionServices(
       );
       if (
         snapshot.ruleset.id !== "console-basic-v1" ||
+        snapshot.ruleset.mode !== "full_ruleset" ||
         snapshot.ruleset.version !== 1 ||
         snapshot.ruleset.validatorVersion !== "console-basic-v1"
       )
