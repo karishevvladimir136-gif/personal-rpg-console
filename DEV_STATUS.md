@@ -2,7 +2,25 @@
 
 Started September 20, 2026 from exact authorized remote main `b7b065726ac1e0f64056e1970c8390f8448b4875` in isolated branch `codex/production-mega-sprint-wave3`. Waves 1 and 2 remain owner accepted. The original dirty checkout is untouched.
 
-Updated September 20, 2026. Implementation and independent QA checkpoint: `1763cd4820e14cd9cfd6633284ded2d7aa6460d6`. The completion commit only records this verified handoff. Main stays at the authorized base; Wave 3 requires separate owner acceptance.
+Updated September 20, 2026. Initial implementation and independent QA checkpoint: `1763cd4820e14cd9cfd6633284ded2d7aa6460d6`; initial verified handoff: `bc72e04cc3d68aec6ab18b272eaca1ceb27fb27f`. The owner-control completion pass below follows that exact handoff. Main stays at the authorized base; Wave 3 requires separate owner acceptance.
+
+## Owner-control completion pass — ready for acceptance review
+
+Implemented and integrated by Lead: guided Pack review now offers **Edit identity** for entity display name, aliases and the existing bounded type; unknown items have an optional **Owner note / resolution**. Existing source text, descriptions, Pack/claim text, contradiction resolution, refinement instructions and campaign premises remain manually editable. EN/RU labels and the existing responsive styling are preserved. No AI request is necessary for these corrections.
+
+The existing `pack.save` authority creates a new immutable draft with the same canonical IDs, membership, structural links, source/evidence references and compiler provenance. Review acknowledgements/Canon selections are cleared in the editor, and persisted approval is removed with every claim reset to Reference. Notes remain owner-authored reference, preserving the original unknown question; they never publish Canon or become external source facts. Historical versions remain readable, pending stale edits fail, retries do not duplicate versions, later refinements retain corrections, and approved campaign pins do not advance. No migration or architecture change was required.
+
+Changed areas: guided review/Pack editor, client command allowlist and EN/RU vocabulary, owner command validation and optional Pack unknown-note parsing, focused UI/domain/SQL regressions, owner guide and this status/addendum. IDs are not displayed as editable controls. The server rejects entry replacement/addition/removal, extra structural fields, invalid type/length/alias values and attempts to rewrite unknown questions or their entity links through notes.
+
+Fresh completion-pass verification:
+
+- **199/199 tests passed, 0 failed, 0 skipped** in **32.769 seconds**: every `wave3-*.test.mjs`, Wave 2 Library/compiler/privacy tests, and Wave 1 Library/Pack/legacy-import boundary tests. Includes eight new regression cases, expanded SQL immutable-edit/approval/pinning checks, disposable migration upgrades and the existing compiler, premise, consequence, reconciliation and recovery flows. The earlier complete-suite result below is historical, not claimed as a fresh full-suite run for this pass.
+- Route type generation plus TypeScript `--noEmit`: **passed**.
+- Repository-wide ESLint `--max-warnings 0`: **passed, zero warnings**.
+- Production build `next build --webpack`: **passed** with the same documented dependency-junction limitation for default Turbopack.
+- Separate synthetic browser check: manually changed name, multiline aliases, entity type and unknown note in English at 1440×960, saved a new draft, then saved Russian corrections at 390×844. Verified the earlier version kept its original name/type/note and disabled editing; both corrected versions remain in history. No horizontal overflow was observed on mobile. Actual current components and the in-memory authoring service were used; no live database/provider or physical iPhone result is claimed.
+
+No live model-quality evaluation, provider call, real-data import, real database migration, deployment, main change or Wave 4 work occurred. This pass is implemented, integrated, deterministically verified and browser checked; it is **not owner accepted**. No additional setup beyond the previously disclosed Wave 3 release requirements is introduced. Next step is owner acceptance review and stop.
 
 ## Milestone status
 
@@ -33,7 +51,7 @@ Changed areas include `src/lib/world-library`, `rulesets/world-logic*`, `world/r
 
 Independent QA reproduced four defects, all repaired centrally and reverified: wrong/missing provider response model identity; stripping typed resolver metadata to reach a legacy validation path; JSON numeric strings accepted as quantities; and initial assisted Pack origin/privacy tampering at the SQL boundary. SQL now verifies the bounded compiler derivation before the first immutable draft is inserted. No outstanding reproduced QA defect remains.
 
-## Fresh integrated verification
+## Initial Wave 3 integrated verification — before the owner-control pass
 
 - `node --test --test-concurrency=2 tests/*.test.mjs`: **673 collected, 672 passed, 0 failed, 1 skipped**, duration **78.539 seconds**. The skip is the existing opt-in live Supabase test; it is not counted as passed. This run includes Phase 0–3.5 and Wave 1–2 regressions and the Wave 3 integration/QA additions.
 - `next typegen` followed by TypeScript `--noEmit`: **passed**. Independent QA also passed a non-incremental integration typecheck.

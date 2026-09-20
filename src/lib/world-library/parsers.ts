@@ -395,11 +395,21 @@ export function parsePack(value: unknown): PackBody {
   );
   const unknowns = unique(
     list(v.unknowns, (entry) => {
-      const u = object(entry, ["id", "question", "entityId"]);
+      const hasNote =
+        entry !== null &&
+        typeof entry === "object" &&
+        Object.hasOwn(entry, "ownerNote");
+      const u = object(entry, [
+        "id",
+        "question",
+        "entityId",
+        ...(hasNote ? ["ownerNote"] : []),
+      ]);
       return {
         id: uuid(u.id),
         question: shortText(u.question),
         entityId: nullable(u.entityId, uuid),
+        ...(hasNote ? { ownerNote: text(u.ownerNote, 2000) } : {}),
       };
     }),
     (u) => u.id,

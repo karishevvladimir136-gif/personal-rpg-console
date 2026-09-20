@@ -46,6 +46,17 @@ test("SQL Describe → scripted compiler → explicit review → Pack → pinned
       ),
     );
     const edit = packSave(built.pack);
+    edit.entities = structuredClone(built.pack.body.entities);
+    edit.entities[0] = {
+      ...edit.entities[0],
+      name: "Орден владельца",
+      aliases: ["Owner's Order"],
+      kind: "faction",
+    };
+    edit.unknownNotes = built.pack.body.unknowns.map((u) => ({
+      id: u.id,
+      note: "  Owner note / Заметка\nKeep uncertainty explicit.  ",
+    }));
     edit.claims[0] = {
       ...edit.claims[0],
       knowledge: "canon_at_entry",
@@ -53,6 +64,16 @@ test("SQL Describe → scripted compiler → explicit review → Pack → pinned
     };
     const edited = await service.execute(edit);
     const reviewed = await service.pack(edited.versionId);
+    assert.deepEqual(reviewed.body.entities, edit.entities);
+    assert.equal(
+      reviewed.body.unknowns[0].ownerNote,
+      edit.unknownNotes[0].note,
+    );
+    assert.deepEqual(
+      (await service.pack(built.pack.versionId)).body,
+      built.pack.body,
+    );
+    assert.equal(calls, 1, "manual correction never calls the compiler");
     const approved = await service.execute(
       approveInput(reviewed, { canonClaimIds: [reviewed.body.claims[0].id] }),
     );
@@ -76,6 +97,18 @@ test("SQL Describe → scripted compiler → explicit review → Pack → pinned
       })),
     };
     await f.write(cid, "bind", { binding });
+    const corrected = packSave(await service.pack(pack.versionId));
+    corrected.entities = pack.body.entities.map((e) => ({
+      ...e,
+      name: `${e.name} — revised`,
+    }));
+    const correction = await service.pack(
+      (await service.execute(corrected)).versionId,
+    );
+    assert.equal(correction.status, "draft");
+    assert.ok(correction.body.claims.every((c) => c.authority === "reference"));
+    assert.equal((await f.read(cid)).bindings[0].packVersionId, pack.versionId);
+    assert.deepEqual((await store.get("pack", pack.versionId)).body, pack.body);
     const source = built.sources[0];
     await service.execute(
       description({

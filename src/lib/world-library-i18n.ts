@@ -66,6 +66,18 @@ export const WORLD_AUTHORING_RU: Record<string, string> = {
     "Помощь модели недоступна. Проверьте настроенную модель компиляции и провайдера. Другая модель не выбиралась.",
   "Review your world": "Проверьте свой мир",
   "1 · People and places": "1 · Люди и места",
+  "Correct names, aliases and types by hand. Save a new draft below; original sources and earlier versions stay intact.":
+    "Исправляйте имена, другие названия и типы вручную. Сохраните новый черновик ниже; исходные источники и прежние версии останутся неизменными.",
+  "Edit identity": "Исправить сведения",
+  "Display name": "Отображаемое имя",
+  "Entity type": "Тип сущности",
+  "Aliases (one per line)": "Другие имена или названия (по одному в строке)",
+  "Up to 20 distinct aliases, 240 characters each. Empty lines are ignored.":
+    "До 20 разных имён или названий, по 240 символов. Пустые строки пропускаются.",
+  "Add your own answer, correction or decision to leave a question open. Notes are owner-authored reference, not source facts or Canon; the original question stays visible.":
+    "Добавьте свой ответ, исправление или решение оставить вопрос открытым. Это авторские справочные заметки, а не факты источника или канон; исходный вопрос остаётся видимым.",
+  "Owner note / resolution (optional)":
+    "Заметка / решение владельца (необязательно)",
   "2 · Evidence and open questions": "2 · Свидетельства и открытые вопросы",
   "3 · Choose Canon, then approve": "3 · Выберите канон и утвердите",
   "People and other entities": "Люди и другие сущности",

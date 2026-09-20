@@ -17,12 +17,16 @@ export function ReviewOverview({
   body,
   sources,
   rejectedIds,
+  disabled,
+  onChange,
 }: {
   language: Language;
   detail: OwnerPackDetail;
   body: PackBody;
   sources: OwnerSourceSummary[];
   rejectedIds: string[];
+  disabled: boolean;
+  onChange: (body: PackBody) => void;
 }) {
   const w = (key: string) => worldAuthoringText(language, key);
   const claims = body.claims.filter((claim) => !rejectedIds.includes(claim.id));
@@ -44,6 +48,11 @@ export function ReviewOverview({
     <div className={styles.reviewOverview}>
       <p className={styles.eyebrow}>{w("Review your world")}</p>
       <h3>{w("1 · People and places")}</h3>
+      <p>
+        {w(
+          "Correct names, aliases and types by hand. Save a new draft below; original sources and earlier versions stay intact.",
+        )}
+      </p>
       <div className={styles.entityGrid}>
         {(
           [
@@ -76,6 +85,90 @@ export function ReviewOverview({
                       ? ` · ${entity.aliases.join(" / ")}`
                       : ""}
                   </small>
+                  <details>
+                    <summary>{w("Edit identity")}</summary>
+                    <fieldset disabled={disabled}>
+                      <label>
+                        {w("Display name")}
+                        <input
+                          required
+                          maxLength={240}
+                          value={entity.name}
+                          onChange={(event) =>
+                            onChange({
+                              ...body,
+                              entities: body.entities.map((entry) =>
+                                entry.id === entity.id
+                                  ? { ...entry, name: event.target.value }
+                                  : entry,
+                              ),
+                            })
+                          }
+                        />
+                      </label>
+                      <label>
+                        {w("Entity type")}
+                        <select
+                          value={entity.kind}
+                          onChange={(event) =>
+                            onChange({
+                              ...body,
+                              entities: body.entities.map((entry) =>
+                                entry.id === entity.id
+                                  ? {
+                                      ...entry,
+                                      kind: event.target
+                                        .value as typeof entity.kind,
+                                    }
+                                  : entry,
+                              ),
+                            })
+                          }
+                        >
+                          {(
+                            [
+                              "person",
+                              "group",
+                              "faction",
+                              "location",
+                              "object",
+                              "institution",
+                            ] as const
+                          ).map((kind) => (
+                            <option key={kind} value={kind}>
+                              {w(kind)}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
+                      <label>
+                        {w("Aliases (one per line)")}
+                        <textarea
+                          rows={3}
+                          maxLength={4820}
+                          value={entity.aliases.join("\n")}
+                          onChange={(event) =>
+                            onChange({
+                              ...body,
+                              entities: body.entities.map((entry) =>
+                                entry.id === entity.id
+                                  ? {
+                                      ...entry,
+                                      aliases: event.target.value.split("\n"),
+                                    }
+                                  : entry,
+                              ),
+                            })
+                          }
+                        />
+                      </label>
+                      <small>
+                        {w(
+                          "Up to 20 distinct aliases, 240 characters each. Empty lines are ignored.",
+                        )}
+                      </small>
+                    </fieldset>
+                  </details>
                 </li>
               ))}
             </ul>

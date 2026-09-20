@@ -134,6 +134,12 @@ export type OwnerPackSaveInput = {
   claims: OwnerPackEdit[];
   resolutions: { id: string; resolution: string | null }[];
   rejectedClaimIds?: string[];
+  // IDs only address existing entries; membership and references cannot change.
+  entities?: Pick<
+    PackBody["entities"][number],
+    "id" | "name" | "kind" | "aliases"
+  >[];
+  unknownNotes?: { id: string; note: string | null }[];
 };
 export type OwnerPackApproveInput = {
   action: "pack.approve";

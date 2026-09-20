@@ -462,6 +462,8 @@ export function createOwnerLibraryAuthoring(
     }
     if (action === "pack.save") {
       const hasRejected = Object.hasOwn(input, "rejectedClaimIds");
+      const hasEntities = Object.hasOwn(input, "entities");
+      const hasUnknownNotes = Object.hasOwn(input, "unknownNotes");
       const v = object(input, [
         "action",
         "operationId",
@@ -470,9 +472,45 @@ export function createOwnerLibraryAuthoring(
         "claims",
         "resolutions",
         ...(hasRejected ? ["rejectedClaimIds"] : []),
+        ...(hasEntities ? ["entities"] : []),
+        ...(hasUnknownNotes ? ["unknownNotes"] : []),
       ]);
       const op = uuid(v.operationId),
         previous = await store.get("pack", uuid(v.expectedVersionId));
+      const entityEdits = hasEntities
+        ? list(
+            v.entities,
+            (entry) => object(entry, ["id", "name", "kind", "aliases"]),
+            500,
+          )
+        : previous.body.entities;
+      ensure(
+        sameSet(
+          ids(
+            entityEdits.map((e) => e.id),
+            500,
+          ),
+          previous.body.entities.map((e) => e.id),
+        ),
+      );
+      const unknownNotes = hasUnknownNotes
+        ? list(v.unknownNotes, (entry) => {
+            const note = object(entry, ["id", "note"]);
+            return {
+              id: uuid(note.id),
+              note: nullable(note.note, (value) => text(value, 2000)),
+            };
+          })
+        : previous.body.unknowns.map((u) => ({
+            id: u.id,
+            note: u.ownerNote ?? null,
+          }));
+      ensure(
+        sameSet(
+          ids(unknownNotes.map((u) => u.id)),
+          previous.body.unknowns.map((u) => u.id),
+        ),
+      );
       const rejected = hasRejected ? ids(v.rejectedClaimIds, 1000) : [];
       ensure(
         rejected.every((id) => previous.body.claims.some((c) => c.id === id)),
@@ -538,6 +576,22 @@ export function createOwnerLibraryAuthoring(
         status: "draft",
         approval: null,
         claims,
+        entities: previous.body.entities.map((entity) => {
+          const edit = entityEdits.find((e) => e.id === entity.id)!;
+          return {
+            ...entity,
+            name: edit.name,
+            kind: edit.kind,
+            aliases: edit.aliases,
+          };
+        }),
+        unknowns: previous.body.unknowns.map((unknown) => {
+          const next = { ...unknown };
+          const note = unknownNotes.find((u) => u.id === unknown.id)!.note;
+          if (note === null) delete next.ownerNote;
+          else next.ownerNote = note;
+          return next;
+        }),
         contradictions: previous.body.contradictions
           .map((c) => ({
             ...c,

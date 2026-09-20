@@ -728,6 +728,8 @@ export function PackEditor({
         body={body}
         sources={sources}
         rejectedIds={rejectedIds}
+        disabled={busy || !latest || refining}
+        onChange={change}
       />
       <fieldset disabled={busy || !latest || refining}>
         <label>
@@ -811,10 +813,33 @@ export function PackEditor({
           </div>
         ))}
         <h3>{t("Unknowns")}</h3>
+        <p>
+          {w(
+            "Add your own answer, correction or decision to leave a question open. Notes are owner-authored reference, not source facts or Canon; the original question stays visible.",
+          )}
+        </p>
         {body.unknowns.map((u) => (
-          <label key={u.id} className={styles.reviewItem}>
+          <div key={u.id} className={styles.reviewItem}>
             <span>{worldLibraryCompilerNote(language, u.question)}</span>
-            <span className={styles.check}>
+            <label>
+              {w("Owner note / resolution (optional)")}
+              <textarea
+                rows={3}
+                maxLength={2000}
+                value={u.ownerNote ?? ""}
+                onChange={(event) =>
+                  change({
+                    ...body,
+                    unknowns: body.unknowns.map((entry) =>
+                      entry.id === u.id
+                        ? { ...entry, ownerNote: event.target.value }
+                        : entry,
+                    ),
+                  })
+                }
+              />
+            </label>
+            <label className={styles.check}>
               <input
                 type="checkbox"
                 disabled={dirty}
@@ -824,8 +849,8 @@ export function PackEditor({
                 }
               />{" "}
               {t("Reviewed; uncertainty remains explicit.")}{" "}
-            </span>
-          </label>
+            </label>
+          </div>
         ))}
         <h3>{w("3 · Choose Canon, then approve")}</h3>
         <h3>{t("Claims and preserved evidence")}</h3>

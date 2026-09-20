@@ -109,6 +109,16 @@ export function ownerPackDraft(
     action: "pack.save",
     expectedVersionId: detail.versionId,
     title: body.title,
+    entities: body.entities.map(({ id, name, kind, aliases }) => ({
+      id,
+      name,
+      kind,
+      aliases: aliases.map((alias) => alias.trim()).filter(Boolean),
+    })),
+    unknownNotes: body.unknowns.map(({ id, ownerNote }) => ({
+      id,
+      note: ownerNote?.trim() ? ownerNote : null,
+    })),
     claims: body.claims
       .filter((claim) => !rejectedClaimIds.includes(claim.id))
       .map(

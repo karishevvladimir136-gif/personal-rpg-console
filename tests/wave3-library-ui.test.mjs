@@ -54,7 +54,11 @@ function componentHarness(file, language = "en") {
     "../language-context": { useLanguage: () => ({ language }) },
     "../persistence-context": { useUnsavedChanges: () => {} },
     "./authoring": {},
-    "./guided-review": {},
+    "./guided-review": {
+      ReviewOverview: "ReviewOverview",
+      CanonPreview: "CanonPreview",
+      RefinementEditor: "RefinementEditor",
+    },
     "./compiler-panel": {
       ASSISTANCE_DISCLOSURE:
         "Uses the configured compiler model. An explicit request sends selected source excerpts to the provider and may incur a charge; the cost is unknown here. No substitute model is selected if unavailable.",
@@ -371,6 +375,158 @@ test("refinement preserves exact instructions, gates edits and makes no request 
       .props.disabled,
     true,
   );
+});
+
+test("entity identity controls allow direct EN/RU edits and retain blank alias lines while typing", async () => {
+  const f = compilerFixture(),
+    { pack } = await draft(f);
+  for (const language of ["en", "ru"]) {
+    const render = componentHarness("guided-review", language);
+    let body = structuredClone(pack.body);
+    const props = () => ({
+      language,
+      detail: pack,
+      body,
+      sources: [],
+      rejectedIds: [],
+      disabled: false,
+      onChange: (next) => {
+        body = next;
+      },
+    });
+    let tree = render("ReviewOverview", props());
+    const originalId = body.entities[0].id;
+    by(tree, "input").props.onChange({
+      target: { value: "Орден владельца / Owner Order" },
+    });
+    tree = render("ReviewOverview", props());
+    by(tree, "textarea").props.onChange({ target: { value: "Орден\n" } });
+    tree = render("ReviewOverview", props());
+    assert.equal(by(tree, "textarea").props.value, "Орден\n");
+    by(tree, "textarea").props.onChange({
+      target: { value: "Орден\nThe Order" },
+    });
+    tree = render("ReviewOverview", props());
+    by(tree, "select").props.onChange({ target: { value: "faction" } });
+    assert.equal(body.entities[0].name, "Орден владельца / Owner Order");
+    assert.equal(body.entities[0].kind, "faction");
+    assert.deepEqual(body.entities[0].aliases, ["Орден", "The Order"]);
+    assert.equal(body.entities[0].id, originalId);
+    assert.deepEqual(body.claims, pack.body.claims);
+    const disabled = render("ReviewOverview", { ...props(), disabled: true });
+    assert.ok(
+      nodes(disabled, (node) => node.type === "fieldset").every(
+        (node) => node.props.disabled,
+      ),
+    );
+    const vocabulary =
+      language === "ru"
+        ? ["Отображаемое имя", "Тип сущности", "Другие имена"]
+        : ["Display name", "Entity type", "Aliases"];
+    for (const text of vocabulary) assert.ok(label(tree).includes(text));
+    assert.equal(
+      nodes(
+        tree,
+        (node) =>
+          ["input", "textarea"].includes(node.type) &&
+          node.props.value === originalId,
+      ).length,
+      0,
+    );
+  }
+});
+
+test("identity and owner-note changes clear pending review, fence history and save through existing Pack authority", async () => {
+  const f = compilerFixture(),
+    { pack } = await draft(f);
+  for (const language of ["en", "ru"]) {
+    const render = componentHarness("world-library", language),
+      calls = [];
+    const props = {
+      detail: pack,
+      sources: [],
+      busy: false,
+      save: async (input) => calls.push(input),
+      setDirty() {},
+      onVersion() {},
+    };
+    const w = (key) => locale.worldAuthoringText(language, key);
+    let tree = render("PackEditor", props);
+    const checks = nodes(
+      tree,
+      (node) => node.type === "input" && node.props.type === "checkbox",
+    );
+    for (const check of checks) {
+      check.props.onChange({ target: { checked: true } });
+      tree = render("PackEditor", props);
+    }
+    const next = structuredClone(pack.body);
+    next.entities[0].name = "Edited by owner";
+    by(tree, "ReviewOverview").props.onChange(next);
+    tree = render("PackEditor", props);
+    assert.equal(
+      by(tree, "button", w("Approve reviewed Pack version")).props.disabled,
+      true,
+    );
+    assert.deepEqual(by(tree, "CanonPreview").props.canonIds, []);
+    assert.ok(
+      nodes(
+        tree,
+        (node) => node.type === "input" && node.props.type === "checkbox",
+      ).every((node) => !node.props.checked),
+    );
+    const noteLabel = by(
+      tree,
+      "label",
+      w("Owner note / resolution (optional)"),
+    );
+    by(noteLabel, "textarea").props.onChange({
+      target: { value: "  Ответ владельца\nKeep this uncertain.  " },
+    });
+    tree = render("PackEditor", props);
+    await by(tree, "button", w("Save new draft version")).props.onClick();
+    assert.equal(calls[0].action, "pack.save");
+    assert.equal(calls[0].expectedVersionId, pack.versionId);
+    assert.equal(calls[0].entities[0].name, "Edited by owner");
+    assert.equal(
+      calls[0].unknownNotes[0].note,
+      "  Ответ владельца\nKeep this uncertain.  ",
+    );
+    assert.equal(calls.length, 1);
+    assert.equal(
+      by(render("PackEditor", { ...props, busy: true }), "ReviewOverview").props
+        .disabled,
+      true,
+    );
+    assert.equal(
+      by(
+        render("PackEditor", {
+          ...props,
+          detail: {
+            ...pack,
+            history: [{ ...pack, versionId: id() }, ...pack.history],
+          },
+        }),
+        "ReviewOverview",
+      ).props.disabled,
+      true,
+    );
+    await by(tree, "button", w("Discard edit")).props.onClick();
+    tree = render("PackEditor", props);
+    assert.equal(
+      by(tree, "ReviewOverview").props.body.entities[0].name,
+      pack.body.entities[0].name,
+    );
+    assert.equal(
+      by(by(tree, "label", w("Owner note / resolution (optional)")), "textarea")
+        .props.value,
+      "",
+    );
+    assert.equal(
+      by(tree, "button", w("Save new draft version")).props.disabled,
+      true,
+    );
+  }
 });
 
 test("new authoring and review vocabulary is bilingual without translating authored content", () => {

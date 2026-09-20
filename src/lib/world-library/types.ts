@@ -85,7 +85,13 @@ export type Coverage = {
   totalUnits: number | null;
   gaps: string[];
 };
-export type Unknown = { id: string; question: string; entityId: string | null };
+export type Unknown = {
+  id: string;
+  question: string;
+  entityId: string | null;
+  // Optional owner annotation, never a compiler assertion or Canon claim.
+  ownerNote?: string;
+};
 export type Approval = {
   ownerId: string;
   reviewedConflictIds: string[];
