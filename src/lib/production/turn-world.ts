@@ -8,7 +8,7 @@ import type { FoundationRpc } from "./contracts.ts";
 import type { PrepareWorld } from "./turn-contract.ts";
 
 /** The only world/turn bridge. No private state is added to RuntimeSource. */
-export function worldTurnPreparer(rpc: FoundationRpc): PrepareWorld {
+function prepareWorldUnsafe(rpc: FoundationRpc): PrepareWorld {
   return async (claim, resolution, previous) => {
     const timeline = claim.lease.timeline;
     if (!timeline) throw new TurnError("conflict");
@@ -90,5 +90,21 @@ export function worldTurnPreparer(rpc: FoundationRpc): PrepareWorld {
         ],
       },
     };
+  };
+}
+
+/** Map domain failures to the existing safe runtime categories; no private causes escape. */
+export function worldTurnPreparer(rpc: FoundationRpc): PrepareWorld {
+  const prepare = prepareWorldUnsafe(rpc);
+  return async (...args) => {
+    try {
+      return await prepare(...args);
+    } catch (error) {
+      if (error && typeof error === "object" && "code" in error) {
+        if (error.code === "stale_world") throw new TurnError("conflict");
+        if (error.code === "invalid_world") throw new TurnError("validation");
+      }
+      throw error;
+    }
   };
 }

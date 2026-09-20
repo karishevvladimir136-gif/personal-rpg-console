@@ -53,7 +53,7 @@ export function mechanicalNarration(
   language: "en" | "ru",
 ) {
   const lines = resolution.outcomes.map((outcome) =>
-    language === "ru"
+    language === "ru" && outcome.kind !== "world.observed"
       ? (russianOutcomes[outcome.text] ??
         "Действие выполнено по установленным правилам.")
       : outcome.text,

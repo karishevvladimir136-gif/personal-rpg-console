@@ -247,6 +247,14 @@ async function execute(
         checkpoint.narration = response.output;
         checkpoint.usage.push(response.usage);
       }
+      // Fair-warning receipts require visible delivery even if a model omits an outcome.
+      const observations = checkpoint.resolution.outcomes
+        .filter((row) => row.kind === "world.observed")
+        .map((row) => row.text);
+      for (const text of observations) {
+        if (!checkpoint.narration.narration.includes(text))
+          checkpoint.narration.narration += "\n\n" + text;
+      }
       requireRule(
         typeof checkpoint.narration.narration === "string" &&
           checkpoint.narration.narration.length > 0 &&
