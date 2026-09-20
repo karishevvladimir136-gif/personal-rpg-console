@@ -80,6 +80,14 @@ Usually may not:
 
 A soldier can nevertheless become strategically important through play. Leverage is dynamic, not a permanent caste.
 
+## Progression and world-scale capabilities
+
+Future [Ruleset-defined progression](RULESETS_AND_DYNAMIC_UI_BRIEF.md#progression-engine-and-reward-authority) can change an Actor's available action scale, not just numeric bonuses. A novice may address local problems, an experienced hero regional threats, a commander unit-scale delegation, a political leader settlement/faction affairs and a supported archmage/demigod city-, realm- or planar-scale effects. These are illustrations, not automatic level-to-authority mappings. Leverage depends jointly on abilities, resources, position, relationships, institutional authority, progression tracks and current state. High level alone grants neither command, jurisdiction nor knowledge.
+
+An illustrative WWII tank-crew profile separates Gunnery, Driving / Vehicle Handling, Tactical Awareness, Crew Cohesion, Command proficiency and Military Rank / Career. Meaningful combat/training, shared battle history and leadership can improve different tracks; promotion from Lieutenant to Captain to Major follows institutional policy and campaign circumstances, not generic fantasy XP. An enemy armored formation retains intrinsic threat: a Panther does not become harmless because a novice arrived. Appropriate warnings, preparation, tactical alternatives and withdrawal support agency without erasing world hierarchy. No historical stat or promotion table is asserted here.
+
+Mass teleportation, resurrection, weather control, planar travel, destructive rituals or extreme military/political action require actual supported capability, prerequisites, resources, resistance/checks and valid scope. Natural-language flexibility removes the need to pre-author every presentation, not the need to validate consequences. The [world-scale settlement contract](WORLD_ENGINE_BRIEF.md#progression-rewards-and-world-scale-settlement) bounds affected Actors, Locations, Threads and resources with persistent staged consequences where necessary. Earned post-cap abilities/titles/holdings can expand leverage, but no progression track is a direct “edit reality” permission.
+
 ## Knowledge and leverage are independent
 
 High authority does not imply omniscience.

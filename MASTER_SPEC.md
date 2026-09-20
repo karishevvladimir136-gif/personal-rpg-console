@@ -455,9 +455,20 @@ Use a static character image with surrounding equipment slots when appropriate. 
 Tabs:
 - Character
 - Abilities
+- future **Progression** for applicable Rulesets
 - Spells
 - Background
 - Notes
+
+### Progression and advancement — future product design
+
+**Character → Progression** is a first-class profile-driven experience. Progression is required for RPG-capable Rulesets, but XP/levels/classes/skill trees are not universal. XP profiles can show level, current XP, next threshold and a progress bar; milestone profiles show actual milestones without fake numeric XP. Multi-track profiles show only relevant tracks in a readable compact view; Off/zero-track profiles do not display empty fantasy mechanics.
+
+Show **LEVEL UP AVAILABLE** or **ADVANCEMENT AVAILABLE** when a validated Pending Advancement exists. The player normally opens it explicitly, selects supported class/subclass/multiclass, feat, stat, spell, skill, proficiency, perk, feature or mythic options, reviews Before / After and confirms. Server validation applies the choice atomically; the AI never silently chooses permanent mechanics unless the Ruleset explicitly defines automatic advancement. Display discovered latent abilities separately from unlocked abilities, with only player-known prerequisites. Pending choices survive save/load.
+
+Game may show compact system notices separate from DM prose, such as “+500 XP — Objective Complete,” “Sword Mastery increased” or “Advancement Available,” only from committed results. The amount is illustrative, not a universal reward. Aggregate minor rewards to avoid narrative-feed spam. Session Recap can include progression gained, improved tracks, advancement, new abilities/features, pending choices and title/rank changes, grounded in authoritative records and player visibility.
+
+The [Rulesets progression contract](RULESETS_AND_DYNAMIC_UI_BRIEF.md#progression-engine-and-reward-authority) defines tracks, rewards, ability ownership/eligibility, exact saves and future acceptance. These screens and mechanics are not implemented by this design addition.
 
 ## Inventory
 
@@ -681,6 +692,12 @@ Future creation/Enter This World selects an available Full Ruleset, World Logic 
 
 No campaign should auto-generate a story unless user explicitly requests it.
 
+### Progression and scaling setup — future design
+
+**Create Campaign → Rules & Play Style** offers a small compatible set: Ruleset (available D&D-like, World Logic, Custom or other supported profile); Progression (**Ruleset Default / XP / Milestone / Hybrid / Off**); and Challenge Scaling (**World Anchored / Adaptive / Hybrid**). Expose only choices the active profile supports; Hybrid scaling is the recommended general RPG default, not a universal requirement. Advanced can hold additional profile-specific controls, without dozens of mandatory setup sliders.
+
+After creation these live at **Campaign → Rules & Play Style**, the existing dedicated campaign settings section. They are mechanical policies, distinct from Campaign DM Style and Global DM Craft. Changes are prospective/versioned and require compatible mappings at a coherent boundary; never rewrite historical rewards, progression, pending choices or materialized encounters. See [Challenge Scaling](RULESETS_AND_DYNAMIC_UI_BRIEF.md#challenge-scaling-and-encounter-materialization).
+
 ---
 
 # 15. GAME / DM RUNTIME
@@ -692,6 +709,8 @@ Future DM Craft adds non-canonical guidance to that same runtime: **authoritativ
 It uses the campaign's selected execution policy and applicable ruleset. OpenAI is the accepted initial transport, not a universal dependency. Future World Resolver/Compiler/Memory tasks return bounded validated proposals through the shared Model Runtime; they are not autonomous DMs. Models never write state directly. Proposed world settlement extends the durable turn lifecycle with atomic player/world outcomes, recorded dice and the existing timeline fences (World Engine brief).
 
 Do not begin with a swarm of agents.
+
+Future progression follows **validated Event/achievement → Ruleset Reward Resolver → staged Progression Events/tracks → prerequisites/Pending Advancement → explicit choices when needed → server validation and atomic commit**. Trusted policy owns reward eligibility, numeric valuation, distribution, caps and unlocks; the DM supplies semantic evidence, never arbitrary XP or ability grants. World Engine, Memory, DM Craft and Text/2D/EXPLORE are not progression authorities. [Rulesets](RULESETS_AND_DYNAMIC_UI_BRIEF.md#progression-engine-and-reward-authority) owns the detailed contract; [World Engine](WORLD_ENGINE_BRIEF.md#progression-rewards-and-world-scale-settlement) supplies causal integration.
 
 The DM receives:
 - RPG Engine;
@@ -1009,6 +1028,7 @@ APPLICATION PREFERENCES — GLOBAL
 CAMPAIGN SETTINGS — PER CAMPAIGN
 - General: campaign language (independent of interface language) and campaign visual preferences
 - dedicated **Rules & Play Style** tab: difficulty/rules, story structure, player role, world autonomy (section 33), and Checks & Dice (section 35)
+- future compatible Progression and Challenge Scaling choices in that same **Rules & Play Style** section, as defined in campaign creation above
 - mature tone
 
 Future **Campaign → DM Style** provides a small understandable home for DM behavior preferences, integrating existing narrative settings/approved guidance without duplicating their sources of truth. Global **Main menu → DM Craft** is separate: reusable owner-approved education, not campaign settings or canon. See [the DM Craft product contract](#dm-craft-and-campaign-dm-style--future-product-design).
@@ -1408,6 +1428,8 @@ Player role is independent of difficulty and story structure. Choosing a role mu
 In the accepted runtime autonomy is event-driven narrative guidance for the one DM. Proposed Phase 3.75 adds bounded code-selected World Threads and validated World Events, with separate simulation On/Off and explicit in-world triggers. High still does not imply a full-world simulator, wall-clock progression, continuous background processing or multiple AI agents. See [WORLD_ENGINE_BRIEF.md](WORLD_ENGINE_BRIEF.md) for deadlines, fair warning, capacity limits and failure-safe settlement.
 
 ## Authority and prospective application
+
+Future Progression and Challenge Scaling use the [Rulesets contract](RULESETS_AND_DYNAMIC_UI_BRIEF.md#challenge-scaling-and-encounter-materialization). Difficulty, intrinsic World Threat, actual Party Power and Encounter Budget are distinct. Hybrid preserves threat hierarchy with bounded plausible adaptation before encounter mechanics are committed; it never silently matches every enemy to party level. Progression pacing offers meaningful opportunities and warnings without forced leveling or invented rewards. Level caps are profile policy, not engine limits; horizontal/social/epic growth can continue when supported. Established mechanics stay authoritative until a validated causal change.
 
 - Campaign documents provide world and story context. Structured settings provide explicit mechanics and play-style choices; neither replaces the other.
 - Mechanical rules such as supported HP/damage scaling, reroll limits, recovery costs, and resource consumption must eventually be enforced and validated by code, not merely requested in an AI prompt.

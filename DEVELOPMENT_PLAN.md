@@ -5,6 +5,12 @@
 
 ---
 
+## Final planned foundational addendum before production coding
+
+The Progression / Rewards / Challenge Scaling addition is the **final planned foundational product-architecture addendum before the separately scoped production multi-agent coding sprint**, unless implementation reveals a genuine architectural blocker. No coding or multi-agent work starts in this documentation task. Do not begin another broad product research/design cycle.
+
+Remaining pre-coding work is limited to completing separately authorized Phase 3.8B capability checks, final architecture/source-of-truth freeze, safe roadmap integration into main, and starting the separately scoped production coding sprint. This list is not permission for this documentation pass to execute experiments, merge main or begin implementation. Preserve the existing DM Craft sequence and all experiment acceptance boundaries.
+
 # MILESTONE 0 — UI SHELL
 
 Goal:
@@ -283,6 +289,22 @@ Independently reviewable slices:
 - **A2: ruleset-neutral foundation.** Separate stable identity/control/capabilities from optional versioned mechanical components. Keep `console-basic-v1` compatibility; do not call it full official D&D 5e. Define Full Ruleset, World Logic and bounded declarative Custom profiles, with code-enforced mechanics and no model-authored executable plugins. Adapt character/inventory/resource views using a finite set of reusable components. Profile conversion is explicit and prospective; old saves and recorded checks remain valid.
 
 Future gate: existing Phase 0–3.5 tests pass unchanged in meaning; configured supported-provider onboarding/selection works without source edits; safe status/Test Connection and no secret leakage; strict unsupported-model rejection/no fallback; World Logic and bounded Custom synthetic campaigns work alongside the house profile; no mandatory HP/d20/class UI; old save compatibility and exact quantities/knowledge remain. At least two actually verified providers are needed before claiming working provider replaceability. Full official 5e coverage must be separately enumerated/tested before advertising it.
+
+### Progression and challenge integration within A2 / C
+
+Reference: [Rulesets progression source of truth](RULESETS_AND_DYNAMIC_UI_BRIEF.md#progression-engine-and-reward-authority), [product setup/advancement](MASTER_SPEC.md#progression-and-advancement--future-product-design), [World Engine settlement](WORLD_ENGINE_BRIEF.md#progression-rewards-and-world-scale-settlement). These extend existing foundations rather than creating a parallel character database, backend, reward ledger for pacing or second DM.
+
+Progression is required for RPG-capable Rulesets; XP, levels, classes and caps remain profile-dependent. Small separately scoped production slices should proceed through:
+
+1. **Ruleset contracts and compatibility:** optional composable tracks, typed Reward Packages, ability definition/ownership/eligibility separation, progression/scaling/distribution policies and versions. Preserve imported baselines without fabricated XP; define compatible save readers before adding authoritative record families.
+2. **Authoritative reward and advancement settlement:** validated Events/achievements feed trusted valuation; atomically commit source receipts, track updates and Pending Advancement. Explicit choices validate prerequisites/resources and unlocks. Prove retry, save/load, timeline isolation, corrections, Off, milestones, use-based anti-spam, career and companion policy behavior with synthetic fixtures.
+3. **Encounter materialization and scaling:** distinct World Threat, Party Power and Encounter Budget; World Anchored / Adaptive / Hybrid policies and credible envelopes. Pin materialized mechanics; prove no mid-encounter rescaling and independent difficulty behavior.
+4. **Player-facing integration:** Create Campaign and Campaign Rules & Play Style compatibility-filtered options; Character → Progression, Before / After choices, discovered latent abilities, compact Game notices and authoritative Session Recap. Keep non-level campaigns readable and private metadata server-only.
+5. **Bounded pacing and supported power growth:** forecast meaningful reward opportunities against recommended challenge bands, preserve earned easier victories and profile-defined post-cap progression. Integrate supported large effects through bounded World Engine settlement; advanced custom/epic primitives require explicit coverage rather than claiming every example is implemented.
+
+Minimal track/reward contracts fit A2; causal reward integration depends on C's Event/settlement foundation. Full content tables, optional custom abilities and broad progression-school coverage can be independently sliced; do not block a small correct baseline with a giant milestone. A supported RPG profile cannot claim complete progression from an XP display alone. DM Craft may guide design/pacing but has no mechanical grant authority.
+
+Future gates are enumerated in [Rulesets acceptance](RULESETS_AND_DYNAMIC_UI_BRIEF.md#future-acceptance-gates--not-executed-here). Run appropriate implementation checks only when that work is authorized, and distinguish deterministic correctness, model-quality evaluation and owner acceptance. This pass executes documentation checks only, no production tests/build, research, provider calls or Phase 3.8B work.
 
 ### Decision Model evaluation — Jev closed; future candidates separately authorized
 
