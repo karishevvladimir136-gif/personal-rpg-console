@@ -1,0 +1,805 @@
+{
+  "version": 1,
+  "identity": "phase38b-final-architecture-evidence-freeze-1",
+  "status": "ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS",
+  "recordedDateUTC": "2026-09-20",
+  "scope": "OFFLINE_DOCUMENTATION_AND_EVIDENCE_INDEX_ONLY",
+  "baseSHA": "b7917b371a54d919842df69acdc3c19bc2f0bc2a",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "chestIdentity": "phase38b-chest-final-1",
+  "chestManifestHash": "03ece6c4df5ce8ee60b691991008f1556d3d5036f86483366f43c4595f3cf55a",
+  "chestRequestId": "01a0bd57-6a2f-77f2-b12d-58e56ce400ac",
+  "evidenceCommits": {
+    "roomRecovery": "d6a420056ea2eaca326567a914d5c070a43d0a82",
+    "courtyard": "420a94e3d13232d2b0f86bdb389770e77486e7a2",
+    "originalFalStop": "28efcc7b50f6943022f93906770d2e8196e1e682",
+    "falCompletedStatus": "3371a20427c33abed810ff0af83a031c943090ac",
+    "falArtifactRecovery": "e74f98070a35506bdb0401e2d2db2e492c9f8da4",
+    "finalPLY": "b666764a7e352bc82d1528ad7c392662bed0bd9f",
+    "chestExecution": "5468dcb72683e8c78eb0a098b15c7f1bf0e056cb",
+    "finalChest": "b7917b371a54d919842df69acdc3c19bc2f0bc2a"
+  },
+  "evidenceFiles": {
+    "experiments/phase38-spatial/results/CHEST_FINAL_001.md": "cfe9a2fa5ed851c4ec9d9e0e85c7010fa9f8ecfc640e83e087f8e460ec00e0bb",
+    "experiments/phase38-spatial/results/COURTYARD_001.md": "9cbf1a607c0af3ae458f66e654e3d70e71283b050397ef506417a1d411aa10f2",
+    "experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_001.md": "5b6e80114b2cb779560da314449ca578db521b9934cc1486f4de0f4d5654a437",
+    "experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_RECOVERY_001.md": "fde2ecb3e845b27dcb5e0820cdc667dcccdb1b74fbdcec515ccb33a019d34254",
+    "experiments/phase38-spatial/results/FAL_HOST_DIAGNOSTIC_001.md": "679df9c2442ab683d87284f58fe83ed7fa975974b02ad95fe1c840f726ea8049",
+    "experiments/phase38-spatial/results/FAL_PLY_INSPECTION_001.md": "049608f8805b3823b88c6e2f9dd5d575f25e61e56c764bd0b38302b10730dd44",
+    "experiments/phase38-spatial/results/FAL_RETRIEVAL_001.md": "d4a0ef52520fa728c52f934cf9ee190fa5628cd45fe61777abad31cb6cd460fb",
+    "experiments/phase38-spatial/results/FAL_STATUS_OBSERVATION_001.md": "9a0fe29138944fb15b889945fee1ab88eb20847e808840dd55a641505d115c9c",
+    "experiments/phase38-spatial/results/FAL_WORLD_001.md": "499db054d515140fd99841a5942e3dd00e4397fefc85215e6a1373b12c6eb516",
+    "experiments/phase38-spatial/results/LIVE_RUN_001.md": "f8095644157e626b3323b7b5c989a9c0209f3e7e8d239df40a91eb3eb443f811",
+    "experiments/phase38-spatial/results/RECOVERY_001.md": "a950570eedbfe77252107f8bf109a3d7abc288a69884e10c66ffa2f2ff42a4d8",
+    "experiments/phase38-spatial/results/ROOM_RECOVERY_001.md": "91f302b36b319321d8f4153a8408983b24a2a720219b7246d9771f02be712397",
+    "experiments/phase38-spatial/results/SETUP_STOP_001.md": "16d94388fbcb156604fa4ad2bcf239cee62a38e774a59625f78c2ca51f0a5797",
+    "experiments/phase38-spatial/results/URL_DIAGNOSIS_001.md": "c0735a147b341bebcecad734366a15c48f93195dde2ed42e8123dad1c1f255a8",
+    "experiments/phase38-spatial/results/chest-final-001-ledger.jsonl": "a9674f6c6887e1d64c24ef0b057921940fb1036ec6025e30d1d2ad5ef200e597",
+    "experiments/phase38-spatial/results/chest-final-001-witness.jsonl": "6c5d2dd519afc6c19d26760619c116ee93097d83e2c74463d90559e39b2c8689",
+    "experiments/phase38-spatial/results/chest-final-001.json": "1c1c15a6cf2b71225bca8eaa98a2dda912840e14bff99330477ff53385d09073",
+    "experiments/phase38-spatial/results/courtyard-001-ledger.jsonl": "58ddabf60311a3f6f2b77e1667ac841c9743a0c0c70d0a9b7bf77cbd45c120ee",
+    "experiments/phase38-spatial/results/courtyard-001-witness.jsonl": "62675f4e042586634c2a954fbf481608ccec506b549a516fea751f15db3515f7",
+    "experiments/phase38-spatial/results/courtyard-001.json": "8b746e88df7310019db02ab88f1b0adddb94cdc71a39ae047d8525a7dcd8550c",
+    "experiments/phase38-spatial/results/courtyard-manual-review-001.json": "70aa2030afbb9f83c5eb5450bede20230a6565786f020e82d3974cc203d17acb",
+    "experiments/phase38-spatial/results/fal-exact-artifact-001.json": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760",
+    "experiments/phase38-spatial/results/fal-exact-artifact-recovery-001.json": "ea6188f69a302918afc592c25d44995d007a88a6c17cdc37a96f3a7b12f972f9",
+    "experiments/phase38-spatial/results/fal-host-diagnostic-001.json": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115",
+    "experiments/phase38-spatial/results/fal-ply-inspection-001.json": "ad0c98717da477915884b58b366fcdeb6e258cd84e88c60e0894a734d9a31079",
+    "experiments/phase38-spatial/results/fal-retrieval-001.json": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+    "experiments/phase38-spatial/results/fal-status-observation-001.json": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+    "experiments/phase38-spatial/results/fal-world-001.json": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+    "experiments/phase38-spatial/results/live-run-001-ledger.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "experiments/phase38-spatial/results/live-run-001.json": "05936d6837c5dd5536417bd7d2b1cdaf9cd8603ddfeb47ae2e36a738e372fd88",
+    "experiments/phase38-spatial/results/recovery-001.json": "4848f48b8db139fca613e0c14c324eabb4f26119ad94aaf653f255e281084a0b",
+    "experiments/phase38-spatial/results/room-manual-review-001.json": "9d7e614424bb97e8f5fab719f3d9f5fdb9648e7ba5367fc358fda8e54f4a7071",
+    "experiments/phase38-spatial/results/room-recovery-001-ledger.jsonl": "95a00680d7240d33e64aa7a84eb68a0760276ed02da2f960c924d1997df4de45",
+    "experiments/phase38-spatial/results/room-recovery-001-witness.jsonl": "301bf7f53b877f74d394a445730724ba78d80fa0e3d0361c51096cd177a96746",
+    "experiments/phase38-spatial/results/room-recovery-001.json": "4cf4352474714e064cfd3c3bdb7e71dc9917a48e2f966836fb0fa6f279a77200",
+    "experiments/phase38-spatial/results/setup-stop-001.json": "c982487bc5884d8593c3e1a0e2443115e1c32ef1ec0b1b20f3df3088e88d8f6e",
+    "experiments/phase38-spatial/results/url-diagnosis-001.json": "610abc717c7fed6bc023f8669a38d5413e0ac1a4fd4be3c24ceb3c1f9f0ef04a"
+  },
+  "privateHistoryBindings": [
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/journal.jsonl",
+      "sha256": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/witness.jsonl",
+      "sha256": "0b446a934d34dc0e63c5cfa595bfd777c55660c0a02ac62012dcb136a3ad3a4f"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/identity.json",
+      "sha256": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/../private-run.anchor",
+      "sha256": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/journal.jsonl",
+      "sha256": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/witness.jsonl",
+      "sha256": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/identity.json",
+      "sha256": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/../private-continuation.anchor",
+      "sha256": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/journal.jsonl",
+      "sha256": "f017d56724bc75ee6b38522a4b439c890f9d74868f2b47fd0d0f72d6e7e701e6"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/witness.jsonl",
+      "sha256": "27c26e496201a6a1880bf1bdb9fb57725ecc6a250cff753704714318cf837b81"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/identity.json",
+      "sha256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/../private-fal-recovery.anchor",
+      "sha256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/journal.jsonl",
+      "sha256": "ba680b1974f1e31e884dbe97c43b4734390d365a0f341e449a92dcccab2d6d4a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/witness.jsonl",
+      "sha256": "34b6f7f260f4995af7a961b8adeca8b66eff5694effef04db4757a90d8a5f0fc"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/identity.json",
+      "sha256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/../private-fal-retrieval.anchor",
+      "sha256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/journal.jsonl",
+      "sha256": "049695142e9685f5c9e5edb566c7dd30eb1817343abdd589e6e1d6c297b7cc8d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/witness.jsonl",
+      "sha256": "177a1dddb8826a9a7a7f7141a3080f603253ecace7fc83e2f3ac1a4db4aa9a5e"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/identity.json",
+      "sha256": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/../private-fal-host-diagnostic.anchor",
+      "sha256": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/journal.jsonl",
+      "sha256": "90fe2ada172ac6df563dd41bfbdeda0f49a816a92f8a8795df98f36dab6047da"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/witness.jsonl",
+      "sha256": "10e607b02258af9e8d2a726e61b53d9d7cdea6d88532fadd00149776b5325fa1"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/identity.json",
+      "sha256": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/../private-fal-artifact.anchor",
+      "sha256": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-chest-final-preparation",
+      "path": "experiments/phase38-spatial/chest/private-chest/journal.jsonl",
+      "sha256": "a9674f6c6887e1d64c24ef0b057921940fb1036ec6025e30d1d2ad5ef200e597"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-chest-final-preparation",
+      "path": "experiments/phase38-spatial/chest/private-chest/witness.jsonl",
+      "sha256": "6c5d2dd519afc6c19d26760619c116ee93097d83e2c74463d90559e39b2c8689"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-chest-final-preparation",
+      "path": "experiments/phase38-spatial/chest/private-chest/identity.json",
+      "sha256": "5dd255cf6fc4b4454bad00edfb76300476981940211229779fe70527faef30a2"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-chest-final-preparation",
+      "path": "experiments/phase38-spatial/chest/private-chest.anchor",
+      "sha256": "5dd255cf6fc4b4454bad00edfb76300476981940211229779fe70527faef30a2"
+    }
+  ],
+  "journalIntegrity": [
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "entries": 40,
+      "executionSHA": "2f8f82edb5d5f3c960d45922b71c543e99208192",
+      "terminalKind": "stop",
+      "terminalDigest": "123b645d3c16b63a56251884e8eb8b6bc8f6491a547eae4c2f23ee8cf935a5ea",
+      "terminalStatus": "STOPPED"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "entries": 88,
+      "executionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+      "terminalKind": "stop",
+      "terminalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+      "terminalStatus": "STOPPED"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "entries": 5,
+      "executionSHA": "115dcf0c50a8b815e61d597970101898a7723bcf",
+      "terminalKind": "recovery_end",
+      "terminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+      "terminalStatus": "OBSERVED_AWAITING_OWNER_REVIEW"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "entries": 5,
+      "executionSHA": "9160d9766559d38139a51516384461958399defc",
+      "terminalKind": "retrieval_end",
+      "terminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+      "terminalStatus": "STOPPED_AWAITING_OWNER_REVIEW"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "entries": 7,
+      "executionSHA": "adebc5e5d9c8e83c1ed6ace277582147b37d5901",
+      "terminalKind": "diagnostic_end",
+      "terminalDigest": "1746edd7614017df229651b6da3c6796b9df94a2556f093b4e1ad60723a37879",
+      "terminalStatus": "STOPPED_AWAITING_OWNER_REVIEW"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "entries": 12,
+      "executionSHA": "0c6ee50ef82a8d2b0423a31bf75ab402cfa492c5",
+      "terminalKind": "artifact_end",
+      "terminalDigest": "443f7ba0a74b235468f2ffe0c8ba52506f8f4245e29616ca6b27a29c287a2d47",
+      "terminalStatus": "RETRIEVED_AWAITING_OWNER_REVIEW"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-chest-final-preparation",
+      "entries": 7,
+      "executionSHA": "5468dcb72683e8c78eb0a098b15c7f1bf0e056cb",
+      "terminalKind": "end",
+      "terminalDigest": "0d3295106a1e35c47b842700418e987ac370db8e23b15bd8300b3d53b38783b8",
+      "terminalStatus": "STOPPED"
+    }
+  ],
+  "retainedEvidenceHashes": [
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 1129723,
+      "sha256": "1f54d810e39af515f3cef5c31a482ef7747d293a1890159c631663185518b16c"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 3538308,
+      "sha256": "0fcc9393ac3348ce6e62d57bd5fbbf7b8d79155a0855142adaedd80267ad8775"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 9987509,
+      "sha256": "aeb206aa80a770dfb859448c083c9d0ca7405073e69e17e7b544907abcd738ac"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 15270,
+      "sha256": "bd942ece19d644ba7238032b0b00fcf6ca9bf8f59263a3ff5a14f5512ae6ad3d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "private_response_hash_only",
+      "bytes": 2723,
+      "sha256": "b2a74c1f1325699ad6c5e8505d3ec09a73a7c8af299f03bce824a5cd38973066"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 1240698,
+      "sha256": "c60cbfdaefa1f9e8c7408a524284173523bc2e5e54651390135937f15ae0e6b3"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 1061592,
+      "sha256": "fca6d0d6b49db5075c89068feeac8db98e8c361161bffb9d5a7decb905c01693"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 9935205,
+      "sha256": "012c20d829c293c6e0e3db91e9cdab1c6b5dda2a6f8e9487e8ccf021f0e72cb0"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "binary",
+      "bytes": 17828,
+      "sha256": "04fa1ceffd6e45c8859ab742746175e7d2818efe0be5483f492b192d3d893427"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "kind": "private_response_hash_only",
+      "bytes": 2627,
+      "sha256": "869dbfa0a9833e24f140958b63d59fcfea77541f0be1b56e017de887ee6cc2da"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "kind": "binary",
+      "bytes": 85481294,
+      "sha256": "721f2afef8c2c045566e20f203557c549d712eef430edd671e5bb2c00b2de331"
+    }
+  ],
+  "frozenFiles": {
+    "originalFreezeSHA256": "27ed701679ff4b369c720d6ce10368a4f87d9f38f6284beb4bf7c59f0c6774ae",
+    "originalInputs": {
+      ".gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+      ".gitignore": "80ed12301c16c8a473dbe6b5f6eacb9e138d9cf63462b7d9d40b42da756dc439",
+      "CONTINUATION_PREPARATION.md": "fa074e663c409723f8760608792cfdd69c179490282cd25a1ca82eb37dd29a2a",
+      "CORRECTION_PROPOSAL.md": "6e43e274daec1183e64e901647c05ed7f760caa015feea6d4f62a401c1216b4e",
+      "FAL_EXACT_ARTIFACT_PREPARATION.md": "f7e788dc26cb188d2f020342d235f2822fa9051bfaac73aaf1b20eadc0e1d92a",
+      "FAL_EXACT_ARTIFACT_RECOVERY_PREPARATION.md": "c98a68bf29318ede92676451d88c047fa03fa65d25a4786f9b6fc92d67e57d53",
+      "FAL_HOST_DIAGNOSTIC_PREPARATION.md": "21f23aedbe307bdb0e73d97fdc20639ae9ab9399fad9186e5ba99b8384f0279c",
+      "FAL_RECOVERY_PREPARATION.md": "caa2dbceee79764d2f4318fc7d2044c921c6f3b9458589b71adf9959a9fd6ebc",
+      "FAL_RETRIEVAL_PREPARATION.md": "42b20f915469c0b899594ab47a6f3a38f1a6884616832a8b3f742ae73a9f4806",
+      "OFFICIAL_EVIDENCE.md": "ef9deb8cc29a8de5a72ab815eb2e9a23acc30f73bc21f1ed0e1a36271795793f",
+      "PREPARATION_RESULTS.md": "d76e8641f7c2c4b0b3ef669f0298ddf1384de8d8219265edf39adec91e75fdce",
+      "README.md": "4ba2ccc7962f3f857936d90819600f6e6a84f11063dc0686b2ee47ced0d5f393",
+      "URL_CORRECTION.md": "96bfc3fb21ada0b76641727480625ba62784f7d0c85aa84447e794191be02487",
+      "continuation.json": "debb7c56ea75d4d6efd5b78d2b9d0544b94e6e0913f4f53408a66b49257ee31b",
+      "fal-exact-artifact-recovery.json": "585525468d336981c535b2bca23d9fb1c6dc61c7211f676cb5ff476445840183",
+      "fal-exact-artifact.json": "2015ddbc3b0b233d37e297ef951b8856c8d9f047fed6583de22b02f53950244a",
+      "fal-host-diagnostic.json": "76857932fb838e0c01e3b60668552515b48d4e8a67202706b77cc6dccd2af2d5",
+      "fal-recovery.json": "f386b152e2d4cc4d3d61a73b3d3a636c80e6180c62aeba6ff69ccf2f4ae5a847",
+      "fal-retrieval.json": "95e905d4a98057ad3075346110792f3d120b43a7fd260a09b433364f82f71f49",
+      "package.json": "7a307d9fe0739d395f69e7b98abc49b434fafbc9e1d3626da78fbf4e1b6a08a4",
+      "protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+      "src/asset-download.ts": "d839a3d7ac8cf229ef2646d6cc09d44141d8e53a129034030497031ee18c3683",
+      "src/cli.ts": "8fa580c16b49e18c35c9f40db6cd31abc240108c0d82597c32c2ad86fb382eea",
+      "src/continuation-cli.ts": "ae95e2bc31514602df6e74f6503ee9dc7ffd0daa7f6e9fb9ae7be6a0af07bae9",
+      "src/continuation-ledger.ts": "927437cf726865f85f840cbbb6fb42601ea2f1d23bc5facb3cc0516716939f03",
+      "src/fal-artifact-cli.ts": "f819cec230534b3018de3b317fe8d2145ec920ef1f8582455cfe2bb37d27d32e",
+      "src/fal-artifact-contract.ts": "0d6e9407f6d3f6e8571f8e7f80390a797d777339d3e886b645ae47ecdeb4e1ed",
+      "src/fal-artifact-download.ts": "4e2c4e63580e4e5c45b1ce1285e2088d3b5a48ad8afa62dbcf8ca32b7cc1b62c",
+      "src/fal-artifact-preflight.ts": "1e6e5ab32208a4e872dc07c7ca8ad50e7b5878143b584f3b5141603cde794c43",
+      "src/fal-artifact-state.ts": "93b5a0b95701ca38879dcc460fd3212ff932e73a5cc4200a985f27a7bd87d2c5",
+      "src/fal-artifact-zip.ts": "a745c5d73c7099df7df1b857524f672433c24d5f438e976fafb490ee3efbbd18",
+      "src/fal-artifact.ts": "e9e55120139e3016433d3d49d13ce52f52578672b467db60fe5793760b97ca69",
+      "src/fal-host-diagnostic-cli.ts": "fbc70e9e24277c7f2688dacd67f9f61f78be2e95184fde8d0ab576052563e534",
+      "src/fal-host-diagnostic-metadata.ts": "8571db03b5332150be9482a9fbd63387c05ceddf1ae5f92ae8d94fc941ceba0c",
+      "src/fal-host-diagnostic-state.ts": "ac04776b724913591f1a5fc06d82f53d0b59534a2de15997250ebdd947d12892",
+      "src/fal-host-diagnostic.ts": "c2b6dc1ff51fd113ba64442da90133c52089b049832de4c9fe5e3f4c0350409b",
+      "src/fal-recovery-cli.ts": "7db8bcdada5e14966d01e612a02f363fa12524ab73412cc1144f66d216b97134",
+      "src/fal-recovery-contract.ts": "2d2389046dea6d4d960fff9b79c42f235c21b48446752d59480d42a9cc4ae1ae",
+      "src/fal-recovery-ledger.ts": "6b297cb0263757c488f1132a6978ae0adf27b6897794e99d4e506bafebb05bdc",
+      "src/fal-recovery.ts": "58664b20541e4064d88b059ad4c0ff5e5cec4b8ab3856e38be5db4757efe679d",
+      "src/fal-retrieval-cli.ts": "bab0997209753370e41fb9c91219d6cbd95493763248f13be61657675350957d",
+      "src/fal-retrieval-contract.ts": "e30a40aeba97e2e0062e12c50428a4595970b9f4d12db77839c62261ef6861e5",
+      "src/fal-retrieval-ledger.ts": "4f808d9845d8da8b2306951b91f10183f176836c75ac37a0e89602d8e6ef6385",
+      "src/fal-retrieval-source.ts": "f1a64e7905f01b0e8a944202d7a0a315a87a3b1f2e5f4c582cc277f2a28593e8",
+      "src/fal-retrieval.ts": "3ed19c34ce82b617e936a47131d7296847d2beca12b8fbad679553d7c086f107",
+      "src/freeze.ts": "e19fe1b60ba42c9f59d81893fadde80abd7a44cab0b72f51ac76f661fa1988d9",
+      "src/ledger.ts": "38c7c600afee42156926bb1c0a3059c335459dde76603429dca07a282c115376",
+      "src/outputs.ts": "26dd4f2a7fa44a922a994e0e80274c3c51bb86f8d9fefc567760b5231122f92c",
+      "src/protocol.ts": "541ab32a9d5a75ee8e96463b4748da6b2b4801ae55e1fd47fccea2f507101115",
+      "src/room-recovery.ts": "7231199a68254df362d5462396480a0f29741dc1e5141809e24508f5bdc0a7f6",
+      "src/runner.ts": "e06cb0f9a4cf6b0528db570740e4310548e3f170de389f9607b1511641daf0b7",
+      "src/transport.ts": "032ed3f60abb79ecd4019a9a5d85913be27f0e950306d6fac31c31de676eacb8",
+      "src/webp.ts": "d9495e7c49b452bbc680145e743e55b1f078bd323aca9c6ef986a13ca798e8c6",
+      "src/world-metadata.ts": "e68066a984365675654a6ecb45c1079e26d5e5a9d29af653a691170b11aaefab",
+      "tests/asset-url.test.mjs": "bceef2e91da436cd6245a0acd568c41c8297832c809fb28ab796a6b438d99b5e",
+      "tests/continuation.test.mjs": "9c6fae04cbbc40ec918cb1d3de25fe978ac0f060b2be83dab68034125d7131bf",
+      "tests/fal-artifact-recovery.test.mjs": "f582b33611b292834d63861aacae8112d327f525354de7712bddf5cd36b3ef34",
+      "tests/fal-artifact.test.mjs": "55ba80b2f24d9db416b606f83d3e4d4cee7bf6ff934cff471bc48d9f2c479265",
+      "tests/fal-host-diagnostic.test.mjs": "d1224b2787e7b900d29965deeddcd58153771519a15080202c7e00d8491c407a",
+      "tests/fal-recovery.test.mjs": "76fd1ee1be9ba2078322263b774184922e4c849ce6bf52185b523dff13111d69",
+      "tests/fal-retrieval.test.mjs": "3dd2ec6780471b6bd533acc0d2ffe998a7af1b98cd08c163cbf0fb54f0fbff5c",
+      "tests/fixtures.mjs": "61c0086fff61a5e914a81474477fe8ea23ca79629f256a505cc1ad867f56528b",
+      "tests/guards.test.mjs": "d137741ea109230474701cc93298fe8cdd30aed400f1f5776342003bc296db59",
+      "tests/webp-fixtures.mjs": "65a3d23160a9c92992c97999c9b138db84c31243caf052c9ca3e2222e16b42da",
+      "tests/webp.test.mjs": "5197cf4a0f439a0e5ebe72836fc91248408af247568b16d9c84b321df50cb75f",
+      "tests/world-metadata.test.mjs": "6e72ead36c9dd8db67222d9e954595d5ead915f9c7846bc7e1dc8b8e93f53464",
+      "tsconfig.json": "55f4aca748fee844c6b8ff19ddccca3003d938fef3a1b6443df66d3b9a499454"
+    },
+    "chestFreezeSHA256": "2571e5cd3343d590f13726870af9e8e7d0d6998eb1d47f77aba99c9f1231ce3f",
+    "chestInputs": {
+      ".gitignore": "236ceed3a8f8de732aaa153a91b993cc67921101283070af919f2fe47dc5abeb",
+      "README.md": "2ea332ed2c6708fc4c6b3df68a769fe13ab7a8c6b38addf879a1862dd879e467",
+      "chest.test.mjs": "852fb821462c487a348a678906ce652ae623d4beb6f33b96fcd32e4dfa899256",
+      "cli.ts": "303d4f51f78fa47dec7ac994ebc6ff8b90c1dd0c3a5f69d8491b37b68e995b90",
+      "contract.ts": "2ddc404e8d6bff87b0ff7ee9a89a0d8c8ac4d638b9bb3d3bc849c02ac5a9d35e",
+      "freeze.ts": "a21bcc3464b752ef4cb0662fff3d4fa5e88178c29496cb9330e12adfca94909b",
+      "glb.ts": "a412df688b81914c3b62ce294b12c69ef90863090b89a3f875e3d3c804472989",
+      "manifest.json": "1691737f7de7b87c38636198dc69150ad74cd6ace82bf0bb01c0af611d96bbc2",
+      "runner.ts": "9c4dd21fa355a2ef61ef96ea53c5b12fb2023d3c52e0f308b3242698a4b92bf8",
+      "state.ts": "7f068722390395508a21b8e1316fa51cbd7d74e401987fb5ea64f38bc0162f2b",
+      "tsconfig.json": "9b129b05ea405eac52eb2d227bff3c8bd9ff30fce19510f35fc405d5d8bc181e"
+    }
+  },
+  "outcomes": {
+    "room": {
+      "classification": "BOUNDED_SPATIAL_WORLD_CAPABILITY_SUFFICIENT_FOR_ARCHITECTURE_DECISION",
+      "provider": "worldlabs",
+      "requestedModel": "marble-1.1",
+      "actualModel": "marble-1.1",
+      "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e",
+      "assets": [
+        {
+          "role": "splat",
+          "kind": "splat",
+          "bytes": 1129723,
+          "sha256": "1f54d810e39af515f3cef5c31a482ef7747d293a1890159c631663185518b16c",
+          "metadata": {
+            "format": "spz",
+            "points": 98304,
+            "structuralOnly": true,
+            "version": 2
+          }
+        },
+        {
+          "role": "collider",
+          "kind": "geometry",
+          "bytes": 3538308,
+          "sha256": "0fcc9393ac3348ce6e62d57bd5fbbf7b8d79155a0855142adaedd80267ad8775",
+          "metadata": {
+            "format": "glb",
+            "materials": 0,
+            "meshes": 1,
+            "nodes": 2,
+            "structuralOnly": true
+          }
+        },
+        {
+          "role": "pano",
+          "kind": "image",
+          "bytes": 9987509,
+          "sha256": "aeb206aa80a770dfb859448c083c9d0ca7405073e69e17e7b544907abcd738ac",
+          "metadata": {
+            "format": "png",
+            "height": 2304,
+            "width": 4608
+          }
+        },
+        {
+          "role": "thumbnail",
+          "kind": "image",
+          "bytes": 15270,
+          "sha256": "bd942ece19d644ba7238032b0b00fcf6ca9bf8f59263a3ff5a14f5512ae6ad3d",
+          "metadata": {
+            "alphaHint": null,
+            "chunks": 1,
+            "codec": "VP8",
+            "format": "webp",
+            "height": 480,
+            "structuralOnly": true,
+            "width": 720
+          }
+        }
+      ],
+      "reportedScale": {
+        "ground_plane_offset": 1.537428617477417,
+        "metric_scale_factor": 2.268181800842285
+      },
+      "reopenIdentityStable": true,
+      "visualQuality": "NOT_ACCEPTED",
+      "navigation": "UNVERIFIED",
+      "canonicalMetricCorrectness": "UNVERIFIED",
+      "productionRenderer": "NOT_ACCEPTED"
+    },
+    "courtyard": {
+      "classification": "BOUNDED_SPATIAL_WORLD_CAPABILITY_SUFFICIENT_FOR_ARCHITECTURE_DECISION",
+      "provider": "worldlabs",
+      "requestedModel": "marble-1.1-plus",
+      "actualModel": "marble-1.1-plus",
+      "worldId": "fedc9eef-f123-4f96-b00a-bd9e955a9326",
+      "assets": [
+        {
+          "role": "splat",
+          "kind": "splat",
+          "bytes": 1240698,
+          "sha256": "c60cbfdaefa1f9e8c7408a524284173523bc2e5e54651390135937f15ae0e6b3",
+          "metadata": {
+            "format": "spz",
+            "points": 98304,
+            "structuralOnly": true,
+            "version": 2
+          }
+        },
+        {
+          "role": "collider",
+          "kind": "geometry",
+          "bytes": 1061592,
+          "sha256": "fca6d0d6b49db5075c89068feeac8db98e8c361161bffb9d5a7decb905c01693",
+          "metadata": {
+            "format": "glb",
+            "materials": 0,
+            "meshes": 1,
+            "nodes": 2,
+            "structuralOnly": true
+          }
+        },
+        {
+          "role": "pano",
+          "kind": "image",
+          "bytes": 9935205,
+          "sha256": "012c20d829c293c6e0e3db91e9cdab1c6b5dda2a6f8e9487e8ccf021f0e72cb0",
+          "metadata": {
+            "format": "png",
+            "height": 2304,
+            "width": 4608
+          }
+        },
+        {
+          "role": "thumbnail",
+          "kind": "image",
+          "bytes": 17828,
+          "sha256": "04fa1ceffd6e45c8859ab742746175e7d2818efe0be5483f492b192d3d893427",
+          "metadata": {
+            "alphaHint": null,
+            "chunks": 1,
+            "codec": "VP8",
+            "format": "webp",
+            "height": 480,
+            "structuralOnly": true,
+            "width": 720
+          }
+        }
+      ],
+      "reportedScale": {
+        "ground_plane_offset": 2.742072582244873,
+        "metric_scale_factor": 4.759617805480957
+      },
+      "reopenIdentityStable": true,
+      "visualQuality": "NOT_ACCEPTED",
+      "navigation": "UNVERIFIED",
+      "canonicalMetricCorrectness": "UNVERIFIED",
+      "productionRenderer": "NOT_ACCEPTED"
+    },
+    "falWorld": {
+      "classification": "STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE",
+      "ownerAcceptedStructuralOnly": true,
+      "artifactBytes": 85481294,
+      "artifactSHA256": "721f2afef8c2c045566e20f203557c549d712eef430edd671e5bb2c00b2de331",
+      "zipValid": true,
+      "plyMeshes": 3,
+      "vertices": 1963959,
+      "triangularFaces": 3953559,
+      "coordinatesFinite": true,
+      "faceReferencesValid": true,
+      "pngFiles": 12,
+      "jsonFiles": 2,
+      "drcRequested": true,
+      "drcPresent": false,
+      "drcAbsence": "PROVIDER_EXPORT_LIMITATION_NO_RETRY",
+      "actualProviderAPIModel": null,
+      "visualQuality": "UNVERIFIED",
+      "navigation": "UNVERIFIED",
+      "futureFormatPolicy": "Support observed PLY or validated offline conversion; never require DRC exclusively."
+    },
+    "chest": {
+      "requestId": "01a0bd57-6a2f-77f2-b12d-58e56ce400ac",
+      "executionSHA": "5468dcb72683e8c78eb0a098b15c7f1bf0e056cb",
+      "status": "STOPPED",
+      "submissionAccepted": true,
+      "submissionHTTPStatus": 200,
+      "validatedQueueState": "IN_QUEUE",
+      "submissions": 1,
+      "statusPolls": 1,
+      "resultGETs": 0,
+      "downloads": 0,
+      "stopReason": "http_or_redirect_failure",
+      "failureDetail": "Non-200 status versus response-URL mismatch cannot be distinguished from retained frozen-transport evidence.",
+      "providerCompletion": "UNKNOWN",
+      "providerGenerationFailureProven": false,
+      "actualProviderAPIModel": null,
+      "chargeUSD": null,
+      "glbRetrieved": false,
+      "pbr": "UNVERIFIED",
+      "objectStructure": "UNVERIFIED",
+      "lidClassification": "STRUCTURE_UNVERIFIED",
+      "separateLidProven": false,
+      "visualQuality": "MANUAL_REVIEW_REQUIRED",
+      "recoveryPlanned": false
+    }
+  },
+  "accounting": {
+    "reservations": [
+      {
+        "jobId": "spatial-room-1",
+        "reservedMicroUSD": 1300000
+      },
+      {
+        "jobId": "spatial-courtyard-1",
+        "reservedMicroUSD": 2500000
+      },
+      {
+        "jobId": "spatial-fal-world-1",
+        "reservedMicroUSD": 350000
+      },
+      {
+        "jobId": "spatial-chest-1",
+        "reservedMicroUSD": 600000
+      }
+    ],
+    "knownReportedBilling": [
+      {
+        "jobId": "spatial-room-1",
+        "reportedMicroUSD": 1264000
+      },
+      {
+        "jobId": "spatial-courtyard-1",
+        "reportedMicroUSD": 1264000
+      }
+    ],
+    "totalReservedMicroUSD": 4750000,
+    "ceilingMicroUSD": 4750000,
+    "remainingAllocationMicroUSD": 0,
+    "knownReportedMicroUSD": 2528000,
+    "falWorldReportedMicroUSD": null,
+    "chestReportedMicroUSD": null,
+    "falWorldRetainedMicroUSD": 350000,
+    "chestRetainedMicroUSD": 600000,
+    "generationSubmissions": 4,
+    "apiRequestsExcludingAssets": 49,
+    "completedDownloads": 9,
+    "roomCarryCountedOnce": true,
+    "refunds": 0,
+    "reuse": false,
+    "fifthGenerationAllowed": false,
+    "unknownChargesAreNotZero": true
+  },
+  "architecture": {
+    "authoritativeState": "RPG/world state",
+    "generatedRepresentations": "Versioned non-authoritative projections",
+    "interactionBindings": "Reuse versioned spatial bindings; only structurally verified addressable nodes/meshes/parts/anchors map to stable canonical RPG entities/actions.",
+    "providerIDsCanonical": false,
+    "objectGenerationRequired": false,
+    "fusedParts": "Accepted provider limitation; no automatic regeneration.",
+    "textMode": "Permanent first-class mode independent of spatial generation and renderers",
+    "primaryPlannedVisualGameplay": "2D Live",
+    "explore": "Optional progressive v1 presentation; asset-first after Phase 4 canonical visual foundations",
+    "spatialProviderDoesNotGate": [
+      "World Engine",
+      "Rulesets",
+      "DM",
+      "Memory",
+      "Saves/Timelines",
+      "progression"
+    ],
+    "additionalPhase38BExperimentPlanned": false,
+    "productionRendererAccepted": false,
+    "visualQualityAccepted": false,
+    "navigationAccepted": false,
+    "metricAlignmentAccepted": false,
+    "objectArticulationAccepted": false,
+    "hostedDeploymentAccepted": false
+  },
+  "roadmap": {
+    "branch": "chatgpt/poi-2d-roadmap",
+    "ownerDesignatedSHA": "a3d0fa66da42f36a5401c3513e3484e83150f9d3",
+    "commitAvailableLocally": false,
+    "localBranchSHA": "34ad3f3baedfde936f0d855f78c1adfcd2119415",
+    "fetchPerformed": false,
+    "source": "OWNER_DESIGNATED_TARGET_NOT_INDEPENDENTLY_VERIFIED_OFFLINE",
+    "scopeFromOwner": [
+      "World Engine",
+      "World Library / Packs",
+      "bounded Research from Web",
+      "Rulesets / Dynamic UI",
+      "Progression / Rewards / Challenge Scaling",
+      "companion progression",
+      "DM Craft / Campaign DM Style",
+      "spellbook / spellcasting",
+      "World Magic Rules",
+      "semantic physical causality",
+      "Text / 2D / EXPLORE architecture",
+      "Interaction Bindings"
+    ],
+    "nextSeparatelyReviewedStep": "Safe source-of-truth integration of exact roadmap and final freeze into production main",
+    "nextDevelopmentPhaseAfterIntegration": "Production multi-agent coding sprint; Lead/Integrator controls shared contracts/migrations; specialized development workers share one source of truth",
+    "broadProductResearchDesign": "CLOSED_UNLESS_IMPLEMENTATION_REVEALS_GENUINE_BLOCKER",
+    "futureProviderIssue": "Separately bounded implementation blocker investigation, not continuation of the bake-off",
+    "branchModified": false,
+    "mainMerged": false,
+    "productionCodingStarted": false
+  },
+  "documentationFiles": {
+    "MASTER_SPEC.md": {
+      "sha256": "c83384d43a4222655d92cf0b039a2b11766f7eae27b08ce152341bfef3281e4d",
+      "byteConvention": "UTF-8 with CRLF normalized to LF, matching Git blob content"
+    },
+    "DEVELOPMENT_PLAN.md": {
+      "sha256": "5b43606f1179ad400fa0fcff951d9bcf1253fb22b08577e89f531e6b26d4ed3b",
+      "byteConvention": "UTF-8 with CRLF normalized to LF, matching Git blob content"
+    },
+    "PHASE38_SPATIAL_RUNTIME.md": {
+      "sha256": "ed3a1533e747b28a71768603fef0c9ed63d225457b718fa41143b1d73fc3df11",
+      "byteConvention": "UTF-8 with CRLF normalized to LF, matching Git blob content"
+    },
+    "PHASE38B_ARCHITECTURE_FREEZE.md": {
+      "sha256": "8e6f2097232082191b44314d076b121f6394e8d9106b9e31cc4c9c4be2811893",
+      "byteConvention": "UTF-8 with CRLF normalized to LF, matching Git blob content"
+    },
+    "DEV_STATUS.md": {
+      "sha256": "0e9789ea92c6cad78ab40feae27ce378b48314d4b88cca571bbe88356327ce0c",
+      "byteConvention": "UTF-8 with CRLF normalized to LF, matching Git blob content"
+    }
+  },
+  "preservation": {
+    "localMainSHA": "96964964a7d5046ff34b6b6ae695ecf494885cc4",
+    "originalUncommittedDocumentHashes": {
+      "DEV_STATUS.md": "ed3e5a3f2cc63e9e3d0191111f518ba839f0ae8698cf4d67b20f258306c64a7b",
+      "PHASE3_EVALUATION.md": "4258d581fd8570bb4b194eda95170cbdda1f05359b334e6a48865879092a46e0"
+    },
+    "priorSTOPsUnchanged": true,
+    "oldSTOPReclassifiedAsSuccess": false,
+    "resultsRewritten": false,
+    "codeTestsConfigsDependenciesUnchanged": true,
+    "phase3And35ContractsUnchanged": true,
+    "privateBinaryCommitted": false,
+    "credentialsOrSignedURLsOrRawPrivateProviderBodiesCommitted": false
+  },
+  "verification": {
+    "sourceEvidenceHashChecks": "PASS",
+    "privateHistoryHashChecks": "PASS",
+    "journalWitnessIdentityIntegrity": "PASS",
+    "evidenceCommitAncestry": "PASS",
+    "accounting": "PASS",
+    "priorEvidenceFiles": 37,
+    "privateHistoryFiles": 28,
+    "journals": 7,
+    "journalEntries": 164,
+    "retainedFilesRehashed": 11,
+    "retainedBytesRehashed": 112412777,
+    "originalFrozenInputs": 67,
+    "chestFrozenInputs": 11,
+    "currentCodeTests": "NOT_RERUN_DOCUMENTATION_ONLY_HASH_VERIFIED",
+    "currentTypecheckLintBuild": "NOT_RERUN_NO_RELEVANT_CODE_OR_CONFIG_CHANGE",
+    "historicalPostChestVerification": {
+      "commit": "b7917b371a54d919842df69acdc3c19bc2f0bc2a",
+      "testsPassed": 839,
+      "typecheck": "PASS: all three configs",
+      "lint": "PASS: zero warnings",
+      "isolatedBuilds": "PASS: all three configs"
+    },
+    "roadmapExactCommitVerification": "DEFERRED_UNAVAILABLE_LOCALLY_NO_FETCH",
+    "changedDocumentationLocalLinks": {
+      "status": "PASS",
+      "links": 33,
+      "anchors": 2
+    },
+    "strictUTF8": "PASS",
+    "conflictMarkers": "NONE",
+    "whitespace": "PASS",
+    "sensitiveDataScan": "PASS",
+    "changedFileScope": "PASS_SIX_DOCUMENTATION_EVIDENCE_FILES",
+    "mainAndRoadmapAndOriginalDocs": "UNCHANGED",
+    "sevenExecutionCheckouts": "EXACT_AND_CLEAN"
+  },
+  "currentTask": {
+    "providerCalls": 0,
+    "generations": 0,
+    "polls": 0,
+    "resultRetrievals": 0,
+    "artifactDownloads": 0,
+    "assetDNSCalls": 0,
+    "billingQueries": 0,
+    "chestRecovery": 0,
+    "falWorldRetry": 0,
+    "worldLabsCalls": 0,
+    "ledgerMutations": 0,
+    "newReservations": 0,
+    "credentialReads": 0,
+    "networkScope": "Only explicitly requested GitHub freeze branch push and remote verification; zero experiment network calls."
+  },
+  "remainingVerificationBoundaries": [
+    "Physical iPhone/Safari unverified",
+    "Historical optional Phase 1 conflict-rebase confirmation unverified",
+    "Finite synthetic tests do not guarantee perfect branching, memory isolation, geometry or universal recovery",
+    "No hosted deployment or real campaign/private-data acceptance",
+    "No production renderer, visual quality, navigation, canonical metric, object articulation or EXPLORE readiness acceptance"
+  ],
+  "stop": "OWNER_REVIEW_NO_PROVIDER_EXPERIMENT_OR_PRODUCTION_CODING",
+  "integrity": {
+    "algorithm": "SHA-256",
+    "canonicalization": "Recursively key-sorted compact JSON with original array order; UTF-8; omit the integrity property.",
+    "payloadSHA256": "eef894c15e27bc167cf3bbcbaaf99dd51ec640f545b1a16cd1b2e539da239119"
+  }
+}

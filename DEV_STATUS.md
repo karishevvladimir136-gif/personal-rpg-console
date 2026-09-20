@@ -1,5 +1,48 @@
 # Development status
 
+Last updated: September 20, 2026 UTC. Never include secrets, credentials or DM-private content.
+
+## Current milestone and status
+
+**PHASE 3.8B — ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** Final documentation/evidence freeze prepared from owner-accepted chest evidence **b7917b371a54d919842df69acdc3c19bc2f0bc2a**. [Final decision](PHASE38B_ARCHITECTURE_FREEZE.md), identity **phase38b-final-architecture-evidence-freeze-1**, and [machine-readable bindings](experiments/phase38-spatial/final-freeze.json) consolidate the accepted record without modifying any historical outcome. No further Phase 3.8B spatial/provider experiment is planned. This is not production renderer, visual, navigation, metric, articulation, EXPLORE or hosted-deployment acceptance.
+
+### Completed work and files / areas changed
+
+Added only the final decision document and static evidence/index hash record; aligned current scope in MASTER_SPEC.md, DEVELOPMENT_PLAN.md and PHASE38_SPATIAL_RUNTIME.md; updated this status. All historical result files, live protocol, provider research snapshot, original/chest freezes, code, tests, configuration and dependency files remain unchanged. No new ledger, approval, reservation, credentials, provider request or binary artifact was created or committed.
+
+Room/courtyard demonstrate bounded World Labs generation/reopen/output capability sufficient for the architecture decision. Fal-world is owner-accepted as **STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE**: valid ZIP, three valid nonempty PLY layers, finite coordinates/triangular references and PNG/JSON supporting files. Missing DRC despite export_drc:true remains a provider/export limitation; no retry; support PLY or validated offline conversion, never DRC-only production requirements.
+
+Chest execution **5468dcb72683e8c78eb0a098b15c7f1bf0e056cb**, identity **phase38b-chest-final-1**, request **01a0bd57-6a2f-77f2-b12d-58e56ce400ac**: one POST accepted HTTP 200 / IN_QUEUE; first status poll stopped at **http_or_redirect_failure**. The frozen transport cannot distinguish non-200 versus response-URL mismatch from its retained metadata. Completion and charge remain UNKNOWN; no GLB; PBR/object/lid unverified; **STRUCTURE_UNVERIFIED**, separate lid not proven. This is not classified as provider generation failure. No recovery/retry/poll is planned.
+
+### Tests and verification status
+
+Current verification is offline: exact bindings for **37 evidence files**, **28 private history files**, **7 journal/witness/identity chains / 164 entries**, **67 original + 11 chest frozen inputs**, source Git ancestry and final accounting. **11 retained local files / 112,412,777 bytes rehashed**, without decoding/extraction or downloading. Changed documentation receives local link/anchor, strict UTF-8, conflict-marker and whitespace checks; verification details are retained in the final freeze JSON.
+
+The accepted chest evidence records **839 deterministic tests passed, all three typechecks/builds and zero-warning lint passed**. These are historical post-run results, not rerun claims for this documentation pass. No code/test/config changes; typecheck/lint/build and code tests not rerun. No production/live integration checks or provider calls.
+
+### Key technical decisions and final accounting
+
+Authoritative RPG/world state remains truth. Generated representations are projections. Provider-neutral Interaction Bindings map only structurally verified addressable nodes/meshes/parts/anchors to stable canonical entities/actions, reusing the existing spatial-binding concept; provider IDs are not canonical IDs. Object generation is not a production architecture dependency; fused/non-addressable output is an acceptable limitation, never automatic regeneration permission.
+
+Text remains permanently first-class and independent. **2D Live is the primary planned visual gameplay layer**; EXPLORE remains optional/progressive and asset-first after canonical visual foundations. Spatial providers do not gate World Engine, Rulesets, DM, Memory, Saves/Timelines or progression.
+
+**Four historical submissions; $4.75 / $4.75 permanently reserved; $0 remaining; $2.528 known reported billing.** Fal-world/chest charges remain UNKNOWN, not zero; retain their $0.35/$0.60 reservations. Room carry counted once. No refund, reuse, replenishment or fifth generation. Old STOPs/results/identities remain immutable; none is reclassified as successful.
+
+### Known issues and remaining work
+
+Visual quality, navigation, canonical metric alignment, object articulation and production EXPLORE acceptance remain unverified. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic results are not guarantees of perfect branching, memory isolation or universal recovery. No hosted deployment or real campaign/private-data acceptance.
+
+Owner-designated latest roadmap: **chatgpt/poi-2d-roadmap @ a3d0fa66da42f36a5401c3513e3484e83150f9d3**. The exact object is unavailable locally; its contents/ancestry are not independently verified in this offline task. Local roadmap ref remains **34ad3f3baedfde936f0d855f78c1adfcd2119415**. No fetch, roadmap modification, main merge or replacement target. Preserve original checkout's pre-existing documentation unchanged.
+
+### Recommended next step
+
+**STOP for owner review.** Next separately reviewed step: safe source-of-truth integration of the exact owner-approved roadmap and this freeze into production main. Broad product research/design is closed unless a genuine implementation blocker appears. After safe integration, the next development phase is a **production multi-agent coding sprint**, with Lead/Integrator control of shared contracts/migrations and specialized agents on the same source of truth. Do not start it here. Future provider issues are implementation blocker investigations, not continuation of this bake-off. No additional spatial experiment, chest recovery, fal-world retry, deployment or real import.
+
+---
+
+## Historical final chest stopped evidence checkpoint
+
+
 Last updated: September 20, 2026 UTC (September 19 local). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status

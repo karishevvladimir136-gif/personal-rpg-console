@@ -1,8 +1,16 @@
-# Phase 3.8A — Spatial Runtime / EXPLORE architecture
+# Spatial Runtime / EXPLORE — final Phase 3.8B architecture decision
 
-2026-09-19. **Documentation and offline test-plan complete for owner review; no implementation or live spatial evaluation.** [Phase 3.75 final decision](PHASE375_ARCHITECTURE_DECISION.md) is fixed. [Provider evidence](PHASE38_PROVIDER_CAPABILITIES.md) distinguishes current documentation from unknowns; [3.8B proposal](PHASE38B_LIVE_PROTOCOL.md) is not permission to call providers.
+2026-09-20 UTC. **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** The [final freeze](PHASE38B_ARCHITECTURE_FREEZE.md) records accepted capability evidence and limitations; [Phase 3.75 decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Provider research](PHASE38_PROVIDER_CAPABILITIES.md) and [original protocol](PHASE38B_LIVE_PROTOCOL.md) are dated historical evidence, not fresh provider permission. No additional Phase 3.8B experiment is planned. The contracts below remain design only; no production renderer/runtime was implemented by the experiment.
 
-EXPLORE is part of v1. Natural language and normal Game remain primary. Production EXPLORE comes **after Phase 4 FRAME / Visual Bible**, reusing approved visual references. Spatial research now does not start Phase 4, a World Engine, media generation or a production sprint.
+EXPLORE remains an optional, progressive v1 capability, asset-first **after Phase 4 FRAME / Visual Bible**. **Text mode is permanently functional without spatial generation or rendering. 2D Live is the primary planned visual gameplay layer**, optional over the same authoritative RPG/world state; natural language remains the main input. Visual style remains agnostic. Spatial provider infrastructure is not a dependency of World Engine, Rulesets, DM, Memory, Saves/Timelines or progression.
+
+## Frozen capability disposition
+
+Room/courtyard demonstrate bounded World Labs world-generation capability sufficient for architecture choice; Marble remains the intended initial EXPLORE provider unless implementation reveals a concrete blocker. SPZ/collider/panorama availability and stable reopen observations do not prove rendering, navigation, canonical scale, final visual quality or production EXPLORE readiness.
+
+Fal Hunyuan World is accepted as STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE. Future adapters/renderers support the observed valid ZIP/PLY representation or a validated offline conversion path; production must not require DRC exclusively. Absent requested DRC is a provider/export limitation, not retry permission. Visual/navigation remain unverified.
+
+Chest submission acceptance is not a completed object capability result. The first status poll hit a local transport gate; completion/billing are UNKNOWN, no GLB was retrieved, PBR/object/lid structure remains unverified, separate lid not proven. Object generation is not a production architecture dependency. **Interaction Bindings** use the existing SpatialBindingVersion concept below and bind only structurally verified addressable nodes/meshes/parts/anchors to stable canonical entities/actions. Provider IDs are never canonical IDs; names/materials/appearance do not prove semantic lid identity. Fused/non-addressable output is an acceptable limitation, never an automatic regeneration trigger.
 
 ## Inspected foundation and reuse
 
@@ -110,8 +118,8 @@ Future browser gates include English/Russian labels, keyboard/touch controls, re
 
 ## Roadmap and review boundary
 
-3.8A now: this brief, official capability evidence and minimal proposed 3.8B. 3.8B only after new owner authorization: frozen synthetic inputs, explicit endpoints/cost caps and an isolated experiment; no production dependencies. Phase 4 FRAME / Visual Bible remains separately scoped. After Phase 4, propose the smallest hosted/static EXPLORE implementation using its approved references and the measured 3.8B findings. Realtime streams, articulation/physics and private spatial generation need later independent gates.
+Phase 3.8A/B research and capability evidence are closed with documented limitations. Four submissions exhausted the $4.75 reservation ceiling; no fifth job, chest recovery or fal-world retry is planned. Historical STOPPED identities remain unchanged. No future provider issue reopens this bake-off; a concrete implementation blocker receives a separate bounded investigation. Phase 4 visual foundations and later production EXPLORE retain their implementation/acceptance gates. No continuous stream, object articulation or private spatial generation was accepted by these samples.
 
 Owner Diagnostics / System Inspector remains late-stage: owner-readable sanitized provider/job/provenance/failure information, never keys, chain-of-thought or a spoiler/private-state browser. AutoEval / autoresearch remains future bounded owner-authorized experiments with frozen inputs, budgets and review; never autonomous production self-modification, automatic adoption or continuous paid probing.
 
-Open decisions for later implementation: viewer/export path, source-safe rendering limits, artifact lifecycle and storage quotas, minimal accepted formats and interaction set. No keys/setup required to review these documents. Stop before paid generation, production changes, deployment or real data.
+Remaining viewer/export, rendering/privacy, storage, format and interaction details are implementation scoping and acceptance work, not a new broad research/design cycle. Broad product research/design is closed unless implementation reveals a genuine blocker. Next: separately reviewed safe integration of owner-designated roadmap chatgpt/poi-2d-roadmap at a3d0fa66da42f36a5401c3513e3484e83150f9d3 into main; that object is unavailable locally in this offline pass and its content/ancestry is not claimed verified. Then a separately authorized production multi-agent coding sprint uses one Lead/Integrator for shared contracts/migrations and specialized agents on the same source of truth. No merge, coding, deployment or real import occurs here.

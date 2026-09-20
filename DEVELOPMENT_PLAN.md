@@ -1,7 +1,7 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
-**Current boundary, September 19, 2026:** Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) keeps direct OpenAI Responses, preserves the abstraction seam and closes Jev without adoption; incomplete benchmark evidence is sufficient for that architecture decision only. Phase 3.8A is owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. Phase 3.8B isolated preparation/mock tests only are authorized now; future live jobs require approval of the exact preparation SHA. Production EXPLORE is part of v1 after Phase 4 FRAME / Visual Bible; no production slice, new model call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
+**Current boundary, September 20, 2026 UTC:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. The [Phase 3.75 owner decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. Phase 3.8A was owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. Phase 3.8B is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS** at the [final spatial architecture/evidence freeze](PHASE38B_ARCHITECTURE_FREEZE.md), based on accepted chest evidence b7917b371a54d919842df69acdc3c19bc2f0bc2a. Four submissions consumed the entire $4.75 reservation allocation; no further spatial/provider experiment is planned. This is architecture/capability acceptance only, not production renderer, navigation, visual, metric, articulation, EXPLORE or deployment acceptance. Broad product research/design is closed. The next separately reviewed task is safe source-of-truth integration of owner-designated roadmap chatgpt/poi-2d-roadmap at a3d0fa66da42f36a5401c3513e3484e83150f9d3 into main; no merge or production coding occurs in this freeze. Earlier phase instructions are historical, not current call/import/deployment permission.
 
 ---
 
@@ -368,15 +368,32 @@ The owner already requires nontechnical onboarding and secret-free campaign sett
 
 # PHASE 3.8A — SPATIAL RUNTIME ARCHITECTURE / RESEARCH
 
-Authorized now, documentation/offline test-plan only. Deliver [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [dated official capability evidence](PHASE38_PROVIDER_CAPABILITIES.md), [proposed minimal 3.8B](PHASE38B_LIVE_PROTOCOL.md), and the [Phase 3.75 freeze](PHASE375_ARCHITECTURE_DECISION.md). Inspect accepted DM, Memory, save/timeline contracts first. No live calls, paid generation, credentials, runtime/UI/configuration/dependency changes or migrations.
+Historical completed architecture/research phase, owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. [Spatial Runtime](PHASE38_SPATIAL_RUNTIME.md), [dated official capability evidence](PHASE38_PROVIDER_CAPABILITIES.md), [original 3.8B protocol](PHASE38B_LIVE_PROTOCOL.md), and the [Phase 3.75 freeze](PHASE375_ARCHITECTURE_DECISION.md) remain the design/evidence lineage. No fresh research or live permission follows from these historical instructions.
 
 Gate: capability-dependent provider/artifact/binding contracts; source/knowledge/version/epoch fencing; return-visit/correction/regeneration/provider-switch behavior; input and output spoiler controls; failures independent of text/DM/saves/media; current official availability/price/license/hardware/privacy evidence with explicit unknowns. Owner reviews documentation before any next stage.
 
-# PHASE 3.8B — PROPOSED SYNTHETIC LIVE SPATIAL CAPABILITY TEST
+# PHASE 3.8B — FINAL SPATIAL ARCHITECTURE / EVIDENCE FREEZE
 
-Not authorized to execute. First separately prepare/freeze experiment-only inputs/receipts/parsers and offline guard tests. Then obtain explicit owner approval of exact commit, endpoints, call/read/download counts and cost ceiling. Proposed workload: two Marble worlds (room/courtyard), one fal Hunyuan World export probe using the synthetic panorama, one fal Hunyuan3D 3.1 object; at most four serialized paid submissions, $4.75 total reservation ceiling. Stop on first unexplained failure, no retries/fallback/diagnostics. Unknown charges remain unknown and reserved. No real data or production merge.
+**ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** [Final decision](PHASE38B_ARCHITECTURE_FREEZE.md) and [machine-readable evidence freeze](experiments/phase38-spatial/final-freeze.json) bind the accepted record through chest evidence b7917b371a54d919842df69acdc3c19bc2f0bc2a. Historical preparation/live instructions and all STOPPED identities remain unchanged.
 
-Gate: observed formats/persistence/scale/bindings/viewing/privacy and cost, separately from visual quality and unknowns. Do not interpret finite synthetic success as production acceptance. No automatic follow-on batch or implementation. Realtime/object articulation can remain deferred.
+- Room and courtyard demonstrate bounded spatial-world generation sufficient for the architecture decision; production rendering, visual quality, navigation and canonical metric alignment are not accepted.
+- Fal-world is structurally accepted with three valid PLY meshes in a valid ZIP, supported PNG/JSON files, finite coordinates and triangular face references. Missing DRC despite export_drc:true is a retained limitation, never a retry reason. Support observed PLY or validated offline conversion; no DRC-only production dependency.
+- Chest POST was accepted (HTTP 200, IN_QUEUE); first status poll stopped at http_or_redirect_failure. The transport did not retain enough metadata to distinguish non-200 from response-URL mismatch. Completion/charge UNKNOWN; no GLB; PBR/object/lid unverified, STRUCTURE_UNVERIFIED; separate lid not proven. No recovery/poll/retry. Object generation is not a production architecture dependency.
+- Four historical submissions, $4.75/$4.75 permanently reserved, $0 remaining, $2.528 known reported billing; fal-world/chest charges UNKNOWN. Retain $0.35/$0.60; no refund/reuse/fifth generation.
+
+No additional Phase 3.8B spatial/provider experiment is planned. Successful output never implies production EXPLORE or hosted deployment acceptance. Any future provider issue is an implementation blocker investigation under its own scope, not continuation of this bake-off.
+
+## Source-of-truth integration before production coding
+
+Latest owner-approved roadmap: **chatgpt/poi-2d-roadmap @ a3d0fa66da42f36a5401c3513e3484e83150f9d3**. This target is owner-provided; the exact object is absent locally, and this offline freeze neither fetches it nor claims its contents/ancestry verified. Local roadmap ref remains 34ad3f3baedfde936f0d855f78c1adfcd2119415. Do not substitute that older SHA for the owner-designated target.
+
+Next separately reviewed task: fetch/inspect the exact designated roadmap, verify ancestry and overlaps, preserve the original checkout's uncommitted documentation, and safely integrate roadmap plus this freeze into production main using the existing reviewed workflow. No main merge or roadmap edit occurs in this task. Earlier A–E slice names/detail above are historical source material pending that reconciliation, not a competing approved roadmap.
+
+Owner-reported roadmap scope: World Engine; World Library / Packs; bounded Research from Web; Rulesets / Dynamic UI; Progression / Rewards / Challenge Scaling; companion progression; DM Craft / Campaign DM Style; spellbook / spellcasting; World Magic Rules; semantic physical causality; Text / 2D / EXPLORE architecture; Interaction Bindings. This list records the handoff without designing these features again.
+
+Broad product research/design is closed. Do not open another broad architecture/research cycle unless implementation reveals a genuine blocker. **After safe roadmap integration, the next development phase is a production multi-agent coding sprint**: one Lead/Integrator controls shared contracts and migrations; specialized development agents use the same source of truth and coordinated file ownership. This does not authorize coding now or introduce multiple gameplay DM runtimes.
+
+Authoritative state remains primary. Text is permanently independent; **2D Live is the primary planned visual gameplay layer**; EXPLORE remains optional/progressive and asset-first after Phase 4 canonical visual foundations. Provider infrastructure does not gate World Engine, Rulesets, DM, Memory, Saves/Timelines or progression. Interaction Bindings require structurally verified addressability and never use provider IDs as canonical IDs.
 
 ---
 
@@ -476,7 +493,7 @@ The owner prefers playing here over managing the same campaign manually in ChatG
 
 FRAME and VIDEO must support owner choice of supported providers/models, independently, with campaign defaults and per-generation overrides. Optional Fast / Quality / Key Scene profiles supplement rather than replace manual selection. Exact providers/models are undecided. Follow MASTER_SPEC section 32, including spoiler-safe prompt expansion, capability validation, cost transparency, and no silent model fallback. This decision adds no implementation work to Phase 0 and does not authorize starting later milestones.
 
-## Owner roadmap clarification — Phase 3.8B preparation
+## Historical owner roadmap clarification — Phase 3.8B preparation
 
 Phase 3.8A is owner-approved at `444f6836a5abce2014c3de4b6f234bf2a75399af`. Phase 3.8B is authorized for isolated harness preparation and deterministic tests only. Future paid generation requires explicit owner approval of the exact preparation SHA; see [frozen experiment](experiments/phase38-spatial/README.md). No credentials or live calls are authorized by this record.
 
