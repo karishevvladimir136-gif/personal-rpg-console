@@ -1,3 +1,67 @@
+# Development status — Production Mega Coding Sprint, Wave 1
+
+Updated September 20, 2026. No secrets, real campaign data or DM-private material are included here.
+
+## Current milestone and status
+
+**The first bounded A1 / minimum A2 / B1 / C production wave is implemented, integrated and deterministically verified. Owner review is pending. A/B/C are not declared fully complete.** Work is isolated on `codex/production-mega-sprint`, based on exact authorized production main `dd695a7056cfb7569237d305fe48aa2893f1f18e`. Main is not advanced by this sprint. Final verification ran on implementation checkpoint `68cc3754fd27ba2c62aad333bff1ff7eaafc9d15`; the subsequent status commit is reported to the owner after creation.
+
+The lead and workers used the requested Astra / Extra High configuration. Shared contract/ownership freeze: `5769d86687097b2fdb300cb9dbd018244c9a9c42`. Tool capacity permits the lead plus three concurrent workers, so A/B/C started together and independent QA/D started when C freed a slot. Every worker used a separate branch/worktree; the lead integrated and owns the single additive migration. See [sprint contracts](PRODUCTION_SPRINT_CONTRACTS.md) and [independent QA review](WAVE1_QA_REVIEW.md).
+
+## Completed work
+
+- Added the versioned provider/task registry around the accepted direct OpenAI DM and summary seams. Global server defaults, campaign primary and task overrides resolve explicitly; relevant DM stages are pinned together in immutable private execution-profile records before a request. Retry reuses the recorded choices. Unsupported selections fail safely; there is no model/provider fallback or second DM.
+- Added immutable owner-scoped source, pack, scenario, divergence and compiler-job records, version/reference validation, retained inline originals and hashes, bounded compiler lifecycle/checkpoints, source priority, temporal knowledge filtering and explicit campaign bindings. Campaign instance IDs remain separate from reusable source IDs. Corrections invalidate dependent pending work and Memory derivatives without rewriting original source/event history or automatically repinning campaigns.
+- Added versioned Full Ruleset / World Logic / Custom Ruleset foundations with identity/control separate from optional mechanics. Existing `console-basic-v1` remains the only connected gameplay mechanics interpreter. Unsupported ruleset gameplay pauses before provider execution.
+- Added persistent Actors, finite deterministic Threads, immutable Events and latent Hooks. Meaningful fictional changes select bounded work; simulation/autonomy/deadline policies remain independent. There is no wall-clock simulation or autonomous controlled-PC action. Unsupported resolver work and oversized proposals pause; no-op paths submit zero model requests.
+- Integrated world staging after authoritative mechanics and before narration. Gameplay, World Events/state, Memory indexing and turn autosave commit in the same existing SQL transaction. Failed commits roll back all effects; duplicate commits add no events. Public observations are delivered in final narration, including Russian mechanic turns and provider omission, before any fair-warning receipt can be treated as delivered.
+- Extended the existing save engine with five private v2 projection families while retaining exact v1 save membership/readability. Owner library history remains outside campaign rollback. New events feed the existing Memory pipeline as records, not automatically as unquestionable facts; private/future knowledge is filtered. Saved corrections remain effective after old-save restoration.
+
+## Files / areas changed
+
+New foundation modules: `src/lib/production`, `model-runtime`, `production-adapters`, `rulesets`, `world-library`, `world-packs`, `world`, and their dedicated server adapters. Narrow integration changes: existing turn contracts/engine, mechanical narration, DM/summary factories and authorized gameplay/Memory services. One additive migration: `supabase/migrations/202609190010_production_wave1.sql`. New deterministic, SQL and QA tests: `tests/wave1-*`. Sprint contract, QA report and this status record document the scope.
+
+No application pages/components, dependency manifests/lockfiles, deployment configuration or experiment files changed. No production database migration was applied. The original OneDrive checkout's pre-existing `DEV_STATUS.md` and `PHASE3_EVALUATION.md` edits remain untouched; their original SHA-256 hashes were reverified.
+
+## Tests and build status — actual integrated results
+
+- **404 tests collected: 403 passed, 0 failed, 1 skipped.** Command: `node --test --test-concurrency=2 tests/*.test.mjs`. The skipped test is the existing opt-in live Supabase integration test; it was not run or represented as passed. These totals include 101 new Wave 1 cases, including 30 independent QA cases, 6 lead SQL/turn integration cases and 3 warning-delivery regressions.
+- Route type generation and TypeScript `--noEmit`: **passed**.
+- Repository-wide ESLint `--max-warnings=0`: **passed, zero warnings**.
+- Next.js 16.3.5 production build via `next build --webpack`: **passed**. The default Turbopack builder rejects this local worktree's external `node_modules` junction; webpack uses the same installed dependencies and project configuration without a dependency/config change. This environment limitation is not presented as a successful default Turbopack run.
+- Synthetic PGlite databases applied all ten migrations, including upgrade from pre-Wave-1 v1 saves. Verified atomic rollback, duplicate/stale/head/epoch rejection, explicit cancellation/new-action recovery, source/version and campaign isolation, anon/non-owner denial, private/future filtering, source correction after restoration, exact v2 autosave membership and initial/retried profile persistence. The real turn-engine → world staging → SQL causal settlement path passes with zero provider requests.
+- Client import/privacy checks pass; normal runtime DTOs omit internal settlements, private world state and execution policy. Git whitespace checks pass. Generated `next-env.d.ts` path changes are restored rather than committed.
+
+No live Supabase/Auth verification, live model-quality evaluation, browser/mobile acceptance or owner acceptance was performed in this wave. No real source/campaign import, provider call, experiment, paid operation or deployment occurred.
+
+## Key technical decisions
+
+Use one existing authoritative Postgres projection, one primary DM, one Memory pipeline and one save/timeline engine. Library versions are immutable owner history; campaign bindings/profiles/world projections are save members. Provider IDs never replace canonical entity/event IDs. All new RPCs are service-only and recheck owner/campaign/fences; browser routes do not expose private foundation payloads. Model credentials remain application-level server secrets, absent from profiles/campaign records. Server validation independently rejects forged public observations, private thread IDs, skipped progression, protected-PC decisions, invalid deadline completion and warning/hook rewrites.
+
+The authoring/configuration surfaces are currently server/domain foundations, not new owner-facing screens. The existing campaign autonomy preference continues its accepted narration role; new deterministic world-policy authoring is not connected to that settings UI in this bounded wave. Future UI integration must use one explicit campaign policy rather than presenting conflicting controls.
+
+## Known issues and limitations
+
+- **A saved pending world settlement pauses on a changed save head or timeline epoch.** It retains input, rolls and the narration draft and publishes no partial effects. Use the existing Cancel unfinished turn action, then explicitly submit a new action. It does not silently rebase, reroll or execute the stale proposal. Legacy pending saves without world settlements retain their accepted behavior. Seamless continuation of newly staged world work is deferred.
+- Compiler/model-pass execution, real file extraction/upload, immutable binary Storage provisioning and source ingestion UI are not implemented. Binary references are validated locators, not proof that an object was uploaded. Inline synthetic text/version persistence is verified.
+- Full/custom ruleset mechanics, complete D&D support, dynamic sheets and ruleset authoring UI are not implemented. No World Logic campaign is silently executed through legacy HP/d20 mechanics.
+- World work is finite authored deterministic transitions. Deep resolver decisions, long-interval continuation UI and rich world authoring are deferred. Provider/model-selection UI and non-technical onboarding remain future A1 work; this wave implements their runtime/persistence seam.
+- Semantic quality of arbitrary public prose is not proved by schema checks. Model quality and owner/browser acceptance remain pending. Physical iPhone/Safari and the optional historical Phase 1 conflict-rebase confirmation remain unverified. Finite tests do not guarantee perfect memory, branching, isolation or universal recovery. No hosted deployment or real campaign/private-data acceptance has occurred.
+
+Phases 0–3.5 retain their recorded acceptance. Phase 3.75 decisions and Phase 3.8B's **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS** freeze remain unchanged, including historical accounting/unknown charges. Broad architecture research remains closed unless implementation exposes a concrete blocker.
+
+## Remaining work and recommended next step
+
+Owner review of this bounded integrated wave, then scope Wave 2 within A → B → C: owner-facing provider/profile and source/pack/world configuration, explicit safe continuation of staged world saves, and the next ruleset/compiler/resolver capabilities with separately authorized synthetic/live acceptance where needed. No manual provider setup is required to review this branch. A/B/C completion, model-quality evaluation and browser acceptance must be assessed separately.
+
+Do not start D/World Lab, E/Enter This World, B2 visual references, Phase 4, 2D, EXPLORE, VIDEO, additional spatial experiments, deployment or real/private imports as part of this wave. Main stays unchanged; the integration and worker branches are published for review, and work stops here.
+
+---
+
+## Historical source-of-truth integration status — preserved below
+
+The following record describes its earlier documentation-only checkpoint. Its statements that production coding had not started are historical; the current Wave 1 implementation status is recorded above.
+
 # Development status — owner-approved source-of-truth integration
 
 ## Current milestone and status
