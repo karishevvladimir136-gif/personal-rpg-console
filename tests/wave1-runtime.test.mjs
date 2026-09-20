@@ -97,6 +97,7 @@ test("Wave 1 resolution pins task override, campaign primary, global inheritance
     "dm.narrate",
     "dm.feedback",
     "memory.summary",
+    "world.resolve",
   ]);
 });
 

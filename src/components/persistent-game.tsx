@@ -511,19 +511,20 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
             )}
             {runtime.play && (
               <>
-                {!runtime.play.configuration && (
-                  <p className="rules-preview-note">
-                    {t(
-                      "Choose an explicit supported rules profile in campaign settings before resolving mechanical actions.",
-                    )}{" "}
-                    <Link
-                      className="text-link"
-                      href={`/campaigns/${data.campaign.id}/settings`}
-                    >
-                      {t("Campaign settings")}
-                    </Link>
-                  </p>
-                )}
+                {!runtime.play.configuration &&
+                  runtime.play.rulesetId !== "world-logic-v1" && (
+                    <p className="rules-preview-note">
+                      {t(
+                        "Choose an explicit supported rules profile in campaign settings before resolving mechanical actions.",
+                      )}{" "}
+                      <Link
+                        className="text-link"
+                        href={`/campaigns/${data.campaign.id}/settings`}
+                      >
+                        {t("Campaign settings")}
+                      </Link>
+                    </p>
+                  )}
                 <div className="tabs" aria-label={t("Input mode")}>
                   <button
                     type="button"
@@ -561,7 +562,7 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
               </Link>
             </p>
           </Panel>
-          {runtime.play && (
+          {runtime.play && runtime.play.rulesetId !== "world-logic-v1" && (
             <>
               <GameplayCombat
                 play={runtime.play}
@@ -614,14 +615,15 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
               .map((row) => (
                 <div key={row.id}>
                   <h3>{row.name}</h3>
-                  {row.hp !== null && (
-                    <p>
-                      {t("HP")}
-                      {": "}
-                      {row.hp}
-                      {row.max_hp === null ? "" : ` / ${row.max_hp}`}
-                    </p>
-                  )}
+                  {row.hp !== null &&
+                    runtime.play?.rulesetId !== "world-logic-v1" && (
+                      <p>
+                        {t("HP")}
+                        {": "}
+                        {row.hp}
+                        {row.max_hp === null ? "" : ` / ${row.max_hp}`}
+                      </p>
+                    )}
                   <p>{row.conditions.join(", ") || t("None recorded")}</p>
                   {row.kind === "companion" && (
                     <GameplayCompanionTalk entityId={row.id} />

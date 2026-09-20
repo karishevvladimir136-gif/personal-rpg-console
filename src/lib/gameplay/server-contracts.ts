@@ -1,5 +1,8 @@
 import type { WorldSettlement } from "../production/contracts.ts";
-import type { PrepareWorld } from "../production/turn-contract.ts";
+import type {
+  PrepareWorld,
+  PrepareWorldLogic,
+} from "../production/turn-contract.ts";
 import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned INTERNAL TYPE-ONLY contracts. Do not import runtime values into a client.
 import type { CampaignSnapshot } from "../persistence/contracts.ts";
@@ -125,6 +128,7 @@ export type MechanicsResolution = {
   outcomes: PublicOutcome[];
 };
 export type TurnCheckpoint = {
+  worldLogic?: JsonObject | null;
   worldSettlement?: WorldSettlement | null;
   plan: DmPlan | null;
   checks: RecordedCheck[];
@@ -211,6 +215,7 @@ export type TurnDependencies = {
   store: TurnStore;
   provider: DmProvider;
   prepareWorld?: PrepareWorld;
+  prepareWorldLogic?: PrepareWorldLogic;
   validateFoundation?: (claim: TurnClaim) => Promise<void>;
 };
 export type ModelBudget = {

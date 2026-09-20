@@ -230,7 +230,36 @@ export function createOwnerLibraryAuthoring(
         },
         previous,
       );
-      return put(op, row);
+      const result = await put(op, row);
+      if (previous) {
+        // Corrections create immutable invalidation versions. Approved Pack
+        // history and campaign pins remain intact; pending work must restart.
+        const jobs = latest(await store.read({ kind: "compiler_job" }));
+        for (const job of jobs) {
+          if (
+            job.kind !== "compiler_job" ||
+            !job.body.sourceVersionIds.includes(previous.versionId) ||
+            ["failed", "invalidated"].includes(job.body.status)
+          )
+            continue;
+          const invalidateOp = libraryId(
+            `${ownerId}:${op}:${job.id}:invalidate`,
+          );
+          await put(
+            invalidateOp,
+            advanceCompilerJob(
+              job,
+              libraryId(`${ownerId}:${invalidateOp}:version`),
+              {
+                status: "invalidated",
+                checkpoints: job.body.checkpoints,
+                errorCode: "invalidated",
+              },
+            ),
+          );
+        }
+      }
+      return result;
     }
     if (action === "compiler.start") {
       const v = object(input, [
@@ -306,7 +335,19 @@ export function createOwnerLibraryAuthoring(
       const changed = histories.some(
         (rows, i) => latest(rows)[0]?.versionId !== sources[i].versionId,
       );
-      if (current.body.status === "awaiting_review") {
+      const newest = latest(
+        await store.read({ kind: "compiler_job", id: current.id }),
+      )[0];
+      if (
+        newest?.kind === "compiler_job" &&
+        newest.body.status === "invalidated"
+      )
+        return {
+          kind: "compiler_job",
+          id: newest.id,
+          versionId: newest.versionId,
+        };
+      if (current.body.status === "awaiting_review" && !changed) {
         const draftOp = libraryId(
           `${ownerId}:${current.versionId}:draft-operation`,
         );
@@ -509,7 +550,33 @@ export function createOwnerLibraryAuthoring(
         authority: canonIds.includes(c.id) ? "approved_canon" : "reference",
       })),
     });
-    return put(op, record("pack", previous.id, op, body, previous));
+    const proposed = record("pack", previous.id, op, body, previous);
+    const replay = await store.read({
+      kind: "pack",
+      versionId: proposed.versionId,
+    });
+    if (!replay.length) {
+      for (const sourceId of body.sourceVersionIds) {
+        const source = await store.get("source", sourceId);
+        ensure(
+          latest(await store.read({ kind: "source", id: source.id }))[0]
+            ?.versionId === source.versionId,
+          "conflict",
+        );
+      }
+      if (body.compilerJobVersionId) {
+        const job = await store.get("compiler_job", body.compilerJobVersionId);
+        const current = latest(
+          await store.read({ kind: "compiler_job", id: job.id }),
+        )[0];
+        ensure(
+          current?.kind === "compiler_job" &&
+            ["awaiting_review", "completed"].includes(current.body.status),
+          "conflict",
+        );
+      }
+    }
+    return put(op, proposed);
   }
   return { read, source, pack, execute };
 }

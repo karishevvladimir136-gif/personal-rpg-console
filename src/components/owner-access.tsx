@@ -162,6 +162,10 @@ export function PersistentMainMenu() {
           <Icon name="settings" />
           {t("General Settings")}
         </Link>
+        <Link className="button" href="/world-library">
+          <Icon name="library" />
+          {t("World Library")}
+        </Link>
         <Button
           disabled={busy}
           onClick={async () => {

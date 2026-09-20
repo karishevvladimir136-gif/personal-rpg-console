@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { createOwnerLibraryAuthoring } from "../src/lib/world-library/authoring.ts";
-import { ownerLibraryAttempt } from "../src/lib/world-library/client.ts";
+import { ownerLibraryAttempt } from "../src/lib/world-library-client.ts";
 import { prepareOwnerPackBinding } from "../src/lib/world-packs/owner-binding.ts";
 import { projectCharacterKnowledge } from "../src/lib/world-packs/projection.ts";
 import { sha256 } from "../src/lib/world-library/parsers.ts";

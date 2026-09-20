@@ -15,14 +15,14 @@ import {
   readOwnerPack,
   readOwnerSource,
   writeOwnerLibrary,
-} from "@/lib/world-library/client";
+} from "@/lib/world-library-client";
 import { useUnsavedChanges } from "../persistence-context";
 import styles from "./world-library.module.css";
 import { useLanguage } from "../language-context";
 import {
   worldLibraryText,
   worldLibraryCompilerNote,
-} from "@/lib/world-library/ui-language";
+} from "@/lib/locales/wave2-library";
 
 function useWorldLibraryText() {
   const { language } = useLanguage();

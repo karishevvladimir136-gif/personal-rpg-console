@@ -7,6 +7,9 @@ import { isTimelineFence } from "../saves/fence";
 import { createSaveStore } from "./saves/store";
 import { createTurnStore } from "./dm";
 import { productionServices } from "./production-service";
+import { readProductionSettings } from "./production-configuration";
+import { resolveExecutionProfile } from "../model-runtime/registry";
+import { randomUUID } from "node:crypto";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { createMemoryStore } from "./memory/store";
 import { memoryAwareProvider, preflightMemory } from "../memory/lifecycle";
@@ -36,7 +39,33 @@ function requireTimeline(value: { timeline?: TimelineFence }) {
   return value.timeline;
 }
 export async function readPlay(campaignId: string) {
-  return (await authorizedStore(campaignId)).store.readPlay(campaignId);
+  const play = await (
+    await authorizedStore(campaignId)
+  ).store.readPlay(campaignId);
+  const settings = await readProductionSettings(campaignId);
+  let model: string | null = null;
+  try {
+    model = resolveExecutionProfile({
+      task:
+        settings.ruleset.id === "world-logic-v1" ? "world.resolve" : "dm.plan",
+      profileId: randomUUID(),
+      campaignPolicy: settings.runtimePolicy,
+      globalDefault: settings.providers.globalDefault,
+      providerAvailable: () =>
+        settings.providers.providers[0]?.status === "configured_not_tested",
+    }).modelId;
+  } catch {
+    /* Keep unavailable explicit selection visible; never fall back. */
+  }
+  return {
+    ...play,
+    configured: model !== null,
+    model,
+    ...(settings.ruleset.id === "world-logic-v1" ||
+    settings.ruleset.id === "console-basic-v1"
+      ? { rulesetId: settings.ruleset.id }
+      : {}),
+  };
 }
 export async function readTurn(campaignId: string, operationId: string) {
   const { store } = await authorizedStore(campaignId);
@@ -59,7 +88,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
   } catch {
     /* begin still enforces identity and access. */
   }
-  if (!existing && process.env.OPENAI_API_KEY && process.env.OPENAI_DM_MODEL)
+  if (!existing && process.env.OPENAI_API_KEY)
     await preflightMemory(
       input,
       memory,
@@ -70,6 +99,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
     store,
     provider: memoryAwareProvider(production.provider, memory),
     prepareWorld: production.prepareWorld,
+    prepareWorldLogic: production.prepareWorldLogic,
     validateFoundation: production.validateFoundation,
   });
 }
@@ -90,6 +120,7 @@ export async function continueTurn(
     store,
     provider: memoryAwareProvider(production.provider, memory),
     prepareWorld: production.prepareWorld,
+    prepareWorldLogic: production.prepareWorldLogic,
     validateFoundation: production.validateFoundation,
   });
 }

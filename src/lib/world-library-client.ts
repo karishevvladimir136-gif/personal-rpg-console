@@ -5,7 +5,7 @@ import type {
   OwnerLibraryResult,
   OwnerPackDetail,
   OwnerSourceDetail,
-} from "./owner-contracts.ts";
+} from "./world-library/owner-contracts.ts";
 
 async function readResponse<T>(response: Response): Promise<T> {
   const body = await response.json();

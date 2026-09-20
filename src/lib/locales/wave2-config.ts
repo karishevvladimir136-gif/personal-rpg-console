@@ -14,7 +14,7 @@ const en = {
   setupIntro:
     "The application reads its default from the server settings file.",
   setupSteps:
-    "On the computer running this app, open .env.local, set OPENAI_API_KEY and OPENAI_DM_MODEL, then restart the app. OPENAI_DM_REASONING is optional. Refresh this panel to check the configuration.",
+    "Configure the OpenAI credential, default model and optional reasoning effort in the server settings, then restart the app. Refresh this panel to read the saved configuration.",
   campaignHint:
     "Campaigns inherit this default unless you choose a campaign model or a task override below.",
   supported: "Available model choices",
@@ -114,7 +114,7 @@ const ru: Record<keyof typeof en, string> = {
   setupIntro:
     "Приложение читает модель по умолчанию из файла настроек сервера.",
   setupSteps:
-    "На компьютере, где запущено приложение, откройте .env.local, задайте OPENAI_API_KEY и OPENAI_DM_MODEL, затем перезапустите приложение. OPENAI_DM_REASONING необязателен. Обновите эту панель, чтобы проверить настройки.",
+    "Укажите ключ OpenAI, модель по умолчанию и при необходимости глубину рассуждений в настройках сервера, затем перезапустите приложение. Обновите эту панель, чтобы прочитать сохранённые настройки.",
   campaignHint:
     "Кампании наследуют эту модель, пока вы не выберете другую модель кампании или отдельной задачи.",
   supported: "Доступные варианты моделей",

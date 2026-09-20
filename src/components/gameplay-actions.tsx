@@ -28,6 +28,7 @@ export function GameplayMechanicAction({
 }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
+  if (play.rulesetId === "world-logic-v1") return null;
   return (
     <>
       <Button

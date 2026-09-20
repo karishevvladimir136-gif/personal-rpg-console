@@ -28,6 +28,7 @@ export function persistentProfileResolver(
   world: FoundationRpc,
   profiles: ProfileRpc,
   globalDefault: ModelSelection,
+  options: { allowLegacyDmProfiles?: boolean } = {},
 ) {
   return async (
     operationId: string,
@@ -78,13 +79,30 @@ export function persistentProfileResolver(
         throw new DmError("configuration");
       values = pinned.data as Record<string, unknown>;
     }
+    const legacyDm =
+      options.allowLegacyDmProfiles &&
+      tasks.length === 3 &&
+      tasks.includes("world.resolve") &&
+      tasks.includes("dm.plan") &&
+      tasks.includes("dm.narrate") &&
+      Object.keys(values).length === 2 &&
+      Object.hasOwn(values, "dm.plan") &&
+      Object.hasOwn(values, "dm.narrate");
+    const requiredTasks = legacyDm
+      ? tasks.filter((task) => task !== "world.resolve")
+      : tasks;
     if (
-      Object.keys(values).length !== tasks.length ||
-      Object.keys(values).some((task) => !tasks.includes(task as RuntimeTask))
+      Object.keys(values).length !== requiredTasks.length ||
+      Object.keys(values).some(
+        (task) => !requiredTasks.includes(task as RuntimeTask),
+      )
     )
       throw new DmError("configuration");
     return Object.fromEntries(
-      tasks.map((task) => [task, validateExecutionProfile(values[task], task)]),
+      requiredTasks.map((task) => [
+        task,
+        validateExecutionProfile(values[task], task),
+      ]),
     );
   };
 }

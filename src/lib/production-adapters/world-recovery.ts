@@ -17,6 +17,29 @@ import {
   stageWorldTransition,
   validateWorldSettlement,
 } from "../world/stage.ts";
+import { requireWorld } from "../world/validation.ts";
+
+/** Final replay check after SQL has proved fresh authority and active membership.
+ * A newly computed domain result may change only its serving command. */
+export function validateRecomputedContinuation(
+  original: WorldSettlement,
+  recomputed: WorldSettlement,
+  recovered: unknown,
+): WorldSettlement {
+  const expected = { ...structuredClone(original), ...commandOf(recomputed) };
+  const replay = structuredClone(recomputed);
+  for (const event of replay.events) {
+    const prior = original.events.find((row) => row.id === event.id);
+    requireWorld(prior, "stale_world");
+    event.originTimelineId = prior.originTimelineId;
+  }
+  requireWorld(
+    isDeepStrictEqual(expected, replay) &&
+      isDeepStrictEqual(expected, recovered),
+    "stale_world",
+  );
+  return replay;
+}
 
 /** Private captured inputs. Persist alongside the FIRST stage, never recreate on retry. */
 export type WorldRecoveryInputs = {

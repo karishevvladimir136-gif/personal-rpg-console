@@ -154,6 +154,9 @@ export type GuidanceProposal = {
   documentRevision: number;
 };
 export type PublicTurn = {
+  worldRecovery?: "available" | "review_required" | null;
+  worldUncertainty?:
+    "missing_evidence" | "contradiction" | "unsupported" | null;
   // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
   timeline?: TimelineFence;
   id: string;
@@ -252,6 +255,7 @@ export type ProvenanceRecord = {
   outputItemIds: string[];
 };
 export type PlaySnapshot = {
+  rulesetId?: "console-basic-v1" | "world-logic-v1";
   // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
   timeline?: TimelineFence;
   campaignId: string;

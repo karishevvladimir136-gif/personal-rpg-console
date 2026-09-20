@@ -1,4 +1,4 @@
-// Local authoring vocabulary. Stored source text and immutable evidence stay verbatim.
+// Public authoring vocabulary. Stored source text and immutable evidence stay verbatim.
 export const WORLD_LIBRARY_RU: Record<string, string> = {
   "World Library is unavailable.": "Библиотека миров недоступна.",
   "Compiler checkpoint saved. Continue the next pass explicitly when ready.":

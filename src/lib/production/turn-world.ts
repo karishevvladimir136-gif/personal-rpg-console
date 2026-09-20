@@ -1,79 +1,210 @@
+import { isDeepStrictEqual } from "node:util";
 import { readWorldFoundation } from "../server/world/store.ts";
+import { stageWorldTransition } from "../world/stage.ts";
 import {
-  stageWorldTransition,
-  validateWorldSettlement,
-} from "../world/stage.ts";
+  stageResolvedWorldTransition,
+  type ResolverProposal,
+  type ResolverStageResult,
+} from "../world/resolver.ts";
+import {
+  resolveWorldLogic,
+  type WorldLogicInput,
+  type WorldLogicProposal,
+} from "../rulesets/world-logic.ts";
+import { validateRecomputedContinuation } from "../production-adapters/world-recovery.ts";
 import { TurnError } from "../gameplay/turn-errors.ts";
-import type { FoundationRpc } from "./contracts.ts";
-import type { PrepareWorld } from "./turn-contract.ts";
+import type { FoundationRpc, WorldSettlement } from "./contracts.ts";
+import type { PrepareWorld, PrepareWorldLogic } from "./turn-contract.ts";
+import type { WorldStageInput } from "../world/contracts.ts";
+import type {
+  ProviderResult,
+  ProviderUsage,
+  TurnClaim,
+} from "../gameplay/server-contracts.ts";
+import type { JsonObject } from "../gameplay/contracts.ts";
+
+export type WorldTurnOptions = {
+  action?: (
+    input: WorldLogicInput,
+  ) => Promise<ProviderResult<WorldLogicProposal>>;
+  resolve?: (
+    input: WorldStageInput,
+  ) => Promise<{ result: ResolverStageResult; usage: ProviderUsage | null }>;
+};
+
+async function authority(rpc: FoundationRpc, claim: TurnClaim) {
+  const timeline = claim.lease.timeline;
+  if (!timeline) throw new TurnError("conflict");
+  const { input } = claim.turn;
+  const snapshot = await readWorldFoundation(
+    rpc,
+    claim.source.ownerId,
+    input.campaignId,
+    timeline,
+  );
+  const command = {
+    operationId: input.operationId,
+    campaignId: input.campaignId,
+    timeline,
+    expectedRevision: snapshot.revision,
+    expectedRuntimeRevision: claim.lease.expectedRevision,
+    expectedHeadId: snapshot.headId,
+  };
+  return { snapshot, command, source: claim.source, input };
+}
+
+/** One typed action proposal, checkpointed before settlement or narration. */
+export function worldLogicTurnPreparer(
+  rpc: FoundationRpc,
+  options: WorldTurnOptions = {},
+): PrepareWorldLogic {
+  return async (claim, previous) => {
+    const input = await authority(rpc, claim);
+    if (input.snapshot.ruleset.id === "console-basic-v1") return null;
+    if (
+      input.snapshot.ruleset.id !== "world-logic-v1" ||
+      claim.turn.input.mode !== "game"
+    )
+      throw new TurnError("configuration");
+    let proposal: unknown = previous,
+      usage: ProviderUsage | null = null;
+    if (!proposal) {
+      if (!options.action) throw new TurnError("configuration");
+      const response = await options.action(input);
+      proposal = response.output;
+      usage = response.usage;
+    }
+    const result = resolveWorldLogic(input, proposal);
+    return {
+      proposal: proposal as JsonObject,
+      resolution: result.status === "staged" ? result.resolution : null,
+      usage,
+    };
+  };
+}
+
+function resolverProposal(previous: WorldSettlement): ResolverProposal {
+  return {
+    schemaVersion: 1,
+    decisions: previous.events.flatMap((event) => {
+      const receipt = event.payload.resolverReceipt;
+      if (!receipt || typeof receipt !== "object" || Array.isArray(receipt))
+        return [];
+      const {
+        schemaVersion: _schema,
+        operationId: _operation,
+        ...decision
+      } = receipt;
+      void _schema;
+      void _operation;
+      return [decision as ResolverProposal["decisions"][number]];
+    }),
+  };
+}
 
 /** The only world/turn bridge. No private state is added to RuntimeSource. */
-function prepareWorldUnsafe(rpc: FoundationRpc): PrepareWorld {
+function prepareWorldUnsafe(
+  rpc: FoundationRpc,
+  options: WorldTurnOptions,
+): PrepareWorld {
   return async (claim, resolution, previous) => {
-    const timeline = claim.lease.timeline;
-    if (!timeline) throw new TurnError("conflict");
-    const { input } = claim.turn;
-    const snapshot = await readWorldFoundation(
-      rpc,
-      claim.source.ownerId,
-      input.campaignId,
-      timeline,
-    );
-    const command = {
-      operationId: input.operationId,
-      campaignId: input.campaignId,
-      timeline,
-      expectedRevision: snapshot.revision,
-      expectedRuntimeRevision: claim.lease.expectedRevision,
-      expectedHeadId: snapshot.headId,
-    };
-    // Replayed resolution excludes previously appended public world observations.
+    const input = await authority(rpc, claim);
+    const { snapshot, command } = input;
+    const usage: ProviderUsage[] = [];
     const base = {
       ...resolution,
       outcomes: resolution.outcomes.filter(
         (row) => row.kind !== "world.observed",
       ),
     };
-    const stageInput = {
+    const stageInput: WorldStageInput = {
       snapshot,
       command,
       source: claim.source,
       resolution: base,
       trigger:
         base.worldMinutes > snapshot.worldMinutes
-          ? ("time_skip" as const)
+          ? "time_skip"
           : base.changes.length
-            ? ("state_change" as const)
-            : ("action" as const),
+            ? "state_change"
+            : "action",
     };
-    const result = stageWorldTransition(stageInput);
+    const action = claim.turn.checkpoint.worldLogic
+      ? resolveWorldLogic(input, claim.turn.checkpoint.worldLogic)
+      : null;
+    if (
+      action &&
+      (action.status !== "staged" ||
+        !isDeepStrictEqual(action.resolution, base))
+    )
+      throw new TurnError("validation");
+    let result: ResolverStageResult = stageWorldTransition(stageInput);
+    if (result.status === "paused" && result.reason === "resolver_required") {
+      if (previous)
+        result = stageResolvedWorldTransition(
+          stageInput,
+          resolverProposal(previous),
+        );
+      else {
+        if (!options.resolve) throw new TurnError("configuration");
+        const response = await options.resolve(stageInput);
+        result = response.result;
+        if (response.usage) usage.push(response.usage);
+      }
+    }
     if (result.status === "paused") throw new TurnError("configuration", false);
-    if (result.status === "noop") {
+    let settlement = result.status === "staged" ? result.settlement : null;
+    const publicEvents =
+      result.status === "staged" ? [...result.publicEvents] : [];
+    if (action?.status === "staged") {
+      publicEvents.unshift(...action.publicEvents);
+      settlement = settlement
+        ? {
+            ...settlement,
+            events: [...action.settlement.events, ...settlement.events],
+            nextWorld: {
+              ...settlement.nextWorld,
+              actors: action.settlement.nextWorld.actors,
+            },
+          }
+        : action.settlement;
+    }
+    if (!settlement) {
       if (previous) throw new TurnError("conflict");
       return null;
     }
-    if (previous) validateWorldSettlement(stageInput, previous);
+    if (settlement.events.length > 8) throw new TurnError("configuration");
     const saved = await rpc({
       p_owner_id: claim.source.ownerId,
-      p_campaign_id: input.campaignId,
-      p_action: "stage",
-      p_payload: { command, settlement: result.settlement },
-      p_timeline: timeline,
+      p_campaign_id: command.campaignId,
+      p_action: previous ? "recover" : "stage",
+      p_payload: previous
+        ? { command, token: claim.lease.token }
+        : { command, settlement },
+      p_timeline: command.timeline,
     });
     if (saved.error)
       throw new TurnError(
-        saved.error.message?.includes("rpg_conflict")
+        saved.error.message?.match(/rpg_conflict|rpg_recovery_required/)
           ? "conflict"
           : "validation",
       );
-    validateWorldSettlement(stageInput, saved.data);
+    if (previous)
+      settlement = validateRecomputedContinuation(
+        previous,
+        settlement,
+        saved.data,
+      );
+    else if (!isDeepStrictEqual(saved.data, settlement))
+      throw new TurnError("validation");
     return {
-      settlement: result.settlement,
+      settlement,
+      usage,
       resolution: {
         ...base,
         outcomes: [
           ...base.outcomes,
-          ...result.publicEvents.map((event) => ({
+          ...publicEvents.map((event) => ({
             kind: "world.observed",
             text: event.text,
             itemIds: [],
@@ -93,16 +224,21 @@ function prepareWorldUnsafe(rpc: FoundationRpc): PrepareWorld {
   };
 }
 
-/** Map domain failures to the existing safe runtime categories; no private causes escape. */
-export function worldTurnPreparer(rpc: FoundationRpc): PrepareWorld {
-  const prepare = prepareWorldUnsafe(rpc);
+/** Safe runtime categories only; private validation causes never escape. */
+export function worldTurnPreparer(
+  rpc: FoundationRpc,
+  options: WorldTurnOptions = {},
+): PrepareWorld {
+  const prepare = prepareWorldUnsafe(rpc, options);
   return async (...args) => {
     try {
       return await prepare(...args);
     } catch (error) {
       if (error && typeof error === "object" && "code" in error) {
-        if (error.code === "stale_world") throw new TurnError("conflict");
-        if (error.code === "invalid_world") throw new TurnError("validation");
+        if (error.code === "stale_world" || error.code === "conflict")
+          throw new TurnError("conflict");
+        if (error.code === "invalid_world" || error.code === "scope")
+          throw new TurnError("validation");
       }
       throw error;
     }

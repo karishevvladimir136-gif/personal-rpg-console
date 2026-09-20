@@ -4,12 +4,18 @@ import { randomUUID } from "node:crypto";
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import type { TimelineFence } from "../saves/contracts";
-import type { FoundationRpc } from "../production/contracts";
+import type { FoundationRpc, RuntimeTask } from "../production/contracts";
 import {
   persistentProfileResolver,
   type ProfileRpc,
 } from "../production/profiles";
-import { worldTurnPreparer } from "../production/turn-world";
+import {
+  worldTurnPreparer,
+  worldLogicTurnPreparer,
+  type WorldTurnOptions,
+} from "../production/turn-world";
+import { createWorldResolverProvider } from "./world/resolver-provider";
+import { executionProviderOptions } from "./model-runtime/profiles";
 import { DmError } from "../gameplay/dm-errors";
 import { createDmProvider } from "./dm";
 import { createSummaryProvider } from "./memory/provider";
@@ -54,17 +60,52 @@ export function productionServices(
     world,
     profiles,
     globalDefault,
+    { allowLegacyDmProfiles: true },
   );
+  const tasks = async (mode: string): Promise<RuntimeTask[]> => {
+    if (mode === "feedback" || mode === "ooc") return ["dm.feedback"];
+    const snapshot = await readWorldFoundation(
+      world,
+      ownerId,
+      campaignId,
+      timeline,
+    );
+    return snapshot.ruleset.id === "world-logic-v1"
+      ? ["world.resolve", "dm.narrate"]
+      : ["dm.plan", "dm.narrate", "world.resolve"];
+  };
+  const resolver = async (operationId: string) => {
+    const values = await resolve(operationId, await tasks("game"));
+    const profile = values["world.resolve"];
+    if (!profile) throw new DmError("configuration");
+    return createWorldResolverProvider(
+      executionProviderOptions(profile, "world.resolve"),
+    );
+  };
+  const worldOptions: WorldTurnOptions = {
+    action: async (input) =>
+      (await resolver(input.command.operationId)).action(input),
+    resolve: async (input) =>
+      (await resolver(input.command.operationId)).resolve(input),
+  };
   return {
-    planModel: async () =>
-      resolveExecutionProfile({
-        task: "dm.plan",
+    planModel: async () => {
+      const snapshot = await readWorldFoundation(
+        world,
+        ownerId,
+        campaignId,
+        timeline,
+      );
+      return resolveExecutionProfile({
+        task:
+          snapshot.ruleset.id === "world-logic-v1"
+            ? "world.resolve"
+            : "dm.plan",
         profileId: randomUUID(),
-        campaignPolicy: (
-          await readWorldFoundation(world, ownerId, campaignId, timeline)
-        ).executionPolicy,
+        campaignPolicy: snapshot.executionPolicy,
         globalDefault,
-      }).modelId,
+      }).modelId;
+    },
     validateFoundation: async (
       claim: import("../gameplay/server-contracts").TurnClaim,
     ) => {
@@ -79,22 +120,27 @@ export function productionServices(
         campaignId,
         timeline,
       );
-      if (
-        snapshot.ruleset.id !== "console-basic-v1" ||
-        snapshot.ruleset.mode !== "full_ruleset" ||
-        snapshot.ruleset.version !== 1 ||
-        snapshot.ruleset.validatorVersion !== "console-basic-v1"
-      )
-        throw new DmError("configuration");
+      const r = snapshot.ruleset;
+      const basic =
+        r.id === "console-basic-v1" &&
+        r.mode === "full_ruleset" &&
+        r.version === 1 &&
+        r.validatorVersion === "console-basic-v1";
+      const logic =
+        r.id === "world-logic-v1" &&
+        r.mode === "world_logic" &&
+        r.version === 1 &&
+        r.validatorVersion === "world-logic-v1" &&
+        claim.turn.input.mode === "game";
+      if (!basic && !logic) throw new DmError("configuration");
     },
-    prepareWorld: worldTurnPreparer(world),
+    prepareWorld: worldTurnPreparer(world, worldOptions),
+    prepareWorldLogic: worldLogicTurnPreparer(world, worldOptions),
     provider: createDmProvider({
       resolveProfile: async (task, _source, input) => {
         const values = await resolve(
           input.operationId,
-          input.mode === "feedback" || input.mode === "ooc"
-            ? ["dm.feedback"]
-            : ["dm.plan", "dm.narrate"],
+          await tasks(input.mode),
         );
         const profile = values[task];
         if (!profile) throw new DmError("configuration");

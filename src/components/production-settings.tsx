@@ -102,7 +102,7 @@ export function AIProviderSettings({
           <h2>{c.aiTitle}</h2>
           <p>{c.aiIntro}</p>
         </div>
-        <Badge>OpenAI</Badge>
+        <Badge>{"OpenAI"}</Badge>
       </div>
       {busy && <p role="status">{c.loading}</p>}
       {error && <p role="alert">{c.loadError}</p>}

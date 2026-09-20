@@ -13,6 +13,7 @@ import {
 import { Badge, Button, Panel } from "./ui";
 import { CampaignSettingsEditor } from "./campaign-settings";
 import { GameplayConfiguration } from "./gameplay-configuration";
+import { CampaignPackSettingsPanel } from "./campaign-pack-settings";
 import {
   AIProviderSettings,
   CampaignProductionSettingsPanel,
@@ -533,6 +534,7 @@ export function PersistentCampaignSettings() {
             onLoaded={setProduction}
             afterSave={refresh}
           />
+          <CampaignPackSettingsPanel />
           {activeProduction?.ruleset.id === "console-basic-v1" && (
             <GameplayConfiguration />
           )}

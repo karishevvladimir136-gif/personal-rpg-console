@@ -137,93 +137,128 @@ async function execute(
             : null,
       });
     }
-    const newPlan = !checkpoint.plan;
-    if (newPlan) {
-      if (input.mode === "mechanic")
-        checkpoint.plan = mechanicPlan(source, input);
-      else {
-        const response = await provider.plan(source, input);
-        checkpoint.plan = response.output;
-        checkpoint.usage.push(response.usage);
-      }
-    }
-    // One strict transport schema for provider output, explicit mechanics and
-    // recovered checkpoints; mechanics then validates against current authority.
-    checkpoint.plan = parsePlan(checkpoint.plan);
-    validatePlan(source, input, checkpoint.plan);
-    requireRule(checkpoint.plan.guidanceProposal === null);
-    if (newPlan) await store.checkpoint(lease, checkpoint, "generating");
-    if (checkpoint.plan.clarification !== null) {
-      return await store.commit(lease, {
-        narration:
-          clarificationMessages[source.snapshot.settings.values.language],
-        visualDescription: "",
-        resolution: emptyResolution(source),
-        privatePatches: [],
+    const logic = await dependencies.prepareWorldLogic?.(
+      claim,
+      checkpoint.worldLogic ?? null,
+    );
+    if (logic) {
+      requireRule(
+        input.mode === "game" &&
+          checkpoint.checks.length === 0 &&
+          command?.action !== "reroll" &&
+          command?.action !== "continue",
+      );
+      checkpoint.worldLogic = logic.proposal;
+      checkpoint.resolution = logic.resolution;
+      if (logic.usage) checkpoint.usage.push(logic.usage);
+      // A neutral legacy envelope lets old checkpoint/save readers retain their
+      // exact shape without invoking the legacy mechanics interpreter.
+      checkpoint.plan ??= {
+        narration: "",
         checks: [],
+        publicPatches: [],
+        privatePatches: [],
+        visualDescription: "",
+        clarification: null,
         guidanceProposal: null,
-      });
-    }
-    if (!checkpoint.checks.length && checkpoint.plan.checks.length) {
-      const rolls = checkpoint.plan.checks.map((check) =>
-        recordServerRoll(
+      };
+      await store.checkpoint(lease, checkpoint, "generating");
+      requireRule(logic.resolution);
+    } else {
+      const newPlan = !checkpoint.plan;
+      if (newPlan) {
+        if (input.mode === "mechanic")
+          checkpoint.plan = mechanicPlan(source, input);
+        else {
+          const response = await provider.plan(source, input);
+          checkpoint.plan = response.output;
+          checkpoint.usage.push(response.usage);
+        }
+      }
+      // One strict transport schema for provider output, explicit mechanics and
+      // recovered checkpoints; mechanics then validates against current authority.
+      checkpoint.plan = parsePlan(checkpoint.plan);
+      validatePlan(source, input, checkpoint.plan);
+      requireRule(checkpoint.plan.guidanceProposal === null);
+      if (newPlan) await store.checkpoint(lease, checkpoint, "generating");
+      if (checkpoint.plan.clarification !== null) {
+        return await store.commit(lease, {
+          narration:
+            clarificationMessages[source.snapshot.settings.values.language],
+          visualDescription: "",
+          resolution: emptyResolution(source),
+          privatePatches: [],
+          checks: [],
+          guidanceProposal: null,
+        });
+      }
+      if (!checkpoint.checks.length && checkpoint.plan.checks.length) {
+        const rolls = checkpoint.plan.checks.map((check) =>
+          recordServerRoll(
+            input.operationId,
+            check,
+            checkModifier(source, check),
+          ),
+        );
+        checkpoint.checks = await store.recordChecks(lease, rolls);
+      }
+      const displayed = checkpoint.checks.filter((check) =>
+        isDisplayedCheck(source, check),
+      );
+      if (command?.action === "reroll") {
+        const check = displayed.find((check) => check.id === command.checkId);
+        requireRule(
+          check &&
+            source.snapshot.settings.values.difficulty.rerolls !== "disabled",
+        );
+        const replacement = recordServerRoll(
           input.operationId,
           check,
-          checkModifier(source, check),
-        ),
-      );
-      checkpoint.checks = await store.recordChecks(lease, rolls);
+          check.modifier,
+          check.rollNumber + 1,
+        );
+        checkpoint.checks = await store.reroll(lease, command, replacement);
+        checkpoint.resolution = null;
+        checkpoint.narration = null;
+        await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
+        return await store.getPublic(input.campaignId, input.operationId);
+      }
+      if (command?.action === "continue")
+        requireRule(displayed.length > 0 && command.checkId === null);
+      // Even non-interactive displayed results can be explicitly rerolled before commitment.
+      const canPause =
+        displayed.length > 0 &&
+        (source.snapshot.settings.values.interactiveDice ||
+          source.snapshot.settings.values.difficulty.rerolls !== "disabled");
+      if (
+        canPause &&
+        command?.action !== "continue" &&
+        !checkpoint.resolution
+      ) {
+        await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
+        return await store.getPublic(input.campaignId, input.operationId);
+      }
+      if (!checkpoint.resolution) {
+        checkpoint.resolution = resolveMechanics(
+          source,
+          input,
+          checkpoint.plan,
+          checkpoint.checks,
+        );
+        await store.checkpoint(lease, checkpoint, "generating");
+      }
     }
-    const displayed = checkpoint.checks.filter((check) =>
-      isDisplayedCheck(source, check),
-    );
-    if (command?.action === "reroll") {
-      const check = displayed.find((check) => check.id === command.checkId);
-      requireRule(
-        check &&
-          source.snapshot.settings.values.difficulty.rerolls !== "disabled",
-      );
-      const replacement = recordServerRoll(
-        input.operationId,
-        check,
-        check.modifier,
-        check.rollNumber + 1,
-      );
-      checkpoint.checks = await store.reroll(lease, command, replacement);
-      checkpoint.resolution = null;
-      checkpoint.narration = null;
-      await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
-      return await store.getPublic(input.campaignId, input.operationId);
-    }
-    if (command?.action === "continue")
-      requireRule(displayed.length > 0 && command.checkId === null);
-    // Even non-interactive displayed results can be explicitly rerolled before commitment.
-    const canPause =
-      displayed.length > 0 &&
-      (source.snapshot.settings.values.interactiveDice ||
-        source.snapshot.settings.values.difficulty.rerolls !== "disabled");
-    if (canPause && command?.action !== "continue" && !checkpoint.resolution) {
-      await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
-      return await store.getPublic(input.campaignId, input.operationId);
-    }
-    if (!checkpoint.resolution) {
-      checkpoint.resolution = resolveMechanics(
-        source,
-        input,
-        checkpoint.plan,
-        checkpoint.checks,
-      );
-      await store.checkpoint(lease, checkpoint, "generating");
-    }
+    requireRule(checkpoint.resolution);
     if (dependencies.prepareWorld) {
       const prepared = await dependencies.prepareWorld(
-        claim,
+        { ...claim, turn: { ...claim.turn, checkpoint } },
         checkpoint.resolution,
         checkpoint.worldSettlement ?? null,
       );
       if (prepared) {
         checkpoint.worldSettlement = prepared.settlement;
         checkpoint.resolution = prepared.resolution;
+        checkpoint.usage.push(...(prepared.usage ?? []));
         await store.checkpoint(lease, checkpoint, "generating");
       }
     }
@@ -269,7 +304,7 @@ async function execute(
       narration: checkpoint.narration.narration,
       visualDescription: checkpoint.narration.visualDescription,
       resolution: checkpoint.resolution,
-      privatePatches: checkpoint.plan.privatePatches,
+      privatePatches: checkpoint.plan?.privatePatches ?? [],
       checks: checkpoint.checks,
       guidanceProposal: null,
     });

@@ -180,6 +180,24 @@ export function GameplayTurn({
       {turn.status === "failed" && turn.failure && (
         <p role="alert">{t(turnFailureLabels[turn.failure])}</p>
       )}
+      {turn.worldUncertainty && (
+        <p role="status">
+          {language === "ru"
+            ? "Для этого действия не хватает подтверждённых обстоятельств, есть противоречие или требуются неподдерживаемые последствия. Мир не изменён. Отмените незавершённый ход, уточните ситуацию и явно задайте новое действие."
+            : "This action needs established information, contains a contradiction, or requires unsupported consequences. The world has not changed. Cancel the unfinished turn, clarify the situation, and explicitly submit a new action."}
+        </p>
+      )}
+      {turn.worldRecovery && (
+        <p role="status" className="muted">
+          {language === "ru"
+            ? turn.worldRecovery === "review_required"
+              ? "Безопасно продолжить это действие нельзя. Ввод и результаты сохранены. Отмените незавершённый ход и явно выберите новое действие."
+              : "Действие и уже полученные результаты сохранены. Продолжение проверит текущий мир; повторного броска не будет."
+            : turn.worldRecovery === "review_required"
+              ? "This action could not safely continue and needs review. Your input and recorded results are preserved. Cancel the unfinished turn, then explicitly choose a new action."
+              : "Your action and recorded results are preserved. Resuming checks the current world without rolling again."}
+        </p>
+      )}
       {turn.checks.map((check) => (
         <div key={check.id}>
           <GameplayCheck check={check} />
