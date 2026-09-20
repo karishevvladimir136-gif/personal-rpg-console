@@ -1,5 +1,40 @@
 # Development status
 
+Last updated: September 20, 2026 UTC (September 19 local). Never include secrets, credentials or DM-private content.
+
+## Current milestone and status
+
+**PHASE 3.8B FINAL CHEST ATTEMPT STOPPED AT FIRST STATUS POLL — STOP FOR OWNER REVIEW.** Executed the owner-authorized exact clean checkpoint **5468dcb72683e8c78eb0a098b15c7f1bf0e056cb**, identity **phase38b-chest-final-1**, manifest hash **03ece6c4df5ce8ee60b691991008f1556d3d5036f86483366f43c4595f3cf55a**. Initialization succeeded once with zero requests/reservations. One frozen fal chest POST was accepted (HTTP 200, IN_QUEUE), request **01a0bd57-6a2f-77f2-b12d-58e56ce400ac**. The first and only status GET hit frozen **http_or_redirect_failure**. Numeric poll status and response-URL/redirect metadata were not retained by the frozen transport; provider completion is UNKNOWN. No diagnostics or repair attempted.
+
+### Completed work and files / areas changed
+
+Durably retained the one chest reservation and terminal STOPPED journal. Created only [sanitized chest evidence](experiments/phase38-spatial/results/chest-final-001.json), [readable report](experiments/phase38-spatial/results/CHEST_FINAL_001.md), safe journal/witness copies and this status in a separate evidence worktree. No execution code, dependency, schema, production UI/runtime, freeze or protocol changes. The approved execution worktree remains clean at its exact SHA.
+
+### Tests and build status
+
+After the live terminal result, **839 deterministic experiment tests passed (746 prior + 93 chest); zero failures/skips/cancellations. All original, offline PLY and chest typechecks/builds passed; lint passed with zero warnings.** Tests ran with synthetic transports and temporary test state in the separate evidence worktree. No production tests/build because production remains unchanged. Both freezes and all 33 prior evidence / 24 private history files pass read-only verification.
+
+### Key technical decisions and actual accounting
+
+Exactly **1 POST + 1 status GET = 2 new provider requests**, **0 result reads, 0 asset downloads/DNS**, no retry/fallback/redirect follow. The stop condition combines non-200 status or response-URL mismatch; evidence cannot distinguish them. Preserve this limitation rather than fabricate a status or infer generation failure. Actual provider API model remains **UNKNOWN**. The upstream request may still exist; no cancellation, polling, diagnostic or recovery is performed after STOP.
+
+Exactly **1 new $0.60 reservation**; cumulative **$4.75 / $4.75**, remaining **$0**. Known reported billing **$2.528**; fal-world and chest billing **UNKNOWN**, not zero. Retain both the earlier $0.35 fal reservation and final $0.60 chest reservation permanently. No refunds/budget reuse. Cumulative **4 generation submissions / 49 API requests / 9 completed downloads**. No fifth generation path or authorization.
+
+### Known issues and remaining work
+
+No GLB retrieved; structural inspection was not reached. Container/format/bytes/hash, geometry/counts, PBR/textures, bounds/dimensions, hierarchy/transforms and part ownership remain **UNVERIFIED**. Lid classification **STRUCTURE_UNVERIFIED**; separate lid **not proven**. Visual quality **MANUAL_REVIEW_REQUIRED**, navigation **UNVERIFIED**. No canonical metric/orientation or production EXPLORE claim.
+
+The original continuation and fal STOP remain immutable. Fal-world remains owner-accepted structurally as PLY at **b666764a7e352bc82d1528ad7c392662bed0bd9f**; missing DRC remains a limitation and no fal-world retry occurred. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite tests are not universal guarantees. No hosted deployment or real campaign/private-data acceptance. Production/main and original checkout's pre-existing uncommitted documentation remain untouched.
+
+### Recommended next step
+
+**STOP for owner review.** No additional generation, retry, recovery, result/billing request, diagnosis or implementation is authorized by this evidence. The only next planned phase step after owner review is the final Phase 3.8B architecture/evidence freeze. Do not start production EXPLORE, Phase 4, 2D renderer, deployment or real import.
+
+---
+
+## Historical offline chest preparation checkpoint
+
+
 Last updated: September 19, 2026 (local; previous live observations September 20 UTC). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
