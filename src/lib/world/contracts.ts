@@ -1,3 +1,4 @@
+import type { WorldConsequence } from "./consequences.ts";
 import type {
   EvidenceLocator,
   FoundationCommand,
@@ -60,6 +61,7 @@ export type WorldStep = {
     recipientActorIds: string[];
   } | null;
   hookChanges: { hookId: string; status: "resolved" | "expired" }[];
+  consequences?: WorldConsequence[];
 };
 export type WorldThread = {
   id: string;

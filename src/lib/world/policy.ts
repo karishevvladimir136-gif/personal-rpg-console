@@ -1,3 +1,4 @@
+import { requiresWorldStepReconciliation } from "./reconciliation-policy.ts";
 import type { WorldPolicy, WorldState } from "./contracts.ts";
 import {
   ids,
@@ -34,42 +35,11 @@ export function reconcileWorldPolicy(
     minute(raw.atWorldMinutes);
     requireWorld(raw.atWorldMinutes > atWorldMinutes);
   }
-  const wasSimulationOff = !world.policy.simulation && policy.simulation;
-  const pressureRank = { off: 0, critical_only: 1, normal: 2 };
-  const expandedPressure =
-    pressureRank[policy.deadlinePressure] >
-    pressureRank[world.policy.deadlinePressure];
-  const required = world.threads
-    .filter((thread) => thread.status === "active")
-    .flatMap((thread) => thread.steps.slice(thread.cursor))
-    .filter((step) => {
-      if (
-        step.trigger.kind === "causal" ||
-        step.trigger.atWorldMinutes > atWorldMinutes ||
-        !policy.simulation
-      )
-        return false;
-      if (step.trigger.kind === "deadline") {
-        const enabled =
-          policy.deadlinePressure === "normal" ||
-          (policy.deadlinePressure === "critical_only" &&
-            step.trigger.scenarioCritical &&
-            step.trigger.established);
-        const previouslyEnabled =
-          world.policy.deadlinePressure === "normal" ||
-          (world.policy.deadlinePressure === "critical_only" &&
-            step.trigger.scenarioCritical &&
-            step.trigger.established);
-        return (
-          enabled &&
-          (wasSimulationOff || (expandedPressure && !previouslyEnabled))
-        );
-      }
-      return (
-        wasSimulationOff ||
-        (expandedPressure && policy.deadlinePressure === "normal")
-      );
-    });
+  const required = world.threads.flatMap((thread) =>
+    thread.steps.filter((_, index) =>
+      requiresWorldStepReconciliation(thread, index, world.policy, policy, atWorldMinutes),
+    ),
+  );
   requireWorld(
     reconciliations.length === required.length &&
       required.every((step) =>

@@ -1,5 +1,6 @@
 import type { EvidenceLocator } from "../production/contracts.ts";
 import type { WorldPolicy, WorldState } from "./contracts.ts";
+import { parseWorldConsequences } from "./consequences.ts";
 
 export class WorldValidationError extends Error {
   readonly code: "invalid_world" | "stale_world";
@@ -225,7 +226,12 @@ export function parseWorldState(
         "publicOutcome",
         "warning",
         "hookChanges",
+        ...(rawStep !== null && typeof rawStep === "object" && Object.hasOwn(rawStep, "consequences") ? ["consequences"] : []),
       ]);
+      if (Object.hasOwn(step, "consequences")) {
+        parseWorldConsequences(step.consequences);
+        requireWorld(step.resolution === "resolver_required");
+      }
       uuid(step.id);
       requireWorld(step.trigger !== null && typeof step.trigger === "object");
       const triggerKind = (step.trigger as Record<string, unknown>).kind;
