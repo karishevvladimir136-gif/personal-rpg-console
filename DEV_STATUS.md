@@ -1,17 +1,25 @@
-# Development status — Production Foundation Wave 4 — ready for owner review
+# Development status — Production Foundation Wave 4 — owner accepted
 
-Started September 20, 2026 from freshly fetched exact remote main `7f4b65ea60e0e497f27528c9efcf73ececa6e360` in isolated branch `codex/production-foundation-wave4`. Main and the original dirty checkout remain untouched. Waves 1–3 stay owner accepted; Wave 4 is not owner accepted.
+Started September 20, 2026 from freshly fetched exact remote main `7f4b65ea60e0e497f27528c9efcf73ececa6e360` in isolated branch `codex/production-foundation-wave4`. Implementation left main at that base and the original dirty checkout untouched. Waves 1–3 remain owner accepted; Wave 4 is now owner accepted at exact SHA `38e6ef22138412ed29b4999126000e5c2a6f287c`.
 
-Updated September 20, 2026. The bounded playable-world, rewards/progression and commerce foundation is implemented and integrated. This is not Phase 4 / FRAME. The final integration SHA is reported in the handoff after committing this status; the integration and six worker branches are published for owner review, with main left at the authorized base.
+Implementation checkpoint: September 20, 2026. The bounded playable-world, rewards/progression and commerce foundation is implemented and integrated. This is not Phase 4 / FRAME. The integration and six worker branches were published for owner review. The approved implementation checkpoint is `38e6ef22138412ed29b4999126000e5c2a6f287c`; the current action is limited to the status-only approval and authorized fast-forward below.
+
+## Explicit owner acceptance and publication scope
+
+The owner explicitly accepts Production Foundation Wave 4 at exact SHA `38e6ef22138412ed29b4999126000e5c2a6f287c`, including playable-world preparation, rewards/progression, commerce/trade, natural-language action integration, disclosed limitations and the current UI direction. Waves 1–3 remain accepted. This acceptance changes only `DEV_STATUS.md` in one approval commit on `codex/production-foundation-wave4`.
+
+Remote main was freshly fetched and verified at exact authorized SHA `7f4b65ea60e0e497f27528c9efcf73ececa6e360` before this approval. The owner authorizes fast-forwarding main only from that SHA to the resulting approved Wave 4 head. The accepted implementation checkpoint must remain the approval commit's direct parent and in main's direct ancestry. Publication verification checks the single-file diff, unchanged implementation, exact parent, remote integration/main SHAs and clean integration worktree. The original dirty checkout remains untouched.
+
+Application tests, typecheck, lint and build are not rerun for this documentation-only approval. All implementation and browser results below were recorded at the accepted checkpoint; they are not fresh results for the approval commit. No force push, squash, rebase, implementation changes, migration execution, deployment, provider calls, real-data import, World Lab, Enter This World, FRAME or next-wave implementation is part of this approval. Stop after publication verification.
 
 ## Milestone status
 
 - **Implemented:** explicit approved-Pack preparation; owner-editable Actors/capabilities/Threads and merchant participation; bounded rewards, progression and advancement choices; profile currencies, buy/sell/barter and valuation; normal Game price inquiries, negotiation and theft/robbery proposals.
 - **Integrated:** all six isolated worker branches, Lead-owned migration 13, normal turn/World Event settlement, save/timeline integration, application routes and existing shell surfaces. Lead repaired production defects centrally.
-- **Deterministically verified:** final complete suite **863 collected, 862 passed, 0 failed, 1 skipped**, plus passing typecheck, repository-wide zero-warning lint and production build. Disposable legacy/Wave 1/2/3 upgrades, the full objective-to-reward-to-trade loop, privacy/import checks and scripted provider transports are included.
+- **Deterministically verified:** recorded implementation suite **863 collected, 862 passed, 0 failed, 1 skipped**, plus passing typecheck, repository-wide zero-warning lint and production build. Disposable legacy/Wave 1/2/3 upgrades, the full objective-to-reward-to-trade loop, privacy/import checks and scripted provider transports are included. These checks were not rerun for this status-only approval.
 - **Browser checked:** actual components/styles and pure planners using synthetic process-memory fixtures in EN/RU across desktop and 390×844 mobile viewports. Manual edits, exchanges, advancement, retry and timeline freezing were exercised. This is not hosted database/Auth verification or physical iPhone testing.
 - **Not live-model-quality evaluated:** no live provider/model calls, paid evaluation, real database migration, real/private data import, web research or deployment.
-- **Not owner accepted:** Waves 1–3 remain accepted. Wave 4 awaits explicit owner review. A/B/C are not declared universally complete. World Lab, Enter This World and further implementation have not started.
+- **Owner accepted:** the owner explicitly approves Wave 4 at exact SHA `38e6ef22138412ed29b4999126000e5c2a6f287c`, including the implemented functionality, disclosed limitations and current UI direction. Waves 1–3 remain accepted. A/B/C are not declared universally complete. World Lab, Enter This World, FRAME and next-wave implementation have not started.
 
 Owner instructions: [WAVE4_OWNER_GUIDE.md](WAVE4_OWNER_GUIDE.md). Separate browser evidence: [WAVE4_BROWSER_REVIEW.md](WAVE4_BROWSER_REVIEW.md). Frozen ownership and final additions: [WAVE4_CONTRACTS.md](WAVE4_CONTRACTS.md). Independent security findings: [WAVE4_QA_REVIEW.md](WAVE4_QA_REVIEW.md).
 
@@ -33,7 +41,7 @@ Changed areas: new `foundation-loop`, `playable-world`, `progression`, `commerce
 
 Independent QA reproduced and verified central fixes for hidden merchant stock and private reward references, unsafe ruleset switching after loop configuration, unchanged preparation, inconsistent progression bounds, unordered history, and forged trade/reward plans. SQL now independently checks payment, stock debit, transfer identity, reward totals, pending choices and unchanged unrelated state. The final full suite reruns all independent QA cases after the final repairs. Browser review also caught an unsaved Pack draft being reloaded on language switching; the corrected editor preserves the draft and renders status/errors in the current language.
 
-## Fresh final verification
+## Recorded implementation verification at the accepted checkpoint
 
 - `node --test --test-concurrency=2 tests/*.test.mjs`, with a credential-free loopback application server for existing HTTP checks: **863 tests, 862 passed, 0 failed, 1 skipped**, duration **113.987 seconds**. The sole skip is the explicitly opt-in live Supabase Auth/PostgREST test; it is not counted as passed. Phase 0–3.5 and Waves 1–3 regressions are included.
 - Route type generation and non-incremental TypeScript `--noEmit`: **passed**. The final production build also completed TypeScript validation.
@@ -57,13 +65,13 @@ Astra Max was used for domain/actions/security work; bounded UI used Astra Extra
 | `codex/wave4-actions`     | `4726ebb31d18b0020c13b8ba3c2886f3996cb5c2` |
 | `codex/wave4-qa`          | `aa1b82ddddb0507b4babba80b2036c4ddc3c130f` |
 
-## Limits and owner-review stop
+## Accepted limits and publication stop
 
 This establishes bounded playable-world, progression and economy authorities and proves their joined loop. It does not implement every RPG rule or complete all A/B/C product scope. Preparation selects eligible public Pack content; it does not automatically extract arbitrary possessions/relationships or transfer control to canon characters. Stock and mechanics need explicit owner definitions. Rewards use approved fixed definitions tied to supported completed quests, resolved Threads or eligible committed World Events; no general encounter valuation/pacing engine or official D&D 5e progression is claimed. Advancement grants bounded capabilities, not arbitrary prerequisite graphs or a universal reputation system.
 
 Commerce supports explicit profile resources, values and coarse merchant availability/modifiers. No universal currency, continuous economy, autonomous merchants or general crime/wanted simulation is added. Once loop definitions/state exist, changing the active ruleset is blocked to protect balances/history; profile migration is not implemented. Unsupported/ambiguous Game consequences pause, and materially stale foundation stages require review/new action rather than forced continuation. Live model quality and hosted Supabase/Auth behavior remain unevaluated in this sprint.
 
-Next step: owner review of the synthetic preview and these disclosed limits, then a separate explicit acceptance/publication decision. Real use would require the normal migration/configuration release process, which has not been run. Main stays at `7f4b65ea60e0e497f27528c9efcf73ececa6e360`; the original checkout's two pre-existing dirty files retain their recorded hashes. Do not begin World Lab, Enter This World or another wave automatically.
+The owner has accepted the implementation and disclosed limits at the exact checkpoint above. The only authorized next step is publication of this single status-only approval commit and the fast-forward from `7f4b65ea60e0e497f27528c9efcf73ececa6e360`, followed by verification and a stop. Real use would require a separate migration/configuration release process, which is not executed here. The original checkout's two pre-existing dirty files retain their recorded hashes. World Lab, Enter This World, FRAME and another wave require separate authorization.
 
 ---
 
