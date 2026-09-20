@@ -1,0 +1,375 @@
+.panel {
+  padding: 24px;
+  min-width: 0;
+}
+.panel h2,
+.panel h3,
+.panel h4 {
+  margin: 0;
+}
+.panel h2 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 24px;
+}
+.panel h3 {
+  font-size: 18px;
+}
+.panel h4 {
+  font-size: 14px;
+  color: var(--gold, #c6a575);
+}
+.panel p {
+  margin: 0;
+  line-height: 1.6;
+}
+.panel fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.panel fieldset:disabled {
+  opacity: 0.66;
+}
+.panel input,
+.panel select,
+.panel textarea {
+  min-width: 0;
+  width: 100%;
+}
+.panel input[type="checkbox"],
+.panel input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #c6a575;
+}
+.panel :global(.button) {
+  white-space: normal;
+}
+.panel :global(.field) {
+  min-width: 0;
+}
+.panel :global(.muted) {
+  font-size: 13px;
+}
+.heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.eyebrow {
+  color: var(--gold, #c6a575);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.form,
+.editorBody {
+  display: grid;
+  gap: 16px;
+}
+.form h4 {
+  margin-top: 8px;
+}
+.grid,
+.offers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.editor {
+  border: 1px solid rgba(180, 152, 107, 0.2);
+  border-radius: 6px;
+  background: rgba(14, 16, 17, 0.3);
+  min-width: 0;
+}
+.editor summary {
+  padding: 16px;
+  cursor: pointer;
+  color: #e0d4bd;
+  overflow-wrap: anywhere;
+}
+.editor[open] summary {
+  border-bottom: 1px solid rgba(180, 152, 107, 0.15);
+}
+.editorBody {
+  padding: 18px;
+}
+.addRow {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+}
+.addRow > :first-child {
+  flex: 1;
+}
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.entry {
+  border-left: 2px solid rgba(180, 152, 107, 0.35);
+  padding-left: 14px;
+  display: grid;
+  gap: 12px;
+}
+.empty {
+  border: 1px solid rgba(180, 152, 107, 0.16);
+  background: linear-gradient(120deg, rgba(128, 92, 47, 0.09), transparent);
+  padding: 22px;
+  border-radius: 5px;
+}
+.empty h3 {
+  margin-bottom: 10px;
+}
+.balances {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.balances > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(180, 152, 107, 0.25);
+  border-radius: 5px;
+  color: #d4bc92;
+}
+.offer {
+  border: 1px solid rgba(180, 152, 107, 0.2);
+  border-radius: 6px;
+  padding: 18px;
+  min-width: 0;
+}
+.offer h3 {
+  margin-bottom: 16px;
+}
+.item {
+  display: grid;
+  gap: 12px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(180, 152, 107, 0.13);
+}
+.itemName {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.itemName > svg {
+  margin-top: 4px;
+  color: #b79a6b;
+  flex-shrink: 0;
+}
+.itemName p {
+  margin: 5px 0;
+}
+.item fieldset {
+  max-width: 180px;
+}
+.quote {
+  padding: 22px;
+  border: 1px solid #8d7146;
+  background: linear-gradient(
+    135deg,
+    rgba(147, 110, 56, 0.13),
+    rgba(19, 21, 21, 0.7)
+  );
+  border-radius: 6px;
+  display: grid;
+  gap: 16px;
+}
+.quoteLines {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.quoteLines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(180, 152, 107, 0.15);
+}
+.quoteLines li > :last-child {
+  flex-shrink: 0;
+}
+.total {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  font-size: 19px;
+  color: #dec498;
+}
+.storyLink {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #c6ab81;
+  line-height: 1.5;
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.storyLink svg {
+  flex-shrink: 0;
+}
+.progressCard {
+  border: 1px solid rgba(180, 152, 107, 0.23);
+  padding: 22px;
+  border-radius: 6px;
+  background: linear-gradient(120deg, rgba(126, 96, 53, 0.07), transparent);
+}
+.progressValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 15px;
+  margin: 18px 0 8px;
+}
+.progressValue strong {
+  font-family: Georgia, serif;
+  font-size: 32px;
+  color: #dcc298;
+}
+.progressValue span {
+  font-size: 13px;
+  color: var(--muted, #a29c90);
+}
+.meter {
+  display: block;
+  width: 100%;
+  height: 5px;
+  accent-color: #be9a64;
+  margin-bottom: 16px;
+}
+.advancement {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(180, 152, 107, 0.25);
+  display: grid;
+  gap: 14px;
+}
+.advancement h4 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.choices {
+  display: grid;
+  gap: 10px;
+}
+.choice {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(180, 152, 107, 0.2);
+  border-radius: 5px;
+  padding: 14px;
+  cursor: pointer;
+}
+.choice small {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted, #aaa092);
+  overflow-wrap: anywhere;
+}
+.selected {
+  border-color: #b38f58;
+  background: rgba(146, 111, 61, 0.1);
+}
+.rewards {
+  display: grid;
+  gap: 14px;
+}
+.reward {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(180, 152, 107, 0.18);
+  padding: 14px 0;
+}
+.notice {
+  border-left: 2px solid #b69a6c;
+  padding: 12px 15px;
+  margin: 14px 0;
+  background: rgba(152, 111, 54, 0.08);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.footer {
+  border-top: 1px solid rgba(180, 152, 107, 0.2);
+  padding-top: 18px;
+  margin-top: 22px;
+  display: grid;
+  gap: 14px;
+}
+.history {
+  margin-top: 22px;
+}
+.history ol {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+  color: var(--muted, #a29c90);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 700px) {
+  .panel {
+    padding: 16px;
+  }
+  .grid,
+  .offers {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  .heading {
+    flex-wrap: wrap;
+  }
+  .addRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .editorBody,
+  .offer,
+  .quote,
+  .progressCard {
+    padding: 14px;
+  }
+  .reward {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .quoteLines li {
+    flex-wrap: wrap;
+  }
+  .progressValue {
+    flex-wrap: wrap;
+  }
+}
