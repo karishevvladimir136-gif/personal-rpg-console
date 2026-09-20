@@ -1,4 +1,14 @@
-# Development status — Production Mega Coding Sprint, Wave 2
+# Development status — Production Mega Coding Sprint, Wave 3
+
+Started September 20, 2026 from exact authorized remote main `b7b065726ac1e0f64056e1970c8390f8448b4875` in isolated branch `codex/production-mega-sprint-wave3`. Waves 1 and 2 remain owner accepted. The original dirty checkout is untouched.
+
+Status: implementation in progress; Wave 3 is not integrated, verified or owner accepted. Minimum ownership/additions are frozen in [WAVE3_CONTRACTS.md](WAVE3_CONTRACTS.md). Reuse the existing Library/compiler, World Logic/settlement, runtime, campaign documents and save/timeline authorities. Lead owns shared integration and additive migration 12. Current change adds only the compiler task seam and sprint status/ownership; implementation verification is pending. No live provider/model requests, real database migration, research, import or deployment. No World Lab, Enter This World or Wave 4.
+
+Planned bounded work: natural-language world sources and guided Pack review; advisory versioned campaign premises; typed World Logic consequences; explicit overdue schedule reconciliation. Final verification and limitations will replace this in-progress section before completion.
+
+---
+
+# Historical Wave 2 status — owner accepted
 
 Updated September 20, 2026. Owner-approved Wave 2 checkpoint: `d59d1f49f1bc44f9369baa3cdd541173eee5fd3f`. Integration branch: `codex/production-mega-sprint-wave2`. Implementation/QA checkpoint: `f9b8ce3b7c1329f2be502cfdf3d12adcbc8d8742`. Authorized base and remote main before approval: `0e52f446753caba88e98870c8785107aae92aa23`, fetched and reverified for this status-only approval. The owner authorizes fast-forwarding remote main from that exact base to the resulting approval commit. The original dirty checkout remains untouched.
 

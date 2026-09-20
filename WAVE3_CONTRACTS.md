@@ -1,0 +1,36 @@
+# Production Mega Sprint — Wave 3 ownership and minimum additions
+
+Authorized base: `b7b065726ac1e0f64056e1970c8390f8448b4875`, fetched and verified September 20, 2026. Waves 1 and 2 are owner accepted. Preserve `PRODUCTION_SPRINT_CONTRACTS.md` and `WAVE2_CONTRACTS.md`; this is a bounded implementation extension, not a new architecture or completion of A/B/C.
+
+## Authority and execution
+
+Canonical identities, source/Canon authority, World Events, campaign/character/inventory state, Model Runtime, Memory and Saves/Timelines remain singular. Lead alone integrates shared contracts, migration/SQL, shared turn/save/persistence code and production repairs. Only additive migration 12 is planned, tested on disposable databases. No production migration, live provider call, research, import, deployment, D/E, media, spatial work or Wave 4.
+
+Lead and difficult compiler, consequences, reconciliation and security workers use Astra Max; owner UI workers use Astra Extra High or Max. No Ultra. Three worker slots run beside Lead: B/C/D start immediately, then A/E and independent F use available slots. Each worker has an isolated branch/worktree and focused tests. Workers never merge. Lead integrates and pushes all handoffs and alone updates DEV_STATUS.
+
+## Minimum extension boundaries
+
+- Add `canon.compile` to the existing Lead-owned task registry and RuntimeTask union. Owner Library compilation resolves the configured application default through the existing runtime resolver; its immutable job pins the effective execution profile before assisted work. Unsupported/unavailable choices fail explicitly without a substitute model. Existing profiles remain readable. No compiler calls on page load or from automated verification.
+- Describe From Scratch creates an immutable owner-authored Source in the existing Library store, preserving exact original text, digest, language and provenance. Its claims are authored assumptions or labelled inferences, never external source facts. Upload, Describe and Combine share the same source priority, compiler jobs and Pack review. Research stays unavailable. Worker B may extend Library-local types/parsers/services within this approved boundary; shared core contracts remain Lead-owned.
+- Compiler assistance is a bounded structured proposal: candidates, exact authorized evidence references, assumptions, relationships/geography/timeline/rules, contradictions, unknowns and coverage. Source/premise/model text is untrusted data, never policy or tools. Strict parsing and independent domain validation precede immutable draft persistence. Persist valid work/profiles for retry, recheck source freshness before publication, and never auto-approve or auto-promote Canon. Review/refinement creates versions; approval and campaign pinning remain explicit.
+- Campaign premise is a campaign-scoped, versioned owner-authored advisory document using existing document/version authority. It is reviewed separately from effective structured settings and cannot grant state authority. Lead supplies `/api/campaigns/[id]/premise`, public DTOs and persistence fencing; E supplies creation/settings UI and client helpers. Preserve originals and all revisions. No character takeover, checkpoint promotion, branch transfer or full Scenario Composition.
+- Rich World Logic proposals add a bounded versioned typed consequence union, not a universal patch. Worker C owns domain parsing/validation/resolution and provider schema; Lead independently validates the same authority in SQL and wires existing settlement. Only supported effects with established capabilities, current records, evidence and prerequisites may settle. Protect controlled PCs, private/future knowledge and exact campaign/timeline membership. Legacy proposals and console-basic-v1 retain their behavior. Unsupported/ambiguous effects pause.
+- Reconciliation is an explicit owner operation at an idle fenced boundary. Re-enabled overdue schedules move prospectively from current fictional time, with no catch-up, punishment or wall-clock work. Reuse `reconcileWorldPolicy`, existing foundation commands/history and saves. Public review projects only known schedule information, never private IDs/counts/text or a private-existence flag. Present the same review choice for policy expansion regardless of hidden work. Lead supplies atomic SQL/configuration/API wiring; D supplies pure plans/validation/projection and tests.
+
+## Exclusive ownership
+
+| Owner | Files and duties |
+| --- | --- |
+| Lead | `src/lib/production/**`, runtime task registry, existing shared gameplay/persistence/save/server integration, all `supabase/**`, routes/services crossing authorities, final integration tests/repairs, DEV_STATUS |
+| B — compiler / premise processing | `src/lib/world-library/**`, `src/lib/server/world-library/**`, Library API routes, new compiler provider adapter, `tests/wave3-compiler*`, `tests/wave3-authoring*`. No UI, shared core registry or migrations. Communicate exact commands/DTOs to A promptly. |
+| C — richer World Logic | `src/lib/rulesets/world-logic*`, `src/lib/world/resolver*`, new `src/lib/world/consequence*`, `src/lib/server/world/resolver-provider.ts`, `tests/wave3-logic*`, `tests/wave3-resolver*`. Request Lead additions to shared WorldState/turn/SQL contracts. |
+| D — overdue reconciliation | New `src/lib/world/reconciliation*`, focused `tests/wave3-reconciliation*`; pure planner, safe public projection and explicit validation. No shared SQL/turn/save/settings edits. |
+| A — World authoring / guided review UI | `src/components/world-library/**`, `src/lib/world-library-client.ts`, `src/lib/world-library-i18n.ts`, `tests/wave3-library-ui*`; actual premium shell, EN/RU, responsive natural-language authoring and guided immutable review. Coordinate API contract with B. |
+| E — campaign premise / settings UI | New `src/components/campaign-premise*`, new premise client helpers, delegated `src/components/persistent-campaigns.tsx` and `persistent-settings.tsx`, focused `tests/wave3-premise-ui*`; no schema/shared persistence mutations. |
+| F — independent QA | `tests/wave3-security*`, `tests/wave3-privacy*`, `tests/wave3-qa*`, `WAVE3_QA_REVIEW.md`. Adversarial/regression tests and defects only. Lead repairs production code. |
+
+Leaf contract additions are reviewed at integration; workers must request changes crossing another owner. All source/model-injection fixtures are synthetic. Do not reuse credentials or real owner data. Dependencies may reuse the existing local node_modules junction; each worktree builds independently.
+
+## Verification and stop
+
+Each worker reports focused tests, typecheck/lint where applicable, SHA/files/dependencies and honest limits. Lead runs fresh complete deterministic suite, typecheck, repository-wide zero-warning lint, production build, disposable legacy/Wave1/Wave2 migration upgrades and authoring→review→Pack→pin, premise, consequence, overdue and timeline/save flows. Separate browser checks cover EN/RU desktop/mobile, without claiming physical iPhone testing. Record implementation, integration, deterministic verification, browser review, no live quality evaluation and no owner acceptance separately. Push integration/worker branches, verify main unchanged at the authorized base and stop for owner review.

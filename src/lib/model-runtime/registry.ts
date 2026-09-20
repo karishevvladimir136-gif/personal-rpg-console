@@ -16,6 +16,7 @@ export const runtimeTasks = Object.freeze({
   "dm.feedback": { contractVersion: "dm-feedback-v1", boundary: "public" },
   "memory.summary": { contractVersion: "memory-selection-v1", boundary: "job" },
   "world.resolve": { contractVersion: "world-resolver-v1", boundary: "private" },
+  "canon.compile": { contractVersion: "canon-compiler-v1", boundary: "job" },
 } as const);
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
