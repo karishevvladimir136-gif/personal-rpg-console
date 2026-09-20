@@ -1,0 +1,282 @@
+{
+  "version": 1,
+  "status": "OFFLINE_PREPARATION_COMPLETE_AWAITING_OWNER_REVIEW",
+  "branch": "codex/phase38-chest-final-preparation",
+  "evidenceBaseSHA": "b666764a7e352bc82d1528ad7c392662bed0bd9f",
+  "identity": "phase38b-chest-final-1",
+  "manifestHash": "03ece6c4df5ce8ee60b691991008f1556d3d5036f86483366f43c4595f3cf55a",
+  "manifestFileSHA256": "1691737f7de7b87c38636198dc69150ad74cd6ace82bf0bb01c0af611d96bbc2",
+  "freezeFileSHA256": "2571e5cd3343d590f13726870af9e8e7d0d6998eb1d47f77aba99c9f1231ce3f",
+  "freezeInputs": 11,
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "sources": {
+    "roomEvidenceCommit": "d6a420056ea2eaca326567a914d5c070a43d0a82",
+    "courtyardEvidenceCommit": "420a94e3d13232d2b0f86bdb389770e77486e7a2",
+    "falStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+    "falStatusEvidenceCommit": "3371a20427c33abed810ff0af83a031c943090ac",
+    "falArtifactEvidenceCommit": "e74f98070a35506bdb0401e2d2db2e492c9f8da4",
+    "plyEvidenceCommit": "b666764a7e352bc82d1528ad7c392662bed0bd9f"
+  },
+  "evidenceBindings": {
+    "results/COURTYARD_001.md": "9cbf1a607c0af3ae458f66e654e3d70e71283b050397ef506417a1d411aa10f2",
+    "results/FAL_EXACT_ARTIFACT_001.md": "5b6e80114b2cb779560da314449ca578db521b9934cc1486f4de0f4d5654a437",
+    "results/FAL_EXACT_ARTIFACT_RECOVERY_001.md": "fde2ecb3e845b27dcb5e0820cdc667dcccdb1b74fbdcec515ccb33a019d34254",
+    "results/FAL_HOST_DIAGNOSTIC_001.md": "679df9c2442ab683d87284f58fe83ed7fa975974b02ad95fe1c840f726ea8049",
+    "results/FAL_PLY_INSPECTION_001.md": "049608f8805b3823b88c6e2f9dd5d575f25e61e56c764bd0b38302b10730dd44",
+    "results/FAL_RETRIEVAL_001.md": "d4a0ef52520fa728c52f934cf9ee190fa5628cd45fe61777abad31cb6cd460fb",
+    "results/FAL_STATUS_OBSERVATION_001.md": "9a0fe29138944fb15b889945fee1ab88eb20847e808840dd55a641505d115c9c",
+    "results/FAL_WORLD_001.md": "499db054d515140fd99841a5942e3dd00e4397fefc85215e6a1373b12c6eb516",
+    "results/LIVE_RUN_001.md": "f8095644157e626b3323b7b5c989a9c0209f3e7e8d239df40a91eb3eb443f811",
+    "results/RECOVERY_001.md": "a950570eedbfe77252107f8bf109a3d7abc288a69884e10c66ffa2f2ff42a4d8",
+    "results/ROOM_RECOVERY_001.md": "91f302b36b319321d8f4153a8408983b24a2a720219b7246d9771f02be712397",
+    "results/SETUP_STOP_001.md": "16d94388fbcb156604fa4ad2bcf239cee62a38e774a59625f78c2ca51f0a5797",
+    "results/URL_DIAGNOSIS_001.md": "c0735a147b341bebcecad734366a15c48f93195dde2ed42e8123dad1c1f255a8",
+    "results/courtyard-001-ledger.jsonl": "58ddabf60311a3f6f2b77e1667ac841c9743a0c0c70d0a9b7bf77cbd45c120ee",
+    "results/courtyard-001-witness.jsonl": "62675f4e042586634c2a954fbf481608ccec506b549a516fea751f15db3515f7",
+    "results/courtyard-001.json": "8b746e88df7310019db02ab88f1b0adddb94cdc71a39ae047d8525a7dcd8550c",
+    "results/courtyard-manual-review-001.json": "70aa2030afbb9f83c5eb5450bede20230a6565786f020e82d3974cc203d17acb",
+    "results/fal-exact-artifact-001.json": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760",
+    "results/fal-exact-artifact-recovery-001.json": "ea6188f69a302918afc592c25d44995d007a88a6c17cdc37a96f3a7b12f972f9",
+    "results/fal-host-diagnostic-001.json": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115",
+    "results/fal-ply-inspection-001.json": "ad0c98717da477915884b58b366fcdeb6e258cd84e88c60e0894a734d9a31079",
+    "results/fal-retrieval-001.json": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+    "results/fal-status-observation-001.json": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+    "results/fal-world-001.json": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+    "results/live-run-001-ledger.jsonl": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6",
+    "results/live-run-001.json": "05936d6837c5dd5536417bd7d2b1cdaf9cd8603ddfeb47ae2e36a738e372fd88",
+    "results/recovery-001.json": "4848f48b8db139fca613e0c14c324eabb4f26119ad94aaf653f255e281084a0b",
+    "results/room-manual-review-001.json": "9d7e614424bb97e8f5fab719f3d9f5fdb9648e7ba5367fc358fda8e54f4a7071",
+    "results/room-recovery-001-ledger.jsonl": "95a00680d7240d33e64aa7a84eb68a0760276ed02da2f960c924d1997df4de45",
+    "results/room-recovery-001-witness.jsonl": "301bf7f53b877f74d394a445730724ba78d80fa0e3d0361c51096cd177a96746",
+    "results/room-recovery-001.json": "4cf4352474714e064cfd3c3bdb7e71dc9917a48e2f966836fb0fa6f279a77200",
+    "results/setup-stop-001.json": "c982487bc5884d8593c3e1a0e2443115e1c32ef1ec0b1b20f3df3088e88d8f6e",
+    "results/url-diagnosis-001.json": "610abc717c7fed6bc023f8669a38d5413e0ac1a4fd4be3c24ceb3c1f9f0ef04a"
+  },
+  "privateHistoryBindings": [
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/journal.jsonl",
+      "sha256": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/witness.jsonl",
+      "sha256": "0b446a934d34dc0e63c5cfa595bfd777c55660c0a02ac62012dcb136a3ad3a4f"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/identity.json",
+      "sha256": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-preparation",
+      "path": "experiments/phase38-spatial/private-run/../private-run.anchor",
+      "sha256": "4b2f78b70aa7bf4bc65a33249e68ed8290e3ca379282a4be3952a38dec83860d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/journal.jsonl",
+      "sha256": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/witness.jsonl",
+      "sha256": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/identity.json",
+      "sha256": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-continuation",
+      "path": "experiments/phase38-spatial/private-continuation/../private-continuation.anchor",
+      "sha256": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/journal.jsonl",
+      "sha256": "f017d56724bc75ee6b38522a4b439c890f9d74868f2b47fd0d0f72d6e7e701e6"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/witness.jsonl",
+      "sha256": "27c26e496201a6a1880bf1bdb9fb57725ecc6a250cff753704714318cf837b81"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/identity.json",
+      "sha256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-recovery/../private-fal-recovery.anchor",
+      "sha256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/journal.jsonl",
+      "sha256": "ba680b1974f1e31e884dbe97c43b4734390d365a0f341e449a92dcccab2d6d4a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/witness.jsonl",
+      "sha256": "34b6f7f260f4995af7a961b8adeca8b66eff5694effef04db4757a90d8a5f0fc"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/identity.json",
+      "sha256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-retrieval-preparation",
+      "path": "experiments/phase38-spatial/private-fal-retrieval/../private-fal-retrieval.anchor",
+      "sha256": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/journal.jsonl",
+      "sha256": "049695142e9685f5c9e5edb566c7dd30eb1817343abdd589e6e1d6c297b7cc8d"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/witness.jsonl",
+      "sha256": "177a1dddb8826a9a7a7f7141a3080f603253ecace7fc83e2f3ac1a4db4aa9a5e"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/identity.json",
+      "sha256": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-host-diagnostic-preparation",
+      "path": "experiments/phase38-spatial/private-fal-host-diagnostic/../private-fal-host-diagnostic.anchor",
+      "sha256": "5bbcef786524580c8ef1765013862eeb59d3e998a085cb0264e844d5af75d699"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/journal.jsonl",
+      "sha256": "90fe2ada172ac6df563dd41bfbdeda0f49a816a92f8a8795df98f36dab6047da"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/witness.jsonl",
+      "sha256": "10e607b02258af9e8d2a726e61b53d9d7cdea6d88532fadd00149776b5325fa1"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/identity.json",
+      "sha256": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    },
+    {
+      "worktree": "personal-rpg-console-phase38-fal-artifact-recovery-preparation",
+      "path": "experiments/phase38-spatial/private-fal-artifact/../private-fal-artifact.anchor",
+      "sha256": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    }
+  ],
+  "job": {
+    "id": "spatial-chest-1",
+    "provider": "fal",
+    "model": "fal-ai/hunyuan-3d/v3.1/pro/text-to-3d",
+    "endpoint": "https://queue.fal.run/fal-ai/hunyuan-3d/v3.1/pro/text-to-3d",
+    "reserveMicroUSD": 600000,
+    "maxPriceMicroUSD": 525000,
+    "input": {
+      "prompt": "A single undecorated wooden storage chest with iron corner bands and a visibly separate closed lid, shown as one isolated object. No contents, text, symbols, surrounding room or people.",
+      "generate_type": "Normal",
+      "enable_pbr": true
+    }
+  },
+  "limits": {
+    "submissions": 1,
+    "polls": 45,
+    "pollIntervalMs": 20000,
+    "resultReads": 1,
+    "downloads": 1,
+    "apiRequests": 47,
+    "totalHTTPRequests": 48,
+    "retries": 0,
+    "fallbacks": 0,
+    "concurrentGenerations": 1,
+    "deadlineMs": 900000,
+    "requestTimeoutMs": 60000,
+    "maxJsonBytes": 2097152,
+    "maxAssetBytes": 268435456
+  },
+  "accounting": {
+    "before": {
+      "priorReservedMicroUSD": 4150000,
+      "knownReportedMicroUSD": 2528000,
+      "falWorldReservedMicroUSD": 350000,
+      "falWorldReportedMicroUSD": null,
+      "chestAllocationMicroUSD": 600000,
+      "ceilingMicroUSD": 4750000,
+      "priorGenerations": 3,
+      "priorAPIRequests": 47,
+      "priorDownloads": 9
+    },
+    "afterFutureSingleReservation": {
+      "reservedMicroUSD": 4750000,
+      "knownReportedMicroUSD": 2528000,
+      "falWorldReportedMicroUSD": null,
+      "chestReportedMicroUSD": null,
+      "remainingAllocationMicroUSD": 0,
+      "totalGenerationSlots": 4
+    },
+    "currentChanged": false
+  },
+  "verification": {
+    "tests": {
+      "passed": 839,
+      "existing": 746,
+      "new": 93,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "typecheck": "PASS: original, offline, chest",
+    "lint": "PASS: zero warnings",
+    "build": "PASS: all three isolated configs",
+    "productionTestsBuild": "NOT_RUN_PRODUCTION_UNCHANGED",
+    "syntheticTransportsOnly": true,
+    "actualHistoryReadOnlyChecks": true,
+    "offlineCLIInspect": "PASS; liveInitialized false"
+  },
+  "preparation": {
+    "providerCalls": 0,
+    "falCalls": 0,
+    "assetDNSCalls": 0,
+    "resultReads": 0,
+    "downloads": 0,
+    "liveInitializations": 0,
+    "liveReservations": 0,
+    "generations": 0,
+    "credentialsRead": 0,
+    "credentialsRequested": 0,
+    "chestAttempted": false,
+    "privateRootAndAnchorAbsent": true,
+    "network": "Only requested GitHub preparation push; no provider/asset/DNS network activity."
+  },
+  "preservation": {
+    "oldContinuationStopped": true,
+    "oldNextJobGuardUnchanged": true,
+    "historicalEvidenceFilesUnchanged": 33,
+    "historicalPrivateFilesUnchanged": 24,
+    "originalFrozenInputsUnchanged": 67,
+    "oldRecoveryExecutionCheckpointUnchanged": true,
+    "productionMainDependenciesUnchanged": true,
+    "originalUncommittedDocsUnchanged": true,
+    "globalAllowlistUnchanged": true
+  },
+  "limitations": [
+    "Live chest execution not authorized by preparation; separate exact-SHA owner authorization required.",
+    "Fal-world structurally accepted as PLY; absent requested DRC is a retained export limitation and no retry reason.",
+    "Static embedded GLB only; unsupported formats/extensions/hosts fail closed, with no automatic diagnostics.",
+    "Lid names/material boundaries are not semantic proof; automated parser never asserts SEPARATELY_ADDRESSABLE_LID.",
+    "Visual/navigation/canonical scale and usefulness require later review; synthetic output is not production EXPLORE acceptance.",
+    "Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified; finite synthetic tests are not universal guarantees.",
+    "No hosted deployment or real campaign/private-data acceptance."
+  ],
+  "nextStep": "STOP for owner review. After separately authorized chest execution/review, final Phase 3.8B architecture/evidence freeze, never a fifth generation."
+}

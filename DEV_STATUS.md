@@ -4,6 +4,44 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B FINAL CHEST RELEASE PREPARED OFFLINE — STOP FOR OWNER REVIEW.** Dedicated branch **codex/phase38-chest-final-preparation**, identity **phase38b-chest-final-1**, based on **b666764a7e352bc82d1528ad7c392662bed0bd9f**. The owner accepts fal-world for structural purposes with three valid nonempty PLY meshes; visual/navigation remain UNVERIFIED. Requested DRC was absent: retain the export limitation, with no fal-world retry/resubmission. **Chest remains unattempted; live private root/anchor are absent.**
+
+### Completed work and files / areas changed
+
+Added only [chest preparation](experiments/phase38-spatial/chest/README.md), its manifest/independent freeze, contract, append-only ledger, gated CLI/runner, bounded GLB/PBR inspector, isolated config, ignore rules and 93 synthetic tests; [actual preparation results](experiments/phase38-spatial/chest/PREPARATION_RESULTS.json); and this status. All new code is isolated under the experiment's chest folder. No changes to production/runtime/schema/UI/dependencies, the original runner/nextJob, original freeze or accepted PLY inspector. No credentials read/requested or installed dependencies.
+
+New identity can select **only spatial-chest-1**, the original fal **fal-ai/hunyuan-3d/v3.1/pro/text-to-3d**, exact frozen prompt, **Normal + PBR**, no extra defaults/face-count parameter. Existing stopped continuation remains closed. New root/anchor is designed for separate future one-time initialization and one attempt; preparation creates neither. A durable reservation precedes submission; nonempty/crashed/terminal ledgers, second initialization, conflicting identity and another execution directory fail closed. No next/fifth-job/retry/fallback path.
+
+### Tests and build status
+
+**839 deterministic experiment tests passed (746 existing + 93 new); zero failures/skips/cancellations. Original experiment, offline PLY and chest typechecks/builds all passed; lint passed with zero warnings.** New tests exercise exact source/job/accounting pins, original stop guard, read-only history, one-shot restart/crash/lock behavior, HTTP/routing/status/result/asset failures, private retention, numeric/geometry limits and conservative lid claims. Transports are synthetic mocks. Offline inspect verified the freeze/sources and confirmed no live initialization. No production tests/build because production is unchanged.
+
+### Frozen checkpoint, limits and accounting
+
+Manifest identity hash: **03ece6c4df5ce8ee60b691991008f1556d3d5036f86483366f43c4595f3cf55a**.
+Manifest file SHA-256: **1691737f7de7b87c38636198dc69150ad74cd6ace82bf0bb01c0af611d96bbc2**.
+Chest freeze-file SHA-256: **2571e5cd3343d590f13726870af9e8e7d0d6998eb1d47f77aba99c9f1231ce3f** (11 inputs); original 67-input freeze unchanged.
+
+Pins include all 33 historical evidence files and 24 private journal/witness/identity/anchor files; original protocol **496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb**; continuation **9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1**; room/courtyard accepted evidence; original fal STOP; recovery evidence; accepted final PLY checkpoint. History hashes were verified unchanged. No old ledger was opened for mutation or interpreted as having avoided its stop.
+
+Future exact-SHA authorization may permit only **1 chest POST, up to 45 status GETs at 20-second intervals, 1 result GET and 1 required GLB download**: at most **47 API / 48 total HTTP requests**, within the 15-minute deadline and 60-second per-request bound. JSON <=2 MiB; one artifact <=256 MiB, still within the inherited 1 GiB total byte ceiling. Existing fal host allowlist, asset provenance, public DNS/address pinning, TLS/SNI and no-redirect/no-credential-forwarding guards are reused unchanged. Unknown host/format or any failure stops; no automatic diagnostic calls.
+
+Current accounting unchanged: **$4.15 / $4.75 reserved; $2.528 known reported billing; fal-world UNKNOWN; $0.35 fal reservation retained; chest $0.60 unreleased**. The only future reservation is $0.60, making **$4.75 / $4.75** exactly, with no refund/reuse/fifth allocation. Frozen published chest maximum remains $0.525; no live price query occurred. Billable units never become inferred USD; unknown charges remain UNKNOWN. **Preparation: zero provider/fal/DNS/download/reservation/generation calls.** Only the requested GitHub commit push uses network.
+
+### Structural review decisions, known issues and remaining work
+
+Future static embedded GLB inspection reports container/mesh/node/material/texture counts, PBR fields, primitive vertex/index counts, finite bounds/dimensions and transformed node hierarchy/part candidates. It rejects unsupported/compressed/external/invalid structures safely. No texture rendering/decode or canonical metric/orientation claim. A fused single-primitive chest is a valid terminal limitation. Multiple parts are **POSSIBLE_BUT_UNVERIFIED_LID**, never an automatic separately-addressable-lid claim from names/appearance/materials. Semantic lid confirmation requires explicit later review.
+
+No chest provider/output/billing/visual result exists yet. Visual/navigation and production EXPLORE acceptance remain unverified. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified; finite tests do not guarantee universal recovery. No hosted deployment or real campaign/private-data acceptance. Production/main/global allowlists and original checkout's pre-existing uncommitted documentation remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of the exact preparation SHA and hashes. Do not initialize or submit chest yet.** After separately authorized chest execution and owner review, the next step is final Phase 3.8B architecture/evidence freeze, not another spatial generation. Do not start production EXPLORE, Phase 4, 2D renderer, deployment or real import.
+
+---
+
+## Historical final offline PLY inspection checkpoint
+
 **PHASE 3.8B FINAL OFFLINE PLY INSPECTION COMPLETE — A: STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE. STOP FOR OWNER REVIEW.** Based on accepted recovery evidence **e74f98070a35506bdb0401e2d2db2e492c9f8da4**. Exact retained ZIP size/hash revalidated before/after; all three PLY layers fully parsed once offline as nonempty mesh structures with finite coordinates and valid face references. Visual quality and navigation quality remain **UNVERIFIED**. No approval/next/chest release.
 
 ### Completed work and files / areas changed

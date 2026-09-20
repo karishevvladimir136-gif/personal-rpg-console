@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "manifestHash": "03ece6c4df5ce8ee60b691991008f1556d3d5036f86483366f43c4595f3cf55a",
+  "files": {
+    ".gitignore": "236ceed3a8f8de732aaa153a91b993cc67921101283070af919f2fe47dc5abeb",
+    "README.md": "2ea332ed2c6708fc4c6b3df68a769fe13ab7a8c6b38addf879a1862dd879e467",
+    "chest.test.mjs": "852fb821462c487a348a678906ce652ae623d4beb6f33b96fcd32e4dfa899256",
+    "cli.ts": "303d4f51f78fa47dec7ac994ebc6ff8b90c1dd0c3a5f69d8491b37b68e995b90",
+    "contract.ts": "2ddc404e8d6bff87b0ff7ee9a89a0d8c8ac4d638b9bb3d3bc849c02ac5a9d35e",
+    "freeze.ts": "a21bcc3464b752ef4cb0662fff3d4fa5e88178c29496cb9330e12adfca94909b",
+    "glb.ts": "a412df688b81914c3b62ce294b12c69ef90863090b89a3f875e3d3c804472989",
+    "manifest.json": "1691737f7de7b87c38636198dc69150ad74cd6ace82bf0bb01c0af611d96bbc2",
+    "runner.ts": "9c4dd21fa355a2ef61ef96ea53c5b12fb2023d3c52e0f308b3242698a4b92bf8",
+    "state.ts": "7f068722390395508a21b8e1316fa51cbd7d74e401987fb5ea64f38bc0162f2b",
+    "tsconfig.json": "9b129b05ea405eac52eb2d227bff3c8bd9ff30fce19510f35fc405d5d8bc181e"
+  }
+}
