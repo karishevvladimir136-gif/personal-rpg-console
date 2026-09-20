@@ -327,3 +327,188 @@ Do not copy:
 - repetitive decree/building administration unless a specific campaign wants it.
 
 Use leverage and reactivity; leave the bureaucracy optional.
+
+
+## Pathfinder: Kingmaker — realm as actor, delegation and fair urgency
+
+Kingmaker is a systemic reference for combining ordinary party-scale RPG play with ownership of a persistent polity. Its Pathfinder rules/UI are not default targets.
+
+### 1. Treat a realm like an evolving World Actor
+
+Owlcat described the kingdom as effectively an “extra companion,” not a decorative feature. The useful abstraction is that a settlement/realm/institution can have persistent needs, capabilities, crises, relationships and development without simulating every citizen.
+
+For RPG Console, a polity/settlement World Actor may carry only the campaign-relevant coarse state needed for consequential decisions.
+
+### 2. Delegate long-running work to trusted Actors
+
+Kingmaker assigns advisors/companions to kingdom roles and long-running problems/projects. This supports a generic delegation pattern:
+
+- select an authorized Actor/institution;
+- assign a bounded objective;
+- record resources, expected duration/trigger and responsibility;
+- let time/events progress normally;
+- settle outcomes through the World Engine;
+- surface completion, trouble or a need for intervention.
+
+The player should not personally resolve every administrative task merely because they hold high office.
+
+### 3. Connect episodic adventures causally
+
+Owlcat later described how it strengthened the original adventure by linking otherwise episodic chapters through clearer causal relationships and earlier introductions of important antagonists.
+
+Adventure Hooks may therefore begin as local stories while persistent Threads create:
+- recurring Actors;
+- foreshadowing;
+- shared causes;
+- consequences that reappear;
+- later realization that apparently separate incidents were connected.
+
+Do not force every hook into one master conspiracy; use causal links only where they improve coherence.
+
+### 4. Downtime can combine systems and relationships
+
+Kingmaker's camp lets companions take roles whose success/failure affects safety/resources, while also providing banter and relationship development.
+
+RPG Console already has Camp/Rest direction. Preserve the useful principle: downtime can be a convergence point for:
+- companion interaction;
+- preparation;
+- small assignments;
+- cooking/rest;
+- planning;
+- consequences from recent travel.
+
+But frequent routine must stay lightweight. Do not turn every rest into mandatory management.
+
+### 5. Urgency must be legible and fair
+
+Kingmaker's kingdom/timer systems are also a caution. Player reports repeatedly describe frustration when deadlines or kingdom-failure pressure were difficult to read or when management competed opaquely with exploration.
+
+RPG Console should therefore strengthen its existing warning/deadline rule:
+- hidden private deadlines may exist, but irreversible player-facing consequences require fair observable warning unless surprise is itself causally justified;
+- when the character plausibly knows a deadline, present it clearly;
+- distinguish “urgent,” “important but stable,” and “no known deadline” without revealing DM-private clocks;
+- do not make players maintain an external spreadsheet to understand whether normal exploration will destroy their campaign.
+
+World pressure should create meaningful choices, not administrative anxiety caused by missing information.
+
+### 6. Management depth should be abstractable
+
+Kingmaker provides different difficulty/help approaches for players who do not want equal mechanical complexity.
+
+RPG Console should let campaign/ruleset/UI choose how much management is exposed:
+- narrative/abstract resolution;
+- compact decisions;
+- detailed management where desired.
+
+Abstraction never grants free success; it changes interaction burden, not authoritative consequences.
+
+## Warhammer 40,000: Rogue Trader — jurisdiction, rumours and empire-scale role-play
+
+Rogue Trader is especially useful for POV & World Leverage because the player character begins with extraordinary institutional rights, a ship/retinue and colonies while remaining an embodied party character.
+
+### 1. Authority is powerful but jurisdictional
+
+The Warrant of Trade gives a Rogue Trader enormous rights, but those rights operate differently inside established Imperial structures and beyond the Imperium.
+
+Generalize this:
+- authority has domain/jurisdiction;
+- rank is not a universal permission flag;
+- the same character may have near-sovereign power in one context and need negotiation/permission in another;
+- institutional peers may resist, bargain or possess overlapping authority.
+
+This directly supports [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md).
+
+### 2. Rumour is an epistemic object, not a quest fact
+
+Rogue Trader explicitly treats rumours as things that may or may not be true and cannot be “completed” without investigation.
+
+RPG Console should preserve:
+- rumor source;
+- who heard it;
+- confidence/credibility when appropriate;
+- claimed subject/location;
+- later corroboration/refutation;
+- possible propagation.
+
+A rumor marker means “you know this claim exists,” not “the claim is true.”
+
+The player may even encounter rumours about their own actions. Public reputation therefore propagates through fallible information channels rather than global omniscience.
+
+### 3. Holdings can be remote, persistent and consequential
+
+Rogue Trader's colonies can be managed remotely, produce resources and offer development projects with rewards and mutually exclusive choices.
+
+For RPG Console, holdings/settlements/bases can expose a small project layer:
+- finite choices;
+- resource/opportunity costs;
+- mutually exclusive development paths where meaningful;
+- narrative events;
+- later consequences.
+
+Do not require a city-builder. Projects are structured World Events/Threads over the same authoritative settlement Actor.
+
+### 4. Companions can bridge personal and institutional play
+
+Rogue Trader planned/uses companions in officer/retinue roles while they remain characters with personal beliefs and relationships.
+
+A companion can therefore simultaneously be:
+- friend/rival/romance;
+- specialist;
+- officer/advisor;
+- representative of a faction/culture;
+- source of a different worldview.
+
+Do not create separate “advisor NPC” copies of existing companions.
+
+### 5. Ideological identity can emerge from decisions
+
+Rogue Trader's Convictions accumulate from important choices and unlock dialogue/perks.
+
+Generalize carefully:
+- repeated choices may form a durable public/self identity;
+- that identity can unlock/close affordances and alter NPC reactions;
+- major identity changes should have provenance in actual events.
+
+Do **not** universalize Dogmatic/Iconoclast/Heretical-style axes or reduce morality to a single meter. Campaigns may use explicit doctrines, faction reputation, values, public reputation, inferred patterns or no morality meter at all.
+
+### 6. Major decisions deserve explainable history
+
+Rogue Trader later added a log of major decisions and extensive reactivity/epilogue fixes.
+
+RPG Console already stores Events/Saves. Future UI should be able to answer:
+- what major choice changed this?
+- when?
+- which Actor/Thread/location was affected?
+- what was player-known at the time?
+
+This is player-facing provenance, not DM-private debugging.
+
+### 7. Empire-scale choices need opportunity cost
+
+Colony projects can block alternatives. This is a useful antidote to “eventually buy every upgrade.”
+
+Important strategic development should sometimes represent priorities:
+- clinic vs armory;
+- trade port vs fortress;
+- intelligence network vs public works.
+
+Consequences should follow setting/rules, not a universal tech tree.
+
+### 8. Expect players to break systems
+
+Owlcat publicly noted that Rogue Trader players created builds far more broken than anticipated.
+
+For an AI-native RPG, assume players will also discover unexpected combinations of:
+- items;
+- powers;
+- social authority;
+- environmental affordances;
+- free-form plans.
+
+Do not rely on “players probably won't try this.” Validate authoritative mutations, preserve resource limits, test pathological combinations and let legitimate emergent solutions work.
+
+### 9. Complexity is not automatically depth
+
+Owlcat's own player survey found substantial demand for fewer character-building options in Rogue Trader despite its deep progression.
+
+RPG Console should keep the engine capable of complex rules without making every campaign expose them. Complexity belongs to the selected ruleset and player preference; depth should primarily come from consequential choices and reactivity.

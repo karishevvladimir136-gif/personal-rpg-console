@@ -1879,6 +1879,8 @@ All remain modules within the existing Next.js server and Supabase/Postgres/Stor
 
 ## 44.2 World progression and privacy
 
+**Rumors are epistemic claims, not facts.** Store/source them as what an Actor heard or believes until corroborated/refuted; a rumor marker never proves its contents. Strategic/holding management should reuse World Actors/Threads/Events, support delegation and optional abstraction, and avoid a separate mandatory kingdom/colony simulation. Character-known urgency must be communicated fairly without exposing DM-private clocks.
+
 Character perspective and in-world influence follow [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md). Narrative **Player Role** does not grant authority. The controlled Actor's actual knowledge, capabilities, institutional authority, command scope, jurisdiction, resources and access constrain large-scale actions. High status never implies omniscience; low status never prevents locally important or emergent influence. In-character authority is never equivalent to owner-side World Authoring.
 
 Future World Engine and primary DM behavior must follow the player-agency principles in [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md). In particular: design problems rather than single authored solutions; preserve choice→consequence→recovery; use fail-forward where appropriate; combine micro-reactivity with durable macro consequences; keep NPC/companion identity stable; and prefer campaign resilience after unexpected player action over protecting authored content.

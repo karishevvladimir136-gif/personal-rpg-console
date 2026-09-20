@@ -24,6 +24,9 @@ Current private `fact/clock/npc/faction/consequence` patches are not already a f
 
 ## POV, authority and world leverage
 
+**Kingmaker / Rogue Trader reinforce two implementation rules:** model realms/holdings as coarse World Actors rather than separate strategy games, and let powerful PCs delegate bounded long-running tasks to advisors/officers through normal Threads/Events. Rumours remain claims rather than facts. Known urgency must be surfaced fairly; hidden clocks never become omniscient UI, but character-known deadlines should not be obscured.
+
+
 **Wrath of the Righteous** is a useful scale reference: one player-controlled Actor may validly act both locally and strategically when their actual authority supports it. Preserve one Actor/state history across those scales. Do not copy a mandatory detached crusade minigame; strategic orders should flow through normal World Actor/Thread/Event resolution and remain expressible in Text.
 
 

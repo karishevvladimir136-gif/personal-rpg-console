@@ -441,3 +441,58 @@ The engine should support:
 Do not expose feats, subclasses, prestige layers, alignment matrices or other rule concepts unless the selected ruleset actually uses them.
 
 Depth should come from meaningful choices and world reactivity, not from mandatory configuration complexity.
+
+
+## 28. A polity can be an actor without becoming a spreadsheet
+
+Kingmaker's kingdom and Rogue Trader's colonies support a general rule: settlements, realms, ships and institutions may be persistent World Actors with coarse capabilities, problems and projects.
+
+They do not require per-citizen simulation or a mandatory management minigame.
+
+## 29. Delegate instead of making powerful characters omnipresent
+
+Rulers and commanders should assign trusted Actors to bounded tasks rather than personally resolving every problem.
+
+Delegation creates:
+- responsibility;
+- time;
+- uncertainty;
+- relationship consequences;
+- opportunities for success/failure/intervention.
+
+The player remains free to intervene personally when plausible.
+
+## 30. Rumours are claims, not facts
+
+A rumor may be true, false, distorted or obsolete. Store and present it as knowledge about a claim until evidence establishes more.
+
+Map/journal UI must not silently convert a rumor into authoritative truth.
+
+## 31. Urgency requires epistemic fairness
+
+If the character plausibly knows that an event has a deadline or escalating danger, the UI/DM should communicate useful urgency.
+
+Do not reveal hidden clocks merely because the engine knows them. But do not punish the player for missing a deadline their character should obviously have understood.
+
+## 32. Strategic decisions should sometimes exclude alternatives
+
+Meaningful power often involves prioritization. Holdings, armies, budgets or institutions may force mutually exclusive or delayed choices.
+
+Opportunity cost is preferable to endless accumulation when the setting supports it.
+
+## 33. Record why the world changed
+
+Major decisions and resulting Events should retain causal provenance so the player can later understand why a settlement, faction, companion or strategic situation changed.
+
+Expose safe player-known history; keep private causes private until discovered.
+
+## 34. Test emergent combinations adversarially
+
+Assume players will combine systems in ways designers and agents did not predict.
+
+For any state-mutating subsystem:
+- validate ownership/access/capability/resources;
+- ensure idempotency;
+- test extreme combinations;
+- keep caps/rules explicit;
+- accept clever valid interactions instead of blocking them merely for being unexpected.

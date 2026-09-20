@@ -90,6 +90,18 @@ A prisoner may know a critical secret while having almost no immediate command a
 
 Context assembly must therefore filter **knowledge separately from capability/authority**.
 
+### Jurisdiction is contextual, not a global rank flag
+
+Rogue Trader is a useful reference: the same office can confer extraordinary freedom in one domain while operating among peers/constraints in another. Therefore authority records should include relevant scope and jurisdiction rather than a universal numeric “power level.”
+
+Examples:
+- a governor controls their province but not a neighboring sovereign state;
+- a colonel commands assigned units but not an allied army;
+- a corporate CEO controls company resources but not public police;
+- a fantasy king may issue lawful orders in their realm but still need diplomacy abroad.
+
+Conflicting/overlapping authority is a normal world condition, not a validation bug.
+
 ## Orders are actions, not guaranteed outcomes
 
 When a character with authority issues an order:
