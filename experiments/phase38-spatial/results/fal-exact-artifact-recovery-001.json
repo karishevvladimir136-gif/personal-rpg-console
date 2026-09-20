@@ -1,0 +1,589 @@
+{
+  "version": 1,
+  "executionSHA": "0c6ee50ef82a8d2b0423a31bf75ab402cfa492c5",
+  "executionBranch": "codex/phase38-fal-artifact-recovery-preparation",
+  "recoveryIdentity": "phase38b-fal-exact-artifact-recovery-1",
+  "recoveryHash": "6c4762d090718fe11188f4d777eb51a1dd37ff515e14eeab6159f80c7d42ed98",
+  "manifestFileSHA256": "585525468d336981c535b2bca23d9fb1c6dc61c7211f676cb5ff476445840183",
+  "freezeFileSHA256": "27ed701679ff4b369c720d6ce10368a4f87d9f38f6284beb4bf7c59f0c6774ae",
+  "protocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "observationTimestampUTC": "2026-09-20T04:45:39.870Z",
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "requestedProvider": "fal",
+  "requestedModel": "fal-ai/hunyuan_world/image-to-world",
+  "actualProviderAPIModel": null,
+  "providerReportedRequestId": null,
+  "expectedResultBodySHA256": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+  "bindings": {
+    "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+    "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+    "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+    "originalStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+    "originalStopEvidenceSHA256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+    "recoveryPreparationSHA": "115dcf0c50a8b815e61d597970101898a7723bcf",
+    "recoveryIdentity": "phase38b-fal-recovery-1",
+    "recoveryHash": "0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a",
+    "completedStatusEvidenceCommit": "3371a20427c33abed810ff0af83a031c943090ac",
+    "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+    "completedBodySHA256": "aa0b4ea61115e93b202b7630801e934dc3af3f6488d5035a6f49cd91a454ed98",
+    "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+    "retrievalPreparationSHA": "9160d9766559d38139a51516384461958399defc",
+    "retrievalIdentity": "phase38b-fal-retrieval-1",
+    "retrievalHash": "546d44c1bd66dcd23ade1995355cc4f8fc1e16425652e16beb501ddaca98ac9a",
+    "retrievalEvidenceCommit": "31d6431002b32060d4a1f365fc8b06b90f841a00",
+    "retrievalEvidenceFile": "results/fal-retrieval-001.json",
+    "retrievalEvidenceSHA256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+    "previousResultBodySHA256": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+    "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+    "retrievalFiles": {
+      "journal.jsonl": "ba680b1974f1e31e884dbe97c43b4734390d365a0f341e449a92dcccab2d6d4a",
+      "witness.jsonl": "34b6f7f260f4995af7a961b8adeca8b66eff5694effef04db4757a90d8a5f0fc",
+      "identity.json": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a",
+      "../private-fal-retrieval.anchor": "4b78cef0cb0e37dd587d8b06e3f65993fa10933887cf87d9733f63986494358a"
+    }
+  },
+  "originalStopBinding": {
+    "originalPreparationSHA": "dcbf8105ce7e18928901620dcf899d76ec000e8b",
+    "originalIdentity": "phase38b-fal-exact-artifact-1",
+    "originalManifestFile": "fal-exact-artifact.json",
+    "originalManifestHash": "310e802e1df5781a97336f9915668855421a50ff17e0c74532c44fc5df647f53",
+    "originalManifestFileSHA256": "2015ddbc3b0b233d37e297ef951b8856c8d9f047fed6583de22b02f53950244a",
+    "stopEvidenceCommit": "5c01cb463ea677186de5ed85aba874a4a363c746",
+    "stopEvidenceFile": "results/fal-exact-artifact-001.json",
+    "stopEvidenceSHA256": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760",
+    "privateRoot": "private-fal-artifact",
+    "originalInitializationSucceeded": false
+  },
+  "initialization": {
+    "invocations": 1,
+    "successfulInitializations": 1,
+    "newIdentityOnly": true,
+    "oldPrivateRootAndAnchorStillAbsent": true,
+    "httpRequests": 0,
+    "dnsResolutions": 0,
+    "reservations": 0,
+    "generations": 0
+  },
+  "network": {
+    "resultGETs": 1,
+    "artifactGETs": 1,
+    "totalNewHTTPRequests": 2,
+    "assetDNSResolutions": 1,
+    "assetDNSBasis": "Frozen default transport invokes one bounded public-address lookup and pins its first validated answer; successful asset HTTP response demonstrates that path completed. Low-level resolver packets / queue.fal.run OS resolution are not separately instrumented.",
+    "completedDownloads": 1,
+    "posts": 0,
+    "retries": 0,
+    "resumes": 0,
+    "redirectsFollowed": 0,
+    "secondResultGETs": 0,
+    "secondArtifactGETs": 0,
+    "polls": 0,
+    "resubmissions": 0,
+    "fallbacks": 0,
+    "generations": 0,
+    "billingCalls": 0,
+    "worldLabsCalls": 0,
+    "exports": 0,
+    "nextCalls": 0,
+    "chestCalls": 0
+  },
+  "observation": {
+    "resultHTTP": {
+      "classification": "exact_response_url",
+      "httpStatus": 200,
+      "location": {
+        "present": false,
+        "valid": false
+      },
+      "redirect": false,
+      "requestedURLHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+      "response": {
+        "allowedQueuePath": true,
+        "credentialsPresent": false,
+        "fragmentPresent": false,
+        "hostname": "queue.fal.run",
+        "hostnameHash": "cd914202c0e392feec9617458b9f655a91a2f45ca631c057bf5ae0a6bd336832",
+        "path": "/fal-ai/hunyuan_world/requests/01a0bc76-ae7f-7e02-960b-a207094622d2",
+        "pathHash": "fa72af9048155e86eb2b727ffc98b4335e135847ce69c36592522e1c1f42c535",
+        "portPresent": false,
+        "present": true,
+        "queryPresent": false,
+        "scheme": "https",
+        "urlHash": "9ac7c068653dd5455115339406a62eaff99da78532d9e2b1eb939623828cf790",
+        "valid": true
+      },
+      "responseURLMatches": true,
+      "stage": "result",
+      "statusQualification": "provisional_200_candidate"
+    },
+    "body": {
+      "bodyHash": "5dd84907167313f73db618cc1e1768bb658c59fafdb4dc2fb4119d7e2c1e78d6",
+      "matchesPrevious": true
+    },
+    "identity": {
+      "actualModel": null,
+      "providerReportedRequestId": null,
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2"
+    },
+    "descriptor": {
+      "contentType": "application/octet-stream",
+      "credentialsPresent": false,
+      "explicitPortPresent": false,
+      "fileExtension": "zip",
+      "fileSize": 85481294,
+      "fragmentPresent": false,
+      "hostname": "storage.googleapis.com",
+      "hostnameSHA256": "df8ab3acb3324531fb5c42308bf6cc9cac1e499d1f3e2268243a1dd4072e58d4",
+      "pathname": null,
+      "pathSHA256": "8437ed77f94ab487679dd8f75014ee3448af3eaf18d63c67037e7d11648d2723",
+      "queryPresent": true,
+      "scheme": "https",
+      "urlSHA256": "28e7ae50a56a53c390eaf1da596976d58f4e1b4273d28a0255d9cd6ab293d771"
+    },
+    "artifactHTTP": {
+      "exactRequestedURL": true,
+      "httpStatus": 200,
+      "redirect": false,
+      "stage": "asset",
+      "urlHash": "28e7ae50a56a53c390eaf1da596976d58f4e1b4273d28a0255d9cd6ab293d771"
+    },
+    "artifactFile": {
+      "bytes": 85481294,
+      "complete": true,
+      "file": "artifact.zip",
+      "sha256": "721f2afef8c2c045566e20f203557c549d712eef430edd671e5bb2c00b2de331"
+    },
+    "inventory": {
+      "crcChecked": true,
+      "entries": [
+        {
+          "bytes": 8942162,
+          "compressedBytes": 8664112,
+          "extension": "png",
+          "index": 0,
+          "pathSHA256": "931d3477b40f2e13c937e98f429de601f8df6fabfd1847d7afeb6c9ec432aced",
+          "sha256": "df843c52388d9befbf312a5fdeb70b45b210b4454b91ec2c8f044567d11e7acd"
+        },
+        {
+          "bytes": 2105789,
+          "compressedBytes": 2106434,
+          "extension": "png",
+          "index": 1,
+          "pathSHA256": "7dc902429e4a34283caafe9cbbd37f2698bf8d8ad52d172139cd0eb95c6c120c",
+          "sha256": "7111ceb4fdaca5bccd0df99a5924dfa5f55a8f263e078cfdf51c680651dabd3f"
+        },
+        {
+          "bytes": 8865703,
+          "compressedBytes": 8589739,
+          "extension": "png",
+          "index": 2,
+          "pathSHA256": "e169843e02582fd9cf267cdea6613a909480801f5f625506b23771a165fa448b",
+          "sha256": "4b9df9f2db65349ce287e8f1bb06cc0176764a4055f5153fa94d3ce3bcc7a77d"
+        },
+        {
+          "bytes": 2032574,
+          "compressedBytes": 2033194,
+          "extension": "png",
+          "index": 3,
+          "pathSHA256": "6e1dfd4f10a69d6f1f9e31046c130eb428b8b35ef8118d8b667b078bbc60f4cc",
+          "sha256": "4d3d0e07fdf130d257754f2f23ca7b47272dd58915ff805279e7d039b5c04fee"
+        },
+        {
+          "bytes": 2105789,
+          "compressedBytes": 2106434,
+          "extension": "png",
+          "index": 4,
+          "pathSHA256": "4ee84a82b5e4c9e6651b13fd27dcf615e427ec584929f2cef7167aa99151a77a",
+          "sha256": "7111ceb4fdaca5bccd0df99a5924dfa5f55a8f263e078cfdf51c680651dabd3f"
+        },
+        {
+          "bytes": 4988607,
+          "compressedBytes": 2996121,
+          "extension": "ply",
+          "index": 5,
+          "pathSHA256": "02c6270dff7e4f1e4048561e04242c07bfcc4838c5806f53f93cfefb600e5dc4",
+          "sha256": "049c9f02b7410eec5070c2c59020d7e308f7ee6d4735634ab98ea557fe04b0c1"
+        },
+        {
+          "bytes": 8021,
+          "compressedBytes": 123,
+          "extension": "png",
+          "index": 6,
+          "pathSHA256": "60f1c689bf8f14826580f5fc4a0ce85e3c6eea8211ce049613196c2ca1d904d9",
+          "sha256": "3342e13ecfc44d571553b2dd1df7ef2832f0e765ca4597fdda91636af445b1ee"
+        },
+        {
+          "bytes": 2023153,
+          "compressedBytes": 2023773,
+          "extension": "png",
+          "index": 7,
+          "pathSHA256": "9c9d10a380b84333318171411d6550360e43f5577f5360bc0d10993874570ee0",
+          "sha256": "c36fc8c67b56f16b55b987c9efeac6b84278a575b1787afb296fa6f574d92c93"
+        },
+        {
+          "bytes": 1189,
+          "compressedBytes": 330,
+          "extension": "json",
+          "index": 8,
+          "pathSHA256": "6a095b1afb87dc2b0e92a4738656e024d472aee33f6c008911e3bd6b779b40b6",
+          "sha256": "76d091387a4ec51674469702c86f19c1d66ae65acf85ec7c5b6404703949657d"
+        },
+        {
+          "bytes": 2064771,
+          "compressedBytes": 2065398,
+          "extension": "png",
+          "index": 9,
+          "pathSHA256": "30e3e3a3b4dd96ddbd099c5d273e3fdd892ccd4012d6d79244fee4e3914010ef",
+          "sha256": "ae2fa045e493a649cfdfead8997453408cba7c4037f785708904fee0fa9fad33"
+        },
+        {
+          "bytes": 11792,
+          "compressedBytes": 4368,
+          "extension": "png",
+          "index": 10,
+          "pathSHA256": "b6b39d3d854b56c2469ab89505207c26c76114936e4cf50b23d5fe68a2d5fdea",
+          "sha256": "3923bc127be5805fdcb1e8d9bec5ff8a2a84e2981780027d01261a8fb01273f2"
+        },
+        {
+          "bytes": 1191,
+          "compressedBytes": 328,
+          "extension": "json",
+          "index": 11,
+          "pathSHA256": "9bc7b0e4ed345c55631a131495547a7e3df000dae44e7750551e92cba2c667fe",
+          "sha256": "dd2e06487b51b86d35ea27e84396d7bfa6ababe297d63be8e17bc0fceb958ee1"
+        },
+        {
+          "bytes": 9740,
+          "compressedBytes": 2095,
+          "extension": "png",
+          "index": 12,
+          "pathSHA256": "4e739cd6e93aac6e3b91103d9a498d1d86a8d513bd7e0fadba77f6c7ec058d08",
+          "sha256": "9eb35072b296557c260a8cce706f32c844627c815c9760053d0c8eed9b334b94"
+        },
+        {
+          "bytes": 8688378,
+          "compressedBytes": 8404854,
+          "extension": "png",
+          "index": 13,
+          "pathSHA256": "02aab7e1db7d396f49fc68496211e4213a92ec8366c2f30ea41fa327363e6014",
+          "sha256": "fee0acfaf72c990af53a9b0fdbab0ab0cbf4c985961e97b6431481714266a524"
+        },
+        {
+          "bytes": 97639951,
+          "compressedBytes": 35098915,
+          "extension": "ply",
+          "index": 14,
+          "pathSHA256": "cbe81e1398fc527a885e3e99c098257198b1c2ab03f4264492fa5172ae0b1829",
+          "sha256": "097c1da725a549f1380113af256f125cad8f53bc3a74ecde3234feaf2878f18a"
+        },
+        {
+          "bytes": 4693739,
+          "compressedBytes": 2885552,
+          "extension": "ply",
+          "index": 15,
+          "pathSHA256": "101048dd1d060cc3a9c7eedd2faa85e9d963f6d6c0080fb32e3b40558feb7cc8",
+          "sha256": "0b241dc4e68168573ea679d8f1d4bcc41a2050ab02948f21df34e9a4dc89b233"
+        },
+        {
+          "bytes": 8778269,
+          "compressedBytes": 8497706,
+          "extension": "png",
+          "index": 16,
+          "pathSHA256": "388e5fc77dd641639bcf8f2e398f82a994142dfcd5f72c95e91d08c883ae8ad2",
+          "sha256": "4985dbabd17727b10de04583752320dc0ae89c08c0da579ce7898c6aaaea54c9"
+        }
+      ],
+      "entryCount": 17,
+      "noExtraction": true,
+      "totalUncompressedBytes": 152960818
+    },
+    "formatInventory": [
+      {
+        "extension": "png",
+        "entries": 12,
+        "uncompressedBytes": 45636141
+      },
+      {
+        "extension": "ply",
+        "entries": 3,
+        "uncompressedBytes": 107322297
+      },
+      {
+        "extension": "json",
+        "entries": 2,
+        "uncompressedBytes": 2380
+      }
+    ],
+    "inspection": {
+      "drcPresent": false,
+      "drcRequested": true,
+      "executedFiles": 0,
+      "formats": [
+        "ply"
+      ],
+      "navigationQuality": "UNVERIFIED",
+      "observations": [
+        {
+          "category": "ply",
+          "index": 5,
+          "structuralUsability": "UNVERIFIED",
+          "validation": "ARCHIVE_INTEGRITY_ONLY"
+        },
+        {
+          "category": "ply",
+          "index": 14,
+          "structuralUsability": "UNVERIFIED",
+          "validation": "ARCHIVE_INTEGRITY_ONLY"
+        },
+        {
+          "category": "ply",
+          "index": 15,
+          "structuralUsability": "UNVERIFIED",
+          "validation": "ARCHIVE_INTEGRITY_ONLY"
+        }
+      ],
+      "structuralUsability": "MANUAL_REVIEW_REQUIRED",
+      "visualQuality": "UNVERIFIED",
+      "worldCandidateCount": 3
+    },
+    "terminal": {
+      "approval": false,
+      "billing": "UNKNOWN",
+      "manualReviewRequired": true,
+      "nextReleased": false,
+      "status": "RETRIEVED_AWAITING_OWNER_REVIEW"
+    }
+  },
+  "zip": {
+    "integrity": "PASS_WITHIN_FROZEN_CLASSIC_ZIP_LIMITS",
+    "crcChecked": true,
+    "allEntryHashesRetained": true,
+    "noExtraction": true,
+    "noExecution": true,
+    "entryCount": 17,
+    "totalUncompressedBytes": 152960818,
+    "drcPresent": false,
+    "drcHeaderResult": "NOT_APPLICABLE_ABSENT",
+    "glbPresent": false,
+    "gltfPresent": false,
+    "worldCandidateCount": 3,
+    "worldCandidateTypes": [
+      "ply"
+    ],
+    "structuralUsability": "MANUAL_REVIEW_REQUIRED",
+    "visualQuality": "UNVERIFIED",
+    "navigationQuality": "UNVERIFIED"
+  },
+  "accounting": {
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 46,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "refunds": 0,
+    "changed": false,
+    "newGenerations": 0,
+    "chestAttempted": false,
+    "billingReconciled": false,
+    "falBilling": "UNKNOWN",
+    "currentAPIRequestsExcludingAssetDownloads": 47,
+    "currentCompletedDownloads": 9,
+    "currentGenerationSubmissions": 3,
+    "unknownNotTreatedAsZero": true
+  },
+  "preservation": {
+    "histories": {
+      "originalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+      "recoveryTerminalDigest": "412176ac819cfbc9e509c01dd9318cc432ea3f44beffb9d48900937fcef1a3f9",
+      "completedStatusEvidenceSHA256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e",
+      "retrievalTerminalDigest": "7d37b96225ad7cc0ee077f5f8772e0ddc9c32971b52541fc81b0dec272855e67",
+      "retrievalEvidenceSHA256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6",
+      "diagnosticTerminalDigest": "1746edd7614017df229651b6da3c6796b9df94a2556f093b4e1ad60723a37879",
+      "diagnosticEvidenceSHA256": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115",
+      "artifactStopEvidenceSHA256": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760"
+    },
+    "all29PriorEvidenceFilesByteIdentical": true,
+    "previousEvidence": [
+      {
+        "path": "experiments/phase38-spatial/results/COURTYARD_001.md",
+        "sha256": "9cbf1a607c0af3ae458f66e654e3d70e71283b050397ef506417a1d411aa10f2"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_001.md",
+        "sha256": "5b6e80114b2cb779560da314449ca578db521b9934cc1486f4de0f4d5654a437"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_HOST_DIAGNOSTIC_001.md",
+        "sha256": "679df9c2442ab683d87284f58fe83ed7fa975974b02ad95fe1c840f726ea8049"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_RETRIEVAL_001.md",
+        "sha256": "d4a0ef52520fa728c52f934cf9ee190fa5628cd45fe61777abad31cb6cd460fb"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_STATUS_OBSERVATION_001.md",
+        "sha256": "9a0fe29138944fb15b889945fee1ab88eb20847e808840dd55a641505d115c9c"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/FAL_WORLD_001.md",
+        "sha256": "499db054d515140fd99841a5942e3dd00e4397fefc85215e6a1373b12c6eb516"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/LIVE_RUN_001.md",
+        "sha256": "f8095644157e626b3323b7b5c989a9c0209f3e7e8d239df40a91eb3eb443f811"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/RECOVERY_001.md",
+        "sha256": "a950570eedbfe77252107f8bf109a3d7abc288a69884e10c66ffa2f2ff42a4d8"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/ROOM_RECOVERY_001.md",
+        "sha256": "91f302b36b319321d8f4153a8408983b24a2a720219b7246d9771f02be712397"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/SETUP_STOP_001.md",
+        "sha256": "16d94388fbcb156604fa4ad2bcf239cee62a38e774a59625f78c2ca51f0a5797"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/URL_DIAGNOSIS_001.md",
+        "sha256": "c0735a147b341bebcecad734366a15c48f93195dde2ed42e8123dad1c1f255a8"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001-ledger.jsonl",
+        "sha256": "58ddabf60311a3f6f2b77e1667ac841c9743a0c0c70d0a9b7bf77cbd45c120ee"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001-witness.jsonl",
+        "sha256": "62675f4e042586634c2a954fbf481608ccec506b549a516fea751f15db3515f7"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-001.json",
+        "sha256": "8b746e88df7310019db02ab88f1b0adddb94cdc71a39ae047d8525a7dcd8550c"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/courtyard-manual-review-001.json",
+        "sha256": "70aa2030afbb9f83c5eb5450bede20230a6565786f020e82d3974cc203d17acb"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-exact-artifact-001.json",
+        "sha256": "a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-host-diagnostic-001.json",
+        "sha256": "882f1fd2bc7f9a917802680717566ee72d3a0a2a0ba4b87fc4250c014cc7f115"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-retrieval-001.json",
+        "sha256": "0f3f2be536235f49b8c4ec69b1b46eb4b82f7fb1e3f54ae12fb1a2df2c72fed6"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-status-observation-001.json",
+        "sha256": "0d665139d78999cba6e31422e041c81008383b6e84cea2997fb4e206dffde81e"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/fal-world-001.json",
+        "sha256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/live-run-001-ledger.jsonl",
+        "sha256": "d4a9055be8295098bbe60cc84cec7f4cfe447832dea0aeac2ea4772f2e5e5ce6"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/live-run-001.json",
+        "sha256": "05936d6837c5dd5536417bd7d2b1cdaf9cd8603ddfeb47ae2e36a738e372fd88"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/recovery-001.json",
+        "sha256": "4848f48b8db139fca613e0c14c324eabb4f26119ad94aaf653f255e281084a0b"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-manual-review-001.json",
+        "sha256": "9d7e614424bb97e8f5fab719f3d9f5fdb9648e7ba5367fc358fda8e54f4a7071"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001-ledger.jsonl",
+        "sha256": "95a00680d7240d33e64aa7a84eb68a0760276ed02da2f960c924d1997df4de45"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001-witness.jsonl",
+        "sha256": "301bf7f53b877f74d394a445730724ba78d80fa0e3d0361c51096cd177a96746"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/room-recovery-001.json",
+        "sha256": "4cf4352474714e064cfd3c3bdb7e71dc9917a48e2f966836fb0fa6f279a77200"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/setup-stop-001.json",
+        "sha256": "c982487bc5884d8593c3e1a0e2443115e1c32ef1ec0b1b20f3df3088e88d8f6e"
+      },
+      {
+        "path": "experiments/phase38-spatial/results/url-diagnosis-001.json",
+        "sha256": "610abc717c7fed6bc023f8669a38d5413e0ac1a4fd4be3c24ceb3c1f9f0ef04a"
+      }
+    ],
+    "originalStopImmutable": true,
+    "oldStopNotReinterpreted": true,
+    "executionCheckpointCleanAndUnchanged": true,
+    "globalPersistentAllowlistUnchanged": true,
+    "frozenInputsVerified": 67,
+    "privateFileHashes": {
+      "journal.jsonl": "90fe2ada172ac6df563dd41bfbdeda0f49a816a92f8a8795df98f36dab6047da",
+      "witness.jsonl": "10e607b02258af9e8d2a726e61b53d9d7cdea6d88532fadd00149776b5325fa1",
+      "identity.json": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195",
+      "../private-fal-artifact.anchor": "343c1a99aa4e610d2033d3c6fe522263831f353bb39a5dde366f98ed3f57d195"
+    },
+    "terminalDigest": "443f7ba0a74b235468f2ffe0c8ba52506f8f4245e29616ca6b27a29c287a2d47",
+    "journalEntries": 12,
+    "productionUnchanged": true,
+    "mainUnchanged": true,
+    "originalCheckoutDocumentationByteIdentical": true,
+    "retainedArtifactLocallyRehashed": true
+  },
+  "verification": {
+    "tests": {
+      "passed": 704,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "command": "node --test --test-reporter=tap experiments/phase38-spatial/tests/*.test.mjs"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "command": "node node_modules/typescript/bin/tsc -p experiments/phase38-spatial/tsconfig.json --noEmit"
+    },
+    "lint": {
+      "status": "PASS",
+      "warnings": 0,
+      "command": "node node_modules/eslint/bin/eslint.js experiments/phase38-spatial --max-warnings 0"
+    },
+    "build": {
+      "status": "PASS",
+      "scope": "isolated experiment",
+      "command": "node node_modules/typescript/bin/tsc -p experiments/phase38-spatial/tsconfig.json"
+    },
+    "runAfterLiveObservation": true,
+    "worktree": "separate evidence worktree; no live private state copied",
+    "productionChecks": "NOT_RUN_PRODUCTION_UNCHANGED"
+  },
+  "limitations": [
+    "PLY candidates received archive-integrity validation only, not geometry parsing, decoding, rendering or navigation checks.",
+    "PNG and JSON entries were inventoried and CRC/hash checked; no full image decode or JSON semantic interpretation was performed.",
+    "No DRC, GLB or glTF entries; no claim of Draco geometry validity.",
+    "Structural usability requires manual review; visual and navigation quality are UNVERIFIED.",
+    "Actual provider API model is UNKNOWN/null; requested endpoint is not fabricated actual-model evidence.",
+    "fal charge remains UNKNOWN; original reservation retained, no billing endpoint called.",
+    "Physical iPhone/Safari and optional historical Phase 1 conflict-rebase confirmation remain unverified.",
+    "Finite synthetic checks do not guarantee universal recovery, branching, memory isolation or format support.",
+    "No hosted deployment, real campaign/private-data acceptance or production EXPLORE acceptance."
+  ],
+  "ownerApproval": false,
+  "nextReleased": false,
+  "chestAttempted": false,
+  "status": "RETRIEVED_AWAITING_OWNER_REVIEW"
+}

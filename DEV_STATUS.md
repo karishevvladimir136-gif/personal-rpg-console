@@ -4,6 +4,36 @@ Last updated: September 19, 2026 (local; previous live observations September 20
 
 ## Current milestone and status
 
+**PHASE 3.8B EXACT FAL ARTIFACT RECOVERY RETRIEVED; STOP FOR OWNER REVIEW.** Executed the separately owner-authorized clean checkpoint **0c6ee50ef82a8d2b0423a31bf75ab402cfa492c5**, identity **phase38b-fal-exact-artifact-recovery-1**, manifest hash **6c4762d090718fe11188f4d777eb51a1dd37ff515e14eeab6159f80c7d42ed98**. Initialization succeeded once with zero requests/DNS/reservations/generations. The sole recovery attempt made **1 exact fal result GET + 1 exact artifact GET**, both HTTP 200; one bounded asset DNS lookup; no retry or redirect. Raw result SHA-256 exactly matched the frozen expected bytes before parsing. Actual provider API model remains **UNKNOWN/null**.
+
+### Completed work and files / areas changed
+
+Retained the exact **85,481,294-byte** ZIP locally in ignored private storage; SHA-256 **721f2afef8c2c045566e20f203557c549d712eef430edd671e5bb2c00b2de331**. Frozen offline inspection passed archive structure/CRC/hash guards: **17 entries, 152,960,818 aggregate uncompressed bytes; 12 PNG, 3 PLY, 2 JSON**. DRC, GLB and glTF entries are absent. The 3 PLY world candidates received archive-integrity validation only. No extraction, rendering, full image/geometry decode or navigation test. **Structural usability: MANUAL_REVIEW_REQUIRED; visual/navigation: UNVERIFIED.**
+
+Added only [sanitized JSON evidence](experiments/phase38-spatial/results/fal-exact-artifact-recovery-001.json), [readable report](experiments/phase38-spatial/results/FAL_EXACT_ARTIFACT_RECOVERY_001.md) and this status in a separate evidence worktree. No secrets, signed URLs, raw provider bodies, headers or binary assets are committed.
+
+### Tests and build status
+
+After live execution: **704 deterministic experiment tests passed; zero failures, skips or cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** The separate verification worktree contains no live private state; no historical ledger was removed/reset to run tests. Production suite/build not rerun because production is unchanged.
+
+### Key technical decisions and accounting
+
+All frozen guards and 67 freeze inputs remain unchanged. Exact body/provenance capability permitted one GCS asset only; no global/persistent allowlist change. Original STOP evidence **5c01cb463ea677186de5ed85aba874a4a363c746** / file hash **a7eb980b950c3a30f0c4686fdd9c4529d9e02927d38b63ab2df6ecf65c915760**, all 29 prior evidence files and all prior source histories remain byte-identical. The old stopped root/anchor remain absent and are not reused/reclassified; execution stays clean at its approved SHA. New journal is terminal **RETRIEVED_AWAITING_OWNER_REVIEW**, approval false, next release false.
+
+Accounting is unchanged: **$4.15 / $4.75 reserved; $2.528 known reported billing; fal billing UNKNOWN; existing $0.35 fal reservation retained once; $0.60 chest allocation unreleased**. Including this attempt: **47 API requests excluding asset downloads, 9 completed downloads, 3 generations**. No new reservation/refund/generation. No POST, retry, fallback, redirect follow, polling, second result/asset GET, result refresh, billing/World Labs/export/next/chest call. Chest remains unattempted.
+
+### Known issues and remaining work
+
+Archive integrity does not establish valid PLY geometry, decoded PNGs, visual quality, navigation or production usability. No DRC was found despite the requested format. Model provenance and fal billing remain UNKNOWN. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic checks do not guarantee universal recovery, memory isolation, branching or format support. No hosted deployment, real campaign/private-data acceptance or production EXPLORE acceptance. Production/main/roadmap, dependencies and original checkout's pre-existing documentation remain untouched.
+
+### Recommended next step
+
+**STOP for owner review of this evidence.** No automatic approval or next-job release. Do not run chest, retry/retrieve again, extract/render the archive, change host policy, start further implementation, merge main, deploy or import real data without new authorization.
+
+---
+
+## Historical offline exact fal artifact recovery preparation checkpoint
+
 **PHASE 3.8B EXACT FAL ARTIFACT RECOVERY CORRECTION PREPARED OFFLINE; STOP FOR OWNER REVIEW.** New candidate identity **`phase38b-fal-exact-artifact-recovery-1`**, branch `codex/phase38-fal-artifact-recovery-preparation`. Original `phase38b-fal-exact-artifact-1` remains permanently **STOPPED before initialization/network** at evidence commit `5c01cb463ea677186de5ed85aba874a4a363c746`; it is not reclassified or reused as success. No live recovery initialization, provider/result/asset request, asset DNS, reservation, generation or chest call occurred. Only the requested GitHub push uses network traffic.
 
 ### Completed work and files / areas changed
