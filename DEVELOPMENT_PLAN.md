@@ -1,7 +1,7 @@
 # DEVELOPMENT PLAN
 ## Personal RPG Console
 
-**Current boundary:** This documentation-only integration candidate preserves the complete owner-approved roadmap `a3d0fa66da42f36a5401c3513e3484e83150f9d3` on production base `cb7f6be2fb513de13604d381046a3240f3261383`. Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Phase 3.8B final freeze](PHASE38B_ARCHITECTURE_FREEZE.md) is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**. Main has not advanced; review and explicit owner approval are required. No feature coding, provider call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
+**Current boundary:** The owner-approved source-of-truth integration includes the complete roadmap `a3d0fa66da42f36a5401c3513e3484e83150f9d3` on production base `cb7f6be2fb513de13604d381046a3240f3261383`. Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Phase 3.8B final freeze](PHASE38B_ARCHITECTURE_FREEZE.md) is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**. Integration content is owner-approved at `7d945d3754647015ecdd765cef2b688dbab38777`; this finalization records approval without starting production coding. No feature coding, provider call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
 
 ---
 
@@ -9,7 +9,7 @@
 
 The Progression / Rewards / Challenge Scaling addition is the **final planned foundational product-architecture addendum before the separately scoped production multi-agent coding sprint**, unless implementation reveals a genuine architectural blocker. No coding or multi-agent work starts in this documentation task. Do not begin another broad product research/design cycle.
 
-Phase 3.8B capability evidence and its architecture freeze are complete with documented limitations. This candidate completes source-of-truth reconciliation; the remaining integration gate is owner review and explicit approval to advance main. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next phase after approved integration is the **Production Multi-Agent Coding Sprint**, with separately authorized bounded scope. No additional Phase 3.8B experiment, chest recovery or fal retry is planned. Preserve the DM Craft sequence and all experiment acceptance boundaries.
+Phase 3.8B capability evidence and its architecture freeze are complete with documented limitations. Source-of-truth reconciliation is complete and owner-approved. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next phase is the **Production Multi-Agent Coding Sprint**, with bounded scope in a fresh project task. No additional Phase 3.8B experiment, chest recovery or fal retry is planned. Preserve the DM Craft sequence and all experiment acceptance boundaries.
 
 ## Production Multi-Agent Coding Sprint — handoff only
 
@@ -429,7 +429,7 @@ The owner-approved architecture and dated official research are preserved in [Sp
 
 # PHASE 3.8B — FINAL ARCHITECTURE / CAPABILITY EVIDENCE FREEZE
 
-**ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** See [final decisions](PHASE38B_ARCHITECTURE_FREEZE.md) and historical freeze `3c99552a66d9b4b270b3a7a8552c709cf9faf73e`, identity `phase38b-final-architecture-evidence-freeze-1`, canonical hash `eef894c15e27bc167cf3bbcbaaf99dd51ec640f545b1a16cd1b2e539da239119`. Historical experiment files remain on their exact Git checkpoints, outside this production candidate.
+**ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS.** See [final decisions](PHASE38B_ARCHITECTURE_FREEZE.md) and historical freeze `3c99552a66d9b4b270b3a7a8552c709cf9faf73e`, identity `phase38b-final-architecture-evidence-freeze-1`, canonical hash `eef894c15e27bc167cf3bbcbaaf99dd51ec640f545b1a16cd1b2e539da239119`. Historical experiment files remain on their exact Git checkpoints, outside production.
 
 Room/courtyard establish bounded World Labs capability for architecture only. Fal-world is `STRUCTURALLY_USABLE_PLY_WORLD_CANDIDATE`: support observed PLY or a validated offline conversion path; do not require DRC exclusively. No fal retry. Chest POST entered the queue but the first poll stopped locally; completion/charge UNKNOWN, no GLB retrieved, object/PBR/articulation UNVERIFIED, lid `STRUCTURE_UNVERIFIED`, separate lid not proven. No chest recovery; object generation is not an architecture dependency. None of this establishes final visual quality, navigation, canonical metric correctness or production EXPLORE readiness.
 
@@ -437,7 +437,7 @@ Four submissions consumed the **$4.75 / $4.75 permanent reservation allocation**
 
 Authoritative world/RPG state remains truth; generated assets are projections. Provider IDs never replace canonical identity; Interaction Bindings use verified addressable nodes/parts/anchors. Text is permanently first-class and spatial-independent; 2D Live is the planned primary visual layer; EXPLORE is optional/progressive and asset-first after Phase 4. Spatial providers do not gate World Engine, Rulesets, DM, Memory, Saves/Timelines or progression.
 
-The current gate is owner review of this integration candidate and explicit approval before main advances. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next development phase is the **Production Multi-Agent Coding Sprint** described above; no coding starts during integration.
+Source-of-truth integration is owner-approved. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next development phase is the **Production Multi-Agent Coding Sprint** described above; no coding starts during integration.
 
 ---
 

@@ -1,5 +1,7 @@
 # Source-of-truth integration candidate
 
+> **Historical integration-review artifact at `7d945d3754647015ecdd765cef2b688dbab38777`, now owner-approved.** The candidate/main-approval wording below describes that earlier review checkpoint. The substantive diff, coverage and verification record is preserved.
+
 ## Exact sources and integration boundary
 
 | Source | Exact checkpoint |
