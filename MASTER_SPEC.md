@@ -1018,6 +1018,16 @@ AI
 
 Supported-provider onboarding must require only obtaining a key, adding its documented line to the running checkout's ignored `.env.local`, restarting through an explained simple workflow, then testing/selecting models in Settings. No TypeScript, HTTP or database editing. Credentials are application-level server secrets; campaigns/save exports contain only configuration IDs/options. No tracked `.env.example` exists today: future Model Runtime implementation must add a placeholder-only template with a narrow Git exception while retaining real secret-file exclusion. Test Connection is an explicit synthetic, bounded request with possible-charge disclosure; status-page rendering makes no provider calls. See [MODEL_RUNTIME_BRIEF.md](MODEL_RUNTIME_BRIEF.md) for status semantics, secret handling and future acceptance gates. None of this settings UI is implemented here.
 
+
+MAP / EXPLORATION
+- quest & POI marker visibility: **Off / Tracked Only / Standard / All Known**
+- marker visibility is presentation only and may be changed at any time without changing canon, discovery state or quest state
+- **Off** hides automatic quest/POI markers while preserving essential navigation such as current position and explicit manual pins/destination controls
+- **Tracked Only** shows the currently tracked objective/destination and explicit manual pins
+- **Standard** shows discovered/known quest objectives plus important discovered POIs/leads according to normal campaign presentation
+- **All Known** shows every currently player-known mappable quest objective, POI, lead, rumor/location signal and other explicitly known adventure marker supported by the map
+- no normal marker mode reveals DM-private, undiscovered or future information; spoiler/private inspection remains a separate protected concept
+
 VISUAL
 - campaign visual style
 - frame aspect ratio
@@ -2001,6 +2011,18 @@ Separate **latent truth** from **player knowledge**:
 POIs may evolve or expire with World Threads. Ignoring a mine, caravan, cult activity or warning does not freeze the world; later public state may show smoke, collapse, departure or another consequence if normal World Engine progression justifies it. Never fabricate background advancement from wall-clock time.
 
 Avoid checklist-marker spam. Later UX may offer owner preferences such as Minimal / Normal / Explorer visibility or equivalent, but the default should preserve discovery and uncertainty rather than expose every latent hook.
+
+
+### Quest / POI marker visibility is an owner preference
+
+Quest markers are not treated as inherently bad design. The player can choose how much explicit map guidance they want without changing the underlying world or discovery rules:
+
+- **Off** — no automatic quest/POI markers; keep only essential navigation and manual pins/destination controls.
+- **Tracked Only** — only the currently tracked objective/destination plus manual pins.
+- **Standard** — discovered quest objectives and a curated set of important known POIs/leads.
+- **All Known** — every player-known mappable quest objective, POI, rumor/lead/location signal and other known adventure marker supported by the current map.
+
+The setting may be changed at any time and is presentation-only. **All Known does not mean reveal DM-private content**: undiscovered secrets, latent hooks and future information remain hidden. A player who wants modern-RPG convenience can have dense markers; a player who wants discovery/immersion can remove them entirely.
 
 ## 46.5 Owner-directed adventure density through Chat with DM
 

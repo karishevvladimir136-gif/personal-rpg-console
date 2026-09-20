@@ -427,6 +427,7 @@ Initial build should stay small:
 - compact checks/combat presentation; free-form actions remain valid;
 - style profiles/assets remain campaign-specific rather than hardcoding pixel or painterly art;
 - player-visible POIs only; latent Adventure Hooks stay private until discovered.
+- marker visibility: Off / Tracked Only / Standard / All Known; presentation-only, with All Known still limited to player-known information.
 
 Do not require seamless movement, tactical grids, 3D, a second game-state store or renderer-owned quest/world logic. The renderer consumes authorized public state and emits typed player intents; normal RPG rules/DM/server validation remain authoritative.
 

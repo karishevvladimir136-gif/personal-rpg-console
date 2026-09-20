@@ -51,6 +51,10 @@ A new town might privately contain seeds for an old cemetery, abandoned bank vau
 
 Do not equate POI with quest. Some become short scenes, treasures, NPCs, dungeons, traps, atmosphere, major arcs or nothing important. Do not reveal which is which in advance.
 
+## Map marker visibility
+
+The 2D renderer must not impose a single philosophy about quest markers. Campaign/player presentation supports **Off / Tracked Only / Standard / All Known** marker visibility. All modes use the same underlying discovered/known state; only presentation changes. “All Known” is intentionally convenient and may show every known quest objective/POI/lead/rumor marker, while “Off” removes automatic markers entirely. Neither mode reveals latent DM-private hooks or undiscovered facts. Manual pins/current destination remain separately useful.
+
 ## Chat with DM as the campaign director control
 
 The owner can later say naturally:
