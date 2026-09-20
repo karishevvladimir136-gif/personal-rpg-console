@@ -1,10 +1,18 @@
-# Development status — Production Mega Coding Sprint, Wave 3
+# Development status — Production Mega Coding Sprint, Wave 3 — owner accepted
 
 Started September 20, 2026 from exact authorized remote main `b7b065726ac1e0f64056e1970c8390f8448b4875` in isolated branch `codex/production-mega-sprint-wave3`. Waves 1 and 2 remain owner accepted. The original dirty checkout is untouched.
 
-Updated September 20, 2026. Initial implementation and independent QA checkpoint: `1763cd4820e14cd9cfd6633284ded2d7aa6460d6`; initial verified handoff: `bc72e04cc3d68aec6ab18b272eaca1ceb27fb27f`. The owner-control completion pass below follows that exact handoff. Main stays at the authorized base; Wave 3 requires separate owner acceptance.
+Updated September 20, 2026. Owner-approved Wave 3 checkpoint: `5a4feaf8261ed2640540fdf1d61374e5935eb2d7`. Initial implementation and independent QA checkpoint: `1763cd4820e14cd9cfd6633284ded2d7aa6460d6`; initial verified handoff: `bc72e04cc3d68aec6ab18b272eaca1ceb27fb27f`. The accepted checkpoint includes the owner-control completion pass below. Remote main was fetched and verified at exact authorized base `b7b065726ac1e0f64056e1970c8390f8448b4875` before this status-only approval.
 
-## Owner-control completion pass — ready for acceptance review
+## Explicit owner acceptance and publication scope
+
+The owner explicitly accepts Wave 3 at exact SHA `5a4feaf8261ed2640540fdf1d61374e5935eb2d7`, including the implemented functionality, disclosed limitations, UI direction and owner-control completion pass. Waves 1 and 2 remain owner accepted. This acceptance changes only `DEV_STATUS.md` in one status-only approval commit on `codex/production-mega-sprint-wave3`.
+
+The owner authorizes fast-forwarding remote main only from `b7b065726ac1e0f64056e1970c8390f8448b4875` to the resulting approval commit. The accepted implementation checkpoint must remain the approval commit's direct parent and in main's direct ancestry. Verification checks the single-file diff, unchanged implementation tree, one direct approval commit, remote branch/main SHAs and clean integration worktree. The original dirty checkout remains untouched.
+
+Application tests, typecheck, lint and build are not rerun for this documentation-only approval. All results below are recorded implementation verification, not fresh results for the approval commit. No force push, squash, rebase, implementation change, migration execution, deployment, provider call, real-data import, World Lab, Enter This World or next-wave implementation is authorized by this acceptance. Stop after publication verification.
+
+## Owner-control completion pass — owner accepted
 
 Implemented and integrated by Lead: guided Pack review now offers **Edit identity** for entity display name, aliases and the existing bounded type; unknown items have an optional **Owner note / resolution**. Existing source text, descriptions, Pack/claim text, contradiction resolution, refinement instructions and campaign premises remain manually editable. EN/RU labels and the existing responsive styling are preserved. No AI request is necessary for these corrections.
 
@@ -12,7 +20,7 @@ The existing `pack.save` authority creates a new immutable draft with the same c
 
 Changed areas: guided review/Pack editor, client command allowlist and EN/RU vocabulary, owner command validation and optional Pack unknown-note parsing, focused UI/domain/SQL regressions, owner guide and this status/addendum. IDs are not displayed as editable controls. The server rejects entry replacement/addition/removal, extra structural fields, invalid type/length/alias values and attempts to rewrite unknown questions or their entity links through notes.
 
-Fresh completion-pass verification:
+Recorded completion-pass verification at the accepted implementation:
 
 - **199/199 tests passed, 0 failed, 0 skipped** in **32.769 seconds**: every `wave3-*.test.mjs`, Wave 2 Library/compiler/privacy tests, and Wave 1 Library/Pack/legacy-import boundary tests. Includes eight new regression cases, expanded SQL immutable-edit/approval/pinning checks, disposable migration upgrades and the existing compiler, premise, consequence, reconciliation and recovery flows. The earlier complete-suite result below is historical, not claimed as a fresh full-suite run for this pass.
 - Route type generation plus TypeScript `--noEmit`: **passed**.
@@ -20,16 +28,16 @@ Fresh completion-pass verification:
 - Production build `next build --webpack`: **passed** with the same documented dependency-junction limitation for default Turbopack.
 - Separate synthetic browser check: manually changed name, multiline aliases, entity type and unknown note in English at 1440×960, saved a new draft, then saved Russian corrections at 390×844. Verified the earlier version kept its original name/type/note and disabled editing; both corrected versions remain in history. No horizontal overflow was observed on mobile. Actual current components and the in-memory authoring service were used; no live database/provider or physical iPhone result is claimed.
 
-No live model-quality evaluation, provider call, real-data import, real database migration, deployment, main change or Wave 4 work occurred. This pass is implemented, integrated, deterministically verified and browser checked; it is **not owner accepted**. No additional setup beyond the previously disclosed Wave 3 release requirements is introduced. Next step is owner acceptance review and stop.
+No live model-quality evaluation, provider call, real-data import, real database migration, deployment, main change or Wave 4 work occurred during the completion pass. This pass is implemented, integrated, deterministically verified and browser checked, and is now **owner accepted** as part of exact checkpoint `5a4feaf8261ed2640540fdf1d61374e5935eb2d7`. No additional setup beyond the previously disclosed Wave 3 release requirements is introduced. Publication is limited to the status-only approval and authorized fast-forward described above.
 
 ## Milestone status
 
 - **Implemented:** bounded natural-language World authoring, assisted compiler proposals, guided Pack review, campaign premises, typed World Logic consequences and overdue reconciliation.
 - **Integrated:** all six worker handoffs, Lead-owned shared contracts, additive migration 12, application wiring and central production repairs in the isolated integration branch.
-- **Deterministically verified:** fresh complete suite, disposable migration upgrades, typecheck, repository-wide zero-warning lint, production build and privacy/import analysis pass. The exact results and boundaries are below.
+- **Deterministically verified:** the recorded complete suite and completion-pass regressions, disposable migration upgrades, typecheck, repository-wide zero-warning lint, production build and privacy/import analysis passed at their documented implementation checkpoints. The exact results and boundaries are below; these checks were not rerun for the status-only approval.
 - **Browser checked:** actual application components with synthetic data and scripted responses, in English and Russian at desktop 1440×960 and mobile 390×844 viewports. No horizontal overflow was observed in the checked flows. This is not physical iPhone testing or authenticated live-database testing.
 - **Not live-model-quality evaluated:** no live provider/model requests, paid evaluation, real database migration, real source/campaign import, web research or deployment occurred.
-- **Not owner accepted:** Waves 1 and 2 remain accepted. Wave 3 awaits owner review. A/B/C are not declared fully complete. World Lab, What-If, Enter This World and Wave 4 remain unstarted.
+- **Owner accepted:** the owner explicitly approves Wave 3 at exact SHA `5a4feaf8261ed2640540fdf1d61374e5935eb2d7`, including its implemented functionality, disclosed limitations, UI direction and owner-control completion pass. Waves 1 and 2 remain accepted. A/B/C are not declared fully complete. World Lab, What-If, Enter This World and Wave 4 remain unstarted.
 
 Owner instructions: [WAVE3_OWNER_GUIDE.md](WAVE3_OWNER_GUIDE.md). Frozen ownership: [WAVE3_CONTRACTS.md](WAVE3_CONTRACTS.md). Independent security review: [WAVE3_QA_REVIEW.md](WAVE3_QA_REVIEW.md).
 
@@ -90,7 +98,7 @@ Requested Astra reasoning was used: Max for difficult compiler/logic/security/in
 
 Natural-language output quality is not live-evaluated; bounded TXT/Markdown inputs and model proposals always need owner review. Pack pinning does not automatically compose playable actors, capabilities or schedules. Consequence types are finite; arbitrary relationship systems, resource creation and tabletop mechanics remain unsupported. Premises remain advisory composition input. Reconciliation exposes a uniform prospective choice, not private schedule details or a hidden-work indicator. Recovery requires equivalent authority; legacy stages without captured proof cannot cross changed fences.
 
-Real installation requires a separate reviewed release and additive migration 12; this sprint does neither. Owner review is next. A possible later bounded wave is reviewed authoring of playable actors, capabilities and causal Threads from an approved Pack, with deterministic consequence examples. This recommendation does not start Wave 4, World Lab or Enter This World. Publish the clean integration and worker branches, verify main remains exactly the authorized base, and stop.
+Real installation still requires a separately reviewed release and additive migration 12; neither was performed here. Wave 3 owner acceptance is complete. Publication is limited to this status-only approval commit and the authorized fast-forward of main from `b7b065726ac1e0f64056e1970c8390f8448b4875` to the approved Wave 3 head. A possible later bounded wave remains reviewed authoring of playable actors, capabilities and causal Threads from an approved Pack, subject to a new owner instruction. No Wave 4, World Lab or Enter This World work starts. Stop after verifying remote main, accepted-checkpoint ancestry and the clean integration worktree.
 
 ---
 
