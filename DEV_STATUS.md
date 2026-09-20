@@ -4,6 +4,18 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B URL DIAGNOSIS COMPLETE; STOPPED FOR EXPERIMENT CORRECTION/OWNER REVIEW.** Owner explicitly accepted metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3`; prior recovery evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` is preserved. This acceptance is experiment-only, not spatial/production acceptance.
+
+Completed: the single newly authorized authenticated Get World returned HTTP 200 and the same body hash. All four required asset URLs use `cdn.marble.worldlabs.ai`; exact rejected assertion is `asset_host_not_allowed`, because the old list guessed only `wlt-ai-cdn.art`. Sanitized structures/hashes only are in [diagnostic evidence](experiments/phase38-spatial/results/URL_DIAGNOSIS_001.md) and its JSON; no full URLs/credentials/tokens. Zero generations/downloads/exports/fal/retries, no asset-host probes. Original ledger unchanged.
+
+Files changed: evidence and this status only. Verification: live one-read diagnosis with accepted pure metadata checks; prior 141 deterministic tests/typecheck/lint/build remain historical. Separate URL correction and offline security tests are next, not live continuation. Keep strict identity/privacy/request/budget fencing, exact retained-URL provenance, public destinations and no redirects. No production modifications.
+
+Known issues: actual bytes/usability/sharing unverified. Thumbnail URL has a .webp suffix, outside the frozen PNG/JPEG inspector; that is a possible later format barrier, not a confirmed downloaded format. Existing world is potentially reusable without generation, not yet accepted. Physical-device/optional Phase 1 conflict-rebase and finite synthetic/real-data/hosted acceptance limitations remain. Stop after separately scoped correction; do not regenerate or continue jobs.
+
+---
+
+## Historical metadata correction checkpoint
+
 **PHASE 3.8B READ-ONLY RECOVERY COMPLETE; MINIMAL EXPERIMENT CORRECTION READY FOR OWNER REVIEW. STOPPED — NO LIVE CONTINUATION.** Recovery evidence is separately pushed at `98eb76618503dd2382ef97aaabfcb1377cab26e1`. The correction is on `codex/phase38-metadata-correction`; original execution `2f8f82edb5d5f3c960d45922b71c543e99208192` and its stopped ledger are untouched.
 
 ### Completed work and files / areas changed
