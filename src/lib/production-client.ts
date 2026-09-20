@@ -11,13 +11,13 @@ import type {
 import type { TimelineFence } from "./saves/contracts.ts";
 import { isTimelineFence, sameTimeline } from "./saves/fence.ts";
 
-export const productionTasks: readonly RuntimeTask[] = [
+export const productionTasks = [
   "dm.plan",
   "dm.narrate",
   "dm.feedback",
   "memory.summary",
   "world.resolve",
-];
+] as const satisfies readonly RuntimeTask[];
 export const selectableRulesets: readonly RulesetProfileRef[] = [
   {
     id: "console-basic-v1",

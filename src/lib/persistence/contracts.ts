@@ -1,6 +1,7 @@
 import type { TimelineFence, CorrectionScope } from "../saves/contracts.ts";
 import type { CampaignSettings } from "../campaign-settings.ts";
 import type { Language } from "../i18n.ts";
+import type { CampaignPremiseInput } from "../production/premise-contracts.ts";
 
 // Public DTOs only. No DM-private shape, value, identifier, or service credential belongs here.
 export type Revision = { revision: number; updated_at: string };
@@ -157,7 +158,7 @@ export type Mutation =
     })
   | (Request & {
       operation: "campaign.create";
-      payload: { title: string; subtitle: string; language: Language };
+      payload: { title: string; subtitle: string; language: Language; premise?: CampaignPremiseInput };
     })
   | (CampaignRequest & {
       operation: "campaign.save";
