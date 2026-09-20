@@ -11,6 +11,7 @@ export type OwnerSourceSummary = {
   visibility: SourceBody["visibility"];
   knowledge: "source" | "future_source";
   digest: string;
+  provenance?: Omit<NonNullable<SourceBody["provenance"]>, "authoredBy">;
 };
 export type OwnerPackSummary = {
   id: string;
@@ -29,6 +30,12 @@ export type OwnerJobSummary = {
   maxUnits: number;
   checkpoints: CompilerJobBody["checkpoints"];
   errorCode: CompilerJobBody["errorCode"];
+  mode?: "assisted";
+  executionProfile?: NonNullable<
+    CompilerJobBody["assistance"]
+  >["executionProfile"];
+  refinement?: NonNullable<CompilerJobBody["assistance"]>["refinement"];
+  requestPending?: boolean;
 };
 export type OwnerLibraryIndex = {
   sources: OwnerSourceSummary[];
@@ -76,6 +83,30 @@ export type OwnerCompileInput = {
   operationId: string;
   sourcePriority: string[];
   maxUnits: number;
+  mode?: "deterministic" | "assisted";
+};
+export type OwnerDescribeInput = {
+  action: "source.describe";
+  operationId: string;
+  sourceId: string | null;
+  expectedVersionId: string | null;
+  title: string;
+  text: string;
+  language: "en" | "ru";
+  visibility: "public" | "private";
+  knowledge: "source" | "future_source";
+};
+export type OwnerRefineInput = {
+  action: "pack.refine";
+  operationId: string;
+  expectedVersionId: string;
+  text: string;
+  maxUnits: number;
+};
+export type OwnerCompilerRetryInput = {
+  action: "compiler.retry";
+  operationId: string;
+  expectedVersionId: string;
 };
 export type OwnerCompilerStepInput = {
   action: "compiler.step";
@@ -102,6 +133,7 @@ export type OwnerPackSaveInput = {
   title: string;
   claims: OwnerPackEdit[];
   resolutions: { id: string; resolution: string | null }[];
+  rejectedClaimIds?: string[];
 };
 export type OwnerPackApproveInput = {
   action: "pack.approve";
@@ -114,6 +146,9 @@ export type OwnerPackApproveInput = {
 };
 export type OwnerLibraryCommand =
   | OwnerSourceInput
+  | OwnerDescribeInput
+  | OwnerRefineInput
+  | OwnerCompilerRetryInput
   | OwnerCompileInput
   | OwnerCompilerStepInput
   | OwnerPackSaveInput
