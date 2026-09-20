@@ -21,6 +21,8 @@ test("QA SQL defense: reward entitlements conserve approved items, progress, cho
   const f = await rewardFixture();
   try {
     const prepared = await f.reward();
+    const control = await probe(f, prepared, () => {});
+    assert.equal(control.error, undefined, JSON.stringify(control.error));
     for (const [name, mutate] of [
       [
         "omit source item debit",
@@ -73,6 +75,8 @@ test("QA SQL defense: trade cannot mutate unrelated inventory/resources or grant
   const f = await commerceFixture();
   try {
     const prepared = await f.quote();
+    const control = await probe(f, prepared, () => {});
+    assert.equal(control.error, undefined, JSON.stringify(control.error));
     for (const [name, mutate] of [
       [
         "unrelated companion currency",
@@ -124,6 +128,8 @@ test("QA SQL defense: current quest restrictions, stolen-item policy, ownership 
   const f = await commerceFixture();
   try {
     const prepared = await f.quote();
+    const control = await probe(f, prepared, () => {});
+    assert.equal(control.error, undefined, JSON.stringify(control.error));
     for (const [name, setup] of [
       [
         "quest restriction",
