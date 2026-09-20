@@ -107,3 +107,8 @@ The existing Visual Bible and future FRAME/VIDEO consumers use these same associ
 - Updating source evidence invalidates affected derived Memory using the existing authority system; summaries never become the only surviving source.
 
 Owner decisions: imported-world default ruleset, source-continuation strictness, and whether visual association starts manual-only. Proposed defaults: World Logic where no tabletop system is requested, emergent future after the anchor, manual visual approval first.
+
+
+## POV / authority addendum
+
+Character takeover must reconstruct perspective and world leverage according to [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md), separately from Character Knowledge at Entry.

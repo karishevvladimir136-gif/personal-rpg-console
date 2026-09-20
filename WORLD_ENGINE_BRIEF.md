@@ -22,6 +22,10 @@ Related proposals: [World Library / Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.m
 
 Current private `fact/clock/npc/faction/consequence` patches are not already a full actor/thread/event system. Extend their validated meaning and references without claiming free-form legacy private strings have been safely converted. Inspectable migration mappings must preserve the originals; ambiguous legacy records remain legacy until explicitly mapped.
 
+## POV, authority and world leverage
+
+See [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md). World Actors may differ radically in knowledge, capabilities, institutional authority, command scope, jurisdiction, resources and information access. These are orthogonal to narrative prominence. A player-controlled monarch, colonel and private soldier therefore receive different authorized contexts and can cause different classes of in-world action while sharing one World Engine. Orders are validated actions that create intentions/events and consequences through normal settlement; they are never magical direct edits of remote state. Owner-side World Authoring remains out-of-character and separate.
+
 ## Small core: Actor → Thread → Event
 
 | Concept | Minimum logical content |

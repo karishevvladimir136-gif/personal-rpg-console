@@ -353,3 +353,10 @@ Before accepting a World Engine/DM/quest feature, ask:
 8. Could a player solve the situation in a way we did not pre-author?
 9. Is the simulation creating decisions, or merely bookkeeping?
 10. Would this generate a memorable story rather than just another task?
+
+
+## 21. Perspective changes what the player can know and move
+
+The same world should feel materially different when played as a ruler, commander, ordinary soldier, investigator or other Actor. Do not equate narrative importance with authority or authority with knowledge. Use the controlled Actor's actual capabilities, command/resource relationships, jurisdiction and information access. See [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md).
+
+The best outcome is not merely different dialogue. Different POVs should expose different **affordances, information and scales of consequence** while preserving one authoritative world.

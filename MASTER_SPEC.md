@@ -1879,6 +1879,8 @@ All remain modules within the existing Next.js server and Supabase/Postgres/Stor
 
 ## 44.2 World progression and privacy
 
+Character perspective and in-world influence follow [POV & World Leverage](POV_AND_WORLD_LEVERAGE.md). Narrative **Player Role** does not grant authority. The controlled Actor's actual knowledge, capabilities, institutional authority, command scope, jurisdiction, resources and access constrain large-scale actions. High status never implies omniscience; low status never prevents locally important or emergent influence. In-character authority is never equivalent to owner-side World Authoring.
+
 Future World Engine and primary DM behavior must follow the player-agency principles in [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md). In particular: design problems rather than single authored solutions; preserve choice→consequence→recovery; use fail-forward where appropriate; combine micro-reactivity with durable macro consequences; keep NPC/companion identity stable; and prefer campaign resilience after unexpected player action over protecting authored content.
 
 **Selective simulation is required.** Do not simulate a subsystem merely because AI makes it possible. Prefer deeper structured state only when it creates meaningful player choices, durable consequences or reusable affordances; otherwise abstract through narration/coarse state. [Systemic procedural references](SYSTEMIC_WORLD_REFERENCES.md) record supporting lessons from Terra Randoma and Approaching Infinity. World/region/town/local presentations may use different gameified scales while one authoritative Location/state graph preserves meaning.
