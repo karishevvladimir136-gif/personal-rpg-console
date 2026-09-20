@@ -1,0 +1,160 @@
+{
+  "version": "phase38b-room-recovery-evidence-1",
+  "recordedAtUTC": "2026-09-20T01:07:10.481101+00:00",
+  "executionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "freezeFileSHA256": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "operationId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+  "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e",
+  "status": "awaiting_output_review",
+  "resultSHA256": "b2a74c1f1325699ad6c5e8505d3ec09a73a7c8af299f03bce824a5cd38973066",
+  "rawResultBytes": 2723,
+  "rawResultRetainedLocallyOnly": true,
+  "liveSourceHashes": {
+    "identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+    "journal.jsonl": "95a00680d7240d33e64aa7a84eb68a0760276ed02da2f960c924d1997df4de45",
+    "witness.jsonl": "301bf7f53b877f74d394a445730724ba78d80fa0e3d0361c51096cd177a96746",
+    "anchor": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0"
+  },
+  "provider": "worldlabs",
+  "requestedModel": "marble-1.1",
+  "actualModel": "marble-1.1",
+  "modelProvenance": "Get World model field; operation/request binding comes from the verified original evidence. No new inference.",
+  "world": {
+    "identityHash": "158280d7b629cfc7e1cff237294a648c9ef6639e2e828a5253407a1d585e49f0",
+    "metadata": {
+      "actualModel": "marble-1.1",
+      "assetsPresent": true,
+      "createdAt": "2026-09-19T23:39:39Z",
+      "displayNameMatches": true,
+      "privacy": "private",
+      "promptEchoMatches": false,
+      "requestId": "6719be80-101e-45a6-b27a-6905ebc183c1",
+      "returnedPromptHash": "eb15e47ad97fb4933ca3e25b269538fa4a479efbbe95080b5724f06954290ac6",
+      "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e"
+    },
+    "scale": {
+      "ground_plane_offset": 1.537428617477417,
+      "metric_scale_factor": 2.268181800842285
+    },
+    "worldId": "82a0e059-50a4-41a4-8565-5e516ffadc0e"
+  },
+  "worldReadBodyHashes": [
+    "b47fd9cf01c6d05bbe95ca844540df27df5edd27bcf183c9b30aa8d35a103fe4",
+    "b47fd9cf01c6d05bbe95ca844540df27df5edd27bcf183c9b30aa8d35a103fe4"
+  ],
+  "worldReadsIdentityStable": true,
+  "worldReadBodiesIdentical": true,
+  "network": {
+    "worldGETs": 2,
+    "successfulWorldGETs": 2,
+    "assetDownloads": 4,
+    "successfulAssetDownloads": 4,
+    "totalRequests": 6,
+    "generationSubmissions": 0,
+    "exports": 0,
+    "falCalls": 0,
+    "retries": 0,
+    "fallbacks": 0,
+    "operationPolls": 0
+  },
+  "recoveryElapsedMs": 2867,
+  "assets": [
+    {
+      "role": "splat",
+      "kind": "splat",
+      "bytes": 1129723,
+      "sha256": "1f54d810e39af515f3cef5c31a482ef7747d293a1890159c631663185518b16c",
+      "metadata": {
+        "format": "spz",
+        "points": 98304,
+        "structuralOnly": true,
+        "version": 2
+      }
+    },
+    {
+      "role": "collider",
+      "kind": "geometry",
+      "bytes": 3538308,
+      "sha256": "0fcc9393ac3348ce6e62d57bd5fbbf7b8d79155a0855142adaedd80267ad8775",
+      "metadata": {
+        "format": "glb",
+        "materials": 0,
+        "meshes": 1,
+        "nodes": 2,
+        "structuralOnly": true
+      }
+    },
+    {
+      "role": "pano",
+      "kind": "image",
+      "bytes": 9987509,
+      "sha256": "aeb206aa80a770dfb859448c083c9d0ca7405073e69e17e7b544907abcd738ac",
+      "metadata": {
+        "format": "png",
+        "height": 2304,
+        "width": 4608
+      }
+    },
+    {
+      "role": "thumbnail",
+      "kind": "image",
+      "bytes": 15270,
+      "sha256": "bd942ece19d644ba7238032b0b00fcf6ca9bf8f59263a3ff5a14f5512ae6ad3d",
+      "metadata": {
+        "alphaHint": null,
+        "chunks": 1,
+        "codec": "VP8",
+        "format": "webp",
+        "height": 480,
+        "structuralOnly": true,
+        "width": 720
+      }
+    }
+  ],
+  "totalAssetBytes": 14670810,
+  "accounting": {
+    "carriedRoomReservedMicroUSD": 1300000,
+    "carriedRoomReportedMicroUSD": 1264000,
+    "carriedRoomReportedCredits": 1580,
+    "newGenerationCharges": 0,
+    "cumulativeReservationCeilingMicroUSD": 4750000,
+    "newReservations": 0,
+    "dashboardQueried": false,
+    "noNewBillingObservation": true,
+    "historicalAPIRequests": 21,
+    "cumulativeAPIRequests": 23,
+    "cumulativeWorldReads": 5,
+    "lifetimeGenerationSubmissions": 1
+  },
+  "guards": {
+    "originalStoppedHistoryVerifiedUnchanged": true,
+    "freezeVerifiedUnchanged": true,
+    "approvedCleanExecutionSHA": true,
+    "roomRegeneration": false,
+    "manualApprovals": 0,
+    "nextInvocations": 0,
+    "otherJobsReleased": false,
+    "productionChanged": false
+  },
+  "verification": {
+    "deterministicTestsPassed": 273,
+    "failed": 0,
+    "skipped": 0,
+    "experimentTypecheck": "passed",
+    "experimentLint": "passed, zero warnings",
+    "isolatedExperimentBuild": "passed",
+    "productionBuild": "not rerun; unchanged"
+  },
+  "limitations": [
+    "Structural inspection only; no visual or prompt-adherence review.",
+    "SPZ checks do not prove rendering quality or Gaussian semantics.",
+    "GLB structure is not collision, navigation, metric scale or cross-asset alignment validation.",
+    "PNG dimensions satisfy 2:1; panorama projection, full pixel decoding and fal compatibility/sharing remain unreviewed.",
+    "WebP validates static container/headers, not full compressed pixel decoding.",
+    "Original recaptioned prompt differs from request; no adherence claim.",
+    "No manual review or next-job authorization; three remaining jobs not attempted.",
+    "Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified; no hosted or real campaign/private-data acceptance."
+  ]
+}

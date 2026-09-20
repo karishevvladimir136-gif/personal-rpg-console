@@ -4,6 +4,32 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B EXISTING-ROOM RECOVERY SUCCEEDED STRUCTURALLY; AWAITING MANUAL OWNER REVIEW.** The owner accepted and authorized room-only execution of `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`. Separate continuation initialization and room recovery each ran exactly once at that clean SHA. No manual approval or next job was released.
+
+### Completed work and files / areas changed
+
+Preserved the existing room with two exact-world GETs and four asset downloads. World Labs reports `marble-1.1`; both world reads were identity-stable and byte-identical. Retained assets: SPZ v2 / 98,304 points, GLB collider (1 mesh / 2 nodes / 0 materials), PNG panorama 4608 × 2304 (2:1) and WebP/VP8 thumbnail 720 × 480. Scale values and complete byte counts/hashes are in [recovery evidence](experiments/phase38-spatial/results/ROOM_RECOVERY_001.md). Raw result SHA-256 is `b2a74c1f1325699ad6c5e8505d3ec09a73a7c8af299f03bce824a5cd38973066`.
+
+Only this status and sanitized experiment evidence are changed in the separate evidence worktree. Raw provider URLs and binary assets remain ignored/local. The exact execution checkout, frozen harness and original STOPPED ledger/evidence remain unchanged.
+
+### Tests and build status
+
+After recovery: **273 deterministic tests passed; zero failures/skips; experiment typecheck, zero-warning lint and isolated build passed.** Production full suite/build not rerun; production unchanged. Live scope: **2 successful world GETs, 4 successful downloads, 0 generations, 0 exports, 0 fal calls, 0 retries/fallbacks, 0 operation polls**. No further provider requests after recovery.
+
+### Key decisions, accounting and limitations
+
+Original room reservation **$1.30**, reported charge **$1.264 / 1,580 credits**, carried exactly once. No new generation charge/reservation; total experiment ceiling remains **$4.75**. Historical API counts remain visible: 23 including this recovery; 5 lifetime world reads; one lifetime generation. No additional billing/dashboard observation.
+
+Structural success is not visual or prompt-adherence approval. Pixel decoding, projection/visual quality, Gaussian rendering, collider navigation, metric scale/alignment, panorama sharing/fal compatibility remain unverified. Physical iPhone/Safari and historical optional Phase 1 conflict-rebase remain unverified. Finite synthetic testing does not guarantee universal correctness. No hosted deployment or real campaign/private-data acceptance.
+
+### Remaining work and recommended next step
+
+Stop for manual owner review of the retained existing-room assets. No room approval was appended. Courtyard, fal-world and chest remain unattempted and unreleased. Do not run next, regenerate, start EXPLORE/Phase 4/renderer, deploy or import real data without separate authorization.
+
+---
+
+## Historical accepted continuation-preparation checkpoint
+
 **PHASE 3.8B OFFLINE CONTINUATION PREPARATION COMPLETE; STOP FOR OWNER REVIEW.** The owner explicitly accepted experiment-only asset URL correction `c94d4e588981d94d6679ba76861cc5776f7bfc3d`. URL evidence `dec27b8f566bea3412ba6afb80d3e17379c1fcd1`, metadata correction `32b2effdc8aeae525fe28dda3f09c73b04773cb3` and recovery evidence `98eb76618503dd2382ef97aaabfcb1377cab26e1` remain historical, unchanged. No live continuation is authorized by this preparation.
 
 ### Completed work and files / areas changed
