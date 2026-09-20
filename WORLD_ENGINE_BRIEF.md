@@ -89,6 +89,10 @@ Register actor control, threads/progress/deadlines, events, warning/awareness ev
 Current manifest validation accepts only schema version 1 and an exact record-family list. Adding families without a versioned reader would break old saves. A future migration must retain v1 loading, derive an explicit empty/unconfigured World Engine state for old saves, and create new versioned manifests without mutating old manifests. Never infer past autonomous events that were never simulated.
 
 
+## RPG design doctrine
+
+Future World Engine behavior should follow [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md): player-first systemic freedom, problems rather than single-solution puzzles, choice→consequence→recovery, fail-forward, honeycomb Threads/Hooks, micro- and macro-reactivity, stable character identity, environmental storytelling, lazy depth and campaign resilience after unexpected player actions. These are design evaluation rules, not permission for more simulation or implementation scope.
+
 ## Systemic/procedural references
 
 See [Systemic World References](SYSTEMIC_WORLD_REFERENCES.md) for extracted design lessons from **Terra Randoma** and **Approaching Infinity**. They are references for procedural density, selective simulation, faction/world interactions, discovery and lazy generation—not visual-style targets. The binding principles are: structured procgen + AI semantics; bounded opportunity density; selective simulation only where it creates meaningful affordances; multi-scale maps over one authority; knowledge-gated discovery; and lazy elaboration rather than eager infinite content.

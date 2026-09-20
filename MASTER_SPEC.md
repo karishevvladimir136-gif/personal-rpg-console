@@ -1879,6 +1879,8 @@ All remain modules within the existing Next.js server and Supabase/Postgres/Stor
 
 ## 44.2 World progression and privacy
 
+Future World Engine and primary DM behavior must follow the player-agency principles in [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md). In particular: design problems rather than single authored solutions; preserve choice→consequence→recovery; use fail-forward where appropriate; combine micro-reactivity with durable macro consequences; keep NPC/companion identity stable; and prefer campaign resilience after unexpected player action over protecting authored content.
+
 **Selective simulation is required.** Do not simulate a subsystem merely because AI makes it possible. Prefer deeper structured state only when it creates meaningful player choices, durable consequences or reusable affordances; otherwise abstract through narration/coarse state. [Systemic procedural references](SYSTEMIC_WORLD_REFERENCES.md) record supporting lessons from Terra Randoma and Approaching Infinity. World/region/town/local presentations may use different gameified scales while one authoritative Location/state graph preserves meaning.
 
 Only meaningful in-world actions/time advances and causal events trigger evaluation. Code filters due threads, prerequisites, control and already-applied events before an optional bounded resolver request. Proposed Low/Moderate/High ceilings are 3/8/12 threads and 8/16/24 actors, at most eight events and normally zero or one resolver call per segment; these are reviewable operational limits, not established game balance. Capacity must pause rather than omit mandatory consequences. Large skips use ordered causal boundaries, not hourly loops or unlimited hidden continuation.
