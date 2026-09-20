@@ -1,4 +1,16 @@
-# Development status — Production Mega Coding Sprint, Wave 1
+# Development status — Production Mega Coding Sprint, Wave 2 (in progress)
+
+Authorized base and remote main verified: `0e52f446753caba88e98870c8785107aae92aa23`. Integration branch: `codex/production-mega-sprint-wave2`. Wave 1 remains owner accepted. Wave 2 implementation is underway, not complete, not owner accepted and not live-model-quality evaluated.
+
+Ownership is frozen in [WAVE2_CONTRACTS.md](WAVE2_CONTRACTS.md). Isolated Astra / Extra High workers implement Library/compiler, World Logic/resolver and staged-world recovery; configuration UI and independent QA follow within three available worker slots. Lead owns shared contracts, migration, integration and this record.
+
+Current shared additions: the bounded `world.resolve` task, allowlisted owner configuration DTOs/routes, and additive migration 11 for coherent owner world/rules/runtime configuration. Existing identity, state, Memory, World settlement, immutable source/Pack history and v1/v2 Saves remain authorities. No production migration, provider request, import, deployment, World Lab or Enter This World is performed.
+
+Fresh baseline: 404 tests collected; 403 passed, 1 opt-in live Supabase test skipped, 0 failed. Initial six Wave 1 SQL/turn integration regressions also pass with migration 11 applied to disposable PGlite databases. Direct TypeScript check passes at this interim point. Full integrated tests, lint, build, UI checks and QA are still pending. Existing root checkout documentation edits are preserved. Remaining work is implementation integration, adversarial QA, repair and final verification; no Wave 2 completion is claimed.
+
+---
+
+# Historical Wave 1 status
 
 Updated September 20, 2026. No secrets, real campaign data or DM-private material are included here.
 

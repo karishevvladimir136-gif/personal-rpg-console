@@ -22,7 +22,7 @@ export type RulesetProfileRef = {
   validatorVersion: string;
 };
 export type RuntimeTask =
-  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary";
+  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary" | "world.resolve";
 export type ModelSelection = {
   providerId: string;
   modelId: string;
