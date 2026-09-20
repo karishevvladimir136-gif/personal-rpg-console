@@ -260,7 +260,11 @@ test("synthetic action provider uses public-only structured request and validate
     model: "gpt-6-astra",
     fetcher: async (_url, init) => {
       sent = JSON.parse(init.body);
-      return response(logicProposal(f));
+      return response({
+        ...logicProposal(f),
+        schemaVersion: 2,
+        consequences: [],
+      });
     },
   });
   const result = await provider.action(f);
@@ -270,7 +274,12 @@ test("synthetic action provider uses public-only structured request and validate
   const bad = createWorldResolverProvider({
     apiKey: "synthetic",
     model: "gpt-6-astra",
-    fetcher: async () => response(logicProposal(f, { actorId: id("enemy") })),
+    fetcher: async () =>
+      response({
+        ...logicProposal(f, { actorId: id("enemy") }),
+        schemaVersion: 2,
+        consequences: [],
+      }),
   });
   await assert.rejects(bad.action(f), (e) => e.code === "validation");
 });

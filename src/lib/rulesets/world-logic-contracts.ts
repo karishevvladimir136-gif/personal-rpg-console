@@ -10,6 +10,7 @@ import type {
   WorldSettlement,
 } from "../production/contracts.ts";
 import type { PublicWorldEvent } from "../world/contracts.ts";
+import type { WorldConsequence } from "../world/consequences.ts";
 
 // Internal operation input. Never serialize this object to a provider or browser.
 export type WorldLogicInput = {
@@ -18,7 +19,7 @@ export type WorldLogicInput = {
   source: RuntimeSource;
   input: TurnInput;
 };
-export type WorldLogicProposal = {
+export type WorldLogicProposalV1 = {
   schemaVersion: 1;
   actorId: string;
   input: string;
@@ -33,6 +34,12 @@ export type WorldLogicProposal = {
   elapsedMinutes: number;
   destinationId: string | null;
 };
+export type WorldLogicProposal =
+  | WorldLogicProposalV1
+  | (Omit<WorldLogicProposalV1, "schemaVersion"> & {
+      schemaVersion: 2;
+      consequences: WorldConsequence[];
+    });
 export type WorldLogicContext = {
   schemaVersion: 1;
   input: string;
@@ -46,6 +53,18 @@ export type WorldLogicContext = {
   }[];
   circumstances: { id: string; text: string }[];
   locations: { id: string; name: string }[];
+  travelOptions: {
+    actorId: string;
+    destinationId: string;
+    capability: string;
+  }[];
+  consequenceOptions: {
+    actorId: string;
+    capability: string;
+    effect: WorldConsequence;
+    maximum: number | null;
+    label: string;
+  }[];
   constraints: string[];
 };
 export type WorldLogicResult =

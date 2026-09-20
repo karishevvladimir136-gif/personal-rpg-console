@@ -4,9 +4,18 @@ import type {
   WorldSettlement,
 } from "../production/contracts.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
+import type { RecordChange } from "../gameplay/server-contracts.ts";
 import type { WorldStageInput, WorldStageResult } from "./contracts.ts";
 import { stageWorldTransition } from "./stage.ts";
 import { parseWorldState } from "./validation.ts";
+import {
+  applyWorldConsequences,
+  consequenceCapability,
+  mergeConsequenceChanges,
+  type WorldConsequence,
+  type WorldConsequenceAuthority,
+  type WorldConsequenceFact,
+} from "./consequences.ts";
 import {
   ensure,
   integer,
@@ -43,14 +52,25 @@ export type ResolverCandidate = {
   circumstance: string;
   actors: { id: string; capabilities: string[] }[];
   evidence: EvidenceLocator[];
+  consequences: WorldConsequence[];
+  requiredCapabilityRefs: string[];
+  currentRecords: WorldConsequenceAuthority[];
+  currentFacts: WorldConsequenceFact[];
 };
 export type ResolverSelection =
   | { status: "ready"; operationId: string; candidates: ResolverCandidate[] }
-  | Exclude<WorldStageResult, { status: "staged" }>
-  | Extract<WorldStageResult, { status: "staged" }>;
+  | ResolverStageResult;
 export type ResolverStageResult =
-  | WorldStageResult
-  | { status: "paused"; reason: "uncertainty"; modelRequests: 0 };
+  | Exclude<WorldStageResult, { status: "staged" }>
+  | (Extract<WorldStageResult, { status: "staged" }> & {
+      consequenceChanges?: RecordChange[];
+      consequenceAuthority?: WorldConsequenceAuthority[];
+    })
+  | {
+      status: "paused";
+      reason: "uncertainty" | "unsupported";
+      modelRequests: 0;
+    };
 
 export function parseResolverProposal(value: unknown): ResolverProposal {
   const v = object(value, ["schemaVersion", "decisions"]);
@@ -93,7 +113,10 @@ export function parseResolverProposal(value: unknown): ResolverProposal {
   };
 }
 
-function selection(input: WorldStageInput) {
+function selection(input: WorldStageInput): {
+  result: ResolverStageResult;
+  candidates: ResolverCandidate[];
+} {
   // Validate the real input first. The dry run is only a selector, never committed.
   const initial = stageWorldTransition(input);
   if (initial.status !== "paused" || initial.reason !== "resolver_required")
@@ -104,7 +127,10 @@ function selection(input: WorldStageInput) {
   );
   const speculative = structuredClone(original);
   for (const thread of speculative.threads)
-    for (const step of thread.steps) step.resolution = "deterministic";
+    for (const step of thread.steps) {
+      step.resolution = "deterministic";
+      delete step.consequences;
+    }
   const result = stageWorldTransition({
     ...input,
     snapshot: {
@@ -131,11 +157,60 @@ function selection(input: WorldStageInput) {
             return { id, capabilities: [...a.capabilities] };
           }),
           evidence: structuredClone(step.evidence),
+          consequences: structuredClone(step.consequences ?? []),
+          requiredCapabilityRefs: (step.consequences ?? []).flatMap(
+            (effect) => {
+              const capability = consequenceCapability(effect);
+              const actor = thread.decisionActorIds
+                .map((id) => original.actors.find((a) => a.id === id)!)
+                .find(
+                  (a) =>
+                    a.capabilities.includes(capability) &&
+                    (!("actorId" in effect) ||
+                      effect.kind === "actor.relocate" ||
+                      effect.actorId === a.id),
+                );
+              return actor ? [`${actor.id}:${capability}`] : [];
+            },
+          ),
+          currentRecords: [],
+          currentFacts: [],
         },
       ];
     },
   );
   ensure(candidates.length > 0 && candidates.length <= 8);
+  const touched = new Set(
+    input.resolution.changes.map((c) => `${c.family}:${c.id}`),
+  );
+  for (const candidate of candidates) {
+    const applied = applyWorldConsequences({
+      ...input,
+      world: original,
+      consequences: candidate.consequences,
+      mode: "resolver",
+      decisionActorIds: candidate.actors.map((a) => a.id),
+      capabilityRefs: candidate.requiredCapabilityRefs,
+      action: null,
+      elapsedMinutes: candidate.atWorldMinutes - input.snapshot.worldMinutes,
+    });
+    if (applied.status === "paused")
+      return { result: { ...applied, modelRequests: 0 }, candidates: [] };
+    const targets = new Set(
+      applied.authority.map((a) => `${a.family}:${a.id}`),
+    );
+    if ([...targets].some((key) => touched.has(key)))
+      return {
+        result: { status: "paused", reason: "unsupported", modelRequests: 0 },
+        candidates: [],
+      };
+    targets.forEach((key) => touched.add(key));
+    candidate.currentRecords = applied.authority;
+    candidate.currentFacts = applied.facts;
+    candidate.requiredCapabilityRefs = [
+      ...new Set(candidate.requiredCapabilityRefs),
+    ];
+  }
   return { result, candidates };
 }
 
@@ -185,6 +260,11 @@ export function stageResolvedWorldTransition(
     );
     if (decision.decision !== "advance" || decision.uncertainty !== "resolved")
       return { status: "paused", reason: "uncertainty", modelRequests: 0 };
+    ensure(
+      candidate.requiredCapabilityRefs.every((ref) =>
+        decision.capabilityRefs.includes(ref),
+      ),
+    );
     // Every mandatory source is acknowledged; unsupported/missing evidence cannot be dropped.
     ensure(decision.evidenceIndexes.length === candidate.evidence.length);
   }
@@ -194,16 +274,47 @@ export function stageResolvedWorldTransition(
     input.snapshot.world,
     input.snapshot.campaignId,
   );
-  const nextWorld = parseWorldState(
+  let nextWorld = parseWorldState(
     settlement.nextWorld,
     input.snapshot.campaignId,
   );
   for (const thread of nextWorld.threads) {
     const previous = original.threads.find((t) => t.id === thread.id)!;
-    for (const step of thread.steps)
-      step.resolution = previous.steps.find(
-        (s) => s.id === step.id,
-      )!.resolution;
+    for (const step of thread.steps) {
+      const before = previous.steps.find((s) => s.id === step.id)!;
+      step.resolution = before.resolution;
+      if (Object.hasOwn(before, "consequences"))
+        step.consequences = structuredClone(before.consequences);
+    }
+  }
+  let consequenceChanges: RecordChange[] = [];
+  const consequenceAuthority: WorldConsequenceAuthority[] = [];
+  for (const candidate of candidates) {
+    const decision = proposal.decisions.find(
+      (d) => d.stepId === candidate.stepId,
+    )!;
+    const applied = applyWorldConsequences({
+      ...input,
+      world: nextWorld,
+      consequences: candidate.consequences,
+      mode: "resolver",
+      decisionActorIds: candidate.actors.map((a) => a.id),
+      capabilityRefs: decision.capabilityRefs,
+      action: null,
+      elapsedMinutes: candidate.atWorldMinutes - input.snapshot.worldMinutes,
+    });
+    if (applied.status === "paused") return { ...applied, modelRequests: 0 };
+    if (
+      !isDeepStrictEqual(applied.authority, candidate.currentRecords) ||
+      !isDeepStrictEqual(applied.facts, candidate.currentFacts)
+    )
+      return { status: "paused", reason: "unsupported", modelRequests: 0 };
+    nextWorld = applied.nextWorld;
+    consequenceChanges = mergeConsequenceChanges(
+      consequenceChanges,
+      applied.changes,
+    );
+    consequenceAuthority.push(...applied.authority);
   }
   settlement.nextWorld = nextWorld as unknown as JsonObject;
   for (const event of settlement.events) {
@@ -212,14 +323,35 @@ export function stageResolvedWorldTransition(
       (d) =>
         d.stepId === event.payload.stepId && d.threadId === event.threadIds[0],
     );
-    if (decision)
+    if (decision) {
       event.payload.resolverReceipt = {
         schemaVersion: 1,
         operationId: input.command.operationId,
         ...structuredClone(decision),
       };
+      const step = original.threads
+        .find((t) => t.id === decision.threadId)!
+        .steps.find((s) => s.id === decision.stepId)!;
+      if (Object.hasOwn(step, "consequences")) {
+        const candidate = candidates.find((c) => c.stepId === decision.stepId)!;
+        event.payload.consequences = structuredClone(candidate.consequences);
+        event.payload.consequenceAuthority = structuredClone(
+          candidate.currentRecords,
+        );
+        event.payload.consequenceFacts = structuredClone(
+          candidate.currentFacts,
+        );
+      }
+    }
   }
-  return { ...result, settlement };
+  parseWorldState(nextWorld, input.snapshot.campaignId);
+  return {
+    ...result,
+    settlement,
+    ...(candidates.some((c) => c.consequences.length > 0)
+      ? { consequenceChanges, consequenceAuthority }
+      : {}),
+  };
 }
 
 /** The persisted proposal, current exact inputs and stable operation ID reproduce the envelope. */
