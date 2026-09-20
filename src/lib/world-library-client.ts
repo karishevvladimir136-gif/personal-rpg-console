@@ -5,9 +5,15 @@ import type {
   OwnerLibraryResult,
   OwnerPackDetail,
   OwnerSourceDetail,
+  OwnerDescribeInput,
+  OwnerJobSummary,
 } from "./world-library/owner-contracts.ts";
+import type { PackBody, PackClaim } from "./world-library/types.ts";
 
-async function readResponse<T>(response: Response): Promise<T> {
+async function readResponse<T>(
+  response: Response,
+  assisted = false,
+): Promise<T> {
   const body = await response.json();
   if (!response.ok) {
     const code = body?.error?.code;
@@ -19,7 +25,9 @@ async function readResponse<T>(response: Response): Promise<T> {
           : code === "unauthenticated"
             ? "Sign in to open your World Library."
             : code === "not_configured"
-              ? "Complete the existing Supabase owner setup before using World Library."
+              ? assisted
+                ? "Assistance is unavailable. Check the configured compiler model and provider setup. No substitute model was selected."
+                : "Complete the existing Supabase owner setup before using World Library."
               : "The change was not confirmed. Retry the same action to keep its operation identity.",
     );
   }
@@ -61,7 +69,131 @@ export async function writeOwnerLibrary(
       headers: { "content-type": "application/json" },
       body: JSON.stringify(input),
     }),
+    input.action === "pack.refine" ||
+      input.action === "compiler.retry" ||
+      (input.action === "compiler.start" && input.mode === "assisted"),
   );
+}
+
+// Copy only the authoring fields. Original text must never be trimmed or translated.
+export function ownerDescriptionDraft(
+  input: Omit<OwnerDescribeInput, "action" | "operationId">,
+): OwnerLibraryDraftCommand {
+  const {
+    sourceId,
+    expectedVersionId,
+    title,
+    text,
+    language,
+    visibility,
+    knowledge,
+  } = input;
+  return {
+    action: "source.describe",
+    sourceId,
+    expectedVersionId,
+    title,
+    text,
+    language,
+    visibility,
+    knowledge,
+  };
+}
+
+export function ownerPackDraft(
+  detail: OwnerPackDetail,
+  body: PackBody,
+  rejectedClaimIds: string[] = [],
+): OwnerLibraryDraftCommand {
+  return {
+    action: "pack.save",
+    expectedVersionId: detail.versionId,
+    title: body.title,
+    claims: body.claims
+      .filter((claim) => !rejectedClaimIds.includes(claim.id))
+      .map(
+        ({
+          id,
+          text,
+          origin,
+          epistemic,
+          visibility,
+          knowledge,
+          validFrom,
+          validUntil,
+          knownByEntityIds,
+          uncertainty,
+        }) => ({
+          id,
+          text,
+          origin,
+          epistemic,
+          visibility,
+          knowledge,
+          validFrom,
+          validUntil,
+          knownByEntityIds: [...knownByEntityIds],
+          uncertainty,
+        }),
+      ),
+    resolutions: body.contradictions.map(({ id, resolution }) => ({
+      id,
+      resolution,
+    })),
+    rejectedClaimIds: [...rejectedClaimIds],
+  };
+}
+
+export function ownerClaimCanonEligible(
+  body: PackBody,
+  claim: PackClaim,
+): boolean {
+  return (
+    ["canon_at_entry", "character"].includes(claim.knowledge) &&
+    claim.validFrom !== null &&
+    Number.isSafeInteger(claim.validFrom) &&
+    claim.validFrom >= 0 &&
+    (claim.validUntil === null || claim.validUntil > claim.validFrom) &&
+    (claim.knowledge !== "character" || claim.knownByEntityIds.length > 0) &&
+    claim.epistemic === "fact" &&
+    !body.contradictions.some(
+      (c) => c.status === "unresolved" && c.claimIds.includes(claim.id),
+    )
+  );
+}
+
+// A read never advances a job. The UI must render the returned action as an explicit button.
+export function ownerCompilerAction(job: OwnerJobSummary): {
+  action: "compiler.step" | "compiler.retry";
+  label: string;
+  providerRequest: boolean;
+} | null {
+  if (job.status === "invalidated" || job.status === "completed") return null;
+  if (job.requestPending || job.status === "failed")
+    return job.mode === "assisted"
+      ? {
+          action: "compiler.retry",
+          label: "Prepare explicit retry",
+          providerRequest: false,
+        }
+      : null;
+  const providerRequest = job.mode === "assisted" && job.status === "indexing";
+  return {
+    action: "compiler.step",
+    providerRequest,
+    label:
+      job.status === "queued"
+        ? "Begin extraction"
+        : job.status === "extracting"
+          ? "Extract source lines"
+          : providerRequest
+            ? "Request assisted draft"
+            : job.status === "indexing"
+              ? "Index draft claims"
+              : job.status === "auditing"
+                ? "Audit and prepare review"
+                : "Open or recover review draft",
+  };
 }
 
 // Keeps a lost-response retry stable, but new edits get a new operation identity.
