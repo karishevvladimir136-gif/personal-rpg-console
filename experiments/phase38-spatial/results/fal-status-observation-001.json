@@ -1,0 +1,162 @@
+{
+  "version": "phase38b-fal-status-observation-1",
+  "recordedAtUTC": "2026-09-20T02:18:41.023Z",
+  "approvedExecutionSHA": "115dcf0c50a8b815e61d597970101898a7723bcf",
+  "executionBranch": "codex/phase38-fal-recovery-preparation",
+  "cleanExecutionVerifiedBeforeAndAfter": true,
+  "recoveryIdentity": "phase38b-fal-recovery-1",
+  "recoveryHash": "0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a",
+  "freezeFileSHA256": "3f0265ca9407ed83153e77c737853c0a7aae4c05de9e8e4a6799f283d5b8517c",
+  "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "originalStopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+  "originalStopEvidenceSHA256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+  "originalStopStillPreserved": true,
+  "jobId": "spatial-fal-world-1",
+  "provider": "fal",
+  "requestedModel": "fal-ai/hunyuan_world/image-to-world",
+  "actualModel": null,
+  "actualModelAvailability": "UNKNOWN",
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "initialization": {
+    "count": 1,
+    "providerRequests": 0,
+    "newReservations": 0,
+    "newGenerations": 0,
+    "rootAndAnchorAbsentBeforeInit": true,
+    "emptyJournalVerifiedBeforeObservation": true
+  },
+  "observation": {
+    "startedAtUTC": "2026-09-20T02:16:09.559Z",
+    "requestAtUTC": "2026-09-20T02:16:09.561Z",
+    "http": {
+      "classification": "exact_response_url",
+      "httpStatus": 200,
+      "location": {
+        "present": false,
+        "valid": false
+      },
+      "redirect": false,
+      "requestedURLHash": "789790ad0d6efee653d970d5c9169f7d17a08af042b7cf26c5a3fc4873d18e1c",
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+      "response": {
+        "allowedQueuePath": true,
+        "credentialsPresent": false,
+        "fragmentPresent": false,
+        "hostname": "queue.fal.run",
+        "hostnameHash": "cd914202c0e392feec9617458b9f655a91a2f45ca631c057bf5ae0a6bd336832",
+        "path": "/fal-ai/hunyuan_world/requests/01a0bc76-ae7f-7e02-960b-a207094622d2/status",
+        "pathHash": "c2ec96185d1771676afbb33d727ed9b644d116319698ba4e32b076c031017de3",
+        "portPresent": false,
+        "present": true,
+        "queryPresent": false,
+        "scheme": "https",
+        "urlHash": "789790ad0d6efee653d970d5c9169f7d17a08af042b7cf26c5a3fc4873d18e1c",
+        "valid": true
+      },
+      "responseURLMatches": true,
+      "stage": "status",
+      "statusQualification": "provisional_200_candidate"
+    },
+    "validatedQueue": {
+      "actualModel": null,
+      "bodyHash": "aa0b4ea61115e93b202b7630801e934dc3af3f6488d5035a6f49cd91a454ed98",
+      "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+      "state": "COMPLETED",
+      "validatedComplete": true
+    },
+    "completedObserved": true,
+    "resultCandidate": true,
+    "terminal": {
+      "reason": "queue_compatibility_not_established",
+      "resultCandidate": true,
+      "status": "OBSERVED_AWAITING_OWNER_REVIEW"
+    }
+  },
+  "network": {
+    "providerRequests": 1,
+    "statusGETs": 1,
+    "resultGETs": 0,
+    "artifactDownloads": 0,
+    "POSTs": 0,
+    "resubmissions": 0,
+    "generationSubmissions": 0,
+    "retries": 0,
+    "fallbacks": 0,
+    "redirectsFollowed": 0,
+    "extraPolls": 0,
+    "worldLabsCalls": 0,
+    "billingEndpointCalls": 0,
+    "cancelCalls": 0,
+    "exportCalls": 0,
+    "chestCalls": 0,
+    "nextCalls": 0
+  },
+  "accounting": {
+    "unchanged": true,
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 43,
+    "historicalDownloads": 8,
+    "newReservations": 0,
+    "reservationRefunds": 0,
+    "falBillingStatus": "UNKNOWN",
+    "unknownChargeRetainsFullReservation": true,
+    "cumulativeAPIRequestsAfter": 44,
+    "cumulativeDownloadsAfter": 8,
+    "chestAttempted": false
+  },
+  "integrity": {
+    "originalSourceFileHashes": {
+      "experiments/phase38-spatial/private-continuation/journal.jsonl": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508",
+      "experiments/phase38-spatial/private-continuation/witness.jsonl": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758",
+      "experiments/phase38-spatial/private-continuation/identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+      "experiments/phase38-spatial/private-continuation.anchor": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+      "experiments/phase38-spatial/continuation.json": "debb7c56ea75d4d6efd5b78d2b9d0544b94e6e0913f4f53408a66b49257ee31b",
+      "experiments/phase38-spatial/protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+      "experiments/phase38-spatial/freeze.json": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e"
+    },
+    "originalSourceTerminalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+    "recoveryJournalSHA256": "f017d56724bc75ee6b38522a4b439c890f9d74868f2b47fd0d0f72d6e7e701e6",
+    "recoveryWitnessSHA256": "27c26e496201a6a1880bf1bdb9fb57725ecc6a250cff753704714318cf837b81",
+    "recoveryIdentitySHA256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d",
+    "recoveryAnchorSHA256": "aa1914b8b404f825ecf9588f2bd152297be51262136650061aee96854f9bce2d",
+    "recoveryJournalEntries": 5,
+    "originalRoomStoppedHashesVerified": true,
+    "priorEvidenceHashesVerified": true,
+    "executionFreezeFilesVerified": 39,
+    "originalContinuationFreezeFilesVerified": 32
+  },
+  "localLaunchNote": "An initial CLI launch stopped before opening the recovery journal because a Windows path was incorrectly escaped in the shell wrapper. A read-only audit verified zero journal entries and zero provider requests; the launch path was corrected without modifying the approved implementation. Exactly one provider GET followed; no provider request was retried.",
+  "verification": {
+    "afterObservation": true,
+    "deterministicTests": {
+      "passed": 336,
+      "failed": 0,
+      "skipped": 0,
+      "cancelled": 0
+    },
+    "typecheck": "PASS",
+    "lint": "PASS; --max-warnings 0",
+    "isolatedExperimentBuild": "PASS",
+    "location": "separate evidence worktree based on unchanged approved execution code; tests require absence of live recovery directories",
+    "productionTestsAndBuild": "NOT RERUN; no production changes",
+    "productionUnchanged": true,
+    "preexistingProductionDocumentationUntouched": true
+  },
+  "limitations": [
+    "COMPLETED is a validated result candidate only; result retrieval remains unreleased.",
+    "No result content, output format, artifact usability, size or hash was inspected.",
+    "Actual provider model and fal billing remain UNKNOWN.",
+    "HTTP 200 at the exact URL is established for this observation only; original failed poll remains a historical STOP, not reinterpreted.",
+    "No new manual approval or next-job release; chest unattempted.",
+    "Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified; no hosted or real campaign/private-data acceptance."
+  ],
+  "nextStep": "STOP for owner review. A new explicit authorization is required before any result GET or other provider request."
+}

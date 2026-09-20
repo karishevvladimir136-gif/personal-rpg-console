@@ -1,8 +1,38 @@
 # Development status
 
-Last updated: September 19, 2026. Never include secrets, credentials or DM-private content.
+Last updated: September 19, 2026 (local; observation September 20 UTC). Never include secrets, credentials or DM-private content.
 
 ## Current milestone and status
+
+**PHASE 3.8B SINGLE FAL STATUS OBSERVATION COMPLETE; STOP FOR OWNER REVIEW.** Owner-authorized exact execution `115dcf0c50a8b815e61d597970101898a7723bcf` stayed clean and unchanged. Recovery `phase38b-fal-recovery-1`, hash `0768f1a2a46f9aa6557d057d048e6ba896e5f4094da42a1f837f215080ff586a`, initialized once without a provider request or reservation.
+
+### Completed work and files / areas changed
+
+Exactly one status GET for existing request `01a0bc76-ae7f-7e02-960b-a207094622d2` returned **HTTP 200, exact response URL, no redirect, validated queue state COMPLETED**. It is a result candidate only. Terminal state is `OBSERVED_AWAITING_OWNER_REVIEW`. **No result GET or artifact download occurred.** Actual model remains UNKNOWN/null. [Observation report](experiments/phase38-spatial/results/FAL_STATUS_OBSERVATION_001.md) and [sanitized evidence](experiments/phase38-spatial/results/fal-status-observation-001.json) were added in a separate evidence worktree; only these two files and this status changed.
+
+### Tests and build status
+
+After observation, **336 deterministic tests passed; zero failures/skips/cancellations. Typecheck, zero-warning lint and isolated experiment build passed.** Checks ran on unchanged approved code in the separate evidence worktree because existing fixtures require absence of live recovery state. No frozen test was altered or local journal removed. Production full-suite/build not rerun; production unchanged. Approved recovery freeze (39 inputs), original continuation freeze (32 inputs), original stopped history and previous evidence hashes verified unchanged. The original checkout's pre-existing documentation edits remain untouched.
+
+### Key technical decisions and accounting
+
+Frozen implementation/validators were used unchanged. A local path-quoting launch error occurred before any observation; an empty-journal audit proved zero provider requests, then the wrapper path was corrected. Exactly one provider GET followed; no request retry. Original STOPPED history was never reopened for continuation, rewritten or reinterpreted.
+
+**Accounting unchanged: $4.15 reserved / $4.75 ceiling; $2.528 known reported billing plus UNKNOWN fal charge.** The original $0.35 fal reservation remains counted once; no refund/new reservation. The $0.60 chest allocation remains unreleased. Lifetime totals are 44 API requests, 8 downloads and 3 historical generation submissions. Zero new POSTs/generations, retries, resubmissions, fallback, redirects followed, result reads, downloads, extra polls, World Labs/billing/export/cancel/chest calls, approvals or next operations.
+
+### Known issues and remaining work
+
+COMPLETED does not establish artifact validity or usability: result contents, DRC availability, output sizes/hashes and actual fal charge are still unverified. Actual-model provenance remains UNKNOWN. One successful status response does not explain the earlier failed poll or establish generation completion latency. No manual output approval or retrieval release was appended. Chest remains unattempted.
+
+Earlier room/courtyard acceptance remains limited to the synthetic experiment, not final visual/prompt quality, Gaussian rendering, collider navigation, independent metric alignment or production EXPLORE. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees; no hosted or real campaign/private-data acceptance. Production main/runtime/schema/UI/dependencies and roadmap implementation remain unchanged.
+
+### Recommended next step
+
+**STOP for owner review of the single observation.** A new explicit authorization is required before any result GET or other provider request. Do not poll again, retrieve/download, resubmit, call chest/next, implement EXPLORE/renderer, integrate roadmap branches or deploy.
+
+---
+
+## Historical offline fal recovery preparation checkpoint
 
 **PHASE 3.8B OFFLINE FAL-REQUEST RECOVERY PREPARED; STOP FOR OWNER REVIEW.** The fal-world generation was submitted once historically. Original execution `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, continuation `9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1` and evidence `28efcc7b50f6943022f93906770d2e8196e1e682` remain unchanged. Original polling remains STOPPED; no inference is made about provider completion.
 
