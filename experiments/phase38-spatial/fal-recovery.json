@@ -1,0 +1,62 @@
+{
+  "version": "phase38b-fal-recovery-1",
+  "originalExecutionSHA": "a8b3d503fd9da4b75e3dfdaf071ee8423550217c",
+  "continuationHash": "9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1",
+  "originalProtocolHash": "496360cc4171778eb153009ff4fe445d8ef75b08ab9aa0c4e884452e21c3bacb",
+  "stopEvidenceCommit": "28efcc7b50f6943022f93906770d2e8196e1e682",
+  "stopEvidenceSHA256": "98a64a1e9e0018cf291bb58e60066558e44f6b20bd4cfb1265cbc4a6b6af9b5d",
+  "sourceFiles": {
+    "experiments/phase38-spatial/private-continuation/journal.jsonl": "cba079b1e3f6e04810ab22fe3d4d335ae99f1c5cdabd7d35e9ad900e44a98508",
+    "experiments/phase38-spatial/private-continuation/witness.jsonl": "4310e9d475117a2a5d7558f93bb83c7c4d6dd5713d20b2c14eee31502754b758",
+    "experiments/phase38-spatial/private-continuation/identity.json": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+    "experiments/phase38-spatial/private-continuation.anchor": "00797a8cbbde52aed9028199e9b5a0809ecf4c0fe31d8cc1258e8cf193f11fc0",
+    "experiments/phase38-spatial/continuation.json": "debb7c56ea75d4d6efd5b78d2b9d0544b94e6e0913f4f53408a66b49257ee31b",
+    "experiments/phase38-spatial/protocol.json": "48e0c66207d872ba91239de4a6f23f12eae1f9309bf57d5b1e7c2b4ad5b131bd",
+    "experiments/phase38-spatial/freeze.json": "ba7a230ed58d609f39466d0a8ae1eb98f2e7667b520a6c39fbf14778c5c8909e"
+  },
+  "jobId": "spatial-fal-world-1",
+  "provider": "fal",
+  "model": "fal-ai/hunyuan_world/image-to-world",
+  "requestId": "01a0bc76-ae7f-7e02-960b-a207094622d2",
+  "queueRoot": "fal-ai/hunyuan_world",
+  "originalStatus": "STOPPED",
+  "accounting": {
+    "cumulativeReservedMicroUSD": 4150000,
+    "knownReportedMicroUSD": 2528000,
+    "falReservedMicroUSD": 350000,
+    "falReportedMicroUSD": null,
+    "ceilingMicroUSD": 4750000,
+    "unreleasedChestMicroUSD": 600000,
+    "historicalGenerationSubmissions": 3,
+    "historicalAPIRequests": 43,
+    "historicalDownloads": 8
+  },
+  "releasedMode": "single-status-observation-only",
+  "limits": {
+    "statusReads": 1,
+    "resultReads": 0,
+    "assetDownloads": 0,
+    "requestTimeoutMs": 60000,
+    "operationDeadlineMs": 900000,
+    "maxJsonBytes": 2097152,
+    "maxAssetBytes": 268435456,
+    "maxTotalAssetBytes": 1073741824
+  },
+  "qualification": {
+    "provisionalStatusCodes": [
+      200
+    ],
+    "provisionalResultCodes": [
+      200
+    ],
+    "liveQueueCompatibilityEstablished": false,
+    "resultRetrievalReleased": false,
+    "redirectsFollowed": false,
+    "automaticRetries": 0,
+    "fallbacks": 0,
+    "generationSubmissions": 0
+  },
+  "stoppedJournalTerminalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+  "stoppedWitnessTerminalDigest": "3121be8dbd3b2aeb12e095a05764a84580bb1b944d27539ebc6ec2d4e8f65f36",
+  "offlineHTTPPolicyEvidence": "Existing local official-evidence notes do not establish acceptable queue HTTP codes. The failed poll status was not retained. HTTP 200 is only a provisional parser candidate; this checkpoint permits one status observation and stops for owner review, even on validated COMPLETED."
+}

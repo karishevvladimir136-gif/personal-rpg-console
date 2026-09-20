@@ -10,6 +10,18 @@ export function must(ok: unknown, code: string): asserts ok {
   }
 }
 const safeCodes = new Set([
+  "fal_recovery_transport_failure",
+  "fal_recovery_redirect_stop",
+  "fal_recovery_status_unqualified",
+  "fal_recovery_response_url_mismatch",
+  "fal_recovery_result_identity",
+  "recovery_provider_error",
+  "recovery_status_identity",
+  "recovery_queue_state",
+  "fal_history_changed",
+  "fal_recovery_read_limit",
+  "fal_result_before_completion",
+
   "invalid_webp_container",
   "invalid_webp_chunk",
   "unsupported_webp_animation",

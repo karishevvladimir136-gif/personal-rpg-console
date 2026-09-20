@@ -4,6 +4,36 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B OFFLINE FAL-REQUEST RECOVERY PREPARED; STOP FOR OWNER REVIEW.** The fal-world generation was submitted once historically. Original execution `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, continuation `9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1` and evidence `28efcc7b50f6943022f93906770d2e8196e1e682` remain unchanged. Original polling remains STOPPED; no inference is made about provider completion.
+
+### Completed work and files / areas changed
+
+Prepared a distinct hash-bound, append-only recovery identity/journal and GET-only observation path for request `01a0bc76-ae7f-7e02-960b-a207094622d2`. Safe HTTP status/response-URL/Location metadata is retained before rejection; no credential/body/header leakage or redirect following. [Recovery preparation](experiments/phase38-spatial/FAL_RECOVERY_PREPARATION.md) specifies exact routes and bounds. Changes are experiment source, regression tests, manifest/freeze/instructions and this status only. No production architecture/runtime/schema/UI/dependency changes.
+
+### Tests and build status
+
+**336 deterministic tests passed (273 existing + 63 new); zero failures/skips. Typecheck, zero-warning lint and isolated experiment build passed.** Original history/evidence and frozen execution files verified unchanged. Production full-suite/build not rerun; production unchanged. No live recovery journal was initialized.
+
+### Key decisions and accounting
+
+Offline records do not establish the acceptable live queue HTTP-code mapping. The prepared CLI therefore permits only one separately authorized future status observation and then stops for owner review, including on provisionally validated HTTP 200 / COMPLETED. No result/download release, operator URL/method/model override, next, cancellation, generation or chest capability. Bounded future result/download ordering is covered by mock tests but unreleased through this CLI.
+
+Original reservations remain **$4.15 / $4.75**; **$2.528 known reported billing plus UNKNOWN fal charge**. The existing $0.35 remains retained once. No new reservation or refund; unreleased chest allocation remains $0.60. No approval or billing mutation is supported by the recovery journal.
+
+### Known issues and remaining work
+
+**No new provider request occurred, no key was accessed/requested, no result was recovered, and chest remains unattempted.** No online research or experiment redesign. Actual failed poll HTTP status/URL, provider completion, actual model, DRC output and billing remain unknown. A future live observation requires separate owner approval of the exact preparation SHA; this preparation grants none.
+
+Earlier room/courtyard approvals remain narrow synthetic experiment approvals, not final visual/prompt fidelity, Gaussian rendering, collider navigation, independent metric alignment or production EXPLORE acceptance. Physical iPhone/Safari and optional historical Phase 1 conflict-rebase remain unverified. Finite synthetic tests are not universal guarantees; no hosted or real campaign/private-data acceptance.
+
+### Recommended next step
+
+Stop for owner review. Do not observe status live, retrieve results, reset/reinterpret old history, resubmit, release chest, invoke another next, implement EXPLORE/renderer, integrate roadmap branches or deploy.
+
+---
+
+## Historical fal-world stop evidence checkpoint
+
 **PHASE 3.8B FAL-WORLD SUBMITTED ONCE; STOPPED AT FIRST STATUS-POLL TRANSPORT GATE; AWAITING OWNER REVIEW.** Exact clean execution `a8b3d503fd9da4b75e3dfdaf071ee8423550217c`, continuation `9b3f84c9e74a3be531d322dc59b623400e3de15a2b09e7231cfeb730cc56a8e1`. No repair, retry, additional next or chest job followed the stop.
 
 - **spatial-room-1:** narrowly owner-approved for synthetic experiment continuation only.

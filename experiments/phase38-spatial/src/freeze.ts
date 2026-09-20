@@ -7,6 +7,8 @@ export function freezeInputs() {
   const paths = [
     "protocol.json",
     "continuation.json",
+    "fal-recovery.json",
+    "FAL_RECOVERY_PREPARATION.md",
     "package.json",
     "tsconfig.json",
     ".gitignore",

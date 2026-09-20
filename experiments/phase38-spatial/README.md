@@ -1,5 +1,9 @@
 # Phase 3.8B — isolated experiment
 
+**Current checkpoint: OFFLINE fal-request recovery prepared; STOP FOR OWNER REVIEW.** [Recovery scope and instructions](FAL_RECOVERY_PREPARATION.md) preserve the original stopped continuation and bind one existing fal request. The future CLI permits only a single status observation followed by review; no result/download/next/submission release. No provider call, key access, new reservation or recovery initialization occurred. Earlier instructions below are historical, not current live permission.
+
+## Historical continuation instructions
+
 **Current checkpoint: OFFLINE continuation preparation; STOP FOR OWNER REVIEW.** URL correction `c94d4e588981d94d6679ba76861cc5776f7bfc3d` is owner-accepted. [Continuation contract/instructions](CONTINUATION_PREPARATION.md) preserve the original stopped ledger, carry $1.30/$1.264 once, bind the exact existing room and allow at most the three remaining jobs only after separately authorized recovery and manual review. No provider calls or live initialization in this task. Legacy live CLI is disabled here; use only the separately gated continuation CLI after exact-SHA approval. Historical preparation/correction instructions below are not current live permission.
 
 ## Historical accepted URL-correction instructions

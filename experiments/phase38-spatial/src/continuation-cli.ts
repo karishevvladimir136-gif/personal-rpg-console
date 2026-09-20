@@ -29,6 +29,10 @@ export async function main(args = process.argv.slice(2)) {
     );
     return;
   }
+  must(
+    !existsSync(join(experimentRoot, "fal-recovery.json")),
+    "use_fal_recovery_cli",
+  );
   const git = (...params: string[]) =>
     execFileSync("git", params, { cwd: repo, encoding: "utf8" }).trim();
   const head = git("rev-parse", "HEAD");
