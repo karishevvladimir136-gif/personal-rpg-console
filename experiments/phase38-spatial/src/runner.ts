@@ -8,14 +8,17 @@ import {
   jobById,
   must,
   object,
+  parseJSON,
   protocol,
   protocolHash,
   safeId,
+  safeFailureReason,
   text,
   type Dict,
 } from "./protocol.ts";
 import { falOutput, inspectAsset, worldOutput, type Asset } from "./outputs.ts";
 import { authHeaders, type Transport } from "./transport.ts";
+import { worldFence } from "./world-metadata.ts";
 export type Clock = { now: () => number; sleep: (ms: number) => Promise<void> };
 const realClock: Clock = {
   now: Date.now,
@@ -41,7 +44,7 @@ function resultFor(ledger: Ledger, id: string): Dict {
   const row = ledger.rows("result", id)[0];
   must(row, "missing_result");
   const result = object(
-    JSON.parse(ledger.readEvidence(text(row.file)).toString()),
+    parseJSON(ledger.readEvidence(text(row.file)).toString()),
   );
   must(
     result.jobId === id && result.protocolHash === protocolHash,
@@ -226,7 +229,7 @@ export async function runNext(
   };
   try {
     const submitted = await request("submit", job.endpoint);
-    let body = object(JSON.parse(submitted.bytes.toString()));
+    let body = object(parseJSON(submitted.bytes.toString()));
     const requestId = safeId(
       job.provider === "worldlabs" ? body.operation_id : body.request_id,
     );
@@ -283,9 +286,7 @@ export async function runNext(
       );
       await clock.sleep(20000);
       body = object(
-        JSON.parse(
-          (await request("poll", pollURL, requestId)).bytes.toString(),
-        ),
+        parseJSON((await request("poll", pollURL, requestId)).bytes.toString()),
       );
       statusCheck();
     }
@@ -301,27 +302,37 @@ export async function runNext(
     let assets: Asset[],
       world: Dict | null = null;
     if (job.provider === "worldlabs") {
-      const result = object(body.response),
-        worldId = safeId(result.world_id ?? result.id);
+      const fence = worldFence(
+        body,
+        job,
+        requestId,
+        ledger.rows("reserve", job.id)[0],
+      );
+      const worldId = fence.worldId;
+      // Retain only safe request/world identity before any world validation can fail.
+      ledger.append("world_identity", { ...fence });
       const url = `https://api.worldlabs.ai/marble/v1/worlds/${worldId}`;
       const first = worldOutput(
-        JSON.parse((await request("world", url, worldId)).bytes.toString()),
+        parseJSON((await request("world", url, worldId)).bytes.toString()),
         job,
-        worldId,
-        started,
+        fence,
       );
       const second = worldOutput(
-        JSON.parse((await request("world", url, worldId)).bytes.toString()),
+        parseJSON((await request("world", url, worldId)).bytes.toString()),
         job,
-        worldId,
-        started,
+        fence,
       );
       must(
         first.identityHash === second.identityHash,
         "world_changed_on_reopen",
       );
       assets = first.assets;
-      world = { worldId, scale: first.scale, identityHash: first.identityHash };
+      world = {
+        worldId,
+        scale: first.scale,
+        identityHash: first.identityHash,
+        metadata: first.metadata,
+      };
     } else {
       const response = await request("result", resultURL!, requestId);
       if (response.headers["x-fal-request-id"] !== undefined)
@@ -329,7 +340,7 @@ export async function runNext(
           response.headers["x-fal-request-id"] === requestId,
           "stale_result_id",
         );
-      assets = falOutput(JSON.parse(response.bytes.toString()), job);
+      assets = falOutput(parseJSON(response.bytes.toString()), job);
       // Per-request units do not prove total USD including PBR. Manual matched receipt is required.
     }
     const retained: Dict[] = [];
@@ -352,7 +363,7 @@ export async function runNext(
       requestId,
       provider: job.provider,
       requestedModel: job.model,
-      actualModel: null,
+      actualModel: world ? object(world.metadata).actualModel : null,
       inputHash: hash(canonical(input)),
       world,
       assets: retained,
@@ -368,12 +379,12 @@ export async function runNext(
         : "awaiting_billing_and_output_review",
       ...ledger.summary(),
     };
-  } catch {
+  } catch (error) {
     // Never persist provider messages, response bodies, headers or credential-bearing errors.
     ledger.append("stop", {
       jobId: job.id,
       stage,
-      reason: "unexplained_or_invalid_response",
+      reason: safeFailureReason(error),
       billing: ledger.rows("billing", job.id).length ? "REPORTED" : "UNKNOWN",
     });
     return { jobId: job.id, status: "STOPPED", stage, ...ledger.summary() };

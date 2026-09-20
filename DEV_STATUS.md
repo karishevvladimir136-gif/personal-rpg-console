@@ -4,6 +4,28 @@ Last updated: September 19, 2026. Never include secrets, credentials or DM-priva
 
 ## Current milestone and status
 
+**PHASE 3.8B READ-ONLY RECOVERY COMPLETE; MINIMAL EXPERIMENT CORRECTION READY FOR OWNER REVIEW. STOPPED — NO LIVE CONTINUATION.** Recovery evidence is separately pushed at `98eb76618503dd2382ef97aaabfcb1377cab26e1`. The correction is on `codex/phase38-metadata-correction`; original execution `2f8f82edb5d5f3c960d45922b71c543e99208192` and its stopped ledger are untouched.
+
+### Completed work and files / areas changed
+
+Experiment metadata inspection now uses completed-operation/world identity and durable submitted-input fencing instead of unsupported exact prompt echo. Nullable model/time provenance remains unknown. Output use still requires proven privacy, required outputs and the frozen URL policy. Safe specific assertion codes and world identity survive future validation failures. Changed only experiment source/tests/instructions/freeze manifest and this status; see [correction proposal](experiments/phase38-spatial/CORRECTION_PROPOSAL.md). No production changes.
+
+### Tests and actual verification
+
+**141 deterministic experiment tests passed (91 existing + 50 new), zero failures/skips; experiment typecheck, lint with zero warnings, and isolated emit/build passed.** Production suite/build not repeated for this experiment-only correction. Real diagnostic observations remain separate: exactly two authorized GETs succeeded; zero generation/download/export/fal/retry calls. No additional provider calls during correction. Original ledger and historical evidence hashes remain intact; original source/protocol and production files unchanged.
+
+### Key decisions, known issues and remaining work
+
+`stale_prompt` was a local compatibility defect: returned prompts may be recaptioned under the official contract. Recovered world ID is `82a0e059-50a4-41a4-8565-5e516ffadc0e`. Full world reports `marble-1.1`; operation snapshot model is UNKNOWN. SPZ/collider/panorama/thumbnail URL fields and scale metadata exist, but asset URLs separately fail the frozen URL policy. No host/predicate diagnosis was retained, no allowlist change is made, and no assets or visual outputs have been inspected. Corrected fixtures substitute synthetic text/URLs; they are not a full real-response replay. Reuse without regeneration is possible in principle, pending separate authorized diagnosis and output review. Existing $1.264 charge and $1.30 reservation remain unchanged.
+
+### Recommended next step
+
+Owner review only. The two-GET authorization is exhausted. Do not regenerate the room, reset/reinitialize its stopped run, perform further reads/downloads, or proceed to other jobs. Physical iPhone/Safari, historical optional Phase 1 conflict-rebase confirmation, finite synthetic-evaluation limits and lack of hosted/real-campaign/private-data acceptance remain disclosed. No Phase 4, EXPLORE implementation, renderer or deployment.
+
+---
+
+## Historical read-only recovery evidence checkpoint
+
 **PHASE 3.8B READ-ONLY RECOVERY COMPLETED; NO GENERATION CONTINUATION AUTHORIZED.** Owner-reviewed live evidence `3a94308e92e9454f056eac899a91ba0d366ee111` remains intact. The authorized two GETs recovered world `82a0e059-50a4-41a4-8565-5e516ffadc0e` from operation `6719be80-101e-45a6-b27a-6905ebc183c1`; both returned HTTP 200. Zero new submissions/retries/assets/exports/fal calls.
 
 ### Completed work and files / areas changed

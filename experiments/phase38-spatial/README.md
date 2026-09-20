@@ -1,4 +1,8 @@
-# Phase 3.8B — isolated preparation checkpoint
+# Phase 3.8B — isolated experiment
+
+**Current checkpoint: proposed metadata correction, offline verified; STOP FOR OWNER REVIEW.** Recovery evidence is separately committed at `98eb76618503dd2382ef97aaabfcb1377cab26e1`. See [correction scope and verification](CORRECTION_PROPOSAL.md). The two authorized diagnostic GETs are exhausted. Do not initialize a replacement ledger, run `next`, retry the room, download assets or continue other jobs. No new live permission follows from this correction.
+
+## Historical preparation instructions (not current execution permission)
 
 **PREPARATION ONLY. No live generation is authorized.** Phase 3.8A was explicitly owner-approved at 444f6836a5abce2014c3de4b6f234bf2a75399af. The owner must authorize this preparation's exact final Git SHA before any live command. No credentials have been requested or created. This folder uses Node 24 built-ins and the repository's existing TypeScript/lint toolchain; no new package dependencies or production integration.
 
@@ -13,7 +17,7 @@ The fal panorama input is the exact retained room output with byte-hash lineage 
 From the repository root, using its existing installed development dependencies:
 
 ```powershell
-node --test experiments/phase38-spatial/tests/guards.test.mjs
+node --test experiments/phase38-spatial/tests/*.test.mjs
 node node_modules/typescript/bin/tsc -p experiments/phase38-spatial/tsconfig.json --noEmit
 node node_modules/eslint/bin/eslint.js experiments/phase38-spatial
 node node_modules/typescript/bin/tsc -p experiments/phase38-spatial/tsconfig.json

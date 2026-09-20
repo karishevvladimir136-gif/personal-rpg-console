@@ -6,43 +6,22 @@ import {
   integer,
   must,
   object,
-  safeId,
-  text,
+  parseJSON,
   type Dict,
   type Job,
 } from "./protocol.ts";
+import { inspectWorldMetadata, type WorldFence } from "./world-metadata.ts";
 export type Asset = {
   role: string;
   url: string;
   kind: "image" | "geometry" | "splat" | "glb";
 };
-export function worldOutput(
-  value: unknown,
-  job: Job,
-  expectedWorldId: string,
-  started: number,
-) {
+export function worldOutput(value: unknown, job: Job, fence: WorldFence) {
+  const metadata = inspectWorldMetadata(value, job, fence);
   const w = object(value);
-  must((w.world_id ?? w.id) === expectedWorldId, "stale_world_id");
-  must(
-    w.display_name === job.id && object(w.permission).public === false,
-    "world_scope",
-  );
-  must(w.model === job.model, "model_pin");
-  must(
-    canonical(w.world_prompt) === canonical(job.input.world_prompt),
-    "stale_prompt",
-  );
-  must(
-    Number.isFinite(Date.parse(text(w.created_at))) &&
-      Date.parse(text(w.created_at)) >= started - 5000,
-    "stale_world_time",
-  );
-  must(
-    w.world_marble_url ===
-      `https://marble.worldlabs.ai/world/${safeId(expectedWorldId)}`,
-    "hosted_world_url",
-  );
+  // Nullable permissions/assets are valid metadata, but cannot authorize output use.
+  must(metadata.privacy === "private", "world_privacy_unverified");
+  must(metadata.assetsPresent, "world_assets_unavailable");
   const a = object(w.assets),
     splats = object(a.splats),
     scale = object(splats.semantics_metadata);
@@ -77,8 +56,8 @@ export function worldOutput(
     },
   ];
   const identity = {
-    worldId: expectedWorldId,
-    model: w.model,
+    worldId: fence.worldId,
+    model: metadata.actualModel,
     scale,
     assets: assets.map((x) => ({
       role: x.role,
@@ -87,8 +66,9 @@ export function worldOutput(
   };
   return {
     assets,
+    metadata,
     identityHash: hash(canonical(identity)),
-    worldId: expectedWorldId,
+    worldId: fence.worldId,
     scale,
   };
 }
@@ -159,7 +139,7 @@ function image(bytes: Buffer): Dict {
       i += 2 + size;
     }
   }
-  throw Error("unsupported_or_invalid_image");
+  must(false, "unsupported_or_invalid_image");
 }
 function glb(bytes: Buffer, requirePbr: boolean): Dict {
   must(
@@ -177,7 +157,7 @@ function glb(bytes: Buffer, requirePbr: boolean): Dict {
     "invalid_glb_json",
   );
   const d = object(
-    JSON.parse(
+    parseJSON(
       bytes
         .subarray(20, 20 + size)
         .toString("utf8")
@@ -293,5 +273,5 @@ export function inspectAsset(bytes: Buffer, asset: Asset, job: Job): Dict {
   )
     return spz(bytes);
   // Opaque DRC/archive/image is deliberately not accepted as navigable geometry.
-  throw Error("unsupported_or_invalid_geometry");
+  must(false, "unsupported_or_invalid_geometry");
 }

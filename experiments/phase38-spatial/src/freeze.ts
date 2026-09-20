@@ -13,6 +13,7 @@ export function freezeInputs() {
     "README.md",
     "PREPARATION_RESULTS.md",
     "OFFICIAL_EVIDENCE.md",
+    "CORRECTION_PROPOSAL.md",
     ...readdirSync(join(experimentRoot, "src"))
       .filter((x) => x.endsWith(".ts"))
       .map((x) => `src/${x}`),
