@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { parseCompositionMetadata } from "../world-lab/composition.ts";
 import type { EvidenceLocator } from "../production/contracts.ts";
 import type {
   Approval,
@@ -484,6 +485,7 @@ const parseAssumption = (value: unknown) => {
   };
 };
 export function parseScenario(value: unknown): ScenarioBody {
+  const hasComposition = value !== null && typeof value === "object" && Object.hasOwn(value, "composition");
   const v = object(value, [
     "schemaVersion",
     "title",
@@ -499,6 +501,7 @@ export function parseScenario(value: unknown): ScenarioBody {
     "localHistory",
     "unresolvedConflictIds",
     "approval",
+    ...(hasComposition ? ["composition"] : []),
   ]);
   const sourceVersionIds = ids(v.sourceVersionIds),
     packVersionIds = ids(v.packVersionIds);
@@ -548,6 +551,15 @@ export function parseScenario(value: unknown): ScenarioBody {
   ensure(
     entry.evidence.every((e) => sourceVersionIds.includes(e.sourceVersionId)),
   );
+  const composition = hasComposition ? parseCompositionMetadata(v.composition) : undefined;
+  if (composition) {
+    ensure((composition.phase === "approved") === (status === "approved"));
+    ensure(sameSet(packVersionIds, composition.basis.packVersionIds) && sameSet(sourceVersionIds, composition.basis.sourceVersionIds));
+    ensure(entry.worldMinutes === composition.basis.startWorldMinutes && entry.evidence.length === 0 && adaptation === "original" && identities.length === 0 && carriedClaimIds.length === 0 && localHistory === null && unresolvedConflictIds.length === 0);
+    if (composition.review) ensure(v.title === composition.review.title);
+    if (approval) ensure(approval.ownerId === composition.basis.ownerId);
+    else ensure(Array.isArray(v.assumptions) && v.assumptions.length === 0);
+  }
   return {
     schemaVersion: literal(v.schemaVersion, [1]),
     title: shortText(v.title),
@@ -563,6 +575,7 @@ export function parseScenario(value: unknown): ScenarioBody {
     localHistory,
     unresolvedConflictIds,
     approval,
+    ...(composition ? { composition } : {}),
   };
 }
 export function parseDivergence(value: unknown): DivergenceBody {

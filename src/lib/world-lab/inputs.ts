@@ -12,6 +12,7 @@ import { validateSettings } from "../persistence/validation.ts";
 import { parseRulesetRef, resolveRuleset } from "../rulesets/profiles.ts";
 import { parseWorldState } from "../world/validation.ts";
 import { parseBinding } from "../world-packs/bindings.ts";
+import { validateExecutionProfile } from "../model-runtime/registry.ts";
 import {
   parseLibraryRecord,
   recordEvidence,
@@ -183,6 +184,7 @@ export function parseLabInputBundle(value: unknown): LabInputBundle {
     "resolutionPolicy",
     "startWorldMinutes",
     "throughWorldMinutes",
+    ...(value && typeof value === "object" && Object.hasOwn(value, "executionProfile") ? ["executionProfile"] : []),
   ]);
   const base = object(row.base, [
     "saveId",
@@ -269,13 +271,17 @@ export function parseLabInputBundle(value: unknown): LabInputBundle {
     effectiveSettings,
     effectiveGuidance,
     resolutionPolicy: {
-      id: literal(policy.id, ["deterministic-world-v1"]),
+      id: literal(policy.id, ["deterministic-world-v1", "single-model-world-v1"]),
       version: literal(policy.version, [1]),
       maxSteps: integer(policy.maxSteps, 1, LAB_LIMITS.maxSteps),
     },
     startWorldMinutes,
     throughWorldMinutes,
+    ...(Object.hasOwn(row, "executionProfile") ? {
+      executionProfile: validateExecutionProfile(row.executionProfile, "world.resolve"),
+    } : {}),
   };
+  ensure((result.resolutionPolicy.id === "single-model-world-v1") === Boolean(result.executionProfile));
   ensure(result.sourceHeads.length === result.sourceVersionIds.length, "scope");
   ensure(result.scenarioVersionId !== result.divergenceVersionId, "scope");
   canonicalLabJson(result);
@@ -529,8 +535,14 @@ export function prepareLabInput(
   const scenarioBindings = bindings.filter(
     (binding) => binding.scenarioVersionId === scenario.versionId,
   );
+  const composition = scenario.body.composition;
+  if (composition) {
+    const basis = composition.basis;
+    ensure(composition.phase === "approved" && basis.ownerId === ownerId && basis.campaignId === campaignId && basis.saveId === authority.saveId && basis.baseManifestId === state.manifest.id && basis.baseTimelineId === state.manifest.timelineId && basis.canonGeneration === state.canonGeneration && basis.startWorldMinutes === startWorldMinutes, "conflict");
+    ensure(composition.review?.horizonMinutes === horizon && isDeepStrictEqual(composition.review.policy, parseWorldState(foundation.world, campaignId).policy), "conflict");
+  }
   ensure(
-    scenario.body.packVersionIds.length === 0 || scenarioBindings.length > 0,
+    scenario.body.packVersionIds.length === 0 || scenarioBindings.length > 0 || Boolean(composition),
     "scope",
   );
   ensure(
@@ -699,6 +711,10 @@ export function prepareLabInput(
     "conflict",
   );
   const documents = sortedDocuments(parseLabDocumentPins(authority.documents));
+  if (composition) {
+    ensure(sameSet(composition.basis.packVersionIds, packs.map((p) => p.versionId)) && sameSet(composition.basis.sourceVersionIds, sourceIds) && isDeepStrictEqual(composition.basis.sourceHeads, sourceHeads) && isDeepStrictEqual(composition.basis.documents, documents), "conflict");
+    ensure(composition.basis.basisDigest === sha256(canonicalLabJson({ownerId, campaignId, saveId: authority.saveId, manifestId: state.manifest.id, canonGeneration: state.canonGeneration, sourceHeads, documents})), "conflict");
+  }
   ensure(documents.length === state.documentVersions.length, "scope");
   for (const pin of documents) {
     const document = state.documentVersions.find(
@@ -763,12 +779,13 @@ export function prepareLabInput(
       sessionGuidance,
     },
     resolutionPolicy: {
-      id: "deterministic-world-v1",
+      id: composition ? "single-model-world-v1" : "deterministic-world-v1",
       version: 1,
       maxSteps: LAB_LIMITS.maxSteps,
     },
     startWorldMinutes,
     throughWorldMinutes: startWorldMinutes + horizon,
+    ...(composition ? { executionProfile: composition.simulationProfile } : {}),
   });
   return { input, inputDigest: labInputDigest(input) };
 }

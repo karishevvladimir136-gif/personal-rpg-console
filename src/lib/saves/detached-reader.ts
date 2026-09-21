@@ -6,6 +6,7 @@ import type { CommittedWorldEvent } from "../production/contracts.ts";
 import { isUuid } from "../persistence/validation.ts";
 import { parseLibraryRecord } from "../world-library/parsers.ts";
 import { parseWorldState } from "../world/validation.ts";
+import { validateExecutionProfile } from "../model-runtime/registry.ts";
 import type {
   DetachedRead,
   DetachedState,
@@ -266,6 +267,7 @@ export function validateDetachedRun(
     "resolutionPolicy",
     "startWorldMinutes",
     "throughWorldMinutes",
+    ...(run.input && typeof run.input === "object" && Object.hasOwn(run.input, "executionProfile") ? ["executionProfile"] : []),
   ]);
   requireRead(
     input.schemaVersion === 1 &&
@@ -314,7 +316,9 @@ export function validateDetachedRun(
   object(input.effectiveSettings);
   object(input.effectiveGuidance);
   const policy = exact(input.resolutionPolicy, ["id", "version", "maxSteps"]);
-  requireRead(policy.id === "deterministic-world-v1" && policy.version === 1);
+  requireRead(["deterministic-world-v1", "single-model-world-v1"].includes(policy.id as string) && policy.version === 1);
+  requireRead((policy.id === "single-model-world-v1") === Object.hasOwn(input, "executionProfile"));
+  if (Object.hasOwn(input, "executionProfile")) validateExecutionProfile(input.executionProfile, "world.resolve");
   integer(policy.maxSteps, 1);
   requireRead(
     Array.isArray(input.documentVersions) && Array.isArray(input.sourceHeads),

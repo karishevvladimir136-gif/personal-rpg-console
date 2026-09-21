@@ -1,6 +1,6 @@
 // Lead-owned INTERNAL contracts. No browser imports, credentials or active-store fallback.
 import type { JsonObject } from "../gameplay/contracts.ts";
-import type { RulesetProfileRef } from "../production/contracts.ts";
+import type { ExecutionProfile, RulesetProfileRef } from "../production/contracts.ts";
 import type { TypedLibraryRecord } from "../world-library/types.ts";
 import type { DetachedRunFence } from "../saves/detached-contracts.ts";
 import type { LabReason, LabStatus } from "./contracts.ts";
@@ -48,12 +48,14 @@ export type LabInputBundle = {
   effectiveSettings: JsonObject;
   effectiveGuidance: JsonObject;
   resolutionPolicy: {
-    id: "deterministic-world-v1";
+    id: "deterministic-world-v1" | "single-model-world-v1";
     version: 1;
     maxSteps: number;
   };
   startWorldMinutes: number;
   throughWorldMinutes: number;
+  // Absent in accepted deterministic D1 history. Immutable part of the run digest.
+  executionProfile?: ExecutionProfile;
 };
 export type LabRun = {
   id: string;
@@ -96,7 +98,7 @@ export type DetachedRecordWrite = {
 export type DetachedCommit = {
   operationId: string;
   fence: DetachedRunFence;
-  kind: "deterministic_world" | "noop";
+  kind: "deterministic_world" | "resolved_world" | "noop";
   throughWorldMinutes: number;
   writes: DetachedRecordWrite[];
   // Exact typed World validation proof, not an arbitrary browser patch.

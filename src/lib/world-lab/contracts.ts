@@ -46,6 +46,13 @@ export type PublicLabRun = {
   throughWorldMinutes: number;
   currentWorldMinutes: number;
   checkpoints: LabCheckpoint[];
+  execution?: {
+    modelId: string;
+    reasoning: string | null;
+    recordedResponses: number;
+    inputTokens: number | null;
+    outputTokens: number | null;
+  };
 };
 export type LabCatalog = {
   campaignId: string;

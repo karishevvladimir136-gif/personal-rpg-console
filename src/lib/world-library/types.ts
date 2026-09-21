@@ -112,6 +112,8 @@ export type PackBody = {
   approval: Approval | null;
 };
 export type ScenarioBody = {
+  /** Optional D2A authoring history; absent from historical Scenario versions. */
+  composition?: import("../world-lab/composition-contracts.ts").CompositionMetadata;
   schemaVersion: 1;
   title: string;
   status: "draft" | "approved";

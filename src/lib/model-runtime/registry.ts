@@ -16,6 +16,7 @@ export const runtimeTasks = Object.freeze({
   "dm.feedback": { contractVersion: "dm-feedback-v1", boundary: "public" },
   "memory.summary": { contractVersion: "memory-selection-v1", boundary: "job" },
   "world.resolve": { contractVersion: "world-resolver-v1", boundary: "private" },
+  "world.compose": { contractVersion: "world-compose-v1", boundary: "job" },
   "canon.compile": { contractVersion: "canon-compiler-v1", boundary: "job" },
 } as const);
 

@@ -22,7 +22,7 @@ export type RulesetProfileRef = {
   validatorVersion: string;
 };
 export type RuntimeTask =
-  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary" | "world.resolve" | "canon.compile";
+  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary" | "world.resolve" | "world.compose" | "canon.compile";
 export type ModelSelection = {
   providerId: string;
   modelId: string;

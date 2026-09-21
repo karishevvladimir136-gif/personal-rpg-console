@@ -120,6 +120,8 @@ export function parseConfigureProduction(
   const runtimePolicy =
     v.runtimePolicy === null ? null : validateRuntimePolicy(v.runtimePolicy);
   ensure(!runtimePolicy?.taskOverrides["canon.compile"]);
+  // Authoring selections are pinned by their explicit jobs, not gameplay overrides.
+  ensure(!runtimePolicy?.taskOverrides["world.compose"]);
   return {
     operationId: uuid(v.operationId),
     timeline: {
