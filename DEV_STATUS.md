@@ -1,15 +1,23 @@
-# Development status — World Lab D1 — implemented, verified, awaiting owner review
+# Development status — World Lab D1 — owner accepted
 
-Authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` was freshly fetched and verified. Work is isolated on `codex/world-lab-d1-detached-foundation`; remote main remains at that exact base and the original dirty checkout remains untouched. Waves 1–4 are owner accepted. D1 alone implements the detached read/write/fencing/checkpoint foundation, with deterministic execution and no provider calls.
+World Lab D1 was implemented from exact authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` on isolated branch `codex/world-lab-d1-detached-foundation`, leaving main and the original dirty checkout untouched. Waves 1–4 remain owner accepted. D1 is now owner accepted at exact implementation SHA `d65e5f150b52c6c1ad760c45ea80defe3d43d8c6`. The current action is limited to the status-only approval and authorized fast-forward below.
+
+## Explicit owner acceptance and publication scope
+
+The owner explicitly approves World Lab D1 at exact SHA `d65e5f150b52c6c1ad760c45ea80defe3d43d8c6`, accepting the detached simulation foundation, NON-CANON World Lab UI direction, deterministic execution proof, disclosed limitations and current browser-reviewed presentation. This acceptance changes only `DEV_STATUS.md` in one approval commit on `codex/world-lab-d1-detached-foundation`.
+
+Remote main was freshly fetched and verified at exact authorized SHA `b0336cf651e8649db4c4db1aee7a73ceb39e71cd`, and the remote D1 branch was verified at the approved implementation SHA. The owner authorizes fast-forwarding main only from that base to the resulting approved D1 head. The approved implementation must remain the approval commit's direct parent and in main's direct ancestry. Publication verification checks the single-file diff, unchanged implementation, exact parent, remote integration/main SHAs and clean integration worktree. The original dirty checkout remains untouched.
+
+Application tests, typecheck, lint and build are not rerun for this documentation-only approval. All implementation and browser results below were recorded at the accepted checkpoint; they are not fresh results for the approval commit. No force push, squash, rebase, implementation changes, migration execution, deployment, provider calls, real-data import, D2, Enter This World, FRAME or other next-phase implementation is authorized by this approval. Stop after publication verification.
 
 ## Milestone status
 
 - **Implemented:** immutable authorized input bundles; exact detached manifest reads; private durable run/operation ledger; branch-local leases and atomic compare-and-swap commits; narrow existing World/Memory adapters; EN/RU NON-CANON owner controls.
 - **Integrated:** six isolated worker branches plus Lead-owned migration 14, production service/API, campaign navigation, authority repairs and acceptance tests. Lead alone owns shared contracts, SQL, integration and this status.
-- **Deterministically verified:** the fresh complete repository suite passed **983 collected, 982 passed, 0 failed, 1 skipped**, against this integration checkout and a credential-free loopback production server. The skip is the explicitly opt-in hosted Supabase test. Independent adversarial QA passed 33/33 cases and those cases passed again in the complete suite. Route type generation, non-incremental typecheck, repository-wide zero-warning lint and production webpack build passed on the integrated production source.
+- **Deterministically verified:** at the accepted implementation checkpoint, the complete repository suite passed **983 collected, 982 passed, 0 failed, 1 skipped**, against the integration checkout and a credential-free loopback production server. The skip is the explicitly opt-in hosted Supabase test. Independent adversarial QA passed 33/33 cases and those cases passed again in the complete suite. Route type generation, non-incremental typecheck, repository-wide zero-warning lint and production webpack build passed on the integrated production source. These checks were not rerun for this status-only approval.
 - **Browser checked:** actual D1 components/styles with an explicitly synthetic scripted transport, EN/RU at 1365×900 and 390×844. Prepare, continue, lost-response retry, pause/resume/cancel and empty prerequisites were exercised. No horizontal overflow or browser warning/error was observed. This is separate from production SQL/API verification and is not physical-iPhone or hosted Auth/Supabase testing.
 - **Not live-model-quality evaluated:** no live model/provider calls, paid evaluation, real-data migration/import, deployment or web research occurred.
-- **Not owner accepted:** D1 awaits review. D2, comparison, Enter This World, FRAME and other future phases have not started.
+- **Owner accepted:** the owner explicitly approves D1 at exact SHA `d65e5f150b52c6c1ad760c45ea80defe3d43d8c6`, including the detached foundation, NON-CANON UI direction, deterministic proof, disclosed limitations and browser-reviewed presentation. D2, comparison, Enter This World, FRAME and other future phases have not started.
 
 Owner instructions: [D1_OWNER_GUIDE.md](D1_OWNER_GUIDE.md). Independent adversarial findings: [D1_QA_REPORT.md](D1_QA_REPORT.md). Separate browser evidence: [D1_BROWSER_REVIEW.md](D1_BROWSER_REVIEW.md). Minimum shared contracts and final bounded decisions: [D1_CONTRACTS.md](D1_CONTRACTS.md).
 
@@ -35,7 +43,7 @@ Exact manifest/source/document membership, current restrictions and positive Act
 
 Changed areas: `src/lib/world-lab`, the detached Save reader/fence/contracts, the World Lab component/client/translations, private service/API, campaign shell/navigation, migration 14, focused D1 tests and owner/QA/browser documentation. Existing accepted architecture and runtime/provider registry remain intact.
 
-## Verification and repairs
+## Recorded implementation verification and repairs at the accepted checkpoint
 
 - `node --test --test-concurrency=2 tests/*.test.mjs`, with `PREVIEW_URL=http://127.0.0.1:3097` pointing to a credential-free built application: **983 tests, 982 passed, 0 failed, 1 skipped**, duration **159.155 seconds**. The sole skip is the opt-in hosted Supabase Auth/PostgREST test, not counted as passed. Existing Phase 0–3.5 and Wave 1–4 regressions, actual D1 HTTP boundaries, deterministic service/SQL proof, privacy/import checks and historical upgrades are included. Ignored local evidence: `test-results/d1-verification/full-suite.log`.
 - Route type generation plus `tsc --noEmit --incremental false`: **passed** on final integrated production source.
@@ -67,7 +75,7 @@ Eligible preparation requires a stable, configured schema-2 World save without p
 
 Each continuation advances at most 60 fictional minutes, within a horizon of at most 43,200 minutes and at most 32 coherent continuation checkpoints. Larger horizons may stop at the work limit. Only the accepted deterministic schedule subset executes; arbitrary premise consequences and richer typed action effects pause. D1 inherits Wave 4 state exactly without implementing a detached economy. It neither activates nor promotes, merges or rebases simulation checkpoints.
 
-The local synthetic component preview requires no owner database or provider. Production use needs a separately authorized migration/configuration release process, not performed here. No live-model quality, hosted Supabase/Auth behavior or physical-iPhone result is claimed. The next step is owner review of D1 and its disclosed limits; D2 requires separate authorization. Main stays at the authorized base and the two pre-existing dirty files in the original checkout retain their recorded hashes.
+The local synthetic component preview requires no owner database or provider. Production use needs a separately authorized migration/configuration release process, not performed here. No live-model quality, hosted Supabase/Auth behavior or physical-iPhone result is claimed. The owner has accepted D1 and its disclosed limits at the exact checkpoint above. The only authorized next step is publication of this single status-only approval commit and the fast-forward from `b0336cf651e8649db4c4db1aee7a73ceb39e71cd`, followed by verification and a stop. The two pre-existing dirty files in the original checkout retain their recorded hashes. D2, Enter This World, FRAME and any other next phase require separate authorization.
 
 ---
 
