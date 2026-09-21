@@ -4,6 +4,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { ArrowRight, FlaskConical, History, Pause, Play, RefreshCw, Sparkles } from "lucide-react";
 import type { LabCatalog, LabRequest, PublicLabRun } from "../../lib/world-lab/contracts";
+import type { LabAuthoringCatalog } from "../../lib/world-lab/authoring-contracts.ts";
+import type { AuthoringTransport } from "./authoring-client.ts";
+import { WorldLabAuthoring } from "./world-lab-authoring.tsx";
 import {
   LabClientError, labControls, createLabTransport, mergeLabRun, pendingLabKey, prepareLabAttempt,
   readLabCatalog, readPublicLabRun, restoreLabAttempt, runLabAttempt,
@@ -16,8 +19,10 @@ export type WorldLabPanelProps = {
   campaignId: string;
   language: "en" | "ru";
   initialCatalog?: LabCatalog;
+  initialAuthoringCatalog?: LabAuthoringCatalog;
   /** Synthetic previews may inject a scripted transport; production uses the API. */
   transport?: LabTransport;
+  authoringTransport?: AuthoringTransport;
 };
 
 export function WorldLabPanel(props: WorldLabPanelProps) {
@@ -29,7 +34,7 @@ function initialView(value: LabCatalog | undefined, campaignId: string): LabCata
   try { return readLabCatalog(value, campaignId); } catch { return null; }
 }
 
-function WorldLabSession({ campaignId, language, initialCatalog, transport: injectedTransport }: WorldLabPanelProps) {
+function WorldLabSession({ campaignId, language, initialCatalog, initialAuthoringCatalog, transport: injectedTransport, authoringTransport }: WorldLabPanelProps) {
   const c = worldLabText(language);
   const transport = useMemo(() => injectedTransport ?? createLabTransport(language), [injectedTransport, language]);
   const [catalog, setCatalog] = useState<LabCatalog | null>(() => initialView(initialCatalog, campaignId));
@@ -39,6 +44,7 @@ function WorldLabSession({ campaignId, language, initialCatalog, transport: inje
   const [horizon, setHorizon] = useState("60");
   const [selectedId, setSelectedId] = useState("");
   const [busy, setBusy] = useState(false);
+  const [authoringPending, setAuthoringPending] = useState(false);
   const [pending, setPending] = useState<LabRequest | null>(null);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -120,7 +126,7 @@ function WorldLabSession({ campaignId, language, initialCatalog, transport: inje
   const chosenBase = catalog?.bases.find((base) => base.saveId === saveId) ?? catalog?.bases[0];
   const chosenScenario = catalog?.scenarios.find((scenario) => scenario.divergenceVersionId === divergenceId) ?? catalog?.scenarios[0];
   const selected = catalog?.runs.find((run) => run.id === selectedId) ?? catalog?.runs[0];
-  const frozen = busy || pending !== null;
+  const frozen = busy || pending !== null || authoringPending;
   const eligible = !!chosenBase && !!chosenScenario;
   const validHorizon = /^\d+$/.test(horizon) && Number(horizon) >= 1 && Number(horizon) <= 43_200;
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -144,7 +150,6 @@ function WorldLabSession({ campaignId, language, initialCatalog, transport: inje
         <div className={styles.headingRow}><h1 id="world-lab-title">{c.title}</h1><button className={styles.iconButton} onClick={() => void refresh()} disabled={busy} aria-label={c.refresh} title={c.refresh}><RefreshCw size={17} aria-hidden="true" /></button></div>
         <p className={styles.intro}>{c.intro}</p>
         <p className={styles.boundary}>{c.boundary}</p>
-        <details className={styles.scope}><summary>{c.scope}</summary><p>{c.scopeHelp}</p></details>
       </header>
 
       <div aria-live="polite" aria-atomic="true">
@@ -152,8 +157,10 @@ function WorldLabSession({ campaignId, language, initialCatalog, transport: inje
       </div>
 
       {!catalog ? <div className={styles.empty}><FlaskConical size={28} aria-hidden="true" /><p role="status">{error ? c.connection : c.loading}</p>{error && <button className={styles.secondary} onClick={() => void refresh()} disabled={busy}>{c.refresh}</button>}</div> : (
+        <><WorldLabAuthoring campaignId={campaignId} language={language} campaign={catalog} initialCatalog={initialAuthoringCatalog} transport={authoringTransport} disabled={busy || pending !== null} onPendingChange={setAuthoringPending} onPrepared={(run) => { setCatalog((current) => mergeLabRun(current ?? catalog, run)); setSelectedId(run.id); requestAnimationFrame(() => document.getElementById("lab-run-history")?.scrollIntoView({ behavior: "smooth", block: "start" })); }} />
         <div className={`${styles.layout} ${selected ? styles.hasRun : ""}`}>
           <aside className={styles.sidebar}>
+            <details className={styles.expert}><summary>{c.reuse}</summary>
             <section className={styles.prepare} aria-labelledby="lab-new-run">
               <div className={styles.sectionLabel}><Sparkles size={15} aria-hidden="true" /><h2 id="lab-new-run">{c.newRun}</h2></div>
               {!eligible ? <div className={styles.emptySmall}><h3>{c.emptyTitle}</h3><p>{c.empty}</p><p className={styles.hint}>{!chosenBase ? c.missingBase : c.missingScenario}</p></div> : <form onSubmit={submit}>
@@ -169,13 +176,15 @@ function WorldLabSession({ campaignId, language, initialCatalog, transport: inje
                 <p className={styles.hint}>{c.preparation}</p>
               </form>}
             </section>
+            <details className={styles.scope}><summary>{c.scope}</summary><p>{c.scopeHelp}</p></details>
+            </details>
             <nav className={styles.runList} aria-label={c.experiments}><h2>{c.experiments}</h2>{catalog.runs.length ? catalog.runs.map((run) => <button key={run.id} type="button" className={`${styles.runChoice} ${selected?.id === run.id ? styles.selected : ""}`} onClick={() => setSelectedId(run.id)} aria-pressed={selected?.id === run.id}><span>{run.label}</span><small>{c.status[run.status]}</small></button>) : <p className={styles.hint}>{c.noRuns}</p>}</nav>
           </aside>
 
-          <section className={styles.narrative} aria-label={c.history}>
+          <section id="lab-run-history" className={styles.narrative} aria-label={c.history}>
             {!selected ? <div className={styles.blankHistory}><History size={30} aria-hidden="true" /><h2>{c.history}</h2><p>{c.selectRun}</p><span className={styles.quietLine} /></div> : <RunHistory run={selected} language={language} frozen={frozen} command={command} />}
           </section>
-        </div>
+        </div></>
       )}
     </section>
   );
@@ -188,7 +197,9 @@ function RunHistory({ run, language, frozen, command }: { run: PublicLabRun; lan
       <div className={styles.clock}><div><span>{c.from}</span><strong>{labWorldTime(run.startWorldMinutes, language)}</strong></div><div><span>{c.current}</span><strong>{labWorldTime(run.currentWorldMinutes, language)}</strong></div><div><span>{c.until}</span><strong>{labWorldTime(run.throughWorldMinutes, language)}</strong></div></div>
       <progress className={styles.progress} aria-label={c.progress} max={run.throughWorldMinutes - run.startWorldMinutes} value={run.currentWorldMinutes - run.startWorldMinutes} />
       {run.reason && <p className={styles.reason}>{c.reason[run.reason]}</p>}
-      <div className={styles.actions}>{controls.continue && <button className={styles.primary} disabled={frozen} onClick={() => command("continue")}><Play size={14} aria-hidden="true" />{c.continue}</button>}{controls.resume && <button className={styles.primary} disabled={frozen} onClick={() => command("resume")}><Play size={14} aria-hidden="true" />{c.resume}</button>}{controls.pause && <button className={styles.secondary} disabled={frozen} onClick={() => command("pause")}><Pause size={14} aria-hidden="true" />{c.pause}</button>}{controls.cancel && <button className={styles.textButton} disabled={frozen} onClick={() => command("cancel")}>{c.cancel}</button>}</div>
+      {run.execution && <div className={styles.modelProvenance}><p><span>{c.selectedModel}</span> {run.execution.modelId}{run.execution.reasoning && ` · ${run.execution.reasoning}`}</p><p>{c.responses}: {run.execution.recordedResponses}{run.execution.inputTokens !== null && run.execution.outputTokens !== null ? ` · ${new Intl.NumberFormat(language).format(run.execution.inputTokens)} / ${new Intl.NumberFormat(language).format(run.execution.outputTokens)} ${c.tokens}` : ` · ${c.usageUnavailable}`}</p></div>}
+      <div className={styles.actions}>{controls.continue && <button className={styles.primary} disabled={frozen} onClick={() => command("continue")}><Play size={14} aria-hidden="true" />{run.execution && run.status === "prepared" ? c.start : c.continue}</button>}{controls.resume && <button className={styles.primary} disabled={frozen} onClick={() => command("resume")}><Play size={14} aria-hidden="true" />{c.resume}</button>}{controls.pause && <button className={styles.secondary} disabled={frozen} onClick={() => command("pause")}><Pause size={14} aria-hidden="true" />{c.pause}</button>}{controls.cancel && <button className={styles.textButton} disabled={frozen} onClick={() => command("cancel")}>{c.cancel}</button>}</div>
+      {run.execution && controls.continue && <p className={styles.cost}>{c.runCost}</p>}
       {controls.replace && <details className={styles.recovery}><summary>{c.replace}</summary><p>{c.replaceHelp}</p><button className={styles.secondary} disabled={frozen} onClick={() => command("resume")}>{c.replace}</button></details>}
     </header>
     <div className={styles.historyTitle}><History size={15} aria-hidden="true" /><h3>{c.history}</h3></div>
