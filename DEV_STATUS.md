@@ -1,4 +1,20 @@
-# Development status — World Lab D2A — verified, awaiting live-evaluation authorization
+# Development status — D2A Stage 1 live evaluation — stopped, inconclusive
+
+The owner authorized the exact eight-call synthetic GPT-5.4/high plan with a hard US $2 provider-charge cap. Against implementation `69abccfc1bc41d292466246e8f1d4ade69914b8f`, only **call 1** was attempted. It returned HTTP 200 with `status=incomplete` and `reason=max_output_tokens`; the application accepted no proposal. The evaluation guard conservatively halted on the incomplete response, which the approved plan classifies as inconclusive; there was no automatic retry or budget increase. Calls 2–8, retries, fallback and GPT-6 Astra were not run.
+
+Actual provider identity was **`gpt-5.4-2026-03-05`**, standard `default` tier. Returned usage: **1,046 input, 0 cached input, 4,096 output tokens, including 4,008 reasoning tokens**. Calculated provider charge from returned usage and rechecked standard prices: **US $0.064055**; billing invoice not queried. The approved 4,096 total output allowance left 88 non-reasoning tokens in this sample and did not complete the schema.
+
+The exercised safety boundary held: active synthetic projection/head digest remained identical, World Lab run count remained zero, and no simulation/time/inventory/resource/reward/Event effect committed. No private/future canary leak, wrong model, fallback or state mutation was observed in this attempt. Full Stage 1 safety/authority and model-quality coverage is **not established**, because the remaining live cases were not executed. No usable proposal existed for manual correction or approval.
+
+Production code and migrations are unchanged. Evaluation-only guard/preflight tools and synthetic evidence are ignored local artifacts. Guard tests and the real-service scripted preflight passed without live calls before the single authorized attempt; the guard enforces standard tier, eight attempts, fixed per-call budgets, durable reservations and no automatic retry. No real/hosted database migration, owner-data import or deployment occurred. The original dirty checkout and main remain untouched.
+
+Full per-call evidence, usage, assessment and the output-headroom limitation are recorded in [D2A_LIVE_EVAL_STAGE1_REPORT.md](D2A_LIVE_EVAL_STAGE1_REPORT.md). The original [D2A_LIVE_EVAL_PLAN.md](D2A_LIVE_EVAL_PLAN.md) remains the historical approved plan; its pre-evaluation authorization wording is superseded by the owner's explicit Stage 1 authorization and this result.
+
+**Stop:** Stage 1 is inconclusive; no retry under the original plan. A revised budget/profile and evaluation envelope need review before another attempt. Stage 2's prerequisite was not established, so no qualified Stage 2 proposal or Astra call follows. D2B and other next-phase work remain closed; D2A owner acceptance remains pending. The prior complete automated/build/browser results below are historical implementation verification, not rerun or relabelled as successful live evaluation.
+
+---
+
+# Previous milestone — World Lab D2A — deterministic implementation verified
 
 Implemented from freshly fetched exact authorized main `fbe44e789ff4993e76b47ad9040dca238a231292`, including owner-accepted D1, on isolated `codex/world-lab-d2a-single-model`. Remote main remains unchanged. The original checkout still has exactly its two pre-existing modified files, `DEV_STATUS.md` and `PHASE3_EVALUATION.md`, with unchanged SHA-256 hashes; its local main remains untouched. Contextualized workers covered five isolated handoffs with Lead plus no more than three worker slots. Lead owned shared contracts, migrations, production integration, repairs and this status.
 
