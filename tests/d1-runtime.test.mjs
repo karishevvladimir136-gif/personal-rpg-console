@@ -436,6 +436,35 @@ test("D1 Memory alias expansion needs positively known exact entity evidence", (
   assert.equal(batch.aliases[0].entityId, entity.id);
 });
 
+test("D1 Memory retains exact indexed paragraphs without dropping negation or duplicating full event text", () => {
+  const f = memoryFixture();
+  const first = "The harbor gate did not open.";
+  const second = "The keeper heard a rumor about the harbor bridge.";
+  const observed = event(f.raw, { text: `${first}\n\n${second}` });
+  const a = memoryRow(f, observed, { part: 0, text: first });
+  const b = memoryRow(f, observed, { part: 1, text: second });
+  const batch = buildLabMemoryBatch(f.state(), request(f));
+  assert.deepEqual(
+    batch.sources.map((source) => source.text),
+    [first, second],
+  );
+  assert.deepEqual(
+    batch.sources.map((source) => source.id),
+    [a.payload.id, b.payload.id],
+  );
+  assert.deepEqual(
+    batch.sources.map((source) => source.ref.part),
+    [0, 1],
+  );
+  a.payload.text = "open.";
+  assert.deepEqual(
+    buildLabMemoryBatch(f.state(), request(f)).sources.map(
+      (source) => source.text,
+    ),
+    [second],
+  );
+});
+
 test("D1 Memory stale canon and current restrictions invalidate history without active-source fallback", () => {
   const f = memoryFixture(),
     observed = event(f.raw),
