@@ -22,10 +22,10 @@ export class LabClientError extends Error {
     this.code = code;
   }
 }
-function requireValue(value: unknown): asserts value {
+export function requireValue(value: unknown): asserts value {
   if (!value) throw new LabClientError("validation");
 }
-function row(value: unknown, keys: string[]): Record<string, unknown> {
+export function row(value: unknown, keys: string[]): Record<string, unknown> {
   requireValue(value && typeof value === "object" && !Array.isArray(value));
   requireValue(
     Object.getPrototypeOf(value) === Object.prototype ||
@@ -38,7 +38,7 @@ function row(value: unknown, keys: string[]): Record<string, unknown> {
   );
   return result;
 }
-function uuid(value: unknown): string {
+export function uuid(value: unknown): string {
   requireValue(
     typeof value === "string" &&
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(
@@ -47,7 +47,7 @@ function uuid(value: unknown): string {
   );
   return value;
 }
-function text(value: unknown, max = 4000): string {
+export function text(value: unknown, max = 4000): string {
   requireValue(
     typeof value === "string" &&
       value.length <= max &&
@@ -56,7 +56,7 @@ function text(value: unknown, max = 4000): string {
   );
   return value;
 }
-function number(value: unknown, min = 0, max = 2_147_483_646): number {
+export function number(value: unknown, min = 0, max = 2_147_483_646): number {
   requireValue(
     typeof value === "number" &&
       Number.isSafeInteger(value) &&
@@ -65,7 +65,7 @@ function number(value: unknown, min = 0, max = 2_147_483_646): number {
   );
   return value;
 }
-function array<T>(
+export function array<T>(
   value: unknown,
   parse: (value: unknown) => T,
   max = 500,
@@ -73,11 +73,11 @@ function array<T>(
   requireValue(Array.isArray(value) && value.length <= max);
   return value.map(parse);
 }
-function unique<T>(values: T[], key: (value: T) => string): T[] {
+export function unique<T>(values: T[], key: (value: T) => string): T[] {
   requireValue(new Set(values.map(key)).size === values.length);
   return values;
 }
-function base(value: unknown): PublicLabRun["base"] {
+export function base(value: unknown): PublicLabRun["base"] {
   const r = row(value, ["saveId", "timelineId", "label", "worldMinutes"]);
   return {
     saveId: uuid(r.saveId),
@@ -109,6 +109,7 @@ export function readPublicLabRun(
   campaignId: string,
 ): PublicLabRun {
   uuid(campaignId);
+  const hasExecution = !!value && typeof value === "object" && Object.hasOwn(value, "execution");
   const r = row(value, [
     "id",
     "campaignId",
@@ -125,6 +126,7 @@ export function readPublicLabRun(
     "throughWorldMinutes",
     "currentWorldMinutes",
     "checkpoints",
+    ...(hasExecution ? ["execution"] : []),
   ]);
   requireValue(
     r.campaignId === campaignId &&
@@ -230,9 +232,14 @@ export function readPublicLabRun(
     throughWorldMinutes,
     currentWorldMinutes,
     checkpoints,
+    ...(hasExecution ? { execution: readLabExecution(r.execution) } : {}),
   };
   requireValue(result.base.worldMinutes === startWorldMinutes);
   return result;
+}
+function readLabExecution(value: unknown): NonNullable<PublicLabRun["execution"]> {
+  const r = row(value, ["modelId", "reasoning", "recordedResponses", "inputTokens", "outputTokens"]);
+  return { modelId: text(r.modelId, 120), reasoning: r.reasoning === null ? null : text(r.reasoning, 40), recordedResponses: number(r.recordedResponses), inputTokens: r.inputTokens === null ? null : number(r.inputTokens), outputTokens: r.outputTokens === null ? null : number(r.outputTokens) };
 }
 export function readLabCatalog(value: unknown, campaignId: string): LabCatalog {
   uuid(campaignId);
@@ -357,7 +364,7 @@ export function mergeLabRun(
 
 type Fetcher = typeof fetch;
 const url = "/api/world-lab";
-async function responseJson(
+export async function responseJson(
   response: Response,
   mutation: boolean,
 ): Promise<unknown> {
