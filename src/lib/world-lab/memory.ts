@@ -269,8 +269,15 @@ function mapSource(
   );
   if (world) {
     const event = { ...world.event, sequence: world.sequence };
+    // Preserve the accepted memory_index paragraph boundary: whole paragraphs
+    // retain negation/attribution; an arbitrary matching substring is not proof.
+    // This validates saved chunks and never writes an index or synthesizes text.
+    const paragraphs = event.text
+      .split(/\n[ \t\r\n\f\v]*\n/u)
+      .map((paragraph) => paragraph.replace(/^ +| +$/gu, ""))
+      .filter((paragraph) => paragraph.length > 0);
     if (
-      event.text !== row.text ||
+      paragraphs[row.part] !== row.text ||
       !event.evidence.every((evidence) =>
         labEvidencePinned(evidence, state, request.visibility),
       ) ||
@@ -301,7 +308,7 @@ function mapSource(
     // precedence. Event involvement is never used as a knowledge grant.
     return {
       ...source,
-      text: inherited.text,
+      text: row.text,
       statementKind: inherited.statementKind,
     };
   }
