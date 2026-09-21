@@ -1,6 +1,6 @@
 # World Lab D1 independent QA
 
-Independent review completed on September 20, 2026. **29/29 adversarial tests passed, with no skips**, against the lead's current integration source through `D1_QA_SOURCE_ROOT`. All SQL used fresh, disposable PGlite databases. No application credentials, live Supabase, provider requests, imported campaigns, deployment, or main-branch changes were used.
+Independent review completed on September 20, 2026. **33/33 adversarial tests passed, with no skips**, against the lead's current integration source through `D1_QA_SOURCE_ROOT`. All SQL used fresh, disposable PGlite databases. No application credentials, live Supabase, provider requests, imported campaigns, deployment, or main-branch changes were used.
 
 This is code and disposable-database evidence, not owner approval or a claim about a hosted deployment. The lead's final integrated checks and EN/RU desktop/mobile browser acceptance remain separate gates.
 
@@ -37,12 +37,15 @@ The suite consumes `tests/d1-sql-fixture.mjs` from the selected source root and 
 4. A PL/pgSQL `payload` name ambiguity prevented positive commits. Reproduced against actual SQL; all positive commit paths now pass.
 5. SQL accepted an approved Pack containing reviewed but unresolved contradictions even though the server rejected it. Reproduced through accepted Library/binding APIs; SQL now rejects every included unresolved Pack.
 6. Service retries returned the current run instead of the original operation result. Found in source review; historical prepare/continue/resume result regressions now pass.
+7. Browser transport expected a flat error string while the actual API sends an error object. Reproduced using the actual API response helper; safe conflict/forbidden/validation/unauthenticated codes now survive transport without diagnostic text.
+8. Browser event validation rejected inherited public observations before the selected save time. Reproduced with an actual SQL/service save at minute 30 containing earlier reward history; the browser now accepts that history while rejecting negative/future timestamps.
+9. Server projection rejected valid 200-character Save names using the smaller run-label limit. Reproduced after the browser limit was fixed; the server now preserves the accepted Save-name bound too.
 
 No unresolved material defect was observed in the exercised boundaries at handoff.
 
 ## Actual checks and limits
 
-- `node --test --test-concurrency=2 tests/d1-qa*.test.mjs`: **29 passed, 0 failed, 0 skipped** against the integration source; 26.5 seconds in the final run.
+- `node --test --test-concurrency=2 tests/d1-qa*.test.mjs`: **33 passed, 0 failed, 0 skipped** against the integration source.
 - Focused ESLint on all QA files with `--max-warnings 0`: passed after final test edits.
 - Whole-worktree ESLint with `--max-warnings 0`: passed.
 - Next type generation plus `tsc --noEmit --incremental false`: passed.
@@ -50,6 +53,8 @@ No unresolved material defect was observed in the exercised boundaries at handof
 
 The last three checks ran in the independent QA worktree on its base production source plus QA files. They do not replace the lead's complete integrated suite/typecheck/lint/build. Next-generated changes to `next-env.d.ts` were restored before handoff.
 
-PGlite serializes SQL submissions: the race test proves rejection of the losing callback after both callers read one head, not real multi-session hosted lock scheduling. UI files had not all landed when this review concluded, so a complete final browser import graph and EN/RU desktop/mobile rendering remain with integration acceptance. No physical-device or hosted verification is claimed.
+The final World Lab browser import graph was traversed through all local imports and re-exports: only public contracts, UI modules, React, and lucide-react are reachable; no server/private/runtime/provider modules or credential access are present. The actual service-to-browser fixture also covers a 200-character Save label, observations older than the run's start, and a 300-event inherited public history. Cross-run claim/commit operation pairing is rejected by SQL.
+
+PGlite serializes SQL submissions: the race test proves rejection of the losing callback after both callers read one head, not real multi-session hosted lock scheduling. EN/RU desktop/mobile rendering remains with the lead's integration acceptance. No physical-device or hosted verification is claimed.
 
 To reproduce against another checkout, set `D1_QA_SOURCE_ROOT` to its absolute path, then run the focused Node test command above. When these files are integrated into the same checkout, the environment override is unnecessary. No manual owner setup is required for this QA work.
