@@ -4,6 +4,10 @@ import { errorResponse, publicJson } from "@/lib/persistence/route-response";
 import { isUuid } from "@/lib/persistence/validation";
 import { parseLabAuthoringRequest } from "@/lib/world-lab/authoring";
 
+export const runtime = "nodejs";
+// One 180-second provider request plus validation and immutable review storage.
+export const maxDuration = 240;
+
 const language = (request: Request) => request.headers.get("Accept-Language")?.startsWith("ru") ? "ru" as const : "en" as const;
 export async function GET(request: Request) {
   try {

@@ -126,13 +126,16 @@ export function createComposerProvider(options: ProviderOptions) {
       ) + 2048;
     if (estimatedTokens > modelInputLimit(budget)) throw new DmError("context");
     let actualModel: string | null = null;
-    const request = createStructuredRequester({
-      ...options,
-      observer: (attempt) => {
-        actualModel = attempt.actualModel;
-        options.observer?.(attempt);
+    const request = createStructuredRequester(
+      {
+        ...options,
+        observer: (attempt) => {
+          actualModel = attempt.actualModel;
+          options.observer?.(attempt);
+        },
       },
-    });
+      { task: "world.compose" },
+    );
     const response = await request(
       {
         instructions: composerInstructions,

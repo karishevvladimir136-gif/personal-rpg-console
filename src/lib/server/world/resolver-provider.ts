@@ -198,15 +198,18 @@ export function buildResolverContext(
 
 /** Options must be constructed from the operation's pinned world.resolve profile by the caller. */
 export function createWorldResolverProvider(options: ProviderOptions) {
-  const checkedRequest = () => {
+  const checkedRequest = (purpose?: "simulation") => {
     let actualModel: string | null = null;
-    const request = createStructuredRequester({
-      ...options,
-      observer: (attempt) => {
-        actualModel = attempt.actualModel;
-        options.observer?.(attempt);
+    const request = createStructuredRequester(
+      {
+        ...options,
+        observer: (attempt) => {
+          actualModel = attempt.actualModel;
+          options.observer?.(attempt);
+        },
       },
-    });
+      { task: "world.resolve", purpose },
+    );
     const validate = (usage: ProviderUsage) => {
       const matches = (model: string) =>
         model === options.model ||
@@ -241,7 +244,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
       const selected = selectWorldSimulationWork(input, scope);
       if (selected.status !== "ready")
         return { result: selected, proposal: null, usage: null };
-      const { request, validate } = checkedRequest();
+      const { request, validate } = checkedRequest("simulation");
       const response = await request(
         buildResolverContext(
           options.model,

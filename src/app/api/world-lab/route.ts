@@ -4,6 +4,10 @@ import { errorResponse, publicJson } from "@/lib/persistence/route-response";
 import { isUuid } from "@/lib/persistence/validation";
 import { parseLabRequest } from "@/lib/world-lab/validation";
 
+export const runtime = "nodejs";
+// One 120-second provider request plus validation and durable settlement.
+export const maxDuration = 180;
+
 export async function GET(request: Request) {
   try {
     const params = new URL(request.url).searchParams;

@@ -13,6 +13,7 @@ import {
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type { TurnFailure } from "../../gameplay/contracts.ts";
 import { modelReasoning } from "./config.ts";
+import type { RuntimeTask } from "../../production/contracts.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
@@ -30,6 +31,7 @@ export type ProviderAttempt = {
   latencyMs: number;
   estimatedInputTokens: number;
   maxOutputTokens: number;
+  timeoutMs: number;
   sourceCount: number;
 };
 
@@ -41,7 +43,19 @@ export type ProviderOptions = {
   timeoutMs?: number;
   observer?: (attempt: ProviderAttempt) => void;
 };
-export function createStructuredRequester(options: ProviderOptions) {
+export function createStructuredRequester(
+  options: ProviderOptions,
+  use?: { task: RuntimeTask; purpose?: "simulation" },
+) {
+  // Selected by the server adapter, never by model output or browser input.
+  // A caller may shorten this deadline but cannot exceed the task's ceiling.
+  const timeoutLimit =
+    use?.task === "world.compose"
+      ? 180_000
+      : use?.task === "world.resolve" && use.purpose === "simulation"
+        ? 120_000
+        : 60_000;
+  const timeoutMs = Math.min(options.timeoutMs ?? timeoutLimit, timeoutLimit);
   const request = async <T>(
     context: BuiltContext,
     stage: ProviderAttempt["stage"],
@@ -66,6 +80,7 @@ export function createStructuredRequester(options: ProviderOptions) {
       latencyMs: 0,
       estimatedInputTokens: context.estimatedTokens,
       maxOutputTokens: context.budget.outputReserve,
+      timeoutMs,
       sourceCount: context.sourceCount,
     };
     try {
@@ -102,9 +117,7 @@ export function createStructuredRequester(options: ProviderOptions) {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
-            signal: AbortSignal.timeout(
-              Math.min(options.timeoutMs ?? 60000, 60000),
-            ),
+            signal: AbortSignal.timeout(timeoutMs),
           },
         );
       } catch {
