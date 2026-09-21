@@ -18,6 +18,7 @@ import {
 import { basicProfile } from "./mechanics/profile.ts";
 import { projectMemory } from "../memory/projection.ts";
 import { requireSourceTimeline } from "./timeline.ts";
+import type { RuntimeTask } from "../production/contracts.ts";
 
 // Only validated, player-visible state fields may inform final narration.
 // Never serialize an entire resolution: it may also contain check/action metadata.
@@ -82,24 +83,39 @@ function publicResults(resolution: MechanicsResolution | undefined) {
 // https://developers.openai.com/api/docs/models/gpt-6-astra
 // https://developers.openai.com/api/docs/models/gpt-5.4
 // https://developers.openai.com/api/docs/models/gpt-5.4-mini
-// 128k provider output maximum is deliberately capped to 4096 per application call,
-// including reasoning tokens. The operational input cap stays independent of C.
+// Output includes reasoning tokens. Ordinary calls keep the accepted 4096 cap;
+// only composition and detached simulation need the larger task reserves below.
+// The production input cap remains independent of the output reserve.
 const models: Record<string, number> = {
   "gpt-6-astra": 1050000,
   "gpt-5.4": 1050000,
   "gpt-5.4-mini": 400000,
 };
-export function modelBudget(model: string): ModelBudget {
+export function modelBudget(
+  model: string,
+  use?: { task: RuntimeTask; purpose?: "simulation" },
+): ModelBudget {
   const contextLimit = Object.hasOwn(models, model) ? models[model] : undefined;
   if (!contextLimit) throw new DmError("configuration", true);
   return {
     model,
     contextLimit,
-    outputReserve: 4096,
+    outputReserve:
+      use?.task === "world.compose"
+        ? 16384
+        : use?.task === "world.resolve" && use.purpose === "simulation"
+          ? 8192
+          : 4096,
     safetyMargin: Math.ceil(contextLimit * 0.05),
     inputCap: 64000,
     accountingVersion: "utf8-byte-upper-bound-v1+2048-framing",
   };
+}
+export function modelInputLimit(budget: ModelBudget): number {
+  return Math.min(
+    budget.inputCap,
+    budget.contextLimit - budget.outputReserve - budget.safetyMargin,
+  );
 }
 export const stageSchema = (stage: ContextStage, foundation = false) =>
   stage === "plan"
@@ -133,10 +149,7 @@ export function buildContext(
     throw new DmError("context");
   }
   const budget = options.budget ?? modelBudget(options.model);
-  const inputBudget = Math.min(
-    budget.inputCap,
-    budget.contextLimit - budget.outputReserve - budget.safetyMargin,
-  );
+  const inputBudget = modelInputLimit(budget);
   if (
     budget.model !== options.model ||
     !Number.isSafeInteger(inputBudget) ||

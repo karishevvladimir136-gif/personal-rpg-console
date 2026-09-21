@@ -317,6 +317,7 @@ test("summary Responses requests reuse Astra/xhigh strict output without public/
       requests++;
       const body = JSON.parse(options.body);
       assert.deepEqual(body.reasoning, { effort: "xhigh" });
+      assert.equal(body.max_output_tokens, 4096);
       assert.equal(body.store, false);
       assert.equal(body.truncation, "disabled");
       assert.equal(body.text.format.strict, true);

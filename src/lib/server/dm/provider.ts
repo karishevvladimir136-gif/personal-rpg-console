@@ -29,6 +29,7 @@ export type ProviderAttempt = {
   outputTokens: number | null;
   latencyMs: number;
   estimatedInputTokens: number;
+  maxOutputTokens: number;
   sourceCount: number;
 };
 
@@ -64,6 +65,7 @@ export function createStructuredRequester(options: ProviderOptions) {
       outputTokens: null,
       latencyMs: 0,
       estimatedInputTokens: context.estimatedTokens,
+      maxOutputTokens: context.budget.outputReserve,
       sourceCount: context.sourceCount,
     };
     try {

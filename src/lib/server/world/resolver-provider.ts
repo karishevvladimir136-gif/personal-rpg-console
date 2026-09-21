@@ -4,7 +4,7 @@ import {
   parseFoundationActionProposal,
 } from "../../foundation-actions/index.ts";
 import type { JsonObject } from "../../gameplay/contracts.ts";
-import { modelBudget } from "../../gameplay/dm-context.ts";
+import { modelBudget, modelInputLimit } from "../../gameplay/dm-context.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type {
   BuiltContext,
@@ -156,8 +156,9 @@ export function buildResolverContext(
   instructions: string,
   sourceCount: number,
   schema: Record<string, unknown> = worldLogicSchema,
+  purpose?: "simulation",
 ): BuiltContext {
-  const budget = modelBudget(model);
+  const budget = modelBudget(model, { task: "world.resolve", purpose });
   const input = JSON.stringify(data);
   const foundation =
     !!data &&
@@ -185,14 +186,7 @@ export function buildResolverContext(
       }),
       "utf8",
     ) + 2048;
-  if (
-    estimatedTokens >
-    Math.min(
-      budget.inputCap,
-      budget.contextLimit - budget.outputReserve - budget.safetyMargin,
-    )
-  )
-    throw new DmError("context");
+  if (estimatedTokens > modelInputLimit(budget)) throw new DmError("context");
   return {
     instructions: fullInstructions,
     input,
@@ -271,6 +265,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
             0,
           ),
           worldSimulationResolverSchema,
+          "simulation",
         ),
         "plan",
         selected.operationId,

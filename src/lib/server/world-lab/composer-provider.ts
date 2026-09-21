@@ -9,7 +9,7 @@ import {
   prepareCompositionRequest,
 } from "../../world-lab/composition.ts";
 import { validateCompositionProposal } from "../../world-lab/composition-validation.ts";
-import { modelBudget } from "../../gameplay/dm-context.ts";
+import { modelBudget, modelInputLimit } from "../../gameplay/dm-context.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { matchesCompilerModel } from "../../world-library/assisted-parser.ts";
 import {
@@ -114,7 +114,7 @@ export function createComposerProvider(options: ProviderOptions) {
     )
       throw new DmError("configuration", true);
     const data = JSON.stringify(prepared.data),
-      budget = modelBudget(profile.modelId);
+      budget = modelBudget(profile.modelId, { task: "world.compose" });
     const estimatedTokens =
       Buffer.byteLength(
         JSON.stringify({
@@ -124,14 +124,7 @@ export function createComposerProvider(options: ProviderOptions) {
         }),
         "utf8",
       ) + 2048;
-    if (
-      estimatedTokens >
-      Math.min(
-        budget.inputCap,
-        budget.contextLimit - budget.outputReserve - budget.safetyMargin,
-      )
-    )
-      throw new DmError("context");
+    if (estimatedTokens > modelInputLimit(budget)) throw new DmError("context");
     let actualModel: string | null = null;
     const request = createStructuredRequester({
       ...options,

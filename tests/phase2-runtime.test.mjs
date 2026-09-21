@@ -434,6 +434,7 @@ test("authentication setup failures are retryable and failed/successful attempts
         "outputTokens",
         "latencyMs",
         "estimatedInputTokens",
+        "maxOutputTokens",
         "sourceCount",
       ].sort(),
     );
