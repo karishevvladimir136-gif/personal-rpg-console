@@ -54,6 +54,7 @@ const icons: Record<string, LucideIcon> = {
   "dm-chat": MessageSquare,
   journal: BookOpen,
   map: Map,
+  world: FlaskConical,
   library: FileText,
   gallery: ImageIcon,
   sessions: ScrollText,

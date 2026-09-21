@@ -624,11 +624,23 @@ export function readDetachedState(
     }
     if (run) {
       const input: LabInputBundle = run.input;
+      const boundScenarios = records["rpg_private.world_foundations"].flatMap(
+        (row) => {
+          const bindings = Array.isArray(row.bindings) ? row.bindings : [];
+          return bindings.flatMap((binding) => {
+            const value = object(binding).scenarioVersionId;
+            return typeof value === "string" ? [value] : [];
+          });
+        },
+      );
       const expected = [
-        input.scenarioVersionId,
-        input.divergenceVersionId,
-        ...input.packVersionIds,
-        ...input.sourceVersionIds,
+        ...new Set([
+          input.scenarioVersionId,
+          input.divergenceVersionId,
+          ...input.packVersionIds,
+          ...input.sourceVersionIds,
+          ...boundScenarios,
+        ]),
       ];
       requireRead(
         expected.length === new Set(expected).size &&

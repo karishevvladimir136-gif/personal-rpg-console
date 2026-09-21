@@ -2,7 +2,7 @@
 // list, private event/count or execution fence is a browser DTO.
 import { DmError } from "../gameplay/dm-errors.ts";
 import { isUuid } from "../persistence/validation.ts";
-import { parseEvidence } from "../world-library/parsers.ts";
+import { parseEvidence, sha256 } from "../world-library/parsers.ts";
 import {
   readDetachedState,
   validateDetachedRun,
@@ -31,6 +31,8 @@ export type LabRunProjectionOptions = LabProjectionScope & {
   // a browser-provided title, input bundle or unfiltered Library record.
   base: LabBaseChoice;
   scenario: LabScenarioChoice;
+  // Server-resolved current source applicability; never accepted from a client.
+  applicable?: boolean;
 };
 
 function requireProjection(condition: unknown): asserts condition {
@@ -60,7 +62,7 @@ function validScope(scope: LabProjectionScope) {
 }
 function baseChoice(value: LabBaseChoice): LabBaseChoice {
   requireProjection(isUuid(value.saveId) && isUuid(value.timelineId));
-  requireProjection(safeText(value.label, 160));
+  requireProjection(safeText(value.label, 200));
   requireProjection(
     Number.isSafeInteger(value.worldMinutes) && value.worldMinutes >= 0,
   );
@@ -188,13 +190,33 @@ function events(
           try {
             const evidence = parseEvidence(raw);
             const source = sources.get(evidence.sourceVersionId);
+            let validDigest = source?.body.digest === evidence.digest;
+            if (
+              source?.body.extraction.version === "text-evidence-v1" &&
+              source.body.original.kind === "text" &&
+              evidence.locator.kind === "text"
+            ) {
+              const span = /^(0|[1-9]\d*):(0|[1-9]\d*)$/.exec(
+                evidence.locator.value,
+              );
+              const start = span ? Number(span[1]) : -1,
+                end = span ? Number(span[2]) : -1;
+              validDigest =
+                Number.isSafeInteger(start) &&
+                Number.isSafeInteger(end) &&
+                start >= 0 &&
+                end > start &&
+                end <= source.body.original.text.length &&
+                sha256(source.body.original.text.slice(start, end)) ===
+                  evidence.digest;
+            }
             return (
               evidence.ownerId === state.ownerId &&
               evidence.visibility === "public" &&
               evidence.knowledge === "character" &&
               source !== undefined &&
               source.id === evidence.sourceId &&
-              source.body.digest === evidence.digest &&
+              validDigest &&
               source.body.visibility === "public" &&
               source.body.knowledge !== "future_source" &&
               !restricted.has(source.id) &&
@@ -326,6 +348,7 @@ export function projectLabRun(
       worldMinutes(last) === run.currentWorldMinutes,
   );
   const invalidated =
+    options.applicable === false ||
     run.reason === "source_changed" ||
     states.some(
       (state) =>

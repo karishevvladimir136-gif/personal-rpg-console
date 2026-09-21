@@ -13,6 +13,7 @@ import {
 } from "@/components/persistent-game";
 import { PersistentDmChat } from "@/components/persistent-dm-chat";
 import { PersistentSaves } from "@/components/persistent-saves";
+import { PersistentWorldLab } from "@/components/persistent-world-lab";
 export default async function Page({
   params,
 }: {
@@ -20,6 +21,8 @@ export default async function Page({
 }) {
   const { screen } = await params;
   switch (screen) {
+    case "world":
+      return <PersistentWorldLab />;
     case "saves":
       return <PersistentSaves />;
     case "dm-chat":

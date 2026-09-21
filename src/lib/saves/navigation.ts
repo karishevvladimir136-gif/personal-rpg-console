@@ -6,6 +6,7 @@ export const saveNavigation = [
   ["party", "Party"],
   ["journal", "Journal"],
   ["map", "Map"],
+  ["world", "World"],
   ["dm-chat", "Chat with DM"],
   ["library", "Library"],
   ["gallery", "Gallery"],

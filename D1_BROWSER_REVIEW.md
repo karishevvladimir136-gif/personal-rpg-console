@@ -6,7 +6,7 @@ The actual `WorldLabPanel` and its CSS were exercised in the Codex in-app browse
 
 English and Russian were inspected at **1365 × 900** desktop and **390 × 844** mobile viewport overrides. DOM document width equalled scroll width in all four views (1350 desktop and 375 mobile, excluding the scrollbar). NON-CANON / НЕ КАНОН, the deterministic-scope explanation, approved premise, chronology and controls were visible. On mobile, an existing experiment appears ahead of the preparation form. Inputs use 16px text at narrow widths.
 
-Native browser screenshots are local ignored artifacts relative to this worktree:
+Native browser screenshots are local ignored artifacts in the separate `.worktrees/d1-ui` worktree (paths below are relative to that worktree):
 
 - `test-results/d1-ui-preview/en-desktop.png`
 - `test-results/d1-ui-preview/ru-desktop.png`
@@ -32,4 +32,4 @@ From `.worktrees/d1-ui`, run `node.exe test-results/d1-ui-preview/server.mjs`, t
 - Focused lint and repository lint excluding ignored generated harness files passed with zero warnings. A first repository lint invocation included the generated webpack bundle; its generated-code warnings were unrelated to production source.
 - `next build --webpack` passed in this UI worktree before Lead route integration.
 
-Lead QA identified two integration-boundary repairs after this browser review: the route's error envelope and pre-start timestamps on inherited public observations. Lead owns those repairs and their separate regression checks. The synthetic fixtures used here did not exercise those two cases. Full integrated storage/API verification, hosted behavior and physical-device testing are not claimed.
+Independent QA identified integration-boundary repairs after this browser review: the route's error envelope, pre-start timestamps on inherited public observations, and accepted Save-name/history sizes. Lead repaired them centrally; the actual service-to-browser regression fixtures pass. These repairs do not change the reviewed component layout, but the synthetic browser fixtures did not exercise those boundary cases. Integrated storage/API verification is recorded separately in `DEV_STATUS.md` and `D1_QA_REPORT.md`; hosted behavior and physical-device testing are not claimed.

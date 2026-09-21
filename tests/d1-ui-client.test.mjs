@@ -65,7 +65,7 @@ test("D1 transport sends language out of authority body and keeps all errors san
   assert.equal(calls[1].init.headers["Accept-Language"], "ru");
   assert.deepEqual(JSON.parse(calls[1].init.body), attempt);
   for (const [status, error, expected] of [[409, "conflict", "conflict"], [403, "scope", "forbidden"], [422, "PRIVATE_DB_DETAIL", "unavailable"], [500, "PRIVATE_DB_DETAIL", "uncertain"]])
-    await assert.rejects(() => sendLabAttempt(attempt, async () => Response.json({ error }, { status })), (value) => value.code === expected && !value.message.includes("PRIVATE"));
+    await assert.rejects(() => sendLabAttempt(attempt, async () => Response.json({ error: { code: error, message: "PRIVATE_IGNORED_DETAIL" } }, { status })), (value) => value.code === expected && !value.message.includes("PRIVATE"));
   await assert.rejects(() => sendLabAttempt(attempt, async () => Response.json({ ...catalog.runs[0], privateValue: "PRIVATE" })), (value) => value.code === "uncertain");
 });
 

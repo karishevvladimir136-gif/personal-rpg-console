@@ -1,10 +1,73 @@
-# Development status — World Lab D1 — implementation in progress
+# Development status — World Lab D1 — implemented, verified, awaiting owner review
 
-Authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` was freshly fetched and verified. Work is isolated on `codex/world-lab-d1-detached-foundation`; main and the original dirty checkout remain untouched. Waves 1–4 are owner accepted. Only detached D1 read/write/fencing/checkpoint foundations are authorized, with deterministic execution and no provider calls.
+Authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` was freshly fetched and verified. Work is isolated on `codex/world-lab-d1-detached-foundation`; remote main remains at that exact base and the original dirty checkout remains untouched. Waves 1–4 are owner accepted. D1 alone implements the detached read/write/fencing/checkpoint foundation, with deterministic execution and no provider calls.
 
-Minimum additions and exclusive ownership are frozen in `D1_CONTRACTS.md`. Lead owns shared contracts, SQL/migration, integration and this status. Six distinct workstreams reuse the environment's three worker slots alongside Lead; this capacity limit does not reduce independent QA or required verification. D1 is not yet integrated, verified, browser checked or owner accepted. No historical test count is claimed as fresh D1 evidence.
+## Milestone status
 
-Remaining work: authorized exact detached manifest reads; immutable input/run ledger; branch-only CAS writer and independent leases; existing World/Memory adapters; EN/RU NON-CANON UI; adversarial isolation/privacy/compatibility proofs; final tests/typecheck/lint/build and separate synthetic browser review. No D2, comparison, Enter This World, FRAME, deployment, production migration or real/private import is started.
+- **Implemented:** immutable authorized input bundles; exact detached manifest reads; private durable run/operation ledger; branch-local leases and atomic compare-and-swap commits; narrow existing World/Memory adapters; EN/RU NON-CANON owner controls.
+- **Integrated:** six isolated worker branches plus Lead-owned migration 14, production service/API, campaign navigation, authority repairs and acceptance tests. Lead alone owns shared contracts, SQL, integration and this status.
+- **Deterministically verified:** the fresh complete repository suite passed **983 collected, 982 passed, 0 failed, 1 skipped**, against this integration checkout and a credential-free loopback production server. The skip is the explicitly opt-in hosted Supabase test. Independent adversarial QA passed 33/33 cases and those cases passed again in the complete suite. Route type generation, non-incremental typecheck, repository-wide zero-warning lint and production webpack build passed on the integrated production source.
+- **Browser checked:** actual D1 components/styles with an explicitly synthetic scripted transport, EN/RU at 1365×900 and 390×844. Prepare, continue, lost-response retry, pause/resume/cancel and empty prerequisites were exercised. No horizontal overflow or browser warning/error was observed. This is separate from production SQL/API verification and is not physical-iPhone or hosted Auth/Supabase testing.
+- **Not live-model-quality evaluated:** no live model/provider calls, paid evaluation, real-data migration/import, deployment or web research occurred.
+- **Not owner accepted:** D1 awaits review. D2, comparison, Enter This World, FRAME and other future phases have not started.
+
+Owner instructions: [D1_OWNER_GUIDE.md](D1_OWNER_GUIDE.md). Independent adversarial findings: [D1_QA_REPORT.md](D1_QA_REPORT.md). Separate browser evidence: [D1_BROWSER_REVIEW.md](D1_BROWSER_REVIEW.md). Minimum shared contracts and final bounded decisions: [D1_CONTRACTS.md](D1_CONTRACTS.md).
+
+## What can be used
+
+Open **Campaign → World / Мир → What If**. Choose an eligible exact saved checkpoint and an existing approved Scenario/Divergence pair; review the starting point, public assumptions and finite horizon; prepare a labelled **NON-CANON / НЕ КАНОН** experiment. Inspect its chronological checkpoints and explicitly continue, pause, resume or cancel. An interrupted request retains its exact operation for retry. There is no automatic simulation on page load.
+
+The detached timeline never becomes the playable campaign. The ordinary Game, Inventory and Saves continue using their own active state. Simulation timelines cannot be activated through the Save API and are excluded from playable timeline choices. The UI displays public observations without raw source IDs, manifests, private event titles/counts, resolver diagnostics or editable authority fields.
+
+D1 executes only already configured deterministic World schedule steps. Scenario/Divergence prose is pinned for future D2; it is not interpreted as generative simulation. Existing resolver-required work, unsupported consequences, controlled-player decisions, missing knowledge or warning requirements pause at the last coherent checkpoint. A normal live campaign load/switch does not invalidate an otherwise valid detached run.
+
+## Authority and integration
+
+Migration `supabase/migrations/202609200014_world_lab_d1.sql` adds simulation purpose/head revision to the existing timeline authority, explicit schema-3 run association to immutable manifests, and small private run/operation tables. It reuses the same vault/version rows, World Events, World settlement validators, Library Scenario/Divergence authority and Memory retrieval. It creates no second save system, world database, inventory, wallet, reward ledger, DM, Memory index or orchestration service.
+
+Preparation resolves authorized references on the server and independently revalidates them in SQL. The immutable digest covers the exact source checkpoint, Scenario/Divergence, included Pack/source/document versions, effective saved profile/settings/guidance, correction generation, deterministic resolution policy and finite time horizon. Source text and premise prose remain data. The browser cannot supply arbitrary private records, source lists, manifests, policy or commit plans.
+
+Every detached continuation validates the expected branch head and full branch-local fence, including lease generation and immutable input/source basis. SQL independently derives the allowed schedule transition from exact vault rows, then atomically appends versions/checkpoint, swaps only that simulation head, and records the operation. Failed validation or CAS leaves no partial mutation. Cancellation/replacement/head changes/source invalidation reject stale callbacks. Exact committed retries return their original coherent operation result even after later progress; normal inspection separately returns current history.
+
+The narrow write set is World foundation state/revision, explicit runtime time/revision, and typed World Events. Inherited Wave 4 inventory/resources, progression/reward receipts, commerce state and private rows remain exact. No detached shopping/reward execution is implied. Unchanged-time no-op work creates no extra manifest/version, performs no model work and advances no time. Wall-clock timestamps are audit metadata only.
+
+Exact manifest/source/document membership, current restrictions and positive Actor knowledge are checked before the existing Memory ranking/limits. Public projections apply current restrictions even when showing a historical operation receipt. Saved schema-1/schema-2 meanings and family inventories remain unchanged; historical payloads/digests are not rewritten, and historical saves contain no fabricated Lab runs.
+
+Changed areas: `src/lib/world-lab`, the detached Save reader/fence/contracts, the World Lab component/client/translations, private service/API, campaign shell/navigation, migration 14, focused D1 tests and owner/QA/browser documentation. Existing accepted architecture and runtime/provider registry remain intact.
+
+## Verification and repairs
+
+- `node --test --test-concurrency=2 tests/*.test.mjs`, with `PREVIEW_URL=http://127.0.0.1:3097` pointing to a credential-free built application: **983 tests, 982 passed, 0 failed, 1 skipped**, duration **159.155 seconds**. The sole skip is the opt-in hosted Supabase Auth/PostgREST test, not counted as passed. Existing Phase 0–3.5 and Wave 1–4 regressions, actual D1 HTTP boundaries, deterministic service/SQL proof, privacy/import checks and historical upgrades are included. Ignored local evidence: `test-results/d1-verification/full-suite.log`.
+- Route type generation plus `tsc --noEmit --incremental false`: **passed** on final integrated production source.
+- Repository-wide ESLint `. --max-warnings 0`: **passed, zero warnings**, without an additional generated-file exclusion in the integration worktree.
+- `next build --webpack`: **passed** compilation, TypeScript and page/route generation. The existing external `node_modules` junction requires the established webpack build path; default Turbopack success is not claimed.
+- Independent QA: **33 passed, 0 failed, 0 skipped**. Actual SQL/service tests exercise exact membership, sibling branches/campaigns, losing CAS callbacks, stale leases/heads, cancellation, response loss, original receipts, injected rollback after vault insertion, no-op time, private/future-source canaries and positive Actor knowledge before retrieval limits. Client imports do not reach server/private/provider modules.
+- Disposable historical upgrades cover populated migration prefixes **7, 9, 10, 11, 12 and 13 through 14**. Genuine schema-1 and pre-Wave-4 schema-2 payloads, hashes, manifests, save points and old loads are preserved. Prefix 7 predates Saves and verifies populated application state plus post-upgrade Save access.
+- The deterministic production service/SQL proof prepares a branch, reads its exact inherited state, commits two bounded continuations, reloads checkpoint history and retries original operations without replay. Independent tests preserve all 40 live capture families plus active timeline/head/epoch authority and nonempty Wave 4 currency, inventory, rewards, progression/pending choices and private state.
+- Separate browser checks are recorded in `D1_BROWSER_REVIEW.md`. Subsequent error-envelope, inherited-event timestamp and Save-label/history-size repairs have actual service-to-browser regression coverage; the browser fixtures did not exercise those boundary cases.
+
+Lead repaired all nine material findings in the independent report, including span-digest validation, a no-time trigger bypass, null lifecycle revisions, SQL payload ambiguity, unresolved Pack rejection, original retry results and browser/server contract bounds. No unresolved material defect was observed in the exercised D1 boundaries. Verification does not establish hosted multi-session lock behavior: PGlite serializes SQL submissions, so its race test proves rejection of the second proposal from one head rather than hosted lock scheduling.
+
+## Worker handoffs
+
+Six distinct workstreams reused three worker slots alongside Lead. Domain/security used Astra Max; bounded UI used Astra Extra High. Workers stayed in isolated branches/worktrees and Lead alone integrated them. Central repairs are in the integration branch after these handoffs.
+
+| Worker branch | Integrated handoff SHA |
+| --- | --- |
+| `codex/d1-reader` | `8091dd2d51b93ef1da9588a48d6b6bdc3f573919` |
+| `codex/d1-writer` | `24ba599bd81c897e6fd425fc4e7e1d20fd52cb3d` |
+| `codex/d1-inputs` | `6e9bc63cd4be068382ebf7ab6c8b3e85df3be67c` |
+| `codex/d1-runtime` | `a8b6b12f345e0bdaa7e8161720bf618e857861ae` |
+| `codex/d1-ui` | `36426f17d97cc1b701704d2beefb98875ef907e2` |
+| `codex/d1-qa` | `ce7e93c466d59949b4aa6f980ab8eb486aacdc0d` |
+
+## Limits and stop point
+
+Eligible preparation requires a stable, configured schema-2 World save without pending/retryable action and compatible approved Scenario/Divergence inputs. D1 does not add full Scenario Composition or automatic approval. Older saves remain loadable; they may need an explicitly configured new checkpoint before preparation. Unresolved included Pack contradictions are rejected.
+
+Each continuation advances at most 60 fictional minutes, within a horizon of at most 43,200 minutes and at most 32 coherent continuation checkpoints. Larger horizons may stop at the work limit. Only the accepted deterministic schedule subset executes; arbitrary premise consequences and richer typed action effects pause. D1 inherits Wave 4 state exactly without implementing a detached economy. It neither activates nor promotes, merges or rebases simulation checkpoints.
+
+The local synthetic component preview requires no owner database or provider. Production use needs a separately authorized migration/configuration release process, not performed here. No live-model quality, hosted Supabase/Auth behavior or physical-iPhone result is claimed. The next step is owner review of D1 and its disclosed limits; D2 requires separate authorization. Main stays at the authorized base and the two pre-existing dirty files in the original checkout retain their recorded hashes.
 
 ---
 
