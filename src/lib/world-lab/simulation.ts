@@ -213,7 +213,7 @@ export function buildLabSimulationScope(
       32,
     ),
   );
-  const threadIds = unique([
+  const threadIds = unique([...new Set([
     ...list(
       review.affectedThreadIndexes,
       (index) => {
@@ -229,7 +229,7 @@ export function buildLabSimulationScope(
     ...world.threads
       .filter((t) => t.decisionActorIds.some((id) => actorIds.includes(id)))
       .map((t) => t.id),
-  ]);
+  ])]);
   ensure(threadIds.length > 0 && threadIds.length <= 32);
   const locationId =
     review.locationIndex === null
@@ -291,7 +291,7 @@ export function buildLabSimulationScope(
       entityIds: [],
       requiredSourceIds: [],
       maxBytes: 16_000,
-      maxExcerpts: 16,
+      maxExcerpts: 12,
     };
     const sources = [],
       excerpts = [];
@@ -345,6 +345,7 @@ export function buildLabSimulationScope(
         typeof fact === "string" &&
         fact.trim().length > 0 &&
         source.text.includes(fact) &&
+        source.sourceRefs.length === 0 &&
         source.statementKind === "fact" &&
         ["state", "correction", "canon"].includes(source.authority)
         ? [{ family, id: source.ref.id }]

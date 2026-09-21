@@ -322,3 +322,15 @@ test("newly caused mandatory causal work pauses rather than committing an incomp
   });
   assert.equal(f.input.snapshot.world.threads[0].cursor, 0);
 });
+
+test("a deterministic due step cannot silently discard its typed consequences", () => {
+  const f = fixture();
+  f.scope.atWorldMinutes = 15;
+  f.input.snapshot.world.threads[0].steps[0].consequences = [
+    { kind: "resource.spend", actorId: id("enemy"), resource: "focus", amount: 1 },
+  ];
+  assert.throws(() => selectWorldSimulationWork(f.input, f.scope), {
+    name: "WorldValidationError",
+  });
+  assert.equal(f.input.snapshot.world.threads[0].cursor, 0);
+});

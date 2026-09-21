@@ -547,7 +547,7 @@ export function prepareLabInput(
   );
   ensure(
     scenario.body.packVersionIds.length > 0 ||
-      scenario.body.assumptions.length > 0,
+      scenario.body.assumptions.length > 0 || composition?.phase === "approved",
     "conflict",
   );
   // Every binding participates in the exact source basis; unrelated bound packs

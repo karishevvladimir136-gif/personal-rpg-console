@@ -815,6 +815,8 @@ export function parseLibraryRecord(
   }
   if ("approval" in result.body && result.body.approval)
     ensure(result.body.approval.ownerId === result.ownerId, "scope");
+  if (result.kind === "scenario" && result.body.composition)
+    ensure(result.body.composition.basis.ownerId === result.ownerId, "scope");
   for (const e of recordEvidence(result))
     ensure(e.ownerId === result.ownerId, "scope");
   return result;

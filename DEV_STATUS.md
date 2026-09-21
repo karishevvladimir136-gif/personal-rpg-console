@@ -1,10 +1,66 @@
-# Development status — World Lab D2A — implementation in progress
+# Development status — World Lab D2A — verified, awaiting live-evaluation authorization
 
-Freshly fetched remote main exactly matches `fbe44e789ff4993e76b47ad9040dca238a231292`, including owner-accepted D1. D2A work is isolated on `codex/world-lab-d2a-single-model`; main and the original dirty checkout remain untouched. Minimum additions and exclusive ownership are frozen in `D2A_CONTRACTS.md`; contextualized D1 workers are reused within Lead plus three active worker slots.
+Implemented from freshly fetched exact authorized main `fbe44e789ff4993e76b47ad9040dca238a231292`, including owner-accepted D1, on isolated `codex/world-lab-d2a-single-model`. Remote main remains unchanged. The original checkout still has exactly its two pre-existing modified files, `DEV_STATUS.md` and `PHASE3_EVALUATION.md`, with unchanged SHA-256 hashes; its local main remains untouched. Contextualized workers covered five isolated handoffs with Lead plus no more than three worker slots. Lead owned shared contracts, migrations, production integration, repairs and this status.
 
-Authorized outcome: natural-language What If → manually editable immutable Scenario/Divergence review → explicit approval/preparation → one pinned model through the existing World Resolver → validated D1 detached checkpoints. Composition has no state authority. Automated work uses scripted production-compatible provider transports only. D1 authority/compatibility/privacy/fences remain mandatory.
+## Milestone status
 
-Implementation, integration, final deterministic verification, browser checks and independent QA are in progress. No live model quality or owner acceptance is claimed. A bounded priced live-evaluation plan and separate owner authorization are required before any live request. No D2B/comparison, Enter This World, FRAME, production migration, deployment or real/private import is started.
+- **Implemented:** natural-language What If; strict `world.compose`; manual immutable Scenario review; explicit approval and D1 preparation; one pinned `world.resolve` model; bounded typed consequences; durable model-result/retry provenance; EN/RU owner controls and safe checkpoint summaries.
+- **Integrated:** composition, resolver, UI, scripted end-to-end fixtures and independent security QA, plus Lead-owned migration 15, API/service orchestration, source/knowledge guards and exact historical usage/receipt replay.
+- **Deterministically verified:** fresh complete repository run **1,089 collected, 1,088 passed, 0 failed, 1 skipped**, duration **387.973 seconds**, on the final integrated production source. The sole skip is the explicitly opt-in hosted Supabase Auth/PostgREST test. Independent QA's **58/58** cases are included and passed again. Route type generation, non-incremental TypeScript, repository-wide zero-warning lint and production webpack build passed.
+- **Browser checked:** final actual components/styles with synthetic scripted transport in **EN/RU at 1365×900 and 390×844**. Describe, interpret, manual edit, approval/preparation, separate start, two checkpoints, continuation, lost-response retry, pause/resume/cancel and empty/unavailable prerequisites were exercised. No horizontal overflow was observed. This is not physical-iPhone or hosted database testing.
+- **Ready for bounded live model-quality evaluation:** the reviewable [D2A_LIVE_EVAL_PLAN.md](D2A_LIVE_EVAL_PLAN.md) proposes at most eight synthetic GPT-5.4/high requests with a US $2 provider-charge ceiling, explicit quality criteria and stop conditions. It is not executed or authorized.
+- **Live model quality NOT YET evaluated:** no live provider/model calls, paid probes or bake-offs occurred. Scripted transport exercises the actual production request/parser/model-validation path; it does not establish real causal quality or complete resistance to model training knowledge.
+- **Owner acceptance NOT YET granted:** implementation verification is separate from acceptance and paid-evaluation authorization. Stop here; D2B/comparison, Enter This World, FRAME and other later work have not started.
+
+## What the owner can use
+
+Open **Campaign → World / Мир → What If / Что, если**. Describe one change in ordinary language, choose a saved starting point and model, then **Interpret**. Manually correct the title, change, time/place, affected participants/Threads, assumptions, constraints, unchanged baseline and horizon; answer consequential questions; **Save corrections**. **Approve & Prepare** saves the exact approved Scenario/Divergence and prepares an isolated NON-CANON run. **Start simulation** is separate. Inspect committed history and explicitly continue, pause, resume, retry or cancel. The live campaign is never activated/restored/switched to run an experiment.
+
+Manual corrections need no additional AI call, retain the original proposal, create immutable owner-authored versions and invalidate prior approval as appropriate. Source facts and owner assumptions remain distinct. Authority IDs, private state and raw JSON are not editing controls. The expert/reuse D1 path remains secondary. Provider charges are disclosed at the explicit Interpret/Start/Continue boundaries; page load does not execute a model.
+
+The actual UI can be reviewed with synthetic data and no real setup. Production use would later require reviewed schema through migration 15, owner authentication and server-side provider configuration. No migration was applied to owner/production data in this sprint. See [D2A_OWNER_GUIDE.md](D2A_OWNER_GUIDE.md).
+
+## Authority and changed areas
+
+There remains one Scenario/Source/Canon authority, Model Runtime, World Resolver, Memory pipeline, Saves/Timelines/vault, inventory/resource/progression authority and World Event settlement. Optional composition metadata extends existing immutable Scenario versions. Migration `supabase/migrations/202609200015_world_lab_d2a.sql` adds no table or manifest family, preserves old manifest meanings/hashes, and extends the existing private operation stages and SQL validators. Historical D1 inputs retain their deterministic mode; new runs pin one profile under `single-model-world-v1`.
+
+The production service records the model request before transport and the exact validated response before settlement. SQL independently revalidates the approved basis/profile/scope, owning-validator effects, source knowledge and full detached fence before the original vault/manifest/CAS transaction. Cancellation, lease/head changes and source/canon correction reject stale callbacks. A normal live campaign load/switch remains independent. Original receipt replay includes usage only through that operation's revision, never later progress.
+
+Changes are in `src/lib/world-lab`, existing detached reader/writer/World Resolver and Library parsers, the one Model Runtime registry task addition, private provider/service and composition API, `src/components/world-lab`, migration 15 and focused tests. Public projections derive fixed localized summaries from committed state. There is no second narrative request or authority.
+
+## Fresh integrated verification
+
+- `node --test --test-concurrency=2 tests/*.test.mjs` with `PREVIEW_URL=http://127.0.0.1:4192`, using a credential-free local production build: **1,089 tests, 1,088 passed, zero failed, one hosted opt-in skip**. Local ignored evidence: `d2a-final-suite.log`. An earlier run without the required local server had connection-refused HTTP failures; the fresh complete configured run supersedes it.
+- `next typegen` and `tsc --noEmit --incremental false`: **passed** after all worker integration. Generated `next-env.d.ts` was restored.
+- Repository-wide `eslint . --max-warnings 0`: **passed, zero warnings**.
+- `next build --webpack`: **passed**, including compilation, TypeScript and all pages/API routes. No Turbopack claim is made for the established external dependency junction.
+- Disposable populated migration prefixes **7, 9, 10, 11, 12, 13 through 15**, plus D1/schema-3 run/input/receipt history through 15, passed. Old save payloads/hashes/loads and accepted Wave 4 state remain intact. No hosted migration or multi-session lock scheduling is claimed; PGlite serializes SQL.
+- The real service/SQL/production-provider flow passes in EN/RU: interpret → manual edit → immutable approval → D1 prepare → two resolver continuations. Supplies change **10→8→7**, focus **6→4→3**, a supported condition is added/removed, and only the detached branch changes. Live projection/head, player state, unrelated/private families and Wave 4 definitions/receipts remain exact.
+- Lost model-result and commit responses replay durable results with no extra scripted request or repeated effects. Earlier preparation/continuation receipts remain byte-equivalent after later steps, including their usage. Deterministic-only steps make zero model requests.
+- Independent QA covers strict composition/model contracts, injection, positive Actor knowledge, private/future canaries, malformed/raw/foreign effects, wrong models/no fallback, cancellation/lease/head/source changes, sibling/cross-owner isolation, atomic rollback, manual immutable review, stale approval, client import boundaries and actual service DTO parsing. All eight reported defects were repaired and regressed; details are in [D2A_QA_REPORT.md](D2A_QA_REPORT.md).
+- Browser observations are separately recorded in [D2A_BROWSER_REVIEW.md](D2A_BROWSER_REVIEW.md). They use the exact integrated components with public fixtures; durable SQL behavior is covered by automated tests, not inferred from that preview.
+
+## Bounded limits
+
+This is causal simulation over established autonomous Actors, Locations, capabilities and Threads, not arbitrary creation of a world from a premise. Admitted effects are bounded resource spending, inventory consumption, supported conditions, relocation and known-fact observation through the existing validators. Unsupported relationship/rule changes, controlled-PC decisions, missing knowledge, overlapping consequences or newly caused unsupported mandatory work pause without partial settlement. No detached rewards, commerce, new armies/Actors or character takeover is implied.
+
+Saved World policy remains read-only in review to preserve existing overdue reconciliation; changing it requires a newly saved campaign basis. Direct authoritative observation/travel uses current positive-known facts without indirect evidence chains. Conservative composition excludes uncertain/private/future facts rather than upgrading them. The original 60-minute segment, finite horizon and 32-checkpoint budget remain. A longer requested horizon may stop at the bounded step limit.
+
+Recorded valid response/token totals are provenance, not a billing guarantee. Missing usage remains unknown. A request whose response was lost before durable recording, or overlapping transport attempts, may incur another charge; exactly-once state settlement does not mean exactly-once billing. No unsupported claim about real model quality, hosted Supabase behavior or physical iPhone testing is made.
+
+## Worker handoffs and stop point
+
+All worker branches are pushed. Lead integration contains central fixes after these immutable handoffs.
+
+| Branch | Handoff SHA |
+| --- | --- |
+| `codex/d2a-composition` | `0157159d5c44c22e393c55238cb743fcc8dc54ab` |
+| `codex/d2a-resolver` | `75b639265cc35ed2730c068a239ce1a9b69c42df` |
+| `codex/d2a-integration-tests` | `07a4cbfc6742e4ab83d3b6e136e6f59c5f518518` |
+| `codex/d2a-ui` | `b1379a67c5349d0d25127b0fa312cae07ceb5bec` |
+| `codex/d2a-qa` | `a4c94e9038776bf3175a7d82541bafb7dee8042c` |
+
+Shared decisions: [D2A_CONTRACTS.md](D2A_CONTRACTS.md). Recommended next step: owner review and separate authorization of the bounded live-evaluation plan. No real request will be made before that authorization. Keep main unchanged; do not begin D2B or Enter This World.
 
 ---
 

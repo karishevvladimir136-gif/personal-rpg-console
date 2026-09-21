@@ -6,6 +6,15 @@ import type {
   PublicLabRun,
 } from "./contracts.ts";
 import type { LabRpc } from "./server-contracts.ts";
+import type { ExecutionProfile } from "../production/contracts.ts";
+import type { ProviderUsage } from "../gameplay/server-contracts.ts";
+import type { WorldStageInput } from "../world/contracts.ts";
+import type { WorldSimulationScope, SimulationResolverProposal, ResolverStageResult } from "../world/resolver.ts";
+import { parseSimulationResolverProposal } from "../world/resolver.ts";
+import { prepareLabSimulation, stageLabSimulation } from "./simulation.ts";
+import { parseCompositionUsage } from "./composition.ts";
+import { canonicalLabJson } from "./inputs.ts";
+import { sha256 } from "../world-library/parsers.ts";
 import { createRpcLabStore } from "./store.ts";
 import { readDetachedState } from "../saves/detached-reader.ts";
 import {
@@ -32,6 +41,11 @@ export function createLabService(
   ownerId: string,
   execute: LabRpc,
   language: "en" | "ru" = "en",
+  options?: {
+    resolver: (profile: ExecutionProfile) => {
+      simulate: (input: WorldStageInput, scope: WorldSimulationScope, profile: ExecutionProfile) => Promise<{ result: ResolverStageResult; proposal: SimulationResolverProposal | null; usage: ProviderUsage | null }>;
+    };
+  },
 ) {
   const store = createRpcLabStore(ownerId, execute, readDetachedState);
   const writer = createRpcDetachedWriter(ownerId, execute);
@@ -75,10 +89,22 @@ export function createLabService(
       applicable: row.applicable,
     });
   }
+  async function executionProjection(run: PublicLabRun, profile?: ExecutionProfile) {
+    if (!profile) return run;
+    const usage = object(await rpc(run.campaignId, "model_usage", {runId: run.id, throughRevision: run.revision}), ["recordedResponses", "inputTokens", "outputTokens"]);
+    return { ...run, execution: { modelId: profile.modelId, reasoning: profile.reasoning,
+      recordedResponses: integer(usage.recordedResponses, 0, 10000),
+      inputTokens: usage.inputTokens === null ? null : integer(usage.inputTokens, 0, Number.MAX_SAFE_INTEGER),
+      outputTokens: usage.outputTokens === null ? null : integer(usage.outputTokens, 0, Number.MAX_SAFE_INTEGER) } };
+  }
+  async function projectResult(raw: unknown, campaignId: string) {
+    const run = parseLabRun((raw as {run: unknown}).run, {ownerId, campaignId});
+    return executionProjection(project(raw, campaignId), run.input.executionProfile);
+  }
   const readRun = async (campaignId: string, runId: string) =>
-    project(await store.read(campaignId, runId), campaignId);
+    projectResult(await store.read(campaignId, runId), campaignId);
   const readResult = async (request: LabRequest) =>
-    project(
+    projectResult(
       await rpc(request.input.campaignId, "read_result", {
         action: request.action,
         request: request.input,
@@ -146,7 +172,7 @@ export function createLabService(
       campaignId,
       bases,
       scenarios,
-      runs: list(raw.runs, (run) => project(run, campaignId), 100),
+      runs: await Promise.all(list(raw.runs, (run) => run, 100).map((run) => projectResult(run, campaignId))),
     };
   }
   async function perform(value: LabRequest): Promise<PublicLabRun> {
@@ -186,6 +212,48 @@ export function createLabService(
         ),
       "conflict",
     );
+    if (claimed.input.executionProfile) {
+      const fence = createDetachedRunFence(claimed);
+      const prepared = prepareLabSimulation(state, command.operationId);
+      let reason: "review_required" | "unsupported" | "work_limit" | "source_changed" | "unavailable" | null = prepared.status === "paused" ? prepared.reason : null;
+      let proposal: SimulationResolverProposal | null = null;
+      if (prepared.status === "ready") {
+        const request = { operationId: command.operationId, fence, profile: prepared.profile,
+          contractVersion: "world-resolver-simulation-v2", contextDigest: sha256(canonicalLabJson({ scope: prepared.scope, selection: prepared.selection, from: prepared.worldInput.snapshot.worldMinutes, through: prepared.worldInput.resolution.worldMinutes })) };
+        await rpc(campaignId, "model_request", request);
+        const stored = object(await rpc(campaignId, "model_read", { operationId: command.operationId, runId: command.runId }), ["request", "result"]);
+        ensure(canonicalLabJson(stored.request) === canonicalLabJson(request), "conflict");
+        let result = stored.result;
+        if (result === null) {
+          try {
+            if (!options) throw new FoundationValidationError("unavailable");
+            const response = await options.resolver(prepared.profile).simulate(prepared.worldInput, prepared.scope, prepared.profile);
+            result = { proposal: parseSimulationResolverProposal(response.proposal), usage: parseCompositionUsage(response.usage, prepared.profile.modelId), error: null };
+          } catch {
+            result = { proposal: null, usage: null, error: "unavailable" };
+          }
+          // A cancellation/source change here rejects the callback. Never retry
+          // against a newer lease, and never convert that conflict into a pause.
+          result = await rpc(campaignId, "model_result", { operationId: command.operationId, fence, result });
+        }
+        const recorded = object(result, ["proposal", "usage", "error"]);
+        if (recorded.error !== null) {
+          ensure(recorded.error === "unavailable" || recorded.error === "unsupported");
+          ensure(recorded.proposal === null && recorded.usage === null);
+          reason = recorded.error;
+        } else {
+          proposal = parseSimulationResolverProposal(recorded.proposal);
+          parseCompositionUsage(recorded.usage, prepared.profile.modelId);
+        }
+      }
+      if (reason === null) {
+        const plan = stageLabSimulation(state, command.operationId, proposal);
+        if (plan.status === "paused") reason = plan.reason;
+        else await writer.commit({state, fence, operationId: command.operationId, throughWorldMinutes: plan.worldInput.resolution.worldMinutes, worldInput: plan.worldInput, simulationProposal: proposal});
+      }
+      if (reason !== null) await rpc(campaignId, "commit", {operationId: command.operationId, fence, kind: "pause", reason: reason === "source_changed" ? "review_required" : reason});
+      return readResult(request);
+    }
     const step = prepareLabStep(state, command.operationId);
     if (step.status === "paused") {
       await rpc(campaignId, "commit", {

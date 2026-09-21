@@ -11,6 +11,7 @@ import {
 import type { WorldStageInput } from "../world/contracts.ts";
 import { stageWorldTransition } from "../world/stage.ts";
 import { parseWorldState } from "../world/validation.ts";
+import { stageLabSimulation } from "./simulation.ts";
 import type {
   DetachedCommit,
   DetachedManifest,
@@ -38,6 +39,8 @@ export type DetachedWorldCommitInput = {
   worldInput: WorldStageInput;
   /** Optional candidate is compared with a fresh deterministic recomputation. */
   settlement?: WorldSettlement | null;
+  /** Stored structured result only; new mode recomputes every effect locally. */
+  simulationProposal?: unknown | null;
 };
 export type DetachedCommitResult = {
   run: LabRun;
@@ -185,7 +188,7 @@ function validateWorldInput(input: DetachedWorldCommitInput): {
   minute(run.input.startWorldMinutes);
   minute(run.input.throughWorldMinutes);
   requireValue(
-    run.input.resolutionPolicy.id === "deterministic-world-v1" &&
+    ["deterministic-world-v1", "single-model-world-v1"].includes(run.input.resolutionPolicy.id) &&
       run.input.resolutionPolicy.version === 1 &&
       Number.isSafeInteger(run.input.resolutionPolicy.maxSteps) &&
       run.input.resolutionPolicy.maxSteps > 0,
@@ -271,7 +274,7 @@ function validateWorldInput(input: DetachedWorldCommitInput): {
         isDeepStrictEqual(source.snapshot.timeline, timeline)),
     "conflict",
   );
-  if (worldInput.snapshot.world !== null) {
+  if (worldInput.snapshot.world !== null && !run.input.executionProfile) {
     const world = parseWorldState(worldInput.snapshot.world, fence.campaignId);
     // D1 cannot claim to have settled typed consequences that the accepted
     // deterministic staging engine leaves to its later resolver path.
@@ -294,7 +297,14 @@ export function buildDetachedWorldCommit(
     const { state, fence, operationId, throughWorldMinutes, worldInput } =
       input;
     const { foundation, runtime } = validateWorldInput(input);
-    const result = stageWorldTransition(worldInput);
+    const simulation = state.run!.input.executionProfile
+      ? stageLabSimulation(state, operationId, input.simulationProposal ?? null)
+      : null;
+    if (simulation) {
+      requireValue(Object.hasOwn(input, "simulationProposal") && simulation.status === "staged");
+      requireValue(isDeepStrictEqual(worldInput, simulation.worldInput), "conflict");
+    } else requireValue(!Object.hasOwn(input, "simulationProposal"));
+    const result = simulation?.status === "staged" ? simulation.result : stageWorldTransition(worldInput);
     requireValue(result.status !== "paused");
     const settlement = result.status === "staged" ? result.settlement : null;
     if (Object.hasOwn(input, "settlement"))
@@ -358,13 +368,23 @@ export function buildDetachedWorldCommit(
         },
       });
     }
+    if (simulation?.status === "staged" && simulation.result.status === "staged") {
+      for (const change of simulation.result.consequenceChanges ?? []) {
+        requireValue(change.family === "entities" || change.family === "items");
+        const version = state.versions.find((v) => v.tableName === `public.rpg_${change.family}` && v.rowKey === change.id);
+        requireValue(version && change.expectedRevision !== null && version.payload.revision === change.expectedRevision, "conflict");
+        const allowed = change.family === "entities" ? ["resources", "conditions"] : ["quantity"];
+        requireValue(Object.keys(change.values).every((key) => allowed.includes(key)));
+        replace(version, { ...change.values, revision: change.expectedRevision + 1 });
+      }
+    }
     return {
       operationId,
       fence: structuredClone(fence),
-      kind: writes.length === 0 ? "noop" : "deterministic_world",
+      kind: writes.length === 0 ? "noop" : simulation ? "resolved_world" : "deterministic_world",
       throughWorldMinutes,
       writes,
-      proof: {
+      proof: simulation?.status === "staged" ? simulation.proof : {
         schemaVersion: 1,
         trigger: worldInput.trigger,
         settlement: settlement as unknown as JsonObject | null,
