@@ -1,4 +1,14 @@
-# Development status — World Lab D1 — owner accepted
+# Development status — World Lab D2A — implementation in progress
+
+Freshly fetched remote main exactly matches `fbe44e789ff4993e76b47ad9040dca238a231292`, including owner-accepted D1. D2A work is isolated on `codex/world-lab-d2a-single-model`; main and the original dirty checkout remain untouched. Minimum additions and exclusive ownership are frozen in `D2A_CONTRACTS.md`; contextualized D1 workers are reused within Lead plus three active worker slots.
+
+Authorized outcome: natural-language What If → manually editable immutable Scenario/Divergence review → explicit approval/preparation → one pinned model through the existing World Resolver → validated D1 detached checkpoints. Composition has no state authority. Automated work uses scripted production-compatible provider transports only. D1 authority/compatibility/privacy/fences remain mandatory.
+
+Implementation, integration, final deterministic verification, browser checks and independent QA are in progress. No live model quality or owner acceptance is claimed. A bounded priced live-evaluation plan and separate owner authorization are required before any live request. No D2B/comparison, Enter This World, FRAME, production migration, deployment or real/private import is started.
+
+---
+
+# Previous milestone — World Lab D1 — owner accepted
 
 World Lab D1 was implemented from exact authorized base `b0336cf651e8649db4c4db1aee7a73ceb39e71cd` on isolated branch `codex/world-lab-d1-detached-foundation`, leaving main and the original dirty checkout untouched. Waves 1–4 remain owner accepted. D1 is now owner accepted at exact implementation SHA `d65e5f150b52c6c1ad760c45ea80defe3d43d8c6`. The current action is limited to the status-only approval and authorized fast-forward below.
 
