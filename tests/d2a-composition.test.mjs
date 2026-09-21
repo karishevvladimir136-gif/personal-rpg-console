@@ -22,6 +22,7 @@ import {
   parseCompositionProposal,
   parseCompositionReview,
   validateCompositionProposal,
+  confirmCompositionTiming,
 } from "../src/lib/world-lab/composition-validation.ts";
 import {
   parseDivergence,
@@ -356,6 +357,7 @@ test("consequential ambiguity blocks approval until owner answers; its question 
   const draft = review(f);
   assert.deepEqual(compositionApprovalBlockers(draft.composition), [
     "ambiguity_unresolved",
+    "timing_review_required",
   ]);
   assert.throws(() => approve(f, draft));
   assert.throws(() =>
@@ -375,7 +377,16 @@ test("consequential ambiguity blocks approval until owner answers; its question 
       ],
     },
   });
-  assert.equal(approve(f, edited).scenario.status, "approved");
+  assert.throws(() => approve(f, edited));
+  const resolved = editCompositionPlan(edited, {
+    ownerId: owner,
+    fromVersionId: id(),
+    review: {
+      ...edited.composition.review,
+      timingReview: confirmCompositionTiming(edited.composition.review),
+    },
+  });
+  assert.equal(approve(f, resolved).scenario.status, "approved");
   assert.deepEqual(
     edited.composition.originalProposal.ambiguities,
     f.proposal.ambiguities,

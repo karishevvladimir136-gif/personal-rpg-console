@@ -4,6 +4,7 @@ import type {
   CompositionProposal,
   CompositionReview,
   CompositionStatement,
+  CompositionTimingReview,
 } from "./composition-public.ts";
 import {
   ensure,
@@ -71,10 +72,8 @@ function fields(v: Record<string, unknown>): CompositionFields {
       "other",
     ] as const),
     timingText: text(v.timingText, 500),
-    offsetMinutes: integer(
-      v.offsetMinutes,
-      0,
-      COMPOSITION_LIMITS.horizonMinutes,
+    offsetMinutes: nullable(v.offsetMinutes, (n) =>
+      integer(n, 0, COMPOSITION_LIMITS.horizonMinutes),
     ),
     locationIndex: nullable(v.locationIndex, (n) => integer(n, 0, 63)),
     affectedActorIndexes: indexes(v.affectedActorIndexes),
@@ -82,17 +81,23 @@ function fields(v: Record<string, unknown>): CompositionFields {
     assumptions: lines(v.assumptions),
     constraints: lines(v.constraints),
     unchangedBaseline: lines(v.unchangedBaseline),
-    horizonMinutes: integer(
-      v.horizonMinutes,
-      1,
-      COMPOSITION_LIMITS.horizonMinutes,
+    horizonMinutes: nullable(v.horizonMinutes, (n) =>
+      integer(n, 1, COMPOSITION_LIMITS.horizonMinutes),
     ),
     policy: parseCompositionPolicy(v.policy),
   };
 }
 
 export function parseCompositionReview(value: unknown): CompositionReview {
-  const v = object(value, [...compositionFieldNames, "ambiguityAnswers"]);
+  const hasTiming =
+    value !== null &&
+    typeof value === "object" &&
+    Object.hasOwn(value, "timingReview");
+  const v = object(value, [
+    ...compositionFieldNames,
+    "ambiguityAnswers",
+    ...(hasTiming ? ["timingReview"] : []),
+  ]);
   return {
     ...fields(v),
     ambiguityAnswers: list(
@@ -100,7 +105,82 @@ export function parseCompositionReview(value: unknown): CompositionReview {
       (v) => nullable(v, (v) => text(v, 1000)),
       12,
     ),
+    ...(hasTiming
+      ? { timingReview: nullable(v.timingReview, parseTimingReview) }
+      : {}),
   };
+}
+
+function parseTimingReview(value: unknown): CompositionTimingReview {
+  const v = object(value, [
+    "timingText",
+    "offsetMinutes",
+    "horizonMinutes",
+    "ambiguityAnswers",
+  ]);
+  return {
+    timingText: text(v.timingText, 500),
+    offsetMinutes: integer(
+      v.offsetMinutes,
+      0,
+      COMPOSITION_LIMITS.horizonMinutes,
+    ),
+    horizonMinutes: integer(
+      v.horizonMinutes,
+      1,
+      COMPOSITION_LIMITS.horizonMinutes,
+    ),
+    ambiguityAnswers: list(
+      v.ambiguityAnswers,
+      (a) => nullable(a, (s) => text(s, 1000)),
+      12,
+    ),
+  };
+}
+
+/** Explicit owner confirmation, never inferred from natural-language answers. */
+export function confirmCompositionTiming(
+  review: CompositionReview,
+): CompositionTimingReview {
+  const r = parseCompositionReview(review);
+  ensure(
+    r.offsetMinutes !== null &&
+      r.horizonMinutes !== null &&
+      r.offsetMinutes < r.horizonMinutes,
+  );
+  return parseTimingReview({
+    timingText: r.timingText,
+    offsetMinutes: r.offsetMinutes,
+    horizonMinutes: r.horizonMinutes,
+    ambiguityAnswers: r.ambiguityAnswers,
+  });
+}
+
+export function compositionTimingConfirmed(review: CompositionReview): boolean {
+  const t = review.timingReview;
+  return (
+    !!t &&
+    t.offsetMinutes === review.offsetMinutes &&
+    t.horizonMinutes === review.horizonMinutes &&
+    t.timingText === review.timingText &&
+    JSON.stringify(t.ambiguityAnswers) ===
+      JSON.stringify(review.ambiguityAnswers)
+  );
+}
+
+export function compositionNeedsTimingReview(
+  review: CompositionReview,
+  proposal: CompositionProposal,
+): boolean {
+  return (
+    Object.hasOwn(review, "timingReview") ||
+    proposal.ambiguities.some((a) => a.consequential) ||
+    proposal.offsetMinutes === null ||
+    proposal.horizonMinutes === null ||
+    review.offsetMinutes !== proposal.offsetMinutes ||
+    review.horizonMinutes !== proposal.horizonMinutes ||
+    review.timingText !== proposal.timingText
+  );
 }
 
 export function parseCompositionProposal(value: unknown): CompositionProposal {

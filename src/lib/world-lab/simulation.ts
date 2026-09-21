@@ -193,7 +193,7 @@ export function buildLabSimulationScope(
       run.input.throughWorldMinutes - run.input.startWorldMinutes,
   );
   const offset = integer(review.offsetMinutes, 0, 43_200);
-  ensure(offset <= review.horizonMinutes);
+  ensure(offset <= integer(review.horizonMinutes, 1, 43_200));
   const actorIds = unique(
     list(
       review.affectedActorIndexes,

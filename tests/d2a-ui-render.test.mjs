@@ -130,7 +130,10 @@ test("D2A actual review exposes every safe edit and separately labels source/fut
     assert.ok(html.includes(f.draft.proposal.ambiguities[0].question));
     assert.ok(html.includes(c.blockers.ambiguity_unresolved));
     assert.match(html, /<button[^>]*disabled=""[^>]*>[^<]*<svg/);
-    assert.equal((html.match(/type="checkbox"/g) ?? []).length, 3);
+    assert.equal((html.match(/type="checkbox"/g) ?? []).length, 4);
+    assert.ok(html.includes(c.confirmTiming));
+    assert.ok(html.includes(c.timingHelp));
+    assert.match(html, /type="number"[^>]*value=""/);
     assert.doesNotMatch(
       html,
       /inputDigest|baseManifestId|sourceVersionId|executionProfile|leaseGeneration/,
@@ -167,8 +170,15 @@ test("D2A form conversion retains line edits, finite values and original read-on
   assert.throws(() =>
     editor.compositionReviewFromForm({ ...form, horizonMinutes: "Infinity" }),
   );
-  assert.throws(() =>
-    editor.compositionReviewFromForm({ ...form, offsetMinutes: "" }),
+  assert.equal(
+    editor.compositionReviewFromForm({ ...form, offsetMinutes: "" })
+      .offsetMinutes,
+    null,
+  );
+  assert.equal(
+    editor.compositionReviewFromForm({ ...form, horizonMinutes: "" })
+      .horizonMinutes,
+    null,
   );
   assert.throws(() =>
     editor.compositionReviewFromForm({ ...form, ownerId: "injected" }),

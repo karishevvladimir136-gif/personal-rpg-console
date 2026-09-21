@@ -7,6 +7,10 @@ export async function d2aFixture(options = {}) {
   await f.db.exec(await readFile(new URL(
     "../supabase/migrations/202609200015_world_lab_d2a.sql", import.meta.url,
   ), "utf8"));
+  if (options.migrationThrough !== 15)
+    await f.db.exec(await readFile(new URL(
+      "../supabase/migrations/202609200016_d2a_review_timing.sql", import.meta.url,
+    ), "utf8"));
   return f;
 }
 export { d2aFixture as fixture };

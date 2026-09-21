@@ -14,7 +14,11 @@ import type {
   LabModelSelection,
 } from "../../lib/world-lab/authoring-contracts.ts";
 import type { CompositionReview } from "../../lib/world-lab/composition-public.ts";
-import { parseCompositionReview } from "../../lib/world-lab/composition-validation.ts";
+import {
+  parseCompositionReview,
+  confirmCompositionTiming,
+  compositionTimingConfirmed,
+} from "../../lib/world-lab/composition-validation.ts";
 import { LabClientError, requireValue } from "./client.ts";
 import {
   compositionAttempt,
@@ -561,11 +565,19 @@ type ReviewForm = Omit<
   horizonMinutes: string;
   ambiguityAnswers: string[];
 };
-export function compositionReviewForm(review: CompositionReview): ReviewForm {
+export function compositionReviewForm(
+  review: CompositionReview,
+  unresolvedLegacyTiming = false,
+): ReviewForm {
   return {
     ...structuredClone(review),
-    offsetMinutes: String(review.offsetMinutes),
-    horizonMinutes: String(review.horizonMinutes),
+    offsetMinutes: unresolvedLegacyTiming
+      ? ""
+      : String(review.offsetMinutes ?? ""),
+    horizonMinutes: unresolvedLegacyTiming
+      ? ""
+      : String(review.horizonMinutes ?? ""),
+    ...(unresolvedLegacyTiming ? { timingReview: null } : {}),
     assumptions: review.assumptions.join("\n"),
     constraints: review.constraints.join("\n"),
     unchangedBaseline: review.unchangedBaseline.join("\n"),
@@ -574,7 +586,7 @@ export function compositionReviewForm(review: CompositionReview): ReviewForm {
 }
 export function compositionReviewFromForm(form: ReviewForm): CompositionReview {
   requireValue(
-    /^\d+$/.test(form.offsetMinutes) && /^\d+$/.test(form.horizonMinutes),
+    /^\d*$/.test(form.offsetMinutes) && /^\d*$/.test(form.horizonMinutes),
   );
   const lines = (value: string) =>
     value
@@ -583,8 +595,10 @@ export function compositionReviewFromForm(form: ReviewForm): CompositionReview {
       .filter(Boolean);
   return parseCompositionReview({
     ...form,
-    offsetMinutes: Number(form.offsetMinutes),
-    horizonMinutes: Number(form.horizonMinutes),
+    offsetMinutes:
+      form.offsetMinutes === "" ? null : Number(form.offsetMinutes),
+    horizonMinutes:
+      form.horizonMinutes === "" ? null : Number(form.horizonMinutes),
     assumptions: lines(form.assumptions),
     constraints: lines(form.constraints),
     unchangedBaseline: lines(form.unchangedBaseline),
@@ -609,13 +623,30 @@ function ReviewEditor({
   const c = authoringText(language),
     proposal = draft.proposal,
     saved = proposal.review!;
-  const [form, setForm] = useState(() => compositionReviewForm(saved));
+  const savedForm = compositionReviewForm(
+    saved,
+    proposal.phase === "review" &&
+      proposal.ambiguities.some((a) => a.consequential) &&
+      !Object.hasOwn(saved, "timingReview"),
+  );
+  const [form, setForm] = useState(() => savedForm);
   const [modelId, setModelId] = useState(proposal.selectedModel.modelId),
     [reasoning, setReasoning] = useState(
       proposal.selectedModel.reasoning ?? "",
     );
   const update = <K extends keyof ReviewForm>(key: K, value: ReviewForm[K]) =>
-    setForm((current) => ({ ...current, [key]: value }));
+    setForm((current) => ({
+      ...current,
+      [key]: value,
+      ...([
+        "timingText",
+        "offsetMinutes",
+        "horizonMinutes",
+        "ambiguityAnswers",
+      ].includes(key)
+        ? { timingReview: null }
+        : {}),
+    }));
   let parsed: CompositionReview | null = null;
   try {
     parsed = compositionReviewFromForm(form);
@@ -627,7 +658,7 @@ function ReviewEditor({
       m.modelId === modelId && m.available && m.reasoning.includes(reasoning),
   );
   const dirty =
-    JSON.stringify(form) !== JSON.stringify(compositionReviewForm(saved)) ||
+    JSON.stringify(form) !== JSON.stringify(savedForm) ||
     modelId !== proposal.selectedModel.modelId ||
     reasoning !== proposal.selectedModel.reasoning;
   const toggle = (
@@ -710,7 +741,7 @@ function ReviewEditor({
               step={1}
               value={form.offsetMinutes}
               onChange={(e) => update("offsetMinutes", e.target.value)}
-              required
+              placeholder={c.unspecified}
             />
           </label>
           <label>
@@ -744,11 +775,12 @@ function ReviewEditor({
               step={1}
               value={form.horizonMinutes}
               onChange={(e) => update("horizonMinutes", e.target.value)}
-              required
+              placeholder={c.unspecified}
             />
           </label>
         </div>
         <p className={styles.hint}>{c.horizonHelp}</p>
+        <p className={styles.hint}>{c.timingHelp}</p>
         <div className={styles.formGrid}>
           <div className={styles.choiceGroup}>
             <h3>{c.actors}</h3>
@@ -830,6 +862,30 @@ function ReviewEditor({
             ))}
           </div>
         )}
+        <label className={styles.checkChoice}>
+          <input
+            type="checkbox"
+            checked={parsed !== null && compositionTimingConfirmed(parsed)}
+            disabled={
+              !parsed ||
+              parsed.offsetMinutes === null ||
+              parsed.horizonMinutes === null ||
+              parsed.offsetMinutes >= parsed.horizonMinutes ||
+              proposal.ambiguities.some(
+                (a, i) => a.consequential && !parsed?.ambiguityAnswers[i],
+              )
+            }
+            onChange={(e) =>
+              update(
+                "timingReview",
+                e.target.checked && parsed
+                  ? confirmCompositionTiming(parsed)
+                  : null,
+              )
+            }
+          />
+          <span>{c.confirmTiming}</span>
+        </label>
         <div className={styles.formGrid}>
           <ModelFields
             language={language}

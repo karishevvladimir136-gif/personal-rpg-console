@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import test from "node:test";
+import { confirmCompositionTiming } from "../src/lib/world-lab/composition-validation.ts";
 import {
   leafRoot,
   serverModule,
@@ -139,6 +140,8 @@ test("D2A QA composition approval follows a manual immutable version and edits i
   assert.throws(() => approve(proposed));
   const review = structuredClone(proposed.composition.review);
   review.ambiguityAnswers = ["Five minutes, with player choices left open."];
+  review.horizonMinutes = 5;
+  review.timingReview = confirmCompositionTiming(review);
   const fromVersionId = randomUUID();
   const edited = editCompositionPlan(proposed, {
     review,
@@ -150,7 +153,7 @@ test("D2A QA composition approval follows a manual immutable version and edits i
   assert.deepEqual(edited.composition.ownerEdit, {
     ownerId: f.f.raw.ownerId,
     fromVersionId,
-    fields: ["ambiguityAnswers"],
+    fields: ["horizonMinutes", "ambiguityAnswers", "timingReview"],
   });
   const approved = approve(edited),
     frozen = structuredClone(approved);

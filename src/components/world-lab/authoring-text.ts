@@ -46,6 +46,10 @@ export function authoringText(language: "en" | "ru") {
     onePerLine:
       "One item per line. These are owner-reviewed branch assumptions, not new source facts.",
     horizon: "Explore ahead · minutes",
+    timingHelp:
+      "Unknown timing stays blank. After answering the questions, choose when the change starts and how long to explore. Answers do not set these values automatically.",
+    confirmTiming:
+      "I confirm the start and duration match my timing description and clarification answers.",
     horizonHelp:
       "1–43,200 minutes. Each explicit continuation advances at most an hour; a run has at most 32 steps.",
     ambiguities: "Resolve before approval",
@@ -123,6 +127,10 @@ export function authoringText(language: "en" | "ru") {
         "Answer every consequential question before approval.",
       scope_required:
         "Choose a relevant existing actor or active world thread.",
+      timing_unresolved:
+        "Choose a resolved start and finite duration before approval.",
+      timing_review_required:
+        "Confirm the timing against your current clarification answers, then save corrections.",
       timing_outside_horizon:
         "The change must begin before the selected horizon.",
       player_agency:
@@ -180,6 +188,10 @@ export function authoringText(language: "en" | "ru") {
     onePerLine:
       "Один пункт на строку. Это утверждаемые владельцем допущения ветки, а не новые факты источника.",
     horizon: "Исследовать вперёд · минут",
+    timingHelp:
+      "Неизвестное время оставьте пустым. После уточнений укажите начало изменения и длительность исследования. Ответы не заполняют эти значения автоматически.",
+    confirmTiming:
+      "Подтверждаю: начало и длительность соответствуют описанию времени и моим ответам на уточнения.",
     horizonHelp:
       "1–43 200 минут. Каждое явное продолжение продвигает время не более чем на час; всего до 32 шагов.",
     ambiguities: "Уточните перед утверждением",
@@ -257,6 +269,10 @@ export function authoringText(language: "en" | "ru") {
         "Ответьте на все существенные вопросы перед утверждением.",
       scope_required:
         "Выберите существующего участника или активную линию мира.",
+      timing_unresolved:
+        "Перед утверждением задайте определённое начало и конечную длительность.",
+      timing_review_required:
+        "Сверьте время с текущими ответами, подтвердите его и сохраните правки.",
       timing_outside_horizon:
         "Изменение должно начаться раньше выбранного горизонта.",
       player_agency:

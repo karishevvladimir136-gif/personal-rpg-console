@@ -25,6 +25,8 @@ import {
   assertCompositionChoices,
   COMPOSITION_LIMITS,
   compositionFieldNames,
+  compositionNeedsTimingReview,
+  compositionTimingConfirmed,
   initialCompositionReview,
   parseCompositionPolicy,
   parseCompositionReview,
@@ -351,8 +353,7 @@ export function buildCompositionBasis(input: CompositionBaseInput): {
   );
   const bindingPacks = new Map(
     bindings.map((b): [string, string[]] => {
-      if (b.scenarioVersionId === null)
-        return [b.id, [b.packVersionId]];
+      if (b.scenarioVersionId === null) return [b.id, [b.packVersionId]];
       const s = library.find((r) => r.versionId === b.scenarioVersionId);
       ensure(
         s?.kind === "scenario" &&
@@ -656,6 +657,7 @@ export function parseCompositionMetadata(value: unknown): CompositionMetadata {
               literal(v, [
                 ...compositionFieldNames,
                 "ambiguityAnswers",
+                "timingReview",
                 "simulationProfile",
               ]),
             16,
@@ -697,8 +699,9 @@ export function parseCompositionMetadata(value: unknown): CompositionMetadata {
         result.originalProposal.ambiguities.length,
     );
     ensure(
-      basis.startWorldMinutes + result.review.horizonMinutes <=
-        LAB_MAX_WORLD_MINUTES,
+      result.review.horizonMinutes === null ||
+        basis.startWorldMinutes + result.review.horizonMinutes <=
+          LAB_MAX_WORLD_MINUTES,
     );
     if (result.ownerEdit === null)
       ensure(
@@ -731,8 +734,18 @@ export function compositionApprovalBlockers(
     )
   )
     result.push("scope_required");
-  if (r.offsetMinutes >= r.horizonMinutes)
+  if (r.offsetMinutes === null || r.horizonMinutes === null)
+    result.push("timing_unresolved");
+  else if (r.offsetMinutes >= r.horizonMinutes)
     result.push("timing_outside_horizon");
+  // Historical approved records keep their meaning. Every NEW approval is
+  // gated while still in review; the SQL insert gate enforces the same rule.
+  if (
+    (metadata.phase !== "approved" || Object.hasOwn(r, "timingReview")) &&
+    compositionNeedsTimingReview(r, p) &&
+    !compositionTimingConfirmed(r)
+  )
+    result.push("timing_review_required");
   if (
     r.divergenceType === "actor_intent" &&
     r.affectedActorIndexes.some(
@@ -841,11 +854,17 @@ export function editCompositionPlan(
   const m = parseCompositionMetadata(current.composition);
   ensure(m.phase !== "requested" && input.ownerId === m.basis.ownerId, "scope");
   const review = parseCompositionReview(input.review);
+  if (review.timingReview && !compositionTimingConfirmed(review))
+    review.timingReview = null;
   assertCompositionChoices(review, m.choices);
   const simulationProfile = input.simulationProfile
     ? validateExecutionProfile(input.simulationProfile, "world.resolve")
     : m.simulationProfile;
-  const fields = [...compositionFieldNames, "ambiguityAnswers" as const].filter(
+  const fields = [
+    ...compositionFieldNames,
+    "ambiguityAnswers" as const,
+    "timingReview" as const,
+  ].filter(
     (key) => !isDeepStrictEqual(m.review![key], review[key]),
   ) as string[];
   if (!isDeepStrictEqual(simulationProfile, m.simulationProfile))

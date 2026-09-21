@@ -151,7 +151,7 @@ export function timeoutFetcher(onRequest) {
     throw new Error("Synthetic transport must not complete");
   };
 }
-export async function applyMigrations(f, after, through = 15) {
+export async function applyMigrations(f, after, through = 16) {
   const folder = source("supabase/migrations/");
   const files = (await readdir(folder))
     .filter((file) => file.endsWith(".sql"))

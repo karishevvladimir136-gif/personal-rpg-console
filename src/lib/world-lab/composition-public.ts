@@ -15,14 +15,14 @@ export type CompositionFields = {
     | "rule"
     | "other";
   timingText: string;
-  offsetMinutes: number;
+  offsetMinutes: number | null;
   locationIndex: number | null;
   affectedActorIndexes: number[];
   affectedThreadIndexes: number[];
   assumptions: string[];
   constraints: string[];
   unchangedBaseline: string[];
-  horizonMinutes: number;
+  horizonMinutes: number | null;
   policy: CompositionPolicy;
 };
 export type CompositionStatement = {
@@ -46,11 +46,22 @@ export type CompositionProposal = CompositionFields & {
 export type CompositionReview = CompositionFields & {
   // Stable positions correspond to original questions, which cannot be erased.
   ambiguityAnswers: (string | null)[];
+  // Optional for historical records. Confirmation binds these exact answers
+  // and timing values; editing them makes an old confirmation unusable.
+  timingReview?: CompositionTimingReview | null;
+};
+export type CompositionTimingReview = {
+  timingText: string;
+  offsetMinutes: number;
+  horizonMinutes: number;
+  ambiguityAnswers: (string | null)[];
 };
 export type CompositionBlocker =
   | "interpretation_required"
   | "ambiguity_unresolved"
   | "scope_required"
+  | "timing_unresolved"
+  | "timing_review_required"
   | "timing_outside_horizon"
   | "player_agency"
   | "unsupported_divergence"

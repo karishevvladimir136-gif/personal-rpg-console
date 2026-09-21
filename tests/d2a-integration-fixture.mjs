@@ -125,7 +125,7 @@ export function scriptedTransport(composeProposal, options = {}) {
 
 export async function integrationFixture(options = {}) {
   const { d2aFixture } = await moduleFromSource("tests/d2a-sql-fixture.mjs");
-  const f = await d2aFixture();
+  const f = await d2aFixture({ migrationThrough: options.migrationThrough });
   try {
     const npc = await f.one("select * from public.rpg_entities where id=$1", [
       f.npc,

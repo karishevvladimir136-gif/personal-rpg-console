@@ -9,7 +9,7 @@ import {
 } from "./d2a-qa-fixture.mjs";
 
 for (const prefix of [7, 9, 10, 11, 12, 13]) {
-  test(`D2A QA populated historical prefix ${prefix} preserves old rows and loadable saves through migration 15`, async () => {
+  test(`D2A QA populated historical prefix ${prefix} preserves old rows and loadable saves through migration 16`, async () => {
     const { fixture, world } = await moduleFromSource(
       "tests/phase35-storage-fixture.mjs",
     );

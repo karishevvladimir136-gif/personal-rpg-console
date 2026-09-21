@@ -18,7 +18,7 @@ import { libraryId } from "../world-library/local-compiler.ts";
 import { parseLibraryRecord } from "../world-library/parsers.ts";
 import { registryVersion, validateModelSelection, validateExecutionProfile } from "../model-runtime/registry.ts";
 import { validateRuntimePolicy } from "../model-runtime/registry.ts";
-import { ensure, FoundationValidationError, literal, object, text, uuid } from "../foundation-loop/fields.ts";
+import { ensure, FoundationValidationError, integer, literal, object, text, uuid } from "../foundation-loop/fields.ts";
 
 export function parseLabAuthoringRequest(value: unknown): LabAuthoringRequest {
   const envelope = object(value, ["action", "input"]);
@@ -145,7 +145,7 @@ export function createLabAuthoringService(options: {
     }
     const dv = parseLibraryRecord({ schemaVersion: 1, ownerId, kind: "divergence", id: id(operationId, "divergence"), versionId: id(operationId, "divergence:version"), version: 1, previousVersionId: null, body: divergence }, ownerId);
     await library.put({ operationId: id(operationId, "divergence:receipt"), record: dv });
-    const run = await options.lab.perform({ action: "prepare", input: { operationId: id(operationId, "prepare"), campaignId, saveId: approved.body.composition.basis.saveId, scenarioVersionId: approved.versionId, divergenceVersionId: dv.versionId, label: approved.body.title.slice(0, 160), horizonMinutes: approved.body.composition.review!.horizonMinutes } });
+    const run = await options.lab.perform({ action: "prepare", input: { operationId: id(operationId, "prepare"), campaignId, saveId: approved.body.composition.basis.saveId, scenarioVersionId: approved.versionId, divergenceVersionId: dv.versionId, label: approved.body.title.slice(0, 160), horizonMinutes: integer(approved.body.composition.review!.horizonMinutes, 1, 43_200) } });
     return { draft: project(approved), run };
   }
   return { catalog, perform };
