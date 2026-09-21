@@ -202,6 +202,28 @@ test("D1 QA SQL independently rejects an approved Pack with unresolved contradic
   }
 });
 
+test("D1 QA a claim operation cannot be paired with a commit on a sibling run", async () => {
+  const f = await qaFixture();
+  try {
+    const a = await running(f);
+    const b = await running(f, {
+      ...f.request,
+      operationId: randomUUID(),
+      label: "QA independent operation sibling",
+    });
+    const claim = await f.one(
+      "select operation_id from rpg_private.world_lab_commands where run_id=$1 and stage='claim'",
+      [a.id],
+    );
+    const { plan } = await commitPlan(f, b, 30, claim.operation_id);
+    const stable = await vaultState(f);
+    await assert.rejects(() => f.lab("commit", plan));
+    assert.deepEqual(await vaultState(f), stable);
+  } finally {
+    await f.db.close();
+  }
+});
+
 test("D1 QA SQL exact manifest membership rejects corrupt digests, row keys and family substitutions", async () => {
   const f = await qaFixture();
   try {
