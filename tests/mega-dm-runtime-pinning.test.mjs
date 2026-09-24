@@ -53,3 +53,73 @@ test("a settings edit invalidates an unclaimed turn before it can switch Style",
     await f.db.close();
   }
 });
+
+test("Teach DM Style approval cannot switch an already claimed gameplay turn", async () => {
+  const f = await fixture();
+  try {
+    const w = await world(f);
+    const gameOperationId = randomUUID();
+    const revision = (await f.runtime(w.cid, "play")).revision;
+    await f.runtime(w.cid, "begin", {
+      operationId: gameOperationId,
+      campaignId: w.cid,
+      expectedRevision: revision,
+      mode: "game",
+      input: "I ask Nera about the road.",
+      companionId: null,
+      listenerIds: [],
+      mechanic: null,
+    });
+    const before = await f.runtime(w.cid, "claim", { operationId: gameOperationId });
+    const feedbackOperationId = randomUUID();
+    const proposalId = randomUUID();
+    await f.runtime(w.cid, "begin", {
+      operationId: feedbackOperationId,
+      campaignId: w.cid,
+      expectedRevision: revision,
+      mode: "feedback",
+      input: "Make companions more active.",
+      companionId: null,
+      listenerIds: [],
+      mechanic: null,
+    });
+    await f.runtime(w.cid, "claim", { operationId: feedbackOperationId });
+    await f.one("update rpg_private.turns set status='committed',proposal=$2::jsonb where id=$1", [
+      feedbackOperationId,
+      JSON.stringify({
+        id: proposalId,
+        text: "More companion initiative.",
+        status: "proposed",
+        scope: null,
+        sessionId: w.sid,
+        documentRevision: 1,
+      }),
+    ]);
+    const settings = (await f.saves(w.cid, "campaign")).settings;
+    const taught = await f.one("select public.rpg_dm_teach($1,$2,$3::jsonb) result", [
+      f.owner,
+      w.cid,
+      JSON.stringify({
+        action: "approve-style",
+        requestId: randomUUID(),
+        campaignId: w.cid,
+        timeline: await f.fence(w.cid),
+        operationId: feedbackOperationId,
+        proposalId,
+        expectedSettingsRevision: settings.revision,
+        style: { ...defaultDmStyle, companionAgency: "high" },
+      }),
+    ]);
+    assert.equal(taught.result.status, "applied");
+    await f.one("update rpg_private.turns set lease_until=now()-interval '1 second' where id=$1", [gameOperationId]);
+    const retried = await f.runtime(w.cid, "claim", { operationId: gameOperationId });
+    assert.equal(retried, null);
+    const stale = await f.one("select status, failure, source->'craft' craft from rpg_private.turns where id=$1", [gameOperationId]);
+    assert.equal(stale.status, "failed");
+    assert.equal(stale.failure, "conflict");
+    assert.deepEqual(stale.craft, before.source.craft);
+    assert.equal((await f.saves(w.cid, "campaign")).settings.values.dmStyle.companionAgency, "high");
+  } finally {
+    await f.db.close();
+  }
+});
