@@ -55,6 +55,52 @@ test("bounded private Character Packet is deterministic, actor-scoped and spoile
   assert.deepEqual(characterPacket(source, input, "plan")[0].beliefs, []);
 });
 
+test("modeled addressed actor outranks crowded-scene order, with stable ties and a two-actor byte bound", () => {
+  const { source, input } = runtimeFixture();
+  const template = source.snapshot.entities[0];
+  const actors = ["Marcus", "Elena", "Bram"].map((name) => ({
+    ...template, id: randomUUID(), kind: "companion", name,
+  }));
+  source.snapshot.entities.push(...actors);
+  source.runtime.configuration.presentEntityIds.push(...actors.map((actor) => actor.id));
+  source.privateState.npc = Object.fromEntries(actors.map((actor) => [
+    `character_${actor.id}`, JSON.stringify(model(actor.id)),
+  ]));
+  input.input = "Bram, what do you think?";
+  const selected = characterPacket(source, input, "plan");
+  assert.equal(selected.length, 2);
+  assert.equal(selected[0].actorId, actors[2].id);
+  const tieWinner = [actors[0].id, actors[1].id].sort()[0];
+  assert.equal(selected[1].actorId, tieWinner);
+  source.snapshot.entities.reverse();
+  assert.deepEqual(characterPacket(source, input, "plan"), selected);
+  assert.ok(Buffer.byteLength(JSON.stringify(selected), "utf8") <= 6200);
+
+  source.runtime.configuration.controlledEntityIds.push(actors[2].id);
+  assert.equal(characterPacket(source, input, "plan").some((row) => row.actorId === actors[2].id), false);
+  source.runtime.configuration.controlledEntityIds.pop();
+  source.runtime.configuration.presentEntityIds = [template.id, actors[0].id, actors[1].id];
+  assert.equal(characterPacket(source, input, "plan")[0].actorId, actors[2].id);
+  assert.equal(characterPacket(source, input, "narrate").some((row) => row.actorId === actors[2].id), false);
+  assert.throws(() => parseCharacterModel(model(actors[2].id, {
+    identity: { ...model(actors[2].id).identity, observableVoice: "x".repeat(181) },
+  })), { code: "validation" });
+});
+
+test("model filtering precedes the cap even when earlier eligible actors have no model", () => {
+  const { source, input } = runtimeFixture();
+  const template = source.snapshot.entities[0];
+  const actors = ["Marcus", "Elena", "Bram"].map((name) => ({
+    ...template, id: randomUUID(), kind: "npc", name,
+  }));
+  source.snapshot.entities.push(...actors);
+  source.runtime.configuration.presentEntityIds.push(...actors.map((actor) => actor.id));
+  source.privateState.npc = { [`character_${actors[2].id}`]: JSON.stringify(model(actors[2].id)) };
+  input.input = "Bram, what do you think?";
+  assert.deepEqual(characterPacket(source, input, "plan").map((row) => row.actorId), [actors[2].id]);
+  assert.deepEqual(characterPacket(source, input, "narrate").map((row) => row.actorId), [actors[2].id]);
+});
+
 test("SQL commit independently rejects controlled-actor Character Model patches without partial state", async () => {
   const f = await fixture();
   try {

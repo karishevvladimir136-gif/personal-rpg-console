@@ -1,4 +1,5 @@
 import { livingCast, livingHistory, livingProbes, LIVING_FIXTURE_DIGEST } from "./living-characters-v1.mjs";
+import { LIVING_SMOKE_PROBES } from "./living-smoke-v1.mjs";
 
 export const livingQualityRubric = Object.freeze({
   dimensions: ["Identity coherence", "Situational appropriateness", "Independent agency", "Epistemic realism",
@@ -44,3 +45,46 @@ export function predictCharacterArtifact() {
     ],
   };
 }
+
+const blindDimensions = Object.freeze([
+  "character recognizability", "independence", "initiative", "knowledge correctness",
+  "relationship continuity", "emotional authenticity", "world causality", "surprise coherence",
+  "player agency", "dialogue naturalness", "warmth or joy where earned",
+  "absence of generic therapy tone", "absence of artificial misery", "desire to keep playing",
+]);
+export function blindLivingSmokeArtifacts() {
+  // A separate reveal key is never embedded in the form shown for first-pass
+  // owner judgment. Rotating orders prevent a persistent label-to-arm hint.
+  const orders = [
+    ["full", "baseline", "doctrine"], ["doctrine", "full", "baseline"],
+    ["baseline", "doctrine", "full"], ["full", "doctrine", "baseline"],
+    ["doctrine", "baseline", "full"],
+  ];
+  const labels = ["X", "Y", "Z"];
+  return {
+    review: { fixtureDigest: LIVING_FIXTURE_DIGEST,
+      instructions: "Read the three frozen anonymous responses for each probe. Record separate qualitative observations before opening the reveal key; do not average them into a winner or wellness score.",
+      dimensions: blindDimensions,
+      cases: LIVING_SMOKE_PROBES.map((probe) => ({ probeId: probe.id, criterion: probe.criterion,
+        responses: labels.map((label) => ({ label, originalOutput: null, observations: null })) })) },
+    reveal: { fixtureDigest: LIVING_FIXTURE_DIGEST, openOnlyAfterInitialReview: true,
+      cases: LIVING_SMOKE_PROBES.map((probe, index) => ({ probeId: probe.id,
+        labels: Object.fromEntries(labels.map((label, position) => [label, orders[index][position]])) })) },
+  };
+}
+
+export const companionSceneQualityArtifact = Object.freeze({
+  fixtureDigest: LIVING_FIXTURE_DIGEST,
+  sceneIds: ["lc19", "lc20", "lc34"], speakingActor: "liora",
+  presentActors: ["liora", "bram", "sava", "orin"],
+  currentPacketPolicy: "speaking companion only, bounded context heuristic",
+  futureQuestion: "Would relevant private scene cognition for the other present actors improve Liora's response without making her omniscient?",
+  currentOutput: null, broaderContextOutput: null, ownerObservation: null,
+});
+
+export const crowdedSceneQualityArtifact = Object.freeze({
+  fixtureDigest: LIVING_FIXTURE_DIGEST, probeId: "shared-joy-after-intensity",
+  currentPacketCap: 2, broaderRelevantPacketSet: "future separately reviewed comparison only",
+  futureQuestion: "Would more than two relevant modeled people improve group banter or emotional continuity enough to justify the context cost?",
+  currentOutput: null, broaderContextOutput: null, ownerObservation: null,
+});

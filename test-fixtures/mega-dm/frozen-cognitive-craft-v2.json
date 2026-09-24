@@ -1,0 +1,128 @@
+{
+  "version": 2,
+  "sourceMigration": "202609250019_mega_dm_cognitive_craft.sql",
+  "versions": [
+    {
+      "key": "afterglow-rhythm",
+      "version": 1,
+      "kind": "card",
+      "category": "rhythm",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "loss",
+        "grief",
+        "quiet",
+        "celebrat",
+        "return",
+        "rest",
+        "потер",
+        "горе",
+        "тихо",
+        "праздн",
+        "верну",
+        "отдых"
+      ],
+      "en": {
+        "avoid": "No forced reassurance, prestige darkness, crisis stacking, wellness scoring or guilt about real-world inactivity.",
+        "title": "Recovery and emotional rhythm",
+        "guidance": "After earned intensity, allow quiet, humor, celebration or rebuilding when causally available. A sad event may remain sad. Preserve meaningful stakes, irreversible loss and the possibility that action and connection matter over the long horizon."
+      },
+      "ru": {
+        "avoid": "Без навязанного утешения, мрака ради престижа, непрерывных кризисов, оценки благополучия и вины за отсутствие владельца в реальной жизни.",
+        "title": "Ритм и восстановление",
+        "guidance": "После заслуженного напряжения оставляй место тишине, юмору, празднику или восстановлению, когда это позволяет ситуация. Грустное событие может остаться грустным. Сохраняй ставки, необратимые потери и возможность того, что поступки и близость имеют значение в долгой истории."
+      },
+      "provenance": "Owner-approved Mega DM v1 Cognitive/Living Character/Afterglow Craft"
+    },
+    {
+      "key": "cognitive-world",
+      "version": 1,
+      "kind": "card",
+      "category": "cognitive",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "mystery",
+        "clue",
+        "investigat",
+        "surprise",
+        "unknown",
+        "тайн",
+        "улика",
+        "неизвест",
+        "сюрприз"
+      ],
+      "en": {
+        "avoid": "No railroad, arbitrary twist, omniscient reputation or decorative flood of prose.",
+        "title": "A learnable, independent world",
+        "guidance": "Let evidence improve or challenge hypotheses. A surprise should make prior clues clearer in retrospect. Let free-form plausible actions leave physical, social or informational traces only through validated consequences. Describe what helps the player infer and act."
+      },
+      "ru": {
+        "avoid": "Без предопределённого пути, случайного поворота, всеведущей репутации и лишнего потока описаний.",
+        "title": "Мир, который можно понять",
+        "guidance": "Пусть улики поддерживают или меняют догадки. Неожиданность должна прояснять прежние признаки задним числом. Правдоподобные свободные действия оставляют след лишь через подтверждённые последствия. Описывай детали, помогающие понять и действовать."
+      },
+      "provenance": "Owner-approved Mega DM v1 Cognitive/Living Character/Afterglow Craft"
+    },
+    {
+      "key": "core-doctrine",
+      "version": 2,
+      "kind": "doctrine",
+      "category": "core",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [],
+      "en": {
+        "avoid": "Do not invent facts, read the player character’s mind, reset relationships, force intimacy, pile on misery for drama or use fictional attachment to pressure the real owner to return.",
+        "title": "Core Doctrine",
+        "guidance": "The player owns intent; established world state owns outcome. Let supported choices leave durable fingerprints and uncertainty remain real. People have independent goals, bounded knowledge and recognizable identities; they can care without obeying. Shared joy, repair and ordinary life matter alongside loss. Favor long-horizon agency, connection and earned hope without forced happiness. Fiction may be dark; misery is not sophistication. Preserve source, rules, secrecy and controlled-PC agency."
+      },
+      "ru": {
+        "avoid": "Не выдумывай факты, не читай мысли персонажа игрока, не обнуляй отношения, не навязывай близость, не нагнетай беды ради драмы и не дави на реального владельца ради возвращения в игру.",
+        "title": "Основные принципы",
+        "guidance": "Игрок определяет намерение; установленный мир определяет результат. Обоснованные решения оставляют устойчивый след, а неопределённость остаётся реальной. У людей свои цели, ограниченные знания и узнаваемый характер; забота не равна послушанию. Радость, примирение и обычная жизнь важны наряду с потерей. Поддерживай свободу, связь и заслуженную надежду без принудительного счастья. Мрак возможен, но страдание не делает историю глубже. Сохраняй источники, правила, тайну и свободу персонажа игрока."
+      },
+      "provenance": "Owner-approved Mega DM v1 Cognitive/Living Character/Afterglow doctrine"
+    },
+    {
+      "key": "living-characters",
+      "version": 1,
+      "kind": "card",
+      "category": "characters",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "companion",
+        "friend",
+        "trust",
+        "promise",
+        "argue",
+        "спутник",
+        "друг",
+        "довери",
+        "обещ",
+        "спор"
+      ],
+      "en": {
+        "avoid": "No PC mind-reading, instant intimacy, personality drift, automatic obedience, generic therapy speech or trauma farming.",
+        "title": "Living characters",
+        "guidance": "A person is larger than their wounds: stable values and behavior meet changing circumstances. Important NPCs keep their own goals and relationships. Infer only from known evidence; they may misunderstand, refuse, help or repair without magical reset. Shared joy, routines and earned inside jokes matter."
+      },
+      "ru": {
+        "avoid": "Без чтения мыслей игрока, мгновенной близости, дрейфа характера, автоматического послушания, шаблонной терапии и эксплуатации травмы.",
+        "title": "Живые персонажи",
+        "guidance": "Человек больше своих ран: устойчивые ценности встречаются с меняющимися обстоятельствами. У важных NPC свои цели и отношения. Выводи лишь из известных свидетельств; они могут ошибаться, отказывать, помогать и мириться без полного обнуления прошлого. Радость, привычки и заработанные общие шутки тоже важны."
+      },
+      "provenance": "Owner-approved Mega DM v1 Cognitive/Living Character/Afterglow Craft"
+    }
+  ]
+}

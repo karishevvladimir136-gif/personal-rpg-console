@@ -168,15 +168,35 @@ export function characterPacket(source: RuntimeSource, input: TurnInput, audienc
 }[];
 export function characterPacket(source: RuntimeSource, input: TurnInput, audience: "plan" | "narrate") {
   const controlled = new Set(source.runtime.configuration?.controlledEntityIds ?? []);
-  const candidates = source.snapshot.entities.filter((row) => row.campaign_id === input.campaignId &&
-    ["npc", "companion"].includes(row.kind) && !controlled.has(row.id) &&
-    (input.mode === "companion" ? row.id === input.companionId :
-      (source.runtime.configuration?.presentEntityIds.includes(row.id) ||
-        (audience === "plan" && input.input.toLocaleLowerCase().includes(row.name.toLocaleLowerCase())))));
-  const rows = [];
-  for (const actor of candidates.slice(0, MAX_ACTORS)) {
+  const present = new Set(source.runtime.configuration?.presentEntityIds ?? []);
+  const referencedAt = (name: string) => {
+    const text = input.input.toLocaleLowerCase();
+    const needle = name.toLocaleLowerCase();
+    let at = text.indexOf(needle);
+    while (at >= 0) {
+      const before = at ? text[at - 1] : "";
+      const after = text[at + needle.length] ?? "";
+      if ((!before || !/[\p{L}\p{N}]/u.test(before)) && (!after || !/[\p{L}\p{N}]/u.test(after))) return at;
+      at = text.indexOf(needle, at + needle.length);
+    }
+    return -1;
+  };
+  // Eligibility, an existing valid model, and relevance are resolved before
+  // the bounded context cap. Entity insertion order must not hide the person
+  // the player actually addressed.
+  const candidates = source.snapshot.entities.flatMap((actor) => {
+    if (actor.campaign_id !== input.campaignId || !["npc", "companion"].includes(actor.kind) || controlled.has(actor.id)) return [];
+    const mention = input.mode === "companion" ? -1 : referencedAt(actor.name);
+    const inScene = present.has(actor.id);
+    if (input.mode === "companion" ? actor.id !== input.companionId : !inScene && (audience === "narrate" || mention < 0)) return [];
     const model = storedModel(source, actor.id);
-    if (!model) continue;
+    return model ? [{ actor, model, mention, inScene }] : [];
+  }).sort((a, b) =>
+    (audience === "plan" && input.mode !== "companion" ? Number(b.mention >= 0) - Number(a.mention >= 0) : 0) ||
+    (a.mention >= 0 && b.mention >= 0 ? a.mention - b.mention : 0) ||
+    Number(b.inScene) - Number(a.inScene) || a.actor.id.localeCompare(b.actor.id));
+  const rows = [];
+  for (const { actor, model } of candidates.slice(0, MAX_ACTORS)) {
     if (audience === "narrate") {
       rows.push({ actorId: actor.id, observableVoice: model.identity.observableVoice });
       continue;
