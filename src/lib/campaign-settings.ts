@@ -17,6 +17,26 @@ export type PlayerRole = "one-of-many" | "significant" | "chosen";
 export type WorldAutonomy = "low" | "moderate" | "high";
 export type CheckFrequency = "narrative" | "balanced" | "full-rpg";
 export type DicePresentation = "hidden" | "key-rolls" | "all-player-rolls";
+// Structured owner preferences only. Mechanics, Canon, knowledge and world
+// autonomy/deadline policy remain authoritative elsewhere.
+export type DmStyle = {
+  companionAgency: "low" | "normal" | "high";
+  descriptionDensity: "concise" | "balanced" | "rich";
+  dialogueDensity: "concise" | "balanced" | "rich";
+  dramaticPace: "measured" | "balanced" | "brisk";
+  mystery: "low" | "normal" | "high";
+  failForward: "low" | "normal" | "high";
+  tone: "grounded" | "warm" | "cinematic";
+};
+export const defaultDmStyle: DmStyle = {
+  companionAgency: "normal",
+  descriptionDensity: "balanced",
+  dialogueDensity: "balanced",
+  dramaticPace: "balanced",
+  mystery: "normal",
+  failForward: "normal",
+  tone: "grounded",
+};
 
 export const checkFrequencyOptions = [
   {
@@ -202,6 +222,8 @@ export const previewLimits = {
 
 export type CampaignSettings = {
   campaign_id: string;
+  // Optional in old saved revisions; never backfill or reinterpret history.
+  dmStyle?: DmStyle;
   language: Language;
   rulesSystem: RulesSystem;
   difficulty: DifficultyValues & { preset: DifficultyPreset };
@@ -224,6 +246,7 @@ export function createCampaignSettings(
 ): CampaignSettings {
   return {
     campaign_id: campaignId,
+    dmStyle: { ...defaultDmStyle },
     language: "en",
     rulesSystem: { ...rulesSystem },
     difficulty: { preset: "medium", ...difficultyPresets.medium },
@@ -250,6 +273,7 @@ type DifficultyChange = {
 }[keyof DifficultyValues];
 export type CampaignSettingsAction =
   | DifficultyChange
+  | { [K in keyof DmStyle]: { type: "dmStyle"; key: K; value: DmStyle[K] } }[keyof DmStyle]
   | { type: "preset"; value: DifficultyPreset }
   | { type: "language"; value: Language }
   | { type: "storyStructure"; value: StoryStructure }
@@ -274,11 +298,20 @@ export function supportsDifficultyParameter(
   return true;
 }
 
+export function effectiveDmStyle(settings: Pick<CampaignSettings, "dmStyle">): DmStyle {
+  return { ...defaultDmStyle, ...settings.dmStyle };
+}
+
 // Pure state transitions shared by the preview and regression tests; no persistence or gameplay.
 export function updateCampaignSettings(
   settings: CampaignSettings,
   action: CampaignSettingsAction,
 ): CampaignSettings {
+  if (action.type === "dmStyle")
+    return {
+      ...settings,
+      dmStyle: { ...effectiveDmStyle(settings), [action.key]: action.value },
+    };
   if (action.type === "preset") {
     if (action.value === "custom") {
       return {

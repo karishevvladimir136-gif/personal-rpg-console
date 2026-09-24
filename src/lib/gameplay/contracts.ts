@@ -148,8 +148,8 @@ export type VisibleCheck = {
 export type GuidanceProposal = {
   id: string;
   text: string;
-  status: "proposed" | "approved";
-  scope: "session" | "campaign" | null;
+  status: "proposed" | "approved" | "rejected";
+  scope: "session" | "campaign" | "campaign_style" | "global_craft" | null;
   sessionId: string | null;
   documentRevision: number;
 };

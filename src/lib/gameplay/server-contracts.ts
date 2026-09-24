@@ -7,6 +7,7 @@ import type { TimelineFence } from "../saves/contracts.ts";
 // Lead-owned INTERNAL TYPE-ONLY contracts. Do not import runtime values into a client.
 import type { CampaignSnapshot } from "../persistence/contracts.ts";
 import type { ContextMemory } from "../memory/server-contracts.ts";
+import type { PinnedCraft } from "../dm-craft/contracts.ts";
 import type {
   ConfigurePlayInput,
   GuidanceApprovalInput,
@@ -88,6 +89,7 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  craft?: PinnedCraft;
   foundationOptions?: JsonObject;
   memory?: ContextMemory;
   ownerId: string;

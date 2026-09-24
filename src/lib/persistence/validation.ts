@@ -97,8 +97,21 @@ export function validateSettings(value: unknown, campaignId: string) {
     "frameRatio",
     "videoDuration",
     "narrativeStyle",
-  ]);
+  ], ["dmStyle"]);
   assert(s.campaign_id === campaignId);
+  if (s.dmStyle !== undefined) {
+    const style = fields(s.dmStyle, [
+      "companionAgency", "descriptionDensity", "dialogueDensity",
+      "dramaticPace", "mystery", "failForward", "tone",
+    ]);
+    enumeration(style.companionAgency, ["low", "normal", "high"]);
+    enumeration(style.descriptionDensity, ["concise", "balanced", "rich"]);
+    enumeration(style.dialogueDensity, ["concise", "balanced", "rich"]);
+    enumeration(style.dramaticPace, ["measured", "balanced", "brisk"]);
+    enumeration(style.mystery, ["low", "normal", "high"]);
+    enumeration(style.failForward, ["low", "normal", "high"]);
+    enumeration(style.tone, ["grounded", "warm", "cinematic"]);
+  }
   enumeration(s.language, ["en", "ru"]);
   const rules = fields(s.rulesSystem, [
     "id",
