@@ -103,7 +103,7 @@ export function validateSettings(value: unknown, campaignId: string) {
     const style = fields(s.dmStyle, [
       "companionAgency", "descriptionDensity", "dialogueDensity",
       "dramaticPace", "mystery", "failForward", "tone",
-    ]);
+    ], ["emotionalTone", "tragedyIntensity"]);
     enumeration(style.companionAgency, ["low", "normal", "high"]);
     enumeration(style.descriptionDensity, ["concise", "balanced", "rich"]);
     enumeration(style.dialogueDensity, ["concise", "balanced", "rich"]);
@@ -111,6 +111,8 @@ export function validateSettings(value: unknown, campaignId: string) {
     enumeration(style.mystery, ["low", "normal", "high"]);
     enumeration(style.failForward, ["low", "normal", "high"]);
     enumeration(style.tone, ["grounded", "warm", "cinematic"]);
+    if (style.emotionalTone !== undefined) enumeration(style.emotionalTone, ["hopeful_humanist", "balanced", "bleak"]);
+    if (style.tragedyIntensity !== undefined) enumeration(style.tragedyIntensity, ["low", "normal", "unrestricted"]);
   }
   enumeration(s.language, ["en", "ru"]);
   const rules = fields(s.rulesSystem, [

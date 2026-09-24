@@ -27,6 +27,9 @@ export type DmStyle = {
   mystery: "low" | "normal" | "high";
   failForward: "low" | "normal" | "high";
   tone: "grounded" | "warm" | "cinematic";
+  // Optional on historical settings revisions; effective defaults apply only to new turns.
+  emotionalTone: "hopeful_humanist" | "balanced" | "bleak";
+  tragedyIntensity: "low" | "normal" | "unrestricted";
 };
 export const defaultDmStyle: DmStyle = {
   companionAgency: "normal",
@@ -36,6 +39,8 @@ export const defaultDmStyle: DmStyle = {
   mystery: "normal",
   failForward: "normal",
   tone: "grounded",
+  emotionalTone: "hopeful_humanist",
+  tragedyIntensity: "normal",
 };
 
 export const checkFrequencyOptions = [

@@ -1,5 +1,7 @@
 # RPG Design Doctrine — industry best practices for an AI-native RPG
 
+**Mega DM v1 owner-approved design addendum:** player intent is sovereign while the world owns outcome. A learnable world should make supported choices leave durable fingerprints and make surprises coherent in retrospect. Important people remain recognizable across changing circumstances, with bounded knowledge, their own goals and evidence-backed relationships. “A person is larger than their wounds.” Long-horizon emotional rhythm may include grief and loss while keeping room for earned agency, connection, humor and hope; misery is not sophistication. The game is entertainment, never therapy or a retention system. Details and implementation boundaries are in [Cognitive DM Craft](COGNITIVE_DM_CRAFT_RESEARCH.md), [Living Characters](LIVING_CHARACTERS_BRIEF.md) and [Positive Afterglow](POSITIVE_AFTERGLOW_BRIEF.md). These project heuristics are not validated psychological formulas.
+
 September 19, 2026. **Product/design doctrine only; no implementation is authorized by this file.** These principles are extracted from successful CRPG, immersive-sim and procedural-RPG design. They guide future World Engine, DM, quest, companion, combat and renderer decisions without copying proprietary content or requiring a specific art style.
 
 Primary references:

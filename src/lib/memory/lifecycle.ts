@@ -6,14 +6,19 @@ import type { MemoryStore, SummaryProvider } from "./server-contracts.ts";
 import { withMemory } from "./context.ts";
 import { processMemoryJobs } from "./jobs.ts";
 import { sameTimeline } from "./timeline.ts";
+import { validateCharacterPatches } from "../gameplay/character-model.ts";
 
 export function memoryAwareProvider(
   provider: DmProvider,
   memory: MemoryStore,
 ): DmProvider {
   return {
-    plan: async (source, input) =>
-      provider.plan(await withMemory(source, input, memory, true), input),
+    plan: async (source, input) => {
+      const selected = await withMemory(source, input, memory, true);
+      const result = await provider.plan(selected, input);
+      validateCharacterPatches(selected, input, result.output.privatePatches);
+      return result;
+    },
     narrate: async (source, input, resolution, checks) =>
       provider.narrate(
         await withMemory(source, input, memory, false),

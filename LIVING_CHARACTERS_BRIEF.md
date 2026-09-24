@@ -1,0 +1,21 @@
+# Living Characters — bounded Character Model v1
+
+**Status:** candidate implementation and synthetic evaluation foundation, awaiting live quality evidence and final owner acceptance. Important NPCs should be knowable but not fully known, responsive but not obedient, consistent but not repetitive. A person is larger than their wounds. Shared joy, ordinary companionship and humor matter alongside conflict and loss.
+
+## Authority and persistence
+
+The Character Model is a compact server-private JSON value under the existing `rpg_private.dm_state.contents.npc.character_<actor UUID>` namespace. It is not a second Actor database, Memory store or NPC agent. The active `dm_state` row has a revision; the accepted save/timeline vault captures it as part of its existing manifest family. Ordinary model changes travel as a narrowly validated private patch in the existing pinned turn checkpoint and atomic runtime commit. A retry with the exact packet reuses the accepted runtime receipt. An owner correction uses the same private row with a timeline fence, expected revision and immutable correction receipt. Its receipt does not point by foreign key to replaceable active-projection entity rows, so old saves can load.
+
+The strict v1 shape contains a stable Identity Kernel (values, wants, boundaries, loyalties, behavioral signatures and spoiler-safe observable voice), bounded current fictional state, evidence-linked beliefs, qualitative relationships and actor-specific episode interpretations. An ordinary current-state change cites its exact turn operation as its basis; historical beliefs and episodes cite existing Memory source versions. There are no universal numeric relationship scores or real-owner psychological fields. Positive knowledge remains the existing Memory `knownBy` authority. A belief may be wrong and never becomes Canon merely by being stored. An interpretation of the PC is an NPC belief grounded in visible evidence, never access to PC thoughts.
+
+The server validates actor and campaign membership, small array/text limits, exact JSON fields, allowed qualitative values, source version and visibility, current valid Memory source, positive `knownBy`, and relationship target identity. Ordinary turns cannot establish or rewrite Identity Kernel. The database checks the same critical boundaries even if a caller bypasses the TypeScript parser. A pending turn carries the private-state revision it saw; an intervening owner correction makes its character patch stale. An idempotent retry of an already committed packet does not rejudge old evidence after later correction.
+
+## Context and secrecy
+
+Selection is deterministic from the pinned operation. At most two relevant present actors contribute compact Character Packets (6,200 total bytes), while a companion turn sees only the speaking companion's private model. Beliefs and episodes enter the packet only when their exact source is positively known to that actor. The general private-state bucket is stripped of character values before plan context assembly to prevent an unbounded second path. The narrator receives only an observable voice line; private motives, beliefs, relationship interpretations and other NPC models are absent. No Character Packet is a normal public DTO.
+
+Existing source-linked scenes/Events carry history. The model stores interpretation and pointers, not a duplicate transcript. Model updates may be proposed by the single DM but are not automatic personality rewrite. Identity changes require explicit owner correction. No LLM agent runs per NPC.
+
+## Synthetic evaluation and limits
+
+The frozen original cast has Liora, Bram, Sava, Orin and owner-controlled Talin across 48 compact synthetic scenes. Twenty probes cover identity, knowledge, refusal, initiative, NPC-to-NPC ties, joy, disagreement, repair, growth, absence and upgrade continuity. Deterministic tests prove structural guards, packet bounds, owner correction/save-load, companion scoping and retry. The fingerprint and predict-the-character artifacts intentionally require later blind human judgment. The current code does not prove that a live model will generate moving dialogue, nuanced growth or perfect long-horizon personality continuity. No real/private campaign was imported and no provider was called.

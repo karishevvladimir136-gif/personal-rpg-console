@@ -11,10 +11,10 @@ function record(value: unknown): Record<string, unknown> {
     throw new Error("invalid_dm_craft");
   return value as Record<string, unknown>;
 }
-function keys(value: Record<string, unknown>, expected: string[]) {
+function keys(value: Record<string, unknown>, expected: string[], optional: string[] = []) {
   if (
-    Object.keys(value).length !== expected.length ||
-    expected.some((key) => !Object.hasOwn(value, key))
+    expected.some((key) => !Object.hasOwn(value, key)) ||
+    Object.keys(value).some((key) => !expected.includes(key) && !optional.includes(key))
   )
     throw new Error("invalid_dm_craft");
 }
@@ -129,7 +129,7 @@ export function parseDmStyle(value: unknown) {
     "mystery",
     "failForward",
     "tone",
-  ]);
+  ], ["emotionalTone", "tragedyIntensity"]);
   return {
     companionAgency: choices(item.companionAgency, ["low", "normal", "high"] as const),
     descriptionDensity: choices(item.descriptionDensity, ["concise", "balanced", "rich"] as const),
@@ -138,6 +138,8 @@ export function parseDmStyle(value: unknown) {
     mystery: choices(item.mystery, ["low", "normal", "high"] as const),
     failForward: choices(item.failForward, ["low", "normal", "high"] as const),
     tone: choices(item.tone, ["grounded", "warm", "cinematic"] as const),
+    emotionalTone: item.emotionalTone === undefined ? "hopeful_humanist" as const : choices(item.emotionalTone, ["hopeful_humanist", "balanced", "bleak"] as const),
+    tragedyIntensity: item.tragedyIntensity === undefined ? "normal" as const : choices(item.tragedyIntensity, ["low", "normal", "unrestricted"] as const),
   };
 }
 export function parseTeachCommand(value: unknown, campaignId: string): TeachCommand {

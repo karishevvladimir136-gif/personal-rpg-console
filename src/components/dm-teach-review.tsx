@@ -7,7 +7,7 @@ import { Badge, Button } from "./ui";
 import { DmStyleControls } from "./dm-style-controls";
 import { craftKeyFromTitle } from "./dm-craft-key";
 import { effectiveDmStyle, type DmStyle } from "@/lib/campaign-settings";
-import { dmStyleChoices, dmStyleKeys } from "./dm-style-controls";
+import { dmStyleChoices, teachableDmStyleKeys } from "./dm-style-controls";
 import type {
   CraftOwnerView,
   CraftVersionInput,
@@ -39,7 +39,7 @@ export function DmTeachReview({
   const [expanded, setExpanded] = useState(false);
   const [baselineRevision] = useState(data?.settings.revision ?? null);
   const [style, setStyle] = useState<DmStyle>(() => candidate?.kind === "campaign_style"
-    ? Object.fromEntries(dmStyleKeys.map((key) => [key, candidate.styleDelta[key] ?? originalStyle[key]])) as DmStyle
+    ? { ...originalStyle, ...Object.fromEntries(teachableDmStyleKeys.map((key) => [key, candidate.styleDelta[key] ?? originalStyle[key]])) } as DmStyle
     : originalStyle);
   const [entry, setEntry] = useState<CraftVersionInput>(() => candidate?.kind === "global_craft" ? {
     ...candidate.entry,
@@ -164,7 +164,7 @@ export function DmTeachReview({
           <p><strong>{t("Suggested change")}</strong> — {t(candidate.explanation)}</p>
           {candidate.kind === "campaign_style" && (
             <div className="dm-teaching-diff">
-              {dmStyleKeys.filter((key) => candidate.styleDelta[key] !== null).map((key) => (
+              {teachableDmStyleKeys.filter((key) => candidate.styleDelta[key] !== null).map((key) => (
                 <p key={key}>
                   <strong>{t(dmStyleChoices[key].label)}:</strong>{" "}
                   {t("Current")} {t(originalStyle[key][0].toUpperCase() + originalStyle[key].slice(1))} → {t("Proposed")} {t(candidate.styleDelta[key]![0].toUpperCase() + candidate.styleDelta[key]!.slice(1))}
@@ -275,6 +275,7 @@ export function DmTeachReview({
             <DmStyleControls
               style={style}
               disabled={busy}
+              teachingOnly
               onChange={(key, value) => setStyle({ ...style, [key]: value })}
             />
           )}

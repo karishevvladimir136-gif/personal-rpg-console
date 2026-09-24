@@ -41,8 +41,8 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
   try {
     const view = await craft(f, "read");
     assert.equal(view.policyVersion, "mega-dm-v1-public-context-2");
-    assert.equal(view.versions.length, 8);
-    assert.equal(view.effective.length, 8);
+    assert.equal(view.versions.length, 12);
+    assert.equal(view.effective.length, 11);
     assert.ok(view.versions.every((v) => v.en.guidance && v.ru.guidance));
     await assert.rejects(craft(f, "read", {}, f.other), /rpg_forbidden/);
     const w = await world(f);
@@ -65,9 +65,10 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
     assert.equal(JSON.stringify(await f.runtime(w.cid, "get", { operationId })).includes("craft"), false);
     const pinned = claim.source.craft;
     assert.deepEqual((await f.one("select rpg_private.dm_craft_stage($1,'plan','I inspect a plain stone') selected", [f.owner])).selected, []);
-    const core = view.versions.find((v) => v.key === "core-doctrine");
+    const core = view.versions.find((v) => v.id === view.effective.find((e) => e.key === "core-doctrine").activeVersionId);
+    const revision = view.effective.find((e) => e.key === "core-doctrine").activationRevision;
     const command = {
-      requestId: randomUUID(), expectedActivationRevision: 1,
+      requestId: randomUUID(), expectedActivationRevision: revision,
       entry: {
         key: core.key, kind: core.kind, category: core.category,
         stages: core.stages, triggers: core.triggers,
@@ -76,8 +77,8 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
       },
     };
     const revised = await craft(f, "save", command);
-    assert.equal(revised.versions.length, 9);
-    assert.equal(revised.effective.find((x) => x.key === core.key).activationRevision, 2);
+    assert.equal(revised.versions.length, view.versions.length + 1);
+    assert.equal(revised.effective.find((x) => x.key === core.key).activationRevision, revision + 1);
     assert.deepEqual(await craft(f, "save", command), revised);
     assert.deepEqual((await f.one("select source->'craft' pinned from rpg_private.turns where id=$1", [operationId])).pinned, pinned);
     await f.one("update rpg_private.turns set lease_until=now()-interval '1 second' where id=$1", [operationId]);
@@ -107,11 +108,12 @@ test("Teach DM global approval needs an explicit reviewed entry, then remains id
         status: "proposed", scope: null, sessionId: w.sid, documentRevision: 1 }),
     ]);
     const before = await craft(f, "read");
-    const core = before.versions.find((v) => v.key === "core-doctrine");
+    const core = before.versions.find((v) => v.id === before.effective.find((e) => e.key === "core-doctrine").activeVersionId);
+    const revision = before.effective.find((e) => e.key === "core-doctrine").activationRevision;
     const command = {
       action: "approve-global", requestId: randomUUID(), campaignId: w.cid,
       timeline: await f.fence(w.cid), operationId, proposalId,
-      expectedActivationRevision: 1,
+      expectedActivationRevision: revision,
       entry: { key: core.key, kind: core.kind, category: core.category,
         stages: core.stages, triggers: core.triggers,
         en: { ...core.en, guidance: `${core.en.guidance} Allow more than one supported approach.` },
@@ -122,9 +124,9 @@ test("Teach DM global approval needs an explicit reviewed entry, then remains id
     assert.equal((await teach(f, w.cid, command)).status, "already_applied");
     const after = await craft(f, "read");
     assert.equal(after.versions.length, before.versions.length + 1);
-    assert.equal(after.effective.find((x) => x.key === core.key).activationRevision, 2);
+    assert.equal(after.effective.find((x) => x.key === core.key).activationRevision, revision + 1);
     const restored = await craft(f, "activate", {
-      requestId: randomUUID(), expectedActivationRevision: 2,
+      requestId: randomUUID(), expectedActivationRevision: revision + 1,
       key: core.key, versionId: core.id,
     });
     assert.equal(restored.effective.find((x) => x.key === core.key).activeVersionId, core.id);
@@ -149,9 +151,10 @@ test("campaign Style rolls back through existing save manifests while global Cra
       ...first.values, dmStyle: { ...defaultDmStyle, tone: "cinematic" },
     }, first.revision);
     const beforeCraft = await craft(f, "read");
-    const core = beforeCraft.versions.find((v) => v.key === "core-doctrine");
+    const core = beforeCraft.versions.find((v) => v.id === beforeCraft.effective.find((e) => e.key === "core-doctrine").activeVersionId);
+    const revision = beforeCraft.effective.find((e) => e.key === "core-doctrine").activationRevision;
     const active = await craft(f, "save", {
-      requestId: randomUUID(), expectedActivationRevision: 1,
+      requestId: randomUUID(), expectedActivationRevision: revision,
       entry: { key: core.key, kind: core.kind, category: core.category,
         stages: core.stages, triggers: core.triggers,
         en: { ...core.en, title: "After the save" }, ru: core.ru,
@@ -162,7 +165,7 @@ test("campaign Style rolls back through existing save manifests while global Cra
     assert.equal(restored.settings.values.dmStyle.tone, "warm");
     assert.equal((await craft(f, "read")).effective.find((x) => x.key === core.key).activeVersionId,
       active.effective.find((x) => x.key === core.key).activeVersionId);
-    assert.equal((await craft(f, "read")).versions.length, 9);
+    assert.equal((await craft(f, "read")).versions.length, beforeCraft.versions.length + 1);
   } finally { await f.db.close(); }
 });
 

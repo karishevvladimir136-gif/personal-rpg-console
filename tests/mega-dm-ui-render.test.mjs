@@ -50,13 +50,13 @@ function renderStyle(language, settings) {
   );
 }
 
-test("DM Style renders seven bounded controls in English and Russian with legacy defaults", () => {
+test("DM Style renders nine bounded controls in English and Russian with legacy defaults", () => {
   const legacy = createCampaignSettings("campaign");
   delete legacy.dmStyle;
   for (const language of ["en", "ru"]) {
     const html = renderStyle(language, legacy);
-    assert.equal((html.match(/<select/g) ?? []).length, 7);
-    assert.equal((html.match(/<option/g) ?? []).length, 21);
+    assert.equal((html.match(/<select/g) ?? []).length, 9);
+    assert.equal((html.match(/<option/g) ?? []).length, 27);
     assert.match(
       html,
       language === "ru" ? /Инициатива спутников/ : /Companion initiative/,
@@ -66,6 +66,9 @@ test("DM Style renders seven bounded controls in English and Russian with legacy
       language === "ru" ? /Драматический темп/ : /Dramatic pace/,
     );
     assert.match(html, /value="normal" selected=""/);
+    assert.match(html, /value="hopeful_humanist" selected=""/);
+    assert.match(html, language === "ru" ? /Эмоциональный тон/ : /Emotional tone/);
+    assert.match(html, language === "ru" ? /Насыщенность трагедией/ : /Tragedy intensity/);
     assert.doesNotMatch(html, /selection trace|source\.craft|rpg_private/i);
   }
 });

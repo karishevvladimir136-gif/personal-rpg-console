@@ -20,6 +20,7 @@ import {
 } from "./mechanics/messages.ts";
 import { requireRule, safeTurnFailure, TurnError } from "./turn-errors.ts";
 import { requireClaimTimeline, requireTurnTimeline } from "./timeline.ts";
+import { characterPacket } from "./character-model.ts";
 
 /** Safe text is trusted application copy, never the private-inclusive planner's clarification. */
 export const clarificationNarration = clarificationMessages.en;
@@ -31,10 +32,13 @@ const emptyResolution = (source: RuntimeSource): MechanicsResolution => ({
   outcomes: [],
 });
 
-function publicSource(source: RuntimeSource): RuntimeSource {
+function publicSource(source: RuntimeSource, input?: TurnInput): RuntimeSource {
   return {
     ...source,
     privateState: {},
+    observableCharacters: input && input.mode !== "feedback" && input.mode !== "ooc"
+      ? characterPacket(source, input, "narrate")
+      : [],
     memory: source.memory
       ? {
           ...source.memory,
@@ -291,7 +295,7 @@ async function execute(
         };
       else {
         const response = await provider.narrate(
-          publicSource(source),
+          publicSource(source, input),
           input,
           checkpoint.foundationSettlement
             ? {

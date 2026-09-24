@@ -97,7 +97,7 @@ test("provider decoration uses private memory only for planning; feedback bypass
     return context();
   };
   const wrapped = memoryAwareProvider(
-    { plan: async (s) => s, narrate: async (s) => s, feedback: async (s) => s },
+    { plan: async (s) => ({ output: { privatePatches: [] }, source: s }), narrate: async (s) => s, feedback: async (s) => s },
     f.store,
   );
   await wrapped.plan(f.source, f.input);

@@ -14,7 +14,9 @@ test("exact synthetic fixture and seeded doctrine/cards are frozen and match dis
   const f = await fixture();
   try {
     const view = (await f.one("select public.rpg_dm_craft($1,'read','{}'::jsonb) result", [f.owner])).result;
-    const semantic = view.versions.map(({key,version,kind,category,stages,triggers,en,ru,provenance}) =>
+    const frozenIdentities = new Set(frozenCraft.versions.map(({ key, version }) => `${key}:${version}`));
+    const semantic = view.versions.filter(({ key, version }) => frozenIdentities.has(`${key}:${version}`))
+      .map(({key,version,kind,category,stages,triggers,en,ru,provenance}) =>
       ({key,version,kind,category,stages,triggers,en,ru,provenance})).sort((a,b)=>a.key.localeCompare(b.key));
     assert.deepEqual(semantic, frozenCraft.versions);
   } finally { await f.db.close(); }

@@ -91,6 +91,9 @@ export type CurrentCheckpoint = {
 };
 export type RuntimeSource = {
   craft?: PinnedCraft;
+  // Internal spoiler-safe voice projection, constructed only for narrate().
+  observableCharacters?: { actorId: string; observableVoice: string }[];
+  privateStateRevision?: number;
   foundationOptions?: JsonObject;
   memory?: ContextMemory;
   ownerId: string;

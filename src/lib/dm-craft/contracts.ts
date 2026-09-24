@@ -44,7 +44,8 @@ export type CraftOwnerView = {
 };
 export type CraftVersionInput = Omit<CraftVersion, "id" | "version" | "createdAt">;
 export const PROPOSED_CRAFT_PROVENANCE = "Proposed owner-reviewed generalized lesson" as const;
-export type StyleDelta = { [K in keyof DmStyle]: DmStyle[K] | null };
+// Teach DM's original seven choices remain its accepted, bounded proposal contract.
+export type StyleDelta = { [K in Exclude<keyof DmStyle, "emotionalTone" | "tragedyIntensity">]: DmStyle[K] | null };
 export type ProposedCraftCard = Pick<CraftVersionInput, "category" | "stages" | "triggers" | "en" | "ru"> & {
   provenance: typeof PROPOSED_CRAFT_PROVENANCE;
 };

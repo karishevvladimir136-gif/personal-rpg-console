@@ -498,12 +498,9 @@ function CampaignPreferencesForm({
                   <div key={key} className="dm-style-history-row">
                     <dt>{t(dmStyleChoices[key].label)}</dt>
                     <dd>
-                      {t(
-                        effectiveDmStyle(revision.values)[
-                          key
-                        ][0].toUpperCase() +
-                          effectiveDmStyle(revision.values)[key].slice(1),
-                      )}
+                      {t(effectiveDmStyle(revision.values)[key] === "hopeful_humanist"
+                        ? "Hopeful humanist"
+                        : effectiveDmStyle(revision.values)[key][0].toUpperCase() + effectiveDmStyle(revision.values)[key].slice(1))}
                     </dd>
                   </div>
                 ))}
