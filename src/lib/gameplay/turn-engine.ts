@@ -1,6 +1,7 @@
 import type { PublicTurn, ResumeInput, TurnInput } from "./contracts.ts";
 import type {
   MechanicsResolution,
+  DmPlan,
   RuntimeSource,
   TurnClaim,
   TurnDependencies,
@@ -52,6 +53,21 @@ function publicSource(source: RuntimeSource, input?: TurnInput): RuntimeSource {
     checkpoint: source.checkpoint
       ? { ...source.checkpoint, privateText: null }
       : null,
+  };
+}
+
+/** Private DM-to-DM handoff. The plan is schema/authority validated before this
+ * is called; its prose is bounded intent, never a state patch or public text. */
+export function narrationSource(source: RuntimeSource, input: TurnInput, plan: DmPlan | null): RuntimeSource {
+  const validatedPlan = plan ? parsePlan(plan) : null;
+  if (validatedPlan) validatePlan(source, input, validatedPlan);
+  const result = publicSource(source, input);
+  return {
+    ...result,
+    narrationBridge: {
+      planIntent: validatedPlan?.narration || null,
+      characters: characterPacket(source, input, "plan"),
+    },
   };
 }
 
@@ -295,7 +311,7 @@ async function execute(
         };
       else {
         const response = await provider.narrate(
-          publicSource(source, input),
+          narrationSource(source, input, checkpoint.plan),
           input,
           checkpoint.foundationSettlement
             ? {

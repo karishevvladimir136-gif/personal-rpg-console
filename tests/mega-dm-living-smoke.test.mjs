@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve, sep } from "node:path";
 import frozenCognitive from "../test-fixtures/mega-dm/frozen-cognitive-craft-v2.json" with { type: "json" };
-import { livingSmokePlan, livingSmokeRequest, livingSmokeProductionInput,
+import { livingSmokePlan, livingSmokeRequest, livingSmokeProductionInput, livingSmokeNarrationRequest,
   LIVING_SMOKE_ARMS, LIVING_SMOKE_PROBES } from "../test-fixtures/mega-dm/living-smoke-v1.mjs";
 import { blindLivingSmokeArtifacts, companionSceneQualityArtifact,
   crowdedSceneQualityArtifact } from "../test-fixtures/mega-dm/living-review-v1.mjs";
@@ -14,15 +14,15 @@ import { buildContext } from "../src/lib/gameplay/dm-context.ts";
 import { characterPacket } from "../src/lib/gameplay/character-model.ts";
 import { SMOKE_ACTOR_IDS, smokeUuid, livingSmokeSource } from "../test-fixtures/mega-dm/living-smoke-source-v1.mjs";
 import { fixture } from "./phase35-storage-fixture.mjs";
+import { emptyPlan } from "./phase2-turn-store-fixture.mjs";
 
 const digest = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
 
-test("five frozen probes prepare fifteen production-context arms; B and C differ only by the real Character Packet", () => {
+test("three dense probes prepare nine plan arms; B and C differ only by the real Character Packet", () => {
   const calls = livingSmokePlan("gpt-5.4");
-  assert.equal(calls.length, 15);
+  assert.equal(calls.length, 9);
   assert.deepEqual(LIVING_SMOKE_PROBES.map((probe) => probe.id), [
-    "identity-under-pressure", "impossible-knowledge", "repair-with-history",
-    "cognitive-world-fingerprint", "shared-joy-after-intensity",
+    "identity-knowledge-refusal", "repair-history-joy", "cognitive-world-fingerprint",
   ]);
   assert.deepEqual(livingSmokePlan("gpt-5.4"), calls); // no random fixture identities
   for (const probe of LIVING_SMOKE_PROBES) {
@@ -64,13 +64,35 @@ test("five frozen probes prepare fifteen production-context arms; B and C differ
 });
 
 test("private DM can see the synthetic secret while Orin's positive knowledge and Character Packet cannot", () => {
-  const call = livingSmokeRequest({ probeId: "impossible-knowledge", arm: "full", model: "gpt-5.4" });
+  const call = livingSmokeRequest({ probeId: "identity-knowledge-refusal", arm: "full", model: "gpt-5.4" });
   const context = JSON.parse(call.context.input);
   assert.ok(context.memory.privateContinuity.history.some((row) => row.ref.id === smokeUuid(118)));
   const orin = call.characterPacket.find((row) => row.actorId === SMOKE_ACTOR_IDS.orin);
   assert.ok(orin);
   assert.equal(JSON.stringify(orin).includes(smokeUuid(118)), false);
   assert.equal(context.mandatory.privateState.npc && Object.keys(context.mandatory.privateState.npc).length, 0);
+});
+
+test("dependent narrator request validates the frozen plan and resolves without mutation", () => {
+  const planOutput = { ...emptyPlan(), narration: "Bram refuses to launch without inspection." };
+  const groups = LIVING_SMOKE_ARMS.map((arm) => livingSmokeNarrationRequest({
+    probeId: "identity-knowledge-refusal", arm, model: "gpt-5.4", planOutput }));
+  assert.ok(groups.every((row) => row.stage === "narrate" && row.persistentMutations === 0));
+  assert.ok(groups.every((row) => row.planDigest === digest(planOutput) && row.resolution.changes.length === 0));
+  const baseline = JSON.parse(groups[0].context.input);
+  const doctrine = JSON.parse(groups[1].context.input);
+  const full = JSON.parse(groups[2].context.input);
+  assert.equal(full.mandatory.narrationBridge.planIntent, planOutput.narration);
+  assert.ok(full.mandatory.narrationBridge.characters.length > 0);
+  assert.deepEqual(doctrine.mandatory.narrationBridge.characters, []);
+  full.mandatory.narrationBridge.characters = [];
+  full.mandatory.characterVoices = [];
+  assert.deepEqual(full, doctrine);
+  delete baseline.dmCraft;
+  delete doctrine.dmCraft;
+  assert.deepEqual(baseline, doctrine);
+  assert.throws(() => livingSmokeNarrationRequest({ probeId: "identity-knowledge-refusal", arm: "full",
+    model: "gpt-5.4", planOutput: { ...planOutput, guidanceProposal: "unsupported" } }));
 });
 
 test("new immutable Cognitive Craft snapshot matches the additive disposable SQL seed", async () => {
@@ -117,13 +139,16 @@ test("offline preparation emits anonymous review and separate reveal key with no
     const blind = JSON.parse(await readFile(reviewOutput, "utf8"));
     const reveal = JSON.parse(await readFile(revealOutput, "utf8"));
     assert.equal(calls.networkAttempts, 0);
-    assert.equal(calls.calls.length, 15);
+    assert.equal(calls.calls.length, 9);
+    assert.equal(calls.dependentNarrationSlots.length, 9);
+    assert.equal(calls.maxFutureProviderCalls, 18);
     assert.deepEqual(blind, blindLivingSmokeArtifacts().review);
     assert.deepEqual(reveal, blindLivingSmokeArtifacts().reveal);
     assert.doesNotMatch(JSON.stringify(blind), /"arm"|"baseline"|"doctrine"|"full"/);
     assert.deepEqual(blind.cases[0].responses.map((row) => row.label), ["X", "Y", "Z"]);
     assert.notDeepEqual(reveal.cases[0].labels, reveal.cases[1].labels);
     assert.ok(blind.dimensions.includes("desire to keep playing"));
-    assert.equal(blind.cases[0].responses[0].originalOutput, null);
+    assert.equal(blind.cases[0].responses[0].finalNarration, null);
+    assert.ok(reveal.cases[0].planDiagnostics);
   } finally { await rm(folder, { recursive: true, force: true }); }
 });

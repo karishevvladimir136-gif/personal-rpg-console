@@ -19,10 +19,15 @@ if (![output, reviewOutput, revealOutput].every((path) => path && isAbsolute(pat
   process.exitCode = 1;
 } else {
   const plan = livingSmokePlan(model);
+  const dependentNarrationSlots = plan.map((call) => ({ probeId: call.base.probeId,
+    arm: call.arm, stage: "narrate", status: "WAITING_FOR_VALIDATED_FROZEN_PLAN",
+    productionContinuation: "livingSmokeNarrationRequest", planOutput: null,
+    finalNarration: null }));
   const { review, reveal } = blindLivingSmokeArtifacts();
   await writeFile(resolve(output), JSON.stringify({ version: LIVING_SMOKE_VERSION, networkAttempts: 0,
-    status: "PREPARED_ONLY", ownerLiveAuthorization: "required separately", calls: plan }, null, 2), { flag: "wx" });
+    status: "PREPARED_ONLY", ownerLiveAuthorization: "required separately",
+    maxFutureProviderCalls: 18, calls: plan, dependentNarrationSlots }, null, 2), { flag: "wx" });
   await writeFile(resolve(reviewOutput), JSON.stringify(review, null, 2), { flag: "wx" });
   await writeFile(resolve(revealOutput), JSON.stringify(reveal, null, 2), { flag: "wx" });
-  process.stdout.write(`Prepared ${plan.length} frozen request records; zero provider calls.\n`);
+  process.stdout.write(`Prepared ${plan.length} plan contexts and ${dependentNarrationSlots.length} dependent narration slots (maximum 18 future requests); zero provider calls.\n`);
 }

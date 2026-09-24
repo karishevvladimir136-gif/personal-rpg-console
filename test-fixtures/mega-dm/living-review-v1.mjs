@@ -57,19 +57,19 @@ export function blindLivingSmokeArtifacts() {
   // owner judgment. Rotating orders prevent a persistent label-to-arm hint.
   const orders = [
     ["full", "baseline", "doctrine"], ["doctrine", "full", "baseline"],
-    ["baseline", "doctrine", "full"], ["full", "doctrine", "baseline"],
-    ["doctrine", "baseline", "full"],
+    ["baseline", "doctrine", "full"],
   ];
   const labels = ["X", "Y", "Z"];
   return {
     review: { fixtureDigest: LIVING_FIXTURE_DIGEST,
-      instructions: "Read the three frozen anonymous responses for each probe. Record separate qualitative observations before opening the reveal key; do not average them into a winner or wellness score.",
+      instructions: "Read only the three final player-visible narrations for each probe. Record separate qualitative observations before opening the plan diagnostics and reveal key; do not average them into a winner or wellness score.",
       dimensions: blindDimensions,
       cases: LIVING_SMOKE_PROBES.map((probe) => ({ probeId: probe.id, criterion: probe.criterion,
-        responses: labels.map((label) => ({ label, originalOutput: null, observations: null })) })) },
+        responses: labels.map((label) => ({ label, finalNarration: null, observations: null })) })) },
     reveal: { fixtureDigest: LIVING_FIXTURE_DIGEST, openOnlyAfterInitialReview: true,
       cases: LIVING_SMOKE_PROBES.map((probe, index) => ({ probeId: probe.id,
-        labels: Object.fromEntries(labels.map((label, position) => [label, orders[index][position]])) })) },
+        labels: Object.fromEntries(labels.map((label, position) => [label, orders[index][position]])),
+        planDiagnostics: Object.fromEntries(labels.map((label) => [label, null])) })) },
   };
 }
 

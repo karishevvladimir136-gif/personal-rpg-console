@@ -91,7 +91,12 @@ export type CurrentCheckpoint = {
 };
 export type RuntimeSource = {
   craft?: PinnedCraft;
-  // Internal spoiler-safe voice projection, constructed only for narrate().
+  // Internal bounded DM cognition for narrate(); never part of a public DTO.
+  narrationBridge?: {
+    planIntent: string | null;
+    characters: ReturnType<typeof import("./character-model.ts").characterPacket>;
+  };
+  // Legacy observable voice projection, constructed only for narrate().
   observableCharacters?: { actorId: string; observableVoice: string }[];
   privateStateRevision?: number;
   foundationOptions?: JsonObject;

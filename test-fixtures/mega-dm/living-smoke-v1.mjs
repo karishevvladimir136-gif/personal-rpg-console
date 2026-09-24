@@ -6,31 +6,27 @@ import { livingCast, LIVING_FIXTURE_DIGEST } from "./living-characters-v1.mjs";
 import { livingSmokeSource, smokeUuid } from "./living-smoke-source-v1.mjs";
 import { buildContext, stageSchema } from "../../src/lib/gameplay/dm-context.ts";
 import { characterPacket } from "../../src/lib/gameplay/character-model.ts";
+import { parsePlan } from "../../src/lib/gameplay/dm-schema.ts";
+import { validatePlan, checkModifier, resolveMechanics } from "../../src/lib/gameplay/mechanics/resolve.ts";
+import { recordServerRoll } from "../../src/lib/gameplay/dice.ts";
+import { narrationSource } from "../../src/lib/gameplay/turn-engine.ts";
 import { CRAFT_SELECTOR_POLICY } from "../../src/lib/dm-craft/contracts.ts";
 
-export const LIVING_SMOKE_VERSION = "mega-dm-living-smoke-v2-production-context";
+export const LIVING_SMOKE_VERSION = "mega-dm-living-smoke-v3-two-stage";
 export const LIVING_SMOKE_ARMS = Object.freeze(["baseline", "doctrine", "full"]);
 export const LIVING_SMOKE_PROBES = Object.freeze([
-  { id: "identity-under-pressure", ordinal: 1, historyThrough: "lc42", place: "workshop",
-    present: ["bram", "liora", "sava"],
-    playerInput: "Bram, launch the newly repaired skiff before inspection; people are waiting. What do you do?",
-    criterion: "Recognizable growth and humor under pressure; Bram can refuse an unsafe launch without rewriting his identity." },
-  { id: "impossible-knowledge", ordinal: 2, historyThrough: "lc20", place: "quay",
-    present: ["orin", "liora"],
-    playerInput: "Orin, what do you think Liora told me privately about her fears?",
-    criterion: "The DM may know Liora's private disclosure; Orin did not witness it and must not know it or Talin's thoughts." },
-  { id: "repair-with-history", ordinal: 3, historyThrough: "lc44", place: "quay",
-    present: ["orin", "liora", "bram"],
-    playerInput: "Orin, Liora is here. Can you both help repair the crossing after the patrol dispute?",
-    criterion: "Help and humor may return, while the previous disagreement and boundaries remain real." },
-  { id: "cognitive-world-fingerprint", ordinal: 4, historyThrough: "lc36", place: "bridge",
+  { id: "identity-knowledge-refusal", ordinal: 1, historyThrough: "lc42", place: "workshop",
+    present: ["bram", "orin", "liora"],
+    playerInput: "Bram, people are waiting: will you launch the newly repaired skiff before inspection? Orin, did Liora tell you privately why she fears the crossing?",
+    criterion: "Bram retains identity and may refuse an unsafe launch; Orin cannot borrow Liora's unwitnessed disclosure or read Talin's mind; dialogue is distinct and neither NPC obeys automatically." },
+  { id: "repair-history-joy", ordinal: 2, historyThrough: "lc48", place: "Lantern Room",
+    present: ["orin", "liora", "bram", "sava"],
+    playerInput: "At the Lantern Room after the flood work, I offer food and ask Orin and Liora whether they can help repair the crossing after the patrol dispute. We can disagree, laugh or rest quietly.",
+    criterion: "Relationship history and hurt remain real while repair, character-shaped support, humor and earned ordinary afterglow are possible without therapy speech or forced crisis." },
+  { id: "cognitive-world-fingerprint", ordinal: 3, historyThrough: "lc36", place: "bridge",
     present: ["orin", "sava", "bram"],
     playerInput: "I ask Orin and Sava to witness a new public warning mark on the damaged bridge. What trace could that leave?",
-    criterion: "A plausible action may leave a bounded physical, social or informational trace; no omniscient reputation or invented authority." },
-  { id: "shared-joy-after-intensity", ordinal: 5, historyThrough: "lc48", place: "Lantern Room",
-    present: ["liora", "bram", "sava", "orin"],
-    playerInput: "At the Lantern Room, I share food with Liora, Bram, Sava and Orin after the flood work. We can be quiet or celebrate.",
-    criterion: "Earned warmth and ordinary companionship without forced reassurance, a new crisis or therapy speech." },
+    criterion: "Plausible physical, social, informational or institutional traces, learnable uncertainty and coherent surprise; no omniscient reputation, arbitrary twist or forced main quest." },
 ]);
 const normalizedFileDigest = (url) => createHash("sha256").update(readFileSync(url, "utf8").replace(/\r\n/g, "\n")).digest("hex");
 const digest = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
@@ -53,11 +49,9 @@ if (normalizedFileDigest(new URL("./frozen-craft-v1.json", import.meta.url)) !==
 
 const versions = [...frozenBaseline.versions, ...frozenCognitive.versions];
 const cardsByProbe = Object.freeze({
-  "identity-under-pressure": { baseline: ["npc-trajectories@1"], cognitive: ["living-characters@1", "npc-trajectories@1"] },
-  "impossible-knowledge": { baseline: ["npc-trajectories@1"], cognitive: ["living-characters@1", "cognitive-world@1"] },
-  "repair-with-history": { baseline: ["promises-and-relationships@1", "npc-trajectories@1"], cognitive: ["living-characters@1", "promises-and-relationships@1"] },
+  "identity-knowledge-refusal": { baseline: ["npc-trajectories@1"], cognitive: ["living-characters@1", "npc-trajectories@1"] },
+  "repair-history-joy": { baseline: ["promises-and-relationships@1", "npc-trajectories@1"], cognitive: ["living-characters@1", "afterglow-rhythm@1"] },
   "cognitive-world-fingerprint": { baseline: ["consequence-and-recovery@1", "player-goals-and-backstory@1"], cognitive: ["cognitive-world@1", "consequence-and-recovery@1"] },
-  "shared-joy-after-intensity": { baseline: ["promises-and-relationships@1"], cognitive: ["afterglow-rhythm@1", "promises-and-relationships@1"] },
 });
 function craftVersion(identity) {
   const [key, number] = identity.split("@");
@@ -113,4 +107,29 @@ export function livingSmokeRequest({ probeId, arm, model }) {
 export function livingSmokePlan(model) {
   return Object.freeze(LIVING_SMOKE_PROBES.flatMap((probe) => LIVING_SMOKE_ARMS.map((arm) =>
     livingSmokeRequest({ probeId: probe.id, arm, model }))));
+}
+
+/** The dependent request cannot be frozen until its original plan response is
+ * available. This reuses production parsing, authority validation, mechanics,
+ * narrationSource and buildContext without a TurnStore or persistent commit. */
+export function livingSmokeNarrationRequest({ probeId, arm, model, planOutput }) {
+  const { source, input } = livingSmokeProductionInput({ probeId, arm });
+  const before = digest(source);
+  const plan = parsePlan(planOutput);
+  validatePlan(source, input, plan);
+  if (plan.guidanceProposal !== null || plan.clarification !== null || plan.foundationAction != null)
+    throw new Error("Plan requires a production clarification or unsupported foundation continuation; no narration request is prepared");
+  // Fixed synthetic dice are explicit evaluation data, never a reroll or a
+  // claim about a real campaign. Production roll/resolve functions still apply.
+  const checks = plan.checks.map((check) => recordServerRoll(input.operationId, check,
+    checkModifier(source, check), 1, () => 10));
+  const resolution = resolveMechanics(source, input, plan, checks);
+  const built = buildContext(narrationSource(source, input, plan), input, "narrate",
+    { model, resolution, checks });
+  if (digest(source) !== before) throw new Error("Evaluation changed its frozen source");
+  return Object.freeze({ version: LIVING_SMOKE_VERSION, stage: "narrate", model, arm,
+    probeId, planOutput: structuredClone(planOutput), planDigest: digest(planOutput),
+    checks, resolution, context: built, contextDigest: digest(built),
+    outputSchema: stageSchema("narrate"), outputSchemaDigest: digest(stageSchema("narrate")),
+    persistentMutations: 0, requestStatus: "DEPENDENT_PREPARED_ONLY; separate live authorization required" });
 }

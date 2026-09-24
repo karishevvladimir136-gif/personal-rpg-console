@@ -145,7 +145,10 @@ test("integrated runtime, mechanics and PostgreSQL preserve the same authoritati
         resolution,
         checks,
       });
-      assert.ok(!context.input.includes(marker));
+      // This is private DM-to-DM intent, never a public response or state patch.
+      const narrationInput = JSON.parse(context.input);
+      assert.equal(narrationInput.mandatory.narrationBridge.planIntent, marker);
+      assert.equal(Object.hasOwn(narrationInput.mandatory, "privateState"), false);
       if (failNarration) {
         failNarration = false;
         throw Object.assign(new Error("Synthetic transport failure"), {
