@@ -3,6 +3,8 @@
 
 **Current boundary:** The owner-approved source-of-truth integration includes the complete roadmap `a3d0fa66da42f36a5401c3513e3484e83150f9d3` on production base `cb7f6be2fb513de13604d381046a3240f3261383`. Phases 0–3.5 are owner-accepted. [Phase 3.75 final owner decision](PHASE375_ARCHITECTURE_DECISION.md) remains fixed. [Phase 3.8B final freeze](PHASE38B_ARCHITECTURE_FREEZE.md) is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**. Integration content is owner-approved at `7d945d3754647015ecdd765cef2b688dbab38777`; this finalization records approval without starting production coding. No feature coding, provider call, credential setup, deployment or real import is authorized here. Historical milestone prompts below are not fresh instructions.
 
+**Current forward order from owner-accepted World Lab D2A:** **Mega DM v1 → D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World → FRAME / Visual Bible + fal → 2D Presentation Engine → VIDEO.** D2B waits until Mega DM v1 is implemented, evaluated and owner-accepted. The earlier pre-production handoff and A–E design sections below remain historical/contextual; they are not the current next-step instruction. This docs-only consolidation starts none of the future slices.
+
 ---
 
 ## Final planned foundational addendum before production coding
@@ -361,7 +363,9 @@ Future gate: time/no-op/autonomy/deadline/fair-warning behavior, long skips stop
 
 ## Progressive DM Craft slices after World Engine foundations
 
-This is an incremental addition to the World Engine/DM roadmap, not a giant separate milestone or a prerequisite blocking core production. The letters below describe this sequence, not replacements for Phase 3.75 A–E. Each implementation slice still needs separate scope/authorization; this pass changes documentation only. References: [DM Craft product/navigation](MASTER_SPEC.md#dm-craft-and-campaign-dm-style--future-product-design), [Doctrine and teaching workflow](RPG_DESIGN_DOCTRINE.md#36-dm-craft--reusable-owner-approved-education), [single-DM runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design).
+This section originally described incremental additions to the World Engine/DM roadmap rather than a separate prerequisite to the then-unbuilt foundations. The letters below are design slices, not replacements for Phase 3.75 A–E. Each implementation slice still needs separate scope/authorization; this pass changes documentation only. References: [DM Craft product/navigation](MASTER_SPEC.md#dm-craft-and-campaign-dm-style--future-product-design), [Doctrine and teaching workflow](RPG_DESIGN_DOCTRINE.md#36-dm-craft--reusable-owner-approved-education), [single-DM runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design).
+
+**Current priority:** foundations A/B and D2A are accepted; the next bounded implementation/evaluation/owner-acceptance gate is **Mega DM v1**, covering compact versioned Core Doctrine, owner-approved Long-Form Campaign Craft, small deterministic stage-aware selection, a minimal effective-Craft owner view, campaign DM Style alongside the existing DM Guide, and reviewable Chat-with-DM teaching proposals. The UI/teaching pieces may be split into small implementation slices, but v1 is the release gate before D2B. The permanent frozen approximately 48-scene synthetic benchmark in [Doctrine](RPG_DESIGN_DOCTRINE.md#owner-feedback-corpus-and-dm-craft-evaluation--academy) has offline authority/privacy/selection checks plus separately authorized live quality replay; a passing deterministic suite alone does not constitute Mega DM owner acceptance. No feature or provider execution is authorized by this roadmap.
 
 | Order | Small future slice | Review outcome |
 | --- | --- | --- |
@@ -380,6 +384,8 @@ Preserve **Application → DM Craft** versus **Campaign → DM Style**, the sing
 ## 3.75D — World Lab / What If and parallel realities
 
 Reference: [World Lab / What If](WORLD_LAB_WHAT_IF_BRIEF.md).
+
+**Current status and dependency:** D1 detached foundation and D2A single-model simulation are owner accepted. The D1/D2 bullets below preserve the original design sequence; D2B multi-model comparison is deferred until Mega DM v1 is implemented, evaluated and owner-accepted. After D2B, implement read-only **Timeline Explorer V1** over existing exact ancestry/checkpoints, then **V2** with validated deltas and matched-horizon public comparison, before Enter This World. Neither Explorer is a new Save/Timeline authority or node-graph prerequisite.
 
 - **D1: detached branch foundation.** Extend the accepted vault/manifests and timeline identities with simulation purpose, detached authorized reads, immutable append/branch-head compare-and-swap, per-run lease/expected-head fencing and pinned complete comparison inputs. Never simulate by changing the live active projection. Current active-epoch fencing alone is insufficient. Prove these mechanics with deterministic synthetic fixtures before model runs.
 - **D2: one run, then 2–3 independent models.** NON-CANON finite-horizon experiments using approved Scenario/Divergence contracts and World Engine state. Coherent intermediate checkpoints, independent concurrent requests/failures, safe pause/retry/cancel and provenance. Compare public shared outcomes and major divergences at matched horizons; no winner or accuracy guarantee. Continue from another model's checkpoint by creating children. Use simple durable jobs in the existing app/Postgres, no orchestration platform.

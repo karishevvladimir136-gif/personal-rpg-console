@@ -2,6 +2,8 @@
 
 **Phase 3.75 design only, September 19, 2026. Not implemented or owner-approved.** Preserve accepted implementation `8099e0cca1463f767476190c456d4f3947e7c84e` and acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. This document extends the existing Saves/Timelines architecture; it does not authorize simulation, model calls or campaign import.
 
+**Current status:** the dated design note above is historical. D1 detached simulation and D2A single-model What If are now owner accepted, with their exact accepted boundaries and limitations in [DEV_STATUS](DEV_STATUS.md). D2B multi-model work remains unstarted and is deferred until Mega DM v1 is implemented, evaluated and owner-accepted. The forward order is **Mega DM v1 → D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World**; later visual work follows separately. The future descriptions below are not assertions that comparison or entry already exists.
+
 ## Product contract
 
 Future campaign **World / Мир → What If** is a clearly labelled **NON-CANON** space. Natural-language requests such as “dragons exist during WWII,” “the Starks survive the Red Wedding,” or “a meteor hits Hogwarts” become reviewable structured premises. Simulation is an experiment in a chosen reality, not a reliable historical forecast or an instruction to alter the live campaign.
@@ -61,6 +63,12 @@ A future optional [Decision Model](MODEL_RUNTIME_BRIEF.md#optional-decision-mode
 Deterministic code and recorded dice remain authoritative. If a future experiment requests a shared RNG seed, record its policy and align only genuinely identical checks; diverging causal actions cannot be forced onto the same roll stream to manufacture comparability. Same inputs across generative models do not imply identical outcomes or universal reproducibility.
 
 The owner may select Model A's July 1943 checkpoint and continue with A, B and C. Reuse the same checkpoint as the new approved base; create three children, retaining ancestry and previous provenance. No relabelling old A artifacts as B-generated. Changing a model mid-run otherwise pauses for explicit approval and creates a visible continuation boundary. See [Model Runtime](MODEL_RUNTIME_BRIEF.md).
+
+## Timeline Explorer V1 and V2 — future views over accepted authority
+
+**V1** is a read-only, interactive, spoiler-safe projection of existing Saves/Timelines and World Lab ancestry and exact checkpoint identities. Distinguish the original playable history from **NON-CANON** simulation branches; show divergence point, parent/child lineage, coherent checkpoints, fictional time, run/model label when applicable, run status and a public summary. Inspect is read-only; continue/fork is offered only where its existing authority permits it. Compare appears only where supported; Enter This World remains a later separate operation. A node graph is optional presentation, not an architectural requirement. No second save database, branch head or timeline authority is created.
+
+**V2** extends V1 with validated parent-to-child deltas, causal transition summaries, parallel run branches, matched-horizon *public* comparison and clearer divergence inspection. Derive all of it from authorized exact manifests/checkpoints and existing knowledge/privacy filtering before ranking or display. Do not expose private plans, hidden counts, future-source knowledge or raw resolver context. V2 cannot merge branches, rewrite history or promote a simulation into playable Canon. Implement both Explorer slices only after D2B in the current forward plan, and before Enter This World.
 
 ## Enter This World
 

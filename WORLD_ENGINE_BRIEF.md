@@ -2,6 +2,8 @@
 
 **Phase 3.75 design only, September 19, 2026. Not implemented or owner-approved.** This pass authorizes documentation, not runtime work, migrations, UI, provider calls, deployment or imports. Accepted baseline: Phase 3.5 implementation `8099e0cca1463f767476190c456d4f3947e7c84e`, acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Earlier accepted checkpoints remain preserved.
 
+**Current reading:** that opening is the original dated design record. Waves 1–4 and World Lab D1/D2A have since been owner accepted; [DEV_STATUS](DEV_STATUS.md) records actual implementation and limits. The next priority is Mega DM v1 on the same single-DM/World authority, before deferred D2B; this document does not authorize implementation.
+
 ## Purpose and connected design
 
 Natural language in → structured reality underneath → natural language out. Important people, factions and situations continue to pursue goals as the fictional world changes. Resolve causally meaningful narrative state, not every citizen, meal or minute. This supports fantasy, literary/romance, historical, military, political and civilization-scale stories through different levels of detail, not through a microscopic planetary simulator.

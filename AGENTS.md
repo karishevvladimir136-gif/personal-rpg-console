@@ -141,3 +141,16 @@ Update it before every milestone-completion commit and after any major architect
 Include the current milestone, current status, completed work, files/areas changed, tests and build status, key technical decisions, known issues, remaining work, and recommended next step.
 
 Report actual verification results and distinguish implementation completion from owner approval. Never include secrets, API keys, credentials, or DM-private content.
+
+## Development-agent model policy
+
+Use **GPT-6 Sol** by default for coding-agent work. Prefer Sol `xhigh` for Lead/integration, architecture, authority boundaries and difficult implementation; use Sol `high` for routine implementation, UI, tests and documentation. Escalate only a specific, unresolved material blocker to GPT-6 Astra after focused investigation. State the exact blocker, use a bounded Astra review if available, and return its result to the existing Sol Lead; do not restart or duplicate an entire sprint with Astra. This is an **agent staffing policy**, not a change to the application's `OPENAI_DM_MODEL`, provider registry or production reasoning configuration.
+
+## Efficiency Protocol v2
+
+- Give workers compact context packets with exact branch, task boundary, owned files, invariants and relevant prior decisions.
+- Reuse an already-contextualized worker for follow-up in its area; spawn only a distinct non-overlapping critical-path task.
+- Inspect and integrate diffs before rereading complete worktrees. Avoid duplicate research and repo-wide reviews.
+- Run focused tests while iterating. Freeze the production candidate, then run one fresh complete integrated suite plus required typecheck, zero-warning lint and build; repeat only if a subsequent change or failure justifies it.
+- Use `xhigh` where difficult architecture or correctness warrants it and `high` for routine bounded work. Passing worker checks never replace integrated verification, privacy review or owner acceptance.
+- For a documentation-only consolidation, use one agent and focused documentation checks; do not create an implementation sprint or run application tests merely to edit docs.
