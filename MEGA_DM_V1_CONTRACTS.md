@@ -27,3 +27,9 @@ Frozen for this bounded implementation sprint from `d927ae6c1039d4aeb66e2fc430e6
 - **Benchmark/QA worker:** frozen fixture, deterministic benchmark, network-disabled future live harness and adversarial tests under `tests/` / `test-fixtures/` with no production-file edits. Report defects to Lead.
 
 Workers do not merge. The Lead integrates dependency-aware, runs focused tests during iteration and one complete integrated suite only after candidate freeze. No live model call or next-phase work.
+
+## Owner-review correction addendum
+
+- `feedback()` may return a bounded typed `teachingCandidate` beside human-readable text. A campaign candidate changes one to three of the seven Style choices; a global candidate supplies a bilingual generalized Card draft. The provider cannot apply either. The existing turn proposal remains the sole review record, and approval still uses settings revision/timeline or immutable global Craft version authority. Legacy text-only guidance remains readable and reviewable.
+- New claims use selector policy `mega-dm-v1-public-context-2`: literal input plus at most 512 characters from the current public scene and location label. The SQL selector never reads DM state, private Memory or future sources, ranks by trigger count then key, and pins at most two cards per stage. Older `mega-dm-v1-literal-1` pins remain valid for previously claimed turns.
+- `test-fixtures/mega-dm/frozen-craft-v1.json` and `evaluation-pack-v1.mjs` freeze the exact seeded version-one Doctrine/Card content and synthetic fixture digest. The future network-disabled replay request records each arm's content digests, selected/eligible cards, selector policy, model identity, scene, literal input, adjudicated outcome and authorized public-before state. No owner-active Craft is read during replay.

@@ -1,7 +1,8 @@
 import type { DmStyle } from "../campaign-settings.ts";
 import type { TimelineFence } from "../saves/contracts.ts";
 
-export const CRAFT_SELECTOR_POLICY = "mega-dm-v1-literal-1" as const;
+export const LEGACY_CRAFT_SELECTOR_POLICY = "mega-dm-v1-literal-1" as const;
+export const CRAFT_SELECTOR_POLICY = "mega-dm-v1-public-context-2" as const;
 export type CraftStage = "plan" | "narrate";
 export type CraftKind = "doctrine" | "card";
 export type CraftLocaleText = { title: string; guidance: string; avoid: string };
@@ -20,7 +21,7 @@ export type CraftVersion = {
 };
 // Stored only in rpg_private.turns.source. Never add this to a public DTO.
 export type PinnedCraft = {
-  policyVersion: typeof CRAFT_SELECTOR_POLICY;
+  policyVersion: typeof CRAFT_SELECTOR_POLICY | typeof LEGACY_CRAFT_SELECTOR_POLICY;
   ownerId: string;
   campaignId: string;
   operationId: string;
@@ -42,6 +43,14 @@ export type CraftOwnerView = {
   effective: CraftEffective[];
 };
 export type CraftVersionInput = Omit<CraftVersion, "id" | "version" | "createdAt">;
+export const PROPOSED_CRAFT_PROVENANCE = "Proposed owner-reviewed generalized lesson" as const;
+export type StyleDelta = { [K in keyof DmStyle]: DmStyle[K] | null };
+export type ProposedCraftCard = Pick<CraftVersionInput, "category" | "stages" | "triggers" | "en" | "ru"> & {
+  provenance: typeof PROPOSED_CRAFT_PROVENANCE;
+};
+export type TeachingCandidate =
+  | { kind: "campaign_style"; explanation: string; styleDelta: StyleDelta }
+  | { kind: "global_craft"; explanation: string; entry: ProposedCraftCard };
 export type CraftCommand =
   | { action: "save"; requestId: string; expectedActivationRevision: number; entry: CraftVersionInput }
   | { action: "activate"; requestId: string; expectedActivationRevision: number; key: string; versionId: string };

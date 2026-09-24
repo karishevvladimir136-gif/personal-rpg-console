@@ -70,6 +70,7 @@ export type NarrationResult = {
 export type FeedbackResult = {
   narration: string;
   guidanceProposal: string | null;
+  teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
 };
 export type ProviderUsage = {
   model: string;
@@ -164,6 +165,7 @@ export type TurnClaim = {
   source: RuntimeSource;
 };
 export type CommitPacket = {
+  teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
   foundationSettlement?:
     import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;
   worldSettlement?: WorldSettlement | null;

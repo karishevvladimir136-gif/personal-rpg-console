@@ -2,11 +2,12 @@
 
 import { useRef, useState } from "react";
 import { useLanguage } from "./language-context";
-import { useCampaignData } from "./persistence-context";
+import { useOptionalCampaignData } from "./persistence-context";
 import { Badge, Button } from "./ui";
 import { DmStyleControls } from "./dm-style-controls";
 import { craftKeyFromTitle } from "./dm-craft-key";
 import { effectiveDmStyle, type DmStyle } from "@/lib/campaign-settings";
+import { dmStyleChoices, dmStyleKeys } from "./dm-style-controls";
 import type {
   CraftOwnerView,
   CraftVersionInput,
@@ -20,20 +21,31 @@ export function DmTeachReview({
   turn,
   onSaved,
   reviewScope,
+  previewStyle,
 }: {
   turn: PublicTurn;
   onSaved: () => Promise<void>;
   reviewScope: "campaign_style" | "global_craft";
+  previewStyle?: DmStyle;
 }) {
   const { t } = useLanguage();
-  const { campaignId, data, refresh } = useCampaignData();
+  const context = useOptionalCampaignData();
+  const campaignId = context?.campaignId ?? "";
+  const data = context?.data;
+  const refresh = context?.refresh;
   const proposal = turn.proposal!;
+  const candidate = proposal.teachingCandidate;
+  const originalStyle = previewStyle ?? effectiveDmStyle(data?.settings.values ?? {});
   const [expanded, setExpanded] = useState(false);
   const [baselineRevision] = useState(data?.settings.revision ?? null);
-  const [style, setStyle] = useState<DmStyle>(() =>
-    effectiveDmStyle(data?.settings.values ?? {}),
-  );
-  const [entry, setEntry] = useState<CraftVersionInput>({
+  const [style, setStyle] = useState<DmStyle>(() => candidate?.kind === "campaign_style"
+    ? Object.fromEntries(dmStyleKeys.map((key) => [key, candidate.styleDelta[key] ?? originalStyle[key]])) as DmStyle
+    : originalStyle);
+  const [entry, setEntry] = useState<CraftVersionInput>(() => candidate?.kind === "global_craft" ? {
+    ...candidate.entry,
+    key: "",
+    kind: "card",
+  } : ({
     key: "",
     kind: "card",
     category: "",
@@ -42,20 +54,20 @@ export function DmTeachReview({
     en: { title: "", guidance: "", avoid: "" },
     ru: { title: "", guidance: "", avoid: "" },
     provenance: "Owner-reviewed general guidance",
-  });
+  }));
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState("");
   const pending = useRef<TeachCommand | null>(null);
   const guard = useRef(false);
   const timeline = turn.timeline ?? data?.timeline;
-  const stale =
+  const stale = !previewStyle && (
     !data ||
     !timeline ||
     !sameTimeline(timeline, data.timeline) ||
-    data.settings.revision !== baselineRevision;
+    data.settings.revision !== baselineRevision);
   const submit = async (action: TeachCommand["action"]) => {
-    if (guard.current || stale || !timeline) return;
+    if (guard.current || stale || !timeline || !data || !refresh || previewStyle) return;
     guard.current = true;
     setBusy(true);
     setError("");
@@ -147,13 +159,31 @@ export function DmTeachReview({
             : "Review the campaign's seven DM Style values before approval. This changes future turns in this campaign only.",
         )}
       </p>
+      {candidate && (
+        <div className="dm-teaching-candidate">
+          <p><strong>{t("Suggested change")}</strong> — {t(candidate.explanation)}</p>
+          {candidate.kind === "campaign_style" && (
+            <div className="dm-teaching-diff">
+              {dmStyleKeys.filter((key) => candidate.styleDelta[key] !== null).map((key) => (
+                <p key={key}>
+                  <strong>{t(dmStyleChoices[key].label)}:</strong>{" "}
+                  {t("Current")} {t(originalStyle[key][0].toUpperCase() + originalStyle[key].slice(1))} → {t("Proposed")} {t(candidate.styleDelta[key]![0].toUpperCase() + candidate.styleDelta[key]!.slice(1))}
+                </p>
+              ))}
+            </div>
+          )}
+          {candidate.kind === "global_craft" && (
+            <p className="muted">{t("Proposed bilingual Craft Card is filled in below. Review or edit it before approval.")}</p>
+          )}
+        </div>
+      )}
       {!expanded ? (
         <div className="button-group">
           <Button primary onClick={() => setExpanded(true)}>
             {t("Review and edit")}
           </Button>
           <Button
-            disabled={busy || stale}
+            disabled={busy || stale || !!previewStyle}
             onClick={() => void submit("reject")}
           >
             {t("Reject proposal")}
@@ -252,7 +282,7 @@ export function DmTeachReview({
             <Button
               primary
               disabled={
-                busy ||
+                busy || !!previewStyle ||
                 stale ||
                 (global &&
                   (!entry.category.trim() ||
@@ -271,7 +301,7 @@ export function DmTeachReview({
               {t(busy ? "Saving…" : "Approve reviewed change")}
             </Button>
             <Button
-              disabled={busy || stale}
+              disabled={busy || stale || !!previewStyle}
               onClick={() => void submit("reject")}
             >
               {t("Reject proposal")}

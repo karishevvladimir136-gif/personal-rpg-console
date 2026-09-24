@@ -7,6 +7,7 @@ import type {
 } from "./server-contracts.ts";
 import { isDisplayedCheck, recordServerRoll } from "./dice.ts";
 import { parsePlan } from "./dm-schema.ts";
+import { validateTeachingCandidate } from "../dm-craft/teaching.ts";
 import {
   checkModifier,
   mechanicPlan,
@@ -116,7 +117,10 @@ async function execute(
       );
       if (!checkpoint.feedback) {
         const response = await provider.feedback(publicSource(source), input);
-        checkpoint.feedback = response.output;
+        checkpoint.feedback = {
+          ...response.output,
+          teachingCandidate: validateTeachingCandidate(source, input, response.output.teachingCandidate),
+        };
         checkpoint.usage.push(response.usage);
         await store.checkpoint(lease, checkpoint, "generating");
       }
@@ -125,16 +129,17 @@ async function execute(
           checkpoint.feedback.narration.length > 0 &&
           checkpoint.feedback.narration.length <= 20000,
       );
+      const teachingCandidate = validateTeachingCandidate(source, input, checkpoint.feedback.teachingCandidate);
       return await store.commit(lease, {
         narration: checkpoint.feedback.narration,
         visualDescription: "",
         resolution: emptyResolution(source),
         privatePatches: [],
         checks: [],
-        guidanceProposal:
-          input.mode === "feedback"
-            ? checkpoint.feedback.guidanceProposal
-            : null,
+        guidanceProposal: input.mode === "feedback"
+          ? checkpoint.feedback.guidanceProposal ?? teachingCandidate?.explanation ?? null
+          : null,
+        ...(input.mode === "feedback" ? { teachingCandidate } : {}),
       });
     }
     const logic = await dependencies.prepareWorldLogic?.(

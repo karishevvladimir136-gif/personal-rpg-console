@@ -177,9 +177,45 @@ export const foundationPlanSchema = obj({
   ...planSchema.properties!,
   foundationAction: nullable(foundationActionSchema),
 });
+const teachingStyleDeltaSchema = obj({
+  companionAgency: nullable(choice("low", "normal", "high")),
+  descriptionDensity: nullable(choice("concise", "balanced", "rich")),
+  dialogueDensity: nullable(choice("concise", "balanced", "rich")),
+  dramaticPace: nullable(choice("measured", "balanced", "brisk")),
+  mystery: nullable(choice("low", "normal", "high")),
+  failForward: nullable(choice("low", "normal", "high")),
+  tone: nullable(choice("grounded", "warm", "cinematic")),
+});
+const teachingLocaleSchema = obj({
+  title: { ...str(120), minLength: 1 },
+  guidance: { ...str(1600), minLength: 1 },
+  avoid: { ...str(800), minLength: 1 },
+});
+export const teachingCandidateSchema: Schema = {
+  anyOf: [
+    obj({
+      kind: choice("campaign_style"),
+      explanation: { ...str(1000), minLength: 1 },
+      styleDelta: teachingStyleDeltaSchema,
+    }),
+    obj({
+      kind: choice("global_craft"),
+      explanation: { ...str(1000), minLength: 1 },
+      entry: obj({
+        category: { ...str(80), minLength: 1 },
+        stages: list(choice("plan", "narrate"), 2),
+        triggers: list({ ...str(80), minLength: 2 }, 12),
+        en: teachingLocaleSchema,
+        ru: teachingLocaleSchema,
+        provenance: choice("Proposed owner-reviewed generalized lesson"),
+      }),
+    }),
+  ],
+};
 export const feedbackSchema = obj({
   narration: { ...str(6000), minLength: 1 },
   guidanceProposal: nullable(str(2000)),
+  teachingCandidate: nullable(teachingCandidateSchema),
 });
 
 // Validate independently even when the provider claims strict schema adherence.
@@ -264,6 +300,21 @@ export function parseNarration(value: unknown): NarrationResult {
   return value as NarrationResult;
 }
 export function parseFeedback(value: unknown): FeedbackResult {
-  if (!validates(feedbackSchema, value)) throw new DmError("validation");
+  // Previously recorded/scripted feedback had no candidate field.
+  const normalized = value && typeof value === "object" && !Array.isArray(value) &&
+    !Object.hasOwn(value, "teachingCandidate")
+    ? { ...value, teachingCandidate: null } : value;
+  if (!validates(feedbackSchema, normalized)) throw new DmError("validation");
+  const candidate = (normalized as FeedbackResult).teachingCandidate;
+  if (candidate?.kind === "campaign_style") {
+    const count = Object.values(candidate.styleDelta).filter((entry) => entry !== null).length;
+    if (count < 1 || count > 3) throw new DmError("validation");
+  }
+  if (candidate?.kind === "global_craft") {
+    if (!candidate.entry.stages.length || new Set(candidate.entry.stages).size !== candidate.entry.stages.length ||
+      new Set(candidate.entry.triggers).size !== candidate.entry.triggers.length)
+      throw new DmError("validation");
+  }
+  // Preserve the exact legacy result shape for already-scripted providers.
   return value as FeedbackResult;
 }

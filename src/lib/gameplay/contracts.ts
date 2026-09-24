@@ -146,6 +146,7 @@ export type VisibleCheck = {
   rollNumber: number;
 };
 export type GuidanceProposal = {
+  teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
   id: string;
   text: string;
   status: "proposed" | "approved" | "rejected";

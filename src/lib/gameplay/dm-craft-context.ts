@@ -1,7 +1,7 @@
 import type { RuntimeSource, ContextStage } from "./server-contracts";
 import type { TurnInput } from "./contracts";
 import type { CraftVersion } from "../dm-craft/contracts.ts";
-import { CRAFT_SELECTOR_POLICY } from "../dm-craft/contracts.ts";
+import { CRAFT_SELECTOR_POLICY, LEGACY_CRAFT_SELECTOR_POLICY } from "../dm-craft/contracts.ts";
 import { parseDmStyle } from "../dm-craft/validation.ts";
 import { DmError } from "./dm-errors.ts";
 import { isTimelineFence, sameTimeline } from "../saves/fence.ts";
@@ -40,7 +40,7 @@ export function pinnedCraftForStage(
   const pinned = source.craft;
   if (!pinned) return null; // Old pending operations retain their original behavior.
   if (
-    pinned.policyVersion !== CRAFT_SELECTOR_POLICY ||
+    (pinned.policyVersion !== CRAFT_SELECTOR_POLICY && pinned.policyVersion !== LEGACY_CRAFT_SELECTOR_POLICY) ||
     pinned.ownerId !== source.ownerId ||
     pinned.campaignId !== request.campaignId ||
     pinned.operationId !== request.operationId ||

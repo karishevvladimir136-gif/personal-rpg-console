@@ -3,9 +3,17 @@
 import { resolve, isAbsolute } from "node:path";
 import { pathToFileURL } from "node:url";
 import { writeFile } from "node:fs/promises";
-import { campaign, scenes } from "../../test-fixtures/mega-dm/campaign-v1.mjs";
-import { stateBefore } from "../../test-fixtures/mega-dm/offline-runner.mjs";
+import { scenes } from "../../test-fixtures/mega-dm/campaign-v1.mjs";
+import { digest, EVALUATION_PACK_VERSION, frozenReplayRequest, verifyFrozenPack } from "../../test-fixtures/mega-dm/evaluation-pack-v1.mjs";
 import { reviewSheet } from "../../test-fixtures/mega-dm/quality-rubric-v1.mjs";
+
+function freezeRequest(value) {
+  if (value && typeof value === "object") {
+    for (const nested of Object.values(value)) freezeRequest(nested);
+    Object.freeze(value);
+  }
+  return value;
+}
 
 function flag(name) {
   const i = process.argv.indexOf(name);
@@ -25,25 +33,25 @@ async function main() {
   }
   const adapter = await import(pathToFileURL(resolve(adapterPath)).href);
   if (typeof adapter.replayScene !== "function") throw new TypeError("Adapter must export replayScene(request)");
+  verifyFrozenPack();
   const arms = ["baseline", "core-doctrine", "core-plus-long-form"];
   const reviews = [];
   for (const arm of arms) {
     for (const scene of scenes) {
-      // Narration receives only the literal input, validated outcome and public
-      // history. The adapter is responsible for model/provenance capture.
-      const request = Object.freeze({
-        runId, arm, model, campaignId: campaign.id, sceneId: scene.id,
-        literalInput: scene.playerInput,
-        adjudicatedOutcome: scene.outcome,
-        publicBefore: stateBefore(scene.id).publicFacts,
-        publicDelta: scene.publicDelta,
-      });
+      // The exact arm, doctrine, card versions/content and authorized fixture
+      // state are frozen before a separately authorized adapter sees them.
+      const request = freezeRequest(frozenReplayRequest({ runId, arm, model, sceneId: scene.id }));
+      const requestDigest = digest(request);
       const result = await adapter.replayScene(request);
+      if (digest(request) !== requestDigest) throw new Error(`Adapter mutated frozen request: ${arm}/${scene.id}`);
       if (typeof result?.text !== "string" || !result.text.trim()) throw new TypeError(`Empty replay: ${arm}/${scene.id}`);
-      reviews.push({ ...reviewSheet(scene.id, { arm, model, output: result.text }), provenance: result.provenance ?? null });
+      if (typeof result?.provenance?.actualModel !== "string" || !result.provenance.actualModel.trim())
+        throw new TypeError(`Missing actual model identity: ${arm}/${scene.id}`);
+      reviews.push({ ...reviewSheet(scene.id, { arm, model, output: result.text }), requestDigest, request,
+        provenance: result.provenance });
     }
   }
-  await writeFile(resolve(outputPath), JSON.stringify({ runId, fixtureVersion: campaign.version, model, arms, reviews }, null, 2), { flag: "wx" });
+  await writeFile(resolve(outputPath), JSON.stringify({ runId, evaluationPackVersion: EVALUATION_PACK_VERSION, model, arms, reviews }, null, 2), { flag: "wx" });
 }
 
 main().catch((error) => {

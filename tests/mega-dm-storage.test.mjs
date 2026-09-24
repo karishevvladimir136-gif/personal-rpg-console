@@ -40,7 +40,7 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
   const f = await fixture();
   try {
     const view = await craft(f, "read");
-    assert.equal(view.policyVersion, "mega-dm-v1-literal-1");
+    assert.equal(view.policyVersion, "mega-dm-v1-public-context-2");
     assert.equal(view.versions.length, 8);
     assert.equal(view.effective.length, 8);
     assert.ok(view.versions.every((v) => v.en.guidance && v.ru.guidance));
@@ -55,7 +55,7 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
     };
     await f.runtime(w.cid, "begin", input);
     const claim = await f.runtime(w.cid, "claim", { operationId });
-    assert.equal(claim.source.craft.policyVersion, "mega-dm-v1-literal-1");
+    assert.equal(claim.source.craft.policyVersion, "mega-dm-v1-public-context-2");
     assert.equal(claim.source.craft.operationId, operationId);
     assert.equal(claim.source.craft.doctrine.key, "core-doctrine");
     assert.ok(claim.source.craft.plan.length <= 2);

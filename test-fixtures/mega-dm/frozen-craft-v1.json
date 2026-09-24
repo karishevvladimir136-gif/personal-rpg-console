@@ -1,0 +1,232 @@
+{
+  "version": 1,
+  "sourceMigration": "202609230017_mega_dm_v1.sql",
+  "versions": [
+    {
+      "key": "consequence-and-recovery",
+      "version": 1,
+      "kind": "card",
+      "category": "causality",
+      "stages": [
+        "plan"
+      ],
+      "triggers": [
+        "fail",
+        "failure",
+        "lost",
+        "неудач",
+        "провал",
+        "потер"
+      ],
+      "en": {
+        "avoid": "Do not quietly restore spent resources or turn a failure into an unearned success.",
+        "title": "Consequences and recovery",
+        "guidance": "A failed approach changes the situation. Preserve the cost, then allow supported recovery or alternate routes. Mix immediate and delayed consequences without resetting the loss."
+      },
+      "ru": {
+        "avoid": "Не возвращай потраченные ресурсы молча и не превращай неудачу в незаслуженный успех.",
+        "title": "Последствия и восстановление",
+        "guidance": "Неудачная попытка меняет положение. Сохраняй цену ошибки, затем допускай обоснованное восстановление или иной путь. Сочетай быстрые и отложенные последствия без отмены потери."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "core-doctrine",
+      "version": 1,
+      "kind": "doctrine",
+      "category": "core",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [],
+      "en": {
+        "avoid": "Never silently retcon, erase a consequence, force a single route, invent knowledge or grant outcomes through prose.",
+        "title": "Core Doctrine",
+        "guidance": "Protect player agency and accept plausible free-form approaches. Let valid surprises create durable consequences. Preserve established history and meaningful failure. NPCs and companions have goals and bounded knowledge; they may initiate without choosing for the player. State, Canon, mechanics and secrecy always take priority."
+      },
+      "ru": {
+        "avoid": "Не переписывай прошлое молча, не стирай последствия, не навязывай один путь, не выдумывай знания и результаты одним лишь текстом.",
+        "title": "Основные принципы",
+        "guidance": "Сохраняй свободу игрока и принимай правдоподобные нестандартные действия. Пусть неожиданные решения оставляют устойчивые последствия. Сохраняй установленную историю и значимые неудачи. У NPC и спутников есть цели и ограниченные знания; они могут проявлять инициативу, не выбирая за игрока. Состояние, канон, механика и тайна всегда главнее."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "npc-trajectories",
+      "version": 1,
+      "kind": "card",
+      "category": "characters",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "companion",
+        "npc",
+        "faction",
+        "ally",
+        "спутник",
+        "союз",
+        "фракц"
+      ],
+      "en": {
+        "avoid": "Never make a companion decide or act for the player, know a hidden fact or gain an unsupported capability.",
+        "title": "Independent character trajectories",
+        "guidance": "Existing NPCs and companions may pursue grounded goals and initiate relevant scenes within their capabilities and knowledge. Their core traits persist while their stance can evolve through events."
+      },
+      "ru": {
+        "avoid": "Не позволяй спутнику решать за игрока, знать тайное или получать неподтверждённую способность.",
+        "title": "Свои пути персонажей",
+        "guidance": "NPC и спутники могут преследовать обоснованные цели и начинать уместные сцены в пределах возможностей и знаний. Их характер остаётся узнаваемым, а отношение меняется вслед за событиями."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "player-goals-and-backstory",
+      "version": 1,
+      "kind": "card",
+      "category": "agency",
+      "stages": [
+        "plan"
+      ],
+      "triggers": [
+        "goal",
+        "backstory",
+        "seek",
+        "quest",
+        "цель",
+        "прошл",
+        "ищ"
+      ],
+      "en": {
+        "avoid": "Do not invent a backstory fact, force the main quest, or close off plausible alternatives.",
+        "title": "Player goals become world content",
+        "guidance": "Treat a player-created goal or established backstory as a possible source of supported hooks. Offer more than one viable approach and respect current world pressure."
+      },
+      "ru": {
+        "avoid": "Не выдумывай факты прошлого, не навязывай главный сюжет и не закрывай правдоподобные пути.",
+        "title": "Цели игрока в мире",
+        "guidance": "Цель игрока или установленное прошлое может стать основой подтверждённых зацепок. Оставляй несколько возможных подходов и учитывай давление мира."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "promises-and-relationships",
+      "version": 1,
+      "kind": "card",
+      "category": "relationships",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "promise",
+        "friend",
+        "relationship",
+        "обещ",
+        "друг",
+        "отношен"
+      ],
+      "en": {
+        "avoid": "Do not invent a promise, private feeling or new knowledge to manufacture a callback.",
+        "title": "Promises and relationships",
+        "guidance": "Let supported promises and changing relationships cause scenes. Recurring people retain a stable core while responding to what has happened."
+      },
+      "ru": {
+        "avoid": "Не выдумывай обещание, скрытое чувство или новые знания ради красивой отсылки.",
+        "title": "Обещания и отношения",
+        "guidance": "Пусть подтверждённые обещания и меняющиеся отношения вызывают сцены. Знакомые люди сохраняют свой характер, но реагируют на пережитое."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "quiet-and-decompression",
+      "version": 1,
+      "kind": "card",
+      "category": "rhythm",
+      "stages": [
+        "narrate"
+      ],
+      "triggers": [
+        "rest",
+        "quiet",
+        "after",
+        "camp",
+        "отдых",
+        "тихо",
+        "после"
+      ],
+      "en": {
+        "avoid": "Do not create a fresh crisis, resource recovery or time jump that the settled outcome did not authorize.",
+        "title": "Quiet and decompression",
+        "guidance": "Give a supported quiet scene space after intensity. Use restrained dialogue and sensory detail to let consequences land without advancing a new event."
+      },
+      "ru": {
+        "avoid": "Не создавай новый кризис, восстановление ресурсов или скачок времени без подтверждённого результата.",
+        "title": "Тишина после напряжения",
+        "guidance": "После напряжения дай обоснованной тихой сцене пространство. Сдержанный диалог и детали помогают ощутить последствия без нового события."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "return-with-delta",
+      "version": 1,
+      "kind": "card",
+      "category": "continuity",
+      "stages": [
+        "narrate"
+      ],
+      "triggers": [
+        "return",
+        "again",
+        "home",
+        "back",
+        "снова",
+        "верну",
+        "дом"
+      ],
+      "en": {
+        "avoid": "Do not add a change that contradicts the saved state or reveal a dormant secret merely for novelty.",
+        "title": "Return with change",
+        "guidance": "When an established person or place returns, show a small grounded difference caused by known events. Familiarity gives the difference meaning."
+      },
+      "ru": {
+        "avoid": "Не добавляй перемену вопреки сохранённому состоянию и не раскрывай скрытую тайну ради новизны.",
+        "title": "Возвращение с переменой",
+        "guidance": "Когда знакомый человек или место появляется снова, покажи небольшое обоснованное изменение из известных событий. Знакомство делает его значимым."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    },
+    {
+      "key": "threads-and-payoff",
+      "version": 1,
+      "kind": "card",
+      "category": "long-form",
+      "stages": [
+        "plan",
+        "narrate"
+      ],
+      "triggers": [
+        "thread",
+        "mystery",
+        "clue",
+        "secret",
+        "нить",
+        "тайн",
+        "намек"
+      ],
+      "en": {
+        "avoid": "Do not surface a dormant mystery simply because it was retrieved, reveal hidden facts, or spam callbacks.",
+        "title": "Setup, dormancy and payoff",
+        "guidance": "Advance only a relevant established thread. Let a supported earlier setup matter after believable dormancy; useful callbacks clarify present choices and consequences."
+      },
+      "ru": {
+        "avoid": "Не вытаскивай спящую тайну только из-за поиска, не раскрывай скрытые факты и не злоупотребляй отсылками.",
+        "title": "Завязка, пауза и развязка",
+        "guidance": "Продвигай только уместную установленную нить. Подтверждённая завязка может обрести смысл после естественной паузы; полезная отсылка проясняет нынешний выбор и последствия."
+      },
+      "provenance": "Owner-approved Mega DM v1 generalized doctrine"
+    }
+  ]
+}
