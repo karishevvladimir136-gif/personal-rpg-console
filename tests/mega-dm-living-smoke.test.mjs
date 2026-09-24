@@ -53,7 +53,8 @@ test("corrected smoke fixture grounds each arm in the same structured current lo
     }
   }
   const changedProduction = execFileSync("git", ["diff", "--name-only",
-    "33c6163110090ff69a2737a435666954bbf2bced", "--", "src", "supabase"],
+    "33c6163110090ff69a2737a435666954bbf2bced",
+    "2dc0fe33f089c20ea165613eb99996b23b71299d", "--", "src", "supabase"],
   { encoding: "utf8" }).trim();
   assert.equal(changedProduction, "");
 });

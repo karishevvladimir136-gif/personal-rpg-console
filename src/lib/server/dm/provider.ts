@@ -35,6 +35,131 @@ export type ProviderAttempt = {
   sourceCount: number;
 };
 
+// Opt-in server-side diagnostics only. The ordinary attempt observer and
+// gameplay-facing DmError deliberately retain their existing safe shape.
+export type ProviderTransportDiagnostic = {
+  stage: ProviderAttempt["stage"];
+  configuredModel: string;
+  category: TurnFailure | null;
+  success: boolean;
+  phase:
+    | "preflight"
+    | "request"
+    | "error-body"
+    | "response-body"
+    | "provider-json"
+    | "provider-state"
+    | "output-parse"
+    | "completed";
+  nativeName: string | null;
+  nativeMessage: string | null;
+  causeName: string | null;
+  causeCode: string | null;
+  causeMessage: string | null;
+  abortKind: "timeout" | "abort" | null;
+  httpStatus: number | null;
+  httpStatusText: string | null;
+  providerErrorType: string | null;
+  providerErrorCode: string | null;
+  providerErrorMessage: string | null;
+  retryAfter: string | null;
+  openaiRequestId: string | null;
+  requestId: string | null;
+  responseId: string | null;
+  responseReceived: boolean;
+  bodyReceived: boolean;
+  jsonParseFailed: boolean;
+  elapsedMs: number;
+};
+
+function diagnosticIdentifier(
+  value: unknown,
+  apiKey: string,
+  max = 128,
+): string | null {
+  return typeof value === "string" &&
+    value.length <= max &&
+    /^[A-Za-z0-9_.-]+$/.test(value) &&
+    !value.startsWith("sk-") &&
+    (!apiKey || !value.includes(apiKey))
+    ? value
+    : null;
+}
+
+function diagnosticMessage(value: unknown, apiKey: string): string | null {
+  if (typeof value !== "string") return null;
+  let message = value;
+  if (apiKey) message = message.replaceAll(apiKey, "[REDACTED]");
+  message = message
+    .replace(/\bBearer\s+[^\s,;]+/gi, "Bearer [REDACTED]")
+    .replace(/\bsk-[A-Za-z0-9_-]{8,}\b/g, "[REDACTED]")
+    .replace(
+      /\b(?:OPENAI_API_KEY|Authorization|api[_-]?key)\s*[:=]\s*[^\s,;]+/gi,
+      "[REDACTED]",
+    )
+    .replace(/[\u0000-\u001f\u007f]/g, " ");
+  return message.slice(0, 512);
+}
+
+function diagnosticHeader(response: Response, name: string): string | null {
+  try {
+    return response.headers?.get(name) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function captureNativeFailure(
+  diagnostic: ProviderTransportDiagnostic,
+  error: unknown,
+  apiKey: string,
+  signal?: AbortSignal,
+) {
+  const native =
+    error && typeof error === "object"
+      ? (error as { name?: unknown; message?: unknown; cause?: unknown })
+      : null;
+  const cause =
+    native?.cause && typeof native.cause === "object"
+      ? (native.cause as { name?: unknown; code?: unknown; message?: unknown })
+      : null;
+  diagnostic.nativeName = diagnosticIdentifier(native?.name, apiKey, 80);
+  diagnostic.nativeMessage = diagnosticMessage(native?.message, apiKey);
+  diagnostic.causeName = diagnosticIdentifier(cause?.name, apiKey, 80);
+  diagnostic.causeCode = diagnosticIdentifier(cause?.code, apiKey, 80);
+  diagnostic.causeMessage = diagnosticMessage(cause?.message, apiKey);
+  const reason =
+    signal?.aborted && signal.reason && typeof signal.reason === "object"
+      ? (signal.reason as { name?: unknown })
+      : null;
+  const names = [native?.name, cause?.name, reason?.name];
+  diagnostic.abortKind =
+    names.includes("TimeoutError") || cause?.code === "ETIMEDOUT"
+      ? "timeout"
+      : names.includes("AbortError")
+        ? "abort"
+        : null;
+}
+
+function captureProviderError(
+  diagnostic: ProviderTransportDiagnostic,
+  payload: unknown,
+  apiKey: string,
+) {
+  if (!payload || typeof payload !== "object") return;
+  const record = payload as Record<string, unknown>;
+  if (
+    typeof record.id === "string" &&
+    /^resp_[A-Za-z0-9_-]{1,120}$/.test(record.id)
+  )
+    diagnostic.responseId = record.id;
+  if (!record.error || typeof record.error !== "object") return;
+  const error = record.error as Record<string, unknown>;
+  diagnostic.providerErrorType = diagnosticIdentifier(error.type, apiKey, 80);
+  diagnostic.providerErrorCode = diagnosticIdentifier(error.code, apiKey, 80);
+  diagnostic.providerErrorMessage = diagnosticMessage(error.message, apiKey);
+}
+
 export type ProviderOptions = {
   apiKey: string;
   model: string;
@@ -42,6 +167,7 @@ export type ProviderOptions = {
   fetcher?: typeof fetch;
   timeoutMs?: number;
   observer?: (attempt: ProviderAttempt) => void;
+  diagnosticObserver?: (diagnostic: ProviderTransportDiagnostic) => void;
 };
 export function createStructuredRequester(
   options: ProviderOptions,
@@ -83,6 +209,32 @@ export function createStructuredRequester(
       timeoutMs,
       sourceCount: context.sourceCount,
     };
+    const diagnostic: ProviderTransportDiagnostic = {
+      stage,
+      configuredModel: context.budget.model,
+      category: null,
+      success: false,
+      phase: "preflight",
+      nativeName: null,
+      nativeMessage: null,
+      causeName: null,
+      causeCode: null,
+      causeMessage: null,
+      abortKind: null,
+      httpStatus: null,
+      httpStatusText: null,
+      providerErrorType: null,
+      providerErrorCode: null,
+      providerErrorMessage: null,
+      retryAfter: null,
+      openaiRequestId: null,
+      requestId: null,
+      responseId: null,
+      responseReceived: false,
+      bodyReceived: false,
+      jsonParseFailed: false,
+      elapsedMs: 0,
+    };
     try {
       if (!options.apiKey || !options.model)
         throw new DmError("configuration", true);
@@ -106,8 +258,10 @@ export function createStructuredRequester(
         },
       };
       let response: Response;
+      const signal = AbortSignal.timeout(timeoutMs);
       try {
         attempt.attempted = true;
+        diagnostic.phase = "request";
         response = await (options.fetcher ?? fetch)(
           "https://api.openai.com/v1/responses",
           {
@@ -117,24 +271,58 @@ export function createStructuredRequester(
               "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
-            signal: AbortSignal.timeout(timeoutMs),
+            signal,
           },
         );
-      } catch {
+      } catch (error) {
+        captureNativeFailure(diagnostic, error, options.apiKey, signal);
         throw new DmError("provider", true);
       }
+      diagnostic.responseReceived = true;
       attempt.httpStatus = response.status;
+      diagnostic.httpStatus = response.status;
+      diagnostic.httpStatusText = diagnosticMessage(
+        response.statusText,
+        options.apiKey,
+      );
+      diagnostic.retryAfter = diagnosticMessage(
+        diagnosticHeader(response, "retry-after"),
+        options.apiKey,
+      );
+      diagnostic.openaiRequestId = diagnosticIdentifier(
+        diagnosticHeader(response, "openai-request-id"),
+        options.apiKey,
+      );
+      diagnostic.requestId = diagnosticIdentifier(
+        diagnosticHeader(response, "x-request-id"),
+        options.apiKey,
+      );
       if (!response.ok) {
-        // Inspect only a fixed set of non-content error codes. Never retain or
-        // report the message/body, which can quote private prompt fragments.
+        diagnostic.phase = "error-body";
+        // Rich details are opt-in server diagnostics only. The default attempt
+        // observer still sees only the existing allowlisted type and code.
         try {
-          const error = (await response.json())?.error;
+          const body = await response.text();
+          diagnostic.bodyReceived = true;
+          let payload: unknown = null;
+          try {
+            payload = JSON.parse(body);
+          } catch (error) {
+            diagnostic.jsonParseFailed = true;
+            captureNativeFailure(diagnostic, error, options.apiKey);
+          }
+          captureProviderError(diagnostic, payload, options.apiKey);
+          const error =
+            payload && typeof payload === "object"
+              ? (payload as { error?: Record<string, unknown> }).error
+              : null;
           if (
             error?.type === "insufficient_quota" ||
             error?.type === "rate_limit_error"
           )
             attempt.providerType = error.type;
           if (
+            typeof error?.code === "string" &&
             [
               "insufficient_quota",
               "rate_limit_exceeded",
@@ -148,11 +336,11 @@ export function createStructuredRequester(
               "organization_usage_limit_exceeded",
               "slow_down",
               "server_is_overloaded",
-            ].includes(error?.code)
+            ].includes(error.code)
           )
             attempt.providerCode = error.code;
-        } catch {
-          /* No provider details escape. */
+        } catch (error) {
+          captureNativeFailure(diagnostic, error, options.apiKey);
         }
         throw new DmError(
           response.status === 401 || response.status === 403
@@ -165,13 +353,25 @@ export function createStructuredRequester(
         );
       }
       let payload: Record<string, unknown>;
+      diagnostic.phase = "response-body";
+      let responseText: string;
       try {
-        const text = await response.text();
-        if (text.length > 200000) throw new DmError("validation");
-        payload = JSON.parse(text);
-      } catch {
+        responseText = await response.text();
+        diagnostic.bodyReceived = true;
+      } catch (error) {
+        captureNativeFailure(diagnostic, error, options.apiKey, signal);
         throw new DmError("provider", true);
       }
+      if (responseText.length > 200000) throw new DmError("provider", true);
+      diagnostic.phase = "provider-json";
+      try {
+        payload = JSON.parse(responseText);
+      } catch (error) {
+        diagnostic.jsonParseFailed = true;
+        captureNativeFailure(diagnostic, error, options.apiKey);
+        throw new DmError("provider", true);
+      }
+      captureProviderError(diagnostic, payload, options.apiKey);
       if (
         typeof payload?.model === "string" &&
         /^(?:gpt-6-astra|gpt-5\.4(?:-mini)?)(?:-\d{4}-\d{2}-\d{2})?$/.test(
@@ -194,6 +394,7 @@ export function createStructuredRequester(
         !Array.isArray(payload.output)
       )
         throw new DmError("provider", true);
+      diagnostic.phase = "provider-state";
       const chunks: string[] = [];
       for (const item of payload.output) {
         if (item.type === "reasoning") continue;
@@ -215,6 +416,7 @@ export function createStructuredRequester(
       }
       if (chunks.length !== 1) throw new DmError("validation");
       let output: T;
+      diagnostic.phase = "output-parse";
       try {
         output = parse(JSON.parse(chunks[0]));
       } catch {
@@ -230,6 +432,8 @@ export function createStructuredRequester(
       )
         throw new DmError("provider");
       attempt.success = true;
+      diagnostic.phase = "completed";
+      diagnostic.success = true;
       return {
         output,
         usage: {
@@ -244,15 +448,22 @@ export function createStructuredRequester(
       const safeError =
         error instanceof DmError ? error : new DmError("provider", true);
       attempt.category = safeError.code;
+      diagnostic.category = safeError.code;
       throw safeError;
     } finally {
       attempt.latencyMs = Date.now() - started;
+      diagnostic.elapsedMs = attempt.latencyMs;
       // The observer sees only this allowlist, including failed paid attempts.
       // Reporting failure must never alter gameplay or expose a caught error.
       try {
         options.observer?.({ ...attempt });
       } catch {
         /* Non-authoritative diagnostics. */
+      }
+      try {
+        options.diagnosticObserver?.({ ...diagnostic });
+      } catch {
+        /* Diagnostics never affect settlement or gameplay errors. */
       }
     }
   };
