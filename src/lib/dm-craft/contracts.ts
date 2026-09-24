@@ -1,4 +1,5 @@
 import type { DmStyle } from "../campaign-settings.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
 
 export const CRAFT_SELECTOR_POLICY = "mega-dm-v1-literal-1" as const;
 export type CraftStage = "plan" | "narrate";
@@ -23,6 +24,7 @@ export type PinnedCraft = {
   ownerId: string;
   campaignId: string;
   operationId: string;
+  timeline?: TimelineFence;
   styleRevision: number;
   style: DmStyle;
   doctrine: CraftVersion | null;
