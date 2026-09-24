@@ -21,6 +21,7 @@ import { requireSourceTimeline } from "./timeline.ts";
 import type { RuntimeTask } from "../production/contracts.ts";
 import { pinnedCraftForStage } from "./dm-craft-context.ts";
 import { characterPacket, privateStateWithoutCharacterModels } from "./character-model.ts";
+import { modelCapabilities } from "../model-runtime/capabilities.ts";
 
 // Only validated, player-visible state fields may inform final narration.
 // Never serialize an entire resolution: it may also contain check/action metadata.
@@ -83,22 +84,19 @@ function publicResults(resolution: MechanicsResolution | undefined) {
 
 // Limits verified 2026-09-18 against official model pages:
 // https://developers.openai.com/api/docs/models/gpt-6-astra
+// https://developers.openai.com/api/docs/models/gpt-6-sol
 // https://developers.openai.com/api/docs/models/gpt-5.4
 // https://developers.openai.com/api/docs/models/gpt-5.4-mini
 // Output includes reasoning tokens. Ordinary calls keep the accepted 4096 cap;
 // only composition and detached simulation need the larger task reserves below.
 // The production input cap remains independent of the output reserve.
-const models: Record<string, number> = {
-  "gpt-6-astra": 1050000,
-  "gpt-5.4": 1050000,
-  "gpt-5.4-mini": 400000,
-};
 export function modelBudget(
   model: string,
   use?: { task: RuntimeTask; purpose?: "simulation" },
 ): ModelBudget {
-  const contextLimit = Object.hasOwn(models, model) ? models[model] : undefined;
-  if (!contextLimit) throw new DmError("configuration", true);
+  const capability = modelCapabilities(model);
+  if (!capability) throw new DmError("configuration", true);
+  const contextLimit = capability.contextLimit;
   return {
     model,
     contextLimit,

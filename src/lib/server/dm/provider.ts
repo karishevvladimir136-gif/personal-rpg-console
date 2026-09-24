@@ -14,6 +14,7 @@ import { DmError } from "../../gameplay/dm-errors.ts";
 import type { TurnFailure } from "../../gameplay/contracts.ts";
 import { modelReasoning } from "./config.ts";
 import type { RuntimeTask } from "../../production/contracts.ts";
+import { recognizedActualModel } from "../../model-runtime/capabilities.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
@@ -372,13 +373,7 @@ export function createStructuredRequester(
         throw new DmError("provider", true);
       }
       captureProviderError(diagnostic, payload, options.apiKey);
-      if (
-        typeof payload?.model === "string" &&
-        /^(?:gpt-6-astra|gpt-5\.4(?:-mini)?)(?:-\d{4}-\d{2}-\d{2})?$/.test(
-          payload.model,
-        )
-      )
-        attempt.actualModel = payload.model;
+      attempt.actualModel = recognizedActualModel(payload?.model);
       const rawUsage = payload?.usage as Record<string, unknown> | null;
       const tokenCount = (value: unknown): number | null =>
         Number.isSafeInteger(value) &&

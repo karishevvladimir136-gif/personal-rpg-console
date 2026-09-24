@@ -6,6 +6,7 @@ import type {
 } from "../production/contracts.ts";
 import { modelBudget } from "../gameplay/dm-context.ts";
 import { DmError } from "../gameplay/dm-errors.ts";
+import { modelCapabilities } from "./capabilities.ts";
 
 // This registry admits only the already accepted direct Responses adapter.
 // Budgets remain owned by the existing context builder; no provider probes occur.
@@ -46,13 +47,14 @@ export function validateModelSelection(value: unknown): ModelSelection {
   )
     return fail();
   modelBudget(value.modelId);
-  const astra = value.modelId === "gpt-6-astra";
+  const capability = modelCapabilities(value.modelId);
   const reasoning =
-    value.reasoning === null ? (astra ? "xhigh" : "none") : value.reasoning;
-  const allowed = astra
-    ? ["low", "medium", "high", "xhigh", "max"]
-    : ["none", "low", "medium", "high", "xhigh"];
-  if (typeof reasoning !== "string" || !allowed.includes(reasoning))
+    value.reasoning === null ? capability?.defaultReasoning : value.reasoning;
+  if (
+    !capability ||
+    typeof reasoning !== "string" ||
+    !(capability.reasoning as readonly string[]).includes(reasoning)
+  )
     return fail();
   return { providerId: "openai", modelId: value.modelId, reasoning };
 }

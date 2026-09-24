@@ -18,6 +18,7 @@ import {
   parseRulesetRef,
 } from "../rulesets/profiles.ts";
 import { parseWorldPolicy, parseWorldState } from "../world/validation.ts";
+import { openAiModelCapabilities } from "../model-runtime/capabilities.ts";
 import {
   parseWorldReconciliationChoice,
   prepareWorldPolicyReconciliation,
@@ -53,14 +54,11 @@ export function providerSettings(
         status: configured ? "configured_not_tested" : "unavailable",
       },
     ],
-    models: ["gpt-6-astra", "gpt-5.4", "gpt-5.4-mini"].map((id) => ({
+    models: Object.entries(openAiModelCapabilities).map(([id, capability]) => ({
       providerId: "openai",
       id,
       label: id,
-      reasoning:
-        id === "gpt-6-astra"
-          ? ["low", "medium", "high", "xhigh", "max"]
-          : ["none", "low", "medium", "high", "xhigh"],
+      reasoning: [...capability.reasoning],
     })),
     globalDefault,
     globalDefaultStatus:
