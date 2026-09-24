@@ -60,6 +60,12 @@ test("Craft identity and selector-policy corruption fail closed", () => {
   }
 });
 
+test("pinned Style revision must match the operation's settings revision", () => {
+  const { source, input } = withCraft();
+  source.runtime.turns.push({ id: input.operationId, settingsRevision: 2 });
+  assert.throws(() => buildContext(source, input, "plan", { model }), { code: "context" });
+});
+
 test("mandatory evidence wins the context budget over optional Craft", () => {
   const { source, input } = withCraft();
   const noCraft = { ...source, craft: undefined };

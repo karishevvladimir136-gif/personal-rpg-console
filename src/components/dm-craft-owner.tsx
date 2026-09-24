@@ -17,10 +17,10 @@ function versionText(version: CraftVersion, language: "en" | "ru") {
   return version[language];
 }
 
-export function DmCraftOwner() {
+export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } = {}) {
   const { t, language } = useLanguage();
-  const [view, setView] = useState<CraftOwnerView | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [view, setView] = useState<CraftOwnerView | null>(previewView ?? null);
+  const [loading, setLoading] = useState(!previewView);
   const [error, setError] = useState("");
   const [saved, setSaved] = useState("");
   const [busy, setBusy] = useState(false);
@@ -39,13 +39,14 @@ export function DmCraftOwner() {
     }
   }, []);
   useEffect(() => {
+    if (previewView) return;
     const timer = window.setTimeout(() => void load(), 0);
     return () => window.clearTimeout(timer);
-  }, [load]);
+  }, [load, previewView]);
   const effective = (key: string) =>
     view?.effective.find((row) => row.key === key);
   const run = async (command: Omit<CraftCommand, "requestId">) => {
-    if (guard.current) return;
+    if (guard.current || previewView) return;
     guard.current = true;
     setBusy(true);
     setError("");
@@ -125,9 +126,10 @@ export function DmCraftOwner() {
         </div>
         <Badge>{t("Owner approved")}</Badge>
       </div>
-      <Link className="text-link" href="/">
+      <Link className="text-link" href={previewView ? "/preview/owner" : "/"}>
         {t("Back to main menu")}
       </Link>
+      {previewView && <p className="muted">{t("Synthetic preview only. No changes are saved.")}</p>}
       {loading && <p role="status">{t("Loading DM Craft…")}</p>}
       {error && <p role="alert">{t(error)}</p>}
       {error && (
@@ -143,7 +145,7 @@ export function DmCraftOwner() {
           </p>
           <div className="dm-craft-section-title">
             <h2>{t("Approved doctrine and cards")}</h2>
-            <Button onClick={startCard} disabled={busy}>
+            <Button onClick={startCard} disabled={busy || !!previewView}>
               {t("Write a new card")}
             </Button>
           </div>
@@ -176,7 +178,7 @@ export function DmCraftOwner() {
                     )
                     .join(" · ")}
                 </p>
-                <Button onClick={() => editVersion(version)} disabled={busy}>
+                <Button onClick={() => editVersion(version)} disabled={busy || !!previewView}>
                   {t("Edit and review a new version")}
                 </Button>
               </Panel>
@@ -340,7 +342,7 @@ export function DmCraftOwner() {
                       </p>
                       {!active && (
                         <Button
-                          disabled={busy}
+                          disabled={busy || !!previewView}
                           onClick={() =>
                             void run({
                               action: "activate",

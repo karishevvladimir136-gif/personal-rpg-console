@@ -53,6 +53,9 @@ export function pinnedCraftForStage(
     pinned.narrate.length > 2
   )
     throw new DmError("context");
+  const turn = source.runtime.turns.find((entry) => entry.id === request.operationId);
+  if (turn && turn.settingsRevision !== pinned.styleRevision)
+    throw new DmError("context");
   let style;
   try {
     style = parseDmStyle(pinned.style);

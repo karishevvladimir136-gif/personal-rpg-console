@@ -1677,5 +1677,14 @@
   "This proposal belongs to a different timeline. Refresh before reviewing it.": "Предложение относится к другой временной линии. Обновите данные перед проверкой.",
   "Review campaign DM Style": "Проверить стиль Ведущего кампании",
   "Review global DM Craft": "Проверить общее мастерство Ведущего",
-  "This card key already exists. Edit it in DM Craft or choose a new key.": "Карточка с таким кодом уже существует. Измените её в мастерстве Ведущего или выберите новый код."
+  "This card key already exists. Edit it in DM Craft or choose a new key.": "Карточка с таким кодом уже существует. Измените её в мастерстве Ведущего или выберите новый код.",
+  "Synthetic preview only. No changes are saved.": "Только демонстрационный просмотр. Изменения не сохраняются.",
+  "core": "основа",
+  "causality": "причины и последствия",
+  "relationships": "отношения",
+  "continuity": "непрерывность",
+  "rhythm": "ритм",
+  "agency": "свобода действий",
+  "long-form": "долгая история",
+  "characters": "персонажи"
 }
