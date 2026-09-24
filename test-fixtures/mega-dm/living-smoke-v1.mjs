@@ -12,7 +12,7 @@ import { recordServerRoll } from "../../src/lib/gameplay/dice.ts";
 import { narrationSource } from "../../src/lib/gameplay/turn-engine.ts";
 import { CRAFT_SELECTOR_POLICY } from "../../src/lib/dm-craft/contracts.ts";
 
-export const LIVING_SMOKE_VERSION = "mega-dm-living-smoke-v3-two-stage";
+export const LIVING_SMOKE_VERSION = "mega-dm-living-smoke-v4-structured-scene";
 export const LIVING_SMOKE_ARMS = Object.freeze(["baseline", "doctrine", "full"]);
 export const LIVING_SMOKE_PROBES = Object.freeze([
   { id: "identity-knowledge-refusal", ordinal: 1, historyThrough: "lc42", place: "workshop",
@@ -30,6 +30,11 @@ export const LIVING_SMOKE_PROBES = Object.freeze([
 ]);
 const normalizedFileDigest = (url) => createHash("sha256").update(readFileSync(url, "utf8").replace(/\r\n/g, "\n")).digest("hex");
 const digest = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
+export const LIVING_SMOKE_FIXTURE_DIGEST = "84e5843f47f1ef99c368e30922ce01b3cc6a3af635ffb4693e8f542457a5d366";
+if (LIVING_SMOKE_FIXTURE_DIGEST !== digest({ version: LIVING_SMOKE_VERSION,
+  historyDigest: LIVING_FIXTURE_DIGEST, probes: LIVING_SMOKE_PROBES,
+  sourceAdapterDigest: normalizedFileDigest(new URL("./living-smoke-source-v1.mjs", import.meta.url)) }))
+  throw new Error("Frozen living smoke fixture changed; re-review before use");
 export const BASELINE_CRAFT_PIN = Object.freeze({
   selectorPolicy: CRAFT_SELECTOR_POLICY, doctrine: "core-doctrine@1",
   source: "frozen-craft-v1.json",
@@ -89,7 +94,7 @@ export function livingSmokeRequest({ probeId, arm, model }) {
   const packet = characterPacket(source, input, "plan");
   const embeddedPacket = JSON.parse(built.input).mandatory.characterPacket;
   if (JSON.stringify(embeddedPacket) !== JSON.stringify(packet)) throw new Error("Production Character Packet mismatch");
-  const base = { fixtureDigest: LIVING_FIXTURE_DIGEST, probeId, criterion: probe.criterion,
+  const base = { fixtureDigest: LIVING_SMOKE_FIXTURE_DIGEST, probeId, criterion: probe.criterion,
     playerInput: probe.playerInput, place: probe.place, present: probe.present,
     historyThrough: probe.historyThrough, history, actorNames: Object.fromEntries(Object.entries(livingCast).map(([key, row]) => [key, row.name ?? "Talin"])),
     sourceRefs: sources.map((row) => ({ ref: row.ref, knownBy: row.knownBy })) };

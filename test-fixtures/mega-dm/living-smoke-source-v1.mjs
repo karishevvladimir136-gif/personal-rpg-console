@@ -7,6 +7,17 @@ import { livingCast, livingHistory } from "./living-characters-v1.mjs";
 export const smokeUuid = (number) => `00000000-0000-4000-8000-${number.toString(16).padStart(12, "0")}`;
 export const SMOKE_ACTOR_IDS = Object.freeze({ talin: smokeUuid(10), liora: smokeUuid(11),
   bram: smokeUuid(12), sava: smokeUuid(13), orin: smokeUuid(14) });
+export const SMOKE_LOCATION_IDS = Object.freeze({ workshop: smokeUuid(60),
+  "Lantern Room": smokeUuid(61), bridge: smokeUuid(62) });
+export const LANTERN_ROOM_FOOD = "Bread and stew are already on the Lantern Room table, available to everyone present.";
+const SMOKE_LOCATIONS = Object.freeze([
+  { id: SMOKE_LOCATION_IDS.workshop, name: "Workshop",
+    description: "The enclosed riverside repair workshop; the quay and dock are separate places." },
+  { id: SMOKE_LOCATION_IDS["Lantern Room"], name: "Lantern Room",
+    description: "The shared room where the river crew can talk and rest after flood work." },
+  { id: SMOKE_LOCATION_IDS.bridge, name: "Damaged Bridge",
+    description: "The damaged public crossing where a warning mark can be witnessed." },
+]);
 const CAMPAIGN = smokeUuid(1), OWNER = smokeUuid(2), SESSION = smokeUuid(3), GUIDE = smokeUuid(4);
 const PRIVATE_SCENES = new Set(["lc18"]);
 const sourceId = (sceneId) => smokeUuid(100 + Number(sceneId.slice(2)));
@@ -81,10 +92,20 @@ export function livingSmokeSource(probe, withModels) {
       ({ ...template, id: SMOKE_ACTOR_IDS[key], campaign_id: CAMPAIGN, name: actor.name, kind: "companion" })),
   ];
   source.snapshot.sessions = [{ ...source.snapshot.sessions[0], id: SESSION, campaign_id: CAMPAIGN }];
-  source.snapshot.scenes = [];
+  source.snapshot.locations = SMOKE_LOCATIONS.map((location) => ({
+    ...location, campaign_id: CAMPAIGN, revision: 1,
+    updated_at: "2026-09-24T00:00:00.000Z", status: "visited",
+  }));
+  const lanternRoom = probe.id === "repair-history-joy";
+  source.snapshot.scenes = lanternRoom ? [{ id: smokeUuid(50), campaign_id: CAMPAIGN,
+    revision: 1, updated_at: "2026-09-24T00:00:00.000Z", sequence: 1,
+    session_id: SESSION, title: "Lantern Room table", body: LANTERN_ROOM_FOOD,
+    role: "note", settings_revision: source.snapshot.settings.revision,
+    created_at: "2026-09-24T00:00:00.000Z" }] : [];
   source.snapshot.feedback = [];
   source.snapshot.publicState = { ...source.snapshot.publicState, campaign_id: CAMPAIGN,
-    current_session_id: SESSION, current_scene_id: null,
+    current_session_id: SESSION, current_scene_id: lanternRoom ? smokeUuid(50) : null,
+    current_location_id: SMOKE_LOCATION_IDS[probe.place],
     summary: `Synthetic ${probe.place}: established river history through ${probe.historyThrough}.` };
   source.runtime.campaignId = CAMPAIGN;
   source.runtime.worldMinutes = last * 1440;

@@ -2,21 +2,61 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile, mkdtemp, rm } from "node:fs/promises";
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve, sep } from "node:path";
 import frozenCognitive from "../test-fixtures/mega-dm/frozen-cognitive-craft-v2.json" with { type: "json" };
 import { livingSmokePlan, livingSmokeRequest, livingSmokeProductionInput, livingSmokeNarrationRequest,
-  LIVING_SMOKE_ARMS, LIVING_SMOKE_PROBES } from "../test-fixtures/mega-dm/living-smoke-v1.mjs";
+  LIVING_SMOKE_ARMS, LIVING_SMOKE_PROBES, LIVING_SMOKE_VERSION,
+  LIVING_SMOKE_FIXTURE_DIGEST } from "../test-fixtures/mega-dm/living-smoke-v1.mjs";
 import { blindLivingSmokeArtifacts, companionSceneQualityArtifact,
   crowdedSceneQualityArtifact } from "../test-fixtures/mega-dm/living-review-v1.mjs";
 import { buildContext } from "../src/lib/gameplay/dm-context.ts";
 import { characterPacket } from "../src/lib/gameplay/character-model.ts";
-import { SMOKE_ACTOR_IDS, smokeUuid, livingSmokeSource } from "../test-fixtures/mega-dm/living-smoke-source-v1.mjs";
+import { SMOKE_ACTOR_IDS, SMOKE_LOCATION_IDS, LANTERN_ROOM_FOOD,
+  smokeUuid, livingSmokeSource } from "../test-fixtures/mega-dm/living-smoke-source-v1.mjs";
 import { fixture } from "./phase35-storage-fixture.mjs";
 import { emptyPlan } from "./phase2-turn-store-fixture.mjs";
 
 const digest = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
+
+test("corrected smoke fixture grounds each arm in the same structured current location and observable food", () => {
+  assert.equal(LIVING_SMOKE_VERSION, "mega-dm-living-smoke-v4-structured-scene");
+  assert.match(LIVING_SMOKE_FIXTURE_DIGEST, /^[a-f0-9]{64}$/);
+  for (const probe of LIVING_SMOKE_PROBES) {
+    const expected = SMOKE_LOCATION_IDS[probe.place];
+    assert.ok(expected);
+    const armContexts = LIVING_SMOKE_ARMS.map((arm) => {
+      const { source } = livingSmokeProductionInput({ probeId: probe.id, arm });
+      const context = JSON.parse(livingSmokeRequest({ probeId: probe.id, arm, model: "gpt-6-astra" }).context.input);
+      assert.equal(source.snapshot.publicState.current_location_id, expected);
+      assert.equal(context.mandatory.current.publicState.current_location_id, expected);
+      assert.equal(context.mandatory.current.locations.find((row) => row.id === expected)?.name,
+        probe.place === "bridge" ? "Damaged Bridge" : probe.place === "workshop" ? "Workshop" : "Lantern Room");
+      assert.equal(context.mandatory.current.locations.filter((row) => row.id === expected).length, 1);
+      if (probe.id === "identity-knowledge-refusal") {
+        assert.equal(context.mandatory.current.locations.find((row) => row.id === expected)?.name, "Workshop");
+        assert.notEqual(expected, SMOKE_LOCATION_IDS.bridge);
+      }
+      if (probe.id === "repair-history-joy") {
+        assert.equal(source.snapshot.scenes.length, 1);
+        assert.equal(source.snapshot.scenes[0].body, LANTERN_ROOM_FOOD);
+        assert.equal(context.mandatory.current.publicState.current_scene_id, source.snapshot.scenes[0].id);
+        assert.ok(context.originalScenes.some((row) => row.body === LANTERN_ROOM_FOOD));
+        assert.equal(source.snapshot.items.length, 0);
+      }
+      return context;
+    });
+    for (const context of armContexts.slice(1)) {
+      assert.deepEqual(context.mandatory.current, armContexts[0].mandatory.current);
+      assert.deepEqual(context.originalScenes, armContexts[0].originalScenes);
+    }
+  }
+  const changedProduction = execFileSync("git", ["diff", "--name-only",
+    "33c6163110090ff69a2737a435666954bbf2bced", "--", "src", "supabase"],
+  { encoding: "utf8" }).trim();
+  assert.equal(changedProduction, "");
+});
 
 test("three dense probes prepare nine plan arms; B and C differ only by the real Character Packet", () => {
   const calls = livingSmokePlan("gpt-5.4");

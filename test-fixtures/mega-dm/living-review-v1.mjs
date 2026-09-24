@@ -1,5 +1,5 @@
 import { livingCast, livingHistory, livingProbes, LIVING_FIXTURE_DIGEST } from "./living-characters-v1.mjs";
-import { LIVING_SMOKE_PROBES } from "./living-smoke-v1.mjs";
+import { LIVING_SMOKE_PROBES, LIVING_SMOKE_FIXTURE_DIGEST } from "./living-smoke-v1.mjs";
 
 export const livingQualityRubric = Object.freeze({
   dimensions: ["Identity coherence", "Situational appropriateness", "Independent agency", "Epistemic realism",
@@ -61,12 +61,12 @@ export function blindLivingSmokeArtifacts() {
   ];
   const labels = ["X", "Y", "Z"];
   return {
-    review: { fixtureDigest: LIVING_FIXTURE_DIGEST,
+    review: { fixtureDigest: LIVING_SMOKE_FIXTURE_DIGEST,
       instructions: "Read only the three final player-visible narrations for each probe. Record separate qualitative observations before opening the plan diagnostics and reveal key; do not average them into a winner or wellness score.",
       dimensions: blindDimensions,
       cases: LIVING_SMOKE_PROBES.map((probe) => ({ probeId: probe.id, criterion: probe.criterion,
         responses: labels.map((label) => ({ label, finalNarration: null, observations: null })) })) },
-    reveal: { fixtureDigest: LIVING_FIXTURE_DIGEST, openOnlyAfterInitialReview: true,
+    reveal: { fixtureDigest: LIVING_SMOKE_FIXTURE_DIGEST, openOnlyAfterInitialReview: true,
       cases: LIVING_SMOKE_PROBES.map((probe, index) => ({ probeId: probe.id,
         labels: Object.fromEntries(labels.map((label, position) => [label, orders[index][position]])),
         planDiagnostics: Object.fromEntries(labels.map((label) => [label, null])) })) },
