@@ -1,8 +1,29 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { readFile } from "node:fs/promises";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
 import { defaultDmStyle } from "../src/lib/campaign-settings.ts";
+
+test("populated pre-Mega-DM campaign and manual save survive additive migration", async () => {
+  const f = await fixture(16);
+  try {
+    const w = await world(f);
+    const save = await f.saves(w.cid, "create", await f.command(w.cid, { kind: "manual", name: "Before Mega DM" }));
+    const before = await f.saves(w.cid, "campaign");
+    const oldRead = await f.saves(w.cid, "read");
+    assert.equal(before.settings.values.dmStyle, undefined);
+    await f.db.exec(await readFile(new URL("../supabase/migrations/202609230017_mega_dm_v1.sql", import.meta.url), "utf8"));
+    assert.deepEqual(await f.saves(w.cid, "campaign"), before);
+    assert.deepEqual(await f.saves(w.cid, "read"), oldRead);
+    assert.equal((await craft(f, "read")).versions.length, 8);
+    const restored = await f.saves(w.cid, "load", await f.command(w.cid, { saveId: save.saveId, label: "Legacy restore", recovery: false }));
+    assert.ok(restored);
+    assert.equal((await f.saves(w.cid, "campaign")).settings.values.dmStyle, undefined);
+  } finally {
+    await f.db.close();
+  }
+});
 
 async function craft(f, action, payload = {}, owner = f.owner) {
   return (await f.one("select public.rpg_dm_craft($1,$2,$3::jsonb) result", [
