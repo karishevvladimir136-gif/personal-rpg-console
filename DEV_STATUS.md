@@ -1,3 +1,11 @@
+# Development status — Mega DM priority/docs consolidation — OWNER ACCEPTED
+
+The owner explicitly accepts the documentation consolidation at exact reviewed docs SHA `68925a10db3a9688d7475294cd156158ca6b77a5`. **Mega DM priority/docs consolidation status: OWNER ACCEPTED.** The current forward order is **Mega DM v1 → D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World → FRAME / Visual Bible + fal → 2D Presentation Engine → VIDEO**. D2B remains deferred until Mega DM v1 is implemented, evaluated and owner accepted. This documentation acceptance does **not** itself authorize Mega DM implementation, D2B or any later phase.
+
+The reviewed nine-file documentation diff is preserved. Historical D2A owner acceptance and evaluation evidence remain unchanged. This is a `DEV_STATUS.md`-only acceptance record; no application code, schema, migration, test, fixture, dependency, browser review, provider/model call, database action or deployment is part of it.
+
+---
+
 # Development status — Mega DM priority and architecture consolidation — DOCS ONLY
 
 **Current milestone/status:** documentation consolidation from exact remote main `68b2e96fd715ad65a9b96a0d525aa6cdfa55908f`, pending owner review. The World Lab D2A **OWNER ACCEPTED** record below remains unchanged; no implementation/evaluation acceptance is implied by this planning commit. The new forward order is **Mega DM v1 → D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World → FRAME / Visual Bible + fal → 2D Presentation Engine → VIDEO**. D2B remains deferred until Mega DM v1 is implemented, evaluated and owner accepted.
