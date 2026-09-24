@@ -35,9 +35,9 @@ export function MegaDmPreview() {
   const { t, language, setLanguage } = useLanguage();
   const [style, setStyle] = useState<DmStyle>(defaultDmStyle);
   return <div className="app-content">
-    <div className="button-row" role="group" aria-label="Preview language">
-      <Button onClick={() => setLanguage("en")} disabled={language === "en"}>English</Button>
-      <Button onClick={() => setLanguage("ru")} disabled={language === "ru"}>Русский</Button>
+    <div className="button-row" role="group" aria-label={t("Preview language")}>
+      <Button onClick={() => setLanguage("en")} disabled={language === "en"}>{t("English")}</Button>
+      <Button onClick={() => setLanguage("ru")} disabled={language === "ru"}>{t("Russian")}</Button>
     </div>
     <DmCraftOwner previewView={previewCraft} />
     <Panel title={t("DM Style")}>

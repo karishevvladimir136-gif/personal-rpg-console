@@ -1679,6 +1679,7 @@
   "Review global DM Craft": "Проверить общее мастерство Ведущего",
   "This card key already exists. Edit it in DM Craft or choose a new key.": "Карточка с таким кодом уже существует. Измените её в мастерстве Ведущего или выберите новый код.",
   "Synthetic preview only. No changes are saved.": "Только демонстрационный просмотр. Изменения не сохраняются.",
+  "Preview language": "Язык предпросмотра",
   "core": "основа",
   "causality": "причины и последствия",
   "relationships": "отношения",
