@@ -6,6 +6,7 @@ import { usePreview } from "./preview-context";
 import { Badge } from "./ui";
 import { languageOptions } from "@/lib/i18n";
 import { DicePreviewButton } from "./dice-preview";
+import { CampaignDmStyle } from "./dm-style-controls";
 import {
   autonomyOptions,
   defeatOptions,
@@ -498,6 +499,7 @@ export function CampaignSettingsEditor({
   const tabs = [
     { value: "general", label: "General" },
     { value: "rules", label: "Rules & Play Style" },
+    ...(!preview ? [{ value: "dm-style", label: "DM Style" }] : []),
   ];
   return (
     <section
@@ -673,6 +675,22 @@ export function CampaignSettingsEditor({
           managedRulesNote={managedRulesNote}
         />
       </div>
+      {!preview && (
+        <div
+          role="tabpanel"
+          id="campaign-panel-dm-style"
+          aria-labelledby="campaign-tab-dm-style"
+          hidden={tab !== "dm-style"}
+          tabIndex={0}
+        >
+          <CampaignDmStyle
+            settings={campaignSettings}
+            onChange={(key, value) =>
+              change({ type: "dmStyle", key, value } as CampaignSettingsAction)
+            }
+          />
+        </div>
+      )}
     </section>
   );
 }

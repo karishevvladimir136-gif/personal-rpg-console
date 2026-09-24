@@ -166,6 +166,10 @@ export function PersistentMainMenu() {
           <Icon name="library" />
           {t("World Library")}
         </Link>
+        <Link className="button" href="/dm-craft">
+          <Icon name="BookOpen" />
+          {t("DM Craft")}
+        </Link>
         <Button
           disabled={busy}
           onClick={async () => {

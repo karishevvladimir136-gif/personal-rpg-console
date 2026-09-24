@@ -24,6 +24,8 @@ import type { CampaignProductionSettings } from "@/lib/production/configuration-
 import { productionScopeMatches } from "@/lib/production-client";
 import { wave2ConfigText } from "@/lib/locales/wave2-config";
 import { updateCampaignSettings } from "@/lib/campaign-settings";
+import { effectiveDmStyle } from "@/lib/campaign-settings";
+import { dmStyleChoices, dmStyleKeys } from "./dm-style-controls";
 import { languageOptions } from "@/lib/i18n";
 import { createMutationAttempt, errorMessage } from "@/lib/persistence/client";
 import type {
@@ -492,6 +494,19 @@ function CampaignPreferencesForm({
                 <dd>{t(revision.values.interactiveDice ? "On" : "Off")}</dd>
                 <dt>{t("Show DC")}</dt>
                 <dd>{t(revision.values.showDc ? "On" : "Off")}</dd>
+                {dmStyleKeys.map((key) => (
+                  <div key={key} className="dm-style-history-row">
+                    <dt>{t(dmStyleChoices[key].label)}</dt>
+                    <dd>
+                      {t(
+                        effectiveDmStyle(revision.values)[
+                          key
+                        ][0].toUpperCase() +
+                          effectiveDmStyle(revision.values)[key].slice(1),
+                      )}
+                    </dd>
+                  </div>
+                ))}
               </dl>
             </details>
           ))

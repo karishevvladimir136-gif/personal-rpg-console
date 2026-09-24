@@ -5,6 +5,9 @@ import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
 import { GameplayCheck } from "./gameplay-dice";
+import { DmTeachReview } from "./dm-teach-review";
+import { errorMessage, readJson } from "@/lib/persistence/client";
+import type { TeachCommand } from "@/lib/dm-craft/contracts";
 import type {
   GuidanceApprovalInput,
   PublicTurn,
@@ -29,11 +32,15 @@ export function GameplayGuidanceProposal({
   onSaved: () => Promise<void>;
 }) {
   const { t } = useLanguage();
-  const { campaignId, data } = useCampaignData();
+  const { campaignId, data, refresh } = useCampaignData();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [reviewScope, setReviewScope] = useState<
+    "campaign_style" | "global_craft" | null
+  >(null);
   const guard = useRef(false);
   const attempt = useRef<GuidanceApprovalInput | null>(null);
+  const rejectAttempt = useRef<TeachCommand | null>(null);
   const proposal = turn.proposal;
   if (!proposal) return null;
   const session = data?.sessions.find(
@@ -98,6 +105,38 @@ export function GameplayGuidanceProposal({
       setBusy(false);
     }
   };
+  const reject = async () => {
+    const timeline = turn.timeline ?? data?.timeline;
+    if (guard.current || !data || !timeline) return;
+    guard.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      rejectAttempt.current ??= {
+        action: "reject",
+        requestId: crypto.randomUUID(),
+        campaignId,
+        timeline,
+        operationId: turn.id,
+        proposalId: proposal.id,
+      };
+      await readJson(
+        `/api/campaigns/${encodeURIComponent(campaignId)}/dm-teach`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(rejectAttempt.current),
+        },
+      );
+      rejectAttempt.current = null;
+      await Promise.allSettled([refresh(), onSaved()]);
+    } catch (cause) {
+      setError(errorMessage(cause));
+    } finally {
+      guard.current = false;
+      setBusy(false);
+    }
+  };
   return (
     <aside className="gameplay-guidance">
       <h4>{t("Proposed DM guidance")}</h4>
@@ -107,7 +146,16 @@ export function GameplayGuidanceProposal({
           "Guidance affects future narration only. It cannot override rules, player agency, canon or secrecy.",
         )}
       </p>
-      {proposal.status === "approved" ? (
+      {proposal.scope === "campaign_style" ||
+      proposal.scope === "global_craft" ? (
+        <DmTeachReview
+          turn={turn}
+          onSaved={onSaved}
+          reviewScope={proposal.scope}
+        />
+      ) : proposal.status === "rejected" ? (
+        <Badge>{t("Rejected")}</Badge>
+      ) : proposal.status === "approved" ? (
         <Badge green>
           {t(
             proposal.scope === "session"
@@ -124,19 +172,47 @@ export function GameplayGuidanceProposal({
           </p>
           <div className="button-group">
             <Button
-              disabled={busy || !session}
+              disabled={busy || !session || !!reviewScope}
               onClick={() => void approve("session")}
             >
               {t("This session")}
             </Button>
             <Button
               primary
-              disabled={busy}
+              disabled={busy || !!reviewScope}
               onClick={() => void approve("campaign")}
             >
               {t("Save for this campaign")}
             </Button>
           </div>
+          <div className="button-group">
+            <Button
+              disabled={busy || !data || !(turn.timeline ?? data.timeline)}
+              onClick={() => void reject()}
+            >
+              {t("Reject proposal")}
+            </Button>
+            <Button
+              disabled={busy}
+              onClick={() => setReviewScope("campaign_style")}
+            >
+              {t("Review campaign DM Style")}
+            </Button>
+            <Button
+              disabled={busy}
+              onClick={() => setReviewScope("global_craft")}
+            >
+              {t("Review global DM Craft")}
+            </Button>
+          </div>
+          {reviewScope && (
+            <DmTeachReview
+              key={reviewScope}
+              turn={turn}
+              onSaved={onSaved}
+              reviewScope={reviewScope}
+            />
+          )}
           {!session && (
             <p className="muted">
               {t(
