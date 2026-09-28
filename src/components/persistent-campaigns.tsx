@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { NewHeroForm } from "./adventures/new-hero";
+import { adventureText } from "./adventures/text";
+import { restoreWorldAttempt, worldPendingKey } from "@/lib/adventures/client";
 import { useLanguage } from "./language-context";
 import { useWorkspaceData, useUnsavedChanges } from "./persistence-context";
 import { Badge, Button, Icon, Panel } from "./ui";
@@ -23,6 +26,28 @@ import type { Mutation } from "@/lib/persistence/contracts";
 export function PersistentCampaigns() {
   const { t, language: interfaceLanguage } = useLanguage();
   const premiseText = campaignPremiseText(interfaceLanguage);
+  const adventureCopy = adventureText(interfaceLanguage);
+  const [newHero, setNewHero] = useState(false);
+  const [heroDirty, setHeroDirty] = useState(false);
+  useEffect(() => {
+    Promise.resolve().then(() => {
+      try {
+        if (
+          ["new_campaign", "world_create"].some((kind) =>
+            restoreWorldAttempt(
+              sessionStorage.getItem(
+                worldPendingKey(kind as "new_campaign" | "world_create"),
+              ),
+              kind as "new_campaign" | "world_create",
+            ),
+          )
+        )
+          setNewHero(true);
+      } catch {
+        /* Recovery remains available in memory when storage is blocked. */
+      }
+    });
+  }, []);
   const { data, loading, error, refresh, mutate } = useWorkspaceData();
   const [creating, setCreating] = useState(false);
   const [title, setTitle] = useState("");
@@ -46,7 +71,7 @@ export function PersistentCampaigns() {
       language !== "en" ||
       premise.text !== "" ||
       premise.language !== "en");
-  useUnsavedChanges(dirty || uncertain);
+  useUnsavedChanges(dirty || uncertain || heroDirty);
   const create = async () => {
     if (busy.current || !creationOpen.current) return;
     busy.current = true;
@@ -110,6 +135,7 @@ export function PersistentCampaigns() {
         </div>
         <Button
           primary
+          disabled={newHero}
           onClick={() => {
             creationOpen.current = true;
             setCreating(true);
@@ -119,6 +145,33 @@ export function PersistentCampaigns() {
           {t("New Campaign")}
         </Button>
       </div>
+      <div className="button-row">
+        <Button
+          disabled={creating || newHero}
+          onClick={() => {
+            setNewHero(true);
+            setSaved(false);
+          }}
+        >
+          {adventureCopy.newHero}
+        </Button>
+      </div>
+      {newHero && (
+        <NewHeroForm
+          language={interfaceLanguage}
+          onDirty={setHeroDirty}
+          onCreated={refresh}
+          onCancel={() => {
+            if (
+              !heroDirty ||
+              window.confirm(t("Discard your unsaved changes?"))
+            ) {
+              setNewHero(false);
+              setHeroDirty(false);
+            }
+          }}
+        />
+      )}
       <Link className="text-link" href="/">
         {t("Back to main menu")}
       </Link>
