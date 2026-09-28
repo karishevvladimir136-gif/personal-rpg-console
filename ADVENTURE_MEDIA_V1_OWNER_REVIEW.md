@@ -1,3 +1,33 @@
+# Current owner review — Adventure / FRAME / live VIDEO
+
+The remaining live VIDEO check succeeded on unchanged candidate `69b5b0b0975d40864e653d5d511c7d67f00a590c`. This wave is implemented, integrated, deterministically verified and browser checked, with one real synthetic video now available. The combined milestone remains **not owner accepted**. Main stays unchanged and the real Level 1 Fighter Adventure has not begun.
+
+## What to open
+
+1. Open **[the actual VIDEO review](http://127.0.0.1:3103/review)** on this computer. It shows the accepted synthetic F5 image and the original generated clip. Press Play with sound; English / Русский changes the review text. No new generation, credential, database setup or payment is needed to view it.
+2. Open **[the normal-shell synthetic UI review](http://127.0.0.1:3102/preview/adventure-media)**. **Game / FRAME → review this scene → Generate FRAME → Accept** demonstrates the separate draft decision. Enable the explicitly labelled scripted VIDEO control only to test request states; **Generate video** first reviews the source/reservation, and the second confirmation demonstrates a queue. This page still contains schematics and no generated video, makes no provider/database call and resets on reload/language change. It is separate from the actual clip viewer.
+3. **Visual Bible** is for manual appearance/outfit guidance and explicit approval. **Gallery** is for accepted results/history. Try Discard, video cancellation, failed replacement and unknown-result scripts; earlier usable art remains. Existing Adventures/New Hero/object/reward controls are unchanged.
+
+Loopback URLs point to this computer; a phone's 127.0.0.1 points to the phone. No physical iPhone check is claimed.
+
+## Actual VIDEO result and cost
+
+Exactly one fal `bytedance/seedance-2.5/us/image-to-video` generation used the accepted F5 overlook/scarf image. Requested720p/10 seconds/sound/auto aspect; delivered1178×786, 10.04-second H264/AAC MP4. It plays fully and its audio decodes, is non-silent and has no measured clipping. The recognizable standing subject/outfit/overlook remains, with gentle camera approach and hair/scarf motion. Final artistic/audio quality is yours to judge; the original younger/softer F5 face limitation remains. A second paid sample was unnecessary and was not attempted.
+
+An existing ignored local FAL_KEY was safely reused in server process memory; no key appears here, in source or browser data. Requested endpoint is exact; fal omitted actual model identity, usage and invoice amount. Calculated VIDEO estimate **$5.59602881**; combined historical media estimate **$6.10163631**. Retained reservations are **$11.40** of $20 and are not an invoice. [Full live report, original file and limits](ADVENTURE_MEDIA_VIDEO_LIVE_SMOKE_REPORT.md).
+
+## FRAME and acceptance limits remain
+
+The five-case Draft/Approval gate accepted F1/F3/F4/F5 with disclosed detail/face variation and discarded F2's unestablished tower. The automated check missed F2, so it is an assistant, never owner approval. [Five original images and exact limitations](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_V3_REPORT.md) remain unchanged. References are public text guidance, not proven exact pixel/face conditioning. No generated image/video establishes gameplay reality.
+
+One fresh complete suite has **1,708 passed / 1,709 total, 0 failed, 1 hosted opt-in skip**; type generation/typecheck/zero-warning lint/production build pass. Twelve ordinary EN/RU desktop/mobile combinations and separate original-clip playback passed. [Evidence and honest qualifications](ADVENTURE_MEDIA_V1_VERIFICATION.md).
+
+No real owner database migration, import, deployment, hosted Supabase guarantee, universal visual consistency, successful long-form owner Adventure or complete V1 claim. Real production use still needs the separately authorized server/database/storage setup; previews require none. Stop for owner review. All previous then-current review material is preserved below verbatim.
+
+---
+
+> Historical record below: preserved verbatim from the pre-VIDEO-smoke candidate. Then-current limitations are not rewritten.
+
 # Current owner review — illustration drafts and optional VIDEO
 
 The bounded Media correction and VIDEO V1 are implemented and verified at `c7e1bbae0f3e2acc3f4eed99413ba8bb548a4193`. The new five-case illustration Draft/Approval gate passed its lifecycle criteria: four drafts accepted, one rejected, prior art preserved. This does not claim exact face consistency or universal image-grounding safety. VIDEO has no live sample because FAL_KEY is absent. The wave is **not owner accepted** and the real Fighter Adventure has not begun.

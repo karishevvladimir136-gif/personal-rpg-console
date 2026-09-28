@@ -1,3 +1,17 @@
+# Current VIDEO V1 live verification — one original clip available
+
+The bounded synthetic live smoke now succeeded on unchanged `69b5b0b0975d40864e653d5d511c7d67f00a590c`. An existing ignored `C:/Dev/personal-rpg-console-phase38-preparation/.env.local` FAL_KEY was safely loaded into server smoke process memory only; it was not copied into this checkout, tracked source or browser. No new secret setup was required for the sample. The ordinary credential-free preview remains scripted; normal production server setup below is still required for a separately authorized real environment.
+
+Exact fal `bytedance/seedance-2.5/us/image-to-video` request:720p,10s,audio enabled,auto aspect,H264/standard bitrate. One generation reached Ready and attached with actual SQL authority, exact accepted F5 provenance and local scoped storage. Original1178×786/10.04-second H264/AAC video fully decodes and plays. Refresh/replay/reload does not generate another clip. No second sample, automatic retry, gameplay/Canon mutation or hosted Supabase claim.
+
+Current official schema/pricing was freshly checked immediately before paid dispatch. fal omitted actual model identity, returned usage and invoice charge. Decoded dimensions/duration at the documented US rate estimate **$5.59602881**; combined historical media estimate **$6.10163631**. The one $7 VIDEO reservation plus $4.40 history retains **$11.40** of the same $20 ceiling. Optional second is NOT ATTEMPTED/unclaimed. [Live report/source/output](ADVENTURE_MEDIA_VIDEO_LIVE_SMOKE_REPORT.md), [owner clip review](http://127.0.0.1:3103/review), [fresh final verification](ADVENTURE_MEDIA_V1_VERIFICATION.md).
+
+No implementation/configuration/migration changed for this successful sample. Production use, long-run provider reliability and artistic quality remain separately qualified. The previous then-current setup/verification body follows verbatim; its prior zero-attempt/absent-key statement is historical, superseded only by this current live evidence.
+
+---
+
+> Historical record below: preserved verbatim from the pre-VIDEO-smoke candidate. Then-current limitations are not rewritten.
+
 # VIDEO V1 — implementation, setup and limits
 
 VIDEO is optional scene presentation, explicitly triggered from an **owner-accepted current-scene FRAME**. Unreviewed/discarded/hard-rejected drafts and historical pre-approval image metadata cannot start VIDEO. No hidden paid keyframe is generated. Server SQL checks the actual private FRAME check and acceptance receipt, not just a client prefix. Its exact source image/version/hash, scene/public revision, approved reference versions, Canon generation, head and timeline remain pinned.

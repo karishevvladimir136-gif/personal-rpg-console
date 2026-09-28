@@ -1,3 +1,40 @@
+# Fresh final integrated verification — live VIDEO closure
+
+**Frozen application candidate:** `69b5b0b0975d40864e653d5d511c7d67f00a590c`, branch `codex/v1-adventure-media`. This closure changes documentation only. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Earlier counts/logs remain historical; the following is the one new complete run after the live sample.
+
+| Final gate | Fresh result |
+| --- | --- |
+| Complete repository suite | **1,709 total / 1,708 passed / 0 failed / 1 skipped / 0 cancelled**, 217,215.8655 ms |
+| Route type generation | Passed, exit0 |
+| Nonincremental TypeScript | Passed, exit0 |
+| Repository ESLint | Passed, zero warnings |
+| Production webpack build | Passed, exit0; Next16.3.5 |
+| Disposable populated migration upgrades | Actual prefixes24/25/26/27/28 through29; commerce receipts, public/private state, saves and FRAME history preserved |
+| Adventure / loot / reward / container | Included and passed in the complete suite |
+| FRAME / Lab / privacy | Draft/Accept/Discard, genuine corrections, exact checkpoint/child continuity and source/private isolation included and passed |
+| VIDEO / save / idempotency | Exact approval/source, atomic Ready attachment, stale callbacks, cancellation, same-ID recovery, no retry/fallback, prior-asset retention and save/load included and passed |
+| Ordinary browser | **12** EN/RU ×1280×900/390×844 ×Game/FRAME/VIDEO/Visual Bible/Gallery screen groups; no horizontal document overflow |
+| Original live clip browser | EN desktop and RU mobile viewport played fully, readyState4, no media error |
+| Live VIDEO | **1** generation, **0** generation retries/fallback; queue and9 status reads plus one result read/download reached Ready |
+
+The sole skip is the existing explicitly opted-in hosted Supabase Auth/PostgREST test. It is not a pass or evidence of hosted behavior. Full test/type/lint/build environments had provider credentials removed and used the local preview only. Build-generated route-import path changes were restored to the reviewed file after the successful build; no application change followed the freeze.
+
+Logs: [fresh verification directory](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/adventure-media-live-video-final); quality-results.json records all exits and candidate; full-suite-final.log contains the complete new result. [Browser matrix/screenshots](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/adventure-media-live-video-final-browser) record actual viewports. Three preliminary EN mobile-labelled captures were actually desktop-sized; they remain invalid-viewport-* and are excluded. The counted12 have exact actual dimensions. Browser review used ordinary components in the synthetic premium shell, not an authenticated hosted Campaign or physical iPhone.
+
+## Live lifecycle and bounded media inspection
+
+Existing ignored FAL_KEY was loaded only into server smoke process memory. Real production FRAME/VIDEO model builders, orchestration, requester and SQL authority were used against a disposable restored synthetic PGlite archive upgraded through29. Storage was a scoped immutable local adapter. No production migration/real data/hosted Storage or deployment was involved.
+
+Accepted F5 approval/version/hash and public scene/references were pinned. One queue POST returned an identity before status polling. The completed MP4 became one authorized Asset/Document and was projected through safeVideoAsset. Exact dispatch replay, three completed polls without provider access and fresh-process reload recovered the same result; no duplicate generation, artifact or charge. Actual SQL foreign-owner/Campaign reads failed. Factual gameplay/private/Canon/head/timeline state and prior art remained unchanged; media-only Memory cache invalidation remains an existing bookkeeping qualification. Lost-response, stale callback, cancellation and correction failures are deterministic suite evidence, not deliberately induced failures in this successful paid sample.
+
+Full video/audio decode passed: H264/AAC,1178×786/24fps,10.04s, non-silent audio/no measured clipping. Sampled frames and playback preserved the recognizable source; no obvious catastrophic replacement or private content. Owner judgement of sound/cinematic quality remains pending. Auto aspect does not promise a720-pixel side; the inspection helper's incorrect initial assumption was corrected offline, with its note retained, without modifying the original clip/provider request/application. [Exact report and hashes](ADVENTURE_MEDIA_VIDEO_LIVE_SMOKE_REPORT.md).
+
+fal returned no actual-model identity, token usage or invoice amount. The current official dimensions/duration token formula gives a **$5.59602881 VIDEO estimate**, **$6.10163631 combined historical estimate**, **$11.40 retained reserve** below $20. A second clip was not attempted. Prior failed FRAME evidence, all39 Draft-gate evidence files and original dirty-checkout protected files are hash-identical. No production/test/schema/fixture changes occurred in this closure. Preserve the previous verification body below unchanged; combined owner acceptance and the real Fighter playtest are still pending.
+
+---
+
+> Historical record below: preserved verbatim from the pre-VIDEO-smoke candidate. Then-current limitations are not rewritten.
+
 # Current integrated verification — FRAME Draft/Approval + VIDEO V1
 
 **Final implementation/test freeze:** `c7e1bbae0f3e2acc3f4eed99413ba8bb548a4193` on `codex/v1-adventure-media`; current documentation only follows. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Implemented, integrated, deterministically verified and browser checked; **not owner accepted**, not complete V1, no real owner Adventure or live VIDEO proof.
