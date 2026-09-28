@@ -57,7 +57,7 @@ async function tools(f) {
     f.owner,
     f.budget,
     model,
-    800000,
+    1200000,
     2,
   ]);
   f.queue = async (refs = []) => {
@@ -100,6 +100,10 @@ async function tools(f) {
         },
         providerRequestId: "synthetic_only",
       };
+    if (record && record.body.includes('"status":"generating"')) {
+      await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)",[f.owner,f.cid,record.id,record.current_version_id,o.sha256]);
+      await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",[f.owner,f.cid,record.id,record.current_version_id,o.sha256,JSON.stringify({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})]);
+    }
     const v = { ...g.v, status: "completed", resultAssetId: record.id },
       m = { ...realFrameDocumentMutation(s, v, record), requestId: record.id },
       a = {
@@ -138,7 +142,7 @@ async function tools(f) {
   return f;
 }
 async function setup() {
-  const f = await fixture(25);
+  const f = await fixture(27);
   const w = await world(f);
   return tools({ ...f, ...w });
 }
@@ -168,7 +172,7 @@ test("real FRAME SQL: queue/claim/atomic completion/replay preserve gameplay and
           [f.budget],
         )
       ).reserved_usd_micros,
-      400000,
+      600000,
     );
     assert.deepEqual(await f.unchanged(), before);
     await assert.rejects(f.lifecycle(q.m, f.other), /rpg_forbidden/);
@@ -367,7 +371,7 @@ test("real FRAME SQL: stale head/timeline and malformed attachment cannot create
 test("real FRAME SQL: eligible Lab checkpoint still prepares an exact child after lifecycle", async () => {
   const f = await integrationFixture({
     beforeSave: async (base) => {
-      for (const file of base.files.slice(16, 25))
+      for (const file of base.files.slice(16, 27))
         await base.db.exec(await readFile(new URL(file, base.folder), "utf8"));
     },
   });

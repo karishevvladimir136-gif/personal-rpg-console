@@ -26,6 +26,8 @@ import type {
   MediaStore,
 } from "./orchestration";
 import { FRAME_RESERVATION_USD_MICROS } from "./pricing";
+import { openAiFrameVerifier } from "./grounding";
+import { FRAME_CHECK_MODEL, FRAME_CHECK_REASONING, FRAME_CHECK_RESERVATION_USD_MICROS, isFrameCheckResult } from "./grounding-state";
 import { openAiFrameProvider } from "./provider";
 import { checkedPng, storedPixels, MAX_FRAME_IMAGE_BYTES } from "./png";
 
@@ -54,7 +56,9 @@ function policy(): MediaPolicy | null {
     process.env.RPG_FRAME_ENABLED !== "true" ||
     !IMAGE_MODELS.includes(model as ImageModel) ||
     !isUuid(budgetId) ||
-    !process.env.OPENAI_API_KEY
+    !process.env.OPENAI_API_KEY ||
+    process.env.RPG_FRAME_VERIFY_MODEL !== FRAME_CHECK_MODEL ||
+    process.env.RPG_FRAME_VERIFY_REASONING !== FRAME_CHECK_REASONING
   )
     return null;
   return {
@@ -157,6 +161,26 @@ function authority(): MediaFrameAuthority {
         claimed: response.data.claimed,
       };
     },
+    checkClaim: async (input) => {
+      const id = owner(), response = await serviceClient(id).rpc("rpg_frame_check_claim", {
+        p_owner_id: id, p_campaign_id: input.campaignId, p_job_id: input.jobId,
+        p_job_version_id: input.jobVersionId, p_image_sha256: input.imageSha256,
+      });
+      if (response.error) throw databaseError(response.error);
+      if (!exactKeys(response.data, ["claimed", "result"]) || typeof response.data.claimed !== "boolean" ||
+        !(response.data.result === null || isFrameCheckResult(response.data.result))) throw new PersistenceError("unavailable");
+      return { claimed: response.data.claimed, result: response.data.result };
+    },
+    checkComplete: async (input, checked) => {
+      if (!isFrameCheckResult(checked)) throw new PersistenceError("validation");
+      const id = owner(), response = await serviceClient(id).rpc("rpg_frame_check_complete", {
+        p_owner_id: id, p_campaign_id: input.campaignId, p_job_id: input.jobId,
+        p_job_version_id: input.jobVersionId, p_image_sha256: input.imageSha256, p_result: checked,
+      });
+      if (response.error) throw databaseError(response.error);
+      if (!isFrameCheckResult(response.data)) throw new PersistenceError("unavailable");
+      return response.data;
+    },
     complete: async (input, asset, output) => {
       const id = owner(),
         response = await serviceClient(id).rpc("rpg_real_frame_complete", {
@@ -239,6 +263,8 @@ export async function mediaCapability(campaignId: string) {
     model: selected?.model ?? null,
     parameters: selected?.parameters ?? null,
     reservationUsdMicros: selected?.reservationUsdMicros ?? null,
+    verificationReservationUsdMicros: selected ? FRAME_CHECK_RESERVATION_USD_MICROS : null,
+    totalReservationUsdMicros: selected ? selected.reservationUsdMicros + FRAME_CHECK_RESERVATION_USD_MICROS : null,
     imageReferencesEnabled: false,
   };
 }
@@ -289,6 +315,7 @@ export async function runMediaFrame(value: unknown) {
     policy: policy(),
     store: privateStore(),
     provider: openAiFrameProvider(process.env.OPENAI_API_KEY ?? ""),
+    verifier: openAiFrameVerifier({ apiKey: process.env.OPENAI_API_KEY ?? "", model: process.env.RPG_FRAME_VERIFY_MODEL ?? "", reasoning: process.env.RPG_FRAME_VERIFY_REASONING }),
   });
 }
 export async function signedFrameImage(campaignId: string, assetId: string) {

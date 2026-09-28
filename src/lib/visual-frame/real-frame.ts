@@ -20,6 +20,8 @@ import type {
   VisualSubject,
 } from "./model.ts";
 
+import { closedWorldFramePrompt } from "./closed-world.ts";
+
 export const REAL_FRAME_ASSET_PREFIX = "RPG_REAL_FRAME_ASSET_V1\n";
 export const IMAGE_MODELS = [
   "gpt-image-2.5-sunburst-2026-09-08",
@@ -45,7 +47,7 @@ export type RealFrameReference = {
   imageAssetRevision: number | null;
 };
 export type RealFrame = {
-  schema: 2;
+  schema: 2 | 3;
   kind: "frame";
   campaign_id: string;
   provider: "OpenAI";
@@ -72,7 +74,7 @@ export type RealFrame = {
   retryOf: string | null;
   dispatch: { requestId: string; reservationUsdMicros: number } | null;
   resultAssetId: string | null;
-  failure: "provider" | "uncertain" | "stale" | "storage" | null;
+  failure: "provider" | "uncertain" | "stale" | "storage" | "grounding" | "review" | null;
 };
 export type FrameUsage = {
   textInputTokens: number;
@@ -200,7 +202,7 @@ export function parseRealFrame(
         "resultAssetId",
         "failure",
       ]) ||
-      v.schema !== 2 ||
+      (v.schema !== 2 && v.schema !== 3) ||
       v.kind !== "frame" ||
       !isUuid(v.campaign_id) ||
       v.provider !== "OpenAI" ||
@@ -276,7 +278,7 @@ export function parseRealFrame(
           v.dispatch.reservationUsdMicros > 0)
       ) ||
       !nullableUuid(v.resultAssetId) ||
-      ![null, "provider", "uncertain", "stale", "storage"].includes(
+      ![null, "provider", "uncertain", "stale", "storage", "grounding", "review"].includes(
         v.failure as null | string,
       )
     )
@@ -297,7 +299,7 @@ export function parseRealFrame(
         v.failure !== null) ||
       (v.status === "uncertain" && v.failure !== "uncertain") ||
       (v.status === "failed" &&
-        !["provider", "stale", "storage"].includes(String(v.failure)))
+        !["provider", "stale", "storage", "grounding", "review"].includes(String(v.failure)))
     )
       return null;
     return v as RealFrame;
@@ -442,7 +444,7 @@ export function eligibleRealReferences(snapshot: CampaignSnapshot) {
       return [{ record, reference }];
     });
 }
-export function realFramePrompt(
+export function legacyRealFramePrompt(
   scene: { title: string; body: string },
   references: VisualReference[],
   composition: RealFrame["composition"],
@@ -457,6 +459,8 @@ export function realFramePrompt(
     ),
   ].join("\n\n");
 }
+export const realFramePrompt = closedWorldFramePrompt;
+
 export function buildRealFrame(
   snapshot: CampaignSnapshot,
   referenceIds: string[],
@@ -509,7 +513,7 @@ export function buildRealFrame(
   if (prompt.length > 30000 || new TextEncoder().encode(prompt).length > 60000)
     return fail();
   return {
-    schema: 2,
+    schema: 3,
     kind: "frame",
     campaign_id: snapshot.campaign.id,
     provider: "OpenAI",
@@ -568,7 +572,10 @@ export function realFrameIsCurrent(
     );
     return (
       same(rebuilt.basis, frame.basis) &&
-      rebuilt.prompt === frame.prompt &&
+      (frame.schema === 3
+        ? rebuilt.prompt
+        : legacyRealFramePrompt(rebuilt.basis.scene,
+            frame.basis.references.map((ref) => eligibleRealReferences(snapshot).find((r) => r.record.id === ref.documentId)!.reference), frame.composition)) === frame.prompt &&
       rebuilt.art === frame.art
     );
   } catch {

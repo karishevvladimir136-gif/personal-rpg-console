@@ -30,3 +30,8 @@ World creation establishes reusable owner-authored foundation identity and exact
 ## Review decision
 
 Review the implemented Adventure/manual-control/UI direction and its disclosed limits. This review does not authorize the actual owner Fighter Adventure, a real DB migration, deployment or paid provider call by implication. Complete the pending FRAME consistency/privacy gate before considering VIDEO or claiming the two-lane milestone complete.
+
+
+## Bounded FRAME grounding continuation
+
+The owner-authorized correction adds a public closed-world scene contract and a mandatory bounded image check before attachment. One explicit Generate reserves up to $0.60 including the check. A grounding failure keeps prior usable art and requires a separate explicit new Generate; no automatic paid retry occurs. [Correction, configuration and gate v2 limits](ADVENTURE_MEDIA_FRAME_GROUNDING_CORRECTION.md) and [independent QA](ADVENTURE_MEDIA_FRAME_GROUNDING_QA.md) supersede only the current continuation state, not the historical failed gate. The unchanged public F1–F5 meanings and earlier costs remain separate evidence. VIDEO remains gated; this is not combined milestone acceptance.

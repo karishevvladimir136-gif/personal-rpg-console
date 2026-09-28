@@ -1,3 +1,15 @@
+# Development status — bounded FRAME grounding correction — OFFLINE VERIFIED; NEW LIVE GATE PENDING
+
+**Continuation:** from exact stopped `a07922bb3b0acf29e0f23fddcb91c7a96e7a5078`, preserving tested Adventure/loot/reward/container/World `e03d6c8c2fe12e459e8947a234a06c36fa1042dd`. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Not owner accepted; no new feature lane or VIDEO work has started.
+
+**Implemented/integrated:** schema3 public closed-world FRAME brief, neutral unknown views through openings, material pose/item/presence fidelity, strict bounded visual check through the existing requester, private exact claim/result receipt, pass-only atomic attachment and unchanged source/timeline/Canon fencing. Rejected/uncertain generated pixels remain evidence and never replace previous art. Lost responses replay exact receipts; unknown claims cannot create another paid check/image. One existing media budget reserves image$0.40 + check$0.20. Historical jobs/reservations/readers remain compatible; migration27 is additive and tested only on disposable SQL.
+
+**Verification:** affected197/197 and independent12/12 pass; Next route generation/nonincremental TypeScript, repository zero-warning lint and webpack build pass. EN/RU1280×900/390×844 synthetic ordinary-shell FRAME review passed without horizontal overflow; screenshots do not claim real art, authenticated hosted Campaigns or physical iPhone. Fresh complete suite:1,573 total,1,572 passed,0 failed,1 existing opt-in hosted-Supabase skip,154,505.152ms. The first run's sole stale seven-task registry assertion and log are preserved; after adding the authorized check task expectation,38 affected tests passed before this fresh corrected run. [Correction/gate plan](ADVENTURE_MEDIA_FRAME_GROUNDING_CORRECTION.md), [independent QA](ADVENTURE_MEDIA_FRAME_GROUNDING_QA.md).
+
+**Live/cost/limits:** no new image/check calls before this freeze. Prior F1/F2 evidence remains immutable: two images, $0.085870 usage-calculated charge, $0.80 retained reservation. New gatev2 uses identical F1–F5 meanings and exact Sunburst dated/high/1536×1024, with one GPT-5.4/high/Standard bounded presentation check per generated result. Maximum total FRAME reservations including history$3.80 against the same$20 combined ceiling. No live invoice, hosted Supabase, universal visual consistency, pixel-reference fidelity, owner acceptance or real owner Adventure is claimed. Existing accepted FRAME Memory-cache bookkeeping remains unchanged; the check itself does not mutate Memory. Original dirty checkout, accepted/frozen evidence and full historical status below remain unchanged.
+
+---
+
 # Development status — Adventure / Media V1 live FRAME gate — STOPPED FOR OWNER REVIEW
 
 **Current continuation:** exact implementation `e03d6c8c2fe12e459e8947a234a06c36fa1042dd`, branch `codex/v1-adventure-media`; main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. The owner accepts Adventure/loot/reward/container direction for finishing the wave, not the combined milestone. This continuation changes status/evidence documentation only; implementation and all historical records below remain unchanged.

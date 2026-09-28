@@ -59,6 +59,7 @@ export function fixture() {
   const snapshot = structuredClone(sourceSnapshot),
     proof = { expectedHeadId: randomUUID(), canonGeneration: 7 },
     receipts = new Map(),
+    checkReceipts = new Map(),
     pixels = new Map(),
     writes = [],
     calls = [];
@@ -68,6 +69,7 @@ export function fixture() {
     reservationUsdMicros: 400000,
     budgetId: randomUUID(),
   };
+  let verifierCalls = 0;
   let providerCalls = 0,
     reserved = 0;
   const receipt = async (input) => {
@@ -130,8 +132,30 @@ export function fixture() {
       if (existing) return { result: existing, claimed: false };
       if (!realFrameIsCurrent(snapshot, parseRealFrame(input.payload), proof))
         throw Object.assign(new Error("conflict"), { code: "conflict" });
-      reserved += policy.reservationUsdMicros;
+      reserved += policy.reservationUsdMicros + 200000;
       return { result: apply(input), claimed: true };
+    },
+    checkClaim: async (input) => {
+      calls.push("checkClaim");
+      const record = snapshot.documents.find((r) => r.id === input.jobId && r.campaign_id === input.campaignId), frame = record && parseRealFrame(record);
+      if (!record || record.current_version_id !== input.jobVersionId || frame.status !== "generating" || !realFrameIsCurrent(snapshot, frame, proof) || pixels.get(record.id)?.output.sha256 !== input.imageSha256)
+        throw Object.assign(new Error("conflict"), {code:"conflict"});
+      const prior = checkReceipts.get(input.jobId);
+      if (prior) {
+        if (JSON.stringify(prior.input) !== JSON.stringify(input)) throw Error("conflict");
+        return {claimed:false, result:prior.result};
+      }
+      checkReceipts.set(input.jobId,{input:structuredClone(input),result:null});
+      return {claimed:true,result:null};
+    },
+    checkComplete: async (input, result) => {
+      calls.push("checkComplete");
+      const prior=checkReceipts.get(input.jobId);
+      if (!prior || JSON.stringify(prior.input) !== JSON.stringify(input)) throw Error("conflict");
+      if (prior.result && JSON.stringify(prior.result) !== JSON.stringify(result)) throw Error("conflict");
+      if (!realFrameIsCurrent(snapshot, parseRealFrame(snapshot.documents.find(r=>r.id===input.jobId)), proof)) throw Object.assign(new Error("conflict"), {code:"conflict"});
+      prior.result=structuredClone(result);
+      return result;
     },
     complete: async (input, asset, output) => {
       calls.push("complete");
@@ -140,6 +164,8 @@ export function fixture() {
       const record = snapshot.documents.find((r) => r.id === input.payload.id),
         previous = parseRealFrame(record);
       if (
+        checkReceipts.get(record.id)?.result?.verdict.status !== "pass" ||
+        checkReceipts.get(record.id)?.input.imageSha256 !== output.sha256 ||
         previous.status !== "generating" ||
         !realFrameIsCurrent(snapshot, previous, proof)
       )
@@ -184,7 +210,16 @@ export function fixture() {
       );
     },
   };
-  const deps = { authority, policy, store, provider };
+  const verifier = {
+    preflight: (frame) => {if(frame.schema!==3)throw Error("configuration");},
+    check: async (frame, image, jobId) => {
+      verifierCalls++;
+      calls.push("verifier");
+      if (image.output.storagePath !== frame.campaign_id+"/frames/"+jobId+"/output.png") throw Error("foreign");
+      return {schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4-2026-03-05",inputTokens:3000,outputTokens:200,latencyMs:10};
+    },
+  };
+  const deps = { authority, policy, store, provider, verifier };
   const run = (action, input) => executeMediaFrame({ action, input }, deps);
   const prepare = (refs = [], retryOf = null) =>
     buildRealFrame(snapshot, refs, "wide", model, parameters, proof, retryOf);
@@ -239,6 +274,9 @@ export function fixture() {
     policy,
     authority,
     provider,
+    verifier,
+    checkReceipts,
+    verifierCalls: () => verifierCalls,
     store,
     deps,
     run,

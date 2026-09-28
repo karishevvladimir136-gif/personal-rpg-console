@@ -43,6 +43,7 @@ async function setup() {
         "utf8",
       ),
     );
+    await f.db.exec(await readFile(new URL("supabase/migrations/202609280027_frame_grounding.sql",root),"utf8"));
     Object.assign(f, await world(f));
     f.snapshot = () => f.saves(f.cid, "campaign");
     f.source = async () =>
@@ -134,6 +135,10 @@ async function setup() {
         },
         providerRequestId: "offline_review_only",
       };
+      if ((await f.reservations()).some((reservation)=>reservation.job_id===id)) {
+        await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)",[f.owner,f.cid,id,record.current_version_id,output.sha256]);
+        await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",[f.owner,f.cid,id,record.current_version_id,output.sha256,JSON.stringify({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})]);
+      }
       return {
         input: {
           ...realFrameDocumentMutation(
@@ -196,7 +201,7 @@ test("integrated claim replay pins original operational budget before mutable so
           [f.budgetId],
         )
       ).reserved_usd_micros,
-      400000,
+      600000,
     );
   } finally {
     await f.db.close();

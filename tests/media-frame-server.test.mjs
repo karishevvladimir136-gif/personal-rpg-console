@@ -10,6 +10,7 @@ import * as validation from "../src/lib/persistence/validation.ts";
 import * as fence from "../src/lib/saves/fence.ts";
 import * as orchestration from "../src/lib/server/media/orchestration.ts";
 import * as pricing from "../src/lib/server/media/pricing.ts";
+import * as groundingState from "../src/lib/server/media/grounding-state.ts";
 import * as png from "../src/lib/server/media/png.ts";
 function compile(path, dependencies, env = {}) {
   const compiledModule = { exports: {} },
@@ -59,6 +60,8 @@ async function serverFixture() {
           data: await f.authority.claim(args.p_mutation, args.p_budget_id),
           error: null,
         };
+      if (name === "rpg_frame_check_claim") return { data: await f.authority.checkClaim({campaignId:args.p_campaign_id,jobId:args.p_job_id,jobVersionId:args.p_job_version_id,imageSha256:args.p_image_sha256}),error:null };
+      if (name === "rpg_frame_check_complete") return { data: await f.authority.checkComplete({campaignId:args.p_campaign_id,jobId:args.p_job_id,jobVersionId:args.p_job_version_id,imageSha256:args.p_image_sha256}, args.p_result),error:null };
       if (name === "rpg_real_frame_complete")
         return {
           data: await f.authority.complete(
@@ -77,6 +80,7 @@ async function serverFixture() {
           upload: async (path, bytes, options) => {
             uploads.push({ path, options });
             assert.equal(options.upsert, false);
+            f.pixels.set(path.split("/")[2], {bytes:structuredClone(bytes),output:structuredClone(options.metadata.frameOutput)});
             files.set(path, {
               bytes: structuredClone(bytes),
               metadata: structuredClone(options.metadata),
@@ -117,6 +121,8 @@ async function serverFixture() {
     RPG_OWNER_USER_ID: owner,
     OPENAI_API_KEY: "SYNTHETIC_IMAGE_ONLY",
     RPG_FRAME_ENABLED: "true",
+    RPG_FRAME_VERIFY_MODEL: "gpt-5.4",
+    RPG_FRAME_VERIFY_REASONING: "high",
     RPG_FRAME_MODEL: f.policy.model,
     RPG_MEDIA_BUDGET_ID: f.policy.budgetId,
   };
@@ -160,6 +166,8 @@ async function serverFixture() {
       "./pricing": pricing,
       "./provider": { openAiFrameProvider: () => f.provider },
       "./png": png,
+      "./grounding": {openAiFrameVerifier: () => f.verifier},
+      "./grounding-state": groundingState,
     },
     env,
   );
@@ -228,6 +236,8 @@ test("disabled/missing explicit image model or budget stays unavailable; no defa
     "RPG_FRAME_MODEL",
     "RPG_MEDIA_BUDGET_ID",
     "OPENAI_API_KEY",
+    "RPG_FRAME_VERIFY_MODEL",
+    "RPG_FRAME_VERIFY_REASONING",
   ]) {
     const h = await serverFixture();
     delete h.env[field];

@@ -190,6 +190,7 @@ export function createStructuredRequester(
     operationId: string,
     parse: (value: unknown) => T,
     schema?: Record<string, unknown>,
+    image?: { dataUrl: string },
   ): Promise<ProviderResult<T>> => {
     const started = Date.now();
     const attempt: ProviderAttempt = {
@@ -241,12 +242,22 @@ export function createStructuredRequester(
       if (!options.apiKey || !options.model)
         throw new DmError("configuration", true);
       if (stage === "summary" && !schema) throw new DmError("configuration");
+      const visualCheck = use?.task === "media.frame.verify";
+      if (visualCheck
+        ? options.model !== "gpt-5.4" || options.reasoning !== "high" ||
+          context.budget.model !== options.model || context.budget.outputReserve !== 4096 ||
+          context.estimatedTokens > 20000 || !image ||
+          !/^data:image\/png;base64,[A-Za-z0-9+/]+={0,2}$/.test(image.dataUrl)
+        : image !== undefined) throw new DmError("configuration");
       const body = {
         model: options.model,
         service_tier: STANDARD_SERVICE_TIER,
         reasoning: { effort: modelReasoning(options.model, options.reasoning) },
         instructions: context.instructions,
-        input: context.input,
+        input: visualCheck ? [{ role: "user", content: [
+          { type: "input_text", text: context.input },
+          { type: "input_image", image_url: image!.dataUrl, detail: "high" },
+        ] }] : context.input,
         max_output_tokens: context.budget.outputReserve,
         store: false,
         truncation: "disabled",
@@ -275,6 +286,7 @@ export function createStructuredRequester(
             },
             body: JSON.stringify(body),
             signal,
+            ...(visualCheck ? { redirect: "error" as const } : {}),
           },
         );
       } catch (error) {
@@ -376,6 +388,11 @@ export function createStructuredRequester(
       }
       captureProviderError(diagnostic, payload, options.apiKey);
       attempt.actualModel = recognizedActualModel(payload?.model);
+      if (visualCheck && (!attempt.actualModel ||
+        !/^gpt-5\.4(?:-\d{4}-\d{2}-\d{2})?$/.test(attempt.actualModel) ||
+        payload.service_tier !== STANDARD_SERVICE_TIER ||
+        (payload.reasoning && (payload.reasoning as { effort?: unknown }).effort !== options.reasoning)))
+        throw new DmError("provider");
       const rawUsage = payload?.usage as Record<string, unknown> | null;
       const tokenCount = (value: unknown): number | null =>
         Number.isSafeInteger(value) &&
@@ -385,6 +402,7 @@ export function createStructuredRequester(
           : null;
       attempt.inputTokens = tokenCount(rawUsage?.input_tokens);
       attempt.outputTokens = tokenCount(rawUsage?.output_tokens);
+      if (visualCheck && (attempt.inputTokens === null || attempt.inputTokens > 20000 || attempt.outputTokens === null || attempt.outputTokens > 4096)) throw new DmError("provider");
       if (
         !payload ||
         payload.status !== "completed" ||

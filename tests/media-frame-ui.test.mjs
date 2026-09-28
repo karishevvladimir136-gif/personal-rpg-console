@@ -270,7 +270,7 @@ for (const language of ["en", "ru"])
     assert.equal(h.f.providerCalls(), 0);
     assert.equal(h.sends.length, 0);
     assert.ok(h.button(language === "ru" ? "Создать FRAME" : "Generate FRAME"));
-    assert.match(h.text(), /\$0.40/);
+    assert.match(h.text(), /\$0.60/);
     await h.click(language === "ru" ? "Создать FRAME" : "Generate FRAME");
     assert.equal(h.f.providerCalls(), 1);
     assert.equal(h.sends.length, 2);
@@ -355,7 +355,7 @@ for (const language of ["en", "ru"])
     h.render();
     assert.equal(h.f.providerCalls(), 0);
     assert.equal(h.sends.length, 0);
-    assert.match(h.text(), /\$0.40/);
+    assert.match(h.text(), /\$0.60/);
     await h.click(
       language === "ru" ? "Создать FRAME из очереди" : "Generate queued FRAME",
     );

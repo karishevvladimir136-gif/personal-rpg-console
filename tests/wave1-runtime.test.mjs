@@ -100,6 +100,7 @@ test("Wave 1 resolution pins task override, campaign primary, global inheritance
     "world.resolve",
     "world.compose",
     "canon.compile",
+    "media.frame.verify",
   ]);
 });
 

@@ -19,6 +19,8 @@ export type MediaCapability = {
   model: ImageModel | null;
   parameters: FrameParameters | null;
   reservationUsdMicros: number | null;
+  verificationReservationUsdMicros?: number | null;
+  totalReservationUsdMicros?: number | null;
   imageReferencesEnabled: false;
 };
 export type FramePrepareIntent = {

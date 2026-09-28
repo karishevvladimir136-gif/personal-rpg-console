@@ -19,6 +19,7 @@ export const runtimeTasks = Object.freeze({
   "world.resolve": { contractVersion: "world-resolver-v1", boundary: "private" },
   "world.compose": { contractVersion: "world-compose-v1", boundary: "job" },
   "canon.compile": { contractVersion: "canon-compiler-v1", boundary: "job" },
+  "media.frame.verify": { contractVersion: "frame-grounding-v1", boundary: "job" },
 } as const);
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

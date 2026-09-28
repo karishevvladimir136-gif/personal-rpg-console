@@ -8,6 +8,8 @@ import {
 import { readWriteRequest } from "@/lib/persistence/http-policy";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
+export const maxDuration = 240; // Image deadline + bounded foreground visual QA + storage/receipt overhead.
+
 export async function POST(request: Request) {
   try {
     const value = await readWriteRequest(request);

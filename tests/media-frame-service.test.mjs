@@ -32,7 +32,7 @@ test("explicit queue and one server claim produce one immutable public asset, no
   assert.equal(result.status, "completed");
   assert.equal(result.dispatched, true);
   assert.equal(f.providerCalls(), 1);
-  assert.equal(f.reserved(), 400000);
+  assert.equal(f.reserved(), 600000);
   assert.equal(parseRealFrame(job(f, q.record.id)).resultAssetId, q.record.id);
   assert.equal(f.snapshot.assets.at(-1).id, q.record.id);
   for (const key of [
@@ -70,13 +70,13 @@ test("lost claim response holds the original reservation without an automatic pa
   };
   await assert.rejects(f.run("media.dispatch", input));
   assert.equal(f.providerCalls(), 0);
-  assert.equal(f.reserved(), 400000);
+  assert.equal(f.reserved(), 600000);
   f.calls.length = 0;
   const retry = await f.run("media.dispatch", input);
   assert.equal(retry.dispatched, false);
   assert.deepEqual(f.calls, ["authorize", "receipt"]);
   assert.equal(f.providerCalls(), 0);
-  assert.equal(f.reserved(), 400000);
+  assert.equal(f.reserved(), 600000);
 });
 test("completed dispatch receipt replay cannot generate a second provider image", async () => {
   const f = fixture(),
@@ -126,7 +126,7 @@ test("lost upload response recovers only previously stored bytes and exact deter
   const retained = f.recovery(job(f, q.record.id));
   await f.run("media.recover", retained);
   assert.equal(f.providerCalls(), 1);
-  assert.equal(f.reserved(), 400000);
+  assert.equal(f.reserved(), 600000);
   assert.equal(f.snapshot.assets.at(-1).id, q.record.id);
   assert.equal(parseRealFrame(job(f, q.record.id)).status, "completed");
   f.calls.length = 0;
@@ -180,7 +180,7 @@ test("another concurrent claim cannot reserve or dispatch a second paid request 
     (e) => e.code === "conflict",
   );
   assert.equal(f.providerCalls(), 1);
-  assert.equal(f.reserved(), 400000);
+  assert.equal(f.reserved(), 600000);
 });
 for (const definite of [false, true])
   test("provider failure remains nonblocking and never creates artwork or automatically retries", async () => {

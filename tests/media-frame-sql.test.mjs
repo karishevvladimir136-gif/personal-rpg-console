@@ -38,6 +38,7 @@ async function sqlFixture() {
     },
   });
   try {
+    await f.db.exec(await readFile(new URL("supabase/migrations/202609280027_frame_grounding.sql", sharedRoot),"utf8"));
     const approved = await f.approve(),
       prepared = await f.store.prepare(approved.request),
       services = await f.services();
@@ -109,6 +110,8 @@ async function sqlFixture() {
           )
         ).result;
       },
+      checkClaim: async (input) => (await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5) result", [f.owner,input.campaignId,input.jobId,input.jobVersionId,input.imageSha256])).result,
+      checkComplete: async (input,result) => (await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb) result",[f.owner,input.campaignId,input.jobId,input.jobVersionId,input.imageSha256,JSON.stringify(result)])).result,
       complete: async (input, asset, output) => {
         calls.push("complete");
         return (
@@ -132,6 +135,7 @@ async function sqlFixture() {
           outputs.set(id, structuredClone(pixels)),
         read: async (cid, id) => outputs.get(id) ?? null,
       },
+      verifier: {preflight:(frame)=>assert.equal(frame.schema,3),check:async()=>({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})},
       provider: {
         generate: async (frame, id) => {
           providerCalls++;

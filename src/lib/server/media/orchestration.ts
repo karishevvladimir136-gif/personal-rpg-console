@@ -23,6 +23,10 @@ import type {
   FrameParameters,
   FrameSourceAuthority,
 } from "../../visual-frame/real-frame.ts";
+import { isFrameCheckResult } from "./grounding-state.ts";
+import type { FrameCheckResult } from "./grounding-state.ts";
+
+export type FrameCheckInput = { campaignId: string; jobId: string; jobVersionId: string; imageSha256: string };
 export class MediaFrameError extends Error {
   code:
     "validation" | "conflict" | "not_found" | "not_configured" | "unavailable";
@@ -47,6 +51,8 @@ export type MediaFrameAuthority = {
     input: Mutation,
     budgetId: string,
   ) => Promise<{ result: MutationResult; claimed: boolean }>;
+  checkClaim?: (input: FrameCheckInput) => Promise<{ claimed: boolean; result: FrameCheckResult | null }>;
+  checkComplete?: (input: FrameCheckInput, result: FrameCheckResult) => Promise<FrameCheckResult>;
   complete: (
     input: Mutation,
     asset: Mutation,
@@ -70,6 +76,7 @@ export type MediaDependencies = {
   policy: MediaPolicy | null;
   store: MediaStore;
   provider: MediaProvider;
+  verifier?: { preflight: (frame: RealFrame) => void; check: (frame: RealFrame, pixels: MediaPixels, jobId: string, operationId: string) => Promise<FrameCheckResult> };
 };
 export type MediaCommand =
   | { action: "media.save"; input: Mutation }
@@ -143,6 +150,11 @@ function stripRequest(input: Mutation) {
   void requestId;
   return mutation;
 }
+function requireVerifier(deps: MediaDependencies, frame: RealFrame) {
+  if (frame.schema !== 3 || !deps.verifier || !deps.authority.checkClaim || !deps.authority.checkComplete)
+    throw new MediaFrameError("not_configured");
+  try { deps.verifier.preflight(frame); } catch { throw new MediaFrameError("not_configured"); }
+}
 function immutableClaim(previous: RealFrame, next: RealFrame) {
   return (
     previous.status === "queued" &&
@@ -175,6 +187,7 @@ export async function executeMediaFrame(
       stripRequest(input),
       await deps.authority.source(input.campaignId),
     );
+    if (next.status === "queued") requireVerifier(deps, next);
     if (
       next.status === "queued" &&
       (!deps.policy ||
@@ -200,6 +213,7 @@ export async function executeMediaFrame(
         next.resultAssetId !== input.payload.id)
   )
     throw new MediaFrameError("validation");
+  requireVerifier(deps, next);
   if (action === "media.dispatch" && !policyMatches(next, deps.policy))
     throw new MediaFrameError("not_configured");
   // An eligible pixel reference is never silently dropped. Its charge ceiling is not yet documented.
@@ -309,6 +323,31 @@ export async function executeMediaFrame(
       ),
     );
     throw new MediaFrameError("unavailable");
+  }
+  // A durable paid-check claim binds the exact immutable job version and image.
+  // A duplicate/unknown claim never creates another QA generation. Only a stored
+  // completed result may replay after a lost response.
+  const checkInput: FrameCheckInput = { campaignId: input.campaignId, jobId: record.id, jobVersionId: record.current_version_id, imageSha256: pixels.output.sha256 };
+  const checkClaim = await deps.authority.checkClaim!(checkInput);
+  let checked = checkClaim.result;
+  if (!checked && checkClaim.claimed) {
+    try {
+      const result = await deps.verifier!.check(parseRealFrame(record)!, pixels, record.id, record.current_version_id);
+      if (!isFrameCheckResult(result)) throw new MediaFrameError("unavailable");
+      checked = await deps.authority.checkComplete!(checkInput, result);
+    } catch {
+      // A response or receipt may have been lost. Keep the coherent generating
+      // job and immutable pixels; explicit recovery inspects the durable claim.
+      throw new MediaFrameError("unavailable");
+    }
+  }
+  if (!checked || !isFrameCheckResult(checked)) {
+    await deps.authority.lifecycle(baseMutation(snapshot, { ...parseRealFrame(record)!, status: "uncertain", failure: "uncertain" }, record, record.current_version_id));
+    throw new MediaFrameError("unavailable");
+  }
+  if (checked.verdict.status !== "pass") {
+    const result = await deps.authority.lifecycle(baseMutation(snapshot, { ...parseRealFrame(record)!, status: "failed", failure: checked.verdict.status === "fail_grounding" ? "grounding" : "review" }, record, record.current_version_id));
+    return { result, status: "failed", dispatched: action === "media.dispatch" };
   }
   // Pinned deterministic IDs make an uncertain final attachment exactly replayable.
   const assetId = record.id;
