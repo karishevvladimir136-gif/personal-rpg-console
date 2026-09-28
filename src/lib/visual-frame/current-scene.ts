@@ -60,6 +60,14 @@ export async function finishCurrentSceneFrame(
   attempt: CurrentSceneFrameAttempt,
   transport: CurrentSceneFrameTransport,
 ) {
+  // A retained completion may already have committed before its response or
+  // final refresh was lost. Replay it before mutable scene preflight. The
+  // existing authority checks exact receipts first; an uncommitted command
+  // still undergoes its original authorization, source and timeline fences.
+  if (attempt.completion) {
+    await transport.save(structuredClone(attempt.completion));
+    return attempt.completion.requestId;
+  }
   const cid = attempt.frame.campaign_id;
   if (!attempt.record) {
     if (!attempt.queue) throw new VisualFrameError("validation");

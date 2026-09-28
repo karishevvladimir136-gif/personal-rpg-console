@@ -194,3 +194,85 @@ test("scene revision or timeline change after queue safely blocks MOCK result co
     assert.equal(f.snapshot.assets.length, source.assets.length);
   }
 });
+
+for (const loss of ["completion response", "final refresh"])
+  test(
+    "committed MOCK " +
+      loss +
+      " recovers its exact receipt after scene correction without preflight or duplicate writes",
+    async () => {
+      const f = fixture(),
+        action = prepareCurrentSceneFrame(f.snapshot);
+      if (loss === "completion response") {
+        const transport = {
+          ...f.transport,
+          save: async (input) => {
+            const result = await f.transport.save(input);
+            if (
+              input.operation === "document.save" &&
+              parseVisualMetadata(input.payload)?.status === "completed"
+            )
+              throw Error("LOST_COMPLETION");
+            return result;
+          },
+        };
+        await assert.rejects(
+          finishCurrentSceneFrame(action, transport),
+          /LOST_COMPLETION/,
+        );
+      } else {
+        await finishCurrentSceneFrame(action, f.transport);
+      }
+      const completion = structuredClone(action.completion);
+      f.snapshot.scenes.find(
+        (row) => row.id === f.snapshot.publicState.current_scene_id,
+      ).revision++;
+      const sent = [];
+      const recovered = await finishCurrentSceneFrame(action, {
+        load: async () =>
+          assert.fail(
+            "Committed receipt must replay before mutable projection reads",
+          ),
+        save: async (input) => {
+          sent.push(structuredClone(input));
+          return f.transport.save(input);
+        },
+      });
+      assert.deepEqual(sent, [completion]);
+      assert.equal(recovered, completion.requestId);
+      assert.equal(f.writes.length, 3);
+      assert.equal(f.frames()[0].status, "completed");
+      assert.equal(f.snapshot.assets.length, source.assets.length + 1);
+    },
+  );
+
+test("retained but uncommitted completion still rejects a corrected source through production authority", async () => {
+  const f = fixture(),
+    action = prepareCurrentSceneFrame(f.snapshot);
+  const transport = {
+    ...f.transport,
+    save: async (input) => {
+      if (
+        input.operation === "document.save" &&
+        parseVisualMetadata(input.payload)?.status === "completed"
+      )
+        throw Error("NOT_SUBMITTED");
+      return f.transport.save(input);
+    },
+  };
+  await assert.rejects(
+    finishCurrentSceneFrame(action, transport),
+    /NOT_SUBMITTED/,
+  );
+  assert.ok(action.completion);
+  f.snapshot.scenes.find(
+    (row) => row.id === f.snapshot.publicState.current_scene_id,
+  ).revision++;
+  await assert.rejects(
+    finishCurrentSceneFrame(action, f.transport),
+    (error) => error.code === "conflict",
+  );
+  assert.equal(f.frames()[0].status, "queued");
+  assert.equal(f.writes.length, 2);
+  assert.equal(f.snapshot.assets.length, source.assets.length + 1);
+});
