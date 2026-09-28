@@ -40,6 +40,8 @@ import type {
   VisualReference,
 } from "@/lib/visual-frame/model";
 import { MockVisualArt } from "./visual-frame/mock-art";
+import { RealFrameHistory } from "./visual-frame/current-scene-media-frame";
+import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
 
 function useVisualWords() {
   const { language } = useLanguage();
@@ -346,17 +348,32 @@ function ReferenceEditor({
 export function PersistentVisualFrame({
   transport,
   syntheticControls = false,
-}: { transport?: VisualFrameTransport; syntheticControls?: boolean } = {}) {
+  mediaEnabled = false,
+  mediaTransport,
+}: {
+  transport?: VisualFrameTransport;
+  syntheticControls?: boolean;
+  mediaEnabled?: boolean;
+  mediaTransport?: MediaFrameTransport;
+} = {}) {
   return (
     <VisualFrameTransportContext.Provider value={transport ?? defaultTransport}>
-      <VisualFramePanel syntheticControls={syntheticControls} />
+      <VisualFramePanel
+        syntheticControls={syntheticControls}
+        mediaEnabled={mediaEnabled}
+        mediaTransport={mediaTransport}
+      />
     </VisualFrameTransportContext.Provider>
   );
 }
 function VisualFramePanel({
   syntheticControls,
+  mediaEnabled,
+  mediaTransport,
 }: {
   syntheticControls: boolean;
+  mediaEnabled: boolean;
+  mediaTransport?: MediaFrameTransport;
 }) {
   const w = useVisualWords();
   const transport = useVisualFrameTransport();
@@ -531,8 +548,12 @@ function VisualFramePanel({
       </div>
       <p className="muted max-w-3xl text-sm leading-relaxed">
         {w(
-          "MOCK schematic only. No image provider is connected.",
-          "Только схема MOCK. Провайдер изображений не подключён.",
+          mediaEnabled
+            ? "MOCK schematic only. This preview does not call an image provider."
+            : "MOCK schematic only. No image provider is connected.",
+          mediaEnabled
+            ? "Только схема MOCK. Это превью не вызывает провайдер изображений."
+            : "Только схема MOCK. Провайдер изображений не подключён.",
         )}
       </p>
       {error && <p role="alert">{error}</p>}
@@ -726,8 +747,12 @@ function VisualFramePanel({
           </p>
           <p>
             {w(
-              "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. No image provider is connected. Text gameplay continues independently.",
-              "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Провайдер изображений не подключён. Текстовая игра работает независимо.",
+              mediaEnabled
+                ? "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. This preview does not call an image provider. Text gameplay continues independently."
+                : "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. No image provider is connected. Text gameplay continues independently.",
+              mediaEnabled
+                ? "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Это превью не вызывает провайдер изображений. Текстовая игра работает независимо."
+                : "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Провайдер изображений не подключён. Текстовая игра работает независимо.",
             )}
           </p>
         </div>
@@ -1034,6 +1059,24 @@ function VisualFramePanel({
           </div>
         </div>
       </details>
+      {mediaEnabled && (
+        <RealFrameHistory
+          transport={mediaTransport}
+          onUseAsset={(asset) =>
+            setEditor({
+              snapshot,
+              initial: {
+                ...newVisualReference(
+                  snapshot,
+                  visualSubjects(snapshot)[0].subject,
+                ),
+                imageAssetId: asset.id,
+                imageAssetRevision: asset.revision,
+              },
+            })
+          }
+        />
+      )}
       {editor && (
         <ReferenceEditor
           key={`${editor.record?.id ?? "new"}:${editor.snapshot.timeline?.epoch}`}
@@ -1092,4 +1135,14 @@ function VisualFramePanel({
       )}
     </div>
   );
+}
+
+export function PersistentMediaVisualFrame(
+  props: {
+    transport?: VisualFrameTransport;
+    syntheticControls?: boolean;
+    mediaTransport?: MediaFrameTransport;
+  } = {},
+) {
+  return <PersistentVisualFrame {...props} mediaEnabled />;
 }
