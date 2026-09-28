@@ -6,6 +6,7 @@ import ts from "typescript";
 import { fixture as mediaFixture } from "./media-frame-fixture.mjs";
 import * as visualModel from "../src/lib/visual-frame/model.ts";
 import * as realModel from "../src/lib/visual-frame/real-frame.ts";
+import * as videoModel from "../src/lib/scene-video/model.ts";
 import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
@@ -449,12 +450,19 @@ async function mountedGame(snapshot) {
       "react/jsx-runtime": { jsx, jsxs: jsx, Fragment: "fragment" },
       "@/lib/visual-frame/model": visualModel,
       "@/lib/visual-frame/real-frame": realModel,
+      "@/lib/scene-video/model": videoModel,
+      "./visual-frame/current-scene-video": {
+        CurrentSceneVideo: "scene-video",
+        StoredSceneVideo: "stored-video",
+        SceneVideoHistory: "video-history",
+      },
       "./visual-frame/current-scene-frame": {
         CurrentSceneFrame: "injected-mock-frame",
       },
       "./visual-frame/current-scene-media-frame": {
         CurrentSceneMediaFrame: "real-frame",
         StoredFrameImage: "stored-frame-image",
+        RealFrameHistory: "real-frame-history",
       },
       "./language-context": {
         useLanguage: () => ({ t: (value) => value, language: "en" }),
@@ -553,15 +561,20 @@ test("mounted Gallery displays only safe completed real art and keeps operationa
     ui.text(tree),
     /RPG_REAL_FRAME_ASSET_V1|offline_review_only|job_document_id/,
   );
-  asset.description =
-    "RPG_REAL_FRAME_ASSET_V1\n{malformed_private_operational_marker}";
-  const invalid = ui.render("PersistentSupporting", { screen: "gallery" });
-  assert.equal(
-    ui.nodes(invalid).some((n) => n.type === "stored-frame-image"),
-    false,
-  );
-  assert.doesNotMatch(
-    ui.text(invalid),
-    /malformed_private_operational_marker|RPG_REAL_FRAME_ASSET_V1/,
-  );
+  for (const prefix of [
+    "RPG_REAL_FRAME_ASSET_V1\n",
+    "RPG_OWNER_FRAME_ASSET_V1\n",
+    "RPG_SCENE_VIDEO_ASSET_V1\n",
+  ]) {
+    asset.description = prefix + "{malformed_private_operational_marker}";
+    const invalid = ui.render("PersistentSupporting", { screen: "gallery" });
+    assert.equal(
+      ui.nodes(invalid).some((n) => n.type === "stored-frame-image"),
+      false,
+    );
+    assert.doesNotMatch(
+      ui.text(invalid),
+      /malformed_private_operational_marker|RPG_REAL_FRAME_ASSET_V1|RPG_OWNER_FRAME_ASSET_V1|RPG_SCENE_VIDEO_ASSET_V1/,
+    );
+  }
 });

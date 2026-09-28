@@ -1,3 +1,19 @@
+# Development status — FRAME Draft/Approval + VIDEO V1 — INTEGRATED, FINAL VERIFICATION PENDING
+
+**Current continuation:** one bounded owner-requested Media correction on `codex/v1-adventure-media`. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`; original dirty checkout and accepted Adventure/loot/rewards/containers/World/Mega DM are unchanged. The implementation is integrated but not owner accepted. No real Fighter Adventure has started.
+
+**Implemented:** private FRAME Draft → explicit Accept/Discard/Regenerate, bounded QA assistant, immutable approval provenance, prior-art protection, EN/RU ordinary Game/Gallery controls; optional asynchronous VIDEO from a genuinely accepted current-scene FRAME, one shared budget, exact source/fences/receipts, same-ID status/storage recovery, explicit attachment cancellation, no automatic paid retry, private authorized playback. Additive migrations28–29 only use disposable test data. No new gameplay/Canon authority.
+
+**Live FRAME product gate:** frozen `d43da1e8dd6108aabcd236f3ff21ca338882e7d4`, five image + five QA calls, no retries/fallback. Four independent drafts accepted, F2 rejected for an unsupported tower missed by automated QA; previous art retained. Automated results4 safe/1 warning; all four accepted drafts have honest minor/continuity qualifications. Images are illustrations, not deterministic world renders. New usage-calculated image+QA charge$0.343625; combined historical$0.5056075, retained reservations$4.40, invoice unavailable. [Original images, exact receipts and limitations](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_V3_REPORT.md).
+
+**VIDEO:** implemented provider-independent, exact fal US Seedance2.5, fixed720p/10s/audio/auto aspect, $7 reservation and at most2 calls on the existing shared budget. FAL_KEY is absent, so zero VIDEO provider calls/charge or live quality evidence. Planned total reserve including two videos$18.40≤$20; no video reservation has actually been claimed. [Setup and limits](ADVENTURE_MEDIA_VIDEO_V1.md).
+
+**Verification so far:** affected FRAME249/249, independentFRAME27/27, new fake-provider/server VIDEO36/36, UI20/20, focused typecheck/lint pass. These overlap and are not a fresh full-suite total. Independent real-SQL VIDEO review is finishing; one fresh complete suite, type generation/nonincremental TS, zero-warning lint, production webpack build and EN/RU desktop/mobile review will follow the combined freeze. Historical results below remain historical, not quoted as fresh.
+
+**Stop boundary:** keep main unchanged; no owner acceptance, hosted DB/migration/deployment, real campaign import, live DM model evaluation, D2B/new lane or real Fighter Adventure. All earlier failed FRAME evidence and the complete prior status follow verbatim.
+
+---
+
 # Development status — FRAME draft/owner approval — OFFLINE VERIFIED; product gate pending
 
 Implemented/integrated: schema4 private illustration draft, bounded safety QA v2, explicit Accept/Discard/Regenerate, immutable draft/approval provenance, service-only reviewed-draft pixel access and receipt recovery. Gallery/VIDEO assets require separate owner acceptance; pixels never change RPG Canon. Additive migration28 is verified only on disposable SQL. Historical schema2/3 jobs/readers/receipts and prior failed gate evidence remain unchanged.

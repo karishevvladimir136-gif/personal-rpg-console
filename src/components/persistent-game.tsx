@@ -10,11 +10,19 @@ import { CurrentSceneFrame } from "./visual-frame/current-scene-frame";
 import {
   CurrentSceneMediaFrame,
   StoredFrameImage,
+  RealFrameHistory,
 } from "./visual-frame/current-scene-media-frame";
 import {
   safeFrameAsset,
   REAL_FRAME_ASSET_PREFIX,
 } from "@/lib/visual-frame/real-frame";
+import {
+  CurrentSceneVideo,
+  StoredSceneVideo,
+  SceneVideoHistory,
+} from "./visual-frame/current-scene-video";
+import { safeVideoAsset, VIDEO_ASSET_PREFIX } from "@/lib/scene-video/model";
+import type { VideoTransport } from "@/lib/scene-video/client";
 import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
 import type { CurrentSceneFrameTransport } from "@/lib/visual-frame/current-scene";
 import { MockVisualArt } from "./visual-frame/mock-art";
@@ -439,8 +447,10 @@ function GameRecords({
   reviewOnly = false,
   frameTransport,
   mediaTransport,
+  videoTransport,
 }: {
   mediaTransport?: MediaFrameTransport;
+  videoTransport?: VideoTransport;
   data: CampaignSnapshot;
   reviewOnly?: boolean;
   frameTransport?: CurrentSceneFrameTransport;
@@ -583,6 +593,9 @@ function GameRecords({
             ) : (
               <CurrentSceneMediaFrame transport={mediaTransport} />
             )}
+            {!frameTransport && (
+              <CurrentSceneVideo transport={videoTransport} />
+            )}
             <p>
               <Link
                 className="text-link"
@@ -709,10 +722,12 @@ export function PersistentGame({
   reviewOnly = false,
   frameTransport,
   mediaTransport,
+  videoTransport,
 }: {
   reviewOnly?: boolean;
   frameTransport?: CurrentSceneFrameTransport;
   mediaTransport?: MediaFrameTransport;
+  videoTransport?: VideoTransport;
 } = {}) {
   return (
     <RecordBoundary>
@@ -723,6 +738,7 @@ export function PersistentGame({
           reviewOnly={reviewOnly}
           frameTransport={frameTransport}
           mediaTransport={mediaTransport}
+          videoTransport={videoTransport}
         />
       )}
     </RecordBoundary>
@@ -908,8 +924,10 @@ function SupportingRecords({
   screen,
   data,
   mediaTransport,
+  videoTransport,
 }: {
   mediaTransport?: MediaFrameTransport;
+  videoTransport?: VideoTransport;
   screen: SupportingScreen;
   data: CampaignSnapshot;
 }) {
@@ -1029,7 +1047,24 @@ function SupportingRecords({
                           transport={mediaTransport}
                         />
                       </>
-                    ) : row.description.startsWith(REAL_FRAME_ASSET_PREFIX) ? (
+                    ) : safeVideoAsset(data, row) ? (
+                      <>
+                        <Badge>{t("Video")}</Badge>
+                        <StoredSceneVideo
+                          asset={row}
+                          transport={videoTransport}
+                        />
+                      </>
+                    ) : row.description.startsWith(VIDEO_ASSET_PREFIX) ? (
+                      <p>
+                        {language === "ru"
+                          ? "Видео недоступно. Проверьте сохранённую историю."
+                          : "This video is unavailable. Review its saved history."}
+                      </p>
+                    ) : row.description.startsWith(REAL_FRAME_ASSET_PREFIX) ||
+                      row.description.startsWith(
+                        "RPG_OWNER_FRAME_ASSET_V1\n",
+                      ) ? (
                       <p>
                         {t(
                           "This image is unavailable. Review its saved FRAME history.",
@@ -1111,15 +1146,17 @@ function SupportingRecords({
               {t("Visual Bible / FRAME")}
             </Link>
           </details>
+          <RealFrameHistory transport={mediaTransport} />
+          <SceneVideoHistory transport={videoTransport} />
           <details className="gameplay-transcript">
             <summary>{t("Asset records")}</summary>
             <Button onClick={() => setAsset("new")}>
               {t("Add asset metadata")}
             </Button>
             <p className="muted">
-              {t(
-                "Metadata only. File upload, playback and image/video generation are not connected.",
-              )}
+              {language === "ru"
+                ? "Здесь редактируются только описания файлов. FRAME и VIDEO запускаются отдельно в Игре."
+                : "Edit file descriptions here. Generate FRAME and VIDEO separately in Game."}
             </p>
           </details>
         </Panel>
@@ -1150,9 +1187,11 @@ function SupportingRecords({
 export function PersistentSupporting({
   screen,
   mediaTransport,
+  videoTransport,
 }: {
   screen: SupportingScreen;
   mediaTransport?: MediaFrameTransport;
+  videoTransport?: VideoTransport;
 }) {
   return (
     <RecordBoundary>
@@ -1162,6 +1201,7 @@ export function PersistentSupporting({
           data={data}
           screen={screen}
           mediaTransport={mediaTransport}
+          videoTransport={videoTransport}
         />
       )}
     </RecordBoundary>

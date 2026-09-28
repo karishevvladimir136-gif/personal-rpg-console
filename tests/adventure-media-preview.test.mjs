@@ -625,8 +625,8 @@ test("EN/RU persistent-shell review is explicit, mobile-capable, credential-free
     assert.match(
       markup,
       lang === "en"
-        ? /Image references and VIDEO are unavailable/
-        : /Образцы с изображениями и VIDEO недоступны/,
+        ? /Accept a FRAME in Game, enable scripted VIDEO/
+        : /Примите FRAME в Игре, включите сценарий VIDEO/,
     );
     assert.doesNotMatch(
       markup,
