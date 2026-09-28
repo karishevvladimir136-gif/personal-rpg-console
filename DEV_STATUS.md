@@ -1,3 +1,17 @@
+# Development status — World / Campaign / Adventure and Media V1 sequencing — OWNER ACCEPTED
+
+**Explicit owner acceptance:** the owner accepts the documentation at exact SHA `dfb07d9edccdd33f4615ba04eaeeca2795e4ee16` on `codex/world-campaign-adventure-spec`. This supersedes the earlier review-pending status below without rewriting its historical evidence.
+
+**Accepted scope:** World → Campaign → Adventure / Arc → Session → Scene; persistent hero/party continuity; Existing/New Hero, canon/detached and bounded pacing; tier-sensitive design; reward power ceiling/meaningfulness floor and rarity/power/value/significance/usability separation; world-authentic loot, free-form search, stable materialization, secured containers/creative access, item provenance/unidentified properties/economic absorption; and the separate future Adventure Acceptance Set.
+
+**Accepted sequencing/playtest goal:** one Lead/Integrator owns two bounded future lanes: Lane A — Adventure V1 + Adventure Acceptance Harness V1; Lane B — Media V1, with real FRAME → bounded consistency/reference-grounding/privacy/lifecycle gate → VIDEO. The intended first owner playtest uses a new ordinary Level 1 Fighter in a simple D&D-like World; it remains an acceptance goal, not a scripted plot or required route. All documented authority, privacy, cost/selection, manual-control and deferral boundaries remain unchanged.
+
+**Documentation-only finalization:** one DEV_STATUS-only acceptance commit directly on the accepted SHA, with fast-forward-only main publication from `1179991377bda1e2ae363b9048b96850a9a4caa2`. Reviewed documents, production code, migrations, current UI, fixtures, accepted Wave 1 implementation and historical evidence remain unchanged. Prior verification remains historical; no application tests/build/browser/provider evaluation, provider calls, deployment, import or database execution occurs. The original dirty checkout is untouched.
+
+**Stop:** acceptance publishes documentation only. Lane A, Lane B and every other implementation remain separately gated; no implementation wave starts. The complete prior status/history below is preserved verbatim.
+
+---
+
 # Development status — Adventure / Media sequencing amendment — READY FOR OWNER REVIEW
 
 **Milestone/status:** documentation-only amendment directly on approved-in-substance specification `0e0ef605ef0d41755f60699f2f1f4ae732d53ccd`, on `codex/world-campaign-adventure-spec`. Substance approval does not yet constitute final owner acceptance/publication; main remains `1179991377bda1e2ae363b9048b96850a9a4caa2`. World/Campaign/Adventure, loot, rewards, containers, search and Adventure Acceptance Set contracts are not reopened.
