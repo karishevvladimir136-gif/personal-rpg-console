@@ -294,10 +294,10 @@ export function PlacesBelongingPanel({
           {c.newPlace}
         </button>
       </header>
-      <p className="belonging-reference">
-        <span className="badge">{c.reference}</span>
-        {c.referenceHelp}
-      </p>
+      <details className="belonging-options belonging-boundary">
+        <summary>{c.reference}</summary>
+        <p className="muted">{c.referenceHelp}</p>
+      </details>
       {saved && <p role="status">{c.saved}</p>}
       {!locations.length && (
         <section className="panel belonging-empty">

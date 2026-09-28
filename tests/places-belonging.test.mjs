@@ -529,7 +529,11 @@ test("EN/RU Places opens on personal notes while browsing, editing and history r
       html = render(language, f.snapshot);
     assert.ok(html.includes(f.annotation.belonging));
     assert.ok(html.includes(f.annotation.returnNote));
-    for (const marker of ["belonging-library", "belonging-options"]) {
+    for (const marker of [
+      "belonging-library",
+      "belonging-options",
+      "belonging-boundary",
+    ]) {
       const index = html.indexOf(marker),
         opener = html.lastIndexOf("<details", index);
       assert.ok(opener >= 0);
@@ -538,6 +542,20 @@ test("EN/RU Places opens on personal notes while browsing, editing and history r
         /\bopen=/,
       );
     }
+    const boundaryStart = html.lastIndexOf(
+      "<details",
+      html.indexOf("belonging-boundary"),
+    );
+    const boundary = html.slice(
+      boundaryStart,
+      html.indexOf("</details>", boundaryStart),
+    );
+    assert.ok(boundary.includes(`<summary>${c.reference}</summary>`));
+    assert.ok(boundary.includes(c.referenceHelp));
+    assert.ok(
+      html.indexOf("</details>", boundaryStart) <
+        html.indexOf(f.annotation.returnNote),
+    );
     const editButton = html.indexOf(`>${c.edit}</button>`);
     assert.ok(editButton > html.indexOf(f.annotation.returnNote));
     assert.doesNotMatch(html, /<textarea|<form/);

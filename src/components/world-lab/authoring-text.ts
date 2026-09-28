@@ -22,7 +22,7 @@ export function authoringText(language: "en" | "ru") {
     newProposal: "Describe another What If",
     revision: "Version",
     requested: "Interpretation pending",
-    review: "Review proposed divergence",
+    review: "Review your What If",
     approved: "Approved & prepared",
     ownerEdited: "Owner corrections saved",
     original: "Original premise",
@@ -69,7 +69,7 @@ export function authoringText(language: "en" | "ru") {
     saving: "Saving…",
     approve: "Approve & Prepare",
     approvalHelp:
-      "Approval saves immutable Scenario and Divergence versions and prepares the starting checkpoint. It makes no simulation request. Start is a separate action.",
+      "Approval saves the reviewed starting point as an immutable record. Start simulation is a separate action.",
     unsaved:
       "Save your corrections before approving. Approval always applies to the saved version.",
     saved: "Your correction is saved as a new unapproved version.",
@@ -166,7 +166,7 @@ export function authoringText(language: "en" | "ru") {
     newProposal: "Описать новое «Что, если»",
     revision: "Версия",
     requested: "Ожидает разбора",
-    review: "Проверьте предложенную развилку",
+    review: "Проверьте своё «Что, если»",
     approved: "Утверждено и подготовлено",
     ownerEdited: "Правки владельца сохранены",
     original: "Исходная идея",
@@ -213,7 +213,7 @@ export function authoringText(language: "en" | "ru") {
     saving: "Сохраняем…",
     approve: "Утвердить и подготовить",
     approvalHelp:
-      "Утверждение сохраняет неизменяемые версии сценария и развилки и готовит начальную точку. Запроса симуляции ещё нет. Запуск выполняется отдельно.",
+      "Утверждение сохраняет проверенную отправную точку неизменяемой. Запуск симуляции — отдельное действие.",
     unsaved:
       "Сохраните правки перед утверждением. Утверждается только сохранённая версия.",
     saved: "Правка сохранена новой неутверждённой версией.",
