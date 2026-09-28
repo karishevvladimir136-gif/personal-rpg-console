@@ -110,6 +110,7 @@ export function readPublicLabRun(
 ): PublicLabRun {
   uuid(campaignId);
   const hasExecution = !!value && typeof value === "object" && Object.hasOwn(value, "execution");
+  const hasContinuation = !!value && typeof value === "object" && Object.hasOwn(value, "continuation");
   const r = row(value, [
     "id",
     "campaignId",
@@ -127,6 +128,7 @@ export function readPublicLabRun(
     "currentWorldMinutes",
     "checkpoints",
     ...(hasExecution ? ["execution"] : []),
+    ...(hasContinuation ? ["continuation"] : []),
   ]);
   requireValue(
     r.campaignId === campaignId &&
@@ -233,9 +235,14 @@ export function readPublicLabRun(
     currentWorldMinutes,
     checkpoints,
     ...(hasExecution ? { execution: readLabExecution(r.execution) } : {}),
+    ...(hasContinuation ? { continuation: readLabContinuation(r.continuation) } : {}),
   };
   requireValue(result.base.worldMinutes === startWorldMinutes);
   return result;
+}
+function readLabContinuation(value: unknown): NonNullable<PublicLabRun["continuation"]> {
+  const r = row(value, ["sourceRunId", "sourceCheckpointId"]);
+  return { sourceRunId: uuid(r.sourceRunId), sourceCheckpointId: uuid(r.sourceCheckpointId) };
 }
 function readLabExecution(value: unknown): NonNullable<PublicLabRun["execution"]> {
   const r = row(value, ["modelId", "reasoning", "recordedResponses", "inputTokens", "outputTokens"]);

@@ -46,6 +46,8 @@ export type PublicLabRun = {
   throughWorldMinutes: number;
   currentWorldMinutes: number;
   checkpoints: LabCheckpoint[];
+  // Authorized public run/checkpoint identities only; no private basis digest.
+  continuation?: { sourceRunId: string; sourceCheckpointId: string };
   execution?: {
     modelId: string;
     reasoning: string | null;

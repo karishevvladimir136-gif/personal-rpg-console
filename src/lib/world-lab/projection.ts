@@ -398,6 +398,10 @@ export function projectLabRun(
     throughWorldMinutes: run.input.throughWorldMinutes,
     currentWorldMinutes: run.currentWorldMinutes,
     checkpoints,
+    ...(run.input.continuation ? { continuation: {
+      sourceRunId: run.input.continuation.sourceRunId,
+      sourceCheckpointId: run.input.continuation.sourceCheckpointId,
+    } } : {}),
   };
 }
 

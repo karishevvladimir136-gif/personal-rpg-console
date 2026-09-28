@@ -136,6 +136,21 @@ begin
  return result;
 end $$;
 
+create or replace function rpg_private.lab_read_run(r rpg_private.world_lab_runs) returns jsonb language plpgsql stable set search_path='' as $$
+declare library jsonb:=rpg_private.lab_run_library(r); checkpoints jsonb; base jsonb; scenario jsonb; sc jsonb; dv jsonb; begin
+ select jsonb_build_object('saveId',s.id,'timelineId',s.timeline_id,'label',s.name,'worldMinutes',(s.public_metadata->>'worldMinutes')::integer) into strict base from rpg_private.save_points s where s.campaign_id=r.campaign_id and s.id=(r.input_bundle#>>'{base,saveId}')::uuid;
+ if r.input_bundle ? 'continuation' then
+  perform rpg_private.assert(exists(select 1 from rpg_private.timeline_manifests m join rpg_private.world_lab_runs parent on parent.id=m.lab_run_id and parent.campaign_id=m.campaign_id where m.id=(r.input_bundle#>>'{continuation,sourceCheckpointId}')::uuid and m.campaign_id=r.campaign_id and m.timeline_id=(r.input_bundle#>>'{base,timelineId}')::uuid and m.lab_run_id=(r.input_bundle#>>'{continuation,sourceRunId}')::uuid and parent.owner_id=r.owner_id and parent.input_digest=r.input_bundle#>>'{continuation,sourceInputDigest}' and m.schema_version=3 and (m.public_metadata->>'worldMinutes')::integer=(r.input_bundle->>'startWorldMinutes')::integer));
+  base:=base||jsonb_build_object('timelineId',r.input_bundle#>'{base,timelineId}','worldMinutes',r.input_bundle->'startWorldMinutes');
+ end if;
+ sc:=rpg_private.library_ref(r.owner_id,r.input_bundle->>'scenarioVersionId','scenario'); dv:=rpg_private.library_ref(r.owner_id,r.input_bundle->>'divergenceVersionId','divergence');
+ scenario:=jsonb_build_object('scenarioVersionId',sc->'versionId','divergenceVersionId',dv->'versionId','scenarioTitle',sc#>'{body,title}','divergenceTitle',dv#>'{body,title}',
+ 'assumptions',(select coalesce(jsonb_agg(a.value->'text' order by a.n),'[]') from jsonb_array_elements(sc#>'{body,assumptions}') with ordinality a(value,n) where a.value->>'visibility'='public'),
+ 'changes',(select coalesce(jsonb_agg(a.value->'text' order by a.n),'[]') from jsonb_array_elements(dv#>'{body,changes}') with ordinality a(value,n) where a.value->>'visibility'='public'));
+ select coalesce(jsonb_agg(jsonb_set(rpg_private.lab_read_state(r.owner_id,r.campaign_id,m.id,r.id,library,r.input_bundle->'documentVersions'),'{run}',rpg_private.lab_run_json(r)) order by (m.public_metadata->>'labOrdinal')::integer),'[]') into checkpoints from rpg_private.timeline_manifests m where m.campaign_id=r.campaign_id and m.timeline_id=r.timeline_id and m.lab_run_id=r.id and (m.public_metadata->>'labOrdinal')::integer<=r.head_revision;
+ return jsonb_build_object('run',rpg_private.lab_run_json(r),'base',base,'scenario',scenario,'checkpoints',checkpoints,'applicable',rpg_private.lab_fresh(r));
+end $$;
+
 -- Read an already-committed ordinary mutation receipt before reference-note
 -- preflight. Existing mutation/timeline authorities own writes and fencing.
 create function public.rpg_mutation_receipt(p_owner_id uuid,p_mutation jsonb) returns jsonb
