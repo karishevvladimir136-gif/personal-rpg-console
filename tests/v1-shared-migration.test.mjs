@@ -178,3 +178,105 @@ test("V1 reference receipt lookup replays exact committed campaign corrections a
     await f.db.close();
   }
 });
+
+test("V1 reserved owner metadata keeps immutable document history without becoming Canon or Memory", async (t) => {
+  t.mock.method(globalThis, "fetch", () => {
+    throw Error("UNEXPECTED_NETWORK");
+  });
+  const f = await fixture();
+  try {
+    const cid = await f.campaign();
+    const generation = (
+      await f.one(
+        "select canon_generation from rpg_private.timeline_campaigns where campaign_id=$1",
+        [cid],
+      )
+    ).canon_generation;
+    const prefixes = [
+      "Personal RPG Console · Places of Belonging · v1\n",
+      "RPG_VISUAL_FRAME_V0\n",
+    ];
+    for (const prefix of prefixes) {
+      const doc = await f.mutation(
+        "document.save",
+        cid,
+        {
+          title: "Owner representation",
+          status: "reference",
+          body: prefix + '{"notes":"SYNTHETIC_METADATA_NOT_GAMEPLAY_EVIDENCE"}',
+        },
+        0,
+        "campaign",
+      );
+      await f.mutation(
+        "document.save",
+        cid,
+        {
+          id: doc.id,
+          title: "Owner corrected representation",
+          status: "reference",
+          body: prefix + "malformed reserved body",
+        },
+        doc.revision,
+        "campaign",
+      );
+      assert.equal(
+        (
+          await f.one(
+            "select count(*)::integer n from public.rpg_document_versions where campaign_id=$1 and document_id=$2",
+            [cid, doc.id],
+          )
+        ).n,
+        2,
+      );
+      assert.equal(
+        (
+          await f.one(
+            "select count(*)::integer n from rpg_private.memory_public_sources where campaign_id=$1 and source_id=$2",
+            [cid, doc.id],
+          )
+        ).n,
+        0,
+      );
+      assert.equal(
+        (
+          await f.one(
+            "select count(*)::integer n from rpg_private.memory_private_sources where campaign_id=$1 and source_id=$2",
+            [cid, doc.id],
+          )
+        ).n,
+        0,
+      );
+    }
+    const normal = await f.mutation(
+      "document.save",
+      cid,
+      {
+        title: "Ordinary reference",
+        status: "reference",
+        body: "A normal owner reference remains indexed.",
+      },
+      0,
+      "campaign",
+    );
+    assert.equal(
+      (
+        await f.one(
+          "select count(*)::integer n from rpg_private.memory_public_sources where campaign_id=$1 and source_id=$2 and current",
+          [cid, normal.id],
+        )
+      ).n,
+      1,
+    );
+    assert.ok(
+      (
+        await f.one(
+          "select canon_generation from rpg_private.timeline_campaigns where campaign_id=$1",
+          [cid],
+        )
+      ).canon_generation > generation,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
