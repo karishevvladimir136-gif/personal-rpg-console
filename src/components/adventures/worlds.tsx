@@ -28,6 +28,7 @@ export function WorldPicker({
   onBusy,
   onDirty,
   initial,
+  persistPending = true,
   transport: injected,
 }: {
   language: "en" | "ru";
@@ -38,6 +39,7 @@ export function WorldPicker({
   onBusy: (busy: boolean) => void;
   onDirty: (dirty: boolean) => void;
   initial?: WorldCatalog;
+  persistPending?: boolean;
   transport?: AdventureTransport;
 }) {
   const c = adventureText(language),
@@ -85,6 +87,7 @@ export function WorldPicker({
   }, [loading, creatingBusy, onBusy]);
   useEffect(() => () => onBusy(false), [onBusy]);
   useEffect(() => {
+    if (!persistPending) return;
     Promise.resolve().then(() => {
       try {
         if (
@@ -98,7 +101,7 @@ export function WorldPicker({
         /* Storage may be unavailable. */
       }
     });
-  }, []);
+  }, [persistPending]);
   const chosen = catalog?.worlds.find((w) => w.id === worldId);
   return (
     <div className={styles.world}>
@@ -146,6 +149,7 @@ export function WorldPicker({
               catalog={catalog}
               disabled={disabled}
               transport={transport}
+              persistPending={persistPending}
               onBusy={setCreatingBusy}
               onDirty={onDirty}
               onCreated={(world) => {
@@ -179,6 +183,7 @@ function WorldCreator({
   catalog,
   disabled,
   transport,
+  persistPending = true,
   onBusy,
   onDirty,
   onCreated,
@@ -188,6 +193,7 @@ function WorldCreator({
   catalog: WorldCatalog;
   disabled: boolean;
   transport: AdventureTransport;
+  persistPending?: boolean;
   onBusy: (busy: boolean) => void;
   onDirty: (dirty: boolean) => void;
   onCreated: (world: PublicWorld) => void;
@@ -199,7 +205,11 @@ function WorldCreator({
     [],
   );
   const { pending, current, mounted, remember, ready } =
-    usePending<WorldCommand>(worldPendingKey("world_create"), restore);
+    usePending<WorldCommand>(
+      worldPendingKey("world_create"),
+      restore,
+      persistPending,
+    );
   const [title, setTitle] = useState(""),
     [premise, setPremise] = useState(""),
     [packs, setPacks] = useState<string[]>([]);

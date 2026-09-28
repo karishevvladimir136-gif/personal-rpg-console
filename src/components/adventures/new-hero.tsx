@@ -24,6 +24,8 @@ export function NewHeroForm({
   onCreated,
   onCancel,
   initialWorlds,
+  persistPending = true,
+  continueHref,
   transport: injected,
 }: {
   language: "en" | "ru";
@@ -31,6 +33,8 @@ export function NewHeroForm({
   onCreated: () => Promise<void>;
   onCancel: () => void;
   initialWorlds?: WorldCatalog;
+  persistPending?: boolean;
+  continueHref?: string;
   transport?: AdventureTransport;
 }) {
   const c = adventureText(language),
@@ -57,7 +61,11 @@ export function NewHeroForm({
     [],
   );
   const { pending, current, mounted, remember, ready } =
-    usePending<WorldCommand>(worldPendingKey("new_campaign"), restore);
+    usePending<WorldCommand>(
+      worldPendingKey("new_campaign"),
+      restore,
+      persistPending,
+    );
   const frozen = !ready || busy || pending !== null || created !== null;
   useEffect(() => {
     onDirty(
@@ -106,7 +114,7 @@ export function NewHeroForm({
       {created ? (
         <div role="status">
           <p>{c.ready}</p>
-          <Link href={`/campaigns/${created.campaignId}/game`}>
+          <Link href={continueHref ?? `/campaigns/${created.campaignId}/game`}>
             {c.continue}
           </Link>
           <div className={styles.actions}>
@@ -128,6 +136,7 @@ export function NewHeroForm({
             onDirty={setWorldDirty}
             initial={initialWorlds}
             transport={transport}
+            persistPending={persistPending}
           />
           <form
             className={styles.form}
