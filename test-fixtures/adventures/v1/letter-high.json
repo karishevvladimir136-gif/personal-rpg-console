@@ -1,0 +1,1081 @@
+{
+  "schemaVersion": 1,
+  "family": "letter-high",
+  "immutableWorld": {
+    "id": "fb277aa3-8be4-57fe-a36d-b31a52a5ac77",
+    "version": 1,
+    "digest": "9196e399c167447fe90cfe4665a275cd48f78453baa05f7b404a90b93d4cb778"
+  },
+  "authority": {
+    "kind": "synthetic-owner-approved",
+    "version": 1,
+    "mutableNamespace": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+    "provenance": "Synthetic offline fixture, separate from frozen Mega DM datasets."
+  },
+  "profile": {
+    "power": "experienced",
+    "scaling": "intrinsic-threats-fixed",
+    "progression": "off",
+    "deadlinePolicy": "normal",
+    "worldSimulation": true,
+    "autonomy": "moderate",
+    "pacing": {
+      "intendedSessionHours": [
+        3,
+        5
+      ],
+      "enforcedTimer": false
+    }
+  },
+  "premise": "A courier receives an ordinary sealed letter for the visitor at the Rill road post; events and obligations can develop beyond delivery.",
+  "publicFacts": {
+    "heroHistory": "Several difficult deliveries completed.",
+    "heroIntent": "Decide how to handle the immediate situation and its consequences.",
+    "ownerPosition": "At the road post.",
+    "environment": "Stone landing; weak wooden strongbox.",
+    "threats": "Road watchers keep their own established ability, irrespective of hero power."
+  },
+  "context": {
+    "foundation": {
+      "schemaVersion": 1,
+      "ownerId": "83cd4f58-e7d9-51dd-a4db-170d11b3a820",
+      "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+      "timeline": {
+        "timelineId": "c0867c07-5343-59a1-8037-2418bb3924a5",
+        "epoch": 2
+      },
+      "revision": 5,
+      "runtimeRevision": 3,
+      "headId": "58b51d57-c4e4-5220-b572-23546c3d7826",
+      "worldMinutes": 0,
+      "world": {
+        "schemaVersion": 1,
+        "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "policy": {
+          "simulation": true,
+          "autonomy": "moderate",
+          "deadlinePressure": "normal"
+        },
+        "policyChangedAtWorldMinutes": 0,
+        "actors": [
+          {
+            "id": "69244d82-2610-5a37-abea-16d163e8f591",
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "revision": 1,
+            "kind": "entity",
+            "entityId": "69244d82-2610-5a37-abea-16d163e8f591",
+            "control": "player",
+            "publicName": "Known player",
+            "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+            "capabilities": [
+              "inspect",
+              "key-access",
+              "lockpick",
+              "force-wood",
+              "environment-impact",
+              "spell-unseal",
+              "negotiate",
+              "veteran-routecraft"
+            ],
+            "knowledge": []
+          },
+          {
+            "id": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "revision": 1,
+            "kind": "entity",
+            "entityId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+            "control": "autonomous",
+            "publicName": "Road watch keeper",
+            "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+            "capabilities": [],
+            "knowledge": []
+          }
+        ],
+        "threads": [
+          {
+            "id": "9a0a291d-73a4-572f-b550-e4b441c129a1",
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "revision": 1,
+            "title": "An ordinary message changes hands",
+            "publicTitle": "Letter to the post",
+            "actorIds": [
+              "03413aa9-dae3-5bef-8870-fa795f4c6954"
+            ],
+            "decisionActorIds": [
+              "03413aa9-dae3-5bef-8870-fa795f4c6954"
+            ],
+            "locationIds": [
+              "d5518aff-4603-5640-b482-e45bedc13ce7"
+            ],
+            "prerequisiteThreadIds": [],
+            "status": "active",
+            "cursor": 0,
+            "steps": [
+              {
+                "id": "e3ef9e5e-2c3b-50b4-852c-fbd98a85841a",
+                "trigger": {
+                  "kind": "deadline",
+                  "atWorldMinutes": 180,
+                  "scenarioCritical": false,
+                  "established": true
+                },
+                "resolution": "deterministic",
+                "consequence": "background",
+                "privateText": "PRIVATE_WORLD_CAUSE",
+                "evidence": [],
+                "publicOutcome": {
+                  "text": "The post's visitor leaves after dusk.",
+                  "actorIds": [
+                    "03413aa9-dae3-5bef-8870-fa795f4c6954"
+                  ],
+                  "evidence": []
+                },
+                "warning": null,
+                "hookChanges": []
+              }
+            ]
+          }
+        ],
+        "hooks": [],
+        "warnings": []
+      },
+      "bindings": [],
+      "ruleset": {
+        "id": "console-basic-v1",
+        "version": 1,
+        "mode": "full_ruleset",
+        "validatorVersion": "console-basic-v1"
+      },
+      "executionPolicy": null
+    },
+    "state": {
+      "schemaVersion": 1,
+      "version": 3,
+      "profile": {
+        "id": "console-basic-v1",
+        "version": 1,
+        "mode": "full_ruleset",
+        "validatorVersion": "console-basic-v1"
+      },
+      "progression": "off",
+      "currencies": [
+        {
+          "id": "credits",
+          "label": "Credits",
+          "resourceKey": "credits",
+          "version": 1
+        }
+      ],
+      "itemPolicies": [
+        {
+          "itemId": "518b3fde-034a-5c8d-8133-028c16320953",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 20,
+          "trade": "allowed",
+          "origin": "legitimate",
+          "visibility": "public"
+        },
+        {
+          "itemId": "7e1d0b13-4009-5d40-acf1-92bc09de8cbe",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 20,
+          "trade": "allowed",
+          "origin": "legitimate",
+          "visibility": "public"
+        },
+        {
+          "itemId": "c0f4ccd2-61f0-5060-a92f-3e8b487ac0ab",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 20,
+          "trade": "allowed",
+          "origin": "legitimate",
+          "visibility": "public"
+        },
+        {
+          "itemId": "a1cc15a6-8856-5473-82d8-7b728ff77046",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 20,
+          "trade": "allowed",
+          "origin": "legitimate",
+          "visibility": "public"
+        },
+        {
+          "itemId": "5529497e-654c-50f4-a2f5-5ec9c6840cbb",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 9173,
+          "trade": "allowed",
+          "origin": "legitimate",
+          "visibility": "private"
+        },
+        {
+          "itemId": "9babe1a8-1b3a-5b4c-915e-e0167c882a61",
+          "version": 1,
+          "currencyId": "credits",
+          "unitValue": 0,
+          "trade": "quest",
+          "origin": "legitimate",
+          "visibility": "public"
+        }
+      ],
+      "merchants": [
+        {
+          "actorId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "entityId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "version": 1,
+          "label": "Synthetic merchant",
+          "storageId": "f6cc8918-6595-56b2-92f6-c9a92fe9716f",
+          "currencyIds": [
+            "credits"
+          ],
+          "available": true,
+          "acceptsStolen": false,
+          "usesFunds": true,
+          "capacity": null,
+          "buyBasisPoints": 5000,
+          "sellBasisPoints": 10000,
+          "haggleLimitBasisPoints": 1000
+        }
+      ],
+      "tracks": [],
+      "rewards": [
+        {
+          "id": "letter-delivery",
+          "version": 1,
+          "label": "Delivery acknowledgement",
+          "source": {
+            "kind": "quest",
+            "id": "2eb3a681-dac1-5a73-ba59-76c38b08ca12"
+          },
+          "distribution": "actor",
+          "recipientIds": [
+            "69244d82-2610-5a37-abea-16d163e8f591"
+          ],
+          "entries": [
+            {
+              "kind": "currency",
+              "currencyId": "credits",
+              "amount": 40
+            }
+          ]
+        }
+      ],
+      "progress": [],
+      "pending": [],
+      "preparations": []
+    },
+    "snapshot": {
+      "campaign": {
+        "id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "revision": 1,
+        "updated_at": "2026-01-01T00:00:00Z",
+        "title": "Synthetic mechanics",
+        "subtitle": "",
+        "language": "en"
+      },
+      "settings": {
+        "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "values": {
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "dmStyle": {
+            "companionAgency": "normal",
+            "descriptionDensity": "balanced",
+            "dialogueDensity": "balanced",
+            "dramaticPace": "balanced",
+            "mystery": "normal",
+            "failForward": "normal",
+            "tone": "grounded",
+            "emotionalTone": "hopeful_humanist",
+            "tragedyIntensity": "normal"
+          },
+          "language": "en",
+          "rulesSystem": {
+            "id": "console-basic-v1",
+            "label": "Console basic house rules",
+            "enemyHpScaling": true,
+            "enemyDamageScaling": true
+          },
+          "difficulty": {
+            "preset": "medium",
+            "shortRestSupplyCost": 0,
+            "longRestSupplyCost": 1,
+            "enemyHpMultiplier": 1,
+            "enemyDamageMultiplier": 1,
+            "rerolls": "limited",
+            "rerollsPerSession": 2,
+            "defeat": "injuries",
+            "recovery": "standard",
+            "scarcity": "standard"
+          },
+          "storyStructure": "balanced",
+          "playerRole": "one-of-many",
+          "worldAutonomy": "moderate",
+          "checkFrequency": "balanced",
+          "dicePresentation": "key-rolls",
+          "interactiveDice": true,
+          "showDc": false,
+          "visualStyle": "Cinematic noir",
+          "frameRatio": "16:9",
+          "videoDuration": "10 seconds",
+          "narrativeStyle": "Literary"
+        },
+        "revision": 1,
+        "updated_at": ""
+      },
+      "settingsHistory": [],
+      "documents": [],
+      "entities": [
+        {
+          "id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "kind": "player",
+          "name": "Experienced courier",
+          "details": "Synthetic known actor.",
+          "hp": 30,
+          "max_hp": 30,
+          "stats": {
+            "skill": 8,
+            "attack": 7,
+            "save": 6,
+            "defense": 16
+          },
+          "resources": {
+            "focus": 10,
+            "credits": 150
+          },
+          "conditions": [],
+          "equipment_slots": [
+            {
+              "id": "hand",
+              "label": "Hand",
+              "accepts": [
+                "weapon",
+                "tool"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "1f74652e-b4c2-56c0-a4c3-c97d1e443eef",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "kind": "companion",
+          "name": "Synthetic companion",
+          "details": "Synthetic known actor.",
+          "hp": 6,
+          "max_hp": 12,
+          "stats": {
+            "skill": 2,
+            "attack": 2,
+            "save": 1,
+            "defense": 10
+          },
+          "resources": {
+            "focus": 4
+          },
+          "conditions": [],
+          "equipment_slots": [
+            {
+              "id": "hand",
+              "label": "Hand",
+              "accepts": [
+                "weapon",
+                "tool"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "kind": "npc",
+          "name": "Synthetic enemy",
+          "details": "Synthetic known actor.",
+          "hp": 6,
+          "max_hp": 12,
+          "stats": {
+            "skill": 2,
+            "attack": 2,
+            "save": 1,
+            "defense": 10
+          },
+          "resources": {
+            "focus": 2,
+            "credits": 1000
+          },
+          "conditions": [],
+          "equipment_slots": [
+            {
+              "id": "hand",
+              "label": "Hand",
+              "accepts": [
+                "weapon",
+                "tool"
+              ]
+            }
+          ]
+        }
+      ],
+      "storages": [
+        {
+          "id": "179672a1-dc2e-5135-b40c-b2a8d434d845",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "pack",
+          "kind": "player",
+          "entity_id": "69244d82-2610-5a37-abea-16d163e8f591"
+        },
+        {
+          "id": "95c38662-3dff-5f86-85f9-291e6551820f",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "companion-pack",
+          "kind": "companion",
+          "entity_id": "1f74652e-b4c2-56c0-a4c3-c97d1e443eef"
+        },
+        {
+          "id": "cfa7f908-d655-5a04-aa29-7387fd1defa7",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "camp",
+          "kind": "camp",
+          "entity_id": null
+        },
+        {
+          "id": "d6c77812-1954-5103-9211-e3b434e7debc",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "cargo",
+          "kind": "transport",
+          "entity_id": null
+        },
+        {
+          "id": "f6cc8918-6595-56b2-92f6-c9a92fe9716f",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Merchant stock",
+          "kind": "merchant",
+          "entity_id": "03413aa9-dae3-5bef-8870-fa795f4c6954"
+        },
+        {
+          "id": "5aa72fef-861d-5a1b-b4ab-03bce76eac59",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Unspecified small drawer",
+          "kind": "merchant",
+          "entity_id": "03413aa9-dae3-5bef-8870-fa795f4c6954"
+        }
+      ],
+      "items": [
+        {
+          "id": "518b3fde-034a-5c8d-8133-028c16320953",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "coffee",
+          "category": "consumable",
+          "quantity": 10,
+          "description": "Synthetic item.",
+          "mechanics": "Descriptive prose never grants effects.",
+          "owner_entity_id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "storage_id": "179672a1-dc2e-5135-b40c-b2a8d434d845",
+          "equipped_entity_id": null,
+          "equipped_slot": null
+        },
+        {
+          "id": "7e1d0b13-4009-5d40-acf1-92bc09de8cbe",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "knife",
+          "category": "consumable",
+          "quantity": 10,
+          "description": "Synthetic item.",
+          "mechanics": "Descriptive prose never grants effects.",
+          "owner_entity_id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "storage_id": "179672a1-dc2e-5135-b40c-b2a8d434d845",
+          "equipped_entity_id": null,
+          "equipped_slot": null
+        },
+        {
+          "id": "c0f4ccd2-61f0-5060-a92f-3e8b487ac0ab",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "weapon",
+          "category": "weapon",
+          "quantity": 10,
+          "description": "Synthetic item.",
+          "mechanics": "Descriptive prose never grants effects.",
+          "owner_entity_id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "storage_id": "179672a1-dc2e-5135-b40c-b2a8d434d845",
+          "equipped_entity_id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "equipped_slot": "hand"
+        },
+        {
+          "id": "a1cc15a6-8856-5473-82d8-7b728ff77046",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Glass vials",
+          "category": "consumable",
+          "quantity": 3,
+          "description": "Small glass containers.",
+          "mechanics": "No automatic power is granted by appearance.",
+          "owner_entity_id": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "storage_id": "f6cc8918-6595-56b2-92f6-c9a92fe9716f",
+          "equipped_entity_id": null,
+          "equipped_slot": null
+        },
+        {
+          "id": "5529497e-654c-50f4-a2f5-5ec9c6840cbb",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Wrapped merchant stock",
+          "category": "tool",
+          "quantity": 173,
+          "description": "A closed wrapping with no contents disclosed.",
+          "mechanics": "Unknown; no mechanical effect is publicly established.",
+          "owner_entity_id": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "storage_id": "f6cc8918-6595-56b2-92f6-c9a92fe9716f",
+          "equipped_entity_id": null,
+          "equipped_slot": null
+        },
+        {
+          "id": "9babe1a8-1b3a-5b4c-915e-e0167c882a61",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Sealed letter to the Rill post",
+          "category": "document",
+          "quantity": 1,
+          "description": "An ordinary sealed letter entrusted to the courier.",
+          "mechanics": "No mechanical power; opening or delivering it is an intentional action.",
+          "owner_entity_id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "storage_id": "179672a1-dc2e-5135-b40c-b2a8d434d845",
+          "equipped_entity_id": null,
+          "equipped_slot": null
+        }
+      ],
+      "sessions": [
+        {
+          "id": "78ab037f-ae77-56ef-84c3-f46e28f47255",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "title": "Synthetic session",
+          "status": "open",
+          "recap": ""
+        }
+      ],
+      "scenes": [],
+      "publicState": {
+        "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "summary": "Synthetic beginning",
+        "current_session_id": "78ab037f-ae77-56ef-84c3-f46e28f47255",
+        "current_scene_id": null,
+        "current_location_id": "d5518aff-4603-5640-b482-e45bedc13ce7",
+        "revision": 1,
+        "updated_at": ""
+      },
+      "quests": [
+        {
+          "id": "2eb3a681-dac1-5a73-ba59-76c38b08ca12",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "title": "Letter to the Rill post",
+          "description": "Deliver or otherwise decide how to handle the entrusted letter. Further obligations depend on recorded events.",
+          "status": "open"
+        }
+      ],
+      "locations": [
+        {
+          "id": "d5518aff-4603-5640-b482-e45bedc13ce7",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Rill road post",
+          "description": "",
+          "status": "visited"
+        },
+        {
+          "id": "ec379219-ab2e-54b6-86c9-6dd3193a9d08",
+          "campaign_id": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "updated_at": "2026-01-01T00:00:00Z",
+          "name": "Second clearing",
+          "description": "",
+          "status": "known"
+        }
+      ],
+      "assets": [],
+      "feedback": [],
+      "dmGuideDocumentId": "29616e47-9903-5a0c-977a-fc03084d6c70",
+      "timeline": {
+        "timelineId": "c0867c07-5343-59a1-8037-2418bb3924a5",
+        "epoch": 2
+      }
+    },
+    "world": {
+      "schemaVersion": 1,
+      "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+      "policy": {
+        "simulation": true,
+        "autonomy": "moderate",
+        "deadlinePressure": "normal"
+      },
+      "policyChangedAtWorldMinutes": 0,
+      "actors": [
+        {
+          "id": "69244d82-2610-5a37-abea-16d163e8f591",
+          "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "kind": "entity",
+          "entityId": "69244d82-2610-5a37-abea-16d163e8f591",
+          "control": "player",
+          "publicName": "Known player",
+          "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+          "capabilities": [
+            "inspect",
+            "key-access",
+            "lockpick",
+            "force-wood",
+            "environment-impact",
+            "spell-unseal",
+            "negotiate",
+            "veteran-routecraft"
+          ],
+          "knowledge": []
+        },
+        {
+          "id": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "kind": "entity",
+          "entityId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+          "control": "autonomous",
+          "publicName": "Road watch keeper",
+          "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+          "capabilities": [],
+          "knowledge": []
+        }
+      ],
+      "threads": [
+        {
+          "id": "9a0a291d-73a4-572f-b550-e4b441c129a1",
+          "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+          "revision": 1,
+          "title": "An ordinary message changes hands",
+          "publicTitle": "Letter to the post",
+          "actorIds": [
+            "03413aa9-dae3-5bef-8870-fa795f4c6954"
+          ],
+          "decisionActorIds": [
+            "03413aa9-dae3-5bef-8870-fa795f4c6954"
+          ],
+          "locationIds": [
+            "d5518aff-4603-5640-b482-e45bedc13ce7"
+          ],
+          "prerequisiteThreadIds": [],
+          "status": "active",
+          "cursor": 0,
+          "steps": [
+            {
+              "id": "e3ef9e5e-2c3b-50b4-852c-fbd98a85841a",
+              "trigger": {
+                "kind": "deadline",
+                "atWorldMinutes": 180,
+                "scenarioCritical": false,
+                "established": true
+              },
+              "resolution": "deterministic",
+              "consequence": "background",
+              "privateText": "PRIVATE_WORLD_CAUSE",
+              "evidence": [],
+              "publicOutcome": {
+                "text": "The post's visitor leaves after dusk.",
+                "actorIds": [
+                  "03413aa9-dae3-5bef-8870-fa795f4c6954"
+                ],
+                "evidence": []
+              },
+              "warning": null,
+              "hookChanges": []
+            }
+          ]
+        }
+      ],
+      "hooks": [],
+      "warnings": []
+    },
+    "events": [
+      {
+        "schemaVersion": 1,
+        "id": "7e104105-c09a-5601-8f44-f18a6b1e2840",
+        "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "operationId": "96619afe-c5f3-5341-9461-63b864c75443",
+        "originTimelineId": "c0867c07-5343-59a1-8037-2418bb3924a5",
+        "sequence": 1,
+        "worldMinutes": 0,
+        "evidence": [],
+        "kind": "loot.object.configured",
+        "visibility": "private",
+        "text": "The owner approved bounded object facts.",
+        "actorIds": [],
+        "threadIds": [],
+        "payload": {
+          "schemaVersion": 1,
+          "expectedObjectRevision": null,
+          "object": {
+            "schemaVersion": 1,
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "id": "b28b71fc-9e5d-560e-8abb-20236f86e8a5",
+            "revision": 1,
+            "storageId": "f6cc8918-6595-56b2-92f6-c9a92fe9716f",
+            "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+            "ownerEntityId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+            "label": "Courier desk drawer",
+            "access": "open",
+            "lockClass": null,
+            "structureClass": "weak-wood",
+            "environmentTags": [
+              "stone-landing"
+            ],
+            "portable": true,
+            "contentsEstablished": true,
+            "materializationId": "af02271e-ce80-57b8-b801-43ea63b134a4",
+            "knownBy": [
+              "69244d82-2610-5a37-abea-16d163e8f591"
+            ],
+            "contentsKnownBy": []
+          },
+          "policy": {
+            "schemaVersion": 1,
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "objectId": "b28b71fc-9e5d-560e-8abb-20236f86e8a5",
+            "id": "bounded-wood-v1",
+            "version": 1,
+            "profile": {
+              "id": "console-basic-v1",
+              "version": 1,
+              "mode": "full_ruleset",
+              "validatorVersion": "console-basic-v1"
+            },
+            "discoveryCheck": null,
+            "contents": [],
+            "approaches": [
+              {
+                "id": "key",
+                "capability": "key-access",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": null,
+                "structureClass": null,
+                "environmentTags": [],
+                "requiresPortable": false,
+                "requiredItemIds": [
+                  "8fa10a0c-ac27-55d5-bd7b-f72a0634bdda"
+                ],
+                "resourceCost": null,
+                "check": null,
+                "to": "open",
+                "noise": false,
+                "fragileLoss": 0
+              },
+              {
+                "id": "pick",
+                "capability": "lockpick",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": "difficult-lock",
+                "structureClass": null,
+                "environmentTags": [],
+                "requiresPortable": false,
+                "requiredItemIds": [],
+                "resourceCost": null,
+                "check": {
+                  "index": 0,
+                  "stat": "skill",
+                  "dc": 20
+                },
+                "to": "open",
+                "noise": false,
+                "fragileLoss": 0
+              },
+              {
+                "id": "force",
+                "capability": "force-wood",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": null,
+                "structureClass": "weak-wood",
+                "environmentTags": [],
+                "requiresPortable": false,
+                "requiredItemIds": [],
+                "resourceCost": null,
+                "check": {
+                  "index": 0,
+                  "stat": "attack",
+                  "dc": 8
+                },
+                "to": "broken",
+                "noise": true,
+                "fragileLoss": 1
+              },
+              {
+                "id": "impact",
+                "capability": "environment-impact",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": null,
+                "structureClass": "weak-wood",
+                "environmentTags": [
+                  "stone-landing"
+                ],
+                "requiresPortable": true,
+                "requiredItemIds": [],
+                "resourceCost": null,
+                "check": {
+                  "index": 0,
+                  "stat": "skill",
+                  "dc": 8
+                },
+                "to": "broken",
+                "noise": true,
+                "fragileLoss": 1
+              },
+              {
+                "id": "spell",
+                "capability": "spell-unseal",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": null,
+                "structureClass": null,
+                "environmentTags": [],
+                "requiresPortable": false,
+                "requiredItemIds": [],
+                "resourceCost": {
+                  "resource": "focus",
+                  "amount": 2
+                },
+                "check": {
+                  "index": 0,
+                  "stat": "skill",
+                  "dc": 12
+                },
+                "to": "open",
+                "noise": false,
+                "fragileLoss": 0
+              },
+              {
+                "id": "agreement",
+                "capability": "negotiate",
+                "from": [
+                  "locked"
+                ],
+                "lockClass": null,
+                "structureClass": null,
+                "environmentTags": [],
+                "requiresPortable": false,
+                "requiredItemIds": [],
+                "resourceCost": null,
+                "check": {
+                  "index": 0,
+                  "stat": "skill",
+                  "dc": 14
+                },
+                "to": "open",
+                "noise": false,
+                "fragileLoss": 0
+              }
+            ]
+          },
+          "privateItems": [
+            {
+              "itemId": "5529497e-654c-50f4-a2f5-5ec9c6840cbb",
+              "fragile": false,
+              "hidden": {
+                "trueIdentity": "PRIVATE_STOCK_TRUE_IDENTITY",
+                "properties": [
+                  "PRIVATE_STOCK_TRUE_EFFECT"
+                ],
+                "provenance": "PRIVATE_STOCK_TRUE_PROVENANCE",
+                "usableCapabilities": []
+              }
+            },
+            {
+              "itemId": "a1cc15a6-8856-5473-82d8-7b728ff77046",
+              "fragile": true,
+              "hidden": {
+                "trueIdentity": "PRIVATE_VIAL_IDENTITY",
+                "properties": [
+                  "PRIVATE_VIAL_EFFECT"
+                ],
+                "provenance": "PRIVATE_VIAL_PROVENANCE",
+                "usableCapabilities": []
+              }
+            }
+          ],
+          "authority": "owner"
+        }
+      },
+      {
+        "schemaVersion": 1,
+        "id": "58b51d57-c4e4-5220-b572-23546c3d7826",
+        "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+        "operationId": "3fef8612-0263-5046-9ec2-b323c52fdbc4",
+        "originTimelineId": "c0867c07-5343-59a1-8037-2418bb3924a5",
+        "sequence": 2,
+        "worldMinutes": 0,
+        "evidence": [],
+        "kind": "loot.object.configured",
+        "visibility": "private",
+        "text": "The owner approved bounded object facts.",
+        "actorIds": [],
+        "threadIds": [],
+        "payload": {
+          "schemaVersion": 1,
+          "expectedObjectRevision": null,
+          "object": {
+            "schemaVersion": 1,
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "id": "448dece3-d661-5222-9f79-b45b61fb6222",
+            "revision": 1,
+            "storageId": "5aa72fef-861d-5a1b-b4ab-03bce76eac59",
+            "locationId": "d5518aff-4603-5640-b482-e45bedc13ce7",
+            "ownerEntityId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+            "label": "Small open drawer",
+            "access": "open",
+            "lockClass": null,
+            "structureClass": "weak-wood",
+            "environmentTags": [
+              "stone-landing"
+            ],
+            "portable": true,
+            "contentsEstablished": false,
+            "materializationId": null,
+            "knownBy": [],
+            "contentsKnownBy": []
+          },
+          "policy": {
+            "schemaVersion": 1,
+            "campaignId": "6fca8019-6902-51a7-b07b-7858c0e01ab1",
+            "objectId": "448dece3-d661-5222-9f79-b45b61fb6222",
+            "id": "small-cache-v1",
+            "version": 1,
+            "profile": {
+              "id": "console-basic-v1",
+              "version": 1,
+              "mode": "full_ruleset",
+              "validatorVersion": "console-basic-v1"
+            },
+            "discoveryCheck": null,
+            "contents": [
+              {
+                "key": "token",
+                "visible": {
+                  "name": "Worn token",
+                  "category": "trinket",
+                  "quantity": 1,
+                  "description": "An old token with a dim engraving.",
+                  "mechanics": "Dormant; no available mechanical effect."
+                },
+                "commerce": {
+                  "currencyId": "credits",
+                  "unitValue": 50,
+                  "trade": "allowed",
+                  "origin": "legitimate",
+                  "visibility": "public"
+                },
+                "private": {
+                  "trueIdentity": "PRIVATE_DORMANT_RELIC",
+                  "properties": [
+                    "PRIVATE_RELIC_POWER"
+                  ],
+                  "provenance": "PRIVATE_RELIC_ORIGIN",
+                  "usableCapabilities": []
+                },
+                "fragile": false
+              }
+            ],
+            "approaches": []
+          },
+          "privateItems": [
+            {
+              "itemId": "5529497e-654c-50f4-a2f5-5ec9c6840cbb",
+              "fragile": false,
+              "hidden": {
+                "trueIdentity": "PRIVATE_STOCK_TRUE_IDENTITY",
+                "properties": [
+                  "PRIVATE_STOCK_TRUE_EFFECT"
+                ],
+                "provenance": "PRIVATE_STOCK_TRUE_PROVENANCE",
+                "usableCapabilities": []
+              }
+            }
+          ],
+          "authority": "owner"
+        }
+      }
+    ]
+  },
+  "references": {
+    "actorId": "69244d82-2610-5a37-abea-16d163e8f591",
+    "merchantActorId": "03413aa9-dae3-5bef-8870-fa795f4c6954",
+    "objectId": "b28b71fc-9e5d-560e-8abb-20236f86e8a5",
+    "unspecifiedObjectId": "448dece3-d661-5222-9f79-b45b61fb6222",
+    "itemId": "a1cc15a6-8856-5473-82d8-7b728ff77046",
+    "destinationStorageId": "179672a1-dc2e-5135-b40c-b2a8d434d845"
+  },
+  "rewardIntegrity": {
+    "schemaVersion": 1,
+    "id": "experienced-courier-v1",
+    "version": 1,
+    "profile": {
+      "id": "console-basic-v1",
+      "version": 1,
+      "mode": "full_ruleset",
+      "validatorVersion": "console-basic-v1"
+    },
+    "rewardId": "letter-delivery",
+    "rewardVersion": 1,
+    "sourceSignificance": "meaningful",
+    "usablePowerCeiling": 8,
+    "meaningfulnessFloor": 2,
+    "powerAggregation": "maximum",
+    "nonItemSignificance": 2,
+    "deliberateFloorException": null,
+    "items": []
+  },
+  "evaluation": {
+    "providerCallsAllowed": 0,
+    "attemptsUsed": 0,
+    "qualitativeStatus": "unassessed",
+    "automaticQualityScore": null,
+    "authority": "Normal runtime/DM chooses intent; trusted plans settle state. No scripted solution."
+  }
+}
