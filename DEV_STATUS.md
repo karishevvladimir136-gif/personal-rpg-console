@@ -1,3 +1,13 @@
+# Development status — Adventure / Media V1 — IMPLEMENTATION IN PROGRESS
+
+**Authorized baseline:** exact remote main `1f9e3c56896d9cd5a374af6857f918c46bb80603`; isolated integration `codex/v1-adventure-media`. The owner separately authorizes Lane A Adventure V1/Acceptance Harness and Lane B Media V1 within [frozen ownership/authority boundaries](ADVENTURE_MEDIA_V1_CONTRACTS.md). Original dirty checkout, accepted Wave 1, frozen Mega DM fixtures/evidence and main remain untouched.
+
+**Current work:** minimum shared ownership is frozen; three contextualized workers are reused for Adventure, loot/acceptance and FRAME. Lead alone owns migrations/shared contracts/navigation/integration/status. No new feature is complete or owner accepted. Provider/model capability/pricing/credential verification and exact selection are pending; no live call has been made. VIDEO implementation remains blocked until integrated deterministic and bounded live FRAME gates pass.
+
+**Verification/limits:** focused checks will accompany implementation, followed by one fresh frozen integrated suite/type/lint/build/disposable upgrade gate and EN/RU viewport review. Historical results below are unchanged, not fresh results. Real databases, campaigns/imports, deployment, D2B, Timeline V2, Living World, 2D/EXPLORE, broad crafting, procedural loot simulation and the actual owner playtest are outside this wave. Stop for owner review after branch delivery; full prior status/history follows verbatim.
+
+---
+
 # Development status — World / Campaign / Adventure and Media V1 sequencing — OWNER ACCEPTED
 
 **Explicit owner acceptance:** the owner accepts the documentation at exact SHA `dfb07d9edccdd33f4615ba04eaeeca2795e4ee16` on `codex/world-campaign-adventure-spec`. This supersedes the earlier review-pending status below without rewriting its historical evidence.
