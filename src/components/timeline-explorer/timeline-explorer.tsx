@@ -187,6 +187,12 @@ function Lineage({
             <p className={styles.time}>{c.worldMinutes(branch.base.minutes)}</p>
           )}
           {branch.base.saveId && <a href={savesHref}>{c.originalSave}</a>}
+          {branch.base.checkpointId && (
+            <details className={styles.identity}>
+              <summary>{c.checkpointIdentity}</summary>
+              <code>{branch.base.checkpointId}</code>
+            </details>
+          )}
         </>
       )}
       {!!branch.children.length && (

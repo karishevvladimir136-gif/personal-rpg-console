@@ -197,6 +197,7 @@ export function projectTimelineExplorer({
       children: [],
       moments: scenes,
     });
+  const acceptedRuns: PublicLabRun[] = [];
   for (const run of labScoped?.runs ?? []) {
     if (
       run.campaignId !== campaignId ||
@@ -210,6 +211,7 @@ export function projectTimelineExplorer({
       run.currentWorldMinutes > run.throughWorldMinutes
     )
       continue;
+    acceptedRuns.push(run);
     const parent = branches.find(
       (row) => row.key === `playable:${run.base.timelineId}`,
     );
@@ -231,6 +233,39 @@ export function projectTimelineExplorer({
       children: [],
       moments: labMoments(run),
     });
+  }
+  // Lead-owned PublicLabRun now optionally carries these two offered public
+  // identities. Keep a structural reader until the shared extension integrates;
+  // no private continuation basis or run.base save inference belongs here.
+  for (const run of acceptedRuns) {
+    const branch = branches.find((row) => row.key === `lab:${run.id}`);
+    const continuation = (
+      run as PublicLabRun & {
+        continuation?: { sourceRunId: string; sourceCheckpointId: string };
+      }
+    ).continuation;
+    if (!branch || continuation === undefined) continue;
+    const parent =
+      continuation && continuation.sourceRunId !== run.id
+        ? branches.find(
+            (row) =>
+              row.kind === "lab" &&
+              row.key === `lab:${continuation.sourceRunId}`,
+          )
+        : undefined;
+    const checkpoint = parent?.moments.find(
+      (row) =>
+        row.kind === "checkpoint" &&
+        row.checkpointId === continuation?.sourceCheckpointId,
+    );
+    branch.parent = { key: parent?.key ?? null, label: parent?.label ?? null };
+    branch.base = {
+      saveId: null,
+      checkpointId: checkpoint?.checkpointId ?? null,
+      label: checkpoint ? parent!.label : null,
+      minutes:
+        checkpoint?.time.kind === "recorded" ? checkpoint.time.minutes : null,
+    };
   }
   for (const branch of branches)
     branch.children = branches

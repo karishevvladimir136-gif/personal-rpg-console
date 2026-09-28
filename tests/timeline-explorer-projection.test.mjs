@@ -276,3 +276,113 @@ test("Timeline long campaigns remain fully reachable after filtered load-more pa
   assert.equal(last.hasMore, false);
   assert.doesNotMatch(JSON.stringify(last), /PRIVATE_LONG_HISTORY_CANARY/);
 });
+
+test("Timeline continuation links an offered Lab parent and exact checkpoint, independently of run order", () => {
+  const source = timelineFixture(),
+    parent = source.lab.runs[0],
+    checkpoint = parent.checkpoints[1];
+  const child = structuredClone(parent);
+  child.id = uiId(200);
+  child.timelineId = uiId(201);
+  child.label = "Continuation from a public checkpoint";
+  child.startWorldMinutes = checkpoint.worldMinutes;
+  child.base.worldMinutes = checkpoint.worldMinutes;
+  child.base.label = "Not a playable save association";
+  child.continuation = {
+    sourceRunId: parent.id,
+    sourceCheckpointId: checkpoint.id,
+  };
+  child.checkpoints = [
+    { ...structuredClone(checkpoint), id: uiId(202), ordinal: 0 },
+  ];
+  source.lab.runs.unshift(child);
+  source.lab.runs.push({
+    ...child,
+    id: parent.id,
+    campaignId: uiId(99),
+    continuation: {
+      sourceRunId: child.id,
+      sourceCheckpointId: child.checkpoints[0].id,
+    },
+  });
+  const projection = projectTimelineExplorer(source);
+  const parentBranch = projection.branches.find(
+    (row) => row.key === `lab:${parent.id}`,
+  );
+  const childBranch = projection.branches.find(
+    (row) => row.key === `lab:${child.id}`,
+  );
+  assert.deepEqual(childBranch.parent, {
+    key: parentBranch.key,
+    label: parent.label,
+  });
+  assert.deepEqual(childBranch.base, {
+    saveId: null,
+    checkpointId: checkpoint.id,
+    label: parent.label,
+    minutes: checkpoint.worldMinutes,
+  });
+  assert.ok(parentBranch.children.some((row) => row.key === childBranch.key));
+  assert.equal(
+    active(projection).children.some((row) => row.key === childBranch.key),
+    false,
+  );
+  assert.equal(
+    JSON.stringify(childBranch).includes("Not a playable save association"),
+    false,
+  );
+  source.lab.runs.reverse();
+  assert.deepEqual(projectTimelineExplorer(source), projection);
+});
+
+test("Timeline continuation keeps missing, foreign, private and future parents/checkpoints unknown without save inference", () => {
+  for (const excluded of [
+    "missing-parent",
+    "foreign-parent",
+    "private-parent",
+    "missing-checkpoint",
+    "future-checkpoint",
+    "self-parent",
+  ]) {
+    const source = timelineFixture(),
+      parent = source.lab.runs[0],
+      checkpoint = parent.checkpoints[1];
+    const child = structuredClone(parent);
+    child.id = uiId(210);
+    child.timelineId = uiId(211);
+    child.label = "Child stays NON-CANON";
+    child.continuation = {
+      sourceRunId: parent.id,
+      sourceCheckpointId: checkpoint.id,
+    };
+    source.lab.runs.push(child);
+    if (excluded === "missing-parent") source.lab.runs.shift();
+    if (excluded === "foreign-parent") parent.campaignId = uiId(99);
+    if (excluded === "private-parent") parent.visibility = "private";
+    if (excluded === "missing-checkpoint") parent.checkpoints.pop();
+    if (excluded === "future-checkpoint") checkpoint.worldMinutes = 999;
+    if (excluded === "self-parent") child.continuation.sourceRunId = child.id;
+    const projection = projectTimelineExplorer(source),
+      branch = projection.branches.find((row) => row.key === `lab:${child.id}`);
+    assert.equal(branch.base.saveId, null, excluded);
+    assert.equal(branch.base.checkpointId, null, excluded);
+    assert.equal(branch.base.label, null, excluded);
+    assert.equal(branch.base.minutes, null, excluded);
+    assert.equal(branch.active, false);
+    if (
+      [
+        "missing-parent",
+        "foreign-parent",
+        "private-parent",
+        "self-parent",
+      ].includes(excluded)
+    )
+      assert.deepEqual(branch.parent, { key: null, label: null }, excluded);
+    else assert.equal(branch.parent.key, `lab:${parent.id}`, excluded);
+    assert.equal(
+      active(projection).children.some((row) => row.key === branch.key),
+      false,
+      excluded,
+    );
+  }
+});

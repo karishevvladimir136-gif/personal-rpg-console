@@ -336,3 +336,33 @@ test("Timeline actual panel withdraws optional history on same-epoch corrections
     false,
   );
 });
+
+test("Timeline actual EN/RU continuation lineage displays its parent checkpoint and never a fictional playable save base", () => {
+  for (const language of ["en", "ru"]) {
+    const source = timelineFixture(),
+      parent = source.lab.runs[0],
+      checkpoint = parent.checkpoints[1];
+    const child = structuredClone(parent);
+    child.id = "11111111-1111-4111-8111-000000000250";
+    child.timelineId = "11111111-1111-4111-8111-000000000251";
+    child.label = "Detached child";
+    child.continuation = {
+      sourceRunId: parent.id,
+      sourceCheckpointId: checkpoint.id,
+    };
+    child.base.label = "FALSE_PLAYABLE_BASE_CANARY";
+    source.lab.runs.unshift(child);
+    const c = timelineText(language),
+      html = render(language, source, `lab:${child.id}`);
+    assert.ok(html.includes(c.parent) && html.includes(parent.label));
+    assert.ok(
+      html.includes(c.checkpointIdentity) && html.includes(checkpoint.id),
+    );
+    assert.ok(html.includes(c.nonCanon));
+    assert.doesNotMatch(html, /FALSE_PLAYABLE_BASE_CANARY/);
+    source.lab.runs.pop();
+    const unknown = render(language, source, `lab:${child.id}`);
+    assert.ok(unknown.includes(c.lineageUnknown));
+    assert.doesNotMatch(unknown, /FALSE_PLAYABLE_BASE_CANARY/);
+  }
+});
