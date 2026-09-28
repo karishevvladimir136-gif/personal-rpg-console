@@ -646,3 +646,115 @@ test("completion receipt replay survives uncertain attachment and preserves exac
     (e) => e.code === "validation",
   );
 });
+
+async function visualComponentForTransport(client) {
+  const [{ default: ts }, { createRequire }, { runInNewContext }] =
+    await Promise.all([
+      import("typescript"),
+      import("node:module"),
+      import("node:vm"),
+    ]);
+  const source = readFileSync(
+    new URL("../src/components/persistent-visual-frame.tsx", import.meta.url),
+    "utf8",
+  );
+  const compiled = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      jsx: ts.JsxEmit.ReactJSX,
+      target: ts.ScriptTarget.ES2022,
+    },
+  }).outputText;
+  const require = createRequire(import.meta.url),
+    compiledModule = { exports: {} };
+  runInNewContext(compiled, {
+    module: compiledModule,
+    exports: compiledModule.exports,
+    require: (name) =>
+      name === "react" || name === "react/jsx-runtime"
+        ? require(name)
+        : name === "@/lib/persistence/client"
+          ? client
+          : {},
+  });
+  return compiledModule.exports;
+}
+
+test("Visual Bible default transport retains its production API endpoint and history loader", async () => {
+  const calls = [],
+    receipt = {
+      id: id(42),
+      revision: 1,
+      campaign_id: cid,
+      timeline: fixture().timeline,
+    },
+    history = [{ id: id(9), version: 1 }];
+  const component = await visualComponentForTransport({
+    readJson: async (url, init) => {
+      calls.push({ url, init });
+      return receipt;
+    },
+    loadVersions: async (...scope) => {
+      calls.push(scope);
+      return history;
+    },
+  });
+  const transport = component.PersistentVisualFrame().props.value;
+  const mutation = request(
+    visualDocumentMutation(
+      fixture(),
+      newVisualReference(fixture(), { kind: "style", id: cid }),
+    ),
+  );
+  assert.equal(await transport.save(mutation), receipt);
+  assert.equal(await transport.history(cid, id(8)), history);
+  assert.equal(calls[0].url, "/api/visual-frame");
+  assert.equal(calls[0].init.method, "POST");
+  assert.deepEqual(JSON.parse(calls[0].init.body), mutation);
+  assert.deepEqual(calls[1], [cid, id(8)]);
+});
+test("injected Visual Bible transport performs save/history with no production network dependency", async () => {
+  const networkForbidden = () => {
+    throw new Error("Production transport must not run in a disposable review");
+  };
+  const component = await visualComponentForTransport({
+    readJson: networkForbidden,
+    loadVersions: networkForbidden,
+  });
+  const calls = [],
+    receipt = { id: id(42), revision: 1 },
+    versions = [{ id: id(9), version: 1 }];
+  const injected = {
+    save: async (input) => {
+      calls.push(input);
+      return receipt;
+    },
+    history: async (...scope) => {
+      calls.push(scope);
+      return versions;
+    },
+  };
+  const transport = component.PersistentVisualFrame({ transport: injected })
+    .props.value;
+  assert.equal(transport, injected);
+  const mutation = request(
+    visualDocumentMutation(
+      fixture(),
+      newVisualReference(fixture(), { kind: "style", id: cid }),
+    ),
+  );
+  assert.equal(await transport.save(mutation), receipt);
+  assert.equal(await transport.history(cid, id(8)), versions);
+  assert.deepEqual(calls, [mutation, [cid, id(8)]]);
+  const source = readFileSync(
+    new URL("../src/components/persistent-visual-frame.tsx", import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(source, /loadCampaign|\bfetch\(/);
+  assert.match(source, /await transport\.save\(attempt\.current\)/);
+  assert.match(source, /return transport\.save\(attempt\)/);
+  assert.match(
+    source,
+    /transport\s*\.history\(snapshot\.campaign\.id, record\.id\)/,
+  );
+});

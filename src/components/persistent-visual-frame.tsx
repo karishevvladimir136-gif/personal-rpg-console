@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { useLanguage } from "./language-context";
 import {
   useCampaignData,
@@ -45,12 +45,26 @@ function useVisualWords() {
   const { language } = useLanguage();
   return (en: string, ru: string) => (language === "ru" ? ru : en);
 }
-async function send(input: Mutation) {
-  return readJson<MutationResult>("/api/visual-frame", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(input),
-  });
+export type VisualFrameTransport = {
+  save: (input: Mutation) => Promise<MutationResult>;
+  history: (
+    campaignId: string,
+    documentId: string,
+  ) => Promise<DocumentVersion[]>;
+};
+const defaultTransport: VisualFrameTransport = {
+  save: async (input) =>
+    readJson<MutationResult>("/api/visual-frame", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(input),
+    }),
+  history: loadVersions,
+};
+const VisualFrameTransportContext =
+  createContext<VisualFrameTransport>(defaultTransport);
+function useVisualFrameTransport() {
+  return useContext(VisualFrameTransportContext);
 }
 function Field({
   label,
@@ -87,6 +101,7 @@ function ReferenceEditor({
   onClose: () => void;
 }) {
   const w = useVisualWords();
+  const transport = useVisualFrameTransport();
   const { refresh } = useCampaignData();
   const scope = useCampaignDraftScope();
   const [draft, setDraft] = useState(initial);
@@ -122,7 +137,7 @@ function ReferenceEditor({
         attempt.current,
         scope.bind(visualDocumentMutation(snapshot, draft, record), "campaign"),
       );
-      await send(attempt.current);
+      await transport.save(attempt.current);
       await refresh();
       onClose();
     } catch (cause) {
@@ -278,7 +293,8 @@ function ReferenceEditor({
         <Button
           disabled={busy}
           onClick={() => {
-            void loadVersions(snapshot.campaign.id, record.id)
+            void transport
+              .history(snapshot.campaign.id, record.id)
               .then(setHistory)
               .catch(failure);
           }}
@@ -327,8 +343,18 @@ function ReferenceEditor({
   );
 }
 
-export function PersistentVisualFrame() {
+export function PersistentVisualFrame({
+  transport,
+}: { transport?: VisualFrameTransport } = {}) {
+  return (
+    <VisualFrameTransportContext.Provider value={transport ?? defaultTransport}>
+      <VisualFramePanel />
+    </VisualFrameTransportContext.Provider>
+  );
+}
+function VisualFramePanel() {
   const w = useVisualWords();
+  const transport = useVisualFrameTransport();
   const { data, refresh } = useCampaignData();
   const [editor, setEditor] = useState<{
     initial: VisualReference;
@@ -420,7 +446,7 @@ export function PersistentVisualFrame() {
       ? ({ ...input, requestId } as Mutation)
       : createMutationAttempt(attempts.current.get(key) ?? null, input);
     attempts.current.set(key, attempt);
-    return send(attempt);
+    return transport.save(attempt);
   }
   async function act(work: () => Promise<void>) {
     if (lock.current) return;
@@ -443,13 +469,11 @@ export function PersistentVisualFrame() {
       mockAssetMutation(snapshot, record, frame),
       record.id,
     );
-    // Reload only to attach the existing asset. If this step fails, an explicit retry replays the same receipt.
-    const { loadCampaign } = await import("@/lib/persistence/client");
-    const next = await loadCampaign(snapshot.campaign.id);
+    // Preserve the original fence. Server preflight verifies the asset; an explicit retry replays the same receipt.
     await save(
       `complete:${record.id}`,
       visualDocumentMutation(
-        next,
+        snapshot,
         { ...frame, status: "completed", resultAssetId: result.id },
         record,
       ),
@@ -849,7 +873,8 @@ export function PersistentVisualFrame() {
                     <Button
                       disabled={busy}
                       onClick={() => {
-                        void loadVersions(snapshot.campaign.id, record.id)
+                        void transport
+                          .history(snapshot.campaign.id, record.id)
                           .then((rows) => setHistory({ record, rows }))
                           .catch(failure);
                       }}
