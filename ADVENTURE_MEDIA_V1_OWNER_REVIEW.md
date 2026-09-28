@@ -1,0 +1,30 @@
+# Adventure / Media V1 — owner review
+
+This candidate adds the Adventure and loot/reward foundation plus a disabled-by-default real FRAME path. It is **not the complete Adventure + FRAME + VIDEO milestone**: the paid visual gate has not run, exact image-model selection is pending, and VIDEO has not started. Main remains the accepted baseline. No real owner Adventure has been executed.
+
+## Safe local preview
+
+Open **http://127.0.0.1:3102/preview/adventure-media** on this computer. The page labels itself synthetic. It mounts the ordinary application shell and actual Adventure, New Hero, Game/FRAME, Visual Bible, Gallery and bounded manual editing components, with page-local scripted transports. It uses no database, credentials or provider. Its Game mounts public records and FRAME in review-only mode; the live gameplay composer is deliberately inactive. Normal free-text gameplay is covered separately by disposable SQL/runtime tests. All displayed art is a labelled schematic, not generated media; amounts in the FRAME button are reservations in the normal component, never charged in this preview. Reloading or switching language resets the demo. It does not read/write ordinary pending World/New Hero/Adventure commands.
+
+Use English / Русский and the review-screen buttons:
+
+1. **Adventures / Приключения**: select the existing synthetic hero continuity, prepare an Adventure, write your own title/premise, choose Evening / 3–5 hours, review, start, edit, then End Adventure and add a qualitative review. The saved hero/inventory remain Campaign-owned. Pacing guides the DM; it is not a countdown. Try editing the title and premise by hand.
+2. **New Hero / Новый герой**: select/create an owner-authored World, enter the continuity title and hero name, review the ordinary house Level 1 Fighter template and explicitly create. This preview records only a local demonstration; the production flow creates one normal Campaign and opens its Game.
+3. **Objects & reward limits / Объекты и ограничения наград**: inspect known current objects, correct a label/access/portability, or prepare a bounded object from eligible existing stock and a current capability. Expand the reward-limits editor and correct rarity, current usable power/significance and optional ceiling/floor. These are manual reviewed versions, not AI-generated mechanics or private-field editors. No reward is granted by saving an assessment.
+4. **Game / FRAME**: inspect the recorded public scene and review FRAME for the current committed scene, inspect the positively visible brief/references, then use the ordinary Generate button inside the synthetic harness. Scripted success/failure/in-flight controls belong to the harness only. Text play remains available, previous art remains after failure, and uncertain requests are not automatically resent.
+5. **Visual Bible / Визуальная библия**: draft/correct appearance/outfit/style text, inspect it and explicitly approve. A real reference correction invalidates an old media basis; job lifecycle bookkeeping does not correct gameplay Canon or break eligible Lab checkpoints.
+6. **Gallery / Галерея**: inspect prior and new schematic results/history, including preservation of a prior usable result after a failed regeneration. Real production outputs use authorized private Storage reads, not public URLs.
+
+Desktop and 390×844 viewport checks are reported separately in the verification document. They are not physical iPhone testing. The loopback URL points to this computer; a phone's 127.0.0.1 points to the phone.
+
+## Normal production use after separate setup/acceptance
+
+No real migration is required to inspect this preview. Installing migrations 24–26 on an actual owner database remains separately gated. Configure one exact supported image model server-side, explicitly provision its service-only operation budget, and enable the real FRAME path only for authorized use. Keys never enter Campaign data or browser code. Current FRAME inputs support eligible approved **textual** appearance/outfit/style guidance; pixel-reference requests fail closed and do not silently discard pixels.
+
+The five-image sample and conservative accounting are prepared in [FRAME gate preparation](ADVENTURE_MEDIA_FRAME_GATE_PREPARATION.md). Sunburst/Flare selection is still pending; no image has been requested, no charge has been observed, and the reserved budget is not spend. FAL_KEY is absent. VIDEO implementation remains blocked by the FRAME gate and later exact video capability/model/credential setup.
+
+World creation establishes reusable owner-authored foundation identity and exact approved Pack references; it does not publish Canon or instantiate every source entity. The existing Campaign Settings → World Packs binding and Prepare review are still explicit setup steps. This slice creates immutable World foundations; it does not expose a World repinning/version-edit flow. A correction to a pinned source safely blocks new Adventure writes against that stale foundation, while historical metadata remains readable. It must not be force-applied or automatically repinned; a new eligible foundation/continuity or a later explicit recovery path is needed. Detached playable Adventures remain unavailable; this does not weaken the accepted detached World Lab run authority. The Fighter is a house compatibility template, not official D&D 5e. Unsupported spells, container methods, hidden-property disclosure and arbitrary reward balance pause or require existing manual bounded authoring. No owner quest/twist/required route is encoded.
+
+## Review decision
+
+Review the implemented Adventure/manual-control/UI direction and its disclosed limits. This review does not authorize the actual owner Fighter Adventure, a real DB migration, deployment or paid provider call by implication. Complete the pending FRAME consistency/privacy gate before considering VIDEO or claiming the two-lane milestone complete.

@@ -549,10 +549,10 @@ function VisualFramePanel({
       <p className="muted max-w-3xl text-sm leading-relaxed">
         {w(
           mediaEnabled
-            ? "MOCK schematic only. This preview does not call an image provider."
+            ? "FRAME uses a reviewed public scene. Any paid request is explicitly confirmed; nothing is generated on page load."
             : "MOCK schematic only. No image provider is connected.",
           mediaEnabled
-            ? "Только схема MOCK. Это превью не вызывает провайдер изображений."
+            ? "FRAME использует проверенную публичную сцену. Платный запрос требует явного подтверждения; при открытии страницы ничего не создаётся."
             : "Только схема MOCK. Провайдер изображений не подключён.",
         )}
       </p>
@@ -748,10 +748,10 @@ function VisualFramePanel({
           <p>
             {w(
               mediaEnabled
-                ? "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. This preview does not call an image provider. Text gameplay continues independently."
+                ? "Local MOCK requests below demonstrate the previous lifecycle without provider calls. Real FRAME has separate scene review and cost confirmation. Text gameplay continues independently."
                 : "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. No image provider is connected. Text gameplay continues independently.",
               mediaEnabled
-                ? "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Это превью не вызывает провайдер изображений. Текстовая игра работает независимо."
+                ? "Локальные запросы MOCK ниже показывают прежний жизненный цикл без вызова провайдера. Для настоящего FRAME предусмотрены отдельная проверка сцены и подтверждение стоимости. Текстовая игра работает независимо."
                 : "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Провайдер изображений не подключён. Текстовая игра работает независимо.",
             )}
           </p>
