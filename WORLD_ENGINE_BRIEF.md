@@ -2,7 +2,15 @@
 
 **Phase 3.75 design only, September 19, 2026. Not implemented or owner-approved.** This pass authorizes documentation, not runtime work, migrations, UI, provider calls, deployment or imports. Accepted baseline: Phase 3.5 implementation `8099e0cca1463f767476190c456d4f3947e7c84e`, acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. Earlier accepted checkpoints remain preserved.
 
-**Current reading:** that opening is the original dated design record. Waves 1–4 and World Lab D1/D2A have since been owner accepted; [DEV_STATUS](DEV_STATUS.md) records actual implementation and limits. The next priority is Mega DM v1 on the same single-DM/World authority, before deferred D2B; this document does not authorize implementation.
+**Current reading:** the opening and Phase 3.5 implementation/manifest descriptions below are the original dated design record, not a current feature inventory. Waves 1–4, D1/D2A, Mega DM v1 and bounded V1 Wave 1 have since been owner accepted; [DEV_STATUS](DEV_STATUS.md) records actual coverage/limits. The owner-directed World/Campaign/Adventure and loot additions are future contracts on the same authority; this document authorizes no implementation, propagation, migration or provider execution.
+
+## World foundations and campaign-local consequences
+
+[MASTER_SPEC §3/§47](MASTER_SPEC.md#47-world-campaign-and-adventure-product-contract) owns APP → WORLD → CAMPAIGN → ADVENTURE / ARC → SESSION → SCENE. A reusable World foundation is not a global mutable Actor/Thread/Event projection. Campaigns pin approved foundation/source versions through [existing World Library/Packs authority](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md#reusable-world-foundations-and-campaign-bindings); live Actors, goals, knowledge, memories, possessions, relationships and private plans stay campaign/timeline scoped. A canon Adventure uses that same Campaign state/settlement. A future detached Adventure isolates snapshot-derived changes with existing detached head/lease/source fences, never a temporary live restore.
+
+**World V1: shared foundation only.** No automatic cross-Campaign mutation, knowledge transfer, synchronization, chronology reconciliation or Living World propagation. “Campaign A discovered the king is a vampire” does not grant Campaign B knowledge; an Actor still needs positive legitimate evidence.
+
+Later, an explicitly reviewed promotion may create a dated World Event from an eligible Campaign consequence: for example “Year 317 — Black Tower destroyed — source: James & Jinn Campaign.” This is an illustrative future record, not an import or implemented workflow. Such promotion must retain exact Campaign/timeline/Event provenance, an authorized immutable foundation/version boundary, safe public scope and chronology eligibility. It cannot expose private causes/knowledge, rewrite source Campaign history or automatically repin another Campaign. A later Campaign could explicitly adopt the public consequence only when its chronology supports it. No branching-chronology solution, automatic merge or multi-Campaign live simulation is designed/implemented in World V1.
 
 ## Purpose and connected design
 
@@ -125,6 +133,36 @@ Extend the existing turn operation, not a parallel action loop:
 A resolver failure preserves the pending operation, input, recorded dice and staged validated work. It commits neither a half-resolved player turn nor half a world update. Retry reuses stored results and event IDs; a stale result cannot bind itself to the newly active branch. Cancel/review follows explicit existing operation semantics, never a hidden reroll or automatic model fallback. An explicit manual correction invalidates affected staged work while preserving its audit history.
 
 For a three-month skip, evaluate ordered causal boundaries/deadlines, not every hour/day. A bounded segment ends at the next consequential boundary, warning or workload limit. Persist staged progress against the initiating revision, with an explicit remaining horizon. If more work is needed, stop for **Continue simulation** or approval of a shorter coherent skip; do not chain unlimited model requests behind one click. Committing an approved prefix makes it actual history with its own stable operation; remaining time is a new explicit segment. No incomplete interval is reported as fully simulated. Lab checkpoints use the same exact-state rule, not a separate prose-only catch-up engine.
+
+## Search, containers and stable contextual contents
+
+**Future bounded exploration/loot contract, using the existing World Event, inventory/storage, Ruleset and settlement authorities.** It does not claim every physical/container mechanic is implemented. Player free-form search can address under beds, behind paintings, pockets, desks, chimneys, walls, shelves, bodies or arbitrary environment details. Predefined loot hotspots and convenience buttons are never exhaustive permission lists.
+
+**Search/discovery** determines whether the Actor notices an already existing hidden fact/object. **Loot/materialization** may resolve previously unspecified contextual contents only when authoritative state has not established them. These are separate decisions: failure to notice does not regenerate contents, and search cannot overwrite established NPC possessions or a previously materialized object. The model proposes context/semantic evidence; trusted profile policy and owning validators bound mechanical power, quantities/value and supported effects before authoritative commit. Unsupported object/action scope pauses or requests clarification, not a universal patch blob.
+
+| Source | Contents / reward semantics |
+| --- | --- |
+| Ordinary drawers, cupboards, crates, lockers, desks and shelves | Contextually plausible mundane/valuable contents; no useful-loot guarantee. A farmer's cupboard does not become legendary treasure for a level-15 visitor. |
+| NPC possessions / bodies | What that Actor actually owned, carried or used; do not invent Diablo-like corpse drops or erase prior item identity/provenance. |
+| Hidden caches / treasure chests | Contextual treasure based on owner, history, location and discovery difficulty; scarcity is not alone mechanical power. |
+| Major vault / dungeon climax | Usually an appropriate reward-significance floor when reaching it is itself meaningful; deliberate absence/disappointment needs narrative reason/payoff, never a retcon of fixed contents. |
+| Quest / objective rewards | Existing Reward Packages and stable entitlements, never a second reward grant path. |
+
+Resolve world-authentic contents independently from universal player-level scaling. [Rulesets reward integrity](RULESETS_AND_DYNAMIC_UI_BRIEF.md#reward-integrity-and-usable-power) owns source significance, power ceilings/floors, actual usability and valuation; a World Event cannot invent arbitrary loot mechanics to compensate for weak narration. Exploration may reward money, equipment, consumables, documents, lore, maps, clues, contacts, access, optional future Adventure hooks, secrets, supported salvage materials or world knowledge. Curiosity can yield valuable optional discoveries outside mandatory quest rewards, subject to ordinary knowledge/source authority.
+
+### Secured containers as world objects
+
+Properties define the problem, not a single prescribed solution. A secured/storage-like object may have stable identity, location, owner, access state, lock profile, structure/material, relevant durability/resistance, weight/portability, security/trap/alarm/ward, contents, visibility/discovery state and interaction consequences. Require only applicable supported properties; unknown measurements remain unknown. Bind the existing storage/ownership components to the world object rather than creating another container inventory database.
+
+Where World and profile support them, approaches can include a key, lockpick, spell/ability, strength, attacking the lock, breaking the container, cutting hinges, stealing the key, social manipulation, moving the whole container or another creative plan. DM interpretation uses arbitrary player intent; Ruleset/World Logic validates capabilities, prerequisites, access, costs/checks, protected-PC agency and typed causal effects. A method is not invalid merely because there is no UI button.
+
+For a difficult lock on a weak wooden chest, pushing it from a balcony onto stone may be plausible. Reason from established material, height, weight, contents, environment, Actor capability and applicable rules, without inventing measurements or pretending engineering precision. Validated consequences might break the container, bypass the intact lock, damage fragile contents or make noise that attracts attention. Observation/detection still requires justified recipients/knowledge; no omniscient alert or guaranteed outcome. Already recorded checks are reused, and unsupported mechanics require honest review.
+
+### Stable materialization, depletion and causal change
+
+Once validated/materialized, contents are authoritative and stable with object/source identity, provenance and immutable history. Commit through normal fenced settlement with exact operation/source receipts; refresh, retry, response loss, save/load or duplicate callback cannot reroll treasure, regrant an entitlement or produce partial item/resource effects. A fork inherits exact committed contents/receipts and isolates future changes; sibling future stock cannot leak into it. No new ledger, save system or procedural loot simulator.
+
+Looted storage stays depleted on reload. Normal validated consequences can change it later: NPCs remove bodies, guards recover stolen goods, another Actor loots the area, fire destroys contents or a faction relocates treasure. Such changes retain causal Events/transfer provenance and require actual access/capability, never reset behavior. Discovering, taking, legally owning, identifying and using an item remain distinct [Ruleset-owned states](RULESETS_AND_DYNAMIC_UI_BRIEF.md#discovery-possession-ownership-and-use). Supported harvesting/salvage uses these same authorities without turning every corpse into a crafting node or starting broad crafting.
 
 ## Memory, privacy and saves
 

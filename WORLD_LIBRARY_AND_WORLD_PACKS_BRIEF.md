@@ -2,6 +2,8 @@
 
 **Phase 3.75 design only, September 19, 2026. Not implemented or owner-approved.** Builds on accepted implementation `8099e0cca1463f767476190c456d4f3947e7c84e` and acceptance `6db58b5e3d464e4a09604ce344424c4fa8ed763e`. No sources, real characters, private material or assets are imported in this pass.
 
+**Current reading:** the opening is the original dated proposal. Accepted bounded source/compiler/Pack/prepare-for-Campaign and V1 work is recorded in [DEV_STATUS](DEV_STATUS.md). The reusable World hierarchy below is an owner-directed future product contract, not an implemented World table, a new Canon authority or permission to import/synchronize data.
+
 ## Product and scope
 
 `World Library → World Pack → Scenario Composition → Divergence / What If → Enter This World → Ruleset → RPG`
@@ -34,6 +36,16 @@ Research workers preserve disagreement rather than averaging it away. Conflictin
 Historical research should preserve temporal knowledge separation already required by Scenario Composition: a source corpus may know later outcomes, while **Canon at Entry**, **Character Knowledge** and future historical reference events remain separately scoped. Researching the entire war is not permission to leak post-entry outcomes to a character in 1943 or to force the historical future after player-caused divergence.
 
 This capability should reuse the existing Model Runtime, source provenance, versioning, retrieval, correction invalidation and Canon Compiler jobs. Do not add a commercial crawler stack, a second vector database or a permanent research-agent swarm. Ordinary gameplay still uses one primary DM; web research is an explicit World Library authoring/import operation.
+
+## Reusable World foundations and campaign bindings
+
+A **World** is a reusable shared setting under [MASTER_SPEC §3/§47](MASTER_SPEC.md#47-world-campaign-and-adventure-product-contract). Its approved foundation may contain World Bible/shared canon, geography, history, cosmology, species, magic/technology rules, factions, major shared locations, setting-level visual identity and approved world-level appearance references. A World is not itself a Pack, source document, Campaign or runtime Ruleset. Foundation content must use the existing Source Store/Canon Compiler, immutable World Pack/source versions and explicit owner approval, not a second authoring/canon system.
+
+Multiple Campaigns can bind the same approved foundation versions while instantiating independent campaign-owned Actors/state and retaining exact origin links. A binding pins Pack/source/document versions, priorities, appropriate entry/time basis and authorized scope; a changed World/source history does not auto-repin or silently rewrite an existing Campaign. The Campaign owns its continuing hero/party progression, resources, possessions, relationships, quests, knowledge, private truth, Memory and timelines across sandbox and canon Adventures. New Hero creates a lightweight Campaign continuity; it does not mutate the shared source entity or create a separate One-shot Hero type.
+
+World truth never equals player knowledge. Source Knowledge, Canon at Entry, Character Knowledge and Future Source Events retain their distinct filtered meanings for each Campaign/Actor. Public foundation, owner-authoring access and campaign-specific private information are separate permissions. Shared visual references still require approval and temporal/visibility/appearance eligibility; campaign-specific variants, secrets and consequences are not automatically shared. Source-origin IDs are provenance, never permission to retrieve another Campaign instance.
+
+World V1 shares **foundation only**: no automatic cross-Campaign state/knowledge mutation, synchronization or chronology solution. Future explicit dated consequence promotion is deferred to [World Engine](WORLD_ENGINE_BRIEF.md#world-foundations-and-campaign-local-consequences), with exact provenance and safe adoption rather than global live updates. This documentation patch changes no current binding/schema/readers or accepted campaign isolation behavior.
 
 ## Reuse and the necessary scope extension
 

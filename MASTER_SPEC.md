@@ -2,13 +2,15 @@
 ## Product specification — accepted foundation and owner-approved World roadmap
 ### Private single-user home application
 
-**Current V1 completion wave 1:** Mega DM v1 is closed and published at `e4f9171f9db87428b5b5812837474eb2c87c5aa8`. The owner's explicit bounded parallel instruction adds exact SINGLE-MODEL NON-CANON checkpoint children, read-only Timeline Explorer V1, owner-reference Places of Belonging V0, and provider-independent Visual Bible/FRAME V0 with labelled local MOCK art. These reuse Saves/Timelines, immutable Library/document history, existing Assets, Model Runtime and authorizations. Owner UI metadata is excluded from gameplay Memory and raw Library editors. This is the documented narrow sequencing exception to the historical order below; full multi-model D2B, Timeline V2, Enter This World, live image generation, VIDEO, EXPLORE and 2D remain deferred. This wave has passed fresh integrated deterministic/type/lint/build gates and EN/RU synthetic browser review; owner acceptance is still required before publication. It does not establish complete V1 or new live creative quality. See [frozen boundaries](V1_COMPLETION_WAVE1_CONTRACTS.md), [owner review](V1_COMPLETION_OWNER_REVIEW.md) and [current status](DEV_STATUS.md).
+**Current accepted V1 completion Wave 1:** owner-accepted candidate `663719543aeea9e9e0e6bf3d73a6619363b9be38`, published with status-only acceptance at `1179991377bda1e2ae363b9048b96850a9a4caa2`. Scope is Timeline V1, Places of Belonging V0, exact-checkpoint SINGLE-MODEL NON-CANON continuation, Visual Bible / FRAME MOCK V0, the FRAME checkpoint-authority repair and bounded UX pass. Accepted implementation, immutable history and disclosed limits remain unchanged: no real image generation, full multi-model D2B, complete V1, automatic Places inference, inactive-branch full scene transcripts, physical-iPhone verification, deployment or real database migration is claimed. See [frozen boundaries](V1_COMPLETION_WAVE1_CONTRACTS.md), [verified evidence](V1_COMPLETION_VERIFICATION.md) and [owner acceptance](DEV_STATUS.md).
+
+**Owner-directed World / Campaign / Adventure specification update:** the future conceptual hierarchy and Adventure decisions are recorded in [MASTER_SPEC §47](MASTER_SPEC.md#47-world-campaign-and-adventure-product-contract). This patch changes documentation only; its review does not imply feature implementation. [The future Adventure Acceptance Set](ADVENTURE_ACCEPTANCE_SET_BRIEF.md) is separate from the unchanged frozen Mega DM benchmark. Further development requires acceptance of this specification patch and a new bounded implementation authorization.
 
 **Mega DM v1 owner closure:** the owner completed the blind quality review and selected **gpt-6-astra / high / Standard** as the application gameplay default. Sol remains supported and selectable; explicit campaign policies, task overrides and pinned executions retain their meaning. This is a product choice, not universal model superiority. Cognitive/Living World Craft, Living Character Model and Positive Afterglow retain one DM and the accepted World/Memory/save authority. See [closure decision and limitations](MEGA_DM_V1_CLOSURE.md) and [current verification](DEV_STATUS.md). Historical roadmap notes below retain their original context.
 
-**Current source-of-truth integration:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. The source-of-truth integration is owner-approved at `7d945d3754647015ecdd765cef2b688dbab38777`; the complete owner-approved roadmap at `a3d0fa66da42f36a5401c3513e3484e83150f9d3` is integrated from production base `cb7f6be2fb513de13604d381046a3240f3261383`. The [Phase 3.75 owner architecture freeze](PHASE375_ARCHITECTURE_DECISION.md) remains unchanged. Phase 3.8B is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**; the [production-safe final record](PHASE38B_ARCHITECTURE_FREEZE.md) references historical freeze `3c99552a66d9b4b270b3a7a8552c709cf9faf73e` without importing its experiment infrastructure. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next development phase is the **Production Multi-Agent Coding Sprint**, scoped in DEVELOPMENT_PLAN and to begin in a fresh project task. Production coding has not started in this documentation finalization; no provider call, import or deployment occurs. Historical phase instructions are not renewed permissions.
+**Historical source-of-truth integration:** Phases 0–3.5 remain owner-accepted at their recorded checkpoints. The source-of-truth integration is owner-approved at `7d945d3754647015ecdd765cef2b688dbab38777`; the complete owner-approved roadmap at `a3d0fa66da42f36a5401c3513e3484e83150f9d3` is integrated from production base `cb7f6be2fb513de13604d381046a3240f3261383`. The [Phase 3.75 owner architecture freeze](PHASE375_ARCHITECTURE_DECISION.md) remains unchanged. Phase 3.8B is **ARCHITECTURE / CAPABILITY EVIDENCE COMPLETE WITH DOCUMENTED LIMITATIONS**; the [production-safe final record](PHASE38B_ARCHITECTURE_FREEZE.md) references historical freeze `3c99552a66d9b4b270b3a7a8552c709cf9faf73e` without importing its experiment infrastructure. **Broad product research/design is closed** unless implementation reveals a genuine architectural blocker. The next development phase is the **Production Multi-Agent Coding Sprint**, scoped in DEVELOPMENT_PLAN and to begin in a fresh project task. Production coding has not started in this documentation finalization; no provider call, import or deployment occurs. Historical phase instructions are not renewed permissions.
 
-**Forward priority after owner-accepted World Lab D2A:** the preceding integration note records its historical point in time. From the accepted D2A baseline, the next bounded product priority is **Mega DM v1**, then **D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World → FRAME / Visual Bible + fal → 2D Presentation Engine → VIDEO**. D2B is deferred until Mega DM v1 is implemented, evaluated and owner-accepted. This order is a roadmap, not implementation authorization; [current status](DEV_STATUS.md) distinguishes accepted work from future work.
+**Historical forward priority after owner-accepted World Lab D2A:** the preceding integration note records its historical point in time. From the accepted D2A baseline, the next bounded product priority is **Mega DM v1**, then **D2B → Timeline Explorer V1 → Timeline Explorer V2 → Enter This World → FRAME / Visual Bible + fal → 2D Presentation Engine → VIDEO**. D2B is deferred until Mega DM v1 is implemented, evaluated and owner-accepted. This order is a roadmap, not implementation authorization; [current status](DEV_STATUS.md) distinguishes accepted work from future work.
 
 ---
 
@@ -63,21 +65,13 @@ Never require the user to manually:
 - manage context windows;
 - remind the DM who recurring NPCs are.
 
-## 2.2 Multiple isolated campaigns
+## 2.2 Shared Worlds and isolated Campaign continuities
 
-Every campaign is its own universe.
+A **World** is a reusable shared reality/setting. A **Campaign** is the continuity of one hero or party inside that World; it is not necessarily a separate universe or one giant story arc. Multiple independent Campaigns may explicitly use the same approved World foundation while retaining independent mutable state.
 
-Campaign A must never leak:
-- canon;
-- NPCs;
-- DM secrets;
-- inventory;
-- visual references;
-- session memories;
+Sharing a World does not share player/Actor knowledge, inventory/equipment/currency, companions, relationships, reputation, quests, campaign memories/state, DM-private state or unrevealed secrets. Campaign A discovering that the king is secretly a vampire gives Campaign B no knowledge of it. A true World fact is not automatically player knowledge. Spoiler safety remains an architectural authorization, source-version, time and positive-knowledge boundary, not a hidden UI panel.
 
-into Campaign B.
-
-Every campaign-owned database object must belong to a `campaign_id`. Future reusable World Library sources and World Pack versions are owner-scoped, with explicit authorized campaign bindings and separate instantiated campaign identities. This is an intentional extension of the old campaign-only assumption, not permission to share mutable campaign state. See section 44 and the World Library brief.
+Every campaign-owned database object still belongs to a `campaign_id`, with its existing timeline/operation fences. Reusable World Library sources/World Pack versions remain owner-scoped and explicitly pinned/bound. Campaign Actors keep campaign-owned identities linked to their immutable origins, not shared mutable NPC rows. Approved world-level visual foundations may be reused only through authorized, temporal/knowledge-filtered reference bindings; campaign-specific references and consequences never propagate automatically. World V1 shares foundation only, with no cross-Campaign mutation or synchronization. See [World foundation binding](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md#reusable-world-foundations-and-campaign-bindings) and §47. The accepted campaign-scoped implementation is unchanged; the fuller World hierarchy is planned product architecture, not a migration in this patch.
 
 ## 2.3 Free-form RPG
 
@@ -113,14 +107,26 @@ No durable world architecture may depend on a particular AI provider/model. Mode
 
 # 3. CORE INFORMATION MODEL
 
-The accepted campaign hierarchy is:
+The owner-directed conceptual product hierarchy is:
 
 APP
-→ CAMPAIGNS
-→ SESSIONS
-→ SCENES
+→ WORLD
+→ CAMPAIGN
+→ ADVENTURE / ARC
+→ SESSION
+→ SCENE
 
-The proposed authoring layer adds owner-scoped World Library → immutable World Pack versions → approved Scenario/Divergence contracts → isolated campaign/timeline instances. Existing campaign timelines contain sessions/scenes and exact save manifests. World Actors reference stable entities; Threads represent goals/clocks; Events record validated facts. Source packs are not live campaigns, summaries or a second branching system. The five section 44 briefs define these future extensions.
+| Concept | Meaning and responsibility |
+| --- | --- |
+| World | Reusable shared reality/setting: World Bible/shared canon, geography, history, cosmology, species, magic/technology rules, factions, major shared locations, setting visual identity and appropriate approved world-level visual references. World truth is separate from each Actor's knowledge. |
+| Campaign | Continuing state of a hero or party: level/XP or other progression tracks, abilities/resources, inventory/equipment/currency, companions, relationships/reputation, quests, discovered knowledge, current location/state, campaign consequences, DM-private state, memories and Saves/Timelines. |
+| Adventure / Arc | Bounded narrative unit inside that continuity, with optional pacing guidance. A Campaign can contain many Adventures and unrestricted sandbox play. |
+| Session | Actual play-session boundary. One Adventure may span multiple Sessions; sandbox also uses Sessions. |
+| Scene | Individual gameplay unit within a Session, using the same authoritative Campaign state. |
+
+This is a conceptual grouping, not a requirement to put every Session inside an Adventure. Open-ended sandbox remains fully supported, including between Adventures. No Adventure-owned duplicate hero/progression store, special One-shot Hero entity, second Memory or second save system is allowed. The accepted runtime still uses campaign-scoped records, sessions/scenes and exact timeline manifests; this patch adds no World/Adventure persistence or UI.
+
+The authoring path remains owner-scoped World Library → immutable World Pack/source versions → approved Scenario/Divergence contracts → authorized campaign/timeline instances. A World is the reusable setting, not a synonym for a Pack, source document, active campaign projection or Lab run. Source packs are not live campaigns or a second Canon authority. Current Campaign → World / Мир navigation presents that Campaign's world state; the conceptual hierarchy does not rename or rebuild navigation. See [§47](#47-world-campaign-and-adventure-product-contract) and the five section 44 authority briefs.
 
 Each Campaign contains:
 
@@ -150,6 +156,8 @@ Each Campaign contains:
 ---
 
 # 4. DATA VISIBILITY
+
+Canon authority, authorized owner authoring access and player/Actor knowledge are separate. The historical document categories below do not make every shared World Bible fact visible in gameplay. Apply source/version, current-time, campaign/timeline membership and positive Actor knowledge before ordinary projections/retrieval. A shared World binding grants no access to another Campaign's private state or unrevealed future records.
 
 Use four visibility classes.
 
@@ -665,6 +673,8 @@ A responsive web app installed to the Home Screen is sufficient.
 ---
 
 # 14. CREATE CAMPAIGN FLOW
+
+Future **Start Adventure → Existing Hero / Party or New Hero** is specified in [§47](#47-world-campaign-and-adventure-product-contract). Existing Hero uses its Campaign continuity; New Hero creates a lightweight Campaign inside the selected World without demanding a long-campaign commitment. The historical creation steps below remain the existing foundation; no creation/navigation/UI change is implemented by this specification patch.
 
 Step 1:
 Basics
@@ -2133,3 +2143,60 @@ The first 2D combat presentation should remain compact rather than becoming a ta
 A later renderer may translate validated world deltas into visual mutations using the cheapest safe method: ordinary sprite/state swaps, decals/particles/lights, reusable asset variants, bounded local generative image edits, or rare scene recomposition. Do not regenerate an entire scene for every action and do not infer authoritative state from pixels. Example: graffiti can be a runtime decal immediately, while damage to a unique statue may later receive a local AI-assisted asset edit after the authoritative damage state already committed.
 
 This visual-mutation concept is future work, not permission to choose an image model, add dependencies or implement a renderer now.
+
+# 47. WORLD, CAMPAIGN AND ADVENTURE PRODUCT CONTRACT
+
+**Owner-directed future product architecture; specification only.** This section owns the product semantics, not a new schema, prompt, runtime or implementation authorization. Wave 1 remains accepted in its exact limited scope. The current UI, campaign IDs, Source Store/Canon Compiler, primary DM, Ruleset, inventory, Memory, Event settlement and Saves/Timelines authorities are unchanged.
+
+## 47.1 Reusable Worlds and continuous Campaigns
+
+The hierarchy and ownership in §3 supersede wording that made each Campaign a separate universe. A World may host several independent hero/party continuities. World V1 shares only an explicitly approved, versioned foundation; [World Library/Packs](WORLD_LIBRARY_AND_WORLD_PACKS_BRIEF.md#reusable-world-foundations-and-campaign-bindings) owns source provenance, exact bindings and knowledge-at-entry. Campaign-specific truth, current Actors, relationships and mutable Locations remain isolated. Shared setting identity never authorizes cross-Campaign retrieval or live mutation.
+
+The same authoritative Campaign state persists through sandbox → canon Adventure → sandbox → later Adventure. An illustrative James & Jinn continuity could play a 4-hour Adventure, return to sandbox, then a 6-hour Adventure without copying or resetting level, possessions, resources, relationships or consequences. This is a product example, not an import of that real campaign. An Adventure's completion can resolve its story while Campaign memories, obligations and consequences continue.
+
+## 47.2 Adventure pacing and player agency
+
+| Pacing envelope | Intended play experience |
+| --- | --- |
+| Quick | 1–2h |
+| Evening Adventure | 3–5h |
+| Mini Arc | 8–15h |
+| Custom | Owner-described target |
+| Open-ended | No bounded completion target |
+
+Durations are approximate narrative/playtime guidance for density, escalation, convergence, climax and resolution, never hard timers or guaranteed completion. One Adventure may span several actual Sessions. Wall-clock playtime does not advance fictional time or create deadlines; a pacing target is not a What If horizon, numerical deadline or reason to override Deadline Pressure. Detours, alternate solutions, refusal and sandbox play remain legitimate. The DM adapts honestly rather than choosing PC actions or forcing a single route to meet a clock.
+
+## 47.3 Existing Hero or New Hero
+
+Future owner flow: **Start Adventure → select World and Existing Hero / Party or New Hero → describe intent/pacing → review bounded setup**. Natural language remains primary; consequential ambiguities require review, and important generated setup remains manually correctable through versioned owner edits rather than a mandatory extra AI request. Owner text remains data/input, not executable policy or direct state authority.
+
+- **Existing Hero / Party:** begin from that Campaign's exact authoritative current state, supported profile, capabilities, known facts and inventory. Canon consequences settle back into that same continuity; no Adventure-local copy of hero progression.
+- **New Hero:** use normal supported character creation to establish a new lightweight Campaign continuity inside an existing World. Do not require a pretend “300-hour campaign” or create a separate One-shot Hero type. Finishing one short Adventure and never returning is valid; returning later resumes that same continuity for another Adventure or sandbox.
+
+This does not authorize canon-character takeover, Enter This World, simulation checkpoint promotion or cross-Campaign hero transfer. Those retain their separate gates. Existing accepted campaigns and historical saves stay readable without fabricated World/Adventure history.
+
+## 47.4 Canon and detached Adventures
+
+A **canon Adventure** starts from Campaign state and commits only validated consequences to that Campaign through normal settlement/fences. Story boundaries are not rollback boundaries.
+
+A **detached / NON-CANON Adventure** forks an exact snapshot and keeps future consequences branch-local; merely preparing/running it cannot mutate the canonical Campaign. Align with existing NON-CANON detached manifest, head/lease, knowledge and receipt semantics where appropriate, never a prose-only simulator or temporary restore into the live projection. A detached Adventure is a future playable story use case, not an already-implemented Lab-to-RPG promotion. No automatic return/merge of its items, XP, secrets or consequences is authorized; branch merge and playable promotion remain separately gated.
+
+## 47.5 Power, rewards, exploration and evaluation ownership
+
+Low-tier and high-tier Adventures in the same World must differ meaningfully where appropriate in threats, solutions, social context, stakes, expected competence, world reaction, reward significance, equipment usefulness and consequence scale. This uses actual Party Power/capabilities, not universal levels or HP inflation. Weak enemies may remain weak; powerful heroes can feel powerful. World Anchored / Adaptive / Hybrid retain their Ruleset meaning.
+
+| Contract | Existing owner / extension |
+| --- | --- |
+| Tier-sensitive challenge, reward ceilings/floors, rarity versus usable power, artifact prerequisites, hidden item properties and sale constraints | [Rulesets / Dynamic UI](RULESETS_AND_DYNAMIC_UI_BRIEF.md#reward-integrity-and-usable-power) |
+| Free-form search, contextual stable loot, secured containers, creative physical consequences, depletion and causal change | [World Engine](WORLD_ENGINE_BRIEF.md#search-containers-and-stable-contextual-contents), with owning inventory/resource validators |
+| World-authentic loot, agency, meaningful reward/play quality and campaign resilience | [RPG Design Doctrine](RPG_DESIGN_DOCTRINE.md#38-adventures-pacing-and-tier-sensitive-experience) |
+| Separate future deterministic acceptance and owner quality/playtest family | [Adventure Acceptance Set](ADVENTURE_ACCEPTANCE_SET_BRIEF.md) |
+| Future bounded implementation sequencing and deferred scope | [Development Plan](DEVELOPMENT_PLAN.md#future-adventure-v1-and-adventure-acceptance-harness-v1) |
+
+These extend one reward/ownership/commerce/Event authority. Discovery, possession, legal/social ownership and usable mechanics are distinct. Refresh cannot reroll contents; rarity never alone grants mechanical power; inventory cannot reveal unknown curses/provenance. Buttons/hotspots are convenience only. No procedural loot simulator, universal crime/crafting system or provider-stack expansion follows from this design.
+
+## 47.6 Living World boundary and stop
+
+Future explicit promotion may turn an eligible Campaign consequence into a dated World Event with exact source/provenance and safe public disclosure. World V1 does not do this automatically, synchronize Campaigns or solve branching chronology. Campaign B inherits no discovery, secret, inventory or relationship simply because Campaign A changed. [World Engine](WORLD_ENGINE_BRIEF.md#world-foundations-and-campaign-local-consequences) owns this deferred boundary.
+
+After owner acceptance of this specification patch, a future separately authorized wave may implement **Adventure V1 + Adventure Acceptance Harness V1** within [the bounded plan](DEVELOPMENT_PLAN.md#future-adventure-v1-and-adventure-acceptance-harness-v1). This documentation patch implements none of it, modifies no frozen Mega DM evaluation, and starts no D2B, Living World propagation, VIDEO, EXPLORE, 2D renderer, provider call, real import, migration or deployment. Stop for documentation review.

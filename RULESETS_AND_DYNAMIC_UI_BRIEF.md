@@ -2,6 +2,8 @@
 
 **Phase 3.75 design only, September 19, 2026. Not implemented or owner-approved.** This document changes no character record, rule, check, sheet, inventory, configuration or UI. Preserve the accepted Phase 3.5 implementation and all earlier campaign behavior.
 
+**Current reading:** the dated opening and Phase 3.5 baseline descriptions are historical design context. Accepted bounded World Logic, reward/progression and commerce foundations, followed by World Lab and V1 Wave 1, are recorded in [DEV_STATUS](DEV_STATUS.md). The owner-directed Adventure/reward/item additions below are future contracts; they do not claim broader mechanics are implemented or change accepted profiles/data. Product hierarchy and continuous hero state are owned by [MASTER_SPEC §47](MASTER_SPEC.md#47-world-campaign-and-adventure-product-contract).
+
 > No world, campaign, character, save, timeline, World Engine thread or What If simulation may depend structurally on D&D 5e. D&D 5e is one selectable ruleset, not the RPG Console's universal ontology.
 
 The owner should describe a world and how they want to play in normal language. Structured profiles and code enforcement remain underneath. The same app shell can host a fantasy adventurer, a WWII dragon rider, a literary relationship story or a political scenario without inventing HP and spell slots for every person.
@@ -53,7 +55,7 @@ Mechanical changes apply prospectively at a coherent boundary. Do not switch pro
 
 ## Progression Engine and reward authority
 
-**Final planned foundational product-architecture addendum before the separately scoped production coding sprint; design only. Progression is required for RPG-capable Rulesets, but XP, levels, classes, encounter levels and skill trees are not universal engine ontology.** A profile defines progression, including a deliberate Off mode or zero tracks. The current “XP if used” display is not an implemented authoritative progression loop.
+**Final planned foundational product-architecture addendum before the separately scoped production coding sprint; design only. Progression is required for RPG-capable Rulesets, but XP, levels, classes, encounter levels and skill trees are not universal engine ontology.** A profile defines progression, including a deliberate Off mode or zero tracks. The original “XP if used” display was not an authoritative progression loop. The later accepted Wave 4 baseline adds bounded rewards/tracks/receipts; [DEV_STATUS](DEV_STATUS.md) is the authority for its actual coverage, not a claim that every progression school below is implemented.
 
 Conceptual flow: **authoritative Event / validated achievement → Reward Resolver → one or more Progression Events → staged Progression Track updates → threshold/prerequisite evaluation → Pending Advancement where applicable → explicit player choices where needed → server validation → authoritative atomic commit**. Staged updates are not partially persisted mechanics. The initial settlement can atomically commit the earned grant, track values and a pending choice; a later player selection atomically consumes its resources, installs valid choices and completes that pending advancement. Do not keep a database transaction open while waiting for the player.
 
@@ -89,6 +91,26 @@ Reward Resolver valuation may use canonical threat, challenge relative to partic
 Eligible sources can include combat and noncombat encounter resolution, quests/objectives, discoveries, exploration, social achievements, investigation, research, training, story milestones and command achievements. Prefer meaningful challenge resolution over corpse farming where the profile supports it: defeating an ancient dragon, negotiating a treaty, forcing retreat, recovering what it wants, trapping it or another legitimate solution may earn an appropriate reward. Kill XP is allowed only when the selected Ruleset intentionally defines it; it is not the engine's implicit goal. Trivial repeated challenges may give reduced/no vertical progression under explicit policy.
 
 Companion/Actor distribution is profile/campaign policy: shared party XP, individual contribution, synchronized party advancement, independent NPC advancement or custom distribution. Never assume universal companion level matching. Autonomous advancement still needs validated Events/rules and normal bounded settlement, not arbitrary background AI mutation; player-controlled permanent choices remain explicit unless the profile defines automatic advancement.
+
+### Reward integrity and usable power
+
+**Future extension of this same Reward Resolver/profile authority.** Preserve these independent dimensions rather than converting everything to a universal rarity-to-power score:
+
+| Dimension | Meaning |
+| --- | --- |
+| Rarity / scarcity | How unusual or hard to obtain the thing is in this World |
+| Mechanical power | Supported effects and their bounds under the active profile |
+| Economic value | Trusted valuation and contextual sale/trade terms, not guaranteed liquidity |
+| Narrative significance | History, relationships, symbolism and source/achievement meaning |
+| Current usability / accessibility | Whether this Actor can actually access, activate or benefit from its mechanics now |
+
+A Ruleset may define D&D-like rarity/tier categories, but they are not core ontology or automatic grant authority. Reward selection must respect both a **power ceiling** (no accidental permanently usable campaign-breaking grant) and a **meaningfulness floor** (a major meaningful achievement should not yield trivial junk without deliberate narrative reason and payoff). These are profile/content policies, not universal numerical tables, a guarantee of useful loot in every drawer, or permission to alter established possessions. World-authentic contents may genuinely be absent, ordinary or unsuitable; reward planning must not overwrite them to meet a budget.
+
+Trusted Reward Resolver policy considers source significance, actual challenge/risk, Party Power, current equipment, campaign economy, reward history, world plausibility and difficulty/scaling policy where applicable. The model may propose semantic candidates/evidence, never arbitrary mechanical power, item grants or prices. Pin validated policy/inputs with existing source entitlements and settlement. Ambiguous or unsupported bounds require review/safe pause, not invented balancing defaults. Owner corrections use existing versioned validators/provenance and never expose canonical IDs/private mechanics as casual editing fields.
+
+Powerful artifacts may appear around low-power heroes when World logic supports them. **Discovery is not full usable power.** Profile-supported prerequisites, attunement, charges, dangerous costs, dormant/awakened states, limited access, temporary custody, rituals or skill/mastery requirements may limit use. Do not fabricate one of these controls when the profile does not implement it, or infer it solely from a rarity label. An artifact can be discovered or held while mechanics remain unavailable/unknown; discovering its existence cannot silently unlock an ability.
+
+The Campaign owns progression/possessions across sandbox and canon Adventures. An Adventure may reference/pin these states and contextual reward forecasts, but never create a second hero progression store, wallet or reward ledger. Canon grants use the same normal authority; detached grants remain in the exact detached lineage and cannot leak back. [Future Adventure acceptance](ADVENTURE_ACCEPTANCE_SET_BRIEF.md#deterministic-and-structural-acceptance) will exercise these guarantees separately from subjective satisfaction.
 
 ### Reward identity, atomicity and corrections
 
@@ -146,6 +168,12 @@ Do not continuously regenerate or silently rescale committed enemy stats during 
 
 Difficulty remains separate: it may influence supported HP/damage multipliers, resource scarcity, recovery, rerolls, encounter-budget target and tactical pressure. It does not automatically change world identity or match every enemy to player level. A dragon remains a dragon. Effective changes apply prospectively at a coherent boundary, preserving active encounters and recorded outcomes.
 
+### Tier-sensitive Adventure design
+
+The DM and Ruleset must treat materially different hero power levels as materially different experiences, including a fresh low-tier versus established high-tier hero playing a 3–5h Adventure in the same World. Consider threat type, available solutions, social context, stakes, expected competence, world reaction, reward significance, equipment usefulness and consequence scale. Use actual Party Power (capabilities/resources/equipment/authority as appropriate); levels, HP and combat are optional.
+
+Do not achieve this only by inflating HP/damage or universally matching enemies. World Anchored / Adaptive / Hybrid and pinned encounter materialization above remain binding: weak opponents may stay objectively weak, high-tier heroes may solve former threats easily, and current committed mechanics do not silently rescale. A greater narrative problem can challenge leverage, information, relationships, tradeoffs or scale without erasing competence or forcing combat. Adventure pacing affects opportunity density/convergence, not mandatory difficulty parity or fictional-time deadlines.
+
 ### Bounded Progression Pacing Director
 
 The **Progression Pacing / Progression Director** is a bounded planning/checking concept, mostly deterministic Ruleset/content metadata, not a second AI DM or autonomous agent. Where applicable, major Threads/Arcs/bosses may declare expected/recommended power bands and reward budgets. Compare current party power, upcoming challenge, remaining meaningful objectives/opportunities and available expected rewards to detect obvious under/over-progression trajectories, premature caps or rewards becoming meaningless too early. For example a level-5 party approaching a roughly level-7 confrontation may have several meaningful objectives whose expected rewards approximately support preparation; there is no requirement to force an exact level.
@@ -179,6 +207,24 @@ Keep stable item identity, owner/controller, storage/container, equipped assignm
 Do not turn a document into a consumable just to fit a universal bag UI. Reference its existing versioned record when appropriate. Hidden curses, private descriptions, unknown documents or secret storage cannot be exposed by changing view modes. Embedded components and zero-quantity consumed items retain their accepted provenance and cannot reappear as available stock.
 
 The accepted remote camp-deposit/active-camp withdrawal, cooking and meal/coffee rules belong to the compatibility profile and campaigns choosing them. They are not universal physics or mandatory mechanics for new worlds. Keep their existing behavior until an explicit profile change; a military or literary profile defines its own validated access/cost rules.
+
+### Discovery, possession, ownership and use
+
+Keep finding an item, possessing it, legal/social ownership and ability to use its mechanics separate. Existing item/storage/Actor identity and immutable transfer provenance remain authoritative; search is not an automatic inventory grant. A supported theft records stolen provenance rather than silently converting it into legitimate ownership. Merchant policy, witnesses, reputation/law and later supported consequences may depend on it; no universal crime system is implied.
+
+### Hidden properties, provenance and economic absorption
+
+An item may have player-known and hidden information. Finding it need not reveal full powers, curses, true identity, secret provenance or hidden requirements. Inventory, disabled controls, value estimates, recaps and narration cannot leak undiscovered properties. Identification requires a World/profile-supported ability, research, NPC appraisal, experimentation or other validated method with its own knowledge consequence; neither ownership nor owner-authored flavor is proof of identification.
+
+Preserve acquisition provenance for future player-known history: “Found in the Black Tower vault,” “Won from Captain Varr,” “Recovered during The Mysterious Letter,” or “Gift from a companion.” These illustrative labels describe supported acquisition records, not new facts or automatic public disclosure. Display only authorized known provenance; keep true secret origin separate from what the hero believes. Reuse the existing item/transfer/Event history, not a parallel loot journal authority.
+
+Economic value does not guarantee instant full-price liquidity. Existing commerce validators/profile policies govern currency, merchant funds/capacity, legality, demand, provenance, availability and bounded contextual valuation. A village merchant need not afford a stolen royal necklace. No second wallet, shop inventory, valuation authority or global economy simulator; narrative appraisal cannot bypass a stale quote or atomic transfer/payment checks.
+
+### Critical items and salvage
+
+Quest/progression-critical items may be lost, sold, stolen or destroyed when the World/profile permits. Avoid accidental technical soft-locks through explicit coherent consequences and appropriate recovery/alternate paths where required. Do not silently respawn/duplicate the item, resurrect an opportunity or make every critical object magically indestructible. An alternative is a supported causal continuation, not a disguised reversal of the loss; unsupported requirements need honest review.
+
+World/profile-supported harvesting or salvage can yield contextual resources such as monster parts, venom, hides, machine components or vehicle parts. Validate capabilities, access, costs, quantities and provenance through existing item/resource/settlement authority. Not every corpse is a crafting node; this future contract does not implement a broad crafting system. [World Engine](WORLD_ENGINE_BRIEF.md#search-containers-and-stable-contextual-contents) owns persistent contents and causal depletion.
 
 ## Bounded schema-driven presentation
 
