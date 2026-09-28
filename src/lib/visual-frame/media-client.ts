@@ -37,6 +37,7 @@ export type MediaFrameTransport = {
   send: (command: MediaCommand) => Promise<MediaResult>;
   load: (campaignId: string) => Promise<CampaignSnapshot>;
   imageUrl: (campaignId: string, assetId: string) => string;
+  draftImageUrl?: (campaignId: string, jobId: string) => string;
 };
 export const defaultMediaFrameTransport: MediaFrameTransport = {
   capability: (campaignId) =>
@@ -58,6 +59,8 @@ export const defaultMediaFrameTransport: MediaFrameTransport = {
   load: loadCampaign,
   imageUrl: (campaignId, assetId) =>
     `/api/visual-frame?campaignId=${encodeURIComponent(campaignId)}&assetId=${encodeURIComponent(assetId)}`,
+  draftImageUrl: (campaignId, jobId) =>
+    `/api/visual-frame?action=draft&campaignId=${encodeURIComponent(campaignId)}&jobId=${encodeURIComponent(jobId)}`,
 };
 export type RealFrameAttempt = {
   frame: RealFrame;
@@ -158,9 +161,50 @@ export function storedFrameRecovery(
   return {
     ...realFrameDocumentMutation(
       snapshot,
-      { ...frame, status: "completed", resultAssetId: record.id },
+      frame.schema === 4
+        ? frame
+        : { ...frame, status: "completed", resultAssetId: record.id },
       record,
     ),
     requestId: record.id,
   };
+}
+
+export function createFrameOwnerDecision(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+  decision: "accept" | "discard",
+): Mutation {
+  const frame = parseRealFrame(record);
+  if (
+    !["accept", "discard"].includes(decision) ||
+    !frame ||
+    frame.schema !== 4 ||
+    frame.status !== "draft" ||
+    !frame.review ||
+    frame.resultAssetId !== null ||
+    record.campaign_id !== snapshot.campaign.id ||
+    frame.campaign_id !== snapshot.campaign.id ||
+    !snapshot.documents.some(
+      (r) =>
+        r.id === record.id &&
+        r.campaign_id === snapshot.campaign.id &&
+        r.revision === record.revision &&
+        r.current_version_id === record.current_version_id &&
+        r.body === record.body,
+    )
+  )
+    throw new Error("validation");
+  return createMutationAttempt(
+    null,
+    realFrameDocumentMutation(
+      snapshot,
+      {
+        ...frame,
+        status: decision === "accept" ? "completed" : "discarded",
+        resultAssetId: decision === "accept" ? record.id : null,
+      },
+      record,
+    ),
+  );
 }

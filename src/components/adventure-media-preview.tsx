@@ -3,6 +3,7 @@ import { useState } from "react";
 import fixtures from "@/lib/v1-completion/preview-fixtures.json";
 import type {
   CampaignSnapshot,
+  DocumentRecord,
   DocumentVersion,
   Mutation,
   MutationResult,
@@ -72,7 +73,8 @@ import { PersistentVisualFrame } from "./persistent-visual-frame";
 import { Button } from "./ui";
 
 type Language = "en" | "ru";
-export type ScriptedFrameOutcome = "schematic" | "failure" | "in_flight";
+export type ScriptedFrameOutcome =
+  "schematic" | "review_warning" | "hard_reject" | "failure" | "in_flight";
 const sampleId = (n: number) =>
   `22222222-2222-4222-8222-${String(n).padStart(12, "0")}`;
 const stamp = (n: number) =>
@@ -656,6 +658,8 @@ export function createAdventureMediaReview(
         model: IMAGE_MODELS[0],
         parameters: copy(parameters),
         reservationUsdMicros: 400000,
+        verificationReservationUsdMicros: 200000,
+        totalReservationUsdMicros: 600000,
         imageReferencesEnabled: false,
       };
     },
@@ -693,7 +697,21 @@ export function createAdventureMediaReview(
       authorize(cid);
       const asset = snapshot.assets.find((a) => a.id === assetId);
       ensure(asset && safeFrameAsset(snapshot, asset));
-      return schematic;
+      return schematic + "#accepted-" + assetId;
+    },
+    draftImageUrl: (cid, jobId) => {
+      authorize(cid);
+      const record = snapshot.documents.find(
+        (d) => d.id === jobId && d.campaign_id === cid,
+      );
+      const frame = record && parseRealFrame(record);
+      ensure(
+        frame?.schema === 4 &&
+          frame.status === "draft" &&
+          frame.review &&
+          frame.resultAssetId === null,
+      );
+      return schematic + "#draft-" + jobId;
     },
     send: async (raw) => {
       const value = object(raw, ["action", "input"]),
@@ -701,6 +719,8 @@ export function createAdventureMediaReview(
           "media.save",
           "media.dispatch",
           "media.recover",
+          "media.accept",
+          "media.discard",
         ] as const),
         input = validateMutation(value.input);
       ensure("campaignId" in input && input.operation === "document.save");
@@ -717,6 +737,38 @@ export function createAdventureMediaReview(
         validateRealFrameLifecycle(snapshot, mutation, source());
         result = apply(input);
         status = frame.status;
+      } else if (action === "media.accept" || action === "media.discard") {
+        const record = snapshot.documents.find(
+            (d) => d.id === input.payload.id,
+          ),
+          before = record && parseRealFrame(record);
+        ensure(
+          record &&
+            before?.schema === 4 &&
+            before.status === "draft" &&
+            before.review &&
+            before.resultAssetId === null &&
+            record.revision === input.expectedRevision &&
+            realFrameIsCurrent(snapshot, before, source()),
+          "conflict",
+        );
+        const expected: RealFrame = {
+          ...before,
+          status: action === "media.accept" ? "completed" : "discarded",
+          resultAssetId: action === "media.accept" ? record.id : null,
+        };
+        ensure(
+          equivalent(frame, expected) &&
+            equivalent(
+              realFrameDocumentMutation(snapshot, expected, record),
+              mutation,
+            ),
+          "conflict",
+        );
+        if (action === "media.accept")
+          attachSchematic(record, expected, input.requestId);
+        result = apply(input);
+        status = expected.status;
       } else {
         ensure(action === "media.dispatch", "conflict"); // No synthetic stored-pixel recovery claim.
         const record = snapshot.documents.find(
@@ -749,41 +801,27 @@ export function createAdventureMediaReview(
           const generatingRecord = snapshot.documents.find(
             (d) => d.id === result.id,
           )!;
-          const assetId = allocate();
+          const failed = outcome === "failure" || outcome === "hard_reject";
           const terminal: RealFrame = {
             ...frame,
-            status: outcome === "failure" ? "failed" : "completed",
-            failure: outcome === "failure" ? "provider" : null,
-            resultAssetId: outcome === "failure" ? null : assetId,
+            status: failed ? "failed" : "draft",
+            failure:
+              outcome === "failure"
+                ? "provider"
+                : outcome === "hard_reject"
+                  ? "review"
+                  : null,
+            resultAssetId: null,
+            review: failed
+              ? null
+              : {
+                  status:
+                    outcome === "review_warning"
+                      ? "review_warning"
+                      : "safe_to_review",
+                  imageSha256: "0".repeat(64),
+                },
           };
-          if (outcome === "schematic") {
-            // Structural sample provenance only. imageUrl serves the labelled SVG,
-            // never an actual provider file, storage upload, charge or PNG claim.
-            const asset = realFrameAssetMutation(
-              snapshot,
-              generatingRecord,
-              terminal,
-              {
-                storagePath: frameStoragePath(campaignId, result.id),
-                sha256: "0".repeat(64),
-                bytes: 1,
-                contentType: "image/png",
-                usage: null,
-                providerRequestId: null,
-              },
-              assetId,
-            );
-            apply({
-              ...asset,
-              requestId: allocate(),
-              payload: {
-                ...asset.payload,
-                title: ru
-                  ? "Синтетическая схема · пример FRAME"
-                  : "Synthetic schematic · FRAME sample",
-              },
-            });
-          }
           result = apply({
             ...realFrameDocumentMutation(snapshot, terminal, generatingRecord),
             requestId: allocate(),
@@ -798,6 +836,40 @@ export function createAdventureMediaReview(
       });
     },
   };
+  function attachSchematic(
+    record: DocumentRecord,
+    frame: RealFrame,
+    approvalRequestId: string,
+  ) {
+    // Structural sample provenance only: the displayed SVG is never a provider,
+    // storage upload, observed charge or actual PNG claim.
+    ensure(frame.review);
+    const asset = realFrameAssetMutation(
+      snapshot,
+      record,
+      frame,
+      {
+        storagePath: frameStoragePath(campaignId, record.id),
+        sha256: frame.review.imageSha256,
+        bytes: 1,
+        contentType: "image/png",
+        usage: null,
+        providerRequestId: null,
+      },
+      record.id,
+      approvalRequestId,
+    );
+    apply({
+      ...asset,
+      requestId: allocate(),
+      payload: {
+        ...asset.payload,
+        title: ru
+          ? "Синтетическая схема · принятый FRAME"
+          : "Synthetic schematic · accepted FRAME",
+      },
+    });
+  }
   return {
     snapshot: () => copy(snapshot),
     catalog: () => copy(catalog),
@@ -818,7 +890,13 @@ export function createAdventureMediaReview(
       save: (input: Mutation) => writeVisualFrame(input, visualAuthority),
     },
     setOutcome: (value: ScriptedFrameOutcome) => {
-      outcome = literal(value, ["schematic", "failure", "in_flight"] as const);
+      outcome = literal(value, [
+        "schematic",
+        "review_warning",
+        "hard_reject",
+        "failure",
+        "in_flight",
+      ] as const);
     },
     advanceScene: () => {
       const previous = snapshot.scenes.find(
@@ -1186,8 +1264,8 @@ function ReviewSession({
                 </li>
                 <li>
                   {ru
-                    ? "В Игре проверьте FRAME, затем выберите сценарий ошибки или ожидания. Старое изображение остаётся; ожидающий запрос можно отменить в истории."
-                    : "In Game review FRAME, then choose failure or in-flight. Earlier art stays visible; cancel an in-flight request in history."}
+                    ? "В Игре создайте черновик FRAME и примите его. Создайте новый черновик с предупреждением, проверьте «Отклонить» и «Создать заново». Прежняя принятая иллюстрация сохраняется при черновике, отказе и ошибке."
+                    : "In Game generate a FRAME draft and Accept it. Generate a warning draft, then review Discard and Regenerate. Earlier accepted art stays visible through drafts, rejection and failure."}
                 </li>
                 <li>
                   {ru
@@ -1252,7 +1330,19 @@ function ReviewSession({
                   }}
                 >
                   <option value="schematic">
-                    {ru ? "Подписанная схема" : "Labelled schematic"}
+                    {ru
+                      ? "Черновик: проверка пройдена"
+                      : "Draft: safe to review"}
+                  </option>
+                  <option value="review_warning">
+                    {ru
+                      ? "Черновик: предупреждение проверки"
+                      : "Draft: review warning"}
+                  </option>
+                  <option value="hard_reject">
+                    {ru
+                      ? "Проверка отклонила изображение"
+                      : "Image check rejected"}
                   </option>
                   <option value="failure">
                     {ru

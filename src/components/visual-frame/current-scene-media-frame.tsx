@@ -20,6 +20,7 @@ import {
 import type { RealFrame } from "@/lib/visual-frame/real-frame";
 import {
   createRealFrameAttempt,
+  createFrameOwnerDecision,
   defaultMediaFrameTransport,
   finishRealFrameAttempt,
   storedFrameRecovery,
@@ -29,7 +30,10 @@ import type {
   MediaFrameTransport,
   RealFrameAttempt,
 } from "@/lib/visual-frame/media-client";
-import { createMutationAttempt } from "@/lib/persistence/client";
+import {
+  ClientPersistenceError,
+  createMutationAttempt,
+} from "@/lib/persistence/client";
 function useWords() {
   const { language } = useLanguage();
   return (en: string, ru: string) => (language === "ru" ? ru : en);
@@ -41,11 +45,191 @@ function statusLabel(
   return {
     queued: w("Queued", "В очереди"),
     generating: w("Generating", "Создаётся"),
+    draft: w("Draft generated", "Черновик создан"),
+    discarded: w("Discarded", "Отклонено"),
     completed: w("Ready", "Готово"),
     failed: w("Failed", "Ошибка"),
     cancelled: w("Cancelled", "Отменено"),
     uncertain: w("Outcome unknown", "Результат неизвестен"),
   }[status];
+}
+export function FrameOwnerReview({
+  record,
+  transport = defaultMediaFrameTransport,
+  onRegenerate,
+  onPendingChange,
+  disabled = false,
+}: {
+  record: DocumentRecord;
+  transport?: MediaFrameTransport;
+  onRegenerate?: (jobId: string) => void;
+  onPendingChange?: (jobId: string, pending: boolean) => void;
+  disabled?: boolean;
+}) {
+  const { data, refresh } = useCampaignData(),
+    w = useWords();
+  const pending = useRef<{
+    decision: "accept" | "discard";
+    input: Mutation;
+  } | null>(null);
+  const lock = useRef(false);
+  const [retainedDecision, setRetainedDecision] = useState<
+    "accept" | "discard" | null
+  >(null);
+  const [busy, setBusy] = useState(false),
+    [error, setError] = useState("");
+  const frame = parseRealFrame(record);
+  const isDraft =
+    frame?.schema === 4 && frame.status === "draft" && frame.review !== null;
+  if (
+    !data ||
+    record.campaign_id !== data.campaign.id ||
+    frame?.campaign_id !== data.campaign.id ||
+    (!isDraft && !retainedDecision)
+  )
+    return null;
+  const snapshot = data;
+  async function decide(decision: "accept" | "discard") {
+    if (lock.current || disabled) return;
+    lock.current = true;
+    setBusy(true);
+    setError("");
+    try {
+      pending.current ??= {
+        decision,
+        input: createFrameOwnerDecision(snapshot, record, decision),
+      };
+      setRetainedDecision(pending.current.decision);
+      onPendingChange?.(record.id, true);
+      await transport.send({
+        action:
+          pending.current.decision === "accept"
+            ? "media.accept"
+            : "media.discard",
+        input: structuredClone(pending.current.input),
+      });
+      await refresh();
+      pending.current = null;
+      setRetainedDecision(null);
+      onPendingChange?.(record.id, false);
+    } catch (error) {
+      if (
+        error instanceof ClientPersistenceError &&
+        ["validation", "conflict", "not_found"].includes(error.code)
+      ) {
+        pending.current = null;
+        setRetainedDecision(null);
+        onPendingChange?.(record.id, false);
+        setError(
+          w(
+            "This draft could not be used with the current scene. Refresh its history or choose Regenerate. Your previous accepted illustration is kept.",
+            "Этот черновик не удалось использовать для текущей сцены. Обновите историю или выберите «Создать заново». Предыдущая принятая иллюстрация сохранена.",
+          ),
+        );
+      } else
+        setError(
+          w(
+            "Your decision could not be confirmed. Retry the same decision; no new image is generated.",
+            "Ваше решение не подтверждено. Повторите то же решение: новое изображение не создаётся.",
+          ),
+        );
+    } finally {
+      lock.current = false;
+      setBusy(false);
+    }
+  }
+  return (
+    <div
+      className="space-y-3 rounded border border-[#8c7148] bg-[#211f19] p-4"
+      aria-label={w("FRAME draft review", "Проверка черновика FRAME")}
+    >
+      {isDraft && (
+        <>
+          <h3>{w("Draft generated", "Черновик создан")}</h3>
+          <p className="muted">
+            {w(
+              "AI illustration — gameplay state remains authoritative",
+              "Иллюстрация ИИ — состояние игры остаётся главным источником фактов",
+            )}
+          </p>
+          {frame.review?.status === "review_warning" && (
+            <p role="status">
+              {w(
+                "The image check flagged a possible issue. Review the illustration before accepting it.",
+                "Проверка изображения отметила возможную проблему. Посмотрите иллюстрацию, прежде чем принять её.",
+              )}
+            </p>
+          )}
+          {!retainedDecision && transport.draftImageUrl ? (
+            <Image
+              unoptimized
+              src={transport.draftImageUrl(snapshot.campaign.id, record.id)}
+              alt={
+                w(
+                  "Unaccepted illustration draft: ",
+                  "Непринятый черновик иллюстрации: ",
+                ) + frame.basis.scene.title
+              }
+              width={1536}
+              height={1024}
+              className="h-auto w-full rounded border border-[#604b30] object-contain"
+            />
+          ) : !retainedDecision ? (
+            <p role="status">
+              {w(
+                "Draft preview is unavailable.",
+                "Просмотр черновика недоступен.",
+              )}
+            </p>
+          ) : null}
+          <p className="muted">
+            {w(
+              "Your previous accepted illustration stays in place until you choose Accept. Regenerate prepares a new paid request for your confirmation.",
+              "Предыдущая принятая иллюстрация сохраняется до нажатия «Принять». Повторное создание подготовит новый платный запрос для подтверждения.",
+            )}
+          </p>
+        </>
+      )}
+      <div className="button-group">
+        {retainedDecision ? (
+          <Button
+            disabled={busy || disabled}
+            onClick={() => void decide(retainedDecision)}
+          >
+            {w("Retry same decision", "Повторить то же решение")}
+          </Button>
+        ) : (
+          <>
+            <Button
+              primary
+              disabled={busy || disabled || !transport.draftImageUrl}
+              onClick={() => void decide("accept")}
+            >
+              {w("Accept", "Принять")}
+            </Button>
+            {onRegenerate && (
+              <Button
+                disabled={busy || disabled}
+                onClick={() => onRegenerate(record.id)}
+              >
+                {w("Regenerate", "Создать заново")}
+              </Button>
+            )}
+            <Button
+              disabled={busy || disabled}
+              onClick={() => void decide("discard")}
+            >
+              {w("Discard", "Отклонить")}
+            </Button>
+          </>
+        )}
+      </div>
+      {busy && (
+        <p role="status">{w("Saving your decision…", "Сохранение решения…")}</p>
+      )}
+      {error && <p role="alert">{error}</p>}
+    </div>
+  );
 }
 export function StoredFrameImage({
   asset,
@@ -56,14 +240,22 @@ export function StoredFrameImage({
 }) {
   const w = useWords();
   return (
-    <Image
-      unoptimized
-      src={transport.imageUrl(asset.campaign_id, asset.id)}
-      alt={w("Illustration: ", "Иллюстрация: ") + asset.title}
-      width={1536}
-      height={1024}
-      className="h-auto w-full rounded border border-[#604b30] object-contain"
-    />
+    <figure className="space-y-2">
+      <Image
+        unoptimized
+        src={transport.imageUrl(asset.campaign_id, asset.id)}
+        alt={w("Illustration: ", "Иллюстрация: ") + asset.title}
+        width={1536}
+        height={1024}
+        className="h-auto w-full rounded border border-[#604b30] object-contain"
+      />
+      <figcaption className="muted">
+        {w(
+          "AI illustration — gameplay state remains authoritative",
+          "Иллюстрация ИИ — состояние игры остаётся главным источником фактов",
+        )}
+      </figcaption>
+    </figure>
   );
 }
 export function CurrentSceneMediaFrame({
@@ -80,6 +272,7 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
   const [capability, setCapability] = useState<MediaCapability | null>(null);
   const [references, setReferences] = useState<string[] | null>(null);
   const [proposal, setProposal] = useState<RealFrame | null>(null);
+  const [ownerPending, setOwnerPending] = useState<string[]>([]);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
     [retry, setRetry] = useState(false);
@@ -144,8 +337,8 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
         "FRAME не подтверждён. История и прежние иллюстрации доступны. Повторите этот же запрос или проверьте сохранённую историю.",
       ),
     );
-  async function review() {
-    if (lock.current || !snapshot.timeline) return;
+  async function review(retryOf?: string) {
+    if (lock.current || ownerPending.length || !snapshot.timeline) return;
     lock.current = true;
     setBusy(true);
     setError("");
@@ -157,12 +350,18 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
         referenceIds: selected,
         composition: "wide",
         retryOf:
-          latest &&
-          ["completed", "failed", "cancelled", "uncertain"].includes(
-            latest.value.status,
-          )
+          retryOf ??
+          (latest &&
+          [
+            "draft",
+            "discarded",
+            "completed",
+            "failed",
+            "cancelled",
+            "uncertain",
+          ].includes(latest.value.status)
             ? latest.record.id
-            : null,
+            : null),
       });
       setProposal(frame);
     } catch {
@@ -175,6 +374,7 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
   async function generate() {
     if (
       lock.current ||
+      ownerPending.length ||
       (!proposal && !pending.current) ||
       !capability?.reservationUsdMicros
     )
@@ -201,11 +401,24 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
       setBusy(false);
     }
   }
+  function ownerPendingChanged(jobId: string, retained: boolean) {
+    setOwnerPending((previous) =>
+      retained
+        ? [...previous.filter((id) => id !== jobId), jobId]
+        : previous.filter((id) => id !== jobId),
+    );
+  }
   return (
     <section className="current-scene-frame space-y-3" aria-label="FRAME">
       <div className="button-group">
         <Button
-          disabled={busy || !enabled || Boolean(proposal) || retry}
+          disabled={
+            busy ||
+            !enabled ||
+            Boolean(proposal) ||
+            retry ||
+            ownerPending.length > 0
+          }
           onClick={() => void review()}
         >
           {busy
@@ -217,6 +430,12 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
         {w(
           "Optional illustration of this saved moment. Text gameplay can continue while an image is being made.",
           "Необязательная иллюстрация сохранённого момента. Текстовую игру можно продолжать, пока создаётся изображение.",
+        )}
+      </p>
+      <p className="muted">
+        {w(
+          "AI illustration — gameplay state remains authoritative",
+          "Иллюстрация ИИ — состояние игры остаётся главным источником фактов",
         )}
       </p>
       {!capability?.enabled && (
@@ -233,9 +452,15 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
           {latest.value.basis.scene.title}
         </p>
       )}
-      {latest && ["grounding", "review"].includes(latest.value.failure ?? "") && (
-        <p role="status">{w("The image could not be accepted as this scene. Your previous illustration is kept. Generate again only when you choose to.", "Изображение не удалось принять как эту сцену. Предыдущая иллюстрация сохранена. Новую создавайте только по своему решению.")}</p>
-      )}
+      {latest &&
+        ["grounding", "review"].includes(latest.value.failure ?? "") && (
+          <p role="status">
+            {w(
+              "The image did not pass its review check. Your previous illustration is kept. Generate again only when you choose to.",
+              "Изображение не прошло проверку. Предыдущая иллюстрация сохранена. Новую создавайте только по своему решению.",
+            )}
+          </p>
+        )}
       <details>
         <summary>{w("Appearance references", "Образцы внешности")}</summary>
         <p className="muted">
@@ -293,8 +518,8 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
           </details>
           <p className="muted">
             {w(
-              "Reserve up to $0.60 for one image and its scene-grounding check. This is a conservative allowance; observed charges are recorded separately.",
-              "До $0.60 резервируется на изображение и проверку соответствия сцене. Это осторожный предел; фактические расходы учитываются отдельно.",
+              "Reserve up to $0.60 for one illustration draft and its image check. Acceptance is your separate choice; observed charges are recorded separately.",
+              "До $0.60 резервируется на черновик иллюстрации и проверку изображения. Принять его вы решаете отдельно; фактические расходы учитываются отдельно.",
             )}
           </p>
           <div className="button-group">
@@ -325,6 +550,20 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
         </p>
       )}
       {error && <p role="alert">{error}</p>}
+      {latest && (
+        <FrameOwnerReview
+          key={latest.record.id}
+          record={latest.record}
+          transport={transport}
+          disabled={busy || Boolean(proposal) || retry}
+          onRegenerate={
+            enabled && !ownerPending.length
+              ? (jobId) => void review(jobId)
+              : undefined
+          }
+          onPendingChange={ownerPendingChanged}
+        />
+      )}
       {asset && safeFrameAsset(snapshot, asset) && (
         <div className="current-scene-frame-result space-y-2">
           <Badge>
@@ -335,16 +574,34 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
           <StoredFrameImage asset={asset} transport={transport} />
         </div>
       )}
-      <RealFrameHistory transport={transport} />
+      <RealFrameHistory
+        transport={transport}
+        onRegenerate={
+          enabled && !ownerPending.length
+            ? (jobId) => void review(jobId)
+            : undefined
+        }
+        onPendingChange={ownerPendingChanged}
+        generationDisabled={ownerPending.length > 0}
+        disabled={busy || Boolean(proposal) || retry}
+      />
     </section>
   );
 }
 export function RealFrameHistory({
   transport = defaultMediaFrameTransport,
   onUseAsset,
+  onRegenerate,
+  onPendingChange,
+  disabled = false,
+  generationDisabled = false,
 }: {
   transport?: MediaFrameTransport;
   onUseAsset?: (asset: Asset) => void;
+  onRegenerate?: (jobId: string) => void;
+  onPendingChange?: (jobId: string, pending: boolean) => void;
+  disabled?: boolean;
+  generationDisabled?: boolean;
 } = {}) {
   const { data, refresh } = useCampaignData(),
     w = useWords(),
@@ -365,6 +622,7 @@ export function RealFrameHistory({
     kind: "recover" | "cancel" | "dispatch",
   ) {
     if (lock.current) return;
+    if (kind === "dispatch" && generationDisabled) return;
     lock.current = true;
     setBusy(true);
     setError("");
@@ -483,7 +741,12 @@ export function RealFrameHistory({
             <h3>{value.basis.scene.title}</h3>
             <Badge>{statusLabel(value.status, w)}</Badge>
             {["grounding", "review"].includes(value.failure ?? "") && (
-              <p>{w("Scene check failed. The previous usable image is kept; no automatic generation will follow.", "Проверка сцены не пройдена. Предыдущее подходящее изображение сохранено; автоматического повторного создания не будет.")}</p>
+              <p>
+                {w(
+                  "Image review failed. The previous usable image is kept; no automatic generation will follow.",
+                  "Проверка изображения не пройдена. Предыдущее подходящее изображение сохранено; автоматического повторного создания не будет.",
+                )}
+              </p>
             )}
             {value.status === "uncertain" && (
               <p>
@@ -496,6 +759,13 @@ export function RealFrameHistory({
             {asset && safeFrameAsset(snapshot, asset) && (
               <StoredFrameImage asset={asset} transport={transport} />
             )}
+            <FrameOwnerReview
+              record={record}
+              transport={transport}
+              onRegenerate={onRegenerate}
+              onPendingChange={onPendingChange}
+              disabled={busy || disabled}
+            />
             {value.status === "queued" && (
               <p className="muted">
                 {w(
@@ -518,7 +788,7 @@ export function RealFrameHistory({
               )}
               {value.status === "queued" && !retained && (
                 <Button
-                  disabled={busy}
+                  disabled={busy || generationDisabled}
                   onClick={() => void action(record, "dispatch")}
                 >
                   {w("Generate queued FRAME", "Создать FRAME из очереди")}
