@@ -181,7 +181,7 @@ test("Wave 1 provider factories preserve strict Requests and freeze configured d
   await dm.narrate(source, input, resolution, []);
   for (const body of bodies) {
     assert.equal(body.model, "gpt-6-astra");
-    assert.equal(body.reasoning.effort, "xhigh");
+    assert.equal(body.reasoning.effort, "high");
     assert.equal(body.store, false);
     assert.equal(body.truncation, "disabled");
     assert.equal(body.text.format.strict, true);

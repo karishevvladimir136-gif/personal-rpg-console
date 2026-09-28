@@ -268,7 +268,7 @@ test("server environment drives provider reasoning and readiness rejects invalid
   delete process.env.OPENAI_DM_REASONING;
   assert.equal((await read()).model, "gpt-6-astra");
   await createDmProvider().plan(source, input);
-  assert.deepEqual(bodies[1].reasoning, { effort: "xhigh" });
+  assert.deepEqual(bodies[1].reasoning, { effort: "high" });
   process.env.OPENAI_DM_REASONING = "none";
   const unavailable = await read();
   assert.equal(unavailable.configured, false);

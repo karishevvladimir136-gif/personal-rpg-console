@@ -4,6 +4,7 @@ import { createRpcTurnStore } from "../../gameplay/dm-store.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { modelBudget } from "../../gameplay/dm-context.ts";
 import { modelReasoning } from "./config.ts";
+import { applicationModelSelection } from "../../model-runtime/defaults.ts";
 import type { TimelineFence } from "../../saves/contracts.ts";
 
 export function createTurnStore(
@@ -13,13 +14,11 @@ export function createTurnStore(
 ) {
   let client = suppliedClient;
   let model: string | null = null;
-  if (process.env.OPENAI_API_KEY && process.env.OPENAI_DM_MODEL) {
+  if (process.env.OPENAI_API_KEY) {
     try {
-      modelReasoning(
-        process.env.OPENAI_DM_MODEL,
-        process.env.OPENAI_DM_REASONING,
-      );
-      model = modelBudget(process.env.OPENAI_DM_MODEL).model;
+      const selected = applicationModelSelection(process.env);
+      modelReasoning(selected.modelId, selected.reasoning ?? undefined);
+      model = modelBudget(selected.modelId).model;
     } catch {
       /* Safe configuration status; no fallback. */
     }

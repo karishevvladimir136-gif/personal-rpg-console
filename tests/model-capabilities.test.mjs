@@ -74,7 +74,9 @@ test("Astra and GPT-5.4 reasoning/defaults remain unchanged", () => {
   assert.throws(() => modelReasoning("gpt-6-astra", "none"), { code: "configuration" });
   assert.throws(() => modelReasoning("gpt-5.4", "max"), { code: "configuration" });
   const settings = providerSettings({ OPENAI_API_KEY: "SYNTHETIC" });
-  assert.equal(settings.globalDefault, null);
+  assert.deepEqual(settings.globalDefault, {
+    providerId: "openai", modelId: "gpt-6-astra", reasoning: "high",
+  });
   assert.deepEqual(settings.models.find((model) => model.id === "gpt-6-sol").reasoning,
     ["none", "low", "medium", "high", "xhigh", "max"]);
 });

@@ -10,15 +10,12 @@ import {
 } from "../../model-runtime/registry.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type { ProviderOptions } from "../dm/provider.ts";
+import { applicationModelSelection } from "../../model-runtime/defaults.ts";
 
 // Capture selection once, before work starts. Resolving/checking it is lazy so
 // mechanic-only operations can still preserve input without provider setup.
 export function environmentProfileResolver() {
-  const globalDefault = {
-    providerId: "openai",
-    modelId: process.env.OPENAI_DM_MODEL ?? "",
-    reasoning: process.env.OPENAI_DM_REASONING ?? null,
-  };
+  const globalDefault = applicationModelSelection(process.env);
   return (task: RuntimeTask): ExecutionProfile =>
     resolveExecutionProfile({ task, profileId: randomUUID(), globalDefault });
 }

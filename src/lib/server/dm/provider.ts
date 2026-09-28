@@ -15,6 +15,7 @@ import type { TurnFailure } from "../../gameplay/contracts.ts";
 import { modelReasoning } from "./config.ts";
 import type { RuntimeTask } from "../../production/contracts.ts";
 import { recognizedActualModel } from "../../model-runtime/capabilities.ts";
+import { STANDARD_SERVICE_TIER } from "../../model-runtime/defaults.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
@@ -242,6 +243,7 @@ export function createStructuredRequester(
       if (stage === "summary" && !schema) throw new DmError("configuration");
       const body = {
         model: options.model,
+        service_tier: STANDARD_SERVICE_TIER,
         reasoning: { effort: modelReasoning(options.model, options.reasoning) },
         instructions: context.instructions,
         input: context.input,

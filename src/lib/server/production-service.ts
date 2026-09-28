@@ -1,5 +1,6 @@
 import { readWorldFoundation } from "./world/store";
 import { resolveExecutionProfile } from "../model-runtime/registry";
+import { applicationModelSelection } from "../model-runtime/defaults";
 import { randomUUID } from "node:crypto";
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -53,11 +54,7 @@ export function productionServices(
     await database().rpc("rpg_world", args);
   const profiles: ProfileRpc = async (args) =>
     await database().rpc("rpg_execution_profile", args);
-  const globalDefault = {
-    providerId: "openai",
-    modelId: process.env.OPENAI_DM_MODEL ?? "",
-    reasoning: process.env.OPENAI_DM_REASONING ?? null,
-  };
+  const globalDefault = applicationModelSelection(process.env);
   const resolve = persistentProfileResolver(
     ownerId,
     campaignId,

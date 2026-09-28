@@ -19,6 +19,7 @@ import {
 } from "../rulesets/profiles.ts";
 import { parseWorldPolicy, parseWorldState } from "../world/validation.ts";
 import { openAiModelCapabilities } from "../model-runtime/capabilities.ts";
+import { applicationModelSelection } from "../model-runtime/defaults.ts";
 import {
   parseWorldReconciliationChoice,
   prepareWorldPolicyReconciliation,
@@ -37,11 +38,7 @@ export function providerSettings(
   const configured = Boolean(environment.OPENAI_API_KEY?.trim());
   let globalDefault: ModelSelection | null = null;
   try {
-    globalDefault = validateModelSelection({
-      providerId: "openai",
-      modelId: environment.OPENAI_DM_MODEL ?? "",
-      reasoning: environment.OPENAI_DM_REASONING ?? null,
-    });
+    globalDefault = validateModelSelection(applicationModelSelection(environment));
   } catch {
     /* An invalid environment setting is unavailable, never echoed or replaced. */
   }
