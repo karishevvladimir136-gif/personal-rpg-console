@@ -163,6 +163,40 @@ export function createStoredVideoDispatch(
     requestId,
   };
 }
+export function createSceneVideoCancellation(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+): Mutation {
+  const video = parseSceneVideo(record);
+  if (
+    !video ||
+    !["queued", "generating", "uncertain"].includes(video.status) ||
+    record.campaign_id !== snapshot.campaign.id ||
+    video.campaign_id !== snapshot.campaign.id ||
+    !snapshot.documents.some(
+      (d) =>
+        d.id === record.id &&
+        d.campaign_id === snapshot.campaign.id &&
+        d.revision === record.revision &&
+        d.current_version_id === record.current_version_id &&
+        d.body === record.body,
+    )
+  )
+    throw new ClientPersistenceError("conflict");
+  return createMutationAttempt(
+    null,
+    videoDocumentMutation(
+      snapshot,
+      {
+        ...video,
+        status: "cancelled",
+        failure: null,
+        resultAssetId: null,
+      },
+      record,
+    ),
+  );
+}
 export async function finishSceneVideoAttempt(
   attempt: SceneVideoAttempt,
   transport: VideoTransport,

@@ -1016,24 +1016,47 @@ export function createAdventureMediaReview(
       void ignored;
       let result: MutationResult, status: SceneVideo["status"];
       if (action === "video.save") {
-        ensure(
-          video.status === "queued" &&
-            !input.payload.id &&
-            input.expectedRevision === 0 &&
-            equivalent(
-              video,
-              buildSceneVideo(
-                snapshot,
-                video.source.assetId,
-                source(),
-                video.retryOf,
+        if (video.status === "cancelled") {
+          const record = snapshot.documents.find(
+              (d) => d.id === input.payload.id,
+            ),
+            before = record && parseSceneVideo(record);
+          ensure(
+            record &&
+              before &&
+              ["queued", "generating", "uncertain"].includes(before.status) &&
+              record.revision === input.expectedRevision &&
+              equivalent(video, {
+                ...before,
+                status: "cancelled",
+                failure: null,
+                resultAssetId: null,
+              }) &&
+              equivalent(
+                mutation,
+                videoDocumentMutation(snapshot, video, record),
               ),
-            ) &&
-            equivalent(mutation, videoDocumentMutation(snapshot, video)),
-          "conflict",
-        );
+            "conflict",
+          );
+        } else
+          ensure(
+            video.status === "queued" &&
+              !input.payload.id &&
+              input.expectedRevision === 0 &&
+              equivalent(
+                video,
+                buildSceneVideo(
+                  snapshot,
+                  video.source.assetId,
+                  source(),
+                  video.retryOf,
+                ),
+              ) &&
+              equivalent(mutation, videoDocumentMutation(snapshot, video)),
+            "conflict",
+          );
         result = apply(input);
-        status = "queued";
+        status = video.status;
       } else {
         const record = snapshot.documents.find(
             (d) => d.id === input.payload.id,

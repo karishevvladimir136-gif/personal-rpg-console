@@ -17,6 +17,7 @@ import {
 import type { SceneVideo } from "@/lib/scene-video/model";
 import {
   createSceneVideoAttempt,
+  createSceneVideoCancellation,
   createStoredVideoDispatch,
   defaultVideoTransport,
   eligibleVideoSources,
@@ -367,9 +368,13 @@ export function SceneVideoHistory({
 }: { transport?: VideoTransport } = {}) {
   const { data, refresh } = useCampaignData(),
     w = useWords();
-  const pending = useRef(new Map<string, Mutation>()),
+  const pending = useRef(
+      new Map<string, { kind: "dispatch" | "cancel"; input: Mutation }>(),
+    ),
     lock = useRef(false);
-  const [retained, setRetained] = useState<string[]>([]),
+  const [retained, setRetained] = useState<
+      Record<string, "dispatch" | "cancel">
+    >({}),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");
   const [capability, setCapability] = useState<VideoCapability | null>(null);
@@ -394,7 +399,10 @@ export function SceneVideoHistory({
     jobs = videoDocuments(snapshot).sort((a, b) =>
       b.record.updated_at.localeCompare(a.record.updated_at),
     );
-  async function act(record: DocumentRecord, kind: "dispatch" | "poll") {
+  async function act(
+    record: DocumentRecord,
+    kind: "dispatch" | "poll" | "cancel",
+  ) {
     if (lock.current) return;
     lock.current = true;
     setBusy(true);
@@ -407,8 +415,14 @@ export function SceneVideoHistory({
           jobId: record.id,
         });
       else {
-        let input = pending.current.get(record.id);
-        if (!input) {
+        let attempt = pending.current.get(record.id);
+        if (attempt && attempt.kind !== kind) return;
+        if (!attempt && kind === "cancel") {
+          attempt = {
+            kind: "cancel",
+            input: createSceneVideoCancellation(snapshot, record),
+          };
+        } else if (!attempt) {
           const current = parseSceneVideo(record);
           const configured = await transport.capability(snapshot.campaign.id);
           if (
@@ -420,27 +434,43 @@ export function SceneVideoHistory({
             !configured.reservationUsdMicros
           )
             throw new Error("not_configured");
-          input = createStoredVideoDispatch(
+          const input = createStoredVideoDispatch(
             snapshot,
             record,
             configured.reservationUsdMicros,
           );
-          pending.current.set(record.id, input);
-          setRetained((old) => [...new Set([...old, record.id])]);
+          attempt = { kind: "dispatch", input };
         }
+        pending.current.set(record.id, attempt);
+        setRetained((old) => ({ ...old, [record.id]: attempt.kind }));
         await transport.send({
-          action: "video.dispatch",
-          input: structuredClone(input),
+          action: attempt.kind === "cancel" ? "video.save" : "video.dispatch",
+          input: structuredClone(attempt.input),
         });
       }
       await refresh();
       pending.current.delete(record.id);
-      setRetained((old) => old.filter((id) => id !== record.id));
-    } catch {
+      setRetained((old) => {
+        const next = { ...old };
+        delete next[record.id];
+        return next;
+      });
+    } catch (error) {
+      if (
+        error instanceof ClientPersistenceError &&
+        ["validation", "conflict", "not_found"].includes(error.code)
+      ) {
+        pending.current.delete(record.id);
+        setRetained((old) => {
+          const next = { ...old };
+          delete next[record.id];
+          return next;
+        });
+      }
       setError(
         w(
-          "This video request could not be confirmed. Status checks never generate another clip; retry a retained dispatch only with its exact original request.",
-          "Запрос видео не подтверждён. Проверка статуса не создаёт новый ролик; сохранённую отправку повторяйте только с исходным запросом.",
+          "This video request could not be confirmed. Retry the same saved action. Status checks and cancellation never generate another clip.",
+          "Запрос видео не подтверждён. Повторите то же сохранённое действие. Проверка статуса и отмена не создают новый ролик.",
         ),
       );
     } finally {
@@ -485,19 +515,29 @@ export function SceneVideoHistory({
               </p>
             )}
             {asset && <StoredSceneVideo asset={asset} transport={transport} />}
+            {["queued", "generating", "uncertain"].includes(value.status) && (
+              <p className="muted">
+                {w(
+                  "Cancel stops this clip from attaching. Provider work and reserved charges may continue; the request history is kept.",
+                  "Отмена запрещает прикрепление ролика. Работа провайдера и расходы из резерва могут продолжиться; история запроса сохраняется.",
+                )}
+              </p>
+            )}
             <div className="button-group">
-              {retained.includes(record.id) && (
+              {retained[record.id] && (
                 <Button
                   disabled={busy}
-                  onClick={() => void act(record, "dispatch")}
+                  onClick={() => void act(record, retained[record.id])}
                 >
-                  {w(
-                    "Retry exact saved video request",
-                    "Повторить тот же сохранённый запрос видео",
-                  )}
+                  {retained[record.id] === "cancel"
+                    ? w("Retry exact cancellation", "Повторить ту же отмену")
+                    : w(
+                        "Retry exact saved video request",
+                        "Повторить тот же сохранённый запрос видео",
+                      )}
                 </Button>
               )}
-              {value.status === "queued" && !retained.includes(record.id) && (
+              {value.status === "queued" && !retained[record.id] && (
                 <Button
                   disabled={busy || !capability?.enabled}
                   onClick={() => void act(record, "dispatch")}
@@ -508,14 +548,27 @@ export function SceneVideoHistory({
                   ) + allowance(capability?.reservationUsdMicros ?? 0)}
                 </Button>
               )}
-              {["generating", "uncertain"].includes(value.status) && (
-                <Button
-                  disabled={busy}
-                  onClick={() => void act(record, "poll")}
-                >
-                  {w("Check status", "Проверить статус")}
-                </Button>
-              )}
+              {["generating", "uncertain"].includes(value.status) &&
+                !retained[record.id] && (
+                  <Button
+                    disabled={busy}
+                    onClick={() => void act(record, "poll")}
+                  >
+                    {w("Check status", "Проверить статус")}
+                  </Button>
+                )}
+              {["queued", "generating", "uncertain"].includes(value.status) &&
+                !retained[record.id] && (
+                  <Button
+                    disabled={busy}
+                    onClick={() => void act(record, "cancel")}
+                  >
+                    {w(
+                      "Cancel video attachment",
+                      "Отменить прикрепление видео",
+                    )}
+                  </Button>
+                )}
             </div>
           </article>
         );

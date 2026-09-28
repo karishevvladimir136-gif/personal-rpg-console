@@ -458,14 +458,14 @@ test("lost queue response replays the saved queue receipt rather than allocating
   assert.equal(model.videoDocuments(local.snapshot()).length, 1);
 });
 for (const language of ["en", "ru"])
-  test(`${language}: reloaded generating job offers status checks only; repeated polls never dispatch or generate`, async () => {
+  test(`${language}: reloaded generating job offers Check status and Cancel without resubmission`, async () => {
     const local = review(language);
     await frame(local);
     const attempt = await prepare(local);
     await client.finishSceneVideoAttempt(attempt, local.videoTransport);
     const h = await harness(local, { language, history: true });
     assert.equal(h.sent.length, 0);
-    assert.equal(h.nodes().filter((n) => n.type === "button").length, 1);
+    assert.equal(h.nodes().filter((n) => n.type === "button").length, 2);
     await h.click(language === "en" ? "Check status" : "Проверить статус");
     await h.click(language === "en" ? "Check status" : "Проверить статус");
     assert.deepEqual(
@@ -565,4 +565,128 @@ test("reloaded queued generation remains priced and explicit; lost-response repl
   await h.click("Retry exact saved video request");
   assert.deepEqual(h.sent[1], original);
   assert.equal(model.videoDocuments(local.snapshot()).length, 1);
+});
+for (const language of ["en", "ru"]) {
+  for (const outcome of ["queued", "uncertain"])
+    test(`${language}: owner Cancel closes ${outcome === "queued" ? "generating" : outcome} attachment without provider cancellation, new generation or replacing prior video`, async () => {
+      const local = review(language);
+      await frame(local);
+      local.setVideoOutcome("ready");
+      await client.finishSceneVideoAttempt(
+        await prepare(local),
+        local.videoTransport,
+      );
+      const prior = structuredClone(
+        local.snapshot().assets.filter((a) => a.kind === "video"),
+      );
+      local.setVideoOutcome(outcome);
+      await client.finishSceneVideoAttempt(
+        await prepare(local, latest(local).record.id),
+        local.videoTransport,
+      );
+      const before = latest(local),
+        gameplay = game(local.snapshot());
+      assert.equal(
+        before.value.status,
+        outcome === "queued" ? "generating" : "uncertain",
+      );
+      const h = await harness(local, {
+        language,
+        enabled: false,
+        history: true,
+      });
+      assert.match(
+        h.text(),
+        language === "en"
+          ? /Provider work and reserved charges may continue/
+          : /Работа провайдера и расходы из резерва могут продолжиться/,
+      );
+      await h.click(
+        language === "en"
+          ? "Cancel video attachment"
+          : "Отменить прикрепление видео",
+      );
+      assert.deepEqual(
+        h.sent.map((c) => c.action),
+        ["video.save"],
+      );
+      assert.equal(h.sent[0].input.expectedRevision, before.record.revision);
+      assert.equal(latest(local).value.status, "cancelled");
+      assert.deepEqual(latest(local).value.dispatch, before.value.dispatch);
+      assert.deepEqual(
+        local.snapshot().assets.filter((a) => a.kind === "video"),
+        prior,
+      );
+      assert.deepEqual(game(local.snapshot()), gameplay);
+      const versions = await local.visualTransport.history(
+        local.snapshot().campaign.id,
+        before.record.id,
+      );
+      assert.equal(
+        model.parseSceneVideo(versions.at(-2)).status,
+        before.value.status,
+      );
+      assert.equal(model.parseSceneVideo(versions.at(-1)).status, "cancelled");
+      local.setVideoOutcome("ready");
+      const polled = await local.videoTransport.send({
+        action: "video.poll",
+        campaignId: local.snapshot().campaign.id,
+        jobId: before.record.id,
+      });
+      assert.equal(polled.status, "cancelled");
+      assert.deepEqual(
+        local.snapshot().assets.filter((a) => a.kind === "video"),
+        prior,
+      );
+      assert.throws(() =>
+        client.createSceneVideoCancellation(
+          local.snapshot(),
+          latest(local).record,
+        ),
+      );
+    });
+}
+test("lost Cancel response replays the exact saved cancellation after a later scene update", async () => {
+  const local = review();
+  await frame(local);
+  await client.finishSceneVideoAttempt(
+    await prepare(local),
+    local.videoTransport,
+  );
+  const h = await harness(local, { history: true, loseAction: "video.save" });
+  await h.click("Cancel video attachment");
+  assert.equal(latest(local).value.status, "cancelled");
+  const cancellation = structuredClone(h.sent[0]);
+  local.advanceScene();
+  await h.click("Retry exact cancellation");
+  assert.deepEqual(h.sent[1], cancellation);
+  assert.equal(h.sent.filter((c) => c.action === "video.dispatch").length, 0);
+  assert.equal(
+    local.snapshot().assets.filter((a) => a.kind === "video").length,
+    0,
+  );
+});
+test("an unsubmitted queued video can be cancelled after its public scene changes without dispatching", async () => {
+  const local = review();
+  await frame(local);
+  const attempt = await prepare(local);
+  await local.videoTransport.send({
+    action: "video.save",
+    input: attempt.queue,
+  });
+  local.advanceScene();
+  const before = game(local.snapshot()),
+    h = await harness(local, { history: true, enabled: false });
+  await h.click("Cancel video attachment");
+  assert.deepEqual(
+    h.sent.map((c) => c.action),
+    ["video.save"],
+  );
+  assert.equal(latest(local).value.status, "cancelled");
+  assert.equal(latest(local).value.dispatch, null);
+  assert.deepEqual(game(local.snapshot()), before);
+  assert.equal(
+    local.snapshot().assets.filter((a) => a.kind === "video").length,
+    0,
+  );
 });
