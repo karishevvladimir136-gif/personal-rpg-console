@@ -1088,13 +1088,45 @@ test("Visual Bible leads with reviewed appearance references and keeps scene com
   const titles = children
     .filter((n) => n?.props?.title)
     .map((n) => n.props.title);
-  assert.deepEqual(Array.from(titles), [
-    "Reviewed visual identity",
-    "Capture a public scene",
-  ]);
+  assert.deepEqual(Array.from(titles), ["Reviewed visual identity"]);
   const details = children.filter((n) => n?.type === "details");
-  assert.equal(details.length, 1);
-  assert.equal(Boolean(details[0].props.open), false);
+  assert.equal(details.length, 3);
+  assert.ok(details.every((n) => !n.props.open));
+  const summary = (node) => node.props.children[0].props.children;
+  const limits = details.find(
+    (n) => summary(n) === "About visual references / preview limits",
+  );
+  const capture = details.find((n) => summary(n) === "Capture a public scene");
+  assert.ok(limits && capture);
+  function textOf(node) {
+    if (typeof node === "string" || typeof node === "number")
+      return String(node);
+    if (Array.isArray(node)) return node.map(textOf).join("");
+    return node?.props ? textOf(node.props.children) : "";
+  }
+  assert.match(textOf(limits), /\$0 provider spend/);
+  assert.match(
+    textOf(limits),
+    /It grants no story, equipment or world authority/,
+  );
+  assert.match(
+    textOf(limits),
+    /request lifecycle; it does not depict your campaign/,
+  );
+  assert.ok(
+    children.some(
+      (n) =>
+        textOf(n) === "MOCK schematic only. No image provider is connected.",
+    ),
+  );
+  const synthetic = await visualPanelHarness({ syntheticControls: true });
+  const syntheticCapture = synthetic
+    .render()
+    .props.children.find(
+      (n) => n?.type === "details" && summary(n) === "Capture a public scene",
+    );
+  assert.equal(syntheticCapture.props.open, true);
+  assert.equal(synthetic.submissions.length, 0);
   assert.equal(h.submissions.length, 0);
 });
 
@@ -1118,7 +1150,7 @@ test("Visual Bible keeps appearance and owner approval visible while correction 
     hidden: false,
     primary: true,
   });
-  assert.equal(found.get("Correct / history").hidden, true);
+  assert.equal(found.get("Correct / history").hidden, false);
   assert.equal(found.get("Invalidate approval").hidden, true);
   assert.equal(h.submissions.length, 0);
 });

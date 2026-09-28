@@ -531,8 +531,8 @@ function VisualFramePanel({
       </div>
       <p className="muted max-w-3xl text-sm leading-relaxed">
         {w(
-          "Local MOCK previews · $0 provider spend. No image provider is connected. These schematic placeholders do not depict your campaign; text gameplay continues independently.",
-          "Локальные превью MOCK · расходы на провайдеров $0. Провайдер изображений не подключён. Схемы не изображают вашу кампанию; текстовая игра работает независимо.",
+          "MOCK schematic only. No image provider is connected.",
+          "Только схема MOCK. Провайдер изображений не подключён.",
         )}
       </p>
       {error && <p role="alert">{error}</p>}
@@ -541,8 +541,8 @@ function VisualFramePanel({
       >
         <p className="muted">
           {w(
-            "Visual Canon is an approved appearance reference. It grants no story, equipment or world authority. Alternate outfits and location variants can have separate references.",
-            "Визуальный канон — утверждённый образец внешности. Он не меняет сюжет, снаряжение или мир. Для другой одежды и вариантов места можно создать отдельные образцы.",
+            "Keep appearance and outfit references, then explicitly approve the ones you want to use.",
+            "Сохраните внешность и варианты одежды, затем явно утвердите нужные образцы.",
           )}
         </p>
         <Button
@@ -647,6 +647,31 @@ function VisualFramePanel({
                       "Утвердить визуальный канон",
                     )}
                   </Button>
+                  <Button
+                    disabled={busy}
+                    onClick={() => {
+                      if (!subjectExists) return;
+                      const source = newVisualReference(
+                        snapshot,
+                        value.subject,
+                      );
+                      setEditor({
+                        initial: {
+                          ...value,
+                          sourceRevision: source.sourceRevision,
+                          label: source.label,
+                          approval: "draft",
+                          ...(!current
+                            ? { imageAssetId: null, imageAssetRevision: null }
+                            : {}),
+                        },
+                        record,
+                        snapshot,
+                      });
+                    }}
+                  >
+                    {w("Correct / history", "Исправить / история")}
+                  </Button>
                 </div>
                 <details className="border-t border-[#604b30] pt-3">
                   <summary className="cursor-pointer py-2 text-[#ccb28b]">
@@ -659,31 +684,6 @@ function VisualFramePanel({
                     {value.guidance}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    <Button
-                      disabled={busy}
-                      onClick={() => {
-                        if (!subjectExists) return;
-                        const source = newVisualReference(
-                          snapshot,
-                          value.subject,
-                        );
-                        setEditor({
-                          initial: {
-                            ...value,
-                            sourceRevision: source.sourceRevision,
-                            label: source.label,
-                            approval: "draft",
-                            ...(!current
-                              ? { imageAssetId: null, imageAssetRevision: null }
-                              : {}),
-                          },
-                          record,
-                          snapshot,
-                        });
-                      }}
-                    >
-                      {w("Correct / history", "Исправить / история")}
-                    </Button>
                     <Button
                       disabled={
                         busy || !current || value.approval === "invalidated"
@@ -710,131 +710,161 @@ function VisualFramePanel({
           })}
         </div>
       </Panel>
-      <Panel title={w("Capture a public scene", "Запечатлеть открытую сцену")}>
-        {currentScene ? (
-          <p className="max-w-[72ch] whitespace-pre-wrap break-words border-l-2 border-[#997748] pl-5 font-serif text-lg leading-relaxed">
-            {currentScene.body}
-          </p>
-        ) : (
+      <details className="panel rounded-lg border border-[#604b30] p-5">
+        <summary className="cursor-pointer text-[#ccb28b]">
+          {w(
+            "About visual references / preview limits",
+            "О визуальных образцах и пределах превью",
+          )}
+        </summary>
+        <div className="muted mt-4 max-w-3xl space-y-3 text-sm leading-relaxed">
           <p>
             {w(
-              "A public narration scene is needed before FRAME can be requested.",
-              "Для запроса FRAME нужна открытая сцена с повествованием.",
+              "Visual Canon is an approved appearance reference. It grants no story, equipment or world authority. Alternate outfits and location variants can have separate references.",
+              "Визуальный канон — утверждённый образец внешности. Он не меняет сюжет, снаряжение или мир. Для другой одежды и вариантов места можно создать отдельные образцы.",
             )}
           </p>
-        )}
-        <details className="my-5 rounded-lg border border-[#604b30] p-4">
-          <summary className="cursor-pointer text-[#ccb28b]">
-            {w("Scene & composition", "Сцена и композиция")}
-          </summary>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <label className="field">
-              <span>{w("Public narration", "Открытая сцена")}</span>
-              <select
-                value={currentScene?.id ?? ""}
-                onChange={(e) => setSceneId(e.target.value)}
-              >
-                {scenes.map((s) => (
-                  <option key={s.id} value={s.id}>
-                    {s.sequence}. {s.title}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="field">
-              <span>{w("Composition", "Композиция")}</span>
-              <select
-                value={composition}
-                onChange={(e) =>
-                  setComposition(e.target.value as VisualFrame["composition"])
-                }
-              >
-                <option value="wide">{w("Wide shot", "Общий план")}</option>
-                <option value="portrait">{w("Portrait", "Портрет")}</option>
-                <option value="location">{w("Location", "Место")}</option>
-                <option value="item">{w("Item", "Предмет")}</option>
-              </select>
-            </label>
-          </div>
-        </details>
-        <fieldset className="my-4">
-          <legend>
+          <p>
             {w(
-              "Include reviewed references visible in this scene (up to 8)",
-              "Добавить проверенные образцы, видимые в этой сцене (до 8)",
-            )}
-          </legend>
-          <p className="muted">
-            {w(
-              "Select only appearances the player already knows in this scene. Unselected characters, items and hidden facts are not added automatically.",
-              "Выберите только образы, уже известные игроку в этой сцене. Остальные персонажи, предметы и скрытые факты не добавляются автоматически.",
+              "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. No image provider is connected. Text gameplay continues independently.",
+              "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Провайдер изображений не подключён. Текстовая игра работает независимо.",
             )}
           </p>
-          {eligible.map((e) => (
-            <label
-              key={e.record.id}
-              className="mr-4 inline-flex items-center gap-2 py-2"
-            >
-              <input
-                type="checkbox"
-                checked={selected.includes(e.record.id)}
-                disabled={
-                  busy ||
-                  (!selected.includes(e.record.id) && selected.length >= 8)
-                }
-                onChange={(event) =>
-                  setReferenceIds(
-                    event.target.checked
-                      ? [...selected, e.record.id]
-                      : selected.filter((id) => id !== e.record.id),
-                  )
-                }
-              />
-              {e.value.label}
-              {e.value.outfit && ` · ${e.value.outfit.slice(0, 50)}`}
-            </label>
-          ))}
-        </fieldset>
-        <div className="flex flex-wrap gap-3">
-          <Button
-            disabled={!proposal || busy}
-            onClick={() => setInspected(proposal)}
-          >
-            {w("Inspect public brief", "Проверить открытое описание")}
-          </Button>
-          <Button
-            primary
-            disabled={!proposal || busy || Boolean(duplicate)}
-            onClick={() => {
-              if (proposal)
-                void act(async () => {
-                  await save(
-                    "request",
-                    visualDocumentMutation(snapshot, proposal),
-                  );
-                });
-            }}
-          >
-            {w("FRAME · queue mock preview", "FRAME · создать запрос MOCK")}
-          </Button>
         </div>
-        {duplicate && (
-          <p role="status">
-            {w(
-              "An equivalent request is already queued below.",
-              "Такой запрос уже есть в очереди ниже.",
-            )}
-          </p>
-        )}
-        {currentScene && currentScene.body.length > 6000 && (
-          <p>
-            {w(
-              "This scene exceeds the V0 brief limit. No request was created.",
-              "Сцена превышает лимит описания V0. Запрос не создан.",
-            )}
-          </p>
-        )}
-      </Panel>
+      </details>
+      <details
+        className="panel rounded-lg border border-[#604b30] p-5"
+        open={syntheticControls}
+      >
+        <summary className="cursor-pointer text-[#ccb28b]">
+          {w("Capture a public scene", "Запечатлеть открытую сцену")}
+        </summary>
+        <div className="mt-5">
+          {currentScene ? (
+            <p className="max-w-[72ch] whitespace-pre-wrap break-words border-l-2 border-[#997748] pl-5 font-serif text-lg leading-relaxed">
+              {currentScene.body}
+            </p>
+          ) : (
+            <p>
+              {w(
+                "A public narration scene is needed before FRAME can be requested.",
+                "Для запроса FRAME нужна открытая сцена с повествованием.",
+              )}
+            </p>
+          )}
+          <details className="my-5 rounded-lg border border-[#604b30] p-4">
+            <summary className="cursor-pointer text-[#ccb28b]">
+              {w("Scene & composition", "Сцена и композиция")}
+            </summary>
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <label className="field">
+                <span>{w("Public narration", "Открытая сцена")}</span>
+                <select
+                  value={currentScene?.id ?? ""}
+                  onChange={(e) => setSceneId(e.target.value)}
+                >
+                  {scenes.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.sequence}. {s.title}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label className="field">
+                <span>{w("Composition", "Композиция")}</span>
+                <select
+                  value={composition}
+                  onChange={(e) =>
+                    setComposition(e.target.value as VisualFrame["composition"])
+                  }
+                >
+                  <option value="wide">{w("Wide shot", "Общий план")}</option>
+                  <option value="portrait">{w("Portrait", "Портрет")}</option>
+                  <option value="location">{w("Location", "Место")}</option>
+                  <option value="item">{w("Item", "Предмет")}</option>
+                </select>
+              </label>
+            </div>
+          </details>
+          <fieldset className="my-4">
+            <legend>
+              {w(
+                "Include reviewed references visible in this scene (up to 8)",
+                "Добавить проверенные образцы, видимые в этой сцене (до 8)",
+              )}
+            </legend>
+            <p className="muted">
+              {w(
+                "Select only appearances the player already knows in this scene. Unselected characters, items and hidden facts are not added automatically.",
+                "Выберите только образы, уже известные игроку в этой сцене. Остальные персонажи, предметы и скрытые факты не добавляются автоматически.",
+              )}
+            </p>
+            {eligible.map((e) => (
+              <label
+                key={e.record.id}
+                className="mr-4 inline-flex items-center gap-2 py-2"
+              >
+                <input
+                  type="checkbox"
+                  checked={selected.includes(e.record.id)}
+                  disabled={
+                    busy ||
+                    (!selected.includes(e.record.id) && selected.length >= 8)
+                  }
+                  onChange={(event) =>
+                    setReferenceIds(
+                      event.target.checked
+                        ? [...selected, e.record.id]
+                        : selected.filter((id) => id !== e.record.id),
+                    )
+                  }
+                />
+                {e.value.label}
+                {e.value.outfit && ` · ${e.value.outfit.slice(0, 50)}`}
+              </label>
+            ))}
+          </fieldset>
+          <div className="flex flex-wrap gap-3">
+            <Button
+              disabled={!proposal || busy}
+              onClick={() => setInspected(proposal)}
+            >
+              {w("Inspect public brief", "Проверить открытое описание")}
+            </Button>
+            <Button
+              primary
+              disabled={!proposal || busy || Boolean(duplicate)}
+              onClick={() => {
+                if (proposal)
+                  void act(async () => {
+                    await save(
+                      "request",
+                      visualDocumentMutation(snapshot, proposal),
+                    );
+                  });
+              }}
+            >
+              {w("FRAME · queue mock preview", "FRAME · создать запрос MOCK")}
+            </Button>
+          </div>
+          {duplicate && (
+            <p role="status">
+              {w(
+                "An equivalent request is already queued below.",
+                "Такой запрос уже есть в очереди ниже.",
+              )}
+            </p>
+          )}
+          {currentScene && currentScene.body.length > 6000 && (
+            <p>
+              {w(
+                "This scene exceeds the V0 brief limit. No request was created.",
+                "Сцена превышает лимит описания V0. Запрос не создан.",
+              )}
+            </p>
+          )}
+        </div>
+      </details>
       <details className="panel rounded-lg border border-[#604b30] p-5">
         <summary className="cursor-pointer text-[#ccb28b]">
           {w(
