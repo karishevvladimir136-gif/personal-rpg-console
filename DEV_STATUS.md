@@ -1,3 +1,17 @@
+# Development status — Adventure / Media V1 — OWNER ACCEPTED
+
+**Explicit owner acceptance:** accepted review/status SHA `1599d238b2df926fd9a4d9058d7d2799de0eadaa`, including tested implementation ancestry `69b5b0b0975d40864e653d5d511c7d67f00a590c`. The owner accepts Adventure V1; Adventure Acceptance Harness V1; loot / search / secured-container / reward-integrity V1; optional FRAME V1 presentation with Draft → Accept / Discard; VIDEO V1 from an owner-accepted FRAME; and every disclosed limitation in the final verification and live-smoke reports.
+
+**Acceptance scope and qualifications:** this is acceptance of the bounded Adventure / Media V1 wave, not a claim that the entire application roadmap or real owner playtest is complete. Imperfect generated-face/detail consistency, finite automated FRAME QA reliability (including preserved false-negatives and failed gates), no hosted Supabase verification in this wave, subjective VIDEO quality variation, unavailable returned VIDEO usage/model identity/invoice data, and all other documented qualifications remain unchanged. [Final verification](ADVENTURE_MEDIA_V1_VERIFICATION.md) and [original live VIDEO evidence](ADVENTURE_MEDIA_VIDEO_LIVE_SMOKE_REPORT.md) are preserved exactly.
+
+**Finalization:** one DEV_STATUS.md-only acceptance commit directly follows the accepted review SHA. Production code, prompts, Character Model, schemas, fixtures, tests, migrations and historical evidence are unchanged. Only Git ancestry/documentation scope and retained-evidence integrity checks run; no application tests/build/browser/provider evaluation is rerun. Publication is fast-forward only from `1f9e3c56896d9cd5a374af6857f918c46bb80603`, without force, squash, rebase or merge commit. Required additive migrations remain committed in ancestry; none is executed on real data.
+
+**Next owner action / stop:** the first real Adventure playtest is the next owner action after publication; it is not started automatically. No provider call, deployment, real database migration/import, real Adventure or new coding lane is triggered during this finalization. Preserve the complete prior status and evidence below verbatim.
+
+---
+
+> Historical status below: preserved verbatim from the owner-accepted review candidate. Then-current pending-acceptance statements remain historical.
+
 # Development status — Adventure / Media V1 — LIVE VIDEO VERIFIED; OWNER REVIEW PENDING
 
 **Current review candidate:** implementation unchanged from `69b5b0b0975d40864e653d5d511c7d67f00a590c` on `codex/v1-adventure-media`; only the final status/review report follows. Main stays `1f9e3c56896d9cd5a374af6857f918c46bb80603`. The owner accepts Adventure direction and the FRAME Draft → Accept/Discard boundary for finishing the wave; this is **not combined-wave owner acceptance**, complete V1 or the real Fighter Adventure.
