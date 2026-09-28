@@ -717,17 +717,10 @@ export function createAdventureMediaReview(
     },
     draftImageUrl: (cid, jobId) => {
       authorize(cid);
-      const record = snapshot.documents.find(
-        (d) => d.id === jobId && d.campaign_id === cid,
-      );
-      const frame = record && parseRealFrame(record);
-      ensure(
-        frame?.schema === 4 &&
-          frame.status === "draft" &&
-          frame.review &&
-          frame.resultAssetId === null,
-      );
-      return schematic + "#draft-" + jobId;
+      // Like the normal transport, URL construction stays stable while sibling
+      // reviews render the old context before an owner decision refresh commits.
+      // This labelled schematic has no stored pixels; decisions validate the row.
+      return schematic + "#draft-" + uuid(jobId);
     },
     send: async (raw) => {
       const value = object(raw, ["action", "input"]),

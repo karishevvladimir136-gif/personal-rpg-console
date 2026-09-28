@@ -9,6 +9,8 @@ import ts from "typescript";
 const lane = fileURLToPath(new URL("../", import.meta.url));
 const source = resolve(process.env.MEDIA_FRAME_OWNER_UI_SOURCE_ROOT || lane);
 const require = createRequire(import.meta.url);
+const React = require("react");
+const { renderToStaticMarkup } = require("react-dom/server");
 const owned = new Set([
   "src/components/adventure-media-preview.tsx",
   "src/components/visual-frame/current-scene-media-frame.tsx",
@@ -291,11 +293,12 @@ for (const language of ["en", "ru"]) {
       assert.equal(h.sent[0].action, "media.discard");
       assert.equal(latest(local).value.status, "discarded");
       assert.equal(local.snapshot().assets.length, 0);
-      assert.throws(() =>
+      assert.match(
         local.mediaTransport.draftImageUrl(
           local.snapshot().campaign.id,
           record.id,
         ),
+        /#draft-/,
       );
     }
     local.setOutcome("review_warning");
@@ -455,3 +458,79 @@ test("decision builders reject stale, foreign, accepted and discarded documents;
   assert.equal(recovery.expectedRevision, inflight.record.revision);
   assert.deepEqual(real.parseRealFrame(recovery.payload), inflight.value);
 });
+
+for (const language of ["en", "ru"]) {
+  test(`${language}: sibling draft reviews render between Accept/Discard and context refresh without losing prior art`, async (context) => {
+    context.mock.method(globalThis, "fetch", noCall);
+    const local = review(language);
+    const first = await generate(local);
+    await decide(local, first.record, "accept");
+    const priorAsset = structuredClone(local.snapshot().assets[0]);
+    for (const decision of ["accept", "discard"]) {
+      local.setOutcome("review_warning");
+      const draft = await generate(local, latest(local).record.id);
+      // Both current review and the closed history stay mounted with this old
+      // context until the parent's refresh commits the accepted/discarded row.
+      let visibleSnapshot = local.snapshot();
+      const original = gameplay(visibleSnapshot);
+      const ui = modules({
+        "next/image": ({ unoptimized, ...props }) => {
+          void unoptimized;
+          return React.createElement("img", props);
+        },
+        "../persistence-context": {
+          useCampaignData: () => ({
+            data: visibleSnapshot,
+            refresh: noCall,
+          }),
+        },
+        "../language-context": {
+          useLanguage: () => ({ language, t: (value) => value }),
+        },
+      })("src/components/visual-frame/current-scene-media-frame.tsx");
+      const render = (Component) =>
+        renderToStaticMarkup(
+          React.createElement(Component, { transport: local.mediaTransport }),
+        );
+      const initialUrl = local.mediaTransport.draftImageUrl(
+        visibleSnapshot.campaign.id,
+        draft.record.id,
+      );
+      assert.match(render(ui.CurrentSceneMediaFrame), /#draft-/);
+      assert.match(render(ui.RealFrameHistory), /#draft-/);
+      await decide(local, draft.record, decision);
+      assert.equal(
+        latest(local).value.status,
+        decision === "accept" ? "completed" : "discarded",
+      );
+      // This is the deterministic gap observed by the browser: the adapter's
+      // decision is complete, but its sibling still renders the old draft.
+      assert.doesNotThrow(() => render(ui.CurrentSceneMediaFrame));
+      assert.doesNotThrow(() => render(ui.RealFrameHistory));
+      assert.equal(
+        local.mediaTransport.draftImageUrl(
+          visibleSnapshot.campaign.id,
+          draft.record.id,
+        ),
+        initialUrl,
+      );
+      assert.deepEqual(
+        local.snapshot().assets.find((asset) => asset.id === priorAsset.id),
+        priorAsset,
+      );
+      assert.deepEqual(gameplay(local.snapshot()), original);
+      visibleSnapshot = local.snapshot();
+      const current = render(ui.CurrentSceneMediaFrame);
+      const history = render(ui.RealFrameHistory);
+      assert.doesNotMatch(current + history, /#draft-/);
+      assert.match(history, new RegExp(`#accepted-${priorAsset.id}`));
+      assert.equal(local.snapshot().assets.length, 2);
+      assert.throws(() =>
+        media.createFrameOwnerDecision(visibleSnapshot, draft.record, "accept"),
+      );
+      assert.throws(() =>
+        local.mediaTransport.draftImageUrl(id(999), draft.record.id),
+      );
+    }
+  });
+}
