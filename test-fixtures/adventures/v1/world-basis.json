@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "id": "fb277aa3-8be4-57fe-a36d-b31a52a5ac77",
+  "version": 1,
+  "title": "The Rill Road",
+  "ruleset": "console-basic-v1",
+  "geography": [
+    {
+      "key": "rill-post",
+      "kind": "road-post"
+    },
+    {
+      "key": "rill-house",
+      "kind": "merchant-house"
+    }
+  ],
+  "intrinsicThreats": [
+    {
+      "key": "road-watch",
+      "count": 2,
+      "attack": 2,
+      "defense": 10,
+      "hp": 12,
+      "role": "watchers"
+    }
+  ],
+  "factions": [
+    {
+      "key": "couriers",
+      "aim": "Keep the road's messages moving"
+    },
+    {
+      "key": "merchants",
+      "aim": "Preserve stock and agreements"
+    }
+  ],
+  "chronology": {
+    "daylightRemainingMinutes": 180,
+    "lateArrivalChanges": "The addressee may leave the post; the letter and obligation remain."
+  }
+}

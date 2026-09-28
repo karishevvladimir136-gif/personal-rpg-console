@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "fixtureSet": "adventure-acceptance-v1",
+  "immutableWorld": {
+    "id": "fb277aa3-8be4-57fe-a36d-b31a52a5ac77",
+    "version": 1,
+    "digest": "9196e399c167447fe90cfe4665a275cd48f78453baa05f7b404a90b93d4cb778"
+  },
+  "entries": [
+    {
+      "family": "letter-low",
+      "file": "letter-low.json",
+      "sha256": "af6e1b16b4fc9e38e768edf471d8103130a7cb29d48ed9d801fada6fa7844af2"
+    },
+    {
+      "family": "letter-high",
+      "file": "letter-high.json",
+      "sha256": "365a900282c55cdcf7baec39dd048bb007179bd5393ce2b411d743d2d291fd37"
+    },
+    {
+      "family": "merchant-vault",
+      "file": "merchant-vault.json",
+      "sha256": "9d4ca178ac9c93c1e10d2e676aab920b51ad2874f4b42b9f987a05177117d948"
+    }
+  ]
+}
