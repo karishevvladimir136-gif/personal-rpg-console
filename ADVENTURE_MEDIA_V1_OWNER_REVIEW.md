@@ -19,7 +19,7 @@ Desktop and 390×844 viewport checks are reported separately in the verification
 
 ## Normal production use after separate setup/acceptance
 
-No real migration is required to inspect this preview. Installing migrations 24–26 on an actual owner database remains separately gated. Configure one exact supported image model server-side, explicitly provision its service-only operation budget, and enable the real FRAME path only for authorized use. Keys never enter Campaign data or browser code. Current FRAME inputs support eligible approved **textual** appearance/outfit/style guidance; pixel-reference requests fail closed and do not silently discard pixels.
+No real migration is required to inspect this preview. Installing migrations 24–26 on an actual owner database remains separately gated. Configure one exact supported image model server-side, explicitly provision its service-only operation budget, and enable the real FRAME path only for authorized use. Keys never enter Campaign data or browser code. Current FRAME inputs support eligible approved **textual** appearance/outfit/style guidance for the controlled player, current visited location, equipped items and Campaign style; known NPCs are not automatically treated as present. Pixel-reference requests fail closed and do not silently discard pixels.
 
 The five-image sample and conservative accounting are prepared in [FRAME gate preparation](ADVENTURE_MEDIA_FRAME_GATE_PREPARATION.md). Sunburst/Flare selection is still pending; no image has been requested, no charge has been observed, and the reserved budget is not spend. FAL_KEY is absent. VIDEO implementation remains blocked by the FRAME gate and later exact video capability/model/credential setup.
 
