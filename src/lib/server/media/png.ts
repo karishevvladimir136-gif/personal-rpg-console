@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { inflateSync } from "node:zlib";
 import {
   frameStoragePath,
   isFrameUsage,
@@ -18,30 +19,60 @@ function crc32(bytes: Uint8Array) {
   }
   return (crc ^ 0xffffffff) >>> 0;
 }
+function paeth(left: number, above: number, upperLeft: number) {
+  const prediction = left + above - upperLeft;
+  const dl = Math.abs(prediction - left),
+    da = Math.abs(prediction - above),
+    du = Math.abs(prediction - upperLeft);
+  return dl <= da && dl <= du ? left : da <= du ? above : upperLeft;
+}
 export function checkedPng(bytes: Uint8Array, parameters?: FrameParameters) {
   if (
     bytes.byteLength < 33 ||
     bytes.byteLength > MAX_FRAME_IMAGE_BYTES ||
-    ![137, 80, 78, 71, 13, 10, 26, 10].every((v, i) => bytes[i] === v) ||
-    new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getUint32(
-      8,
-    ) !== 13 ||
-    String.fromCharCode(...bytes.slice(12, 16)) !== "IHDR"
+    ![137, 80, 78, 71, 13, 10, 26, 10].every((v, i) => bytes[i] === v)
   )
     throw new Error("invalid_image");
   const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (
+    view.getUint32(8) !== 13 ||
+    String.fromCharCode(...bytes.slice(12, 16)) !== "IHDR"
+  )
+    throw new Error("invalid_image");
   const width = view.getUint32(16),
-    height = view.getUint32(20);
+    height = view.getUint32(20),
+    depth = bytes[24],
+    color = bytes[25];
+  const formats: Record<number, { depths: number[]; channels: number }> = {
+    0: { depths: [1, 2, 4, 8, 16], channels: 1 },
+    2: { depths: [8, 16], channels: 3 },
+    3: { depths: [1, 2, 4, 8], channels: 1 },
+    4: { depths: [8, 16], channels: 2 },
+    6: { depths: [8, 16], channels: 4 },
+  };
+  const format = formats[color];
+  // W3C PNG IHDR/scanlines: https://www.w3.org/TR/png/#11IHDR
+  // Adam7 and animated PNG are unsupported here; fail closed without re-encoding or a paid retry.
   if (
     ![1024, 1536].includes(width) ||
     ![1024, 1536].includes(height) ||
     (width === 1536 && height === 1536) ||
-    (parameters && parameters.size !== `${width}x${height}`)
+    (parameters && parameters.size !== `${width}x${height}`) ||
+    !format?.depths.includes(depth) ||
+    bytes[26] !== 0 ||
+    bytes[27] !== 0 ||
+    bytes[28] !== 0
   )
     throw new Error("invalid_image");
+  const rowBytes = Math.ceil((width * depth * format.channels) / 8),
+    stride = rowBytes + 1,
+    decodedLimit = stride * height;
+  const data: Uint8Array[] = [];
   let offset = 8,
-    imageData = false,
-    ended = false;
+    ended = false,
+    dataEnded = false,
+    paletteEntries = 0,
+    transparency = false;
   while (offset + 12 <= bytes.byteLength) {
     const length = view.getUint32(offset),
       end = offset + 12 + length;
@@ -51,16 +82,106 @@ export function checkedPng(bytes: Uint8Array, parameters?: FrameParameters) {
     )
       throw new Error("invalid_image");
     const type = String.fromCharCode(...bytes.slice(offset + 4, offset + 8));
-    if (type === "IDAT") imageData = true;
-    if (type === "IEND") {
+    if (
+      !/^[A-Za-z]{2}[A-Z][A-Za-z]$/.test(type) ||
+      ["acTL", "fcTL", "fdAT"].includes(type)
+    )
+      throw new Error("invalid_image");
+    if (type !== "IDAT" && data.length) dataEnded = true;
+    if (type === "IHDR") {
+      if (offset !== 8 || length !== 13) throw new Error("invalid_image");
+    } else if (type === "PLTE") {
+      if (
+        paletteEntries ||
+        data.length ||
+        transparency ||
+        color === 0 ||
+        color === 4 ||
+        length < 3 ||
+        length > 768 ||
+        length % 3 ||
+        (color === 3 && length / 3 > 2 ** depth)
+      )
+        throw new Error("invalid_image");
+      paletteEntries = length / 3;
+    } else if (type === "tRNS") {
+      if (
+        transparency ||
+        data.length ||
+        !(
+          (color === 0 && length === 2) ||
+          (color === 2 && length === 6) ||
+          (color === 3 &&
+            paletteEntries &&
+            length >= 1 &&
+            length <= paletteEntries)
+        )
+      )
+        throw new Error("invalid_image");
+      transparency = true;
+    } else if (type === "IDAT") {
+      if (dataEnded || (color === 3 && !paletteEntries))
+        throw new Error("invalid_image");
+      data.push(bytes.subarray(offset + 8, end - 4));
+    } else if (type === "IEND") {
       if (length !== 0 || end !== bytes.byteLength)
         throw new Error("invalid_image");
       ended = true;
-    }
+    } else if (/^[A-Z]/.test(type)) throw new Error("invalid_image");
     offset = end;
   }
-  if (!imageData || !ended || offset !== bytes.byteLength)
+  if (!data.length || !ended || offset !== bytes.byteLength)
     throw new Error("invalid_image");
+  const compressed = Buffer.concat(data);
+  let rows: Uint8Array;
+  try {
+    // maxOutputLength is enforced before allocation grows beyond these fixed dimensions.
+    // info exposes consumed input, so runtimes predating rejectGarbageAfterEnd also reject trailing data.
+    const decoded = inflateSync(compressed, {
+      maxOutputLength: decodedLimit,
+      info: true,
+    }) as unknown as { buffer: Uint8Array; engine: { bytesWritten: number } };
+    if (
+      decoded.buffer.byteLength !== decodedLimit ||
+      decoded.engine.bytesWritten !== compressed.byteLength
+    )
+      throw new Error("invalid_image");
+    rows = decoded.buffer;
+  } catch {
+    throw new Error("invalid_image");
+  }
+  let previous = new Uint8Array(rowBytes),
+    current = new Uint8Array(rowBytes);
+  for (let y = 0; y < height; y++) {
+    const start = y * stride,
+      filter = rows[start];
+    if (filter > 4) throw new Error("invalid_image");
+    if (color !== 3 || paletteEntries === 2 ** depth) continue;
+    // Indexed pixels must address the actual palette. Reverse the byte filters before reading packed indexes.
+    for (let x = 0; x < rowBytes; x++) {
+      const left = x ? current[x - 1] : 0,
+        above = previous[x],
+        upperLeft = x ? previous[x - 1] : 0;
+      const adjustment = [
+        0,
+        left,
+        above,
+        Math.floor((left + above) / 2),
+        paeth(left, above, upperLeft),
+      ][filter];
+      current[x] = (rows[start + 1 + x] + adjustment) & 255;
+    }
+    for (let x = 0; x < width; x++) {
+      const bit = x * depth,
+        index =
+          (current[Math.floor(bit / 8)] >> (8 - depth - (bit % 8))) &
+          (2 ** depth - 1);
+      if (index >= paletteEntries) throw new Error("invalid_image");
+    }
+    const swap = previous;
+    previous = current;
+    current = swap;
+  }
   return createHash("sha256").update(bytes).digest("hex");
 }
 export function storedPixels(
