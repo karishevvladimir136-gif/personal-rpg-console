@@ -263,13 +263,13 @@ function PreviewSession({
             onClick={() => setLanguage("en")}
             disabled={language === "en"}
           >
-            English
+            {languageOptions[0].label}
           </Button>
           <Button
             onClick={() => setLanguage("ru")}
             disabled={language === "ru"}
           >
-            Русский
+            {languageOptions[1].label}
           </Button>
         </div>
       )}

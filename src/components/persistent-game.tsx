@@ -1049,7 +1049,7 @@ function SupportingRecords({
                   <article className="ability-card" key={record.id}>
                     <h3>{value.basis.scene.title}</h3>
                     <Badge>
-                      MOCK ·{" "}
+                      {t("MOCK preview")} ·{" "}
                       {t(
                         {
                           queued: "Queued",
