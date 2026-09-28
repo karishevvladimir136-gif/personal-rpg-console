@@ -106,9 +106,10 @@ test("new fixture rejects the completed repair probe and preserves frozen v4 and
     const expected = execFileSync("git", ["show", `b39c929df5e58faa42f0c2e149bf2d6d0a6a2744:${path}`], { encoding: "utf8" }).replace(/\r\n/g, "\n");
     assert.equal(readFileSync(path, "utf8").replace(/\r\n/g, "\n"), expected);
   }
-  // Application default routing can change after evaluation; the evaluated
-  // gameplay/context/Craft and SQL authority must remain unchanged at closure.
-  assert.equal(execFileSync("git", ["diff", "--name-only", "b39c929df5e58faa42f0c2e149bf2d6d0a6a2744", "--",
+  // Historical closure must preserve the evaluated gameplay/context/Craft
+  // and preexisting SQL authority. Later authorized feature waves may extend
+  // gameplay; current frozen fixture equality and context/privacy tests remain above.
+  assert.equal(execFileSync("git", ["diff", "--name-only", "b39c929df5e58faa42f0c2e149bf2d6d0a6a2744", "e4f9171f9db87428b5b5812837474eb2c87c5aa8", "--",
     "src/lib/gameplay", "src/lib/dm-craft", ...execFileSync("git", ["ls-tree", "-r", "--name-only", "b39c929df5e58faa42f0c2e149bf2d6d0a6a2744", "supabase"], { encoding: "utf8" }).trim().split(/\r?\n/)], { encoding: "utf8" }).trim(), "");
   assert.deepEqual(COMPLETION_GROUNDING["identity-knowledge-refusal"].privateConversation.participants,
     [SMOKE_ACTOR_IDS.liora, SMOKE_ACTOR_IDS.orin]);
