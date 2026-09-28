@@ -373,6 +373,7 @@ function VisualFramePanel() {
     rows: DocumentVersion[];
   } | null>(null);
   const attempts = useRef(new Map<string, Mutation>());
+  const activeAttemptKeys = useRef<Set<string> | null>(null);
   const lock = useRef(false);
   // Timeline changes discard only unsaved frame selections; no background generation runs.
   const selectionFence = useRef(data?.timeline);
@@ -446,19 +447,25 @@ function VisualFramePanel() {
       ? ({ ...input, requestId } as Mutation)
       : createMutationAttempt(attempts.current.get(key) ?? null, input);
     attempts.current.set(key, attempt);
+    activeAttemptKeys.current?.add(key);
     return transport.save(attempt);
   }
   async function act(work: () => Promise<void>) {
     if (lock.current) return;
     lock.current = true;
+    const usedKeys = new Set<string>();
+    activeAttemptKeys.current = usedKeys;
     setBusy(true);
     setError("");
     try {
       await work();
       await refresh();
+      // Only a fully confirmed UI action retires its retry identity.
+      for (const key of usedKeys) attempts.current.delete(key);
     } catch (cause) {
       failure(cause);
     } finally {
+      activeAttemptKeys.current = null;
       lock.current = false;
       setBusy(false);
     }
