@@ -1,3 +1,15 @@
+# Development status — V1 completion Wave 1 — OWNER ACCEPTED
+
+**Explicit owner acceptance:** accepted candidate `663719543aeea9e9e0e6bf3d73a6619363b9be38` on `codex/v1-completion-wave1`. Acceptance is limited to Timeline V1, Places of Belonging V0, exact-checkpoint single-model What If continuation, Visual Bible / FRAME MOCK V0, the FRAME checkpoint-authority correction and the bounded UX correction pass.
+
+**Scope and limitations preserved:** all disclosed limitations and historical evidence below remain unchanged. This is not complete V1 or multi-model D2B. FRAME produces labelled local schematic MOCK results, not real image generation. Places remains manually authored reference notes, without automatic inference or visit/rest/access/storage authority. Inactive Timeline branches offer saved moments, not full scene transcripts or reconstructed missing links. Browser evidence is synthetic EN/RU desktop/mobile viewport testing, not real-device iPhone or hosted-Supabase verification. No deployment or real database migration is claimed; additive migrations have only disposable verification evidence. Existing single-model continuation, privacy/knowledge, immutable history, clarification/timing approval and retry/fencing qualifications remain in force.
+
+**Finalization:** this is one `DEV_STATUS.md`-only acceptance/status commit directly on the exact accepted candidate; implementation, tests, schemas, fixtures, reviewed documentation and historical reports are unchanged. Prior test/build/browser results remain accepted historical evidence; no application verification or live evaluation is rerun for this status-only acceptance. Fast-forward-only main publication is authorized for this wave, while the original dirty checkout remains untouched. Zero provider/model/image calls, production deployment or real database migration occur in finalization.
+
+**Stop:** Wave 1 only is finalized. No Worlds, Campaign Continuities, Adventures, loot/reward changes, Adventure Acceptance Set, D2B, VIDEO, EXPLORE, Living World, 2D rendering or other next-roadmap implementation is started or authorized by this acceptance. The earlier entries below retain their original then-current status and qualifications verbatim.
+
+---
+
 # Development status — V1 wave 1 FRAME correction and bounded UX — READY FOR OWNER REVIEW
 
 **Status:** the FRAME authority regression and requested bounded UX pass are implemented, integrated, deterministically verified and browser checked on `codex/v1-completion-wave1`, continuing exact `aa835f827c5b6c5de923b44c2b28fff2ec80fb22`. Frozen code candidate: `b8533ebecbc335248bc018bbeac924db2ff3b223`; the following completion commit records results only. **The corrected integration and revised UI are not owner accepted.** Main remains `e4f9171f9db87428b5b5812837474eb2c87c5aa8`; the original dirty checkout is untouched. [Owner guide](V1_COMPLETION_OWNER_REVIEW.md) and [verification/evidence](V1_COMPLETION_VERIFICATION.md) describe the review boundary.
