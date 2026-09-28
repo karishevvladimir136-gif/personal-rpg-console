@@ -843,7 +843,10 @@ function VisualFramePanel() {
                   className="min-w-0 rounded-lg border border-[#604b30] bg-[#171b1d] p-4"
                 >
                   <h3>{value.basis.scene.title}</h3>
-                  <Badge>MOCK · {status(value.status)}</Badge>
+                  <Badge>
+                    {w("MOCK · ", "ОБРАЗЕЦ · ")}
+                    {status(value.status)}
+                  </Badge>
                   {!current && (
                     <p className="muted">
                       {w(
@@ -1007,7 +1010,8 @@ function VisualFramePanel() {
                 className="my-4 border-t border-[#604b30] pt-3"
               >
                 <p>
-                  {w("Version", "Версия")} {version.version} · MOCK ·{" "}
+                  {w("Version", "Версия")} {version.version}
+                  {w(" · MOCK · ", " · ОБРАЗЕЦ · ")}
                   {status(old.status)}
                 </p>
                 <p>{old.basis.scene.title}</p>

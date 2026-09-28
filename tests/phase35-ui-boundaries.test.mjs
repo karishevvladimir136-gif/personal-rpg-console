@@ -24,6 +24,7 @@ test("Saves is first-class campaign navigation and More retains four permanent m
   assert.deepEqual(screens.slice(screens.indexOf("library")), [
     "library",
     "gallery",
+    "frame",
     "sessions",
     "saves",
     "settings",
@@ -35,7 +36,11 @@ test("Saves is first-class campaign navigation and More retains four permanent m
     "map",
     "journal",
   ]);
-  assert.equal(mobileCampaignScreens.includes("saves"), false);
+  for (const secondary of ["saves", "timeline", "home", "frame"]) {
+    assert.ok(screens.includes(secondary), secondary);
+    assert.equal(mobileCampaignScreens.includes(secondary), false, secondary);
+  }
+  for (const [, label] of saveNavigation) assert.ok(ru[label], label);
   assert.match(
     source("src/components/persistent-shell.tsx"),
     /more-campaign-nav/,

@@ -2,6 +2,7 @@
 import { useRef, useState } from "react";
 import fixtures from "@/lib/v1-completion/preview-fixtures.json";
 import { useLanguage } from "./language-context";
+import { languageOptions } from "@/lib/i18n";
 import { CampaignDataPreview } from "./persistence-context";
 import { Button } from "./ui";
 import { TimelineExplorerPanel } from "./timeline-explorer/timeline-explorer-panel";
@@ -47,10 +48,10 @@ export function V1CompletionPreview() {
     <div className="app-content">
       <div className="button-row">
         <Button onClick={() => setLanguage("en")} disabled={language === "en"}>
-          English
+          {languageOptions[0].label}
         </Button>
         <Button onClick={() => setLanguage("ru")} disabled={language === "ru"}>
-          Русский
+          {languageOptions[1].label}
         </Button>
       </div>
       <PreviewSession key={language} language={language} />
@@ -187,8 +188,7 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
       const checkpoint = run?.checkpoints.find(
         (p) => p.id === source.sourceCheckpointId,
       );
-      if (!run || !checkpoint)
-        throw Error("Synthetic checkpoint scope");
+      if (!run || !checkpoint) throw Error("Synthetic checkpoint scope");
       return {
         ...structuredClone(fixture.continuation.inspection),
         checkpoint: structuredClone(checkpoint),
@@ -230,7 +230,8 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
       <div className="page-heading">
         <div>
           <span className="eyebrow">
-            V1 · {ru ? "СИНТЕТИЧЕСКАЯ ДЕМОНСТРАЦИЯ" : "SYNTHETIC REVIEW"}
+            {"V1 · "}
+            {ru ? "СИНТЕТИЧЕСКАЯ ДЕМОНСТРАЦИЯ" : "SYNTHETIC REVIEW"}
           </span>
           <h1>
             {ru ? "Новые пути вашей истории" : "More ways to keep your story"}
