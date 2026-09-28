@@ -14,6 +14,10 @@ import {
 import { PersistentDmChat } from "@/components/persistent-dm-chat";
 import { PersistentSaves } from "@/components/persistent-saves";
 import { PersistentWorldLab } from "@/components/persistent-world-lab";
+import { PersistentTimelineExplorer } from "@/components/persistent-timeline-explorer";
+import { PersistentPlacesBelonging } from "@/components/persistent-places-belonging";
+import { PersistentVisualFrame } from "@/components/persistent-visual-frame";
+
 export default async function Page({
   params,
 }: {
@@ -21,6 +25,12 @@ export default async function Page({
 }) {
   const { screen } = await params;
   switch (screen) {
+    case "frame":
+      return <PersistentVisualFrame />;
+    case "timeline":
+      return <PersistentTimelineExplorer />;
+    case "home":
+      return <PersistentPlacesBelonging />;
     case "world":
       return <PersistentWorldLab />;
     case "saves":

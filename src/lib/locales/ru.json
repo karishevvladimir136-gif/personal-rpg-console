@@ -1702,5 +1702,10 @@
   "Teach DM review": "Проверка обучения Ведущего",
   "Synthetic preview only. Edit the suggested values here; approval is disabled and nothing is saved.": "Только демонстрационный просмотр. Здесь можно изменить предложенные значения; одобрение отключено, ничего не сохраняется.",
   "Companions can pursue their own goals more often without choosing for the player.": "Спутники могут чаще следовать собственным целям, не делая выбор за игрока.",
-  "This general guidance could help companions act within their own knowledge in every campaign.": "Это общее правило может помочь спутникам действовать в пределах своих знаний в каждой кампании."
+  "This general guidance could help companions act within their own knowledge in every campaign.": "Это общее правило может помочь спутникам действовать в пределах своих знаний в каждой кампании.",
+  "Timeline Explorer": "История кампании",
+  "Places of Belonging": "Родные места",
+  "Visual Bible / FRAME": "Образы мира / FRAME",
+  "MOCK preview": "Демонстрация MOCK",
+  "Local schematic preview. Edit its visual guidance in FRAME.": "Локальная схема. Изменить визуальные указания можно в FRAME."
 }

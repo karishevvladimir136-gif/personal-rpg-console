@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { mockArtForAsset, MOCK_ASSET_PREFIX } from "@/lib/visual-frame/model";
+import { MockVisualArt } from "./visual-frame/mock-art";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
@@ -550,7 +552,7 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
               </>
             )}
             <div className="button-group">
-              <Button disabled>{t("FRAME")}</Button>
+              <Link className="button" href={`/campaigns/${data.campaign.id}/frame`}>{t("FRAME")}</Link>
               <Button disabled>{t("VIDEO")}</Button>
             </div>
             <p>
@@ -974,10 +976,15 @@ function SupportingRecords({
                         : "Document",
                   )}
                 </Badge>
-                <p>{row.description}</p>
-                <Button onClick={() => setAsset(row)}>
-                  {t("Edit asset metadata")}
-                </Button>
+                {row.description.startsWith(MOCK_ASSET_PREFIX) ? <>
+                  <Badge>{t("MOCK preview")}</Badge>
+                  {mockArtForAsset(row) && <MockVisualArt art={mockArtForAsset(row)!} label={row.title} />}
+                  <p>{t("Local schematic preview. Edit its visual guidance in FRAME.")}</p>
+                  <Link className="button" href={`/campaigns/${data.campaign.id}/frame`}>{t("Visual Bible / FRAME")}</Link>
+                </> : <>
+                  <p>{row.description}</p>
+                  <Button onClick={() => setAsset(row)}>{t("Edit asset metadata")}</Button>
+                </>}
               </article>
             ))}
           </div>

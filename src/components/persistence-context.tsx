@@ -193,6 +193,15 @@ export function CampaignDataProvider({
     </CampaignContext.Provider>
   );
 }
+export function CampaignDataPreview({ snapshot, refresh, children }: {
+  snapshot: CampaignSnapshot; refresh: () => Promise<void>; children: ReactNode;
+}) {
+  return <CampaignContext.Provider value={{ campaignId: snapshot.campaign.id, data: snapshot,
+    loading: false, error: "", refresh,
+    mutate: async () => { throw new Error("Synthetic preview uses explicit local transports only"); },
+  }}>{children}</CampaignContext.Provider>;
+}
+
 export function useWorkspaceData() {
   const value = useContext(WorkspaceContext);
   if (!value) throw new Error("WorkspaceProvider is required");

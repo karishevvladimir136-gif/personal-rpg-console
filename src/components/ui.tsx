@@ -4,6 +4,8 @@ import { useLanguage } from "@/components/language-context";
 import { useEffect, useId, useRef, type ReactNode } from "react";
 import {
   Coffee,
+  History,
+  House,
   Utensils,
   LogOut,
   ArrowRight,
@@ -55,6 +57,9 @@ const icons: Record<string, LucideIcon> = {
   journal: BookOpen,
   map: Map,
   world: FlaskConical,
+  timeline: History,
+  home: House,
+  frame: ImageIcon,
   library: FileText,
   gallery: ImageIcon,
   sessions: ScrollText,

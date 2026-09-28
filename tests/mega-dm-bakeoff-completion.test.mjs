@@ -109,7 +109,7 @@ test("new fixture rejects the completed repair probe and preserves frozen v4 and
   // Application default routing can change after evaluation; the evaluated
   // gameplay/context/Craft and SQL authority must remain unchanged at closure.
   assert.equal(execFileSync("git", ["diff", "--name-only", "b39c929df5e58faa42f0c2e149bf2d6d0a6a2744", "--",
-    "src/lib/gameplay", "src/lib/dm-craft", "supabase"], { encoding: "utf8" }).trim(), "");
+    "src/lib/gameplay", "src/lib/dm-craft", ...execFileSync("git", ["ls-tree", "-r", "--name-only", "b39c929df5e58faa42f0c2e149bf2d6d0a6a2744", "supabase"], { encoding: "utf8" }).trim().split(/\r?\n/)], { encoding: "utf8" }).trim(), "");
   assert.deepEqual(COMPLETION_GROUNDING["identity-knowledge-refusal"].privateConversation.participants,
     [SMOKE_ACTOR_IDS.liora, SMOKE_ACTOR_IDS.orin]);
 });

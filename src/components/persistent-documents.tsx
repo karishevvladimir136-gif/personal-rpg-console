@@ -28,6 +28,8 @@ import type {
   Mutation,
 } from "@/lib/persistence/contracts";
 
+import { isReferenceMetadata } from "@/lib/persistence/reference-metadata";
+
 const statusLabels = {
   canon: "Canon",
   reference: "Reference",
@@ -508,7 +510,7 @@ export function PersistentLibrary() {
   const [filter, setFilter] = useState("all");
   const [search, setSearch] = useState("");
   const selected = data?.documents.find(
-    (document) => document.id === selectedId,
+    (document) => document.id === selectedId && !isReferenceMetadata(document),
   );
   const select = (id: string | null) => {
     if (saving || (id === selectedId && creating === (id === null))) return;
@@ -521,6 +523,7 @@ export function PersistentLibrary() {
   const documents =
     data?.documents.filter(
       (document) =>
+        !isReferenceMetadata(document) &&
         (filter === "all" || document.status === filter) &&
         `${document.title} ${document.body}`
           .toLocaleLowerCase()
@@ -576,7 +579,7 @@ export function PersistentLibrary() {
             {!documents.length && (
               <p className="muted">
                 {t(
-                  data.documents.length
+                  data.documents.some(document => !isReferenceMetadata(document))
                     ? "No documents match this search."
                     : "No documents yet. Add the world, character, or campaign notes you want to keep.",
                 )}

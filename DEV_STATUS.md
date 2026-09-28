@@ -1,3 +1,17 @@
+# Development status — V1 completion wave 1 — INTEGRATED CANDIDATE
+
+**Status:** all four bounded lane handoffs are integrated on `codex/v1-completion-wave1` from exact accepted main `e4f9171f9db87428b5b5812837474eb2c87c5aa8`. Mega DM v1 remains closed. This wave is not owner accepted or published to main. Frozen authority/ownership is in [the contract](V1_COMPLETION_WAVE1_CONTRACTS.md); [the owner guide](V1_COMPLETION_OWNER_REVIEW.md) explains the four clickable paths and limitations.
+
+**Implemented/integrated:** exact detached checkpoint inspection → natural-language reviewed child → immutable Scenario/Divergence approval → independent single-model prepared run; read-only public playable/Lab history with honest unknown associations and exact child lineage; manual Places reference/version history over existing Locations/documents; hand-correctable Visual Bible references and explicit MOCK FRAME queue/result/failure/cancellation/history over existing documents/Assets. Campaign navigation and Game/Gallery links are wired. Reference UI metadata is excluded from gameplay Memory and raw Library edits. No second DM, Memory, save/history/Actor/inventory authority, provider or media-job backend.
+
+**Verification state before the final gate:** lane-local tests/typechecks/lint passed. Lead's disposable populated upgrade checks passed at ten historical prefixes; shared continuation/receipt/metadata tests passed. Browser review exercised actual components in EN/RU at desktop and 390×844 with synthetic, page-local transports. Final complete suite/typegen/nonincremental typecheck/repository zero-warning lint/production webpack build are pending on the frozen candidate. Final results will be recorded separately; historical counts below are not reused as fresh wave results.
+
+**Limits:** SINGLE-MODEL continuation only, not full multi-model D2B. Timeline V1 has no invented historical Actor/place/consequence links or causal graph. Places are manual reference notes, not automatic visit/rest/housing mechanics. FRAME produces local labelled schematic MOCK art, not provider imagery. Asset and attachment use two existing idempotent writes with explicit interrupted-operation retry. Campaign-scoped owner reference edits retain history across ordinary Save/Load and can invalidate derived Lab bases. Migrations 21/22 are additive and have been executed only on disposable PGlite. No live model/image quality, physical iPhone, hosted Supabase, real-data import/migration or deployment is claimed.
+
+**Next:** finish the fresh integrated gate, document exact results and worker handoffs, push the reviewed candidate, and stop for owner acceptance. Original dirty checkout and historical live evidence remain untouched. No additional workers were spawned beyond the four primary lanes; the existing visual worker handles the single browser-discovered receipt-cache repair.
+
+---
+
 # Development status - V1 completion wave 1 - IMPLEMENTATION IN PROGRESS
 
 Baseline/main: e4f9171f9db87428b5b5812837474eb2c87c5aa8. Mega DM v1 is owner accepted, closed and fast-forward published. The original dirty checkout is untouched. The new integration branch is codex/v1-completion-wave1; main stays at the published closure head during review.

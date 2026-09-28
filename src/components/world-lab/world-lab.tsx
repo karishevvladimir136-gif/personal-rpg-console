@@ -7,6 +7,7 @@ import type { LabCatalog, LabRequest, PublicLabRun } from "../../lib/world-lab/c
 import type { LabAuthoringCatalog } from "../../lib/world-lab/authoring-contracts.ts";
 import type { AuthoringTransport } from "./authoring-client.ts";
 import { WorldLabAuthoring } from "./world-lab-authoring.tsx";
+import { WorldLabContinuation } from "./continuation.tsx";
 import {
   LabClientError, labControls, createLabTransport, mergeLabRun, pendingLabKey, prepareLabAttempt,
   readLabCatalog, readPublicLabRun, restoreLabAttempt, runLabAttempt,
@@ -45,6 +46,7 @@ function WorldLabSession({ campaignId, language, initialCatalog, initialAuthorin
   const [selectedId, setSelectedId] = useState("");
   const [busy, setBusy] = useState(false);
   const [authoringPending, setAuthoringPending] = useState(false);
+  const [continuationPending, setContinuationPending] = useState(false);
   const [pending, setPending] = useState<LabRequest | null>(null);
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
@@ -126,7 +128,7 @@ function WorldLabSession({ campaignId, language, initialCatalog, initialAuthorin
   const chosenBase = catalog?.bases.find((base) => base.saveId === saveId) ?? catalog?.bases[0];
   const chosenScenario = catalog?.scenarios.find((scenario) => scenario.divergenceVersionId === divergenceId) ?? catalog?.scenarios[0];
   const selected = catalog?.runs.find((run) => run.id === selectedId) ?? catalog?.runs[0];
-  const frozen = busy || pending !== null || authoringPending;
+  const frozen = busy || pending !== null || authoringPending || continuationPending;
   const eligible = !!chosenBase && !!chosenScenario;
   const validHorizon = /^\d+$/.test(horizon) && Number(horizon) >= 1 && Number(horizon) <= 43_200;
   const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -157,7 +159,8 @@ function WorldLabSession({ campaignId, language, initialCatalog, initialAuthorin
       </div>
 
       {!catalog ? <div className={styles.empty}><FlaskConical size={28} aria-hidden="true" /><p role="status">{error ? c.connection : c.loading}</p>{error && <button className={styles.secondary} onClick={() => void refresh()} disabled={busy}>{c.refresh}</button>}</div> : (
-        <><WorldLabAuthoring campaignId={campaignId} language={language} campaign={catalog} initialCatalog={initialAuthoringCatalog} transport={authoringTransport} disabled={busy || pending !== null} onPendingChange={setAuthoringPending} onPrepared={(run) => { setCatalog((current) => mergeLabRun(current ?? catalog, run)); setSelectedId(run.id); requestAnimationFrame(() => document.getElementById("lab-run-history")?.scrollIntoView({ behavior: "smooth", block: "start" })); }} />
+        <><WorldLabAuthoring campaignId={campaignId} language={language} campaign={catalog} initialCatalog={initialAuthoringCatalog} transport={authoringTransport} disabled={busy || pending !== null || continuationPending} onPendingChange={setAuthoringPending} onPrepared={(run) => { setCatalog((current) => mergeLabRun(current ?? catalog, run)); setSelectedId(run.id); requestAnimationFrame(() => document.getElementById("lab-run-history")?.scrollIntoView({ behavior: "smooth", block: "start" })); }} />
+        <WorldLabContinuation campaignId={campaignId} language={language} campaign={catalog} disabled={busy || pending !== null || authoringPending} onPendingChange={setContinuationPending} onPrepared={(run) => { setCatalog((current) => mergeLabRun(current ?? catalog, run)); setSelectedId(run.id); requestAnimationFrame(() => document.getElementById("lab-run-history")?.scrollIntoView({ behavior: "smooth", block: "start" })); }} />
         <div className={`${styles.layout} ${selected ? styles.hasRun : ""}`}>
           <aside className={styles.sidebar}>
             <details className={styles.expert}><summary>{c.reuse}</summary>
