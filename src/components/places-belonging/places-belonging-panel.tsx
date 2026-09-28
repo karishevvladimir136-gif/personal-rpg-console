@@ -307,40 +307,45 @@ export function PlacesBelongingPanel({
       )}
       {locations.length > 0 && (
         <div className="belonging-layout">
-          <aside className="panel belonging-list" aria-label={c.places}>
-            <h2>{c.places}</h2>
-            {!entries.length && <p className="muted">{c.empty}</p>}
-            {entries.map((entry) => (
-              <button
-                key={entry.documentId}
-                type="button"
-                className="belonging-place"
-                aria-pressed={selectedId === entry.documentId}
-                disabled={saving}
-                onClick={() => {
-                  if (canLeave()) {
-                    setDraft(null);
-                    setSelectedId(entry.documentId);
-                    setHistoryId(null);
-                    setError("");
-                  }
-                }}
-              >
-                <span className="eyebrow">
-                  {entry.annotation
-                    ? c.roles[entry.annotation.role]
-                    : c.changed}
-                </span>
-                <strong>
-                  {entry.annotation?.label ?? entry.location.name}
-                </strong>
-                <small>
-                  {entry.location.name} ·{" "}
-                  {entry.location.status === "visited" ? c.visited : c.known}
-                </small>
-              </button>
-            ))}
-          </aside>
+          <details
+            className="panel belonging-library"
+            open={!selected && !draft}
+          >
+            <summary>{c.places}</summary>
+            <nav className="belonging-list" aria-label={c.places}>
+              {!entries.length && <p className="muted">{c.empty}</p>}
+              {entries.map((entry) => (
+                <button
+                  key={entry.documentId}
+                  type="button"
+                  className="belonging-place"
+                  aria-pressed={selectedId === entry.documentId}
+                  disabled={saving}
+                  onClick={() => {
+                    if (canLeave()) {
+                      setDraft(null);
+                      setSelectedId(entry.documentId);
+                      setHistoryId(null);
+                      setError("");
+                    }
+                  }}
+                >
+                  <span className="eyebrow">
+                    {entry.annotation
+                      ? c.roles[entry.annotation.role]
+                      : c.changed}
+                  </span>
+                  <strong>
+                    {entry.annotation?.label ?? entry.location.name}
+                  </strong>
+                  <small>
+                    {entry.location.name} ·{" "}
+                    {entry.location.status === "visited" ? c.visited : c.known}
+                  </small>
+                </button>
+              ))}
+            </nav>
+          </details>
           <div className="belonging-content">
             {draft ? (
               <section className="panel belonging-editor">
@@ -491,22 +496,27 @@ export function PlacesBelongingPanel({
                       fields={selected.annotation!}
                       language={language}
                     />
-                    <div className="belonging-actions">
-                      <button
-                        className="button"
-                        type="button"
-                        onClick={() => open(selected)}
-                      >
-                        {c.edit}
-                      </button>
-                      <button
-                        className="button"
-                        type="button"
-                        onClick={() => setHistoryId(selected.documentId)}
-                      >
-                        {c.history}
-                      </button>
-                    </div>
+                    <details className="belonging-options">
+                      <summary>
+                        {c.edit} · {c.history}
+                      </summary>
+                      <div className="belonging-actions">
+                        <button
+                          className="button"
+                          type="button"
+                          onClick={() => open(selected)}
+                        >
+                          {c.edit}
+                        </button>
+                        <button
+                          className="button"
+                          type="button"
+                          onClick={() => setHistoryId(selected.documentId)}
+                        >
+                          {c.history}
+                        </button>
+                      </div>
+                    </details>
                   </>
                 )}
               </section>
@@ -539,8 +549,11 @@ export function PlacesBelongingPanel({
                 ) : (
                   <p className="muted">{c.notCurrent}</p>
                 )}
-                <p className="muted">{c.unknownVisits}</p>
-                <p className="muted">{c.unknownRelationships}</p>
+                <details className="belonging-options">
+                  <summary>{c.reference}</summary>
+                  <p className="muted">{c.unknownVisits}</p>
+                  <p className="muted">{c.unknownRelationships}</p>
+                </details>
               </section>
             )}
             {historyId && (

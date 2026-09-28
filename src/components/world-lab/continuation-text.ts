@@ -1,6 +1,8 @@
 export function continuationText(language: "en" | "ru") {
   const en = {
-    title: "Continue from a checkpoint",
+    title: "Another path from a recorded moment",
+    sourceSelection: "Choose a recorded starting point",
+    settings: "Model settings",
     intro:
       "Inspect an exact recorded moment, then describe a new What If for one independent child experiment.",
     sourceRun: "Source experiment",
@@ -42,7 +44,9 @@ export function continuationText(language: "en" | "ru") {
     nonCanon: "NON-CANON",
   };
   const ru: typeof en = {
-    title: "Продолжить из контрольной точки",
+    title: "Другой путь из сохранённого момента",
+    sourceSelection: "Выбрать сохранённую отправную точку",
+    settings: "Настройки модели",
     intro:
       "Осмотрите точный сохранённый момент, затем опишите новое «Что если» для одного независимого дочернего эксперимента.",
     sourceRun: "Исходный эксперимент",

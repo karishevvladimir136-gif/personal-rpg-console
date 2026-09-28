@@ -148,3 +148,40 @@ test("blocked checkpoint offers an explanation and no child-authoring action", (
   assert.equal(html.includes(c.choose), false);
   assert.equal(html.includes(c.interpret), false);
 });
+
+function assertOutsideCollapsedDetails(html, text) {
+  const encoded = text.replaceAll("&", "&amp;").replaceAll("\'", "&#x27;");
+  const index = html.indexOf(encoded);
+  assert.ok(index >= 0, text);
+  const stack = [];
+  for (const token of html
+    .slice(0, index)
+    .matchAll(/<details\b[^>]*>|<\/details>/g)) {
+    if (token[0].startsWith("</")) stack.pop();
+    else stack.push(/\bopen=/.test(token[0]));
+  }
+  assert.ok(stack.every(Boolean), `Required review hidden: ${text}`);
+}
+
+test("EN/RU continuation is optional until selected and expands required checkpoint review without hidden gates", () => {
+  for (const language of ["en", "ru"]) {
+    const f = continuationUiFixture(language, { ambiguous: true }),
+      c = continuationText(language),
+      a = authoringText(language);
+    const initial = render(f);
+    assert.doesNotMatch(initial.slice(0, initial.indexOf(">") + 1), /\bopen=/);
+    const review = render(f, {
+      initialInspection: f.inspection,
+      initialCatalog: f.catalog,
+    });
+    assert.match(review.slice(0, review.indexOf(">") + 1), /\bopen=/);
+    assertOutsideCollapsedDetails(review, f.inspection.checkpoint.summary);
+    for (const text of [
+      f.draft.proposal.ambiguities[0].question,
+      a.confirmTiming,
+      a.approvalHelp,
+    ])
+      assertOutsideCollapsedDetails(review, text);
+    assert.ok(review.includes(c.sourceSelection));
+  }
+});

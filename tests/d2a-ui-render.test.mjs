@@ -245,3 +245,63 @@ test("D2A raw markup remains escaped and private response extras are withheld", 
   f.draft.proposal.privateState = "PRIVATE_NEVER_RENDERED";
   assert.equal(render("en", f).includes("PRIVATE_NEVER_RENDERED"), false);
 });
+
+function assertOutsideCollapsedDetails(html, text) {
+  const encoded = text.replaceAll("&", "&amp;").replaceAll("\'", "&#x27;");
+  const index = html.indexOf(encoded);
+  assert.ok(index >= 0, text);
+  const stack = [];
+  for (const token of html
+    .slice(0, index)
+    .matchAll(/<details\b[^>]*>|<\/details>/g)) {
+    if (token[0].startsWith("</")) stack.pop();
+    else stack.push(/\bopen=/.test(token[0]));
+  }
+  assert.ok(stack.every(Boolean), `Required review hidden: ${text}`);
+}
+
+test("EN/RU What If keeps model settings optional and mandatory clarification, timing and approval visible", () => {
+  for (const language of ["en", "ru"]) {
+    const c = authoringText(language);
+    const empty = authoringUiFixture(language, { empty: true }),
+      form = render(language, empty);
+    const settings = form.indexOf(c.settings.replaceAll("&", "&amp;"));
+    const opener = form.lastIndexOf("<details", settings);
+    assert.ok(opener >= 0);
+    assert.doesNotMatch(
+      form.slice(opener, form.indexOf(">", opener) + 1),
+      /\bopen=/,
+    );
+    assert.ok(form.indexOf("<textarea") < settings);
+    assertOutsideCollapsedDetails(form, c.interpretCost);
+    const f = authoringUiFixture(language, { ambiguous: true }),
+      review = render(language, f);
+    for (const text of [
+      f.draft.proposal.ambiguities[0].question,
+      c.confirmTiming,
+      c.timingHelp,
+      c.approvalHelp,
+    ])
+      assertOutsideCollapsedDetails(review, text);
+    assert.match(
+      review,
+      /<button[^>]*disabled=""[^>]*>[^<]*(?:<[^>]+>)*Approve|<button[^>]*disabled=""/,
+    );
+  }
+});
+
+test("EN/RU existing proposals retain a prominent explicit route back to natural-language authoring", () => {
+  for (const language of ["en", "ru"]) {
+    const c = authoringText(language),
+      f = authoringUiFixture(language),
+      html = render(language, f);
+    const label = c.newProposal.replaceAll("&", "&amp;");
+    assert.ok(html.includes(`type="button">${label}</button>`));
+    assertOutsideCollapsedDetails(html, label);
+    assert.ok(
+      html.indexOf(`type="button">${label}</button>`) <
+        html.indexOf(c.original),
+    );
+    assertOutsideCollapsedDetails(html, c.approvalHelp);
+  }
+});

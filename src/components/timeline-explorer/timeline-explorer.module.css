@@ -588,3 +588,18 @@
     scroll-behavior: auto;
   }
 }
+
+.browse, .options, .recordDetails { color: var(--muted); font-size: 0.8rem; line-height: 1.8; }
+.browse > summary, .options > summary, .recordDetails > summary, .lineage > summary { cursor: pointer; color: #c6af88; min-height: 44px; padding-block: 0.6rem; }
+.browse .branchList { margin-top: 1rem; }
+.lineage > summary { display: list-item; }
+.lineage > summary svg { display: inline; margin-right: 0.5rem; vertical-align: middle; }
+.options { border-block: 1px solid var(--line); margin-bottom: 1.5rem; }
+.options .filters { margin-top: 0.8rem; }
+.recordDetails { margin-top: 1.5rem; border-top: 1px solid var(--line); }
+.narrative, .events p { max-width: 70ch; font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; line-height: 1.9; }
+@media (max-width: 850px) {
+  .sidebar { display: flex; flex-wrap: wrap; gap: 0.3rem 1.5rem; }
+  .browse, .lineage, .directory { flex: 1 1 200px; margin-top: 0; padding-top: 0; border-top: 0; }
+  .sidebar:has(details[open]) { display: grid; grid-template-columns: minmax(0, 1fr); }
+}

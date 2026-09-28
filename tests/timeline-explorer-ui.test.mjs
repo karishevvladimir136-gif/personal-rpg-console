@@ -366,3 +366,33 @@ test("Timeline actual EN/RU continuation lineage displays its parent checkpoint 
     assert.doesNotMatch(unknown, /FALSE_PLAYABLE_BASE_CANARY/);
   }
 });
+
+test("EN/RU chronicle keeps history selection, lineage and filters collapsed without losing narrative records", () => {
+  for (const language of ["en", "ru"]) {
+    const c = timelineText(language),
+      html = render(language);
+    for (const key of [
+      "browseHistories",
+      "lineage",
+      "filters",
+      "recordDetails",
+    ]) {
+      const escaped = c[key].replaceAll("&", "&amp;");
+      const position = html.indexOf(escaped);
+      assert.ok(position >= 0, key);
+      const opener = html.lastIndexOf("<details", position);
+      assert.ok(opener >= 0, key);
+      assert.doesNotMatch(
+        html.slice(opener, html.indexOf(">", opener) + 1),
+        /\bopen=/,
+        key,
+      );
+    }
+    assert.ok(html.includes("Departure"));
+    assert.ok(html.includes("Return"));
+    assert.match(
+      c.inactiveHelp,
+      language === "en" ? /full transcript/ : /полный текст/,
+    );
+  }
+});

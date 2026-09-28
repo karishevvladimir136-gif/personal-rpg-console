@@ -275,6 +275,20 @@ export function WorldLabAuthoring({
               <Sparkles size={15} aria-hidden="true" />
               <span>{selected ? c.review : c.whatIf}</span>
             </div>
+            {selected && (
+              <button
+                className={styles.primary}
+                type="button"
+                disabled={frozen}
+                onClick={() => {
+                  setSelectedVersion("");
+                  setNotice("");
+                  setError("");
+                }}
+              >
+                {c.newProposal}
+              </button>
+            )}
             {catalog.drafts.length > 0 && (
               <label className={styles.draftPicker}>
                 <span>{c.drafts}</span>
@@ -361,33 +375,39 @@ export function WorldLabAuthoring({
                         aria-describedby="lab-interpret-cost"
                       />
                     </label>
-                    <div className={styles.formGrid}>
-                      <label>
-                        {c.base}
-                        <select
-                          value={selectedBase?.saveId ?? ""}
-                          onChange={(e) => setSaveId(e.target.value)}
-                        >
-                          {campaign.bases.map((b) => (
-                            <option key={b.saveId} value={b.saveId}>
-                              {b.label} ·{" "}
-                              {labWorldTime(b.worldMinutes, language)}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
-                      <ModelFields
-                        language={language}
-                        models={catalog.models}
-                        modelId={offeredModel?.modelId ?? ""}
-                        reasoning={selectedReasoning}
-                        onModel={(id) => {
-                          setModelId(id);
-                          setReasoning("");
-                        }}
-                        onReasoning={setReasoning}
-                      />
-                    </div>
+                    <p className={styles.basisLine}>
+                      {c.savedBasis}: {selectedBase?.label}
+                    </p>
+                    <details className={styles.options}>
+                      <summary>{c.settings}</summary>
+                      <div className={styles.formGrid}>
+                        <label>
+                          {c.base}
+                          <select
+                            value={selectedBase?.saveId ?? ""}
+                            onChange={(e) => setSaveId(e.target.value)}
+                          >
+                            {campaign.bases.map((b) => (
+                              <option key={b.saveId} value={b.saveId}>
+                                {b.label} ·{" "}
+                                {labWorldTime(b.worldMinutes, language)}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                        <ModelFields
+                          language={language}
+                          models={catalog.models}
+                          modelId={offeredModel?.modelId ?? ""}
+                          reasoning={selectedReasoning}
+                          onModel={(id) => {
+                            setModelId(id);
+                            setReasoning("");
+                          }}
+                          onReasoning={setReasoning}
+                        />
+                      </div>
+                    </details>
                     {!offeredModel?.available && (
                       <p className={styles.message}>{c.modelEmpty}</p>
                     )}
@@ -886,35 +906,38 @@ export function ReviewEditor({
           />
           <span>{c.confirmTiming}</span>
         </label>
-        <div className={styles.formGrid}>
-          <ModelFields
-            language={language}
-            models={catalog.models}
-            modelId={modelId}
-            reasoning={reasoning}
-            onModel={(id) => {
-              setModelId(id);
-              const offered = catalog.models.find((m) => m.modelId === id);
-              if (!offered?.reasoning.includes(reasoning))
-                setReasoning(
-                  offered?.reasoning.includes("max")
-                    ? "max"
-                    : (offered?.reasoning.at(-1) ?? ""),
-                );
-            }}
-            onReasoning={setReasoning}
-          />
-          <div className={styles.policyReadOnly}>
-            <h3>{c.policy}</h3>
-            <p>
-              {c.simulationOn} · {c.autonomy}:{" "}
-              {c.autonomyValues[proposal.choices.policy.autonomy]} ·{" "}
-              {c.deadlines}:{" "}
-              {c.deadlineValues[proposal.choices.policy.deadlinePressure]}
-            </p>
-            <p className={styles.hint}>{c.policyHelp}</p>
+        <details className={styles.options}>
+          <summary>{c.modelSettings}</summary>
+          <div className={styles.formGrid}>
+            <ModelFields
+              language={language}
+              models={catalog.models}
+              modelId={modelId}
+              reasoning={reasoning}
+              onModel={(id) => {
+                setModelId(id);
+                const offered = catalog.models.find((m) => m.modelId === id);
+                if (!offered?.reasoning.includes(reasoning))
+                  setReasoning(
+                    offered?.reasoning.includes("max")
+                      ? "max"
+                      : (offered?.reasoning.at(-1) ?? ""),
+                  );
+              }}
+              onReasoning={setReasoning}
+            />
+            <div className={styles.policyReadOnly}>
+              <h3>{c.policy}</h3>
+              <p>
+                {c.simulationOn} · {c.autonomy}:{" "}
+                {c.autonomyValues[proposal.choices.policy.autonomy]} ·{" "}
+                {c.deadlines}:{" "}
+                {c.deadlineValues[proposal.choices.policy.deadlinePressure]}
+              </p>
+              <p className={styles.hint}>{c.policyHelp}</p>
+            </div>
           </div>
-        </div>
+        </details>
         {!available && <p className={styles.message}>{c.modelEmpty}</p>}
         {proposal.blockers.length > 0 && (
           <ul className={styles.blockers}>

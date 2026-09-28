@@ -185,3 +185,10 @@ form > .hint { margin-top: 0.9rem; }
   .marker { left: -1.35rem; }
   .summary { font-size: 1rem; }
 }
+
+.options, .runSettings { border-block: 1px solid var(--lab-line); color: #b8aa90; font-size: 0.78rem; min-width: 0; }
+.options > summary, .runSettings > summary, .modelProvenance > summary { min-height: 44px; padding: 0.7rem 0; cursor: pointer; color: #c4ac83; }
+.options .formGrid { margin-block: 0.8rem; }
+.runSettings { margin-bottom: 1rem; }
+.runSettings .clock { margin-top: 0.6rem; }
+.reviewFields > label > textarea, .summary, .events p { max-width: 72ch; font-family: Georgia, "Times New Roman", serif; font-size: 1.08rem; line-height: 1.9; }

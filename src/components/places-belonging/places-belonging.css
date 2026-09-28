@@ -160,3 +160,10 @@
     transition: none;
   }
 }
+
+.belonging-library > summary, .belonging-options > summary { color: #c7aa80; cursor: pointer; min-height: 44px; line-height: 1.7; padding-block: 10px; }
+.belonging-library .belonging-list { margin-top: 16px; }
+.belonging-options { margin-top: 20px; border-top: 1px solid #57483570; }
+.belonging-options .belonging-actions { margin-top: 12px; }
+.belonging-reading .belonging-notes dd { max-width: 68ch; font-family: Georgia, "Times New Roman", serif; font-size: 1.12rem; line-height: 1.9; color: #e2d8c8; }
+@media (max-width: 760px) { .belonging-library { padding-block: 12px; } }
