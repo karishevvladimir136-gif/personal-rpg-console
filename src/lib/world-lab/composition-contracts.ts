@@ -16,6 +16,7 @@ export type * from "./composition-public.ts";
 export type ComposeExecutionProfile = Omit<ExecutionProfile, "task"> & {
   task: "world.compose";
 };
+import type { LabContinuationBasis } from "./server-contracts.ts";
 export type CompositionBasis = {
   ownerId: string;
   campaignId: string;
@@ -29,6 +30,7 @@ export type CompositionBasis = {
   packVersionIds: string[];
   sourceVersionIds: string[];
   startWorldMinutes: number;
+  continuation?: LabContinuationBasis;
 };
 export type CompositionChoices = {
   policy: CompositionPolicy;

@@ -24,6 +24,12 @@ export type DetachedManifest = {
   publicMetadata: JsonObject;
   runId: string | null;
 };
+export type LabContinuationBasis = {
+  sourceRunId: string;
+  sourceCheckpointId: string;
+  sourceRunRevision: number;
+  sourceInputDigest: string;
+};
 export type LabInputBundle = {
   schemaVersion: 1;
   purpose: "simulation";
@@ -56,6 +62,7 @@ export type LabInputBundle = {
   throughWorldMinutes: number;
   // Absent in accepted deterministic D1 history. Immutable part of the run digest.
   executionProfile?: ExecutionProfile;
+  continuation?: LabContinuationBasis;
 };
 export type LabRun = {
   id: string;

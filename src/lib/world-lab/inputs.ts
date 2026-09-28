@@ -7,7 +7,8 @@ import type {
   TypedRecord,
 } from "../world-library/types.ts";
 import type { LabPrepareInput } from "./contracts.ts";
-import type { DetachedState, LabInputBundle } from "./server-contracts.ts";
+import type { DetachedState, LabInputBundle, LabContinuationBasis } from "./server-contracts.ts";
+import { assertLabContinuationBasis, parseLabContinuationBasis } from "./checkpoint-basis.ts";
 import { validateSettings } from "../persistence/validation.ts";
 import { parseRulesetRef, resolveRuleset } from "../rulesets/profiles.ts";
 import { parseWorldState } from "../world/validation.ts";
@@ -55,6 +56,8 @@ export type LabPreparationAuthority = {
   // Resolved by authenticated storage, never accepted from a browser command.
   sourceHeads: LabSourceHead[];
   documents: LabDocumentPin[];
+  continuation?: LabContinuationBasis;
+  scenarioRecords?: TypedLibraryRecord[];
 };
 
 /** SHA input shared with SQL: sorted ASCII object keys, ordered arrays, compact
@@ -185,6 +188,7 @@ export function parseLabInputBundle(value: unknown): LabInputBundle {
     "startWorldMinutes",
     "throughWorldMinutes",
     ...(value && typeof value === "object" && Object.hasOwn(value, "executionProfile") ? ["executionProfile"] : []),
+    ...(value && typeof value === "object" && Object.hasOwn(value, "continuation") ? ["continuation"] : []),
   ]);
   const base = object(row.base, [
     "saveId",
@@ -282,6 +286,10 @@ export function parseLabInputBundle(value: unknown): LabInputBundle {
     } : {}),
   };
   ensure((result.resolutionPolicy.id === "single-model-world-v1") === Boolean(result.executionProfile));
+  if (Object.hasOwn(row, "continuation")) {
+    result.continuation = parseLabContinuationBasis(row.continuation);
+    ensure(result.base.schemaVersion === 3 && result.base.manifestId === result.continuation.sourceCheckpointId, "scope");
+  }
   ensure(result.sourceHeads.length === result.sourceVersionIds.length, "scope");
   ensure(result.scenarioVersionId !== result.divergenceVersionId, "scope");
   canonicalLabJson(result);
@@ -432,12 +440,11 @@ export function prepareLabInput(
       state.manifest.campaignId === campaignId,
     "scope",
   );
-  ensure(
-    state.run === null &&
-      state.manifest.runId === null &&
-      state.manifest.schemaVersion === 2,
-    "scope",
-  );
+  const continuation = authority.continuation
+    ? assertLabContinuationBasis(authority.continuation, state) : undefined;
+  if (!continuation) ensure(state.run === null && state.manifest.runId === null && state.manifest.schemaVersion === 2, "scope");
+  else ensure(state.run!.input.base.saveId === authority.saveId, "scope");
+  ensure(!authority.scenarioRecords?.length || continuation, "scope");
   ensure(state.manifest.canonGeneration === state.canonGeneration, "conflict");
   // DetachedState is supplied by the injected exact-membership reader. Confirm
   // no caller replaced its derived rows after validation.
@@ -510,9 +517,12 @@ export function prepareLabInput(
     "scope",
   );
   const library = unique(
-    state.libraryRecords.map((row) => parseLibraryRecord(row, ownerId)),
+    [...state.libraryRecords, ...(authority.scenarioRecords ?? [])].map((row) => parseLibraryRecord(row, ownerId)),
     (row) => row.versionId,
   );
+  ensure((authority.scenarioRecords ?? []).every((record) =>
+    (record.kind === "scenario" && record.versionId === selection.scenarioVersionId) ||
+    (record.kind === "divergence" && record.versionId === selection.divergenceVersionId)), "scope");
   const scenario = requireLibrary(
     library,
     "scenario",
@@ -538,6 +548,7 @@ export function prepareLabInput(
   const composition = scenario.body.composition;
   if (composition) {
     const basis = composition.basis;
+    ensure(isDeepStrictEqual(basis.continuation, continuation), "conflict");
     ensure(composition.phase === "approved" && basis.ownerId === ownerId && basis.campaignId === campaignId && basis.saveId === authority.saveId && basis.baseManifestId === state.manifest.id && basis.baseTimelineId === state.manifest.timelineId && basis.canonGeneration === state.canonGeneration && basis.startWorldMinutes === startWorldMinutes, "conflict");
     ensure(composition.review?.horizonMinutes === horizon && isDeepStrictEqual(composition.review.policy, parseWorldState(foundation.world, campaignId).policy), "conflict");
   }
@@ -713,7 +724,7 @@ export function prepareLabInput(
   const documents = sortedDocuments(parseLabDocumentPins(authority.documents));
   if (composition) {
     ensure(sameSet(composition.basis.packVersionIds, packs.map((p) => p.versionId)) && sameSet(composition.basis.sourceVersionIds, sourceIds) && isDeepStrictEqual(composition.basis.sourceHeads, sourceHeads) && isDeepStrictEqual(composition.basis.documents, documents), "conflict");
-    ensure(composition.basis.basisDigest === sha256(canonicalLabJson({ownerId, campaignId, saveId: authority.saveId, manifestId: state.manifest.id, canonGeneration: state.canonGeneration, sourceHeads, documents})), "conflict");
+    ensure(composition.basis.basisDigest === sha256(canonicalLabJson({ownerId, campaignId, saveId: authority.saveId, manifestId: state.manifest.id, canonGeneration: state.canonGeneration, sourceHeads, documents, ...(continuation ? { continuation } : {})})), "conflict");
   }
   ensure(documents.length === state.documentVersions.length, "scope");
   for (const pin of documents) {
@@ -786,6 +797,7 @@ export function prepareLabInput(
     startWorldMinutes,
     throughWorldMinutes: startWorldMinutes + horizon,
     ...(composition ? { executionProfile: composition.simulationProfile } : {}),
+    ...(continuation ? { continuation } : {}),
   });
   return { input, inputDigest: labInputDigest(input) };
 }
