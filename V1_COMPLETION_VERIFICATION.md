@@ -1,3 +1,9 @@
+# V1 wave 1 — FRAME repair and bounded UX verification (in progress)
+
+Correction starts at `aa835f827c5b6c5de923b44c2b28fff2ec80fb22`. The implementation and focused checks are frozen for one complete final gate. Combined focused checks: **83/83**; real SQL lifecycle plus populated upgrades: **19/19**. Final results and before/after evidence will be prepended here after verification. The earlier wave report below is historical, not a substitute for fresh correction results. Main remains `e4f9171f9db87428b5b5812837474eb2c87c5aa8`.
+
+---
+
 # V1 completion wave 1 — integration verification
 
 ## Candidate and publication boundary
