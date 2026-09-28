@@ -333,17 +333,22 @@ function ContinuationSession({
         ? c.validation
         : c.connection;
   return (
-    <section className={styles.panel} lang={language}>
-      <header className={styles.heading}>
+    <details
+      className={styles.panel}
+      lang={language}
+      open={Boolean(inspection || pending || authoring)}
+    >
+      <summary className={styles.heading}>
         <GitBranch size={18} aria-hidden="true" />
         <h2>{c.title}</h2>
         <span className={styles.badge}>{c.nonCanon}</span>
-      </header>
+      </summary>
       <p className={styles.intro}>{c.intro}</p>
       {!campaign.runs.length ? (
         <p className={styles.message}>{c.empty}</p>
       ) : (
-        <div className={styles.source}>
+        <details className={styles.source} open={!inspection}>
+          <summary>{c.sourceSelection}</summary>
           <fieldset disabled={frozen} className={styles.fields}>
             <label>
               {c.sourceRun}
@@ -387,7 +392,7 @@ function ContinuationSession({
               {busy && !pending ? c.inspecting : c.inspect}
             </button>
           </fieldset>
-        </div>
+        </details>
       )}
       <div aria-live="polite" aria-atomic="true">
         {pending ? (
@@ -539,44 +544,47 @@ function ContinuationSession({
                     aria-describedby={costId}
                   />
                 </label>
-                <div className={styles.fields}>
-                  <label>
-                    {c.model}
-                    <select
-                      value={selectedModel?.modelId ?? ""}
-                      onChange={(e) => {
-                        setModelId(e.target.value);
-                        setReasoning("");
-                      }}
-                      required
-                    >
-                      {!selectedModel && <option value="">—</option>}
-                      {catalog.models.map((m) => (
-                        <option
-                          key={m.modelId}
-                          value={m.modelId}
-                          disabled={!m.available}
-                        >
-                          {m.label}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                  <label>
-                    {c.reasoning}
-                    <select
-                      value={selectedReasoning}
-                      onChange={(e) => setReasoning(e.target.value)}
-                      required
-                    >
-                      {selectedModel?.reasoning.map((r) => (
-                        <option key={r} value={r}>
-                          {r}
-                        </option>
-                      ))}
-                    </select>
-                  </label>
-                </div>
+                <details className={styles.options}>
+                  <summary>{c.settings}</summary>
+                  <div className={styles.fields}>
+                    <label>
+                      {c.model}
+                      <select
+                        value={selectedModel?.modelId ?? ""}
+                        onChange={(e) => {
+                          setModelId(e.target.value);
+                          setReasoning("");
+                        }}
+                        required
+                      >
+                        {!selectedModel && <option value="">—</option>}
+                        {catalog.models.map((m) => (
+                          <option
+                            key={m.modelId}
+                            value={m.modelId}
+                            disabled={!m.available}
+                          >
+                            {m.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                    <label>
+                      {c.reasoning}
+                      <select
+                        value={selectedReasoning}
+                        onChange={(e) => setReasoning(e.target.value)}
+                        required
+                      >
+                        {selectedModel?.reasoning.map((r) => (
+                          <option key={r} value={r}>
+                            {r}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                </details>
                 <button
                   className={styles.primary}
                   type="submit"
@@ -597,6 +605,6 @@ function ContinuationSession({
           )}
         </div>
       )}
-    </section>
+    </details>
   );
 }

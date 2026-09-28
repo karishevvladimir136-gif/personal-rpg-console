@@ -76,37 +76,40 @@ export function TimelineExplorer({
       )}
       <div className={styles.layout}>
         <aside className={styles.sidebar}>
-          <nav aria-label={c.histories} className={styles.branchList}>
-            {(["playable", "lab"] as const).map((kind) => (
-              <div key={kind}>
-                <h2>{kind === "playable" ? c.histories : c.labHistories}</h2>
-                {projection.branches
-                  .filter((row) => row.kind === kind)
-                  .map((row) => (
-                    <button
-                      key={row.key}
-                      type="button"
-                      className={`${styles.branchChoice} ${row.key === branch.key ? styles.selected : ""}`}
-                      aria-pressed={row.key === branch.key}
-                      onClick={() => setBranchKey(row.key)}
-                    >
-                      <span>{row.label}</span>
-                      <small>
-                        {row.active
-                          ? c.active
-                          : row.kind === "lab"
-                            ? c.nonCanon
-                            : c.playable}
-                        {row.status ? ` · ${c.status[row.status]}` : ""}
-                      </small>
-                    </button>
-                  ))}
-                {!projection.branches.some((row) => row.kind === kind) && (
-                  <p className={styles.quiet}>{c.none}</p>
-                )}
-              </div>
-            ))}
-          </nav>
+          <details className={styles.browse}>
+            <summary>{c.browseHistories}</summary>
+            <nav aria-label={c.histories} className={styles.branchList}>
+              {(["playable", "lab"] as const).map((kind) => (
+                <div key={kind}>
+                  <h2>{kind === "playable" ? c.histories : c.labHistories}</h2>
+                  {projection.branches
+                    .filter((row) => row.kind === kind)
+                    .map((row) => (
+                      <button
+                        key={row.key}
+                        type="button"
+                        className={`${styles.branchChoice} ${row.key === branch.key ? styles.selected : ""}`}
+                        aria-pressed={row.key === branch.key}
+                        onClick={() => setBranchKey(row.key)}
+                      >
+                        <span>{row.label}</span>
+                        <small>
+                          {row.active
+                            ? c.active
+                            : row.kind === "lab"
+                              ? c.nonCanon
+                              : c.playable}
+                          {row.status ? ` · ${c.status[row.status]}` : ""}
+                        </small>
+                      </button>
+                    ))}
+                  {!projection.branches.some((row) => row.kind === kind) && (
+                    <p className={styles.quiet}>{c.none}</p>
+                  )}
+                </div>
+              ))}
+            </nav>
+          </details>
           <Lineage
             branch={branch}
             language={language}
@@ -156,11 +159,11 @@ function Lineage({
   const c = timelineText(language);
   const savesHref = `/campaigns/${encodeURIComponent(campaignId)}/saves`;
   return (
-    <section className={styles.lineage} aria-label={c.lineage}>
-      <h2>
+    <details className={styles.lineage}>
+      <summary>
         <GitBranch size={14} aria-hidden="true" />
         {c.lineage}
-      </h2>
+      </summary>
       {branch.parent ? (
         <>
           <h3>{c.parent}</h3>
@@ -211,7 +214,7 @@ function Lineage({
           ))}
         </>
       )}
-    </section>
+    </details>
   );
 }
 
@@ -303,55 +306,58 @@ function BranchReader({
           <Clock3 size={13} aria-hidden="true" /> {c.savedTime}
         </p>
       )}
-      <div className={styles.filters}>
-        <label className={styles.search}>
-          <span>{c.search}</span>
-          <div>
-            <Search size={15} aria-hidden="true" />
-            <input
-              type="search"
-              value={search}
-              placeholder={c.searchPlaceholder}
-              onChange={(event) => {
-                setSearch(event.target.value);
-                filterChanged();
-              }}
-            />
-          </div>
-        </label>
-        {kind === "scene" && sessions.length > 0 && (
+      <details className={styles.options}>
+        <summary>{c.filters}</summary>
+        <div className={styles.filters}>
+          <label className={styles.search}>
+            <span>{c.search}</span>
+            <div>
+              <Search size={15} aria-hidden="true" />
+              <input
+                type="search"
+                value={search}
+                placeholder={c.searchPlaceholder}
+                onChange={(event) => {
+                  setSearch(event.target.value);
+                  filterChanged();
+                }}
+              />
+            </div>
+          </label>
+          {kind === "scene" && sessions.length > 0 && (
+            <label>
+              <span>{c.sessions}</span>
+              <select
+                value={sessionId}
+                onChange={(event) => {
+                  setSessionId(event.target.value);
+                  filterChanged();
+                }}
+              >
+                <option value="">{c.allSessions}</option>
+                {sessions.map((session) => (
+                  <option key={session.id} value={session.id}>
+                    {session.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
           <label>
-            <span>{c.sessions}</span>
+            <span>{c.order}</span>
             <select
-              value={sessionId}
+              value={reverse ? "newest" : "oldest"}
               onChange={(event) => {
-                setSessionId(event.target.value);
+                setReverse(event.target.value === "newest");
                 filterChanged();
               }}
             >
-              <option value="">{c.allSessions}</option>
-              {sessions.map((session) => (
-                <option key={session.id} value={session.id}>
-                  {session.title}
-                </option>
-              ))}
+              <option value="oldest">{c.oldest}</option>
+              <option value="newest">{c.newest}</option>
             </select>
           </label>
-        )}
-        <label>
-          <span>{c.order}</span>
-          <select
-            value={reverse ? "newest" : "oldest"}
-            onChange={(event) => {
-              setReverse(event.target.value === "newest");
-              filterChanged();
-            }}
-          >
-            <option value="oldest">{c.oldest}</option>
-            <option value="newest">{c.newest}</option>
-          </select>
-        </label>
-      </div>
+        </div>
+      </details>
       <div className={styles.momentsLayout}>
         <section className={styles.moments} aria-label={c.moments}>
           {!page.moments.length && (
@@ -478,20 +484,23 @@ function MomentDetail({
           )}
         </section>
       )}
-      <dl className={styles.associations}>
-        <dt>{c.actors}</dt>
-        <dd>{c.unknown}</dd>
-        <dt>{c.place}</dt>
-        <dd>{moment.place ?? c.unknown}</dd>
-        <dt>{c.consequences}</dt>
-        <dd>{c.unknown}</dd>
-        {moment.time.kind === "order" && (
-          <>
-            <dt>{c.recordedTime}</dt>
-            <dd>{c.timeUnknown}</dd>
-          </>
-        )}
-      </dl>
+      <details className={styles.recordDetails}>
+        <summary>{c.recordDetails}</summary>
+        <dl className={styles.associations}>
+          <dt>{c.actors}</dt>
+          <dd>{c.unknown}</dd>
+          <dt>{c.place}</dt>
+          <dd>{moment.place ?? c.unknown}</dd>
+          <dt>{c.consequences}</dt>
+          <dd>{c.unknown}</dd>
+          {moment.time.kind === "order" && (
+            <>
+              <dt>{c.recordedTime}</dt>
+              <dd>{c.timeUnknown}</dd>
+            </>
+          )}
+        </dl>
+      </details>
       {moment.session?.recap && (
         <details className={styles.recap}>
           <summary>

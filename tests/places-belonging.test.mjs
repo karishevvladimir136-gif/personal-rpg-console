@@ -521,3 +521,25 @@ test("bounded literal notes survive escaped control characters without an artifi
   assert.ok(body.length > 10000);
   assert.equal(parseBelonging(body).historyNote, text);
 });
+
+test("EN/RU Places opens on personal notes while browsing, editing and history remain optional", () => {
+  for (const language of ["en", "ru"]) {
+    const f = fixture(),
+      c = belongingText(language),
+      html = render(language, f.snapshot);
+    assert.ok(html.includes(f.annotation.belonging));
+    assert.ok(html.includes(f.annotation.returnNote));
+    for (const marker of ["belonging-library", "belonging-options"]) {
+      const index = html.indexOf(marker),
+        opener = html.lastIndexOf("<details", index);
+      assert.ok(opener >= 0);
+      assert.doesNotMatch(
+        html.slice(opener, html.indexOf(">", opener) + 1),
+        /\bopen=/,
+      );
+    }
+    const editButton = html.indexOf(`>${c.edit}</button>`);
+    assert.ok(editButton > html.indexOf(f.annotation.returnNote));
+    assert.doesNotMatch(html, /<textarea|<form/);
+  }
+});

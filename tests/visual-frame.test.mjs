@@ -700,7 +700,9 @@ test("Visual Bible default transport retains its production API endpoint and his
       return history;
     },
   });
-  const transport = component.PersistentVisualFrame().props.value;
+  const wrapper = component.PersistentVisualFrame();
+  assert.equal(wrapper.props.children.props.syntheticControls, false);
+  const transport = wrapper.props.value;
   const mutation = request(
     visualDocumentMutation(
       fixture(),
@@ -760,7 +762,7 @@ test("injected Visual Bible transport performs save/history with no production n
   );
 });
 
-async function visualPanelHarness() {
+async function visualPanelHarness({ syntheticControls = true } = {}) {
   const [
     { createMutationAttempt, ClientPersistenceError },
     visualModel,
@@ -891,7 +893,11 @@ async function visualPanelHarness() {
   );
   function render() {
     cursor = 0;
-    return component.PersistentVisualFrame({ transport }).props.children.type();
+    const panel = component.PersistentVisualFrame({
+      transport,
+      syntheticControls,
+    }).props.children;
+    return panel.type(panel.props);
   }
   function textOf(node) {
     if (typeof node === "string" || typeof node === "number")
@@ -924,6 +930,7 @@ async function visualPanelHarness() {
     controls,
     render,
     click,
+    hasButton: (label) => Boolean(findButton(render(), label)),
     frames: () =>
       visualDocuments(server).filter((e) => e.value.kind === "frame"),
   };
@@ -1059,4 +1066,59 @@ test("FRAME dedicated authority cannot run before authorization, receipt lookup 
     (e) => e.code === "validation",
   );
   assert.deepEqual(rejected.calls, ["authorize", "receipt", "snapshot"]);
+});
+
+test("ordinary FRAME controls allow explicit queue and cancel without synthetic completion or failure actions", async () => {
+  const h = await visualPanelHarness({ syntheticControls: false });
+  h.render();
+  assert.equal(h.submissions.length, 0);
+  await h.click("FRAME · queue mock preview");
+  assert.equal(h.frames().length, 1);
+  assert.equal(h.hasButton("Complete mock preview"), false);
+  assert.equal(h.hasButton("Test mock failure"), false);
+  assert.equal(h.hasButton("Cancel"), true);
+  await h.click("Cancel");
+  assert.equal(h.frames()[0].value.status, "cancelled");
+  assert.equal(h.server.assets.length, 0);
+});
+
+test("Visual Bible leads with reviewed appearance references and keeps scene composition and request history progressive", async () => {
+  const h = await visualPanelHarness({ syntheticControls: false });
+  const children = h.render().props.children;
+  const titles = children
+    .filter((n) => n?.props?.title)
+    .map((n) => n.props.title);
+  assert.deepEqual(Array.from(titles), [
+    "Reviewed visual identity",
+    "Capture a public scene",
+  ]);
+  const details = children.filter((n) => n?.type === "details");
+  assert.equal(details.length, 1);
+  assert.equal(Boolean(details[0].props.open), false);
+  assert.equal(h.submissions.length, 0);
+});
+
+test("Visual Bible keeps appearance and owner approval visible while correction history stays secondary", async () => {
+  const h = await visualPanelHarness({ syntheticControls: false });
+  const found = new Map();
+  function visit(node, collapsed = false) {
+    if (Array.isArray(node))
+      return node.forEach((child) => visit(child, collapsed));
+    if (!node?.props) return;
+    const hidden = collapsed || (node.type === "details" && !node.props.open);
+    if (node.type === "button") {
+      const label = node.props.children;
+      if (typeof label === "string")
+        found.set(label, { hidden, primary: Boolean(node.props.primary) });
+    }
+    visit(node.props.children, hidden);
+  }
+  visit(h.render());
+  assert.deepEqual(found.get("Set as Canon visual reference"), {
+    hidden: false,
+    primary: true,
+  });
+  assert.equal(found.get("Correct / history").hidden, true);
+  assert.equal(found.get("Invalidate approval").hidden, true);
+  assert.equal(h.submissions.length, 0);
 });

@@ -345,14 +345,19 @@ function ReferenceEditor({
 
 export function PersistentVisualFrame({
   transport,
-}: { transport?: VisualFrameTransport } = {}) {
+  syntheticControls = false,
+}: { transport?: VisualFrameTransport; syntheticControls?: boolean } = {}) {
   return (
     <VisualFrameTransportContext.Provider value={transport ?? defaultTransport}>
-      <VisualFramePanel />
+      <VisualFramePanel syntheticControls={syntheticControls} />
     </VisualFrameTransportContext.Provider>
   );
 }
-function VisualFramePanel() {
+function VisualFramePanel({
+  syntheticControls,
+}: {
+  syntheticControls: boolean;
+}) {
   const w = useVisualWords();
   const transport = useVisualFrameTransport();
   const { data, refresh } = useCampaignData();
@@ -509,11 +514,11 @@ function VisualFramePanel() {
       }[value],
     );
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-6xl space-y-6">
       <div className="page-heading">
         <div>
           <p className="eyebrow">
-            {w("CAMPAIGN VISUALS · MOCK V0", "ОБРАЗЫ КАМПАНИИ · MOCK V0")}
+            {w("THE LOOK OF YOUR WORLD", "ОБЛИК ВАШЕГО МИРА")}
           </p>
           <h1>{w("Visual Bible & FRAME", "Визуальная библия и FRAME")}</h1>
           <p>
@@ -524,45 +529,190 @@ function VisualFramePanel() {
           </p>
         </div>
       </div>
-      <p className="rounded-lg border border-[#765b36] bg-[#201e1a] p-4">
+      <p className="muted max-w-3xl text-sm leading-relaxed">
         {w(
-          "MOCK only · $0 provider spend. Local schematic art demonstrates the request lifecycle; it does not depict your campaign. No image provider is connected. Text gameplay continues independently.",
-          "Только MOCK · расходы на провайдеров $0. Локальная схема показывает жизненный цикл запроса; это не изображение вашей кампании. Провайдер изображений не подключён. Текстовая игра работает независимо.",
+          "Local MOCK previews · $0 provider spend. No image provider is connected. These schematic placeholders do not depict your campaign; text gameplay continues independently.",
+          "Локальные превью MOCK · расходы на провайдеров $0. Провайдер изображений не подключён. Схемы не изображают вашу кампанию; текстовая игра работает независимо.",
         )}
       </p>
       {error && <p role="alert">{error}</p>}
-      <Panel title={w("Capture a public scene", "Запечатлеть открытую сцену")}>
-        <div className="grid gap-4 md:grid-cols-2">
-          <label className="field">
-            <span>{w("Public narration", "Открытая сцена")}</span>
-            <select
-              value={currentScene?.id ?? ""}
-              onChange={(e) => setSceneId(e.target.value)}
-            >
-              {scenes.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.sequence}. {s.title}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="field">
-            <span>{w("Composition", "Композиция")}</span>
-            <select
-              value={composition}
-              onChange={(e) =>
-                setComposition(e.target.value as VisualFrame["composition"])
-              }
-            >
-              <option value="wide">{w("Wide shot", "Общий план")}</option>
-              <option value="portrait">{w("Portrait", "Портрет")}</option>
-              <option value="location">{w("Location", "Место")}</option>
-              <option value="item">{w("Item", "Предмет")}</option>
-            </select>
-          </label>
+      <Panel
+        title={w("Reviewed visual identity", "Проверенные визуальные образы")}
+      >
+        <p className="muted">
+          {w(
+            "Visual Canon is an approved appearance reference. It grants no story, equipment or world authority. Alternate outfits and location variants can have separate references.",
+            "Визуальный канон — утверждённый образец внешности. Он не меняет сюжет, снаряжение или мир. Для другой одежды и вариантов места можно создать отдельные образцы.",
+          )}
+        </p>
+        <Button
+          primary
+          disabled={busy}
+          onClick={() =>
+            setEditor({
+              initial: newVisualReference(
+                snapshot,
+                visualSubjects(snapshot)[0].subject,
+              ),
+              snapshot,
+            })
+          }
+        >
+          {w(
+            "Add reference / alternate outfit",
+            "Добавить образец / вариант одежды",
+          )}
+        </Button>
+        {!references.length && (
+          <p className="muted">
+            {w(
+              "No reviewed references yet. Start with a character, known place, item or campaign style.",
+              "Проверенных образцов пока нет. Начните с персонажа, известного места, предмета или стиля кампании.",
+            )}
+          </p>
+        )}
+        <div className="mt-4 grid gap-4 md:grid-cols-2">
+          {references.map(({ record, value }) => {
+            const current = referenceIsCurrent(snapshot, value);
+            const subjectExists = visualSubjects(snapshot).some(
+              (r) =>
+                r.subject.kind === value.subject.kind &&
+                r.subject.id === value.subject.id,
+            );
+            const art = snapshot.assets.find(
+              (a) =>
+                a.id === value.imageAssetId &&
+                a.campaign_id === snapshot.campaign.id,
+            );
+            return (
+              <article
+                key={record.id}
+                className="min-w-0 rounded-lg border border-[#604b30] bg-[#171b1d] p-4"
+              >
+                <h3 className="font-serif text-2xl font-normal">
+                  {value.label}
+                </h3>
+                <Badge>
+                  {current
+                    ? status(value.approval)
+                    : w(
+                        "Source changed · approval unavailable",
+                        "Источник изменён · утверждение недоступно",
+                      )}
+                </Badge>
+                {art && mockArtForAsset(art) ? (
+                  <div className="my-3">
+                    <MockVisualArt
+                      art={mockArtForAsset(art)!}
+                      label={w(
+                        "Mock reference placeholder",
+                        "Схема образца MOCK",
+                      )}
+                    />
+                  </div>
+                ) : art ? (
+                  <p>
+                    {w(
+                      "Linked Gallery image:",
+                      "Связанное изображение галереи:",
+                    )}{" "}
+                    {art.title}
+                  </p>
+                ) : null}
+                <p className="my-3 whitespace-pre-wrap break-words font-serif text-lg leading-relaxed">
+                  {value.appearance}
+                </p>
+                <p className="my-3 whitespace-pre-wrap break-words font-serif text-lg leading-relaxed">
+                  {value.outfit}
+                </p>
+                <div className="my-4 flex flex-wrap gap-2">
+                  <Button
+                    primary
+                    disabled={busy || !current || value.approval === "approved"}
+                    onClick={() => {
+                      void act(async () => {
+                        await save(
+                          `approve:${record.id}`,
+                          visualDocumentMutation(
+                            snapshot,
+                            { ...value, approval: "approved" },
+                            record,
+                          ),
+                        );
+                      });
+                    }}
+                  >
+                    {w(
+                      "Set as Canon visual reference",
+                      "Утвердить визуальный канон",
+                    )}
+                  </Button>
+                </div>
+                <details className="border-t border-[#604b30] pt-3">
+                  <summary className="cursor-pointer py-2 text-[#ccb28b]">
+                    {w(
+                      "Guidance & reference history",
+                      "Указания и история образца",
+                    )}
+                  </summary>
+                  <p className="muted whitespace-pre-wrap break-words">
+                    {value.guidance}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    <Button
+                      disabled={busy}
+                      onClick={() => {
+                        if (!subjectExists) return;
+                        const source = newVisualReference(
+                          snapshot,
+                          value.subject,
+                        );
+                        setEditor({
+                          initial: {
+                            ...value,
+                            sourceRevision: source.sourceRevision,
+                            label: source.label,
+                            approval: "draft",
+                            ...(!current
+                              ? { imageAssetId: null, imageAssetRevision: null }
+                              : {}),
+                          },
+                          record,
+                          snapshot,
+                        });
+                      }}
+                    >
+                      {w("Correct / history", "Исправить / история")}
+                    </Button>
+                    <Button
+                      disabled={
+                        busy || !current || value.approval === "invalidated"
+                      }
+                      onClick={() => {
+                        void act(async () => {
+                          await save(
+                            `invalidate:${record.id}`,
+                            visualDocumentMutation(
+                              snapshot,
+                              { ...value, approval: "invalidated" },
+                              record,
+                            ),
+                          );
+                        });
+                      }}
+                    >
+                      {w("Invalidate approval", "Отозвать утверждение")}
+                    </Button>
+                  </div>
+                </details>
+              </article>
+            );
+          })}
         </div>
+      </Panel>
+      <Panel title={w("Capture a public scene", "Запечатлеть открытую сцену")}>
         {currentScene ? (
-          <p className="max-h-52 overflow-auto whitespace-pre-wrap break-words border-l-2 border-[#997748] pl-4">
+          <p className="max-w-[72ch] whitespace-pre-wrap break-words border-l-2 border-[#997748] pl-5 font-serif text-lg leading-relaxed">
             {currentScene.body}
           </p>
         ) : (
@@ -573,6 +723,40 @@ function VisualFramePanel() {
             )}
           </p>
         )}
+        <details className="my-5 rounded-lg border border-[#604b30] p-4">
+          <summary className="cursor-pointer text-[#ccb28b]">
+            {w("Scene & composition", "Сцена и композиция")}
+          </summary>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            <label className="field">
+              <span>{w("Public narration", "Открытая сцена")}</span>
+              <select
+                value={currentScene?.id ?? ""}
+                onChange={(e) => setSceneId(e.target.value)}
+              >
+                {scenes.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.sequence}. {s.title}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="field">
+              <span>{w("Composition", "Композиция")}</span>
+              <select
+                value={composition}
+                onChange={(e) =>
+                  setComposition(e.target.value as VisualFrame["composition"])
+                }
+              >
+                <option value="wide">{w("Wide shot", "Общий план")}</option>
+                <option value="portrait">{w("Portrait", "Портрет")}</option>
+                <option value="location">{w("Location", "Место")}</option>
+                <option value="item">{w("Item", "Предмет")}</option>
+              </select>
+            </label>
+          </div>
+        </details>
         <fieldset className="my-4">
           <legend>
             {w(
@@ -651,322 +835,175 @@ function VisualFramePanel() {
           </p>
         )}
       </Panel>
-      <Panel
-        title={w("Reviewed visual identity", "Проверенные визуальные образы")}
-      >
-        <p className="muted">
+      <details className="panel rounded-lg border border-[#604b30] p-5">
+        <summary className="cursor-pointer text-[#ccb28b]">
           {w(
-            "Visual Canon is an approved appearance reference. It grants no story, equipment or world authority. Alternate outfits and location variants can have separate references.",
-            "Визуальный канон — утверждённый образец внешности. Он не меняет сюжет, снаряжение или мир. Для другой одежды и вариантов места можно создать отдельные образцы.",
+            "FRAME requests & visual history",
+            "Запросы FRAME и история изображений",
+          )}{" "}
+          · {frames.length}
+        </summary>
+        <div className="mt-5">
+          {!frames.length && (
+            <p className="muted">
+              {w(
+                "No frame requests yet. Queued requests persist when you leave this screen; nothing runs automatically.",
+                "Запросов ещё нет. Очередь сохраняется при выходе с экрана; ничего не запускается автоматически.",
+              )}
+            </p>
           )}
-        </p>
-        <Button
-          primary
-          disabled={busy}
-          onClick={() =>
-            setEditor({
-              initial: newVisualReference(
-                snapshot,
-                visualSubjects(snapshot)[0].subject,
-              ),
-              snapshot,
-            })
-          }
-        >
-          {w(
-            "Add reference / alternate outfit",
-            "Добавить образец / вариант одежды",
-          )}
-        </Button>
-        {!references.length && (
-          <p className="muted">
-            {w(
-              "No reviewed references yet. Start with a character, known place, item or campaign style.",
-              "Проверенных образцов пока нет. Начните с персонажа, известного места, предмета или стиля кампании.",
-            )}
-          </p>
-        )}
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          {references.map(({ record, value }) => {
-            const current = referenceIsCurrent(snapshot, value);
-            const subjectExists = visualSubjects(snapshot).some(
-              (r) =>
-                r.subject.kind === value.subject.kind &&
-                r.subject.id === value.subject.id,
-            );
-            const art = snapshot.assets.find(
-              (a) =>
-                a.id === value.imageAssetId &&
-                a.campaign_id === snapshot.campaign.id,
-            );
-            return (
-              <article
-                key={record.id}
-                className="min-w-0 rounded-lg border border-[#604b30] bg-[#171b1d] p-4"
-              >
-                <h3>{value.label}</h3>
-                <Badge>
-                  {current
-                    ? status(value.approval)
-                    : w(
-                        "Source changed · approval unavailable",
-                        "Источник изменён · утверждение недоступно",
-                      )}
-                </Badge>
-                {art && mockArtForAsset(art) ? (
-                  <div className="my-3">
-                    <MockVisualArt
-                      art={mockArtForAsset(art)!}
-                      label={w(
-                        "Mock reference placeholder",
-                        "Схема образца MOCK",
-                      )}
-                    />
-                  </div>
-                ) : art ? (
-                  <p>
-                    {w(
-                      "Linked Gallery image:",
-                      "Связанное изображение галереи:",
-                    )}{" "}
-                    {art.title}
-                  </p>
-                ) : null}
-                <p className="whitespace-pre-wrap break-words">
-                  {value.appearance}
-                </p>
-                <p className="whitespace-pre-wrap break-words">
-                  {value.outfit}
-                </p>
-                <p className="muted whitespace-pre-wrap break-words">
-                  {value.guidance}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Button
-                    disabled={busy}
-                    onClick={() => {
-                      if (!subjectExists) return;
-                      const source = newVisualReference(
-                        snapshot,
-                        value.subject,
-                      );
-                      setEditor({
-                        initial: {
-                          ...value,
-                          sourceRevision: source.sourceRevision,
-                          label: source.label,
-                          approval: "draft",
-                          ...(!current
-                            ? { imageAssetId: null, imageAssetRevision: null }
-                            : {}),
-                        },
-                        record,
-                        snapshot,
-                      });
-                    }}
+          <div className="space-y-5">
+            {frames
+              .slice()
+              .reverse()
+              .map(({ record, value }) => {
+                const current = frameIsCurrent(snapshot, value);
+                const asset = snapshot.assets.find(
+                  (a) =>
+                    a.campaign_id === snapshot.campaign.id &&
+                    a.id === value.resultAssetId,
+                );
+                return (
+                  <article
+                    key={record.id}
+                    className="min-w-0 rounded-lg border border-[#604b30] bg-[#171b1d] p-4"
                   >
-                    {w("Correct / history", "Исправить / история")}
-                  </Button>
-                  <Button
-                    disabled={busy || !current || value.approval === "approved"}
-                    onClick={() => {
-                      void act(async () => {
-                        await save(
-                          `approve:${record.id}`,
-                          visualDocumentMutation(
-                            snapshot,
-                            { ...value, approval: "approved" },
-                            record,
-                          ),
-                        );
-                      });
-                    }}
-                  >
-                    {w(
-                      "Set as Canon visual reference",
-                      "Утвердить визуальный канон",
+                    <h3>{value.basis.scene.title}</h3>
+                    <Badge>
+                      {w("MOCK · ", "ОБРАЗЕЦ · ")}
+                      {status(value.status)}
+                    </Badge>
+                    {!current && (
+                      <p className="muted">
+                        {w(
+                          "Historical / source changed. Review current state before reusing this image; it cannot finish against an old basis.",
+                          "Исторический / источник изменён. Проверьте текущую ситуацию перед использованием; запрос со старой основой не завершится.",
+                        )}
+                      </p>
                     )}
-                  </Button>
-                  <Button
-                    disabled={
-                      busy || !current || value.approval === "invalidated"
-                    }
-                    onClick={() => {
-                      void act(async () => {
-                        await save(
-                          `invalidate:${record.id}`,
-                          visualDocumentMutation(
-                            snapshot,
-                            { ...value, approval: "invalidated" },
-                            record,
-                          ),
-                        );
-                      });
-                    }}
-                  >
-                    {w("Invalidate approval", "Отозвать утверждение")}
-                  </Button>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </Panel>
-      <Panel
-        title={w(
-          "FRAME requests & visual history",
-          "Запросы FRAME и история изображений",
-        )}
-      >
-        {!frames.length && (
-          <p className="muted">
-            {w(
-              "No frame requests yet. Queued requests persist when you leave this screen; nothing runs automatically.",
-              "Запросов ещё нет. Очередь сохраняется при выходе с экрана; ничего не запускается автоматически.",
-            )}
-          </p>
-        )}
-        <div className="space-y-5">
-          {frames
-            .slice()
-            .reverse()
-            .map(({ record, value }) => {
-              const current = frameIsCurrent(snapshot, value);
-              const asset = snapshot.assets.find(
-                (a) =>
-                  a.campaign_id === snapshot.campaign.id &&
-                  a.id === value.resultAssetId,
-              );
-              return (
-                <article
-                  key={record.id}
-                  className="min-w-0 rounded-lg border border-[#604b30] bg-[#171b1d] p-4"
-                >
-                  <h3>{value.basis.scene.title}</h3>
-                  <Badge>
-                    {w("MOCK · ", "ОБРАЗЕЦ · ")}
-                    {status(value.status)}
-                  </Badge>
-                  {!current && (
-                    <p className="muted">
-                      {w(
-                        "Historical / source changed. Review current state before reusing this image; it cannot finish against an old basis.",
-                        "Исторический / источник изменён. Проверьте текущую ситуацию перед использованием; запрос со старой основой не завершится.",
+                    {value.status === "completed" &&
+                      asset &&
+                      mockArtForAsset(asset) && (
+                        <div className="my-3 max-w-3xl">
+                          <MockVisualArt
+                            art={mockArtForAsset(asset)!}
+                            label={w(
+                              "Completed mock frame schematic",
+                              "Схема готового кадра MOCK",
+                            )}
+                          />
+                        </div>
                       )}
-                    </p>
-                  )}
-                  {value.status === "completed" &&
-                    asset &&
-                    mockArtForAsset(asset) && (
-                      <div className="my-3 max-w-3xl">
-                        <MockVisualArt
-                          art={mockArtForAsset(asset)!}
-                          label={w(
-                            "Completed mock frame schematic",
-                            "Схема готового кадра MOCK",
-                          )}
-                        />
-                      </div>
+                    {value.status === "completed" && !asset && (
+                      <p>
+                        {w(
+                          "The original result is unavailable in this active timeline. Request history remains.",
+                          "Исходный результат недоступен в активной линии времени. История запроса сохранена.",
+                        )}
+                      </p>
                     )}
-                  {value.status === "completed" && !asset && (
-                    <p>
-                      {w(
-                        "The original result is unavailable in this active timeline. Request history remains.",
-                        "Исходный результат недоступен в активной линии времени. История запроса сохранена.",
-                      )}
-                    </p>
-                  )}
-                  <div className="flex flex-wrap gap-2">
-                    <Button disabled={busy} onClick={() => setInspected(value)}>
-                      {w("Inspect brief", "Проверить описание")}
-                    </Button>
-                    <Button
-                      disabled={busy}
-                      onClick={() => {
-                        void transport
-                          .history(snapshot.campaign.id, record.id)
-                          .then((rows) => setHistory({ record, rows }))
-                          .catch(failure);
-                      }}
-                    >
-                      {w("History", "История")}
-                    </Button>
-                    {value.status === "queued" && (
-                      <>
-                        <Button
-                          primary
-                          disabled={busy || !current}
-                          onClick={() => {
-                            void act(() => finish(record, value));
-                          }}
-                        >
-                          {w("Complete mock preview", "Завершить превью MOCK")}
-                        </Button>
-                        <Button
-                          disabled={busy}
-                          onClick={() => {
-                            void act(async () => {
-                              await save(
-                                `cancel:${record.id}`,
-                                visualDocumentMutation(
-                                  snapshot,
-                                  { ...value, status: "cancelled" },
-                                  record,
-                                ),
-                              );
-                            });
-                          }}
-                        >
-                          {w("Cancel", "Отменить")}
-                        </Button>
-                        <Button
-                          disabled={busy}
-                          onClick={() => {
-                            void act(async () => {
-                              await save(
-                                `fail:${record.id}`,
-                                visualDocumentMutation(
-                                  snapshot,
-                                  { ...value, status: "failed" },
-                                  record,
-                                ),
-                              );
-                            });
-                          }}
-                        >
-                          {w("Test mock failure", "Проверить ошибку MOCK")}
-                        </Button>
-                      </>
-                    )}
-                    {value.status === "completed" && asset && (
+                    <div className="flex flex-wrap gap-2">
                       <Button
                         disabled={busy}
-                        onClick={() =>
-                          setEditor({
-                            snapshot,
-                            initial: {
-                              ...newVisualReference(
-                                snapshot,
-                                visualSubjects(snapshot)[0].subject,
-                              ),
-                              imageAssetId: asset.id,
-                              imageAssetRevision: asset.revision,
-                            },
-                          })
-                        }
+                        onClick={() => setInspected(value)}
                       >
-                        {w(
-                          "Use result as a visual reference draft",
-                          "Использовать результат как черновик образца",
-                        )}
+                        {w("Inspect brief", "Проверить описание")}
                       </Button>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
+                      <Button
+                        disabled={busy}
+                        onClick={() => {
+                          void transport
+                            .history(snapshot.campaign.id, record.id)
+                            .then((rows) => setHistory({ record, rows }))
+                            .catch(failure);
+                        }}
+                      >
+                        {w("History", "История")}
+                      </Button>
+                      {value.status === "queued" && (
+                        <>
+                          {syntheticControls && (
+                            <Button
+                              primary
+                              disabled={busy || !current}
+                              onClick={() => {
+                                void act(() => finish(record, value));
+                              }}
+                            >
+                              {w(
+                                "Complete mock preview",
+                                "Завершить превью MOCK",
+                              )}
+                            </Button>
+                          )}
+                          <Button
+                            disabled={busy}
+                            onClick={() => {
+                              void act(async () => {
+                                await save(
+                                  `cancel:${record.id}`,
+                                  visualDocumentMutation(
+                                    snapshot,
+                                    { ...value, status: "cancelled" },
+                                    record,
+                                  ),
+                                );
+                              });
+                            }}
+                          >
+                            {w("Cancel", "Отменить")}
+                          </Button>
+                          {syntheticControls && (
+                            <Button
+                              disabled={busy}
+                              onClick={() => {
+                                void act(async () => {
+                                  await save(
+                                    `fail:${record.id}`,
+                                    visualDocumentMutation(
+                                      snapshot,
+                                      { ...value, status: "failed" },
+                                      record,
+                                    ),
+                                  );
+                                });
+                              }}
+                            >
+                              {w("Test mock failure", "Проверить ошибку MOCK")}
+                            </Button>
+                          )}
+                        </>
+                      )}
+                      {value.status === "completed" && asset && (
+                        <Button
+                          disabled={busy}
+                          onClick={() =>
+                            setEditor({
+                              snapshot,
+                              initial: {
+                                ...newVisualReference(
+                                  snapshot,
+                                  visualSubjects(snapshot)[0].subject,
+                                ),
+                                imageAssetId: asset.id,
+                                imageAssetRevision: asset.revision,
+                              },
+                            })
+                          }
+                        >
+                          {w(
+                            "Use result as a visual reference draft",
+                            "Использовать результат как черновик образца",
+                          )}
+                        </Button>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
+          </div>
         </div>
-      </Panel>
+      </details>
       {editor && (
         <ReferenceEditor
           key={`${editor.record?.id ?? "new"}:${editor.snapshot.timeline?.epoch}`}

@@ -1,6 +1,8 @@
 export function authoringText(language: "en" | "ru") {
   const en = {
     whatIf: "What if…",
+    settings: "Starting point & model settings",
+    modelSettings: "Model & simulation settings",
     placeholder: "What if the harbor commander kept the eastern gate open?",
     introduction:
       "Describe one change. Review the interpretation before preparing an independent path through your world.",
@@ -142,6 +144,8 @@ export function authoringText(language: "en" | "ru") {
   };
   const ru: typeof en = {
     whatIf: "Что, если…",
+    settings: "Отправная точка и настройки модели",
+    modelSettings: "Настройки модели и симуляции",
     placeholder:
       "Что, если начальница гавани оставит восточные ворота открытыми?",
     introduction:

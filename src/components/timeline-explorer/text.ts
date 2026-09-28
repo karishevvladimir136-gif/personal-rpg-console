@@ -9,6 +9,9 @@ export function timelineText(language: "en" | "ru") {
         playable: "Игровая история",
         nonCanon: "NON-CANON · НЕ КАНОН",
         histories: "Истории",
+        browseHistories: "Выбрать историю",
+        filters: "Поиск и порядок чтения",
+        recordDetails: "Сведения о записи",
         labHistories: "Альтернативы World Lab",
         story: "События",
         saves: "Сохранённые моменты",
@@ -55,7 +58,7 @@ export function timelineText(language: "en" | "ru") {
         originalSave: "Открыть сохранения",
         checkpointIdentity: "ID точной контрольной точки",
         inactiveHelp:
-          "Для другой игровой истории доступны сохранённые моменты. Её сцены не загружены.",
+          "Для другой игровой истории доступны сохранённые моменты. Это отдельные снимки истории, а не полный текст её прежних сцен.",
         labHelp:
           "Это эксперимент World Lab. Его события не становятся фактами активной кампании.",
         currentDirectory: "Текущие сведения кампании",
@@ -95,6 +98,9 @@ export function timelineText(language: "en" | "ru") {
         playable: "Playable history",
         nonCanon: "NON-CANON",
         histories: "Histories",
+        browseHistories: "Choose a history",
+        filters: "Search & reading order",
+        recordDetails: "About this record",
         labHistories: "World Lab alternatives",
         story: "Story",
         saves: "Saved moments",
@@ -141,7 +147,7 @@ export function timelineText(language: "en" | "ru") {
         originalSave: "Open Saves",
         checkpointIdentity: "Exact checkpoint ID",
         inactiveHelp:
-          "Saved moments are available for this playable history. Its scenes are not loaded.",
+          "This history offers saved moments: individual snapshots, rather than a full transcript of its earlier scenes.",
         labHelp:
           "This is a World Lab experiment. Its events do not establish facts in the active campaign.",
         currentDirectory: "Current campaign reference",

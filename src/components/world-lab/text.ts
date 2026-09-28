@@ -1,5 +1,6 @@
 export const worldLabText = (language: "en" | "ru") => {
   const en = {
+    recordedSettings: "Recorded time & progress",
     eyebrow: "WORLD LAB", title: "What If", nonCanon: "NON-CANON", intro: "An alternate path through your world. Describe a change, review it, then explore from a saved moment.",
     boundary: "Your live campaign stays unchanged.", scope: "Existing inputs · scripted world steps", scopeHelp: "Experiments prepared from existing approved inputs below use the deterministic D1 mode. They follow configured world steps without asking AI to interpret the Scenario or Divergence text.", reuse: "Use existing approved inputs",
     start: "Start simulation", runCost: "Start and Continue may request the pinned model and incur provider charges when interpretation is needed. Deterministic steps make no model request. Each action advances at most one hour.", selectedModel: "Pinned model", responses: "Recorded responses", tokens: "input / output tokens", usageUnavailable: "Usage not available",
@@ -14,6 +15,7 @@ export const worldLabText = (language: "en" | "ru") => {
     reason: { review_required: "Paused at a saved boundary. Review the experiment before resuming.", source_changed: "Source material or canon changed. This history is preserved; prepare a new experiment from an eligible base to use the new inputs.", unsupported: "The next step needs a resolver that this version does not support. The last checkpoint is preserved.", work_limit: "This experiment reached its work limit. Its checkpoint history is preserved.", cancelled: "This experiment is closed. Its checkpoint history is preserved.", unavailable: "The attempt could not finish. The last checkpoint is preserved; you can explicitly resume." },
   };
   const ru: typeof en = {
+    recordedSettings: "Сохранённое время и ход истории",
     eyebrow: "ЛАБОРАТОРИЯ МИРА", title: "Что, если", nonCanon: "НЕ КАНОН", intro: "Другой путь вашего мира. Опишите изменение, проверьте его и исследуйте мир из сохранённого момента.",
     boundary: "Текущая кампания остаётся без изменений.", scope: "Готовые условия · заданные шаги мира", scopeHelp: "Эксперименты из готовых утверждённых условий ниже используют детерминированный режим D1. Они выполняют заданные шаги мира без интерпретации текстов сценария и развилки с помощью ИИ.", reuse: "Использовать готовые утверждённые условия",
     start: "Запустить симуляцию", runCost: "Запуск и продолжение могут обращаться к закреплённой модели и быть платными у провайдера, когда нужен разбор. Заданные шаги не вызывают модель. Каждое действие продвигает время не более чем на час.", selectedModel: "Закреплённая модель", responses: "Сохранённые ответы", tokens: "входных / выходных токенов", usageUnavailable: "Расход недоступен",
