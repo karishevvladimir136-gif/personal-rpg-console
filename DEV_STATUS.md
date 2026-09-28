@@ -1,3 +1,17 @@
+# Development status — FRAME grounding gate v2 — FAIL; STOPPED FOR OWNER REVIEW
+
+**Tested implementation:** `9fb28651bb8d4512dea0356ee1e7e72e5195f0dc`, `codex/v1-adventure-media`; the status/report commit following it changes documentation only. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Adventure/loot/reward/container/progression/World and original dirty checkout are unchanged. The complete milestone is **NOT OWNER ACCEPTED**.
+
+**Implemented/integrated/offline verified:** bounded public closed-world brief, unknown-opening closure, material pose/item constraints and one receipt-fenced presentation check before attachment. Fresh final suite: **1,573 total, 1,572 passed, 0 failed, 1 existing opt-in hosted-Supabase skip**; route generation/nonincremental typecheck, zero-warning lint and webpack build pass. EN/RU 1280×900/390×844 synthetic ordinary-shell FRAME components were checked separately. No physical iPhone, hosted database/Storage, real migration or deployment claim.
+
+**New live gate:** same unchanged F1–F5 meanings; exact Sunburst dated/high/1536×1024. F1 contains unestablished far-bank woodland and holds the compass body rather than its strap. Independent visual review rejects it. GPT-5.4/high/Standard presentation QA returned **pass** and therefore one synthetic asset attached before manual review; the original verdict/receipt/history are preserved, not rewritten. This is a material visual-check false-negative, not sufficient grounding assurance. **F2–F5 not attempted; VIDEO not started.** No further production correction or paid retry occurred after the failure.
+
+**Cost/evidence:** exactly one new image + one new check, zero retries/fallback. Image actual-model identity omitted; check actual `gpt-5.4-2026-03-05`/default. New usage-calculated charge **$0.0761125**; combined with retained historical F1/F2 **$0.1619825**. Combined retained reservations **$1.40** of the same $20 ceiling; invoice charge is unavailable and reservations are not spend. Gameplay/private/source/Canon/timeline coherent state is unchanged; exact dispatch replay generated nothing. All 16 previous live evidence files are hash-identical. [Complete failed gate evidence and owner images](ADVENTURE_MEDIA_FRAME_GROUNDING_GATE_V2_REPORT.md).
+
+**Stop/limitations:** no five-case recurring identity/outfit consistency proof, no live F2 opening-closure result, no VIDEO, no real owner Adventure. Preserve the false-negative as evidence and stop for owner review. Prior status bodies follow unchanged.
+
+---
+
 # Development status — bounded FRAME grounding correction — OFFLINE VERIFIED; NEW LIVE GATE PENDING
 
 **Continuation:** from exact stopped `a07922bb3b0acf29e0f23fddcb91c7a96e7a5078`, preserving tested Adventure/loot/reward/container/World `e03d6c8c2fe12e459e8947a234a06c36fa1042dd`. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Not owner accepted; no new feature lane or VIDEO work has started.

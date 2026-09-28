@@ -35,3 +35,10 @@ Review the implemented Adventure/manual-control/UI direction and its disclosed l
 ## Bounded FRAME grounding continuation
 
 The owner-authorized correction adds a public closed-world scene contract and a mandatory bounded image check before attachment. One explicit Generate reserves up to $0.60 including the check. A grounding failure keeps prior usable art and requires a separate explicit new Generate; no automatic paid retry occurs. [Correction, configuration and gate v2 limits](ADVENTURE_MEDIA_FRAME_GROUNDING_CORRECTION.md) and [independent QA](ADVENTURE_MEDIA_FRAME_GROUNDING_QA.md) supersede only the current continuation state, not the historical failed gate. The unchanged public F1–F5 meanings and earlier costs remain separate evidence. VIDEO remains gated; this is not combined milestone acceptance.
+
+
+## Current owner review: corrected FRAME gate stopped at F1
+
+The new public closed-world contract and bounded image check are implemented and deterministically verified at `9fb28651bb8d4512dea0356ee1e7e72e5195f0dc`. The first new image materially failed independent review: unestablished woodland and a compass held by its body rather than its strap. The automatic check missed both and returned pass, so the synthetic asset attached; that original receipt/history remains unchanged. F2–F5 and VIDEO were not attempted. The full Adventure/Media milestone is not accepted.
+
+Open the [static EN/RU owner review with the actual failed image](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-grounding-gate-v2-20260928/OWNER_REVIEW.html), then the [full gate report](ADVENTURE_MEDIA_FRAME_GROUNDING_GATE_V2_REPORT.md) if desired. The local UI preview remains entirely synthetic/schematic. New calculated image/check cost is $0.0761125; combined historical media cost $0.1619825, reservations $1.40, invoice unavailable. No additional Generate, provider request, real DB migration or deployment is needed to inspect this evidence.
