@@ -1,0 +1,194 @@
+.panel {
+  padding: clamp(1rem, 3vw, 1.8rem);
+  border: 1px solid #675334;
+  border-radius: 0.75rem;
+  background: linear-gradient(145deg, #171b1b, #0f1415);
+  color: #e6e0d4;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+.heading h2 {
+  margin: 0;
+  color: #ebd4a5;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+}
+.intro {
+  max-width: 48rem;
+  color: #c4beb3;
+  line-height: 1.65;
+}
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.field {
+  display: grid;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-width: 0;
+  padding: 0.75rem;
+  border: 1px solid #565d59;
+  border-radius: 0.4rem;
+  color: #ede7d8;
+  background: #0b1011;
+}
+.field textarea {
+  resize: vertical;
+  min-height: 6rem;
+  line-height: 1.5;
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible,
+.actions button:focus-visible {
+  outline: 2px solid #d3ad6e;
+  outline-offset: 3px;
+}
+.form {
+  display: grid;
+  gap: 1rem;
+}
+.form fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.form fieldset:disabled {
+  opacity: 0.72;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+}
+.actions button,
+.actions a {
+  min-height: 2.7rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #927345;
+  border-radius: 0.4rem;
+  background: #29231a;
+  color: #f0dbb3;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+.actions .primary {
+  background: linear-gradient(#6a4b26, #342817);
+  border-color: #bd9658;
+}
+.actions button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.notice {
+  border-left: 3px solid #a7864f;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  background: #211f18;
+  line-height: 1.6;
+}
+.muted {
+  color: #b5b3a8;
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+.card {
+  padding: 1.2rem 0;
+  border-top: 1px solid #40443c;
+}
+.card h3,
+.form h3 {
+  font-family: Georgia, serif;
+  color: #e4c996;
+  margin: 0.3rem 0 0.7rem;
+}
+.card p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.badge {
+  display: inline-flex;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  border: 1px solid #806742;
+  padding: 0.3rem 0.5rem;
+  color: #dec699;
+  border-radius: 0.25rem;
+}
+.history {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+.history summary {
+  cursor: pointer;
+  color: #d7bd8d;
+  padding: 0.7rem 0;
+}
+.history article {
+  padding: 0.6rem 0;
+  border-top: 1px solid #333c38;
+}
+.review {
+  display: grid;
+  gap: 0.8rem;
+  border-top: 1px solid #48483f;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.world {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+.checks {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
+}
+.checks label {
+  display: flex;
+  align-items: start;
+  gap: 0.65rem;
+}
+.checks input {
+  accent-color: #be9b60;
+  margin-top: 0.3rem;
+}
+.setup {
+  border: 1px solid #6d5b3e;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #171a16;
+}
+@media (max-width: 600px) {
+  .panel {
+    border-radius: 0.5rem;
+  }
+  .actions button,
+  .actions a {
+    flex-grow: 1;
+    text-align: center;
+  }
+  .fields {
+    grid-template-columns: 1fr;
+  }
+}
