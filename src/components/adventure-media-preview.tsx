@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import fixtures from "@/lib/v1-completion/preview-fixtures.json";
 import type {
   CampaignSnapshot,
@@ -11,6 +11,20 @@ import type {
 import type { PublicAdventure } from "@/lib/adventures/contracts";
 import type { AdventureTransport } from "@/lib/adventures/client";
 import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
+import type { VideoResult, VideoTransport } from "@/lib/scene-video/client";
+import type { SceneVideo } from "@/lib/scene-video/model";
+import {
+  buildSceneVideo,
+  parseSceneVideo,
+  safeVideoAsset,
+  videoAssetMutation,
+  videoDocumentMutation,
+  videoIsCurrent,
+  videoStoragePath,
+  VIDEO_MODEL,
+  VIDEO_PARAMETERS,
+  VIDEO_RESERVATION_USD_MICROS,
+} from "@/lib/scene-video/model";
 import type {
   MediaCommand,
   MediaResult,
@@ -75,6 +89,7 @@ import { Button } from "./ui";
 type Language = "en" | "ru";
 export type ScriptedFrameOutcome =
   "schematic" | "review_warning" | "hard_reject" | "failure" | "in_flight";
+export type ScriptedVideoOutcome = "queued" | "ready" | "failed" | "uncertain";
 const sampleId = (n: number) =>
   `22222222-2222-4222-8222-${String(n).padStart(12, "0")}`;
 const stamp = (n: number) =>
@@ -228,6 +243,7 @@ export function createAdventureMediaReview(
   );
   let worldMinutes = 360;
   let outcome: ScriptedFrameOutcome = "schematic";
+  let videoOutcome: ScriptedVideoOutcome = "queued";
   const receipts = new Map<string, { request: string; result: unknown }>();
   const versions = new Map<string, DocumentVersion[]>(
     snapshot.documents.map((d) => [
@@ -870,6 +886,196 @@ export function createAdventureMediaReview(
       },
     });
   }
+  function settleScriptedVideo(
+    record: DocumentRecord,
+    value: SceneVideo,
+  ): MutationResult | null {
+    if (videoOutcome === "queued") return null;
+    const stale = !videoIsCurrent(snapshot, value, source());
+    const terminal: SceneVideo = {
+      ...value,
+      status: stale ? "failed" : videoOutcome,
+      failure: stale
+        ? "stale"
+        : videoOutcome === "failed"
+          ? "provider"
+          : videoOutcome === "uncertain"
+            ? "uncertain"
+            : null,
+      resultAssetId: !stale && videoOutcome === "ready" ? record.id : null,
+    };
+    if (!stale && videoOutcome === "ready") {
+      // Provenance-shaped lifecycle sample only: there are no generated MP4 bytes,
+      // provider requests, storage uploads, reservations or charges in this adapter.
+      const asset = videoAssetMutation(snapshot, record, terminal, {
+        storagePath: videoStoragePath(campaignId, record.id),
+        sha256: "1".repeat(64),
+        bytes: 25,
+        contentType: "video/mp4",
+        providerRequestId: allocate(),
+        actualModel: null,
+      });
+      ensure(asset.operation === "asset.save");
+      apply({
+        ...asset,
+        requestId: allocate(),
+        payload: {
+          ...asset.payload,
+          title: ru
+            ? "Синтетический статус VIDEO · без ролика"
+            : "Synthetic VIDEO lifecycle · no clip",
+        },
+      });
+    }
+    return apply({
+      ...videoDocumentMutation(snapshot, terminal, record),
+      requestId: allocate(),
+    });
+  }
+  const videoTransport: VideoTransport = {
+    capability: async (cid) => {
+      authorize(cid);
+      return {
+        enabled: true,
+        model: VIDEO_MODEL,
+        parameters: copy(VIDEO_PARAMETERS),
+        reservationUsdMicros: VIDEO_RESERVATION_USD_MICROS,
+      };
+    },
+    prepare: async (raw) => {
+      const input = object(raw, [
+        "campaignId",
+        "timeline",
+        "expectedPublicStateRevision",
+        "sourceAssetId",
+        "retryOf",
+      ]);
+      authorize(uuid(input.campaignId), adventureTimeline(input.timeline));
+      ensure(
+        input.expectedPublicStateRevision === snapshot.publicState.revision,
+        "conflict",
+      );
+      return buildSceneVideo(
+        snapshot,
+        uuid(input.sourceAssetId),
+        source(),
+        nullable(input.retryOf, uuid),
+      );
+    },
+    load: async (cid) => {
+      authorize(cid);
+      return copy(snapshot);
+    },
+    videoUrl: (cid, assetId) => {
+      authorize(cid);
+      const asset = snapshot.assets.find(
+        (a) => a.id === assetId && a.campaign_id === cid,
+      );
+      ensure(asset && safeVideoAsset(snapshot, asset));
+      return ""; // An explicit UI placeholder, never fabricated playable media.
+    },
+    send: async (raw) => {
+      if (raw.action === "video.poll") {
+        const query = object(raw, ["action", "campaignId", "jobId"]);
+        authorize(uuid(query.campaignId));
+        const record = snapshot.documents.find(
+          (d) => d.id === uuid(query.jobId) && d.campaign_id === campaignId,
+        );
+        const value = record && parseSceneVideo(record);
+        ensure(record && value, "scope");
+        if (
+          value.status === "ready" ||
+          value.status === "failed" ||
+          value.status === "cancelled"
+        )
+          return { result: null, status: value.status, dispatched: false };
+        ensure(["generating", "uncertain"].includes(value.status), "conflict");
+        const result = settleScriptedVideo(record, value);
+        return {
+          result,
+          status: parseSceneVideo(
+            snapshot.documents.find((d) => d.id === record.id)!,
+          )!.status,
+          dispatched: false,
+        };
+      }
+      const value = object(raw, ["action", "input"]),
+        action = literal(value.action, [
+          "video.save",
+          "video.dispatch",
+        ] as const),
+        input = validateMutation(value.input);
+      ensure("campaignId" in input && input.operation === "document.save");
+      authorize(input.campaignId, input.timeline);
+      const request = { action, input },
+        replay = prior<VideoResult>(input.requestId, request);
+      if (replay) return replay;
+      const video = parseSceneVideo(input.payload);
+      ensure(video && video.campaign_id === campaignId);
+      const { requestId: ignored, ...mutation } = input;
+      void ignored;
+      let result: MutationResult, status: SceneVideo["status"];
+      if (action === "video.save") {
+        ensure(
+          video.status === "queued" &&
+            !input.payload.id &&
+            input.expectedRevision === 0 &&
+            equivalent(
+              video,
+              buildSceneVideo(
+                snapshot,
+                video.source.assetId,
+                source(),
+                video.retryOf,
+              ),
+            ) &&
+            equivalent(mutation, videoDocumentMutation(snapshot, video)),
+          "conflict",
+        );
+        result = apply(input);
+        status = "queued";
+      } else {
+        const record = snapshot.documents.find(
+            (d) => d.id === input.payload.id,
+          ),
+          before = record && parseSceneVideo(record);
+        ensure(
+          record &&
+            before?.status === "queued" &&
+            record.revision === input.expectedRevision &&
+            video.status === "generating" &&
+            video.dispatch?.requestId === input.requestId &&
+            video.dispatch.reservationUsdMicros ===
+              VIDEO_RESERVATION_USD_MICROS &&
+            videoIsCurrent(snapshot, before, source()),
+          "conflict",
+        );
+        ensure(
+          equivalent(
+            { ...before, status: "generating", dispatch: video.dispatch },
+            video,
+          ) &&
+            equivalent(
+              mutation,
+              videoDocumentMutation(snapshot, video, record),
+            ),
+          "conflict",
+        );
+        result = apply(input);
+        const generating = snapshot.documents.find((d) => d.id === result.id)!;
+        const terminal = settleScriptedVideo(generating, video);
+        result = terminal ?? result;
+        status = parseSceneVideo(
+          snapshot.documents.find((d) => d.id === result.id)!,
+        )!.status;
+      }
+      return remember(input.requestId, request, {
+        result,
+        status,
+        dispatched: false,
+      });
+    },
+  };
   return {
     snapshot: () => copy(snapshot),
     catalog: () => copy(catalog),
@@ -878,6 +1084,7 @@ export function createAdventureMediaReview(
     rewards: () => copy({ ...rewardView, command: command() }),
     adventureTransport,
     mediaTransport,
+    videoTransport,
     visualTransport: {
       history: async (cid: string, id: string) => {
         authorize(cid);
@@ -896,6 +1103,14 @@ export function createAdventureMediaReview(
         "hard_reject",
         "failure",
         "in_flight",
+      ] as const);
+    },
+    setVideoOutcome: (value: ScriptedVideoOutcome) => {
+      videoOutcome = literal(value, [
+        "queued",
+        "ready",
+        "failed",
+        "uncertain",
       ] as const);
     },
     advanceScene: () => {
@@ -1172,6 +1387,19 @@ function ReviewSession({
   const [snapshot, setSnapshot] = useState(review.snapshot);
   const [screen, setScreen] = useState<Screen>("adventures");
   const [outcome, setOutcome] = useState<ScriptedFrameOutcome>("schematic");
+  const [videoOutcome, setVideoOutcome] =
+    useState<ScriptedVideoOutcome>("queued");
+  const [videoEnabled, setVideoEnabled] = useState(false);
+  const videoTransport = useMemo(
+    () => ({
+      ...review.videoTransport,
+      capability: async (cid: string) => ({
+        ...(await review.videoTransport.capability(cid)),
+        enabled: videoEnabled,
+      }),
+    }),
+    [review, videoEnabled],
+  );
   const [message, setMessage] = useState("");
   const refresh = async () => setSnapshot(review.snapshot());
   const ignoreDirty = () => {};
@@ -1221,8 +1449,8 @@ function ReviewSession({
             </p>
             <p className="muted">
               {ru
-                ? "FRAME использует только публичный текст. Образцы с изображениями и VIDEO недоступны. Все результаты — подписанные схемы; суммы в обычных кнопках FRAME в этом демо не списываются."
-                : "FRAME uses public text only. Image references and VIDEO are unavailable. Every displayed result is a labelled schematic; the normal FRAME buttons' reservation amounts are never charged here."}
+                ? "FRAME использует только публичный текст. Изображения здесь — подписанные схемы. VIDEO проверяет только состояния запроса, настоящих роликов нет. Резервы в обычных кнопках не списываются."
+                : "FRAME uses public text only and displays labelled schematics. VIDEO demonstrates request states only; no actual clips are generated. Reservation amounts in the normal buttons are never charged here."}
             </p>
             <div className="button-row mt-3 flex flex-wrap gap-2">
               {(["en", "ru"] as const).map((value) => (
@@ -1266,6 +1494,11 @@ function ReviewSession({
                   {ru
                     ? "В Игре создайте черновик FRAME и примите его. Создайте новый черновик с предупреждением, проверьте «Отклонить» и «Создать заново». Прежняя принятая иллюстрация сохраняется при черновике, отказе и ошибке."
                     : "In Game generate a FRAME draft and Accept it. Generate a warning draft, then review Discard and Regenerate. Earlier accepted art stays visible through drafts, rejection and failure."}
+                </li>
+                <li>
+                  {ru
+                    ? "Примите FRAME в Игре, включите сценарий VIDEO и проверьте подготовку, явное создание и «Проверить статус». Попробуйте успех, ошибку и неизвестный результат: прежний результат остаётся."
+                    : "Accept a FRAME in Game, enable scripted VIDEO and review preparation, explicit generation and Check status. Try ready, failed and unknown outcomes; earlier results stay available."}
                 </li>
                 <li>
                   {ru
@@ -1369,12 +1602,57 @@ function ReviewSession({
             </section>
           )}
           {screen === "game" && (
-            <PersistentGame reviewOnly mediaTransport={review.mediaTransport} />
+            <section className="space-y-3 rounded-lg border border-[#514536] p-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={videoEnabled}
+                  onChange={(e) => setVideoEnabled(e.target.checked)}
+                />
+                {ru
+                  ? "Включить синтетический сценарий VIDEO"
+                  : "Enable scripted VIDEO"}
+              </label>
+              <label className="field-label">
+                {ru
+                  ? "Следующий сценарий VIDEO"
+                  : "Next scripted VIDEO outcome"}
+                <select
+                  value={videoOutcome}
+                  onChange={(e) => {
+                    const next = e.target.value as ScriptedVideoOutcome;
+                    review.setVideoOutcome(next);
+                    setVideoOutcome(next);
+                  }}
+                >
+                  <option value="queued">
+                    {ru ? "Ожидание / создание" : "Queued / generating"}
+                  </option>
+                  <option value="ready">
+                    {ru
+                      ? "Готово · без настоящего ролика"
+                      : "Ready · no actual clip"}
+                  </option>
+                  <option value="failed">{ru ? "Ошибка" : "Failed"}</option>
+                  <option value="uncertain">
+                    {ru ? "Результат неизвестен" : "Outcome unknown"}
+                  </option>
+                </select>
+              </label>
+            </section>
+          )}
+          {screen === "game" && (
+            <PersistentGame
+              reviewOnly
+              mediaTransport={review.mediaTransport}
+              videoTransport={videoTransport}
+            />
           )}
           {screen === "gallery" && (
             <PersistentSupporting
               screen="gallery"
               mediaTransport={review.mediaTransport}
+              videoTransport={videoTransport}
             />
           )}
           {screen === "frame" && (
