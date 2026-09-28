@@ -1,3 +1,17 @@
+# Development status - V1 completion wave 1 - IMPLEMENTATION IN PROGRESS
+
+Baseline/main: e4f9171f9db87428b5b5812837474eb2c87c5aa8. Mega DM v1 is owner accepted, closed and fast-forward published. The original dirty checkout is untouched. The new integration branch is codex/v1-completion-wave1; main stays at the published closure head during review.
+
+The owner explicitly authorizes four bounded lanes: exact-checkpoint SINGLE-MODEL World Lab child continuation, read-only Timeline Explorer V1, Places of Belonging V0, and provider-independent Visual Bible/FRAME V0. Multi-model parallel D2B remains deferred; this wave does not claim complete D2B. Ownership and exclusions are frozen in V1_COMPLETION_WAVE1_CONTRACTS.md. Lead owns shared contracts/migrations/navigation/central docs. A-C run first under the four-agent environment cap including Lead; D starts when a slot frees. Separate branches/worktrees all begin at the same exact accepted main.
+
+Status: launched and implementing; not integrated, not deterministically verified as a wave, not browser checked and not owner accepted. No new live model/image calls, real-data migration/import or deployment are authorized here. Timeline V2, Enter This World, VIDEO and the 2D engine remain out of scope.
+
+Usage baseline: 5% account window used; 10320.854195 account credits. Per-lane token accounting is unavailable; model/reasoning allocation and available account deltas will be reported without fabricated attribution. Lead uses Sol xhigh; Lane A Sol xhigh; B/C/D Sol high. No duplicated tasks or additional workers.
+
+Next: implement each bounded lane, review diffs/authority/privacy/backward compatibility before choosing integration order, then run fresh integrated gates and stop for owner review. Prior accepted status/evidence below is preserved.
+
+---
+
 # Development status — Mega DM v1 — OWNER ACCEPTED / CLOSED
 
 **Owner decision:** the completed blind bake-off is accepted as three bounded evidence points: Repair / History / Shared Joy → Astra; Identity / Knowledge / Independent Refusal → Astra; Cognitive World Fingerprint → Sol. The owner selects **gpt-6-astra / high / Standard (`default`)** as the new/inherited application gameplay default. This is a product choice, not an automatic overall winner or universal superiority claim. Evaluated Mega DM implementation: `33c6163110090ff69a2737a435666954bbf2bced`; bounded diagnostic/capability baseline: `b39c929df5e58faa42f0c2e149bf2d6d0a6a2744`. See [closure record](MEGA_DM_V1_CLOSURE.md).
