@@ -21,7 +21,7 @@ function cancel(f, record) {
     requestId: randomUUID(),
   };
 }
-test("explicit queue and one server claim produce one immutable public asset, no gameplay/world/Lab source mutation", async () => {
+test("explicit queue and one server claim produces a private draft; explicit approval creates one immutable public asset, no gameplay/world/Lab source mutation", async () => {
   const f = fixture(),
     before = structuredClone(f.snapshot),
     proof = structuredClone(f.proof),
@@ -29,7 +29,12 @@ test("explicit queue and one server claim produce one immutable public asset, no
     input = f.dispatch(q.record);
   assert.equal(f.providerCalls(), 0);
   const result = await f.run("media.dispatch", input);
-  assert.equal(result.status, "completed");
+  assert.equal(result.status, "draft");
+  assert.equal(
+    f.snapshot.assets.some((a) => a.id === q.record.id),
+    false,
+  );
+  await f.accept(q.record.id);
   assert.equal(result.dispatched, true);
   assert.equal(f.providerCalls(), 1);
   assert.equal(f.reserved(), 600000);
@@ -83,6 +88,7 @@ test("completed dispatch receipt replay cannot generate a second provider image"
     q = await f.queue(),
     input = f.dispatch(q.record);
   await f.run("media.dispatch", input);
+  await f.accept(q.record.id);
   f.proof.expectedHeadId = randomUUID();
   f.calls.length = 0;
   await f.run("media.dispatch", input);
@@ -94,9 +100,9 @@ test("retained completion recovers a committed lost response after scene/source 
   const f = fixture(),
     q = await f.queue(),
     input = f.dispatch(q.record),
-    complete = f.authority.complete;
+    complete = f.authority.draft;
   let retained;
-  f.authority.complete = async (...args) => {
+  f.authority.draft = async (...args) => {
     retained = structuredClone(args[0]);
     await complete(...args);
     throw new Error("lost-completion");
@@ -107,11 +113,11 @@ test("retained completion recovers a committed lost response after scene/source 
     (s) => s.id === f.snapshot.publicState.current_scene_id,
   ).revision++;
   f.calls.length = 0;
-  const recovered = await f.run("media.recover", retained);
-  assert.equal(recovered.status, "completed");
+  const recovered = await f.run("media.save", retained);
+  assert.equal(recovered.status, "draft");
   assert.deepEqual(f.calls, ["authorize", "receipt"]);
   assert.equal(f.providerCalls(), 1);
-  assert.equal(f.snapshot.assets.filter((a) => a.id === q.record.id).length, 1);
+  assert.equal(f.snapshot.assets.filter((a) => a.id === q.record.id).length, 0);
 });
 test("lost upload response recovers only previously stored bytes and exact deterministic attachment, never a new provider call", async () => {
   const f = fixture(),
@@ -127,17 +133,20 @@ test("lost upload response recovers only previously stored bytes and exact deter
   await f.run("media.recover", retained);
   assert.equal(f.providerCalls(), 1);
   assert.equal(f.reserved(), 600000);
-  assert.equal(f.snapshot.assets.at(-1).id, q.record.id);
-  assert.equal(parseRealFrame(job(f, q.record.id)).status, "completed");
+  assert.equal(
+    f.snapshot.assets.some((a) => a.id === q.record.id),
+    false,
+  );
+  assert.equal(parseRealFrame(job(f, q.record.id)).status, "draft");
   f.calls.length = 0;
   await f.run("media.recover", retained);
-  assert.deepEqual(f.calls, ["authorize", "receipt"]);
+  assert.deepEqual(f.calls, ["authorize", "recoveryReceipt", "receipt"]);
 });
 test("uncommitted stored-result recovery after genuine correction conflicts, preserving prior art", async () => {
   const f = fixture(),
     q = await f.queue(),
     input = f.dispatch(q.record);
-  f.authority.complete = async () => {
+  f.authority.draft = async () => {
     throw new Error("uncommitted");
   };
   await assert.rejects(f.run("media.dispatch", input));
@@ -260,6 +269,7 @@ test("explicit regeneration after terminal job gets new lineage and retains prio
   const f = fixture(),
     q = await f.queue();
   await f.run("media.dispatch", f.dispatch(q.record));
+  await f.accept(q.record.id);
   const previous = structuredClone(f.snapshot.assets.at(-1));
   const retry = await f.queue(f.prepare([], q.record.id));
   f.provider.generate = async () => {

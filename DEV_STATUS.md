@@ -1,6 +1,10 @@
-# Development status — FRAME draft/owner approval + VIDEO V1 — IN PROGRESS
+# Development status — FRAME draft/owner approval — OFFLINE VERIFIED; product gate pending
 
-Owner explicitly re-scopes FRAME as an optional AI illustration draft, not authoritative world rendering. Continue from `0950cba892db639abd21d99fda8b068482701a77`; preserve all failed gate evidence/costs and accepted Adventure/World systems. Lead owns schema/SQL/integration; bounded UI and independent QA workers own disjoint files. New illustration review and explicit owner acceptance precede normal Asset attachment and VIDEO eligibility. No new provider call, real database migration, deployment or main write has occurred at this contract freeze. VIDEO remains gated on the new five-case product/lifecycle review, then current fal capability/price verification. No owner acceptance is claimed. Historical status follows unchanged.
+Implemented/integrated: schema4 private illustration draft, bounded safety QA v2, explicit Accept/Discard/Regenerate, immutable draft/approval provenance, service-only reviewed-draft pixel access and receipt recovery. Gallery/VIDEO assets require separate owner acceptance; pixels never change RPG Canon. Additive migration28 is verified only on disposable SQL. Historical schema2/3 jobs/readers/receipts and prior failed gate evidence remain unchanged.
+
+Focused FRAME/visual/preview regressions: **249/249 passed, zero failures/skips** (30,380.1453ms); nonincremental TypeScript and repository zero-warning lint pass. Independent adversarial QA24/24 passes, including material-warning laundering, NULL-evidence forged draft access, historical upgrade, exact receipt replay, private isolation and Lab checkpoint continuation. Current complete-wave suite/build/browser verification remains pending after VIDEO implementation. No new live call has yet occurred. Not owner accepted. [New gate preparation](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_PREPARATION.md), [independent QA](ADVENTURE_MEDIA_FRAME_APPROVAL_QA.md).
+
+Continue accepted Adventure foundations unchanged. Main remains 1f9e3c56896d9cd5a374af6857f918c46bb80603; original dirty checkout untouched. Historical live calculated charge $0.1619825 and retained reservation $1.40 remain immutable. VIDEO remains gated on the new product gate and current fal verification. Historical status follows unchanged.
 
 ---
 

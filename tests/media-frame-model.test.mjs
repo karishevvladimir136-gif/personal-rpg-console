@@ -248,6 +248,7 @@ test("a completed safe FRAME asset can be offered only for a new explicitly appr
   const f = fixture(),
     q = await f.queue();
   await f.run("media.dispatch", f.dispatch(q.record));
+  await f.accept(q.record.id);
   const asset = f.snapshot.assets.at(-1);
   assert.ok(safeFrameAsset(f.snapshot, asset));
   const record = reference(f, "style", f.snapshot.campaign.id, {

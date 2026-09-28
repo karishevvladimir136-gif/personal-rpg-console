@@ -14,6 +14,7 @@ import {
   safeFrameAsset,
   frameStoragePath,
   isFrameOutput,
+  parseRealFrame,
 } from "../../visual-frame/real-frame";
 import type {
   FrameSourceAuthority,
@@ -27,7 +28,12 @@ import type {
 } from "./orchestration";
 import { FRAME_RESERVATION_USD_MICROS } from "./pricing";
 import { openAiFrameVerifier } from "./grounding";
-import { FRAME_CHECK_MODEL, FRAME_CHECK_REASONING, FRAME_CHECK_RESERVATION_USD_MICROS, isFrameCheckResult } from "./grounding-state";
+import {
+  FRAME_CHECK_MODEL,
+  FRAME_CHECK_REASONING,
+  FRAME_CHECK_RESERVATION_USD_MICROS,
+  isFrameCheckResult,
+} from "./grounding-state";
 import { openAiFrameProvider } from "./provider";
 import { checkedPng, storedPixels, MAX_FRAME_IMAGE_BYTES } from "./png";
 
@@ -162,24 +168,61 @@ function authority(): MediaFrameAuthority {
       };
     },
     checkClaim: async (input) => {
-      const id = owner(), response = await serviceClient(id).rpc("rpg_frame_check_claim", {
-        p_owner_id: id, p_campaign_id: input.campaignId, p_job_id: input.jobId,
-        p_job_version_id: input.jobVersionId, p_image_sha256: input.imageSha256,
-      });
+      const id = owner(),
+        response = await serviceClient(id).rpc("rpg_frame_check_claim", {
+          p_owner_id: id,
+          p_campaign_id: input.campaignId,
+          p_job_id: input.jobId,
+          p_job_version_id: input.jobVersionId,
+          p_image_sha256: input.imageSha256,
+        });
       if (response.error) throw databaseError(response.error);
-      if (!exactKeys(response.data, ["claimed", "result"]) || typeof response.data.claimed !== "boolean" ||
-        !(response.data.result === null || isFrameCheckResult(response.data.result))) throw new PersistenceError("unavailable");
+      if (
+        !exactKeys(response.data, ["claimed", "result"]) ||
+        typeof response.data.claimed !== "boolean" ||
+        !(
+          response.data.result === null ||
+          isFrameCheckResult(response.data.result)
+        )
+      )
+        throw new PersistenceError("unavailable");
       return { claimed: response.data.claimed, result: response.data.result };
     },
     checkComplete: async (input, checked) => {
-      if (!isFrameCheckResult(checked)) throw new PersistenceError("validation");
-      const id = owner(), response = await serviceClient(id).rpc("rpg_frame_check_complete", {
-        p_owner_id: id, p_campaign_id: input.campaignId, p_job_id: input.jobId,
-        p_job_version_id: input.jobVersionId, p_image_sha256: input.imageSha256, p_result: checked,
-      });
+      if (!isFrameCheckResult(checked))
+        throw new PersistenceError("validation");
+      const id = owner(),
+        response = await serviceClient(id).rpc("rpg_frame_check_complete", {
+          p_owner_id: id,
+          p_campaign_id: input.campaignId,
+          p_job_id: input.jobId,
+          p_job_version_id: input.jobVersionId,
+          p_image_sha256: input.imageSha256,
+          p_result: checked,
+        });
       if (response.error) throw databaseError(response.error);
-      if (!isFrameCheckResult(response.data)) throw new PersistenceError("unavailable");
+      if (!isFrameCheckResult(response.data))
+        throw new PersistenceError("unavailable");
       return response.data;
+    },
+    recoveryReceipt: async (input) => {
+      const id = owner(),
+        response = await serviceClient(id).rpc(
+          "rpg_real_frame_recovery_receipt",
+          { p_owner_id: id, p_intent: input },
+        );
+      if (response.error) throw databaseError(response.error);
+      return response.data === null ? null : result(response.data, input);
+    },
+    draft: async (input, output) => {
+      const id = owner(),
+        response = await serviceClient(id).rpc("rpg_real_frame_draft", {
+          p_owner_id: id,
+          p_mutation: input,
+          p_output: output,
+        });
+      if (response.error) throw databaseError(response.error);
+      return result(response.data, input);
     },
     complete: async (input, asset, output) => {
       const id = owner(),
@@ -263,8 +306,12 @@ export async function mediaCapability(campaignId: string) {
     model: selected?.model ?? null,
     parameters: selected?.parameters ?? null,
     reservationUsdMicros: selected?.reservationUsdMicros ?? null,
-    verificationReservationUsdMicros: selected ? FRAME_CHECK_RESERVATION_USD_MICROS : null,
-    totalReservationUsdMicros: selected ? selected.reservationUsdMicros + FRAME_CHECK_RESERVATION_USD_MICROS : null,
+    verificationReservationUsdMicros: selected
+      ? FRAME_CHECK_RESERVATION_USD_MICROS
+      : null,
+    totalReservationUsdMicros: selected
+      ? selected.reservationUsdMicros + FRAME_CHECK_RESERVATION_USD_MICROS
+      : null,
     imageReferencesEnabled: false,
   };
 }
@@ -315,7 +362,11 @@ export async function runMediaFrame(value: unknown) {
     policy: policy(),
     store: privateStore(),
     provider: openAiFrameProvider(process.env.OPENAI_API_KEY ?? ""),
-    verifier: openAiFrameVerifier({ apiKey: process.env.OPENAI_API_KEY ?? "", model: process.env.RPG_FRAME_VERIFY_MODEL ?? "", reasoning: process.env.RPG_FRAME_VERIFY_REASONING }),
+    verifier: openAiFrameVerifier({
+      apiKey: process.env.OPENAI_API_KEY ?? "",
+      model: process.env.RPG_FRAME_VERIFY_MODEL ?? "",
+      reasoning: process.env.RPG_FRAME_VERIFY_REASONING,
+    }),
   });
 }
 export async function signedFrameImage(campaignId: string, assetId: string) {
@@ -331,6 +382,46 @@ export async function signedFrameImage(campaignId: string, assetId: string) {
   const response = await serviceClient(user.id)
     .storage.from("rpg-media")
     .createSignedUrl(asset.storage_path, 300);
+  if (response.error || !response.data?.signedUrl)
+    throw new PersistenceError("unavailable");
+  return response.data.signedUrl;
+}
+
+/** Draft pixels are authorized review evidence, never ordinary accepted Assets. */
+export async function signedFrameDraft(campaignId: string, jobId: string) {
+  if (!isUuid(campaignId) || !isUuid(jobId))
+    throw new PersistenceError("not_found");
+  const { user } = await authorizeCampaign(campaignId);
+  const snapshot = await readCampaign(campaignId);
+  const record = snapshot.documents.find(
+    (d) =>
+      d.campaign_id === campaignId &&
+      d.id === jobId &&
+      d.status === "reference",
+  );
+  const frame = record && parseRealFrame(record);
+  if (
+    !record ||
+    frame?.schema !== 4 ||
+    frame.status !== "draft" ||
+    !frame.review
+  )
+    throw new PersistenceError("not_found");
+  const check = await serviceClient(user.id).rpc("rpg_frame_draft_pixels", {
+    p_owner_id: user.id,
+    p_campaign_id: campaignId,
+    p_job_id: jobId,
+  });
+  if (check.error) throw databaseError(check.error);
+  if (
+    !exactKeys(check.data, ["storagePath", "imageSha256"]) ||
+    check.data.storagePath !== frameStoragePath(campaignId, jobId) ||
+    check.data.imageSha256 !== frame.review.imageSha256
+  )
+    throw new PersistenceError("not_found");
+  const response = await serviceClient(user.id)
+    .storage.from("rpg-media")
+    .createSignedUrl(frameStoragePath(campaignId, jobId), 60);
   if (response.error || !response.data?.signedUrl)
     throw new PersistenceError("unavailable");
   return response.data.signedUrl;

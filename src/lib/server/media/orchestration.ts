@@ -14,7 +14,9 @@ import {
   realFrameIsCurrent,
   validateRealFrameLifecycle,
   frameStoragePath,
+  isFrameOutput,
 } from "../../visual-frame/real-frame.ts";
+import { checkedPng } from "./png.ts";
 import { textOnlyReservationFloor, reportedUsageCost } from "./pricing.ts";
 import type {
   RealFrame,
@@ -26,7 +28,12 @@ import type {
 import { isFrameCheckResult } from "./grounding-state.ts";
 import type { FrameCheckResult } from "./grounding-state.ts";
 
-export type FrameCheckInput = { campaignId: string; jobId: string; jobVersionId: string; imageSha256: string };
+export type FrameCheckInput = {
+  campaignId: string;
+  jobId: string;
+  jobVersionId: string;
+  imageSha256: string;
+};
 export class MediaFrameError extends Error {
   code:
     "validation" | "conflict" | "not_found" | "not_configured" | "unavailable";
@@ -51,8 +58,15 @@ export type MediaFrameAuthority = {
     input: Mutation,
     budgetId: string,
   ) => Promise<{ result: MutationResult; claimed: boolean }>;
-  checkClaim?: (input: FrameCheckInput) => Promise<{ claimed: boolean; result: FrameCheckResult | null }>;
-  checkComplete?: (input: FrameCheckInput, result: FrameCheckResult) => Promise<FrameCheckResult>;
+  checkClaim?: (
+    input: FrameCheckInput,
+  ) => Promise<{ claimed: boolean; result: FrameCheckResult | null }>;
+  checkComplete?: (
+    input: FrameCheckInput,
+    result: FrameCheckResult,
+  ) => Promise<FrameCheckResult>;
+  recoveryReceipt?: (input: Mutation) => Promise<MutationResult | null>;
+  draft?: (input: Mutation, output: FrameOutput) => Promise<MutationResult>;
   complete: (
     input: Mutation,
     asset: Mutation,
@@ -76,12 +90,22 @@ export type MediaDependencies = {
   policy: MediaPolicy | null;
   store: MediaStore;
   provider: MediaProvider;
-  verifier?: { preflight: (frame: RealFrame) => void; check: (frame: RealFrame, pixels: MediaPixels, jobId: string, operationId: string) => Promise<FrameCheckResult> };
+  verifier?: {
+    preflight: (frame: RealFrame) => void;
+    check: (
+      frame: RealFrame,
+      pixels: MediaPixels,
+      jobId: string,
+      operationId: string,
+    ) => Promise<FrameCheckResult>;
+  };
 };
 export type MediaCommand =
   | { action: "media.save"; input: Mutation }
   | { action: "media.dispatch"; input: Mutation }
-  | { action: "media.recover"; input: Mutation };
+  | { action: "media.recover"; input: Mutation }
+  | { action: "media.accept"; input: Mutation }
+  | { action: "media.discard"; input: Mutation };
 export type MediaResult = {
   result: MutationResult;
   status: RealFrame["status"];
@@ -90,9 +114,13 @@ export type MediaResult = {
 function command(value: unknown): MediaCommand {
   if (
     !exactKeys(value, ["action", "input"]) ||
-    !["media.save", "media.dispatch", "media.recover"].includes(
-      String(value.action),
-    )
+    ![
+      "media.save",
+      "media.dispatch",
+      "media.recover",
+      "media.accept",
+      "media.discard",
+    ].includes(String(value.action))
   )
     throw new MediaFrameError("validation");
   let input: Mutation;
@@ -151,9 +179,18 @@ function stripRequest(input: Mutation) {
   return mutation;
 }
 function requireVerifier(deps: MediaDependencies, frame: RealFrame) {
-  if (frame.schema !== 3 || !deps.verifier || !deps.authority.checkClaim || !deps.authority.checkComplete)
+  if (
+    frame.schema !== 4 ||
+    !deps.verifier ||
+    !deps.authority.checkClaim ||
+    !deps.authority.checkComplete
+  )
     throw new MediaFrameError("not_configured");
-  try { deps.verifier.preflight(frame); } catch { throw new MediaFrameError("not_configured"); }
+  try {
+    deps.verifier.preflight(frame);
+  } catch {
+    throw new MediaFrameError("not_configured");
+  }
 }
 function immutableClaim(previous: RealFrame, next: RealFrame) {
   return (
@@ -177,10 +214,76 @@ export async function executeMediaFrame(
   const next = parseRealFrame(input.payload)!;
   await deps.authority.authorize(input.campaignId);
   // Authorize and exact original receipt precede every mutable source/preflight. A replay never redispatches.
-  const receipt = await deps.authority.receipt(input);
+  const receipt =
+    action === "media.recover" && next.schema === 4
+      ? ((await deps.authority.recoveryReceipt?.(input)) ?? null)
+      : await deps.authority.receipt(input);
   if (receipt)
-    return { result: receipt, status: next.status, dispatched: false };
-  if (action === "media.save") {
+    return {
+      result: receipt,
+      status:
+        action === "media.recover" && next.schema === 4 ? "draft" : next.status,
+      dispatched: false,
+    };
+  if (action === "media.accept") {
+    const snapshot = await deps.authority.snapshot(input.campaignId);
+    const current = recordFor(snapshot, input);
+    const previous = current.frame;
+    if (
+      next.schema !== 4 ||
+      previous.schema !== 4 ||
+      previous.status !== "draft" ||
+      next.status !== "completed" ||
+      next.resultAssetId !== current.record.id ||
+      !previous.review ||
+      current.record.revision !== input.expectedRevision ||
+      !sameTimeline(snapshot.timeline, input.timeline) ||
+      !realFrameIsCurrent(
+        snapshot,
+        previous,
+        await deps.authority.source(input.campaignId),
+      ) ||
+      JSON.stringify({
+        ...previous,
+        status: "completed",
+        resultAssetId: current.record.id,
+      }) !== JSON.stringify(next) ||
+      JSON.stringify(
+        realFrameDocumentMutation(snapshot, next, current.record),
+      ) !== JSON.stringify(stripRequest(input))
+    )
+      throw new MediaFrameError("conflict");
+    const pixels = await deps.store.read(input.campaignId, current.record.id);
+    if (
+      !pixels ||
+      !isFrameOutput(pixels.output) ||
+      pixels.output.sha256 !== previous.review.imageSha256 ||
+      pixels.output.storagePath !==
+        frameStoragePath(input.campaignId, current.record.id) ||
+      pixels.output.bytes !== pixels.bytes.byteLength ||
+      checkedPng(pixels.bytes, next.parameters) !== pixels.output.sha256
+    )
+      throw new MediaFrameError("unavailable");
+    const asset: Mutation = {
+      ...realFrameAssetMutation(
+        snapshot,
+        current.record,
+        next,
+        pixels.output,
+        current.record.id,
+        input.requestId,
+      ),
+      requestId: current.record.current_version_id,
+    };
+    return {
+      result: await deps.authority.complete(input, asset, pixels.output),
+      status: "completed",
+      dispatched: false,
+    };
+  }
+  if (action === "media.save" || action === "media.discard") {
+    if (action === "media.discard" && next.status !== "discarded")
+      throw new MediaFrameError("validation");
     const snapshot = await deps.authority.snapshot(input.campaignId);
     validateRealFrameLifecycle(
       snapshot,
@@ -209,8 +312,10 @@ export async function executeMediaFrame(
       ? input.requestId !== next.dispatch.requestId ||
         next.status !== "generating"
       : input.requestId !== input.payload.id ||
-        next.status !== "completed" ||
-        next.resultAssetId !== input.payload.id)
+        (next.schema === 4
+          ? next.status !== "generating" || next.review !== null
+          : next.status !== "completed" ||
+            next.resultAssetId !== input.payload.id))
   )
     throw new MediaFrameError("validation");
   requireVerifier(deps, next);
@@ -289,11 +394,15 @@ export async function executeMediaFrame(
     if (
       current.frame.status !== "generating" ||
       record.revision !== input.expectedRevision ||
-      JSON.stringify({
-        ...current.frame,
-        status: "completed",
-        resultAssetId: record.id,
-      }) !== JSON.stringify(next) ||
+      JSON.stringify(
+        next.schema === 4
+          ? current.frame
+          : {
+              ...current.frame,
+              status: "completed",
+              resultAssetId: record.id,
+            },
+      ) !== JSON.stringify(next) ||
       JSON.stringify(realFrameDocumentMutation(snapshot, next, record)) !==
         JSON.stringify(stripRequest(input))
     )
@@ -327,12 +436,22 @@ export async function executeMediaFrame(
   // A durable paid-check claim binds the exact immutable job version and image.
   // A duplicate/unknown claim never creates another QA generation. Only a stored
   // completed result may replay after a lost response.
-  const checkInput: FrameCheckInput = { campaignId: input.campaignId, jobId: record.id, jobVersionId: record.current_version_id, imageSha256: pixels.output.sha256 };
+  const checkInput: FrameCheckInput = {
+    campaignId: input.campaignId,
+    jobId: record.id,
+    jobVersionId: record.current_version_id,
+    imageSha256: pixels.output.sha256,
+  };
   const checkClaim = await deps.authority.checkClaim!(checkInput);
   let checked = checkClaim.result;
   if (!checked && checkClaim.claimed) {
     try {
-      const result = await deps.verifier!.check(parseRealFrame(record)!, pixels, record.id, record.current_version_id);
+      const result = await deps.verifier!.check(
+        parseRealFrame(record)!,
+        pixels,
+        record.id,
+        record.current_version_id,
+      );
       if (!isFrameCheckResult(result)) throw new MediaFrameError("unavailable");
       checked = await deps.authority.checkComplete!(checkInput, result);
     } catch {
@@ -342,40 +461,63 @@ export async function executeMediaFrame(
     }
   }
   if (!checked || !isFrameCheckResult(checked)) {
-    await deps.authority.lifecycle(baseMutation(snapshot, { ...parseRealFrame(record)!, status: "uncertain", failure: "uncertain" }, record, record.current_version_id));
+    await deps.authority.lifecycle(
+      baseMutation(
+        snapshot,
+        {
+          ...parseRealFrame(record)!,
+          status: "uncertain",
+          failure: "uncertain",
+        },
+        record,
+        record.current_version_id,
+      ),
+    );
     throw new MediaFrameError("unavailable");
   }
-  if (checked.verdict.status !== "pass") {
-    const result = await deps.authority.lifecycle(baseMutation(snapshot, { ...parseRealFrame(record)!, status: "failed", failure: checked.verdict.status === "fail_grounding" ? "grounding" : "review" }, record, record.current_version_id));
-    return { result, status: "failed", dispatched: action === "media.dispatch" };
-  }
-  // Pinned deterministic IDs make an uncertain final attachment exactly replayable.
-  const assetId = record.id;
-  const completion: Mutation = baseMutation(
-    snapshot,
-    { ...next, status: "completed", resultAssetId: assetId },
-    record,
-    assetId,
-  );
-  const completionReceipt = await deps.authority.receipt(completion);
-  if (completionReceipt)
+  if (checked.schemaVersion !== 2 || checked.verdict.schemaVersion !== 2)
+    throw new MediaFrameError("unavailable");
+  if (checked.verdict.status === "hard_reject") {
+    const result = await deps.authority.lifecycle(
+      baseMutation(
+        snapshot,
+        { ...parseRealFrame(record)!, status: "failed", failure: "grounding" },
+        record,
+        record.current_version_id,
+      ),
+    );
     return {
-      result: completionReceipt,
-      status: "completed",
+      result,
+      status: "failed",
       dispatched: action === "media.dispatch",
     };
-  const asset: Mutation = {
-    ...realFrameAssetMutation(snapshot, record, next, pixels.output, assetId),
-    requestId: record.current_version_id,
-  };
-  const result = await deps.authority.complete(
-    completion,
-    asset,
-    pixels.output,
+  }
+  // Generation produces a private draft only. Owner acceptance is a separate operation.
+  const draft: Mutation = baseMutation(
+    snapshot,
+    {
+      ...next,
+      status: "draft",
+      resultAssetId: null,
+      review: {
+        status: checked.verdict.status as "safe_to_review" | "review_warning",
+        imageSha256: pixels.output.sha256,
+      },
+    },
+    record,
+    record.id,
   );
+  const draftReceipt = await deps.authority.receipt(draft);
+  if (draftReceipt)
+    return {
+      result: draftReceipt,
+      status: "draft",
+      dispatched: action === "media.dispatch",
+    };
+  if (!deps.authority.draft) throw new MediaFrameError("not_configured");
   return {
-    result,
-    status: "completed",
+    result: await deps.authority.draft(draft, pixels.output),
+    status: "draft",
     dispatched: action === "media.dispatch",
   };
 }

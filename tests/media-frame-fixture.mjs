@@ -60,6 +60,8 @@ export function fixture() {
     proof = { expectedHeadId: randomUUID(), canonGeneration: 7 },
     receipts = new Map(),
     checkReceipts = new Map(),
+    generatingInputs = new Map(),
+    draftMutations = new Map(),
     pixels = new Map(),
     writes = [],
     calls = [];
@@ -133,28 +135,94 @@ export function fixture() {
       if (!realFrameIsCurrent(snapshot, parseRealFrame(input.payload), proof))
         throw Object.assign(new Error("conflict"), { code: "conflict" });
       reserved += policy.reservationUsdMicros + 200000;
-      return { result: apply(input), claimed: true };
+      const result = apply(input);
+      generatingInputs.set(
+        result.id,
+        structuredClone({
+          ...input,
+          expectedRevision: result.revision,
+          requestId: result.id,
+        }),
+      );
+      return { result, claimed: true };
     },
     checkClaim: async (input) => {
       calls.push("checkClaim");
-      const record = snapshot.documents.find((r) => r.id === input.jobId && r.campaign_id === input.campaignId), frame = record && parseRealFrame(record);
-      if (!record || record.current_version_id !== input.jobVersionId || frame.status !== "generating" || !realFrameIsCurrent(snapshot, frame, proof) || pixels.get(record.id)?.output.sha256 !== input.imageSha256)
-        throw Object.assign(new Error("conflict"), {code:"conflict"});
+      const record = snapshot.documents.find(
+          (r) => r.id === input.jobId && r.campaign_id === input.campaignId,
+        ),
+        frame = record && parseRealFrame(record);
+      if (
+        !record ||
+        record.current_version_id !== input.jobVersionId ||
+        frame.status !== "generating" ||
+        !realFrameIsCurrent(snapshot, frame, proof) ||
+        pixels.get(record.id)?.output.sha256 !== input.imageSha256
+      )
+        throw Object.assign(new Error("conflict"), { code: "conflict" });
       const prior = checkReceipts.get(input.jobId);
       if (prior) {
-        if (JSON.stringify(prior.input) !== JSON.stringify(input)) throw Error("conflict");
-        return {claimed:false, result:prior.result};
+        if (JSON.stringify(prior.input) !== JSON.stringify(input))
+          throw Error("conflict");
+        return { claimed: false, result: prior.result };
       }
-      checkReceipts.set(input.jobId,{input:structuredClone(input),result:null});
-      return {claimed:true,result:null};
+      checkReceipts.set(input.jobId, {
+        input: structuredClone(input),
+        result: null,
+      });
+      return { claimed: true, result: null };
     },
     checkComplete: async (input, result) => {
       calls.push("checkComplete");
-      const prior=checkReceipts.get(input.jobId);
-      if (!prior || JSON.stringify(prior.input) !== JSON.stringify(input)) throw Error("conflict");
-      if (prior.result && JSON.stringify(prior.result) !== JSON.stringify(result)) throw Error("conflict");
-      if (!realFrameIsCurrent(snapshot, parseRealFrame(snapshot.documents.find(r=>r.id===input.jobId)), proof)) throw Object.assign(new Error("conflict"), {code:"conflict"});
-      prior.result=structuredClone(result);
+      const prior = checkReceipts.get(input.jobId);
+      if (!prior || JSON.stringify(prior.input) !== JSON.stringify(input))
+        throw Error("conflict");
+      if (
+        prior.result &&
+        JSON.stringify(prior.result) !== JSON.stringify(result)
+      )
+        throw Error("conflict");
+      if (
+        !realFrameIsCurrent(
+          snapshot,
+          parseRealFrame(snapshot.documents.find((r) => r.id === input.jobId)),
+          proof,
+        )
+      )
+        throw Object.assign(new Error("conflict"), { code: "conflict" });
+      prior.result = structuredClone(result);
+      return result;
+    },
+    recoveryReceipt: async (input) => {
+      calls.push("recoveryReceipt");
+      const expected = generatingInputs.get(input.payload.id);
+      if (!sameTimeline(input.timeline, snapshot.timeline))
+        throw Object.assign(Error("conflict"), { code: "conflict" });
+      if (expected && JSON.stringify(input) !== JSON.stringify(expected))
+        throw Object.assign(Error("conflict"), { code: "conflict" });
+      const draft = draftMutations.get(input.payload.id);
+      return draft ? receipt(draft) : null;
+    },
+    draft: async (input, output) => {
+      calls.push("draft");
+      const existing = await receipt(input);
+      if (existing) return existing;
+      const row = snapshot.documents.find((d) => d.id === input.payload.id),
+        previous = parseRealFrame(row),
+        q = checkReceipts.get(row.id);
+      if (
+        previous.status !== "generating" ||
+        !realFrameIsCurrent(snapshot, previous, proof) ||
+        q?.input.imageSha256 !== output.sha256 ||
+        q?.result.schemaVersion !== 2 ||
+        !["safe_to_review", "review_warning"].includes(q?.result.verdict.status)
+      )
+        throw Object.assign(Error("conflict"), { code: "conflict" });
+      const result = apply(input);
+      draftMutations.set(row.id, structuredClone(input));
+      q.draftVersionId = snapshot.documents.find(
+        (d) => d.id === row.id,
+      ).current_version_id;
       return result;
     },
     complete: async (input, asset, output) => {
@@ -164,9 +232,13 @@ export function fixture() {
       const record = snapshot.documents.find((r) => r.id === input.payload.id),
         previous = parseRealFrame(record);
       if (
-        checkReceipts.get(record.id)?.result?.verdict.status !== "pass" ||
+        !["safe_to_review", "review_warning"].includes(
+          checkReceipts.get(record.id)?.result?.verdict.status,
+        ) ||
+        checkReceipts.get(record.id)?.draftVersionId !==
+          record.current_version_id ||
         checkReceipts.get(record.id)?.input.imageSha256 !== output.sha256 ||
-        previous.status !== "generating" ||
+        previous.status !== "draft" ||
         !realFrameIsCurrent(snapshot, previous, proof)
       )
         throw Object.assign(new Error("conflict"), { code: "conflict" });
@@ -211,12 +283,25 @@ export function fixture() {
     },
   };
   const verifier = {
-    preflight: (frame) => {if(frame.schema!==3)throw Error("configuration");},
+    preflight: (frame) => {
+      if (frame.schema !== 4) throw Error("configuration");
+    },
     check: async (frame, image, jobId) => {
       verifierCalls++;
       calls.push("verifier");
-      if (image.output.storagePath !== frame.campaign_id+"/frames/"+jobId+"/output.png") throw Error("foreign");
-      return {schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4-2026-03-05",inputTokens:3000,outputTokens:200,latencyMs:10};
+      if (
+        image.output.storagePath !==
+        frame.campaign_id + "/frames/" + jobId + "/output.png"
+      )
+        throw Error("foreign");
+      return {
+        schemaVersion: 2,
+        verdict: { schemaVersion: 2, status: "safe_to_review", reasons: [] },
+        actualModel: "gpt-5.4-2026-03-05",
+        inputTokens: 3000,
+        outputTokens: 200,
+        latencyMs: 10,
+      };
     },
   };
   const deps = { authority, policy, store, provider, verifier };
@@ -257,15 +342,25 @@ export function fixture() {
   function recovery(record) {
     const frame = parseRealFrame(record);
     return {
-      ...realFrameDocumentMutation(
-        snapshot,
-        { ...frame, status: "completed", resultAssetId: record.id },
-        record,
-      ),
+      ...realFrameDocumentMutation(snapshot, frame, record),
       requestId: record.id,
     };
   }
+  async function accept(id) {
+    const record = snapshot.documents.find((d) => d.id === id),
+      frame = parseRealFrame(record);
+    const input = {
+      ...realFrameDocumentMutation(
+        snapshot,
+        { ...frame, status: "completed", resultAssetId: id },
+        record,
+      ),
+      requestId: randomUUID(),
+    };
+    return run("media.accept", input);
+  }
   return {
+    accept,
     snapshot,
     proof,
     receipts,

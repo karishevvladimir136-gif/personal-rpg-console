@@ -21,6 +21,7 @@ import type {
 } from "./model.ts";
 
 import { closedWorldFramePrompt } from "./closed-world.ts";
+import { illustrationFramePrompt } from "./illustration-review.ts";
 
 export const REAL_FRAME_ASSET_PREFIX = "RPG_REAL_FRAME_ASSET_V1\n";
 export const IMAGE_MODELS = [
@@ -47,7 +48,7 @@ export type RealFrameReference = {
   imageAssetRevision: number | null;
 };
 export type RealFrame = {
-  schema: 2 | 3;
+  schema: 2 | 3 | 4;
   kind: "frame";
   campaign_id: string;
   provider: "OpenAI";
@@ -58,7 +59,9 @@ export type RealFrame = {
     | "completed"
     | "failed"
     | "cancelled"
-    | "uncertain";
+    | "uncertain"
+    | "draft"
+    | "discarded";
   composition: VisualFrame["composition"];
   art: MockArt;
   basis: {
@@ -74,7 +77,18 @@ export type RealFrame = {
   retryOf: string | null;
   dispatch: { requestId: string; reservationUsdMicros: number } | null;
   resultAssetId: string | null;
-  failure: "provider" | "uncertain" | "stale" | "storage" | "grounding" | "review" | null;
+  review?: {
+    status: "safe_to_review" | "review_warning";
+    imageSha256: string;
+  } | null;
+  failure:
+    | "provider"
+    | "uncertain"
+    | "stale"
+    | "storage"
+    | "grounding"
+    | "review"
+    | null;
 };
 export type FrameUsage = {
   textInputTokens: number;
@@ -100,6 +114,7 @@ export type RealFrameAsset = {
   model: ImageModel;
   dispatchRequestId: string;
   output: FrameOutput;
+  ownerApproval?: { requestId: string; draftVersionId: string };
 };
 export function exactKeys(
   value: unknown,
@@ -201,8 +216,14 @@ export function parseRealFrame(
         "dispatch",
         "resultAssetId",
         "failure",
+        ...(typeof v === "object" &&
+        v !== null &&
+        "schema" in v &&
+        v.schema === 4
+          ? ["review"]
+          : []),
       ]) ||
-      (v.schema !== 2 && v.schema !== 3) ||
+      (v.schema !== 2 && v.schema !== 3 && v.schema !== 4) ||
       v.kind !== "frame" ||
       !isUuid(v.campaign_id) ||
       v.provider !== "OpenAI" ||
@@ -214,6 +235,7 @@ export function parseRealFrame(
         "failed",
         "cancelled",
         "uncertain",
+        ...(v.schema === 4 ? ["draft", "discarded"] : []),
       ].includes(String(v.status)) ||
       !["wide", "portrait", "location", "item"].includes(
         String(v.composition),
@@ -278,9 +300,15 @@ export function parseRealFrame(
           v.dispatch.reservationUsdMicros > 0)
       ) ||
       !nullableUuid(v.resultAssetId) ||
-      ![null, "provider", "uncertain", "stale", "storage", "grounding", "review"].includes(
-        v.failure as null | string,
-      )
+      ![
+        null,
+        "provider",
+        "uncertain",
+        "stale",
+        "storage",
+        "grounding",
+        "review",
+      ].includes(v.failure as null | string)
     )
       return null;
     if (
@@ -288,9 +316,14 @@ export function parseRealFrame(
         (v.dispatch !== null ||
           v.failure !== null ||
           v.resultAssetId !== null)) ||
-      (["generating", "completed", "failed", "uncertain"].includes(
-        String(v.status),
-      ) &&
+      ([
+        "generating",
+        "completed",
+        "failed",
+        "uncertain",
+        "draft",
+        "discarded",
+      ].includes(String(v.status)) &&
         v.dispatch === null) ||
       (v.status === "completed"
         ? !isUuid(v.resultAssetId) || v.failure !== null
@@ -299,9 +332,28 @@ export function parseRealFrame(
         v.failure !== null) ||
       (v.status === "uncertain" && v.failure !== "uncertain") ||
       (v.status === "failed" &&
-        !["provider", "stale", "storage", "grounding", "review"].includes(String(v.failure)))
+        !["provider", "stale", "storage", "grounding", "review"].includes(
+          String(v.failure),
+        ))
     )
       return null;
+    if (v.schema === 4) {
+      const reviewed = ["draft", "discarded", "completed"].includes(
+        String(v.status),
+      );
+      if (
+        reviewed
+          ? !exactKeys(v.review, ["status", "imageSha256"]) ||
+            !["safe_to_review", "review_warning"].includes(
+              String(v.review.status),
+            ) ||
+            typeof v.review.imageSha256 !== "string" ||
+            !/^[a-f0-9]{64}$/.test(v.review.imageSha256) ||
+            v.failure !== null
+          : v.review !== null
+      )
+        return null;
+    }
     return v as RealFrame;
   } catch {
     return null;
@@ -324,13 +376,20 @@ export function realFrameAssetInfo(
 ): RealFrameAsset | null {
   if (
     asset.kind !== "image" ||
-    !asset.description.startsWith(REAL_FRAME_ASSET_PREFIX) ||
+    !(
+      asset.description.startsWith(REAL_FRAME_ASSET_PREFIX) ||
+      asset.description.startsWith("RPG_OWNER_FRAME_ASSET_V1\n")
+    ) ||
     asset.description.length > 10000
   )
     return null;
   try {
     const v: unknown = JSON.parse(
-      asset.description.slice(REAL_FRAME_ASSET_PREFIX.length),
+      asset.description.slice(
+        asset.description.startsWith(REAL_FRAME_ASSET_PREFIX)
+          ? REAL_FRAME_ASSET_PREFIX.length
+          : "RPG_OWNER_FRAME_ASSET_V1\n".length,
+      ),
     );
     if (
       !exactKeys(v, [
@@ -344,6 +403,9 @@ export function realFrameAssetInfo(
         "model",
         "dispatchRequestId",
         "output",
+        ...(asset.description.startsWith("RPG_OWNER_FRAME_ASSET_V1\n")
+          ? ["ownerApproval"]
+          : []),
       ]) ||
       !isUuid(v.campaign_id) ||
       !isUuid(v.job_document_id) ||
@@ -358,6 +420,14 @@ export function realFrameAssetInfo(
       asset.storage_path !== v.output.storagePath ||
       v.output.storagePath !==
         frameStoragePath(v.campaign_id, v.job_document_id)
+    )
+      return null;
+    if (
+      asset.description.startsWith("RPG_OWNER_FRAME_ASSET_V1\n") &&
+      (!exactKeys(v.ownerApproval, ["requestId", "draftVersionId"]) ||
+        !isUuid(v.ownerApproval.requestId) ||
+        !isUuid(v.ownerApproval.draftVersionId) ||
+        v.ownerApproval.draftVersionId !== v.job_version_id)
     )
       return null;
     return v as RealFrameAsset;
@@ -389,6 +459,24 @@ export function safeFrameAsset(
     job.value.basis.scene.id === info.scene_id &&
     job.value.basis.scene.revision === info.scene_revision &&
     sameTimeline(job.value.basis.timeline, info.timeline)
+    ? info
+    : null;
+}
+/** Explicit acceptance remains presentation only and is required separately for VIDEO. */
+export function ownerAcceptedFrameAsset(
+  snapshot: CampaignSnapshot,
+  asset: Asset,
+): RealFrameAsset | null {
+  const info = safeFrameAsset(snapshot, asset);
+  const job =
+    info &&
+    realFrameDocuments(snapshot).find(
+      (r) => r.record.id === info.job_document_id,
+    );
+  return info?.ownerApproval &&
+    job?.value.schema === 4 &&
+    job.value.status === "completed" &&
+    job.value.review?.imageSha256 === info.output.sha256
     ? info
     : null;
 }
@@ -459,7 +547,7 @@ export function legacyRealFramePrompt(
     ),
   ].join("\n\n");
 }
-export const realFramePrompt = closedWorldFramePrompt;
+export const realFramePrompt = illustrationFramePrompt;
 
 export function buildRealFrame(
   snapshot: CampaignSnapshot,
@@ -499,9 +587,14 @@ export function buildRealFrame(
     !realFrameDocuments(snapshot).some(
       (r) =>
         r.record.id === retryOf &&
-        ["failed", "cancelled", "uncertain", "completed"].includes(
-          r.value.status,
-        ),
+        [
+          "failed",
+          "cancelled",
+          "uncertain",
+          "completed",
+          "draft",
+          "discarded",
+        ].includes(r.value.status),
     )
   )
     return fail("conflict");
@@ -513,7 +606,7 @@ export function buildRealFrame(
   if (prompt.length > 30000 || new TextEncoder().encode(prompt).length > 60000)
     return fail();
   return {
-    schema: 3,
+    schema: 4,
     kind: "frame",
     campaign_id: snapshot.campaign.id,
     provider: "OpenAI",
@@ -551,6 +644,7 @@ export function buildRealFrame(
     retryOf,
     dispatch: null,
     resultAssetId: null,
+    review: null,
     failure: null,
   };
 }
@@ -572,10 +666,29 @@ export function realFrameIsCurrent(
     );
     return (
       same(rebuilt.basis, frame.basis) &&
-      (frame.schema === 3
+      (frame.schema === 4
         ? rebuilt.prompt
-        : legacyRealFramePrompt(rebuilt.basis.scene,
-            frame.basis.references.map((ref) => eligibleRealReferences(snapshot).find((r) => r.record.id === ref.documentId)!.reference), frame.composition)) === frame.prompt &&
+        : frame.schema === 3
+          ? closedWorldFramePrompt(
+              rebuilt.basis.scene,
+              frame.basis.references.map(
+                (ref) =>
+                  eligibleRealReferences(snapshot).find(
+                    (r) => r.record.id === ref.documentId,
+                  )!.reference,
+              ),
+              frame.composition,
+            )
+          : legacyRealFramePrompt(
+              rebuilt.basis.scene,
+              frame.basis.references.map(
+                (ref) =>
+                  eligibleRealReferences(snapshot).find(
+                    (r) => r.record.id === ref.documentId,
+                  )!.reference,
+              ),
+              frame.composition,
+            )) === frame.prompt &&
       rebuilt.art === frame.art
     );
   } catch {
@@ -612,9 +725,11 @@ export function realFrameAssetMutation(
   frame: RealFrame,
   output: FrameOutput,
   assetId: string,
+  approvalRequestId?: string,
 ): Extract<MutationInput, { operation: "asset.save" }> {
   if (
     !isUuid(assetId) ||
+    (frame.schema === 4 && !isUuid(approvalRequestId)) ||
     !frame.dispatch ||
     !isFrameOutput(output) ||
     output.storagePath !== frameStoragePath(snapshot.campaign.id, record.id)
@@ -631,6 +746,14 @@ export function realFrameAssetMutation(
     model: frame.model,
     dispatchRequestId: frame.dispatch.requestId,
     output,
+    ...(frame.schema === 4 && approvalRequestId
+      ? {
+          ownerApproval: {
+            requestId: approvalRequestId,
+            draftVersionId: record.current_version_id,
+          },
+        }
+      : {}),
   };
   return {
     operation: "asset.save",
@@ -642,7 +765,10 @@ export function realFrameAssetMutation(
       title: `FRAME: ${frame.basis.scene.title}`.slice(0, 200),
       kind: "image",
       storage_path: output.storagePath,
-      description: REAL_FRAME_ASSET_PREFIX + JSON.stringify(provenance),
+      description:
+        (frame.schema === 4
+          ? "RPG_OWNER_FRAME_ASSET_V1\n"
+          : REAL_FRAME_ASSET_PREFIX) + JSON.stringify(provenance),
     },
   };
 }
@@ -705,9 +831,15 @@ export function validateRealFrameLifecycle(
     const previous = parseRealFrame(record);
     if (
       !previous ||
-      !["queued", "generating", "uncertain"].includes(previous.status) ||
-      frame.status !== "cancelled" ||
-      !same({ ...previous, status: "cancelled", failure: null }, frame)
+      !(
+        (previous.schema === 4 &&
+          previous.status === "draft" &&
+          frame.status === "discarded" &&
+          same({ ...previous, status: "discarded" }, frame)) ||
+        (["queued", "generating", "uncertain"].includes(previous.status) &&
+          frame.status === "cancelled" &&
+          same({ ...previous, status: "cancelled", failure: null }, frame))
+      )
     )
       return fail();
   }

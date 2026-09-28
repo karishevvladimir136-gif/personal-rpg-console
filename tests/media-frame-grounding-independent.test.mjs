@@ -1,3 +1,4 @@
+import { closedWorldFramePrompt } from "../src/lib/visual-frame/closed-world.ts";
 import test, { before, after } from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
@@ -146,6 +147,7 @@ async function setup(f = base, limit = 2400000) {
     refs = [],
     composition = "wide",
     legacy = false,
+    current = false,
     frameParameters = parameters,
   } = {}) {
     const s = await snapshot(),
@@ -157,6 +159,15 @@ async function setup(f = base, limit = 2400000) {
         frameParameters,
         await source(),
       );
+    if (!current) {
+      delete frame.review;
+      frame.schema = 3;
+      frame.prompt = closedWorldFramePrompt(
+        frame.basis.scene,
+        [],
+        frame.composition,
+      );
+    }
     if (legacy) {
       frame.schema = 2;
       frame.prompt =
@@ -699,6 +710,20 @@ async function sqlOrchestration(f, verdict) {
     claim: f.claim,
     checkClaim: f.checkClaim,
     checkComplete: f.checkComplete,
+    draft: async (mutation, output) =>
+      (
+        await f.f.one(
+          "select public.rpg_real_frame_draft($1,$2::jsonb,$3::jsonb) v",
+          [f.f.owner, JSON.stringify(mutation), JSON.stringify(output)],
+        )
+      ).v,
+    recoveryReceipt: async (input) =>
+      (
+        await f.f.one(
+          "select public.rpg_real_frame_recovery_receipt($1,$2::jsonb) v",
+          [f.f.owner, JSON.stringify(input)],
+        )
+      ).v,
     complete: async (mutation, asset, output) =>
       f.complete({ mutation, asset, output }),
   };
@@ -758,6 +783,12 @@ async function dispatchInput(f, q) {
 }
 
 test("integrated QA requester receives only exact public contract/scoped PNG, no private/other-campaign records, state grants, tools or diagnostics", async () => {
+  await base.db.exec(
+    await readFile(
+      new URL("supabase/migrations/202609280028_frame_owner_review.sql", root),
+      "utf8",
+    ),
+  );
   const f = await setup(),
     other = await setup();
   await base.one(
@@ -798,15 +829,19 @@ test("integrated QA requester receives only exact public contract/scoped PNG, no
     "campaign",
   );
   const before = await f.authoritative(),
-    q = await f.queued(),
-    pipeline = await sqlOrchestration(f, checkResult().verdict);
+    q = await f.queued({ current: true }),
+    pipeline = await sqlOrchestration(f, {
+      schemaVersion: 2,
+      status: "safe_to_review",
+      reasons: [],
+    });
   const savedFetch = globalThis.fetch;
   globalThis.fetch = () =>
     assert.fail("No provider network is authorized in independent QA");
   try {
     const dispatch = await dispatchInput(f, q),
       outcome = await pipeline.run("media.dispatch", dispatch);
-    assert.equal(outcome.status, "completed");
+    assert.equal(outcome.status, "draft");
     assert.equal(pipeline.wires.length, 1);
     assert.equal(pipeline.imageCalls(), 1);
     const wire = pipeline.wires[0],
@@ -834,7 +869,7 @@ test("integrated QA requester receives only exact public contract/scoped PNG, no
     assert.equal(wire.input[0].content[1].detail, "high");
     assert.doesNotMatch(
       textWire,
-      /INDEPENDENT_DM_PRIVATE_CANARY|PRIVATE_BEFORE_FORK|OTHER_CAMPAIGN_VISIBLE_CANARY|UNAPPROVED_REFERENCE_CANARY|expectedHeadId|canonGeneration|campaign_id|sourceVersionId|jobVersionId|publicPatch|worldPatch|statePatch|diagnostic|SYNTHETIC_OFFLINE_KEY/,
+      /INDEPENDENT_DM_PRIVATE_CANARY|PRIVATE_BEFORE_FORK|OTHER_CAMPAIGN_VISIBLE_CANARY|UNAPPROVED_REFERENCE_CANARY|expectedHeadId|canonGeneration|campaign_id|sourceVersionId|jobVersionId|publicPatch|worldPatch|statePatch|"diagnostics"|SYNTHETIC_OFFLINE_KEY/,
     );
     for (const id of [
       f.cid,
@@ -863,9 +898,9 @@ test("integrated QA requester receives only exact public contract/scoped PNG, no
 test("malicious QA structured state-patch output fails closed through real SQL and exact retry never generates another image/check", async () => {
   const f = await setup(),
     before = await f.authoritative(),
-    q = await f.queued();
+    q = await f.queued({ current: true });
   const pipeline = await sqlOrchestration(f, {
-    ...checkResult().verdict,
+    ...{ schemaVersion: 2, status: "safe_to_review", reasons: [] },
     publicPatch: { gold: 9000 },
     privatePatch: { secret: "forged" },
     worldEvents: [],

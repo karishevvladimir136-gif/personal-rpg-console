@@ -8,11 +8,31 @@ import { integrationFixture, command } from "./d2a-integration-fixture.mjs";
 const source = process.env.MEDIA_SOURCE_ROOT
   ? pathToFileURL(process.env.MEDIA_SOURCE_ROOT.replaceAll("\\", "/") + "/")
   : new URL("../", import.meta.url);
-const { buildRealFrame, realFrameDocumentMutation, realFrameAssetMutation } =
-  await import(new URL("src/lib/visual-frame/real-frame.ts", source));
+const {
+  buildRealFrame: buildCurrentFrame,
+  realFrameDocumentMutation,
+  realFrameAssetMutation,
+} = await import(new URL("src/lib/visual-frame/real-frame.ts", source));
 const { newVisualReference, serializeVisualMetadata } = await import(
   new URL("src/lib/visual-frame/model.ts", source)
 );
+// Historical schema3 authority compatibility; new draft authority is tested separately.
+import { closedWorldFramePrompt } from "../src/lib/visual-frame/closed-world.ts";
+function buildRealFrame(...args) {
+  const frame = buildCurrentFrame(...args);
+  delete frame.review;
+  frame.schema = 3;
+  frame.prompt = closedWorldFramePrompt(
+    frame.basis.scene,
+    frame.basis.references.map((r) => {
+      const row = args[0].documents.find((d) => d.id === r.documentId);
+      return parseVisualForLegacy(row);
+    }),
+    frame.composition,
+  );
+  return frame;
+}
+import { parseVisualMetadata as parseVisualForLegacy } from "../src/lib/visual-frame/model.ts";
 const model = "gpt-image-2.5-sunburst-2026-09-08",
   parameters = {
     size: "1536x1024",
@@ -101,8 +121,31 @@ async function tools(f) {
         providerRequestId: "synthetic_only",
       };
     if (record && record.body.includes('"status":"generating"')) {
-      await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)",[f.owner,f.cid,record.id,record.current_version_id,o.sha256]);
-      await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",[f.owner,f.cid,record.id,record.current_version_id,o.sha256,JSON.stringify({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})]);
+      await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)", [
+        f.owner,
+        f.cid,
+        record.id,
+        record.current_version_id,
+        o.sha256,
+      ]);
+      await f.one(
+        "select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",
+        [
+          f.owner,
+          f.cid,
+          record.id,
+          record.current_version_id,
+          o.sha256,
+          JSON.stringify({
+            schemaVersion: 1,
+            verdict: { schemaVersion: 1, status: "pass", reasons: [] },
+            actualModel: "gpt-5.4",
+            inputTokens: 3000,
+            outputTokens: 200,
+            latencyMs: 10,
+          }),
+        ],
+      );
     }
     const v = { ...g.v, status: "completed", resultAssetId: record.id },
       m = { ...realFrameDocumentMutation(s, v, record), requestId: record.id },

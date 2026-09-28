@@ -38,7 +38,24 @@ async function sqlFixture() {
     },
   });
   try {
-    await f.db.exec(await readFile(new URL("supabase/migrations/202609280027_frame_grounding.sql", sharedRoot),"utf8"));
+    await f.db.exec(
+      await readFile(
+        new URL(
+          "supabase/migrations/202609280027_frame_grounding.sql",
+          sharedRoot,
+        ),
+        "utf8",
+      ),
+    );
+    await f.db.exec(
+      await readFile(
+        new URL(
+          "supabase/migrations/202609280028_frame_owner_review.sql",
+          sharedRoot,
+        ),
+        "utf8",
+      ),
+    );
     const approved = await f.approve(),
       prepared = await f.store.prepare(approved.request),
       services = await f.services();
@@ -110,8 +127,51 @@ async function sqlFixture() {
           )
         ).result;
       },
-      checkClaim: async (input) => (await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5) result", [f.owner,input.campaignId,input.jobId,input.jobVersionId,input.imageSha256])).result,
-      checkComplete: async (input,result) => (await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb) result",[f.owner,input.campaignId,input.jobId,input.jobVersionId,input.imageSha256,JSON.stringify(result)])).result,
+      checkClaim: async (input) =>
+        (
+          await f.one(
+            "select public.rpg_frame_check_claim($1,$2,$3,$4,$5) result",
+            [
+              f.owner,
+              input.campaignId,
+              input.jobId,
+              input.jobVersionId,
+              input.imageSha256,
+            ],
+          )
+        ).result,
+      checkComplete: async (input, result) =>
+        (
+          await f.one(
+            "select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb) result",
+            [
+              f.owner,
+              input.campaignId,
+              input.jobId,
+              input.jobVersionId,
+              input.imageSha256,
+              JSON.stringify(result),
+            ],
+          )
+        ).result,
+      recoveryReceipt: async (input) => {
+        calls.push("recoveryReceipt");
+        return (
+          await f.one(
+            "select public.rpg_real_frame_recovery_receipt($1,$2::jsonb) result",
+            [f.owner, JSON.stringify(input)],
+          )
+        ).result;
+      },
+      draft: async (input, output) => {
+        calls.push("draft");
+        return (
+          await f.one(
+            "select public.rpg_real_frame_draft($1,$2::jsonb,$3::jsonb) result",
+            [f.owner, JSON.stringify(input), JSON.stringify(output)],
+          )
+        ).result;
+      },
       complete: async (input, asset, output) => {
         calls.push("complete");
         return (
@@ -135,7 +195,17 @@ async function sqlFixture() {
           outputs.set(id, structuredClone(pixels)),
         read: async (cid, id) => outputs.get(id) ?? null,
       },
-      verifier: {preflight:(frame)=>assert.equal(frame.schema,3),check:async()=>({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})},
+      verifier: {
+        preflight: (frame) => assert.equal(frame.schema, 4),
+        check: async () => ({
+          schemaVersion: 2,
+          verdict: { schemaVersion: 2, status: "safe_to_review", reasons: [] },
+          actualModel: "gpt-5.4",
+          inputTokens: 3000,
+          outputTokens: 200,
+          latencyMs: 10,
+        }),
+      },
       provider: {
         generate: async (frame, id) => {
           providerCalls++;
@@ -190,6 +260,19 @@ async function sqlFixture() {
         ),
         requestId,
       };
+    }
+    async function accept(id) {
+      const current = await snapshot(),
+        row = current.documents.find((d) => d.id === id),
+        frame = parseRealFrame(row);
+      return run("media.accept", {
+        ...realFrameDocumentMutation(
+          current,
+          { ...frame, status: "completed", resultAssetId: id },
+          row,
+        ),
+        requestId: randomUUID(),
+      });
     }
     async function cancel(record) {
       const current = await snapshot(),
@@ -269,6 +352,7 @@ async function sqlFixture() {
       queue,
       dispatch,
       cancel,
+      accept,
       run,
       budgetId,
       outputs,
@@ -288,6 +372,7 @@ test("real SQL FRAME queue/claim/complete/cancel/failure leave eligible checkpoi
     assert.ok(await f.base());
     const q = await f.queue();
     await f.run("media.dispatch", await f.dispatch(q.record));
+    await f.accept(q.record.id);
     const second = await f.queue(q.record.id);
     await f.run("media.save", await f.cancel(second.record));
     const third = await f.queue(second.record.id);
@@ -317,9 +402,9 @@ test("actual SQL uncertain completion receipt recovers after factual correction 
   try {
     const q = await f.queue(),
       dispatch = await f.dispatch(q.record),
-      complete = f.authority.complete;
+      complete = f.authority.draft;
     let retained;
-    f.authority.complete = async (...args) => {
+    f.authority.draft = async (...args) => {
       retained = structuredClone(args[0]);
       await complete(...args);
       throw Error("lost-final-response");
@@ -355,12 +440,12 @@ test("actual SQL uncertain completion receipt recovers after factual correction 
     );
     await assert.rejects(f.base(), /rpg_conflict|rpg_validation/);
     f.calls.length = 0;
-    const recovered = await f.run("media.recover", retained);
-    assert.equal(recovered.status, "completed");
+    const recovered = await f.run("media.save", retained);
+    assert.equal(recovered.status, "draft");
     assert.deepEqual(f.calls, ["authorize", "receipt"]);
     assert.equal(
       (await f.snapshot()).assets.filter((a) => a.id === q.record.id).length,
-      1,
+      0,
     );
     assert.equal(f.providerCalls(), 1);
   } finally {

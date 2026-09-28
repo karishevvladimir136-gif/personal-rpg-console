@@ -4,6 +4,7 @@ import {
   prepareMediaFrame,
   runMediaFrame,
   signedFrameImage,
+  signedFrameDraft,
 } from "@/lib/server/media/server";
 import { readWriteRequest } from "@/lib/persistence/http-policy";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
@@ -37,10 +38,16 @@ export async function GET(request: Request) {
       campaignId = url.searchParams.get("campaignId") ?? "";
     if (url.searchParams.get("action") === "capability")
       return publicJson(await mediaCapability(campaignId));
-    const signed = await signedFrameImage(
-      campaignId,
-      url.searchParams.get("assetId") ?? "",
-    );
+    const signed =
+      url.searchParams.get("action") === "draft"
+        ? await signedFrameDraft(
+            campaignId,
+            url.searchParams.get("jobId") ?? "",
+          )
+        : await signedFrameImage(
+            campaignId,
+            url.searchParams.get("assetId") ?? "",
+          );
     return new Response(null, {
       status: 302,
       headers: {

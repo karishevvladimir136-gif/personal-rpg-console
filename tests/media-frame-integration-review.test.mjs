@@ -10,7 +10,7 @@ import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
 import {
-  buildRealFrame,
+  buildRealFrame as buildCurrentFrame,
   realFrameDocumentMutation,
   realFrameAssetMutation,
   parseRealFrame,
@@ -27,6 +27,23 @@ const root = process.env.MEDIA_FRAME_SOURCE_ROOT
       ) + "/",
     )
   : new URL("../", import.meta.url);
+// Historical schema3 authority compatibility; new draft authority is tested separately.
+import { closedWorldFramePrompt } from "../src/lib/visual-frame/closed-world.ts";
+function buildRealFrame(...args) {
+  const frame = buildCurrentFrame(...args);
+  delete frame.review;
+  frame.schema = 3;
+  frame.prompt = closedWorldFramePrompt(
+    frame.basis.scene,
+    frame.basis.references.map((r) => {
+      const row = args[0].documents.find((d) => d.id === r.documentId);
+      return parseVisualForLegacy(row);
+    }),
+    frame.composition,
+  );
+  return frame;
+}
+import { parseVisualMetadata as parseVisualForLegacy } from "../src/lib/visual-frame/model.ts";
 const model = "gpt-image-2.5-sunburst-2026-09-08",
   parameters = {
     size: "1536x1024",
@@ -43,7 +60,12 @@ async function setup() {
         "utf8",
       ),
     );
-    await f.db.exec(await readFile(new URL("supabase/migrations/202609280027_frame_grounding.sql",root),"utf8"));
+    await f.db.exec(
+      await readFile(
+        new URL("supabase/migrations/202609280027_frame_grounding.sql", root),
+        "utf8",
+      ),
+    );
     Object.assign(f, await world(f));
     f.snapshot = () => f.saves(f.cid, "campaign");
     f.source = async () =>
@@ -135,9 +157,36 @@ async function setup() {
         },
         providerRequestId: "offline_review_only",
       };
-      if ((await f.reservations()).some((reservation)=>reservation.job_id===id)) {
-        await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)",[f.owner,f.cid,id,record.current_version_id,output.sha256]);
-        await f.one("select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",[f.owner,f.cid,id,record.current_version_id,output.sha256,JSON.stringify({schemaVersion:1,verdict:{schemaVersion:1,status:"pass",reasons:[]},actualModel:"gpt-5.4",inputTokens:3000,outputTokens:200,latencyMs:10})]);
+      if (
+        (await f.reservations()).some(
+          (reservation) => reservation.job_id === id,
+        )
+      ) {
+        await f.one("select public.rpg_frame_check_claim($1,$2,$3,$4,$5)", [
+          f.owner,
+          f.cid,
+          id,
+          record.current_version_id,
+          output.sha256,
+        ]);
+        await f.one(
+          "select public.rpg_frame_check_complete($1,$2,$3,$4,$5,$6::jsonb)",
+          [
+            f.owner,
+            f.cid,
+            id,
+            record.current_version_id,
+            output.sha256,
+            JSON.stringify({
+              schemaVersion: 1,
+              verdict: { schemaVersion: 1, status: "pass", reasons: [] },
+              actualModel: "gpt-5.4",
+              inputTokens: 3000,
+              outputTokens: 200,
+              latencyMs: 10,
+            }),
+          ],
+        );
       }
       return {
         input: {
@@ -492,6 +541,7 @@ test("mounted Gallery displays only safe completed real art and keeps operationa
   const f = mediaFixture(),
     q = await f.queue();
   await f.run("media.dispatch", f.dispatch(q.record));
+  await f.accept(q.record.id);
   const asset = f.snapshot.assets.find((a) => a.id === q.record.id),
     ui = await mountedGame(f.snapshot),
     tree = ui.render("PersistentSupporting", { screen: "gallery" });

@@ -327,7 +327,17 @@ test("normal FRAME attempt client reviews exact public basis and scripts complet
       attempt,
       local.mediaTransport,
     );
-    assert.equal(result.status, "completed");
+    assert.equal(result.status, "draft");
+    assert.equal(local.snapshot().assets.length, 0);
+    const draft = real.realFrameDocuments(local.snapshot())[0];
+    await local.mediaTransport.send({
+      action: "media.accept",
+      input: media.createFrameOwnerDecision(
+        local.snapshot(),
+        draft.record,
+        "accept",
+      ),
+    });
     assert.equal(result.dispatched, false);
     const complete = real.realFrameDocuments(local.snapshot())[0],
       asset = local.snapshot().assets[0];
@@ -414,6 +424,15 @@ test("FRAME demo fences scene/head/reference versions, scopes pixels, and reject
   assert.equal(real.realFrameDocuments(local.snapshot()).length, 0);
   const current = await frameAttempt(local);
   await media.finishRealFrameAttempt(current, local.mediaTransport);
+  const draft = real.realFrameDocuments(local.snapshot())[0];
+  await local.mediaTransport.send({
+    action: "media.accept",
+    input: media.createFrameOwnerDecision(
+      local.snapshot(),
+      draft.record,
+      "accept",
+    ),
+  });
   await assert.rejects(
     local.mediaTransport.send({
       action: "media.dispatch",

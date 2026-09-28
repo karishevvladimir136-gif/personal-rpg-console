@@ -60,8 +60,59 @@ async function serverFixture() {
           data: await f.authority.claim(args.p_mutation, args.p_budget_id),
           error: null,
         };
-      if (name === "rpg_frame_check_claim") return { data: await f.authority.checkClaim({campaignId:args.p_campaign_id,jobId:args.p_job_id,jobVersionId:args.p_job_version_id,imageSha256:args.p_image_sha256}),error:null };
-      if (name === "rpg_frame_check_complete") return { data: await f.authority.checkComplete({campaignId:args.p_campaign_id,jobId:args.p_job_id,jobVersionId:args.p_job_version_id,imageSha256:args.p_image_sha256}, args.p_result),error:null };
+      if (name === "rpg_frame_check_claim")
+        return {
+          data: await f.authority.checkClaim({
+            campaignId: args.p_campaign_id,
+            jobId: args.p_job_id,
+            jobVersionId: args.p_job_version_id,
+            imageSha256: args.p_image_sha256,
+          }),
+          error: null,
+        };
+      if (name === "rpg_frame_check_complete")
+        return {
+          data: await f.authority.checkComplete(
+            {
+              campaignId: args.p_campaign_id,
+              jobId: args.p_job_id,
+              jobVersionId: args.p_job_version_id,
+              imageSha256: args.p_image_sha256,
+            },
+            args.p_result,
+          ),
+          error: null,
+        };
+      if (name === "rpg_real_frame_draft")
+        return {
+          data: await f.authority.draft(args.p_mutation, args.p_output),
+          error: null,
+        };
+      if (name === "rpg_real_frame_recovery_receipt")
+        return {
+          data: await f.authority.recoveryReceipt(args.p_intent),
+          error: null,
+        };
+      if (name === "rpg_frame_draft_pixels") {
+        const row = f.snapshot.documents.find((d) => d.id === args.p_job_id),
+          frame = row && model.parseRealFrame(row),
+          q = f.checkReceipts.get(args.p_job_id);
+        if (
+          args.p_owner_id !== owner ||
+          args.p_campaign_id !== f.snapshot.campaign.id ||
+          frame?.status !== "draft" ||
+          q?.draftVersionId !== row.current_version_id
+        )
+          return { data: null, error: { message: "rpg_not_found" } };
+        return {
+          data: {
+            storagePath:
+              frame.campaign_id + "/frames/" + row.id + "/output.png",
+            imageSha256: frame.review.imageSha256,
+          },
+          error: null,
+        };
+      }
       if (name === "rpg_real_frame_complete")
         return {
           data: await f.authority.complete(
@@ -80,7 +131,10 @@ async function serverFixture() {
           upload: async (path, bytes, options) => {
             uploads.push({ path, options });
             assert.equal(options.upsert, false);
-            f.pixels.set(path.split("/")[2], {bytes:structuredClone(bytes),output:structuredClone(options.metadata.frameOutput)});
+            f.pixels.set(path.split("/")[2], {
+              bytes: structuredClone(bytes),
+              output: structuredClone(options.metadata.frameOutput),
+            });
             files.set(path, {
               bytes: structuredClone(bytes),
               metadata: structuredClone(options.metadata),
@@ -105,7 +159,7 @@ async function serverFixture() {
           }),
           createSignedUrl: async (path, seconds) => {
             assert.ok(files.has(path));
-            assert.equal(seconds, 300);
+            assert.ok([60, 300].includes(seconds));
             return {
               data: { signedUrl: "https://synthetic.invalid/private-image" },
               error: null,
@@ -166,7 +220,7 @@ async function serverFixture() {
       "./pricing": pricing,
       "./provider": { openAiFrameProvider: () => f.provider },
       "./png": png,
-      "./grounding": {openAiFrameVerifier: () => f.verifier},
+      "./grounding": { openAiFrameVerifier: () => f.verifier },
       "./grounding-state": groundingState,
     },
     env,
@@ -189,7 +243,16 @@ test("production server adapter pins the Lead RPC signatures and persists privat
     action: "media.dispatch",
     input,
   });
-  assert.equal(result.status, "completed");
+  assert.equal(result.status, "draft");
+  assert.equal(
+    h.f.snapshot.assets.some((a) => a.id === q.record.id),
+    false,
+  );
+  assert.equal(
+    await h.server.signedFrameDraft(h.f.snapshot.campaign.id, q.record.id),
+    "https://synthetic.invalid/private-image",
+  );
+  await h.f.accept(q.record.id);
   assert.equal(h.f.providerCalls(), 1);
   assert.equal(h.uploads.length, 1);
   assert.equal(h.uploads[0].options.upsert, false);
@@ -198,10 +261,10 @@ test("production server adapter pins the Lead RPC signatures and persists privat
     1372,
   );
   const claim = h.rpcCalls.find((r) => r.name === "rpg_real_frame_claim"),
-    complete = h.rpcCalls.find((r) => r.name === "rpg_real_frame_complete");
+    complete = h.rpcCalls.find((r) => r.name === "rpg_real_frame_draft");
   assert.equal(claim.args.p_budget_id, h.env.RPG_MEDIA_BUDGET_ID);
   assert.equal(complete.args.p_output.usage.outputTokens, 1372);
-  assert.equal(complete.args.p_asset.payload.id, q.record.id);
+  assert.equal(complete.args.p_mutation.payload.id, q.record.id);
   assert.doesNotMatch(
     JSON.stringify(result),
     /SYNTHETIC_SERVICE_ONLY|SYNTHETIC_IMAGE_ONLY/,

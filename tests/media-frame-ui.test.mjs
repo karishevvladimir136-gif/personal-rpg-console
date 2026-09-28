@@ -138,6 +138,7 @@ async function uiHarness({
     },
     load: async () => f.snapshot,
     imageUrl: (cid, id) => "synthetic:" + cid + ":" + id,
+    draftImageUrl: (cid, id) => "synthetic-draft:" + cid + ":" + id,
   };
   const react = {
     useState(initial) {
@@ -281,7 +282,7 @@ for (const language of ["en", "ru"])
     assert.doesNotMatch(h.text(), /Complete mock|Test mock failure/);
     const image = h
       .nodes()
-      .find((n) => n.type === h.component.StoredFrameImage);
+      .find((n) => n.type === h.component.FrameOwnerReview);
     assert.ok(image);
   });
 test("lost final refresh retains exact original request through corrected source retry and keeps prior image visible", async () => {
@@ -300,7 +301,11 @@ test("lost final refresh retains exact original request through corrected source
   assert.deepEqual(h.sends.at(-1), dispatch);
   assert.equal(h.f.providerCalls(), 1);
   assert.equal(h.refreshes(), 2);
-  assert.match(h.text(), /Earlier scene illustration/);
+  assert.match(h.text(), /Draft generated/);
+  assert.equal(
+    h.f.snapshot.assets.some((a) => a.id === dispatch.input.payload.id),
+    false,
+  );
 });
 test("unconfigured real FRAME remains optional and sends no implicit provider/model fallback", async () => {
   const h = await uiHarness({ enabled: false });
@@ -338,7 +343,7 @@ test("stored output recovery UI submits only retained recovery, never a paid dis
     model.parseRealFrame(
       h.f.snapshot.documents.find((r) => r.id === q.record.id),
     ).status,
-    "completed",
+    "draft",
   );
   assert.equal(
     h.f.snapshot.documents.filter(
