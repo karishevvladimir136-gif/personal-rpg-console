@@ -187,7 +187,7 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
       const checkpoint = run?.checkpoints.find(
         (p) => p.id === source.sourceCheckpointId,
       );
-      if (!run || !checkpoint || run.revision !== source.expectedRevision)
+      if (!run || !checkpoint)
         throw Error("Synthetic checkpoint scope");
       return {
         ...structuredClone(fixture.continuation.inspection),
