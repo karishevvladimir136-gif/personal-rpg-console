@@ -2,7 +2,7 @@
 
 Mega DM v1 is closed on main at e4f9171f9db87428b5b5812837474eb2c87c5aa8. Its new/inherited gameplay default is GPT-6 Astra / high / Standard. Existing explicit campaign model choices remain unchanged; Sol and task overrides remain supported.
 
-This separate wave is ready for review after its final verification record is added to DEV_STATUS.md. It is not automatically published to main or owner accepted. The original dirty checkout and historical evaluation evidence are preserved.
+This separate wave is ready for owner review. Its fresh verification and worker handoffs are recorded in V1_COMPLETION_VERIFICATION.md and DEV_STATUS.md. It is not automatically published to main or owner accepted. The original dirty checkout and historical evaluation evidence are preserved.
 
 ## Safe local preview
 
