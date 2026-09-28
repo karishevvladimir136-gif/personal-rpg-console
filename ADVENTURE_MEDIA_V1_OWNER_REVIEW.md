@@ -1,3 +1,5 @@
+> **September 28 live continuation:** the exact reviewed implementation is unchanged. Two Sunburst/high samples returned; the FRAME gate stopped at F2 because it invented a distant fortified settlement. F3–F5 and VIDEO were not attempted. [See both original images, costs and limitations](ADVENTURE_MEDIA_FRAME_LIVE_GATE_REPORT.md). The component preview below still uses labelled scripted/schematic art; it is not the live result gallery. The earlier guide records its original then-current state.
+
 # Adventure / Media V1 — owner review
 
 This candidate adds the Adventure and loot/reward foundation plus a disabled-by-default real FRAME path. It is **not the complete Adventure + FRAME + VIDEO milestone**: the paid visual gate has not run, exact image-model selection is pending, and VIDEO has not started. Main remains the accepted baseline. No real owner Adventure has been executed.

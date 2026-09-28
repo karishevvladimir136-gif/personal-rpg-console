@@ -1,3 +1,17 @@
+# Development status — Adventure / Media V1 live FRAME gate — STOPPED FOR OWNER REVIEW
+
+**Current continuation:** exact implementation `e03d6c8c2fe12e459e8947a234a06c36fa1042dd`, branch `codex/v1-adventure-media`; main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. The owner accepts Adventure/loot/reward/container direction for finishing the wave, not the combined milestone. This continuation changes status/evidence documentation only; implementation and all historical records below remain unchanged.
+
+**Live FRAME gate:** exact `gpt-image-2.5-sunburst-2026-09-08`, high/1536×1024, approved public textual references and five frozen synthetic cases. Current official capability/pricing/calculator and server credential were checked; the same $20 ceiling was provisioned service-only on disposable SQL. F1 returned and attached with fine-detail limits. F2 returned and attached but introduces an unestablished distant fortified settlement; independent visual review confirms a material location-grounding failure. Recurring face identity remains unproven. **Required stop: F3–F5 not attempted; VIDEO not started.**
+
+**Costs/evidence:** two generation attempts, two validated attachments, no paid retry/fallback. Returned usage: 710 input, zero image-input, 2,744 image-output, 3,454 total tokens. Calculated charge is $0.085870; account charge is unobserved. $0.80 is retained in reservations, VIDEO $0, below the combined $20 cap. Actual model identity was omitted by both responses and is not fabricated. [Live gate report and images](ADVENTURE_MEDIA_FRAME_LIVE_GATE_REPORT.md) preserves exact scenes/reference versions, original response hashes, job/receipt/asset identities, costs, private-canary exclusion, exact replay and non-mutation proof. Original outputs/evaluation evidence remain immutable.
+
+**Verification/limits:** fresh focused preflight **113/113 passed**, no failures/skips. Prior full 1,523/1,522-pass/one-skip and type/lint/build/browser evidence remains historical, not rerun as fresh after documentation-only live work. Only synthetic disposable migrations 1–26/local private pixel storage were used; no hosted Supabase claim, real database migration, import, deployment or owner Fighter Adventure. No production/code/prompt/fixture/UI/schema change; the original dirty checkout and accepted/frozen evidence are unchanged. FAL_KEY remains absent.
+
+**Next/stop:** owner review of the failed bounded FRAME sample and a separately bounded grounding correction. The complete Adventure+FRAME+VIDEO milestone remains **NOT OWNER ACCEPTED**. Do not start VIDEO, other feature lanes or the actual Adventure; keep main unchanged. Historical status follows verbatim.
+
+---
+
 # Development status — Adventure / Media V1 — OFFLINE VERIFIED; MEDIA GATES PENDING; NOT OWNER ACCEPTED
 
 **Baseline/branch:** exact remote main `1f9e3c56896d9cd5a374af6857f918c46bb80603`; dedicated `codex/v1-adventure-media`. Final implementation/test freeze `c556ca56778a8bb1d01aab57f29f43740d9f5e6c`; only status/review documentation follows. Three pushed contextualized workers own Adventure/preview, loot/acceptance and FRAME/independent review. Lead owns shared authority, migrations, integration and DEV_STATUS. Main and the original dirty checkout remain untouched; the complete accepted status body below is byte-identical to the baseline blob.
