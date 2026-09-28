@@ -37,6 +37,7 @@ export type TimelineBranch = {
   parent: { key: string | null; label: string | null } | null;
   base: {
     saveId: string | null;
+    checkpointId?: string | null;
     label: string | null;
     minutes: number | null;
   } | null;
