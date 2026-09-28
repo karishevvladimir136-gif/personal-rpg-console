@@ -1,3 +1,9 @@
+# Development status — FRAME draft/owner approval + VIDEO V1 — IN PROGRESS
+
+Owner explicitly re-scopes FRAME as an optional AI illustration draft, not authoritative world rendering. Continue from `0950cba892db639abd21d99fda8b068482701a77`; preserve all failed gate evidence/costs and accepted Adventure/World systems. Lead owns schema/SQL/integration; bounded UI and independent QA workers own disjoint files. New illustration review and explicit owner acceptance precede normal Asset attachment and VIDEO eligibility. No new provider call, real database migration, deployment or main write has occurred at this contract freeze. VIDEO remains gated on the new five-case product/lifecycle review, then current fal capability/price verification. No owner acceptance is claimed. Historical status follows unchanged.
+
+---
+
 # Development status — FRAME grounding gate v2 — FAIL; STOPPED FOR OWNER REVIEW
 
 **Tested implementation:** `9fb28651bb8d4512dea0356ee1e7e72e5195f0dc`, `codex/v1-adventure-media`; the status/report commit following it changes documentation only. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Adventure/loot/reward/container/progression/World and original dirty checkout are unchanged. The complete milestone is **NOT OWNER ACCEPTED**.
