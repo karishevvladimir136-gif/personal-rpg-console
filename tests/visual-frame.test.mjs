@@ -647,7 +647,7 @@ test("completion receipt replay survives uncertain attachment and preserves exac
   );
 });
 
-async function visualComponentForTransport(client) {
+async function visualComponentForTransport(client, dependencies = {}) {
   const [{ default: ts }, { createRequire }, { runInNewContext }] =
     await Promise.all([
       import("typescript"),
@@ -671,11 +671,12 @@ async function visualComponentForTransport(client) {
     module: compiledModule,
     exports: compiledModule.exports,
     require: (name) =>
-      name === "react" || name === "react/jsx-runtime"
+      dependencies[name] ??
+      (name === "react" || name === "react/jsx-runtime"
         ? require(name)
         : name === "@/lib/persistence/client"
           ? client
-          : {},
+          : {}),
   });
   return compiledModule.exports;
 }
@@ -757,4 +758,243 @@ test("injected Visual Bible transport performs save/history with no production n
     source,
     /transport\s*\.history\(snapshot\.campaign\.id, record\.id\)/,
   );
+});
+
+async function visualPanelHarness() {
+  const [
+    { createMutationAttempt, ClientPersistenceError },
+    visualModel,
+    React,
+  ] = await Promise.all([
+    import("../src/lib/persistence/client.ts"),
+    import("../src/lib/visual-frame/model.ts"),
+    import("react"),
+  ]);
+  const server = fixture();
+  let displayed = structuredClone(server),
+    cursor = 0,
+    serial = 100;
+  const hooks = [],
+    submissions = [],
+    receipts = new Map();
+  const controls = {
+    lostSaveResponse: false,
+    lostRefresh: false,
+    lostCompletionResponse: false,
+  };
+  const transport = {
+    save: async (input) => {
+      submissions.push(input);
+      const result = await writeVisualFrame(structuredClone(input), {
+        authorize: async () => {},
+        snapshot: async () => server,
+        receipt: async (command) => {
+          const prior = receipts.get(command.requestId);
+          if (!prior) return null;
+          assert.equal(JSON.stringify(prior.input), JSON.stringify(command));
+          return prior.result;
+        },
+        apply: async (command) => {
+          let row;
+          if (command.operation === "document.save") {
+            const current = server.documents.find(
+              (r) => r.id === command.payload.id,
+            );
+            row = {
+              ...scoped(serial++),
+              ...command.payload,
+              id: current?.id ?? id(serial++),
+              current_version_id: id(serial++),
+              revision: (current?.revision ?? 0) + 1,
+            };
+            server.documents = current
+              ? server.documents.map((r) => (r.id === current.id ? row : r))
+              : [...server.documents, row];
+          } else {
+            row = { ...scoped(serial++), ...command.payload };
+            server.assets.push(row);
+          }
+          const saved = {
+            id: row.id,
+            revision: row.revision,
+            campaign_id: cid,
+            timeline: server.timeline,
+          };
+          receipts.set(command.requestId, { input: command, result: saved });
+          return saved;
+        },
+      });
+      const metadata =
+        input.operation === "document.save"
+          ? parseVisualMetadata(input.payload)
+          : null;
+      if (
+        controls.lostSaveResponse ||
+        (controls.lostCompletionResponse &&
+          metadata?.kind === "frame" &&
+          metadata.status === "completed")
+      ) {
+        controls.lostSaveResponse = false;
+        controls.lostCompletionResponse = false;
+        throw new ClientPersistenceError("unavailable");
+      }
+      return result;
+    },
+    history: async () => [],
+  };
+  const component = await visualComponentForTransport(
+    { createMutationAttempt, ClientPersistenceError },
+    {
+      react: {
+        ...React,
+        useContext: () => transport,
+        useEffect: () => {},
+        useRef: (initial) => {
+          const slot = cursor++;
+          hooks[slot] ??= { current: initial };
+          return hooks[slot];
+        },
+        useState: (initial) => {
+          const slot = cursor++;
+          if (!(slot in hooks))
+            hooks[slot] = typeof initial === "function" ? initial() : initial;
+          return [
+            hooks[slot],
+            (value) => {
+              hooks[slot] =
+                typeof value === "function" ? value(hooks[slot]) : value;
+            },
+          ];
+        },
+      },
+      "./language-context": { useLanguage: () => ({ language: "en" }) },
+      "./persistence-context": {
+        useCampaignData: () => ({
+          data: displayed,
+          refresh: async () => {
+            if (controls.lostRefresh) {
+              controls.lostRefresh = false;
+              throw new ClientPersistenceError("unavailable");
+            }
+            displayed = structuredClone(server);
+          },
+        }),
+      },
+      "./ui": {
+        Badge: "span",
+        Button: "button",
+        Panel: "section",
+        Modal: "dialog",
+      },
+      "@/lib/visual-frame/model": visualModel,
+    },
+  );
+  function render() {
+    cursor = 0;
+    return component.PersistentVisualFrame({ transport }).props.children.type();
+  }
+  function textOf(node) {
+    if (typeof node === "string" || typeof node === "number")
+      return String(node);
+    if (Array.isArray(node)) return node.map(textOf).join("");
+    return node?.props ? textOf(node.props.children) : "";
+  }
+  function findButton(node, label) {
+    if (Array.isArray(node)) {
+      for (const child of node) {
+        const found = findButton(child, label);
+        if (found) return found;
+      }
+    } else if (node?.props) {
+      if (node.type === "button" && textOf(node) === label) return node;
+      return findButton(node.props.children, label);
+    }
+    return null;
+  }
+  async function click(label) {
+    const button = findButton(render(), label);
+    assert.ok(button, `Expected button: ${label}`);
+    assert.equal(Boolean(button.props.disabled), false);
+    button.props.onClick();
+    await new Promise((resolve) => setImmediate(resolve));
+  }
+  return {
+    server,
+    submissions,
+    controls,
+    render,
+    click,
+    frames: () =>
+      visualDocuments(server).filter((e) => e.value.kind === "frame"),
+  };
+}
+
+test("real FRAME handlers create a fresh explicit request after failure, cancellation or completion", async () => {
+  for (const terminal of [
+    "Test mock failure",
+    "Cancel",
+    "Complete mock preview",
+  ]) {
+    const h = await visualPanelHarness();
+    h.render();
+    assert.equal(h.submissions.length, 0);
+    await h.click("FRAME · queue mock preview");
+    const original = h.submissions[0].requestId;
+    await h.click(terminal);
+    assert.equal(h.frames().length, 1);
+    assert.notEqual(h.frames()[0].value.status, "queued");
+    await h.click("FRAME · queue mock preview");
+    assert.equal(h.frames().length, 2);
+    assert.equal(
+      h.frames().filter((e) => e.value.status === "queued").length,
+      1,
+    );
+    const queued = h.submissions.filter(
+      (input) =>
+        input.operation === "document.save" &&
+        parseVisualMetadata(input.payload)?.status === "queued",
+    );
+    assert.equal(queued.length, 2);
+    assert.notEqual(queued[1].requestId, original);
+    const count = h.submissions.length;
+    h.render();
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(
+      h.submissions.length,
+      count,
+      "Rendering must not submit automatic work",
+    );
+  }
+});
+test("lost queue response or refresh retains exact retry identity until the UI action is confirmed", async () => {
+  for (const uncertainty of ["lostSaveResponse", "lostRefresh"]) {
+    const h = await visualPanelHarness();
+    h.controls[uncertainty] = true;
+    await h.click("FRAME · queue mock preview");
+    const original = h.submissions[0];
+    assert.equal(h.frames().length, 1);
+    await h.click("FRAME · queue mock preview");
+    assert.deepEqual(h.submissions[1], original);
+    assert.equal(h.frames().length, 1);
+    await h.click("Test mock failure");
+    await h.click("FRAME · queue mock preview");
+    assert.equal(h.frames().length, 2);
+    assert.notEqual(h.submissions.at(-1).requestId, original.requestId);
+  }
+});
+test("lost completion response retries stable asset and attachment identities without duplicate output", async () => {
+  const h = await visualPanelHarness();
+  await h.click("FRAME · queue mock preview");
+  h.controls.lostCompletionResponse = true;
+  await h.click("Complete mock preview");
+  const firstAsset = h.submissions[1],
+    firstAttachment = h.submissions[2];
+  await h.click("Complete mock preview");
+  assert.deepEqual(h.submissions[3], firstAsset);
+  assert.deepEqual(h.submissions[4], firstAttachment);
+  assert.equal(h.server.assets.length, 1);
+  assert.equal(h.frames().length, 1);
+  assert.equal(h.frames()[0].value.status, "completed");
+  await h.click("FRAME · queue mock preview");
+  assert.equal(h.frames().length, 2);
 });
