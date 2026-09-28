@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export function usePending<T>(
   key: string,
   parse: (value: string | null) => T | null,
+  persistPending = true,
 ) {
   const [pending, setPending] = useState<T | null>(null),
     [ready, setReady] = useState(false);
@@ -16,7 +17,9 @@ export function usePending<T>(
     Promise.resolve().then(() => {
       if (!mounted.current) return;
       try {
-        const restored = parse(sessionStorage.getItem(key));
+        const restored = parse(
+          persistPending ? sessionStorage.getItem(key) : null,
+        );
         current.current = restored;
         setPending(restored);
       } catch {
@@ -27,11 +30,12 @@ export function usePending<T>(
     return () => {
       mounted.current = false;
     };
-  }, [key, parse]);
+  }, [key, parse, persistPending]);
   const remember = useCallback(
     (value: T | null) => {
       current.current = value;
       setPending(value);
+      if (!persistPending) return;
       try {
         if (value) sessionStorage.setItem(key, JSON.stringify(value));
         else sessionStorage.removeItem(key);
@@ -39,7 +43,7 @@ export function usePending<T>(
         /* Keep the exact in-memory request. */
       }
     },
-    [key],
+    [key, persistPending],
   );
   return { pending, current, mounted, remember, ready };
 }

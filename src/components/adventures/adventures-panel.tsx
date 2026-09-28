@@ -48,6 +48,8 @@ export function AdventuresPanel({
   onSaved,
   initialCatalog,
   initialWorlds,
+  persistPending = true,
+  reviewLinks,
   transport: injected,
 }: {
   snapshot: CampaignSnapshot;
@@ -56,6 +58,8 @@ export function AdventuresPanel({
   onSaved: () => Promise<void>;
   initialCatalog?: AdventureCatalog;
   initialWorlds?: WorldCatalog;
+  persistPending?: boolean;
+  reviewLinks?: { newHero: string; game: string };
   transport?: AdventureTransport;
 }) {
   const c = adventureText(language),
@@ -83,7 +87,11 @@ export function AdventuresPanel({
     [campaignId],
   );
   const { pending, current, mounted, remember, ready } =
-    usePending<AdventureCommand>(adventurePendingKey(campaignId), restore);
+    usePending<AdventureCommand>(
+      adventurePendingKey(campaignId),
+      restore,
+      persistPending,
+    );
   const lock = useRef(false);
   const timeline = snapshot.timeline;
   const load = useCallback(
@@ -187,7 +195,7 @@ export function AdventuresPanel({
           <h1>{c.title}</h1>
           <p className={styles.intro}>{c.intro}</p>
         </div>
-        <Link href="/campaigns">{c.newHero}</Link>
+        <Link href={reviewLinks?.newHero ?? "/campaigns"}>{c.newHero}</Link>
       </div>
       <p>
         {c.existing} · {snapshot.campaign.title}
@@ -241,6 +249,7 @@ export function AdventuresPanel({
                 onDirty={setWorldDirty}
                 initial={initialWorlds}
                 transport={transport}
+                persistPending={persistPending}
               />
               <div className={styles.actions}>
                 <button
@@ -481,7 +490,9 @@ export function AdventuresPanel({
           ))}
         </>
       )}
-      <Link href={`/campaigns/${campaignId}/game`}>{c.continue}</Link>
+      <Link href={reviewLinks?.game ?? `/campaigns/${campaignId}/game`}>
+        {c.continue}
+      </Link>
     </section>
   );
 }
