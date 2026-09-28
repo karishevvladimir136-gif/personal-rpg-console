@@ -1626,7 +1626,6 @@
   "Approved doctrine and cards": "Одобренные принципы и карточки",
   "Core Doctrine": "Основные принципы",
   "Craft card": "Карточка мастерства",
-  "Version {number}": "Версия {number}",
   "Avoid:": "Избегать:",
   "Planning": "Планирование",
   "Narration": "Повествование",
@@ -1643,7 +1642,6 @@
   "Guidance": "Указания",
   "Avoid": "Избегать",
   "Approve new version": "Одобрить новую версию",
-  "Version history": "История версий",
   "Restore an earlier version by making it the approved version again. The history remains available.": "Чтобы восстановить прежнюю версию, снова сделайте её одобренной. История сохранится.",
   "Approved": "Одобрено",
   "Restore this version": "Восстановить эту версию",
@@ -1707,5 +1705,15 @@
   "Places of Belonging": "Родные места",
   "Visual Bible / FRAME": "Образы мира / FRAME",
   "MOCK preview": "Демонстрация MOCK",
-  "Local schematic preview. Edit its visual guidance in FRAME.": "Локальная схема. Изменить визуальные указания можно в FRAME."
+  "Local schematic preview. Edit its visual guidance in FRAME.": "Локальная схема. Изменить визуальные указания можно в FRAME.",
+  "Images & moments": "Образы и моменты",
+  "Saved results and the moments behind them. MOCK sketches are placeholders, not generated campaign art.": "Сохранённые образы и моменты их создания. Эскизы MOCK — условные схемы, а не сгенерированные изображения кампании.",
+  "MOCK result · schematic only": "Результат MOCK · только схема",
+  "No saved images yet. Use FRAME in Game to capture the current moment as a MOCK sketch.": "Сохранённых изображений пока нет. Используйте FRAME в Игре для эскиза MOCK текущего момента.",
+  "Result history": "История результатов",
+  "Asset records": "Записи материалов",
+  "Queued": "В очереди",
+  "Completed": "Готово",
+  "Cancelled": "Отменено",
+  "Failed": "Ошибка"
 }

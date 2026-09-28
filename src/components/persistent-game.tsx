@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { mockArtForAsset, MOCK_ASSET_PREFIX } from "@/lib/visual-frame/model";
+import {
+  mockArtForAsset,
+  MOCK_ASSET_PREFIX,
+  visualDocuments,
+} from "@/lib/visual-frame/model";
+import { CurrentSceneFrame } from "./visual-frame/current-scene-frame";
+import type { CurrentSceneFrameTransport } from "@/lib/visual-frame/current-scene";
 import { MockVisualArt } from "./visual-frame/mock-art";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
@@ -419,9 +425,17 @@ export function PersistentSessions() {
   );
 }
 
-function GameRecords({ data }: { data: CampaignSnapshot }) {
+function GameRecords({
+  data,
+  reviewOnly = false,
+  frameTransport,
+}: {
+  data: CampaignSnapshot;
+  reviewOnly?: boolean;
+  frameTransport?: CurrentSceneFrameTransport;
+}) {
   const { t } = useLanguage();
-  const runtime = useGameplayRuntime();
+  const runtime = useGameplayRuntime(reviewOnly);
   const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
   const [resume, setResume] = useState(false);
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
@@ -444,7 +458,9 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
       />
       <div className="game-grid gameplay-live">
         <div className="story-column">
-          <SessionMemoryPanel sessionId={session?.id ?? null} />
+          {!reviewOnly && (
+            <SessionMemoryPanel sessionId={session?.id ?? null} />
+          )}
           {runtime.play && (
             <SessionPendingCompanion
               play={runtime.play}
@@ -551,10 +567,7 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
                 />
               </>
             )}
-            <div className="button-group">
-              <Link className="button" href={`/campaigns/${data.campaign.id}/frame`}>{t("FRAME")}</Link>
-              <Button disabled>{t("VIDEO")}</Button>
-            </div>
+            <CurrentSceneFrame transport={frameTransport} />
             <p>
               <Link
                 className="text-link"
@@ -677,10 +690,20 @@ function GameRecords({ data }: { data: CampaignSnapshot }) {
   );
 }
 
-export function PersistentGame() {
+export function PersistentGame({
+  reviewOnly = false,
+  frameTransport,
+}: { reviewOnly?: boolean; frameTransport?: CurrentSceneFrameTransport } = {}) {
   return (
     <RecordBoundary>
-      {(data) => <GameRecords key={data.campaign.id} data={data} />}
+      {(data) => (
+        <GameRecords
+          key={data.campaign.id}
+          data={data}
+          reviewOnly={reviewOnly}
+          frameTransport={frameTransport}
+        />
+      )}
     </RecordBoundary>
   );
 }
@@ -867,7 +890,7 @@ function SupportingRecords({
   screen: SupportingScreen;
   data: CampaignSnapshot;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [quest, setQuest] = useState<Quest | "new" | null>(null);
   const [location, setLocation] = useState<Location | "new" | null>(null);
   const [asset, setAsset] = useState<Asset | "new" | null>(null);
@@ -953,47 +976,115 @@ function SupportingRecords({
         </Panel>
       )}
       {screen === "gallery" && (
-        <Panel
-          className="visual-inventory-panel"
-          title={t("Asset metadata")}
-          action={
-            <Button primary onClick={() => setAsset("new")}>
-              {t("Add asset metadata")}
-            </Button>
-          }
-        >
-          <div className="card-grid">
-            {data.assets.map((row) => (
-              <article className="ability-card" key={row.id}>
-                <Icon name={row.kind === "document" ? "FileText" : "Image"} />
-                <h3>{row.title}</h3>
-                <Badge>
-                  {t(
-                    row.kind === "image"
-                      ? "Image"
-                      : row.kind === "video"
-                        ? "Video"
-                        : "Document",
-                  )}
-                </Badge>
-                {row.description.startsWith(MOCK_ASSET_PREFIX) ? <>
-                  <Badge>{t("MOCK preview")}</Badge>
-                  {mockArtForAsset(row) && <MockVisualArt art={mockArtForAsset(row)!} label={row.title} />}
-                  <p>{t("Local schematic preview. Edit its visual guidance in FRAME.")}</p>
-                  <Link className="button" href={`/campaigns/${data.campaign.id}/frame`}>{t("Visual Bible / FRAME")}</Link>
-                </> : <>
-                  <p>{row.description}</p>
-                  <Button onClick={() => setAsset(row)}>{t("Edit asset metadata")}</Button>
-                </>}
-              </article>
-            ))}
-          </div>
-          {!data.assets.length && <p>{t("No asset metadata recorded.")}</p>}
+        <Panel className="visual-inventory-panel" title={t("Images & moments")}>
           <p className="muted">
             {t(
-              "Metadata only. File upload, playback and image/video generation are not connected.",
+              "Saved results and the moments behind them. MOCK sketches are placeholders, not generated campaign art.",
             )}
           </p>
+          <div className="card-grid">
+            {data.assets
+              .filter((row) => row.campaign_id === data.campaign.id)
+              .map((row) => {
+                const frame = visualDocuments(data).find(
+                  ({ value }) =>
+                    value.kind === "frame" && value.resultAssetId === row.id,
+                );
+                const title =
+                  frame?.value.kind === "frame"
+                    ? frame.value.basis.scene.title
+                    : row.title;
+                const art = mockArtForAsset(row);
+                return (
+                  <article className="ability-card" key={row.id}>
+                    <h3>{title}</h3>
+                    {row.description.startsWith(MOCK_ASSET_PREFIX) ? (
+                      <>
+                        <Badge>{t("MOCK result · schematic only")}</Badge>
+                        {art && <MockVisualArt art={art} label={title} />}
+                      </>
+                    ) : (
+                      <>
+                        <Badge>
+                          {t(
+                            row.kind === "image"
+                              ? "Image"
+                              : row.kind === "video"
+                                ? "Video"
+                                : "Document",
+                          )}
+                        </Badge>
+                        <p>{row.description}</p>
+                        <details>
+                          <summary>{t("Edit asset metadata")}</summary>
+                          <Button onClick={() => setAsset(row)}>
+                            {t("Edit asset metadata")}
+                          </Button>
+                        </details>
+                      </>
+                    )}
+                    <p className="muted">
+                      <time dateTime={row.updated_at}>
+                        {new Date(row.updated_at).toLocaleString(language)}
+                      </time>
+                    </p>
+                  </article>
+                );
+              })}
+          </div>
+          {!data.assets.length && (
+            <p>
+              {t(
+                "No saved images yet. Use FRAME in Game to capture the current moment as a MOCK sketch.",
+              )}
+            </p>
+          )}
+          <details className="gameplay-transcript">
+            <summary>{t("Result history")}</summary>
+            {visualDocuments(data)
+              .slice()
+              .reverse()
+              .map(({ record, value }) =>
+                value.kind === "frame" ? (
+                  <article className="ability-card" key={record.id}>
+                    <h3>{value.basis.scene.title}</h3>
+                    <Badge>
+                      MOCK ·{" "}
+                      {t(
+                        {
+                          queued: "Queued",
+                          completed: "Completed",
+                          cancelled: "Cancelled",
+                          failed: "Failed",
+                        }[value.status],
+                      )}
+                    </Badge>
+                    <p>
+                      <time dateTime={record.updated_at}>
+                        {new Date(record.updated_at).toLocaleString(language)}
+                      </time>
+                    </p>
+                  </article>
+                ) : null,
+              )}
+            <Link
+              className="text-link"
+              href={`/campaigns/${data.campaign.id}/frame`}
+            >
+              {t("Visual Bible / FRAME")}
+            </Link>
+          </details>
+          <details className="gameplay-transcript">
+            <summary>{t("Asset records")}</summary>
+            <Button onClick={() => setAsset("new")}>
+              {t("Add asset metadata")}
+            </Button>
+            <p className="muted">
+              {t(
+                "Metadata only. File upload, playback and image/video generation are not connected.",
+              )}
+            </p>
+          </details>
         </Panel>
       )}
       {screen === "camp" && <GameplayCamp />}

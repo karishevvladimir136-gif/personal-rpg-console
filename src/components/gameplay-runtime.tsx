@@ -11,14 +11,15 @@ const changedEvent = "rpg-gameplay-changed";
 export function notifyGameplayChanged(campaignId: string) {
   window.dispatchEvent(new CustomEvent(changedEvent, { detail: campaignId }));
 }
-export function useGameplayRuntime() {
+export function useGameplayRuntime(reviewOnly = false) {
   const { campaignId, data, refresh: refreshRecords } = useCampaignData();
   const [play, setPlay] = useState<PlaySnapshot | null>(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!reviewOnly);
   const generation = useRef(0);
   const snapshot = useRef<PlaySnapshot | null>(null);
   const refresh = useCallback(async () => {
+    if (reviewOnly) return null;
     const sequence = ++generation.current;
     try {
       const next = await loadPlay(campaignId);
@@ -43,8 +44,9 @@ export function useGameplayRuntime() {
     } finally {
       if (sequence === generation.current) setLoading(false);
     }
-  }, [campaignId, data, refreshRecords]);
+  }, [campaignId, data, refreshRecords, reviewOnly]);
   useEffect(() => {
+    if (reviewOnly) return;
     const guard = generation;
     void refresh().catch(() => {});
     const changed = (event: Event) => {
@@ -64,7 +66,7 @@ export function useGameplayRuntime() {
       window.removeEventListener(changedEvent, changed);
       window.removeEventListener("focus", onFocus);
     };
-  }, [campaignId, refresh, data]);
+  }, [campaignId, refresh, data, reviewOnly]);
   // Return saved public records after a terminal turn; polling never executes a turn.
   const observed = useRef(new Map<string, PublicTurn["status"]>());
   useEffect(() => {

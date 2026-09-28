@@ -15,19 +15,38 @@ const persistentNavigation = saveNavigation;
 
 export function ApplicationFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  if (pathname === "/preview/v1/campaign") return children;
   if (pathname.startsWith("/preview")) return <Shell>{children}</Shell>;
   if (/^\/campaigns\/[^/]+/.test(pathname)) return children;
   return <PersistentShell>{children}</PersistentShell>;
 }
-export function PersistentShell({ children }: { children: ReactNode }) {
+export function PersistentShell({
+  children,
+  reviewNavigation,
+}: {
+  children: ReactNode;
+  reviewNavigation?: { screen: string; navigate: (screen: string) => void };
+}) {
   const { t } = useLanguage();
-  const pathname = usePathname();
+  const route = usePathname();
   const [menu, setMenu] = useState(false);
   const workspace = useWorkspaceData();
   const snapshot = useOptionalCampaignData();
   const campaign = snapshot?.data?.campaign;
   const largeText = workspace.data?.preferences.largeText;
-  const href = (screen: string) => `/campaigns/${campaign?.id}/${screen}`;
+  const href = (screen: string) =>
+    reviewNavigation
+      ? `/preview/v1/campaign?screen=${screen}`
+      : `/campaigns/${campaign?.id}/${screen}`;
+  const pathname = reviewNavigation ? href(reviewNavigation.screen) : route;
+  const visit =
+    (screen: string) => (event: React.MouseEvent<HTMLAnchorElement>) => {
+      setMenu(false);
+      if (reviewNavigation) {
+        event.preventDefault();
+        reviewNavigation.navigate(screen);
+      }
+    };
   if (!campaign)
     return (
       <div className={`app-level-shell ${largeText ? "large-text" : ""}`}>
@@ -84,7 +103,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
               href={href(screen)}
               className={`nav-link ${pathname === href(screen) ? "active" : ""} ${screen === "settings" ? "settings-link" : ""}`}
               aria-current={pathname === href(screen) ? "page" : undefined}
-              onClick={() => setMenu(false)}
+              onClick={visit(screen)}
             >
               <Icon name={screen} />
               <span>
@@ -118,7 +137,9 @@ export function PersistentShell({ children }: { children: ReactNode }) {
             <Icon name={menu ? "X" : "Menu"} />
           </button>
           <div className="breadcrumbs">
-            <Link href={href("game")}>{campaign.title}</Link>
+            <Link href={href("game")} onClick={visit("game")}>
+              {campaign.title}
+            </Link>
             <Icon name="ChevronRight" size={13} />
             <span>
               {t(
@@ -142,6 +163,7 @@ export function PersistentShell({ children }: { children: ReactNode }) {
           <Link
             key={screen}
             href={href(screen)}
+            onClick={visit(screen)}
             aria-current={pathname === href(screen) ? "page" : undefined}
             className={pathname === href(screen) ? "active" : ""}
           >

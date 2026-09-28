@@ -8,6 +8,9 @@ import { Button } from "./ui";
 import { TimelineExplorerPanel } from "./timeline-explorer/timeline-explorer-panel";
 import { PlacesBelongingPanel } from "./places-belonging/places-belonging-panel";
 import { PersistentVisualFrame } from "./persistent-visual-frame";
+import { PersistentShell } from "./persistent-shell";
+import { PersistentGame, PersistentSupporting } from "./persistent-game";
+import { WorldLabPanel } from "./world-lab/world-lab-panel";
 import { WorldLabContinuation } from "./world-lab/continuation";
 import type {
   CampaignSnapshot,
@@ -40,28 +43,53 @@ type PreviewFixture = {
     child: NonNullable<ContinuationResult["run"]>;
   };
 };
-type Screen = "timeline" | "home" | "world" | "frame";
+type Screen = "timeline" | "home" | "world" | "frame" | "game" | "gallery";
 
-export function V1CompletionPreview() {
+export function V1CompletionPreview({
+  campaignShell = false,
+}: { campaignShell?: boolean } = {}) {
   const { language, setLanguage } = useLanguage();
   return (
-    <div className="app-content">
-      <div className="button-row">
-        <Button onClick={() => setLanguage("en")} disabled={language === "en"}>
-          {languageOptions[0].label}
-        </Button>
-        <Button onClick={() => setLanguage("ru")} disabled={language === "ru"}>
-          {languageOptions[1].label}
-        </Button>
-      </div>
-      <PreviewSession key={language} language={language} />
+    <div className={campaignShell ? undefined : "app-content"}>
+      {!campaignShell && (
+        <div className="button-row">
+          <Button
+            onClick={() => setLanguage("en")}
+            disabled={language === "en"}
+          >
+            {languageOptions[0].label}
+          </Button>
+          <Button
+            onClick={() => setLanguage("ru")}
+            disabled={language === "ru"}
+          >
+            {languageOptions[1].label}
+          </Button>
+        </div>
+      )}
+      <PreviewSession
+        key={language}
+        language={language}
+        campaignShell={campaignShell}
+        setLanguage={setLanguage}
+      />
     </div>
   );
 }
-function PreviewSession({ language }: { language: "en" | "ru" }) {
+function PreviewSession({
+  language,
+  campaignShell,
+  setLanguage,
+}: {
+  language: "en" | "ru";
+  campaignShell: boolean;
+  setLanguage: (value: "en" | "ru") => void;
+}) {
   const ru = language === "ru",
     fixture = fixtures[language] as unknown as PreviewFixture;
-  const [screen, setScreen] = useState<Screen>("timeline");
+  const [screen, setScreen] = useState<Screen>(
+    campaignShell ? "game" : "timeline",
+  );
   const [snapshot, setSnapshot] = useState(() =>
     structuredClone(fixture.snapshot),
   );
@@ -220,41 +248,84 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
     },
   };
   const labels: Record<Screen, string> = {
+    game: ru ? "Игра" : "Game",
+    gallery: ru ? "Галерея" : "Gallery",
     timeline: ru ? "История кампании" : "Timeline Explorer",
     home: ru ? "Родные места" : "Places of Belonging",
     world: ru ? "Что, если · продолжение" : "What If · checkpoint child",
     frame: ru ? "Образы мира / FRAME" : "Visual Bible / FRAME",
   };
-  return (
+  const content = (
     <>
-      <div className="page-heading">
-        <div>
-          <span className="eyebrow">
-            {"V1 · "}
-            {ru ? "СИНТЕТИЧЕСКАЯ ДЕМОНСТРАЦИЯ" : "SYNTHETIC REVIEW"}
-          </span>
-          <h1>
-            {ru ? "Новые пути вашей истории" : "More ways to keep your story"}
-          </h1>
-        </div>
-      </div>
-      <p className="notice">
-        {ru
-          ? "Только демонстрационные данные. Изменения живут в этой странице и сбрасываются при перезагрузке. Нет БД, ИИ или платной генерации. «Что, если» использует заранее заданный пример; одобрение отключено."
-          : "Synthetic data only. Edits live in this page and reset on reload. No database, AI or paid generation. What If uses a scripted example; approval is disabled."}
-      </p>
-      <nav className="button-row" aria-label={ru ? "Проверка V1" : "V1 review"}>
-        {(Object.keys(labels) as Screen[]).map((key) => (
+      {campaignShell && (
+        <div className="button-row">
           <Button
-            key={key}
-            primary={screen === key}
-            onClick={() => setScreen(key)}
+            onClick={() => setLanguage("en")}
+            disabled={language === "en"}
           >
-            {labels[key]}
+            English
           </Button>
-        ))}
-      </nav>
-      <CampaignDataPreview snapshot={snapshot} refresh={refresh}>
+          <Button
+            onClick={() => setLanguage("ru")}
+            disabled={language === "ru"}
+          >
+            Русский
+          </Button>
+        </div>
+      )}
+      {!campaignShell && (
+        <div className="page-heading">
+          <div>
+            <span className="eyebrow">
+              {"V1 · "}
+              {ru ? "СИНТЕТИЧЕСКАЯ ДЕМОНСТРАЦИЯ" : "SYNTHETIC REVIEW"}
+            </span>
+            <h1>
+              {ru ? "Новые пути вашей истории" : "More ways to keep your story"}
+            </h1>
+          </div>
+        </div>
+      )}
+      <p className="muted">
+        {ru
+          ? "Демонстрация · только локальные данные"
+          : "Review demo · local synthetic data"}
+      </p>
+      <details className="gameplay-transcript">
+        <summary>{ru ? "Пределы демонстрации" : "Demo limits"}</summary>
+        <p className="notice">
+          {ru
+            ? "Только демонстрационные данные. Изменения живут в этой странице и сбрасываются при перезагрузке. Нет БД, ИИ или платной генерации. «Что, если» использует заранее заданный пример; одобрение отключено."
+            : "Synthetic data only. Edits live in this page and reset on reload. No database, AI or paid generation. What If uses a scripted example; approval is disabled."}
+        </p>
+      </details>
+      {!campaignShell && (
+        <nav
+          className="button-row"
+          aria-label={ru ? "Проверка V1" : "V1 review"}
+        >
+          {(Object.keys(labels) as Screen[]).map((key) => (
+            <Button
+              key={key}
+              primary={screen === key}
+              onClick={() => setScreen(key)}
+            >
+              {labels[key]}
+            </Button>
+          ))}
+        </nav>
+      )}
+      <div className="v1-review-content">
+        {screen === "game" && (
+          <PersistentGame
+            reviewOnly
+            frameTransport={{
+              load: async () => current.current,
+              save: (input) => writeVisualFrame(input, authority),
+            }}
+          />
+        )}
+        {screen === "gallery" && <PersistentSupporting screen="gallery" />}
         {screen === "timeline" && (
           <TimelineExplorerPanel
             snapshot={snapshot}
@@ -279,13 +350,43 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
         )}
         {screen === "frame" && (
           <PersistentVisualFrame
+            syntheticControls={!campaignShell}
             transport={{
               history,
               save: (input) => writeVisualFrame(input, authority),
             }}
           />
         )}
-        {screen === "world" && (
+        {screen === "world" && campaignShell && (
+          <WorldLabPanel
+            campaignId={snapshot.campaign.id}
+            language={language}
+            initialCatalog={fixture.continuation.campaign}
+            initialAuthoringCatalog={{
+              models: fixture.continuation.catalog.models,
+              drafts: [fixture.continuation.draft],
+            }}
+            transport={{
+              load: async () => fixture.continuation.campaign,
+              send: async () => {
+                throw Error("Preview simulation is disabled");
+              },
+            }}
+            authoringTransport={{
+              load: async () => ({
+                models: fixture.continuation.catalog.models,
+                drafts: [demoDraft.current],
+              }),
+              send: async () => {
+                throw Error(
+                  "Preview composition uses the reviewed scripted example; no provider",
+                );
+              },
+            }}
+            continuationPreview={{ transport: continuationTransport }}
+          />
+        )}
+        {screen === "world" && !campaignShell && (
           <WorldLabContinuation
             campaignId={snapshot.campaign.id}
             language={language}
@@ -298,7 +399,25 @@ function PreviewSession({ language }: { language: "en" | "ru" }) {
             transport={continuationTransport}
           />
         )}
-      </CampaignDataPreview>
+      </div>
     </>
+  );
+  return (
+    <CampaignDataPreview snapshot={snapshot} refresh={refresh}>
+      {campaignShell ? (
+        <PersistentShell
+          reviewNavigation={{
+            screen,
+            navigate: (value) => {
+              if (value in labels) setScreen(value as Screen);
+            },
+          }}
+        >
+          <div className="app-content">{content}</div>
+        </PersistentShell>
+      ) : (
+        content
+      )}
+    </CampaignDataPreview>
   );
 }
