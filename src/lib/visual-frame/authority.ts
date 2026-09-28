@@ -17,6 +17,7 @@ export type VisualFrameAuthority = {
   receipt: (input: Mutation) => Promise<MutationResult | null>;
   snapshot: (campaignId: string) => Promise<CampaignSnapshot>;
   apply: (input: Mutation) => Promise<MutationResult>;
+  applyFrame?: (input: Mutation) => Promise<MutationResult>;
 };
 export async function writeVisualFrame(
   value: unknown,
@@ -73,5 +74,11 @@ export async function writeVisualFrame(
     )
       throw new VisualFrameError("conflict");
   }
+  if (
+    input.operation === "document.save" &&
+    parseVisualMetadata(input.payload)?.kind === "frame" &&
+    authority.applyFrame
+  )
+    return authority.applyFrame(input);
   return authority.apply(input);
 }

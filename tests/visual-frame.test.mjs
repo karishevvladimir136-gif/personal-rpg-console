@@ -998,3 +998,65 @@ test("lost completion response retries stable asset and attachment identities wi
   await h.click("FRAME · queue mock preview");
   assert.equal(h.frames().length, 2);
 });
+
+test("validated FRAME documents use dedicated authority while visual references and assets stay ordinary", async () => {
+  const s = fixture(),
+    a = authority(s);
+  a.applyFrame = async () => {
+    a.calls.push("frame");
+    return { id: id(42), revision: 1, campaign_id: cid, timeline: s.timeline };
+  };
+  const queued = buildFrame(s, id(7), [], "wide");
+  await writeVisualFrame(request(visualDocumentMutation(s, queued)), a);
+  assert.deepEqual(a.calls, ["authorize", "receipt", "snapshot", "frame"]);
+  a.calls.length = 0;
+  await writeVisualFrame(
+    request(
+      visualDocumentMutation(
+        s,
+        newVisualReference(s, { kind: "style", id: cid }),
+      ),
+    ),
+    a,
+  );
+  assert.deepEqual(a.calls, ["authorize", "receipt", "snapshot", "apply"]);
+  a.calls.length = 0;
+  const job = document(queued);
+  s.documents.push(job);
+  await writeVisualFrame(request(mockAssetMutation(s, job, queued), 10), a);
+  assert.deepEqual(a.calls, ["authorize", "receipt", "snapshot", "apply"]);
+});
+test("FRAME dedicated authority cannot run before authorization, receipt lookup or production source validation", async () => {
+  const s = fixture(),
+    metadata = buildFrame(s, id(7), [], "wide"),
+    input = request(visualDocumentMutation(s, metadata));
+  const receipt = {
+    id: id(42),
+    revision: 1,
+    campaign_id: cid,
+    timeline: s.timeline,
+  };
+  const replay = authority(null, { receipt });
+  replay.applyFrame = async () => {
+    throw Error("Cannot write a replay");
+  };
+  assert.deepEqual(await writeVisualFrame(input, replay), receipt);
+  assert.deepEqual(replay.calls, ["authorize", "receipt"]);
+  const rejected = authority(s);
+  rejected.applyFrame = async () => {
+    throw Error("Cannot bypass source validation");
+  };
+  await assert.rejects(
+    writeVisualFrame(
+      request(
+        visualDocumentMutation(s, {
+          ...metadata,
+          prompt: "Invented hidden scene",
+        }),
+      ),
+      rejected,
+    ),
+    (e) => e.code === "validation",
+  );
+  assert.deepEqual(rejected.calls, ["authorize", "receipt", "snapshot"]);
+});
