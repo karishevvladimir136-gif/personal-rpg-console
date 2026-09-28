@@ -42,6 +42,7 @@ import {
 import { parseBinding } from "../world-packs/bindings.ts";
 import { parseWorldState } from "../world/validation.ts";
 import { labEvidencePinned, validateLabDetachedState } from "./runtime.ts";
+import { assertLabContinuationBasis, parseLabContinuationBasis } from "./checkpoint-basis.ts";
 import {
   registryVersion,
   validateExecutionProfile,
@@ -106,6 +107,7 @@ function basisHash(
       canonGeneration: b.canonGeneration,
       sourceHeads: b.sourceHeads,
       documents: b.documents,
+      ...(b.continuation ? { continuation: b.continuation } : {}),
     }),
   );
 }
@@ -124,6 +126,7 @@ export function parseCompositionBasis(value: unknown): CompositionBasis {
     "packVersionIds",
     "sourceVersionIds",
     "startWorldMinutes",
+    ...(value && typeof value === "object" && Object.hasOwn(value, "continuation") ? ["continuation"] : []),
   ]);
   const b: CompositionBasis = {
     ownerId: uuid(v.ownerId),
@@ -143,6 +146,10 @@ export function parseCompositionBasis(value: unknown): CompositionBasis {
       LAB_MAX_WORLD_MINUTES - 1,
     ),
   };
+  if (Object.hasOwn(v, "continuation")) {
+    b.continuation = parseLabContinuationBasis(v.continuation);
+    ensure(b.baseManifestId === b.continuation.sourceCheckpointId, "conflict");
+  }
   ensure(b.basisDigest === basisHash(b), "conflict");
   return b;
 }
@@ -279,6 +286,7 @@ export type CompositionBaseInput = {
     worldMinutes: number;
   };
   basisDigest: string;
+  continuation?: CompositionBasis["continuation"];
 };
 
 /** Takes the authenticated composition_base envelope after readDetachedState.
@@ -291,12 +299,10 @@ export function buildCompositionBasis(input: CompositionBaseInput): {
 } {
   const state = validateLabDetachedState(input.state),
     { base } = input;
-  ensure(
-    state.run === null &&
-      state.manifest.runId === null &&
-      state.manifest.schemaVersion === 2,
-    "conflict",
-  );
+  const continuation = input.continuation
+    ? assertLabContinuationBasis(input.continuation, state) : undefined;
+  if (!continuation) ensure(state.run === null && state.manifest.runId === null && state.manifest.schemaVersion === 2, "conflict");
+  else ensure(state.run!.input.base.saveId === base.saveId, "scope");
   ensure(
     state.manifest.campaignId === state.campaignId &&
       state.manifest.timelineId === base.timelineId &&
@@ -446,6 +452,7 @@ export function buildCompositionBasis(input: CompositionBaseInput): {
     packVersionIds,
     sourceVersionIds,
     startWorldMinutes: base.worldMinutes,
+    ...(continuation ? { continuation } : {}),
   });
   // Sorting makes indexes stable across repeat reads of the exact saved basis.
   const actors = world.actors

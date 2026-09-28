@@ -1,5 +1,6 @@
 // Private, inert vault adapter. It never queries or installs an active projection.
 import { DmError } from "../gameplay/dm-errors.ts";
+import { parseLabContinuationBasis } from "../world-lab/checkpoint-basis.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
 import type { FoundationLoopState } from "../foundation-loop/contracts.ts";
 import type { CommittedWorldEvent } from "../production/contracts.ts";
@@ -268,6 +269,7 @@ export function validateDetachedRun(
     "startWorldMinutes",
     "throughWorldMinutes",
     ...(run.input && typeof run.input === "object" && Object.hasOwn(run.input, "executionProfile") ? ["executionProfile"] : []),
+    ...(run.input && typeof run.input === "object" && Object.hasOwn(run.input, "continuation") ? ["continuation"] : []),
   ]);
   requireRead(
     input.schemaVersion === 1 &&
@@ -291,6 +293,10 @@ export function validateDetachedRun(
   for (const key of ["saveId", "timelineId", "manifestId"])
     requireRead(isUuid(base[key]));
   requireRead([1, 2, 3].includes(base.schemaVersion as number));
+  if (Object.hasOwn(input, "continuation")) {
+    const continuation = parseLabContinuationBasis(input.continuation);
+    requireRead(base.schemaVersion === 3 && base.manifestId === continuation.sourceCheckpointId && continuation.sourceRunId !== run.id);
+  }
   integer(input.canonGeneration);
   integer(input.startWorldMinutes);
   integer(input.throughWorldMinutes);

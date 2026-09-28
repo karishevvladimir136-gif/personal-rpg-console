@@ -605,7 +605,7 @@ export function compositionReviewFromForm(form: ReviewForm): CompositionReview {
     ambiguityAnswers: form.ambiguityAnswers.map((a) => a.trim() || null),
   });
 }
-function ReviewEditor({
+export function ReviewEditor({
   draft,
   catalog,
   language,

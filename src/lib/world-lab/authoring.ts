@@ -2,6 +2,7 @@
 import { isDeepStrictEqual } from "node:util";
 import type { LabAuthoringCatalog, LabAuthoringRequest, LabAuthoringResult, LabCompositionItem } from "./authoring-contracts.ts";
 import type { LabRpc } from "./server-contracts.ts";
+import type { LabPrepareInput, PublicLabRun } from "./contracts.ts";
 import type { LibraryStore } from "../world-library/store.ts";
 import type { TypedRecord, ScenarioBody, DivergenceBody } from "../world-library/types.ts";
 import type { ExecutionProfile } from "../production/contracts.ts";
@@ -35,11 +36,18 @@ export function createLabAuthoringService(options: {
   lab: ReturnType<typeof createLabService>; language: "en" | "ru";
   models: LabAuthoringCatalog["models"];
   compose: (metadata: CompositionMetadata) => Promise<ProviderResult<CompositionProposal>>;
+  base?: (campaignId: string, saveId: string) => Promise<CompositionBaseInput>;
+  prepare?: (input: LabPrepareInput) => Promise<PublicLabRun>;
 }) {
   const { ownerId, library, language } = options;
   uuid(ownerId);
   const id = (operationId: string, stage: string) => libraryId(`${ownerId}:d2a:${operationId}:${stage}`);
   async function basis(campaignId: string, saveId: string) {
+    if (options.base) {
+      const input = await options.base(campaignId, saveId);
+      const policy = input.state.records["rpg_private.world_foundations"][0].execution_policy;
+      return { ...buildCompositionBasis(input), policyRevision: policy ? validateRuntimePolicy(policy).revision : 0 };
+    }
     const response = await options.execute({ p_owner_id: ownerId, p_campaign_id: campaignId, p_action: "composition_base", p_payload: { saveId } });
     if (response.error) throw new FoundationValidationError(response.error.message?.includes("rpg_conflict") ? "conflict" : "unavailable");
     const envelope = object(response.data, ["state", "sourceHeads", "documents", "base", "basisDigest"]);
@@ -145,7 +153,8 @@ export function createLabAuthoringService(options: {
     }
     const dv = parseLibraryRecord({ schemaVersion: 1, ownerId, kind: "divergence", id: id(operationId, "divergence"), versionId: id(operationId, "divergence:version"), version: 1, previousVersionId: null, body: divergence }, ownerId);
     await library.put({ operationId: id(operationId, "divergence:receipt"), record: dv });
-    const run = await options.lab.perform({ action: "prepare", input: { operationId: id(operationId, "prepare"), campaignId, saveId: approved.body.composition.basis.saveId, scenarioVersionId: approved.versionId, divergenceVersionId: dv.versionId, label: approved.body.title.slice(0, 160), horizonMinutes: integer(approved.body.composition.review!.horizonMinutes, 1, 43_200) } });
+    const selection: LabPrepareInput = { operationId: id(operationId, "prepare"), campaignId, saveId: approved.body.composition.basis.saveId, scenarioVersionId: approved.versionId, divergenceVersionId: dv.versionId, label: approved.body.title.slice(0, 160), horizonMinutes: integer(approved.body.composition.review!.horizonMinutes, 1, 43_200) };
+    const run = options.prepare ? await options.prepare(selection) : await options.lab.perform({ action: "prepare", input: selection });
     return { draft: project(approved), run };
   }
   return { catalog, perform };
