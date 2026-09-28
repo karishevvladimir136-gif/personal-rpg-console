@@ -1,3 +1,45 @@
+# Current owner review — illustration drafts and optional VIDEO
+
+The bounded Media correction and VIDEO V1 are implemented and verified at `c7e1bbae0f3e2acc3f4eed99413ba8bb548a4193`. The new five-case illustration Draft/Approval gate passed its lifecycle criteria: four drafts accepted, one rejected, prior art preserved. This does not claim exact face consistency or universal image-grounding safety. VIDEO has no live sample because FAL_KEY is absent. The wave is **not owner accepted** and the real Fighter Adventure has not begun.
+
+## What to open and click
+
+Open [the local synthetic review](http://127.0.0.1:3102/preview/adventure-media) on this computer. It uses the ordinary Campaign Game, Visual Bible and Gallery components in the normal shell. It has no real DB/provider connection, and state resets on reload or language change.
+
+1. **Game / FRAME** → **FRAME · review this scene** → review the public moment, references and reservation → **Generate FRAME**. The labelled schematic becomes a draft. Choose **Accept**, **Discard**, or **Regenerate**. Regenerate prepares another request for explicit confirmation. Until Accept, Gallery/current accepted art and VIDEO do not use the new draft.
+2. Use the synthetic outcome selector to try a warning, rejection or failure. Keep an accepted image first; inspect that it survives. These scripted controls are only in the review harness. Ordinary play has no manual mock-completion/failure buttons.
+3. For VIDEO, first Accept a current FRAME, then enable **scripted VIDEO** in this harness. **Generate video** first opens the source/price review; the separately labelled **Generate video · reserve $7.00** queues the demonstration. **Check status** reads that same request. Script Ready, Failed or Outcome unknown; **Cancel video attachment** prevents attachment but does not promise a provider refund. Ready explicitly says no clip was generated in this demo.
+4. **Visual Bible** → add/correct appearance or an outfit variant → save a draft → explicitly approve the reference. A visual reference remains distinct from accepting a FRAME. Editing genuine appearance guidance invalidates stale media bases; media job bookkeeping does not alter gameplay Canon or break eligible Lab checkpoints.
+5. **Gallery** shows accepted results and history. Unaccepted/discarded FRAME drafts are not ordinary scene art. VIDEO history retains source provenance and earlier usable results after a failed replacement. English / Русский and mobile layout are preserved.
+
+Existing Adventures/New Hero/objects/reward controls remain available unchanged. No owner quest, twist or one correct route is encoded.
+
+## Actual FRAME images and limits
+
+Open [the EN/RU five-image owner gallery](C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/frame-draft-approval-gate-v3-20260928/OWNER_REVIEW.html), then [the evidence report](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_V3_REPORT.md).
+
+| Case | Independent draft decision | Automated check | Disclosed observation |
+| --- | --- | --- | --- |
+| F1 bridge | Acceptable | Safe to review | Minor compass-grip variation |
+| F2 courtyard | Reject / discarded | Safe to review — missed the issue | Invented tower/buildings beyond the opening; previous art retained |
+| F3 rain shelter | Acceptable with limits | Safe to review | Coat/stubble/age detail varies |
+| F4 warm room | Acceptable with limits | Warning | Incidental props/room detail and eyebrow notch uncertain |
+| F5 outfit variant | Acceptable with limits | Safe to review | Rust scarf changes correctly; face looks younger/softer |
+
+All four accepted drafts carry minor/detail/continuity qualifications. Input references are approved public **text guidance**, not pixel conditioning. The image provider omitted actual-model identity; exact requested model is `gpt-image-2.5-sunburst-2026-09-08`, high1536×1024. QA returned `gpt-5.4-2026-03-05`, high/Standard. AI pixels are presentation; authoritative game text/state wins. Set as Canon visual reference remains a separate owner action.
+
+Exactly5 images+5 checks,0 retries. New calculated charge$0.343625; combined historical$0.5056075. Retained reserve$4.40 is not an invoice. Both earlier failed gates remain unchanged.
+
+## VIDEO setup and what is not proved
+
+The server path uses fal `bytedance/seedance-2.5/us/image-to-video`,720p/10s/audio, only from a current owner-accepted FRAME. It is optional and does not block text play. Credentials stay server-side. Missing configuration keeps the real control unavailable and causes no request. [Server environment and budget setup](ADVENTURE_MEDIA_VIDEO_V1.md) lists the exact variables; do not send a key in chat.
+
+No real setup/migration is needed for this review. Future real use needs separately authorized migrations through29, private storage, FAL_KEY and the explicitly enabled model/shared budget. Zero live VIDEO requests or charge occurred. Two planned$7 reservations would bring the retained envelope to$18.40, below$20; neither has been claimed. Live animation/audio/codec quality and hosted fal/Supabase behavior remain unverified.
+
+Fresh complete suite/typecheck/lint/build and12 EN/RUdesktop/mobile screen combinations passed; [full verification and honest earlier failures](ADVENTURE_MEDIA_V1_VERIFICATION.md). No physical iPhone, deployment, real DB migration/import or complete V1 claim. Stop for owner review; main remains unchanged. Earlier review material follows as historical evidence.
+
+---
+
 > **September 28 live continuation:** the exact reviewed implementation is unchanged. Two Sunburst/high samples returned; the FRAME gate stopped at F2 because it invented a distant fortified settlement. F3–F5 and VIDEO were not attempted. [See both original images, costs and limitations](ADVENTURE_MEDIA_FRAME_LIVE_GATE_REPORT.md). The component preview below still uses labelled scripted/schematic art; it is not the live result gallery. The earlier guide records its original then-current state.
 
 # Adventure / Media V1 — owner review

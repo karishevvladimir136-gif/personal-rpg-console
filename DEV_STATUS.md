@@ -1,3 +1,21 @@
+# Development status — FRAME Draft/Approval + VIDEO V1 — VERIFIED; NOT OWNER ACCEPTED
+
+**Final integrated implementation/test freeze:** `c7e1bbae0f3e2acc3f4eed99413ba8bb548a4193`, `codex/v1-adventure-media`. Only current verification/review/status documentation follows this freeze. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Accepted Adventure/loot/reward/container/World/Mega DM code, frozen evaluation evidence and the original dirty checkout are unchanged. No real Level 1 Fighter Adventure has started.
+
+**Implemented/integrated:** private FRAME Draft → explicit Accept/Discard/Regenerate; bounded public-only QA assistant; immutable approval/history and prior-art preservation. Optional asynchronous VIDEO uses a genuinely owner-accepted current-scene FRAME, one shared service budget, exact scene/source/version/fence/receipt checks, same-request recovery, explicit attachment cancellation and authorized private playback. Additive migrations28–29 were exercised only on disposable SQL. Media does not change gameplay Canon or create a second state authority.
+
+**Fresh final deterministic verification:** 1,709 total: 1,708 passed, 0 failed, 1 skipped (202,924.678 ms). Route type generation, nonincremental typecheck, repository zero-warning lint and production webpack build pass. Included real disposable populated migration prefixes24–28 through29, historical FRAME schemas2/3/4, Adventure/loot/reward/container regressions, actual Lab child continuation, privacy, concurrency, save/load and recovery. Independent VIDEO QA44/44 and the last focused owner-preview repair38/38 pass; these overlap with the complete total. The one skip is the existing explicit opt-in hosted Supabase test, not a failed deterministic gate.
+
+**Browser checked separately:** actual ordinary Game/FRAME/VIDEO, Visual Bible and Gallery components in the synthetic premium shell, EN/RU1280×900 and390×844:12 screen/language/viewport combinations, no document horizontal overflow. Accept/Discard refresh, manual visual reference approval, warnings/regeneration/rejection, VIDEO queued/ready-with-no-clip/failure/unknown/cancel and prior-result retention were exercised. Not an authenticated hosted Campaign, real generated video or physical iPhone check. The preview-only URL construction crash found during review was reproduced and repaired without altering production authority.
+
+**Live FRAME gatev3:** frozen `d43da1e8dd6108aabcd236f3ff21ca338882e7d4`; exactly5 image +5 QA requests, no retries/fallback. Four independently accepted drafts, one rejected F2; automated4 safe/1 warning. F2's invented tower was missed by QA and explicitly discarded; earlier accepted art survived. Face/detail consistency remains imperfect. New usage-calculated image+QA cost$0.343625; combined historical$0.5056075; retained reservations$4.40, invoice unavailable. [Exact evidence/owner images](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_V3_REPORT.md).
+
+**VIDEO limitation/setup:** provider-independent path verified for exact fal US Seedance2.5,720p/10s/audio, $7 per reservation, at most2 jobs on the same ceiling. FAL_KEY is absent:0 live VIDEO requests,0 usage/charge, no codec/audio/visual-quality or hosted behavior claim. Planned complete reserve$18.40≤$20; no VIDEO reservation has actually been claimed. [Exact server setup](ADVENTURE_MEDIA_VIDEO_V1.md).
+
+**Current owner review:** [guide](ADVENTURE_MEDIA_V1_OWNER_REVIEW.md), [verification](ADVENTURE_MEDIA_V1_VERIFICATION.md), [independent VIDEO QA](ADVENTURE_MEDIA_VIDEO_QA.md). Not complete V1 or combined live-media playtest acceptance. No real migration, deployment, real/private import, new lane, D2B or real Fighter Adventure. Stop for owner review; preserve the entire historical status below verbatim.
+
+---
+
 # Development status — FRAME Draft/Approval + VIDEO V1 — INTEGRATED, FINAL VERIFICATION PENDING
 
 **Current continuation:** one bounded owner-requested Media correction on `codex/v1-adventure-media`. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`; original dirty checkout and accepted Adventure/loot/rewards/containers/World/Mega DM are unchanged. The implementation is integrated but not owner accepted. No real Fighter Adventure has started.

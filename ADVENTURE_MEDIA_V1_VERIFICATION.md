@@ -1,3 +1,54 @@
+# Current integrated verification — FRAME Draft/Approval + VIDEO V1
+
+**Final implementation/test freeze:** `c7e1bbae0f3e2acc3f4eed99413ba8bb548a4193` on `codex/v1-adventure-media`; current documentation only follows. Main remains `1f9e3c56896d9cd5a374af6857f918c46bb80603`. Implemented, integrated, deterministically verified and browser checked; **not owner accepted**, not complete V1, no real owner Adventure or live VIDEO proof.
+
+| Fresh final gate | Actual result |
+| --- | --- |
+| Complete deterministic repository suite | **1,709 total: 1,708 passed, 0 failed, 1 skipped (202,924.678 ms)** |
+| Route type generation | Passed, exit0 |
+| Nonincremental TypeScript | Passed, exit0 |
+| Repository ESLint | Passed,0 warnings |
+| Production webpack build | Passed, exit0 |
+| Disposable populated upgrades | Genuine prefixes24/25/26/27/28 through29; old saves/manifests/commerce receipts and FRAME schemas2/3/4 preserved |
+| Independent VIDEO authority/security |44/44 focused passes; included in final suite |
+| Last focused preview/FRAME/VIDEO batch |38/38 passes; included in final suite |
+| EN/RUbrowser review |3 changed ordinary screen groups ×2 languages ×2 viewports =12;1280×900 and390×844, no horizontal document overflow |
+| Live VIDEO |0 attempts,0 returned usage,0 calculated/observed charge; FAL_KEY absent |
+
+The one skipped test is the existing explicitly opted-in hosted Supabase Auth/PostgREST test. No hosted behavior is inferred. Final commands used credential-free environment and the local production preview as PREVIEW_URL, never live providers. Logs: `C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/adventure-media-draft-video-final-repaired`; actual browser matrix/screenshots: `C:/Users/karis/.codex/visualizations/2026/09/20/01a0bdc4-4046-70f0-8b15-9c7d87f43b29/adventure-media-draft-video-final-browser`. Browser proof is separate from deterministic tests and the live FRAME sample.
+
+## Retained iteration evidence
+
+The first frozen full run at65aff43 had1,707 total/1,680 passed/26 failed/1 skipped because the required HTTP preview server was absent. Its log `adventure-media-draft-video-final/full-suite-frozen.log` remains intact. With the required local server, that same candidate passed1,706/1,707 (one hosted skip), followed by typegen/typecheck/lint/webpack build; retained `full-suite-final.log` in that directory.
+
+The ensuing actual browser review reproduced a **synthetic preview-only** Accept/Discard render crash: a sibling hidden review still rendered the old CampaignDataPreview draft while the in-memory adapter had already committed the owner decision. Its draft URL constructor wrongly asserted mutable lifecycle status at render time. Worker `f2d323d0bf9ba7e3ea7d2ba19cb45c0afb1071ed` made only that schematic URL builder stable and added real React full-child EN/RU regression coverage; production authority, authenticated read routes and decision validation did not change. Integrated focused38/38 passes preceded the repaired freeze and the fresh full gates above. Invalid/stale preliminary screenshot captures and the worker's unavailable-browser setup are not counted in the final12 combinations.
+
+Earlier affected305-test run303pass/2fail was stale test-harness imports/copy after VIDEO integration; those were repaired and16 focused tests passed. All original logs are retained. Focused and handoff counts overlap; they are not summed with the fresh suite.
+
+## Authority and privacy evidence
+
+- Draft pixels remain private without an ordinary Asset until explicit Accept. Discard/regeneration/history preserve exact immutable versions and receipts, and previous art remains usable. Safe/warning QA never auto-approves; hard-rejected images cannot become a VIDEO source. Genuine Visual Bible/source/Canon correction still fences stale media/World Lab bases.
+- VIDEO uses the exact private FRAME acceptance/check receipt, Asset/document/version/hash, public scene, eligible approved reference versions, campaign/owner/timeline/head/Canon fences. A forged public prefix or ownerApproval identifier is insufficient. Normal browser clients supply bounded intents, no provider identity, raw prompt or private IDs.
+- Existing Asset/Document history, one shared media budget and source authority are reused. Queue claims atomically reserve7M micros, cap two VIDEO calls, and keep FRAME quota separate. One explicit queue POST uses no provider queue retry; refresh reads that same recorded request. Unknown acceptance without a durable ID retains the reservation and cannot resubmit silently.
+- Actual disposable SQL+production orchestration covers races, altered replay, lost claim/submission/storage/completion responses, failure/cancellation, stale callbacks, previous-result preservation, private/cross-campaign canaries and budget rollback. Pixels store before a fenced atomic ready attachment. Authorized same-campaign completed output alone enters Gallery/playback; no raw provider credentials/diagnostics reach normal UI.
+- Populated upgrade tests use genuine merchant stock/wallet/commerce receipts, manual saves and immutable manifests. Exact save/load/fork behavior and old media history remain intact; schema2/3 media is not fabricated as historically owner-approved.
+- Actual eligible Lab checkpoint survives FRAME acceptance and successful/failed/cancelled VIDEO and creates a normally reviewed child. Genuine factual correction then invalidates the old base. Media does not change public/private facts, inventory, World Events/Threads, source/Canon or playable runtime; inherited document Memory-cache generation bookkeeping is retained and distinguished from factual mutation.
+- Existing Adventure/search/stable loot/container/rewards/progression/commerce/Memory/runtime/private/client-import regressions pass unchanged. Accepted Adventure/loot/World/Mega DM and frozen evaluation directories have an empty scoped diff from accepted wave implementation. The original dirty checkout remains hash-identical.
+
+## Browser observations and limits
+
+Actual production-webpack ordinary Game/FRAME/VIDEO, Visual Bible and Gallery components were exercised in the normal premium shell with public page-local synthetic transports. Checked: current-scene review/cost disclosure; Accept/Discard/Regenerate and warning/rejection/failure; retained prior illustration; manual appearance/outfit draft and explicit approval; VIDEO queue/status, labelled Ready with no actual clip, failed/unknown/cancel and prior result; safe Gallery/history; EN/RU and mobile navigation. These are not an authenticated hosted Campaign, real video playback/quality or physical iPhone checks. Full-page capture stitching and preliminary stale-tab captures are not used to infer UI correctness; the final screenshot matrix uses the active tab directly.
+
+## Live FRAME evidence, cost and remaining limitations
+
+[Gatev3 report](ADVENTURE_MEDIA_FRAME_DRAFT_GATE_V3_REPORT.md) pins `d43da1e8dd6108aabcd236f3ff21ca338882e7d4`, fixture `d59f65697b468c56326cc4901ecca1116d547e61b47c3c6a0bcee051978719e4`. Exactly5 images+5 public-only QA calls,0 retries/fallback. Four accepted drafts, one F2 rejection; automated4 safe/1 warning. F2's salient invented tower was a QA false-negative, preserved/discarded with no Asset. Prior usable art, exact duplicate recovery and gameplay/private/timeline state remained intact. Recurring face identity/text-only reference fidelity remain imperfect; finite samples do not establish universal safety/consistency. Image actual-model identity was not returned and is not invented.
+
+New image cost$0.224265 + QA$0.119360 =**$0.343625 usage-calculated**. Combined historical**$0.5056075**; retained reservations**$4.40** of the same$20 ceiling, invoice unavailable. No VIDEO live/reservation claim; planned two$7 clips would total$18.40. [Current fal configuration/capabilities/pricing/setup](ADVENTURE_MEDIA_VIDEO_V1.md) must be rechecked before a later paid call.
+
+VIDEO MP4 checks prove bounded structural container/hash validation, not codec decodability/duration/audio/animation quality. Hosted RLS/Storage/provider behavior is untested. FAL_KEY absence is the exact remaining live-smoke setup limitation. No real migration/deployment/import, new lane, D2B or real Level1Fighter Adventure. Stop for owner review. All earlier reports/status/evidence below remain historical and unchanged.
+
+---
+
 # Adventure / Media V1 — integrated verification
 
 **Status:** the Adventure/loot/reward foundation and real FRAME server path are implemented, integrated and deterministically verified. The changed components are browser checked with public synthetic transports. This is **not a complete two-lane milestone, complete V1, a passed live FRAME gate, VIDEO implementation or owner acceptance**. No real owner Adventure has been executed.
