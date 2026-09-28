@@ -1,6 +1,7 @@
 // Persistent navigation only. Static Phase 0 previews keep their own routes.
 export const saveNavigation = [
   ["game", "Game"],
+  ["adventures", "Adventures"],
   ["character", "Character"],
   ["inventory", "Inventory"],
   ["party", "Party"],

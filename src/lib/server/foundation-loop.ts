@@ -1,4 +1,12 @@
 import "server-only";
+import {
+  planApplicableReward,
+  planRewardIntegrityConfiguration,
+} from "../progression/reward-integrity-authority";
+import {
+  planOwnerLootConfiguration,
+  ownerLootView,
+} from "../adventure-loot/owner-planning";
 import { authorizeCampaign } from "./campaign-authorization";
 import { createSaveStore } from "./saves/store";
 import { worldRpc } from "./production-configuration";
@@ -20,7 +28,6 @@ import {
   parseTradeIntent,
 } from "../commerce";
 import {
-  planReward,
   planAdvancement,
   planProgressionCorrection,
   planProgressionDefinitions,
@@ -42,6 +49,9 @@ async function contextFor(campaignId: string) {
   const rpc = worldRpc(user.id);
   const context = await readFoundationLoop(rpc, user.id, campaignId, timeline);
   return { user, rpc, context };
+}
+export async function readAdventureLoot(campaignId: string) {
+  return ownerLootView((await contextFor(campaignId)).context);
 }
 export async function readFoundationCampaign(campaignId: string) {
   return foundationLoopProjection((await contextFor(campaignId)).context);
@@ -114,6 +124,14 @@ export async function writeFoundationCampaign(
         plan = executeTradeQuote(context, quote);
         break;
       }
+      case "loot.configure":
+        plan = planOwnerLootConfiguration(
+          context,
+          command,
+          request.input,
+          user.id,
+        );
+        break;
       case "commerce.configure":
         plan = planCommerceConfiguration(context, command, request.input);
         break;
@@ -144,8 +162,22 @@ export async function writeFoundationCampaign(
           request.input as ProgressionCorrection,
         );
         break;
+      case "reward.integrity.configure":
+        plan = planRewardIntegrityConfiguration(
+          context,
+          command,
+          request.input,
+          new Set(
+            foundationLoopProjection(context).owner.rewards.map((r) => r.id),
+          ),
+        );
+        break;
       case "reward":
-        plan = planReward(context, command, request.input as RewardClaim);
+        plan = planApplicableReward(
+          context,
+          command,
+          request.input as RewardClaim,
+        );
         break;
       case "advancement":
         plan = planAdvancement(

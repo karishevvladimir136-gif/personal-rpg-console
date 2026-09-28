@@ -20,7 +20,10 @@ import { projectMemory } from "../memory/projection.ts";
 import { requireSourceTimeline } from "./timeline.ts";
 import type { RuntimeTask } from "../production/contracts.ts";
 import { pinnedCraftForStage } from "./dm-craft-context.ts";
-import { characterPacket, privateStateWithoutCharacterModels } from "./character-model.ts";
+import {
+  characterPacket,
+  privateStateWithoutCharacterModels,
+} from "./character-model.ts";
 import { modelCapabilities } from "../model-runtime/capabilities.ts";
 
 // Only validated, player-visible state fields may inform final narration.
@@ -357,6 +360,9 @@ export function buildContext(
                 }))
             : runtime.participants,
           pendingActions: companion ? [] : runtime.pendingActions,
+          ...(request.mode === "game" && source.adventureContext
+            ? { adventure: source.adventureContext }
+            : {}),
           ...(stage === "plan" &&
           request.mode === "game" &&
           source.foundationOptions
@@ -389,13 +395,19 @@ export function buildContext(
               : {}),
           },
     ...(stage === "plan"
-      ? { characterPacket: characterPacket(source, request, "plan"),
-          ...(!companion ? { privateState: privateStateWithoutCharacterModels(source) } : {}) }
+      ? {
+          characterPacket: characterPacket(source, request, "plan"),
+          ...(!companion
+            ? { privateState: privateStateWithoutCharacterModels(source) }
+            : {}),
+        }
       : {}),
-    ...(stage === "narrate" ? {
-      characterVoices: source.observableCharacters ?? [],
-      narrationBridge: source.narrationBridge ?? null,
-    } : {}),
+    ...(stage === "narrate"
+      ? {
+          characterVoices: source.observableCharacters ?? [],
+          narrationBridge: source.narrationBridge ?? null,
+        }
+      : {}),
     ...(stage === "narrate"
       ? {
           outcomes: options.resolution?.outcomes ?? [],
@@ -513,7 +525,7 @@ export function buildContext(
   const finalInstructions =
     instructions +
     (stage === "plan" && request.mode === "game" && source.foundationOptions
-      ? "\nFor a literal trade, price inquiry, haggle, theft or robbery use the optional foundationAction proposal and only the supplied public foundationOptions. Copy the original input exactly. Code owns numeric pricing and all transfers. Do not duplicate those transfers in publicPatches. Use only a matching recorded player skill check for an uncertain house-profile action; no hidden detection result may authorize a transfer. Otherwise foundationAction=null. Unsupported or ambiguous requests require clarification, never fabricated options."
+      ? "\nFor a literal search, secured-object access or taking known contents, use foundationAction action=loot with only supplied current loot object/approach/Item/Storage references. Code owns contents, access, checks, resources and transfer. Unspecified contents are never model-authored. Copy original input; do not duplicate effects in publicPatches. Otherwise use null or clarification. For a literal trade, price inquiry, haggle, theft or robbery use the optional foundationAction proposal and only the supplied public foundationOptions. Copy the original input exactly. Code owns numeric pricing and all transfers. Do not duplicate those transfers in publicPatches. Use only a matching recorded player skill check for an uncertain house-profile action; no hidden detection result may authorize a transfer. Otherwise foundationAction=null. Unsupported or ambiguous requests require clarification, never fabricated options."
       : "");
   // One byte per token deliberately overestimates English/Russian text. Count the
   // whole body including schema/instructions/JSON framing, plus a framing reserve.

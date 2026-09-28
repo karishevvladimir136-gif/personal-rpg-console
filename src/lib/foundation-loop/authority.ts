@@ -83,6 +83,8 @@ export function parseLoopRequest(value: unknown): LoopRequest {
     ![
       "quote",
       "trade",
+      "loot.configure",
+      "reward.integrity.configure",
       "commerce.configure",
       "progression.configure",
       "progression.correct",

@@ -24,6 +24,7 @@ import type { RuntimeSource } from "../gameplay/server-contracts";
 import type { JsonObject } from "../gameplay/contracts";
 import { readFoundationLoop } from "../foundation-loop/authority";
 import { foundationTurnPreparer } from "../foundation-loop/turn";
+import { lootActionOptions } from "../adventure-loot/runtime";
 import { foundationActionContext } from "../foundation-actions";
 
 // Call only after authorizeCampaign. RPC rechecks owner and activation fence.
@@ -100,23 +101,21 @@ export function productionServices(
       campaignId,
       timeline,
     );
-    if (!context.state.merchants.length) return source;
-    const actorId =
+    const entityId =
       source.runtime.configuration?.controlledEntityIds[0] ??
       source.snapshot.entities.find((e) => e.kind === "player")?.id;
-    if (
-      !actorId ||
-      !context.world.actors.some(
-        (a) => a.id === actorId && a.control === "player",
-      )
-    )
-      return source;
+    const actorId = context.world.actors.find(
+      (a) => a.entityId === entityId && a.control === "player",
+    )?.id;
+    if (!actorId) return source;
+    const loot = lootActionOptions(context, actorId);
+    if (!context.state.merchants.length && !loot.length) return source;
     return {
       ...source,
-      foundationOptions: foundationActionContext(
-        context,
-        actorId,
-      ) as unknown as JsonObject,
+      foundationOptions: {
+        ...foundationActionContext(context, actorId),
+        ...(loot.length ? { loot } : {}),
+      } as unknown as JsonObject,
     };
   }
   const dm = createDmProvider({

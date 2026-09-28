@@ -1715,5 +1715,8 @@
   "Queued": "В очереди",
   "Completed": "Готово",
   "Cancelled": "Отменено",
-  "Failed": "Ошибка"
+  "Failed": "Ошибка",
+  "Adventures": "Приключения",
+  "This image is unavailable. Review its saved FRAME history.": "Изображение недоступно. Проверьте сохранённую историю FRAME.",
+  "No saved images yet. Use FRAME in Game to review and capture the current moment.": "Изображений пока нет. Откройте FRAME в игре, чтобы проверить и запечатлеть текущую сцену."
 }

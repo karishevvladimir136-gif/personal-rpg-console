@@ -7,6 +7,15 @@ import {
   visualDocuments,
 } from "@/lib/visual-frame/model";
 import { CurrentSceneFrame } from "./visual-frame/current-scene-frame";
+import {
+  CurrentSceneMediaFrame,
+  StoredFrameImage,
+} from "./visual-frame/current-scene-media-frame";
+import {
+  safeFrameAsset,
+  REAL_FRAME_ASSET_PREFIX,
+} from "@/lib/visual-frame/real-frame";
+import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
 import type { CurrentSceneFrameTransport } from "@/lib/visual-frame/current-scene";
 import { MockVisualArt } from "./visual-frame/mock-art";
 import Link from "next/link";
@@ -429,7 +438,9 @@ function GameRecords({
   data,
   reviewOnly = false,
   frameTransport,
+  mediaTransport,
 }: {
+  mediaTransport?: MediaFrameTransport;
   data: CampaignSnapshot;
   reviewOnly?: boolean;
   frameTransport?: CurrentSceneFrameTransport;
@@ -567,7 +578,11 @@ function GameRecords({
                 />
               </>
             )}
-            <CurrentSceneFrame transport={frameTransport} />
+            {frameTransport ? (
+              <CurrentSceneFrame transport={frameTransport} />
+            ) : (
+              <CurrentSceneMediaFrame transport={mediaTransport} />
+            )}
             <p>
               <Link
                 className="text-link"
@@ -693,7 +708,12 @@ function GameRecords({
 export function PersistentGame({
   reviewOnly = false,
   frameTransport,
-}: { reviewOnly?: boolean; frameTransport?: CurrentSceneFrameTransport } = {}) {
+  mediaTransport,
+}: {
+  reviewOnly?: boolean;
+  frameTransport?: CurrentSceneFrameTransport;
+  mediaTransport?: MediaFrameTransport;
+} = {}) {
   return (
     <RecordBoundary>
       {(data) => (
@@ -702,6 +722,7 @@ export function PersistentGame({
           data={data}
           reviewOnly={reviewOnly}
           frameTransport={frameTransport}
+          mediaTransport={mediaTransport}
         />
       )}
     </RecordBoundary>
@@ -886,7 +907,9 @@ function AssetEditor({ row, onClose }: { row?: Asset; onClose: () => void }) {
 function SupportingRecords({
   screen,
   data,
+  mediaTransport,
 }: {
+  mediaTransport?: MediaFrameTransport;
   screen: SupportingScreen;
   data: CampaignSnapshot;
 }) {
@@ -998,7 +1021,21 @@ function SupportingRecords({
                 return (
                   <article className="ability-card" key={row.id}>
                     <h3>{title}</h3>
-                    {row.description.startsWith(MOCK_ASSET_PREFIX) ? (
+                    {safeFrameAsset(data, row) ? (
+                      <>
+                        <Badge>{t("Image")}</Badge>
+                        <StoredFrameImage
+                          asset={row}
+                          transport={mediaTransport}
+                        />
+                      </>
+                    ) : row.description.startsWith(REAL_FRAME_ASSET_PREFIX) ? (
+                      <p>
+                        {t(
+                          "This image is unavailable. Review its saved FRAME history.",
+                        )}
+                      </p>
+                    ) : row.description.startsWith(MOCK_ASSET_PREFIX) ? (
                       <>
                         <Badge>{t("MOCK result · schematic only")}</Badge>
                         {art && <MockVisualArt art={art} label={title} />}
@@ -1035,7 +1072,7 @@ function SupportingRecords({
           {!data.assets.length && (
             <p>
               {t(
-                "No saved images yet. Use FRAME in Game to capture the current moment as a MOCK sketch.",
+                "No saved images yet. Use FRAME in Game to review and capture the current moment.",
               )}
             </p>
           )}
@@ -1110,7 +1147,13 @@ function SupportingRecords({
   );
 }
 
-export function PersistentSupporting({ screen }: { screen: SupportingScreen }) {
+export function PersistentSupporting({
+  screen,
+  mediaTransport,
+}: {
+  screen: SupportingScreen;
+  mediaTransport?: MediaFrameTransport;
+}) {
   return (
     <RecordBoundary>
       {(data) => (
@@ -1118,6 +1161,7 @@ export function PersistentSupporting({ screen }: { screen: SupportingScreen }) {
           key={`${data.campaign.id}:${screen}`}
           data={data}
           screen={screen}
+          mediaTransport={mediaTransport}
         />
       )}
     </RecordBoundary>

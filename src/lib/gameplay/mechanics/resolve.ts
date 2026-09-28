@@ -1,3 +1,4 @@
+import { lootCheckAuthorized } from "../../adventure-loot/runtime.ts";
 import type { Entity, Item, Storage } from "../../persistence/contracts.ts";
 import type {
   EncounterParticipant,
@@ -245,7 +246,8 @@ export function validatePlan(
         config?.controlledEntityIds.includes(actor.id),
     );
     requireRule(
-      check.targetId === null ||
+      lootCheckAuthorized(source, input, plan, check) ||
+        check.targetId === null ||
         source.snapshot.entities.some(
           (row) =>
             row.id === check.targetId && row.campaign_id === input.campaignId,
@@ -280,7 +282,8 @@ export function validatePlan(
         (row) => row.id === check.targetId,
       );
       requireRule(
-        action && target && check.dc === (target.stats.defense ?? 10),
+        lootCheckAuthorized(source, input, plan, check) ||
+          (action && target && check.dc === (target.stats.defense ?? 10)),
       );
     }
     if (check.kind === "transform")

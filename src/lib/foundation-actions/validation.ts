@@ -12,6 +12,8 @@ import {
 } from "../commerce/validation.ts";
 import type { FoundationActionProposal } from "./contracts.ts";
 
+import { parseLootIntent } from "../adventure-loot/validation.ts";
+
 export class FoundationActionError extends Error {
   readonly code: "unsupported" | "conflict" | "uncertainty";
   constructor(code: FoundationActionError["code"] = "unsupported") {
@@ -35,6 +37,16 @@ export function parseFoundationActionProposal(
     value !== null && typeof value === "object" && !Array.isArray(value),
   );
   const action = (value as Record<string, unknown>).action;
+  if (action === "loot") {
+    const row = object(value, ["schemaVersion", "action", "input", "intent"]);
+    requireAction(row.schemaVersion === 1);
+    return {
+      schemaVersion: 1,
+      action: "loot",
+      input: text(row.input, 20000),
+      intent: parseLootIntent(row.intent),
+    };
+  }
   requireAction(
     ["quote", "trade", "haggle", "theft", "robbery"].includes(String(action)),
   );

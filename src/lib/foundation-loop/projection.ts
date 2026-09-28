@@ -2,7 +2,11 @@ import { randomUUID } from "node:crypto";
 import type { FoundationLoopView } from "./client-contracts.ts";
 import type { LoopContext } from "./contracts.ts";
 import { projectCommerce, CommerceValidationError } from "../commerce/index.ts";
-import { planReward, projectPublicProgression } from "../progression/index.ts";
+import { projectPublicProgression } from "../progression/index.ts";
+import {
+  planApplicableReward,
+  publicRewardIntegrity,
+} from "../progression/reward-integrity-authority.ts";
 import { loopCommand } from "./authority.ts";
 import { hiddenFoundationItems } from "./visibility.ts";
 
@@ -57,7 +61,7 @@ export function foundationLoopProjection(
   );
   const availableRewards = rewards.flatMap((r) => {
     try {
-      planReward(context, loopCommand(context, randomUUID()), {
+      planApplicableReward(context, loopCommand(context, randomUUID()), {
         rewardId: r.id,
         expectedRewardVersion: r.version,
       });
@@ -91,6 +95,10 @@ export function foundationLoopProjection(
       progression: state.progression,
       tracks: structuredClone(state.tracks),
       rewards: structuredClone(rewards),
+      rewardIntegrity: publicRewardIntegrity(
+        context,
+        new Set(rewards.map((r) => r.id)),
+      ),
       entities: snapshot.entities
         .filter(
           (e) =>

@@ -244,7 +244,7 @@ export function planLootAction(
   if (intent.kind === "search") {
     const success = checkSuccess(
       command,
-      actor.id,
+      entity.id,
       object.id,
       policy.discoveryCheck,
       resolution.checks,
@@ -307,7 +307,7 @@ export function planLootAction(
     }
     const success = checkSuccess(
       command,
-      actor.id,
+      entity.id,
       object.id,
       route.check,
       resolution.checks,

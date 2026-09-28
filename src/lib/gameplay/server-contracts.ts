@@ -70,7 +70,8 @@ export type NarrationResult = {
 export type FeedbackResult = {
   narration: string;
   guidanceProposal: string | null;
-  teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
+  teachingCandidate?:
+    import("../dm-craft/contracts.ts").TeachingCandidate | null;
 };
 export type ProviderUsage = {
   model: string;
@@ -94,12 +95,17 @@ export type RuntimeSource = {
   // Internal bounded DM cognition for narrate(); never part of a public DTO.
   narrationBridge?: {
     planIntent: string | null;
-    characters: ReturnType<typeof import("./character-model.ts").characterPacket>;
+    characters: ReturnType<
+      typeof import("./character-model.ts").characterPacket
+    >;
   };
   // Legacy observable voice projection, constructed only for narrate().
   observableCharacters?: { actorId: string; observableVoice: string }[];
   privateStateRevision?: number;
   foundationOptions?: JsonObject;
+  lootChecks?: JsonObject[];
+  // Pinned owner-advisory Adventure and actual Party Power; never a state patch.
+  adventureContext?: JsonObject;
   memory?: ContextMemory;
   ownerId: string;
   snapshot: CampaignSnapshot;
@@ -173,7 +179,8 @@ export type TurnClaim = {
   source: RuntimeSource;
 };
 export type CommitPacket = {
-  teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;
+  teachingCandidate?:
+    import("../dm-craft/contracts.ts").TeachingCandidate | null;
   foundationSettlement?:
     import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;
   worldSettlement?: WorldSettlement | null;

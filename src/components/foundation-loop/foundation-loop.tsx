@@ -19,6 +19,7 @@ import {
 import { useLanguage } from "../language-context";
 import { useCampaignData, useUnsavedChanges } from "../persistence-context";
 import { Badge, Button, Panel } from "../ui";
+import { RewardIntegrityOwner } from "./reward-integrity-owner";
 import { CommerceSettings } from "./commerce-settings";
 import {
   ProgressionSettings,
@@ -294,6 +295,10 @@ export function FoundationLoopEditor({
               key={progressionKey}
               view={view}
               c={c}
+              apply={(kind, input) => void apply(kind, input)}
+            />
+            <RewardIntegrityOwner
+              view={view}
               apply={(kind, input) => void apply(kind, input)}
             />
             <ProgressionCorrection

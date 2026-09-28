@@ -95,10 +95,14 @@ export function foundationTurnPreparer(rpc: FoundationRpc): PrepareFoundation {
       context.foundation.world = checkpoint.worldSettlement.nextWorld;
     }
     const logic = checkpoint.worldLogic;
+    const controlledEntityId =
+      claim.source.runtime.configuration?.controlledEntityIds[0] ??
+      claim.source.snapshot.entities.find((e) => e.kind === "player")?.id;
     const actorId = logic
       ? String(logic.actorId)
-      : (claim.source.runtime.configuration?.controlledEntityIds[0] ??
-        claim.source.snapshot.entities.find((e) => e.kind === "player")?.id);
+      : context.world.actors.find(
+          (a) => a.entityId === controlledEntityId && a.control === "player",
+        )?.id;
     if (!actorId) throw new TurnError("validation");
     const actor = context.world.actors.find(
       (a) => a.id === actorId && a.control === "player",

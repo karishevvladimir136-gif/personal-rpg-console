@@ -55,6 +55,33 @@ export const foundationActionSchema: ActionSchema = {
   anyOf: [
     object({
       ...common,
+      action: { type: "string", enum: ["loot"] },
+      intent: {
+        anyOf: [
+          object({
+            kind: { type: "string", enum: ["search"] },
+            actorId: id,
+            objectId: id,
+          }),
+          object({
+            kind: { type: "string", enum: ["access"] },
+            actorId: id,
+            objectId: id,
+            approachId: definitionId,
+          }),
+          object({
+            kind: { type: "string", enum: ["take"] },
+            actorId: id,
+            objectId: id,
+            itemId: id,
+            quantity: { type: "integer", minimum: 1, maximum: 1000000 },
+            destinationStorageId: id,
+          }),
+        ],
+      },
+    }),
+    object({
+      ...common,
       action: { type: "string", enum: ["quote", "trade"] },
       intent: object({
         merchantActorId: id,

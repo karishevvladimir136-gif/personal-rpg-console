@@ -28,6 +28,17 @@ export type FoundationLoopView = {
     progression: "off" | "on";
     tracks: ProgressionTrack[];
     rewards: RewardDefinition[];
+    rewardIntegrity?: (Omit<
+      import("../progression/reward-integrity-authority.ts").RewardIntegrityInput,
+      "items"
+    > & {
+      items: {
+        itemId: string;
+        rarity: string;
+        usablePower: number | null;
+        narrativeSignificance: number;
+      }[];
+    })[];
     entities: { id: string; name: string; kind: string }[];
     storages: { id: string; name: string; entityId: string | null }[];
     items: {
@@ -50,6 +61,8 @@ export type FoundationUiCommand = {
   kind:
     | "quote"
     | "trade"
+    | "loot.configure"
+    | "reward.integrity.configure"
     | "commerce.configure"
     | "progression.configure"
     | "progression.correct"

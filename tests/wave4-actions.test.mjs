@@ -604,7 +604,7 @@ test("every timeline/head/revision/operation fence and preparation pin remains a
 });
 
 test("strict semantic transport rejects arbitrary rewards, patches, prices, grants, detection and source instructions", () => {
-  assert.equal(foundationActionSchema.anyOf.length, 3);
+  assert.equal(foundationActionSchema.anyOf.length, 4);
   for (const schema of foundationActionSchema.anyOf) {
     assert.equal(schema.additionalProperties, false);
     assert.deepEqual(

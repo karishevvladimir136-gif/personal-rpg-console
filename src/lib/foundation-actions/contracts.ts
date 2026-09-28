@@ -5,6 +5,12 @@ import type { RecordedCheck } from "../gameplay/server-contracts.ts";
 export type FoundationActionProposal =
   | {
       schemaVersion: 1;
+      action: "loot";
+      input: string;
+      intent: import("../adventure-loot/contracts.ts").LootIntent;
+    }
+  | {
+      schemaVersion: 1;
       action: "quote" | "trade";
       input: string;
       intent: TradeIntent;

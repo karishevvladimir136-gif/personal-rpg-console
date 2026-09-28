@@ -1,3 +1,5 @@
+import { planLootAction } from "../adventure-loot/planning.ts";
+import { readLootObject } from "../adventure-loot/state.ts";
 import {
   currencyBalance,
   validateCommerceContext,
@@ -138,6 +140,23 @@ export function planFoundationAction(
   validateCommerceContext(context);
   const command = validateCommerceFence(context, rawCommand);
   const proposal = parseFoundationActionProposal(rawProposal);
+  if (proposal.action === "loot") {
+    requireAction(
+      proposal.input === authorization.input &&
+        proposal.intent.actorId === authorization.actorId &&
+        (authorization.profile !== "world_logic" ||
+          (authorization.outcome === "completed" &&
+            authorization.uncertainty === "resolved")),
+    );
+    const object = readLootObject(context, proposal.intent.objectId);
+    requireAction(object);
+    const result = planLootAction(context, command, proposal.intent, {
+      policy: object.policy,
+      checks: authorization.checks,
+    });
+    requireAction(result.status === "planned");
+    return result.plan;
+  }
   const actorId =
     "intent" in proposal
       ? proposal.intent.playerEntityId

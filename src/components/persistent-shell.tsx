@@ -15,7 +15,11 @@ const persistentNavigation = saveNavigation;
 
 export function ApplicationFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  if (pathname === "/preview/v1/campaign") return children;
+  if (
+    pathname === "/preview/v1/campaign" ||
+    pathname === "/preview/adventure-media"
+  )
+    return children;
   if (pathname.startsWith("/preview")) return <Shell>{children}</Shell>;
   if (/^\/campaigns\/[^/]+/.test(pathname)) return children;
   return <PersistentShell>{children}</PersistentShell>;
@@ -25,7 +29,11 @@ export function PersistentShell({
   reviewNavigation,
 }: {
   children: ReactNode;
-  reviewNavigation?: { screen: string; navigate: (screen: string) => void };
+  reviewNavigation?: {
+    screen: string;
+    navigate: (screen: string) => void;
+    basePath?: string;
+  };
 }) {
   const { t } = useLanguage();
   const route = usePathname();
@@ -36,7 +44,7 @@ export function PersistentShell({
   const largeText = workspace.data?.preferences.largeText;
   const href = (screen: string) =>
     reviewNavigation
-      ? `/preview/v1/campaign?screen=${screen}`
+      ? `${reviewNavigation.basePath ?? "/preview/v1/campaign"}?screen=${screen}`
       : `/campaigns/${campaign?.id}/${screen}`;
   const pathname = reviewNavigation ? href(reviewNavigation.screen) : route;
   const visit =

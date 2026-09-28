@@ -164,7 +164,7 @@ export function buildResolverContext(
     !!data &&
     typeof data === "object" &&
     Object.hasOwn(data, "foundationOptions");
-  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated schemaVersion=2 World Logic proposal; foundationAction is null or the bounded trade/haggle/theft/robbery proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : ""}`;
+  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated schemaVersion=2 World Logic proposal; foundationAction is null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : ""}`;
   // UTF-8 bytes upper-bound token usage, including framing; never cut mandatory work.
   const estimatedTokens =
     Buffer.byteLength(
@@ -344,9 +344,11 @@ export function createWorldResolverProvider(options: ProviderOptions) {
           if (
             foundationAction &&
             (foundationAction.input !== proposal.input ||
-              ("intent" in foundationAction
-                ? foundationAction.intent.playerEntityId
-                : foundationAction.playerEntityId) !== proposal.actorId)
+              (foundationAction.action === "loot"
+                ? foundationAction.intent.actorId
+                : "intent" in foundationAction
+                  ? foundationAction.intent.playerEntityId
+                  : foundationAction.playerEntityId) !== proposal.actorId)
           )
             throw new DmError("validation");
           return extended

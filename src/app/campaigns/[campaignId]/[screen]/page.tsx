@@ -16,7 +16,9 @@ import { PersistentSaves } from "@/components/persistent-saves";
 import { PersistentWorldLab } from "@/components/persistent-world-lab";
 import { PersistentTimelineExplorer } from "@/components/persistent-timeline-explorer";
 import { PersistentPlacesBelonging } from "@/components/persistent-places-belonging";
-import { PersistentVisualFrame } from "@/components/persistent-visual-frame";
+import { PersistentMediaVisualFrame } from "@/components/persistent-visual-frame";
+import { PersistentAdventures } from "@/components/persistent-adventures";
+import { PersistentAdventureLoot } from "@/components/persistent-adventure-loot";
 
 export default async function Page({
   params,
@@ -26,7 +28,14 @@ export default async function Page({
   const { screen } = await params;
   switch (screen) {
     case "frame":
-      return <PersistentVisualFrame />;
+      return <PersistentMediaVisualFrame />;
+    case "adventures":
+      return (
+        <>
+          <PersistentAdventures />
+          <PersistentAdventureLoot />
+        </>
+      );
     case "timeline":
       return <PersistentTimelineExplorer />;
     case "home":
