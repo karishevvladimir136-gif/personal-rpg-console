@@ -900,6 +900,8 @@ Generation priority:
 
 # 20. FRAME GENERATION
 
+**Current future sequencing:** [Media V1](DEVELOPMENT_PLAN.md#lane-b--media-v1) may run alongside Adventure V1 after separate authorization: real FRAME first, then its bounded visual consistency/reference-grounding/spoiler-safety/lifecycle gate, then VIDEO. The accepted implementation remains FRAME MOCK V0. A scene's FRAME action is optional and explicitly user-triggered, never automatic generation or a text-gameplay dependency. Briefs use only player-visible committed state and eligible approved references; failure/regeneration preserves the previous usable asset and does not change gameplay Canon/mechanics. No provider/model is selected by this amendment.
+
 Every scene has FRAME.
 
 One click should work.
@@ -937,6 +939,8 @@ Save result to:
 ---
 
 # 21. VIDEO GENERATION
+
+**Current future sequencing:** implement VIDEO V1 only after the [Media V1 FRAME gate](DEVELOPMENT_PLAN.md#lane-b--media-v1), without waiting for 2D or EXPLORE. Prefer the approved/generated current scene FRAME; keep generation asynchronous, optional and explicitly requested with appropriate cost/usage disclosure. Confirm provider/model capabilities, pricing, credentials and exact owner selection at implementation authorization; the options below are capability-dependent product targets, not a verified current configuration. Text gameplay continues during generation, and all credentials remain server-side.
 
 Every scene has VIDEO.
 
@@ -2199,4 +2203,4 @@ These extend one reward/ownership/commerce/Event authority. Discovery, possessio
 
 Future explicit promotion may turn an eligible Campaign consequence into a dated World Event with exact source/provenance and safe public disclosure. World V1 does not do this automatically, synchronize Campaigns or solve branching chronology. Campaign B inherits no discovery, secret, inventory or relationship simply because Campaign A changed. [World Engine](WORLD_ENGINE_BRIEF.md#world-foundations-and-campaign-local-consequences) owns this deferred boundary.
 
-After owner acceptance of this specification patch, a future separately authorized wave may implement **Adventure V1 + Adventure Acceptance Harness V1** within [the bounded plan](DEVELOPMENT_PLAN.md#future-adventure-v1-and-adventure-acceptance-harness-v1). This documentation patch implements none of it, modifies no frozen Mega DM evaluation, and starts no D2B, Living World propagation, VIDEO, EXPLORE, 2D renderer, provider call, real import, migration or deployment. Stop for documentation review.
+After owner acceptance of this specification patch, the intended next separately authorized wave has two bounded parallel lanes under one Lead/Integrator: **Adventure V1 + Adventure Acceptance Harness V1** and **Media V1**. [The bounded plan](DEVELOPMENT_PLAN.md#future-adventure-v1-and-adventure-acceptance-harness-v1) preserves Adventure scope, requires real FRAME and its gate before VIDEO, and targets a first owner Adventure playtest with optional media. D2B, automatic Living World propagation, complex chronology synchronization, 2D Live, EXPLORE, broad crafting, full procedural loot simulation and unrelated UI polish stay deferred after that playtest unless separately authorized. This documentation amendment implements none of it, modifies no frozen Mega DM evidence, and starts no provider call, real import, migration or deployment. Stop for documentation review.

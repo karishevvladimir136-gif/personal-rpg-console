@@ -17,6 +17,12 @@
 
 **Documentation only; proposed bounded implementation after owner acceptance of this spec patch and separate explicit authorization.** This is a candidate future wave, not a new instruction to implement, dispatch workers or execute evaluations. [MASTER_SPEC §47](MASTER_SPEC.md#47-world-campaign-and-adventure-product-contract) owns hierarchy/UX semantics; [Rulesets](RULESETS_AND_DYNAMIC_UI_BRIEF.md#reward-integrity-and-usable-power) owns reward/power policy; [World Engine](WORLD_ENGINE_BRIEF.md#search-containers-and-stable-contextual-contents) owns contextual world objects/contents; [Adventure Acceptance Set](ADVENTURE_ACCEPTANCE_SET_BRIEF.md) owns the separate future evaluation family. Historical milestone prompts below are not current authorizations.
 
+**Latest owner sequencing:** the next separately authorized implementation wave is intended to have two bounded parallel product lanes under one Lead/Integrator: **Lane A — Adventure V1 + Adventure Acceptance Harness V1** and **Lane B — Media V1**. Real FRAME/VIDEO precede the deferred 2D/EXPLORE lanes; this documentation amendment starts no implementation or paid generation.
+
+### Lane A — Adventure V1 + Adventure Acceptance Harness V1
+
+Preserve the following scope and reuse the existing primary DM, Ruleset, World Logic, progression, inventory, rewards, commerce, Memory and Saves/Timelines authorities.
+
 Possible first bounded scope:
 
 1. Minimum World/Campaign/Adventure semantics: reusable explicitly pinned foundation, campaign-local continuity and a bounded Adventure association. Preserve accepted campaign IDs/ownership and historical saves; legacy data must not fabricate past World/Adventure membership. No shared mutable Actors, cross-Campaign Memory or automatic World propagation.
@@ -28,7 +34,23 @@ Possible first bounded scope:
 
 Future implementation gates must include applicable populated migration/old-save compatibility, full integrated deterministic/type/lint/build checks, privacy/knowledge isolation, manual correction/history and EN/RU responsive review. They are future requirements, not results of this documentation patch. Reward ceiling/floor and item usability coverage applies only where trusted profile policies actually implement it; no arbitrary default numbers or false universal system support.
 
-Explicitly defer automatic Living World propagation, complex cross-Campaign/branch chronology synchronization, broad crafting, full procedural loot simulation, 2D rendering, EXPLORE, VIDEO changes, provider-stack changes and agent swarms. D2B, real image generation, deployment, real imports and real database migrations do not begin from this plan. Review the documentation branch first; owner acceptance of a design still does not itself authorize implementation.
+### Lane B — Media V1
+
+1. **Real FRAME V1 first.** Reuse the accepted Visual Bible, FRAME MOCK V0 UX/lifecycle, Gallery, eligible approved character/location/item appearance references, asset provenance and existing server-side job/retry/idempotency architecture. Use the existing asset authority and exact campaign/scene/source/timeline fencing; no competing registry, save system or gameplay state authority. FRAME stays explicitly user-triggered, optional and independent of text gameplay.
+2. **Pass a bounded FRAME gate before VIDEO implementation:** recognizably consistent visuals, correct approved-reference grounding, spoiler safety and lifecycle integrity. Verify correct campaign/scene attachment, stale/fenced callback rejection, idempotent uncertain retries, cancellation/failure isolation and preservation of the previous usable asset. Preserve the accepted separation of FRAME lifecycle bookkeeping from factual corrections; real Canon/source/reference corrections retain their normal invalidation authority. Technical lifecycle/privacy evidence and bounded owner visual review remain separate; no claim of universal visual consistency.
+3. **Only then implement VIDEO V1.** Prefer the current approved/generated scene FRAME or eligible current-scene visual as its source. Reuse existing media/job/asset boundaries and approved references; VIDEO is asynchronous and optional, and text gameplay continues while a job is queued or generating. Failure or regeneration preserves the previous usable asset and never changes gameplay Canon/mechanics.
+
+Both media stages build briefs only from player-visible committed state and eligible approved references, not a private-inclusive draft with later redaction. Never include DM-private facts, unseen enemies, secret rooms, unrevealed identities, future transformations or other hidden state. Reference approval alone does not override visibility, current appearance/time, source membership or scene eligibility. Generation does not reveal new facts or become gameplay authority.
+
+No automatic image/video generation after every scene. Paid generation requires an explicit owner/player action with appropriate cost/usage disclosure, including any additional source-generation cost. Provider/model capability, current pricing, credentials and the exact owner selection must be confirmed at implementation authorization time; this amendment selects no unverified provider/model or fixed media duration. All credentials stay server-side.
+
+### Shared integration and first owner playtest
+
+One Lead/Integrator owns shared contracts, migrations, navigation changes and integration decisions. Adventure and Media workers must not independently rewrite Saves/Timelines, entity identity, campaign authority, asset authority or migration contracts. Freeze minimum shared ownership before the separately authorized parallel work; worker checks do not replace integrated verification or owner acceptance.
+
+The intended milestone after implementation is a real owner playtest: a simple D&D-like fantasy World, a new ordinary Level 1 Fighter and a first 3–5 hour Adventure. The first quest appears straightforward while the underlying situation differs from that first impression. Play includes normal exploration, combat, search, loot, rewards and progression; selected important moments may use FRAME and a suitable climax may use VIDEO, only on explicit request. **End Adventure → short owner qualitative review** is the acceptance path. This is a product acceptance goal, not a scripted plot, a fourth frozen benchmark scenario or permission to encode the twist or one correct route into fixture/runtime facts. The owner may take alternate routes; pacing remains guidance, not a timer.
+
+Keep multi-model D2B, automatic Living World propagation across Campaigns, complex chronology synchronization, 2D Live rendering, EXPLORE production, broad crafting, full procedural loot simulation and unrelated UI polish deferred after that first playtest unless separately authorized. Other historical future phases retain separate gates. New provider architecture and agent swarms remain outside these lanes. Real FRAME/VIDEO now belong to the intended next Media lane; production code, current UI, migrations, fixtures, provider calls, imports and deployment remain untouched in this documentation task. Review this amendment first; design acceptance alone does not authorize implementation.
 
 ## Final planned foundational addendum before production coding
 
