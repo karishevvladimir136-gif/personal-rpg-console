@@ -10,6 +10,9 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { fixture, id } from "./phase2-mechanics-fixtures.mjs";
 import { translate } from "../src/lib/i18n.ts";
+import { characterDescription } from "../src/components/character-presentation.ts";
+import { foundationText } from "../src/components/foundation-loop/text.ts";
+import { foundationUiFixture } from "./wave4-ui-fixtures.mjs";
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 const require = createRequire(import.meta.url);
@@ -31,7 +34,8 @@ function sample() {
       resources: { crowns: 20 },
       conditions: [],
       equipment_slots: [
-        { id: "hand", label: "Main hand", accepts: ["weapon"] },
+        { id: "hand", label: "Main hand", accepts: ["weapon", "shield"] },
+        { id: "offhand", label: "Off hand", accepts: ["weapon", "shield"] },
         { id: "body", label: "Body", accepts: ["armor"] },
       ],
     },
@@ -240,7 +244,7 @@ for (const language of ["en", "ru"]) {
     assert.equal(html.includes("SYNTHETIC_PRIVATE_MARKER"), false);
     assert.deepEqual(state, before);
   });
-  test(`${language} Character uses a labelled static silhouette and only recorded Fighter data`, () => {
+  test(`${language} Character uses a labelled equipment mannequin and only the three recorded Fighter slots`, () => {
     const state = sample(),
       before = structuredClone(state);
     const html = render("character", { ...state, language });
@@ -252,7 +256,7 @@ for (const language of ["en", "ru"]) {
       html.includes(
         translate(
           language,
-          "Neutral character silhouette · appearance not established",
+          "Neutral equipment mannequin · appearance not established",
         ),
       ),
     );
@@ -264,12 +268,188 @@ for (const language of ["en", "ru"]) {
     assert.match(html, /class="shared-equipment-slot"><svg/);
     assert.match(html, /class="shared-equipment-slot" disabled=""/);
     assert.ok(html.includes("Ordinary sword"));
+    assert.equal(
+      (html.match(/class="shared-equipment-slot"/g) ?? []).length,
+      3,
+    );
+    assert.equal(
+      (html.match(/class="shared-equipment-slot" disabled=""/g) ?? []).length,
+      2,
+    );
+    for (const slot of ["Main hand", "Off hand", "Body"])
+      assert.ok(html.includes(slot));
+    assert.doesNotMatch(
+      html,
+      /<small>(?:Head|Neck|Ring|Boots)<\/small>|<img|<image/,
+    );
     assert.ok(
       html.includes(translate(language, "Edit public character record")),
     );
     assert.deepEqual(state, before);
   });
 }
+
+test("stock starter description is presentation-only, localized, and never overwrites owner-authored text", () => {
+  const stock = [
+    "An ordinary Level 1 Fighter. Bounded house profile; not complete D&D 5e.",
+    "Обычный воин 1-го уровня. Домашний ограниченный профиль, не полная D&D 5e.",
+  ];
+  for (const language of ["en", "ru"]) {
+    for (const description of stock) {
+      const state = sample();
+      state.data.entities[0].details = description;
+      const before = structuredClone(state),
+        html = render("character", { ...state, language });
+      assert.ok(
+        html.includes(
+          translate(
+            language,
+            "An ordinary Level 1 Fighter. Uses the starter house ruleset.",
+          ),
+        ),
+      );
+      assert.doesNotMatch(
+        html,
+        /Bounded house profile|not complete D&amp;D|Домашний ограниченный профиль/,
+      );
+      assert.deepEqual(state, before);
+    }
+    for (const custom of [
+      "An ordinary Level 1 Fighter. Owner's custom description.",
+      "An ordinary Level 1 Fighter. Bounded house profile; not complete D&D 5e. My own addition.",
+      "Моё описание героя.",
+    ])
+      assert.equal(
+        characterDescription(custom, (key) => translate(language, key)),
+        custom,
+      );
+  }
+});
+
+test("XP presentation shows recorded Level 1 and 0 / 100, with original taxonomy in closed details only", () => {
+  for (const language of ["en", "ru"]) {
+    const state = sample(),
+      load = renderer({ ...state, language });
+    const view = foundationUiFixture();
+    view.campaignId = state.data.campaign.id;
+    view.command.campaignId = view.campaignId;
+    view.command.timeline = state.data.timeline;
+    view.profile.id = "console-basic-v1";
+    view.progression.progress = [
+      {
+        entityId: state.data.entities[0].id,
+        entityName: "Garrick",
+        trackId: "house-experience",
+        trackLabel:
+          language === "en"
+            ? "Experience · house track"
+            : "Опыт · домашняя шкала",
+        kind: "classic_xp",
+        value: 0,
+        rank: 0,
+        unlocks: [],
+        nextThreshold: 100,
+      },
+    ];
+    view.progression.pending = [];
+    view.availableRewards = [];
+    const before = structuredClone(view),
+      c = foundationText(language);
+    const { FoundationLoopEditor } = load(
+      "src/components/foundation-loop/foundation-loop.tsx",
+    );
+    const html = renderToStaticMarkup(
+      createElement(FoundationLoopEditor, {
+        section: "progression",
+        initialData: view,
+        characterLevels: { [state.data.entities[0].id]: 1 },
+        load: noCall,
+        send: noCall,
+      }),
+    );
+    for (const label of [
+      c.progression,
+      c.starterRules,
+      c.xpProgression,
+      `${c.level} 1`,
+      "0 / 100",
+    ])
+      assert.ok(html.includes(label), label);
+    assert.doesNotMatch(html, /Console Basic/);
+    const details = html.match(
+      /<details class="progressDetails">[\s\S]*?<\/details>/,
+    )?.[0];
+    assert.ok(details);
+    assert.ok(details.includes(view.progression.progress[0].trackLabel));
+    assert.ok(details.includes(c.classic_xp));
+    const primary = html.replace(details, "");
+    assert.ok(!primary.includes(view.progression.progress[0].trackLabel));
+    assert.ok(!primary.includes(c.classic_xp));
+    assert.deepEqual(view, before);
+    const noLevel = renderToStaticMarkup(
+      createElement(FoundationLoopEditor, {
+        section: "progression",
+        initialData: view,
+        load: noCall,
+        send: noCall,
+      }),
+    );
+    assert.ok(!noLevel.includes(`${c.level} 1`));
+    view.progression.progress[0].trackLabel = "Owner's custom track";
+    assert.ok(
+      renderToStaticMarkup(
+        createElement(FoundationLoopEditor, {
+          section: "progression",
+          initialData: view,
+        }),
+      ).includes("Owner&#x27;s custom track"),
+    );
+  }
+});
+
+test("EN/RU item inspection is read-only; correction is secondary and existing gameplay item actions remain", () => {
+  for (const language of ["en", "ru"]) {
+    const state = sample(),
+      before = structuredClone(state),
+      load = renderer({ ...state, language });
+    const { ItemDetails } = load("src/components/persistent-records.tsx");
+    const html = renderToStaticMarkup(
+      createElement(ItemDetails, {
+        item: state.data.items[0],
+        onClose: noCall,
+        onEdit: noCall,
+      }),
+    );
+    assert.ok(html.includes("Ordinary sword"));
+    assert.ok(html.includes(state.data.items[0].description));
+    assert.ok(html.includes(state.data.items[0].mechanics));
+    assert.ok(html.includes("Main hand"));
+    const advanced = html.match(
+      /<details class="itemAdvanced">[\s\S]*?<\/details>/,
+    )?.[0];
+    assert.ok(advanced);
+    assert.ok(
+      advanced.includes(translate(language, "Advanced · owner correction")),
+    );
+    assert.ok(advanced.includes(translate(language, "Correct item record")));
+    const normal = html.replace(advanced, "");
+    assert.ok(!normal.includes(translate(language, "Correct item record")));
+    assert.ok(!normal.includes(translate(language, "Save owner correction")));
+    assert.doesNotMatch(
+      html,
+      /<textarea|Recorded owner|Recorded storage|Recorded equipped character/,
+    );
+    for (const label of [
+      "Use, transfer or equip",
+      "Use item",
+      "Transfer item",
+      "Equip item",
+      "Unequip item",
+    ])
+      assert.ok(html.includes(translate(language, label)), label);
+    assert.deepEqual(state, before);
+  }
+});
 test("successful DM narration is prominent without redundant committed status or duplicate opening", () => {
   const state = sample();
   state.play.turns = [turn(state.data)];

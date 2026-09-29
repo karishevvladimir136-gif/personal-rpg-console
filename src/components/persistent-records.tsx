@@ -1,6 +1,7 @@
 "use client";
 import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
 import { CharacterArtwork } from "./character-artwork";
+import { characterDescription } from "./character-presentation";
 import styles from "./playtest-game-character.module.css";
 
 import { useRef, useState, type ReactNode } from "react";
@@ -826,7 +827,7 @@ function PersistentItemGrid({
   );
 }
 
-function ItemDetails({
+export function ItemDetails({
   item,
   onClose,
   onEdit,
@@ -837,6 +838,9 @@ function ItemDetails({
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
+  const equipped = data?.entities.find(
+    (row) => row.id === item.equipped_entity_id,
+  );
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
@@ -857,30 +861,39 @@ function ItemDetails({
           <dd>{item.quantity}</dd>
         </div>
         <div>
-          <dt>{t("Recorded owner")}</dt>
+          <dt>{t("Owner")}</dt>
           <dd>
             {data?.entities.find((row) => row.id === item.owner_entity_id)
-              ?.name || t("None selected")}
+              ?.name || t("None recorded")}
           </dd>
         </div>
         <div>
-          <dt>{t("Recorded storage")}</dt>
+          <dt>{t("Storage")}</dt>
           <dd>
-            {data?.storages.find((row) => row.id === item.storage_id)?.name}
+            {data?.storages.find((row) => row.id === item.storage_id)?.name ||
+              t("Not recorded")}
           </dd>
         </div>
         <div>
-          <dt>{t("Recorded equipped character")}</dt>
-          <dd>
-            {data?.entities.find((row) => row.id === item.equipped_entity_id)
-              ?.name || t("None selected")}
-          </dd>
+          <dt>{t("Equipped by")}</dt>
+          <dd>{equipped?.name || t("Not equipped")}</dd>
         </div>
+        {equipped && (
+          <div>
+            <dt>{t("Equipment slot")}</dt>
+            <dd>
+              {equipped.equipment_slots.find(
+                (slot) => slot.id === item.equipped_slot,
+              )?.label || t("Not recorded")}
+            </dd>
+          </div>
+        )}
       </dl>
-      <Button primary onClick={onEdit}>
-        {t("Correct item record")}
-      </Button>
       <GameplayItemActions item={item} />
+      <details className={styles.itemAdvanced}>
+        <summary>{t("Advanced · owner correction")}</summary>
+        <Button onClick={onEdit}>{t("Correct item record")}</Button>
+      </details>
     </Modal>
   );
 }
@@ -900,7 +913,7 @@ function RecordDoll({
     <section
       className={`shared-doll ${entity.kind === "player" ? styles.characterDoll : ""}`}
       style={
-        entity.equipment_slots.length
+        entity.kind !== "player" && entity.equipment_slots.length
           ? {
               minHeight: Math.max(
                 580,
@@ -937,7 +950,9 @@ function RecordDoll({
       )}
       <div className="doll-caption">
         {entity.kind !== "player" && <h2>{entity.name}</h2>}
-        <small>{t("Recorded equipment")}</small>
+        <small>
+          {t(entity.kind === "player" ? "Equipped" : "Recorded equipment")}
+        </small>
       </div>
       {entity.equipment_slots.length ? (
         <div className="shared-equipment-slots">
@@ -995,7 +1010,9 @@ function PlayerSheet({
           {Object.hasOwn(entity.stats, "level") && (
             <Badge>{t("Level {level}", { level: entity.stats.level })}</Badge>
           )}
-          {entity.details && <p className="prose">{entity.details}</p>}
+          {entity.details && (
+            <p className="prose">{characterDescription(entity.details, t)}</p>
+          )}
           {entity.hp !== null && (
             <Meter
               label={t("HP")}

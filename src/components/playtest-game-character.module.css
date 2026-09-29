@@ -213,7 +213,13 @@
   border: 0;
   border-left: 1px solid #a7854a33;
   border-radius: 0;
-  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(80px, 0.7fr) minmax(140px, 1fr);
+  gap: 12px;
+  align-content: center;
+  align-items: center;
+  padding: 22px 18px;
+  min-height: 360px;
 }
 .characterDetails {
   grid-column: 1;
@@ -224,26 +230,20 @@
   margin-top: 0;
 }
 .characterArtwork {
-  position: relative;
-  padding: 65px 10px 48px;
-  min-height: 580px;
-  height: 100%;
+  grid-column: 1;
+  grid-row: 1 / span 2;
   display: flex;
+  flex-direction: column;
+  gap: 8px;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 50% 55%, #ad8a491f, transparent 70%);
 }
 .characterArtwork svg {
   width: 100%;
-  max-width: 340px;
-  min-height: 400px;
-  height: 100%;
-  max-height: 680px;
+  max-width: 145px;
+  height: 280px;
 }
 .characterArtwork p {
-  position: absolute;
-  bottom: 9px;
-  inset-inline: 14px;
   margin: 0;
   color: #a69b89;
   font:
@@ -252,24 +252,57 @@
   text-align: center;
 }
 .characterDoll :global(.shared-equipment-slots) {
-  inset: 80px 8px 60px;
-  column-gap: 23%;
-  row-gap: 12px;
-  align-content: center;
+  position: static;
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 9px;
+  min-width: 0;
 }
 .characterDoll :global(.shared-equipment-slot) {
-  min-height: 96px;
-  background: #0b1316ed;
-  box-shadow: 0 3px 18px #0005;
+  min-height: 64px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  background: #10191b;
+  box-shadow: none;
+}
+.characterDoll :global(.shared-equipment-slot span) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.characterDoll :global(.no-equipment-note) {
+  grid-column: 2;
+  font-size: 12px;
 }
 .characterDoll :global(.doll-caption) {
-  text-align: center;
-  padding: 22px 10px;
+  position: static;
+  grid-column: 2;
+  grid-row: 1;
+  align-self: end;
+  text-align: left;
+  padding: 0 0 5px;
+  background: none;
   color: #d2b486;
 }
 .possessions {
   padding: 20px;
   background: #10181b;
+}
+.itemAdvanced {
+  border-top: 1px solid #a7854a33;
+  padding-top: 14px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.itemAdvanced summary {
+  cursor: pointer;
+  margin-bottom: 12px;
 }
 @media (max-width: 1150px) {
   .characterLayout {
@@ -326,10 +359,9 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px 20px;
   }
-  .characterArtwork {
-    min-height: 540px;
-  }
-  .characterArtwork svg {
-    max-height: 580px;
+  .characterDoll {
+    min-height: 320px;
+    padding: 22px 16px;
+    grid-template-columns: minmax(85px, 0.7fr) minmax(140px, 1fr);
   }
 }
