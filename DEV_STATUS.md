@@ -1,3 +1,15 @@
+# Development status — P0C onboarding — OWNER ACCEPTED
+
+**Explicit owner acceptance:** the owner accepts the reviewed P0C implementation at exact SHA `903d1156e684c55bb940833e7e11c510475f0b6e`, a direct child of accepted remote main `f5412649f188c0b6929353a71f661b75bb853591`. This finalization changes only this status document; the reviewed implementation, verification, screenshots and historical evidence remain unchanged.
+
+**Accepted scope and limitation:** the clearer World → Hero → first Adventure onboarding and bounded Settings presentation are owner accepted within the previously disclosed limits. The current supported starter Level 1 Fighter is a known temporary limitation and **is not accepted as the final character-creation architecture**. Universal Ruleset/Profile and character-engine completeness remain subject to the separately authorized read-only gap audit; this acceptance authorizes no closure implementation.
+
+**Verification / publication:** prior P0C automated and EN/RU browser results are preserved below, not rerun or relabelled. Fresh publication gates verify the exact remote baseline, direct ancestry, status-only diff and clean integration worktree. Normal fast-forward remote publication only; original dirty checkout and historical local main remain untouched. Provider calls **0**; no migration, real database mutation, deployment or new playtest. Continue with the authorized audit only after publication.
+
+---
+
+## Preserved P0C review and historical evidence — unchanged
+
 # Development status — P0C onboarding — VERIFIED; OWNER REVIEW PENDING
 
 **Milestone / isolation:** bounded P0C first-run presentation/navigation correction on `codex/playtest-p0c-onboarding`, based on exact accepted remote main `f5412649f188c0b6929353a71f661b75bb853591`. P0A and P0BD remain owner accepted; this P0C candidate is implemented, integrated, deterministically verified and browser checked, but **not owner accepted or activated on the real playtest database**.
