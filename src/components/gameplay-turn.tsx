@@ -250,9 +250,11 @@ export function GameplayTurn({
           {new Date(turn.created_at).toLocaleString(language)}
         </time>
       </article>
-      <p role="status" className="muted">
-        {t(turnStatusLabels[turn.status])}
-      </p>
+      {turn.status !== "committed" && (
+        <p role="status" className="muted">
+          {t(turnStatusLabels[turn.status])}
+        </p>
+      )}
       {turn.status === "failed" && turn.failure && (
         <p role="alert">{t(turnFailureLabels[turn.failure])}</p>
       )}

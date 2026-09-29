@@ -31,6 +31,8 @@ import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Icon, Panel } from "./ui";
 import { useGameplayRuntime } from "./gameplay-runtime";
+import { useSessionMemory } from "./session-memory-runtime";
+import styles from "./playtest-game-character.module.css";
 import { GameplayComposer } from "./gameplay-composer";
 import {
   GameplayCamp,
@@ -442,6 +444,21 @@ export function PersistentSessions() {
   );
 }
 
+function GameSessionControls({ sessionId }: { sessionId: string | null }) {
+  const { t } = useLanguage();
+  const memory = useSessionMemory();
+  const needsReview =
+    !!memory.error ||
+    (!!memory.snapshot?.currentBoundary &&
+      memory.snapshot.currentBoundary.state !== "continued");
+  return (
+    <details className={styles.secondary} open={needsReview || undefined}>
+      <summary>{t("Session & continuity")}</summary>
+      <SessionMemoryPanel sessionId={sessionId} />
+    </details>
+  );
+}
+
 function GameRecords({
   data,
   reviewOnly = false,
@@ -466,77 +483,67 @@ function GameRecords({
   const location = data.locations.find(
     (row) => row.id === data.publicState.current_location_id,
   );
+  const scene = data.scenes.find(
+    (row) => row.id === data.publicState.current_scene_id,
+  );
+  const latest = runtime.play?.turns
+    .filter((turn) => turn.mode === inputMode)
+    .at(-1);
+  const hasNarration = runtime.play?.turns.some(
+    (turn) =>
+      turn.mode === "game" &&
+      turn.session_id === session?.id &&
+      turn.narration !== null,
+  );
+  const opening = !hasNarration && inputMode === "game" && (
+    <article className={styles.opening}>
+      <span className="eyebrow">{t("The story so far")}</span>
+      <h2>{scene?.title || location?.name || t("Your next chapter")}</h2>
+      <div className="prose">
+        {(scene?.role === "narration"
+          ? scene.body
+          : data.publicState.summary) ||
+          t(
+            "Your story is ready to begin. The opening of your Adventure will appear here.",
+          )}
+      </div>
+    </article>
+  );
   return (
-    <>
-      <RecordHeading
-        title={t("Game")}
-        description="Your campaign, one DM, and a story shaped by your choices."
-        action={
-          <Button onClick={() => setResume(true)}>
-            {t("Edit public state and resume point")}
-          </Button>
-        }
-      />
+    <div className={styles.game}>
+      <header className={styles.gameHeader}>
+        <div>
+          <span className="eyebrow">{session?.title || t("Game")}</span>
+          <h1>{location?.name || t("Your next chapter")}</h1>
+        </div>
+        <nav aria-label={t("Story navigation")}>
+          <a
+            className="text-link"
+            href={latest ? `#saved-turn-${latest.id}` : "#play-action"}
+          >
+            {t("Latest moment")}
+          </a>
+          <a className="text-link" href="#play-action">
+            {t("Your action")}
+          </a>
+          <Link
+            className="text-link"
+            href={`/campaigns/${data.campaign.id}/sessions`}
+          >
+            {t("Sessions")}
+          </Link>
+        </nav>
+      </header>
       <div className="game-grid gameplay-live">
         <div className="story-column">
-          {!reviewOnly && (
-            <SessionMemoryPanel sessionId={session?.id ?? null} />
-          )}
           {runtime.play && (
             <SessionPendingCompanion
               play={runtime.play}
               onSaved={runtime.afterMutation}
             />
           )}
-          <Panel
-            className="visual-inventory-panel"
-            title={session?.title || t("Choose a resume session")}
-          >
-            <Badge>{t("Persistent public records")}</Badge>
-            <p className="prose" style={{ whiteSpace: "pre-wrap" }}>
-              {data.publicState.summary || t("No public summary recorded.")}
-            </p>
-            {session ? (
-              <Button primary onClick={() => setSceneEditor("new")}>
-                {t("Add transcript record")}
-              </Button>
-            ) : (
-              <p>
-                <Link
-                  className="text-link"
-                  href={`/campaigns/${data.campaign.id}/sessions`}
-                >
-                  {t("Open sessions to create a transcript")}
-                </Link>
-              </p>
-            )}
-            {data.publicState.current_scene_id && (
-              <p>
-                <a
-                  className="text-link"
-                  href={`#recorded-scene-${data.publicState.current_scene_id}`}
-                >
-                  {t("Jump to saved resume point")}
-                </a>
-              </p>
-            )}
-          </Panel>
-          {session && (
-            <details className="gameplay-transcript">
-              <summary>
-                {t("Recorded transcript and manual corrections")}
-              </summary>
-              <Transcript
-                data={data}
-                session={session}
-                onEdit={setSceneEditor}
-              />
-            </details>
-          )}
-          <Panel
-            className="visual-inventory-panel"
-            title={t("The next moment")}
-          >
+          <Panel className={styles.storySurface}>
+            {!runtime.play && opening}
             {runtime.loading && (
               <p role="status">{t("Loading saved gameplay…")}</p>
             )}
@@ -564,30 +571,42 @@ function GameRecords({
                       </Link>
                     </p>
                   )}
-                <div className="tabs" aria-label={t("Input mode")}>
-                  <button
-                    type="button"
-                    className={inputMode === "game" ? "active" : ""}
-                    onClick={() => setInputMode("game")}
-                  >
-                    {t("Game")}
-                  </button>
-                  <button
-                    type="button"
-                    className={inputMode === "ooc" ? "active" : ""}
-                    onClick={() => setInputMode("ooc")}
-                  >
-                    {t("OOC")}
-                  </button>
-                </div>
                 <GameplayComposer
                   key={inputMode}
                   play={runtime.play}
                   mode={inputMode}
                   onSaved={runtime.afterMutation}
+                  followLatest
+                  historyIntro={opening}
+                  beforeInput={
+                    <div id="play-action" className={styles.inputMode}>
+                      <div className="tabs" aria-label={t("Input mode")}>
+                        <button
+                          type="button"
+                          aria-pressed={inputMode === "game"}
+                          className={inputMode === "game" ? "active" : ""}
+                          onClick={() => setInputMode("game")}
+                        >
+                          {t("Your action")}
+                        </button>
+                        <button
+                          type="button"
+                          aria-pressed={inputMode === "ooc"}
+                          className={inputMode === "ooc" ? "active" : ""}
+                          onClick={() => setInputMode("ooc")}
+                        >
+                          {t("OOC")}
+                        </button>
+                      </div>
+                    </div>
+                  }
                 />
               </>
             )}
+          </Panel>
+          <details className={styles.secondary}>
+            <summary>{t("FRAME & VIDEO · this scene")}</summary>
+            {scene && <p className="muted">{scene.title}</p>}
             {frameTransport ? (
               <CurrentSceneFrame transport={frameTransport} />
             ) : (
@@ -596,17 +615,28 @@ function GameRecords({
             {!frameTransport && (
               <CurrentSceneVideo transport={videoTransport} />
             )}
-            <p>
-              <Link
-                className="text-link"
-                href="/preview/campaigns/long-road-west/game"
-              >
-                {t("Open isolated Phase 0 demonstrations")}
-              </Link>
-            </p>
-          </Panel>
+          </details>
           {runtime.play && runtime.play.rulesetId !== "world-logic-v1" && (
-            <>
+            <details
+              className={styles.secondary}
+              open={
+                runtime.play.encounters.some(
+                  (encounter) => encounter.status === "active",
+                ) ||
+                runtime.play.turns.some(
+                  (turn) =>
+                    turn.mode === "mechanic" &&
+                    [
+                      "pending",
+                      "generating",
+                      "awaiting_confirmation",
+                      "failed",
+                    ].includes(turn.status),
+                ) ||
+                undefined
+              }
+            >
+              <summary>{t("Combat & rest")}</summary>
               <GameplayCombat
                 play={runtime.play}
                 onSaved={runtime.afterMutation}
@@ -646,8 +676,44 @@ function GameRecords({
                   {t("Open Camp")}
                 </Link>
               </p>
-            </>
+            </details>
           )}
+          {!reviewOnly && (
+            <GameSessionControls sessionId={session?.id ?? null} />
+          )}
+          <details className={styles.secondary}>
+            <summary>{t("Advanced · records & corrections")}</summary>
+            <Button onClick={() => setResume(true)}>
+              {t("Edit public state and resume point")}
+            </Button>
+            {session ? (
+              <>
+                <Button onClick={() => setSceneEditor("new")}>
+                  {t("Add transcript record")}
+                </Button>
+                <Transcript
+                  data={data}
+                  session={session}
+                  onEdit={setSceneEditor}
+                />
+              </>
+            ) : (
+              <Link
+                className="text-link"
+                href={`/campaigns/${data.campaign.id}/sessions`}
+              >
+                {t("Open sessions to create a transcript")}
+              </Link>
+            )}
+            <p>
+              <Link
+                className="text-link"
+                href="/preview/campaigns/long-road-west/game"
+              >
+                {t("Open isolated Phase 0 demonstrations")}
+              </Link>
+            </p>
+          </details>
         </div>
         <aside className="context-column">
           <Panel className="visual-inventory-panel" title={t("Party")}>
@@ -667,7 +733,19 @@ function GameRecords({
                         {row.max_hp === null ? "" : ` / ${row.max_hp}`}
                       </p>
                     )}
-                  <p>{row.conditions.join(", ") || t("None recorded")}</p>
+                  {Object.entries(row.resources).length > 0 && (
+                    <dl className={styles.contextResources}>
+                      {Object.entries(row.resources).map(([label, value]) => (
+                        <div key={label}>
+                          <dt>{label}</dt>
+                          <dd>{value}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+                  {row.conditions.length > 0 && (
+                    <p>{row.conditions.join(", ")}</p>
+                  )}
                   {row.kind === "companion" && (
                     <GameplayCompanionTalk entityId={row.id} />
                   )}
@@ -687,10 +765,7 @@ function GameRecords({
               {t("Open character records")}
             </Link>
           </Panel>
-          <Panel
-            className="visual-inventory-panel"
-            title={t("Recorded current location")}
-          >
+          <Panel className="visual-inventory-panel" title={t("Location")}>
             <h3>{location?.name || t("None recorded")}</h3>
             <p>{location?.description}</p>
           </Panel>
@@ -714,7 +789,7 @@ function GameRecords({
           onClose={() => setSceneEditor(null)}
         />
       )}
-    </>
+    </div>
   );
 }
 

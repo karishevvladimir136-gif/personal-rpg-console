@@ -1,3 +1,19 @@
+# Development status — P0B + P0D Game / Character presentation — VERIFIED; OWNER REVIEW PENDING
+
+**Current lane:** UI-only recovery on `codex/playtest-game-character` from accepted `c885dc357ab63ee32421679e881735750022172f`. Main stays at that accepted SHA. The separate P0A playable-opening worker owns Adventure/bootstrap/runtime changes; this lane neither implements nor integrates P0A. The original dirty checkout and clean accepted playtest checkout remain untouched.
+
+**Implemented:** narrative-first Game feed and composer; distinct DM/player presentation; compact context; secondary media, combat/rest, continuity and manual-correction tools with existing behavior retained. Character now leads with recorded identity/stats/HP/equipment/possessions and a labelled neutral full-body illustration instead of a giant generic person icon. No canonical appearance, species, class features or missing gameplay facts are invented. EN/RU scoped styling preserves the shell and responsive layout.
+
+**Fresh deterministic verification:** new actual-component UI tests **10/10**; affected UI/records/media tests **85/85** (overlapping totals). Complete repository invocation: **1,719 total, 1,692 passed, 26 HTTP connection failures, 1 hosted opt-in skip** (307,468.7203 ms). The HTTP tests incorrectly targeted an unused default port; all four affected HTTP files then pass against this candidate's actual local server: **29/29** (10,682.5801 ms), without code changes. Every non-skipped test has passing evidence; this is not claimed as one clean full-suite invocation. Route type generation, nonincremental typecheck, zero-warning lint and production webpack build pass. Original logs are retained locally under ignored `test-results/p0bd/`.
+
+**Browser checked separately:** ordinary authenticated Game/Character in EN/RU at 1440×1000 and 390×844, with no horizontal overflow. EN views existing Garrick records read-only; RU uses existing synthetic records in the disposable rehearsal clone, with only clone language preferences changed/restored. Item/correction dialogs open without saving. Screenshots include EN before/after and RU after. Not physical iPhone, live-model-quality or media-generation testing. [Owner review guide and exact evidence](P0BD_GAME_CHARACTER_REVIEW.md).
+
+**Changed areas / boundaries:** Game/Character components, optional composer presentation slots/follow-latest behavior, successful-turn status presentation, neutral SVG artwork, scoped CSS, RU strings, focused UI tests and this status/review documentation. No persistence/schema/migration, DM/provider, mechanics/dice, Adventure, save/timeline, media-authority, World Library or New Hero changes. No provider calls, real database migrations, deployment or new feature lane. Existing recorded stats/items and all historical accepted evidence are preserved.
+
+**Known limits / next step:** UI is implemented and verified on its isolated branch, not owner accepted or merged/integrated with P0A. Until P0A is integrated, the unchanged Garrick checkpoint still lacks a current location and shows the existing safe missing-canon response. The artwork is an intentional placeholder; later approved-art selection is outside this scope. The integrator must reconcile concurrent DEV_STATUS/locale changes, then owner-review the combined opening and presentation. Stop here; historical status below is preserved verbatim.
+
+---
+
 # Development status — Adventure / Media V1 — OWNER ACCEPTED
 
 **Explicit owner acceptance:** accepted review/status SHA `1599d238b2df926fd9a4d9058d7d2799de0eadaa`, including tested implementation ancestry `69b5b0b0975d40864e653d5d511c7d67f00a590c`. The owner accepts Adventure V1; Adventure Acceptance Harness V1; loot / search / secured-container / reward-integrity V1; optional FRAME V1 presentation with Draft → Accept / Discard; VIDEO V1 from an owner-accepted FRAME; and every disclosed limitation in the final verification and live-smoke reports.
