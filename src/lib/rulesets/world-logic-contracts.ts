@@ -48,10 +48,14 @@ export type WorldLogicContext = {
   actors: {
     id: string;
     name: string;
+    description: string;
     capabilities: string[];
+    limitations: string[];
     evidence: EvidenceLocator[];
   }[];
   circumstances: { id: string; text: string }[];
+  // Advisory only, never an effect or a prerequisite supplied by model text.
+  adventure: import("../gameplay/contracts.ts").JsonObject | null;
   locations: { id: string; name: string }[];
   travelOptions: {
     actorId: string;

@@ -1,0 +1,79 @@
+import "server-only";
+import { createClient } from "@supabase/supabase-js";
+import { randomUUID } from "node:crypto";
+import { requireOwner } from "./auth";
+import { authorizeCampaign } from "./campaign-authorization";
+import { PersistenceError } from "./errors";
+import { createBootstrapService } from "../adventures/bootstrap-service.ts";
+import { createBootstrapProvider } from "./adventure-bootstrap-provider.ts";
+import { resolveExecutionProfile } from "../model-runtime/registry.ts";
+import { applicationModelSelection } from "../model-runtime/defaults.ts";
+import { executionProviderOptions } from "./model-runtime/profiles.ts";
+import type { BootstrapCommand } from "../adventures/bootstrap-contracts.ts";
+export async function performBootstrap(command: BootstrapCommand) {
+  const campaignId =
+    command.action === "creation.propose" ||
+    command.action === "creation.commit"
+      ? null
+      : command.action === "opening.propose"
+        ? command.input.input.campaignId
+        : command.input.campaignId;
+  const { user } = campaignId
+    ? await authorizeCampaign(campaignId)
+    : await requireOwner();
+  if (user.id !== process.env.RPG_OWNER_USER_ID)
+    throw new PersistenceError("forbidden");
+  const url = process.env.SUPABASE_URL,
+    key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new PersistenceError("not_configured");
+  const client = createClient(url, key, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false,
+    },
+  });
+  const rpc = async (action: string, cid: string | null, payload: unknown) => {
+    const result = await client.rpc("rpg_bootstrap", {
+      p_owner_id: user.id,
+      p_campaign_id: cid,
+      p_action: action,
+      p_payload: payload,
+    });
+    if (result.error)
+      throw new PersistenceError(
+        result.error.message?.includes("rpg_conflict")
+          ? "conflict"
+          : result.error.message?.includes("rpg_forbidden")
+            ? "forbidden"
+            : result.error.message?.includes("rpg_validation")
+              ? "validation"
+              : "unavailable",
+      );
+    return result.data;
+  };
+  return await createBootstrapService(
+    rpc,
+    (ticket) =>
+      createBootstrapProvider(
+        executionProviderOptions(ticket.profile, "world.compose"),
+      )(ticket),
+    async (cid) => {
+      const policy = cid
+        ? (
+            (await rpc(
+              "policy",
+              cid,
+              {},
+            )) as import("../production/contracts.ts").FoundationSnapshot
+          ).executionPolicy
+        : null;
+      return resolveExecutionProfile({
+        task: "world.compose",
+        profileId: randomUUID(),
+        campaignPolicy: policy,
+        globalDefault: applicationModelSelection(process.env),
+      });
+    },
+  ).perform(command);
+}

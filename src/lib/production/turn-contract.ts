@@ -28,4 +28,5 @@ export type PrepareWorldLogic = (
   foundationAction?: JsonObject | null;
   resolution: MechanicsResolution | null;
   usage: ProviderUsage | null;
+  presence?: { controlledEntityIds: string[]; presentEntityIds: string[] };
 } | null>;

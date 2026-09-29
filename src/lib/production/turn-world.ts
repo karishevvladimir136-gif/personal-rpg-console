@@ -3,6 +3,7 @@ import { mergeConsequenceChanges } from "../world/consequences.ts";
 import type { RecordChange } from "../gameplay/server-contracts.ts";
 import { readWorldFoundation } from "../server/world/store.ts";
 import { stageWorldTransition } from "../world/stage.ts";
+import { parseWorldState } from "../world/validation.ts";
 import {
   stageResolvedWorldTransition,
   type ResolverProposal,
@@ -84,11 +85,30 @@ export function worldLogicTurnPreparer(
       usage = response.usage;
     }
     const result = resolveWorldLogic(input, proposal);
+    const world = parseWorldState(
+      input.snapshot.world,
+      input.snapshot.campaignId,
+    );
     return {
       proposal: proposal as JsonObject,
       ...(foundationAction !== undefined ? { foundationAction } : {}),
       resolution: result.status === "staged" ? result.resolution : null,
       usage,
+      presence: {
+        controlledEntityIds: world.actors
+          .filter((a) => a.control === "player" && a.entityId !== null)
+          .map((a) => a.entityId!),
+        presentEntityIds: world.actors
+          .filter(
+            (a) =>
+              a.publicName !== null &&
+              a.entityId !== null &&
+              input.source.snapshot.publicState.current_location_id !== null &&
+              a.locationId ===
+                input.source.snapshot.publicState.current_location_id,
+          )
+          .map((a) => a.entityId!),
+      },
     };
   };
 }

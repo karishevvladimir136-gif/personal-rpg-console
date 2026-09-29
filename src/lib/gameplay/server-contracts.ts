@@ -91,6 +91,8 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  // Server-derived exact World Logic presence; never a legacy mechanics profile.
+  worldLogicPresence?: { controlledEntityIds: string[]; presentEntityIds: string[] };
   craft?: PinnedCraft;
   // Internal bounded DM cognition for narrate(); never part of a public DTO.
   narrationBridge?: {

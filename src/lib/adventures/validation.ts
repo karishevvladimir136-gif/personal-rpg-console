@@ -181,9 +181,11 @@ export function parseAdventureCatalog(
     "history",
     "canChange",
     "detachedPlayable",
+    ...(value !== null && typeof value === "object" && Object.hasOwn(value, "requiresOpening") ? ["requiresOpening"] : []),
   ]);
   ensure(v.campaignId === uuid(campaignId), "scope");
   ensure(typeof v.canChange === "boolean" && v.detachedPlayable === false);
+  ensure(v.requiresOpening === undefined || typeof v.requiresOpening === "boolean");
   const worldBinding = nullable(v.worldBinding, (w) => {
     const row = object(w, ["worldId", "worldVersion", "title"]);
     return {
@@ -231,6 +233,7 @@ export function parseAdventureCatalog(
     adventures,
     history,
     canChange: v.canChange,
+    ...(v.requiresOpening === undefined ? {} : { requiresOpening: v.requiresOpening }),
     detachedPlayable: false,
   };
 }

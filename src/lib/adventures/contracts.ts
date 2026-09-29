@@ -63,6 +63,7 @@ export type AdventureCatalog = {
   history: PublicAdventure[];
   canChange: boolean;
   detachedPlayable: false;
+  requiresOpening?: boolean;
 };
 export type AdventureSetup = {
   title: string;

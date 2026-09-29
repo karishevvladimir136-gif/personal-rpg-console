@@ -25,6 +25,11 @@ import { SetupForm, ReviewForm, pacingLabel } from "./forms";
 import { WorldPicker } from "./worlds";
 import { usePending } from "./use-pending";
 import styles from "./adventures.module.css";
+import { OpeningBootstrap } from "../bootstrap/opening";
+import type {
+  BootstrapTransport,
+  StartCommand,
+} from "../../lib/adventures/bootstrap-contracts";
 
 type Draft =
   | { kind: "prepare"; basis: AdventureCatalog }
@@ -52,6 +57,7 @@ export function AdventuresPanel({
   persistPending = true,
   reviewLinks,
   transport: injected,
+  bootstrapTransport,
 }: {
   snapshot: CampaignSnapshot;
   language: "en" | "ru";
@@ -63,6 +69,7 @@ export function AdventuresPanel({
   persistPending?: boolean;
   reviewLinks?: { newHero: string; game: string };
   transport?: AdventureTransport;
+  bootstrapTransport?: BootstrapTransport;
 }) {
   const c = adventureText(language),
     campaignId = snapshot.campaign.id;
@@ -79,6 +86,8 @@ export function AdventuresPanel({
   const [draft, setDraft] = useState<Draft | null>(null),
     [formDirty, setFormDirty] = useState(false),
     [worldDirty, setWorldDirty] = useState(false);
+  const [openingStart, setOpeningStart] = useState<StartCommand | null>(null),
+    [openingDirty, setOpeningDirty] = useState(false);
   const [worlds, setWorlds] = useState<WorldCatalog | null>(
       initialWorlds ?? null,
     ),
@@ -129,14 +138,15 @@ export function AdventuresPanel({
     return () => abort.abort();
   }, [load, initialCatalog, timeline, snapshot]);
   useEffect(() => {
-    onDirty(formDirty || worldDirty || pending !== null);
-  }, [formDirty, worldDirty, pending, onDirty]);
+    onDirty(formDirty || worldDirty || openingDirty || pending !== null);
+  }, [formDirty, worldDirty, openingDirty, pending, onDirty]);
   useEffect(() => () => onDirty(false), [onDirty]);
   const wrongTimeline = !catalog || !sameTimeline(catalog.timeline, timeline);
   const frozen = !ready || loading || busy || pending !== null || wrongTimeline;
   const staleDraft =
     !!draft && (!catalog || !sameAdventureBasis(draft.basis, catalog));
-  const canWrite = !!catalog?.canChange && !frozen && !worldBusy;
+  const canWrite =
+    !!catalog?.canChange && !frozen && !worldBusy && !openingDirty;
   const send = async (command: AdventureCommand) => {
     if (lock.current || !ready) return;
     lock.current = true;
@@ -212,6 +222,26 @@ export function AdventuresPanel({
       </p>
       <p className={styles.muted}>{c.existingHelp}</p>
       {loading && <p role="status">{c.loading}</p>}
+      {catalog?.requiresOpening && (
+        <OpeningBootstrap
+          campaignId={campaignId}
+          start={openingStart}
+          language={language}
+          persistPending={persistPending}
+          transport={bootstrapTransport}
+          onDirty={setOpeningDirty}
+          onCancel={() => setOpeningStart(null)}
+          onStarted={async () => {
+            setOpeningStart(null);
+            await onSaved();
+            await load();
+            if (mounted.current) {
+              onDirty(false);
+              onStarted?.();
+            }
+          }}
+        />
+      )}
       {(pending || error || wrongTimeline) && (
         <div className={styles.notice} role="status">
           <p>
@@ -427,11 +457,16 @@ export function AdventuresPanel({
                     disabled={
                       !canWrite || !!draft || catalog.activeAdventureId !== null
                     }
-                    onClick={() =>
-                      attempt(() =>
-                        versionAdventureAttempt(catalog, a.id, "start"),
-                      )
-                    }
+                    onClick={() => {
+                      const command = versionAdventureAttempt(
+                        catalog,
+                        a.id,
+                        "start",
+                      );
+                      if (catalog.requiresOpening && command.action === "start")
+                        setOpeningStart(command);
+                      else attempt(() => command);
+                    }}
                   >
                     {c.start}
                   </button>

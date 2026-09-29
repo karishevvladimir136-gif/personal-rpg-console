@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { NewHeroForm } from "./adventures/new-hero";
+import { NewCampaignForm as NewHeroForm } from "./bootstrap/new-campaign";
+import {
+  parseBootstrapDraft,
+  restoreBootstrapCommand,
+} from "@/lib/adventures/bootstrap-client";
 import { adventureText } from "./adventures/text";
 import { restoreWorldAttempt, worldPendingKey } from "@/lib/adventures/client";
 import { useLanguage } from "./language-context";
@@ -32,6 +36,20 @@ export function PersistentCampaigns() {
   useEffect(() => {
     Promise.resolve().then(() => {
       try {
+        const pending = restoreBootstrapCommand(
+          sessionStorage.getItem("rpg:bootstrap:creation:pending"),
+        );
+        const cached = sessionStorage.getItem("rpg:bootstrap:creation:draft");
+        if (pending?.action.startsWith("creation.")) setNewHero(true);
+        try {
+          if (
+            cached &&
+            parseBootstrapDraft(JSON.parse(cached).draft).kind === "creation"
+          )
+            setNewHero(true);
+        } catch {
+          /* Invalid cached data cannot hide compatibility recovery. */
+        }
         if (
           ["new_campaign", "world_create"].some((kind) =>
             restoreWorldAttempt(

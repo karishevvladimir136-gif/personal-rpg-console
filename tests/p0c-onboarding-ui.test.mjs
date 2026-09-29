@@ -136,7 +136,7 @@ const pending = () => {
   return state;
 };
 
-test("EN/RU Campaigns has one primary starter entry, advanced empty creation, and unchanged Continue cards", () => {
+test("EN/RU Campaigns has one primary World Logic entry, advanced empty creation, and unchanged Continue cards", () => {
   for (const language of ["en", "ru"]) {
     const h = hooks(),
       c = adventureText(language);
@@ -178,7 +178,7 @@ test("EN/RU Campaigns has one primary starter entry, advanced empty creation, an
     assert.ok(!nodes.some((n) => n.props.children === c.newHero));
     primary[0].props.onClick();
     nodes = walk(render());
-    assert.ok(nodes.some((n) => n.type?.name === "NewHeroForm"));
+    assert.ok(nodes.some((n) => n.type?.name === "NewCampaignForm"));
     assert.ok(!nodes.some((n) => n.type === "form"));
     const emptyHooks = hooks();
     const emptyUi = modules({

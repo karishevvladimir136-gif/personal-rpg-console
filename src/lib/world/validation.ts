@@ -163,6 +163,7 @@ export function parseWorldState(
       "locationId",
       "capabilities",
       "knowledge",
+      ...(raw !== null && typeof raw === "object" && Object.hasOwn(raw, "limitations") ? ["limitations"] : []),
     ]);
     uuid(actor.id);
     requireWorld(actor.campaignId === campaignId);
@@ -178,8 +179,13 @@ export function parseWorldState(
     );
     choice(actor.control, ["player", "autonomous"]);
     const capabilities = array(actor.capabilities, 32);
-    capabilities.forEach((item) => text(item, 100));
+    capabilities.forEach((item) => text(item, 200));
     requireWorld(new Set(capabilities).size === capabilities.length);
+    if (Object.hasOwn(actor, "limitations")) {
+      const limitations = array(actor.limitations, 32);
+      limitations.forEach((item) => text(item, 200));
+      requireWorld(new Set(limitations).size === limitations.length);
+    }
     evidence(actor.knowledge);
   }
   for (const raw of array(row.threads, 128)) {

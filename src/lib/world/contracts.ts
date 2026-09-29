@@ -27,6 +27,8 @@ export type WorldActor = {
   publicName: string | null;
   locationId: string | null;
   capabilities: string[];
+  // Optional for historical state. Descriptive limits confer no mechanics.
+  limitations?: string[];
   knowledge: EvidenceLocator[];
 };
 export type WorldStepTrigger =

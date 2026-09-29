@@ -181,9 +181,11 @@ export function worldLogicContext(
       return {
         id: entity.id,
         name: text(entity.name, 240),
+        description: entity.details,
         capabilities: actor
           ? unique(list(actor.capabilities, (v) => text(v, 200), 100))
           : [],
+        limitations: actor?.limitations ?? [],
         evidence: (actor?.knowledge ?? []).filter(
           (e) =>
             e.ownerId === snapshot.ownerId &&
@@ -235,6 +237,27 @@ export function worldLogicContext(
         16000,
       ),
     })),
+    ...world.actors
+      .filter(
+        (a) =>
+          a.control === "autonomous" &&
+          a.publicName !== null &&
+          current &&
+          a.locationId === current.id,
+      )
+      .flatMap((a) => {
+        const entity = source.snapshot.entities.find(
+          (e) => e.id === a.entityId && e.campaign_id === snapshot.campaignId,
+        );
+        return entity
+          ? [
+              {
+                id: `actor:${entity.id}`,
+                text: text(`${entity.name}\n${entity.details}`, 16000),
+              },
+            ]
+          : [];
+      }),
   ];
   return {
     schemaVersion: 1,
@@ -243,6 +266,7 @@ export function worldLogicContext(
     worldMinutes: snapshot.worldMinutes,
     actors,
     circumstances,
+    adventure: source.adventureContext ?? null,
     locations: locations.map((l) => ({ id: l.id, name: text(l.name, 240) })),
     travelOptions:
       includeConsequences && current

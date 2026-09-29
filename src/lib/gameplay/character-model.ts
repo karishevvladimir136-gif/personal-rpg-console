@@ -137,10 +137,10 @@ export function validateCharacterPatches(source: RuntimeSource, input: TurnInput
     if (!isUuid(actorId) || patch.operation !== "set" || typeof patch.value !== "string" || patch.amount !== null ||
         input.mode === "mechanic" || input.mode === "feedback" || input.mode === "ooc") throw new DmError("validation");
     const actor = source.snapshot.entities.find((row) => row.id === actorId && row.campaign_id === input.campaignId);
-    if (!actor || !["npc", "companion"].includes(actor.kind) || source.runtime.configuration?.controlledEntityIds.includes(actorId))
+    if (!actor || !["npc", "companion"].includes(actor.kind) || (source.worldLogicPresence ?? source.runtime.configuration)?.controlledEntityIds.includes(actorId))
       throw new DmError("validation");
     if (input.mode === "companion" ? actorId !== input.companionId :
-      !source.runtime.configuration?.presentEntityIds.includes(actorId)) throw new DmError("validation");
+      !(source.worldLogicPresence ?? source.runtime.configuration)?.presentEntityIds.includes(actorId)) throw new DmError("validation");
     const old = storedModel(source, actorId);
     if (!old) throw new DmError("validation"); // Only explicit owner correction establishes identity.
     let next: CharacterModel;
@@ -167,8 +167,8 @@ export function characterPacket(source: RuntimeSource, input: TurnInput, audienc
   beliefs: CharacterModel["beliefs"]; relationships: CharacterModel["relationships"]; episodes: CharacterModel["episodes"];
 }[];
 export function characterPacket(source: RuntimeSource, input: TurnInput, audience: "plan" | "narrate") {
-  const controlled = new Set(source.runtime.configuration?.controlledEntityIds ?? []);
-  const present = new Set(source.runtime.configuration?.presentEntityIds ?? []);
+  const controlled = new Set((source.worldLogicPresence ?? source.runtime.configuration)?.controlledEntityIds ?? []);
+  const present = new Set((source.worldLogicPresence ?? source.runtime.configuration)?.presentEntityIds ?? []);
   const referencedAt = (name: string) => {
     const text = input.input.toLocaleLowerCase();
     const needle = name.toLocaleLowerCase();

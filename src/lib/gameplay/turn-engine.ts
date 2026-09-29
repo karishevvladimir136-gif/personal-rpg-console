@@ -167,6 +167,7 @@ async function execute(
       checkpoint.worldLogic ?? null,
     );
     if (logic) {
+      source.worldLogicPresence = logic.presence;
       requireRule(
         input.mode === "game" &&
           checkpoint.checks.length === 0 &&
