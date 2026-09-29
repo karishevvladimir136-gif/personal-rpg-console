@@ -46,6 +46,7 @@ export function AdventuresPanel({
   language,
   onDirty,
   onSaved,
+  onStarted,
   initialCatalog,
   initialWorlds,
   persistPending = true,
@@ -56,6 +57,7 @@ export function AdventuresPanel({
   language: "en" | "ru";
   onDirty: (dirty: boolean) => void;
   onSaved: () => Promise<void>;
+  onStarted?: () => void;
   initialCatalog?: AdventureCatalog;
   initialWorlds?: WorldCatalog;
   persistPending?: boolean;
@@ -155,6 +157,14 @@ export function AdventuresPanel({
         await onSaved();
       } catch {
         if (mounted.current) setError("unavailable");
+      }
+      if (
+        mounted.current &&
+        attempt.action === "start" &&
+        result.snapshot.activeAdventureId === attempt.input.adventureId
+      ) {
+        onDirty(false);
+        onStarted?.();
       }
     } catch (cause) {
       if (mounted.current) {

@@ -1,3 +1,17 @@
+# Development status — P0A playable bootstrap — OWNER REVIEW PENDING
+
+**Current lane:** `codex/p0a-playable-bootstrap`, isolated from accepted main `c885dc357ab63ee32421679e881735750022172f` and the separate P0BD Character branch. Implementation complete; not owner accepted, integrated with P0BD, merged or activated on the owner's database.
+
+**Implemented:** the existing authoritative Start Adventure operation prepares the minimum public opening for a wholly fresh no-Pack starter Fighter: a persisted meeting-house Location, visible ordinary work organiser/situation, narration, current location/scene and public provenance Event. Existing established continuities resume recorded facts. The original owner/source/timeline/head/revision checks run before preparation; opening, immutable Adventure history, receipt and manifest commit atomically. Confirmed successful Start refreshes and opens the campaign's Game. Owner premise remains advisory, and no hidden plot, chosen status, accepted job, loot, rewards, combat or outcome is authored.
+
+**Files/authority:** migration `202609290030_adventure_playable_opening.sql`; `adventures-panel.tsx` / `persistent-adventures.tsx`; SQL/bootstrap and actual-component navigation tests; [owner review and limitations](P0A_PLAYABLE_OPENING_REVIEW.md). Migration 30 adds/replaces functions only because a separate browser preparation would risk partial Start and stale revisions. Existing tables, saves, manifest schemas, migrations 1–29 and gameplay validation remain unchanged. Only disposable databases were migrated.
+
+**Verification:** focused bootstrap/navigation **18 passed**, included in affected Adventure, gameplay, save/timeline and populated-upgrade regressions **96 passed, zero failures/skips**. Final complete frozen-candidate suite: **1,721 total; 1,720 passed, zero failed, one existing opt-in hosted-Supabase skip** (215,168.3848 ms). Route type generation, nonincremental typecheck, repository-wide zero-warning lint and production webpack build passed. The earlier 1,720-test complete run (1,719 passed, one skip, zero failures) is retained separately; the helper was narrowed afterward to preserve established-location Start behavior, requiring the fresh final run. Scripted providers prove natural first turns through existing parser/mechanics/SQL settlement; no live-model-quality claim is made.
+
+**Limits / remaining work:** this is a narrow starter opening, not arbitrary World authoring or a repair of partly played/Pack-backed campaigns without a starting place. The already-active empty Garrick Adventure is not retroactively changed. No real browser playthrough, hosted Supabase or physical iPhone claim. Integration, owner approval and real migration 30 remain separate gates. Zero provider calls, real database migrations/imports or deployments. Next: finish the separately authorized P0BD Character correction, then stop for joint owner/supervisor integration review; do not merge either branch or start P0C.
+
+---
+
 # Development status — Adventure / Media V1 — OWNER ACCEPTED
 
 **Explicit owner acceptance:** accepted review/status SHA `1599d238b2df926fd9a4d9058d7d2799de0eadaa`, including tested implementation ancestry `69b5b0b0975d40864e653d5d511c7d67f00a590c`. The owner accepts Adventure V1; Adventure Acceptance Harness V1; loot / search / secured-container / reward-integrity V1; optional FRAME V1 presentation with Draft → Accept / Discard; VIDEO V1 from an owner-accepted FRAME; and every disclosed limitation in the final verification and live-smoke reports.

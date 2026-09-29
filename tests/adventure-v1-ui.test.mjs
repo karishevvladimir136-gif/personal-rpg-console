@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import ts from "typescript";
 import { createElement } from "react";
+import * as React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { fixture, id } from "./adventure-v1-fixtures.mjs";
 import { adventureText } from "../src/components/adventures/text.ts";
@@ -215,6 +216,123 @@ test("draft basis detects a head change without silently changing the draft", ()
   ])
     assert.equal(same(before, value), false);
   assert.deepEqual(before, f.catalog);
+});
+
+test("P0A Start navigates only after confirmed active receipt; failure or unmount never navigates", async () => {
+  for (const outcome of ["success", "uncertain", "unmounted", "wrong-active"]) {
+    const f = fixture(),
+      current = { current: null },
+      mounted = { current: true };
+    const events = [],
+      commands = [];
+    const live = modules({
+      react: {
+        ...React,
+        useState: (value) => [
+          typeof value === "function" ? value() : value,
+          () => {},
+        ],
+        useMemo: (fn) => fn(),
+        useCallback: (fn) => fn,
+        useEffect: () => {},
+        useRef: (value) => ({ current: value }),
+      },
+      "./use-pending": {
+        usePending: () => ({
+          pending: null,
+          current,
+          mounted,
+          ready: true,
+          remember: (value) => {
+            current.current = value;
+          },
+        }),
+      },
+    });
+    const tree = live(
+      "components/adventures/adventures-panel.tsx",
+    ).AdventuresPanel({
+      snapshot: f.snapshot,
+      language: "en",
+      initialCatalog: f.catalog,
+      initialWorlds: f.worlds,
+      persistPending: false,
+      onDirty: () => {},
+      onSaved: async () => {
+        events.push("refreshed");
+        if (outcome === "unmounted") mounted.current = false;
+      },
+      onStarted: () => events.push("navigate"),
+      transport: {
+        ...transport,
+        send: async (command) => {
+          commands.push(command);
+          if (outcome === "uncertain") throw new Error("lost response");
+          return {
+            requestId: command.input.requestId,
+            snapshot: {
+              ...f.catalog,
+              activeAdventureId:
+                outcome === "wrong-active" ? null : f.adventure.id,
+            },
+          };
+        },
+      },
+    });
+    const nodes = [];
+    const walk = (value) => {
+      if (Array.isArray(value)) value.forEach(walk);
+      else if (value && typeof value === "object" && "props" in value) {
+        nodes.push(value);
+        walk(value.props.children);
+      }
+    };
+    walk(tree);
+    const button = nodes.find(
+      (n) =>
+        n.type === "button" && n.props.children === adventureText("en").start,
+    );
+    assert.ok(button);
+    assert.equal(button.props.disabled, false);
+    button.props.onClick();
+    await new Promise((resolve) => setImmediate(resolve));
+    assert.equal(commands.length, 1);
+    assert.equal(commands[0].action, "start");
+    assert.deepEqual(
+      events,
+      outcome === "success"
+        ? ["refreshed", "navigate"]
+        : outcome === "uncertain"
+          ? []
+          : ["refreshed"],
+    );
+    assert.equal(current.current === null, outcome !== "uncertain");
+  }
+});
+
+test("P0A ordinary Adventure screen wires confirmed Start to its own campaign Game route", () => {
+  const f = fixture(),
+    paths = [];
+  const panel = () => null;
+  const live = modules({
+    react: { ...React, useState: (value) => [value, () => {}] },
+    "next/navigation": {
+      useRouter: () => ({ push: (path) => paths.push(path) }),
+    },
+    "./persistence-context": {
+      useCampaignData: () => ({ data: f.snapshot, refresh: async () => {} }),
+      useUnsavedChanges: () => {},
+    },
+    "./language-context": { useLanguage: () => ({ language: "en" }) },
+    "./adventures/adventures-panel": { AdventuresPanel: panel },
+  });
+  const element = live(
+    "components/persistent-adventures.tsx",
+  ).PersistentAdventures();
+  assert.equal(element.type, panel);
+  assert.deepEqual(paths, []);
+  element.props.onStarted();
+  assert.deepEqual(paths, [`/campaigns/${f.catalog.campaignId}/game`]);
 });
 test("actual Adventure routes reject foreign origin and URL campaign/query drift before adapter calls", async () => {
   const f = fixture(),

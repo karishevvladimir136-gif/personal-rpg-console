@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCampaignData, useUnsavedChanges } from "./persistence-context";
 import { useLanguage } from "./language-context";
 import { AdventuresPanel } from "./adventures/adventures-panel";
 export function PersistentAdventures() {
+  const router = useRouter();
   const { data, refresh } = useCampaignData(),
     { language } = useLanguage();
   const [dirty, setDirty] = useState(false);
@@ -16,6 +18,7 @@ export function PersistentAdventures() {
       language={language}
       onDirty={setDirty}
       onSaved={refresh}
+      onStarted={() => router.push(`/campaigns/${data.campaign.id}/game`)}
     />
   );
 }
