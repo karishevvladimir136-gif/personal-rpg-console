@@ -10,10 +10,12 @@ export function ProgressionPanel({
   view,
   c,
   apply,
+  characterLevels,
 }: {
   view: FoundationLoopView;
   c: FoundationText;
   apply: ApplyFoundation;
+  characterLevels?: Record<string, number>;
 }) {
   const [choices, setChoices] = useState<Record<string, string>>({});
   return (
@@ -36,15 +38,35 @@ export function ProgressionPanel({
               <div className={styles.heading}>
                 <div>
                   <p className={styles.eyebrow}>{progress.entityName}</p>
-                  <h3>{progress.trackLabel}</h3>
+                  <h3>
+                    {view.profile.id === "console-basic-v1" &&
+                    progress.trackId === "house-experience" &&
+                    progress.kind === "classic_xp" &&
+                    [
+                      "Experience · house track",
+                      "Опыт · домашняя шкала",
+                    ].includes(progress.trackLabel)
+                      ? c.xpProgression
+                      : progress.trackLabel}
+                  </h3>
                 </div>
-                <Badge>
-                  {c.rank} {progress.rank}
-                </Badge>
+                {characterLevels?.[progress.entityId] !== undefined && (
+                  <Badge>
+                    {c.level} {characterLevels[progress.entityId]}
+                  </Badge>
+                )}
               </div>
-              <p className="muted">{c[progress.kind]}</p>
+              <p className="muted">
+                {progress.kind === "classic_xp"
+                  ? c.experiencePoints
+                  : c[progress.kind]}
+              </p>
               <div className={styles.progressValue}>
-                <strong>{progress.value}</strong>
+                <strong>
+                  {progress.value}
+                  {progress.nextThreshold !== null &&
+                    ` / ${progress.nextThreshold}`}
+                </strong>
                 <span>
                   {progress.nextThreshold === null
                     ? c.complete
@@ -56,9 +78,18 @@ export function ProgressionPanel({
                   className={styles.meter}
                   max={progress.nextThreshold}
                   value={Math.min(progress.value, progress.nextThreshold)}
-                  aria-label={`${progress.trackLabel} · ${c.value}`}
+                  aria-label={`${progress.kind === "classic_xp" ? c.xpProgression : progress.trackLabel} · ${c.value}`}
                 />
               )}
+              <details className={styles.progressDetails}>
+                <summary>{c.progressDetails}</summary>
+                <p>
+                  {progress.trackLabel} · {c[progress.kind]}
+                </p>
+                <p>
+                  {c.rank} {progress.rank}
+                </p>
+              </details>
               {progress.unlocks.length > 0 && (
                 <p>
                   {c.unlocked}: {progress.unlocks.join(" · ")}

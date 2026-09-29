@@ -1,5 +1,8 @@
 "use client";
 import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
+import { CharacterArtwork } from "./character-artwork";
+import { characterDescription } from "./character-presentation";
+import styles from "./playtest-game-character.module.css";
 
 import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -824,7 +827,7 @@ function PersistentItemGrid({
   );
 }
 
-function ItemDetails({
+export function ItemDetails({
   item,
   onClose,
   onEdit,
@@ -835,6 +838,9 @@ function ItemDetails({
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
+  const equipped = data?.entities.find(
+    (row) => row.id === item.equipped_entity_id,
+  );
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
@@ -855,30 +861,39 @@ function ItemDetails({
           <dd>{item.quantity}</dd>
         </div>
         <div>
-          <dt>{t("Recorded owner")}</dt>
+          <dt>{t("Owner")}</dt>
           <dd>
             {data?.entities.find((row) => row.id === item.owner_entity_id)
-              ?.name || t("None selected")}
+              ?.name || t("None recorded")}
           </dd>
         </div>
         <div>
-          <dt>{t("Recorded storage")}</dt>
+          <dt>{t("Storage")}</dt>
           <dd>
-            {data?.storages.find((row) => row.id === item.storage_id)?.name}
+            {data?.storages.find((row) => row.id === item.storage_id)?.name ||
+              t("Not recorded")}
           </dd>
         </div>
         <div>
-          <dt>{t("Recorded equipped character")}</dt>
-          <dd>
-            {data?.entities.find((row) => row.id === item.equipped_entity_id)
-              ?.name || t("None selected")}
-          </dd>
+          <dt>{t("Equipped by")}</dt>
+          <dd>{equipped?.name || t("Not equipped")}</dd>
         </div>
+        {equipped && (
+          <div>
+            <dt>{t("Equipment slot")}</dt>
+            <dd>
+              {equipped.equipment_slots.find(
+                (slot) => slot.id === item.equipped_slot,
+              )?.label || t("Not recorded")}
+            </dd>
+          </div>
+        )}
       </dl>
-      <Button primary onClick={onEdit}>
-        {t("Correct item record")}
-      </Button>
       <GameplayItemActions item={item} />
+      <details className={styles.itemAdvanced}>
+        <summary>{t("Advanced · owner correction")}</summary>
+        <Button onClick={onEdit}>{t("Correct item record")}</Button>
+      </details>
     </Modal>
   );
 }
@@ -896,9 +911,9 @@ function RecordDoll({
   const equipped = equipmentForRecord(entity, items);
   return (
     <section
-      className="shared-doll"
+      className={`shared-doll ${entity.kind === "player" ? styles.characterDoll : ""}`}
       style={
-        entity.equipment_slots.length
+        entity.kind !== "player" && entity.equipment_slots.length
           ? {
               minHeight: Math.max(
                 580,
@@ -909,29 +924,35 @@ function RecordDoll({
       }
       aria-label={t("{name} equipment", { name: entity.name })}
     >
-      <div
-        className="doll-figure"
-        style={{
-          display: "grid",
-          placeItems: "center",
-          color: "var(--bronze)",
-          opacity: 0.45,
-        }}
-      >
-        <Icon
-          name={
-            entity.kind === "transport"
-              ? "Briefcase"
-              : entity.kind === "mount"
-                ? "Shield"
-                : "UserRound"
-          }
-          size={130}
-        />
-      </div>
+      {entity.kind === "player" ? (
+        <CharacterArtwork />
+      ) : (
+        <div
+          className="doll-figure"
+          style={{
+            display: "grid",
+            placeItems: "center",
+            color: "var(--bronze)",
+            opacity: 0.45,
+          }}
+        >
+          <Icon
+            name={
+              entity.kind === "transport"
+                ? "Briefcase"
+                : entity.kind === "mount"
+                  ? "Shield"
+                  : "UserRound"
+            }
+            size={130}
+          />
+        </div>
+      )}
       <div className="doll-caption">
-        <h2>{entity.name}</h2>
-        <small>{t("Recorded equipment")}</small>
+        {entity.kind !== "player" && <h2>{entity.name}</h2>}
+        <small>
+          {t(entity.kind === "player" ? "Equipped" : "Recorded equipment")}
+        </small>
       </div>
       {entity.equipment_slots.length ? (
         <div className="shared-equipment-slots">
@@ -967,6 +988,98 @@ function RecordDoll({
   );
 }
 
+function PlayerSheet({
+  data,
+  entity,
+  onSelect,
+}: {
+  data: CampaignSnapshot;
+  entity: Entity;
+  onSelect: (item: Item) => void;
+}) {
+  const { t } = useLanguage();
+  return (
+    <div className={styles.characterLayout}>
+      <section
+        className={styles.characterSheet}
+        aria-label={t("Character sheet")}
+      >
+        <div className={styles.characterIdentity}>
+          <span className="eyebrow">{t("Character")}</span>
+          <h1>{entity.name}</h1>
+          {Object.hasOwn(entity.stats, "level") && (
+            <Badge>{t("Level {level}", { level: entity.stats.level })}</Badge>
+          )}
+          {entity.details && (
+            <p className="prose">{characterDescription(entity.details, t)}</p>
+          )}
+          {entity.hp !== null && (
+            <Meter
+              label={t("HP")}
+              value={`${entity.hp}${entity.max_hp === null ? "" : ` / ${entity.max_hp}`}`}
+              percent={entity.max_hp ? (entity.hp / entity.max_hp) * 100 : 0}
+              color="var(--red)"
+            />
+          )}
+        </div>
+        <RecordDoll entity={entity} items={data.items} onSelect={onSelect} />
+        <div
+          className={`${styles.characterIdentity} ${styles.characterDetails}`}
+        >
+          {Object.keys(entity.stats).some((key) => key !== "level") && (
+            <>
+              <h3>{t("Recorded stats")}</h3>
+              <dl className="stats-list">
+                {Object.entries(entity.stats)
+                  .filter(([key]) => key !== "level")
+                  .map(([key, value]) => (
+                    <div key={key}>
+                      <dt>{t(key)}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+              </dl>
+            </>
+          )}
+          {Object.keys(entity.resources).length > 0 && (
+            <>
+              <h3>{t("Resources")}</h3>
+              <dl className="stats-list">
+                {Object.entries(entity.resources).map(([key, value]) => (
+                  <div key={key}>
+                    <dt>{key}</dt>
+                    <dd>{value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </>
+          )}
+          <h3>{t("Conditions")}</h3>
+          <p>{entity.conditions.join(", ") || t("None recorded")}</p>
+        </div>
+      </section>
+      <Panel className={styles.possessions} title={t("Possessions")}>
+        <PersistentItemGrid
+          items={data.items.filter(
+            (item) =>
+              item.owner_entity_id === entity.id ||
+              item.equipped_entity_id === entity.id,
+          )}
+          onSelect={onSelect}
+        />
+        <p>
+          <Link
+            className="text-link"
+            href={`/campaigns/${data.campaign.id}/inventory`}
+          >
+            {t("Open shared inventory")}
+          </Link>
+        </p>
+      </Panel>
+    </div>
+  );
+}
+
 function EntityCollection({
   data,
   players,
@@ -986,15 +1099,34 @@ function EntityCollection({
   const currentItem = data.items.find((row) => row.id === item?.id);
   return (
     <>
-      <RecordHeading
-        title={players ? "Character & Inventory" : "Party & known people"}
-        description="Public records for this campaign. Manual corrections are separate from gameplay."
-        action={
-          <Button primary onClick={() => setEditor("new")}>
-            {t(players ? "Add player character" : "Add companion or known NPC")}
-          </Button>
-        }
-      />
+      {players ? (
+        <header className={styles.characterHeader}>
+          <p className="muted">{t("Your hero, equipment and possessions.")}</p>
+          <details className={styles.secondary}>
+            <summary>{t("Character corrections")}</summary>
+            {selected && (
+              <Button onClick={() => setEditor(selected)}>
+                {t("Edit public character record")}
+              </Button>
+            )}
+            <Button onClick={() => setEditor("new")}>
+              {t("Add player character")}
+            </Button>
+          </details>
+        </header>
+      ) : (
+        <RecordHeading
+          title={players ? "Character & Inventory" : "Party & known people"}
+          description="Public records for this campaign. Manual corrections are separate from gameplay."
+          action={
+            <Button primary onClick={() => setEditor("new")}>
+              {t(
+                players ? "Add player character" : "Add companion or known NPC",
+              )}
+            </Button>
+          }
+        />
+      )}
       {!selected ? (
         <Panel className="empty-state">
           <Icon name="UserRound" size={38} />
@@ -1006,86 +1138,94 @@ function EntityCollection({
         </Panel>
       ) : (
         <>
-          <RecordSelect
-            label={t("Inspect public record")}
-            value={selected.id}
-            options={rows.map((row) => ({
-              value: row.id,
-              label: `${row.name} · ${t(entityKindLabels[row.kind])}`,
-            }))}
-            onChange={setSelectedId}
-          />
-          <div className="storage-layout with-doll">
-            <RecordDoll
-              entity={selected}
-              items={data.items}
-              onSelect={setItem}
+          {(!players || rows.length > 1) && (
+            <RecordSelect
+              label={t("Inspect public record")}
+              value={selected.id}
+              options={rows.map((row) => ({
+                value: row.id,
+                label: `${row.name} · ${t(entityKindLabels[row.kind])}`,
+              }))}
+              onChange={setSelectedId}
             />
-            <Panel
-              className="visual-inventory-panel"
-              title={selected.name}
-              action={
-                <Button onClick={() => setEditor(selected)}>
-                  {t("Edit public character record")}
-                </Button>
-              }
-            >
-              <Badge>{t(entityKindLabels[selected.kind])}</Badge>
-              <p className="prose" style={{ whiteSpace: "pre-wrap" }}>
-                {selected.details}
-              </p>
-              {selected.hp !== null && (
-                <Meter
-                  label={t("HP")}
-                  value={`${selected.hp}${selected.max_hp === null ? "" : ` / ${selected.max_hp}`}`}
-                  percent={
-                    selected.max_hp ? (selected.hp / selected.max_hp) * 100 : 0
-                  }
-                  color="var(--red)"
-                />
-              )}
-              <h3>{t("Attributes")}</h3>
-              <dl className="stats-list">
-                {Object.entries(selected.stats).map(([key, value]) => (
-                  <div key={key}>
-                    <dt>{key}</dt>
-                    <dd>{value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <h3>{t("Recorded resources")}</h3>
-              <dl className="stats-list">
-                {Object.entries(selected.resources).map(([key, value]) => (
-                  <div key={key}>
-                    <dt>{key}</dt>
-                    <dd>{value}</dd>
-                  </div>
-                ))}
-              </dl>
-              <h3>{t("Conditions")}</h3>
-              <p>{selected.conditions.join(", ") || t("None recorded")}</p>
-              <h3>{t("Recorded possessions")}</h3>
-              <PersistentItemGrid
-                items={data.items.filter(
-                  (row) =>
-                    row.owner_entity_id === selected.id ||
-                    row.equipped_entity_id === selected.id,
-                )}
+          )}
+          {players ? (
+            <PlayerSheet data={data} entity={selected} onSelect={setItem} />
+          ) : (
+            <div className="storage-layout with-doll">
+              <RecordDoll
+                entity={selected}
+                items={data.items}
                 onSelect={setItem}
               />
-              <p>
-                <Link
-                  className="text-link"
-                  href={`/campaigns/${data.campaign.id}/inventory`}
-                >
-                  {t("Open shared inventory")}
-                </Link>
-              </p>
-              {selected.kind === "companion" && (
-                <GameplayCompanionTalk entityId={selected.id} />
-              )}
-            </Panel>
-          </div>
+              <Panel
+                className="visual-inventory-panel"
+                title={selected.name}
+                action={
+                  <Button onClick={() => setEditor(selected)}>
+                    {t("Edit public character record")}
+                  </Button>
+                }
+              >
+                <Badge>{t(entityKindLabels[selected.kind])}</Badge>
+                <p className="prose" style={{ whiteSpace: "pre-wrap" }}>
+                  {selected.details}
+                </p>
+                {selected.hp !== null && (
+                  <Meter
+                    label={t("HP")}
+                    value={`${selected.hp}${selected.max_hp === null ? "" : ` / ${selected.max_hp}`}`}
+                    percent={
+                      selected.max_hp
+                        ? (selected.hp / selected.max_hp) * 100
+                        : 0
+                    }
+                    color="var(--red)"
+                  />
+                )}
+                <h3>{t("Attributes")}</h3>
+                <dl className="stats-list">
+                  {Object.entries(selected.stats).map(([key, value]) => (
+                    <div key={key}>
+                      <dt>{key}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <h3>{t("Recorded resources")}</h3>
+                <dl className="stats-list">
+                  {Object.entries(selected.resources).map(([key, value]) => (
+                    <div key={key}>
+                      <dt>{key}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <h3>{t("Conditions")}</h3>
+                <p>{selected.conditions.join(", ") || t("None recorded")}</p>
+                <h3>{t("Recorded possessions")}</h3>
+                <PersistentItemGrid
+                  items={data.items.filter(
+                    (row) =>
+                      row.owner_entity_id === selected.id ||
+                      row.equipped_entity_id === selected.id,
+                  )}
+                  onSelect={setItem}
+                />
+                <p>
+                  <Link
+                    className="text-link"
+                    href={`/campaigns/${data.campaign.id}/inventory`}
+                  >
+                    {t("Open shared inventory")}
+                  </Link>
+                </p>
+                {selected.kind === "companion" && (
+                  <GameplayCompanionTalk entityId={selected.id} />
+                )}
+              </Panel>
+            </div>
+          )}
         </>
       )}
       {editor && (

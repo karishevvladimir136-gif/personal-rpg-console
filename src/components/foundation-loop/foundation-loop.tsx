@@ -40,6 +40,7 @@ export function FoundationLoopEditor({
   load,
   send,
   afterSave,
+  characterLevels,
 }: {
   section: FoundationSection;
   initialData: FoundationLoopView;
@@ -49,6 +50,7 @@ export function FoundationLoopEditor({
     attempt: FoundationUiCommand,
   ) => Promise<FoundationLoopView | TradeQuote>;
   afterSave?: () => Promise<unknown>;
+  characterLevels?: Record<string, number>;
 }) {
   const { language } = useLanguage();
   const c = foundationText(language);
@@ -230,17 +232,25 @@ export function FoundationLoopEditor({
     <Panel className={styles.panel}>
       <div className={styles.heading}>
         <div>
-          <p className={styles.eyebrow}>
-            {section === "settings" ? c.ownerOnly : c.profile}
-          </p>
+          {section !== "progression" && (
+            <p className={styles.eyebrow}>
+              {section === "settings" ? c.ownerOnly : c.profile}
+            </p>
+          )}
           <h2>{c[section]}</h2>
         </div>
         <Badge>
-          {view.profile.id === "world-logic-v1"
-            ? "World Logic"
-            : view.profile.id === "console-basic-v1"
-              ? "Console Basic"
-              : view.profile.id}
+          {section === "progression"
+            ? view.profile.id === "console-basic-v1"
+              ? c.starterRules
+              : view.profile.id === "world-logic-v1"
+                ? c.worldLogic
+                : c.campaignRules
+            : view.profile.id === "world-logic-v1"
+              ? "World Logic"
+              : view.profile.id === "console-basic-v1"
+                ? "Console Basic"
+                : view.profile.id}
         </Badge>
       </div>
       {stale && (
@@ -279,6 +289,7 @@ export function FoundationLoopEditor({
             key={`${reloadKey}:${view.stateVersion}`}
             view={view}
             c={c}
+            characterLevels={characterLevels}
             apply={(kind, input) => void apply(kind, input)}
           />
         )}
@@ -423,6 +434,11 @@ export function FoundationLoopPanel({
       activeTimeline={data?.timeline}
       load={load}
       afterSave={refreshCampaign}
+      characterLevels={Object.fromEntries(
+        (data?.entities ?? [])
+          .filter((entity) => Object.hasOwn(entity.stats, "level"))
+          .map((entity) => [entity.id, entity.stats.level]),
+      )}
     />
   );
 }

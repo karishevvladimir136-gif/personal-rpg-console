@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
 import {
@@ -64,6 +64,9 @@ export function GameplayComposer({
   compact = false,
   initialText = "",
   historyOnly = false,
+  historyIntro,
+  beforeInput,
+  followLatest = false,
 }: {
   play: PlaySnapshot;
   mode?: TurnMode;
@@ -73,6 +76,9 @@ export function GameplayComposer({
   compact?: boolean;
   initialText?: string;
   historyOnly?: boolean;
+  historyIntro?: ReactNode;
+  beforeInput?: ReactNode;
+  followLatest?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
   const scope = useCampaignDraftScope();
@@ -121,6 +127,13 @@ export function GameplayComposer({
   const turns = play.turns.filter((turn) =>
     belongsToChannel(turn, mode, companionId),
   );
+  const historyRef = useRef<HTMLDivElement>(null);
+  const following = useRef(true);
+  const latest = turns.at(-1);
+  useEffect(() => {
+    if (followLatest && following.current && historyRef.current)
+      historyRef.current.scrollTop = historyRef.current.scrollHeight;
+  }, [followLatest, latest?.id, latest?.updated_at]);
   const unresolved = turns.find(isUnresolved);
   const knownAttempt =
     journal.attempt &&
@@ -346,6 +359,13 @@ export function GameplayComposer({
       {!compact && (
         <div
           className="gameplay-turns"
+          ref={historyRef}
+          onScroll={(event) => {
+            const history = event.currentTarget;
+            following.current =
+              history.scrollHeight - history.scrollTop - history.clientHeight <
+              80;
+          }}
           role="log"
           aria-label={t(
             mode === "feedback"
@@ -355,6 +375,7 @@ export function GameplayComposer({
                 : "Saved gameplay turns",
           )}
         >
+          {historyIntro}
           {turns.map((turn) => (
             <div
               key={turn.id}
@@ -409,6 +430,7 @@ export function GameplayComposer({
           )}
         </p>
       )}
+      {!historyOnly && beforeInput}
       {!historyOnly && mode !== "feedback" && !currentSession && (
         <p className="muted">
           {t("Choose an open resume session before sending an action.")}

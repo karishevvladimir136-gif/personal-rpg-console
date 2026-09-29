@@ -66,6 +66,15 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
+.progressDetails {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.progressDetails summary {
+  cursor: pointer;
+  margin-bottom: 6px;
+}
 .form,
 .editorBody {
   display: grid;
