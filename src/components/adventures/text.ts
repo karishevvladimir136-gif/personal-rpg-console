@@ -2,6 +2,36 @@ export function adventureText(language: "en" | "ru") {
   return language === "ru" ? ru : en;
 }
 const en = {
+  newCampaign: "New Campaign",
+  starterIntro:
+    "Choose a World, create your Hero, then prepare your first Adventure.",
+  chooseWorld: "Choose a World",
+  simpleWorldHelp:
+    "Choose an existing setting or describe a new one. Your Hero’s story begins when you start the Adventure.",
+  advancedFoundation: "Advanced · World foundation",
+  foundationHelp:
+    "Approved Packs are for advanced World preparation. Pack-backed Worlds require manual Campaign preparation and do not support the automatic starter opening.",
+  simpleWorlds: "Starter Worlds",
+  packWorlds: "Advanced · Pack-backed Worlds",
+  reviewWorld: "Review World",
+  editWorld: "Edit World",
+  yourHero: "Your Hero",
+  starterHero: "Starter Hero · Level 1 Fighter",
+  reviewHero: "Review Hero & Campaign",
+  createCampaign: "Create Campaign",
+  editHero: "Edit setup",
+  campaignReady:
+    "Your Hero and Campaign are ready. Prepare the first Adventure next.",
+  prepareFirst: "Prepare First Adventure",
+  firstAdventureHelp:
+    "Describe the Adventure you want to play, then start it to open Game.",
+  reviewAdventure: "Review Adventure",
+  saveAdventure: "Save Adventure",
+  editAdventure: "Edit Adventure",
+  advancedCreation: "Advanced creation",
+  createEmpty: "Create empty Campaign",
+  emptyHelp:
+    "Creates an empty Campaign for manual/advanced setup. No World, Hero or Adventure is created.",
   title: "Adventures",
   intro:
     "A chapter in this hero’s continuing Campaign. Your choices, possessions and discoveries carry forward.",
@@ -18,7 +48,7 @@ const en = {
   foundation: "Approved foundation Packs",
   worldTitle: "World name",
   worldPremise: "Describe the setting",
-  worldCreate: "Review and create World",
+  worldCreate: "Create World",
   worldHelp:
     "A shared foundation, with independent heroes and Campaign state. Creating a World does not generate a story, characters or secrets. Pack Actors and Canon require explicit Campaign preparation.",
   originalFoundation: "Original owner-authored setting",
@@ -79,7 +109,7 @@ const en = {
   continue: "Continue Campaign",
   fighter: "Ordinary Level 1 Fighter",
   fighterHelp:
-    "Uses the supported Console Basic house profile, not official D&D 5e. One normal Campaign, character and inventory.",
+    "Creates an ordinary Level 1 Fighter using Starter Rules. You can edit the character later with the supported tools.",
   emptyCampaign: "Empty Campaign",
   creationKind: "Starting continuity",
   heroName: "Hero name",
@@ -103,6 +133,36 @@ const en = {
   noPacks: "No approved public Pack choices are available.",
 };
 const ru: typeof en = {
+  newCampaign: "Новая Кампания",
+  starterIntro:
+    "Выберите Мир, создайте героя, затем подготовьте первое Приключение.",
+  chooseWorld: "Выберите Мир",
+  simpleWorldHelp:
+    "Выберите существующий сеттинг или опишите новый. История героя начнётся, когда вы начнёте Приключение.",
+  advancedFoundation: "Дополнительно · основа Мира",
+  foundationHelp:
+    "Утверждённые Пакеты — для расширенной подготовки Мира. Миры с Пакетами требуют ручной подготовки Кампании и не поддерживают автоматическую стартовую сцену.",
+  simpleWorlds: "Миры для быстрой игры",
+  packWorlds: "Дополнительно · Миры с Пакетами",
+  reviewWorld: "Проверить Мир",
+  editWorld: "Изменить Мир",
+  yourHero: "Ваш герой",
+  starterHero: "Стартовый герой · Воин 1-го уровня",
+  reviewHero: "Проверить героя и Кампанию",
+  createCampaign: "Создать Кампанию",
+  editHero: "Изменить подготовку",
+  campaignReady:
+    "Герой и Кампания готовы. Теперь подготовьте первое Приключение.",
+  prepareFirst: "Подготовить первое Приключение",
+  firstAdventureHelp:
+    "Опишите Приключение, в которое хотите сыграть, затем начните его, чтобы открыть Игру.",
+  reviewAdventure: "Проверить Приключение",
+  saveAdventure: "Сохранить Приключение",
+  editAdventure: "Изменить Приключение",
+  advancedCreation: "Расширенное создание",
+  createEmpty: "Создать пустую Кампанию",
+  emptyHelp:
+    "Создаёт пустую Кампанию для ручной настройки. Мир, герой и Приключение не создаются.",
   title: "Приключения",
   intro:
     "Глава в продолжающейся Кампании героя. Ваши решения, вещи и открытия сохраняются.",
@@ -119,7 +179,7 @@ const ru: typeof en = {
   foundation: "Утверждённые Пакеты основы",
   worldTitle: "Название Мира",
   worldPremise: "Опишите сеттинг",
-  worldCreate: "Проверить и создать Мир",
+  worldCreate: "Создать Мир",
   worldHelp:
     "Общая основа с независимыми героями и состоянием Кампаний. Создание Мира не генерирует историю, персонажей или тайны. Акторы и Канон из Пакетов требуют явной подготовки в Кампании.",
   originalFoundation: "Оригинальный авторский сеттинг",
@@ -180,7 +240,7 @@ const ru: typeof en = {
   continue: "Продолжить Кампанию",
   fighter: "Обычный Воин 1-го уровня",
   fighterHelp:
-    "Используется поддерживаемый домашний профиль Console Basic, а не официальная D&D 5e. Обычная Кампания, персонаж и инвентарь.",
+    "Создаёт обычного Воина 1-го уровня по Стартовым правилам. Позже персонажа можно изменить доступными инструментами.",
   emptyCampaign: "Пустая Кампания",
   creationKind: "Начальное состояние",
   heroName: "Имя героя",

@@ -108,22 +108,30 @@ export function NewHeroForm({
   };
   return (
     <section className={styles.panel}>
-      <h2>{c.newHero}</h2>
-      <p>{c.newHeroHelp}</p>
-      <p className={styles.muted}>{c.fighterHelp}</p>
+      <h2>{c.newCampaign}</h2>
+      <p className={styles.intro}>{c.starterIntro}</p>
       {created ? (
         <div role="status">
-          <p>{c.ready}</p>
-          <Link href={continueHref ?? `/campaigns/${created.campaignId}/game`}>
-            {c.continue}
-          </Link>
+          <p>{c.campaignReady}</p>
+          <div className={styles.actions}>
+            <Link
+              className={styles.primary}
+              href={
+                continueHref ?? `/campaigns/${created.campaignId}/adventures`
+              }
+            >
+              {c.prepareFirst}
+            </Link>
+          </div>
           <div className={styles.actions}>
             <button onClick={onCancel}>{c.cancel}</button>
           </div>
         </div>
       ) : (
         <>
+          <h3 className={styles.stepTitle}>{c.chooseWorld}</h3>
           <WorldPicker
+            starter
             language={language}
             worldId={worldId}
             disabled={frozen}
@@ -138,135 +146,139 @@ export function NewHeroForm({
             transport={transport}
             persistPending={persistPending}
           />
-          <form
-            className={styles.form}
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (frozen || worldBusy || !worlds) return;
-              if (!reviewing) setReviewing(true);
-              else {
-                try {
-                  void send(
-                    newHeroAttempt(
-                      worlds,
-                      worldId,
-                      title,
-                      heroName,
-                      campaignLanguage,
-                    ),
-                  );
-                } catch {
-                  setError("validation");
+          <div className={styles.step}>
+            <h3 className={styles.stepTitle}>{c.yourHero}</h3>
+            <p>{c.starterHero}</p>
+            <p className={styles.muted}>{c.fighterHelp}</p>
+            <form
+              className={styles.form}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (frozen || worldBusy || !worlds) return;
+                if (!reviewing) setReviewing(true);
+                else {
+                  try {
+                    void send(
+                      newHeroAttempt(
+                        worlds,
+                        worldId,
+                        title,
+                        heroName,
+                        campaignLanguage,
+                      ),
+                    );
+                  } catch {
+                    setError("validation");
+                  }
                 }
-              }
-            }}
-          >
-            <fieldset disabled={frozen || worldBusy}>
-              {reviewing ? (
-                <div className={styles.setup}>
-                  <h3>{c.reviewSetup}</h3>
-                  <p>{worlds?.worlds.find((w) => w.id === worldId)?.title}</p>
-                  <p>
-                    {title} · {heroName}
-                  </p>
-                  <p>{c.fighter}</p>
-                  <p>{campaignLanguage === "ru" ? "Русский" : "English"}</p>
-                  <p>{c.fighterHelp}</p>
-                </div>
-              ) : (
-                <div className={styles.form}>
-                  <label className={styles.field}>
-                    {c.campaignTitle}
-                    <input
-                      required
-                      maxLength={200}
-                      value={title}
-                      onChange={(e) => setTitle(e.target.value)}
-                    />
-                  </label>
-                  <label className={styles.field}>
-                    {c.heroName}
-                    <input
-                      required
-                      maxLength={200}
-                      value={heroName}
-                      onChange={(e) => setHeroName(e.target.value)}
-                    />
-                  </label>
-                  <label className={styles.field}>
-                    {c.campaignLanguage}
-                    <select
-                      value={campaignLanguage}
-                      onChange={(e) =>
-                        setCampaignLanguage(
-                          e.target.value === "ru" ? "ru" : "en",
-                        )
-                      }
-                    >
-                      <option value="en">English</option>
-                      <option value="ru">Русский</option>
-                    </select>
-                  </label>
-                  <p>{c.fighter}</p>
-                </div>
-              )}
-            </fieldset>
-            {(pending || error) && (
-              <div className={styles.notice} role="status">
-                <p>
-                  {pending
-                    ? c.pending
-                    : error === "conflict"
-                      ? c.conflict
-                      : error === "validation"
-                        ? c.validation
-                        : c.unavailable}
-                </p>
-                {pending && (
-                  <div className={styles.actions}>
-                    <button
-                      type="button"
-                      disabled={busy || !ready}
-                      onClick={() => void send(pending)}
-                    >
-                      {c.retry}
-                    </button>
+              }}
+            >
+              <fieldset disabled={frozen || worldBusy || !worldId}>
+                {reviewing ? (
+                  <div className={styles.setup}>
+                    <h3>{c.reviewHero}</h3>
+                    <p>{worlds?.worlds.find((w) => w.id === worldId)?.title}</p>
+                    <p>
+                      {title} · {heroName}
+                    </p>
+                    <p>{c.fighter}</p>
+                    <p>{campaignLanguage === "ru" ? "Русский" : "English"}</p>
+                    <p>{c.fighterHelp}</p>
+                  </div>
+                ) : (
+                  <div className={styles.form}>
+                    <label className={styles.field}>
+                      {c.campaignTitle}
+                      <input
+                        required
+                        maxLength={200}
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                    </label>
+                    <label className={styles.field}>
+                      {c.heroName}
+                      <input
+                        required
+                        maxLength={200}
+                        value={heroName}
+                        onChange={(e) => setHeroName(e.target.value)}
+                      />
+                    </label>
+                    <label className={styles.field}>
+                      {c.campaignLanguage}
+                      <select
+                        value={campaignLanguage}
+                        onChange={(e) =>
+                          setCampaignLanguage(
+                            e.target.value === "ru" ? "ru" : "en",
+                          )
+                        }
+                      >
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                      </select>
+                    </label>
                   </div>
                 )}
-              </div>
-            )}
-            <div className={styles.actions}>
-              <button
-                type="submit"
-                className={styles.primary}
-                disabled={
-                  frozen ||
-                  worldBusy ||
-                  !worldId ||
-                  !title.trim() ||
-                  !heroName.trim()
-                }
-              >
-                {reviewing ? c.newHero : c.reviewSetup}
-              </button>
-              {reviewing && (
+              </fieldset>
+              {(pending || error) && (
+                <div className={styles.notice} role="status">
+                  <p>
+                    {pending
+                      ? c.pending
+                      : error === "conflict"
+                        ? c.conflict
+                        : error === "validation"
+                          ? c.validation
+                          : c.unavailable}
+                  </p>
+                  {pending && (
+                    <div className={styles.actions}>
+                      <button
+                        type="button"
+                        disabled={busy || !ready}
+                        onClick={() => void send(pending)}
+                      >
+                        {c.retry}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )}
+              <div className={styles.actions}>
+                <button
+                  type="submit"
+                  className={styles.primary}
+                  disabled={
+                    frozen ||
+                    worldBusy ||
+                    !worldId ||
+                    !title.trim() ||
+                    !heroName.trim()
+                  }
+                >
+                  {reviewing ? c.createCampaign : c.reviewHero}
+                </button>
+                {reviewing && (
+                  <button
+                    type="button"
+                    disabled={frozen || worldBusy}
+                    onClick={() => setReviewing(false)}
+                  >
+                    {c.editHero}
+                  </button>
+                )}
                 <button
                   type="button"
                   disabled={frozen || worldBusy}
-                  onClick={() => setReviewing(false)}
+                  onClick={onCancel}
                 >
-                  {c.edit}
+                  {c.cancel}
                 </button>
-              )}
-              <button
-                type="button"
-                disabled={frozen || worldBusy}
-                onClick={onCancel}
-              >
-                {c.cancel}
-              </button>
-            </div>
-          </form>
+              </div>
+            </form>
+          </div>
         </>
       )}
     </section>

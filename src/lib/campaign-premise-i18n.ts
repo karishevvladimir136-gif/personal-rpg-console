@@ -2,6 +2,8 @@ const en = {
   title: "Campaign premise",
   optional: "Optional · your starting vision",
   advisory: "Owner-authored · advisory",
+  planning:
+    "Planning note only — this does not change rules, Canon or character state.",
   intro:
     "Describe the campaign you want to play, in your own words. Start with a place, a role, and the kinds of choices that interest you.",
   label: "Your campaign, in your own words",
@@ -11,7 +13,7 @@ const en = {
   placeholder:
     "Where does the story begin? Who do you want to be?\nWhat should drive the campaign: exploration, politics, relationships, survival?\nDescribe the tone, pace, stakes, and anything you want to avoid.",
   help: "A few paragraphs or a longer brief are welcome. Your original wording and line breaks are preserved. Changing the language label does not translate your writing.",
-  examples: "Two ways to begin",
+  examples: "Need inspiration? Premise examples",
   political: "Political intrigue",
   exploration: "Open exploration",
   politicalExample:
@@ -77,6 +79,8 @@ const ru: typeof en = {
   title: "Замысел кампании",
   optional: "Необязательно · ваше видение",
   advisory: "Авторский замысел · ориентир",
+  planning:
+    "Заметка для планирования — не меняет правила, канон или состояние персонажа.",
   intro:
     "Опишите своими словами кампанию, в которую хотите играть. Начните с места, своей роли и решений, которые вам интересны.",
   label: "Ваша кампания своими словами",
@@ -86,7 +90,7 @@ const ru: typeof en = {
   placeholder:
     "Где начинается история? Кем вы хотите быть?\nЧто важнее: исследования, политика, отношения или выживание?\nОпишите тон, темп, ставки и то, чего стоит избегать.",
   help: "Можно написать несколько абзацев или подробное описание. Исходные слова и переносы строк сохраняются. Выбор языка не переводит ваш текст.",
-  examples: "Два примера для вдохновения",
+  examples: "Нужно вдохновение? Примеры замысла",
   political: "Политические интриги",
   exploration: "Свободное исследование",
   politicalExample:

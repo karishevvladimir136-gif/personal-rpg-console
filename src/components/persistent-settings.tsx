@@ -259,7 +259,7 @@ function CampaignIdentityForm({ current }: { current: Campaign }) {
   useUnsavedChanges(dirty);
   const newer = scope.stale || current.revision !== baseline.revision;
   return (
-    <Panel title={t("Campaign identity")}>
+    <Panel title={t("Campaign basics")}>
       <TimelineDraftNotice stale={scope.stale} />
       <form
         onSubmit={async (event) => {
@@ -447,70 +447,79 @@ function CampaignPreferencesForm({
           </p>
         </fieldset>
       </form>
-      <Panel title={t("Settings history")}>
-        <p className="muted">
-          {t(
-            "Each save records a new effective revision. Existing scenes keep the revision they were created with.",
+      <details className="rules-advanced">
+        <summary>{t("Advanced · settings history")}</summary>
+        <Panel title={t("Settings history")}>
+          <p className="muted">
+            {t(
+              "Each save records a new effective revision. Existing scenes keep the revision they were created with.",
+            )}
+          </p>
+          {current.settingsHistory.length ? (
+            current.settingsHistory.map((revision) => (
+              <details key={revision.id} className="rules-advanced">
+                <summary>
+                  {t("Revision {number}", { number: revision.revision })} ·{" "}
+                  {new Date(revision.created_at).toLocaleString(language)}
+                </summary>
+                <dl className="detail-list">
+                  <dt>{t("Campaign Language")}</dt>
+                  <dd>
+                    {revision.values.language === "ru"
+                      ? t("Russian")
+                      : t("English")}
+                  </dd>
+                  <dt>{t("Difficulty preset")}</dt>
+                  <dd>
+                    {t(
+                      {
+                        easy: "Easy",
+                        medium: "Medium",
+                        hard: "Hard",
+                        custom: "Custom",
+                      }[revision.values.difficulty.preset],
+                    )}
+                  </dd>
+                  <dt>{t("Narrative style")}</dt>
+                  <dd>{t(revision.values.narrativeStyle)}</dd>
+                  <dt>{t("Dice Presentation")}</dt>
+                  <dd>
+                    {t(
+                      {
+                        hidden: "Hidden",
+                        "key-rolls": "Key Rolls",
+                        "all-player-rolls": "All Player Rolls",
+                      }[revision.values.dicePresentation],
+                    )}
+                  </dd>
+                  <dt>{t("Interactive Dice")}</dt>
+                  <dd>{t(revision.values.interactiveDice ? "On" : "Off")}</dd>
+                  <dt>{t("Show DC")}</dt>
+                  <dd>{t(revision.values.showDc ? "On" : "Off")}</dd>
+                  {dmStyleKeys.map((key) => (
+                    <div key={key} className="dm-style-history-row">
+                      <dt>{t(dmStyleChoices[key].label)}</dt>
+                      <dd>
+                        {t(
+                          effectiveDmStyle(revision.values)[key] ===
+                            "hopeful_humanist"
+                            ? "Hopeful humanist"
+                            : effectiveDmStyle(revision.values)[
+                                key
+                              ][0].toUpperCase() +
+                                effectiveDmStyle(revision.values)[key].slice(1),
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
+            ))
+          ) : (
+            <p>{t("No saved settings revisions yet.")}</p>
           )}
-        </p>
-        {current.settingsHistory.length ? (
-          current.settingsHistory.map((revision) => (
-            <details key={revision.id} className="rules-advanced">
-              <summary>
-                {t("Revision {number}", { number: revision.revision })} ·{" "}
-                {new Date(revision.created_at).toLocaleString(language)}
-              </summary>
-              <dl className="detail-list">
-                <dt>{t("Campaign Language")}</dt>
-                <dd>
-                  {revision.values.language === "ru"
-                    ? t("Russian")
-                    : t("English")}
-                </dd>
-                <dt>{t("Difficulty preset")}</dt>
-                <dd>
-                  {t(
-                    {
-                      easy: "Easy",
-                      medium: "Medium",
-                      hard: "Hard",
-                      custom: "Custom",
-                    }[revision.values.difficulty.preset],
-                  )}
-                </dd>
-                <dt>{t("Narrative style")}</dt>
-                <dd>{t(revision.values.narrativeStyle)}</dd>
-                <dt>{t("Dice Presentation")}</dt>
-                <dd>
-                  {t(
-                    {
-                      hidden: "Hidden",
-                      "key-rolls": "Key Rolls",
-                      "all-player-rolls": "All Player Rolls",
-                    }[revision.values.dicePresentation],
-                  )}
-                </dd>
-                <dt>{t("Interactive Dice")}</dt>
-                <dd>{t(revision.values.interactiveDice ? "On" : "Off")}</dd>
-                <dt>{t("Show DC")}</dt>
-                <dd>{t(revision.values.showDc ? "On" : "Off")}</dd>
-                {dmStyleKeys.map((key) => (
-                  <div key={key} className="dm-style-history-row">
-                    <dt>{t(dmStyleChoices[key].label)}</dt>
-                    <dd>
-                      {t(effectiveDmStyle(revision.values)[key] === "hopeful_humanist"
-                        ? "Hopeful humanist"
-                        : effectiveDmStyle(revision.values)[key][0].toUpperCase() + effectiveDmStyle(revision.values)[key].slice(1))}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </details>
-          ))
-        ) : (
-          <p>{t("No saved settings revisions yet.")}</p>
-        )}
-      </Panel>
+        </Panel>
+      </details>
     </>
   );
 }
@@ -538,26 +547,34 @@ export function PersistentCampaignSettings() {
       {data && (
         <div key={campaignId}>
           <CampaignIdentityForm current={data.campaign} />
+          <CampaignPreferencesForm
+            current={data}
+            production={activeProduction}
+          />
           <CampaignPremisePanel
             campaignId={campaignId}
             timeline={data.timeline}
             defaultLanguage={data.campaign.language}
           />
-          <CampaignPreferencesForm
-            current={data}
-            production={activeProduction}
-          />
-          <CampaignProductionSettingsPanel
-            campaignId={campaignId}
-            timeline={data.timeline}
-            onLoaded={setProduction}
-            afterSave={refresh}
-          />
-          <CampaignPackSettingsPanel />
-          <FoundationLoopPanel section="settings" />
-          {activeProduction?.ruleset.id === "console-basic-v1" && (
-            <GameplayConfiguration />
-          )}
+          <details className="rules-advanced">
+            <summary>{t("Advanced · AI, rules & world engine")}</summary>
+            <CampaignProductionSettingsPanel
+              campaignId={campaignId}
+              timeline={data.timeline}
+              onLoaded={setProduction}
+              afterSave={refresh}
+            />
+          </details>
+          <details className="rules-advanced">
+            <summary>
+              {t("Advanced · World Packs & owner configuration")}
+            </summary>
+            <CampaignPackSettingsPanel />
+            <FoundationLoopPanel section="settings" />
+            {activeProduction?.ruleset.id === "console-basic-v1" && (
+              <GameplayConfiguration />
+            )}
+          </details>
         </div>
       )}
     </>

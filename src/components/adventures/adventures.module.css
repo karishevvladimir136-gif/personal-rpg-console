@@ -192,3 +192,30 @@
     grid-template-columns: 1fr;
   }
 }
+
+.step {
+  border-top: 1px solid #48483f;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.stepTitle {
+  color: #e4c996;
+  font-family: Georgia, serif;
+  margin: 1rem 0 0.6rem;
+}
+.field .worldDescription {
+  min-height: 18rem;
+}
+.advanced {
+  border: 1px solid #48483f;
+  border-radius: 0.4rem;
+  padding: 1rem;
+}
+.advanced summary {
+  color: #d7bd8d;
+  cursor: pointer;
+}
+.setup p {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

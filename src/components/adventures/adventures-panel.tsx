@@ -205,7 +205,7 @@ export function AdventuresPanel({
           <h1>{c.title}</h1>
           <p className={styles.intro}>{c.intro}</p>
         </div>
-        <Link href={reviewLinks?.newHero ?? "/campaigns"}>{c.newHero}</Link>
+        <Link href={reviewLinks?.newHero ?? "/campaigns"}>{c.newCampaign}</Link>
       </div>
       <p>
         {c.existing} · {snapshot.campaign.title}
@@ -375,11 +375,13 @@ export function AdventuresPanel({
                 }
                 onClick={() => setDraft({ kind: "prepare", basis: catalog })}
               >
-                {c.prepare}
+                {catalog.adventures.length ? c.prepare : c.prepareFirst}
               </button>
             </div>
           )}
-          {!catalog.adventures.length && <p>{c.noAdventures}</p>}
+          {!catalog.adventures.length && (
+            <p className={styles.intro}>{c.firstAdventureHelp}</p>
+          )}
           {catalog.adventures.map((a) => (
             <article className={styles.card} key={a.id}>
               <span className={styles.badge}>
@@ -442,7 +444,7 @@ export function AdventuresPanel({
                         setDraft({ kind: "edit", basis: catalog, adventure: a })
                       }
                     >
-                      {c.edit}
+                      {c.editAdventure}
                     </button>
                     <button
                       disabled={!canWrite || !!draft}
@@ -500,9 +502,12 @@ export function AdventuresPanel({
           ))}
         </>
       )}
-      <Link href={reviewLinks?.game ?? `/campaigns/${campaignId}/game`}>
-        {c.continue}
-      </Link>
+      {(catalog?.activeAdventureId ||
+        snapshot.publicState?.current_location_id) && (
+        <Link href={reviewLinks?.game ?? `/campaigns/${campaignId}/game`}>
+          {c.continue}
+        </Link>
+      )}
     </section>
   );
 }

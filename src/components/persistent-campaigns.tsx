@@ -135,27 +135,29 @@ export function PersistentCampaigns() {
         </div>
         <Button
           primary
-          disabled={newHero}
-          onClick={() => {
-            creationOpen.current = true;
-            setCreating(true);
-            setSaved(false);
-          }}
-        >
-          {t("New Campaign")}
-        </Button>
-      </div>
-      <div className="button-row">
-        <Button
           disabled={creating || newHero}
           onClick={() => {
             setNewHero(true);
             setSaved(false);
           }}
         >
-          {adventureCopy.newHero}
+          {adventureCopy.newCampaign}
         </Button>
       </div>
+      <details className="rules-advanced">
+        <summary>{adventureCopy.advancedCreation}</summary>
+        <p className="muted">{adventureCopy.emptyHelp}</p>
+        <Button
+          disabled={creating || newHero}
+          onClick={() => {
+            creationOpen.current = true;
+            setCreating(true);
+            setSaved(false);
+          }}
+        >
+          {adventureCopy.createEmpty}
+        </Button>
+      </details>
       {newHero && (
         <NewHeroForm
           language={interfaceLanguage}
@@ -190,7 +192,7 @@ export function PersistentCampaigns() {
         </p>
       )}
       {creating && (
-        <Panel title={t("New Campaign")}>
+        <Panel title={adventureCopy.createEmpty}>
           <form
             onSubmit={(event) => {
               event.preventDefault();
@@ -233,11 +235,7 @@ export function PersistentCampaigns() {
                   ))}
                 </select>
               </label>
-              <p className="muted">
-                {t(
-                  "Creates an empty campaign. No story, characters, or secret material are generated or imported.",
-                )}
-              </p>
+              <p className="muted">{adventureCopy.emptyHelp}</p>
               <CampaignPremiseFields
                 value={premise}
                 onChange={setPremise}

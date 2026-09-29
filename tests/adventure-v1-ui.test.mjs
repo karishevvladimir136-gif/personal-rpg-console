@@ -66,7 +66,7 @@ const escaped = (s) => s.replaceAll("&", "&amp;").replaceAll("'", "&#x27;");
 const render = (component, props) =>
   renderToStaticMarkup(createElement(component, props));
 
-test("EN/RU setup has natural-language premise, manual review, bounded advisory pacing and disabled detached play", () => {
+test("EN/RU setup has natural-language premise, manual review, bounded advisory pacing without unsupported continuity controls", () => {
   for (const language of ["en", "ru"]) {
     const c = adventureText(language),
       html = render(ui("components/adventures/forms.tsx").SetupForm, {
@@ -78,18 +78,17 @@ test("EN/RU setup has natural-language premise, manual review, bounded advisory 
       });
     for (const value of [
       c.premise,
-      c.reviewSetup,
+      c.reviewAdventure,
       c.quick,
       c.evening,
       c.mini,
       c.custom,
       c.open,
       c.pacingHelp,
-      c.detachedHelp,
     ])
       assert.ok(html.includes(escaped(value)), value);
     assert.match(html, /<textarea required=""[^>]*maxLength="20000"/);
-    assert.match(html, /<option value="detached" disabled="">/);
+    assert.doesNotMatch(html, /<option value="detached"/);
     assert.doesNotMatch(
       html,
       /Select model|Compare models|secret route|timerMinutes|PC action/,
@@ -115,7 +114,7 @@ test("existing Hero lifecycle renders exact recorded history; legacy catalog sho
     for (const value of [
       c.existingHelp,
       c.end,
-      c.edit,
+      c.editAdventure,
       c.history,
       f.adventure.premise,
       f.world.title,
@@ -143,7 +142,7 @@ test("existing Hero lifecycle renders exact recorded history; legacy catalog sho
       },
     );
     assert.ok(empty.includes(escaped(c.legacy)));
-    assert.ok(empty.includes(escaped(c.noAdventures)));
+    assert.ok(empty.includes(escaped(c.firstAdventureHelp)));
     assert.ok(!empty.includes(escaped(c.bound)));
   }
 });
@@ -187,13 +186,13 @@ test("New Hero review is a normal supported Fighter Campaign and explicit owner 
         onCancel: noCall,
       });
     for (const value of [
-      c.newHero,
-      c.fighter,
+      c.newCampaign,
+      c.starterHero,
       c.fighterHelp,
       c.heroName,
-      c.worldHelp,
+      c.simpleWorldHelp,
       c.noWorld,
-      c.reviewSetup,
+      c.reviewHero,
     ])
       assert.ok(html.includes(escaped(value)), value);
     assert.equal((html.match(/<form/g) ?? []).length, 1);

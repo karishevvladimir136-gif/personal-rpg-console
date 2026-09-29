@@ -27,6 +27,7 @@ export function CampaignPremiseFields({
           <p className={styles.kicker}>{c.optional}</p>
         </div>
       )}
+      <p className={styles.boundary}>{c.planning}</p>
       <p>{c.intro}</p>
       <label className="field" htmlFor={`${id}-text`}>
         {c.label}

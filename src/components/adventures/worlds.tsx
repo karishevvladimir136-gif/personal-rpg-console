@@ -28,6 +28,7 @@ export function WorldPicker({
   onBusy,
   onDirty,
   initial,
+  starter = false,
   persistPending = true,
   transport: injected,
 }: {
@@ -39,6 +40,7 @@ export function WorldPicker({
   onBusy: (busy: boolean) => void;
   onDirty: (dirty: boolean) => void;
   initial?: WorldCatalog;
+  starter?: boolean;
   persistPending?: boolean;
   transport?: AdventureTransport;
 }) {
@@ -129,20 +131,51 @@ export function WorldPicker({
               onChange={(e) => onSelect(e.target.value)}
             >
               <option value="">{c.noWorld}</option>
-              {catalog.worlds.map((w) => (
-                <option key={w.id} value={w.id}>
-                  {w.title} · v{w.version}
-                </option>
-              ))}
+              {starter ? (
+                <>
+                  <optgroup label={c.simpleWorlds}>
+                    {catalog.worlds
+                      .filter((w) => !w.packVersionIds.length)
+                      .map((w) => (
+                        <option key={w.id} value={w.id}>
+                          {w.title}
+                        </option>
+                      ))}
+                  </optgroup>
+                  {catalog.worlds.some((w) => w.packVersionIds.length > 0) && (
+                    <optgroup label={c.packWorlds}>
+                      {catalog.worlds
+                        .filter((w) => w.packVersionIds.length > 0)
+                        .map((w) => (
+                          <option key={w.id} value={w.id}>
+                            {w.title}
+                          </option>
+                        ))}
+                    </optgroup>
+                  )}
+                </>
+              ) : (
+                catalog.worlds.map((w) => (
+                  <option key={w.id} value={w.id}>
+                    {w.title} · v{w.version}
+                  </option>
+                ))
+              )}
             </select>
           </label>
           {chosen && (
             <div className={styles.setup}>
               <p>{chosen.premise}</p>
-              <p className={styles.muted}>{c.pinned}</p>
+              <p className={styles.muted}>
+                {starter && chosen.packVersionIds.length > 0
+                  ? c.foundationHelp
+                  : c.pinned}
+              </p>
             </div>
           )}
-          <p className={styles.muted}>{c.worldHelp}</p>
+          <p className={styles.muted}>
+            {starter ? c.simpleWorldHelp : c.worldHelp}
+          </p>
           {creating ? (
             <WorldCreator
               language={language}
@@ -292,7 +325,9 @@ function WorldCreator({
                     .join(" · ")
                 : c.originalFoundation}
             </p>
-            <p className={styles.muted}>{c.worldHelp}</p>
+            <p className={styles.muted}>
+              {packs.length ? c.foundationHelp : c.simpleWorldHelp}
+            </p>
           </div>
         ) : (
           <div className={styles.form}>
@@ -310,35 +345,39 @@ function WorldCreator({
               <textarea
                 required
                 maxLength={20000}
-                rows={4}
+                className={styles.worldDescription}
+                rows={12}
                 value={premise}
                 onChange={(e) => setPremise(e.target.value)}
               />
             </label>
-            <p>{c.foundation}</p>
-            <div className={styles.checks}>
-              {catalog.packs.map((p) => (
-                <label key={p.versionId}>
-                  <input
-                    type="checkbox"
-                    checked={packs.includes(p.versionId)}
-                    disabled={
-                      !packs.includes(p.versionId) && packs.length >= 16
-                    }
-                    onChange={(e) =>
-                      setPacks(
-                        e.target.checked
-                          ? [...packs, p.versionId]
-                          : packs.filter((id) => id !== p.versionId),
-                      )
-                    }
-                  />
-                  {p.title}
-                </label>
-              ))}
-            </div>
-            {!catalog.packs.length && (
-              <p className={styles.muted}>{c.noPacks}</p>
+            {catalog.packs.length > 0 && (
+              <details className={styles.advanced}>
+                <summary>{c.advancedFoundation}</summary>
+                <p className={styles.muted}>{c.foundationHelp}</p>
+                <p>{c.foundation}</p>
+                <div className={styles.checks}>
+                  {catalog.packs.map((p) => (
+                    <label key={p.versionId}>
+                      <input
+                        type="checkbox"
+                        checked={packs.includes(p.versionId)}
+                        disabled={
+                          !packs.includes(p.versionId) && packs.length >= 16
+                        }
+                        onChange={(e) =>
+                          setPacks(
+                            e.target.checked
+                              ? [...packs, p.versionId]
+                              : packs.filter((id) => id !== p.versionId),
+                          )
+                        }
+                      />
+                      {p.title}
+                    </label>
+                  ))}
+                </div>
+              </details>
             )}
           </div>
         )}
@@ -371,7 +410,7 @@ function WorldCreator({
           type="submit"
           disabled={frozen || !title.trim() || !premise.trim()}
         >
-          {reviewing ? c.worldCreate : c.reviewSetup}
+          {reviewing ? c.worldCreate : c.reviewWorld}
         </button>
         {reviewing && (
           <button
@@ -379,7 +418,7 @@ function WorldCreator({
             disabled={frozen}
             onClick={() => setReviewing(false)}
           >
-            {c.edit}
+            {c.editWorld}
           </button>
         )}
         <button type="button" disabled={frozen} onClick={onCancel}>

@@ -72,7 +72,7 @@ export function SetupForm({
       <fieldset disabled={disabled}>
         {reviewing ? (
           <div className={styles.setup}>
-            <h3>{c.reviewSetup}</h3>
+            <h3>{c.reviewAdventure}</h3>
             <p>{title}</p>
             <p>{premise}</p>
             <p>{pacingLabel(setup.pacing, language)}</p>
@@ -128,16 +128,6 @@ export function SetupForm({
               </label>
             )}
             <p className={styles.muted}>{c.pacingHelp}</p>
-            <label className={styles.field}>
-              {c.mode}
-              <select value="canon" onChange={() => {}}>
-                <option value="canon">{c.canon}</option>
-                <option value="detached" disabled>
-                  {c.detached}
-                </option>
-              </select>
-            </label>
-            <p className={styles.muted}>{c.detachedHelp}</p>
           </div>
         )}
       </fieldset>
@@ -152,7 +142,7 @@ export function SetupForm({
             (kind === "custom" && !custom.trim())
           }
         >
-          {reviewing ? (initial ? c.save : c.approveSetup) : c.reviewSetup}
+          {reviewing ? c.saveAdventure : c.reviewAdventure}
         </button>
         {reviewing && (
           <button
@@ -160,7 +150,7 @@ export function SetupForm({
             disabled={disabled}
             onClick={() => setReviewing(false)}
           >
-            {c.edit}
+            {c.editAdventure}
           </button>
         )}
         <button type="button" disabled={disabled} onClick={onCancel}>

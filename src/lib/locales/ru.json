@@ -1741,5 +1741,9 @@
   "Character corrections": "Исправления персонажа",
   "Neutral equipment mannequin · appearance not established": "Нейтральный манекен · внешность персонажа не определена",
   "Equipment mannequin · non-canonical illustration": "Манекен снаряжения · условная иллюстрация, не канон",
-  "An ordinary Level 1 Fighter. Uses the starter house ruleset.": "Обычный воин 1-го уровня. Играет по начальным домашним правилам."
+  "An ordinary Level 1 Fighter. Uses the starter house ruleset.": "Обычный воин 1-го уровня. Играет по начальным домашним правилам.",
+  "Campaign basics": "Основное о Кампании",
+  "Advanced · settings history": "Дополнительно · история настроек",
+  "Advanced · AI, rules & world engine": "Дополнительно · ИИ, правила и движок Мира",
+  "Advanced · World Packs & owner configuration": "Дополнительно · Пакеты Мира и настройка владельца"
 }

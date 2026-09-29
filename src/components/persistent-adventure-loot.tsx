@@ -118,9 +118,14 @@ export function PersistentAdventureLoot() {
     <details className="panel">
       <summary>
         {language === "ru"
-          ? "Объекты и контейнеры · настройка владельца"
-          : "Objects and containers · owner setup"}
+          ? "Дополнительно · объекты и контейнеры"
+          : "Advanced · objects & containers"}
       </summary>
+      <p className="muted">
+        {language === "ru"
+          ? "Ручная настройка и исправления владельца. Для обычной игры не требуется."
+          : "Manual owner correction/setup. Not required for normal play."}
+      </p>
       {error && <p role="alert">{error}</p>}
       {hasPending && (
         <button className="button secondary" disabled={busy} onClick={retry}>
