@@ -105,8 +105,14 @@ for (const language of ["en", "ru"])
       c.required,
       c.quantity,
       c.amount,
+      c.valueRequired,
     ])
       assert.ok(html.includes(label));
+    assert.equal((html.match(/aria-invalid="true"/g) || []).length, 2);
+    assert.equal(
+      (html.match(new RegExp(c.valueRequired, "g")) || []).length,
+      2,
+    );
     assert.doesNotMatch(
       html,
       /owner_id|entity_id|storage_id|equipment_slot|canonical|type="hidden"/,
@@ -136,6 +142,7 @@ for (const language of ["en", "ru"])
       c.situation,
       c.narration,
       c.actors,
+      c.actorsHelp,
       c.confirm,
       c.required,
     ])

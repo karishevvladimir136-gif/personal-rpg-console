@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { setup, examples } from "./universal-bootstrap-fixture.mjs";
+import { setup, examples, usage } from "./universal-bootstrap-fixture.mjs";
 import { randomUUID, createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { createBootstrapService } from "../src/lib/adventures/bootstrap-service.ts";
-import { initialCreationReview } from "../src/lib/adventures/bootstrap-validation.ts";
+import {
+  initialCreationReview,
+  initialOpeningReview,
+} from "../src/lib/adventures/bootstrap-validation.ts";
 import {
   newHeroAttempt,
   versionAdventureAttempt,
@@ -42,6 +45,25 @@ for (const [kind, example] of Object.entries(examples))
         [f.cid],
       );
       parseWorldState(foundation.world, f.cid);
+      assert.equal(
+        foundation.world.actors.filter((a) => a.entityId === f.hero).length,
+        1,
+      );
+      assert.equal(
+        foundation.world.actors.find((a) => a.entityId === f.hero).control,
+        "player",
+      );
+      assert.equal(
+        foundation.world.actors.find((a) => a.entityId === f.hero).locationId,
+        s.publicState.current_location_id,
+      );
+      assert.equal(s.entities.filter((e) => e.name === example.name).length, 1);
+      assert.equal(
+        s.entities.filter((e) => e.name === example.npc && e.kind === "npc")
+          .length,
+        1,
+      );
+      assert.deepEqual(foundation.world.threads, []);
       assert.equal(foundation.loop_state.progression, "off");
       assert.deepEqual(foundation.loop_state.rewards, []);
       assert.equal(
@@ -571,6 +593,221 @@ test("Russian owner text and public opening preserve the reviewed facts, arbitra
     assert.equal(hero.hp, null);
     assert.equal(s.locations[0].name, "Причал");
     assert.ok(s.scenes.some((x) => x.body === example.narration));
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("Immediate scripted opening containing the protagonist fails closed; recovery never redispatches or mutates campaign", async () => {
+  const f = await setup({ ...examples.orbital, name: "Nadia Vale" });
+  try {
+    await f.create();
+    await f.prepare();
+    const before = await f.snapshot(),
+      fence = await f.fence(f.cid);
+    f.opening.actors.unshift({
+      name: "Nadia Vale",
+      description: "An independent cargo pilot.",
+      capabilities: ["piloting"],
+      limitations: [],
+    });
+    const command = { action: "opening.propose", input: f.start };
+    await assert.rejects(f.service.perform(command));
+    assert.equal(f.calls, 2);
+    await assert.rejects(f.service.perform(command));
+    assert.equal(f.calls, 2);
+    assert.deepEqual(await f.snapshot(), before);
+    assert.deepEqual(await f.fence(f.cid), fence);
+    assert.equal(
+      (
+        await f.one(
+          "select count(*) n from public.rpg_entities where campaign_id=$1",
+          [f.cid],
+        )
+      ).n,
+      1,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
+test("Stored legacy protagonist-copy proposal fails both recovered projection and final SQL even after owner removes the copy", async () => {
+  const f = await setup({ ...examples.orbital, name: "Nadia Vale" });
+  try {
+    await f.create();
+    await f.prepare();
+    const reserved = await f.rpc("opening.reserve", f.cid, {
+      input: f.start,
+      profile: f.profile,
+    });
+    const bad = structuredClone(f.opening);
+    bad.actors.unshift({
+      name: "Nadia Vale",
+      description: "A cargo pilot.",
+      capabilities: [],
+      limitations: [],
+    });
+    const result = { output: bad, usage };
+    await assert.rejects(
+      f.rpc("opening.result", f.cid, {
+        draftId: f.start.input.requestId,
+        result,
+      }),
+      /rpg_validation/,
+    );
+    // Simulate an immutable result written by the previous migration31 version.
+    // This direct private insertion is test setup, never a browser/API path.
+    await f.one(
+      "select rpg_private.bootstrap_write_receipt($1,$2,rpg_private.wave4_id($3,'bootstrap:result'),$4::jsonb,$5::jsonb)",
+      [
+        f.owner,
+        f.cid,
+        f.start.input.requestId,
+        JSON.stringify({
+          kind: "opening",
+          phase: "result",
+          draftId: f.start.input.requestId,
+          result,
+        }),
+        JSON.stringify({ result, failed: false }),
+      ],
+    );
+    const before = await f.snapshot(),
+      fence = await f.fence(f.cid);
+    const replay = createBootstrapService(
+      f.rpc,
+      () => assert.fail("No recovery provider"),
+      () => assert.fail("No routing change"),
+    );
+    await assert.rejects(
+      replay.perform({ action: "opening.propose", input: f.start }),
+    );
+    const command = {
+      action: "opening.commit",
+      input: {
+        requestId: randomUUID(),
+        campaignId: f.cid,
+        draftId: f.start.input.requestId,
+        review: {
+          ...initialOpeningReview(f.opening),
+          publicOpeningConfirmed: true,
+        },
+      },
+    };
+    await assert.rejects(replay.perform(command));
+    await assert.rejects(
+      f.rpc("opening.commit", f.cid, command.input),
+      /rpg_validation/,
+    );
+    assert.deepEqual(await f.snapshot(), before);
+    assert.deepEqual(await f.fence(f.cid), fence);
+    assert.equal(f.calls, 1);
+    assert.equal(reserved.ticket.context.protagonist.name, "Nadia Vale");
+    assert.doesNotMatch(
+      JSON.stringify(reserved.ticket.context),
+      /entityId|ownerId|PRIVATE/,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
+test("SQL final authority rejects manually inserted protagonist copy without partial opening, while genuine NPC and exact retry succeed", async () => {
+  const f = await setup({ ...examples.orbital, name: "Nadia Vale" });
+  try {
+    await f.create();
+    await f.proposeOpening();
+    const before = await f.snapshot(),
+      fence = await f.fence(f.cid);
+    for (const name of ["Nadia Vale", "  NADIA   Vale "]) {
+      const bad = structuredClone(f.openingCommit.input);
+      bad.review.actors[0].name = name;
+      await assert.rejects(
+        f.service.perform({ action: "opening.commit", input: bad }),
+      );
+      await assert.rejects(
+        f.rpc("opening.commit", f.cid, bad),
+        /rpg_validation/,
+      );
+      assert.deepEqual(await f.snapshot(), before);
+      assert.deepEqual(await f.fence(f.cid), fence);
+    }
+    const valid = await f.service.perform(f.openingCommit),
+      after = await f.snapshot();
+    assert.equal(
+      after.entities.filter((e) => e.name === "Nadia Vale").length,
+      1,
+    );
+    assert.equal(after.entities.filter((e) => e.kind === "npc").length, 1);
+    assert.deepEqual(await f.service.perform(f.openingCommit), valid);
+    assert.deepEqual(await f.snapshot(), after);
+    assert.equal(f.calls, 2);
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("Unasked null possession quantity and resource amount cannot commit in service or SQL; manual six and zero preserve the original proposal", async () => {
+  const example = {
+    ...examples.fantasy,
+    description:
+      examples.fantasy.description +
+      " I carry charcoal pencils and hold charge.",
+    item: "charcoal pencils",
+  };
+  const f = await setup(example);
+  try {
+    f.creation.possessions[0].quantity = null;
+    f.creation.resources = [
+      {
+        key: "charge",
+        label: "charge",
+        amount: null,
+        quote: example.description,
+      },
+    ];
+    const draft = await f.service.perform({
+      action: "creation.propose",
+      input: f.input,
+    });
+    const command = {
+      action: "creation.commit",
+      input: {
+        requestId: randomUUID(),
+        draftId: draft.draftId,
+        review: initialCreationReview(f.input, draft.proposal),
+      },
+    };
+    await assert.rejects(f.service.perform(command));
+    await assert.rejects(
+      f.rpc("creation.commit", null, command.input),
+      /rpg_validation/,
+    );
+    command.input.review.possessions[0].quantity = 6;
+    await assert.rejects(f.service.perform(command));
+    await assert.rejects(
+      f.rpc("creation.commit", null, command.input),
+      /rpg_validation/,
+    );
+    assert.equal(
+      (await f.one("select count(*) n from public.rpg_campaigns")).n,
+      0,
+    );
+    command.input.review.resources[0].amount = 0;
+    const created = await f.service.perform(command);
+    f.cid = created.campaignId;
+    const snapshot = await f.snapshot();
+    assert.equal(snapshot.items[0].quantity, 6);
+    assert.deepEqual(snapshot.entities[0].resources, { charge: 0 });
+    const event = (
+      await f.one(
+        "select event from rpg_private.world_events where campaign_id=$1 and event->>'kind'='campaign.bootstrap.created'",
+        [f.cid],
+      )
+    ).event;
+    assert.equal(event.payload.original.output.possessions[0].quantity, null);
+    assert.equal(event.payload.original.output.resources[0].amount, null);
+    assert.deepEqual(event.payload.review, command.input.review);
+    assert.equal(f.calls, 1);
   } finally {
     await f.db.close();
   }

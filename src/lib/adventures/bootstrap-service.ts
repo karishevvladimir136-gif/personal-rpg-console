@@ -89,7 +89,7 @@ function projection(t: BootstrapTicket, result: unknown): BootstrapDraft {
         kind: "opening",
         draftId: (t.input as StartCommand).input.requestId,
         command: t.input as StartCommand,
-        proposal: parseOpeningProposal(r.output),
+        proposal: parseOpeningProposal(r.output, t.context),
         usage,
       };
 }
@@ -164,7 +164,12 @@ export function createBootstrapService(
         draft = projection(pinned, saved.result);
       if (draft.kind === "creation")
         parseCreationReview(command.input.review, draft.proposal);
-      else parseOpeningReview(command.input.review, draft.proposal);
+      else
+        parseOpeningReview(
+          command.input.review,
+          draft.proposal,
+          pinned.context,
+        );
       const result = await rpc(`${kind}.commit`, campaignId, command.input);
       if (creation) {
         const r = object(result, ["requestId", "campaignId", "heroId"]);

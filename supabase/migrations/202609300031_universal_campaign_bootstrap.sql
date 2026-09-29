@@ -74,6 +74,24 @@ declare x jsonb; begin
   perform rpg_private.assert(rpg_private.bootstrap_text(x->'name',1,200) and rpg_private.bootstrap_text(x->'description',1,2000) and rpg_private.bootstrap_lines(x->'capabilities',24) and rpg_private.bootstrap_lines(x->'limitations',24));
  end loop;
 end $$;
+-- Descriptive labels are not a second identity system. Reject a reviewed new
+-- actor that reuses an established identity, including spacing/case variants.
+create function rpg_private.bootstrap_actor_name(v text) returns text
+language sql immutable set search_path='' as $$
+ select lower(btrim(regexp_replace(v,'[[:space:]]+',' ','g')))
+$$;
+create function rpg_private.bootstrap_new_actors(p jsonb,context jsonb) returns void
+language plpgsql set search_path='' as $$
+declare x jsonb; begin
+ perform rpg_private.assert(rpg_private.bootstrap_text(context#>'{protagonist,name}',1,200));
+ for x in select value from jsonb_array_elements(p->'actors') loop
+  perform rpg_private.assert(rpg_private.bootstrap_actor_name(x->>'name')<>rpg_private.bootstrap_actor_name(context#>>'{protagonist,name}'));
+  if context#>>'{protagonist,publicName}' is not null then
+   perform rpg_private.assert(rpg_private.bootstrap_actor_name(x->>'name')<>rpg_private.bootstrap_actor_name(context#>>'{protagonist,publicName}'));
+  end if;
+ end loop;
+ perform rpg_private.assert((select count(*)=count(distinct rpg_private.bootstrap_actor_name(value->>'name')) from jsonb_array_elements(p->'actors')));
+end $$;
 create function rpg_private.bootstrap_review(kind text,r jsonb,proposal jsonb) returns void
 language plpgsql set search_path='' as $$
 declare x jsonb; i integer; q jsonb; begin
@@ -136,6 +154,9 @@ declare f jsonb; a jsonb; binding jsonb; begin
  perform rpg_private.assert(f->'ruleset'='{"id":"world-logic-v1","version":1,"mode":"world_logic","validatorVersion":"world-logic-v1"}'::jsonb and f->>'worldMinutes'='0' and rpg_private.adventure_can_change(cid));
  perform rpg_private.assert(exists(select 1 from rpg_private.world_events where campaign_id=cid and event->>'kind'='campaign.bootstrap.created'));
  perform rpg_private.assert(exists(select 1 from public.rpg_public_state where campaign_id=cid and current_location_id is null and summary='') and (select count(*)=1 from public.rpg_entities where campaign_id=cid) and not exists(select 1 from public.rpg_locations where campaign_id=cid) and not exists(select 1 from public.rpg_quests where campaign_id=cid));
+ -- One established protagonist is the entire supported fresh identity basis.
+ -- An existing populated Actor continuity must use its ordinary preparation path.
+ perform rpg_private.assert(exists(select 1 from public.rpg_entities e,rpg_private.world_foundations wf where e.campaign_id=cid and e.kind='player' and wf.campaign_id=cid and jsonb_array_length(wf.world->'actors')=1 and wf.world#>>'{actors,0,entityId}'=e.id::text and wf.world#>>'{actors,0,control}'='player'));
  select event#>'{payload,adventure}' into a from rpg_private.world_events where campaign_id=cid and event->>'kind'='adventure.version' and event#>>'{payload,adventure,id}'=command->>'adventureId' order by sequence desc limit 1;
  if a is null or a->>'status'<>'prepared' or a->'version'<>command->'expectedAdventureVersion' or exists(select 1 from jsonb_array_elements(rpg_private.adventure_catalog(uid,cid)->'adventures') x where x->>'status'='active') then raise exception 'rpg_conflict'; end if;
  binding:=rpg_private.adventure_binding(cid); perform rpg_private.assert(binding is not null);
@@ -191,7 +212,7 @@ begin
    f:=rpg_private.bootstrap_fresh(uid,cid,command);
    binding:=rpg_private.adventure_binding(cid); w:=rpg_private.adventure_world_current(uid,(binding->>'worldId')::uuid,(binding->>'worldVersion')::integer);
    select canon_generation into generation from rpg_private.timeline_campaigns where campaign_id=cid;
-   ticket:=jsonb_build_object('kind',kind,'input',input,'world',rpg_private.adventure_world_json(w),'profile',profile,'context',jsonb_build_object('language',(select language from public.rpg_campaigns where id=cid),'world',jsonb_build_object('title',w.title,'premise',w.premise),'protagonist',(select jsonb_build_object('name',e.name,'description',e.details,'capabilities',a->'capabilities','limitations',coalesce(a->'limitations','[]')) from public.rpg_entities e,rpg_private.world_foundations wf,jsonb_array_elements(wf.world->'actors') a where e.campaign_id=cid and e.kind='player' and wf.campaign_id=cid and a->>'entityId'=e.id::text),'adventure',(select jsonb_build_object('title',a->'title','premise',a->'premise','pacing',a->'pacing') from jsonb_array_elements(rpg_private.adventure_catalog(uid,cid)->'adventures') a where a->>'id'=command->>'adventureId'),'worldMinutes',f->'worldMinutes','currentLocation',null,'ruleset','world-logic-v1'));
+   ticket:=jsonb_build_object('kind',kind,'input',input,'world',rpg_private.adventure_world_json(w),'profile',profile,'context',jsonb_build_object('language',(select language from public.rpg_campaigns where id=cid),'world',jsonb_build_object('title',w.title,'premise',w.premise),'protagonist',(select jsonb_build_object('name',e.name,'publicName',a->'publicName','description',e.details,'capabilities',a->'capabilities','limitations',coalesce(a->'limitations','[]')) from public.rpg_entities e,rpg_private.world_foundations wf,jsonb_array_elements(wf.world->'actors') a where e.campaign_id=cid and e.kind='player' and wf.campaign_id=cid and a->>'entityId'=e.id::text),'adventure',(select jsonb_build_object('title',a->'title','premise',a->'premise','pacing',a->'pacing') from jsonb_array_elements(rpg_private.adventure_catalog(uid,cid)->'adventures') a where a->>'id'=command->>'adventureId'),'worldMinutes',f->'worldMinutes','currentLocation',null,'ruleset','world-logic-v1'));
   end if;
   request:=jsonb_build_object('kind',kind,'input',input,'canonGeneration',generation);
   perform rpg_private.bootstrap_write_receipt(uid,cid,reserved_id,request,jsonb_build_object('ticket',ticket));
@@ -208,6 +229,7 @@ begin
   if phase='result' then
    perform rpg_private.fields(p_payload->'result',array['output','usage']);
    perform rpg_private.bootstrap_proposal(kind,p_payload#>'{result,output}',case when kind='creation' then input else '{}'::jsonb end);
+   if kind='opening' then perform rpg_private.bootstrap_new_actors(p_payload#>'{result,output}',ticket->'context'); end if;
    perform rpg_private.assert(jsonb_typeof(p_payload#>'{result,usage}')='object' and p_payload#>>'{result,usage,model}' ~ ('^'||replace(ticket#>>'{profile,modelId}','.','\.')||'(-[0-9]{4}-[0-9]{2}-[0-9]{2})?$'));
   end if;
   result:=jsonb_build_object('result',case when phase='result' then p_payload->'result' else 'null'::jsonb end,'failed',phase='failure');
@@ -246,6 +268,12 @@ begin
  else
   perform rpg_private.assert(p_payload->>'campaignId'=cid::text); command:=input->'input'; f:=rpg_private.bootstrap_fresh(uid,cid,command);
   if saved#>'{request,canonGeneration}'<>(select to_jsonb(canon_generation) from rpg_private.timeline_campaigns where campaign_id=cid) then raise exception 'rpg_conflict'; end if;
+  -- Validate both the original immutable proposal and the reviewed version.
+  perform rpg_private.bootstrap_new_actors(completed#>'{result,result,output}',ticket->'context');
+  perform rpg_private.bootstrap_new_actors(review,ticket->'context');
+  for x in select value from jsonb_array_elements(review->'actors') loop
+   perform rpg_private.assert(not exists(select 1 from public.rpg_entities e where e.campaign_id=cid and rpg_private.bootstrap_actor_name(e.name)=rpg_private.bootstrap_actor_name(x->>'name')) and not exists(select 1 from rpg_private.world_foundations wf,jsonb_array_elements(wf.world->'actors') a where wf.campaign_id=cid and rpg_private.bootstrap_actor_name(a->>'publicName')=rpg_private.bootstrap_actor_name(x->>'name')));
+  end loop;
   select * into strict st from public.rpg_public_state where campaign_id=cid; hero:=(select id from public.rpg_entities where campaign_id=cid and kind='player'); place:=rpg_private.wave4_id(op,'bootstrap:location'); scene:=rpg_private.wave4_id(op,'bootstrap:opening'); actorids:=jsonb_build_array(hero);
   perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','locations','id',place,'expectedRevision',null,'values',jsonb_build_object('name',review#>'{location,name}','description',review#>'{location,description}','status','visited')));
   select world into worldstate from rpg_private.world_foundations where campaign_id=cid;
@@ -279,5 +307,5 @@ begin
 end $$;
 revoke all on function public.rpg_bootstrap(uuid,uuid,text,jsonb) from public,anon,authenticated;
 grant execute on function public.rpg_bootstrap(uuid,uuid,text,jsonb) to service_role;
-revoke all on function rpg_private.bootstrap_text(jsonb,integer,integer),rpg_private.bootstrap_lines(jsonb,integer),rpg_private.bootstrap_proposal(text,jsonb,jsonb),rpg_private.bootstrap_opening_fields(jsonb,boolean),rpg_private.bootstrap_review(text,jsonb,jsonb),rpg_private.bootstrap_receipt(uuid,uuid,uuid),rpg_private.bootstrap_write_receipt(uuid,uuid,uuid,jsonb,jsonb),rpg_private.bootstrap_fresh(uuid,uuid,jsonb) from public,anon,authenticated;
+revoke all on function rpg_private.bootstrap_text(jsonb,integer,integer),rpg_private.bootstrap_lines(jsonb,integer),rpg_private.bootstrap_proposal(text,jsonb,jsonb),rpg_private.bootstrap_opening_fields(jsonb,boolean),rpg_private.bootstrap_review(text,jsonb,jsonb),rpg_private.bootstrap_actor_name(text),rpg_private.bootstrap_new_actors(jsonb,jsonb),rpg_private.bootstrap_receipt(uuid,uuid,uuid),rpg_private.bootstrap_write_receipt(uuid,uuid,uuid,jsonb,jsonb),rpg_private.bootstrap_fresh(uuid,uuid,jsonb) from public,anon,authenticated;
 commit;

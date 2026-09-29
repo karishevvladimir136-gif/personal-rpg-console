@@ -42,6 +42,8 @@ export type CreationReview = {
   resources: Omit<CreationResource, "quote">[];
   answers: (string | null)[];
 };
+// Only additional NEW visible non-player people/creatures. The existing
+// protagonist is placed by authority, never recreated from this array.
 export type OpeningActor = {
   name: string;
   description: string;

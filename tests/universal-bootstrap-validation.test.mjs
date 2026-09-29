@@ -5,6 +5,7 @@ import { registerHooks } from "node:module";
 import {
   parseCreationProposal,
   parseCreationReview,
+  parseOpeningProposal,
   parseOpeningReview,
   initialCreationReview,
   initialOpeningReview,
@@ -321,3 +322,114 @@ for (const [name, fetcher] of [
     await assert.rejects(provider(ticket));
     assert.equal(calls, 1);
   });
+
+const opening = {
+  schemaVersion: 1,
+  location: {
+    name: "Station arrivals",
+    description: "A public arrivals concourse.",
+  },
+  situation: "A dock attendant stands beside a public display.",
+  narration: "The dock attendant is available to speak.",
+  actors: [
+    {
+      name: "Dock attendant",
+      description: "A visible attendant.",
+      capabilities: [],
+      limitations: [],
+    },
+  ],
+  questions: [],
+};
+const openingContext = {
+  protagonist: {
+    name: "Nadia Vale",
+    publicName: "Nadia",
+    description: "A cargo pilot.",
+    capabilities: [],
+    limitations: [],
+  },
+};
+test("Opening proposal and owner review reject established protagonist identity, including normalized names and public label", () => {
+  assert.deepEqual(parseOpeningProposal(opening, openingContext), opening);
+  for (const name of ["Nadia Vale", "  NADIA   Vale ", "nadia"]) {
+    const bad = { ...opening, actors: [{ ...opening.actors[0], name }] };
+    assert.throws(() => parseOpeningProposal(bad, openingContext));
+    assert.throws(() =>
+      parseOpeningReview(
+        { ...initialOpeningReview(bad), publicOpeningConfirmed: true },
+        opening,
+        openingContext,
+      ),
+    );
+  }
+  assert.throws(() => parseOpeningProposal(opening, {}));
+  assert.throws(() =>
+    parseOpeningProposal(
+      {
+        ...opening,
+        actors: [
+          ...opening.actors,
+          { ...opening.actors[0], name: " DOCK   ATTENDANT " },
+        ],
+      },
+      openingContext,
+    ),
+  );
+  const old = structuredClone(openingContext);
+  delete old.protagonist.publicName;
+  assert.deepEqual(parseOpeningProposal(opening, old), opening);
+  assert.throws(() =>
+    parseOpeningProposal(
+      { ...opening, actors: [{ ...opening.actors[0], name: "Nadia Vale" }] },
+      old,
+    ),
+  );
+});
+test("Production opening provider rejects a protagonist copy before returning a draft, with one mocked request", async () => {
+  let calls = 0;
+  const provider = createBootstrapProvider({
+    apiKey: "SYNTHETIC",
+    model: "gpt-6-sol",
+    reasoning: "high",
+    fetcher: async (_url, options) => {
+      calls++;
+      const wire = JSON.parse(options.body);
+      assert.match(wire.instructions, /ONLY additional NEW visible non-player/);
+      assert.match(wire.instructions, /never optional future story choices/);
+      return response({
+        ...opening,
+        actors: [{ ...opening.actors[0], name: "Nadia Vale" }],
+      });
+    },
+  });
+  await assert.rejects(
+    provider({
+      ...ticket,
+      kind: "opening",
+      input: { action: "start", input: { requestId: randomUUID() } },
+      context: openingContext,
+    }),
+  );
+  assert.equal(calls, 1);
+});
+test("Unasked null quantities/balances still block creation; direct owner values suffice without another model or inferred authority", () => {
+  const unresolved = {
+    ...p,
+    possessions: [
+      { name: "tool", description: "", quantity: null, quote: "tool" },
+    ],
+    resources: [
+      { key: "charge", label: "charge", amount: null, quote: "charge" },
+    ],
+    questions: [],
+  };
+  const r = initialCreationReview(input, unresolved);
+  assert.throws(() => parseCreationReview(r, unresolved));
+  r.possessions[0].quantity = 6;
+  assert.throws(() => parseCreationReview(r, unresolved));
+  r.resources[0].amount = 0;
+  assert.deepEqual(parseCreationReview(r, unresolved), r);
+  assert.equal(unresolved.possessions[0].quantity, null);
+  assert.equal(unresolved.resources[0].amount, null);
+});

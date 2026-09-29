@@ -4,6 +4,7 @@ import type {
   CreationInput,
   CreationProposal,
   CreationReview,
+  OpeningActor,
   OpeningProposal,
   OpeningReview,
 } from "./bootstrap-contracts.ts";
@@ -256,6 +257,28 @@ export function parseCreationReview(
   }
   return result;
 }
+const openingIdentity = (name: string) =>
+  name.replace(/\s+/g, " ").trim().toLowerCase();
+/** Context is server-pinned, never supplied by the review/browser. This wholly
+ * fresh path has one existing protagonist; additional identities are not a
+ * supported bootstrap basis. SQL checks that restriction and current records. */
+function newOpeningActors(
+  actors: OpeningActor[],
+  context: Record<string, unknown>,
+) {
+  const protagonist = context.protagonist as Record<string, unknown> | null;
+  ensure(
+    protagonist &&
+      typeof protagonist === "object" &&
+      !Array.isArray(protagonist),
+  );
+  const established = [text(protagonist.name, 200)];
+  // Older immutable tickets omit this public label; their name remains valid.
+  if (protagonist.publicName !== undefined && protagonist.publicName !== null)
+    established.push(text(protagonist.publicName, 200));
+  const identities = new Set(established.map(openingIdentity));
+  ensure(actors.every((actor) => !identities.has(openingIdentity(actor.name))));
+}
 function openingFields(value: Record<string, unknown>) {
   const location = object(value.location, ["name", "description"]);
   return {
@@ -284,11 +307,14 @@ function openingFields(value: Record<string, unknown>) {
         },
         bootstrapLimits.actors,
       ),
-      (a) => a.name,
+      (a) => openingIdentity(a.name),
     ),
   };
 }
-export function parseOpeningProposal(value: unknown): OpeningProposal {
+export function parseOpeningProposal(
+  value: unknown,
+  context?: Record<string, unknown>,
+): OpeningProposal {
   const v = object(value, [
     "schemaVersion",
     "location",
@@ -297,11 +323,13 @@ export function parseOpeningProposal(value: unknown): OpeningProposal {
     "actors",
     "questions",
   ]);
-  return {
+  const proposal = {
     schemaVersion: literal(v.schemaVersion, [1]),
     ...openingFields(v),
     questions: questions(v.questions),
   };
+  if (context) newOpeningActors(proposal.actors, context);
+  return proposal;
 }
 export function initialOpeningReview(p: OpeningProposal): OpeningReview {
   return {
@@ -316,6 +344,7 @@ export function initialOpeningReview(p: OpeningProposal): OpeningReview {
 export function parseOpeningReview(
   value: unknown,
   proposal?: OpeningProposal,
+  context?: Record<string, unknown>,
 ): OpeningReview {
   const v = object(value, [
     "location",
@@ -331,6 +360,7 @@ export function parseOpeningReview(
     answers: answers(v.answers),
     publicOpeningConfirmed: v.publicOpeningConfirmed,
   };
+  if (context) newOpeningActors(result.actors, context);
   if (proposal) {
     resolved(proposal.questions, result.answers);
     ensure(

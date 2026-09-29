@@ -1,3 +1,57 @@
+# Universal Bootstrap V1 — live-gate defect correction verification
+
+This current section records the correction following the four-call live gate against `85e7d0b17177bf2557cbdfd4287e5c3d64f075e8`. The earlier verification body below is preserved verbatim and describes its earlier offline milestone. Owner acceptance, main publication and real-local activation are pending.
+
+## Root cause and bounded change
+
+The opening DTO was structurally valid when it listed Nadia, but its actor rows were all interpreted as NEW autonomous NPCs. Neither projection nor SQL compared those proposed rows with the existing protagonist. The revised meaning is exclusively additional new visible non-player people/creatures; the protagonist already exists and authority places them once at the approved starting location.
+
+- `src/lib/adventures/bootstrap-contracts.ts`: documents the meaning without changing the public DTO.
+- `bootstrap-validation.ts`: checks actors against server-pinned protagonist name/public label; rejects normalized duplicate names. Valid older tickets without the optional public label still work.
+- `bootstrap-service.ts`: checks immediate and persisted/recovered/inspected results and owner-edited review against the same immutable context.
+- `src/lib/server/adventure-bootstrap-provider.ts`: uses that context during returned-result validation. Only the opening instruction paragraph changes; character extraction paragraph, schemas, primary model/profile, budgets and deadlines stay unchanged. Optional future possibilities may remain unknown for play; genuinely required public opening facts still require review/clarification.
+- `src/components/bootstrap/review.tsx`: EN/RU new-person labels and explicit required-number messages. Existing direct owner edits and disabled Create gating remain authoritative.
+- `supabase/migrations/202609300031_universal_campaign_bootstrap.sql`: in-place authorized amendment of unactivated migration31. Pins the public Actor label, explicitly verifies the one-protagonist fresh basis, rejects a copied protagonist when storing results, and checks original/reviewed actors plus current campaign identities before materialization. Helpers are private; the RPC remains service-only. No new tables, registry, runtime, inventory or save authority.
+
+A bad historical proposal is retained as evidence and rejected on recovery/approval; it is not silently rewritten into an approvable result. Genuine new NPCs still work. Browser input never supplies this protected context or authority IDs.
+
+## Fresh verification of the frozen correction
+
+| Check | Result |
+| --- | --- |
+| Focused bootstrap + P0A + Character Model + client imports | **59 tests, 59 passed, 0 failed/skipped**, including **48 bootstrap cases** |
+| One fresh complete suite, preview URL 3116, concurrency 2 | **1,790 tests, 1,789 passed, 0 failed, 1 skipped** |
+| Explicit skip | Opt-in live disposable Supabase Auth/PostgREST; not executed |
+| Route type generation | Pass |
+| Full nonincremental typecheck | Pass |
+| Repository lint with maximum warnings 0 | Pass, zero warnings; Git-ignored generated `test-results/**` excluded, no tracked files there |
+| Production Next webpack build | Pass |
+| Populated disposable migration30→31 | Pass; old entities/items/scenes/storage/saves and manifest rows/hashes unchanged |
+| Existing starter Fighter/P0A and no-HP save/load/forks | Pass |
+| Historical live-evidence hash verification | **37/37 identical** |
+
+The first unrestricted lint invocation found four warnings in `runner.mjs` and `runner-preserved-call1.mjs` in the ignored historical live-gate directory. Those files/evidence were preserved. Final lint command: `node node_modules/eslint/bin/eslint.js . --max-warnings 0 --ignore-pattern 'test-results/**'`. No lint configuration or tracked production file was exempted. Type generation/typecheck and the complete suite were not rerun unnecessarily after this evidence-only lint adjustment.
+
+Focused regression additions cover immediate provider and service rejection of a protagonist copy; normalized names/public label; persisted legacy-result recovery and inspected approval rejection; raw SQL original/review protection; atomic non-mutation on rejection; ordinary NPC creation and one controlled protagonist at the opening location; no automatic quest/reward/private plan; exact commit/retry; unasked null quantities/resource amounts blocked by both service and SQL; manual six/zero stored separately from the unchanged null original. Existing head/epoch/revision/Canon/source/guidance fencing, owner/campaign isolation and old-save regressions remain green.
+
+Local logs are retained under `test-results/universal-bootstrap/correction-*`. Implementation hashes were frozen before the single final suite in `CORRECTION_IMPLEMENTATION_FREEZE.json`. Report/screenshot updates after verification do not change implementation behavior.
+
+## Migration and browser evidence
+
+Migration31 SHA-256: `ffa1d5841e63dcdffb3786cc66e6ded879dc09d40cf10e85205bd161813a95cb`. Migration30 remains `92f4cf70c40855c48332b6738e2a5921819962d1f2631dc6f22425b720a9ea5b`. No real database migration occurred. Current correction creates no new migration number and changes no historical migration30 bytes.
+
+Actual production review components were exercised in the labelled scripted, credential-disabled `/preview/bootstrap` harness in EN/RU at 1440×1000 and 390×844. Blank quantity/balance visibly blocked creation; direct numeric corrections enabled it without another AI action. New-person explanation was readable in both languages/sizes; public confirmation remained required. EN/RU completed flows opened the read-only Game preview. Checked mobile document widths did not exceed the 390px viewport; browser error logs were empty. Eight screenshots are in `docs/review/universal-bootstrap-correction/`; prior twelve screenshots are preserved. This does not claim physical-iPhone, hosted Supabase or authenticated real-local testing.
+
+## Historical live evidence and limits
+
+The original four-call Astra gate and disposable Call4 reproduction remain unchanged. They established the blocking copy defect and the Call1 null-quantity quality finding, rather than acceptance of the pre-correction opening authority. All 37 hashed evidence files are identical. This correction made **zero** provider requests. Character extraction logic/instructions did not materially change; Calls1/3 need no repeat for this review-copy correction.
+
+Revised opening instructions have not been live-tested. Stop for review and separate authorization of at most two revised opening calls. Existing bounded resolver limitations, public/future/private separation, explicit owner approval, ordinary NPC creation, no hidden twist/quest/outcome/PC choice and no retrofit of advanced/Garrick continuities remain in force. Main stays at `6b71f8fd5e1be5c0ae7022c0060835227fffeb81`; real-local activation is not authorized here.
+
+---
+
+## Preserved original verification record — unchanged
+
 # Universal AI-DM Bootstrap V1 — verification and authority record
 
 Implementation branch: `codex/universal-ai-dm-bootstrap-v1`.

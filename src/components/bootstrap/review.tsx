@@ -21,6 +21,7 @@ export function bootstrapText(language: "en" | "ru") {
         description: "Описание",
         questions: "Что нужно уточнить",
         required: "Нужен ответ",
+        valueRequired: "Укажите значение перед созданием",
         optional: "По желанию",
         review: "Проверьте предложение",
         editHelp:
@@ -28,7 +29,9 @@ export function bootstrapText(language: "en" | "ru") {
         location: "Начальное место",
         situation: "Видимая ситуация",
         narration: "Начало истории",
-        actors: "Кто здесь находится",
+        actors: "Новые видимые люди / существа",
+        actorsHelp:
+          "Не включайте героя или уже существующих персонажей. Герой уже существует и будет находиться в начальном месте.",
         confirm:
           "Я проверил начало: только открытые факты, без скрытого объяснения, исхода, награды или решений героя.",
         pending:
@@ -69,6 +72,7 @@ export function bootstrapText(language: "en" | "ru") {
         description: "Description",
         questions: "Clarifications",
         required: "Answer required",
+        valueRequired: "Enter a value before creation",
         optional: "Optional",
         review: "Review the proposal",
         editHelp:
@@ -76,7 +80,9 @@ export function bootstrapText(language: "en" | "ru") {
         location: "Starting place",
         situation: "Visible situation",
         narration: "Opening narration",
-        actors: "Who is here",
+        actors: "New visible people / creatures",
+        actorsHelp:
+          "Do not include the protagonist or existing characters. Your protagonist already exists and will be present at the starting place.",
         confirm:
           "I reviewed this public opening: no hidden explanation, outcome, reward or decisions for the protagonist.",
         pending:
@@ -264,6 +270,8 @@ export function CharacterReview({
               type="number"
               min={1}
               max={20}
+              required
+              aria-invalid={p.quantity === null}
               value={p.quantity ?? ""}
               onChange={(e) =>
                 onChange({
@@ -282,6 +290,7 @@ export function CharacterReview({
                 })
               }
             />
+            {p.quantity === null && <small>{c.valueRequired}</small>}
           </label>
           <div className={styles.actions}>
             <button
@@ -337,6 +346,8 @@ export function CharacterReview({
               type="number"
               min={0}
               max={1000000}
+              required
+              aria-invalid={r.amount === null}
               value={r.amount ?? ""}
               onChange={(e) =>
                 onChange({
@@ -355,6 +366,7 @@ export function CharacterReview({
                 })
               }
             />
+            {r.amount === null && <small>{c.valueRequired}</small>}
           </label>
           <div className={styles.actions}>
             <button
@@ -455,6 +467,7 @@ export function OpeningReviewFields({
         }
       />
       <h3>{c.actors}</h3>
+      <p className={styles.muted}>{c.actorsHelp}</p>
       {value.actors.map((actor, i) => (
         <div className={`${styles.setup} ${styles.form}`} key={i}>
           <Field
