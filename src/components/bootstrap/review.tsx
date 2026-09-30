@@ -9,6 +9,7 @@ import {
   creationMissingDetails,
   creationQuestionIsNumeric,
 } from "../../lib/adventures/bootstrap-review";
+import { bootstrapLimits } from "../../lib/adventures/bootstrap-validation";
 import styles from "../adventures/adventures.module.css";
 export function bootstrapText(language: "en" | "ru") {
   return language === "ru"
@@ -331,7 +332,7 @@ export function CharacterReview({
         <div className={styles.gearRow} key={i}>
           <div className={styles.gearHeading}>
             <strong>{p.name || c.name}</strong>
-            <InlineNumber label={c.quantity} value={p.quantity} min={1} max={20}
+            <InlineNumber label={c.quantity} value={p.quantity} min={1} max={bootstrapLimits.possessionQuantity}
               valueRequired={c.valueRequired} onChange={(quantity) => possession(i, { quantity })} />
           </div>
           <details className={styles.reviewEdits}>
@@ -339,7 +340,7 @@ export function CharacterReview({
             <div className={styles.form}>
               <Field label={c.name} value={p.name} max={200} onChange={(name) => possession(i, { name })} />
               <Field label={`${c.description} · ${c.optional}`} value={p.description} large onChange={(description) => possession(i, { description })} />
-              {p.quantity !== null && <label className={styles.field}>{c.quantity}<input type="number" min={1} max={20} required value={p.quantity} onChange={(e) => possession(i, { quantity: e.target.value === "" ? null : Number(e.target.value) })} /></label>}
+              {p.quantity !== null && <label className={styles.field}>{c.quantity}<input type="number" min={1} max={bootstrapLimits.possessionQuantity} required value={p.quantity} onChange={(e) => possession(i, { quantity: e.target.value === "" ? null : Number(e.target.value) })} /></label>}
               <div className={styles.actions}><button type="button" onClick={() => onChange({ ...value, possessions: value.possessions.filter((_, j) => i !== j) })}>{c.remove}</button></div>
             </div>
           </details>

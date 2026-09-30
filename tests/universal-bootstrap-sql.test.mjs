@@ -812,3 +812,90 @@ test("Unasked null possession quantity and resource amount cannot commit in serv
     await f.db.close();
   }
 });
+
+test("Migration 32 upgrades populated bootstrap state without rewriting campaigns or inventory", async () => {
+  const f = await setup(examples.fantasy, "en", 31);
+  try {
+    await f.create();
+    const before = await f.snapshot();
+    const campaign = await f.one("select count(*) n from public.rpg_campaigns");
+    const oldMigration = await readFile(new URL("../supabase/migrations/202609300031_universal_campaign_bootstrap.sql", import.meta.url), "utf8");
+    const nextMigration = await readFile(new URL("../supabase/migrations/202609300032_bootstrap_stacked_possessions.sql", import.meta.url), "utf8");
+    assert.match(oldMigration, /quantity'\)::integer<=20/);
+    assert.doesNotMatch(nextMigration, /drop table|truncate|delete from|update public/i);
+    await f.db.exec(nextMigration);
+    assert.deepEqual(await f.snapshot(), before);
+    assert.deepEqual(await f.one("select count(*) n from public.rpg_campaigns"), campaign);
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("Reviewed arrows x50 become one ordinary item; SQL rejects invalid quantities and retries stay idempotent", async () => {
+  const example = {
+    ...examples.fantasy,
+    description: examples.fantasy.description + " I carry arrows.",
+    item: "arrows",
+  };
+  const f = await setup(example, "en", 32);
+  try {
+    f.creation.possessions[0].quantity = null;
+    const draft = await f.service.perform({ action: "creation.propose", input: f.input });
+    const command = {
+      action: "creation.commit",
+      input: {
+        requestId: randomUUID(),
+        draftId: draft.draftId,
+        review: initialCreationReview(f.input, draft.proposal),
+      },
+    };
+    for (const quantity of [0, 1.5, 1001, 1000000000000]) {
+      command.input.review.possessions[0].quantity = quantity;
+      await assert.rejects(f.service.perform(command));
+      await assert.rejects(f.rpc("creation.commit", null, command.input), /rpg_validation/);
+      assert.equal((await f.one("select count(*) n from public.rpg_campaigns")).n, 0);
+    }
+    command.input.review.possessions[0].quantity = 50;
+    const created = await f.service.perform(command);
+    f.cid = created.campaignId;
+    const snapshot = await f.snapshot();
+    assert.equal(snapshot.items.length, 1);
+    assert.equal(snapshot.items[0].name, "arrows");
+    assert.equal(snapshot.items[0].quantity, 50);
+    assert.deepEqual(snapshot.entities[0].resources, {});
+    const event = (await f.one(
+      "select event from rpg_private.world_events where campaign_id=$1 and event->>'kind'='campaign.bootstrap.created'",
+      [f.cid],
+    )).event;
+    assert.equal(event.payload.original.output.possessions[0].quantity, null);
+    assert.equal(event.payload.review.possessions[0].quantity, 50);
+    assert.deepEqual(await f.service.perform(command), created);
+    assert.deepEqual(await f.snapshot(), snapshot);
+    assert.equal(f.calls, 1);
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("Migration 32 accepts explicitly grounded fifty-arrow model proposal", async () => {
+  const example = {
+    ...examples.fantasy,
+    description: examples.fantasy.description + " I carry 50 arrows.",
+    item: "arrows",
+  };
+  const f = await setup(example, "en", 32);
+  try {
+    f.creation.possessions[0].quantity = 50;
+    f.creation.possessions[0].quote = "50 arrows";
+    const draft = await f.service.perform({ action: "creation.propose", input: f.input });
+    assert.equal(draft.proposal.possessions[0].quantity, 50);
+    const created = await f.service.perform({
+      action: "creation.commit",
+      input: { requestId: randomUUID(), draftId: draft.draftId, review: initialCreationReview(f.input, draft.proposal) },
+    });
+    f.cid = created.campaignId;
+    assert.equal((await f.snapshot()).items[0].quantity, 50);
+  } finally {
+    await f.db.close();
+  }
+});

@@ -24,6 +24,7 @@ import {
 export const bootstrapLimits = {
   facts: 24,
   possessions: 12,
+  possessionQuantity: 1000,
   resources: 8,
   actors: 4,
   questions: 8,
@@ -116,7 +117,9 @@ export function parseCreationProposal(
           return {
             name: text(p.name, 200),
             description: blankText(p.description),
-            quantity: nullable(p.quantity, (n) => integer(n, 1, 20)),
+            quantity: nullable(p.quantity, (n) =>
+              integer(n, 1, bootstrapLimits.possessionQuantity),
+            ),
             quote: text(p.quote, 1000),
           };
         },
@@ -224,7 +227,9 @@ export function parseCreationReview(
           return {
             name: text(p.name, 200),
             description: blankText(p.description),
-            quantity: nullable(p.quantity, (n) => integer(n, 1, 20)),
+            quantity: nullable(p.quantity, (n) =>
+              integer(n, 1, bootstrapLimits.possessionQuantity),
+            ),
           };
         },
         bootstrapLimits.possessions,

@@ -2,6 +2,7 @@ import type {
   BootstrapQuestion,
   CreationReview,
 } from "./bootstrap-contracts";
+import { bootstrapLimits } from "./bootstrap-validation.ts";
 
 // Older immutable proposals may contain a duplicate "how many" question. Only
 // collapse it when it names exactly one reviewed numeric field and asks nothing
@@ -76,7 +77,7 @@ export function creationMissingDetails(
       (item) =>
         !Number.isInteger(item.quantity) ||
         item.quantity! < 1 ||
-        item.quantity! > 20,
+        item.quantity! > bootstrapLimits.possessionQuantity,
     ).length +
     review.resources.filter(
       (resource) =>

@@ -1,8 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { registerHooks } from "node:module";
 import {
+  bootstrapLimits,
   parseCreationProposal,
   parseCreationReview,
   parseOpeningProposal,
@@ -103,6 +105,21 @@ test("Clearly singular ordinary possessions stay grounded while vague supplies a
   assert.deepEqual(parseCreationProposal(grounded, owner), grounded);
   assert.throws(() => parseCreationProposal({ ...grounded, possessions: grounded.possessions.map((item, i) => i === 3 ? { ...item, quantity: 50 } : item) }, owner));
   assert.throws(() => parseCreationProposal({ ...grounded, resources: [{ ...grounded.resources[0], amount: 10 }] }, owner));
+});
+test("Grounded stacked possessions allow fifty arrows, while invalid and extreme quantities fail closed", () => {
+  const owner = { ...input, description: "Mara carries 50 arrows." };
+  const possession = { name: "arrows", description: "", quantity: 50, quote: "50 arrows" };
+  const proposed = { ...p, capabilities: [], limitations: [], possessions: [possession] };
+  assert.equal(bootstrapLimits.possessionQuantity, 1000);
+  assert.match(readFileSync(new URL("../src/lib/server/adventure-bootstrap-provider.ts", import.meta.url), "utf8"), /quantity:\s*\{ type: \["integer", "null"\], minimum: 1, maximum: bootstrapLimits\.possessionQuantity \}/);
+  assert.deepEqual(parseCreationProposal(proposed, owner), proposed);
+  const review = initialCreationReview(owner, proposed);
+  assert.equal(review.possessions[0].quantity, 50);
+  assert.deepEqual(parseCreationReview(review, proposed), review);
+  for (const quantity of [0, 1.5, 1001, 1000000000000]) {
+    assert.throws(() => parseCreationProposal({ ...proposed, possessions: [{ ...possession, quantity }] }, owner));
+    assert.throws(() => parseCreationReview({ ...review, possessions: [{ ...review.possessions[0], quantity }] }, proposed));
+  }
 });
 test("Descriptive impossible powers confer no consequence authority; controlled-PC and private knowledge remain protected", () => {
   const i = fixture();

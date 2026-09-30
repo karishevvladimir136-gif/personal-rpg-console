@@ -51,7 +51,7 @@ export const creationProposalSchema = obj({
     obj({
       name: str(200),
       description: str(2000, 0),
-      quantity: { type: ["integer", "null"], minimum: 1, maximum: 20 },
+      quantity: { type: ["integer", "null"], minimum: 1, maximum: bootstrapLimits.possessionQuantity },
       quote: str(1000),
     }),
     bootstrapLimits.possessions,

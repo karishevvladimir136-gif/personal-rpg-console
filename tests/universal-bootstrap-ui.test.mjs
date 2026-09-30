@@ -103,16 +103,16 @@ test("Numeric-only legacy clarifications resolve from one reviewed field, while 
   assert.equal(creationQuestionIsNumeric(questions[1], review), true);
   assert.equal(creationQuestionIsNumeric(questions[2], review), false);
   assert.throws(() => parseCreationReview(creationReviewForCommit(review, questions), proposal));
-  const corrected = { ...review, possessions: [{ ...review.possessions[0], quantity: 12 }], resources: [{ ...review.resources[0], amount: 0 }], answers: [null, null, "Ordinary arrows"] };
+  const corrected = { ...review, possessions: [{ ...review.possessions[0], quantity: 50 }], resources: [{ ...review.resources[0], amount: 0 }], answers: [null, null, "Ordinary arrows"] };
   const committed = creationReviewForCommit(corrected, questions);
-  assert.deepEqual(committed.answers, ["12 arrows", "0 coin", "Ordinary arrows"]);
+  assert.deepEqual(committed.answers, ["50 arrows", "0 coin", "Ordinary arrows"]);
   assert.deepEqual(parseCreationReview(committed, proposal), committed);
   assert.deepEqual(review.answers, [null, null, null]);
   assert.deepEqual(proposal.questions, questions);
   assert.equal(creationMissingDetails(corrected, questions), 0);
   assert.equal(creationQuestionIsNumeric({ question: "How many arrows or bolts?", consequential: true }, corrected), false);
   assert.equal(creationQuestionIsNumeric({ question: "How much coin and which denomination?", consequential: true }, corrected), false);
-  assert.equal(creationQuestionIsNumeric({ question: "Сколько стрел?", consequential: true }, { ...corrected, possessions: [{ name: "стрел", description: "", quantity: 12 }] }), true);
+  assert.equal(creationQuestionIsNumeric({ question: "Сколько стрел?", consequential: true }, { ...corrected, possessions: [{ name: "стрел", description: "", quantity: 50 }] }), true);
 });
 test("One final Create action stays blocked for missing numbers and accepts a fully corrected sheet with blank optional description", () => {
   const f = fixture();
@@ -128,7 +128,7 @@ test("One final Create action stays blocked for missing numbers and accepts a fu
   const blocked = render(ui("components/bootstrap/new-campaign.tsx", state).NewCampaignForm, props);
   assert.match(blocked, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
   const ready = render(ui("components/bootstrap/new-campaign.tsx", {
-    ...state, review: { ...review, possessions: [{ ...review.possessions[0], quantity: 12 }] },
+    ...state, review: { ...review, possessions: [{ ...review.possessions[0], quantity: 50 }] },
   }).NewCampaignForm, props);
   assert.match(ready, /<button[^>]*>Create protagonist and campaign<\/button>/);
   assert.doesNotMatch(ready, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
@@ -155,6 +155,7 @@ for (const language of ["en", "ru"]) {
     assert.match(html, /<details/);
     assert.equal((html.match(/aria-invalid="true"/g) || []).length, 1);
     assert.ok(html.indexOf("Weatherproof cloak") < html.indexOf(c.correctItem));
+    assert.match(html, /max="1000"/);
   });
   test(`${language} active proposal has preparing state, interrupted exact request has recovery state`, () => {
     const c = bootstrapText(language), f = fixture();
