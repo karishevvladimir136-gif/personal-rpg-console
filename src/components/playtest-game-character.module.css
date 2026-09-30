@@ -108,6 +108,42 @@
     serif;
   resize: vertical;
 }
+@media (min-width: 761px) {
+  .game :global(.game-grid.gameplay-live) {
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 18px;
+  }
+  .game :global(.gameplay-turns) {
+    height: clamp(330px, calc(100svh - 450px), 580px);
+    max-height: none;
+  }
+  .game :global(.gameplay-owner-input .prose) {
+    font-size: 16.5px;
+    line-height: 1.65;
+  }
+  .game :global(.gameplay-narration .prose),
+  .opening :global(.prose) {
+    max-width: 72ch;
+    font-size: 21.5px;
+    line-height: 1.8;
+  }
+  .game :global(.gameplay-channel textarea) {
+    font-size: 17.5px;
+  }
+}
+@media (min-width: 1260px) {
+  .game {
+    margin-inline: -12px;
+  }
+}
+@media (max-width: 1000px) {
+  .game :global(.game-grid.gameplay-live) {
+    display: block;
+  }
+  .game :global(.context-column) {
+    margin-top: 20px;
+  }
+}
 .game :global(.gameplay-channel form .field) {
   margin-bottom: 12px;
 }

@@ -1,3 +1,15 @@
+# Development status — Playtest 2.0 Game reading surface — READY FOR OWNER REVIEW
+
+**Milestone/status (2026-09-30):** Narrow Game-only desktop reading correction on `codex/playtest2-game-reading` from accepted main `38d8c756fe9a70b838f4ab24e89df054956fb51e`. Implemented, deterministically verified and browser checked; **not owner accepted or published to main**. The running real-local playtest app and original historical dirty checkout were left untouched.
+
+**Changed area/decision:** Only `src/components/playtest-game-character.module.css` changes production presentation. Desktop narration is 21.5px Georgia at 1.8 line-height with a 72ch maximum; player-action prose is 16.5px and the composer is 17.5px. The Game story grid now uses a flexible primary column with a 260px context rail, 18px gap and a small Game-only reduction in wide-desktop outer padding. Its transcript height scales with viewport height, capped at 580px so the composer remains visible on ordinary desktop viewports. At 1000px and below, the Game context stacks beneath the story; the prior mobile narration/input sizes remain unchanged. No gameplay, navigation, provider, persistence, schema, media or other-screen behavior changed.
+
+**Fresh verification:** Focused Game/Character UI tests **13/13 passed**. Route type generation, nonincremental TypeScript check, repository-wide ESLint with zero warnings and production webpack build passed on the final candidate. The ordinary authenticated Game page was browser checked using a labelled disposable synthetic campaign at **1920×1080, 1440×900 and 390×844**, plus 1000px/768px/760px stacking checks. All checked widths had no horizontal page overflow; the send control was visible at the three screenshot sizes. Screenshots are local review artifacts under the task's `game-reading-ux` visualization directory. No real campaign action, provider call, migration or deployment occurred.
+
+**Remaining work/next step:** Owner visual review of the three screenshots and isolated branch. This correction has not been activated in the accepted playtest app. The screenshot campaign has a short opening, so its large transcript area is intentionally mostly empty until more turns exist. Physical-device testing was not performed.
+
+---
+
 # Development status — Playtest 2.0 stacked starting possessions — READY FOR OWNER REVIEW
 
 **Milestone and scope (2026-09-30):** The narrow owner-review follow-up on `codex/playtest2-bootstrap-ux` raises one Universal Bootstrap starting-possession record from 20 to **1,000 whole units**. This supports an ordinary reviewed `Arrows ×50` as one inventory item. The owner still explicitly approves the consolidated character sheet. This is implemented and deterministically verified, **not owner accepted or activated**. The previous Playtest 2.0 review and all accepted history remain below.
