@@ -10,6 +10,7 @@ import type {
   CreationReview,
 } from "../../lib/adventures/bootstrap-contracts";
 import { parseCreationReview } from "../../lib/adventures/bootstrap-validation";
+import { creationReviewForCommit } from "../../lib/adventures/bootstrap-review";
 import {
   createAdventureTransport,
   restoreWorldAttempt,
@@ -117,12 +118,12 @@ function UniversalCampaign({
   const frozen = !workflow.ready || workflow.busy || !!workflow.pending;
   const draft = workflow.draft?.kind === "creation" ? workflow.draft : null,
     review = workflow.review as CreationReview | null;
-  const corrected = review
-    ? {
+  const corrected = review && draft
+    ? creationReviewForCommit({
         ...review,
         capabilities: normalizeLines(review.capabilities),
         limitations: normalizeLines(review.limitations),
-      }
+      }, draft.proposal.questions)
     : null;
   let canCreate = false;
   try {
@@ -181,6 +182,7 @@ function UniversalCampaign({
               </p>
               <fieldset disabled={frozen}>
                 <CharacterReview
+                  key={draft.draftId}
                   value={review}
                   onChange={workflow.setReview}
                   language={language}
@@ -318,7 +320,12 @@ function UniversalCampaign({
               </form>
             </>
           )}
-          {workflow.pending && (
+          {workflow.busy && (
+            <p role="status" className={styles.notice}>
+              {workflow.pending?.action === "creation.commit" ? c.creating : c.preparing}
+            </p>
+          )}
+          {workflow.pending && !workflow.busy && (
             <div className={styles.notice} role="status">
               <p>{c.pending}</p>
               <div className={styles.actions}>

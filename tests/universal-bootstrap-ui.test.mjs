@@ -13,15 +13,24 @@ import {
   restoreBootstrapCommand,
   createBootstrapTransport,
 } from "../src/lib/adventures/bootstrap-client.ts";
+import {
+  creationMissingDetails,
+  creationQuestionIsNumeric,
+  creationReviewForCommit,
+} from "../src/lib/adventures/bootstrap-review.ts";
+import { parseCreationReview } from "../src/lib/adventures/bootstrap-validation.ts";
 import { fixture, id } from "./adventure-v1-fixtures.mjs";
 const root = fileURLToPath(new URL("../src/", import.meta.url)),
   require = createRequire(import.meta.url),
   cache = new Map();
-function ui(relative) {
+function ui(relative, bootstrapState = null) {
+  const modules = bootstrapState ? new Map() : cache;
   function load(path) {
-    if (cache.has(path)) return cache.get(path);
+    if (bootstrapState && path.endsWith("use-bootstrap.ts"))
+      return { useBootstrap: () => bootstrapState };
+    if (modules.has(path)) return modules.get(path);
     const mod = { exports: {} };
-    cache.set(path, mod.exports);
+    modules.set(path, mod.exports);
     const compiled = ts.transpileModule(readFileSync(path, "utf8"), {
       compilerOptions: {
         module: ts.ModuleKind.CommonJS,
@@ -42,7 +51,7 @@ function ui(relative) {
     vm.runInThisContext(`(function(require,module,exports){${compiled}\n})`, {
       filename: path,
     })(localRequire, mod, mod.exports);
-    cache.set(path, mod.exports);
+    modules.set(path, mod.exports);
     return mod.exports;
   }
   return load(resolve(root, relative));
@@ -76,6 +85,96 @@ for (const language of ["en", "ru"])
     assert.doesNotMatch(html, /<input[^>]+name="(?:hp|level|class|slots)"/);
     assert.equal((html.match(/<textarea/g) || []).length, 1);
   });
+test("Numeric-only legacy clarifications resolve from one reviewed field, while consequential and ambiguous questions remain gated", () => {
+  const questions = [
+    { question: "How many arrows?", consequential: true },
+    { question: "How much coin?", consequential: true },
+    { question: "What kind of arrows?", consequential: true },
+  ];
+  const review = {
+    name: "Mara", description: "A mapmaker", capabilities: [], limitations: [],
+    possessions: [{ name: "arrows", description: "", quantity: null }],
+    resources: [{ key: "coin", label: "coin", amount: null }],
+    answers: [null, null, null],
+  };
+  const proposal = { schemaVersion: 1, capabilities: [], limitations: [], possessions: [], resources: [], questions };
+  assert.equal(creationMissingDetails(review, questions), 3);
+  assert.equal(creationQuestionIsNumeric(questions[0], review), true);
+  assert.equal(creationQuestionIsNumeric(questions[1], review), true);
+  assert.equal(creationQuestionIsNumeric(questions[2], review), false);
+  assert.throws(() => parseCreationReview(creationReviewForCommit(review, questions), proposal));
+  const corrected = { ...review, possessions: [{ ...review.possessions[0], quantity: 12 }], resources: [{ ...review.resources[0], amount: 0 }], answers: [null, null, "Ordinary arrows"] };
+  const committed = creationReviewForCommit(corrected, questions);
+  assert.deepEqual(committed.answers, ["12 arrows", "0 coin", "Ordinary arrows"]);
+  assert.deepEqual(parseCreationReview(committed, proposal), committed);
+  assert.deepEqual(review.answers, [null, null, null]);
+  assert.deepEqual(proposal.questions, questions);
+  assert.equal(creationMissingDetails(corrected, questions), 0);
+  assert.equal(creationQuestionIsNumeric({ question: "How many arrows or bolts?", consequential: true }, corrected), false);
+  assert.equal(creationQuestionIsNumeric({ question: "How much coin and which denomination?", consequential: true }, corrected), false);
+  assert.equal(creationQuestionIsNumeric({ question: "Сколько стрел?", consequential: true }, { ...corrected, possessions: [{ name: "стрел", description: "", quantity: 12 }] }), true);
+});
+test("One final Create action stays blocked for missing numbers and accepts a fully corrected sheet with blank optional description", () => {
+  const f = fixture();
+  const questions = [{ question: "How many arrows?", consequential: true }];
+  const proposal = { schemaVersion: 1, capabilities: [], limitations: [], possessions: [], resources: [], questions };
+  const review = { name: "Mara", description: "Mapmaker", capabilities: [], limitations: [],
+    possessions: [{ name: "arrows", description: "", quantity: null }], resources: [], answers: [null] };
+  const state = { draft: { kind: "creation", draftId: id(83), input: { worldId: f.world.id }, proposal },
+    review, pending: null, busy: false, ready: true, error: false,
+    execute: noCall, resetProposal: noCall, setReview: noCall };
+  const props = { language: "en", onDirty: noCall, onCreated: noCall, onCancel: noCall,
+    initialWorlds: f.worlds, transport: { worlds: noCall }, persistPending: false };
+  const blocked = render(ui("components/bootstrap/new-campaign.tsx", state).NewCampaignForm, props);
+  assert.match(blocked, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+  const ready = render(ui("components/bootstrap/new-campaign.tsx", {
+    ...state, review: { ...review, possessions: [{ ...review.possessions[0], quantity: 12 }] },
+  }).NewCampaignForm, props);
+  assert.match(ready, /<button[^>]*>Create protagonist and campaign<\/button>/);
+  assert.doesNotMatch(ready, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+});
+for (const language of ["en", "ru"]) {
+  test(`${language} consolidated sheet shows compact gear, missing values once, and optional corrections`, () => {
+    const c = bootstrapText(language);
+    const review = {
+      name: "Mara", description: "Travelling mapmaker", capabilities: ["navigation"],
+      limitations: ["avoids violence"],
+      possessions: [
+        { name: "Weatherproof cloak", description: "", quantity: 1 },
+        { name: "arrows", description: "", quantity: null },
+      ],
+      resources: [], answers: [null],
+    };
+    const html = render(ui("components/bootstrap/review.tsx").CharacterReview, {
+      language, value: review, onChange: noCall,
+      questions: [{ question: "How many arrows?", consequential: true }],
+    });
+    for (const s of ["Mara", "navigation", "avoids violence", "Weatherproof cloak", "×1", c.correctProtagonist, c.correctItem, c.missingDetails(1)])
+      assert.ok(html.includes(s), s);
+    assert.doesNotMatch(html, /How many arrows\?/);
+    assert.match(html, /<details/);
+    assert.equal((html.match(/aria-invalid="true"/g) || []).length, 1);
+    assert.ok(html.indexOf("Weatherproof cloak") < html.indexOf(c.correctItem));
+  });
+  test(`${language} active proposal has preparing state, interrupted exact request has recovery state`, () => {
+    const c = bootstrapText(language), f = fixture();
+    const base = {
+      pending: { action: "creation.propose", input: { requestId: id(82) } },
+      draft: null, review: null, ready: true, error: false,
+      execute: noCall, resetProposal: noCall, setReview: noCall,
+    };
+    const props = { language, onDirty: noCall, onCreated: noCall, onCancel: noCall,
+      initialWorlds: f.worlds, transport: { worlds: noCall }, persistPending: false };
+    const active = render(ui("components/bootstrap/new-campaign.tsx", { ...base, busy: true }).NewCampaignForm, props);
+    assert.ok(active.includes(c.preparing));
+    assert.ok(!active.includes(c.pending));
+    assert.ok(!active.includes(c.recover));
+    const interrupted = render(ui("components/bootstrap/new-campaign.tsx", { ...base, busy: false }).NewCampaignForm, props);
+    assert.ok(interrupted.includes(c.pending));
+    assert.ok(interrupted.includes(c.recover));
+    assert.ok(!interrupted.includes(c.preparing));
+  });
+}
 for (const language of ["en", "ru"])
   test(`${language} all proposed fields are manually editable, consequential answers visible, authority IDs never editable`, () => {
     const c = bootstrapText(language),

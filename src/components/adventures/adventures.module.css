@@ -179,6 +179,72 @@
   padding: 1rem;
   background: #171a16;
 }
+.characterReview {
+  display: grid;
+  gap: 0.7rem;
+}
+.characterIdentity {
+  border: 1px solid #675334;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background: #171a16;
+}
+.characterIdentity h4 {
+  margin: 0;
+  color: #f0d8aa;
+  font: 1.35rem Georgia, serif;
+}
+.characterIdentity p {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+.characterFacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.8rem;
+  color: #d8d1c3;
+}
+.characterFacts strong { color: #e4c996; }
+.characterFacts ul { margin: 0.45rem 0; padding-left: 1.2rem; }
+.characterFacts li { margin-bottom: 0.25rem; }
+.gearRow {
+  border-bottom: 1px solid #49483e;
+  padding: 0.55rem 0.25rem;
+}
+.gearHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #e7e0d3;
+}
+.gearHeading span { color: #e4c996; white-space: nowrap; }
+.compactNumber {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  margin-top: 0.55rem;
+  font-size: 0.9rem;
+}
+.compactNumber input {
+  width: 6rem;
+  padding: 0.45rem;
+  border: 1px solid #b88b55;
+  border-radius: 0.35rem;
+  color: #ede7d8;
+  background: #0b1011;
+}
+.compactNumber small { color: #e4c996; }
+.reviewEdits { margin-top: 0.45rem; }
+.reviewEdits summary {
+  width: fit-content;
+  cursor: pointer;
+  color: #c7b18c;
+  font-size: 0.87rem;
+}
+.reviewEdits > .form,
+.reviewEdits > .actions { padding: 0.85rem 0 0.3rem; }
 @media (max-width: 600px) {
   .panel {
     border-radius: 0.5rem;
@@ -191,6 +257,7 @@
   .fields {
     grid-template-columns: 1fr;
   }
+  .gearHeading { flex-wrap: wrap; }
 }
 
 .step {

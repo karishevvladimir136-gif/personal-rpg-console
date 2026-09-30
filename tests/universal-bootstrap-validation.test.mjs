@@ -85,6 +85,25 @@ test("Original extraction cannot invent capabilities, possessions, resource quan
       }),
     );
 });
+test("Clearly singular ordinary possessions stay grounded while vague supplies and balances remain unresolved", () => {
+  const description = "Mara carries a weatherproof cloak, a backpack, several days of food, a modest supply of arrows, and enough coin for several days.";
+  const owner = { ...input, description };
+  const grounded = {
+    ...p,
+    capabilities: [],
+    limitations: [],
+    possessions: [
+      { name: "weatherproof cloak", description: "", quantity: 1, quote: "a weatherproof cloak" },
+      { name: "backpack", description: "", quantity: 1, quote: "a backpack" },
+      { name: "days of food", description: "", quantity: null, quote: "several days of food" },
+      { name: "arrows", description: "", quantity: null, quote: "a modest supply of arrows" },
+    ],
+    resources: [{ key: "coin", label: "coin", amount: null, quote: "enough coin for several days" }],
+  };
+  assert.deepEqual(parseCreationProposal(grounded, owner), grounded);
+  assert.throws(() => parseCreationProposal({ ...grounded, possessions: grounded.possessions.map((item, i) => i === 3 ? { ...item, quantity: 50 } : item) }, owner));
+  assert.throws(() => parseCreationProposal({ ...grounded, resources: [{ ...grounded.resources[0], amount: 10 }] }, owner));
+});
 test("Descriptive impossible powers confer no consequence authority; controlled-PC and private knowledge remain protected", () => {
   const i = fixture();
   i.snapshot.world.actors[0].capabilities = ["teleportation"];
@@ -291,6 +310,8 @@ test("Bootstrap uses the accepted Responses requester, pinned model and task bud
       assert.equal(wire.background, undefined);
       assert.equal(wire.truncation, "disabled");
       assert.match(wire.instructions, /DATA/);
+      assert.match(wire.instructions, /clearly singular ordinary possession/);
+      assert.match(wire.instructions, /do not ask a duplicate general clarification question/);
       return response(p);
     },
   });

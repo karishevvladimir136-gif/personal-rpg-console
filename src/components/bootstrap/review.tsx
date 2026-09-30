@@ -1,9 +1,14 @@
 "use client";
+import { useState } from "react";
 import type {
   BootstrapQuestion,
   CreationReview,
   OpeningReview,
 } from "../../lib/adventures/bootstrap-contracts";
+import {
+  creationMissingDetails,
+  creationQuestionIsNumeric,
+} from "../../lib/adventures/bootstrap-review";
 import styles from "../adventures/adventures.module.css";
 export function bootstrapText(language: "en" | "ru") {
   return language === "ru"
@@ -19,7 +24,17 @@ export function bootstrapText(language: "en" | "ru") {
         add: "Добавить",
         remove: "Убрать",
         description: "Описание",
+        correctProtagonist: "Исправить сведения о герое",
+        correctItem: "Исправить вещь",
+        correctResource: "Исправить ресурс",
+        noEntries: "Пока не указано",
+        missingDetails: (count: number) =>
+          `Осталось заполнить: ${count}`,
+        reviewComplete: "Не осталось открытых вопросов о количестве и запасах.",
+        startingGear: "Начальные вещи и ресурсы",
+        recordedAmount: "Записано",
         questions: "Что нужно уточнить",
+        questionHelp: "Количество вещей и запасов укажите в строках выше. Здесь ответьте только на оставшиеся смысловые вопросы.",
         required: "Нужен ответ",
         valueRequired: "Укажите значение перед созданием",
         optional: "По желанию",
@@ -36,6 +51,8 @@ export function bootstrapText(language: "en" | "ru") {
           "Я проверил начало: только открытые факты, без скрытого объяснения, исхода, награды или решений героя.",
         pending:
           "Ответ пока не подтверждён. Восстановите тот же запрос; повторного обращения к ИИ не будет.",
+        preparing: "Подготавливаем предложение…",
+        creating: "Создаём персонажа и кампанию…",
         recover: "Восстановить результат",
         newProposal: "Подготовить новое предложение",
         unavailable:
@@ -70,7 +87,17 @@ export function bootstrapText(language: "en" | "ru") {
         add: "Add",
         remove: "Remove",
         description: "Description",
+        correctProtagonist: "Correct protagonist details",
+        correctItem: "Correct item",
+        correctResource: "Correct resource",
+        noEntries: "None recorded yet",
+        missingDetails: (count: number) =>
+          `${count} ${count === 1 ? "detail still needs" : "details still need"} your input`,
+        reviewComplete: "No unresolved quantities, balances or clarifications.",
+        startingGear: "Starting gear and resources",
+        recordedAmount: "Recorded",
         questions: "Clarifications",
+        questionHelp: "Enter item counts and balances in the rows above. Answer only the remaining story details here.",
         required: "Answer required",
         valueRequired: "Enter a value before creation",
         optional: "Optional",
@@ -87,6 +114,8 @@ export function bootstrapText(language: "en" | "ru") {
           "I reviewed this public opening: no hidden explanation, outcome, reward or decisions for the protagonist.",
         pending:
           "The response is not confirmed. Recover the same request; it will not call the AI again.",
+        preparing: "Preparing proposal…",
+        creating: "Creating protagonist and campaign…",
         recover: "Recover result",
         newProposal: "Prepare a new proposal",
         unavailable:
@@ -162,6 +191,44 @@ function Lines({
     />
   );
 }
+function InlineNumber({
+  label,
+  value,
+  min,
+  max,
+  onChange,
+  valueRequired,
+}: {
+  label: string;
+  value: number | null;
+  min: number;
+  max: number;
+  onChange: (value: number | null) => void;
+  valueRequired: string;
+}) {
+  const [editing, setEditing] = useState(value === null);
+  const valid = value !== null && Number.isInteger(value) && value >= min && value <= max;
+  return editing || !valid ? (
+    <label className={styles.compactNumber}>
+      {label}
+      <input
+        type="number"
+        min={min}
+        max={max}
+        required
+        aria-invalid={!valid}
+        value={value ?? ""}
+        onChange={(event) =>
+          onChange(event.target.value === "" ? null : Number(event.target.value))
+        }
+        onBlur={() => { if (valid) setEditing(false); }}
+      />
+      {!valid && <small>{value === null ? valueRequired : `${min}–${max}`}</small>}
+    </label>
+  ) : (
+    <span>×{value}</span>
+  );
+}
 export function normalizeLines(values: string[]) {
   return values.map((v) => v.trim()).filter(Boolean);
 }
@@ -170,17 +237,25 @@ export function Questions({
   answers,
   onChange,
   language,
+  visible,
+  help,
 }: {
   questions: BootstrapQuestion[];
   answers: (string | null)[];
   onChange: (v: (string | null)[]) => void;
   language: "en" | "ru";
+  visible?: (question: BootstrapQuestion, index: number) => boolean;
+  help?: string;
 }) {
   const c = bootstrapText(language);
-  return questions.length ? (
+  const shown = questions
+    .map((question, index) => ({ question, index }))
+    .filter(({ question, index }) => !visible || visible(question, index));
+  return shown.length ? (
     <div className={styles.form}>
       <h3>{c.questions}</h3>
-      {questions.map((q, i) => (
+      {help && <p className={styles.muted}>{help}</p>}
+      {shown.map(({ question: q, index: i }) => (
         <Field
           key={i}
           label={`${q.question} · ${q.consequential ? c.required : c.optional}`}
@@ -208,206 +283,107 @@ export function CharacterReview({
   questions: BootstrapQuestion[];
 }) {
   const c = bootstrapText(language);
+  const missing = creationMissingDetails(value, questions);
+  const possession = (
+    index: number,
+    change: Partial<CreationReview["possessions"][number]>,
+  ) =>
+    onChange({
+      ...value,
+      possessions: value.possessions.map((item, i) =>
+        i === index ? { ...item, ...change } : item,
+      ),
+    });
+  const resource = (
+    index: number,
+    change: Partial<CreationReview["resources"][number]>,
+  ) =>
+    onChange({
+      ...value,
+      resources: value.resources.map((item, i) =>
+        i === index ? { ...item, ...change } : item,
+      ),
+    });
   return (
-    <div className={styles.form}>
+    <div className={styles.characterReview}>
       <h3>{c.review}</h3>
       <p className={styles.muted}>{c.editHelp}</p>
-      <Field
-        label={c.name}
-        value={value.name}
-        max={200}
-        onChange={(name) => onChange({ ...value, name })}
-      />
-      <Field
-        label={c.who}
-        value={value.description}
-        max={8000}
-        large
-        onChange={(description) => onChange({ ...value, description })}
-      />
-      <Lines
-        label={`${c.capabilities} · ${c.linesHelp}`}
-        value={value.capabilities}
-        onChange={(capabilities) => onChange({ ...value, capabilities })}
-      />
-      <Lines
-        label={c.limitations}
-        value={value.limitations}
-        onChange={(limitations) => onChange({ ...value, limitations })}
-      />
-      <h3>{c.possessions}</h3>
+      <div className={styles.characterIdentity}>
+        <h4>{value.name}</h4>
+        <p>{value.description}</p>
+        <div className={styles.characterFacts}>
+          <div><strong>{c.capabilities}</strong><ul>{value.capabilities.map((fact, i) => <li key={i}>{fact}</li>)}</ul></div>
+          <div><strong>{c.limitations}</strong><ul>{value.limitations.map((fact, i) => <li key={i}>{fact}</li>)}</ul></div>
+        </div>
+        <details className={styles.reviewEdits}>
+          <summary>{c.correctProtagonist}</summary>
+          <div className={styles.form}>
+            <Field label={c.name} value={value.name} max={200} onChange={(name) => onChange({ ...value, name })} />
+            <Field label={c.who} value={value.description} max={8000} large onChange={(description) => onChange({ ...value, description })} />
+            <Lines label={`${c.capabilities} · ${c.linesHelp}`} value={value.capabilities} onChange={(capabilities) => onChange({ ...value, capabilities })} />
+            <Lines label={c.limitations} value={value.limitations} onChange={(limitations) => onChange({ ...value, limitations })} />
+          </div>
+        </details>
+      </div>
+      <h3>{c.startingGear}</h3>
+      {!value.possessions.length && !value.resources.length && <p className={styles.muted}>{c.noEntries}</p>}
       {value.possessions.map((p, i) => (
-        <div className={styles.setup} key={i}>
-          <Field
-            label={c.name}
-            value={p.name}
-            max={200}
-            onChange={(name) =>
-              onChange({
-                ...value,
-                possessions: value.possessions.map((a, j) =>
-                  j === i ? { ...a, name } : a,
-                ),
-              })
-            }
-          />
-          <Field
-            label={c.description}
-            value={p.description}
-            large
-            onChange={(description) =>
-              onChange({
-                ...value,
-                possessions: value.possessions.map((a, j) =>
-                  j === i ? { ...a, description } : a,
-                ),
-              })
-            }
-          />
-          <label className={styles.field}>
-            {c.quantity}
-            <input
-              type="number"
-              min={1}
-              max={20}
-              required
-              aria-invalid={p.quantity === null}
-              value={p.quantity ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...value,
-                  possessions: value.possessions.map((a, j) =>
-                    j === i
-                      ? {
-                          ...a,
-                          quantity:
-                            e.target.value === ""
-                              ? null
-                              : Number(e.target.value),
-                        }
-                      : a,
-                  ),
-                })
-              }
-            />
-            {p.quantity === null && <small>{c.valueRequired}</small>}
-          </label>
-          <div className={styles.actions}>
-            <button
-              type="button"
-              onClick={() =>
-                onChange({
-                  ...value,
-                  possessions: value.possessions.filter((_, j) => i !== j),
-                })
-              }
-            >
-              {c.remove}
-            </button>
+        <div className={styles.gearRow} key={i}>
+          <div className={styles.gearHeading}>
+            <strong>{p.name || c.name}</strong>
+            <InlineNumber label={c.quantity} value={p.quantity} min={1} max={20}
+              valueRequired={c.valueRequired} onChange={(quantity) => possession(i, { quantity })} />
           </div>
+          <details className={styles.reviewEdits}>
+            <summary>{c.correctItem}</summary>
+            <div className={styles.form}>
+              <Field label={c.name} value={p.name} max={200} onChange={(name) => possession(i, { name })} />
+              <Field label={`${c.description} · ${c.optional}`} value={p.description} large onChange={(description) => possession(i, { description })} />
+              {p.quantity !== null && <label className={styles.field}>{c.quantity}<input type="number" min={1} max={20} required value={p.quantity} onChange={(e) => possession(i, { quantity: e.target.value === "" ? null : Number(e.target.value) })} /></label>}
+              <div className={styles.actions}><button type="button" onClick={() => onChange({ ...value, possessions: value.possessions.filter((_, j) => i !== j) })}>{c.remove}</button></div>
+            </div>
+          </details>
         </div>
       ))}
-      <div className={styles.actions}>
-        <button
-          type="button"
-          disabled={value.possessions.length >= 12}
-          onClick={() =>
-            onChange({
-              ...value,
-              possessions: [
-                ...value.possessions,
-                { name: "", description: "", quantity: null },
-              ],
-            })
-          }
-        >
-          {c.add} · {c.possessions}
-        </button>
-      </div>
-      <h3>{c.resources}</h3>
       {value.resources.map((r, i) => (
-        <div className={styles.setup} key={r.key}>
-          <Field
-            label={c.name}
-            value={r.label}
-            max={100}
-            onChange={(label) =>
-              onChange({
-                ...value,
-                resources: value.resources.map((a, j) =>
-                  j === i ? { ...a, label } : a,
-                ),
-              })
-            }
-          />
-          <label className={styles.field}>
-            {c.amount}
-            <input
-              type="number"
-              min={0}
-              max={1000000}
-              required
-              aria-invalid={r.amount === null}
-              value={r.amount ?? ""}
-              onChange={(e) =>
-                onChange({
-                  ...value,
-                  resources: value.resources.map((a, j) =>
-                    j === i
-                      ? {
-                          ...a,
-                          amount:
-                            e.target.value === ""
-                              ? null
-                              : Number(e.target.value),
-                        }
-                      : a,
-                  ),
-                })
-              }
-            />
-            {r.amount === null && <small>{c.valueRequired}</small>}
-          </label>
-          <div className={styles.actions}>
-            <button
-              type="button"
-              onClick={() =>
-                onChange({
-                  ...value,
-                  resources: value.resources.filter((_, j) => i !== j),
-                })
-              }
-            >
-              {c.remove}
-            </button>
+        <div className={styles.gearRow} key={r.key}>
+          <div className={styles.gearHeading}>
+            <strong>{r.label || c.resources}</strong>
+            <InlineNumber label={c.amount} value={r.amount} min={0} max={1000000}
+              valueRequired={c.valueRequired} onChange={(amount) => resource(i, { amount })} />
           </div>
+          <details className={styles.reviewEdits}>
+            <summary>{c.correctResource}</summary>
+            <div className={styles.form}>
+              <Field label={c.name} value={r.label} max={100} onChange={(label) => resource(i, { label })} />
+              {r.amount !== null && <label className={styles.field}>{c.amount}<input type="number" min={0} max={1000000} required value={r.amount} onChange={(e) => resource(i, { amount: e.target.value === "" ? null : Number(e.target.value) })} /></label>}
+              <div className={styles.actions}><button type="button" onClick={() => onChange({ ...value, resources: value.resources.filter((_, j) => i !== j) })}>{c.remove}</button></div>
+            </div>
+          </details>
         </div>
       ))}
-      <div className={styles.actions}>
-        <button
-          type="button"
-          disabled={value.resources.length >= 8}
-          onClick={() => {
+      <details className={styles.reviewEdits}>
+        <summary>{c.add} · {c.startingGear}</summary>
+        <div className={styles.actions}>
+          <button type="button" disabled={value.possessions.length >= 12} onClick={() => onChange({ ...value, possessions: [...value.possessions, { name: "", description: "", quantity: null }] })}>{c.add} · {c.possessions}</button>
+          <button type="button" disabled={value.resources.length >= 8} onClick={() => {
             let i = 1;
-            while (value.resources.some((r) => r.key === `resource_${i}`)) i++;
-            onChange({
-              ...value,
-              resources: [
-                ...value.resources,
-                { key: `resource_${i}`, label: "", amount: null },
-              ],
-            });
-          }}
-        >
-          {c.add} · {c.resources}
-        </button>
-      </div>
+            while (value.resources.some((item) => item.key === `resource_${i}`)) i++;
+            onChange({ ...value, resources: [...value.resources, { key: `resource_${i}`, label: "", amount: null }] });
+          }}>{c.add} · {c.resources}</button>
+        </div>
+      </details>
       <Questions
         questions={questions}
         answers={value.answers}
         onChange={(answers) => onChange({ ...value, answers })}
         language={language}
+        visible={(question) => !creationQuestionIsNumeric(question, value)}
+        help={c.questionHelp}
       />
+      <p role="status" className={missing ? styles.notice : styles.muted}>
+        {missing ? c.missingDetails(missing) : c.reviewComplete}
+      </p>
     </div>
   );
 }
