@@ -39,7 +39,34 @@ export type WorldLogicProposal =
   | (Omit<WorldLogicProposalV1, "schemaVersion"> & {
       schemaVersion: 2;
       consequences: WorldConsequence[];
-    });
+    })
+  | LivingWorldProposal;
+export type LivingWorldProposal = {
+  schemaVersion: 3;
+  actorId: string;
+  input: string;
+  uncertainty:
+    "resolved" | "missing_evidence" | "contradiction" | "unsupported";
+  circumstanceRefs: string[];
+  evidenceIndexes: number[];
+  kind: "location.establish";
+  anchorLocationId: string | null;
+  destinationId: null;
+  name: string | null;
+  category:
+    | "tavern"
+    | "inn"
+    | "blacksmith"
+    | "brothel"
+    | "bathhouse"
+    | "stable"
+    | "market_stall"
+    | "street"
+    | "alley"
+    | "shop"
+    | null;
+  vicinity: "nearby" | "same_street" | null;
+};
 export type WorldLogicContext = {
   schemaVersion: 1;
   input: string;
@@ -82,4 +109,9 @@ export type WorldLogicResult =
       settlement: WorldSettlement;
       resolution: MechanicsResolution;
       publicEvents: PublicWorldEvent[];
+    }
+  | {
+      status: "mundane";
+      proposal: LivingWorldProposal;
+      resolution: MechanicsResolution;
     };

@@ -151,7 +151,7 @@ export function worldLogicConsequenceOptions(
 /** Model-authored publicText is advisory in v2. Durable result text is a projection. */
 export function worldLogicPublicText(
   input: WorldLogicInput,
-  proposal: WorldLogicProposal,
+  proposal: Exclude<WorldLogicProposal, { schemaVersion: 3 }>,
   consequences: string[],
 ): string {
   const russian = input.source.snapshot.campaign.language === "ru";
@@ -162,7 +162,10 @@ export function worldLogicPublicText(
     return russian
       ? "Запрошенное действие пока невозможно."
       : "The requested action remains blocked.";
-  const texts: Record<WorldLogicProposal["action"], string> = russian
+  const texts: Record<
+    Exclude<WorldLogicProposal, { schemaVersion: 3 }>["action"],
+    string
+  > = russian
     ? {
         observe: `${actor.name} осматривается.`,
         speak: `${actor.name} говорит.`,

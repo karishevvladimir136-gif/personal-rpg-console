@@ -1,4 +1,16 @@
-# Development status — Playtest 2.0 core gameplay corrections — PARTIAL / BLOCKED
+# Development status — Living World migration 33 — LOCATION AUTHORING READY FOR REVIEW
+
+**Milestone/status (2026-09-30):** On isolated `codex/playtest2-core-gameplay` at base `e1162b5559f1910263876af63ae59ffce5d100ab`, the newly authorized Living World migration 33 implements one bounded ordinary public Location per World Logic turn. Implementation and disposable-database verification are complete for Location authoring; owner approval and real-database migration have not occurred. The previously completed FRAME reconciliation and Adventure-opening presentation corrections remain on this branch.
+
+**Completed work and changed areas:** `202609300033_living_world_mundane_turn.sql` adds one private validator and changes only the checkpointed World Logic commit guard to accept its exact mundane-authoring result. The original staged World settlement path and its validators are unchanged. The World Logic proposal/parser, server resolver schema and turn preparers now recognize an explicit ordinary-place proposal, derive a deterministic Location ID, and pass exactly one `known` Location change through the existing atomic runtime writer. The proposal cannot author an Entity, World Actor, item, resource, quest, private patch or client-chosen ID. Existing Memory triggers index the Location and runtime event. Focused tests cover populated 32→33 row fingerprints; unchanged World and Memory functions/triggers; commit and retry; cross-campaign and hitchhiking rejection; atomic failure; old World settlement; and synthetic structured-provider output.
+
+**Verification:** Focused Living World tests **3/3 passed**. The final complete repository suite with local synthetic preview server: **1,810 tests, 1,809 passed, 0 failed, 1 existing skipped**; this includes the FRAME, Adventure-opening, World settlement and Memory regressions. Route type generation, nonincremental TypeScript, repository-wide zero-warning ESLint and production webpack build passed after the final source changes. The default Turbopack build failed because this worktree's `node_modules` symlink points outside Turbopack's filesystem root; the webpack production build compiled and generated all routes. No real provider, owner campaign mutation, real migration, deployment, publication or main merge occurred.
+
+**Decision and remaining boundary:** A subsequent turn can read the new durable Location, but local movement to it remains blocked by the existing travel/World Actor settlement authority. Enabling arrival would require a second persistent authority change beyond this migration. The validator deliberately omits local movement and leaves regional travel authority intact. The next step is owner review of the isolated Location-authoring commit and a separate decision on that movement boundary; the real migration 33 must remain unapplied until explicitly scheduled.
+
+---
+
+# Historical status — Playtest 2.0 core gameplay corrections — PARTIAL / BLOCKED
 
 **Scope/base (2026-09-30):** Isolated `codex/playtest2-core-gameplay` starts from accepted remote main `f11f90387e30fea749b11c508a4c4f943715815a`. Living World, FRAME recovery and Adventure-opening recovery presentation are three bounded independent corrections. Main, the running real-local playtest app, real migration-32 database and owner campaign remain unchanged. No provider call was made.
 

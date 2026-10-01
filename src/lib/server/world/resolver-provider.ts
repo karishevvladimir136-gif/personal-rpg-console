@@ -112,6 +112,40 @@ export const worldLogicSchema = strictObject({
   destinationId: { type: ["string", "null"] },
   consequences: { type: "array", maxItems: 6, items: worldConsequenceSchema },
 });
+export const livingWorldSchema = strictObject({
+  schemaVersion: { type: "integer", enum: [3] },
+  actorId: string,
+  input: string,
+  uncertainty,
+  circumstanceRefs: { type: "array", items: string, maxItems: 4 },
+  evidenceIndexes: {
+    type: "array",
+    items: { type: "integer", minimum: 0, maximum: 31 },
+    maxItems: 4,
+  },
+  kind: { type: "string", enum: ["location.establish"] },
+  anchorLocationId: { type: ["string", "null"] },
+  destinationId: { type: ["string", "null"] },
+  name: { type: ["string", "null"], maxLength: 120 },
+  category: {
+    type: ["string", "null"],
+    enum: [
+      "tavern",
+      "inn",
+      "blacksmith",
+      "brothel",
+      "bathhouse",
+      "stable",
+      "market_stall",
+      "street",
+      "alley",
+      "shop",
+      null,
+    ],
+  },
+  vicinity: { type: ["string", "null"], enum: ["nearby", "same_street", null] },
+});
+const actionSchema = { anyOf: [worldLogicSchema, livingWorldSchema] };
 export const worldResolverSchema = strictObject({
   schemaVersion: { type: "integer", enum: [1] },
   decisions: {
@@ -164,7 +198,7 @@ export function buildResolverContext(
     !!data &&
     typeof data === "object" &&
     Object.hasOwn(data, "foundationOptions");
-  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated schemaVersion=2 World Logic proposal; foundationAction is null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : ""}`;
+  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated World Logic proposal; foundationAction must be null for schemaVersion=3, otherwise null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in version 2 action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : "\nReturn an object containing exactly the action proposal."}`;
   // UTF-8 bytes upper-bound token usage, including framing; never cut mandatory work.
   const estimatedTokens =
     Buffer.byteLength(
@@ -297,12 +331,12 @@ export function createWorldResolverProvider(options: ProviderOptions) {
       const extended = !!input.source.foundationOptions;
       const schema = extended
         ? strictObject({
-            action: worldLogicSchema,
+            action: actionSchema,
             foundationAction: {
               anyOf: [foundationActionSchema, { type: "null" }],
             },
           })
-        : worldLogicSchema;
+        : strictObject({ action: actionSchema });
       const { request, validate } = checkedRequest();
       const response = await request(
         buildResolverContext(
@@ -310,7 +344,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
           extended
             ? { ...context, foundationOptions: input.source.foundationOptions }
             : context,
-          "Return schemaVersion=2. Interpret only input verbatim for one listed controlled actor. Copy input exactly. capabilityRefs must be exact capabilities of that actor; circumstanceRefs must name supplied circumstances; evidenceIndexes refer only to that actor's evidence. State uncertainty before proposing effects. Non-resolved proposals have elapsedMinutes=0, destinationId=null and consequences=[]. Blocked actions have consequences=[]. Choose at most six supplied consequenceOptions only when the literal request calls for them, with no duplicate targets and no values beyond their maximum. A capability permits an operation; it never chooses a player action. condition effects are physical statuses only. quest.complete requires action=attempt; no timed completion or expiry. fact.observe refers to already authorized current public text, never a hidden discovery. publicText is advisory observable narration and grants no authority. A completed move requires a supplied travelOptions entry for this actor, its exact route capability, an existing destinationId and positive elapsedMinutes; every other outcome has destinationId=null. Missing capabilities, prerequisites or ambiguous player intent require explicit uncertainty, not a partial result.",
+          "For an ordinary public local place necessary to answer the literal player action, use schemaVersion=3 kind=location.establish: one short mundane name, a listed mundane category, nearby or same_street vicinity, and anchorLocationId equal to the current public location. Version 3 always has destinationId=null. Never use version 3 for movement, regional or dangerous travel, hidden places, items, rewards, new NPC records, secrets, rumors as objective truth, player speech or commitments. Use only the current location circumstance and evidenceIndexes=[]. Unresolved version 3 proposals keep name/category/vicinity null. Profanity or adult wording alone is not a world-authority failure. Otherwise return schemaVersion=2 under existing bounded rules. Interpret input verbatim for one listed controlled actor. Copy input exactly. For version 2, capabilityRefs must be exact capabilities of that actor; circumstanceRefs must name supplied circumstances; evidenceIndexes refer only to that actor's evidence. State uncertainty before proposing effects. Non-resolved version 2 proposals have elapsedMinutes=0, destinationId=null and consequences=[]. Blocked actions have consequences=[]. Choose at most six supplied consequenceOptions only when the literal request calls for them, with no duplicate targets and no values beyond their maximum. A capability permits an operation; it never chooses a player action. condition effects are physical statuses only. quest.complete requires action=attempt; no timed completion or expiry. fact.observe refers to already authorized current public text, never a hidden discovery. publicText is advisory observable narration and grants no authority. A completed version 2 move requires a supplied travelOptions entry for this actor, its exact route capability, an existing destinationId and positive elapsedMinutes; every other outcome has destinationId=null. Missing capabilities, prerequisites or ambiguous player intent require explicit uncertainty, not a partial result.",
           context.circumstances.length +
             context.actors.reduce((n, a) => n + a.evidence.length, 0),
           schema,
@@ -322,20 +356,26 @@ export function createWorldResolverProvider(options: ProviderOptions) {
             action?: unknown;
             foundationAction?: unknown;
           };
+          const wrapped = !Object.hasOwn(envelope ?? {}, "schemaVersion");
           if (
-            extended &&
-            (!envelope ||
-              typeof envelope !== "object" ||
-              Array.isArray(envelope) ||
-              Object.keys(envelope).length !== 2 ||
-              !Object.hasOwn(envelope, "foundationAction") ||
-              !Object.hasOwn(envelope, "action"))
+            !envelope ||
+            typeof envelope !== "object" ||
+            Array.isArray(envelope) ||
+            (extended &&
+              (Object.keys(envelope).length !== 2 ||
+                !Object.hasOwn(envelope, "foundationAction") ||
+                !Object.hasOwn(envelope, "action"))) ||
+            (!extended &&
+              wrapped &&
+              (Object.keys(envelope).length !== 1 ||
+                !Object.hasOwn(envelope, "action")))
           )
             throw new DmError("validation");
           const proposal = parseWorldLogicProposal(
-            extended ? envelope.action : raw,
+            wrapped ? envelope.action : raw,
           );
-          if (proposal.schemaVersion !== 2) throw new DmError("validation");
+          if (proposal.schemaVersion !== 2 && proposal.schemaVersion !== 3)
+            throw new DmError("validation");
           resolveWorldLogic(input, proposal);
           const foundationAction =
             extended && envelope.foundationAction !== null
@@ -343,7 +383,8 @@ export function createWorldResolverProvider(options: ProviderOptions) {
               : null;
           if (
             foundationAction &&
-            (foundationAction.input !== proposal.input ||
+            (proposal.schemaVersion !== 2 ||
+              foundationAction.input !== proposal.input ||
               (foundationAction.action === "loot"
                 ? foundationAction.intent.actorId
                 : "intent" in foundationAction

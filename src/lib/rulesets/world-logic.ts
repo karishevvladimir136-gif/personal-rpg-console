@@ -30,6 +30,10 @@ import {
   uuid,
 } from "../world-library/validation.ts";
 import { WORLD_LOGIC_REF } from "./profiles.ts";
+import {
+  parseLivingWorldProposal,
+  resolveLivingWorld,
+} from "./living-world.ts";
 import type {
   WorldLogicContext,
   WorldLogicInput,
@@ -45,6 +49,8 @@ export type {
 
 export function parseWorldLogicProposal(value: unknown): WorldLogicProposal {
   ensure(value !== null && typeof value === "object" && !Array.isArray(value));
+  if ((value as Record<string, unknown>).schemaVersion === 3)
+    return parseLivingWorldProposal(value);
   const version = literal((value as Record<string, unknown>).schemaVersion, [
     1, 2,
   ] as const);
@@ -288,6 +294,7 @@ export function worldLogicContext(
       : [],
     constraints: [
       "Resolve only the literal requested action. Never choose player decisions, thoughts, feelings or commitments.",
+      "Version 3 may establish one ordinary public local place from the current public location. It cannot author NPC records, secrets, items, rewards, mechanics, movement, regional travel or private claims. A rumor stays attributed speech, never objective Location truth.",
       "Supported: observations from known circumstances, speech and non-mechanical interaction, attempts without new durable effects, movement via a supplied travelOptions route to an existing known location, and waiting up to 60 minutes.",
       "Version 2 may select the supplied consequenceOptions only, within their quantity limits and exact capabilities. They reuse current inventory, resources, physical conditions, known actors and open objectives; observations quote only current public records. No capability is granted by an item description, source, user text or model response.",
       "Effects on another controlled character, invented objects, resource gains, injury, feelings, loyalty, commitments, new capabilities/relationships, hidden discoveries, combat and world-scale effects are unsupported. Unsupported or ambiguous effects must pause the whole action.",
@@ -304,6 +311,13 @@ export function resolveWorldLogic(
 ): WorldLogicResult {
   const proposal = parseWorldLogicProposal(raw);
   const context = worldLogicContext(input, proposal.schemaVersion === 2);
+  if (proposal.schemaVersion === 3)
+    return resolveLivingWorld(
+      input,
+      proposal,
+      context.circumstances,
+      context.actors.map((actor) => actor.id),
+    );
   ensure(proposal.input === input.input.input, "conflict");
   const actor = context.actors.find((a) => a.id === proposal.actorId);
   ensure(actor, "scope");

@@ -29,9 +29,8 @@ const hook = registerHooks({
   },
 });
 const { openAiProvider } = await source("src/lib/server/dm/provider.ts");
-const { createWorldResolverProvider, worldLogicSchema } = await source(
-  "src/lib/server/world/resolver-provider.ts",
-);
+const { createWorldResolverProvider, worldLogicSchema, livingWorldSchema } =
+  await source("src/lib/server/world/resolver-provider.ts");
 hook.deregister();
 const { foundationActionContext, foundationActionSchema } = await source(
   "src/lib/foundation-actions/index.ts",
@@ -237,7 +236,10 @@ for (const kind of ["dm", "world"]) {
     if (kind === "dm") assert.deepEqual(schema, foundationPlanSchema);
     else {
       assert.deepEqual(schema.required, ["action", "foundationAction"]);
-      assert.deepEqual(schema.properties.action, worldLogicSchema);
+      assert.deepEqual(schema.properties.action.anyOf, [
+        worldLogicSchema,
+        livingWorldSchema,
+      ]);
       assert.deepEqual(schema.properties.foundationAction.anyOf, [
         foundationActionSchema,
         { type: "null" },
@@ -261,7 +263,16 @@ for (const kind of ["dm", "world"]) {
         data = JSON.parse(body.input);
       assert.deepEqual(
         body.text.format.schema,
-        kind === "dm" ? planSchema : worldLogicSchema,
+        kind === "dm"
+          ? planSchema
+          : {
+              type: "object",
+              additionalProperties: false,
+              properties: {
+                action: { anyOf: [worldLogicSchema, livingWorldSchema] },
+              },
+              required: ["action"],
+            },
       );
       assert.equal(
         Object.hasOwn(

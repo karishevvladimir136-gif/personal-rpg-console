@@ -92,7 +92,10 @@ export function worldLogicTurnPreparer(
     return {
       proposal: proposal as JsonObject,
       ...(foundationAction !== undefined ? { foundationAction } : {}),
-      resolution: result.status === "staged" ? result.resolution : null,
+      resolution:
+        result.status === "staged" || result.status === "mundane"
+          ? result.resolution
+          : null,
       usage,
       presence: {
         controlledEntityIds: world.actors
@@ -206,6 +209,20 @@ function prepareWorldUnsafe(
             ? "state_change"
             : "action",
     };
+    if (claim.turn.checkpoint.worldLogic?.schemaVersion === 3) {
+      const mundane = resolveWorldLogic(
+        input,
+        claim.turn.checkpoint.worldLogic,
+      );
+      if (
+        previous ||
+        mundane.status !== "mundane" ||
+        !isDeepStrictEqual(mundane.resolution, base) ||
+        stageWorldTransition(stageInput).status !== "noop"
+      )
+        throw new TurnError("validation");
+      return null;
+    }
     if (
       action &&
       (action.status !== "staged" ||
