@@ -33,7 +33,10 @@ import { Badge, Button, Icon, Panel } from "./ui";
 import { useGameplayRuntime } from "./gameplay-runtime";
 import { useSessionMemory } from "./session-memory-runtime";
 import styles from "./playtest-game-character.module.css";
-import { GameplayComposer } from "./gameplay-composer";
+import {
+  GameplayComposer,
+  type StoryHistoryPosition,
+} from "./gameplay-composer";
 import {
   GameplayCamp,
   GameplayCompanionTalk,
@@ -475,6 +478,9 @@ function GameRecords({
   const { t } = useLanguage();
   const runtime = useGameplayRuntime(reviewOnly);
   const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
+  const [historyPositions, setHistoryPositions] = useState<
+    Record<string, StoryHistoryPosition>
+  >({});
   const [resume, setResume] = useState(false);
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
   const session = data.sessions.find(
@@ -486,6 +492,17 @@ function GameRecords({
   const scene = data.scenes.find(
     (row) => row.id === data.publicState.current_scene_id,
   );
+  const sessionScenes = sceneOrder(
+    data.scenes.filter((row) => row.session_id === session?.id),
+  );
+  const firstPlayerScene = sessionScenes.find((row) => row.role === "player");
+  const openingScene = sessionScenes
+    .filter(
+      (row) =>
+        row.role === "narration" &&
+        (!firstPlayerScene || row.sequence < firstPlayerScene.sequence),
+    )
+    .at(-1);
   const latest = runtime.play?.turns
     .filter((turn) => turn.mode === inputMode)
     .at(-1);
@@ -495,20 +512,27 @@ function GameRecords({
       turn.session_id === session?.id &&
       turn.narration !== null,
   );
-  const opening = !hasNarration && inputMode === "game" && (
+  const opening = inputMode === "game" && (openingScene || !hasNarration) && (
     <article className={styles.opening}>
       <span className="eyebrow">{t("The story so far")}</span>
-      <h2>{scene?.title || location?.name || t("Your next chapter")}</h2>
+      <h2>
+        {openingScene?.title ||
+          scene?.title ||
+          location?.name ||
+          t("Your next chapter")}
+      </h2>
       <div className="prose">
-        {(scene?.role === "narration"
-          ? scene.body
-          : data.publicState.summary) ||
+        {openingScene?.body ||
+          (scene?.role === "narration"
+            ? scene.body
+            : data.publicState.summary) ||
           t(
             "Your story is ready to begin. The opening of your Adventure will appear here.",
           )}
       </div>
     </article>
   );
+  const historyKey = `${data.timeline?.timelineId ?? "unfenced"}:${data.timeline?.epoch ?? 0}:${inputMode}`;
   return (
     <div className={styles.game}>
       <header className={styles.gameHeader}>
@@ -578,6 +602,13 @@ function GameRecords({
                   onSaved={runtime.afterMutation}
                   followLatest
                   historyIntro={opening}
+                  historyPosition={historyPositions[historyKey]}
+                  onHistoryPositionChange={(position) => {
+                    setHistoryPositions((previous) => ({
+                      ...previous,
+                      [historyKey]: position,
+                    }));
+                  }}
                   beforeInput={
                     <div id="play-action" className={styles.inputMode}>
                       <div className="tabs" aria-label={t("Input mode")}>

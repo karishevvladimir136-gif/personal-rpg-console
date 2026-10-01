@@ -289,6 +289,63 @@ for (const language of ["en", "ru"]) {
   });
 }
 
+test("Game keeps the saved opening before the first committed exchange", () => {
+  const state = sample();
+  const first = turn(state.data);
+  state.play.turns = [first];
+  state.data.scenes.push(
+    {
+      ...state.data.scenes[0],
+      id: id("first-player-scene"),
+      role: "player",
+      title: "Player action",
+      body: first.input,
+      sequence: 2,
+    },
+    {
+      ...state.data.scenes[0],
+      id: id("first-dm-scene"),
+      title: "DM",
+      body: first.narration,
+      sequence: 3,
+    },
+  );
+  state.data.publicState.current_scene_id = id("first-dm-scene");
+  const html = render("game", state);
+  const opening = "The public meeting house is quiet";
+  const openingArticle = html.indexOf('<article class="opening">');
+  assert.ok(
+    openingArticle >= 0,
+    "Saved opening must remain in the story surface",
+  );
+  const openingMarkup = html.slice(
+    openingArticle,
+    html.indexOf("</article>", openingArticle),
+  );
+  assert.equal(openingMarkup.split(opening).length - 1, 1);
+  assert.ok(openingArticle < html.indexOf(first.input));
+  assert.ok(html.indexOf(first.input) < html.indexOf("The organiser looks up"));
+});
+
+test("OOC history does not repeat the Game opening", () => {
+  const state = sample();
+  state.play.turns = [turn(state.data)];
+  const html = render("game", {
+    ...state,
+    react: {
+      useState: (initial) => [
+        initial === "game"
+          ? "ooc"
+          : typeof initial === "function"
+            ? initial()
+            : initial,
+        () => {},
+      ],
+    },
+  });
+  assert.doesNotMatch(html, /<article class="opening">/);
+});
+
 test("stock starter description is presentation-only, localized, and never overwrites owner-authored text", () => {
   const stock = [
     "An ordinary Level 1 Fighter. Bounded house profile; not complete D&D 5e.",
@@ -457,13 +514,12 @@ test("successful DM narration is prominent without redundant committed status or
   assert.match(html, /class="gameplay-narration"/);
   assert.ok(html.includes("A few crates need carrying"));
   assert.ok(html.includes("I ask about paid work."));
-  assert.equal(
-    html
-      .slice(0, html.indexOf("<textarea"))
-      .includes("public meeting house is quiet"),
-    false,
-    "The current summary does not repeat the DM feed; the original transcript remains in Advanced",
-  );
+  const story = html.slice(0, html.indexOf("<textarea"));
+  const openingAt = story.indexOf("The public meeting house is quiet");
+  const actionAt = story.indexOf("I ask about paid work.");
+  const narrationAt = story.indexOf("A few crates need carrying");
+  assert.ok(openingAt >= 0 && openingAt < actionAt && actionAt < narrationAt);
+  assert.equal(story.match(/The public meeting house is quiet/g)?.length, 1);
   assert.match(html, /href="#saved-turn-/);
 });
 test("clarification, failure and preserved-turn recovery remain visible in the primary feed", () => {
@@ -577,4 +633,58 @@ test("Game follows new narration until the reader scrolls back; other composers 
   }
   check(true);
   check(false);
+});
+
+test("Game restores a reader's scroll position after switching input modes", () => {
+  const state = sample(),
+    effects = [];
+  state.play.turns = [turn(state.data)];
+  const load = renderer({
+    ...state,
+    react: {
+      useState: (initial) => [
+        typeof initial === "function" ? initial() : initial,
+        () => {},
+      ],
+      useRef: (current) => ({ current }),
+      useEffect: (effect) => effects.push(effect),
+    },
+  });
+  const { GameplayComposer } = load("src/components/gameplay-composer.tsx");
+  let saved;
+  const element = GameplayComposer({
+    play: state.play,
+    onSaved: noCall,
+    followLatest: true,
+    historyPosition: { scrollTop: 125, following: false },
+    onHistoryPositionChange: (position) => {
+      saved = position;
+    },
+  });
+  function find(node) {
+    if (!node || typeof node !== "object") return null;
+    if (node.props?.className === "gameplay-turns") return node;
+    for (const child of [node.props?.children].flat()) {
+      const found = find(child);
+      if (found) return found;
+    }
+    return null;
+  }
+  const history = find(element);
+  const dom = { scrollTop: 0, scrollHeight: 1400, clientHeight: 250 };
+  assert.ok(history);
+  history.props.ref.current = dom;
+  for (const effect of effects) effect();
+  assert.equal(dom.scrollTop, 125);
+  history.props.onScroll({ currentTarget: dom });
+  assert.deepEqual(saved, { scrollTop: 125, following: false });
+  dom.scrollHeight = 1600;
+  for (const effect of effects) effect();
+  assert.equal(dom.scrollTop, 125);
+  dom.scrollTop = dom.scrollHeight - dom.clientHeight - 40;
+  history.props.onScroll({ currentTarget: dom });
+  assert.equal(saved.following, true);
+  dom.scrollHeight = 1800;
+  for (const effect of effects) effect();
+  assert.equal(dom.scrollTop, 1800);
 });

@@ -1,4 +1,14 @@
-# Development status — Living World local route — READY FOR REVIEW
+# Development status — Playtest 2.0 natural play correction — IN PROGRESS
+
+**Milestone/status (2026-10-01):** From accepted and activated `main` at `fa73275a73028c6c9ac6ed71f050f3991a2ffda1`, the isolated Game-history correction is implemented for review. Bounded mundane DM improvisation remains under investigation. The real owner database remains at migration 34; this work has made no owner campaign mutation, real provider call, deployment or main publication.
+
+**Completed work and changed areas:** Game now takes its opening from the saved narration Scene preceding the first player transcript record in the current session and keeps it above committed turns. OOC has no Game opening. The story surface remembers each input mode's reading position within the current timeline and follows new turns only while the reader is near the bottom. Changed `src/components/persistent-game.tsx`, `src/components/gameplay-composer.tsx` and focused UI regression coverage. No styling, FRAME, gameplay authority or schema was changed.
+
+**Verification and remaining work:** The missing-opening test failed on the accepted source and passed after the fix. Four focused opening, OOC and scroll checks pass. TypeScript typecheck, targeted zero-warning lint and production webpack build pass. The complete suite remains for the frozen combined candidate. The next step is to determine whether a bounded no-change World Logic observation can use the existing settlement, Scene and Memory pipeline for ordinary public details without migration 35; if not, stop at that boundary for owner review.
+
+---
+
+# Historical development status — Living World local route — READY FOR REVIEW
 
 **Milestone/status (2026-09-30):** On isolated `codex/playtest2-core-gameplay` after accepted Location-authoring commit `a0b595684c75d7a97cb0963e844ac4692c2749a6`, the local movement correction is implemented and verified on disposable databases. Owner approval, activation of migrations 33/34 on the real database, and deployment have not occurred. The existing FRAME, Adventure-opening and Game readability corrections remain intact.
 

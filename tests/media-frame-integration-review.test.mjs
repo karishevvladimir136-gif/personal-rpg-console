@@ -7,6 +7,7 @@ import { fixture as mediaFixture } from "./media-frame-fixture.mjs";
 import * as visualModel from "../src/lib/visual-frame/model.ts";
 import * as realModel from "../src/lib/visual-frame/real-frame.ts";
 import * as videoModel from "../src/lib/scene-video/model.ts";
+import { sceneOrder } from "../src/lib/persistence/record-model.ts";
 import { readFile } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
@@ -451,6 +452,7 @@ async function mountedGame(snapshot) {
       "@/lib/visual-frame/model": visualModel,
       "@/lib/visual-frame/real-frame": realModel,
       "@/lib/scene-video/model": videoModel,
+      "@/lib/persistence/record-model": { sceneOrder },
       "./visual-frame/current-scene-video": {
         CurrentSceneVideo: "scene-video",
         StoredSceneVideo: "stored-video",

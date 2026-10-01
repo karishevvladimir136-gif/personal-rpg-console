@@ -55,6 +55,11 @@ function localStorageForDraft() {
     return null;
   }
 }
+export type StoryHistoryPosition = {
+  scrollTop: number;
+  following: boolean;
+};
+
 export function GameplayComposer({
   play,
   mode = "game",
@@ -65,6 +70,8 @@ export function GameplayComposer({
   initialText = "",
   historyOnly = false,
   historyIntro,
+  historyPosition,
+  onHistoryPositionChange,
   beforeInput,
   followLatest = false,
 }: {
@@ -77,6 +84,8 @@ export function GameplayComposer({
   initialText?: string;
   historyOnly?: boolean;
   historyIntro?: ReactNode;
+  historyPosition?: StoryHistoryPosition;
+  onHistoryPositionChange?: (position: StoryHistoryPosition) => void;
   beforeInput?: ReactNode;
   followLatest?: boolean;
 }) {
@@ -128,8 +137,14 @@ export function GameplayComposer({
     belongsToChannel(turn, mode, companionId),
   );
   const historyRef = useRef<HTMLDivElement>(null);
-  const following = useRef(true);
+  const initialHistoryPosition = useRef(historyPosition);
+  const following = useRef(historyPosition?.following ?? true);
   const latest = turns.at(-1);
+  useEffect(() => {
+    const initial = initialHistoryPosition.current;
+    if (initial && !initial.following && historyRef.current)
+      historyRef.current.scrollTop = initial.scrollTop;
+  }, [initialHistoryPosition]);
   useEffect(() => {
     if (followLatest && following.current && historyRef.current)
       historyRef.current.scrollTop = historyRef.current.scrollHeight;
@@ -365,6 +380,10 @@ export function GameplayComposer({
             following.current =
               history.scrollHeight - history.scrollTop - history.clientHeight <
               80;
+            onHistoryPositionChange?.({
+              scrollTop: history.scrollTop,
+              following: following.current,
+            });
           }}
           role="log"
           aria-label={t(
