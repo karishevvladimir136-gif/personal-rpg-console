@@ -114,8 +114,10 @@
     gap: 18px;
   }
   .game :global(.gameplay-turns) {
-    height: clamp(330px, calc(100svh - 450px), 580px);
-    max-height: none;
+    max-height: max(260px, calc(100svh - 375px));
+  }
+  .game :global(.gameplay-turns:has(.gameplay-owner-input)) {
+    min-height: max(260px, calc(100svh - 375px));
   }
   .game :global(.gameplay-owner-input .prose) {
     font-size: 16.5px;
