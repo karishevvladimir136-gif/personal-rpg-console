@@ -1,3 +1,11 @@
+# Development status — Playtest 2.0 core gameplay corrections — IN PROGRESS
+
+**Scope/base (2026-09-30):** Isolated `codex/playtest2-core-gameplay` starts from accepted remote main `f11f90387e30fea749b11c508a4c4f943715815a`. Living World, FRAME recovery and Adventure-opening recovery presentation are three bounded independent corrections. Main, the running real-local playtest app, real migration-32 database and owner campaign remain unchanged. No provider call is authorized for implementation.
+
+**Opening presentation correction:** The active Adventure-opening proposal now shows Preparing instead of the interrupted-request recovery warning; recovery appears only after the exact pending request is no longer in flight. Starting an approved opening has its own active status. The existing persisted command and exact-request recovery authority are unchanged. Focused EN/RU UI tests: **15 passed, 0 failed**. Living World and FRAME corrections and final integrated verification remain in progress; this status is not owner acceptance.
+
+---
+
 # Development status — Playtest 2.0 Game reading surface — READY FOR OWNER REVIEW
 
 **Milestone/status (2026-09-30):** Narrow Game-only desktop reading correction on `codex/playtest2-game-reading` from accepted main `38d8c756fe9a70b838f4ab24e89df054956fb51e`. Implemented, deterministically verified and browser checked; **not owner accepted or published to main**. The running real-local playtest app and original historical dirty checkout were left untouched.

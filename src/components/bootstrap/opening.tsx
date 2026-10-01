@@ -132,7 +132,12 @@ export function OpeningBootstrap({
           </div>
         </>
       ) : null}
-      {w.pending && (
+      {w.busy && (
+        <p role="status" className={styles.notice}>
+          {w.pending?.action === "opening.commit" ? c.starting : c.preparing}
+        </p>
+      )}
+      {w.pending && !w.busy && (
         <div role="status" className={styles.notice}>
           <p>{c.pending}</p>
           <div className={styles.actions}>

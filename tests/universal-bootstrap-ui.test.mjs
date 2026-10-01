@@ -157,6 +157,37 @@ for (const language of ["en", "ru"]) {
     assert.ok(html.indexOf("Weatherproof cloak") < html.indexOf(c.correctItem));
     assert.match(html, /max="1000"/);
   });
+  test(`${language} active Adventure opening prepares without recovery; interrupted exact request offers recovery`, () => {
+    const c = bootstrapText(language), campaignId = id(84);
+    const pending = { action: "opening.propose", input: { requestId: id(85), campaignId } };
+    const base = {
+      pending, draft: null, review: null, ready: true, error: false,
+      execute: noCall, resetProposal: noCall, setReview: noCall,
+    };
+    const props = { campaignId, start: { requestId: id(86), campaignId },
+      language, persistPending: false, onDirty: noCall, onStarted: noCall,
+      onCancel: noCall };
+    const opening = (state) => render(ui("components/bootstrap/opening.tsx", state).OpeningBootstrap, props);
+    const active = opening({ ...base, busy: true });
+    assert.ok(active.includes(c.preparing));
+    assert.ok(!active.includes(c.pending));
+    assert.ok(!active.includes(c.recover));
+    const interrupted = opening({ ...base, busy: false });
+    assert.ok(interrupted.includes(c.pending));
+    assert.ok(interrupted.includes(c.recover));
+    assert.ok(!interrupted.includes(c.preparing));
+    const failed = opening({ ...base, busy: false, error: true });
+    assert.ok(failed.includes(c.recover));
+    assert.ok(failed.includes(c.newProposal));
+    const committed = opening({ ...base, pending: null, busy: false });
+    assert.ok(!committed.includes(c.recover));
+    assert.ok(!committed.includes(c.pending));
+    const committing = opening({ ...base,
+      pending: { action: "opening.commit", input: { requestId: id(87), campaignId } },
+      busy: true });
+    assert.ok(committing.includes(c.starting));
+    assert.ok(!committing.includes(c.recover));
+  });
   test(`${language} active proposal has preparing state, interrupted exact request has recovery state`, () => {
     const c = bootstrapText(language), f = fixture();
     const base = {

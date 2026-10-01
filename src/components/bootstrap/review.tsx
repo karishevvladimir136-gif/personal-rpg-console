@@ -54,6 +54,7 @@ export function bootstrapText(language: "en" | "ru") {
           "Ответ пока не подтверждён. Восстановите тот же запрос; повторного обращения к ИИ не будет.",
         preparing: "Подготавливаем предложение…",
         creating: "Создаём персонажа и кампанию…",
+        starting: "Начинаем приключение…",
         recover: "Восстановить результат",
         newProposal: "Подготовить новое предложение",
         unavailable:
@@ -117,6 +118,7 @@ export function bootstrapText(language: "en" | "ru") {
           "The response is not confirmed. Recover the same request; it will not call the AI again.",
         preparing: "Preparing proposal…",
         creating: "Creating protagonist and campaign…",
+        starting: "Starting Adventure…",
         recover: "Recover result",
         newProposal: "Prepare a new proposal",
         unavailable:
