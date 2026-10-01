@@ -4,6 +4,8 @@
 
 **Opening presentation correction:** The active Adventure-opening proposal now shows Preparing instead of the interrupted-request recovery warning; recovery appears only after the exact pending request is no longer in flight. Starting an approved opening has its own active status. The existing persisted command and exact-request recovery authority are unchanged. Focused EN/RU UI tests: **15 passed, 0 failed**. Living World and FRAME corrections and final integrated verification remain in progress; this status is not owner acceptance.
 
+**FRAME reconciliation correction:** A relevant generating FRAME refreshes its saved status every 15 seconds only while its Game component is visible; text play remains available. After five minutes, the screen identifies an unconfirmed result and offers explicit recovery of the same request. Recovery reuses stored pixels/check receipts; if none exist, the already claimed job becomes durable `uncertain` through the existing lifecycle and cannot launch another image. Lost grounding responses retain pixels and never repeat a claimed check. Existing accepted art and spending reservation remain intact. Focused FRAME service/UI tests: **33 passed, 0 failed**. No schema change or real image call. Living World and final integrated verification remain in progress; this status is not owner acceptance.
+
 ---
 
 # Development status — Playtest 2.0 Game reading surface — READY FOR OWNER REVIEW

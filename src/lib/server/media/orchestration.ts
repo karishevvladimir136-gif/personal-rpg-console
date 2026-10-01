@@ -14,6 +14,7 @@ import {
   realFrameIsCurrent,
   validateRealFrameLifecycle,
   frameStoragePath,
+  frameRecoveryOverdue,
   isFrameOutput,
 } from "../../visual-frame/real-frame.ts";
 import { checkedPng } from "./png.ts";
@@ -412,8 +413,20 @@ export async function executeMediaFrame(
   if (
     !pixels ||
     pixels.output.storagePath !== frameStoragePath(input.campaignId, record.id)
-  )
+  ) {
+    if (action === "media.recover" && frameRecoveryOverdue(record)) {
+      const result = await deps.authority.lifecycle(
+        baseMutation(
+          snapshot,
+          { ...next, status: "uncertain", failure: "uncertain" },
+          record,
+          record.current_version_id,
+        ),
+      );
+      return { result, status: "uncertain", dispatched: false };
+    }
     throw new MediaFrameError("unavailable");
+  }
   const observed = reportedUsageCost(pixels.output.usage);
   if (
     pixels.output.usage?.imageInputTokens ||
@@ -461,7 +474,8 @@ export async function executeMediaFrame(
     }
   }
   if (!checked || !isFrameCheckResult(checked)) {
-    await deps.authority.lifecycle(
+    if (!frameRecoveryOverdue(record)) throw new MediaFrameError("unavailable");
+    const result = await deps.authority.lifecycle(
       baseMutation(
         snapshot,
         {
@@ -473,7 +487,7 @@ export async function executeMediaFrame(
         record.current_version_id,
       ),
     );
-    throw new MediaFrameError("unavailable");
+    return { result, status: "uncertain", dispatched: false };
   }
   if (checked.schemaVersion !== 2 || checked.verdict.schemaVersion !== 2)
     throw new MediaFrameError("unavailable");

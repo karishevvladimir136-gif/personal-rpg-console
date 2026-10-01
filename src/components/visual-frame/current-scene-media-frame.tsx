@@ -12,6 +12,7 @@ import type {
 import { parseVisualMetadata } from "@/lib/visual-frame/model";
 import {
   eligibleRealReferences,
+  frameRecoveryOverdue,
   parseRealFrame,
   realFrameDocuments,
   realFrameDocumentMutation,
@@ -293,7 +294,41 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
     return () => {
       active = false;
     };
-  }, [campaignId, transport]); // No polling, background generation, or gameplay lock.
+  }, [campaignId, transport]);
+  const generating = data
+    ? realFrameDocuments(data)
+        .filter(
+          ({ value }) =>
+            value.status === "generating" &&
+            value.basis.scene.id === data.publicState.current_scene_id,
+        )
+        .at(-1)
+    : null;
+  const generatingKey = generating
+    ? `${generating.record.id}:${generating.record.current_version_id}`
+    : null;
+  useEffect(() => {
+    if (!generatingKey || typeof window === "undefined" || typeof document === "undefined") return;
+    let active = true;
+    let reading = false;
+    const check = async () => {
+      if (!active || reading || document.visibilityState === "hidden") return;
+      reading = true;
+      try {
+        await refresh();
+      } catch {
+        // The saved request remains visible; the owner may refresh or recover it.
+      } finally {
+        reading = false;
+      }
+    };
+    void check();
+    const timer = window.setInterval(() => void check(), 15_000);
+    return () => {
+      active = false;
+      window.clearInterval(timer);
+    };
+  }, [generatingKey, refresh]);
   if (!data) return null;
   const snapshot = data,
     eligible = eligibleRealReferences(snapshot),
@@ -448,8 +483,26 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
       )}
       {latest && (
         <p role="status">
-          <Badge>{statusLabel(latest.value.status, w)}</Badge>{" "}
+          <Badge>
+            {latest.value.status === "generating" &&
+            frameRecoveryOverdue(latest.record)
+              ? w("Recovery needed", "Нужно восстановление")
+              : statusLabel(latest.value.status, w)}
+          </Badge>{" "}
           {latest.value.basis.scene.title}
+        </p>
+      )}
+      {latest?.value.status === "generating" && (
+        <p className="muted" role="status">
+          {frameRecoveryOverdue(latest.record)
+            ? w(
+                "FRAME could not confirm the result. Recover the saved request below; your story and previous illustration are safe. Recovery never generates another image.",
+                "Результат FRAME не подтверждён. Восстановите сохранённый запрос ниже: история и прежняя иллюстрация в безопасности. Восстановление не создаёт новое изображение.",
+              )
+            : w(
+                "Generating FRAME… You can keep playing.",
+                "FRAME создаётся… Можно продолжать игру.",
+              )}
         </p>
       )}
       {latest &&
@@ -802,14 +855,15 @@ export function RealFrameHistory({
                   {w("Cancel FRAME", "Отменить FRAME")}
                 </Button>
               )}
-              {value.status === "generating" && !retained && (
+              {value.status === "generating" && !retained &&
+                frameRecoveryOverdue(record) && (
                 <Button
                   disabled={busy}
                   onClick={() => void action(record, "recover")}
                 >
                   {w(
-                    "Recover stored result",
-                    "Восстановить сохранённый результат",
+                    "Recover FRAME",
+                    "Восстановить FRAME",
                   )}
                 </Button>
               )}

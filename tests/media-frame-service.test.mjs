@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { fixture } from "./media-frame-fixture.mjs";
 import {
+  FRAME_RECOVERY_AFTER_MS,
+  frameRecoveryOverdue,
   parseRealFrame,
   realFrameDocumentMutation,
 } from "../src/lib/visual-frame/real-frame.ts";
@@ -141,6 +143,73 @@ test("lost upload response recovers only previously stored bytes and exact deter
   f.calls.length = 0;
   await f.run("media.recover", retained);
   assert.deepEqual(f.calls, ["authorize", "recoveryReceipt", "receipt"]);
+});
+test("fresh missing pixels remain generating; overdue exact recovery becomes uncertain without a second paid image", async () => {
+  const f = fixture(),
+    q = await f.queue(),
+    input = f.dispatch(q.record),
+    claim = f.authority.claim;
+  f.authority.claim = async (...args) => {
+    await claim(...args);
+    throw Error("lost-claim");
+  };
+  await assert.rejects(f.run("media.dispatch", input));
+  const record = job(f, q.record.id),
+    recovery = f.recovery(record),
+    before = structuredClone(f.snapshot.publicState);
+  assert.equal(frameRecoveryOverdue(record), false);
+  await assert.rejects(f.run("media.recover", recovery));
+  assert.equal(parseRealFrame(job(f, record.id)).status, "generating");
+  record.updated_at = new Date(Date.now() - FRAME_RECOVERY_AFTER_MS - 1000).toISOString();
+  assert.equal(frameRecoveryOverdue(record), true);
+  const result = await f.run("media.recover", recovery);
+  assert.equal(result.status, "uncertain");
+  assert.equal(parseRealFrame(job(f, record.id)).status, "uncertain");
+  assert.equal(f.providerCalls(), 0);
+  assert.equal(f.reserved(), 600000);
+  assert.deepEqual(f.snapshot.publicState, before);
+  const writes = f.writes.length;
+  await assert.rejects(f.run("media.recover", recovery));
+  assert.equal(f.writes.length, writes);
+  assert.equal(f.providerCalls(), 0);
+});
+test("overdue saved pixels recover to owner draft after lost response with one generation", async () => {
+  const f = fixture(),
+    q = await f.queue(),
+    input = f.dispatch(q.record),
+    originalPut = f.store.put;
+  f.store.put = async (...args) => {
+    await originalPut(...args);
+    throw Error("lost-upload-response");
+  };
+  await assert.rejects(f.run("media.dispatch", input));
+  const record = job(f, q.record.id);
+  record.updated_at = new Date(Date.now() - FRAME_RECOVERY_AFTER_MS - 1000).toISOString();
+  const recovered = await f.run("media.recover", f.recovery(record));
+  assert.equal(recovered.status, "draft");
+  assert.equal(f.providerCalls(), 1);
+  assert.equal(f.reserved(), 600000);
+  assert.equal(parseRealFrame(job(f, record.id)).status, "draft");
+});
+test("lost grounding response keeps immutable pixels and never repeats the claimed paid check", async () => {
+  const f = fixture(),
+    q = await f.queue(),
+    input = f.dispatch(q.record),
+    originalCheck = f.verifier.check;
+  f.verifier.check = async (...args) => {
+    await originalCheck(...args);
+    throw Error("lost-check-response");
+  };
+  await assert.rejects(f.run("media.dispatch", input));
+  const record = job(f, q.record.id);
+  assert.equal(parseRealFrame(record).status, "generating");
+  record.updated_at = new Date(Date.now() - FRAME_RECOVERY_AFTER_MS - 1000).toISOString();
+  const checked = await f.run("media.recover", f.recovery(record));
+  assert.equal(checked.status, "uncertain");
+  assert.equal(parseRealFrame(job(f, record.id)).status, "uncertain");
+  assert.equal(f.providerCalls(), 1);
+  assert.equal(f.verifierCalls(), 1);
+  assert.equal(f.reserved(), 600000);
 });
 test("uncommitted stored-result recovery after genuine correction conflicts, preserving prior art", async () => {
   const f = fixture(),

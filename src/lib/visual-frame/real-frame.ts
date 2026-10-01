@@ -24,6 +24,16 @@ import { closedWorldFramePrompt } from "./closed-world.ts";
 import { illustrationFramePrompt } from "./illustration-review.ts";
 
 export const REAL_FRAME_ASSET_PREFIX = "RPG_REAL_FRAME_ASSET_V1\n";
+// Longer than the finite image request (120s) plus bounded scene verification.
+// Age only unlocks inspection of the saved request; it never authorizes a new image.
+export const FRAME_RECOVERY_AFTER_MS = 300_000;
+export function frameRecoveryOverdue(
+  record: Pick<DocumentRecord, "updated_at">,
+  now = Date.now(),
+): boolean {
+  const updated = Date.parse(record.updated_at);
+  return Number.isFinite(updated) && now - updated >= FRAME_RECOVERY_AFTER_MS;
+}
 export const IMAGE_MODELS = [
   "gpt-image-2.5-sunburst-2026-09-08",
   "gpt-image-2.5-flare-2026-09-08",

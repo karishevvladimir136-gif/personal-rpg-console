@@ -335,8 +335,9 @@ test("stored output recovery UI submits only retained recovery, never a paid dis
     record.id,
     await h.f.provider.generate(current, record.id),
   );
+  record.updated_at = new Date(Date.now() - model.FRAME_RECOVERY_AFTER_MS - 1000).toISOString();
   h.render();
-  await h.click("Recover stored result");
+  await h.click("Recover FRAME");
   assert.equal(h.sends.at(-1).action, "media.recover");
   assert.equal(h.f.providerCalls(), 1);
   assert.equal(
@@ -351,6 +352,25 @@ test("stored output recovery UI submits only retained recovery, never a paid dis
     ).length,
     before,
   );
+});
+test("Game labels current generation as nonblocking and overdue generation as recoverable without dispatching", async () => {
+  const h = await uiHarness(),
+    q = await h.f.queue(),
+    claim = h.f.authority.claim;
+  h.f.authority.claim = async (...args) => {
+    await claim(...args);
+    throw Error("lost-claim");
+  };
+  await assert.rejects(h.f.run("media.dispatch", h.f.dispatch(q.record)));
+  h.render();
+  assert.match(h.text(), /Generating FRAME… You can keep playing/);
+  assert.equal(h.f.providerCalls(), 0);
+  h.f.snapshot.documents.find((r) => r.id === q.record.id).updated_at =
+    new Date(Date.now() - model.FRAME_RECOVERY_AFTER_MS - 1000).toISOString();
+  h.render();
+  assert.match(h.text(), /Recovery needed/);
+  assert.match(h.text(), /Recover the saved request below/);
+  assert.equal(h.f.providerCalls(), 0);
 });
 
 for (const language of ["en", "ru"])
