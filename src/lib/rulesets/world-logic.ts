@@ -276,14 +276,31 @@ export function worldLogicContext(
     locations: locations.map((l) => ({ id: l.id, name: text(l.name, 240) })),
     travelOptions:
       includeConsequences && current
-        ? actors.flatMap((a) =>
-            locations.flatMap((l) => {
-              const capability = worldLogicTravelCapability(current.id, l.id);
-              return l.id !== current.id && a.capabilities.includes(capability)
-                ? [{ actorId: a.id, destinationId: l.id, capability }]
-                : [];
-            }),
-          )
+        ? [
+            ...actors.flatMap((a) =>
+              locations.flatMap((l) => {
+                const capability = worldLogicTravelCapability(current.id, l.id);
+                return l.id !== current.id &&
+                  a.capabilities.includes(capability)
+                  ? [{ actorId: a.id, destinationId: l.id, capability }]
+                  : [];
+              }),
+            ),
+            ...(input.localRoutes ?? []).flatMap((route) =>
+              actors.some((a) => a.id === route.actorId) &&
+              locations.some((l) => l.id === route.destinationId) &&
+              route.destinationId !== current.id &&
+              !actors.some(
+                (a) =>
+                  a.id === route.actorId &&
+                  a.capabilities.includes(
+                    worldLogicTravelCapability(current.id, route.destinationId),
+                  ),
+              )
+                ? [{ ...route, capability: null }]
+                : [],
+            ),
+          ]
         : [],
     consequenceOptions: includeConsequences
       ? worldLogicConsequenceOptions(
@@ -386,7 +403,8 @@ export function resolveWorldLogic(
         (route) =>
           route.actorId === actor.id &&
           route.destinationId === proposal.destinationId &&
-          proposal.capabilityRefs.includes(route.capability),
+          (route.capability === null ||
+            proposal.capabilityRefs.includes(route.capability)),
       )
     )
       return { status: "paused", reason: "unsupported" };

@@ -1,7 +1,7 @@
 import { isDeepStrictEqual } from "node:util";
 import { mergeConsequenceChanges } from "../world/consequences.ts";
 import type { RecordChange } from "../gameplay/server-contracts.ts";
-import { readWorldFoundation } from "../server/world/store.ts";
+import { readWorldFoundationWithLocalRoutes } from "../server/world/store.ts";
 import { stageWorldTransition } from "../world/stage.ts";
 import { parseWorldState } from "../world/validation.ts";
 import {
@@ -43,7 +43,7 @@ async function authority(rpc: FoundationRpc, claim: TurnClaim) {
   const timeline = claim.lease.timeline;
   if (!timeline) throw new TurnError("conflict");
   const { input } = claim.turn;
-  const snapshot = await readWorldFoundation(
+  const { snapshot, localRoutes } = await readWorldFoundationWithLocalRoutes(
     rpc,
     claim.source.ownerId,
     input.campaignId,
@@ -57,7 +57,7 @@ async function authority(rpc: FoundationRpc, claim: TurnClaim) {
     expectedRuntimeRevision: claim.lease.expectedRevision,
     expectedHeadId: snapshot.headId,
   };
-  return { snapshot, command, source: claim.source, input };
+  return { snapshot, command, source: claim.source, input, localRoutes };
 }
 
 /** One typed action proposal, checkpointed before settlement or narration. */

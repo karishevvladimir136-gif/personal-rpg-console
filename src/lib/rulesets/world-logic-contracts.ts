@@ -18,6 +18,8 @@ export type WorldLogicInput = {
   command: FoundationCommand;
   source: RuntimeSource;
   input: TurnInput;
+  // Derived by the private World read; absent in pre-migration fixtures.
+  localRoutes?: { actorId: string; destinationId: string }[];
 };
 export type WorldLogicProposalV1 = {
   schemaVersion: 1;
@@ -87,7 +89,7 @@ export type WorldLogicContext = {
   travelOptions: {
     actorId: string;
     destinationId: string;
-    capability: string;
+    capability: string | null;
   }[];
   consequenceOptions: {
     actorId: string;
