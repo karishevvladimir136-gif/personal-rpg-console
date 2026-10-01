@@ -1,6 +1,7 @@
 import { readWorldFoundation } from "./world/store";
 import { resolveExecutionProfile } from "../model-runtime/registry";
 import { applicationModelSelection } from "../model-runtime/defaults";
+import { applicationGameplayTaskSelection } from "../production/task-defaults";
 import { randomUUID } from "node:crypto";
 import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
@@ -141,7 +142,10 @@ export function productionServices(
             : "dm.plan",
         profileId: randomUUID(),
         campaignPolicy: snapshot.executionPolicy,
-        globalDefault,
+        globalDefault: applicationGameplayTaskSelection(
+          snapshot.ruleset.id === "world-logic-v1" ? "world.resolve" : "dm.plan",
+          globalDefault,
+        ),
       }).modelId;
     },
     validateFoundation: async (

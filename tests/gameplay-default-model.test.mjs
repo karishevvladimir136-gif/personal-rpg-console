@@ -2,12 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { registerHooks } from "node:module";
-import { applicationModelSelection, DEFAULT_GAMEPLAY_MODEL } from "../src/lib/model-runtime/defaults.ts";
+import { applicationGameplayTaskSelection, applicationModelSelection, DEFAULT_GAMEPLAY_MODEL } from "../src/lib/model-runtime/defaults.ts";
 import { resolveExecutionProfile } from "../src/lib/model-runtime/registry.ts";
 import { providerSettings } from "../src/lib/production/configuration.ts";
 import { runtimeFixture } from "./phase2-runtime-fixtures.mjs";
 import { narrationSource } from "../src/lib/gameplay/turn-engine.ts";
 import { resolveMechanics, validatePlan } from "../src/lib/gameplay/mechanics/resolve.ts";
+import { fixture as worldLogicFixture } from "./wave3-logic-fixtures.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -42,6 +43,25 @@ test("new/inherited application defaults are Astra/high, with credentials still 
   assert.ok(!JSON.stringify(settings).includes("SYNTHETIC_ONLY"));
 });
 
+test("the Game resolver inherits Astra/medium while narration and explicit policy retain their selections", () => {
+  const globalDefault = applicationModelSelection({});
+  const taskDefault = (task) => applicationGameplayTaskSelection(task, globalDefault);
+  assert.deepEqual(taskDefault("world.resolve"), selected("gpt-6-astra", "medium"));
+  assert.deepEqual(taskDefault("dm.narrate"), selected("gpt-6-astra", "high"));
+  assert.equal(resolve(null, "world.resolve", taskDefault("world.resolve")).reasoning, "medium");
+  assert.equal(resolve(null, "dm.narrate", taskDefault("dm.narrate")).reasoning, "high");
+  const primary = { schemaVersion: 1, revision: 4, primary: selected("gpt-6-astra", "high"), taskOverrides: {} };
+  assert.equal(resolve(primary, "world.resolve", taskDefault("world.resolve")).reasoning, "high");
+  const override = { ...primary, taskOverrides: { "world.resolve": selected("gpt-6-astra", "low") } };
+  assert.equal(resolve(override, "world.resolve", taskDefault("world.resolve")).reasoning, "low");
+  const otherGlobal = selected("gpt-6-sol", "high");
+  assert.deepEqual(applicationGameplayTaskSelection("world.resolve", otherGlobal), otherGlobal);
+  const ownerEnvironment = selected("gpt-6-astra", "xhigh");
+  assert.deepEqual(applicationGameplayTaskSelection("world.resolve", ownerEnvironment), selected("gpt-6-astra", "medium"));
+  assert.deepEqual(applicationGameplayTaskSelection("dm.narrate", ownerEnvironment), selected("gpt-6-astra", "high"));
+  assert.equal(resolve(primary, "world.resolve", applicationGameplayTaskSelection("world.resolve", ownerEnvironment)).reasoning, "high");
+});
+
 test("explicit primary, overrides and historical null-reasoning policies keep their meaning", () => {
   const policy = { schemaVersion: 1, revision: 7, primary: selected("gpt-6-sol", "high"),
     taskOverrides: { "dm.narrate": selected("gpt-5.4", "low") } };
@@ -64,6 +84,31 @@ test("already-pinned profiles replay without reading or rewriting campaign polic
   assert.deepEqual(await resolver(randomUUID(), ["dm.plan"]), pinned);
   assert.equal(reads, 1);
   assert.deepEqual(pinned, before);
+});
+
+test("a new World Logic Game operation pins resolver medium and narrator high once", async () => {
+  const input = worldLogicFixture();
+  let pinned = null;
+  const profiles = async (args) => {
+    if (args.p_profiles) pinned = structuredClone(args.p_profiles);
+    return { data: pinned ?? {} };
+  };
+  const resolver = persistentProfileResolver(
+    input.snapshot.ownerId,
+    input.snapshot.campaignId,
+    input.snapshot.timeline,
+    async () => ({ data: input.snapshot }),
+    profiles,
+    applicationModelSelection({
+      OPENAI_DM_MODEL: "gpt-6-astra",
+      OPENAI_DM_REASONING: "xhigh",
+    }),
+  );
+  const tasks = ["world.resolve", "dm.narrate"];
+  const first = await resolver(input.command.operationId, tasks);
+  assert.equal(first["world.resolve"].reasoning, "medium");
+  assert.equal(first["dm.narrate"].reasoning, "high");
+  assert.deepEqual(await resolver(input.command.operationId, tasks), first);
 });
 
 test("invalid explicit environment or campaign selection fails closed without fallback", () => {

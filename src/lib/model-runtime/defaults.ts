@@ -1,12 +1,9 @@
 import type { ModelSelection } from "../production/contracts.ts";
+import { DEFAULT_GAMEPLAY_MODEL } from "../production/task-defaults.ts";
+export { DEFAULT_GAMEPLAY_MODEL, applicationGameplayTaskSelection } from "../production/task-defaults.ts";
 
 // Owner-selected application default. This is separate from capability defaults
 // so existing explicit policies and pinned execution profiles keep their meaning.
-export const DEFAULT_GAMEPLAY_MODEL: Readonly<ModelSelection> = Object.freeze({
-  providerId: "openai",
-  modelId: "gpt-6-astra",
-  reasoning: "high",
-});
 export const STANDARD_SERVICE_TIER = "default" as const;
 
 // Validate at the existing runtime boundary. Explicit invalid/empty settings

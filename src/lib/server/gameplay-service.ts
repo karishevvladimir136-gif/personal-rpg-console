@@ -9,6 +9,7 @@ import { createTurnStore } from "./dm";
 import { productionServices } from "./production-service";
 import { readProductionSettings } from "./production-configuration";
 import { resolveExecutionProfile } from "../model-runtime/registry";
+import { applicationGameplayTaskSelection } from "../production/task-defaults";
 import { randomUUID } from "node:crypto";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { createMemoryStore } from "./memory/store";
@@ -50,7 +51,10 @@ export async function readPlay(campaignId: string) {
         settings.ruleset.id === "world-logic-v1" ? "world.resolve" : "dm.plan",
       profileId: randomUUID(),
       campaignPolicy: settings.runtimePolicy,
-      globalDefault: settings.providers.globalDefault,
+      globalDefault: applicationGameplayTaskSelection(
+        settings.ruleset.id === "world-logic-v1" ? "world.resolve" : "dm.plan",
+        settings.providers.globalDefault,
+      ),
       providerAvailable: () =>
         settings.providers.providers[0]?.status === "configured_not_tested",
     }).modelId;

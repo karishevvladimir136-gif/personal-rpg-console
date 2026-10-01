@@ -440,6 +440,7 @@ export function ProductionSettingsEditor({
   const effective = {
     runtimePolicy: draft.runtimePolicy,
     providers: current.providers,
+    ruleset: draft.ruleset,
   };
   return (
     <Panel className={styles.settings}>

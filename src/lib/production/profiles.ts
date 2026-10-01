@@ -12,6 +12,7 @@ import {
   validateExecutionProfile,
 } from "../model-runtime/registry.ts";
 import { DmError } from "../gameplay/dm-errors.ts";
+import { applicationGameplayTaskSelection } from "./task-defaults.ts";
 
 export type ProfileRpc = (args: {
   p_owner_id: string;
@@ -35,6 +36,10 @@ export function persistentProfileResolver(
     tasks: RuntimeTask[],
     token?: string,
   ): Promise<Partial<Record<RuntimeTask, ExecutionProfile>>> => {
+    const worldLogicGame =
+      tasks.length === 2 &&
+      tasks.includes("world.resolve") &&
+      tasks.includes("dm.narrate");
     const args = {
       p_owner_id: ownerId,
       p_campaign_id: campaignId,
@@ -65,7 +70,9 @@ export function persistentProfileResolver(
             task,
             profileId: randomUUID(),
             campaignPolicy: foundation.executionPolicy,
-            globalDefault,
+            globalDefault: worldLogicGame
+              ? applicationGameplayTaskSelection(task, globalDefault)
+              : globalDefault,
           }),
         ]),
       );

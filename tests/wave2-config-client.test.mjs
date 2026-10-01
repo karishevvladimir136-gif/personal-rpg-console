@@ -34,7 +34,7 @@ function providers() {
         providerId: "openai",
         id: "gpt-6-astra",
         label: "Astra",
-        reasoning: ["low", "xhigh"],
+        reasoning: ["low", "medium", "high", "xhigh"],
       },
       {
         providerId: "openai",
@@ -136,7 +136,7 @@ test("provider DTO rejects credential fields, duplicates and invalid statuses wi
   }
 });
 
-test("all five tasks inherit campaign then global choices with no model substitution", () => {
+test("basic Game tasks inherit the campaign and global choices", () => {
   const row = settings();
   assert.equal(productionTasks.length, 5);
   assert.ok(productionTasks.includes("world.resolve"));
@@ -178,6 +178,21 @@ test("provider availability and absent application default remain explicit", () 
   row.providers.globalDefault = null;
   assert.equal(effectiveSelection(row).selection, null);
   assert.equal(effectiveSelection(row).status, "unavailable");
+});
+
+test("Game task selection displays the inherited resolver medium without changing narration high", () => {
+  const row = settings();
+  row.ruleset = structuredClone(selectableRulesets[1]);
+  row.providers.globalDefault = model("gpt-6-astra", "xhigh");
+  assert.equal(effectiveSelection(row, "world.resolve").selection.reasoning, "medium");
+  assert.equal(effectiveSelection(row, "dm.narrate").selection.reasoning, "high");
+  row.runtimePolicy = {
+    schemaVersion: 1,
+    revision: 1,
+    primary: model("gpt-6-astra", "high"),
+    taskOverrides: {},
+  };
+  assert.equal(effectiveSelection(row, "world.resolve").selection.reasoning, "high");
 });
 
 test("uncertain retry preserves exact request identity, fence, profiles and independent world policy", () => {

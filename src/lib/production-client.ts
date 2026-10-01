@@ -10,6 +10,7 @@ import type {
 } from "./production/contracts.ts";
 import type { TimelineFence } from "./saves/contracts.ts";
 import { isTimelineFence, sameTimeline } from "./saves/fence.ts";
+import { applicationGameplayTaskSelection } from "./production/task-defaults.ts";
 
 export const productionTasks = [
   "dm.plan",
@@ -319,7 +320,7 @@ export function createProductionAttempt(
   };
 }
 export function effectiveSelection(
-  settings: Pick<CampaignProductionSettings, "runtimePolicy" | "providers">,
+  settings: Pick<CampaignProductionSettings, "runtimePolicy" | "providers" | "ruleset">,
   task?: RuntimeTask,
 ): {
   selection: ModelSelection | null;
@@ -332,7 +333,9 @@ export function effectiveSelection(
   const chosen =
     explicit ??
     settings.runtimePolicy?.primary ??
-    settings.providers.globalDefault;
+    (task && settings.ruleset.id === "world-logic-v1" && settings.providers.globalDefault
+      ? applicationGameplayTaskSelection(task, settings.providers.globalDefault)
+      : settings.providers.globalDefault);
   const inheritedFrom = explicit
     ? "task"
     : settings.runtimePolicy?.primary
