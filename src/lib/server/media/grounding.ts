@@ -64,9 +64,6 @@ export function frameGroundingContext(frame: RealFrame): BuiltContext {
   };
 }
 export function openAiFrameVerifier(options: ProviderOptions) {
-  const requester = createStructuredRequester(options, {
-    task: "media.frame.verify",
-  });
   function preflight(frame: RealFrame) {
     if (
       !options.apiKey ||
@@ -101,23 +98,38 @@ export function openAiFrameVerifier(options: ProviderOptions) {
         pixels.output.bytes !== pixels.bytes.byteLength
       )
         throw new DmError("validation");
+      // Keep timeout evidence local to this exact check. The shared requester
+      // still exposes only its safe gameplay error; no raw provider diagnostic
+      // is returned to the player or shared across concurrent FRAME checks.
+      let timedOut = false;
+      const requester = createStructuredRequester({
+        ...options,
+        diagnosticObserver: (diagnostic) => {
+          timedOut = diagnostic.abortKind === "timeout";
+          options.diagnosticObserver?.(diagnostic);
+        },
+      }, { task: "media.frame.verify" });
       const response = await requester(
-        frameGroundingContext(frame),
-        "summary",
-        operationId,
-        (value) => {
-          const verdict =
-            frame.schema === 4
-              ? parseFrameSafetyVerdict(value)
-              : parseFrameGroundingVerdict(value);
-          if (!verdict) throw new DmError("validation");
-          return verdict;
-        },
-        frame.schema === 4 ? frameSafetySchema : frameGroundingSchema,
-        {
-          dataUrl: `data:image/png;base64,${Buffer.from(pixels.bytes).toString("base64")}`,
-        },
-      );
+          frameGroundingContext(frame),
+          "summary",
+          operationId,
+          (value) => {
+            const verdict =
+              frame.schema === 4
+                ? parseFrameSafetyVerdict(value)
+                : parseFrameGroundingVerdict(value);
+            if (!verdict) throw new DmError("validation");
+            return verdict;
+          },
+          frame.schema === 4 ? frameSafetySchema : frameGroundingSchema,
+          {
+            dataUrl: `data:image/png;base64,${Buffer.from(pixels.bytes).toString("base64")}`,
+          },
+      ).catch((error: unknown) => {
+        if (timedOut)
+          throw new DOMException("FRAME check deadline", "TimeoutError");
+        throw error;
+      });
       const result: FrameCheckResult = {
         schemaVersion: frame.schema === 4 ? 2 : 1,
         verdict: response.output,

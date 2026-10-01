@@ -458,20 +458,36 @@ export async function executeMediaFrame(
   const checkClaim = await deps.authority.checkClaim!(checkInput);
   let checked = checkClaim.result;
   if (!checked && checkClaim.claimed) {
+    let result: FrameCheckResult;
     try {
-      const result = await deps.verifier!.check(
+      result = await deps.verifier!.check(
         parseRealFrame(record)!,
         pixels,
         record.id,
         record.current_version_id,
       );
-      if (!isFrameCheckResult(result)) throw new MediaFrameError("unavailable");
-      checked = await deps.authority.checkComplete!(checkInput, result);
-    } catch {
-      // A response or receipt may have been lost. Keep the coherent generating
-      // job and immutable pixels; explicit recovery inspects the durable claim.
+    } catch (error) {
+      // A known verifier deadline has ended this dispatch. The image may have
+      // been charged, so retain its pixels and paid claim as uncertain. Other
+      // interruptions may still be in flight and are reconciled by receipt.
+      if (
+        error && typeof error === "object" && "name" in error &&
+        (error.name === "TimeoutError" || error.name === "AbortError")
+      ) {
+        await deps.authority.lifecycle(
+          baseMutation(
+            snapshot,
+            { ...parseRealFrame(record)!, status: "uncertain", failure: "uncertain" },
+            record,
+            record.current_version_id,
+          ),
+        );
+      }
       throw new MediaFrameError("unavailable");
     }
+    if (!isFrameCheckResult(result)) throw new MediaFrameError("unavailable");
+    // A lost completion receipt can still be read without rerunning the check.
+    checked = await deps.authority.checkComplete!(checkInput, result);
   }
   if (!checked || !isFrameCheckResult(checked)) {
     if (!frameRecoveryOverdue(record)) throw new MediaFrameError("unavailable");
