@@ -168,6 +168,7 @@ async function execute(
     );
     if (logic) {
       source.worldLogicPresence = logic.presence;
+      source.worldLogicMundaneDetail = logic.mundaneDetail;
       requireRule(
         input.mode === "game" &&
           checkpoint.checks.length === 0 &&

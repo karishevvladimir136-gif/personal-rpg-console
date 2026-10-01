@@ -85,6 +85,19 @@ export function worldLogicTurnPreparer(
       usage = response.usage;
     }
     const result = resolveWorldLogic(input, proposal);
+    const checkpoint = claim.turn.checkpoint;
+    if (
+      result.status === "staged" &&
+      result.mundaneDetail &&
+      (foundationAction != null ||
+        checkpoint.foundationAction != null ||
+        checkpoint.plan?.foundationAction != null ||
+        checkpoint.foundationSettlement != null ||
+        checkpoint.plan?.publicPatches?.length ||
+        checkpoint.plan?.privatePatches?.length ||
+        checkpoint.checks.length)
+    )
+      throw new TurnError("validation");
     const world = parseWorldState(
       input.snapshot.world,
       input.snapshot.campaignId,
@@ -97,6 +110,9 @@ export function worldLogicTurnPreparer(
           ? result.resolution
           : null,
       usage,
+      ...(result.status === "staged" && result.mundaneDetail
+        ? { mundaneDetail: result.mundaneDetail }
+        : {}),
       presence: {
         controlledEntityIds: world.actors
           .filter((a) => a.control === "player" && a.entityId !== null)
@@ -229,6 +245,12 @@ function prepareWorldUnsafe(
         !isDeepStrictEqual(action.resolution, base))
     )
       throw new TurnError("validation");
+    if (
+      action?.status === "staged" &&
+      action.mundaneDetail &&
+      stageWorldTransition(stageInput).status !== "noop"
+    )
+      throw new TurnError("validation");
     let result: ResolverStageResult = stageWorldTransition(stageInput);
     if (result.status === "paused" && result.reason === "resolver_required") {
       if (previous)
@@ -248,7 +270,7 @@ function prepareWorldUnsafe(
     const publicEvents =
       result.status === "staged" ? [...result.publicEvents] : [];
     if (action?.status === "staged") {
-      publicEvents.unshift(...action.publicEvents);
+      if (!action.mundaneDetail) publicEvents.unshift(...action.publicEvents);
       const originalActors = snapshot.world?.actors;
       const actionActors = action.settlement.nextWorld.actors;
       const resolverActors = settlement?.nextWorld.actors;

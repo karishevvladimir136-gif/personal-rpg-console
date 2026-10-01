@@ -5,6 +5,7 @@ import type {
 } from "../gameplay/server-contracts.ts";
 import type { WorldSettlement } from "./contracts.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
+import type { MundanePublicDetail } from "../rulesets/world-logic-contracts.ts";
 
 // Internal integration seam, never a provider or client-controlled settlement.
 export type PreparedWorld = {
@@ -28,5 +29,6 @@ export type PrepareWorldLogic = (
   foundationAction?: JsonObject | null;
   resolution: MechanicsResolution | null;
   usage: ProviderUsage | null;
+  mundaneDetail?: MundanePublicDetail;
   presence?: { controlledEntityIds: string[]; presentEntityIds: string[] };
 } | null>;

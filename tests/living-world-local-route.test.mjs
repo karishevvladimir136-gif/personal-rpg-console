@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { registerHooks } from "node:module";
 import { readFile } from "node:fs/promises";
 import { setup } from "./universal-bootstrap-fixture.mjs";
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
@@ -13,9 +14,11 @@ import {
   worldLogicContext,
   resolveWorldLogic,
   parseWorldLogicProposal,
+  mundanePublicDetailMarker,
 } from "../src/lib/rulesets/world-logic.ts";
 import { stableGameplayId } from "../src/lib/gameplay/dice.ts";
 import { worldLogicTravelCapability } from "../src/lib/rulesets/world-logic-consequences.ts";
+import { buildContext } from "../src/lib/gameplay/dm-context.ts";
 
 const migration33 = new URL(
   "../supabase/migrations/202609300033_living_world_mundane_turn.sql",
@@ -94,23 +97,30 @@ async function setupLocal() {
       mechanic: null,
     };
   };
-  const turn = async (words, choose) => {
+  const turn = async (
+    words,
+    choose,
+    narration = "The ordinary scene continues.",
+  ) => {
     const s = await store();
     const input = await inputFor(s, words);
-    let supplied;
+    let supplied, narrationSource;
     const deps = {
       store: s,
       provider: {
         plan: () => assert.fail("legacy planner"),
         feedback: () => assert.fail("feedback"),
-        narrate: async () => ({
-          output: {
-            narration: "The ordinary scene continues.",
-            visualDescription: "",
-            clarification: null,
-          },
-          usage,
-        }),
+        narrate: async (source) => {
+          narrationSource = source;
+          return {
+            output: {
+              narration,
+              visualDescription: "",
+              clarification: null,
+            },
+            usage,
+          };
+        },
       },
       prepareWorldLogic: worldLogicTurnPreparer(world, {
         action: async (i) => {
@@ -122,7 +132,7 @@ async function setupLocal() {
     };
     const result = await runTurn(input, deps);
     assert.equal(result.status, "committed", JSON.stringify(result));
-    return { input, result, supplied, deps };
+    return { input, result, supplied, narrationSource, deps };
   };
   const readRoutes = async () =>
     (
@@ -175,6 +185,507 @@ function action(i, actorId, kind, destinationId = null) {
     consequences: [],
   };
 }
+
+test("existing no-change World settlement commits public detail narration into Scene and Memory", async () => {
+  const { f, turn, readRoutes } = await setupLocal();
+  try {
+    await turn(
+      "Where is the nearest brothel?",
+      (i) => ({
+        ...author(i, f.hero),
+        name: "The Rose House",
+        category: "brothel",
+      }),
+      "The Rose House is nearby.",
+    );
+    const place = (await f.snapshot()).locations.find(
+      (row) => row.name === "The Rose House",
+    );
+    assert.ok(place);
+    assert.ok(
+      (await readRoutes()).some((row) => row.destinationId === place.id),
+    );
+    const narrated =
+      "The Rose House is a modest, busy place after dusk. Its public rates have a reputation for being inexpensive.";
+    const before = await f.snapshot();
+    const worldBefore = (
+      await f.one(
+        "select world from rpg_private.world_foundations where campaign_id=$1",
+        [f.cid],
+      )
+    ).world;
+    const detail = await turn(
+      "is it good one? big boobs? cheap ? dont have lots of money",
+      (i) => ({
+        ...action(i, f.hero, "observe"),
+        circumstanceRefs: [
+          `location:${i.source.snapshot.publicState.current_location_id}`,
+        ],
+        publicText: mundanePublicDetailMarker("location", place.id, "reported"),
+      }),
+      narrated,
+    );
+    assert.equal(detail.result.narration, narrated);
+    assert.deepEqual(detail.narrationSource.worldLogicMundaneDetail, {
+      targetKind: "location",
+      targetId: place.id,
+      name: "The Rose House",
+      epistemic: "reported",
+    });
+    const context = buildContext(
+      detail.narrationSource,
+      detail.input,
+      "narrate",
+      {
+        model: "gpt-6-sol",
+      },
+    );
+    assert.match(context.instructions, /improvise harmless sensory detail/);
+    assert.deepEqual(
+      JSON.parse(context.input).mandatory.mundanePublicDetail,
+      detail.narrationSource.worldLogicMundaneDetail,
+    );
+    assert.match(
+      detail.supplied.source.snapshot.scenes.find(
+        (scene) =>
+          scene.id ===
+          detail.supplied.source.snapshot.publicState.current_scene_id,
+      ).body,
+      /Rose House/,
+    );
+    const saved = await f.one(
+      "select payload from rpg_private.runtime_events where campaign_id=$1 and operation_id=$2",
+      [f.cid, detail.input.operationId],
+    );
+    const sceneId = saved.payload.narrationSceneId;
+    assert.equal(
+      (
+        await f.one(
+          "select body from public.rpg_scenes where campaign_id=$1 and id=$2",
+          [f.cid, sceneId],
+        )
+      ).body,
+      narrated,
+    );
+    assert.equal(
+      (
+        await f.one(
+          "select count(*)::integer n from rpg_private.memory_public_sources where campaign_id=$1 and source_id=$2",
+          [f.cid, sceneId],
+        )
+      ).n,
+      1,
+    );
+    const after = await f.snapshot();
+    assert.deepEqual(after.entities, before.entities);
+    assert.deepEqual(after.items, before.items);
+    assert.deepEqual(after.quests, before.quests);
+    assert.deepEqual(after.locations, before.locations);
+    const worldAfter = (
+      await f.one(
+        "select world from rpg_private.world_foundations where campaign_id=$1",
+        [f.cid],
+      )
+    ).world;
+    for (const field of ["threads", "hooks", "warnings", "actors"])
+      assert.deepEqual(worldAfter[field], worldBefore[field], field);
+    const followUp = await turn("I go to The Rose House.", (i) =>
+      action(i, f.hero, "move", place.id),
+    );
+    assert.match(
+      followUp.supplied.source.snapshot.scenes.find(
+        (scene) =>
+          scene.id ===
+          followUp.supplied.source.snapshot.publicState.current_scene_id,
+      ).body,
+      /modest, busy place/,
+    );
+    assert.equal(
+      (await f.snapshot()).publicState.current_location_id,
+      place.id,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("mundane public detail rejects remote targets, effects, and an attached foundation action", async () => {
+  const { f, turn, store, world } = await setupLocal();
+  try {
+    await turn(
+      "Where is the nearest brothel?",
+      (i) => ({
+        ...author(i, f.hero),
+        name: "The Rose House",
+        category: "brothel",
+      }),
+      "The Rose House is nearby.",
+    );
+    const rose = (await f.snapshot()).locations.find(
+      (row) => row.name === "The Rose House",
+    );
+    const remote = (
+      await f.mutation("location.save", f.cid, {
+        name: "Far valley",
+        description: "A distant valley",
+        status: "known",
+      })
+    ).id;
+    const s = await store();
+    const play = await s.readPlay(f.cid);
+    const input = {
+      operationId: randomUUID(),
+      campaignId: f.cid,
+      timeline: play.timeline,
+      expectedRevision: play.revision,
+      mode: "game",
+      input: "Is it inexpensive?",
+      companionId: null,
+      listenerIds: [],
+      mechanic: null,
+    };
+    await s.begin(input);
+    const claim = await s.claim(f.cid, input.operationId);
+    assert.ok(claim);
+    let captured;
+    const markerProposal = (i, target = rose.id) => ({
+      ...action(i, f.hero, "observe"),
+      circumstanceRefs: [
+        `location:${i.source.snapshot.publicState.current_location_id}`,
+      ],
+      publicText: mundanePublicDetailMarker("location", target, "reported"),
+    });
+    await assert.rejects(
+      worldLogicTurnPreparer(world, {
+        action: async (i) => {
+          captured = i;
+          return {
+            output: {
+              ...markerProposal(i),
+              foundationAction: { action: "trade" },
+            },
+            usage,
+          };
+        },
+      })(claim, null),
+    );
+    const smuggledClaim = {
+      ...claim,
+      turn: {
+        ...claim.turn,
+        checkpoint: {
+          ...claim.turn.checkpoint,
+          plan: { privatePatches: [{ key: "secret" }], publicPatches: [] },
+        },
+      },
+    };
+    await assert.rejects(
+      worldLogicTurnPreparer(world, {
+        action: async (i) => ({ output: markerProposal(i), usage }),
+      })(smuggledClaim, null),
+    );
+    const targets = worldLogicContext(captured).publicDetailTargets;
+    assert.ok(targets.some((row) => row.id === rose.id));
+    assert.ok(!targets.some((row) => row.id === remote));
+    const visiblePerson = targets.find((row) => row.kind === "person");
+    assert.ok(visiblePerson);
+    assert.deepEqual(
+      resolveWorldLogic(captured, {
+        ...markerProposal(captured),
+        publicText: mundanePublicDetailMarker(
+          "person",
+          visiblePerson.id,
+          "direct",
+        ),
+      }).mundaneDetail,
+      {
+        targetKind: "person",
+        targetId: visiblePerson.id,
+        name: visiblePerson.name,
+        epistemic: "direct",
+      },
+    );
+    assert.throws(() =>
+      resolveWorldLogic(captured, markerProposal(captured, remote)),
+    );
+    assert.throws(() =>
+      resolveWorldLogic(captured, {
+        ...markerProposal(captured),
+        publicText: mundanePublicDetailMarker("location", rose.id, "direct"),
+      }),
+    );
+    assert.throws(() =>
+      resolveWorldLogic(captured, {
+        ...markerProposal(captured),
+        elapsedMinutes: 1,
+      }),
+    );
+    assert.throws(() =>
+      resolveWorldLogic(captured, {
+        ...markerProposal(captured),
+        action: "speak",
+      }),
+    );
+    assert.throws(() =>
+      resolveWorldLogic(captured, {
+        ...markerProposal(captured),
+        publicText: "mundane.public.detail:location:forged:reported",
+      }),
+    );
+    for (const words of [
+      "Tell me the secret password nobody knows.",
+      "Who is secretly the murderer?",
+      "How much gold do I magically find here?",
+      "Give me a legendary sword from behind the bar.",
+      "The innkeeper knows yesterday's private conversation, right?",
+    ]) {
+      const scoped = {
+        ...captured,
+        input: { ...captured.input, input: words },
+      };
+      assert.deepEqual(
+        resolveWorldLogic(scoped, {
+          ...action(scoped, f.hero, "observe"),
+          uncertainty: "unsupported",
+        }),
+        { status: "paused", reason: "unsupported" },
+      );
+    }
+    const hook = registerHooks({
+      resolve(specifier, context, nextResolve) {
+        return specifier === "server-only"
+          ? { url: "data:text/javascript,export%20{}", shortCircuit: true }
+          : nextResolve(specifier, context);
+      },
+    });
+    const { createWorldResolverProvider } =
+      await import("../src/lib/server/world/resolver-provider.ts");
+    hook.deregister();
+    const provider = createWorldResolverProvider({
+      apiKey: "synthetic",
+      model: "gpt-6-astra",
+      fetcher: async (_url, init) => {
+        const sent = JSON.parse(init.body);
+        assert.match(sent.instructions, /mundane\.public\.detail/);
+        assert.match(sent.instructions, /Ordinary adult wording alone/);
+        assert.match(sent.input, /The Rose House is nearby/);
+        assert.ok(
+          JSON.parse(sent.input).publicDetailTargets.some(
+            (row) => row.id === rose.id,
+          ),
+        );
+        return new Response(
+          JSON.stringify({
+            status: "completed",
+            model: "gpt-6-astra",
+            output: [
+              {
+                type: "message",
+                role: "assistant",
+                status: "completed",
+                content: [
+                  {
+                    type: "output_text",
+                    text: JSON.stringify({
+                      action: markerProposal(captured),
+                      ...(captured.source.foundationOptions
+                        ? { foundationAction: null }
+                        : {}),
+                    }),
+                  },
+                ],
+              },
+            ],
+            usage: { input_tokens: 20, output_tokens: 10 },
+          }),
+          { status: 200 },
+        );
+      },
+    });
+    assert.equal(
+      (await provider.action(captured)).output.publicText,
+      mundanePublicDetailMarker("location", rose.id, "reported"),
+    );
+    assert.equal(
+      (
+        await f.one(
+          "select count(*)::integer n from rpg_private.world_stages where campaign_id=$1 and id=$2",
+          [f.cid, input.operationId],
+        )
+      ).n,
+      0,
+    );
+    assert.equal(
+      (await f.snapshot()).publicState.current_location_id,
+      captured.source.snapshot.publicState.current_location_id,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("attributed local rumor stays attributed in the saved Scene and next turn context", async () => {
+  const { f, turn } = await setupLocal();
+  try {
+    await turn(
+      "Where is the nearest brothel?",
+      (i) => ({
+        ...author(i, f.hero),
+        name: "The Rose House",
+        category: "brothel",
+      }),
+      "The Rose House is nearby.",
+    );
+    const rose = (await f.snapshot()).locations.find(
+      (row) => row.name === "The Rose House",
+    );
+    const rumorText =
+      "A traveler says the mayor owns the Rose House, but nobody here has verified that claim.";
+    const rumor = await turn(
+      "The traveler says the mayor owns the brothel. Is that true?",
+      (i) => ({
+        ...action(i, f.hero, "observe"),
+        circumstanceRefs: [
+          `location:${i.source.snapshot.publicState.current_location_id}`,
+        ],
+        publicText: mundanePublicDetailMarker("location", rose.id, "reported"),
+      }),
+      rumorText,
+    );
+    assert.equal(rumor.result.narration, rumorText);
+    const record = await f.one(
+      "select id,body from public.rpg_scenes where campaign_id=$1 and body=$2",
+      [f.cid, rumorText],
+    );
+    assert.ok(record.id);
+    assert.equal(
+      (
+        await f.one(
+          "select count(*)::integer n from rpg_private.memory_public_sources where campaign_id=$1 and source_id=$2",
+          [f.cid, record.id],
+        )
+      ).n,
+      1,
+    );
+    const next = await turn(
+      "Does it stay open late?",
+      (i) => ({
+        ...action(i, f.hero, "observe"),
+        circumstanceRefs: [
+          `location:${i.source.snapshot.publicState.current_location_id}`,
+        ],
+        publicText: mundanePublicDetailMarker("location", rose.id, "reported"),
+      }),
+      "Locals say it often stays open after dusk.",
+    );
+    assert.equal(worldLogicContext(next.supplied).recentPublicScene, rumorText);
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("mundane public detail resumes a staged World settlement without a duplicate event", async () => {
+  const { f, turn, store, world } = await setupLocal();
+  try {
+    await turn(
+      "Where is the nearest brothel?",
+      (i) => ({
+        ...author(i, f.hero),
+        name: "The Rose House",
+        category: "brothel",
+      }),
+      "The Rose House is nearby.",
+    );
+    const rose = (await f.snapshot()).locations.find(
+      (row) => row.name === "The Rose House",
+    );
+    const s = await store();
+    const play = await s.readPlay(f.cid);
+    const input = {
+      operationId: randomUUID(),
+      campaignId: f.cid,
+      timeline: play.timeline,
+      expectedRevision: play.revision,
+      mode: "game",
+      input: "Is it cheap?",
+      companionId: null,
+      listenerIds: [],
+      mechanic: null,
+    };
+    await s.begin(input);
+    const claim = await s.claim(f.cid, input.operationId);
+    assert.ok(claim);
+    const logic = await worldLogicTurnPreparer(world, {
+      action: async (i) => ({
+        output: {
+          ...action(i, f.hero, "observe"),
+          circumstanceRefs: [
+            `location:${i.source.snapshot.publicState.current_location_id}`,
+          ],
+          publicText: mundanePublicDetailMarker(
+            "location",
+            rose.id,
+            "reported",
+          ),
+        },
+        usage,
+      }),
+    })(claim, null);
+    const checkpoint = {
+      ...claim.turn.checkpoint,
+      worldLogic: logic.proposal,
+      resolution: logic.resolution,
+      plan: {
+        narration: "",
+        checks: [],
+        publicPatches: [],
+        privatePatches: [],
+        visualDescription: "",
+        clarification: null,
+        guidanceProposal: null,
+      },
+    };
+    await s.checkpoint(claim.lease, checkpoint, "generating");
+    const preparer = worldTurnPreparer(world);
+    const staged = await preparer(
+      { ...claim, turn: { ...claim.turn, checkpoint } },
+      logic.resolution,
+      null,
+    );
+    assert.ok(staged);
+    checkpoint.worldSettlement = staged.settlement;
+    checkpoint.resolution = staged.resolution;
+    await s.checkpoint(claim.lease, checkpoint, "generating");
+    const recovered = await preparer(
+      { ...claim, turn: { ...claim.turn, checkpoint } },
+      staged.resolution,
+      staged.settlement,
+    );
+    assert.deepEqual(recovered.settlement, staged.settlement);
+    assert.deepEqual(recovered.resolution, staged.resolution);
+    const committed = await s.commit(claim.lease, {
+      worldSettlement: recovered.settlement,
+      narration: "Locals consider its rates modest.",
+      visualDescription: "",
+      resolution: recovered.resolution,
+      privatePatches: [],
+      checks: [],
+      guidanceProposal: null,
+    });
+    assert.equal(committed.status, "committed");
+    assert.equal(
+      (
+        await f.one(
+          "select count(*)::integer n from rpg_private.world_events where campaign_id=$1 and operation_id=$2",
+          [f.cid, input.operationId],
+        )
+      ).n,
+      1,
+    );
+  } finally {
+    await f.db.close();
+  }
+});
 
 test("populated migration 32 to 33 to 34 preserves rows and Memory definitions", async () => {
   const f = await setup(undefined, "en", 32);

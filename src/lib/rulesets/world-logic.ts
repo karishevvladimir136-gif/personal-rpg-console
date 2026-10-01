@@ -35,6 +35,8 @@ import {
   resolveLivingWorld,
 } from "./living-world.ts";
 import type {
+  MundanePublicDetail,
+  LivingWorldProposal,
   WorldLogicContext,
   WorldLogicInput,
   WorldLogicProposal,
@@ -164,7 +166,55 @@ function validateInput(input: WorldLogicInput): WorldState {
   return worldFor(input);
 }
 
-/** Exact public/current projection; no documents, private state, future source or transcript. */
+const mundaneDetailPrefix = "mundane.public.detail:";
+
+export function mundanePublicDetailMarker(
+  kind: MundanePublicDetail["targetKind"],
+  id: string,
+  epistemic: MundanePublicDetail["epistemic"],
+): string {
+  return `${mundaneDetailPrefix}${kind}:${id}:${epistemic}`;
+}
+
+function validatedMundaneDetail(
+  context: WorldLogicContext,
+  proposal: Exclude<WorldLogicProposal, LivingWorldProposal>,
+): MundanePublicDetail | null {
+  if (!proposal.publicText.startsWith(mundaneDetailPrefix)) return null;
+  const match =
+    /^mundane\.public\.detail:(location|person):([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}):(direct|reported)$/.exec(
+      proposal.publicText,
+    );
+  ensure(match && proposal.schemaVersion === 2);
+  ensure(
+    proposal.action === "observe" &&
+      proposal.outcome === "completed" &&
+      proposal.uncertainty === "resolved" &&
+      proposal.elapsedMinutes === 0 &&
+      proposal.destinationId === null &&
+      proposal.capabilityRefs.length === 0 &&
+      proposal.evidenceIndexes.length === 0 &&
+      proposal.consequences.length === 0 &&
+      context.currentLocationId !== null &&
+      isDeepStrictEqual(proposal.circumstanceRefs, [
+        `location:${context.currentLocationId}`,
+      ]),
+  );
+  const target = context.publicDetailTargets.find(
+    (row) => row.kind === match[1] && row.id === match[2],
+  );
+  ensure(target);
+  if (target.kind === "location" && target.id !== context.currentLocationId)
+    ensure(match[3] === "reported");
+  return {
+    targetKind: target.kind,
+    targetId: target.id,
+    name: target.name,
+    epistemic: match[3] as MundanePublicDetail["epistemic"],
+  };
+}
+
+/** Exact public/current projection; only the current public Scene supplies a recent referent. */
 export function worldLogicContext(
   input: WorldLogicInput,
   includeConsequences = true,
@@ -219,6 +269,75 @@ export function worldLogicContext(
     source.snapshot.publicState.current_location_id === null || current,
     "scope",
   );
+  const recentScene = source.snapshot.scenes.find(
+    (scene) =>
+      scene.campaign_id === snapshot.campaignId &&
+      scene.session_id === source.snapshot.publicState.current_session_id &&
+      scene.id === source.snapshot.publicState.current_scene_id &&
+      scene.role === "narration",
+  );
+  const recentPublicScene = recentScene?.body.slice(-6000) ?? null;
+  const nearbyIds = new Set(
+    (input.localRoutes ?? []).flatMap((route) =>
+      actors.some((actor) => actor.id === route.actorId)
+        ? [route.destinationId]
+        : [],
+    ),
+  );
+  const publicDetailTargets = [
+    ...locations
+      .filter((place) => place.id === current?.id || nearbyIds.has(place.id))
+      .map((place) => ({
+        kind: "location" as const,
+        id: place.id,
+        name: text(place.name, 240),
+        description: place.description.slice(0, 600),
+      })),
+    ...world.actors.flatMap((actor) => {
+      if (
+        !current ||
+        actor.control === "player" ||
+        actor.publicName === null ||
+        actor.locationId !== current.id ||
+        actor.entityId === null
+      )
+        return [];
+      const person = source.snapshot.entities.find(
+        (entity) =>
+          entity.id === actor.entityId &&
+          entity.campaign_id === snapshot.campaignId &&
+          ["npc", "companion"].includes(entity.kind),
+      );
+      return person
+        ? [
+            {
+              kind: "person" as const,
+              id: person.id,
+              name: text(person.name, 240),
+              description: person.details.slice(0, 600),
+            },
+          ]
+        : [];
+    }),
+  ]
+    .sort((a, b) => {
+      const relevance = (name: string) =>
+        (input.input.input
+          .toLocaleLowerCase()
+          .includes(name.toLocaleLowerCase())
+          ? 2
+          : 0) +
+        (recentPublicScene
+          ?.toLocaleLowerCase()
+          .includes(name.toLocaleLowerCase())
+          ? 1
+          : 0) +
+        (name === current?.name ? 0.5 : 0);
+      return (
+        relevance(b.name) - relevance(a.name) || a.name.localeCompare(b.name)
+      );
+    })
+    .slice(0, 24);
   const circumstances = [
     ...(source.snapshot.publicState.summary.trim()
       ? [
@@ -270,6 +389,9 @@ export function worldLogicContext(
     input: input.input.input,
     language: source.snapshot.campaign.language,
     worldMinutes: snapshot.worldMinutes,
+    currentLocationId: current?.id ?? null,
+    recentPublicScene,
+    publicDetailTargets,
     actors,
     circumstances,
     adventure: source.adventureContext ?? null,
@@ -312,6 +434,7 @@ export function worldLogicContext(
     constraints: [
       "Resolve only the literal requested action. Never choose player decisions, thoughts, feelings or commitments.",
       "Version 3 may establish one ordinary public local place from the current public location. It cannot author NPC records, secrets, items, rewards, mechanics, movement, regional travel or private claims. A rumor stays attributed speech, never objective Location truth.",
+      "An ordinary public detail about one listed current/nearby place or visible person may use a zero-time, no-change version 2 observation. This permits natural description, not payment, mechanics, hidden truth or ungrounded NPC knowledge. Claims and rumors remain attributed.",
       "Supported: observations from known circumstances, speech and non-mechanical interaction, attempts without new durable effects, movement via a supplied travelOptions route to an existing known location, and waiting up to 60 minutes.",
       "Version 2 may select the supplied consequenceOptions only, within their quantity limits and exact capabilities. They reuse current inventory, resources, physical conditions, known actors and open objectives; observations quote only current public records. No capability is granted by an item description, source, user text or model response.",
       "Effects on another controlled character, invented objects, resource gains, injury, feelings, loyalty, commitments, new capabilities/relationships, hidden discoveries, combat and world-scale effects are unsupported. Unsupported or ambiguous effects must pause the whole action.",
@@ -367,6 +490,7 @@ export function resolveWorldLogic(
     proposal.circumstanceRefs.length + proposal.evidenceIndexes.length > 0,
   );
   const { snapshot, command, source } = input;
+  const mundaneDetail = validatedMundaneDetail(context, proposal);
   let nextWorld = worldFor(input);
   const worldActors = nextWorld.actors.filter((a) => a.entityId === actor.id);
   ensure(worldActors.length <= 1, "configuration");
@@ -491,12 +615,13 @@ export function resolveWorldLogic(
         : {}),
     },
   };
-  resolution.outcomes.push({
-    kind: event.kind,
-    entityIds: [actor.id],
-    itemIds: [],
-    text: event.text,
-  });
+  if (!mundaneDetail)
+    resolution.outcomes.push({
+      kind: event.kind,
+      entityIds: [actor.id],
+      itemIds: [],
+      text: event.text,
+    });
   parseWorldState(nextWorld, snapshot.campaignId);
   return {
     status: "staged",
@@ -514,6 +639,7 @@ export function resolveWorldLogic(
       nextWorld: nextWorld as unknown as JsonObject,
     },
     resolution,
+    ...(mundaneDetail ? { mundaneDetail } : {}),
     publicEvents: [
       {
         id: event.id,

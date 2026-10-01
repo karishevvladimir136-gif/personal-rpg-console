@@ -69,11 +69,25 @@ export type LivingWorldProposal = {
     | null;
   vicinity: "nearby" | "same_street" | null;
 };
+export type MundanePublicDetail = {
+  targetKind: "location" | "person";
+  targetId: string;
+  name: string;
+  epistemic: "direct" | "reported";
+};
 export type WorldLogicContext = {
   schemaVersion: 1;
   input: string;
   language: string;
   worldMinutes: number;
+  currentLocationId: string | null;
+  recentPublicScene: string | null;
+  publicDetailTargets: {
+    kind: "location" | "person";
+    id: string;
+    name: string;
+    description: string;
+  }[];
   actors: {
     id: string;
     name: string;
@@ -111,6 +125,7 @@ export type WorldLogicResult =
       settlement: WorldSettlement;
       resolution: MechanicsResolution;
       publicEvents: PublicWorldEvent[];
+      mundaneDetail?: MundanePublicDetail;
     }
   | {
       status: "mundane";
