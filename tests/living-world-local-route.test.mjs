@@ -468,6 +468,9 @@ test("mundane public detail rejects remote targets, effects, and an attached fou
         const sent = JSON.parse(init.body);
         assert.match(sent.instructions, /mundane\.public\.detail/);
         assert.match(sent.instructions, /Ordinary adult wording alone/);
+        assert.match(sent.instructions, /rumors, gossip, hearsay/);
+        assert.match(sent.instructions, /exact rumor need not be pre-authored evidence/);
+        assert.match(sent.instructions, /Who is secretly the murderer/);
         assert.match(sent.input, /The Rose House is nearby/);
         assert.ok(
           JSON.parse(sent.input).publicDetailTargets.some(
@@ -579,6 +582,132 @@ test("attributed local rumor stays attributed in the saved Scene and next turn c
       "Locals say it often stays open after dusk.",
     );
     assert.equal(worldLogicContext(next.supplied).recentPublicScene, rumorText);
+  } finally {
+    await f.db.close();
+  }
+});
+
+test("natural gossip questions use reported detail and retain attributed Scene and Memory", async () => {
+  const { f, turn } = await setupLocal();
+  try {
+    await turn(
+      "Where is the nearest brothel?",
+      (i) => ({
+        ...author(i, f.hero),
+        name: "The Rose House",
+        category: "brothel",
+      }),
+      "The Rose House is nearby.",
+    );
+    const rose = (await f.snapshot()).locations.find(
+      (row) => row.name === "The Rose House",
+    );
+    assert.ok(rose);
+    const before = await f.snapshot();
+    const worldBefore = (
+      await f.one(
+        "select world from rpg_private.world_foundations where campaign_id=$1",
+        [f.cid],
+      )
+    ).world;
+    const cases = [
+      {
+        words:
+          "mmm you talk as person who where there often.... let me check. any rumors except ? anything?",
+        narration:
+          "Often? No, says the innkeeper. But locals gossip that the Rose House grows noisy after midnight; I cannot say whether that is true.",
+      },
+      {
+        words: "Any rumors about The Rose House?",
+        narration:
+          "Locals say the Rose House gets rowdy after midnight, though that is only gossip.",
+      },
+      {
+        words: "What do locals say about it?",
+        narration:
+          "People around here joke that one regular has lost three fortunes there; nobody has checked the tale.",
+      },
+      {
+        words: "You've been there often — anything interesting?",
+        narration:
+          "Often? No, says the innkeeper. I have only heard a rumor that the owner knows someone in the watch, but I cannot verify it.",
+      },
+    ];
+    for (const { words, narration } of cases) {
+      const detail = await turn(
+        words,
+        (i) => ({
+          ...action(i, f.hero, "observe"),
+          circumstanceRefs: [
+            `location:${i.source.snapshot.publicState.current_location_id}`,
+          ],
+          publicText: mundanePublicDetailMarker("location", rose.id, "reported"),
+        }),
+        narration,
+      );
+      assert.equal(detail.result.narration, narration);
+      assert.equal(detail.narrationSource.worldLogicMundaneDetail.epistemic, "reported");
+      const context = buildContext(detail.narrationSource, detail.input, "narrate", {
+        model: "gpt-6-sol",
+      });
+      assert.match(context.instructions, /invent ordinary local gossip, hearsay/);
+      assert.match(context.instructions, /correct the premise/);
+      const saved = await f.one(
+        "select payload from rpg_private.runtime_events where campaign_id=$1 and operation_id=$2",
+        [f.cid, detail.input.operationId],
+      );
+      const scene = await f.one(
+        "select body from public.rpg_scenes where campaign_id=$1 and id=$2",
+        [f.cid, saved.payload.narrationSceneId],
+      );
+      assert.equal(scene.body, narration);
+      assert.equal(
+        (
+          await f.one(
+            "select count(*)::integer n from rpg_private.memory_public_sources where campaign_id=$1 and source_id=$2",
+            [f.cid, saved.payload.narrationSceneId],
+          )
+        ).n,
+        1,
+      );
+    }
+    const truth = await turn(
+      "Is the rumor actually true?",
+      (i) => ({
+        ...action(i, f.hero, "observe"),
+        circumstanceRefs: [
+          `location:${i.source.snapshot.publicState.current_location_id}`,
+        ],
+        publicText: mundanePublicDetailMarker("location", rose.id, "reported"),
+      }),
+      "Nobody here can verify that rumor about the owner and the watch.",
+    );
+    assert.match(worldLogicContext(truth.supplied).recentPublicScene, /cannot verify it/);
+    assert.match(truth.result.narration, /Nobody here can verify/);
+    const after = await f.snapshot();
+    for (const family of ["entities", "items", "quests", "locations", "storages"])
+      assert.deepEqual(after[family], before[family], family);
+    assert.equal(after.publicState.current_location_id, before.publicState.current_location_id);
+    assert.equal(after.worldMinutes, before.worldMinutes);
+    const worldAfter = (
+      await f.one(
+        "select world from rpg_private.world_foundations where campaign_id=$1",
+        [f.cid],
+      )
+    ).world;
+    for (const field of ["threads", "hooks", "warnings", "actors"])
+      assert.deepEqual(worldAfter[field], worldBefore[field], field);
+    const secretInput = {
+      ...truth.supplied,
+      input: { ...truth.supplied.input, input: "Who is secretly the murderer?" },
+    };
+    assert.deepEqual(
+      resolveWorldLogic(secretInput, {
+        ...action(secretInput, f.hero, "observe"),
+        uncertainty: "unsupported",
+      }),
+      { status: "paused", reason: "unsupported" },
+    );
   } finally {
     await f.db.close();
   }

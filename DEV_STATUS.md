@@ -1,3 +1,15 @@
+# Development status — Playtest 2.0 natural conversation — READY FOR REVIEW
+
+**Milestone/status (2026-10-01):** On isolated `codex/playtest2-reported-conversation` from accepted `main` `33c654629616010382175df550d65aa11073b0a1`, the narrow rumor follow-up correction is implemented and verified for owner review. It is not owner accepted or activated. Main, the running owner app, the migration-34 real database and owner campaign gameplay state remain unchanged.
+
+**Reproduction and change:** A read-only inspection of the failed owner turn found World Logic schema v2 `observe` with `missing_evidence` and `blocked` for the natural rumor follow-up. The existing `mundane.public.detail` / `epistemic: reported` path already commits an attributed Scene and public Memory source. Resolver instructions now explicitly classify ordinary gossip, hearsay, local stories and conversational follow-ups about an eligible current/nearby place or visible person as that same zero-time reported-detail path without requiring a pre-authored rumor. A visible person may correct an unsupported premise about having visited and offer ordinary opinion or qualified gossip. Narration instructions preserve attribution and uncertainty; a truth challenge cannot silently establish the claim. Hidden-truth demands remain unsupported. Only the World Logic context/instructions, narrator instructions and focused regression tests changed. No schema, migration, persistence model, World settlement authority, Memory trigger or gameplay mechanic changed.
+
+**Verification:** The exact owner follow-up and three requested English prompts commit scripted attributed rumor scenes through disposable migration-34 fixtures. Public Memory indexes each Scene, the next turn reads the prior rumor, and structured entities, items, quests, locations, storages, World threads/hooks/warnings/actors, location and world time remain unchanged. A claim of secret murderer remains unsupported; a rumor truth challenge stays unverified. Focused Living World tests **11/11 passed**. The complete suite with an isolated local preview passed **1,824 tests: 1,823 passed, 0 failed, 1 existing skipped**. Typecheck, repository-wide zero-warning lint and production webpack build passed. The preview server was stopped. No real model/image provider call, owner database mutation or deployment occurred.
+
+**Decision/remaining work:** This is a prompt-classification correction with deterministic contract and persistence coverage; live model behavior still requires owner Playtest 2.0 after separate review and activation. No new known implementation issue. Next step is owner review of this isolated commit.
+
+---
+
 # Development status — Playtest 2.0 natural play correction — READY FOR REVIEW
 
 **Milestone/status (2026-09-30):** From accepted and activated `main` at `fa73275a73028c6c9ac6ed71f050f3991a2ffda1`, the isolated Game-history and bounded mundane-description corrections are implemented for review. Owner acceptance remains pending. The real owner database remains at migration 34; no owner campaign mutation, real provider call, deployment or main publication occurred.
