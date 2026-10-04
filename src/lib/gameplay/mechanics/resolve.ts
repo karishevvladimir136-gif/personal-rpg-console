@@ -19,7 +19,11 @@ import type {
 } from "../server-contracts.ts";
 import { stableGameplayId } from "../dice.ts";
 import { requireRule, TurnError } from "../turn-errors.ts";
-import { basicProfile, validateConfiguration } from "./profile.ts";
+import {
+  basicProfile,
+  supportedActivityRuleset,
+  validateConfiguration,
+} from "./profile.ts";
 
 const ownFields: Record<MechanicChoice["kind"], string[]> = {
   "resource.spend": ["entityId", "resource", "amount"],
@@ -70,7 +74,7 @@ function configured(source: RuntimeSource) {
   const config = source.runtime.configuration;
   if (
     !config ||
-    ![basicProfile.id, "world-logic-v1"].includes(source.snapshot.settings.values.rulesSystem.id)
+    !supportedActivityRuleset(source.snapshot.settings.values.rulesSystem?.id)
   )
     throw new TurnError("configuration");
   validateConfiguration(source.snapshot, config);
@@ -449,12 +453,15 @@ export function resolveMechanics(
       (row) => row.campaign_id === cid && row.status === "active",
     );
   function settingsAt(revision: number) {
-    if (snapshot.settings.revision === revision)
-      return snapshot.settings.values;
-    const settings = snapshot.settingsHistory.find(
-      (row) => row.campaign_id === cid && row.revision === revision,
-    )?.values;
-    requireRule(settings && [basicProfile.id, "world-logic-v1"].includes(settings.rulesSystem.id));
+    const settings =
+      snapshot.settings.revision === revision
+        ? snapshot.settings.values
+        : snapshot.settingsHistory.find(
+            (row) => row.campaign_id === cid && row.revision === revision,
+          )?.values;
+    requireRule(
+      settings && supportedActivityRuleset(settings.rulesSystem?.id),
+    );
     return settings;
   }
   function storage(id: string, deposit = false): Storage {

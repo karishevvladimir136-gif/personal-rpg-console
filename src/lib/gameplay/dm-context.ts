@@ -15,7 +15,7 @@ import {
   narrationSchema,
   feedbackSchema,
 } from "./dm-schema.ts";
-import { basicProfile } from "./mechanics/profile.ts";
+import { basicProfile, supportedActivityRuleset } from "./mechanics/profile.ts";
 import { projectMemory } from "../memory/projection.ts";
 import { requireSourceTimeline } from "./timeline.ts";
 import type { RuntimeTask } from "../production/contracts.ts";
@@ -226,7 +226,7 @@ export function buildContext(
         : snapshot.settingsHistory.find(
             (row) => row.campaign_id === cid && row.revision === revision,
           )?.values;
-    if (!values || values.rulesSystem.id !== basicProfile.id)
+    if (!values || !supportedActivityRuleset(values.rulesSystem?.id))
       throw new DmError("context");
     return values;
   }

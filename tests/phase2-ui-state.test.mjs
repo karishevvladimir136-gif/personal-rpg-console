@@ -30,6 +30,13 @@ const input = {
   listenerIds: [],
   mechanic: null,
 };
+test("context failures have truthful copy distinct from transport errors", () => {
+  assert.equal(
+    gameplayErrorMessage(new GameplayClientError("context")),
+    "The DM context could not be prepared. Your text is still here.",
+  );
+  assert.match(gameplayErrorMessage(new GameplayClientError("unavailable")), /connection was interrupted/);
+});
 const turn = (patch = {}) => ({
   id: "operation-a",
   campaign_id: "campaign-a",

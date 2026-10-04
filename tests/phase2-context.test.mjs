@@ -70,6 +70,43 @@ test("active rest and encounter planning preserves original settings and pauses 
     ),
   );
 });
+test("activity context accepts only scoped Console Basic and World Logic settings revisions", () => {
+  for (const ruleset of ["console-basic-v1", "world-logic-v1"]) {
+    const { source, input } = runtimeFixture();
+    const pinned = structuredClone(source.snapshot.settings.values);
+    pinned.rulesSystem.id = ruleset;
+    source.snapshot.settings.revision = 4;
+    source.snapshot.settingsHistory = [{
+      id: randomUUID(), campaign_id: input.campaignId, revision: 3,
+      values: pinned, created_at: "now",
+    }];
+    source.runtime.encounters = [{
+      id: randomUUID(), campaign_id: input.campaignId, status: "active",
+      round: 1, outcome: null, settings_revision: 3,
+      public_summary: "An encounter is in progress.",
+    }];
+    source.runtime.restRecords = [{
+      id: randomUUID(), campaign_id: input.campaignId, kind: "short",
+      status: "planned", settings_revision: 3,
+      public_outcome: {}, created_at: "now",
+    }];
+    const activity = JSON.parse(buildContext(source, input, "plan", { model }).input)
+      .mandatory.activeActivitySettings;
+    assert.equal(activity.encounters[0].values.rulesSystem.id, ruleset);
+    assert.equal(activity.rests[0].values.rulesSystem.id, ruleset);
+    source.runtime.restRecords = [];
+    source.snapshot.settingsHistory[0].campaign_id = randomUUID();
+    assert.throws(() => buildContext(source, input, "plan", { model }), { code: "context" });
+    source.snapshot.settingsHistory[0].campaign_id = input.campaignId;
+    source.snapshot.settingsHistory[0].revision = 2;
+    assert.throws(() => buildContext(source, input, "plan", { model }), { code: "context" });
+    source.snapshot.settingsHistory[0].revision = 3;
+    for (const bad of ["unknown-ruleset", null]) {
+      source.snapshot.settingsHistory[0].values.rulesSystem = bad === null ? {} : { ...pinned.rulesSystem, id: bad };
+      assert.throws(() => buildContext(source, input, "plan", { model }), { code: "context" });
+    }
+  }
+});
 test("narration receives exact validated HP, resource, quantity and time changes without operational metadata", () => {
   const { source, input, resolution, actorId } = runtimeFixture();
   const itemId = randomUUID();

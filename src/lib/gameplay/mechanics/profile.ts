@@ -20,6 +20,9 @@ export const basicProfile = {
   forageYield: { abundant: 3, standard: 2, scarce: 1 },
 } as const;
 
+export const supportedActivityRuleset = (id: unknown): boolean =>
+  id === basicProfile.id || id === "world-logic-v1";
+
 export function validateConfiguration(
   snapshot: CampaignSnapshot,
   config: MechanicsConfiguration,

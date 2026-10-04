@@ -31,6 +31,8 @@ export function gameplayErrorMessage(error: unknown) {
       return "The DM needs local setup before it can respond. Your action is preserved.";
     case "validation":
       return "This action needs clarification or uses unsupported rules. No outcome was applied.";
+    case "context":
+      return "The DM context could not be prepared. Your text is still here.";
     default:
       return "The connection was interrupted. Check the saved turn before trying again.";
   }
