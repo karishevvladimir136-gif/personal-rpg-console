@@ -170,4 +170,199 @@ do $$ declare d text; needle text; begin
  execute d;
 end $$;
 
+-- For mechanics-aware new campaigns, the approved opening also prepares its
+-- visible NPCs. Generic house baseline: HP 8, attack 0, defense 10, skill 0.
+-- Historical campaigns receive no row changes from this migration.
+do $$ declare d text; needle text; begin
+ d:=pg_get_functiondef('public.rpg_bootstrap(uuid,uuid,text,jsonb)'::regprocedure);
+ needle:=$n$'details',x->'description','hp',coalesce(review#>'{mechanics,hp}','null'::jsonb),'max_hp',coalesce(review#>'{mechanics,hp}','null'::jsonb),'stats',case when review ? 'mechanics' then jsonb_build_object('attack',review#>'{mechanics,attack}','defense',review#>'{mechanics,defense}','skill',review#>'{mechanics,skill}') else '{}'::jsonb end$n$;
+ perform rpg_private.assert(position(needle in d)>0);
+ d:=replace(d,needle,$r$'details',x->'description','hp',case when (select nullif(configuration,'null'::jsonb) is not null from rpg_private.runtime_state where campaign_id=cid) then to_jsonb(8) else 'null'::jsonb end,'max_hp',case when (select nullif(configuration,'null'::jsonb) is not null from rpg_private.runtime_state where campaign_id=cid) then to_jsonb(8) else 'null'::jsonb end,'stats',case when (select nullif(configuration,'null'::jsonb) is not null from rpg_private.runtime_state where campaign_id=cid) then '{"attack":0,"defense":10,"skill":0}'::jsonb else '{}'::jsonb end$r$);
+ needle:=$n$perform rpg_private.bootstrap_write_receipt(uid,cid,approved_id,request,result);$n$;
+ perform rpg_private.assert(position(needle in d)>0);
+ d:=replace(d,needle,$r$perform rpg_private.bootstrap_write_receipt(uid,cid,approved_id,request,result);
+  if (select nullif(configuration,'null'::jsonb) is not null from rpg_private.runtime_state where campaign_id=cid) then
+   perform public.rpg_runtime(uid,cid,'configure',jsonb_build_object('requestId',rpg_private.wave4_id(op,'bootstrap:opening-mechanics'),'campaignId',cid,'expectedRevision',(select revision from rpg_private.runtime_state where campaign_id=cid),'configuration',jsonb_set((select configuration from rpg_private.runtime_state where campaign_id=cid),'{presentEntityIds}',actorids)),rpg_private.timeline_fence(cid));
+  end if;$r$);
+ execute d;
+end $$;
+
+-- This review reads only the approved public creation fields and current
+-- public records. The original provider output and DM-private state stay hidden.
+create function rpg_private.combat_weapon_label(v text) returns boolean
+language sql immutable set search_path='' as $$
+ select v ~* '^([[:alpha:]-]+[[:space:]]+){0,3}(longsword|shortsword|longbow|battleaxe|crossbow|warhammer|sword|bow|dagger|axe|mace|spear|club|knife|staff|hammer|rapier|sabre|scimitar|flail|halberd|pike|sling|whip|sickle)([[:space:]]+with[[:space:]]+[0-9]{1,3}[[:space:]]+arrows)?$'
+$$;
+revoke all on function rpg_private.combat_weapon_label(text) from public,anon,authenticated,service_role;
+
+create function rpg_private.combat_readiness_proposal(uid uuid,cid uuid) returns jsonb
+language plpgsql stable set search_path='' as $$
+declare f jsonb; hero public.rpg_entities%rowtype; world jsonb; place uuid;
+ creation jsonb; possession jsonb; possessions jsonb:='[]'::jsonb; people jsonb:='[]'::jsonb;
+ player_storage uuid; owned public.rpg_items%rowtype; npc public.rpg_entities%rowtype;
+ config jsonb; actor jsonb; n integer:=0; gear_line text; gear_token text; gear_name text; gear_quantity integer;
+begin
+ f:=rpg_private.foundation_read(uid,cid);
+ perform rpg_private.assert(f#>>'{ruleset,id}'='world-logic-v1');
+ select event->'payload' into creation from rpg_private.world_events where campaign_id=cid and event->>'kind'='campaign.bootstrap.created' order by sequence limit 1;
+ perform rpg_private.assert(creation is not null and jsonb_typeof(creation#>'{review,possessions}')='array');
+ select * into hero from public.rpg_entities where campaign_id=cid and id=(creation->>'heroId')::uuid and kind='player';
+ perform rpg_private.assert(hero.id is not null);
+ select s.id into player_storage from public.rpg_storages s where s.campaign_id=cid and s.entity_id=hero.id and s.kind='player' order by s.id limit 1;
+ perform rpg_private.assert(player_storage is not null);
+ select wf.world into world from rpg_private.world_foundations wf where wf.campaign_id=cid;
+ select current_location_id into place from public.rpg_public_state where campaign_id=cid;
+ config:=(select configuration from rpg_private.runtime_state where campaign_id=cid);
+ for possession in select value from jsonb_array_elements(creation#>'{review,possessions}') loop
+  if rpg_private.combat_weapon_label(possession->>'name') then
+   n:=n+1;
+   select * into owned from public.rpg_items i where i.campaign_id=cid and i.owner_entity_id=hero.id and i.storage_id=player_storage and i.name=possession->>'name' order by i.id limit 1;
+   possessions:=possessions||jsonb_build_array(jsonb_build_object('index',n,'name',possession->'name','quantity',possession->'quantity','currentQuantity',owned.quantity,'description',possession->'description','itemId',owned.id,'itemRevision',owned.revision,'equipped',owned.equipped_entity_id=hero.id,'damage',(select rule->'damage' from jsonb_array_elements(coalesce(config->'itemRules','[]'::jsonb)) rule where rule->>'itemId'=owned.id::text and rule->>'tag'='weapon' limit 1)));
+  end if;
+ end loop;
+ -- Older approved reviews may explicitly enumerate starting gear in their
+ -- public description while the old extractor omitted those Inventory rows.
+ -- A general ability to use a weapon is never possession authority.
+ select line into gear_line from regexp_split_to_table(creation#>>'{review,description}',chr(10)) line
+  where btrim(line) ~* '^starting (gear|equipment|possessions):' limit 1;
+ if gear_line is not null then
+  for gear_token in select btrim(part) from unnest(string_to_array(split_part(gear_line,':',2),',')) part loop
+   gear_name:=btrim(regexp_replace(gear_token,'[.;[:space:]]+$',''));
+   gear_name:=regexp_replace(gear_name,'^(and |an? )','','i');
+   gear_quantity:=1;
+   if gear_name ~ '^[0-9]{1,2}[[:space:]]+' then
+    gear_quantity:=split_part(gear_name,' ',1)::integer;
+    gear_name:=regexp_replace(gear_name,'^[0-9]{1,2}[[:space:]]+','');
+   end if;
+   if gear_quantity between 1 and 20 and length(gear_name) between 1 and 200 and
+      rpg_private.combat_weapon_label(gear_name) and
+      not exists(select 1 from jsonb_array_elements(possessions) prior where lower(prior->>'name')=lower(gear_name)) then
+    n:=n+1;
+    select * into owned from public.rpg_items i where i.campaign_id=cid and i.owner_entity_id=hero.id and i.storage_id=player_storage and lower(i.name)=lower(gear_name) order by i.id limit 1;
+    possessions:=possessions||jsonb_build_array(jsonb_build_object('index',n,'name',gear_name,'quantity',gear_quantity,'currentQuantity',owned.quantity,'description','','itemId',owned.id,'itemRevision',owned.revision,'equipped',owned.equipped_entity_id=hero.id,'damage',(select rule->'damage' from jsonb_array_elements(coalesce(config->'itemRules','[]'::jsonb)) rule where rule->>'itemId'=owned.id::text and rule->>'tag'='weapon' limit 1)));
+   end if;
+  end loop;
+ end if;
+ if place is not null then
+  for actor in select value from jsonb_array_elements(world->'actors') loop
+   if actor->>'control'='autonomous' and actor->>'locationId'=place::text and actor->>'publicName' is not null and actor->>'entityId' is not null then
+    select * into npc from public.rpg_entities e where e.campaign_id=cid and e.id=(actor->>'entityId')::uuid and e.kind='npc' and e.name=actor->>'publicName';
+    if npc.id is not null then
+     people:=people||jsonb_build_array(jsonb_build_object('id',npc.id,'name',npc.name,'revision',npc.revision,'hp',npc.hp,'maxHp',npc.max_hp,'attack',npc.stats->'attack','defense',npc.stats->'defense','skill',npc.stats->'skill'));
+    end if;
+   end if;
+  end loop;
+ end if;
+ return jsonb_build_object('fence',jsonb_build_object('campaignId',cid,'timeline',f->'timeline','expectedRevision',f->'revision','expectedRuntimeRevision',f->'runtimeRevision','expectedHeadId',f->'headId'),'hero',jsonb_build_object('id',hero.id,'name',hero.name,'revision',hero.revision,'hp',hero.hp,'maxHp',hero.max_hp,'attack',hero.stats->'attack','defense',hero.stats->'defense','skill',hero.stats->'skill'),'possessions',possessions,'npcs',people,'configuration',config,'handItem',(select jsonb_build_object('id',i.id,'name',i.name) from public.rpg_items i where i.campaign_id=cid and i.equipped_entity_id=hero.id and i.equipped_slot='hand' limit 1),'profile','console-basic-v1');
+end $$;
+revoke all on function rpg_private.combat_readiness_proposal(uuid,uuid) from public,anon,authenticated,service_role;
+
+-- Exactly one explicitly confirmed command; all changes and its receipt are
+-- committed in one transaction under the existing campaign/timeline fence.
+create function public.rpg_combat_readiness(p_owner_id uuid,p_campaign_id uuid,p_action text,p_payload jsonb default '{}') returns jsonb
+language plpgsql security definer set search_path='' as $$
+#variable_conflict use_column
+declare uid uuid:=p_owner_id; cid uuid:=p_campaign_id; op uuid; saved rpg_private.runtime_commands%rowtype;
+ proposal jsonb; hero public.rpg_entities%rowtype; npc public.rpg_entities%rowtype; person jsonb; gear jsonb;
+ stat_key text; stats jsonb; changed jsonb; config jsonb; rules jsonb; present_ids jsonb; controlled_ids jsonb;
+ selected_index integer; selected_item public.rpg_items%rowtype; item_id uuid; player_storage uuid;
+ occupied public.rpg_items%rowtype; damage integer; mid uuid; answer jsonb; number jsonb;
+begin
+ if uid is null or not exists(select 1 from rpg_private.owner_registry where user_id=uid) then raise exception 'rpg_forbidden' using errcode='42501'; end if;
+ perform 1 from public.rpg_campaigns where id=cid for update; if not found then raise exception 'rpg_not_found'; end if;
+ if p_action='inspect' then perform rpg_private.fields(p_payload,'{}'); return rpg_private.combat_readiness_proposal(uid,cid); end if;
+ perform rpg_private.assert(p_action='confirm' and jsonb_typeof(p_payload)='object' and octet_length(p_payload::text)<=32768);
+ perform rpg_private.fields(p_payload,array['requestId','proposal','player','weaponIndex','weaponDamage']);
+ op:=(p_payload->>'requestId')::uuid; perform rpg_private.assert(op is not null);
+ select * into saved from rpg_private.runtime_commands where id=op;
+ if found then
+  if saved.owner_id<>uid or saved.campaign_id<>cid or saved.request<>p_payload then raise exception 'rpg_conflict'; end if;
+  return saved.result;
+ end if;
+ perform rpg_private.assert(not exists(select 1 from rpg_private.timeline_command_ids where category='runtime' and id=op));
+ proposal:=rpg_private.combat_readiness_proposal(uid,cid);
+ if proposal<>p_payload->'proposal' then raise exception 'rpg_conflict'; end if;
+ perform rpg_private.foundation_fence(uid,cid,proposal->'fence');
+ perform rpg_private.assert(not exists(select 1 from rpg_private.turns where campaign_id=cid and input->>'mode' in ('game','companion','mechanic') and (status in ('pending','generating','awaiting_confirmation') or (status='failed' and retryable))));
+ perform rpg_private.fields(p_payload->'player',array['hp','attack','defense','skill']);
+ select * into hero from public.rpg_entities where campaign_id=cid and id=(proposal#>>'{hero,id}')::uuid and revision=(proposal#>>'{hero,revision}')::integer and kind='player';
+ perform rpg_private.assert(hero.id is not null);
+ changed:='{}'::jsonb; stats:=hero.stats;
+ if hero.hp is null then
+  number:=p_payload#>'{player,hp}';
+  perform rpg_private.assert(rpg_private.wave4_integer(number,1) and (number#>>'{}')::integer<=10000);
+  changed:=changed||jsonb_build_object('hp',number,'max_hp',number);
+ else perform rpg_private.assert(p_payload#>'{player,hp}'='null'::jsonb); end if;
+ foreach stat_key in array array['attack','defense','skill'] loop
+  if not stats ? stat_key then
+   number:=p_payload->'player'->stat_key;
+   perform rpg_private.assert(rpg_private.wave4_integer(number,case when stat_key='defense' then 1 else -20 end) and (number#>>'{}')::integer<=case when stat_key='defense' then 40 else 20 end);
+   stats:=stats||jsonb_build_object(stat_key,number);
+  else perform rpg_private.assert(p_payload->'player'->stat_key='null'::jsonb); end if;
+ end loop;
+ if stats<>hero.stats then changed:=changed||jsonb_build_object('stats',stats); end if;
+ if p_payload->'weaponIndex'<>'null'::jsonb then
+  selected_index:=(p_payload->>'weaponIndex')::integer;
+  perform rpg_private.assert(selected_index between 1 and jsonb_array_length(proposal->'possessions'));
+  gear:=proposal->'possessions'->(selected_index-1);
+  perform rpg_private.assert((gear->>'quantity')::integer>0);
+  perform rpg_private.assert(rpg_private.wave4_integer(p_payload->'weaponDamage',1) and (p_payload->>'weaponDamage')::integer<=20);
+  damage:=(p_payload->>'weaponDamage')::integer;
+  select s.id into player_storage from public.rpg_storages s where s.campaign_id=cid and s.entity_id=hero.id and s.kind='player' order by s.id limit 1;
+  if gear->'itemId'<>'null'::jsonb then
+   select * into selected_item from public.rpg_items i where i.campaign_id=cid and i.id=(gear->>'itemId')::uuid and i.revision=(gear->>'itemRevision')::integer and i.owner_entity_id=hero.id and i.storage_id=player_storage;
+   perform rpg_private.assert(selected_item.id is not null and selected_item.name=gear->>'name' and selected_item.quantity>0);
+   item_id:=selected_item.id;
+  else item_id:=rpg_private.wave4_id(op,'combat:item:'||selected_index::text); end if;
+  if not exists(select 1 from jsonb_array_elements(hero.equipment_slots) slot where slot->>'id'='hand' and slot->'accepts' ? 'weapon') then
+   changed:=changed||jsonb_build_object('equipment_slots',hero.equipment_slots||'[{"id":"hand","label":"Hand","accepts":["weapon"]}]'::jsonb);
+  end if;
+ else perform rpg_private.assert(p_payload->'weaponDamage'='null'::jsonb); end if;
+ if changed<>'{}'::jsonb then perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','entities','id',hero.id,'expectedRevision',hero.revision,'values',changed)); end if;
+ for person in select value from jsonb_array_elements(proposal->'npcs') loop
+  select * into npc from public.rpg_entities e where e.campaign_id=cid and e.id=(person->>'id')::uuid and e.revision=(person->>'revision')::integer and e.kind='npc';
+  perform rpg_private.assert(npc.id is not null);
+  changed:='{}'::jsonb; stats:=npc.stats;
+  if npc.hp is null then changed:=changed||'{"hp":8,"max_hp":8}'::jsonb; end if;
+  if not stats ? 'attack' then stats:=stats||'{"attack":0}'::jsonb; end if;
+  if not stats ? 'defense' then stats:=stats||'{"defense":10}'::jsonb; end if;
+  if not stats ? 'skill' then stats:=stats||'{"skill":0}'::jsonb; end if;
+  if stats<>npc.stats then changed:=changed||jsonb_build_object('stats',stats); end if;
+  if changed<>'{}'::jsonb then perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','entities','id',npc.id,'expectedRevision',npc.revision,'values',changed)); end if;
+ end loop;
+ if item_id is not null then
+  select * into occupied from public.rpg_items i where i.campaign_id=cid and i.equipped_entity_id=hero.id and i.equipped_slot='hand' and i.id<>item_id;
+  if found then perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','items','id',occupied.id,'expectedRevision',occupied.revision,'values','{"equipped_entity_id":null,"equipped_slot":null}'::jsonb)); end if;
+  if selected_item.id is not null then
+   perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','items','id',item_id,'expectedRevision',selected_item.revision,'values',jsonb_build_object('category','weapon','equipped_entity_id',hero.id,'equipped_slot','hand')));
+  else
+   perform rpg_private.runtime_change(cid,op,jsonb_build_object('family','items','id',item_id,'expectedRevision',null,'values',jsonb_build_object('name',gear->'name','category','weapon','quantity',gear->'quantity','description',coalesce(gear->'description','""'::jsonb),'mechanics','','owner_entity_id',hero.id,'storage_id',player_storage,'equipped_entity_id',hero.id,'equipped_slot','hand')));
+  end if;
+ end if;
+ config:=coalesce((select nullif(configuration,'null'::jsonb) from rpg_private.runtime_state where campaign_id=cid),'{"profile":"console-basic-v1","controlledEntityIds":[],"presentEntityIds":[],"nearbyStorageIds":[],"safeLocationIds":[],"itemRules":[]}'::jsonb);
+ perform rpg_private.assert(config->>'profile'='console-basic-v1');
+ controlled_ids:=coalesce(config->'controlledEntityIds','[]'::jsonb); present_ids:=coalesce(config->'presentEntityIds','[]'::jsonb);
+ if not controlled_ids ? hero.id::text then controlled_ids:=controlled_ids||jsonb_build_array(hero.id); end if;
+ if not present_ids ? hero.id::text then present_ids:=present_ids||jsonb_build_array(hero.id); end if;
+ for person in select value from jsonb_array_elements(proposal->'npcs') loop
+  if not present_ids ? (person->>'id') then present_ids:=present_ids||jsonb_build_array(person->'id'); end if;
+ end loop;
+ rules:=coalesce(config->'itemRules','[]'::jsonb);
+ if item_id is not null then
+  if exists(select 1 from jsonb_array_elements(rules) rule where rule->>'itemId'=item_id::text and rule->>'tag'='weapon') then
+   perform rpg_private.assert(not exists(select 1 from jsonb_array_elements(rules) rule where rule->>'itemId'=item_id::text and rule->>'tag'='weapon' and rule->'damage'<>'null'::jsonb and (rule->>'damage')::integer<>damage));
+   select coalesce(jsonb_agg(case when rule->>'itemId'=item_id::text and rule->>'tag'='weapon' and rule->'damage'='null'::jsonb then jsonb_set(rule,'{damage}',to_jsonb(damage)) else rule end order by n),'[]'::jsonb) into rules from jsonb_array_elements(rules) with ordinality entry(rule,n);
+  else rules:=rules||jsonb_build_array(jsonb_build_object('itemId',item_id,'tag','weapon','damage',damage)); end if;
+ end if;
+ config:=config||jsonb_build_object('controlledEntityIds',controlled_ids,'presentEntityIds',present_ids,'itemRules',rules);
+ perform public.rpg_runtime(uid,cid,'configure',jsonb_build_object('requestId',rpg_private.wave4_id(op,'combat:configure'),'campaignId',cid,'expectedRevision',(select revision from rpg_private.runtime_state where campaign_id=cid),'configuration',config),proposal#>'{fence,timeline}');
+ answer:=jsonb_build_object('campaignId',cid,'requestId',op,'ready',true);
+ insert into rpg_private.runtime_commands(id,campaign_id,owner_id,request,result) values(op,cid,uid,p_payload,answer);
+ mid:=rpg_private.timeline_capture(cid);
+ update rpg_private.timelines set head_manifest_id=mid,head_public=rpg_private.timeline_public_metadata(cid) where campaign_id=cid and id=(proposal#>>'{fence,timeline,timelineId}')::uuid;
+ return answer;
+end $$;
+revoke all on function public.rpg_combat_readiness(uuid,uuid,text,jsonb) from public,anon,authenticated;
+grant execute on function public.rpg_combat_readiness(uuid,uuid,text,jsonb) to service_role;
+
 commit;

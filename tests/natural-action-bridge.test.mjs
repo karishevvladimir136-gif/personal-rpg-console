@@ -7,6 +7,7 @@ import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { runTurn, resumeTurn } from "../src/lib/gameplay/turn-engine.ts";
 import { worldLogicTurnPreparer, worldTurnPreparer } from "../src/lib/production/turn-world.ts";
 import { initialCreationReview } from "../src/lib/adventures/bootstrap-validation.ts";
+import { combatReadinessNeeded } from "../src/lib/gameplay/combat-readiness.ts";
 
 async function harness(example = examples.fantasy) {
   const f = await setup(example, "en", 35);
@@ -48,6 +49,191 @@ async function ready(f, npc, item = null) {
   const play = await f.runtime(f.cid, "play");
   await f.runtime(f.cid, "configure", { requestId: randomUUID(), campaignId: f.cid, expectedRevision: play.revision, configuration: { profile: "console-basic-v1", controlledEntityIds: [f.hero], presentEntityIds: [f.hero, npc.id], nearbyStorageIds: [], safeLocationIds: [], itemRules: item ? [{ itemId: item.id, tag: "weapon", damage: 3 }] : [] } });
 }
+
+async function combatReview(f, action, payload = {}, campaignId = f.cid, owner = f.owner) {
+  return (await f.one("select public.rpg_combat_readiness($1,$2,$3,$4::jsonb) result", [owner, campaignId, action, JSON.stringify(payload)])).result;
+}
+
+function approval(proposal, weaponIndex = null, weaponDamage = null) {
+  return {
+    requestId: randomUUID(), proposal,
+    player: {
+      hp: proposal.hero.hp === null ? 10 : null,
+      attack: proposal.hero.attack === null ? 0 : null,
+      defense: proposal.hero.defense === null ? 10 : null,
+      skill: proposal.hero.skill === null ? 0 : null,
+    },
+    weaponIndex, weaponDamage,
+  };
+}
+
+test("historical combat review is read-only; explicit approval prepares owner-shaped sword attack exactly once", async () => {
+  const example = { ...examples.fantasy, description: "I carry a longsword. I know navigation and careful observation. I cannot cast spells.", item: "longsword", npc: "Innkeeper", location: "Inn common room", situation: "The innkeeper stands behind the counter.", narration: "At the inn, the innkeeper stands behind the counter." };
+  const { f, turn, npc } = await harness(example);
+  try {
+    const old = (await f.snapshot()).items.find((item) => item.name === "longsword");
+    await f.one("delete from public.rpg_items where campaign_id=$1 and id=$2", [f.cid, old.id]);
+    // The real older owner runtime stores the unset profile as JSON null.
+    await f.one("update rpg_private.runtime_state set configuration='null'::jsonb where campaign_id=$1 returning revision", [f.cid]);
+    const before = await f.snapshot();
+    const worldBefore = await f.one("select world,loop_state from rpg_private.world_foundations where campaign_id=$1", [f.cid]);
+    const proposal = await combatReview(f, "inspect");
+    assert.equal(proposal.hero.name, example.name);
+    assert.equal(proposal.hero.hp, null);
+    assert.equal(proposal.npcs.length, 1);
+    assert.equal(proposal.npcs[0].name, npc.name);
+    assert.equal(proposal.possessions[0].name, "longsword");
+    assert.equal(proposal.possessions[0].itemId, null);
+    assert.deepEqual(await f.snapshot(), before);
+    assert.deepEqual(await combatReview(f, "inspect"), proposal);
+    const command = approval(proposal, 1, 3);
+    assert.deepEqual(await combatReview(f, "confirm", command), { campaignId: f.cid, requestId: command.requestId, ready: true });
+    const after = await f.snapshot();
+    assert.deepEqual(await f.one("select world,loop_state from rpg_private.world_foundations where campaign_id=$1", [f.cid]), worldBefore);
+    const sword = after.items.find((item) => item.name === "longsword");
+    assert.ok(sword);
+    assert.equal(sword.quantity, 1);
+    assert.equal(sword.equipped_entity_id, f.hero);
+    assert.equal(after.entities.find((e) => e.id === f.hero).hp, 10);
+    assert.deepEqual(after.entities.find((e) => e.id === npc.id).stats, { attack: 0, defense: 10, skill: 0 });
+    assert.equal(after.entities.find((e) => e.id === npc.id).hp, 8);
+    const play = await f.runtime(f.cid, "play");
+    assert.deepEqual(play.configuration.controlledEntityIds, [f.hero]);
+    assert.ok(play.configuration.presentEntityIds.includes(npc.id));
+    assert.ok(play.configuration.itemRules.some((rule) => rule.itemId === sword.id && rule.tag === "weapon" && rule.damage === 3));
+    assert.deepEqual(await combatReview(f, "confirm", command), { campaignId: f.cid, requestId: command.requestId, ready: true });
+    assert.equal((await f.snapshot()).items.filter((item) => item.name === "longsword").length, 1);
+    assert.equal((await turn("I attack innkeeper with my sword", { schemaVersion: 4, actorId: f.hero, targetId: npc.id, method: "attack", itemId: sword.id, equipmentName: sword.name }, "You swing your longsword.")).result.status, "committed");
+  } finally { await f.db.close(); }
+});
+
+test("explicit approved Starting gear line repairs an omitted sword; general weapon ability alone does not", async () => {
+  const description = "A traveller who can use a sword. I know navigation and careful observation. I cannot cast spells.\nStarting gear: short sword, longsword, hunting bow with 50 arrows, sword maintenance kit.";
+  const example = { ...examples.fantasy, description, item: undefined, npc: "Innkeeper", location: "Inn common room", situation: "The innkeeper stands behind the counter.", narration: "The innkeeper stands behind the counter." };
+  const { f, turn, npc } = await harness(example);
+  try {
+    const proposal = await combatReview(f, "inspect");
+    assert.deepEqual(proposal.possessions.map((item) => item.name), ["short sword", "longsword", "hunting bow with 50 arrows"]);
+    assert.ok(proposal.possessions.every((item) => item.itemId === null));
+    const before = await f.snapshot();
+    assert.deepEqual((await f.snapshot()).items, before.items);
+    await combatReview(f, "confirm", approval(proposal, 2, 3));
+    const after = await f.snapshot();
+    assert.deepEqual(after.items.map((item) => item.name), ["longsword"]);
+    assert.equal(after.items[0].equipped_entity_id, f.hero);
+    assert.equal((await turn("I attack innkeeper with my sword", { schemaVersion: 4, actorId: f.hero, targetId: npc.id, method: "attack", itemId: after.items[0].id, equipmentName: "longsword" }, "You swing the longsword.")).result.status, "committed");
+  } finally { await f.db.close(); }
+  const abilityOnly = await setup({ ...examples.fantasy, description: "I can use a sword. I know navigation and careful observation. I cannot cast spells.", item: undefined }, "en", 35);
+  try {
+    await abilityOnly.create();
+    await abilityOnly.startOpening();
+    assert.deepEqual((await combatReview(abilityOnly, "inspect")).possessions, []);
+  } finally { await abilityOnly.db.close(); }
+});
+
+test("review preserves existing mechanics and does not adopt unapproved prose gear or foreign records", async () => {
+  const { f, npc } = await harness();
+  try {
+    await f.one("update public.rpg_entities set hp=13,max_hp=17,stats='{\"attack\":2}'::jsonb where campaign_id=$1 and id=$2", [f.cid, f.hero]);
+    await f.one("update public.rpg_entities set hp=5,max_hp=9,stats='{\"defense\":13}'::jsonb where campaign_id=$1 and id=$2", [f.cid, npc.id]);
+    const proposal = await combatReview(f, "inspect");
+    assert.equal(proposal.hero.hp, 13);
+    assert.equal(proposal.hero.attack, 2);
+    assert.equal(proposal.npcs[0].hp, 5);
+    assert.equal(proposal.npcs[0].defense, 13);
+    assert.ok(proposal.possessions.every((item) => item.name !== "sword"));
+    await assert.rejects(combatReview(f, "confirm", approval(proposal, 3, 2)), /rpg_validation/);
+    const foreign = await f.campaign("Other campaign");
+    const foreignNpc = (await f.mutation("entity.save", foreign, { kind: "npc", name: "Foreign NPC", details: "Other campaign", hp: 8, max_hp: 8, stats: {}, resources: {}, conditions: [], equipment_slots: [] })).id;
+    const forged = structuredClone(proposal);
+    forged.npcs[0].id = foreignNpc;
+    await assert.rejects(combatReview(f, "confirm", approval(forged)), /rpg_conflict/);
+    await assert.rejects(combatReview(f, "confirm", approval(proposal), foreign), /rpg_validation|rpg_conflict/);
+    const command = approval(proposal);
+    command.player.hp = 10;
+    await assert.rejects(combatReview(f, "confirm", command), /rpg_validation/);
+    command.player.hp = null;
+    await combatReview(f, "confirm", command);
+    const after = await f.snapshot();
+    assert.equal(after.entities.find((e) => e.id === f.hero).hp, 13);
+    assert.equal(after.entities.find((e) => e.id === f.hero).max_hp, 17);
+    assert.equal(after.entities.find((e) => e.id === f.hero).stats.attack, 2);
+    assert.equal(after.entities.find((e) => e.id === npc.id).hp, 5);
+    assert.equal(after.entities.find((e) => e.id === npc.id).stats.defense, 13);
+    assert.ok(after.items.every((item) => item.name !== "sword"));
+  } finally { await f.db.close(); }
+});
+
+test("only one of multiple approved possessions becomes the equipped weapon", async () => {
+  const example = { ...examples.fantasy, description: "I carry a sword and a bow. I know navigation and careful observation. I cannot cast spells.", item: "sword" };
+  const f = await setup(example, "en", 35);
+  try {
+    f.creation.possessions.push({ name: "bow", quantity: 1, description: "", quote: "bow" });
+    await f.create();
+    await f.startOpening();
+    const proposal = await combatReview(f, "inspect");
+    assert.equal(proposal.possessions.length, 2);
+    await combatReview(f, "confirm", approval(proposal, 2, 2));
+    const items = (await f.snapshot()).items;
+    assert.equal(items.filter((item) => item.equipped_entity_id === f.hero).length, 1);
+    assert.equal(items.find((item) => item.equipped_entity_id === f.hero).name, "bow");
+  } finally { await f.db.close(); }
+});
+
+test("mechanics-aware new campaign opens with generic visible NPC readiness and needs no historical review", async () => {
+  const example = { ...examples.fantasy, description: "I carry a sword. I know navigation and careful observation. I cannot cast spells.", item: "sword" };
+  const f = await setup(example, "en", 35);
+  try {
+    const review = { ...initialCreationReview(f.input, f.creation), mechanics: { hp: 10, attack: 0, defense: 10, skill: 0, weaponName: "sword", weaponDamage: 2 } };
+    await f.create(review);
+    await f.startOpening();
+    const proposal = await combatReview(f, "inspect");
+    const npc = proposal.npcs[0];
+    const play = await f.runtime(f.cid, "play");
+    assert.equal(npc.hp, 8);
+    assert.equal(npc.attack, 0);
+    assert.equal(npc.defense, 10);
+    assert.equal(npc.skill, 0);
+    assert.ok(play.configuration.presentEntityIds.includes(npc.id));
+    assert.equal(combatReadinessNeeded(proposal), false);
+  } finally { await f.db.close(); }
+});
+
+test("one historical review prepares every currently visible autonomous person", async () => {
+  const f = await setup(examples.fantasy, "en", 35);
+  try {
+    f.opening.actors.push({ name: "Road traveler", description: "A traveler waits nearby.", capabilities: ["ordinary public conversation"], limitations: [] });
+    await f.create();
+    await f.startOpening();
+    const proposal = await combatReview(f, "inspect");
+    assert.deepEqual(proposal.npcs.map((person) => person.name).sort(), ["Local work organiser", "Road traveler"]);
+    await combatReview(f, "confirm", approval(proposal));
+    const after = await f.snapshot();
+    assert.ok(after.entities.filter((person) => person.kind === "npc").every((person) => person.hp === 8 && person.max_hp === 8));
+    const present = (await f.runtime(f.cid, "play")).configuration.presentEntityIds;
+    assert.ok(proposal.npcs.every((person) => present.includes(person.id)));
+  } finally { await f.db.close(); }
+});
+
+test("late readiness validation failure rolls back entity, item and configuration writes", async () => {
+  const example = { ...examples.fantasy, description: "I carry a sword. I know navigation and careful observation. I cannot cast spells.", item: "sword" };
+  const { f } = await harness(example);
+  try {
+    const sword = (await f.snapshot()).items.find((item) => item.name === "sword");
+    const play = await f.runtime(f.cid, "play");
+    await f.runtime(f.cid, "configure", { requestId: randomUUID(), campaignId: f.cid, expectedRevision: play.revision, configuration: { profile: "console-basic-v1", controlledEntityIds: [f.hero], presentEntityIds: [f.hero], nearbyStorageIds: [], safeLocationIds: [], itemRules: [{ itemId: sword.id, tag: "weapon", damage: 3 }] } });
+    const proposal = await combatReview(f, "inspect");
+    const before = await f.snapshot();
+    const priorPlay = await f.runtime(f.cid, "play");
+    const command = approval(proposal, 1, 2);
+    await assert.rejects(combatReview(f, "confirm", command), /rpg_validation/);
+    assert.deepEqual(await f.snapshot(), before);
+    assert.deepEqual((await f.runtime(f.cid, "play")).configuration, priorPlay.configuration);
+    command.weaponDamage = 3;
+    await combatReview(f, "confirm", command);
+    assert.equal((await f.snapshot()).items.find((item) => item.id === sword.id).equipped_entity_id, f.hero);
+  } finally { await f.db.close(); }
+});
 
 test("present autonomous NPC conversation commits with no transfer and no generic receipt in narration", async () => {
   const { f, turn, npc } = await harness();
@@ -273,7 +459,7 @@ test("populated migration 34 to 35 preserves all rows and changes only reviewed 
     assert.deepEqual(await fingerprints(), before);
     assert.deepEqual(await f.snapshot(), oldSnapshot);
     assert.deepEqual(await f.query("select schemaname,tablename from pg_tables where schemaname in ('public','rpg_private') and tablename like 'rpg_%' order by 1,2"), tables);
-    const allowed = new Set(["world_validate_settlement_before_wave3", "rpg_runtime_phase2", "timeline_stamp", "natural_mechanic_validate", "rpg_runtime_wave3", "bootstrap_review", "rpg_bootstrap"]);
+    const allowed = new Set(["world_validate_settlement_before_wave3", "rpg_runtime_phase2", "timeline_stamp", "natural_mechanic_validate", "rpg_runtime_wave3", "bootstrap_review", "rpg_bootstrap", "combat_weapon_label", "combat_readiness_proposal", "rpg_combat_readiness"]);
     const changed = (await functions()).filter((row) => oldFunctions.get(row.signature) !== row.hash).map((row) => row.signature);
     assert.ok(changed.length > 0);
     assert.ok(changed.every((name) => [...allowed].some((part) => name.includes(`.${part}(`))), JSON.stringify(changed));

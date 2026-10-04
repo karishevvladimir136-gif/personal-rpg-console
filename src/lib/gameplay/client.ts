@@ -7,6 +7,7 @@ import type {
   ResumeInput,
   TurnInput,
 } from "./contracts.ts";
+import type { CombatReadinessConfirmation, CombatReadinessProposal } from "./combat-readiness.ts";
 
 export class GameplayClientError extends Error {
   code: string;
@@ -76,3 +77,7 @@ export const approveGuidance = (input: GuidanceApprovalInput) =>
   request<GuidanceApprovalResult>(`${base(input.campaignId)}/guidance`, input);
 export const configurePlay = (input: ConfigurePlayInput) =>
   request<PlaySnapshot>(`${base(input.campaignId)}/play/config`, input);
+export const loadCombatReadiness = (campaignId: string) =>
+  request<CombatReadinessProposal>(`${base(campaignId)}/combat-readiness`);
+export const confirmCombatReadiness = (campaignId: string, input: CombatReadinessConfirmation) =>
+  request<{ campaignId: string; requestId: string; ready: true }>(`${base(campaignId)}/combat-readiness`, input);
