@@ -152,6 +152,7 @@ export type MechanicsResolution = {
 };
 export type TurnCheckpoint = {
   naturalMechanic?: import("../rulesets/natural-mechanics.ts").NaturalMechanicIntent | null;
+  combatExchange?: import("./combat-exchange.ts").CombatExchangeCheckpoint | null;
   foundationAction?: JsonObject | null;
   foundationSettlement?:
     import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;
@@ -243,6 +244,7 @@ export interface DmProvider {
   ): Promise<ProviderResult<FeedbackResult>>;
 }
 export type TurnDependencies = {
+  prepareCombatIntent?: import("./combat-exchange.ts").PrepareCombatIntent;
   prepareFoundation?: import("../foundation-loop/turn.ts").PrepareFoundation;
   store: TurnStore;
   provider: DmProvider;

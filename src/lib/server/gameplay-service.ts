@@ -104,6 +104,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
     provider: memoryAwareProvider(production.provider, memory),
     prepareWorld: production.prepareWorld,
     prepareWorldLogic: production.prepareWorldLogic,
+    prepareCombatIntent: production.prepareCombatIntent,
     prepareFoundation: production.prepareFoundation,
     validateFoundation: production.validateFoundation,
   });
@@ -126,6 +127,7 @@ export async function continueTurn(
     provider: memoryAwareProvider(production.provider, memory),
     prepareWorld: production.prepareWorld,
     prepareWorldLogic: production.prepareWorldLogic,
+    prepareCombatIntent: production.prepareCombatIntent,
     prepareFoundation: production.prepareFoundation,
     validateFoundation: production.validateFoundation,
   });

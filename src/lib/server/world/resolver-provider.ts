@@ -4,6 +4,7 @@ import {
   parseFoundationActionProposal,
 } from "../../foundation-actions/index.ts";
 import type { JsonObject } from "../../gameplay/contracts.ts";
+import type { AutonomousCombatIntent, CombatDecision } from "../../gameplay/combat-exchange.ts";
 import { modelBudget, modelInputLimit } from "../../gameplay/dm-context.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import type {
@@ -159,6 +160,19 @@ export const naturalMechanicSchema = strictObject({
   itemId: { type: ["string", "null"] },
   equipmentName: { type: ["string", "null"], maxLength: 120 },
 });
+export const autonomousCombatSchema = strictObject({
+  intents: {
+    type: "array", maxItems: 12,
+    items: strictObject({
+      actorId: string,
+      action: { type: "string", enum: ["attack", "attempt", "defend", "move", "end-turn"] },
+      targetId: { type: ["string", "null"] },
+      itemId: { type: ["string", "null"] },
+      position: { type: ["string", "null"], enum: ["nearby", "far", "cover", null] },
+      description: { type: "string", maxLength: 240 },
+    }),
+  },
+});
 const actionSchema = { anyOf: [worldLogicSchema, livingWorldSchema, naturalMechanicSchema] };
 export const worldResolverSchema = strictObject({
   schemaVersion: { type: "integer", enum: [1] },
@@ -216,7 +230,8 @@ export function buildResolverContext(
     Object.hasOwn(data, "foundationOptions");
   const actionRouting = !!data && typeof data === "object" &&
     Object.hasOwn(data, "naturalMechanicOptions");
-  const fullInstructions = `${boundary}\n${actionRouting ? `${actionRoutingBoundary}\n` : ""}${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated World Logic proposal; foundationAction must be null for schemaVersion=3 or schemaVersion=4, otherwise null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in version 2 action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : "\nReturn an object containing exactly the action proposal."}`;
+  const combat = !!data && typeof data === "object" && Object.hasOwn(data, "actorsToDecide");
+  const fullInstructions = `${boundary}\n${actionRouting ? `${actionRoutingBoundary}\n` : ""}${instructions}${combat ? "\nReturn an object containing exactly intents." : foundation ? "\nReturn the two-part envelope: action is the validated World Logic proposal; foundationAction must be null for schemaVersion=3 or schemaVersion=4, otherwise null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in version 2 action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : "\nReturn an object containing exactly the action proposal."}`;
   // UTF-8 bytes upper-bound token usage, including framing; never cut mandatory work.
   const estimatedTokens =
     Buffer.byteLength(
@@ -276,6 +291,23 @@ export function createWorldResolverProvider(options: ProviderOptions) {
     return { request, validate };
   };
   return {
+    async combat(decision: CombatDecision): Promise<ProviderResult<AutonomousCombatIntent[]>> {
+      const { request, validate } = checkedRequest();
+      const context = buildResolverContext(
+        options.model, decision,
+        "Choose one bounded combat intent for each actorsToDecide entry, in that exact order. You are the DM choosing ordinary autonomous behavior, not the mechanics engine. Use only the supplied public encounter, scene, current HP/positions, and each actor's authorized personality. Attack or attempt must target a listed living controlled opponent in reach. An attack may select only one listed equipped weapon for that actor by exact itemId; otherwise itemId is null. An attempt can describe a creative ordinary environmental action such as swinging a bottle, but it has no automatic damage or condition and itemId is null. Move may use only nearby, far or cover. Defend or end-turn are always safe. No invented item, gear, spell, power, knowledge, dice, hit, damage, HP, condition, transfer, or player decision. If no other legal action is appropriate, end-turn. Return only intents; description is brief fictional intent, never outcome.",
+        decision.participants.length,
+        autonomousCombatSchema,
+      );
+      const response = await request(context, "plan", decision.operationId, (raw) => {
+        const value = raw as { intents?: unknown };
+        if (!value || typeof value !== "object" || !Array.isArray(value.intents))
+          throw new DmError("validation");
+        return value.intents as AutonomousCombatIntent[];
+      }, autonomousCombatSchema);
+      validate(response.usage);
+      return response;
+    },
     async simulate(
       input: WorldStageInput,
       scope: WorldSimulationScope,

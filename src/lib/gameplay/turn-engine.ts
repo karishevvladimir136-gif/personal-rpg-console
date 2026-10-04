@@ -16,6 +16,7 @@ import {
   validatePlan,
 } from "./mechanics/resolve.ts";
 import { naturalMechanicPlan } from "../rulesets/natural-mechanics.ts";
+import { completeCombatExchange, emptyCombatExchange, exhaustedControlledTurn } from "./combat-exchange.ts";
 import {
   clarificationMessages,
   mechanicalNarration,
@@ -201,12 +202,20 @@ async function execute(
       if (logic?.mechanicIntent) {
         requireRule(input.mode === "game" && !checkpoint.worldLogic);
         checkpoint.naturalMechanic = logic.mechanicIntent;
+        if (dependencies.prepareCombatIntent)
+          checkpoint.combatExchange ??= emptyCombatExchange();
         if (logic.usage) checkpoint.usage.push(logic.usage);
       }
       const newPlan = !checkpoint.plan;
       if (newPlan) {
-        if (logic?.mechanicIntent)
-          checkpoint.plan = naturalMechanicPlan(source, input, logic.mechanicIntent);
+        if (logic?.mechanicIntent) {
+          if (checkpoint.combatExchange && exhaustedControlledTurn(source, logic.mechanicIntent.actorId)) {
+            checkpoint.combatExchange.resumeOnly = true;
+            checkpoint.plan = { narration: "The actor's Action was already spent. Do not narrate the newly requested attack as attempted or successful. The remaining turn passes, opponents act, then offer the next player choice.",
+              checks: [], publicPatches: [], privatePatches: [], visualDescription: "",
+              clarification: null, guidanceProposal: null };
+          } else checkpoint.plan = naturalMechanicPlan(source, input, logic.mechanicIntent);
+        }
         else if (input.mode === "mechanic")
           checkpoint.plan = mechanicPlan(source, input);
         else {
@@ -273,18 +282,22 @@ async function execute(
       if (
         canPause &&
         command?.action !== "continue" &&
-        !checkpoint.resolution
+        !checkpoint.resolution &&
+        !checkpoint.combatExchange?.playerConfirmed
       ) {
         await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
         return await store.getPublic(input.campaignId, input.operationId);
       }
+      if (checkpoint.combatExchange && command?.action === "continue" &&
+          !checkpoint.combatExchange.playerConfirmed) {
+        checkpoint.combatExchange.playerConfirmed = true;
+        await store.checkpoint(lease, checkpoint, "generating");
+      }
       if (!checkpoint.resolution) {
-        checkpoint.resolution = resolveMechanics(
-          source,
-          input,
-          checkpoint.plan,
-          checkpoint.checks,
-        );
+        checkpoint.resolution = checkpoint.combatExchange
+          ? await completeCombatExchange(source, input, checkpoint, store, lease,
+              dependencies.prepareCombatIntent)
+          : resolveMechanics(source, input, checkpoint.plan, checkpoint.checks);
         await store.checkpoint(lease, checkpoint, "generating");
       }
     }
@@ -323,8 +336,12 @@ async function execute(
           clarification: null,
         };
       else {
+        const narrating = narrationSource(source, input, checkpoint.plan);
+        if (checkpoint.combatExchange?.npcIntents?.length && narrating.narrationBridge)
+          narrating.narrationBridge.planIntent =
+            `${narrating.narrationBridge.planIntent ?? ""}\nValidated autonomous intents: ${checkpoint.combatExchange.npcIntents.map((row) => `${row.actorId}: ${row.description}`).join("; ")}. Describe only actions and outcomes present in the validated resolution.`;
         const response = await provider.narrate(
-          narrationSource(source, input, checkpoint.plan),
+          narrating,
           input,
           checkpoint.foundationSettlement
             ? {
@@ -345,7 +362,7 @@ async function execute(
                 ...checkpoint.resolution,
                 outcomes: checkpoint.resolution.outcomes.filter((row) => row.kind !== "world.logic.receipt"),
               },
-          checkpoint.checks,
+          [...checkpoint.checks, ...(checkpoint.combatExchange?.npcChecks ?? [])],
         );
         checkpoint.narration = response.output;
         checkpoint.usage.push(response.usage);

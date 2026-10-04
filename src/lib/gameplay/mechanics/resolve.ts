@@ -107,8 +107,8 @@ export function mechanicPlan(source: RuntimeSource, input: TurnInput): DmPlan {
   return mechanicPlanForActions(source, input, [input.mechanic]);
 }
 
-export function mechanicPlanForActions(source: RuntimeSource, input: TurnInput, actions: MechanicChoice[]): DmPlan {
-  requireRule(actions.length > 0 && actions.length <= 12);
+export function mechanicPlanForActions(source: RuntimeSource, input: TurnInput, actions: MechanicChoice[], maxActions = 12): DmPlan {
+  requireRule(actions.length > 0 && actions.length <= maxActions);
   actions.forEach(validateMechanicChoice);
   const checks: CheckProposal[] = [];
   const base = {
@@ -1260,9 +1260,14 @@ export function resolveMechanics(
           budget(current, "action");
           let amount: number = basicProfile.weaponDamage;
           if (action.itemId !== null) {
-            const weapon = item(action.itemId);
+            const weapon = actor.kind === "npc" &&
+                !config!.controlledEntityIds.includes(actor.id)
+              ? snapshot.items.find((candidate) =>
+                  candidate.id === action.itemId && candidate.campaign_id === cid &&
+                  candidate.owner_entity_id === actor.id && candidate.quantity > 0)
+              : item(action.itemId);
             requireRule(
-              weapon.equipped_entity_id === actor.id &&
+              weapon && weapon.equipped_entity_id === actor.id &&
                 tagged(weapon.id, "weapon"),
             );
             amount =
@@ -1389,7 +1394,11 @@ export function resolveMechanics(
             .filter(
               (p) =>
                 p.encounter_id === encounter.id &&
-                !p.public_resources.withdrawn,
+                !p.public_resources.withdrawn &&
+                snapshot.entities.some((candidate) =>
+                  candidate.id === p.entity_id && candidate.hp !== null &&
+                  candidate.hp > 0 && !candidate.conditions.includes("dead") &&
+                  !candidate.conditions.includes("withdrawn")),
             )
             .sort((a, b) => a.turn_order - b.turn_order);
           requireRule(order.length > 0);

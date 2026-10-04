@@ -178,6 +178,8 @@ export function productionServices(
     },
     prepareWorld: worldTurnPreparer(world, worldOptions),
     prepareWorldLogic: worldLogicTurnPreparer(world, worldOptions),
+    prepareCombatIntent: async (decision: import("../gameplay/combat-exchange").CombatDecision) =>
+      (await resolver(decision.operationId)).combat(decision),
     prepareFoundation: foundationTurnPreparer(world),
     provider: {
       ...dm,
