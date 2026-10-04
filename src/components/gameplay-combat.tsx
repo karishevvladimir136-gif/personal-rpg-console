@@ -14,6 +14,7 @@ import { GameplayMechanicAction } from "./gameplay-actions";
 
 const actionLabels = {
   attack: "Attack",
+  attempt: "Physical attempt",
   defend: "Defend",
   move: "Move",
   "end-turn": "End Turn",
@@ -95,6 +96,7 @@ export function GameplayCombat({
             ))}
           </fieldset>
           <GameplayMechanicAction
+            worldLogicCombat
             play={play}
             choice={{ kind: "encounter.start", participantIds: selected }}
             label={t("Start encounter")}
@@ -217,6 +219,7 @@ export function GameplayCombat({
           )}
           {actor && (
             <GameplayMechanicAction
+              worldLogicCombat
               play={play}
               choice={{
                 kind: "encounter.action",
@@ -251,6 +254,7 @@ export function GameplayCombat({
               onChange={(value) => setOutcome(value as EncounterOutcome)}
             />
             <GameplayMechanicAction
+              worldLogicCombat
               play={play}
               choice={{ kind: "encounter.end", outcome }}
               label={t("Confirm encounter ending")}

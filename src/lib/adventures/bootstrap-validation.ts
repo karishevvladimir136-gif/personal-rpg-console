@@ -205,7 +205,7 @@ export function parseCreationReview(
   value: unknown,
   proposal?: CreationProposal,
 ): CreationReview {
-  const v = object(value, [
+  const keys = [
     "name",
     "description",
     "capabilities",
@@ -213,7 +213,9 @@ export function parseCreationReview(
     "possessions",
     "resources",
     "answers",
-  ]);
+  ];
+  const v = object(value, value && typeof value === "object" &&
+    Object.hasOwn(value, "mechanics") ? [...keys, "mechanics"] : keys);
   const result: CreationReview = {
     name: text(v.name, 200),
     description: text(v.description, 8000),
@@ -252,6 +254,20 @@ export function parseCreationReview(
       (r) => r.key,
     ),
     answers: answers(v.answers),
+    ...(Object.hasOwn(v, "mechanics") ? { mechanics: (() => {
+      const m = object(v.mechanics, ["hp", "attack", "defense", "skill", "weaponName", "weaponDamage"]);
+      const weaponName = nullable(m.weaponName, (name) => text(name, 200));
+      const weaponDamage = nullable(m.weaponDamage, (damage) => integer(damage, 1, 20));
+      ensure((weaponName === null) === (weaponDamage === null));
+      return {
+        hp: integer(m.hp, 1, 10000),
+        attack: integer(m.attack, -20, 20),
+        defense: integer(m.defense, 1, 40),
+        skill: integer(m.skill, -20, 20),
+        weaponName,
+        weaponDamage,
+      };
+    })() } : {}),
   };
   if (proposal) {
     resolved(proposal.questions, result.answers);
@@ -259,6 +275,8 @@ export function parseCreationReview(
       result.possessions.every((p) => p.quantity !== null) &&
         result.resources.every((r) => r.amount !== null),
     );
+    if (result.mechanics?.weaponName !== null && result.mechanics !== undefined)
+      ensure(result.possessions.some((p) => p.name === result.mechanics!.weaponName));
   }
   return result;
 }

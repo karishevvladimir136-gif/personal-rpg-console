@@ -70,7 +70,7 @@ function configured(source: RuntimeSource) {
   const config = source.runtime.configuration;
   if (
     !config ||
-    source.snapshot.settings.values.rulesSystem.id !== basicProfile.id
+    ![basicProfile.id, "world-logic-v1"].includes(source.snapshot.settings.values.rulesSystem.id)
   )
     throw new TurnError("configuration");
   validateConfiguration(source.snapshot, config);
@@ -104,8 +104,12 @@ export function checkModifier(
 
 export function mechanicPlan(source: RuntimeSource, input: TurnInput): DmPlan {
   requireRule(input.mechanic);
-  const action = input.mechanic;
-  validateMechanicChoice(action);
+  return mechanicPlanForActions(source, input, [input.mechanic]);
+}
+
+export function mechanicPlanForActions(source: RuntimeSource, input: TurnInput, actions: MechanicChoice[]): DmPlan {
+  requireRule(actions.length > 0 && actions.length <= 12);
+  actions.forEach(validateMechanicChoice);
   const checks: CheckProposal[] = [];
   const base = {
     index: 0,
@@ -118,16 +122,18 @@ export function mechanicPlan(source: RuntimeSource, input: TurnInput): DmPlan {
     uncertainty: "meaningful",
     advantage: "normal",
   } as const;
+  for (const action of actions) {
   if (action.kind === "item.transform")
-    checks.push({ ...base, actorId: action.actorId, kind: "transform" });
+    checks.push({ ...base, index: checks.length, actorId: action.actorId, kind: "transform" });
   if (action.kind === "forage")
     checks.push({
       ...base,
+      index: checks.length,
       actorId: action.actorId,
       kind: "skill",
       dc: basicProfile.forageDc,
     });
-  if (action.kind === "encounter.action" && action.action === "attack") {
+  if (action.kind === "encounter.action" && (action.action === "attack" || action.action === "attempt")) {
     const target = source.snapshot.entities.find(
       (row) => row.id === action.targetId,
     );
@@ -138,14 +144,16 @@ export function mechanicPlan(source: RuntimeSource, input: TurnInput): DmPlan {
       );
     checks.push({
       ...base,
+      index: checks.length,
       actorId: action.actorId,
       targetId: target.id,
-      kind: "attack",
-      stat: "attack",
+      kind: action.action === "attack" ? "attack" : "skill",
+      stat: action.action === "attack" ? "attack" : "skill",
       dc: target.stats.defense ?? 10,
       visibility: controlled ? "player" : "private",
       dcPublic: false,
     });
+  }
   }
   for (const check of checks) {
     const actor = source.snapshot.entities.find(
@@ -163,7 +171,7 @@ export function mechanicPlan(source: RuntimeSource, input: TurnInput): DmPlan {
   return {
     narration: "",
     checks,
-    publicPatches: [action],
+    publicPatches: actions,
     privatePatches: [],
     visualDescription: "",
     clarification: null,
@@ -286,6 +294,12 @@ export function validatePlan(
           (action && target && check.dc === (target.stats.defense ?? 10)),
       );
     }
+    if (check.kind === "skill" && plan.publicPatches.some((patch) =>
+      patch.kind === "encounter.action" && patch.action === "attempt" &&
+      patch.actorId === check.actorId && patch.targetId === check.targetId)) {
+      const target = source.snapshot.entities.find((row) => row.id === check.targetId);
+      requireRule(target && check.dc === (target.stats.defense ?? 10));
+    }
     if (check.kind === "transform")
       requireRule(
         check.dc === basicProfile.transformDc &&
@@ -323,6 +337,10 @@ export function validatePlan(
             check.targetId === action.targetId,
         ).length === 1,
       );
+    if (action.kind === "encounter.action" && action.action === "attempt")
+      requireRule(plan.checks.filter((check) =>
+        check.kind === "skill" && check.actorId === action.actorId &&
+        check.targetId === action.targetId).length === 1);
   }
   // Preflight both possible outcomes, before randomness or public narration. No mutation escapes this clone.
   for (const success of [false, true])
@@ -436,7 +454,7 @@ export function resolveMechanics(
     const settings = snapshot.settingsHistory.find(
       (row) => row.campaign_id === cid && row.revision === revision,
     )?.values;
-    requireRule(settings && settings.rulesSystem.id === basicProfile.id);
+    requireRule(settings && [basicProfile.id, "world-logic-v1"].includes(settings.rulesSystem.id));
     return settings;
   }
   function storage(id: string, deposit = false): Storage {
@@ -1209,6 +1227,7 @@ export function resolveMechanics(
         requireRule(
           [
             "attack",
+            "attempt",
             "defend",
             "move",
             "end-turn",
@@ -1269,6 +1288,24 @@ export function resolveMechanics(
               : "The attack missed; its action cost was spent.",
             [actor.id, target.id],
           );
+        } else if (action.action === "attempt") {
+          requireRule(action.targetId && action.position === null &&
+            action.targetId !== actor.id);
+          const target = entity(action.targetId, false);
+          participant(target.id);
+          requireRule(config!.controlledEntityIds.includes(actor.id) !==
+            config!.controlledEntityIds.includes(target.id));
+          if (action.itemId !== null) {
+            const held = item(action.itemId);
+            requireRule(held.owner_entity_id === actor.id &&
+              held.equipped_entity_id === actor.id);
+          }
+          budget(current, "action");
+          outcome(action.kind,
+            resultFor(actor.id, "skill")
+              ? "The physical attempt made contact; no condition, damage or transfer was established."
+              : "The physical attempt failed; no condition, damage or transfer was established.",
+            [actor.id, target.id]);
         } else if (action.action === "defend") {
           requireRule(
             action.targetId === null &&

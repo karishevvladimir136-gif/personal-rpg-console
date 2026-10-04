@@ -18,6 +18,7 @@ export function GameplayMechanicAction({
   disabled,
   onSaved,
   children,
+  worldLogicCombat = false,
 }: {
   play: PlaySnapshot;
   choice: MechanicChoice;
@@ -25,10 +26,11 @@ export function GameplayMechanicAction({
   disabled?: boolean;
   onSaved: () => Promise<void>;
   children?: ReactNode;
+  worldLogicCombat?: boolean;
 }) {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
-  if (play.rulesetId === "world-logic-v1") return null;
+  if (play.rulesetId === "world-logic-v1" && !worldLogicCombat) return null;
   return (
     <>
       <Button

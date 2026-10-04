@@ -15,6 +15,7 @@ import {
   resolveMechanics,
   validatePlan,
 } from "./mechanics/resolve.ts";
+import { naturalMechanicPlan } from "../rulesets/natural-mechanics.ts";
 import {
   clarificationMessages,
   mechanicalNarration,
@@ -169,12 +170,15 @@ async function execute(
     if (logic) {
       source.worldLogicPresence = logic.presence;
       source.worldLogicMundaneDetail = logic.mundaneDetail;
+    }
+    if (logic && !logic.mechanicIntent) {
       requireRule(
         input.mode === "game" &&
           checkpoint.checks.length === 0 &&
           command?.action !== "reroll" &&
           command?.action !== "continue",
       );
+      requireRule(logic.proposal);
       checkpoint.worldLogic = logic.proposal;
       if (logic.foundationAction !== undefined)
         checkpoint.foundationAction = logic.foundationAction;
@@ -194,9 +198,16 @@ async function execute(
       await store.checkpoint(lease, checkpoint, "generating");
       requireRule(logic.resolution);
     } else {
+      if (logic?.mechanicIntent) {
+        requireRule(input.mode === "game" && !checkpoint.worldLogic);
+        checkpoint.naturalMechanic = logic.mechanicIntent;
+        if (logic.usage) checkpoint.usage.push(logic.usage);
+      }
       const newPlan = !checkpoint.plan;
       if (newPlan) {
-        if (input.mode === "mechanic")
+        if (logic?.mechanicIntent)
+          checkpoint.plan = naturalMechanicPlan(source, input, logic.mechanicIntent);
+        else if (input.mode === "mechanic")
           checkpoint.plan = mechanicPlan(source, input);
         else {
           const response = await provider.plan(source, input);
@@ -319,7 +330,7 @@ async function execute(
             ? {
                 ...checkpoint.resolution,
                 outcomes: [
-                  ...checkpoint.resolution.outcomes,
+                  ...checkpoint.resolution.outcomes.filter((row) => row.kind !== "world.logic.receipt"),
                   ...checkpoint.foundationSettlement.plan.events
                     .filter((e) => e.visibility === "public")
                     .map((e) => ({
@@ -330,7 +341,10 @@ async function execute(
                     })),
                 ],
               }
-            : checkpoint.resolution,
+            : {
+                ...checkpoint.resolution,
+                outcomes: checkpoint.resolution.outcomes.filter((row) => row.kind !== "world.logic.receipt"),
+              },
           checkpoint.checks,
         );
         checkpoint.narration = response.output;

@@ -142,11 +142,13 @@ function ConfigurationForm({
             checked={agreed}
             onChange={(event) => setAgreed(event.target.checked)}
           />
-          {t("Use Console Basic house rules for future play in this campaign")}
+          {t(data.settings.values.rulesSystem.id === "world-logic-v1"
+            ? "Use the existing Console Basic mechanics for combat in this World Logic campaign"
+            : "Use Console Basic house rules for future play in this campaign")}
         </label>
         <p className="muted">
           {t(
-            "This is a small explicit house profile, not official D&D. Existing campaign prose is not automatically converted into mechanics.",
+            "This is a small explicit house profile, not official D&D. Existing campaign prose is not automatically converted into mechanics. Set current and maximum HP in public character records before combat. Only approve item rules for items you actually own.",
           )}
         </p>
         <details>

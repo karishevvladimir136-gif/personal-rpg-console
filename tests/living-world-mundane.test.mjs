@@ -345,7 +345,7 @@ test("structured resolver accepts one mundane proposal through a root object sch
       fetcher: async (_url, init) => {
         const sent = JSON.parse(init.body);
         assert.equal(sent.text.format.schema.type, "object");
-        assert.equal(sent.text.format.schema.properties.action.anyOf.length, 2);
+        assert.equal(sent.text.format.schema.properties.action.anyOf.length, 3);
         return new Response(
           JSON.stringify({
             status: "completed",

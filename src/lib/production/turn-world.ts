@@ -25,13 +25,14 @@ import type {
   TurnClaim,
 } from "../gameplay/server-contracts.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
+import { validateNaturalMechanicIntent, type NaturalMechanicIntent } from "../rulesets/natural-mechanics.ts";
 
 export type WorldTurnOptions = {
   action?: (
     input: WorldLogicInput,
   ) => Promise<
     ProviderResult<
-      WorldLogicProposal & { foundationAction?: JsonObject | null }
+      (WorldLogicProposal | NaturalMechanicIntent) & { foundationAction?: JsonObject | null }
     >
   >;
   resolve?: (
@@ -68,13 +69,15 @@ export function worldLogicTurnPreparer(
   return async (claim, previous) => {
     const input = await authority(rpc, claim);
     if (input.snapshot.ruleset.id === "console-basic-v1") return null;
+    if (input.snapshot.ruleset.id === "world-logic-v1" &&
+      claim.turn.input.mode === "mechanic") return null;
     if (
       input.snapshot.ruleset.id !== "world-logic-v1" ||
       claim.turn.input.mode !== "game"
     )
       throw new TurnError("configuration");
     let foundationAction: JsonObject | null | undefined;
-    let proposal: unknown = previous,
+    let proposal: unknown = claim.turn.checkpoint.naturalMechanic ?? previous,
       usage: ProviderUsage | null = null;
     if (!proposal) {
       if (!options.action) throw new TurnError("configuration");
@@ -83,6 +86,34 @@ export function worldLogicTurnPreparer(
       foundationAction = action;
       proposal = base;
       usage = response.usage;
+    }
+    const world = parseWorldState(input.snapshot.world, input.snapshot.campaignId);
+    const presence = {
+      controlledEntityIds: world.actors
+        .filter((a) => a.control === "player" && a.entityId !== null)
+        .map((a) => a.entityId!),
+      presentEntityIds: world.actors
+        .filter((a) => a.publicName !== null && a.entityId !== null &&
+          input.source.snapshot.publicState.current_location_id !== null &&
+          a.locationId === input.source.snapshot.publicState.current_location_id)
+        .map((a) => a.entityId!),
+    };
+    if ((proposal as { schemaVersion?: unknown })?.schemaVersion === 4) {
+      if (foundationAction != null || claim.turn.checkpoint.foundationAction != null)
+        throw new TurnError("validation");
+      let mechanicIntent: NaturalMechanicIntent;
+      try {
+        mechanicIntent = validateNaturalMechanicIntent(input, proposal);
+      } catch {
+        throw new TurnError("validation");
+      }
+      return {
+        proposal: null,
+        mechanicIntent,
+        resolution: null,
+        usage,
+        presence,
+      };
     }
     const result = resolveWorldLogic(input, proposal);
     const checkpoint = claim.turn.checkpoint;
@@ -98,10 +129,6 @@ export function worldLogicTurnPreparer(
         checkpoint.checks.length)
     )
       throw new TurnError("validation");
-    const world = parseWorldState(
-      input.snapshot.world,
-      input.snapshot.campaignId,
-    );
     return {
       proposal: proposal as JsonObject,
       ...(foundationAction !== undefined ? { foundationAction } : {}),
@@ -113,21 +140,7 @@ export function worldLogicTurnPreparer(
       ...(result.status === "staged" && result.mundaneDetail
         ? { mundaneDetail: result.mundaneDetail }
         : {}),
-      presence: {
-        controlledEntityIds: world.actors
-          .filter((a) => a.control === "player" && a.entityId !== null)
-          .map((a) => a.entityId!),
-        presentEntityIds: world.actors
-          .filter(
-            (a) =>
-              a.publicName !== null &&
-              a.entityId !== null &&
-              input.source.snapshot.publicState.current_location_id !== null &&
-              a.locationId ===
-                input.source.snapshot.publicState.current_location_id,
-          )
-          .map((a) => a.entityId!),
-      },
+      presence,
     };
   };
 }
@@ -333,6 +346,11 @@ function prepareWorldUnsafe(
       );
     else if (!isDeepStrictEqual(saved.data, settlement))
       throw new TurnError("validation");
+    const actionHasConsequence = action?.status === "staged" && (
+      action.resolution.changes.length > 0 ||
+      action.resolution.worldMinutes !== snapshot.worldMinutes ||
+      !isDeepStrictEqual(action.settlement.nextWorld, snapshot.world)
+    );
     return {
       settlement,
       usage,
@@ -345,7 +363,10 @@ function prepareWorldUnsafe(
         outcomes: [
           ...base.outcomes,
           ...publicEvents.map((event) => ({
-            kind: "world.observed",
+            kind: action?.status === "staged" && !actionHasConsequence &&
+              action.publicEvents.some((row) => row.id === event.id)
+              ? "world.logic.receipt"
+              : "world.observed",
             text: event.text,
             itemIds: [],
             entityIds: event.actorIds.flatMap((id) => {

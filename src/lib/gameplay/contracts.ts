@@ -47,7 +47,7 @@ export type MechanicChoice =
   | {
       kind: "encounter.action";
       actorId: string;
-      action: "attack" | "defend" | "move" | "end-turn" | "intercept" | "item";
+      action: "attack" | "attempt" | "defend" | "move" | "end-turn" | "intercept" | "item";
       targetId: string | null;
       itemId: string | null;
       position: "nearby" | "far" | "cover" | null;

@@ -91,6 +91,7 @@ export const mechanicSchema: Schema = {
       actorId: uuid,
       action: choice(
         "attack",
+        "attempt",
         "defend",
         "move",
         "end-turn",

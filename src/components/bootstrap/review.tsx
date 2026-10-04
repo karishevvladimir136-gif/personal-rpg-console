@@ -376,6 +376,45 @@ export function CharacterReview({
           }}>{c.add} · {c.resources}</button>
         </div>
       </details>
+      <details className={styles.reviewEdits}>
+        <summary>{language === "ru" ? "Механика боя (по желанию)" : "Combat readiness (optional)"}</summary>
+        <p className={styles.muted}>{language === "ru"
+          ? "Утвердите эти значения явно. Без них бой не начнётся автоматически. Только выбранный предмет будет записан как оружие."
+          : "Approve these values explicitly. Combat stays unavailable without them. Only the selected approved possession becomes an equipped weapon."}</p>
+        <label className={styles.field}>
+          <input type="checkbox" checked={!!value.mechanics} onChange={(event) => {
+            if (event.target.checked)
+              onChange({ ...value, mechanics: { hp: 10, attack: 0, defense: 10, skill: 0, weaponName: null, weaponDamage: null } });
+            else {
+              const { mechanics: _removed, ...review } = value;
+              void _removed;
+              onChange(review);
+            }
+          }} />
+          {language === "ru" ? "Утвердить боевой профиль" : "Approve a combat profile"}
+        </label>
+        {value.mechanics && <div className={styles.form}>
+          {(["hp", "attack", "defense", "skill"] as const).map((field) => (
+            <label className={styles.field} key={field}>
+              {field === "hp" ? "HP" : field === "attack" ? "Attack modifier" : field === "defense" ? "Defense" : "Skill modifier"}
+              <input type="number" min={field === "hp" || field === "defense" ? 1 : -20} max={field === "hp" ? 10000 : field === "defense" ? 40 : 20}
+                value={value.mechanics![field]} onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, [field]: Number(event.target.value) } })} />
+            </label>
+          ))}
+          <label className={styles.field}>
+            {language === "ru" ? "Утверждённое оружие" : "Approved starting weapon"}
+            <select value={value.mechanics.weaponName ?? ""} onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, weaponName: event.target.value || null, weaponDamage: event.target.value ? 2 : null } })}>
+              <option value="">{language === "ru" ? "Без оружия" : "Unarmed"}</option>
+              {value.possessions.filter((item) => item.name && item.quantity !== null).map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}
+            </select>
+          </label>
+          {value.mechanics.weaponName && <label className={styles.field}>
+            {language === "ru" ? "Урон оружия" : "Weapon damage"}
+            <input type="number" min={1} max={20} value={value.mechanics.weaponDamage ?? 2}
+              onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, weaponDamage: Number(event.target.value) } })} />
+          </label>}
+        </div>}
+      </details>
       <Questions
         questions={questions}
         answers={value.answers}

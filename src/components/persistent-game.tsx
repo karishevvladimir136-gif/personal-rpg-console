@@ -581,8 +581,45 @@ function GameRecords({
             )}
             {runtime.play && (
               <>
-                {!runtime.play.configuration &&
-                  runtime.play.rulesetId !== "world-logic-v1" && (
+                {runtime.play.rulesetId === "world-logic-v1" && (
+                  <details className={styles.secondary} open={
+                    !runtime.play.configuration ||
+                    data.entities.some((row) => (row.kind === "player" || row.kind === "npc") &&
+                      (row.hp === null || row.max_hp === null))
+                  }>
+                    <summary>{t("Combat readiness · approved public records")}</summary>
+                    <p className="muted">{t("Free text remains the main way to act. Combat uses only saved HP, explicitly approved item rules, and the existing mechanics profile. Nothing is added from a player's claim during a turn.")}</p>
+                    <p className="muted">{t("Only a visible target you choose to fight needs combat HP. Other NPCs can remain without it.")}</p>
+                    <ul>
+                      {data.entities.filter((row) => row.kind === "player" || row.kind === "npc").map((row) => (
+                        <li key={row.id}>
+                          {row.name}: {row.hp !== null && row.max_hp !== null
+                            ? t("HP {current} / {maximum}", { current: row.hp, maximum: row.max_hp })
+                            : t("HP missing; approve current and maximum HP in the public character record")}
+                          {runtime.play?.configuration && !runtime.play.configuration.presentEntityIds.includes(row.id)
+                            ? ` · ${t("not selected as present in combat configuration")}` : ""}
+                        </li>
+                      ))}
+                      <li>{runtime.play.configuration
+                        ? t("Combat mechanics profile approved")
+                        : t("Combat mechanics profile awaits owner approval")}</li>
+                      <li>{t("Equipped approved weapons")}: {data.items.filter((item) =>
+                        item.equipped_entity_id !== null &&
+                        item.equipped_entity_id === item.owner_entity_id &&
+                        runtime.play?.configuration?.itemRules.some((rule) =>
+                          rule.itemId === item.id && rule.tag === "weapon")
+                      ).map((item) => item.name).join(", ") || t("none recorded; unarmed attacks remain possible when HP and configuration are ready")}</li>
+                    </ul>
+                    <p className="muted">{t("To prepare missing values, open each existing record, review its proposed values, then save explicitly. Reopen this list after each save. Existing HP, equipment and item ownership are never filled automatically.")}</p>
+                    <p>
+                      <Link className="text-link" href={`/campaigns/${data.campaign.id}/character`}>{t("Character records")}</Link>{" · "}
+                      <Link className="text-link" href={`/campaigns/${data.campaign.id}/party`}>{t("NPC records")}</Link>{" · "}
+                      <Link className="text-link" href={`/campaigns/${data.campaign.id}/inventory`}>{t("Inventory")}</Link>{" · "}
+                      <Link className="text-link" href={`/campaigns/${data.campaign.id}/settings`}>{t("Combat configuration")}</Link>
+                    </p>
+                  </details>
+                )}
+                {!runtime.play.configuration && (
                     <p className="rules-preview-note">
                       {t(
                         "Choose an explicit supported rules profile in campaign settings before resolving mechanical actions.",
@@ -647,7 +684,8 @@ function GameRecords({
               <CurrentSceneVideo transport={videoTransport} />
             )}
           </details>
-          {runtime.play && runtime.play.rulesetId !== "world-logic-v1" && (
+          {runtime.play && (runtime.play.rulesetId !== "world-logic-v1" ||
+            runtime.play.configuration) && (
             <details
               className={styles.secondary}
               open={
@@ -695,10 +733,12 @@ function GameRecords({
                   />
                 </details>
               )}
-              <GameplayRest
-                play={runtime.play}
-                onSaved={runtime.afterMutation}
-              />
+              {runtime.play.rulesetId !== "world-logic-v1" && (
+                <GameplayRest
+                  play={runtime.play}
+                  onSaved={runtime.afterMutation}
+                />
+              )}
               <p>
                 <Link
                   className="text-link"
@@ -755,8 +795,7 @@ function GameRecords({
               .map((row) => (
                 <div key={row.id}>
                   <h3>{row.name}</h3>
-                  {row.hp !== null &&
-                    runtime.play?.rulesetId !== "world-logic-v1" && (
+                  {row.hp !== null && (
                       <p>
                         {t("HP")}
                         {": "}

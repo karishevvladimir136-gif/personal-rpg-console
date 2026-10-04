@@ -151,6 +151,7 @@ export type MechanicsResolution = {
   outcomes: PublicOutcome[];
 };
 export type TurnCheckpoint = {
+  naturalMechanic?: import("../rulesets/natural-mechanics.ts").NaturalMechanicIntent | null;
   foundationAction?: JsonObject | null;
   foundationSettlement?:
     import("../foundation-loop/turn.ts").FoundationTurnSettlement | null;

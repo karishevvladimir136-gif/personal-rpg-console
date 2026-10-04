@@ -1745,5 +1745,21 @@
   "Campaign basics": "Основное о Кампании",
   "Advanced · settings history": "Дополнительно · история настроек",
   "Advanced · AI, rules & world engine": "Дополнительно · ИИ, правила и движок Мира",
-  "Advanced · World Packs & owner configuration": "Дополнительно · Пакеты Мира и настройка владельца"
+  "Advanced · World Packs & owner configuration": "Дополнительно · Пакеты Мира и настройка владельца",
+  "Combat readiness · approved public records": "Готовность к бою · утверждённые открытые записи",
+  "Free text remains the main way to act. Combat uses only saved HP, explicitly approved item rules, and the existing mechanics profile. Nothing is added from a player's claim during a turn.": "Свободный текст остаётся основным способом действий. Бой использует только сохранённые ОЗ, явно утверждённые свойства предметов и существующий профиль механики. Слова игрока во время хода сами по себе ничего не добавляют.",
+  "Only a visible target you choose to fight needs combat HP. Other NPCs can remain without it.": "Боевые ОЗ нужны только видимой цели, с которой вы решили сражаться. У остальных НИП они могут оставаться незаполненными.",
+  "HP {current} / {maximum}": "ОЗ {current} / {maximum}",
+  "HP missing; approve current and maximum HP in the public character record": "ОЗ не указаны; утвердите текущие и максимальные ОЗ в открытой записи персонажа",
+  "not selected as present in combat configuration": "не выбран как присутствующий в настройках боя",
+  "Combat mechanics profile approved": "Профиль боевой механики утверждён",
+  "Combat mechanics profile awaits owner approval": "Профиль боевой механики ожидает утверждения владельца",
+  "Equipped approved weapons": "Экипированное утверждённое оружие",
+  "none recorded; unarmed attacks remain possible when HP and configuration are ready": "не записано; безоружные атаки доступны после настройки ОЗ и механики",
+  "To prepare missing values, open each existing record, review its proposed values, then save explicitly. Reopen this list after each save. Existing HP, equipment and item ownership are never filled automatically.": "Чтобы заполнить недостающие значения, откройте соответствующую запись, проверьте предлагаемые значения и явно сохраните её. После каждого сохранения снова откройте этот список. Существующие ОЗ, снаряжение и принадлежность предметов никогда не заполняются автоматически.",
+  "Character records": "Записи персонажей",
+  "NPC records": "Записи НИП",
+  "Combat configuration": "Настройки боя",
+  "Use the existing Console Basic mechanics for combat in this World Logic campaign": "Использовать существующую механику Console Basic для боя в этой кампании World Logic",
+  "This is a small explicit house profile, not official D&D. Existing campaign prose is not automatically converted into mechanics. Set current and maximum HP in public character records before combat. Only approve item rules for items you actually own.": "Это небольшой явный набор домашних правил, а не официальные правила D&D. Текст кампании не превращается в механику автоматически. Перед боем укажите текущие и максимальные ОЗ в открытых записях персонажей. Утверждайте свойства только для предметов, которыми персонаж действительно владеет."
 }

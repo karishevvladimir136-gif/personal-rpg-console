@@ -41,6 +41,15 @@ export type CreationReview = {
   possessions: Omit<CreationPossession, "quote">[];
   resources: Omit<CreationResource, "quote">[];
   answers: (string | null)[];
+  /** Explicit owner-reviewed mechanics; absent reviews retain historical no-HP creation. */
+  mechanics?: {
+    hp: number;
+    attack: number;
+    defense: number;
+    skill: number;
+    weaponName: string | null;
+    weaponDamage: number | null;
+  };
 };
 // Only additional NEW visible non-player people/creatures. The existing
 // protagonist is placed by authority, never recreated from this array.

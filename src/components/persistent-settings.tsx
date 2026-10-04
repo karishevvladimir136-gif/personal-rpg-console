@@ -571,7 +571,8 @@ export function PersistentCampaignSettings() {
             </summary>
             <CampaignPackSettingsPanel />
             <FoundationLoopPanel section="settings" />
-            {activeProduction?.ruleset.id === "console-basic-v1" && (
+            {(activeProduction?.ruleset.id === "console-basic-v1" ||
+              activeProduction?.ruleset.id === "world-logic-v1") && (
               <GameplayConfiguration />
             )}
           </details>

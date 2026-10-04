@@ -617,7 +617,11 @@ export function resolveWorldLogic(
   };
   if (!mundaneDetail)
     resolution.outcomes.push({
-      kind: event.kind,
+      kind: resolution.changes.length === 0 &&
+        proposal.elapsedMinutes === 0 &&
+        proposal.schemaVersion === 2 && proposal.consequences.length === 0
+        ? "world.logic.receipt"
+        : event.kind,
       entityIds: [actor.id],
       itemIds: [],
       text: event.text,

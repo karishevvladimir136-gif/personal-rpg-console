@@ -18,6 +18,11 @@ import {
   type WorldLogicInput,
   type WorldLogicProposal,
 } from "../../rulesets/world-logic.ts";
+import {
+  naturalMechanicOptions,
+  validateNaturalMechanicIntent,
+  type NaturalMechanicIntent,
+} from "../../rulesets/natural-mechanics.ts";
 import type { WorldStageInput } from "../../world/contracts.ts";
 import type { ExecutionProfile } from "../../production/contracts.ts";
 import { validateExecutionProfile } from "../../model-runtime/registry.ts";
@@ -145,7 +150,16 @@ export const livingWorldSchema = strictObject({
   },
   vicinity: { type: ["string", "null"], enum: ["nearby", "same_street", null] },
 });
-const actionSchema = { anyOf: [worldLogicSchema, livingWorldSchema] };
+export const naturalMechanicSchema = strictObject({
+  schemaVersion: { type: "integer", enum: [4] },
+  input: string,
+  actorId: string,
+  targetId: string,
+  method: { type: "string", enum: ["attack", "improvise"] },
+  itemId: { type: ["string", "null"] },
+  equipmentName: { type: ["string", "null"], maxLength: 120 },
+});
+const actionSchema = { anyOf: [worldLogicSchema, livingWorldSchema, naturalMechanicSchema] };
 export const worldResolverSchema = strictObject({
   schemaVersion: { type: "integer", enum: [1] },
   decisions: {
@@ -198,7 +212,7 @@ export function buildResolverContext(
     !!data &&
     typeof data === "object" &&
     Object.hasOwn(data, "foundationOptions");
-  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated World Logic proposal; foundationAction must be null for schemaVersion=3, otherwise null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in version 2 action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : "\nReturn an object containing exactly the action proposal."}`;
+  const fullInstructions = `${boundary}\n${instructions}${foundation ? "\nReturn the two-part envelope: action is the validated World Logic proposal; foundationAction must be null for schemaVersion=3 or schemaVersion=4, otherwise null or the bounded trade/haggle/theft/robbery/search/container/loot proposal for the SAME literal input and actor. Use only supplied public foundationOptions. Include exact supporting capabilityRefs in version 2 action; no text creates new capabilities. Code computes prices, enforces current stock/ownership and commits transfers. For loot, select only a supplied current known object and supported approach; code owns stable contents, access, noise, resources and item transfers. Never invent contents, a check, a capability or a successful unsupported approach. Never duplicate foundation transfers in action.consequences. An unsupported or ambiguous foundation request must pause with explicit uncertainty, no partial effect." : "\nReturn an object containing exactly the action proposal."}`;
   // UTF-8 bytes upper-bound token usage, including framing; never cut mandatory work.
   const estimatedTokens =
     Buffer.byteLength(
@@ -229,7 +243,6 @@ export function buildResolverContext(
     sourceCount,
   };
 }
-
 /** Options must be constructed from the operation's pinned world.resolve profile by the caller. */
 export function createWorldResolverProvider(options: ProviderOptions) {
   const checkedRequest = (purpose?: "simulation") => {
@@ -324,7 +337,7 @@ export function createWorldResolverProvider(options: ProviderOptions) {
       input: WorldLogicInput,
     ): Promise<
       ProviderResult<
-        WorldLogicProposal & { foundationAction?: JsonObject | null }
+        (WorldLogicProposal | NaturalMechanicIntent) & { foundationAction?: JsonObject | null }
       >
     > {
       const context = worldLogicContext(input);
@@ -342,9 +355,9 @@ export function createWorldResolverProvider(options: ProviderOptions) {
         buildResolverContext(
           options.model,
           extended
-            ? { ...context, foundationOptions: input.source.foundationOptions }
-            : context,
-          "For an ordinary public local place necessary to answer the literal player action, use schemaVersion=3 kind=location.establish: one short mundane name, a listed mundane category, nearby or same_street vicinity, and anchorLocationId equal to the current public location. Version 3 always has destinationId=null. Never use version 3 for movement, regional or dangerous travel, hidden places, items, rewards, new NPC records, secrets, rumors as objective truth, player speech or commitments. Use only the current location circumstance and evidenceIndexes=[]. Unresolved version 3 proposals keep name/category/vicinity null. Profanity or adult wording alone is not a world-authority failure. Otherwise return schemaVersion=2 under existing bounded rules. Interpret input verbatim for one listed controlled actor. Copy input exactly. For version 2, capabilityRefs must be exact capabilities of that actor; circumstanceRefs must name supplied circumstances; evidenceIndexes refer only to that actor's evidence. State uncertainty before proposing effects. Non-resolved version 2 proposals have elapsedMinutes=0, destinationId=null and consequences=[]. Blocked actions have consequences=[]. Choose at most six supplied consequenceOptions only when the literal request calls for them, with no duplicate targets and no values beyond their maximum. A capability permits an operation; it never chooses a player action. condition effects are physical statuses only. quest.complete requires action=attempt; no timed completion or expiry. fact.observe refers to already authorized current public text, never a hidden discovery. publicText is advisory observable narration and grants no authority. A completed version 2 move requires a supplied travelOptions entry for this actor, an existing destinationId and positive elapsedMinutes. Include its exact route capability in capabilityRefs when capability is a string; a local route has capability=null and requires no travel capability. Every other outcome has destinationId=null. Missing capabilities, prerequisites or ambiguous player intent require explicit uncertainty, not a partial result. For a player question seeking ordinary public description about a publicDetailTargets entry, including a nearby service or visible person and a pronoun grounded in recentPublicScene, choose schemaVersion=2 action=observe, outcome=completed, uncertainty=resolved, elapsedMinutes=0, destinationId=null, capabilityRefs=[], evidenceIndexes=[], consequences=[], circumstanceRefs=[the current location circumstance], and publicText exactly mundane.public.detail:<location|person>:<target UUID>:<direct|reported>. This is an internal scope marker, never prose to show the player. Direct means presently observable at the current place; reported means reputation, rough affordability, a nearby place not currently seen, or a trait not witnessed. Permitted detail is harmless sensory appearance, atmosphere or attributed local impression, not an exact price or transaction. Questions asking for rumors, gossip, hearsay, local stories, anecdotes, what locals say, or what a visible person has heard about one eligible place or person select this same reported detail path. The exact rumor need not be pre-authored evidence: the narrator may invent ordinary attributed conversational fiction, never its truth. A conversational premise such as 'you have been there often' does not require proof of visits or a pause; the person may correct it, express ordinary opinion, or relay gossip without claiming secret or firsthand knowledge. Resolve a pronoun or elliptical follow-up from recentPublicScene when it identifies one eligible target; clarify only if the target or requested action remains genuinely ambiguous. Asking whether a rumor is true does not verify or promote it; without separate evidence only its unverified status may be discussed. Select only a current or nearby listed place or a listed visible person. A service inside the current place is scoped to that place. No unsupported mixed action, mechanical effect, hidden fact, arbitrary target or NPC knowledge may use this path. Questions demanding hidden truth, such as 'Who is secretly the murderer?', remain unsupported. foundationAction must be null. Ordinary adult wording alone does not make a public descriptive question unsupported.",
+            ? { ...context, foundationOptions: input.source.foundationOptions, naturalMechanicOptions: naturalMechanicOptions(input) }
+            : { ...context, naturalMechanicOptions: naturalMechanicOptions(input) },
+          "For an ordinary public local place necessary to answer the literal player action, use schemaVersion=3 kind=location.establish: one short mundane name, a listed mundane category, nearby or same_street vicinity, and anchorLocationId equal to the current public location. Version 3 always has destinationId=null. Never use version 3 for movement, regional or dangerous travel, hidden places, items, rewards, new NPC records, secrets, rumors as objective truth, player speech or commitments. Use only the current location circumstance and evidenceIndexes=[]. Unresolved version 3 proposals keep name/category/vicinity null. Profanity or adult wording alone is not a world-authority failure. Otherwise return schemaVersion=2 under existing bounded rules. Interpret input verbatim for one listed controlled actor. Copy input exactly. For version 2, capabilityRefs must be exact capabilities of that actor; circumstanceRefs must name supplied circumstances; evidenceIndexes refer only to that actor's evidence. State uncertainty before proposing effects. Non-resolved version 2 proposals have elapsedMinutes=0, destinationId=null and consequences=[]. Blocked actions have consequences=[]. Choose at most six supplied consequenceOptions only when the literal request calls for them, with no duplicate targets and no values beyond their maximum. A capability permits an operation; it never chooses a player action. condition effects are physical statuses only. quest.complete requires action=attempt; no timed completion or expiry. fact.observe refers to already authorized current public text, never a hidden discovery. publicText is advisory observable narration and grants no authority. A completed version 2 move requires a supplied travelOptions entry for this actor, an existing destinationId and positive elapsedMinutes. Include its exact route capability in capabilityRefs when capability is a string; a local route has capability=null and requires no travel capability. Every other outcome has destinationId=null. Missing capabilities, prerequisites or ambiguous player intent require explicit uncertainty, not a partial result. For a player question seeking ordinary public description about a publicDetailTargets entry, including a nearby service or visible person and a pronoun grounded in recentPublicScene, choose schemaVersion=2 action=observe, outcome=completed, uncertainty=resolved, elapsedMinutes=0, destinationId=null, capabilityRefs=[], evidenceIndexes=[], consequences=[], circumstanceRefs=[the current location circumstance], and publicText exactly mundane.public.detail:<location|person>:<target UUID>:<direct|reported>. This is an internal scope marker, never prose to show the player. Direct means presently observable at the current place; reported means reputation, rough affordability, a nearby place not currently seen, or a trait not witnessed. Permitted detail is harmless sensory appearance, atmosphere or attributed local impression, not an exact price or transaction. Questions asking for rumors, gossip, hearsay, local stories, anecdotes, what locals say, or what a visible person has heard about one eligible place or person select this same reported detail path. The exact rumor need not be pre-authored evidence: the narrator may invent ordinary attributed conversational fiction, never its truth. A conversational premise such as 'you have been there often' does not require proof of visits or a pause; the person may correct it, express ordinary opinion, or relay gossip without claiming secret or firsthand knowledge. Resolve a pronoun or elliptical follow-up from recentPublicScene when it identifies one eligible target; clarify only if the target or requested action remains genuinely ambiguous. Asking whether a rumor is true does not verify or promote it; without separate evidence only its unverified status may be discussed. Select only a current or nearby listed place or a listed visible person. A service inside the current place is scoped to that place. No unsupported mixed action, mechanical effect, hidden fact, arbitrary target or NPC knowledge may use this path. Questions demanding hidden truth, such as 'Who is secretly the murderer?', remain unsupported. foundationAction must be null. Ordinary adult wording alone does not make a public descriptive question unsupported. For an explicit hostile physical action against a listed current visible autonomous target, use schemaVersion=4 instead of calling combat unsupported. schemaVersion=4 is semantic intent only: exact input, controlled actorId, visible targetId, method=attack for an ordinary unarmed or equipped-weapon attack, method=improvise for a tackle, shove, thrown object or other bounded contact attempt. itemId must be a listed authoritative item when one is claimed; never turn a named missing weapon into an unarmed attack. equipmentName names a claimed weapon only with its actual itemId. Never invent a roll, hit, HP, damage, stun, disarm or transfer. In a compound action, select only the first uncertain physical step; later conditional steps remain unexecuted until their prerequisites are actually resolved. Threats and demands are speech, never mechanic or Foundation transfers. Contextual banter such as a joking question about a town's attractiveness is ordinary speech, while a request for a genuinely hidden identity remains protected.",
           context.circumstances.length +
             context.actors.reduce((n, a) => n + a.evidence.length, 0),
           schema,
@@ -371,12 +384,13 @@ export function createWorldResolverProvider(options: ProviderOptions) {
                 !Object.hasOwn(envelope, "action")))
           )
             throw new DmError("validation");
-          const proposal = parseWorldLogicProposal(
-            wrapped ? envelope.action : raw,
-          );
-          if (proposal.schemaVersion !== 2 && proposal.schemaVersion !== 3)
+          const actionRaw = wrapped ? envelope.action : raw;
+          const proposal = (actionRaw as { schemaVersion?: unknown })?.schemaVersion === 4
+            ? validateNaturalMechanicIntent(input, actionRaw)
+            : parseWorldLogicProposal(actionRaw);
+          if (proposal.schemaVersion !== 2 && proposal.schemaVersion !== 3 && proposal.schemaVersion !== 4)
             throw new DmError("validation");
-          resolveWorldLogic(input, proposal);
+          if (proposal.schemaVersion !== 4) resolveWorldLogic(input, proposal);
           const foundationAction =
             extended && envelope.foundationAction !== null
               ? parseFoundationActionProposal(envelope.foundationAction)
