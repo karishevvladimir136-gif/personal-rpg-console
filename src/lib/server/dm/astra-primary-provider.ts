@@ -133,8 +133,10 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
 }
 
 export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:typeof fetch }): AstraPrimaryProvider {
-  const request = createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
+  const planRequest = createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
     reasoning:"high",fetcher:options.fetcher});
+  const narrationRequest = createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
+    reasoning:"medium",fetcher:options.fetcher});
   return {
     next: async (context,input,receipts,checks,caps,source) => {
       const enriched = { ...context, input:JSON.stringify({
@@ -142,10 +144,10 @@ export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:ty
       if (new TextEncoder().encode(enriched.input).length +
           new TextEncoder().encode(enriched.instructions).length > context.budget.inputCap)
         throw new DmError("context");
-      return request(enriched,"plan",input.operationId,
+      return planRequest(enriched,"plan",input.operationId,
         (raw)=>parseDecision(raw,source,input,caps,receipts),responseSchema(input,caps));
     },
-    narrate: (context,input) => request(context,"narrate",input.operationId,
+    narrate: (context,input) => narrationRequest(context,"narrate",input.operationId,
       (raw)=>{
         const parsed = parseNarration(raw);
         if (parsed.clarification !== null) throw new DmError("validation");

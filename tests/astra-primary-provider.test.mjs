@@ -14,7 +14,7 @@ const {createAstraPrimaryProvider}=await import(
   "../src/lib/server/dm/astra-primary-provider.ts");
 hook.deregister();
 
-test("production OpenAI adapter keeps Astra/high and derives encounter Action from recorded tools",async()=>{
+test("production OpenAI adapter keeps Astra/high planning, Astra/medium narration, and derives encounter Action",async()=>{
   const f=await fixture(38);
   try {
     const w=await world(f);
@@ -35,10 +35,14 @@ test("production OpenAI adapter keeps Astra/high and derives encounter Action fr
       changes:[],outcomes:[],privatePatches:[]}};
     const bodies=[];
     const provider=createAstraPrimaryProvider({apiKey:"synthetic-only",fetcher:async(_url,init)=>{
-      bodies.push(JSON.parse(init.body));
+      const body=JSON.parse(init.body);
+      bodies.push(body);
+      const output=body.text.format.name==="dm_narrate"
+        ?{narration:"The opponent stands before you.",visualDescription:"A tense exchange.",clarification:null}
+        :raw;
       return new Response(JSON.stringify({model:"gpt-6-astra",status:"completed",
         output:[{type:"message",role:"assistant",status:"completed",
-          content:[{type:"output_text",text:JSON.stringify(raw)}]}],
+          content:[{type:"output_text",text:JSON.stringify(output)}]}],
         usage:{input_tokens:12,output_tokens:8}}));
     }});
     const context={instructions:"One primary DM",input:"{}",budget:modelBudget("gpt-6-astra"),
@@ -58,5 +62,12 @@ test("production OpenAI adapter keeps Astra/high and derives encounter Action fr
     assert.equal(bodies[0].service_tier,"default");
     assert.equal(bodies[0].store,false);
     assert.equal(bodies[0].text.format.strict,true);
+    const narration=await provider.narrate(context,input);
+    assert.equal(narration.output.narration,"The opponent stands before you.");
+    assert.equal(bodies.length,2);
+    assert.equal(bodies[1].model,"gpt-6-astra");
+    assert.deepEqual(bodies[1].reasoning,{effort:"medium"});
+    assert.equal(bodies[1].service_tier,"default");
+    assert.equal(bodies[1].store,false);
   } finally {await f.db.close();}
 });
