@@ -1,3 +1,13 @@
+# Development status — Astra primary DM Stage 1 reveal — OWNER REVIEW COMPLETE
+
+**Milestone/status (2026-10-06):** The owner completed the Stage 1 blind review and authorized revealing the existing X/Y/Z key. [The Stage 1 reveal](ASTRA_PRIMARY_DM_STAGE1_REVEAL.md) now identifies all 30 variant mappings and aggregates the retained Stage 1A/1B/1C results by the actual baseline, Console Memory/state and Full Console DM arms. No new model call, rerun, Stage 2 run, prompt/tool-contract/scenario change, production implementation or activation was made. Main, owner database, app and gameplay remain untouched. This reveal makes no automatic Stage 2 selection.
+
+**Evidence and changed areas:** The reveal uses the private local key and saved ledgers; the final blind review and its player-facing evidence remain unchanged. Across the final ten retained variants per arm, A committed 9/10 and had the oil-item revision rejection; B and C each committed 10/10. The report distinguishes retained-arm metrics from all historical requests, describes callback, NPC autonomy, world-resistance and state observations without invented scores, and identifies the nine diagnostic blind responses requested by the owner. Only the reveal document and this status were added/updated.
+
+**Verification and next step:** Mapping rows were checked against the existing reveal key; arm totals were recomputed from the three saved ledgers. This documentation-only change requires no application build or provider call. Owner review of the revealed evidence is the next step. Stage 2 and production activation require separate decisions.
+
+---
+
 # Development status — Astra primary DM Stage 1 final blind completion — OWNER SCORING PENDING
 
 **Milestone/status (2026-10-06):** Stage 1C ran only the four owner-authorized remaining blind cells from exact Stage 1B candidate `839302bc188b1e19b000bbf7df74a1818431cb71` on `codex/astra-primary-dm-spike`. All 30 original cells have now been attempted, with 29 committed outcomes and one genuine final validation failure. The hidden X/Y/Z mapping, prompts, tool contract, scenarios and existing valid Stage 1A/1B results were unchanged. Stage 2 and owner production activation remain unauthorized; main, the owner database, owner app, gameplay, migrations and deployment were untouched.
