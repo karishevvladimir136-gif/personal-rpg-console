@@ -1,0 +1,198 @@
+{
+  "base": "53446d707f9dab538154c1574018781bc0839d12",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "syntheticOnly": true,
+  "maximumCalls": 2,
+  "calls": [
+    {
+      "case": "immediate-provocation",
+      "arm": "before",
+      "requestHash": "a596a9f0581dc2d62536f3ae5b310fd9fcfcd9c41d6fdc06d21c797bfe99c0d2",
+      "output": [
+        {
+          "actorId": "b7e20a08-6ef0-4152-84df-6dae28496875",
+          "action": "defend",
+          "targetId": null,
+          "itemId": null,
+          "position": null,
+          "description": "The innkeeper holds a guarded stance by the doorway, ready to protect the guests."
+        }
+      ],
+      "usage": {
+        "model": "gpt-6-astra",
+        "inputTokens": 804,
+        "outputTokens": 79,
+        "calls": 1,
+        "latencyMs": 3075
+      },
+      "validation": "passed",
+      "error": null,
+      "attempt": {
+        "operationId": "95067364-8d17-425e-b8d8-9e2de1ac0b03",
+        "stage": "plan",
+        "configuredModel": "gpt-6-astra",
+        "actualModel": "gpt-6-astra",
+        "httpStatus": 200,
+        "providerCode": null,
+        "providerType": null,
+        "attempted": true,
+        "success": true,
+        "category": null,
+        "inputTokens": 804,
+        "outputTokens": 79,
+        "latencyMs": 3075,
+        "estimatedInputTokens": 5714,
+        "maxOutputTokens": 4096,
+        "timeoutMs": 60000,
+        "sourceCount": 2
+      }
+    },
+    {
+      "case": "immediate-provocation",
+      "arm": "after",
+      "requestHash": "dfa946a1a838590d948176487135a78dc07dc2802fe7353146bf0730ae2752d4",
+      "output": [
+        {
+          "actorId": "b7e20a08-6ef0-4152-84df-6dae28496875",
+          "action": "defend",
+          "targetId": null,
+          "itemId": null,
+          "position": null,
+          "description": "The innkeeper raises his guard and holds his ground. \"Back off. Leave the guests alone.\""
+        }
+      ],
+      "usage": {
+        "model": "gpt-6-astra",
+        "inputTokens": 1170,
+        "outputTokens": 82,
+        "calls": 1,
+        "latencyMs": 3037
+      },
+      "validation": "passed",
+      "error": null,
+      "attempt": {
+        "operationId": "95067364-8d17-425e-b8d8-9e2de1ac0b03",
+        "stage": "plan",
+        "configuredModel": "gpt-6-astra",
+        "actualModel": "gpt-6-astra",
+        "httpStatus": 200,
+        "providerCode": null,
+        "providerType": null,
+        "attempted": true,
+        "success": true,
+        "category": null,
+        "inputTokens": 1170,
+        "outputTokens": 82,
+        "latencyMs": 3037,
+        "estimatedInputTokens": 7326,
+        "maxOutputTokens": 4096,
+        "timeoutMs": 60000,
+        "sourceCount": 2
+      }
+    }
+  ],
+  "networkCalls": 2,
+  "frozen": [
+    {
+      "name": "immediate-provocation",
+      "afterContextHash": "9fa12759077046e68362bbc8cbca99ea24a241413c8f9ca7e9ee5e679dddd7ef"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "immediate-provocation",
+      "decision": {
+        "campaignId": "ac6e180c-da73-4196-967c-3e1afe5d6786",
+        "operationId": "95067364-8d17-425e-b8d8-9e2de1ac0b03",
+        "location": {
+          "id": null,
+          "name": null
+        },
+        "recentPublicScene": "The innkeeper stands by the doorway; guests are in the room.",
+        "immediatePlayerStimulus": {
+          "requestedText": "I punch the innkeeper and demand his money.",
+          "requestedTextTruncated": false,
+          "execution": "resolved",
+          "validatedAction": {
+            "kind": "encounter.action",
+            "actorId": "4ab952a3-8e8c-4874-9714-afb522fdc853",
+            "action": "attack",
+            "targetId": "b7e20a08-6ef0-4152-84df-6dae28496875",
+            "itemId": null,
+            "position": null
+          },
+          "publicOutcomes": [
+            {
+              "text": "The attack hit; code-validated damage was applied.",
+              "entityIds": [
+                "4ab952a3-8e8c-4874-9714-afb522fdc853",
+                "b7e20a08-6ef0-4152-84df-6dae28496875"
+              ]
+            }
+          ],
+          "visibleHpChanges": []
+        },
+        "actorsToDecide": [
+          "b7e20a08-6ef0-4152-84df-6dae28496875"
+        ],
+        "participants": [
+          {
+            "entityId": "4ab952a3-8e8c-4874-9714-afb522fdc853",
+            "name": "Synthetic Neri",
+            "publicDetails": "",
+            "controlled": true,
+            "hp": 8,
+            "maxHp": 10,
+            "position": "nearby",
+            "action": 0,
+            "move": 1,
+            "defending": false,
+            "weapons": [],
+            "personality": null
+          },
+          {
+            "entityId": "b7e20a08-6ef0-4152-84df-6dae28496875",
+            "name": "Innkeeper",
+            "publicDetails": "Protective of the inn and its guests. Ordinary person without magic.",
+            "controlled": false,
+            "hp": 6,
+            "maxHp": 8,
+            "position": "nearby",
+            "action": 1,
+            "move": 1,
+            "defending": false,
+            "weapons": [],
+            "personality": {
+              "actorId": "b7e20a08-6ef0-4152-84df-6dae28496875",
+              "identity": {
+                "values": [
+                  "protect guests",
+                  "stands up to intimidation"
+                ],
+                "wants": [
+                  "keep the inn safe"
+                ],
+                "boundaries": [
+                  "refuses coercion"
+                ],
+                "loyalties": [],
+                "signatures": [],
+                "observableVoice": "Firm, short sentences."
+              },
+              "current": {
+                "goal": "Keep the aggressor away from the guests",
+                "stress": "strained",
+                "preoccupation": null,
+                "obligation": null
+              },
+              "beliefs": [],
+              "relationships": [],
+              "episodes": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

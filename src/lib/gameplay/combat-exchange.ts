@@ -31,6 +31,7 @@ export type CombatDecision = {
     execution: "resolved" | "not-executed";
     validatedAction: Extract<MechanicChoice, { kind: "encounter.action" }> | null;
     publicOutcomes: Array<{ text: string; entityIds: string[] }>;
+    visibleHpChanges: Array<{ entityId: string; before: number; after: number }>;
   };
   participants: Array<{
     entityId: string;
@@ -123,7 +124,7 @@ function action(actorId: string, kind: "end-turn" | "attack" | "attempt" | "defe
 }
 
 export function decisionContext(source: RuntimeSource, input: TurnInput, ids: string[],
-  checkpoint: TurnCheckpoint): CombatDecision {
+  checkpoint: TurnCheckpoint, beforePlayerAction: RuntimeSource): CombatDecision {
   const encounter = active(source);
   requireRule(encounter);
   const config = source.runtime.configuration;
@@ -163,6 +164,17 @@ export function decisionContext(source: RuntimeSource, input: TurnInput, ids: st
         .filter((row) => row.kind === "encounter.action" &&
           row.entityIds.includes(checkpoint.naturalMechanic!.actorId))
         .slice(0, 4).map((row) => ({ text: row.text.slice(0, 320), entityIds: [...row.entityIds] })),
+      visibleHpChanges: exchange.resumeOnly ? [] : exchange.playerResolution.changes
+        .filter((change) => change.family === "entities" && typeof change.values.hp === "number")
+        .slice(0, 4).flatMap((change) => {
+          const before = beforePlayerAction.snapshot.entities.find((row) =>
+            row.campaign_id === input.campaignId && row.id === change.id);
+          const after = source.snapshot.entities.find((row) =>
+            row.campaign_id === input.campaignId && row.id === change.id);
+          return before?.hp !== null && before?.hp !== undefined && after?.hp !== null &&
+            after?.hp !== undefined && before.hp !== after.hp
+            ? [{ entityId: change.id, before: before.hp, after: after.hp }] : [];
+        }),
     },
     actorsToDecide: ids,
     participants: encounter.participants.map((row) => {
@@ -274,7 +286,7 @@ export async function completeCombatExchange(
     if (ids.length) {
       if (exchange.npcIntents === null) {
         if (!prepare) throw new TurnError("configuration");
-        const response = await prepare(decisionContext(state, input, ids, checkpoint));
+        const response = await prepare(decisionContext(state, input, ids, checkpoint, source));
         exchange.npcIntents = validateAutonomousIntents(state, ids, response.output);
         checkpoint.usage.push(response.usage);
         await store.checkpoint(lease, checkpoint, "generating");

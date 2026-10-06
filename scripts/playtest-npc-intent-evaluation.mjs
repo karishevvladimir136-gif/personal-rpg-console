@@ -1,4 +1,4 @@
-// Six explicitly authorized synthetic resolver-only calls; dry-run by default.
+// Opt-in paired synthetic resolver-only evaluation; dry-run by default.
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { createHash, randomUUID } from "node:crypto";
@@ -33,7 +33,7 @@ function scene(name, text, action, outcome, hp, identity, current) {
   }) };
   f.checkpoint.plan.publicPatches[0].action = action;
   f.checkpoint.combatExchange.playerResolution.outcomes[0].text = outcome;
-  return { name, fixture: f, decision: decisionContext(f.source, f.input, [f.npc.id], f.checkpoint) };
+  return { name, fixture: f, decision: decisionContext(f.source, f.input, [f.npc.id], f.checkpoint, f.source) };
 }
 const cases = [
   scene("immediate-provocation", "I punch the innkeeper and demand his money.", "attack",
@@ -61,7 +61,7 @@ wounded.source.runtime.configuration.itemRules.push({ itemId: swordId, tag: "wea
 wounded.checkpoint.plan.publicPatches[0].itemId = swordId;
 wounded.checkpoint.naturalMechanic = { ...wounded.checkpoint.naturalMechanic,
   input: wounded.input.input, method: "attack", itemId: swordId, equipmentName: "sword" };
-cases[1].decision = decisionContext(wounded.source, wounded.input, [wounded.npc.id], wounded.checkpoint);
+cases[1].decision = decisionContext(wounded.source, wounded.input, [wounded.npc.id], wounded.checkpoint, wounded.source);
 const selection = process.argv.find((arg) => arg.startsWith("--case="))?.slice(7);
 const selected = selection ? cases.filter((item) => item.name === selection) : cases;
 assert.ok(selected.length > 0);

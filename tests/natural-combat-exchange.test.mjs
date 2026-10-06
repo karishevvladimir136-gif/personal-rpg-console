@@ -111,6 +111,7 @@ test("natural sword action commits one whole exchange and returns the next turn 
     assert.equal(stimulus.validatedAction.itemId,h.sword.id);
     assert.deepEqual(stimulus.publicOutcomes,[{entityIds:[h.f.hero,h.npc.id],
       text:"The attack hit; code-validated damage was applied."}]);
+    assert.deepEqual(stimulus.visibleHpChanges,[{entityId:h.npc.id,before:8,after:6}]);
     assert.equal(h.npcDecisions[0].participants.find((row)=>row.entityId===h.npc.id).hp,6);
     assert.equal(current.encounters.find((row)=>row.status==="active").round,2);
     const hero=current.participants.find((row)=>row.entity_id===h.f.hero);
@@ -128,6 +129,7 @@ test("natural sword action commits one whole exchange and returns the next turn 
     assert.equal(h.npcDecisions[1].immediatePlayerStimulus.validatedAction.action,"attempt");
     assert.match(h.npcDecisions[1].immediatePlayerStimulus.publicOutcomes[0].text,
       /no condition, damage or transfer was established/);
+    assert.deepEqual(h.npcDecisions[1].immediatePlayerStimulus.visibleHpChanges,[]);
     assert.equal((await h.store.readPlay(h.f.cid)).encounters.find((row)=>row.status==="active").round,3);
     const timeline=await h.f.fence(h.f.cid);
     const memory=createRpcMemoryStore(h.f.owner,async(args)=>({
@@ -227,6 +229,7 @@ test("spent player Action safely advances the existing encounter and returns con
     assert.equal(h.npcDecisions.at(-1).immediatePlayerStimulus.execution,"not-executed");
     assert.equal(h.npcDecisions.at(-1).immediatePlayerStimulus.validatedAction,null);
     assert.deepEqual(h.npcDecisions.at(-1).immediatePlayerStimulus.publicOutcomes,[]);
+    assert.deepEqual(h.npcDecisions.at(-1).immediatePlayerStimulus.visibleHpChanges,[]);
     const after=await h.store.readPlay(h.f.cid);
     assert.equal(after.encounters.find((row)=>row.status==="active").round,3);
     assert.equal(after.participants.find((p)=>p.entity_id===h.f.hero).public_resources.action,1);

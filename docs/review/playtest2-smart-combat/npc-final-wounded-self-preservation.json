@@ -1,0 +1,204 @@
+{
+  "base": "53446d707f9dab538154c1574018781bc0839d12",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "syntheticOnly": true,
+  "maximumCalls": 2,
+  "calls": [
+    {
+      "case": "wounded-self-preservation",
+      "arm": "before",
+      "requestHash": "d8877807025b42740aeaedea7c060445b03249d57b22ba935978bdb22a970c86",
+      "output": [
+        {
+          "actorId": "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3",
+          "action": "defend",
+          "targetId": null,
+          "itemId": null,
+          "position": null,
+          "description": "The innkeeper takes a guarded stance by the doorway, prioritizing survival."
+        }
+      ],
+      "usage": {
+        "model": "gpt-6-astra",
+        "inputTokens": 859,
+        "outputTokens": 84,
+        "calls": 1,
+        "latencyMs": 2682
+      },
+      "validation": "passed",
+      "error": null,
+      "attempt": {
+        "operationId": "25a768a2-1041-4a2e-83b9-65f0ac9708ea",
+        "stage": "plan",
+        "configuredModel": "gpt-6-astra",
+        "actualModel": "gpt-6-astra",
+        "httpStatus": 200,
+        "providerCode": null,
+        "providerType": null,
+        "attempted": true,
+        "success": true,
+        "category": null,
+        "inputTokens": 859,
+        "outputTokens": 84,
+        "latencyMs": 2682,
+        "estimatedInputTokens": 5779,
+        "maxOutputTokens": 4096,
+        "timeoutMs": 60000,
+        "sourceCount": 2
+      }
+    },
+    {
+      "case": "wounded-self-preservation",
+      "arm": "after",
+      "requestHash": "d5e646b4afeffb24538866f4b1ffc0270e26c043d835fef39bc1f1f66a3428a6",
+      "output": [
+        {
+          "actorId": "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3",
+          "action": "move",
+          "targetId": null,
+          "itemId": null,
+          "position": "far",
+          "description": "The innkeeper tries to retreat beyond the sword's reach, calling to the guests, \"Keep back!\""
+        }
+      ],
+      "usage": {
+        "model": "gpt-6-astra",
+        "inputTokens": 1259,
+        "outputTokens": 90,
+        "calls": 1,
+        "latencyMs": 3474
+      },
+      "validation": "passed",
+      "error": null,
+      "attempt": {
+        "operationId": "25a768a2-1041-4a2e-83b9-65f0ac9708ea",
+        "stage": "plan",
+        "configuredModel": "gpt-6-astra",
+        "actualModel": "gpt-6-astra",
+        "httpStatus": 200,
+        "providerCode": null,
+        "providerType": null,
+        "attempted": true,
+        "success": true,
+        "category": null,
+        "inputTokens": 1259,
+        "outputTokens": 90,
+        "latencyMs": 3474,
+        "estimatedInputTokens": 7429,
+        "maxOutputTokens": 4096,
+        "timeoutMs": 60000,
+        "sourceCount": 2
+      }
+    }
+  ],
+  "networkCalls": 2,
+  "frozen": [
+    {
+      "name": "wounded-self-preservation",
+      "afterContextHash": "ac2356f0bb6a977421f4ce7baa1c564b83d0754494eed76c6914c7e873109f25"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "wounded-self-preservation",
+      "decision": {
+        "campaignId": "6be50ad7-f0a3-4806-bc0c-a129dfc9c5cf",
+        "operationId": "25a768a2-1041-4a2e-83b9-65f0ac9708ea",
+        "location": {
+          "id": null,
+          "name": null
+        },
+        "recentPublicScene": "The innkeeper stands by the doorway; guests are in the room.",
+        "immediatePlayerStimulus": {
+          "requestedText": "I swing again at the innkeeper with my sword.",
+          "requestedTextTruncated": false,
+          "execution": "resolved",
+          "validatedAction": {
+            "kind": "encounter.action",
+            "actorId": "3558ac45-44da-46dd-aa41-54d1fdf1da23",
+            "action": "attack",
+            "targetId": "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3",
+            "itemId": "078f1d01-511c-4dad-9933-bd4990ca3eaa",
+            "position": null
+          },
+          "publicOutcomes": [
+            {
+              "text": "The attack hit; code-validated damage was applied.",
+              "entityIds": [
+                "3558ac45-44da-46dd-aa41-54d1fdf1da23",
+                "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3"
+              ]
+            }
+          ],
+          "visibleHpChanges": []
+        },
+        "actorsToDecide": [
+          "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3"
+        ],
+        "participants": [
+          {
+            "entityId": "3558ac45-44da-46dd-aa41-54d1fdf1da23",
+            "name": "Synthetic Neri",
+            "publicDetails": "",
+            "controlled": true,
+            "hp": 8,
+            "maxHp": 10,
+            "position": "nearby",
+            "action": 0,
+            "move": 1,
+            "defending": false,
+            "weapons": [
+              {
+                "id": "078f1d01-511c-4dad-9933-bd4990ca3eaa",
+                "name": "sword",
+                "damage": 2
+              }
+            ],
+            "personality": null
+          },
+          {
+            "entityId": "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3",
+            "name": "Innkeeper",
+            "publicDetails": "Protective of the inn and its guests. Ordinary person without magic.",
+            "controlled": false,
+            "hp": 2,
+            "maxHp": 8,
+            "position": "nearby",
+            "action": 1,
+            "move": 1,
+            "defending": false,
+            "weapons": [],
+            "personality": {
+              "actorId": "4cb8f3f3-d9e5-4d28-8a4f-3e95e50905e3",
+              "identity": {
+                "values": [
+                  "protect guests",
+                  "values survival over pride"
+                ],
+                "wants": [
+                  "keep the inn safe"
+                ],
+                "boundaries": [
+                  "refuses coercion"
+                ],
+                "loyalties": [],
+                "signatures": [],
+                "observableVoice": "Firm, short sentences."
+              },
+              "current": {
+                "goal": "Survive the armed assault",
+                "stress": "acute",
+                "preoccupation": null,
+                "obligation": null
+              },
+              "beliefs": [],
+              "relationships": [],
+              "episodes": []
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
