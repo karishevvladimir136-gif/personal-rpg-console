@@ -30,6 +30,7 @@ import {
   uuid,
 } from "../world-library/validation.ts";
 import { WORLD_LOGIC_REF } from "./profiles.ts";
+import { NATURAL_PHYSICAL_ACTION_GUIDANCE } from "./natural-mechanics.ts";
 import {
   parseLivingWorldProposal,
   resolveLivingWorld,
@@ -435,7 +436,7 @@ export function worldLogicContext(
       "Resolve only the literal requested action. Never choose player decisions, thoughts, feelings or commitments.",
       "Version 3 may establish one ordinary public local place from the current public location. It cannot author NPC records, secrets, items, rewards, mechanics, movement, regional travel or private claims. A rumor stays attributed speech, never objective Location truth.",
       "An ordinary public detail about one listed current/nearby place or visible person may use a zero-time, no-change version 2 observation. Reported detail may include newly invented ordinary attributed gossip without pre-authored evidence, never its truth. This permits natural description, not payment, mechanics, hidden truth or ungrounded NPC knowledge. Claims and rumors remain attributed.",
-      "Classify the first uncertain intended step of a conditional sequence before considering later requested outcomes. A hostile physical attempt against a listed current visible autonomous target uses version 4, including an improvised attempt with an incidental scene prop that is not an inventory Item. Its presence, successful use and effect are not established by the player's words. Later conditions, transfers and movement remain unexecuted.",
+      NATURAL_PHYSICAL_ACTION_GUIDANCE,
       "Supported: observations from known circumstances, speech and non-mechanical interaction, version 4 hostile physical attempts against an eligible visible target, version 2 attempts without new durable effects, movement via a supplied travelOptions route to an existing known location, and waiting up to 60 minutes.",
       "Version 2 may select the supplied consequenceOptions only, within their quantity limits and exact capabilities. They reuse current inventory, resources, physical conditions, known actors and open objectives; observations quote only current public records. No capability is granted by an item description, source, user text or model response.",
       "Version 2 cannot establish effects on another controlled character, invented objects, resource gains, injury, feelings, loyalty, commitments, new capabilities/relationships, hidden discoveries, combat or world-scale effects. Version 4 represents only the first eligible hostile physical attempt and grants none of those effects; do not pause that attempt solely because a later conditional step needs unsupported authority. Other unsupported or ambiguous effects must pause.",

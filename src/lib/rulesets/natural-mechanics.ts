@@ -6,6 +6,15 @@ import { parseWorldState } from "../world/validation.ts";
 import { ensure, literal, nullable, object, text, uuid } from "../world-library/validation.ts";
 import type { WorldLogicInput } from "./world-logic-contracts.ts";
 
+/** Shared semantic guidance for the resolver, never a text-routing rule. */
+export const NATURAL_PHYSICAL_ACTION_GUIDANCE = [
+  "Select the first independently consequential uncertain action in the player's intended sequence. Interpret its purpose and causal dependencies, not the first verb or a keyword. Incidental staging, gestures, feints and aim can be part of one attack; they do not establish a separate success, positional change or advantage. Do not require an inventory record for incidental scenery or pause an otherwise eligible attack because its cosmetic preparation is unestablished; omit that unsupported preparation from the outcome. If a preceding action needs its own uncertain result before the next action can happen, resolve only that preceding action.",
+  "For a hostile physical action against a listed current visible autonomous target, use schemaVersion=4. Choose method=attack for an ordinary injuring strike with a fist, foot or an approved equipped weapon, including a strike described with distracting preparation, a called body part or a hoped-for stun. A desired extra effect never changes an ordinary strike into a guaranteed condition. Choose method=improvise for a distinct attempt whose primary purpose is grappling, shoving, forcing movement, disarming, or using an object outside its approved attack rules. Determine whether contact intends injury or displacement from the whole request and circumstances; a forceful verb alone cannot decide. A weapon strike aimed at a hand may remain an attack; taking the weapon away as the primary action is a bounded attempt. Neither grants a disarm.",
+  "A prior shove followed by a strike contains two independently consequential actions: only the shove attempt is eligible now. An incidental scene prop may support a bounded physical attempt without becoming an inventory Item; its presence, possession and successful use are not established by player wording. Resolve that attempt before any later conditional action. Later strikes, claimed stuns, forced movement, taking valuables and other follow-through remain unexecuted.",
+  "Version 4 is interpretation only: copy input exactly and select the controlled actorId and visible targetId. itemId must be a supplied authoritative eligible item and equipmentName its exact name when that item is claimed; never substitute an unarmed strike for a named missing weapon. Do not invent dice, hit, HP, damage, conditions, advantage, position, item ownership or transfers. The deterministic mechanics alone resolve the selected action. A hoped-for secondary effect does not make a supported attack or attempt unsupported, but it receives no authority. Missing required equipment, an ineligible target or a genuinely unresolved primary intent still requires clarification.",
+  "Pure speech, threats, demands and taunts use the existing World Logic speech path when supported; they do not become physical attacks or grant a taunted condition, forced behavior or a transfer. Movement, cover and defending cannot be granted as free attack preparation; select a separate supported action only when that is the actual primary intent and its existing authority permits it.",
+].join(" ");
+
 /** Interpretation only. It cannot contain a roll, damage, condition or transfer. */
 export type NaturalMechanicIntent = {
   schemaVersion: 4;
@@ -109,10 +118,11 @@ export function naturalMechanicPlan(
     position: null,
   });
   const plan = mechanicPlanForActions(source, input, actions);
-  plan.narration = intent.method === "improvise"
+  const resultGuidance = intent.method === "improvise"
     ? "Narrate only the recorded physical attempt and its check. No stun, condition, damage, transfer, or later conditional step was authorized. Stop at the next decision."
     : intent.itemId === null
       ? "This was adjudicated as an unarmed attack. Do not describe a weapon as owned, equipped, used, or hitting. Narrate only the recorded attack result."
       : `This attack used the approved equipped item ${intent.equipmentName}. Narrate only the recorded attack result and damage.`;
+  plan.narration = `${resultGuidance} The player's phrasing is intent, not an outcome. Narrate only this one independently consequential player action and any separately validated autonomous response. Incidental staging or a feint grants no successful preparation, advantage or positional change. Do not claim stun, disarm, forced movement, a later strike, taking valuables or any other follow-through unless separately present in validated results. Stop at the next player decision.`;
   return plan;
 }
