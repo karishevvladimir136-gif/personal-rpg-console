@@ -6,40 +6,20 @@ import { join } from "node:path";
 import { parseEnv } from "node:util";
 import { stage1Limits } from "../../spikes/astra-primary-dm/evaluation.mjs";
 import { ShadowJournal, runShadowTurn } from "../../spikes/astra-primary-dm/prototype.mjs";
+import { responseSchemaForPacket, writableCapabilities } from "../../spikes/astra-primary-dm/provider-contract.mjs";
 import { acceptanceArc, acceptanceInitialState, acceptanceInput,
   acceptanceSnapshot, appendAcceptanceHistory, assertAcceptanceState,
   composeAcceptancePacket, deterministicAcceptanceRandom } from
 "../../spikes/astra-primary-dm/mechanical-acceptance.mjs";
 
-const startingSha = "765e384a3bdc0a97a1cf00c8916f62a6fc71b594";
+const startingSha = "e7d88584bb9dbb4a8737e77d9a1eabb2823b7974";
+const acceptanceVersion = "v2";
 const model = "gpt-6-astra", reasoning = "high", serviceTier = "default";
 const maxRequests = 32, maxSpendUsd = 20, maxTurns = 8;
 const worstRequestUsd = (stage1Limits.maxInputTokensPerCall * 12.5 +
   stage1Limits.maxOutputTokensPerCall * 50) / 1_000_000;
 const hash = (value) => createHash("sha256").update(JSON.stringify(value)).digest("hex");
 const textBytes = (value) => Buffer.byteLength(value, "utf8");
-const nil = (type) => ({ type: [type, "null"] });
-const obj = (properties) => ({ type: "object", additionalProperties: false,
-  properties, required: Object.keys(properties) });
-const itemValues = obj({ hp: nil("integer"), resources: {
-  anyOf: [obj({ action: nil("integer"), move: nil("integer"),
-    reaction: nil("integer"), focus: nil("integer") }), { type: "null" }],
-}, position: { type: ["string", "null"], enum: ["nearby", "far", "cover", null] }, quantity: nil("integer") });
-const toolCall = obj({ kind: { type: "string",
-  enum: ["query", "skill", "attack", "save", "damage"] }, actorId: nil("string"),
-targetId: nil("string"), dc: nil("integer"), itemId: nil("string"), scope: nil("string") });
-const finalProposal = obj({ schemaVersion: { type: "integer" }, operationId: { type: "string" },
-  campaignId: { type: "string" }, expectedRevision: { type: "integer" }, input: { type: "string" },
-  narration: { type: "string" }, visualDescription: { type: "string" },
-  publicChanges: { type: "array", items: obj({ family: { type: "string", enum: ["actors", "items", "location"] },
-    id: { type: "string" }, expectedRevision: nil("integer"), values: itemValues }) },
-  privateChanges: { type: "array", items: obj({ key: { type: "string" }, value: { type: "string" } }) },
-  memoryCandidates: { type: "array", items: obj({ visibility: { type: "string", enum: ["public", "private"] },
-    text: { type: "string" } }) }, rollRefs: { type: "array", items: { type: "string" } },
-  worldMinutes: { type: "integer" }, clarification: nil("string") });
-const stepSchema = obj({ type: { type: "string", enum: ["tool", "final"] },
-  call: { anyOf: [toolCall, { type: "null" }] },
-  proposal: { anyOf: [finalProposal, { type: "null" }] } });
 const protocol = [
   "Return exactly one JSON object matching the response schema. This is the generic server tool/final contract for every turn.",
   "For a tool step set type=tool, call to the tool request, proposal=null. For a final step set type=final, call=null, proposal to the complete final contract.",
@@ -72,7 +52,7 @@ function requestBody(packet, transcript, input) {
     input: JSON.stringify({ packet, turn: input, toolReceipts: transcript }),
     max_output_tokens: stage1Limits.maxOutputTokensPerCall, store: false,
     truncation: "disabled", text: { format: { type: "json_schema", name: "primary_dm_step",
-      strict: true, schema: stepSchema } } };
+      strict: true, schema: responseSchemaForPacket(packet) } } };
 }
 
 function usageFrom(payload) {
@@ -125,6 +105,7 @@ assert.ok(process.env.RPG_ASTRA_MECHANICAL_OUTPUT_DIR);
 const directory = process.env.RPG_ASTRA_MECHANICAL_OUTPUT_DIR;
 const preflight = JSON.parse(await readFile(join(directory, "preflight-result.json"), "utf8"));
 assert.equal(preflight.startingSha, startingSha);
+assert.equal(preflight.acceptanceVersion, acceptanceVersion);
 assert.equal(preflight.status, "passed");
 assert.equal(preflight.turns, 8);
 assert.equal(preflight.rejectedNoOp, true);
@@ -156,11 +137,12 @@ let ledger;
 try { ledger = JSON.parse(await readFile(ledgerPath, "utf8")); }
 catch (error) {
   if (error.code !== "ENOENT") throw error;
-  ledger = { startingSha, model, reasoning, serviceTier, arcDigest: hash(acceptanceArc),
+  ledger = { startingSha, acceptanceVersion, model, reasoning, serviceTier, arcDigest: hash(acceptanceArc),
     preflightDigest: hash(preflight), turns: [], requests: [], stopReason: null };
   await writeFile(ledgerPath, JSON.stringify(ledger, null, 2));
 }
 assert.equal(ledger.startingSha, startingSha);
+assert.equal(ledger.acceptanceVersion, acceptanceVersion);
 assert.equal(ledger.arcDigest, hash(acceptanceArc));
 assert.equal(ledger.preflightDigest, hash(preflight));
 assert.equal(ledger.stopReason, null, "stopped run cannot be resumed automatically");
@@ -191,7 +173,8 @@ const session = { turnNumber: scenario.turnNumber, caseId: scenario.id, input: s
   purpose: scenario.purpose, status: "started", validation: "not-run", error: null,
   startedAt: new Date().toISOString(), requestCount: 0, providerLatencyMs: null,
   wallTimeMs: null, initialBodyBytes: initial.bodyBytes, initialContextTrim: initial.trim,
-  selection, stateBefore: before, stateAfter: null, publicResult: null,
+  selection, contractCapabilities: writableCapabilities(packet),
+  stateBefore: before, stateAfter: null, publicResult: null,
   receipts: [], memoryAdditions: [], finalProposal: null };
 ledger.turns.push(session);
 await save();
