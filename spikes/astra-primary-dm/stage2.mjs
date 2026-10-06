@@ -68,16 +68,29 @@ export function recordStage2Commit(run, { publicResult, stateAfter, characterMod
     typeof publicResult.narration !== "string") throw Error("Stage 2 needs a validated same-campaign commit");
   const state = structuredClone(stateAfter);
   const turnNumber = run.turnIndex + 1;
+  const sceneId = `stage2-scene-${turnNumber}`;
   state.recentScenes = [...(state.recentScenes ?? []),
-    { id: `stage2-scene-${turnNumber}`, text: publicResult.narration }];
+    { id: sceneId, text: publicResult.narration }];
   state.historicalMemory = [...(run.state.historicalMemory ?? []),
+    { id: sceneId, sourceSceneId: sceneId, text: publicResult.narration,
+      entityIds: [], unresolved: false, authority: "history" },
     ...(publicResult.publicMemory ?? []).map((row, index) => ({
       id: `stage2-memory-${turnNumber}-${index}`, text: row.text, entityIds: [],
       unresolved: false, authority: "history" }))];
   state.characterModels = structuredClone(characterModelsAfter ?? run.state.characterModels);
   run.state = state;
-  run.results.push({ caseId: stage2Arc[run.turnIndex].id, publicResult: structuredClone(publicResult),
+  run.results.push({ caseId: stage2Arc[run.turnIndex].id, status: "committed",
+    publicResult: structuredClone(publicResult),
     stateRevision: state.revision, driftScores: Object.fromEntries(stage2DriftRubric.map((key) => [key, null])),
     providerMetrics: prepareStage2Template().providerMetricsPerTurn });
+  run.turnIndex++;
+}
+
+/** A rejected final has no world effect; the next literal input sees the last committed state. */
+export function recordStage2Failure(run, { caseId, sourceRevision, error }) {
+  if (run.turnIndex >= stage2Arc.length || caseId !== stage2Arc[run.turnIndex].id ||
+    sourceRevision !== run.state.revision || typeof error !== "string" || !error || error.length > 180)
+    throw Error("Stage 2 failed-turn source mismatch");
+  run.results.push({ caseId, status: "failed", error, stateRevision: run.state.revision });
   run.turnIndex++;
 }

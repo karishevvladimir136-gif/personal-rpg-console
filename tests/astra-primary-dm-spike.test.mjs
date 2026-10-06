@@ -6,7 +6,9 @@ import { join } from "node:path";
 import { ShadowJournal, runShadowTurn, validateFinal } from "../spikes/astra-primary-dm/prototype.mjs";
 import { adaptiveContextBudget, commonDmInstructions, composeEvaluationPacket, prepareEvaluation, stage1CaseIds, summarizeProviderMetrics } from "../spikes/astra-primary-dm/evaluation.mjs";
 import { IDS, evaluationCases, frozenCampaign } from "../spikes/astra-primary-dm/frozen-data.mjs";
-import { createStage2Runs, nextStage2Packet, prepareStage2Template, recordStage2Commit, stage2Arc } from "../spikes/astra-primary-dm/stage2.mjs";
+import { createStage2Runs, nextStage2Packet, prepareStage2Template, recordStage2Commit,
+  recordStage2Failure, stage2Arc } from "../spikes/astra-primary-dm/stage2.mjs";
+import { pairedToolRandom } from "../spikes/astra-primary-dm/paired-rng.mjs";
 
 const input = (operationId) => ({ operationId, campaignId: IDS.campaign,
   timeline: { timelineId: "synthetic-main", epoch: 1 }, expectedRevision: 7,
@@ -326,11 +328,62 @@ test("Stage 2 prepares two isolated sequential arms and carries validated state 
   assert.equal(follow.visibleInventory.some((item) => item.id === IDS.oil), false);
   assert.equal(follow.currentScene, "Orin disagrees, and Mara spends her oil.");
   assert.ok(follow.consoleContext.recentScenes.some((row) => row.text.includes("Orin disagrees")));
+  assert.ok(first.state.historicalMemory.some((row) => row.id === "stage2-scene-1" &&
+    row.sourceSceneId === "stage2-scene-1" && row.text === "Orin disagrees, and Mara spends her oil."));
   assert.equal(second.state.revision, 7);
   assert.equal(second.state.items[IDS.oil].quantity, 1);
   assert.equal(nextStage2Packet(second).packet.literalInput, initialFirst.literalInput);
   second.turnIndex = 12;
   assert.ok(nextStage2Packet(second).packet.consoleContext.retrievedMemory.some((row) => row.id === "promise-1"));
+});
+
+test("Stage 2 pairs raw dice by turn and kind while keeping arm state and failures separate", () => {
+  const skill = { kind: "skill" }, query = { call: { kind: "query" } };
+  const b = pairedToolRandom({ turnNumber: 6, call: skill, checkpointTools: [] });
+  const c = pairedToolRandom({ turnNumber: 6, call: skill, checkpointTools: [query] });
+  assert.equal(b(1, 21), c(1, 21));
+  assert.equal(b(1, 21), c(1, 21));
+  const firstSkill = { call: skill };
+  const next = pairedToolRandom({ turnNumber: 6, call: skill, checkpointTools: [firstSkill] });
+  assert.notEqual(pairedToolRandom({ turnNumber: 6, call: skill, checkpointTools: [] })(1, 21),
+    next(1, 21));
+  assert.equal(pairedToolRandom({ turnNumber: 2, call: skill, checkpointTools: [] })(1, 21), 1);
+  assert.equal(pairedToolRandom({ turnNumber: 2, call: { kind: "attack" },
+    checkpointTools: [query] })(1, 21), 1);
+  const runs = createStage2Runs(["B", "C"]);
+  recordStage2Failure(runs[0], { caseId: "arc-01", sourceRevision: 7, error: "validation" });
+  assert.equal(runs[0].turnIndex, 1);
+  assert.equal(runs[0].state.revision, 7);
+  assert.equal(runs[0].state.recentScenes.length, 1);
+  assert.equal(runs[1].turnIndex, 0);
+  assert.equal(runs[1].state.revision, 7);
+  assert.equal(nextStage2Packet(runs[0]).packet.literalInput, stage2Arc[1].input);
+  assert.throws(() => recordStage2Failure(runs[1], { caseId: "arc-01", sourceRevision: 8,
+    error: "validation" }), /source mismatch/);
+});
+
+test("Stage 2 carries fourteen source-linked public scenes independently", () => {
+  const runs = createStage2Runs(["B", "C"]);
+  for (let turnIndex = 0; turnIndex < stage2Arc.length; turnIndex++) {
+    for (const run of runs) {
+      const packet = nextStage2Packet(run).packet;
+      assert.equal(packet.literalInput, stage2Arc[turnIndex].input);
+      assert.equal(packet.revision, 7 + turnIndex);
+      const next = structuredClone(run.state);
+      next.revision++;
+      const narration = `At turn ${turnIndex + 1}, Orin names an ordinary detail about the mine.`;
+      recordStage2Commit(run, { publicResult: { status: "committed", campaignId: IDS.campaign,
+        committedRevision: next.revision, narration,
+        publicMemory: [{ text: `Source-linked detail from turn ${turnIndex + 1}.` }] }, stateAfter: next });
+      assert.equal(run.state.historicalMemory.at(-2).sourceSceneId, `stage2-scene-${turnIndex + 1}`);
+      assert.equal(run.state.historicalMemory.at(-1).id, `stage2-memory-${turnIndex + 1}-0`);
+    }
+  }
+  assert.equal(runs[0].turnIndex, 14);
+  assert.equal(runs[1].turnIndex, 14);
+  assert.equal(runs[0].state.recentScenes.length, 15);
+  assert.equal(runs[1].state.historicalMemory.length, 31);
+  assert.notEqual(runs[0].state, runs[1].state);
 });
 
 test("later authorized provider receipts produce exact latency, token and tool totals", () => {

@@ -242,7 +242,8 @@ export function validateFinal(state, turn, final) {
 }
 
 /** A single injected primary DM handles both initial interpretation and tool-result continuation. */
-export async function runShadowTurn({ journal, input, composeContext, dm, random = randomInt, afterToolRecorded }) {
+export async function runShadowTurn({ journal, input, composeContext, dm, random = randomInt,
+  randomForTool, afterToolRecorded }) {
   const turn = await journal.begin(input);
   if (turn.status === "committed") return journal.readPublic(input.operationId);
   guard(turn.retryable, "conflict");
@@ -258,7 +259,11 @@ export async function runShadowTurn({ journal, input, composeContext, dm, random
         return await journal.commit(turn);
       }
       guard(output.type === "tool" && output.call);
-      const result = await journal.recordTool(turn, output.call, random);
+      const position = turn.checkpoint.tools.length;
+      const toolRandom = randomForTool?.({ call: clone(output.call),
+        checkpointTools: clone(turn.checkpoint.tools), position }) ?? random;
+      guard(typeof toolRandom === "function");
+      const result = await journal.recordTool(turn, output.call, toolRandom, position);
       await afterToolRecorded?.(result);
     }
     guard(false);
