@@ -6,6 +6,8 @@ import { setup, examples, usage } from "./universal-bootstrap-fixture.mjs";
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { runTurn, resumeTurn } from "../src/lib/gameplay/turn-engine.ts";
 import { worldLogicTurnPreparer, worldTurnPreparer } from "../src/lib/production/turn-world.ts";
+import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
+import { preflightMemory } from "../src/lib/memory/lifecycle.ts";
 
 const example = { ...examples.fantasy, description: "I carry a longsword. I know navigation and careful observation. I cannot cast spells.",
   item: "longsword", npc: "The innkeeper",
@@ -113,6 +115,21 @@ test("natural sword action commits one whole exchange and returns the next turn 
     const second=await submit(h,"I smack his head on nearest table");
     assert.equal(second.after.status,"committed");
     assert.equal((await h.store.readPlay(h.f.cid)).encounters.find((row)=>row.status==="active").round,3);
+    const timeline=await h.f.fence(h.f.cid);
+    const memory=createRpcMemoryStore(h.f.owner,async(args)=>({
+      data:await h.f.memory(args.p_campaign_id,args.p_action,args.p_payload,args.p_timeline),
+    }),timeline);
+    const round3=await h.store.readPlay(h.f.cid);
+    const next={operationId:randomUUID(),campaignId:h.f.cid,timeline,
+      expectedRevision:round3.revision,mode:"game",
+      input:"i jump on top of nearest table to get advantage and strike innkeeper with my sword",
+      companionId:null,listenerIds:[],mechanic:null};
+    let summaryCalls=0;
+    await preflightMemory(next,memory,{summarize:async()=>{
+      summaryCalls++; throw Error("No provider is needed for the context regression");
+    }},"gpt-6-astra");
+    assert.equal(summaryCalls,0);
+    assert.equal((await h.store.begin(next)).status,"pending");
   } finally {await h.f.db.close();}
 });
 

@@ -8,7 +8,7 @@ import type {
   RecordedCheck,
 } from "./server-contracts.ts";
 import type { Json, JsonObject } from "./contracts.ts";
-import { DmError } from "./dm-errors.ts";
+import { ContextCapacityError, DmError } from "./dm-errors.ts";
 import {
   planSchema,
   foundationPlanSchema,
@@ -144,6 +144,8 @@ export function buildContext(
     resolution?: MechanicsResolution;
     checks?: RecordedCheck[];
     budget?: ModelBudget;
+    /** Internal sizing pass before optional retrieval and recent prose. */
+    requiredOnly?: boolean;
   },
 ): BuiltContext {
   try {
@@ -465,7 +467,7 @@ export function buildContext(
   // Legacy sources still fail closed. Only validated memory coverage permits a
   // smaller recency window while original source history stays durable.
   if (!memory && eligibleTurns.length > 32) throw new DmError("context");
-  const exchanges = eligibleTurns.slice(memory ? -8 : -32).map((turn) => ({
+  let exchanges = eligibleTurns.slice(memory ? -8 : -32).map((turn) => ({
     id: turn.id,
     input: turn.input,
     narration: turn.narration,
@@ -473,7 +475,7 @@ export function buildContext(
   }));
   // Exact current scene revisions remain mandatory even when words match a turn.
   // Text equality cannot identify a source or supersede an owner correction.
-  const originalScenes =
+  let originalScenes =
     feedback || companion
       ? []
       : snapshot.scenes
@@ -515,16 +517,72 @@ export function buildContext(
           }))
           .filter((entry) => entry.entries.length > 0)
       : [];
-  const payload = {
+  // An exact source/version can be present in both the digest and selected
+  // retrieval. Remove only byte-identical statements; different claims from
+  // the same scene retain their own attribution and source identity.
+  const statementKey = (row: {
+    ref: { campaignId: string; visibility: string; kind: string; id: string; version: string; part: number };
+    text: string;
+    authority: string;
+    statementKind: string;
+    attribution: string | null;
+    validFrom: number | null;
+    validTo: number | null;
+    unresolved: boolean;
+  }) =>
+    JSON.stringify([
+      row.ref.campaignId, row.ref.visibility, row.ref.kind, row.ref.id,
+      row.ref.version, row.ref.part, row.text, row.authority,
+      row.statementKind, row.attribution, row.validFrom, row.validTo,
+      row.unresolved,
+    ]);
+  const publicSeen = new Set(
+    [...(memory?.exactEvents ?? []), ...(memory?.history ?? [])].map(statementKey),
+  );
+  const privateSeen = new Set(
+    [
+      ...(memory?.privateContinuity?.exactEvents ?? []),
+      ...(memory?.privateContinuity?.history ?? []),
+    ].map(statementKey),
+  );
+  const memoryPayload = memory
+    ? {
+        ...memory,
+        canon: undefined,
+        checkpoint: undefined,
+        history: [...memory.history],
+        digest: memory.digest.filter((row) => !publicSeen.has(statementKey(row))),
+        ...(memory.privateContinuity
+          ? {
+              privateContinuity: {
+                ...memory.privateContinuity,
+                history: [...memory.privateContinuity.history],
+                digest: memory.privateContinuity.digest.filter(
+                  (row) => !privateSeen.has(statementKey(row)),
+                ),
+              },
+            }
+          : {}),
+      }
+    : null;
+  const requiredHistory = new Set(
+    source.memory?.requiredHistoricalSourceIds ?? [],
+  );
+  const requiredPrivateHistory = new Set(
+    source.memory?.requiredPrivateHistoricalSourceIds ?? [],
+  );
+  const essential = (
+    row: { id: string; unresolved: boolean; authority: string },
+    required: Set<string>,
+  ) => row.unresolved || row.authority === "correction" || required.has(row.id);
+  const payloadFor = () => ({
     mandatory,
-    ...(memory
-      ? { memory: { ...memory, canon: undefined, checkpoint: undefined } }
-      : {}),
+    ...(memoryPayload ? { memory: memoryPayload } : {}),
     originalScenes,
     conversation,
     feedbackSources,
     exchanges,
-  };
+  });
   const finalInstructions =
     instructions +
     (stage === "plan" && request.mode === "game" && source.foundationOptions
@@ -555,9 +613,95 @@ export function buildContext(
     new TextEncoder().encode(JSON.stringify(bodyFor(input))).length + 2048;
   // Mandatory state, evidence, and the stage schema always enter first. Drop
   // optional cards from the tail; never trim source evidence to fit guidance.
+  if (options.requiredOnly) {
+    originalScenes = originalScenes.filter(
+      (scene) => scene.id === snapshot.publicState.current_scene_id,
+    );
+    exchanges = [];
+    if (memoryPayload) {
+      memoryPayload.history = memoryPayload.history.filter((row) =>
+        essential(row, requiredHistory),
+      );
+      if (memoryPayload.privateContinuity) {
+        memoryPayload.privateContinuity.history =
+          memoryPayload.privateContinuity.history.filter((row) =>
+            essential(row, requiredPrivateHistory),
+          );
+      }
+    }
+  }
+  let payload = payloadFor();
   let input = JSON.stringify(payload);
-  if (estimate(input) > inputBudget) throw new DmError("context");
-  if (pinnedCraft) {
+  // Selection order is stable: current authority and exact evidence, critical
+  // continuity, ranked retrieval, then recent supporting prose. Retrieval is
+  // already ranked by Memory; discard its least relevant optional tail last.
+  while (estimate(input) > inputBudget) {
+    const optionalScene = originalScenes.findIndex(
+      (scene) => scene.id !== snapshot.publicState.current_scene_id,
+    );
+    if (optionalScene >= 0) originalScenes.splice(optionalScene, 1);
+    else if (exchanges.length) exchanges.shift();
+    else if (memoryPayload) {
+      const removable = [
+        [memoryPayload.privateContinuity?.history, requiredPrivateHistory],
+        [memoryPayload.history, requiredHistory],
+        [memoryPayload.privateContinuity?.digest, new Set<string>()],
+        [memoryPayload.digest, new Set<string>()],
+      ] as const;
+      let removed = false;
+      for (const [rows, required] of removable) {
+        if (!rows) continue;
+        for (let index = rows.length - 1; index >= 0; index--) {
+          if (essential(rows[index], required)) continue;
+          rows.splice(index, 1);
+          removed = true;
+          break;
+        }
+        if (removed) break;
+      }
+      if (!removed) {
+        // An uncovered exact event is still mandatory for this prompt. A
+        // validated Memory rebuild may advance coverage; test that possibility
+        // without actually deleting the event or claiming the digest replaces it.
+        const exact = memoryPayload.exactEvents;
+        const privateExact = memoryPayload.privateContinuity?.exactEvents;
+        memoryPayload.exactEvents = [];
+        if (memoryPayload.privateContinuity)
+          memoryPayload.privateContinuity.exactEvents = [];
+        const summaryMayHelp =
+          (exact.length > 0 || (privateExact?.length ?? 0) > 0) &&
+          estimate(JSON.stringify(payloadFor())) <= inputBudget;
+        memoryPayload.exactEvents = exact;
+        if (memoryPayload.privateContinuity && privateExact)
+          memoryPayload.privateContinuity.exactEvents = privateExact;
+        throw new ContextCapacityError(summaryMayHelp);
+      }
+    } else throw new ContextCapacityError();
+    payload = payloadFor();
+    input = JSON.stringify(payload);
+  }
+  // Deduplicate only after final selection. An optional Memory excerpt removed
+  // for budget cannot also suppress its raw scene. Keep the current scene even
+  // when a selected excerpt names the same source version.
+  if (memoryPayload) {
+    const sceneEvidence = new Set(
+      [
+        ...memoryPayload.exactEvents,
+        ...memoryPayload.history,
+        ...memoryPayload.digest,
+      ]
+        .filter((row) => row.ref.kind === "scene")
+        .map((row) => `${row.ref.id}:${row.ref.version}`),
+    );
+    originalScenes = originalScenes.filter(
+      (scene) =>
+        scene.id === snapshot.publicState.current_scene_id ||
+        !sceneEvidence.has(`${scene.id}:${scene.revision}`),
+    );
+    payload = payloadFor();
+    input = JSON.stringify(payload);
+  }
+  if (pinnedCraft && !options.requiredOnly) {
     const selected = [...pinnedCraft.cards];
     for (;;) {
       const candidate = JSON.stringify({
@@ -594,13 +738,13 @@ export function buildContext(
       mandatory.canon.length +
       feedbackSources.length +
       conversation.length +
-      (memory
-        ? memory.exactEvents.length +
-          memory.history.length +
-          memory.digest.length +
-          (memory.privateContinuity?.exactEvents.length ?? 0) +
-          (memory.privateContinuity?.history.length ?? 0) +
-          (memory.privateContinuity?.digest.length ?? 0)
+      (memoryPayload
+        ? memoryPayload.exactEvents.length +
+          memoryPayload.history.length +
+          memoryPayload.digest.length +
+          (memoryPayload.privateContinuity?.exactEvents.length ?? 0) +
+          (memoryPayload.privateContinuity?.history.length ?? 0) +
+          (memoryPayload.privateContinuity?.digest.length ?? 0)
         : 0),
   };
 }

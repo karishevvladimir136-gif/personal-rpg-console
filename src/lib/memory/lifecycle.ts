@@ -1,4 +1,4 @@
-import { DmError } from "../gameplay/dm-errors.ts";
+import { ContextCapacityError, DmError } from "../gameplay/dm-errors.ts";
 import { buildContext, modelBudget } from "../gameplay/dm-context.ts";
 import type { TurnInput } from "../gameplay/contracts.ts";
 import type { DmProvider } from "../gameplay/server-contracts.ts";
@@ -11,17 +11,37 @@ import { validateCharacterPatches } from "../gameplay/character-model.ts";
 export function memoryAwareProvider(
   provider: DmProvider,
   memory: MemoryStore,
+  modelForStage?: (
+    stage: "plan" | "narrate",
+    input: TurnInput,
+  ) => Promise<string>,
 ): DmProvider {
   return {
     plan: async (source, input) => {
-      const selected = await withMemory(source, input, memory, true);
+      const selected = await withMemory(
+        source,
+        input,
+        memory,
+        true,
+        modelForStage
+          ? { model: await modelForStage("plan", input), stage: "plan" }
+          : undefined,
+      );
       const result = await provider.plan(selected, input);
       validateCharacterPatches(selected, input, result.output.privatePatches);
       return result;
     },
     narrate: async (source, input, resolution, checks) =>
       provider.narrate(
-        await withMemory(source, input, memory, false),
+        await withMemory(
+          source,
+          input,
+          memory,
+          false,
+          modelForStage
+            ? { model: await modelForStage("narrate", input), stage: "narrate" }
+            : undefined,
+        ),
         input,
         resolution,
         checks,
@@ -34,7 +54,7 @@ export async function preflightMemory(
   input: TurnInput,
   store: MemoryStore,
   summaries: SummaryProvider,
-  model: string,
+  model: string | ((stage: "plan" | "narrate") => Promise<string>),
 ) {
   if (input.mode !== "game" && input.mode !== "companion") return;
   // An ended session cannot start paid preflight work before the runtime gate.
@@ -48,12 +68,24 @@ export async function preflightMemory(
     !sameTimeline(input.timeline, source.runtime.timeline)
   )
     throw new DmError("conflict");
-  const budget = modelBudget(model);
+  // World Logic resolves through its own bounded context. The DM Memory input
+  // used by that path is the public narrator context, not a Console Basic plan.
+  const stage =
+    input.mode === "game" &&
+    source.snapshot.settings.values.rulesSystem.id === "world-logic-v1"
+      ? "narrate"
+      : "plan";
+  const includePrivate = stage === "plan";
+  const selectedModel = typeof model === "string" ? model : await model(stage);
+  const budget = modelBudget(selectedModel);
   let pressure = false;
   let rebuild = false;
   try {
-    const selected = await withMemory(source, input, store);
-    const built = buildContext(selected, input, "plan", { model });
+    const selected = await withMemory(source, input, store, includePrivate, {
+      model: selectedModel,
+      stage,
+    });
+    const built = buildContext(selected, input, stage, { model: selectedModel });
     pressure =
       built.estimatedTokens >
         0.8 *
@@ -62,6 +94,8 @@ export async function preflightMemory(
             budget.contextLimit - budget.outputReserve - budget.safetyMargin,
           ) && !!selected.memory?.exactEvents.length;
   } catch (cause) {
+    if (cause instanceof ContextCapacityError && !cause.summaryMayHelp)
+      throw cause;
     if (!(cause instanceof DmError) || cause.code !== "context") throw cause;
     rebuild = true;
   }
@@ -82,7 +116,13 @@ export async function preflightMemory(
     !sameTimeline(input.timeline, refreshed.runtime.timeline)
   )
     throw new DmError("conflict");
-  buildContext(await withMemory(refreshed, input, store), input, "plan", {
-    model,
-  });
+  buildContext(
+    await withMemory(refreshed, input, store, includePrivate, {
+      model: selectedModel,
+      stage,
+    }),
+    input,
+    stage,
+    { model: selectedModel },
+  );
 }

@@ -128,25 +128,35 @@ export function productionServices(
     },
   });
   return {
-    planModel: async () => {
+    planModel: async (stage: "plan" | "narrate" = "plan") => {
       const snapshot = await readWorldFoundation(
         world,
         ownerId,
         campaignId,
         timeline,
       );
-      return resolveExecutionProfile({
-        task:
-          snapshot.ruleset.id === "world-logic-v1"
+      const task =
+        stage === "narrate"
+          ? "dm.narrate"
+          : snapshot.ruleset.id === "world-logic-v1"
             ? "world.resolve"
-            : "dm.plan",
+            : "dm.plan";
+      return resolveExecutionProfile({
+        task,
         profileId: randomUUID(),
         campaignPolicy: snapshot.executionPolicy,
-        globalDefault: applicationGameplayTaskSelection(
-          snapshot.ruleset.id === "world-logic-v1" ? "world.resolve" : "dm.plan",
-          globalDefault,
-        ),
+        globalDefault: applicationGameplayTaskSelection(task, globalDefault),
       }).modelId;
+    },
+    contextModel: async (
+      stage: "plan" | "narrate",
+      input: import("../gameplay/contracts").TurnInput,
+    ) => {
+      const task = stage === "plan" ? "dm.plan" : "dm.narrate";
+      const values = await resolve(input.operationId, await tasks(input.mode));
+      const profile = values[task];
+      if (!profile) throw new DmError("configuration");
+      return profile.modelId;
     },
     validateFoundation: async (
       claim: import("../gameplay/server-contracts").TurnClaim,

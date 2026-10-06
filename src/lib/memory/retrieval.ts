@@ -102,13 +102,18 @@ export function selectCriticalSourceIds(
       ...request.requiredSourceIds,
       ...batch.sources
         .filter((source) => {
-          if (!source.unresolved || !authorized(request, source)) return false;
+          if (!authorized(request, source)) return false;
           const sourceTerms = new Set(memoryTerms(source.text));
           const overlap = terms.filter((term) => sourceTerms.has(term)).length;
+          const namedActor = source.entityIds.some((id) => entities.has(id));
+          // A relevant owner correction or Canon source cannot become an
+          // optional casualty of a smaller long-campaign retrieval allowance.
+          if (source.authority === "correction" || source.authority === "canon")
+            return overlap >= 2 || namedActor;
+          if (!source.unresolved) return false;
           return (
             (asksHistory &&
-              (overlap > 0 ||
-                source.entityIds.some((id) => entities.has(id)))) ||
+              (overlap > 0 || namedActor)) ||
             overlap >= 2
           );
         })

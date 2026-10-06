@@ -11,3 +11,16 @@ export class DmError extends Error {
     this.retryable = retryable;
   }
 }
+
+// A valid source can be too large even after all optional evidence is removed.
+// Keep the public error category stable while distinguishing this from a stale
+// or incomplete Memory projection inside the server.
+export class ContextCapacityError extends DmError {
+  readonly summaryMayHelp: boolean;
+  constructor(summaryMayHelp = false) {
+    super("context");
+    this.name = "ContextCapacityError";
+    this.message = "context_capacity_mandatory";
+    this.summaryMayHelp = summaryMayHelp;
+  }
+}

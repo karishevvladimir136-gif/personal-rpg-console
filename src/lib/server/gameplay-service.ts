@@ -97,11 +97,15 @@ export async function submitTurn(campaignId: string, value: unknown) {
       input,
       memory,
       production.summaries,
-      await production.planModel(),
+      (stage) => production.planModel(stage),
     );
   return runTurn(input, {
     store,
-    provider: memoryAwareProvider(production.provider, memory),
+    provider: memoryAwareProvider(
+      production.provider,
+      memory,
+      production.contextModel,
+    ),
     prepareWorld: production.prepareWorld,
     prepareWorldLogic: production.prepareWorldLogic,
     prepareCombatIntent: production.prepareCombatIntent,
@@ -124,7 +128,11 @@ export async function continueTurn(
   );
   return resumeTurn(input, {
     store,
-    provider: memoryAwareProvider(production.provider, memory),
+    provider: memoryAwareProvider(
+      production.provider,
+      memory,
+      production.contextModel,
+    ),
     prepareWorld: production.prepareWorld,
     prepareWorldLogic: production.prepareWorldLogic,
     prepareCombatIntent: production.prepareCombatIntent,

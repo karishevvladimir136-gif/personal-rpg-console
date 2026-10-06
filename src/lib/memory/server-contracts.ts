@@ -197,6 +197,9 @@ export type ContextMemory = {
   exactEvents: MemorySource[];
   historical: MemorySource[];
   privateHistorical: MemorySource[];
+  /** Selection metadata, never serialized into the provider payload. */
+  requiredHistoricalSourceIds?: string[];
+  requiredPrivateHistoricalSourceIds?: string[];
   publicSummary: MemorySummary | null;
   privateSummary: MemorySummary | null;
   complete: boolean;

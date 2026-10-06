@@ -1,6 +1,12 @@
 import { DmError } from "../gameplay/dm-errors.ts";
+import {
+  buildContext,
+  modelBudget,
+  modelInputLimit,
+} from "../gameplay/dm-context.ts";
 import type { TurnInput } from "../gameplay/contracts.ts";
 import type { RuntimeSource } from "../gameplay/server-contracts.ts";
+import type { ContextStage } from "../gameplay/server-contracts.ts";
 import type {
   MemoryStore,
   RetrievalRequest,
@@ -18,6 +24,7 @@ export async function withMemory(
   input: TurnInput,
   store: MemoryStore,
   includePrivate = true,
+  budget?: { model: string; stage?: ContextStage },
 ): Promise<RuntimeSource> {
   if (input.mode === "feedback" || input.mode === "ooc") return source;
   const cid = input.campaignId;
@@ -60,6 +67,48 @@ export async function withMemory(
     )
   )
     throw new DmError("context", true);
+  const publicSummary = memory.publicSummary?.valid
+    ? memory.publicSummary
+    : null;
+  const privateSummary =
+    privateAllowed && memory.privateSummary?.valid
+      ? memory.privateSummary
+      : null;
+  // Size the same current authority, exact events, checkpoint and digest that
+  // the DM builder will use. Recent prose and optional retrieval are excluded
+  // from this pass; they cannot consume the room reserved for relevant history.
+  const baselineMemory = {
+    timeline,
+    campaignId: cid,
+    generation: memory.generation,
+    stateRevision: memory.stateRevision,
+    checkpoint: memory.checkpoint,
+    exactEvents: memory.uncovered,
+    historical: [],
+    privateHistorical: [],
+    publicSummary: companion ? null : publicSummary,
+    privateSummary,
+    complete: true,
+  };
+  const stage = budget?.stage ?? (includePrivate ? "plan" : "narrate");
+  const room = budget
+    ? Math.max(
+        0,
+        modelInputLimit(modelBudget(budget.model)) -
+          buildContext(
+            {
+              ...source,
+              historyComplete: true,
+              checkpoint: null,
+              memory: baselineMemory,
+            },
+            input,
+            stage,
+            { model: budget.model, requiredOnly: true },
+          ).estimatedTokens -
+          1024,
+      )
+    : 16000;
   // Merely witnessing the current scene is not evidence that every old exchange
   // involving that actor is relevant. Exact participants/quests remain mandatory
   // in RuntimeSource; named aliases and the explicit target seed history search.
@@ -74,7 +123,7 @@ export async function withMemory(
     entityIds,
     requiredSourceIds: [],
     worldMinutes: source.runtime.worldMinutes,
-    maxBytes: 12000,
+    maxBytes: 2 + Math.min(12000, room),
     maxExcerpts: 12,
     historicalComparison: false,
   };
@@ -87,10 +136,11 @@ export async function withMemory(
     )
       throw new DmError("context", true);
     const original = { ...request, query: input.input };
+    let requiredSourceIds = selectCriticalSourceIds(original, first);
     let result = retrieveMemory(
       {
         ...request,
-        requiredSourceIds: selectCriticalSourceIds(original, first),
+        requiredSourceIds,
       },
       first,
     );
@@ -103,38 +153,66 @@ export async function withMemory(
         !sameTimeline(timeline, second.timeline)
       )
         throw new DmError("context", true);
+      requiredSourceIds = [
+        ...new Set([
+          ...requiredSourceIds,
+          ...selectCriticalSourceIds(original, second),
+        ]),
+      ];
       result = retrieveMemory(
         {
           ...expanded,
-          requiredSourceIds: selectCriticalSourceIds(original, second),
+          requiredSourceIds,
         },
         second,
       );
     }
-    if (result.paused) throw new DmError("context", true);
-    return result.sources;
+    const asksHistory =
+      /\b(remember|earlier|previously|promis(?:e|ed|es)|pledge|owed|obligation)\b|помни|раньше|ранее|обещ|долг/iu.test(
+        input.input,
+      );
+    if (result.paused) {
+      // Oversized optional recall cannot stop ordinary play. A named or
+      // unresolved obligation, conflict, or explicit history request still
+      // fails closed rather than silently losing necessary evidence.
+      if (
+        result.reason !== "budget" ||
+        requiredSourceIds.length ||
+        asksHistory
+      )
+        throw new DmError("context", true);
+      return { sources: [], requiredSourceIds: [], bytes: 2 };
+    }
+    return {
+      sources: result.sources,
+      requiredSourceIds:
+        asksHistory && result.sources.length
+          ? [...new Set([...requiredSourceIds, result.sources[0].id])]
+          : requiredSourceIds,
+      bytes: result.bytes,
+    };
   }
   // Expand once before SQL so aliases and bilingual paraphrases can enter the
   // filtered candidate pool. The helper records the bounded expansion flag.
-  const historical = await search(
-    expandRetrievalRequest(query, memory.aliases),
-  );
-  const privateHistorical = !privateAllowed
-    ? []
+  const privateSelection = !privateAllowed
+    ? { sources: [], requiredSourceIds: [], bytes: 2 }
     : await search({
         ...query,
         visibility: "private",
         requiredSourceIds: [],
-        maxBytes: 4000,
+        maxBytes: 2 + Math.min(4000, Math.floor(room / 4)),
         maxExcerpts: 4,
       });
-  const publicSummary = memory.publicSummary?.valid
-    ? memory.publicSummary
-    : null;
-  const privateSummary =
-    privateAllowed && memory.privateSummary?.valid
-      ? memory.privateSummary
-      : null;
+  const publicSelection = await search(
+    expandRetrievalRequest(
+      {
+        ...query,
+        maxBytes:
+          2 + Math.min(12000, Math.max(0, room - (privateSelection.bytes - 2))),
+      },
+      memory.aliases,
+    ),
+  );
   if (
     publicSummary &&
     (publicSummary.campaignId !== cid ||
@@ -169,8 +247,10 @@ export async function withMemory(
       stateRevision: memory.stateRevision,
       checkpoint: memory.checkpoint,
       exactEvents: memory.uncovered,
-      historical,
-      privateHistorical,
+      historical: publicSelection.sources,
+      privateHistorical: privateSelection.sources,
+      requiredHistoricalSourceIds: publicSelection.requiredSourceIds,
+      requiredPrivateHistoricalSourceIds: privateSelection.requiredSourceIds,
       publicSummary: companion ? null : publicSummary,
       privateSummary,
       complete: true,
