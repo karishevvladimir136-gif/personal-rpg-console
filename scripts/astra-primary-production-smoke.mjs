@@ -9,7 +9,7 @@ import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
 import { runAstraTurn, resumeAstraTurn } from "../src/lib/gameplay/astra-primary.ts";
 
-const OUTPUT_LIMIT=120_000,ERROR_LIMIT=4_000,TRACE_LIMIT=128;
+const OUTPUT_LIMIT=120_000,ERROR_LIMIT=4_000,TRACE_LIMIT=512;
 const price=(input,output)=>(input*10+output*50)/1_000_000;
 function bounded(value,secret,limit=OUTPUT_LIMIT){
   if(typeof value!=="string")return null;
@@ -31,22 +31,24 @@ function trace(state,method,phase,detail={}){
     method,phase,...detail});
   else state.traceOverflow++;
 }
-export function diagnosticState(secret=""){
+export function diagnosticState(secret="",limits={maxRequests:4,maxSpendUsd:1}){
   const state={events:[],traceOverflow:0,responses:[],sqlErrors:[],
-    parsedDecision:null,requests:0,inputTokens:0,outputTokens:0,
-    usageKnown:true,latenciesMs:[],privateSnapshot:null};
+    parsedDecision:null,parsedDecisions:[],contextSelections:[],
+    requests:0,inputTokens:0,outputTokens:0,usageKnown:true,
+    latenciesMs:[],privateSnapshot:null};
   Object.defineProperty(state,"secret",{value:secret,enumerable:false});
+  Object.defineProperty(state,"limits",{value:limits,enumerable:false});
   return state;
 }
 export function diagnosticFetcher(state,realFetch){
   return async(url,init)=>{
-    if(state.requests>=4)throw Error("diagnostic_request_cap");
+    if(state.requests>=state.limits.maxRequests)throw Error("diagnostic_request_cap");
     // Inspect request size for the spend ceiling; save no request or headers.
     const body=JSON.parse(String(init?.body??"{}"));
     if(!Number.isSafeInteger(body.max_output_tokens) || body.max_output_tokens<1)
       throw Error("diagnostic_output_cap_unknown");
     const upper=price(Buffer.byteLength(String(init.body))+2048,body.max_output_tokens);
-    if(!state.usageKnown || price(state.inputTokens,state.outputTokens)+upper>1)
+    if(!state.usageKnown || price(state.inputTokens,state.outputTokens)+upper>state.limits.maxSpendUsd)
       throw Error("diagnostic_spend_cap");
     state.requests++;
     trace(state,"provider.http","entered",{request:state.requests});
@@ -89,14 +91,39 @@ export function diagnosticFetcher(state,realFetch){
     finally{state.latenciesMs.push(Math.round(performance.now()-started));}
   };
 }
+function contextSelection(context,method,source){
+  try{
+    const packet=JSON.parse(context.input),craft=packet.dmCraft??{};
+    const pinned=method==="next"?source?.craft?.plan:source?.craft?.narrate;
+    const cards=Array.isArray(craft.cards)?craft.cards.slice(0,2):[];
+    const rows=[...(packet.memory?.exactEvents??[]),...(packet.memory?.history??[]),
+      ...(packet.memory?.digest??[])];
+    return {stage:method,doctrine:craft.doctrine?.title??null,
+      cards:cards.map((card)=>{
+        const version=Array.isArray(pinned)?pinned.find((entry)=>
+          entry.en?.title===card.title||entry.ru?.title===card.title):null;
+        return {title:card.title,key:version?.key??null,version:version?.version??null};
+      }),
+      characterModelIds:Array.isArray(packet.mandatory?.characterPacket)
+        ?packet.mandatory.characterPacket.map((m)=>m.actorId).slice(0,4):[],
+      promiseMemorySourceIds:rows.filter((row)=>
+        typeof row.text==="string" && /father.{0,20}map|promise/i.test(row.text))
+        .map((row)=>row.ref?.id??row.id).filter((id)=>typeof id==="string")
+        .slice(0,8)};
+  }catch{return {stage:method,captureError:"context_selection_unavailable"};}
+}
 export function diagnosticProvider(state,provider){
   const wrapped={...provider};
   for(const method of ["next","narrate"]){
     wrapped[method]=async(...args)=>{
+      state.contextSelections.push(contextSelection(args[0],method,args[5]));
       trace(state,"provider."+method,"entered");
       try{
         const result=await provider[method](...args);
-        if(method==="next")state.parsedDecision=bounded(JSON.stringify(result.output),state.secret);
+        if(method==="next"){
+          state.parsedDecision=bounded(JSON.stringify(result.output),state.secret);
+          state.parsedDecisions.push(state.parsedDecision);
+        }
         trace(state,"provider."+method,"returned",method==="next"
           ?{decisionType:result.output?.type??null}:{});
         return result;
@@ -135,7 +162,7 @@ export function diagnosticRpc(state,runtime){
     }
   };
 }
-async function privateSnapshot(f,campaignId,operationId){
+export async function privateSnapshot(f,campaignId,operationId){
   const row=await f.one("select runtime_identity,status,failure,retryable,expected_revision,source,checkpoint,narration from rpg_private.turns where id=$1 and campaign_id=$2",
     [operationId,campaignId]);
   if(!row)return null;

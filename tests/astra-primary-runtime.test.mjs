@@ -48,12 +48,18 @@ test("Astra production turn durably begins before context and commits through Tu
       next:async(context)=>{
         calls++;
         assert.equal(context.instructions.includes("one primary DM"),true);
+        assert.equal(context.instructions.includes("worldMinutes may equal astraPrimary.authority.currentWorldMinutes"),true);
+        assert.equal(context.instructions.includes("changing current_location_id requires final worldMinutes to be strictly greater"),true);
+        assert.equal(context.instructions.includes("Movement inside one Location is narration, not a Location change"),true);
+        assert.deepEqual(JSON.parse(context.input).astraPrimary.authority,
+          {currentWorldMinutes:0,locationChangeRequiresTimeAdvance:true});
         assert.equal((await f.one("select runtime_identity from rpg_private.turns where id=$1",[input.operationId])).runtime_identity,"astra-primary-v1");
         return {usage:{model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0},
           output:{type:"final",call:null,final:{worldMinutes:0,changes:[],outcomes:[],privatePatches:[]}}};
       },
       narrate:async(context)=>{
         assert.equal(context.input.includes("PRIVATE_BEFORE_FORK"),false);
+        assert.equal(context.input.includes("locationChangeRequiresTimeAdvance"),false);
         return {usage:{model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0},
           output:{narration:"Nera watches the river beneath the bridge.",visualDescription:"",clarification:null}};
       }
@@ -63,6 +69,37 @@ test("Astra production turn durably begins before context and commits through Tu
     assert.equal(calls,1);
     assert.equal((await f.one("select runtime_identity from rpg_private.turns where id=$1",[input.operationId])).runtime_identity,"astra-primary-v1");
     assert.equal((await f.one("select count(*)::integer n from rpg_private.runtime_events where operation_id=$1",[input.operationId])).n,1);
+  } finally {await f.db.close();}
+});
+
+test("Astra travel with unchanged world time remains a failed atomic no-op",async()=>{
+  const f=await fixture(38);
+  try {
+    const w=await world(f),deps=await adapters(f,w.cid);
+    const destination=(await f.mutation("location.save",w.cid,
+      {name:"Known ridge",description:"A nearby known ridge",status:"known"})).id;
+    const play=await deps.store.readPlay(w.cid);
+    const input={operationId:randomUUID(),campaignId:w.cid,timeline:play.timeline,
+      expectedRevision:play.revision,mode:"game",input:"Travel to the known ridge",
+      companionId:null,listenerIds:[],mechanic:null};
+    const usage={model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0};
+    deps.provider={next:async(context,_input,_receipts,_checks,_caps,source)=>{
+      assert.equal(JSON.parse(context.input).astraPrimary.authority.currentWorldMinutes,
+        source.runtime.worldMinutes);
+      return {usage,output:{type:"final",call:null,final:{
+        worldMinutes:source.runtime.worldMinutes,
+        changes:[{family:"public_state",id:w.cid,
+          expectedRevision:source.snapshot.publicState.revision,
+          values:{current_location_id:destination}}],outcomes:[],privatePatches:[]}}};
+    },narrate:()=>assert.fail("invalid travel must not reach narration")};
+    const turn=await runAstraTurn(input,deps);
+    assert.equal(turn.status,"failed");
+    assert.equal(turn.failure,"validation");
+    assert.equal((await f.one("select current_location_id from public.rpg_public_state where campaign_id=$1",[w.cid])).current_location_id,w.location);
+    assert.equal((await f.one("select world_minutes from rpg_private.runtime_state where campaign_id=$1",[w.cid])).world_minutes,0);
+    const saved=await f.one("select checkpoint from rpg_private.turns where id=$1",[input.operationId]);
+    assert.equal(saved.checkpoint.astraPrimary.finalProposal,null);
+    assert.equal((await f.one("select count(*)::integer n from rpg_private.runtime_events where operation_id=$1",[input.operationId])).n,0);
   } finally {await f.db.close();}
 });
 
@@ -261,8 +298,11 @@ test("Astra existing state authority persists resource spend, Item consumption a
       const input={operationId:randomUUID(),campaignId:w.cid,timeline:play.timeline,
         expectedRevision:play.revision,mode:"game",input:["Spend focus","Use the compass","Travel to the overlook"][index],
         companionId:null,listenerIds:[],mechanic:null};
-      deps.provider={next:async(_context,_input,_receipts,_checks,_caps,source)=>({usage,
-        output:{type:"final",call:null,final:choices[index](source)}}),
+      deps.provider={next:async(context,_input,_receipts,_checks,_caps,source)=>{
+        assert.equal(JSON.parse(context.input).astraPrimary.authority.currentWorldMinutes,
+          source.runtime.worldMinutes);
+        return {usage,output:{type:"final",call:null,final:choices[index](source)}};
+      },
         narrate:async()=>({usage,output:{narration:"The action has its recorded consequence.",
           visualDescription:"",clarification:null}})};
       const result=await runAstraTurn(input,deps);

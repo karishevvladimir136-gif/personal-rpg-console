@@ -1,6 +1,6 @@
 # Astra primary DM production P1 candidate
 
-**Status: P1 CANDIDATE — LIVE SMOKE FAILED, DIAGNOSIS PENDING.** This isolated, opt-in candidate is frozen for review. It is not accepted or complete, and it has not been activated on the owner app, owner database, or `main`.
+**Status: P1 CANDIDATE — FINAL LIVE SMOKE FAILED AT TURN 7; OWNER REVIEW PENDING.** The first live smoke failed, a separate forensic smoke identified a travel-time proposal mismatch, and the authorized narrow authoring repair let the fresh sequential synthetic run commit turns 1–6 before it stopped at turn 7. This isolated opt-in candidate is not accepted, deployed, or active on the owner app, owner database, or `main`.
 
 ## Architecture and routing
 
@@ -31,21 +31,33 @@ Power may grow, but meaning must grow faster. The compact DM guidance emphasizes
 - Complete migration chain through 38 on an empty disposable database and populated 37→38 upgrade: **4/4 focused disposable-database migration tests passed**. Old saves and legacy pending turns remained on legacy authority in those tests.
 - Production Astra P1 plus migrations 35–37 focused tests: **58/58 passed**, including the synthetic eight-turn Mechanical Acceptance V2 trajectory.
 - Twenty-four turn scripted fake-provider soak: **passed**. Twenty-three turns committed; one invalid state proposal was rejected with no partial commit. It covered public-state query, dialogue, travel/return, inventory consumption, resource spend, checks, attack/damage/HP loss, refusal, a wrong theory, quiet scene, old callback, retry and replay. Exact final state was asserted.
-- Full repository suite: **1,927 passed / 1,928 total**, zero failures and one existing skip. TypeScript passed, ESLint passed with zero warnings, and the production webpack build passed.
+- At the earlier frozen checkpoint, the full repository suite had **1,927 passed / 1,928 total**, zero failures and one existing skip; TypeScript, zero-warning ESLint and the production webpack build passed. These are historical results, not a claim that the full suite or build was rerun after the narrow travel repair.
 
 ## First synthetic live smoke — stopped
 
 The first production-path synthetic turn made exactly **one** direct `gpt-6-astra` request at high reasoning. The provider response used **3,562 input tokens**, **1,079 output tokens**, and **21.361 seconds**; estimated spend was **US $0.0896**. The turn failed after that response and before narration. There was no retry, later turn, or additional provider call.
 
-The smoke harness did not preserve the exact structured proposal or the exact rejection boundary. The rejecting validator is therefore **unknown**. No technical cause is inferred from the missing evidence. The candidate remains frozen at this failed-smoke review point; diagnosis and any repair require separate owner authorization. The smoke used disposable synthetic data only.
+The first smoke harness did not preserve the exact structured proposal or the exact rejection boundary. The rejecting validator for that first run remains **unknown**. No technical cause is inferred from the missing evidence. The smoke used disposable synthetic data only.
+
+## Forensic smoke and narrow travel-time authoring repair
+
+After separate owner authorization, a fresh one-turn synthetic diagnostic run again received one Astra response and failed before narration. This run captured the exact final proposal and boundary: Astra proposed changing `current_location_id` to the known Old Mine at `worldMinutes: 0`. The existing gameplay validator rejected that proposal because a Location change requires final `worldMinutes` to be strictly greater than the source clock. The second run identifies this specific contract mismatch; it does **not** prove that the first smoke had the same cause. Full synthetic evidence is in `ASTRA_PRIMARY_P1_SMOKE_DIAGNOSTIC.md`.
+
+The authorized production repair is private authoring guidance only. The Astra planning packet now states the current authoritative `worldMinutes` and the Location-change time rule, and the concise private instruction distinguishes same-Location zero-time actions from actual travel. The gameplay validator, migration 38, runtime commit guards, provider schema, public narration context, and Game UI were not changed. Focused disposable tests prove zero-time travel still fails atomically, positive-time known-Location travel commits, and zero-time dialogue remains valid. Before the fresh live run, **22/22** Astra runtime, acceptance, migration-38 and diagnostic tests passed; **42/42** related production soak, provider and migrations 35–37 regressions passed. TypeScript and changed-file ESLint with zero warnings passed. The full suite and production build were not rerun because the live run failed and the mandatory stop policy applied.
+
+## Final authorized sequential synthetic smoke — stopped at turn 7
+
+The one fresh eight-turn production-path smoke used a disposable migration-38 campaign. Turns **1–6 committed**: known-Location travel advanced world time, the last oil flask was consumed, the skill/attack/damage dice were server-owned, Focus and HP fell, and the Mine Stalker reached 0/8 HP. The turn-7 private context retrieved promise-related Memory and Orin's Character Model. Astra then requested a skill check for the quiet inspection turn, while the fixed deterministic schedule had no turn-7 die. The synthetic random callback threw before any tool receipt was saved; the turn failed with the runtime's safe category `unavailable`, and the authoritative state remained unchanged. No validator or SQL commit rejected turn 7. There was no narration, quality retry, rerun, or turn 8.
+
+The run made **20** direct Astra requests, using **199,030 input / 9,284 output / 13,608 cached input / 5,861 reasoning** tokens. The harness estimated **US $2.4545**. Seven attempted turns measured p50 **42.862 s** and p95 **54.579 s**; six committed turns have the same nearest-rank values. The exact raw turn-7 output, parsed tool decision, boundary trace, before/after state, Craft and Character Model selections, and fixture caveat are in `ASTRA_PRIMARY_P1_EIGHT_TURN_SMOKE.md`. The eight-turn success criteria were **not met**. No further provider call, repair or full gate run was made after the mandatory stop.
 
 ## Known P1 limits
 
 - The opt-in is off by default. No existing turn changes runtime when the flag or current configuration changes.
 - The generic writable set is deliberately bounded: damage-backed HP, an existing actor's resource decrease, exact Item quantity decrease, travel to a known Location with time advancement, and active encounter position/Action/Move/defeat changes. Ordinary exploration inside one Location stays narrative rather than fake tactical movement. Existing Inventory, progression, commerce, loot, rest, and World Logic authorities remain available on the legacy path; P1 does not add adapters for all of their operations to Astra-primary yet.
 - Existing Character Models can inform the private DM and public voice projection, but this first path does not author a `character_<id>` model patch; that existing model update guard requires a compatible pinned legacy plan. Ordinary bounded DM-private fact/clock/NPC patches still use current private authority.
-- The deterministic fake-provider tests establish state and recovery safety, not the quality of a live DM response. The failed first live smoke leaves production-path acceptance unresolved. The owner must review the frozen candidate before any diagnosis, repair, real database migration, or activation.
+- The deterministic fake-provider tests establish state and recovery safety, not complete live DM quality. The final live smoke did not reach the old-promise callback narration or return travel. The owner must review this failed candidate before any further diagnosis, repair, real database migration, or activation.
 
 ## Files changed
 
-Migration 38; the Astra runtime and OpenAI provider adapter; the existing TurnStore, server contracts, gameplay service and production service routing; production-focused migration, runtime, adapter, eight-turn acceptance and 24-turn soak tests; this report and `DEV_STATUS.md`.
+Migration 38; the Astra runtime and OpenAI provider adapter; the existing TurnStore, server contracts, gameplay service and production service routing; production-focused migration, runtime, adapter, eight-turn acceptance and 24-turn soak tests; the narrow private travel-time authoring repair and regressions; the bounded eight-turn synthetic forensic harness; `ASTRA_PRIMARY_P1_SMOKE_DIAGNOSTIC.md`; `ASTRA_PRIMARY_P1_EIGHT_TURN_SMOKE.md`; this report and `DEV_STATUS.md`.

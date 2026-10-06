@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import { registerHooks } from "node:module";
+import { fileURLToPath } from "node:url";
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { modelBudget } from "../src/lib/gameplay/dm-context.ts";
 import { diagnosticState, diagnosticFetcher, diagnosticProvider,
@@ -99,4 +101,24 @@ test("store wrapper preserves calls and disposable SQL failure detail",async()=>
   assert.equal(state.sqlErrors[0].error.message,"rpg_validation: synthetic constraint");
   assert.equal(state.events.at(-1).method,"store.commit");
   assert.equal(state.events.at(-1).phase,"threw");
+});
+
+test("eight-turn synthetic fixture prepares the V2 state and Orin model with zero provider calls",()=>{
+  const script=fileURLToPath(new URL("../scripts/astra-primary-production-eight-turn-smoke.mjs",
+    import.meta.url));
+  const run=spawnSync(process.execPath,[script,"--offline-fixture-check"],{
+    encoding:"utf8",timeout:30_000,
+    env:{...process.env,OPENAI_API_KEY:"",ASTRA_P1_EIGHT_TURN_SMOKE:""}});
+  assert.equal(run.status,0,run.stderr);
+  const result=JSON.parse(run.stdout);
+  assert.equal(result.status,"fixture-ready");
+  assert.equal(result.providerRequests,0);
+  assert.equal(result.state.maraHp,9);
+  assert.equal(result.state.maraMaxHp,10);
+  assert.equal(result.state.stalkerHp,6);
+  assert.equal(result.state.stalkerMaxHp,8);
+  assert.equal(result.state.focus,2);
+  assert.equal(result.state.oil,1);
+  assert.equal(result.state.worldMinutes,0);
+  assert.equal(result.characterModelIds.length,1);
 });
