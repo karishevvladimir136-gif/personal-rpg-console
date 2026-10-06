@@ -26,13 +26,14 @@ import type {
 } from "../gameplay/server-contracts.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
 import { validateNaturalMechanicIntent, type NaturalMechanicIntent } from "../rulesets/natural-mechanics.ts";
+import { validateNaturalCombatTurn, type NaturalCombatTurn } from "../rulesets/natural-combat-turn.ts";
 
 export type WorldTurnOptions = {
   action?: (
     input: WorldLogicInput,
   ) => Promise<
     ProviderResult<
-      (WorldLogicProposal | NaturalMechanicIntent) & { foundationAction?: JsonObject | null }
+      (WorldLogicProposal | NaturalMechanicIntent | NaturalCombatTurn) & { foundationAction?: JsonObject | null }
     >
   >;
   resolve?: (
@@ -77,7 +78,8 @@ export function worldLogicTurnPreparer(
     )
       throw new TurnError("configuration");
     let foundationAction: JsonObject | null | undefined;
-    let proposal: unknown = claim.turn.checkpoint.naturalMechanic ?? previous,
+    let proposal: unknown = claim.turn.checkpoint.naturalCombatTurn ??
+      claim.turn.checkpoint.naturalMechanic ?? previous,
       usage: ProviderUsage | null = null;
     if (!proposal) {
       if (!options.action) throw new TurnError("configuration");
@@ -114,6 +116,17 @@ export function worldLogicTurnPreparer(
         usage,
         presence,
       };
+    }
+    if ((proposal as { schemaVersion?: unknown })?.schemaVersion === 5) {
+      if (foundationAction != null || claim.turn.checkpoint.foundationAction != null)
+        throw new TurnError("validation");
+      let combatTurn: NaturalCombatTurn;
+      try {
+        combatTurn = validateNaturalCombatTurn(input, proposal);
+      } catch {
+        throw new TurnError("validation");
+      }
+      return { proposal: null, combatTurn, resolution: null, usage, presence };
     }
     const result = resolveWorldLogic(input, proposal);
     const checkpoint = claim.turn.checkpoint;

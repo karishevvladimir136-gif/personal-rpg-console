@@ -16,6 +16,7 @@ import {
   validatePlan,
 } from "./mechanics/resolve.ts";
 import { naturalMechanicPlan } from "../rulesets/natural-mechanics.ts";
+import { naturalCombatTurnPlan } from "../rulesets/natural-combat-turn.ts";
 import { completeCombatExchange, emptyCombatExchange, exhaustedControlledTurn } from "./combat-exchange.ts";
 import {
   clarificationMessages,
@@ -172,7 +173,7 @@ async function execute(
       source.worldLogicPresence = logic.presence;
       source.worldLogicMundaneDetail = logic.mundaneDetail;
     }
-    if (logic && !logic.mechanicIntent) {
+    if (logic && !logic.mechanicIntent && !logic.combatTurn) {
       requireRule(
         input.mode === "game" &&
           checkpoint.checks.length === 0 &&
@@ -206,6 +207,12 @@ async function execute(
           checkpoint.combatExchange ??= emptyCombatExchange();
         if (logic.usage) checkpoint.usage.push(logic.usage);
       }
+      if (logic?.combatTurn) {
+        requireRule(input.mode === "game" && !checkpoint.worldLogic && !checkpoint.naturalMechanic);
+        checkpoint.naturalCombatTurn = logic.combatTurn;
+        checkpoint.combatExchange ??= emptyCombatExchange(2);
+        if (logic.usage) checkpoint.usage.push(logic.usage);
+      }
       const newPlan = !checkpoint.plan;
       if (newPlan) {
         if (logic?.mechanicIntent) {
@@ -216,6 +223,8 @@ async function execute(
               clarification: null, guidanceProposal: null };
           } else checkpoint.plan = naturalMechanicPlan(source, input, logic.mechanicIntent);
         }
+        else if (logic?.combatTurn)
+          checkpoint.plan = naturalCombatTurnPlan(source, input, logic.combatTurn);
         else if (input.mode === "mechanic")
           checkpoint.plan = mechanicPlan(source, input);
         else {

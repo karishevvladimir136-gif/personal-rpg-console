@@ -29,7 +29,7 @@ const hook = registerHooks({
   },
 });
 const { openAiProvider } = await source("src/lib/server/dm/provider.ts");
-const { createWorldResolverProvider, worldLogicSchema, livingWorldSchema, naturalMechanicSchema } =
+const { createWorldResolverProvider, worldLogicSchema, livingWorldSchema, naturalMechanicSchema, naturalCombatTurnSchema } =
   await source("src/lib/server/world/resolver-provider.ts");
 hook.deregister();
 const { foundationActionContext, foundationActionSchema } = await source(
@@ -240,6 +240,7 @@ for (const kind of ["dm", "world"]) {
         worldLogicSchema,
         livingWorldSchema,
         naturalMechanicSchema,
+        naturalCombatTurnSchema,
       ]);
       assert.deepEqual(schema.properties.foundationAction.anyOf, [
         foundationActionSchema,
@@ -270,7 +271,7 @@ for (const kind of ["dm", "world"]) {
               type: "object",
               additionalProperties: false,
               properties: {
-                action: { anyOf: [worldLogicSchema, livingWorldSchema, naturalMechanicSchema] },
+                action: { anyOf: [worldLogicSchema, livingWorldSchema, naturalMechanicSchema, naturalCombatTurnSchema] },
               },
               required: ["action"],
             },

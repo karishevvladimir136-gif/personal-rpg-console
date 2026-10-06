@@ -9,7 +9,13 @@ import {
   naturalMechanicPlan,
   validateNaturalMechanicIntent,
 } from "../src/lib/rulesets/natural-mechanics.ts";
+import {
+  NATURAL_COMBAT_TURN_GUIDANCE,
+  naturalCombatTurnPlan,
+  validateNaturalCombatTurn,
+} from "../src/lib/rulesets/natural-combat-turn.ts";
 import { resolveWorldLogic, worldLogicContext } from "../src/lib/rulesets/world-logic.ts";
+import { WORLD_LOGIC_REF } from "../src/lib/rulesets/profiles.ts";
 import {
   checkModifier,
   resolveMechanics,
@@ -56,6 +62,84 @@ function resolve(f, selected, die = 20) {
   const resolution = resolveMechanics(f.source, f.input, plan, checks);
   return { plan, checks, resolution, after: applyResolution(f.source, resolution) };
 }
+
+function activeCombatInput(text) {
+  const f = physicalInput("I strike him with my weapon.");
+  f.source = resolve(f, intent(f), 1).after;
+  f.source.runtime.participants.find((row) => row.entity_id === id("player")).public_resources.action = 1;
+  f.input = { ...f.input, input: text, expectedRevision: f.source.runtime.revision,
+    operationId: f.command.operationId, timeline: structuredClone(f.snapshot.timeline) };
+  f.snapshot.ruleset = { ...WORLD_LOGIC_REF };
+  f.snapshot.runtimeRevision = f.source.runtime.revision;
+  f.command.expectedRuntimeRevision = f.source.runtime.revision;
+  return f;
+}
+
+function combatStep(action, fields = {}) {
+  return { action, targetId: null, itemId: null, equipmentName: null, position: null, ...fields };
+}
+
+for (const [text, steps, kinds] of [
+  ["I duck behind the bar and insult him", [combatStep("move", { position: "cover" })], ["move"]],
+  ["I raise my guard and tell him to come and get me", [combatStep("defend")], ["defend"]],
+  ["I scream at him but do nothing", [], []],
+  ["I step around the table and strike him with my weapon", [combatStep("move", { position: "nearby" }),
+    combatStep("attack", { targetId: id("enemy"), itemId: id("weapon"), equipmentName: "weapon" })], ["move", "attack"]],
+  ["I jump on the table to get advantage and slash him", [combatStep("attack", { targetId: id("enemy"), itemId: id("weapon"), equipmentName: "weapon" })], ["attack"]],
+  ["I kick him toward the wall", [combatStep("attempt", { targetId: id("enemy") })], ["attempt"]],
+  ["I shove him down, then stab him while prone", [combatStep("attempt", { targetId: id("enemy") })], ["attempt"]],
+]) test(`bounded whole-turn interpretation: ${text}`, () => {
+  const f = activeCombatInput(text);
+  const selected = validateNaturalCombatTurn(f, { schemaVersion: 5, input: text,
+    actorId: id("player"), steps });
+  const plan = naturalCombatTurnPlan(f.source, f.input, selected);
+  assert.deepEqual(plan.publicPatches.map((row) => row.action), kinds);
+  assert.ok(plan.checks.length <= 1);
+  assert.ok(plan.checks.every((row) => row.advantage === "normal"));
+  validatePlan(f.source, f.input, plan);
+  const checks = plan.checks.map((check) => recordServerRoll(f.input.operationId, check,
+    checkModifier(f.source, check), 1, () => 1));
+  const resolution = resolveMechanics(f.source, f.input, plan, checks);
+  assert.ok(resolution.changes.every((row) =>
+    ["encounter_participants", "pending_actions", "entities", "effects"].includes(row.family)));
+  assert.ok(!resolution.changes.some((row) => row.family === "items" || row.values.conditions?.includes("taunted")));
+  if (steps.length === 0) assert.deepEqual(resolution.changes, []);
+  if (text.includes("kick him toward") || text.includes("shove him down"))
+    assert.ok(!resolution.changes.some((row) => row.family === "entities"));
+});
+
+test("whole-turn intent rejects duplicate budget steps, forged effects and missing target", () => {
+  const f = activeCombatInput("I move and defend.");
+  const base = { schemaVersion: 5, input: f.input.input, actorId: id("player"), steps: [] };
+  for (const steps of [
+    [combatStep("move", { position: "cover" }), combatStep("move", { position: "nearby" })],
+    [combatStep("attack", { targetId: id("enemy") }), combatStep("defend")],
+    [combatStep("attack", { targetId: id("missing") })],
+    [combatStep("attack", { targetId: id("enemy"), advantage: "advantage" })],
+    [combatStep("move", { position: "cover", targetId: id("enemy") })],
+  ]) assert.throws(() => validateNaturalCombatTurn(f, { ...base, steps }));
+  assert.match(NATURAL_COMBAT_TURN_GUIDANCE, /at most one Move and one Action/);
+  assert.match(NATURAL_COMBAT_TURN_GUIDANCE, /unproven result/);
+});
+
+test("resolver transport exposes only bounded public encounter options for a whole turn", async () => {
+  const f = activeCombatInput("I duck behind the bar and insult him");
+  let request;
+  const output = { action: { schemaVersion: 5, input: f.input.input,
+    actorId: id("player"), steps: [combatStep("move", { position: "cover" })] } };
+  const provider = createWorldResolverProvider({ apiKey: "synthetic", model: "gpt-6-astra",
+    fetcher: async (_url, init) => {
+      request = JSON.parse(init.body);
+      return new Response(JSON.stringify({ status: "completed", model: "gpt-6-astra",
+        output: [{ type: "message", role: "assistant", status: "completed",
+          content: [{ type: "output_text", text: JSON.stringify(output) }] }],
+        usage: { input_tokens: 20, output_tokens: 10 } }), { status: 200 });
+    } });
+  const result = await provider.action(f);
+  assert.equal(result.output.schemaVersion, 5);
+  assert.equal(JSON.parse(request.input).naturalCombatTurnOptions.participants.find((row)=>row.controlled).action,1);
+  assert.match(request.instructions,/ordered steps with at most one Move and one Action/);
+});
 
 // Starting an encounter stamps the NPC revision even when scaling retains its HP.
 const entityValues = (source) => source.snapshot.entities.map((row) => ({ ...row, revision: 0 }));

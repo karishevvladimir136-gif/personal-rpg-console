@@ -30,6 +30,7 @@ export type CombatDecision = {
     requestedTextTruncated: boolean;
     execution: "resolved" | "not-executed";
     validatedAction: Extract<MechanicChoice, { kind: "encounter.action" }> | null;
+    validatedActions: Array<Extract<MechanicChoice, { kind: "encounter.action" }>>;
     publicOutcomes: Array<{ text: string; entityIds: string[] }>;
     visibleHpChanges: Array<{ entityId: string; before: number; after: number }>;
   };
@@ -55,7 +56,7 @@ export type PrepareCombatIntent = (
 ) => Promise<ProviderResult<AutonomousCombatIntent[]>>;
 
 export type CombatExchangeCheckpoint = {
-  schemaVersion: 1;
+  schemaVersion: 1 | 2;
   resumeOnly: boolean;
   playerConfirmed: boolean;
   playerResolution: MechanicsResolution | null;
@@ -64,8 +65,8 @@ export type CombatExchangeCheckpoint = {
   actions: MechanicChoice[] | null;
 };
 
-export const emptyCombatExchange = (): CombatExchangeCheckpoint => ({
-  schemaVersion: 1,
+export const emptyCombatExchange = (schemaVersion: 1 | 2 = 1): CombatExchangeCheckpoint => ({
+  schemaVersion,
   resumeOnly: false,
   playerConfirmed: false,
   playerResolution: null,
@@ -145,10 +146,13 @@ export function decisionContext(source: RuntimeSource, input: TurnInput, ids: st
     row.sequence <= currentScene.sequence && row.role === "narration")
     .sort((a, b) => a.sequence - b.sequence).at(-1);
   const exchange = checkpoint.combatExchange;
-  requireRule(exchange?.playerResolution && checkpoint.plan && checkpoint.naturalMechanic);
-  const validatedAction = exchange.resumeOnly ? null : checkpoint.plan.publicPatches.find((row) =>
-    row.kind === "encounter.action" && row.actorId === checkpoint.naturalMechanic?.actorId);
-  requireRule(exchange.resumeOnly || validatedAction?.kind === "encounter.action");
+  const playerId = checkpoint.naturalCombatTurn?.actorId ?? checkpoint.naturalMechanic?.actorId;
+  requireRule(exchange?.playerResolution && checkpoint.plan && playerId);
+  const validatedActions = exchange.resumeOnly ? [] : checkpoint.plan.publicPatches.filter((row): row is
+    Extract<MechanicChoice, { kind: "encounter.action" }> =>
+    row.kind === "encounter.action" && row.actorId === playerId);
+  requireRule(exchange.schemaVersion === 2 || exchange.resumeOnly || validatedActions.length === 1);
+  const validatedAction = validatedActions[0] ?? null;
   return {
     campaignId: input.campaignId,
     operationId: input.operationId,
@@ -160,9 +164,10 @@ export function decisionContext(source: RuntimeSource, input: TurnInput, ids: st
       requestedTextTruncated: input.input.length > 1600,
       execution: exchange.resumeOnly ? "not-executed" : "resolved",
       validatedAction: validatedAction?.kind === "encounter.action" ? { ...validatedAction } : null,
+      validatedActions: validatedActions.map((row) => ({ ...row })),
       publicOutcomes: exchange.resumeOnly ? [] : exchange.playerResolution.outcomes
         .filter((row) => row.kind === "encounter.action" &&
-          row.entityIds.includes(checkpoint.naturalMechanic!.actorId))
+          row.entityIds.includes(playerId))
         .slice(0, 4).map((row) => ({ text: row.text.slice(0, 320), entityIds: [...row.entityIds] })),
       visibleHpChanges: exchange.resumeOnly ? [] : exchange.playerResolution.changes
         .filter((change) => change.family === "entities" && typeof change.values.hp === "number")
@@ -258,7 +263,10 @@ export async function completeCombatExchange(
   store: TurnStore, lease: TurnLease, prepare: PrepareCombatIntent | undefined,
 ): Promise<MechanicsResolution> {
   const exchange = checkpoint.combatExchange;
-  requireRule(exchange?.schemaVersion === 1 && checkpoint.plan && checkpoint.naturalMechanic);
+  const playerId = checkpoint.naturalCombatTurn?.actorId ?? checkpoint.naturalMechanic?.actorId;
+  requireRule(exchange && checkpoint.plan && playerId &&
+    (exchange.schemaVersion === 1 ? !!checkpoint.naturalMechanic && !checkpoint.naturalCombatTurn :
+      exchange.schemaVersion === 2 && !!checkpoint.naturalCombatTurn && !checkpoint.naturalMechanic));
   const playerResolution = exchange.resumeOnly
     ? { changes: [], worldMinutes: source.runtime.worldMinutes,
         configuration: source.runtime.configuration, outcomes: [] }
@@ -274,12 +282,12 @@ export async function completeCombatExchange(
   const config = source.runtime.configuration;
   requireRule(config);
   const combat = active(state);
-  requireRule(combat?.current?.entity_id === checkpoint.naturalMechanic.actorId);
+  requireRule(combat?.current?.entity_id === playerId);
   const remainingOpponents = combat.participants.filter((row) => !config.controlledEntityIds.includes(row.entity_id ?? ""));
   if (!remainingOpponents.length && !exchange.resumeOnly) {
     actions.push({ kind: "encounter.end", outcome: "victory" });
   } else {
-    actions.push(action(checkpoint.naturalMechanic.actorId, "end-turn"));
+    actions.push(action(playerId, "end-turn"));
     resolution = resolveMechanics(source, input, mechanicPlanForActions(source, input, actions, 48), checkpoint.checks);
     state = projected(source, resolution);
     const ids = prospectiveNpcIds(state);

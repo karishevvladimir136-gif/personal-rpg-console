@@ -152,6 +152,7 @@ export type MechanicsResolution = {
 };
 export type TurnCheckpoint = {
   naturalMechanic?: import("../rulesets/natural-mechanics.ts").NaturalMechanicIntent | null;
+  naturalCombatTurn?: import("../rulesets/natural-combat-turn.ts").NaturalCombatTurn | null;
   combatExchange?: import("./combat-exchange.ts").CombatExchangeCheckpoint | null;
   foundationAction?: JsonObject | null;
   foundationSettlement?:

@@ -7,6 +7,7 @@ import type { WorldSettlement } from "./contracts.ts";
 import type { JsonObject } from "../gameplay/contracts.ts";
 import type { MundanePublicDetail } from "../rulesets/world-logic-contracts.ts";
 import type { NaturalMechanicIntent } from "../rulesets/natural-mechanics.ts";
+import type { NaturalCombatTurn } from "../rulesets/natural-combat-turn.ts";
 
 // Internal integration seam, never a provider or client-controlled settlement.
 export type PreparedWorld = {
@@ -28,6 +29,7 @@ export type PrepareWorldLogic = (
 ) => Promise<{
   proposal: JsonObject | null;
   mechanicIntent?: NaturalMechanicIntent;
+  combatTurn?: NaturalCombatTurn;
   foundationAction?: JsonObject | null;
   resolution: MechanicsResolution | null;
   usage: ProviderUsage | null;
