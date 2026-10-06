@@ -46,6 +46,7 @@ async function harness(npcAction = "attack", npcDescription = "The innkeeper swi
   };
   const store = createRpcTurnStore(f.owner,runtime,"gpt-6-astra",await f.fence(f.cid));
   let narratorCalls=0, npcCalls=0;
+  const npcDecisions=[];
   const deps={store,
     provider:{plan:()=>assert.fail("dm.plan"),feedback:()=>assert.fail("feedback"),narrate:async()=>{
       narratorCalls++; return {usage,output:{narration:"The sword lands; the innkeeper responds, and the fight continues.",visualDescription:"",clarification:null}};}},
@@ -56,10 +57,11 @@ async function harness(npcAction = "attack", npcDescription = "The innkeeper swi
       equipmentName:(options.playerIntent?.(i.input.input) ?? "attack")==="attack"?sword.name:null}})}),
     prepareWorld:worldTurnPreparer(world),
     prepareCombatIntent:async(decision)=>{npcCalls++; assert.deepEqual(decision.actorsToDecide,[npc.id]);
+      npcDecisions.push(structuredClone(decision));
       return {usage,output:[{actorId:npc.id,action:npcAction,targetId:npcAction==="attack"||npcAction==="attempt"?f.hero:null,
         itemId:options.npcItemId??null,position:npcAction==="move"?"cover":null,description:npcDescription}]};},
   };
-  return {f,store,deps,npc,sword,get narratorCalls(){return narratorCalls;},get npcCalls(){return npcCalls;}};
+  return {f,store,deps,npc,sword,npcDecisions,get narratorCalls(){return narratorCalls;},get npcCalls(){return npcCalls;}};
 }
 
 async function submit(h,text="I attack innkeeper with my sword") {
@@ -102,6 +104,14 @@ test("natural sword action commits one whole exchange and returns the next turn 
     assert.equal(h.narratorCalls,1);
     assert.equal(h.npcCalls,1);
     const current=await h.store.readPlay(h.f.cid);
+    const stimulus=h.npcDecisions[0].immediatePlayerStimulus;
+    assert.equal(stimulus.requestedText,input.input);
+    assert.equal(stimulus.execution,"resolved");
+    assert.equal(stimulus.validatedAction.action,"attack");
+    assert.equal(stimulus.validatedAction.itemId,h.sword.id);
+    assert.deepEqual(stimulus.publicOutcomes,[{entityIds:[h.f.hero,h.npc.id],
+      text:"The attack hit; code-validated damage was applied."}]);
+    assert.equal(h.npcDecisions[0].participants.find((row)=>row.entityId===h.npc.id).hp,6);
     assert.equal(current.encounters.find((row)=>row.status==="active").round,2);
     const hero=current.participants.find((row)=>row.entity_id===h.f.hero);
     assert.equal(hero.public_resources.active,true);
@@ -114,6 +124,10 @@ test("natural sword action commits one whole exchange and returns the next turn 
     assert.equal(h.npcCalls,1);
     const second=await submit(h,"I smack his head on nearest table");
     assert.equal(second.after.status,"committed");
+    assert.equal(h.npcDecisions[1].immediatePlayerStimulus.requestedText,second.input.input);
+    assert.equal(h.npcDecisions[1].immediatePlayerStimulus.validatedAction.action,"attempt");
+    assert.match(h.npcDecisions[1].immediatePlayerStimulus.publicOutcomes[0].text,
+      /no condition, damage or transfer was established/);
     assert.equal((await h.store.readPlay(h.f.cid)).encounters.find((row)=>row.status==="active").round,3);
     const timeline=await h.f.fence(h.f.cid);
     const memory=createRpcMemoryStore(h.f.owner,async(args)=>({
@@ -210,6 +224,9 @@ test("spent player Action safely advances the existing encounter and returns con
     assert.equal(result.checks.length,0);
     const exchange=await h.f.one("select checkpoint->'combatExchange' exchange from rpg_private.turns where id=$1",[input.operationId]);
     assert.equal(exchange.exchange.resumeOnly,true);
+    assert.equal(h.npcDecisions.at(-1).immediatePlayerStimulus.execution,"not-executed");
+    assert.equal(h.npcDecisions.at(-1).immediatePlayerStimulus.validatedAction,null);
+    assert.deepEqual(h.npcDecisions.at(-1).immediatePlayerStimulus.publicOutcomes,[]);
     const after=await h.store.readPlay(h.f.cid);
     assert.equal(after.encounters.find((row)=>row.status==="active").round,3);
     assert.equal(after.participants.find((p)=>p.entity_id===h.f.hero).public_resources.action,1);

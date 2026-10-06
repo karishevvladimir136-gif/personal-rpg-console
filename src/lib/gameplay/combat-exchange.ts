@@ -24,9 +24,18 @@ export type CombatDecision = {
   operationId: string;
   location: { id: string | null; name: string | null };
   recentPublicScene: string | null;
+  immediatePlayerStimulus: {
+    // Untrusted requested fiction, never evidence of success or later steps.
+    requestedText: string;
+    requestedTextTruncated: boolean;
+    execution: "resolved" | "not-executed";
+    validatedAction: Extract<MechanicChoice, { kind: "encounter.action" }> | null;
+    publicOutcomes: Array<{ text: string; entityIds: string[] }>;
+  };
   participants: Array<{
     entityId: string;
     name: string;
+    publicDetails: string;
     controlled: boolean;
     hp: number;
     maxHp: number;
@@ -113,23 +122,54 @@ function action(actorId: string, kind: "end-turn" | "attack" | "attempt" | "defe
   return { kind: "encounter.action", actorId, action: kind, targetId, itemId, position };
 }
 
-function decisionContext(source: RuntimeSource, input: TurnInput, ids: string[]): CombatDecision {
+export function decisionContext(source: RuntimeSource, input: TurnInput, ids: string[],
+  checkpoint: TurnCheckpoint): CombatDecision {
   const encounter = active(source);
   requireRule(encounter);
   const config = source.runtime.configuration;
   requireRule(config);
-  const personalities = characterPacket(source, input, "plan");
+  const personalities = characterPacket(source, input, "plan").map((model) => ({
+    ...model,
+    // Combat descriptions enter public narration. Keep actor-authorized public
+    // recollections only; the private DM ledger is not combat stimulus.
+    beliefs: model.beliefs.filter((row) => row.evidence.visibility === "public"),
+    relationships: model.relationships.filter((row) => row.evidence.visibility === "public"),
+    episodes: model.episodes.filter((row) => row.evidence.visibility === "public"),
+  }));
   const locationId = source.snapshot.publicState.current_location_id;
+  const currentScene = source.snapshot.scenes.find((row) =>
+    row.campaign_id === input.campaignId && row.id === source.snapshot.publicState.current_scene_id);
+  const recentScene = currentScene && source.snapshot.scenes.filter((row) =>
+    row.campaign_id === input.campaignId && row.session_id === currentScene.session_id &&
+    row.sequence <= currentScene.sequence && row.role === "narration")
+    .sort((a, b) => a.sequence - b.sequence).at(-1);
+  const exchange = checkpoint.combatExchange;
+  requireRule(exchange?.playerResolution && checkpoint.plan && checkpoint.naturalMechanic);
+  const validatedAction = exchange.resumeOnly ? null : checkpoint.plan.publicPatches.find((row) =>
+    row.kind === "encounter.action" && row.actorId === checkpoint.naturalMechanic?.actorId);
+  requireRule(exchange.resumeOnly || validatedAction?.kind === "encounter.action");
   return {
     campaignId: input.campaignId,
     operationId: input.operationId,
-    location: { id: locationId, name: source.snapshot.locations.find((row) => row.id === locationId)?.name ?? null },
-    recentPublicScene: source.snapshot.scenes.filter((row) => row.role === "narration").at(-1)?.body ?? null,
+    location: { id: locationId, name: source.snapshot.locations.find((row) =>
+      row.campaign_id === input.campaignId && row.id === locationId)?.name ?? null },
+    recentPublicScene: recentScene?.body.slice(0, 2400) ?? null,
+    immediatePlayerStimulus: {
+      requestedText: input.input.slice(0, 1600),
+      requestedTextTruncated: input.input.length > 1600,
+      execution: exchange.resumeOnly ? "not-executed" : "resolved",
+      validatedAction: validatedAction?.kind === "encounter.action" ? { ...validatedAction } : null,
+      publicOutcomes: exchange.resumeOnly ? [] : exchange.playerResolution.outcomes
+        .filter((row) => row.kind === "encounter.action" &&
+          row.entityIds.includes(checkpoint.naturalMechanic!.actorId))
+        .slice(0, 4).map((row) => ({ text: row.text.slice(0, 320), entityIds: [...row.entityIds] })),
+    },
     actorsToDecide: ids,
     participants: encounter.participants.map((row) => {
-      const entity = source.snapshot.entities.find((candidate) => candidate.id === row.entity_id);
+      const entity = source.snapshot.entities.find((candidate) =>
+        candidate.campaign_id === input.campaignId && candidate.id === row.entity_id);
       requireRule(entity && entity.hp !== null && entity.max_hp !== null);
-      return { entityId: entity.id, name: entity.name,
+      return { entityId: entity.id, name: entity.name, publicDetails: entity.details.slice(0, 600),
         controlled: config.controlledEntityIds.includes(entity.id), hp: entity.hp, maxHp: entity.max_hp,
         position: String(row.public_position.position ?? "nearby"),
         action: Number(row.public_resources.action ?? 0), move: Number(row.public_resources.move ?? 0),
@@ -234,7 +274,7 @@ export async function completeCombatExchange(
     if (ids.length) {
       if (exchange.npcIntents === null) {
         if (!prepare) throw new TurnError("configuration");
-        const response = await prepare(decisionContext(state, input, ids));
+        const response = await prepare(decisionContext(state, input, ids, checkpoint));
         exchange.npcIntents = validateAutonomousIntents(state, ids, response.output);
         checkpoint.usage.push(response.usage);
         await store.checkpoint(lease, checkpoint, "generating");
