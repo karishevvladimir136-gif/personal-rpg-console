@@ -20,6 +20,7 @@ import { createWorldResolverProvider } from "./world/resolver-provider";
 import { executionProviderOptions } from "./model-runtime/profiles";
 import { DmError } from "../gameplay/dm-errors";
 import { createDmProvider } from "./dm";
+import { createAstraPrimaryProvider } from "./dm/astra-primary-provider";
 import { createSummaryProvider } from "./memory/provider";
 import type { RuntimeSource } from "../gameplay/server-contracts";
 import type { JsonObject } from "../gameplay/contracts";
@@ -128,6 +129,9 @@ export function productionServices(
     },
   });
   return {
+    astraProvider: createAstraPrimaryProvider({
+      apiKey: process.env.OPENAI_API_KEY ?? "",
+    }),
     planModel: async (stage: "plan" | "narrate" = "plan") => {
       const snapshot = await readWorldFoundation(
         world,

@@ -36,7 +36,7 @@ const emptyResolution = (source: RuntimeSource): MechanicsResolution => ({
   outcomes: [],
 });
 
-function publicSource(source: RuntimeSource, input?: TurnInput): RuntimeSource {
+export function publicSource(source: RuntimeSource, input?: TurnInput): RuntimeSource {
   return {
     ...source,
     privateState: {},

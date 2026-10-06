@@ -150,7 +150,36 @@ export type MechanicsResolution = {
   configuration: PlaySnapshot["configuration"];
   outcomes: PublicOutcome[];
 };
+export type AstraToolCall = {
+  kind: "query" | "skill" | "attack" | "save" | "damage";
+  actorId: string | null;
+  targetId: string | null;
+  dc: number | null;
+  itemId: string | null;
+  scope: "current-public" | null;
+};
+export type AstraToolReceipt = {
+  position: number;
+  id: string;
+  call: AstraToolCall;
+  result: JsonObject;
+};
+export type AstraFinalProposal = {
+  schemaVersion: 1;
+  campaignId: string;
+  operationId: string;
+  expectedRevision: number;
+  input: string;
+  resolution: MechanicsResolution;
+  privatePatches: PrivatePatch[];
+  toolRefs: string[];
+};
 export type TurnCheckpoint = {
+  astraPrimary?: {
+    schemaVersion: 1;
+    toolReceipts: AstraToolReceipt[];
+    finalProposal: AstraFinalProposal | null;
+  } | null;
   naturalMechanic?: import("../rulesets/natural-mechanics.ts").NaturalMechanicIntent | null;
   naturalCombatTurn?: import("../rulesets/natural-combat-turn.ts").NaturalCombatTurn | null;
   combatExchange?: import("./combat-exchange.ts").CombatExchangeCheckpoint | null;
@@ -180,6 +209,7 @@ export type TurnLease = {
   expectedRevision: number;
 };
 export type TurnClaim = {
+  runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
   lease: TurnLease;
   turn: StoredTurn;
   source: RuntimeSource;
@@ -198,7 +228,9 @@ export type CommitPacket = {
   guidanceProposal: string | null;
 };
 export interface TurnStore {
-  begin(input: TurnInput): Promise<PublicTurn>;
+  begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1"): Promise<PublicTurn>;
+  runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
+  recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;
   readPlay(campaignId: string): Promise<PlaySnapshot>;
   getPublic(campaignId: string, operationId: string): Promise<PublicTurn>;
   claim(campaignId: string, operationId: string): Promise<TurnClaim | null>;

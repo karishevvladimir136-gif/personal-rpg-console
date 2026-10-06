@@ -1,3 +1,15 @@
+# Development status — Astra-primary production P1 — LIVE SMOKE FAILED, DIAGNOSIS PENDING
+
+**Milestone/status (2026-10-06):** The isolated `codex/astra-primary-production-p1` candidate is frozen for owner review. It is not accepted or complete. Migration 38 was applied only to disposable databases. `main` remains `0112959ee128d77a7eded208438093a103f1f399`; the owner database, owner gameplay, running app, and deployment were not changed by P1.
+
+**Completed work/areas changed:** The opt-in `astra-primary-v1` path pins runtime identity with literal input at durable begin, uses bounded generic deterministic tool receipts and a pinned final proposal, and commits through the existing private TurnStore authority. The path reuses production Memory, Canon, corrections, DM Craft, Campaign Style, and relevant Character Models, with separate private planning and public narration projections. Migration 38 adds the private runtime and recovery authority while retaining legacy pending/old-save behavior and migration 35–37 guards. Areas changed: private migration 38, Astra runtime/provider adapter, existing turn/store/service integration, production-focused tests and synthetic smoke harness, and `ASTRA_PRIMARY_PRODUCTION_P1.md`.
+
+**Verification:** Focused disposable migration tests passed **4/4**; P1 plus migrations 35–37 focused tests passed **58/58**. The 24-turn fake-provider soak completed 23 commits and one asserted atomic rejection; the synthetic eight-turn Mechanical Acceptance V2 path passed. Full suite: **1,927 passed / 1,928 total**, zero failures, one existing skip. TypeScript passed; ESLint had zero warnings; production webpack build passed.
+
+**Live smoke/known issue/next step:** The first synthetic production-path live turn made exactly **one** Astra request: **3,562 input / 1,079 output tokens**, **21.361 seconds**, estimated **US $0.0896**. The turn failed after the provider response and before narration. No retry or later turn occurred. The harness did not preserve the exact structured proposal or rejection boundary, so the rejecting validator and technical cause are **unknown**. No cause is inferred. Next step is owner review of this frozen checkpoint before any diagnostics, repair, further provider call, owner database migration, or activation.
+
+---
+
 # Development status — Playtest 2.0 natural combat turn / migration 37 — READY FOR OWNER REVIEW
 
 **Milestone/status (2026-10-05):** The isolated `codex/playtest2-natural-combat-turn` branch builds on `e85343c0b36a4177b4af792790b212fb08b8714b`. Migration 37 and the complete natural combat turn are implemented and verified on disposable data. The prior pasted main SHA `53446d7…` was stale because the owner had already activated smart combat; this branch does not update main, the running owner app, real migration-36 database, owner gameplay or deployment. Owner review and real migration/activation remain separate.

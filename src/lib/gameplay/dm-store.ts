@@ -77,7 +77,12 @@ export function createRpcTurnStore(
     return response.data as T;
   }
   return {
-    begin: (input) => rpc(input.campaignId, "begin", input),
+    begin: (input, runtimeIdentity) => rpc(input.campaignId, "begin",
+      runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity } : input),
+    runtimeIdentity: (campaignId, operationId) =>
+      rpc(campaignId, "astra_runtime", { operationId }),
+    recordAstraTool: (lease, position, call, result) =>
+      rpc(lease.campaignId, "astra_tool", { ...lease, position, call, result }),
     readPlay: async (campaignId) => {
       const result = await rpc<Awaited<ReturnType<TurnStore["readPlay"]>>>(
         campaignId,

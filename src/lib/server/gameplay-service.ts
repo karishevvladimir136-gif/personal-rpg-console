@@ -12,6 +12,7 @@ import { resolveExecutionProfile } from "../model-runtime/registry";
 import { applicationGameplayTaskSelection } from "../production/task-defaults";
 import { randomUUID } from "node:crypto";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
+import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
 import { createMemoryStore } from "./memory/store";
 import { memoryAwareProvider, preflightMemory } from "../memory/lifecycle";
 import {
@@ -85,6 +86,15 @@ export async function submitTurn(campaignId: string, value: unknown) {
     campaignId,
     requireTimeline(input),
   );
+  const pinned = await store.runtimeIdentity?.(campaignId, input.operationId) ?? null;
+  const optIn = process.env.RPG_ASTRA_PRIMARY_P1 === "1";
+  const rulesetId = pinned === null && optIn && input.mode === "game"
+    ? (await readProductionSettings(campaignId)).ruleset.id : null;
+  const selected = selectAstraPrimaryRuntime(pinned,optIn,input.mode,rulesetId);
+  if (selected) return runAstraTurn(input, {
+    store, memory, summaries: production.summaries,
+    provider: production.astraProvider,
+  });
   let existing = false;
   try {
     await store.getPublic(campaignId, input.operationId);
@@ -126,6 +136,11 @@ export async function continueTurn(
     campaignId,
     requireTimeline(input),
   );
+  if ((await store.runtimeIdentity?.(campaignId, operationId)) === "astra-primary-v1")
+    return resumeAstraTurn(input, {
+      store, memory, summaries: production.summaries,
+      provider: production.astraProvider,
+    });
   return resumeTurn(input, {
     store,
     provider: memoryAwareProvider(
