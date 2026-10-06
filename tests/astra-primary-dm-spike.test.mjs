@@ -52,7 +52,7 @@ test("one primary DM handles generic checked contact; retry reuses the exact dur
     let providerCalls = 0, rolls = 0;
     const dm = { next: ({ transcript }) => {
       providerCalls++;
-      if (!transcript.length) return { type: "tool", call: { callId: "contact-check", kind: "skill",
+      if (!transcript.length) return { type: "tool", call: { kind: "skill",
         actorId: IDS.hero, targetId: IDS.innkeeper, dc: 13 } };
       const check = transcript[0].result;
       assert.equal(check.success, false);
@@ -69,6 +69,7 @@ test("one primary DM handles generic checked contact; retry reuses the exact dur
       } }), /synthetic lost response/);
     assert.equal(rolls, 1);
     const savedCheck = journal.get(request.operationId).checkpoint.tools[0].result;
+    assert.equal(savedCheck.callId, "tool-0");
     assert.equal(savedCheck.success, false);
     const reopened = await ShadowJournal.open(path, frozenCampaign());
     const result = await runShadowTurn({ journal: reopened, input: request, composeContext: context, dm,
@@ -95,9 +96,9 @@ test("generic attack and damage tools use server dice and one bounded HP change"
     const request = { ...input("synthetic-damage-1"), input: "I strike with my short sword" };
     const journal = await ShadowJournal.open(path, frozenCampaign());
     const dm = { next: ({ transcript }) => {
-      if (!transcript.length) return { type: "tool", call: { callId: "attack-1", kind: "attack",
+      if (!transcript.length) return { type: "tool", call: { kind: "attack",
         actorId: IDS.hero, targetId: IDS.innkeeper, itemId: IDS.sword } };
-      if (transcript.length === 1) return { type: "tool", call: { callId: "damage-1", kind: "damage",
+      if (transcript.length === 1) return { type: "tool", call: { kind: "damage",
         actorId: IDS.hero, targetId: IDS.innkeeper, itemId: IDS.sword } };
       return { type: "final", proposal: { ...final(request, [{ family: "actors", id: IDS.innkeeper,
         expectedRevision: 3, values: { hp: 1 } }], transcript.map((row) => row.result.id)),
@@ -119,7 +120,7 @@ test("attacks derive defense and weapon modifiers from state, rejecting arbitrar
   await inDisposableJournal(async (path) => {
     const journal = await ShadowJournal.open(path, frozenCampaign());
     const turn = await journal.begin(input("synthetic-attack-authority"));
-    const attack = { callId: "attack", kind: "attack", actorId: IDS.hero,
+    const attack = { kind: "attack", actorId: IDS.hero,
       targetId: IDS.innkeeper, itemId: IDS.sword };
     await assert.rejects(journal.recordTool(turn, { ...attack, dc: 5 }, () => 20), /validation/);
     await assert.rejects(journal.recordTool(turn, { ...attack, itemId: IDS.oil }, () => 20), /validation/);
@@ -143,7 +144,7 @@ test("the same generic loop commits social failure, inventory use, travel and a 
         narration: "The magistrate does not believe Mara. He asks for evidence.",
         memoryCandidates: [{ visibility: "public", text: "Mara's bluff failed in Town Hall." }],
         privateChanges: [{ key: "magistrate_suspicion", value: "The magistrate is now wary of Mara." }] } }
-      : { type: "tool", call: { callId: "bluff", kind: "skill", actorId: IDS.hero,
+      : { type: "tool", call: { kind: "skill", actorId: IDS.hero,
         targetId: IDS.magistrate, dc: 15 } } };
     const socialResult = await runShadowTurn({ journal, input: social, composeContext: sourcePacket,
       dm: socialDm, random: () => 1 });
@@ -197,11 +198,52 @@ test("invariants reject forged identity, secret leakage, unrolled harm and chang
     assert.throws(() => validateFinal(state, turn, { ...base, publicChanges: [{ family: "actors", id: IDS.hero,
       expectedRevision: 2, values: { position: "nearby" } }] }), /validation/);
     assert.throws(() => validateFinal(state, turn, { ...base, rollRefs: ["invented-roll"] }), /validation/);
-    const call = { callId: "same-roll", kind: "skill", actorId: IDS.hero, targetId: IDS.innkeeper, dc: 12 };
+    const call = { kind: "skill", actorId: IDS.hero, targetId: IDS.innkeeper, dc: 12 };
     const first = await journal.recordTool(turn, call, () => 4);
-    assert.deepEqual(await journal.recordTool(turn, call, () => { throw Error("rerolled"); }), first);
-    await assert.rejects(journal.recordTool(turn, { ...call, dc: 5 }, () => 1), /conflict/);
+    assert.deepEqual(await journal.recordTool(turn, call, () => { throw Error("rerolled"); }, 0), first);
+    await assert.rejects(journal.recordTool(turn, { ...call, dc: 5 }, () => 1, 0), /conflict/);
+    await assert.rejects(journal.recordTool(turn, { ...call, callId: "model-forged" }, () => 1), /validation/);
     assert.equal(journal.data.campaign.revision, 7);
+  });
+});
+
+test("blind operation labels cannot change server-owned tool identity or replay after restart", async () => {
+  await inDisposableJournal(async (path) => {
+    const request = input("synthetic-blind-X-Y-Z");
+    const journal = await ShadowJournal.open(path, frozenCampaign());
+    const turn = await journal.begin(request);
+    const call = { kind: "skill", actorId: IDS.hero, targetId: IDS.innkeeper, dc: 12 };
+    let rolls = 0;
+    const first = await journal.recordTool(turn, call, () => { rolls++; return 6; });
+    assert.equal(first.callId, "tool-0");
+    assert.equal(rolls, 1);
+    const reopened = await ShadowJournal.open(path, frozenCampaign());
+    const saved = reopened.get(request.operationId);
+    assert.deepEqual(await reopened.recordTool(saved, call, () => { throw Error("rerolled"); }, 0), first);
+    await assert.rejects(reopened.recordTool(saved, { ...call, dc: 13 }, () => 6, 0), /conflict/);
+    assert.equal(saved.checkpoint.tools.length, 1);
+    assert.equal(reopened.data.campaign.revision, 7);
+  });
+});
+
+test("every arm receives current time and final position remains bounded", async () => {
+  for (const arm of ["A", "B", "C"]) {
+    const packet = composeEvaluationPacket(caseById("companion-refusal"), arm).packet;
+    assert.equal(packet.worldMinutes, 720);
+  }
+  await inDisposableJournal(async (path) => {
+    const journal = await ShadowJournal.open(path, frozenCampaign());
+    const request = input("synthetic-bounded-position");
+    const turn = await journal.begin(request);
+    assert.throws(() => validateFinal(journal.data.campaign, turn, {
+      ...final(request), publicChanges: [{ family: "actors", id: IDS.hero, expectedRevision: 2,
+        values: { position: "at the counter, out of cover", resources: { move: 0 } } }],
+    }), /validation/);
+    assert.throws(() => validateFinal(journal.data.campaign, turn, { ...final(request), worldMinutes: 0 }), /validation/);
+    assert.doesNotThrow(() => validateFinal(journal.data.campaign, turn, {
+      ...final(request), publicChanges: [{ family: "actors", id: IDS.hero, expectedRevision: 2,
+        values: { position: "nearby", resources: { move: 0 } } }],
+    }));
   });
 });
 

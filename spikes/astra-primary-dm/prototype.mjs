@@ -54,21 +54,23 @@ export class ShadowJournal {
     await this.flush();
     return turn.checkpoint.packet;
   }
-  async recordTool(turn, call, random = randomInt) {
-    guard(keysAre(call, ["callId", "kind", "actorId", "targetId", "dc", "itemId", "scope"], ["callId", "kind"]));
-    guard(typeof call.callId === "string" && /^[a-z0-9-]{1,48}$/.test(call.callId));
-    const previous = turn.checkpoint.tools.find((row) => row.call.callId === call.callId);
+  async recordTool(turn, call, random = randomInt, position = turn.checkpoint.tools.length) {
+    guard(keysAre(call, ["kind", "actorId", "targetId", "dc", "itemId", "scope"], ["kind"]));
+    guard(Number.isSafeInteger(position) && position >= 0 && position <= turn.checkpoint.tools.length);
+    const previous = turn.checkpoint.tools[position];
     if (previous) {
       guard(digest(previous.call) === digest(call), "conflict");
       return clone(previous.result);
     }
     guard(turn.checkpoint.tools.length < 8);
+    const callId = `tool-${position}`; // internal identity; never supplied by the DM or browser
     const state = this.data.campaign;
     guard(turn.checkpoint.sourceDigest === digest(state), "conflict");
     let result;
     if (call.kind === "query") {
       guard(call.scope === "current-public" && !call.actorId && !call.targetId && !call.itemId && call.dc === undefined);
-      result = { kind: "query", revision: state.revision, locationId: state.currentLocationId,
+      result = { kind: "query", callId, id: stableGameplayId(turn.input.operationId, `tool:${position}`),
+        revision: state.revision, locationId: state.currentLocationId,
         actors: clone(state.actors), items: clone(state.items) };
     } else if (["skill", "attack", "save"].includes(call.kind)) {
       const actor = state.actors[call.actorId];
@@ -93,7 +95,7 @@ export class ShadowJournal {
         dc, dcPublic: false, visibility: actor.id === Object.keys(state.actors)[0] ? "player" : "private",
         important: true, uncertainty: "meaningful", advantage: "normal" };
       const recorded = recordServerRoll(turn.input.operationId, proposal, modifier, 1, random);
-      result = { kind: call.kind, ...recorded, callId: call.callId };
+      result = { kind: call.kind, ...recorded, callId };
     } else if (call.kind === "damage") {
       const actor = state.actors[call.actorId], target = state.actors[call.targetId], item = state.items[call.itemId];
       guard(actor?.campaignId === turn.input.campaignId && target?.campaignId === turn.input.campaignId &&
@@ -105,11 +107,11 @@ export class ShadowJournal {
       const dice = Array.from({ length: count }, () => random(1, sides + 1));
       guard(dice.every((die) => Number.isInteger(die) && die >= 1 && die <= sides));
       guard(Number.isInteger(item.damageBonus) && item.damageBonus >= -10 && item.damageBonus <= 10);
-      result = { kind: "damage", callId: call.callId, id: stableGameplayId(turn.input.operationId, `tool:${call.callId}`),
+      result = { kind: "damage", callId, id: stableGameplayId(turn.input.operationId, `tool:${position}`),
         actorId: actor.id, targetId: target.id, itemId: item.id, dice,
         total: Math.max(0, dice.reduce((a, b) => a + b, 0) + item.damageBonus) };
     } else guard(false);
-    turn.checkpoint.tools.push({ call: clone(call), result: clone(result) });
+    turn.checkpoint.tools.push({ position, call: clone(call), result: clone(result) });
     await this.flush(); // a provider timeout after this point must not reroll
     return clone(result);
   }

@@ -21,8 +21,8 @@ const obj = (properties) => ({ type: "object", additionalProperties: false,
 const itemValues = obj({ hp: nil("integer"), resources: {
   anyOf: [obj({ action: nil("integer"), move: nil("integer"),
     reaction: nil("integer"), focus: nil("integer") }), { type: "null" }],
-}, position: nil("string"), quantity: nil("integer") });
-const toolCall = obj({ callId: { type: "string" }, kind: { type: "string",
+}, position: { type: ["string", "null"], enum: ["nearby", "far", "cover", null] }, quantity: nil("integer") });
+const toolCall = obj({ kind: { type: "string",
   enum: ["query", "skill", "attack", "save", "damage"] }, actorId: nil("string"),
 targetId: nil("string"), dc: nil("integer"), itemId: nil("string"), scope: nil("string") });
 const finalProposal = obj({ schemaVersion: { type: "integer" }, operationId: { type: "string" },
@@ -40,7 +40,7 @@ const stepSchema = obj({ type: { type: "string", enum: ["tool", "final"] },
 const protocol = [
   "Return exactly one JSON object matching the response schema. This is the generic server tool/final contract for every case.",
   "For a tool step set type=tool, call to the tool request, proposal=null. For a final step set type=final, call=null, proposal to the complete final contract.",
-  "Tool call IDs must be stable and unique. Set unused call fields to null. query uses scope=current-public. skill/save use an existing actor, optional existing target, and integer DC 5–30. attack uses an existing target and optional equipped owned item; its DC is null because the server owns target defense. damage uses an equipped owned item after a successful attack with that item.",
+  "The server assigns tool receipt identities. Set unused call fields to null. query uses scope=current-public. skill/save use an existing actor, optional existing target, and integer DC 5–30. attack uses an existing target and optional equipped owned item; its DC is null because the server owns target defense. damage uses an equipped owned item after a successful attack with that item.",
   "Use only exact IDs and revisions present in the packet or tool receipts. The server owns random rolls, attack defense, weapon modifiers, resource/HP/item bounds and commit. Do not invent tool results. If there is no justified state change, use empty change arrays.",
   "For a final proposal use schemaVersion=1, copy exact operationId/campaignId/expectedRevision/input from the request, and give worldMinutes >= the packet's current time. For each public change set unused values fields to null; inside resources set unused fields to null. Cite only recorded roll receipt IDs in rollRefs.",
 ].join(" ");
