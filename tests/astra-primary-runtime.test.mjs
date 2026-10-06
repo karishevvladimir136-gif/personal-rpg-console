@@ -48,11 +48,27 @@ test("Astra production turn durably begins before context and commits through Tu
       next:async(context)=>{
         calls++;
         assert.equal(context.instructions.includes("one primary DM"),true);
+        assert.match(context.instructions,/roll only for meaningful uncertainty with a consequential difference/);
+        assert.match(context.instructions,/never roll merely to inspect exact authoritative state or remember supplied evidence/);
         assert.equal(context.instructions.includes("worldMinutes may equal astraPrimary.authority.currentWorldMinutes"),true);
         assert.equal(context.instructions.includes("changing current_location_id requires final worldMinutes to be strictly greater"),true);
         assert.equal(context.instructions.includes("Movement inside one Location is narration, not a Location change"),true);
-        assert.deepEqual(JSON.parse(context.input).astraPrimary.authority,
+        const privatePacket=JSON.parse(context.input).astraPrimary;
+        assert.deepEqual(privatePacket.authority,
           {currentWorldMinutes:0,locationChangeRequiresTimeAdvance:true});
+        const policy=privatePacket.toolPolicy;
+        assert.match(policy.query,/public HP, resources, inventory, Location/);
+        assert.match(policy.query,/deterministic lookup never rolls/);
+        assert.match(policy.skill,/genuinely uncertain proactive attempt/);
+        assert.match(policy.skill,/success or failure materially changes/);
+        assert.match(policy.skill,/exact self-state, accessible owned inventory/);
+        assert.match(policy.skill,/supplied or retrieved Memory/);
+        assert.match(policy.skill,/sitting, thinking, conversation/);
+        assert.match(policy.skill,/word check alone is not a reason to roll/);
+        assert.match(policy.attack,/uncertain hostile attack against an eligible current target/);
+        assert.match(policy.save,/uncertain resistance or reaction/);
+        assert.match(policy.damage,/corresponding successful server-recorded attack/);
+        assert.match(policy.final,/no random resolution or state query/);
         assert.equal((await f.one("select runtime_identity from rpg_private.turns where id=$1",[input.operationId])).runtime_identity,"astra-primary-v1");
         return {usage:{model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0},
           output:{type:"final",call:null,final:{worldMinutes:0,changes:[],outcomes:[],privatePatches:[]}}};
@@ -60,6 +76,7 @@ test("Astra production turn durably begins before context and commits through Tu
       narrate:async(context)=>{
         assert.equal(context.input.includes("PRIVATE_BEFORE_FORK"),false);
         assert.equal(context.input.includes("locationChangeRequiresTimeAdvance"),false);
+        assert.equal(context.input.includes("toolPolicy"),false);
         return {usage:{model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0},
           output:{narration:"Nera watches the river beneath the bridge.",visualDescription:"",clarification:null}};
       }

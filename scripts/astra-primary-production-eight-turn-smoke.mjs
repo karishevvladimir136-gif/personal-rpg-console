@@ -12,7 +12,7 @@ import { characterPacket } from "../src/lib/gameplay/character-model.ts";
 import { diagnosticState, diagnosticFetcher, diagnosticProvider, diagnosticStore,
   diagnosticRpc, privateSnapshot } from "./astra-primary-production-smoke.mjs";
 
-const arc=[
+export const arc=[
   "Orin, let's go back to the Old Mine and deal with this properly. I head there with him.",
   "I use my last oil flask in the old mine lamp and light it.",
   "I cross the unstable timbered passage carefully. If it isn't safe, the roll decides whether I make it through.",
@@ -22,7 +22,7 @@ const arc=[
   "I do not rest or heal. I check my condition and my pack, then sit at the mine entrance for a quiet moment and think about what I still owe Orin.",
   "I head back to the Copper Lantern with Orin. On the way, I bring up my promise about his father's map instead of pretending I've forgotten it.",
 ];
-const rollSchedule={3:[{max:21,value:18}],
+export const rollSchedule={3:[{max:21,value:18}],
   4:[{max:21,value:13},{max:5,value:3}],
   5:[{max:21,value:15},{max:5,value:3}],
   6:[{max:21,value:14},{max:5,value:3}]};
@@ -34,7 +34,7 @@ const percentile=(values,p)=>{
   return sorted[Math.ceil(p*sorted.length)-1];
 };
 
-async function createWorld(f){
+export async function createWorld(f){
   const w=await world(f,"Synthetic Astra P1 eight-turn acceptance");
   // P1 records raw damage dice with modifier 0. The historical V2 fixture
   // added +1 to each damage die; this disposable setup preserves the owner's
@@ -75,7 +75,7 @@ async function createWorld(f){
   return {...w,mine,oil,stalker,claw};
 }
 
-async function snapshot(f,w){
+export async function snapshot(f,w){
   const row=await f.one("select ps.current_location_id location_id,ps.revision public_revision,rs.world_minutes,rs.revision runtime_revision,h.hp hero_hp,h.max_hp hero_max,h.resources->>'focus' focus,i.quantity oil,s.hp stalker_hp,s.max_hp stalker_max from public.rpg_public_state ps join rpg_private.runtime_state rs on rs.campaign_id=ps.campaign_id join public.rpg_entities h on h.id=$2 join public.rpg_items i on i.id=$3 join public.rpg_entities s on s.id=$4 where ps.campaign_id=$1",
     [w.cid,w.hero,w.oil,w.stalker]);
   return {locationId:row.location_id,publicRevision:row.public_revision,
