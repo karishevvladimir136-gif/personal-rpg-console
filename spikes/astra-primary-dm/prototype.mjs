@@ -72,27 +72,42 @@ export class ShadowJournal {
         actors: clone(state.actors), items: clone(state.items) };
     } else if (["skill", "attack", "save"].includes(call.kind)) {
       const actor = state.actors[call.actorId];
-      guard(actor?.campaignId === turn.input.campaignId && Number.isInteger(call.dc) && call.dc >= 5 && call.dc <= 30);
+      guard(actor?.campaignId === turn.input.campaignId);
       guard(call.targetId === null || call.targetId === undefined || state.actors[call.targetId]?.campaignId === turn.input.campaignId);
+      let dc = call.dc, modifier = actor.stats[call.kind === "attack" ? "attack" : call.kind === "save" ? "save" : "skill"];
+      if (call.kind === "attack") {
+        const target = state.actors[call.targetId];
+        const item = call.itemId === undefined ? null : state.items[call.itemId];
+        guard(call.dc === undefined && target?.campaignId === turn.input.campaignId &&
+          Number.isInteger(target.defense) && target.defense >= 1 && target.defense <= 40 &&
+          (item === null || (item?.campaignId === turn.input.campaignId && item.ownerId === actor.id &&
+            item.equipped && item.quantity > 0 && Number.isInteger(item.attackBonus) &&
+            item.attackBonus >= -10 && item.attackBonus <= 10)));
+        dc = target.defense;
+        modifier += item?.attackBonus ?? 0;
+      } else guard(call.itemId === undefined && Number.isInteger(dc) && dc >= 5 && dc <= 30);
+      guard(Number.isInteger(modifier) && modifier >= -20 && modifier <= 40);
       const index = turn.checkpoint.tools.filter((row) => row.result.kind !== "query").length;
       const proposal = { index, actorId: actor.id, targetId: call.targetId ?? null,
         kind: call.kind, stat: call.kind === "attack" ? "attack" : call.kind === "save" ? "save" : "skill",
-        dc: call.dc, dcPublic: false, visibility: actor.id === Object.keys(state.actors)[0] ? "player" : "private",
+        dc, dcPublic: false, visibility: actor.id === Object.keys(state.actors)[0] ? "player" : "private",
         important: true, uncertainty: "meaningful", advantage: "normal" };
-      const recorded = recordServerRoll(turn.input.operationId, proposal, actor.stats[proposal.stat], 1, random);
+      const recorded = recordServerRoll(turn.input.operationId, proposal, modifier, 1, random);
       result = { kind: call.kind, ...recorded, callId: call.callId };
     } else if (call.kind === "damage") {
       const actor = state.actors[call.actorId], target = state.actors[call.targetId], item = state.items[call.itemId];
       guard(actor?.campaignId === turn.input.campaignId && target?.campaignId === turn.input.campaignId &&
-        item?.campaignId === turn.input.campaignId && item.ownerId === actor.id && item.equipped && item.damageDice);
+        item?.campaignId === turn.input.campaignId && item.ownerId === actor.id && item.equipped && item.quantity > 0 && item.damageDice);
       guard(turn.checkpoint.tools.some((row) => row.result.kind === "attack" && row.result.actorId === actor.id &&
-        row.result.targetId === target.id && row.result.success));
+        row.result.targetId === target.id && row.call.itemId === item.id && row.result.success));
       const { count, sides } = item.damageDice;
       guard(Number.isInteger(count) && count >= 1 && count <= 4 && Number.isInteger(sides) && sides >= 2 && sides <= 12);
       const dice = Array.from({ length: count }, () => random(1, sides + 1));
       guard(dice.every((die) => Number.isInteger(die) && die >= 1 && die <= sides));
+      guard(Number.isInteger(item.damageBonus) && item.damageBonus >= -10 && item.damageBonus <= 10);
       result = { kind: "damage", callId: call.callId, id: stableGameplayId(turn.input.operationId, `tool:${call.callId}`),
-        actorId: actor.id, targetId: target.id, itemId: item.id, dice, total: dice.reduce((a, b) => a + b, 0) };
+        actorId: actor.id, targetId: target.id, itemId: item.id, dice,
+        total: Math.max(0, dice.reduce((a, b) => a + b, 0) + item.damageBonus) };
     } else guard(false);
     turn.checkpoint.tools.push({ call: clone(call), result: clone(result) });
     await this.flush(); // a provider timeout after this point must not reroll

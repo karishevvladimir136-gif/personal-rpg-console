@@ -17,7 +17,7 @@ export const IDS = Object.freeze({
 export function frozenCampaign() {
   return {
     campaignId: IDS.campaign, timeline: { timelineId: "synthetic-main", epoch: 1 }, revision: 7,
-    rulesPreset: { id: "console-basic-v1", version: 1, summary: "Ordinary d20 checks; one Action and one Move in an active encounter. Failure has consequences." },
+    rulesPreset: { id: "console-basic-v1", version: 1, summary: "Ordinary d20 checks; one Action and one Move in an active encounter." },
     currentLocationId: IDS.tavern, worldMinutes: 720,
     locations: {
       [IDS.tavern]: { id: IDS.tavern, campaignId: IDS.campaign, name: "Copper Lantern", known: true },
@@ -27,13 +27,13 @@ export function frozenCampaign() {
       [IDS.camp]: { id: IDS.camp, campaignId: IDS.campaign, name: "Riverside Camp", known: true },
     },
     actors: {
-      [IDS.hero]: { id: IDS.hero, campaignId: IDS.campaign, revision: 2, name: "Mara", hp: 10, maxHp: 10, stats: { skill: 2, attack: 3, save: 1 }, resources: { action: 1, move: 1, reaction: 1, focus: 2 }, position: "cover" },
-      [IDS.innkeeper]: { id: IDS.innkeeper, campaignId: IDS.campaign, revision: 3, name: "Innkeeper", hp: 5, maxHp: 8, stats: { skill: 1, attack: 1, save: 1 }, resources: { action: 1, move: 1, reaction: 1 }, position: "nearby" },
-      [IDS.miner]: { id: IDS.miner, campaignId: IDS.campaign, revision: 1, name: "Orin", hp: 7, maxHp: 8, stats: { skill: 2, attack: 2, save: 1 }, resources: { action: 1, move: 1, reaction: 1 }, position: "nearby" },
-      [IDS.magistrate]: { id: IDS.magistrate, campaignId: IDS.campaign, revision: 1, name: "Magistrate", hp: 8, maxHp: 8, stats: { skill: 3, attack: 1, save: 3 }, resources: { action: 1, move: 1, reaction: 1 }, position: "far" },
+      [IDS.hero]: { id: IDS.hero, campaignId: IDS.campaign, revision: 2, name: "Mara", hp: 10, maxHp: 10, defense: 12, stats: { skill: 2, attack: 3, save: 1 }, resources: { action: 1, move: 1, reaction: 1, focus: 2 }, position: "cover" },
+      [IDS.innkeeper]: { id: IDS.innkeeper, campaignId: IDS.campaign, revision: 3, name: "Innkeeper", hp: 5, maxHp: 8, defense: 10, stats: { skill: 1, attack: 1, save: 1 }, resources: { action: 1, move: 1, reaction: 1 }, position: "nearby" },
+      [IDS.miner]: { id: IDS.miner, campaignId: IDS.campaign, revision: 1, name: "Orin", hp: 7, maxHp: 8, defense: 11, stats: { skill: 2, attack: 2, save: 1 }, resources: { action: 1, move: 1, reaction: 1 }, position: "nearby" },
+      [IDS.magistrate]: { id: IDS.magistrate, campaignId: IDS.campaign, revision: 1, name: "Magistrate", hp: 8, maxHp: 8, defense: 13, stats: { skill: 3, attack: 1, save: 3 }, resources: { action: 1, move: 1, reaction: 1 }, position: "far" },
     },
     items: {
-      [IDS.sword]: { id: IDS.sword, campaignId: IDS.campaign, revision: 1, name: "short sword", ownerId: IDS.hero, quantity: 1, equipped: true, damageDice: { count: 1, sides: 6 } },
+      [IDS.sword]: { id: IDS.sword, campaignId: IDS.campaign, revision: 1, name: "short sword", ownerId: IDS.hero, quantity: 1, equipped: true, attackBonus: 1, damageDice: { count: 1, sides: 6 }, damageBonus: 1 },
       [IDS.oil]: { id: IDS.oil, campaignId: IDS.campaign, revision: 1, name: "oil flask", ownerId: IDS.hero, quantity: 1, equipped: false, damageDice: null },
     },
     // This fact is visible to the DM, never to public result or an NPC without evidence.
