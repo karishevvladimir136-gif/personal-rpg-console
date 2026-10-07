@@ -6,6 +6,7 @@ import { randomUUID } from "node:crypto";
 import ts from "typescript";
 import { fixture } from "./media-frame-fixture.mjs";
 import * as model from "../src/lib/visual-frame/real-frame.ts";
+import * as subjectJob from "../src/lib/visual-frame/subject-job.ts";
 import * as validation from "../src/lib/persistence/validation.ts";
 import * as fence from "../src/lib/saves/fence.ts";
 import * as orchestration from "../src/lib/server/media/orchestration.ts";
@@ -216,6 +217,7 @@ async function serverFixture() {
       "../../persistence/validation": validation,
       "../../saves/fence": fence,
       "../../visual-frame/real-frame": model,
+      "../../visual-frame/subject-job": subjectJob,
       "./orchestration": orchestration,
       "./pricing": pricing,
       "./provider": { openAiFrameProvider: () => f.provider },
@@ -293,6 +295,26 @@ test("authorized prepare reads authoritative head/canon proof; client cannot cho
   );
   assert.equal(h.f.providerCalls(), 0);
 });
+test("standalone subject prepare uses only current public record, server head and shared media policy", async () => {
+  const h = await serverFixture();
+  const entity = h.f.snapshot.entities[0];
+  h.f.snapshot.privateState = { secret: "PRIVATE_IMAGE_CANARY" };
+  const job = await h.server.prepareSubjectVisual({
+    campaignId: h.f.snapshot.campaign.id,
+    timeline: h.f.snapshot.timeline,
+    expectedPublicStateRevision: h.f.snapshot.publicState.revision,
+    subject: { kind: "entity", id: entity.id },
+    referenceIds: [],
+    retryOf: null,
+  });
+  assert.equal(job.schema, 5);
+  assert.equal(job.basis.subject.id, entity.id);
+  assert.equal(job.model, h.f.policy.model);
+  assert.equal(job.basis.expectedHeadId, h.f.proof.expectedHeadId);
+  assert.equal(job.basis.canonGeneration, h.f.proof.canonGeneration);
+  assert.equal(JSON.stringify(job).includes("PRIVATE_IMAGE_CANARY"), false);
+  assert.equal(h.f.providerCalls(), 0);
+});
 test("disabled/missing explicit image model or budget stays unavailable; no default paid model is selected", async () => {
   for (const field of [
     "RPG_FRAME_ENABLED",
@@ -343,6 +365,10 @@ test("FRAME API keeps ordinary MOCK writes and gates real prepare/dispatch behin
           calls.push(["prepare", input]);
           return { prepared: true };
         },
+        prepareSubjectVisual: async (input) => {
+          calls.push(["subject", input]);
+          return { subjectPrepared: true };
+        },
         runMediaFrame: async (input) => {
           calls.push(["media", input]);
           return { media: true };
@@ -385,8 +411,16 @@ test("FRAME API keeps ordinary MOCK writes and gates real prepare/dispatch behin
     ).media,
     true,
   );
+  assert.equal(
+    (
+      await route.POST({
+        value: { action: "media.prepareSubject", input: { campaignId: "synthetic" } },
+      })
+    ).subjectPrepared,
+    true,
+  );
   assert.deepEqual(
     calls.map((r) => r[0]),
-    ["policy", "mock", "policy", "prepare", "policy", "media"],
+    ["policy", "mock", "policy", "prepare", "policy", "media", "policy", "subject"],
   );
 });

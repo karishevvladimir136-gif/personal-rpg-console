@@ -7,17 +7,22 @@ import {
   useOptionalCampaignData,
   useWorkspaceData,
 } from "./persistence-context";
-import { mobileCampaignScreens, saveNavigation } from "@/lib/saves/navigation";
+import {
+  mobileCampaignScreens,
+  playerNavigation,
+  saveNavigation,
+} from "@/lib/saves/navigation";
 import { Icon } from "./ui";
 import { Shell } from "./shell";
 
-const persistentNavigation = saveNavigation;
+const persistentNavigation = playerNavigation;
 
 export function ApplicationFrame({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   if (
     pathname === "/preview/v1/campaign" ||
-    pathname === "/preview/adventure-media"
+    pathname === "/preview/adventure-media" ||
+    pathname === "/preview/live-ui"
   )
     return children;
   if (pathname.startsWith("/preview")) return <Shell>{children}</Shell>;
@@ -41,6 +46,10 @@ export function PersistentShell({
   const workspace = useWorkspaceData();
   const snapshot = useOptionalCampaignData();
   const campaign = snapshot?.data?.campaign;
+  const currentSession = snapshot?.data?.sessions.find(
+    (session) =>
+      session.id === snapshot.data?.publicState.current_session_id,
+  );
   const largeText = workspace.data?.preferences.largeText;
   const href = (screen: string) =>
     reviewNavigation
@@ -65,13 +74,13 @@ export function PersistentShell({
           <Link className="brand" href="/">
             ✧ {t("PERSONAL RPG CONSOLE")}
           </Link>
-          <span className="preview-indicator">{t("PHASE 3.5 · SAVES")}</span>
+          <span className="eyebrow">{t("Same man. Different worlds.")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="page-footer">
-          {t("Private owner application · Your campaigns and stories")}
+          {t("Same man. Different worlds.")}
         </footer>
       </div>
     );
@@ -115,15 +124,24 @@ export function PersistentShell({
             >
               <Icon name={screen} />
               <span>
-                {t(screen === "settings" ? "Campaign Settings" : label)}
+                {t(label)}
               </span>
+              {pathname === href(screen) && <span className="nav-dot" />}
             </Link>
           ))}
         </nav>
         <div className="sidebar-bottom">
-          <p>{campaign.title}</p>
-          <Link className="text-link" href="/">
-            {t("Back to main menu")}
+          <Link
+            className="campaign-switch"
+            href="/campaigns"
+            onClick={() => setMenu(false)}
+          >
+            <Icon name="BookOpen" size={27} />
+            <span>
+              {campaign.title}
+              {currentSession && <small>{currentSession.title}</small>}
+            </span>
+            <Icon name="ChevronRight" size={15} />
           </Link>
         </div>
       </aside>
@@ -151,19 +169,21 @@ export function PersistentShell({
             <Icon name="ChevronRight" size={13} />
             <span>
               {t(
-                persistentNavigation.find(
-                  ([screen]) => pathname === href(screen),
-                )?.[1] || "Camp",
+                persistentNavigation.find(([screen]) => pathname === href(screen))
+                  ?.[1] ||
+                  saveNavigation.find(([screen]) => pathname === href(screen))
+                    ?.[1] ||
+                  "Game",
               )}
             </span>
           </div>
-          <span className="preview-indicator">{t("PHASE 3.5 · SAVES")}</span>
+          <span className="eyebrow">{t("Same man. Different worlds.")}</span>
         </header>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <footer className="page-footer">
-          {t("Saved campaign · Text adventures and owner corrections")}
+          {t("Same man. Different worlds.")}
         </footer>
       </div>
       <nav className="bottom-nav" aria-label={t("Mobile navigation")}>

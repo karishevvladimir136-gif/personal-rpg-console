@@ -10,6 +10,12 @@ import type {
 } from "../persistence/contracts.ts";
 import { parseRealFrame, realFrameDocumentMutation } from "./real-frame.ts";
 import type { RealFrame, FrameParameters, ImageModel } from "./real-frame.ts";
+import {
+  parseSubjectVisualJob,
+  subjectVisualDocumentMutation,
+} from "./subject-job.ts";
+import type { SubjectVisualJob } from "./subject-job.ts";
+import type { PublicVisualSubject } from "./subject-visual.ts";
 import type {
   MediaCommand,
   MediaResult,
@@ -31,9 +37,18 @@ export type FramePrepareIntent = {
   composition: RealFrame["composition"];
   retryOf: string | null;
 };
+export type SubjectVisualPrepareIntent = {
+  campaignId: string;
+  timeline: NonNullable<CampaignSnapshot["timeline"]>;
+  expectedPublicStateRevision: number;
+  subject: PublicVisualSubject;
+  referenceIds: string[];
+  retryOf: string | null;
+};
 export type MediaFrameTransport = {
   capability: (campaignId: string) => Promise<MediaCapability>;
   prepare: (input: FramePrepareIntent) => Promise<RealFrame>;
+  prepareSubject?: (input: SubjectVisualPrepareIntent) => Promise<SubjectVisualJob>;
   send: (command: MediaCommand) => Promise<MediaResult>;
   load: (campaignId: string) => Promise<CampaignSnapshot>;
   imageUrl: (campaignId: string, assetId: string) => string;
@@ -49,6 +64,12 @@ export const defaultMediaFrameTransport: MediaFrameTransport = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "media.prepare", input }),
+    }),
+  prepareSubject: (input) =>
+    readJson("/api/visual-frame", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "media.prepareSubject", input }),
     }),
   send: (command) =>
     readJson("/api/visual-frame", {
@@ -207,4 +228,108 @@ export function createFrameOwnerDecision(
       record,
     ),
   );
+}
+export type SubjectVisualAttempt = {
+  job: SubjectVisualJob;
+  queue: Mutation;
+  dispatch: Mutation | null;
+  reservationUsdMicros: number;
+};
+export function createSubjectVisualAttempt(
+  snapshot: CampaignSnapshot,
+  job: SubjectVisualJob,
+  reservationUsdMicros: number,
+): SubjectVisualAttempt {
+  if (
+    job.status !== "queued" ||
+    job.campaign_id !== snapshot.campaign.id ||
+    !Number.isSafeInteger(reservationUsdMicros) ||
+    reservationUsdMicros <= 0
+  ) throw new Error("validation");
+  return {
+    job: structuredClone(job),
+    queue: createMutationAttempt(null, subjectVisualDocumentMutation(snapshot, job)),
+    dispatch: null,
+    reservationUsdMicros,
+  };
+}
+export async function finishSubjectVisualAttempt(
+  attempt: SubjectVisualAttempt,
+  transport: MediaFrameTransport,
+) {
+  if (attempt.dispatch)
+    return transport.send({ action: "media.dispatch", input: structuredClone(attempt.dispatch) });
+  const queued = await transport.send({ action: "media.save", input: structuredClone(attempt.queue) });
+  const snapshot = await transport.load(attempt.job.campaign_id);
+  const record = snapshot.documents.find(
+    (row) => row.id === queued.result.id && row.campaign_id === attempt.job.campaign_id,
+  );
+  if (
+    !record || record.revision !== queued.result.revision ||
+    JSON.stringify(parseSubjectVisualJob(record)) !== JSON.stringify(attempt.job)
+  ) throw new Error("conflict");
+  const requestId = crypto.randomUUID();
+  attempt.dispatch = {
+    ...subjectVisualDocumentMutation(snapshot, {
+      ...attempt.job,
+      status: "generating",
+      dispatch: { requestId, reservationUsdMicros: attempt.reservationUsdMicros },
+    }, record),
+    requestId,
+  };
+  return transport.send({ action: "media.dispatch", input: structuredClone(attempt.dispatch) });
+}
+export function storedSubjectVisualRecovery(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+): Mutation {
+  const job = parseSubjectVisualJob(record);
+  if (
+    !job || job.status !== "generating" || !job.dispatch ||
+    record.campaign_id !== snapshot.campaign.id
+  ) throw new Error("validation");
+  return {
+    ...subjectVisualDocumentMutation(snapshot, job, record),
+    requestId: record.id,
+  };
+}
+export function storedSubjectVisualDispatch(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+  reservationUsdMicros: number,
+): Mutation {
+  const job = parseSubjectVisualJob(record);
+  if (
+    !job || job.status !== "queued" || record.campaign_id !== snapshot.campaign.id ||
+    !Number.isSafeInteger(reservationUsdMicros) || reservationUsdMicros <= 0
+  ) throw new Error("validation");
+  const requestId = crypto.randomUUID();
+  return {
+    ...subjectVisualDocumentMutation(snapshot, {
+      ...job, status: "generating",
+      dispatch: { requestId, reservationUsdMicros },
+    }, record),
+    requestId,
+  };
+}
+export function createSubjectVisualOwnerDecision(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+  decision: "accept" | "discard",
+): Mutation {
+  const job = parseSubjectVisualJob(record);
+  if (
+    !job || job.status !== "draft" || !job.review ||
+    record.campaign_id !== snapshot.campaign.id ||
+    job.campaign_id !== snapshot.campaign.id
+  ) throw new Error("validation");
+  return createMutationAttempt(null, subjectVisualDocumentMutation(
+    snapshot,
+    {
+      ...job,
+      status: decision === "accept" ? "completed" : "discarded",
+      resultAssetId: decision === "accept" ? record.id : null,
+    },
+    record,
+  ));
 }

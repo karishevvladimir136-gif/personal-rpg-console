@@ -149,6 +149,14 @@ function renderer({
             refresh: noCall,
             mutate: noCall,
           }),
+          useOptionalCampaignData: () => ({
+            campaignId: data.campaign.id,
+            data,
+            loading: false,
+            error: "",
+            refresh: noCall,
+            mutate: noCall,
+          }),
           useCampaignDraftScope: () => ({
             timeline: data.timeline,
             stale: false,

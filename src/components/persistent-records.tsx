@@ -3,6 +3,10 @@ import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
 import { CharacterArtwork } from "./character-artwork";
 import { characterDescription } from "./character-presentation";
 import styles from "./playtest-game-character.module.css";
+import { LiveDisclosure } from "./live-disclosure";
+import { GenerateVisual } from "./visual-frame/generate-visual";
+import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
+import { SubjectAvatar } from "./visual-frame/subject-avatar";
 
 import { useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -831,10 +835,12 @@ export function ItemDetails({
   item,
   onClose,
   onEdit,
+  reviewOnly = false,
 }: {
   item: Item;
   onClose: () => void;
   onEdit: () => void;
+  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
@@ -844,7 +850,15 @@ export function ItemDetails({
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
-        <Icon name={itemIcon(item.category)} size={52} />
+        {data ? (
+          <GenerateVisual
+            subject={{ kind: "item", id: item.id }}
+            className={styles.itemVisual}
+            reviewOnly={reviewOnly}
+          />
+        ) : (
+          <Icon name={itemIcon(item.category)} size={52} />
+        )}
         <Badge>{item.category}</Badge>
       </div>
       <p className="prose">
@@ -902,13 +916,19 @@ function RecordDoll({
   entity,
   items,
   onSelect,
+  reviewOnly = false,
 }: {
   entity: Entity;
   items: Item[];
   onSelect: (item: Item) => void;
+  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
+  const { data } = useCampaignData();
   const equipped = equipmentForRecord(entity, items);
+  const portrait = data
+    ? selectSubjectVisual(data, { kind: "entity", id: entity.id })
+    : null;
   return (
     <section
       className={`shared-doll ${entity.kind === "player" ? styles.characterDoll : ""}`}
@@ -924,7 +944,13 @@ function RecordDoll({
       }
       aria-label={t("{name} equipment", { name: entity.name })}
     >
-      {entity.kind === "player" ? (
+      {data && portrait?.image ? (
+        <GenerateVisual
+          subject={{ kind: "entity", id: entity.id }}
+          className={styles.subjectPortrait}
+          reviewOnly={reviewOnly}
+        />
+      ) : entity.kind === "player" ? (
         <CharacterArtwork />
       ) : (
         <div
@@ -954,6 +980,14 @@ function RecordDoll({
           {t(entity.kind === "player" ? "Equipped" : "Recorded equipment")}
         </small>
       </div>
+      {data && !portrait?.image && (
+        <GenerateVisual
+          subject={{ kind: "entity", id: entity.id }}
+          className={styles.subjectActions}
+          showArtwork={false}
+          reviewOnly={reviewOnly}
+        />
+      )}
       {entity.equipment_slots.length ? (
         <div className="shared-equipment-slots">
           {entity.equipment_slots.map((slot) => {
@@ -992,10 +1026,12 @@ function PlayerSheet({
   data,
   entity,
   onSelect,
+  reviewOnly = false,
 }: {
   data: CampaignSnapshot;
   entity: Entity;
   onSelect: (item: Item) => void;
+  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
   return (
@@ -1021,14 +1057,27 @@ function PlayerSheet({
               color="var(--red)"
             />
           )}
+          {Object.keys(entity.resources).length > 0 && (
+            <dl className="stats-list">
+              {Object.entries(entity.resources).map(([key, value]) => (
+                <div key={key}>
+                  <dt>{key}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
-        <RecordDoll entity={entity} items={data.items} onSelect={onSelect} />
+        <RecordDoll entity={entity} items={data.items} onSelect={onSelect} reviewOnly={reviewOnly} />
         <div
           className={`${styles.characterIdentity} ${styles.characterDetails}`}
         >
           {Object.keys(entity.stats).some((key) => key !== "level") && (
-            <>
-              <h3>{t("Recorded stats")}</h3>
+            <LiveDisclosure
+              title={t("Attributes & skills")}
+              storageKey={`${data.campaign.id}:character:stats`}
+              defaultOpen
+            >
               <dl className="stats-list">
                 {Object.entries(entity.stats)
                   .filter(([key]) => key !== "level")
@@ -1039,23 +1088,14 @@ function PlayerSheet({
                     </div>
                   ))}
               </dl>
-            </>
+            </LiveDisclosure>
           )}
-          {Object.keys(entity.resources).length > 0 && (
-            <>
-              <h3>{t("Resources")}</h3>
-              <dl className="stats-list">
-                {Object.entries(entity.resources).map(([key, value]) => (
-                  <div key={key}>
-                    <dt>{key}</dt>
-                    <dd>{value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </>
-          )}
-          <h3>{t("Conditions")}</h3>
-          <p>{entity.conditions.join(", ") || t("None recorded")}</p>
+          <LiveDisclosure
+            title={t("Conditions")}
+            storageKey={`${data.campaign.id}:character:conditions`}
+          >
+            <p>{entity.conditions.join(", ") || t("None recorded")}</p>
+          </LiveDisclosure>
         </div>
       </section>
       <Panel className={styles.possessions} title={t("Possessions")}>
@@ -1083,9 +1123,11 @@ function PlayerSheet({
 function EntityCollection({
   data,
   players,
+  reviewOnly = false,
 }: {
   data: CampaignSnapshot;
   players: boolean;
+  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
   const rows = data.entities.filter((row) =>
@@ -1116,14 +1158,15 @@ function EntityCollection({
         </header>
       ) : (
         <RecordHeading
-          title={players ? "Character & Inventory" : "Party & known people"}
-          description="Public records for this campaign. Manual corrections are separate from gameplay."
+          title={t("Party & relationships")}
+          description="The people and companions this campaign has made known."
           action={
-            <Button primary onClick={() => setEditor("new")}>
-              {t(
-                players ? "Add player character" : "Add companion or known NPC",
-              )}
-            </Button>
+            <details className={styles.secondary}>
+              <summary>{t("Edit / Correct records")}</summary>
+              <Button onClick={() => setEditor("new")}>
+                {t("Add companion or known NPC")}
+              </Button>
+            </details>
           }
         />
       )}
@@ -1138,7 +1181,7 @@ function EntityCollection({
         </Panel>
       ) : (
         <>
-          {(!players || rows.length > 1) && (
+          {players && rows.length > 1 && (
             <RecordSelect
               label={t("Inspect public record")}
               value={selected.id}
@@ -1150,13 +1193,43 @@ function EntityCollection({
             />
           )}
           {players ? (
-            <PlayerSheet data={data} entity={selected} onSelect={setItem} />
+            <PlayerSheet data={data} entity={selected} onSelect={setItem} reviewOnly={reviewOnly} />
           ) : (
+            <>
+            <div className={styles.partyCards}>
+              {rows.map((row) => (
+                <article className={styles.partyCard} key={row.id}>
+                  <SubjectAvatar snapshot={data} entity={row} className={styles.partyPortrait} />
+                  <Badge>{t(entityKindLabels[row.kind])}</Badge>
+                  <h2>{row.name}</h2>
+                  {row.details && <p className="prose">{row.details}</p>}
+                  {row.hp !== null && (
+                    <p>{t("HP")}: {row.hp}{row.max_hp === null ? "" : ` / ${row.max_hp}`}</p>
+                  )}
+                  <div className="button-group">
+                    {row.kind === "companion" && !reviewOnly && (
+                      <GameplayCompanionTalk entityId={row.id} />
+                    )}
+                    <Link className="text-link" href={`/campaigns/${data.campaign.id}/inventory`}>
+                      {t("Inventory")}
+                    </Link>
+                    <Button onClick={() => setSelectedId(row.id)}>
+                      {t("View details")}
+                    </Button>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <LiveDisclosure
+              title={t("Details for {name}", { name: selected.name })}
+              storageKey={`${data.campaign.id}:party:details`}
+            >
             <div className="storage-layout with-doll">
               <RecordDoll
                 entity={selected}
                 items={data.items}
                 onSelect={setItem}
+                reviewOnly={reviewOnly}
               />
               <Panel
                 className="visual-inventory-panel"
@@ -1220,11 +1293,13 @@ function EntityCollection({
                     {t("Open shared inventory")}
                   </Link>
                 </p>
-                {selected.kind === "companion" && (
+                {selected.kind === "companion" && !reviewOnly && (
                   <GameplayCompanionTalk entityId={selected.id} />
                 )}
               </Panel>
             </div>
+            </LiveDisclosure>
+            </>
           )}
         </>
       )}
@@ -1240,6 +1315,7 @@ function EntityCollection({
         <ItemDetails
           item={currentItem}
           onClose={() => setItem(null)}
+          reviewOnly={reviewOnly}
           onEdit={() => {
             setEditItem(currentItem);
             setItem(null);
@@ -1253,29 +1329,37 @@ function EntityCollection({
   );
 }
 
-export function PersistentCharacter() {
+export function PersistentCharacter({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
+  const { t } = useLanguage();
   return (
     <RecordBoundary>
       {(data) => (
         <>
-          <EntityCollection key={data.campaign.id} data={data} players />
-          <FoundationLoopPanel section="progression" />
+          <EntityCollection key={data.campaign.id} data={data} players reviewOnly={reviewOnly} />
+          {!reviewOnly && (
+            <LiveDisclosure
+              title={t("Abilities, progression & background")}
+              storageKey={`${data.campaign.id}:character:progression`}
+            >
+              <FoundationLoopPanel section="progression" />
+            </LiveDisclosure>
+          )}
         </>
       )}
     </RecordBoundary>
   );
 }
-export function PersistentParty() {
+export function PersistentParty({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
   return (
     <RecordBoundary>
       {(data) => (
-        <EntityCollection key={data.campaign.id} data={data} players={false} />
+        <EntityCollection key={data.campaign.id} data={data} players={false} reviewOnly={reviewOnly} />
       )}
     </RecordBoundary>
   );
 }
 
-function InventoryRecords({ data }: { data: CampaignSnapshot }) {
+function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot; reviewOnly?: boolean }) {
   const { t } = useLanguage();
   const [storageId, setStorageId] = useState("");
   const [search, setSearch] = useState("");
@@ -1286,7 +1370,21 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
   );
   const [selected, setSelected] = useState<Item | null>(null);
   const storage =
-    data.storages.find((row) => row.id === storageId) || data.storages[0];
+    data.storages.find((row) => row.id === storageId) ||
+    data.storages.find((row) => row.kind === "player") ||
+    data.storages[0];
+  const storageGroup = (kind: Storage["kind"]) =>
+    kind === "player"
+      ? "Player"
+      : kind === "companion"
+        ? "Companions"
+        : kind === "camp"
+          ? "Camp / Shared Stash"
+          : kind === "transport"
+            ? "Transport & Mounts"
+            : "Other storage";
+  const groups = [...new Set(data.storages.map((row) => storageGroup(row.kind)))];
+  const hero = data.entities.find((row) => row.kind === "player");
   const items = data.items.filter(
     (row) =>
       row.storage_id === storage?.id &&
@@ -1300,21 +1398,29 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
     <>
       <RecordHeading
         title={t("Inventory")}
-        description="One shared record of possessions, storage and equipment for this campaign."
-        action={
-          <Button primary disabled={!storage} onClick={() => setEditor("new")}>
-            {t("Add item record")}
-          </Button>
-        }
+        description="Possessions, equipment and shared supplies."
       />
+      <div className="tabs" role="tablist" aria-label={t("Inventory storage")}>
+        {groups.map((group) => (
+          <button
+            key={group}
+            type="button"
+            role="tab"
+            aria-selected={storage ? storageGroup(storage.kind) === group : false}
+            className={storage && storageGroup(storage.kind) === group ? "active" : ""}
+            onClick={() => {
+              const next = data.storages.find((row) => storageGroup(row.kind) === group);
+              setStorageId(next?.id || "");
+              setCategory("");
+            }}
+          >
+            {t(group)}
+          </button>
+        ))}
+      </div>
       <Panel
         className="visual-inventory-panel"
-        title={t("Storage records")}
-        action={
-          <Button onClick={() => setStorageEditor("new")}>
-            {t("Add storage record")}
-          </Button>
-        }
+        title={storage?.name || t("Inventory")}
       >
         {!storage ? (
           <p className="empty-state">
@@ -1322,24 +1428,25 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
           </p>
         ) : (
           <>
-            <RecordSelect
-              label={t("Inspect storage")}
-              value={storage.id}
-              options={data.storages.map((row) => ({
-                value: row.id,
-                label: `${row.name} · ${t(storageKindLabels[row.kind])}`,
-              }))}
-              onChange={setStorageId}
-            />
-            <Button onClick={() => setStorageEditor(storage)}>
-              {t("Edit storage record")}
-            </Button>
-            <div className="form-grid">
-              <RecordField
-                label={t("Search items")}
-                value={search}
-                onChange={setSearch}
+            {data.storages.filter((row) => storageGroup(row.kind) === storageGroup(storage.kind)).length > 1 && (
+              <RecordSelect
+                label={t("Inspect storage")}
+                value={storage.id}
+                options={data.storages
+                  .filter((row) => storageGroup(row.kind) === storageGroup(storage.kind))
+                  .map((row) => ({ value: row.id, label: row.name }))}
+                onChange={setStorageId}
               />
+            )}
+            <RecordField
+              label={t("Search items")}
+              value={search}
+              onChange={setSearch}
+            />
+            <LiveDisclosure
+              title={t("Filters")}
+              storageKey={`${data.campaign.id}:inventory:filters`}
+            >
               <RecordSelect
                 label={t("Item category filter")}
                 value={category}
@@ -1353,20 +1460,38 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
                 ].map((value) => ({ value, label: value }))}
                 onChange={setCategory}
               />
-            </div>
+            </LiveDisclosure>
             <PersistentItemGrid items={items} onSelect={setSelected} />
           </>
         )}
-        <p className="muted">
-          {t(
-            "Camp and cargo records are inspectable. Gameplay withdrawals, transfers and access checks remain unavailable.",
-          )}
-        </p>
       </Panel>
+      {hero && (
+        <LiveDisclosure
+          title={t("Equipment & paper doll")}
+          storageKey={`${data.campaign.id}:inventory:equipment`}
+        >
+          <RecordDoll entity={hero} items={data.items} onSelect={setSelected} reviewOnly={reviewOnly} />
+        </LiveDisclosure>
+      )}
+      <LiveDisclosure
+        title={t("Edit / Correct records")}
+        storageKey={`${data.campaign.id}:inventory:corrections`}
+      >
+        <div className="button-group">
+          <Button disabled={!storage} onClick={() => setEditor("new")}>
+            {t("Add item record")}
+          </Button>
+          <Button onClick={() => setStorageEditor("new")}>
+            {t("Add storage record")}
+          </Button>
+          {storage && <Button onClick={() => setStorageEditor(storage)}>{t("Edit storage record")}</Button>}
+        </div>
+      </LiveDisclosure>
       {currentItem && (
         <ItemDetails
           item={currentItem}
           onClose={() => setSelected(null)}
+          reviewOnly={reviewOnly}
           onEdit={() => {
             setEditor(currentItem);
             setSelected(null);
@@ -1390,13 +1515,21 @@ function InventoryRecords({ data }: { data: CampaignSnapshot }) {
   );
 }
 
-export function PersistentInventory() {
+export function PersistentInventory({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
+  const { t } = useLanguage();
   return (
     <RecordBoundary>
       {(data) => (
         <>
-          <InventoryRecords key={data.campaign.id} data={data} />
-          <FoundationLoopPanel section="trade" />
+          <InventoryRecords key={data.campaign.id} data={data} reviewOnly={reviewOnly} />
+          {!reviewOnly && (
+            <LiveDisclosure
+              title={t("Use, transfer & trade")}
+              storageKey={`${data.campaign.id}:inventory:trade`}
+            >
+              <FoundationLoopPanel section="trade" />
+            </LiveDisclosure>
+          )}
         </>
       )}
     </RecordBoundary>

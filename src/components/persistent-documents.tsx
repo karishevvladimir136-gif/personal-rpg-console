@@ -8,7 +8,7 @@ import {
   TimelineDraftNotice,
   useUnsavedChanges,
 } from "./persistence-context";
-import { Badge, Button, Icon, Modal, Panel } from "./ui";
+import { Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import {
   createMutationAttempt,
   errorMessage,
@@ -34,6 +34,12 @@ const statusLabels = {
   canon: "Canon",
   reference: "Reference",
   archived: "Archived",
+} as const;
+const libraryTabs = ["All documents", "Canon", "Reference", "Archived"];
+const libraryStatus = {
+  Canon: "canon",
+  Reference: "reference",
+  Archived: "archived",
 } as const;
 
 function VersionHistory({
@@ -499,7 +505,7 @@ export function DocumentEditor({
   );
 }
 
-export function PersistentLibrary() {
+export function PersistentLibrary({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
   const { t } = useLanguage();
   const { data, loading, error, refresh, campaignId } = useCampaignData();
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -507,7 +513,7 @@ export function PersistentLibrary() {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("All documents");
   const [search, setSearch] = useState("");
   const selected = data?.documents.find(
     (document) => document.id === selectedId && !isReferenceMetadata(document),
@@ -524,11 +530,18 @@ export function PersistentLibrary() {
     data?.documents.filter(
       (document) =>
         !isReferenceMetadata(document) &&
-        (filter === "all" || document.status === filter) &&
+        (filter === "All documents" ||
+          document.status === libraryStatus[filter as keyof typeof libraryStatus]) &&
         `${document.title} ${document.body}`
           .toLocaleLowerCase()
           .includes(search.toLocaleLowerCase()),
     ) ?? [];
+  const sections = (Object.keys(statusLabels) as DocumentRecord["status"][])
+    .map((status) => ({
+      status,
+      rows: documents.filter((document) => document.status === status),
+    }))
+    .filter(({ rows }) => rows.length > 0);
   return (
     <>
       <div className="page-heading">
@@ -537,9 +550,11 @@ export function PersistentLibrary() {
           <h1>{t("Library")}</h1>
           <p>{t("The words that hold your world together.")}</p>
         </div>
-        <Button primary disabled={saving} onClick={() => select(null)}>
-          {t("New Document")}
-        </Button>
+        {!reviewOnly && (
+          <Button primary disabled={saving} onClick={() => select(null)}>
+            {t("New Document")}
+          </Button>
+        )}
       </div>
       {loading && <p role="status">{t("Loading campaign documents…")}</p>}
       {saved && <p role="status">{t("Document saved.")}</p>}
@@ -552,81 +567,118 @@ export function PersistentLibrary() {
         </Panel>
       )}
       {data && (
-        <div className="settings-grid persistent-documents" key={campaignId}>
-          <Panel title={t("Campaign documents")}>
-            <label className="field">
-              {t("Search documents")}
-              <input
-                type="search"
-                value={search}
-                onChange={(event) => setSearch(event.target.value)}
+        <div className="persistent-documents" key={campaignId}>
+          <div className="page-heading compact">
+            <Tabs options={libraryTabs} value={filter} onChange={setFilter} />
+          </div>
+          <input
+            className="library-search"
+            type="search"
+            aria-label={t("Search documents")}
+            placeholder={t("Search your library…")}
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+          />
+          <div className="settings-grid">
+            <div>
+              {!documents.length && (
+                <Panel>
+                  <p className="muted">
+                    {t(
+                      data.documents.some((document) => !isReferenceMetadata(document))
+                        ? "No documents match your search."
+                        : "No documents yet. Add the world, character, or campaign notes you want to keep.",
+                    )}
+                  </p>
+                </Panel>
+              )}
+              {sections.map(({ status, rows }) => (
+                <details
+                  key={status}
+                  className="rules-advanced"
+                  open={filter !== "All documents" || status === "canon"}
+                >
+                  <summary>
+                    {t(statusLabels[status])} ({rows.length})
+                    <span>
+                      {t(
+                        status === "canon"
+                          ? "The current truth of your campaign"
+                          : status === "reference"
+                            ? "Supporting material"
+                            : "Retained for history",
+                      )}
+                    </span>
+                  </summary>
+                  {rows.map((document) => (
+                    <button
+                      type="button"
+                      key={document.id}
+                      className="document-row"
+                      aria-pressed={selectedId === document.id}
+                      disabled={saving}
+                      onClick={() => select(document.id)}
+                    >
+                      <Icon name={status === "canon" ? "BookOpen" : "FileText"} />
+                      <div>
+                        <h3>{document.title}</h3>
+                        <small>
+                          {t(statusLabels[document.status])} ·{" "}
+                          {t("Revision {number}", { number: document.revision })}
+                        </small>
+                      </div>
+                      <Icon name="ChevronRight" />
+                    </button>
+                  ))}
+                </details>
+              ))}
+            </div>
+            {creating ? (
+              <DocumentEditor
+                key={`${campaignId}:new`}
+                onDirty={setDirty}
+                onSaving={setSaving}
+                onSaved={(id) => {
+                  setSelectedId(id);
+                  setCreating(false);
+                  setSaved(true);
+                }}
               />
-            </label>
-            <label className="field">
-              {t("Document status")}
-              <select
-                value={filter}
-                onChange={(event) => setFilter(event.target.value)}
-              >
-                <option value="all">{t("All documents")}</option>
-                {Object.entries(statusLabels).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {t(label)}
-                  </option>
-                ))}
-              </select>
-            </label>
-            {!documents.length && (
-              <p className="muted">
-                {t(
-                  data.documents.some(document => !isReferenceMetadata(document))
-                    ? "No documents match this search."
-                    : "No documents yet. Add the world, character, or campaign notes you want to keep.",
-                )}
-              </p>
+            ) : selected ? (
+              <div>
+                <Panel title={selected.title}>
+                  <Badge>{t(statusLabels[selected.status])}</Badge>
+                  <div className="persistence-document-body">
+                    {selected.body || t("This version has no text.")}
+                  </div>
+                  {!reviewOnly && (
+                    <details className="rules-advanced">
+                      <summary>{t("Edit document")}</summary>
+                      <DocumentEditor
+                        key={`${campaignId}:${selected.id}`}
+                        record={selected}
+                        guide={selected.id === data.dmGuideDocumentId}
+                        onDirty={setDirty}
+                        onSaving={setSaving}
+                        onSaved={(id) => {
+                          setSelectedId(id);
+                          setSaved(true);
+                        }}
+                      />
+                    </details>
+                  )}
+                </Panel>
+              </div>
+            ) : (
+              <Panel title={t("Your campaign bookshelf")}>
+                <p>
+                  {t(
+                    "Choose a document to read or edit. Its saved history remains available here.",
+                  )}
+                </p>
+              </Panel>
             )}
-            {documents.map((document) => (
-              <button
-                type="button"
-                key={document.id}
-                className="document-row"
-                aria-pressed={selectedId === document.id}
-                disabled={saving}
-                onClick={() => select(document.id)}
-              >
-                <Icon name="FileText" />
-                <div>
-                  <h3>{document.title}</h3>
-                  <small>
-                    {t(statusLabels[document.status])} ·{" "}
-                    {t("Revision {number}", { number: document.revision })}
-                  </small>
-                </div>
-              </button>
-            ))}
-          </Panel>
-          {creating || selected ? (
-            <DocumentEditor
-              key={`${campaignId}:${selected?.id ?? "new"}`}
-              record={selected}
-              guide={selected?.id === data.dmGuideDocumentId}
-              onDirty={setDirty}
-              onSaving={setSaving}
-              onSaved={(id) => {
-                setSelectedId(id);
-                setCreating(false);
-                setSaved(true);
-              }}
-            />
-          ) : (
-            <Panel title={t("Your campaign bookshelf")}>
-              <p>
-                {t(
-                  "Choose a document to read or edit. Its saved history remains available here.",
-                )}
-              </p>
-            </Panel>
-          )}
+          </div>
         </div>
       )}
     </>

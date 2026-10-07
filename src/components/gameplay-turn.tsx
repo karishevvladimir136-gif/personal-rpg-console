@@ -23,6 +23,7 @@ import {
   turnStatusLabels,
 } from "@/lib/gameplay/client-state";
 import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
+import { SubjectAvatar } from "./visual-frame/subject-avatar";
 
 export function GameplayGuidanceProposal({
   turn,
@@ -239,16 +240,33 @@ export function GameplayTurn({
   onSaved: () => Promise<void>;
 }) {
   const { t, language } = useLanguage();
+  const { data } = useCampaignData();
+  const speaker = turn.companionId
+    ? data?.entities.find((row) => row.id === turn.companionId)
+    : turn.mode === "game"
+      ? data?.entities.filter((row) => row.kind === "player").length === 1
+        ? data.entities.find((row) => row.kind === "player")
+        : undefined
+      : undefined;
   return (
     <Panel className="gameplay-turn">
       <article className="gameplay-owner-input">
+        {speaker && data && (
+          <SubjectAvatar
+            snapshot={data}
+            entity={speaker}
+            className="gameplay-speaker-portrait"
+          />
+        )}
+        <div className="gameplay-owner-words">
         <span className="eyebrow">
-          {t(turn.mode === "feedback" ? "Owner feedback" : "Your action")}
+          {speaker?.name || t(turn.mode === "feedback" ? "Owner feedback" : "Your action")}
         </span>
         <p className="prose">{turn.input}</p>
         <time dateTime={turn.created_at}>
           {new Date(turn.created_at).toLocaleString(language)}
         </time>
+        </div>
       </article>
       {turn.status !== "committed" && (
         <p role="status" className="muted">

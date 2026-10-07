@@ -524,7 +524,7 @@ async function mountedGame(snapshot) {
 test("mounted ordinary Game chooses real FRAME while explicit synthetic transport keeps accepted MOCK review", async () => {
   const f = mediaFixture(),
     ui = await mountedGame(f.snapshot),
-    normal = ui.nodes(ui.render("PersistentGame", { reviewOnly: true }));
+    normal = ui.nodes(ui.render("PersistentGame", { reviewOnly: false }));
   assert.equal(normal.filter((n) => n.type === "real-frame").length, 1);
   assert.equal(
     normal.some((n) => n.type === "injected-mock-frame"),
@@ -533,7 +533,7 @@ test("mounted ordinary Game chooses real FRAME while explicit synthetic transpor
   const injected = { synthetic: true },
     synthetic = ui.nodes(
       ui.render("PersistentGame", {
-        reviewOnly: true,
+        reviewOnly: false,
         frameTransport: injected,
       }),
     );

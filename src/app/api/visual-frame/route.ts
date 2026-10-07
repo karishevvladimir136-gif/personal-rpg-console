@@ -2,6 +2,7 @@ import { saveVisualFrame } from "@/lib/visual-frame/server";
 import {
   mediaCapability,
   prepareMediaFrame,
+  prepareSubjectVisual,
   runMediaFrame,
   signedFrameImage,
   signedFrameDraft,
@@ -19,6 +20,11 @@ export async function POST(request: Request) {
       value.action === "media.prepare"
     )
       return publicJson(await prepareMediaFrame(value.input));
+    if (
+      exactKeys(value, ["action", "input"]) &&
+      value.action === "media.prepareSubject"
+    )
+      return publicJson(await prepareSubjectVisual(value.input));
     if (
       value &&
       typeof value === "object" &&

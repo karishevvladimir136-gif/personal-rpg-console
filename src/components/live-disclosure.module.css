@@ -1,0 +1,28 @@
+.disclosure {
+  min-width: 0;
+  border: 1px solid #80633c70;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #192025, #111719);
+  overflow: hidden;
+}
+
+.disclosure > summary {
+  cursor: pointer;
+  color: #e4c797;
+  font: 600 13px/1.4 system-ui, sans-serif;
+  padding: 13px 17px;
+  list-style-position: inside;
+}
+
+.disclosure > summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -3px;
+}
+
+.disclosure[open] > summary {
+  border-bottom: 1px solid #80633c55;
+}
+
+.content {
+  padding: 15px 17px 18px;
+}
