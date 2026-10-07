@@ -60,6 +60,36 @@ export function visibleAtlasPlacements(
   return [...worlds, ...regions, ...locals];
 }
 
+/** A current known place can appear on the atlas before its layout is edited.
+ * This row is derived for presentation only and is never sent to map-layout save.
+ */
+export function presentationAtlasPlacements(
+  snapshot: CampaignSnapshot,
+  placements: readonly MapPlacement[],
+): MapPlacement[] {
+  const visible = visibleAtlasPlacements(snapshot, placements);
+  const current = snapshot.locations.find((row) =>
+    row.campaign_id === snapshot.campaign.id &&
+    row.id === snapshot.publicState.current_location_id &&
+    (row.status === "known" || row.status === "visited"));
+  if (!current || visible.some((row) =>
+    row.location_id === current.id && row.x !== null && row.y !== null))
+    return visible;
+  return [
+    ...visible.filter((row) => row.location_id !== current.id),
+    {
+      campaign_id: snapshot.campaign.id,
+      location_id: current.id,
+      level: "world",
+      parent_location_id: null,
+      x: 0.5,
+      y: 0.5,
+      revision: 0,
+      updated_at: current.updated_at,
+    },
+  ];
+}
+
 export type AtlasProjection = {
   locations: Location[];
   placements: MapPlacement[];
@@ -76,7 +106,7 @@ export function projectAtlas(
       row.campaign_id === snapshot.campaign.id &&
       (row.status === "known" || row.status === "visited"),
   );
-  const visible = visibleAtlasPlacements(snapshot, placements);
+  const visible = presentationAtlasPlacements(snapshot, placements);
   const byId = new Map(visible.map((row) => [row.location_id, row]));
   const current = byId.get(snapshot.publicState.current_location_id ?? "");
   const region = current?.level === "region"

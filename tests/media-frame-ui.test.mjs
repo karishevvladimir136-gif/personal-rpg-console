@@ -285,27 +285,44 @@ for (const language of ["en", "ru"])
       .find((n) => n.type === h.component.FrameOwnerReview);
     assert.ok(image);
   });
-test("lost final refresh retains exact original request through corrected source retry and keeps prior image visible", async () => {
+test("lost final refresh shows the saved draft without re-dispatching a paid image", async () => {
   const h = await uiHarness({ loseRefresh: true });
   await h.click("FRAME · review this scene");
   await h.click("Generate FRAME");
-  assert.ok(h.button("Retry exact request"));
+  assert.ok(h.button("Close request notice"));
+  assert.equal(h.button("Retry exact request"), undefined);
   assert.equal(h.f.providerCalls(), 1);
-  const dispatch = structuredClone(h.sends.at(-1));
-  h.f.proof.canonGeneration++;
-  h.f.snapshot.scenes.find(
-    (s) => s.id === h.f.snapshot.publicState.current_scene_id,
-  ).revision++;
-  h.render();
-  await h.click("Retry exact request");
-  assert.deepEqual(h.sends.at(-1), dispatch);
+  const sent = h.sends.length;
+  await h.click("Check saved FRAME status");
+  assert.equal(h.sends.length, sent);
   assert.equal(h.f.providerCalls(), 1);
   assert.equal(h.refreshes(), 2);
+  await h.click("Close request notice");
   assert.match(h.text(), /Draft generated/);
   assert.equal(
-    h.f.snapshot.assets.some((a) => a.id === dispatch.input.payload.id),
+    h.f.snapshot.assets.some((a) => a.id === h.sends.at(-1).input.payload.id),
     false,
   );
+});
+test("FRAME exact retry keeps the original dispatch identity when the saved image was never claimed", async () => {
+  const h = await uiHarness();
+  await h.click("FRAME · review this scene");
+  const originalSend = h.transport.send;
+  let firstDispatch = null;
+  h.transport.send = async (command) => {
+    if (command.action === "media.dispatch" && !firstDispatch) {
+      firstDispatch = structuredClone(command);
+      throw Error("lost-before-claim");
+    }
+    return originalSend(command);
+  };
+  await h.click("Generate FRAME");
+  assert.ok(h.button("Retry exact request"));
+  assert.match(h.text(), /may send the original paid request/);
+  assert.equal(h.f.providerCalls(), 0);
+  await h.click("Retry exact request");
+  assert.deepEqual(h.sends.at(-1), firstDispatch);
+  assert.equal(h.f.providerCalls(), 1);
 });
 test("unconfigured real FRAME remains optional and sends no implicit provider/model fallback", async () => {
   const h = await uiHarness({ enabled: false });
@@ -371,6 +388,40 @@ test("Game labels current generation as nonblocking and overdue generation as re
   assert.match(h.text(), /Recovery needed/);
   assert.match(h.text(), /Recover the saved request below/);
   assert.equal(h.f.providerCalls(), 0);
+});
+
+test("terminal uncertain FRAME stays a saved outcome, not an unpaid recovery promise", async () => {
+  const h = await uiHarness();
+  const queued = await h.f.queue();
+  let attempted = 0;
+  h.f.provider.generate = async () => {
+    attempted++;
+    throw Error("synthetic-timeout");
+  };
+  await assert.rejects(h.f.run("media.dispatch", h.f.dispatch(queued.record)));
+  h.render();
+  assert.match(h.text(), /ended without a confirmed illustration/);
+  assert.match(h.text(), /new paid generation/);
+  assert.equal(h.button("Retry exact request"), undefined);
+  assert.equal(attempted, 1);
+  assert.equal(h.sends.length, 0);
+});
+
+test("terminal FRAME review rejection preserves the story and asks for a new decision", async () => {
+  const h = await uiHarness();
+  const queued = await h.f.queue();
+  h.f.verifier.check = async () => ({
+    schemaVersion: 2,
+    verdict: { schemaVersion: 2, status: "hard_reject", reasons: [
+      { category: "central_unsupported", detail: "A central object was not in the public scene." },
+    ] },
+    actualModel: "gpt-5.4-2026-03-05", inputTokens: 3000, outputTokens: 200, latencyMs: 10,
+  });
+  await h.f.run("media.dispatch", h.f.dispatch(queued.record));
+  h.render();
+  assert.match(h.text(), /did not pass its review check/);
+  assert.equal(h.button("Retry exact request"), undefined);
+  assert.equal(h.f.providerCalls(), 1);
 });
 
 for (const language of ["en", "ru"])

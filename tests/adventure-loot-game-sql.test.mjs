@@ -765,10 +765,9 @@ test("Adventure loot Game SQL: weaker force uses pinned server check, bounded fr
       state.snapshot.entities.find((e) => e.id === f.hero).resources.credits,
       110,
     );
-    assert.doesNotMatch(
-      JSON.stringify(projectLootObjects(state, f.actorId)),
-      /PRIVATE_|137|9137|Unopened wrapped stock/,
-    );
+    const publicObjects = JSON.stringify(projectLootObjects(state, f.actorId));
+    assert.doesNotMatch(publicObjects, /PRIVATE_|Unopened wrapped stock/);
+    assert.doesNotMatch(publicObjects, /"quantity":137\b|"unitValue":9137\b/);
   } finally {
     await f.db.close();
   }

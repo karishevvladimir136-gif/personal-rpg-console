@@ -447,7 +447,10 @@ async function mountedGame(snapshot) {
   }).outputText;
   const jsx = (type, props) => ({ type, props }),
     dependencies = {
-      react: { useState: (initial) => [initial, () => {}] },
+      react: {
+        useState: (initial) => [initial, () => {}],
+        useRef: (initial) => ({ current: initial }),
+      },
       "react/jsx-runtime": { jsx, jsxs: jsx, Fragment: "fragment" },
       "@/lib/visual-frame/model": visualModel,
       "@/lib/visual-frame/real-frame": realModel,

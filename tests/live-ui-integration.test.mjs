@@ -501,17 +501,20 @@ test("Game contextual rail renders recorded public state without promoting narra
     "Public hero",
     "Current objective",
     "Public active objective",
-    "Traveling companions",
-    "Public companion",
+    "Traveling together",
     "Public recorded clue",
     "Focus",
     "Safe clearing",
   ])
     assert.ok(rail.includes(text), text);
-  assert.ok(!rail.includes("Narrative mentions a clue"));
-  const clues = rail.slice(
-    rail.indexOf("<summary>Recent known clues</summary>"),
+  assert.ok(
+    !rail.includes("Public companion"),
+    "A review without a present-entity projection cannot claim a companion is here",
   );
+  assert.ok(!rail.includes("Narrative mentions a clue"));
+  const clueStart = rail.indexOf("<h2>Recent clues</h2>");
+  assert.ok(clueStart >= 0, "Recent clues panel should be present");
+  const clues = rail.slice(clueStart);
   assert.ok(!clues.includes("ordinary-narration"));
   assert.ok(
     !rail.includes("Public acquaintance"),
@@ -648,7 +651,7 @@ test("turn portrait uses authoritative companionId, never names in input or narr
   assert.ok(!companion.includes(privateCanary));
 });
 
-test("accepted public portraits appear in turns, companion context, Party, and campaign identity without starting generation", async () => {
+test("accepted public portraits appear in turns, current hero context, Party, and campaign identity without starting generation", async () => {
   const data = publicSnapshot();
   const heroAsset = acceptedPortrait(data, data.entities[0]);
   const companionAsset = acceptedPortrait(data, data.entities[1]);
@@ -667,7 +670,9 @@ test("accepted public portraits appear in turns, companion context, Party, and c
   });
   assert.match(companionTurn, new RegExp(`gameplay-speaker-portrait[^>]*><img[^>]*assetId=${companionAsset}`));
   const game = h.render("src/components/persistent-game.tsx", "PersistentGame", { reviewOnly: true });
-  assert.match(game, new RegExp(`contextAvatar[^>]*><img[^>]*assetId=${companionAsset}`));
+  assert.match(game, new RegExp(`heroAvatar[^>]*><img[^>]*assetId=${heroAsset}`));
+  assert.match(game, new RegExp(`personAvatar[^>]*><img[^>]*assetId=${heroAsset}`));
+  assert.ok(!game.includes(`assetId=${companionAsset}`), "Review has no present companion projection");
   const party = h.render("src/components/persistent-records.tsx", "PersistentParty", { reviewOnly: true });
   assert.match(party, new RegExp(`partyPortrait[^>]*><img[^>]*assetId=${companionAsset}`));
   const campaign = h.render("src/components/persistent-campaigns.tsx", "CampaignCardsReview", {

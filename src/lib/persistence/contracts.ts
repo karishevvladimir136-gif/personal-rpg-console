@@ -55,6 +55,8 @@ export type Entity = ScopedRow & {
   resources: Record<string, number>;
   conditions: string[];
   equipment_slots: EquipmentSlot[];
+  /** Reviewed public profile. Historical entities and saves omit it or use NULL. */
+  character_sheet?: import("../adventures/bootstrap-contracts.ts").CharacterSheetV1 | null;
 };
 export type Storage = ScopedRow & {
   name: string;
@@ -136,7 +138,7 @@ export type CampaignSnapshot = {
   feedback: DmFeedbackMessage[];
   dmGuideDocumentId: string;
 };
-export type EntityInput = Omit<Entity, keyof ScopedRow>;
+export type EntityInput = Omit<Entity, keyof ScopedRow | "character_sheet">;
 export type StorageInput = Omit<Storage, keyof ScopedRow>;
 export type ItemInput = Omit<Item, keyof ScopedRow>;
 export type SessionInput = Omit<Session, keyof ScopedRow>;

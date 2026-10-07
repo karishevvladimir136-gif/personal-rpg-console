@@ -1432,7 +1432,11 @@ for (const prefix of [24, 25, 26, 27, 28])
       assert.deepEqual(await c.store.receipt(c.trade), c.result);
       const upgraded = await f.saves(w.cid, "campaign");
       assert.deepEqual(upgraded.items, old.items);
-      assert.deepEqual(upgraded.entities, old.entities);
+      assert.ok(upgraded.entities.every((entity) => entity.character_sheet === null));
+      assert.deepEqual(
+        upgraded.entities,
+        old.entities.map((entity) => ({ ...entity, character_sheet: null })),
+      );
       assert.deepEqual(upgraded.documents, old.documents);
       assert.deepEqual(upgraded.assets, old.assets);
       assert.equal(
@@ -1480,7 +1484,11 @@ for (const prefix of [24, 25, 26, 27, 28])
       );
       const loaded = await f.saves(w.cid, "campaign");
       assert.deepEqual(loaded.items, old.items);
-      assert.deepEqual(loaded.entities, old.entities);
+      assert.ok(loaded.entities.every((entity) => entity.character_sheet === null));
+      assert.deepEqual(
+        loaded.entities,
+        old.entities.map((entity) => ({ ...entity, character_sheet: null })),
+      );
       assert.equal(
         (
           await f.one(

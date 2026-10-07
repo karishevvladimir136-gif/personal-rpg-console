@@ -33,7 +33,21 @@ import {
 } from "@/lib/visual-frame/subject-job";
 import type { SubjectVisualJob } from "@/lib/visual-frame/subject-job";
 import type { PublicVisualSubject } from "@/lib/visual-frame/subject-visual";
+import { frameRecoveryOverdue } from "@/lib/visual-frame/real-frame";
 import { SubjectVisual } from "./subject-visual";
+
+function imageJobStatus(status: SubjectVisualJob["status"], w: (en: string, ru: string) => string) {
+  return {
+    queued: w("Saved, not sent", "Сохранено, не отправлено"),
+    generating: w("Generating", "Создаётся"),
+    draft: w("Draft ready for review", "Черновик готов к проверке"),
+    completed: w("Accepted", "Принято"),
+    discarded: w("Discarded", "Отклонено"),
+    failed: w("No usable draft", "Нет подходящего черновика"),
+    cancelled: w("Cancelled", "Отменено"),
+    uncertain: w("Outcome unconfirmed", "Результат не подтверждён"),
+  }[status];
+}
 
 /** Same media service, reservation and review flow for all three public subjects. */
 export function GenerateVisual({
@@ -64,6 +78,7 @@ export function GenerateVisual({
   const [error, setError] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [retryRequest, setRetryRequest] = useState(false);
+  const [pendingJobId, setPendingJobId] = useState<string | null>(null);
   const pending = useRef<SubjectVisualAttempt | null>(null);
   const decision = useRef<{ action: "media.accept" | "media.discard"; input: Mutation } | null>(null);
   const referenceDraft = useRef<Mutation | null>(null);
@@ -112,9 +127,14 @@ export function GenerateVisual({
       a.record.id.localeCompare(b.record.id),
     );
   const latest = jobs.at(-1);
+  const savedPending = jobs.find(({ record }) => record.id === pendingJobId);
+  const savedPendingIsTerminal = Boolean(savedPending && [
+    "draft", "discarded", "completed", "failed", "cancelled", "uncertain",
+  ].includes(savedPending.value.status));
   const queued = [...jobs].reverse().find(({ value }) => value.status === "queued");
   const draft = [...jobs].reverse().find(({ value }) => value.status === "draft");
   const generating = [...jobs].reverse().find(({ value }) => value.status === "generating");
+  const recoveryOverdue = generating ? frameRecoveryOverdue(generating.record) : false;
   const completed = [...jobs].reverse().find(({ value }) => {
     if (value.status !== "completed" || !value.resultAssetId) return false;
     const asset = snapshot.assets.find((row) => row.id === value.resultAssetId);
@@ -149,7 +169,11 @@ export function GenerateVisual({
     setError("");
     try { await work(); }
     catch {
-      if (pending.current) setRetryRequest(true);
+      if (pending.current) {
+        setRetryRequest(true);
+        setPendingJobId(pending.current.dispatch?.operation === "document.save"
+          ? pending.current.dispatch.payload.id ?? null : null);
+      }
       setError(w(
         "The image action could not be confirmed. Your previous art and gameplay are unchanged; retry the same step or refresh.",
         "Действие с изображением не подтверждено. Прежнее изображение и игра не изменились; повторите шаг или обновите страницу.",
@@ -195,6 +219,7 @@ export function GenerateVisual({
       await finishSubjectVisualAttempt(pending.current, transport);
       await refresh();
       pending.current = null;
+      setPendingJobId(null);
       setRetryRequest(false);
       setProposal(null);
     });
@@ -205,8 +230,19 @@ export function GenerateVisual({
       await finishSubjectVisualAttempt(pending.current, transport);
       await refresh();
       pending.current = null;
+      setPendingJobId(null);
       setRetryRequest(false);
     });
+  }
+  function checkSavedStatus() {
+    void run(async () => { await refresh(); });
+  }
+  function closeSavedNotice() {
+    pending.current = null;
+    setPendingJobId(null);
+    setRetryRequest(false);
+    setProposal(null);
+    setError("");
   }
   function recover() {
     void run(async () => {
@@ -285,12 +321,12 @@ export function GenerateVisual({
     <section className={`space-y-2 ${className}`.trim()} aria-label={w("Visual image", "Изображение")}>
       {showArtwork && <SubjectVisual snapshot={snapshot} subject={subject} />}
       <div className="button-group">
-        <Button disabled={busy || !capability?.enabled || Boolean(generating || queued)} onClick={prepare}>
+        <Button disabled={busy || retryRequest || !capability?.enabled || Boolean(generating || queued)} onClick={prepare}>
           {completed ? w("Regenerate", "Создать заново") : w(`Generate ${artLabel}`, `Создать ${artLabel}`)}
         </Button>
         {completedAsset && (
           <Button onClick={() => setExpanded((value) => !value)}>
-            {w("View image / History", "Изображение / История")}
+            {w("View image", "Посмотреть изображение")}
           </Button>
         )}
         {canUseAsReference && reference?.value.kind === "reference" && reference.value.approval !== "approved" && (
@@ -314,13 +350,55 @@ export function GenerateVisual({
         </div>
       )}
       {retryRequest && (
-        <Button disabled={busy} onClick={retryGenerate}>{w("Retry same image request", "Повторить тот же запрос")}</Button>
+        <div className="space-y-2">
+          <p className="muted">{savedPendingIsTerminal
+            ? w(
+                "This saved image attempt is finished. Closing this notice will not generate anything; a new image needs a separate priced confirmation.",
+                "Сохранённая попытка завершена. Закрытие этого сообщения ничего не создаст; для нового изображения потребуется отдельное платное подтверждение.",
+              )
+            : w(
+                "Checking status only reads the saved request. An exact retry keeps its identity: if the image was not yet claimed, it may send the original paid request; a claimed image is never sent twice.",
+                "Проверка статуса только читает сохранённый запрос. Точный повтор сохраняет его идентификатор: если изображение ещё не было начато, исходный платный запрос может быть отправлен; уже начатое изображение не отправляется дважды.",
+              )}</p>
+          <div className="button-group">
+            <Button disabled={busy} onClick={checkSavedStatus}>{w("Refresh saved status", "Обновить сохранённый статус")}</Button>
+            {savedPendingIsTerminal
+              ? <Button disabled={busy} onClick={closeSavedNotice}>{w("Close request notice", "Закрыть сообщение о запросе")}</Button>
+              : <Button disabled={busy} onClick={retryGenerate}>{w("Retry same image request", "Повторить тот же запрос")}</Button>}
+          </div>
+        </div>
       )}
       {generating && (
-        <div>
-          <p role="status">{w("Image request saved. Gameplay can continue.", "Запрос изображения сохранён. Игру можно продолжать.")}</p>
-          <Button disabled={busy} onClick={recover}>{w("Check saved image", "Проверить сохранённое изображение")}</Button>
+        <div className="space-y-2">
+          <p role="status">{recoveryOverdue
+            ? w("Image result is overdue. Check the saved status or recover this exact request; gameplay can continue.", "Результат изображения задерживается. Проверьте сохранённый статус или восстановите этот запрос; игру можно продолжать.")
+            : w("Image request saved and generating. Gameplay can continue.", "Запрос изображения сохранён и выполняется. Игру можно продолжать.")}</p>
+          <Button disabled={busy} onClick={checkSavedStatus}>{w("Refresh saved status", "Обновить сохранённый статус")}</Button>
+          {recoveryOverdue && <>
+            <p className="muted">{w(
+              "Recovery uses stored pixels and receipts, never a new image request. An unstarted review may use its existing reservation.",
+              "Восстановление использует сохранённые пиксели и подтверждения, а не новый запрос изображения. Ещё не начатая проверка может использовать уже выделенный резерв.",
+            )}</p>
+            <Button disabled={busy} onClick={recover}>{w("Recover saved image", "Восстановить сохранённое изображение")}</Button>
+          </>}
         </div>
+      )}
+      {latest?.value.status === "uncertain" && (
+        <p role="status">{w(
+          "This image attempt ended without a confirmed draft. It will not be sent again automatically, and recovery is not offered for this finished request. A new generation needs a separate priced confirmation.",
+          "Эта попытка завершилась без подтверждённого черновика. Повторной автоматической отправки не будет, а для завершённого запроса восстановление недоступно. Новое создание требует отдельного платного подтверждения.",
+        )}</p>
+      )}
+      {latest?.value.status === "failed" && (
+        <p role="status">{["grounding", "review"].includes(latest.value.failure ?? "")
+          ? w(
+              "The generated image did not pass review. It was not added to your artwork. Earlier accepted art is kept; another generation requires a new priced confirmation.",
+              "Созданное изображение не прошло проверку и не добавлено к иллюстрациям. Ранее принятые изображения сохранены; новое создание требует отдельного платного подтверждения.",
+            )
+          : w(
+              "This image request did not produce a reviewable draft. Earlier accepted art is kept; another generation requires a new priced confirmation.",
+              "Этот запрос не создал черновик для проверки. Ранее принятые изображения сохранены; новое создание требует отдельного платного подтверждения.",
+            )}</p>
       )}
       {queued && !generating && (
         <div>
@@ -354,8 +432,19 @@ export function GenerateVisual({
             "Illustration only. Its pixels do not establish Canon, mechanics, item properties or hidden facts. Approved textual guidance may be reused; reference pixels are not sent to the image model.",
             "Только иллюстрация. Пиксели не устанавливают канон, механику, свойства предметов или скрытые факты. Утверждённые текстовые указания можно повторно использовать; пиксели образца не передаются модели.",
           )}</p>
-          <p className="muted">{w(`${jobs.length} saved image request(s)`, `Сохранено запросов: ${jobs.length}`)}</p>
         </div>
+      )}
+      {jobs.length > 0 && (
+        <details className="rounded border border-[#765b36] p-3">
+          <summary>{w("Saved image requests", "Сохранённые запросы изображений")}</summary>
+          <ol className="mt-2 space-y-1">
+            {[...jobs].reverse().map(({ record, value }, index) => (
+              <li key={record.id}>
+                {w(`Request ${jobs.length - index}`, `Запрос ${jobs.length - index}`)} · {imageJobStatus(value.status, w)}
+              </li>
+            ))}
+          </ol>
+        </details>
       )}
       {busy && <p role="status">{w("Working…", "Выполняется…")}</p>}
       {error && <p role="alert">{error}</p>}

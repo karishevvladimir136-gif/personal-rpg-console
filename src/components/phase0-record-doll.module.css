@@ -1,0 +1,67 @@
+.recordDoll {
+  min-height: 590px;
+  border: 1px solid #61513b;
+  border-radius: 5px;
+}
+
+.recordDoll:has(.emptyEquipment) {
+  min-height: 310px;
+}
+
+.recordArt {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.recordImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 24%;
+}
+
+.recordPlaceholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: #a7814b;
+  background: radial-gradient(ellipse at 50% 42%, #3750606b, #111918 68%);
+}
+
+.nameplate {
+  position: relative;
+  z-index: 2;
+  padding: 15px;
+  color: #ecd2a8;
+  text-align: center;
+  font: 23px Georgia, serif;
+  text-shadow: 0 2px 9px #000;
+}
+
+.recordSlots {
+  padding-top: 52px;
+  padding-bottom: 54px;
+  grid-auto-rows: minmax(99px, auto);
+  align-content: space-between;
+}
+
+.recordSlots :global(.equipment-slot:disabled) {
+  cursor: default;
+}
+
+.emptyEquipment {
+  bottom: 22px !important;
+}
+
+@media (max-width: 700px) {
+  .recordDoll {
+    min-height: 520px;
+  }
+
+  .recordSlots {
+    padding-top: 38px;
+    padding-bottom: 54px;
+  }
+}

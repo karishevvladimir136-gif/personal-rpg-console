@@ -10,13 +10,40 @@ import {
 import { loopCommand } from "./authority.ts";
 import { hiddenFoundationItems } from "./visibility.ts";
 
+function approvedCreationFacts(context: LoopContext, playerId: string) {
+  const events = context.events.filter((event) =>
+    event.schemaVersion === 1 &&
+    event.campaignId === context.foundation.campaignId &&
+    event.kind === "campaign.bootstrap.created" &&
+    event.visibility === "private" &&
+    event.payload.schemaVersion === 1 &&
+    event.payload.classification === "owner_authored_protagonist" &&
+    event.payload.heroId === playerId,
+  );
+  if (events.length !== 1) return null;
+  const review = events[0].payload.review;
+  if (!review || typeof review !== "object" || Array.isArray(review))
+    return null;
+  const lines = (value: unknown): value is string[] =>
+    Array.isArray(value) && value.length <= 24 &&
+    value.every((line) => typeof line === "string" &&
+      line.trim().length > 0 && line.length <= 200);
+  if (!lines(review.capabilities) || !lines(review.limitations)) return null;
+  return { capabilities: review.capabilities, limitations: review.limitations };
+}
+
 /** Public and owner-authoring fields only. There is no projection of a private receipt. */
 export function foundationLoopProjection(
   context: LoopContext,
 ): FoundationLoopView {
   const { foundation, state, snapshot, world } = context;
   const privateIds = hiddenFoundationItems(context);
-  const player = snapshot.entities.find((e) => e.kind === "player");
+  const player = snapshot.entities.find((e) =>
+    e.kind === "player" && e.campaign_id === foundation.campaignId);
+  const playerActor = player && world.actors.find((actor) =>
+    actor.campaignId === foundation.campaignId && actor.control === "player" &&
+    actor.entityId === player.id && actor.publicName !== null);
+  const creationFacts = player ? approvedCreationFacts(context, player.id) : null;
   let commerce: FoundationLoopView["commerce"] = null;
   if (player) {
     try {
@@ -78,6 +105,13 @@ export function foundationLoopProjection(
   void _operation;
   return {
     campaignId: foundation.campaignId,
+    playerCharacter: player && playerActor && creationFacts ? {
+      entityId: player.id,
+      capabilities: creationFacts.capabilities.filter((fact) =>
+        playerActor.capabilities.includes(fact)),
+      limitations: creationFacts.limitations.filter((fact) =>
+        (playerActor.limitations ?? []).includes(fact)),
+    } : null,
     command: fence,
     profile: structuredClone(foundation.ruleset),
     stateVersion: state.version,

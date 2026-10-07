@@ -16,14 +16,48 @@ export type CreationResource = {
   amount: number | null;
   quote: string;
 };
-export type CreationProposal = {
+/** Public owner-reviewed identity, not a second combat or spell authority. */
+export type CharacterSheetV1 = {
   schemaVersion: 1;
+  mode: "structured_rpg" | "narrative";
+  role: string | null;
+  background: string;
+  level: number | null;
+  tier: string | null;
+  attributes: {
+    strength: number;
+    dexterity: number;
+    constitution: number;
+    intelligence: number;
+    wisdom: number;
+    charisma: number;
+  } | null;
+  skills: string[];
+  abilities: string[];
+  limitations: string[];
+  spells: string[];
+};
+export type CreationMechanics = {
+  hp: number;
+  attack: number;
+  defense: number;
+  skill: number;
+  weaponName: string | null;
+  weaponDamage: number | null;
+};
+type CreationProposalBase = {
   capabilities: CreationFact[];
   limitations: CreationFact[];
   possessions: CreationPossession[];
   resources: CreationResource[];
   questions: BootstrapQuestion[];
 };
+export type CreationProposal = CreationProposalBase &
+  ({ schemaVersion: 1 } | {
+    schemaVersion: 2;
+    sheet: CharacterSheetV1;
+    mechanics: CreationMechanics | null;
+  });
 export type CreationInput = {
   requestId: string;
   worldId: string;
@@ -41,15 +75,10 @@ export type CreationReview = {
   possessions: Omit<CreationPossession, "quote">[];
   resources: Omit<CreationResource, "quote">[];
   answers: (string | null)[];
+  /** Optional for historic v1 drafts. Explicitly approved on new v2 drafts. */
+  sheet?: CharacterSheetV1;
   /** Explicit owner-reviewed mechanics; absent reviews retain historical no-HP creation. */
-  mechanics?: {
-    hp: number;
-    attack: number;
-    defense: number;
-    skill: number;
-    weaponName: string | null;
-    weaponDamage: number | null;
-  };
+  mechanics?: CreationMechanics;
 };
 // Only additional NEW visible non-player people/creatures. The existing
 // protagonist is placed by authority, never recreated from this array.

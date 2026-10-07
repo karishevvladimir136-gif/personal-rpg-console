@@ -228,30 +228,33 @@ export function FoundationLoopEditor({
     view.owner.tracks,
     view.owner.rewards,
   ]);
+  const profileName = view.profile.id === "world-logic-v1"
+    ? "World Logic"
+    : view.profile.id === "console-basic-v1"
+      ? "Console Basic"
+      : view.profile.id;
   return (
     <Panel className={styles.panel}>
       <div className={styles.heading}>
         <div>
-          {section !== "progression" && (
+          {section === "settings" && (
             <p className={styles.eyebrow}>
-              {section === "settings" ? c.ownerOnly : c.profile}
+              {c.ownerOnly}
             </p>
           )}
           <h2>{c[section]}</h2>
         </div>
-        <Badge>
-          {section === "progression"
-            ? view.profile.id === "console-basic-v1"
-              ? c.starterRules
-              : view.profile.id === "world-logic-v1"
-                ? c.worldLogic
-                : c.campaignRules
-            : view.profile.id === "world-logic-v1"
-              ? "World Logic"
-              : view.profile.id === "console-basic-v1"
-                ? "Console Basic"
-                : view.profile.id}
-        </Badge>
+        {section !== "trade" && (
+          <Badge>
+            {section === "progression"
+              ? view.profile.id === "console-basic-v1"
+                ? c.starterRules
+                : view.profile.id === "world-logic-v1"
+                  ? c.worldLogic
+                  : c.campaignRules
+              : profileName}
+          </Badge>
+        )}
       </div>
       {stale && (
         <p role="alert" className={styles.notice}>
@@ -339,6 +342,12 @@ export function FoundationLoopEditor({
           </div>
         )}
       </fieldset>
+      {section === "trade" && (
+        <details className={styles.progressDetails}>
+          <summary>{language === "ru" ? "Дополнительно · правила торговли" : "Advanced · trade rules"}</summary>
+          <p>{c.profile}: {profileName}</p>
+        </details>
+      )}
       {section !== "settings" && view.history.length > 0 && (
         <details className={styles.history}>
           <summary>{c.history}</summary>

@@ -274,9 +274,11 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
   const [references, setReferences] = useState<string[] | null>(null);
   const [proposal, setProposal] = useState<RealFrame | null>(null);
   const [ownerPending, setOwnerPending] = useState<string[]>([]);
+  const [pendingJobId, setPendingJobId] = useState<string | null>(null);
   const [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
-    [retry, setRetry] = useState(false);
+    [retry, setRetry] = useState(false),
+    [checkingSaved, setCheckingSaved] = useState(false);
   const pending = useRef<RealFrameAttempt | null>(null),
     lock = useRef(false);
   const campaignId = data?.campaign.id;
@@ -364,13 +366,22 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
       a.campaign_id === snapshot.campaign.id,
   );
   const latest = currentJobs.at(-1);
+  const savedPending = jobs.find(({ record }) => record.id === pendingJobId);
+  const savedPendingIsTerminal = Boolean(savedPending && [
+    "draft", "discarded", "completed", "failed", "cancelled", "uncertain",
+  ].includes(savedPending.value.status));
   const enabled = capability?.enabled && Boolean(scene && snapshot.timeline);
-  const failure = () =>
+  const failure = (step: "prepare" | "generate") =>
     setError(
-      w(
-        "FRAME could not be confirmed. Your story and prior art remain available. Retry this exact request or review its saved history.",
-        "FRAME не подтверждён. История и прежние иллюстрации доступны. Повторите этот же запрос или проверьте сохранённую историю.",
-      ),
+      step === "prepare"
+        ? w(
+            "FRAME review could not be prepared. No image was requested; your story is unchanged.",
+            "Не удалось подготовить просмотр FRAME. Изображение не запрашивалось; история не изменилась.",
+          )
+        : w(
+            "FRAME's saved outcome could not be confirmed. Check its status or retry the exact request. Your story and earlier accepted art remain available.",
+            "Не удалось подтвердить сохранённый результат FRAME. Проверьте статус или повторите тот же запрос. История и ранее принятые иллюстрации доступны.",
+          ),
     );
   async function review(retryOf?: string) {
     if (lock.current || ownerPending.length || !snapshot.timeline) return;
@@ -400,7 +411,7 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
       });
       setProposal(frame);
     } catch {
-      failure();
+      failure("prepare");
     } finally {
       lock.current = false;
       setBusy(false);
@@ -426,15 +437,43 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
       await finishRealFrameAttempt(pending.current, transport);
       await refresh();
       pending.current = null;
+      setPendingJobId(null);
       setProposal(null);
       setRetry(false);
     } catch {
+      setPendingJobId(pending.current?.record?.id ?? null);
       setRetry(pending.current !== null);
-      failure();
+      failure("generate");
     } finally {
       lock.current = false;
       setBusy(false);
     }
+  }
+  async function checkSavedStatus() {
+    if (lock.current) return;
+    lock.current = true;
+    setBusy(true);
+    setCheckingSaved(true);
+    setError("");
+    try {
+      await refresh();
+    } catch {
+      setError(w(
+        "Saved FRAME status could not be loaded. Your story and earlier accepted art remain available.",
+        "Не удалось загрузить сохранённый статус FRAME. История и ранее принятые иллюстрации доступны.",
+      ));
+    } finally {
+      setCheckingSaved(false);
+      setBusy(false);
+      lock.current = false;
+    }
+  }
+  function closeSavedNotice() {
+    pending.current = null;
+    setPendingJobId(null);
+    setProposal(null);
+    setRetry(false);
+    setError("");
   }
   function ownerPendingChanged(jobId: string, retained: boolean) {
     setOwnerPending((previous) =>
@@ -505,6 +544,31 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
               )}
         </p>
       )}
+      {latest?.value.status === "queued" && (
+        <p className="muted" role="status">
+          {w(
+            "The FRAME request is saved but has not been sent. Open history to confirm its priced generation.",
+            "Запрос FRAME сохранён, но ещё не отправлен. Откройте историю, чтобы подтвердить платное создание.",
+          )}
+        </p>
+      )}
+      {latest?.value.status === "uncertain" && (
+        <p role="status">
+          {w(
+            "This FRAME ended without a confirmed illustration. It will not be sent again automatically. Review the saved request in history before choosing a new paid generation.",
+            "Этот FRAME завершился без подтверждённой иллюстрации. Повторной автоматической отправки не будет. Проверьте сохранённый запрос в истории, прежде чем выбирать новое платное создание.",
+          )}
+        </p>
+      )}
+      {latest?.value.status === "failed" &&
+        !["grounding", "review"].includes(latest.value.failure ?? "") && (
+          <p role="status">
+            {w(
+              "This FRAME did not produce a reviewable draft. Your story and earlier accepted art are unchanged. Any new generation needs a new confirmation.",
+              "Этот FRAME не создал черновик для проверки. История и ранее принятые иллюстрации не изменились. Для нового создания потребуется отдельное подтверждение.",
+            )}
+          </p>
+        )}
       {latest &&
         ["grounding", "review"].includes(latest.value.failure ?? "") && (
           <p role="status">
@@ -590,16 +654,39 @@ function SceneMediaFrame({ transport }: { transport: MediaFrameTransport }) {
         </div>
       )}
       {retry && (
-        <Button disabled={busy} onClick={() => void generate()}>
-          {w("Retry exact request", "Повторить тот же запрос")}
-        </Button>
+        <div className="space-y-2">
+          <p className="muted">
+            {savedPendingIsTerminal
+              ? w(
+                  "This saved attempt is finished. Closing this notice will not generate anything; a new image needs a separate priced confirmation.",
+                  "Сохранённая попытка завершена. Закрытие этого сообщения ничего не создаст; для нового изображения потребуется отдельное платное подтверждение.",
+                )
+              : w(
+                  "Checking status only reads the saved request. An exact retry keeps its identity: if the image was not yet claimed, it may send the original paid request; a claimed image is never sent twice.",
+                  "Проверка статуса только читает сохранённый запрос. Точный повтор сохраняет его идентификатор: если изображение ещё не было начато, исходный платный запрос может быть отправлен; уже начатое изображение не отправляется дважды.",
+                )}
+          </p>
+          <div className="button-group">
+            <Button disabled={busy} onClick={() => void checkSavedStatus()}>
+              {w("Check saved FRAME status", "Проверить сохранённый статус FRAME")}
+            </Button>
+            {savedPendingIsTerminal ? (
+              <Button disabled={busy} onClick={closeSavedNotice}>
+                {w("Close request notice", "Закрыть сообщение о запросе")}
+              </Button>
+            ) : (
+              <Button disabled={busy} onClick={() => void generate()}>
+                {w("Retry exact request", "Повторить тот же запрос")}
+              </Button>
+            )}
+          </div>
+        </div>
       )}
       {busy && (
         <p role="status">
-          {w(
-            "FRAME is working. You can keep playing.",
-            "FRAME работает. Игру можно продолжать.",
-          )}
+          {checkingSaved
+            ? w("Checking saved FRAME status…", "Проверка сохранённого статуса FRAME…")
+            : w("FRAME is working. You can keep playing.", "FRAME работает. Игру можно продолжать.")}
         </p>
       )}
       {error && <p role="alert">{error}</p>}

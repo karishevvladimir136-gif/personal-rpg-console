@@ -114,6 +114,39 @@ test("world, region and local bases use only their exact active public subtree",
   assert.match(job.prompt, /no readable place labels/i);
 });
 
+test("a first current public Location permits map artwork without a manual layout row", () => {
+  const snapshot = fixture();
+  const first = location(snapshot, 7, "First camp");
+  const unknown = location(snapshot, 8, "Other known place");
+  snapshot.publicState.current_location_id = first.id;
+  const before = JSON.stringify(snapshot);
+  const basis = publicMapBasis(snapshot, [], "world", null);
+  assert.deepEqual(basis.locations.map((row) => row.id), [first.id]);
+  assert.deepEqual(basis.locations[0].placement,
+    { level: "world", parentLocationId: null, x: 0.5, y: 0.5, revision: 0 });
+  const job = buildMapVisualJob(snapshot, [], "world", null,
+    [], model, parameters, proof);
+  assert.match(job.prompt, /First camp public description/);
+  assert.match(job.prompt, /provisional single-place view/);
+  assert.doesNotMatch(job.prompt, /Other known place/);
+  assert.equal(mapVisualPendingIsCurrent(snapshot, [], job), true);
+  assert.equal(JSON.stringify(snapshot), before);
+  assert.equal(unknown.status, "known");
+});
+
+test("accepted first-place art stays in Gallery after travel but is not painted over another provisional atlas", () => {
+  const snapshot = fixture();
+  const first = location(snapshot, 9, "First camp");
+  snapshot.publicState.current_location_id = first.id;
+  const { asset } = accepted(snapshot, [], "world", null);
+  assert.equal(selectMapVisual(snapshot, [], "world", null).image.assetId, asset.id);
+  const second = location(snapshot, 10, "Second camp");
+  snapshot.publicState.current_location_id = second.id;
+  assert.ok(safeMapVisualAsset(snapshot, asset, []));
+  assert.deepEqual(galleryMapAssets(snapshot, []).map((row) => row.id), [asset.id]);
+  assert.equal(selectMapVisual(snapshot, [], "world", null).image, null);
+});
+
 test("an older save with an undiscovered ancestor has no Local map basis", () => {
   const snapshot = fixture();
   const world = location(snapshot, 10, "World");

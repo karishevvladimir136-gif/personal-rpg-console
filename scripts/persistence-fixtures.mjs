@@ -1,4 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
+import { readFileSync } from "node:fs";
+
+const projectConfig = readFileSync(new URL("../supabase/config.toml", import.meta.url), "utf8");
+const apiConfig = projectConfig.split("[api]")[1]?.split(/\r?\n\[/)[0];
+const ownerApiPort = apiConfig?.match(/^port\s*=\s*(\d+)\s*$/m)?.[1];
+if (!ownerApiPort) throw new Error("Could not identify the normal local Supabase port.");
 
 export const testOptIn =
   "CREATE_SYNTHETIC_RECORDS_IN_DISPOSABLE_LOCAL_DATABASE";
@@ -24,6 +30,10 @@ export function testConfig() {
   )
     throw new Error(
       "This script only permits a disposable local Supabase URL. It will not seed a hosted project.",
+    );
+  if (url.port === ownerApiPort)
+    throw new Error(
+      "Synthetic acceptance cannot target the normal owner Supabase project. Start a separate disposable project and use its API port.",
     );
   return {
     url: url.origin,

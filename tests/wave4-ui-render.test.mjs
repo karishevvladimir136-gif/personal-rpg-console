@@ -92,6 +92,22 @@ test("actual EN/RU commerce shows funds, stock, restrictions and ordinary Game l
   }
 });
 
+test("Trade keeps the rules profile inside a closed Advanced disclosure", () => {
+  for (const language of ["en", "ru"]) {
+    const view = foundationUiFixture();
+    const profileName = view.profile.id === "world-logic-v1" ? "World Logic" : "Console Basic";
+    const html = render(language, "trade", view);
+    const advanced = html.match(/<details[^>]*><summary>[^<]*(?:trade rules|правила торговли)<\/summary><p>[^<]*<\/p><\/details>/)?.[0];
+    assert.ok(advanced);
+    assert.ok(advanced.includes(profileName));
+    assert.ok(advanced.includes(foundationText(language).profile));
+    const primary = html.replace(advanced, "");
+    assert.ok(!primary.includes(profileName));
+    assert.ok(!primary.includes(foundationText(language).profile));
+    assert.ok(render(language, "settings", view).includes(profileName));
+  }
+});
+
 test("actual EN/RU progression shows explicit current and earned rank choices", () => {
   for (const language of ["en", "ru"]) {
     const c = foundationText(language),

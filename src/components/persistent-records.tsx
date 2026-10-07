@@ -1,14 +1,23 @@
 "use client";
 import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
-import { CharacterArtwork } from "./character-artwork";
+import { loadFoundationLoop } from "@/lib/foundation-loop-client";
+import type { FoundationLoopView } from "@/lib/foundation-loop/client-contracts";
+import { sameTimeline } from "@/lib/saves/fence";
+import Image from "next/image";
 import { characterDescription } from "./character-presentation";
+import type { CharacterSheetV1 } from "@/lib/adventures/bootstrap-contracts";
+import { characterViewModel, type CharacterProgress } from "@/lib/character-view-model";
+import { CharacterEquipmentDoll, CharacterInventory } from "./phase0-character";
+import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
 import { LiveDisclosure } from "./live-disclosure";
 import { GenerateVisual } from "./visual-frame/generate-visual";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
+import { LiveInventoryPresentation } from "./live-inventory-presentation";
+import dollStyles from "./phase0-record-doll.module.css";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
 import {
@@ -864,11 +873,11 @@ export function ItemDetails({
       <p className="prose">
         {item.description || t("No description recorded.")}
       </p>
-      <Panel title={t("Known mechanics")}>
-        <p style={{ whiteSpace: "pre-wrap" }}>
-          {item.mechanics || t("No mechanics recorded.")}
-        </p>
-      </Panel>
+      {item.mechanics.trim().length > 0 && (
+        <Panel title={t("Known properties")}>
+          <p style={{ whiteSpace: "pre-wrap" }}>{item.mechanics}</p>
+        </Panel>
+      )}
       <dl className="stats-list">
         <div>
           <dt>{t("Quantity")}</dt>
@@ -916,207 +925,71 @@ function RecordDoll({
   entity,
   items,
   onSelect,
-  reviewOnly = false,
 }: {
   entity: Entity;
   items: Item[];
   onSelect: (item: Item) => void;
-  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
   const equipped = equipmentForRecord(entity, items);
   const portrait = data
-    ? selectSubjectVisual(data, { kind: "entity", id: entity.id })
+    ? selectSubjectVisual(data, { kind: "entity", id: entity.id }, { acceptedOnly: true })
+    : null;
+  const acceptedImage = portrait?.image?.kind === "real"
+    ? portrait.image
     : null;
   return (
     <section
-      className={`shared-doll ${entity.kind === "player" ? styles.characterDoll : ""}`}
-      style={
-        entity.kind !== "player" && entity.equipment_slots.length
-          ? {
-              minHeight: Math.max(
-                580,
-                Math.ceil(entity.equipment_slots.length / 2) * 105 + 130,
-              ),
-            }
-          : undefined
-      }
+      className={`paper-doll ${dollStyles.recordDoll}`}
       aria-label={t("{name} equipment", { name: entity.name })}
     >
-      {data && portrait?.image ? (
-        <GenerateVisual
-          subject={{ kind: "entity", id: entity.id }}
-          className={styles.subjectPortrait}
-          reviewOnly={reviewOnly}
-        />
-      ) : entity.kind === "player" ? (
-        <CharacterArtwork />
-      ) : (
-        <div
-          className="doll-figure"
-          style={{
-            display: "grid",
-            placeItems: "center",
-            color: "var(--bronze)",
-            opacity: 0.45,
-          }}
-        >
-          <Icon
-            name={
-              entity.kind === "transport"
-                ? "Briefcase"
-                : entity.kind === "mount"
-                  ? "Shield"
-                  : "UserRound"
-            }
-            size={130}
+      <div className={`art ${dollStyles.recordArt}`}>
+        {acceptedImage ? (
+          <Image
+            unoptimized
+            src={acceptedImage.url}
+            alt={entity.name}
+            width={820}
+            height={1200}
+            className={dollStyles.recordImage}
           />
-        </div>
-      )}
-      <div className="doll-caption">
-        {entity.kind !== "player" && <h2>{entity.name}</h2>}
-        <small>
-          {t(entity.kind === "player" ? "Equipped" : "Recorded equipment")}
-        </small>
+        ) : (
+          <div className={dollStyles.recordPlaceholder} role="img" aria-label={t("No portrait yet")}>
+            <Icon
+              name={entity.kind === "transport" ? "Briefcase" : entity.kind === "mount" ? "Shield" : "UserRound"}
+              size={112}
+            />
+          </div>
+        )}
       </div>
-      {data && !portrait?.image && (
-        <GenerateVisual
-          subject={{ kind: "entity", id: entity.id }}
-          className={styles.subjectActions}
-          showArtwork={false}
-          reviewOnly={reviewOnly}
-        />
-      )}
+      <div className={dollStyles.nameplate}>{entity.name}</div>
       {entity.equipment_slots.length ? (
-        <div className="shared-equipment-slots">
+        <div className={`equipment-slots ${dollStyles.recordSlots}`}>
           {entity.equipment_slots.map((slot) => {
             const item = equipped.find((row) => row.equipped_slot === slot.id);
             return (
               <button
                 key={slot.id}
-                className="shared-equipment-slot"
+                type="button"
+                className="equipment-slot"
                 onClick={() => item && onSelect(item)}
                 disabled={!item}
+                aria-label={`${slot.label}: ${item?.name || t("Empty")}`}
               >
-                <Icon
-                  name={item ? itemIcon(item.category) : "Package"}
-                  size={24}
-                />
-                <span>
-                  {slot.label}
-                  <small>{item?.name || t("Empty")}</small>
+                <span>{slot.label}</span>
+                <span className="equipment-icon">
+                  <Icon name={item ? itemIcon(item.category) : "Package"} size={24} />
                 </span>
+                <small>{item?.name || t("Empty")}</small>
               </button>
             );
           })}
         </div>
       ) : (
-        <p className="no-equipment-note">
-          {t(
-            "No equipment profile is established. No humanoid anatomy is assumed.",
-          )}
-        </p>
+        <p className={dollStyles.emptyEquipment}>{t("No equipment assigned yet.")}</p>
       )}
     </section>
-  );
-}
-
-function PlayerSheet({
-  data,
-  entity,
-  onSelect,
-  reviewOnly = false,
-}: {
-  data: CampaignSnapshot;
-  entity: Entity;
-  onSelect: (item: Item) => void;
-  reviewOnly?: boolean;
-}) {
-  const { t } = useLanguage();
-  return (
-    <div className={styles.characterLayout}>
-      <section
-        className={styles.characterSheet}
-        aria-label={t("Character sheet")}
-      >
-        <div className={styles.characterIdentity}>
-          <span className="eyebrow">{t("Character")}</span>
-          <h1>{entity.name}</h1>
-          {Object.hasOwn(entity.stats, "level") && (
-            <Badge>{t("Level {level}", { level: entity.stats.level })}</Badge>
-          )}
-          {entity.details && (
-            <p className="prose">{characterDescription(entity.details, t)}</p>
-          )}
-          {entity.hp !== null && (
-            <Meter
-              label={t("HP")}
-              value={`${entity.hp}${entity.max_hp === null ? "" : ` / ${entity.max_hp}`}`}
-              percent={entity.max_hp ? (entity.hp / entity.max_hp) * 100 : 0}
-              color="var(--red)"
-            />
-          )}
-          {Object.keys(entity.resources).length > 0 && (
-            <dl className="stats-list">
-              {Object.entries(entity.resources).map(([key, value]) => (
-                <div key={key}>
-                  <dt>{key}</dt>
-                  <dd>{value}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
-        </div>
-        <RecordDoll entity={entity} items={data.items} onSelect={onSelect} reviewOnly={reviewOnly} />
-        <div
-          className={`${styles.characterIdentity} ${styles.characterDetails}`}
-        >
-          {Object.keys(entity.stats).some((key) => key !== "level") && (
-            <LiveDisclosure
-              title={t("Attributes & skills")}
-              storageKey={`${data.campaign.id}:character:stats`}
-              defaultOpen
-            >
-              <dl className="stats-list">
-                {Object.entries(entity.stats)
-                  .filter(([key]) => key !== "level")
-                  .map(([key, value]) => (
-                    <div key={key}>
-                      <dt>{t(key)}</dt>
-                      <dd>{value}</dd>
-                    </div>
-                  ))}
-              </dl>
-            </LiveDisclosure>
-          )}
-          <LiveDisclosure
-            title={t("Conditions")}
-            storageKey={`${data.campaign.id}:character:conditions`}
-          >
-            <p>{entity.conditions.join(", ") || t("None recorded")}</p>
-          </LiveDisclosure>
-        </div>
-      </section>
-      <Panel className={styles.possessions} title={t("Possessions")}>
-        <PersistentItemGrid
-          items={data.items.filter(
-            (item) =>
-              item.owner_entity_id === entity.id ||
-              item.equipped_entity_id === entity.id,
-          )}
-          onSelect={onSelect}
-        />
-        <p>
-          <Link
-            className="text-link"
-            href={`/campaigns/${data.campaign.id}/inventory`}
-          >
-            {t("Open shared inventory")}
-          </Link>
-        </p>
-      </Panel>
-    </div>
   );
 }
 
@@ -1131,7 +1004,7 @@ function EntityCollection({
 }) {
   const { t } = useLanguage();
   const rows = data.entities.filter((row) =>
-    players ? row.kind === "player" : row.kind !== "player",
+    players ? row.kind === "player" : row.kind === "companion",
   );
   const [selectedId, setSelectedId] = useState("");
   const [editor, setEditor] = useState<Entity | "new" | null>(null);
@@ -1142,29 +1015,36 @@ function EntityCollection({
   return (
     <>
       {players ? (
-        <header className={styles.characterHeader}>
-          <p className="muted">{t("Your hero, equipment and possessions.")}</p>
-          <details className={styles.secondary}>
-            <summary>{t("Character corrections")}</summary>
-            {selected && (
-              <Button onClick={() => setEditor(selected)}>
-                {t("Edit public character record")}
+        <header className={`page-heading ${characterStyles.heading}`}>
+          <div>
+            <span className="eyebrow">{t("Your hero")}</span>
+            <h1>{t("Character & Inventory")}</h1>
+            <p>{t("Your hero, equipment and possessions.")}</p>
+          </div>
+          <div className={characterStyles.headingTools}>
+            {selected?.character_sheet?.role && <Badge>{selected.character_sheet.role}</Badge>}
+            <details className={styles.secondary}>
+              <summary>{t("Character corrections")}</summary>
+              {selected && (
+                <Button onClick={() => setEditor(selected)}>
+                  {t("Edit public character record")}
+                </Button>
+              )}
+              <Button onClick={() => setEditor("new")}>
+                {t("Add player character")}
               </Button>
-            )}
-            <Button onClick={() => setEditor("new")}>
-              {t("Add player character")}
-            </Button>
-          </details>
+            </details>
+          </div>
         </header>
       ) : (
         <RecordHeading
-          title={t("Party & relationships")}
-          description="The people and companions this campaign has made known."
+          title={t("Party")}
+          description="Your companions. Other people you know are in Journal → People."
           action={
             <details className={styles.secondary}>
               <summary>{t("Edit / Correct records")}</summary>
               <Button onClick={() => setEditor("new")}>
-                {t("Add companion or known NPC")}
+                {t("Add companion")}
               </Button>
             </details>
           }
@@ -1172,12 +1052,13 @@ function EntityCollection({
       )}
       {!selected ? (
         <Panel className="empty-state">
-          <Icon name="UserRound" size={38} />
+          <Icon name={players ? "UserRound" : "Users"} size={38} />
           <p>
-            {t(
-              "No public character records yet. Add only information the player knows.",
-            )}
+            {t(players
+              ? "No public character records yet. Add only information the player knows."
+              : "No companions are traveling with you yet.")}
           </p>
+          {!players && <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>{t("See known people in Journal")}</Link>}
         </Panel>
       ) : (
         <>
@@ -1229,7 +1110,6 @@ function EntityCollection({
                 entity={selected}
                 items={data.items}
                 onSelect={setItem}
-                reviewOnly={reviewOnly}
               />
               <Panel
                 className="visual-inventory-panel"
@@ -1359,6 +1239,269 @@ export function PersistentParty({ reviewOnly = false }: { reviewOnly?: boolean }
   );
 }
 
+type CharacterSection = "character" | "abilities" | "skills" | "spells" | "background" | "notes";
+
+export function acceptedPublicCharacterFacts(
+  view: FoundationLoopView,
+  data: CampaignSnapshot,
+  entity: Entity,
+) {
+  if (
+    view.campaignId !== data.campaign.id ||
+    !sameTimeline(view.command.timeline, data.timeline) ||
+    entity.kind !== "player" ||
+    view.playerCharacter?.entityId !== entity.id
+  ) return null;
+  return {
+    capabilities: [...view.playerCharacter.capabilities],
+    limitations: [...view.playerCharacter.limitations],
+  };
+}
+
+/** Only the current hero's public progression on the active timeline may reach the sheet. */
+export function acceptedPublicCharacterProgress(
+  view: FoundationLoopView,
+  data: CampaignSnapshot,
+  entity: Entity,
+): CharacterProgress[] {
+  if (
+    view.campaignId !== data.campaign.id ||
+    !sameTimeline(view.command.timeline, data.timeline) ||
+    entity.kind !== "player" ||
+    !view.progression?.enabled
+  ) return [];
+  return view.progression.progress
+    .filter((row) => row.entityId === entity.id)
+    .map((row) => ({
+      label: row.kind === "classic_xp" ? "Experience" : row.trackLabel,
+      value: row.value,
+      nextThreshold: row.nextThreshold,
+    }));
+}
+
+function PlayerSheet({
+  data,
+  entity,
+  onSelect,
+  reviewOnly = false,
+}: {
+  data: CampaignSnapshot;
+  entity: Entity;
+  onSelect: (item: Item) => void;
+  reviewOnly?: boolean;
+}) {
+  const { t } = useLanguage();
+  const [section, setSection] = useState<CharacterSection>("character");
+  const reviewedSheet = entity.character_sheet ?? null;
+  const [factResult, setFactResult] = useState<{
+    entityId: string;
+    facts: ReturnType<typeof acceptedPublicCharacterFacts>;
+    progress: CharacterProgress[];
+  } | null>(null);
+  const publicFacts = factResult?.entityId === entity.id ? factResult.facts : undefined;
+  const publicProgress = factResult?.entityId === entity.id ? factResult.progress : [];
+  useEffect(() => {
+    if (reviewOnly) return;
+    let cancelled = false;
+    void loadFoundationLoop(data.campaign.id).then((view) => {
+      if (!cancelled) setFactResult({
+        entityId: entity.id,
+        facts: acceptedPublicCharacterFacts(view, data, entity),
+        progress: acceptedPublicCharacterProgress(view, data, entity),
+      });
+    }).catch(() => {
+      if (!cancelled) setFactResult({ entityId: entity.id, facts: null, progress: [] });
+    });
+    return () => { cancelled = true; };
+  }, [data, entity, reviewOnly]);
+  const model = characterViewModel(data, entity, publicFacts, publicProgress);
+  const sheet: CharacterSheetV1 = model.sheet;
+  const legacyDescription = !reviewedSheet ? characterDescription(entity.details, t).trim() : "";
+  const legacyPreview = legacyDescription.length > 220
+    ? `${legacyDescription.slice(0, 220).replace(/\s+\S*$/u, "")}…`
+    : legacyDescription;
+
+  const tabs: { id: CharacterSection; label: string }[] = [
+    { id: "character", label: t("Character") },
+    ...(model.abilities.length || model.limitations.length ? [{ id: "abilities" as const, label: t("Abilities") }] : []),
+    ...(model.skills.length || sheet.mode === "structured_rpg" ? [{ id: "skills" as const, label: t(reviewedSheet ? "Skills & capabilities" : "Capabilities") }] : []),
+    ...(model.spells.length ? [{ id: "spells" as const, label: t("Spells / Powers") }] : []),
+    { id: "background", label: t("Background") },
+    { id: "notes", label: t("Notes") },
+  ];
+  const visibleSection = tabs.some((tab) => tab.id === section) ? section : "character";
+  return (
+    <div className={characterStyles.page}>
+      <div className={`tabs ${characterStyles.tabs}`} role="tablist" aria-label={t("Character sections")}>
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            id={`character-${entity.id}-${tab.id}`}
+            type="button"
+            role="tab"
+            aria-controls={`character-panel-${entity.id}`}
+            aria-selected={visibleSection === tab.id}
+            className={visibleSection === tab.id ? "active" : ""}
+            onClick={() => setSection(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <div
+        id={`character-panel-${entity.id}`}
+        role="tabpanel"
+        aria-labelledby={`character-${entity.id}-${visibleSection}`}
+      >
+        {visibleSection === "character" && (
+          <div className={`character-grid ${characterStyles.characterGrid}`}>
+            <Panel className={`character-sheet ${characterStyles.characterSheet}`}>
+              <div className={`character-stats ${characterStyles.characterStats}`}>
+                <h2 className="character-name">{entity.name}</h2>
+                {sheet.role && <p>{sheet.role}</p>}
+                {legacyPreview && (
+                  <>
+                    <p>{legacyPreview}</p>
+                    {legacyPreview !== legacyDescription && (
+                      <button type="button" className={characterStyles.backgroundLink} onClick={() => setSection("background")}>{t("Read full background")}</button>
+                    )}
+                  </>
+                )}
+                {model.level !== null && <h3>{t("Level {level}", { level: model.level })}</h3>}
+                {sheet.tier && <Badge>{sheet.tier}</Badge>}
+                {model.progress.map((progress) => progress.nextThreshold !== null ? (
+                  <Meter
+                    key={progress.label}
+                    label={t(progress.label)}
+                    value={`${progress.value} / ${progress.nextThreshold}`}
+                    percent={progress.nextThreshold > 0 ? Math.max(0, Math.min(100, progress.value / progress.nextThreshold * 100)) : 0}
+                    color="var(--gold)"
+                  />
+                ) : (
+                  <dl className="stats-list" key={progress.label}><div><dt>{t(progress.label)}</dt><dd>{progress.value}</dd></div></dl>
+                ))}
+                {entity.hp !== null && (entity.max_hp !== null ? (
+                  <Meter
+                    label={t("HP")}
+                    value={`${entity.hp} / ${entity.max_hp}`}
+                    percent={entity.max_hp > 0 ? Math.max(0, Math.min(100, entity.hp / entity.max_hp * 100)) : 0}
+                    color="var(--red)"
+                  />
+                ) : <dl className="stats-list"><div><dt>{t("HP")}</dt><dd>{entity.hp}</dd></div></dl>)}
+                {!!model.resources.length && (
+                  <>
+                    <h3 className="section-label">{t("Resources")}</h3>
+                    <dl className="stats-list">
+                      {model.resources.map(([name, value]) => <div key={name}><dt>{t(name)}</dt><dd>{value}</dd></div>)}
+                    </dl>
+                  </>
+                )}
+                {!!model.attributes.length && (
+                  <>
+                    <h3 className="section-label">{t("Attributes")}</h3>
+                    <dl className="stats-list">
+                      {model.attributes.map(([name, value]) => <div key={name}><dt>{t(name)}</dt><dd>{value}</dd></div>)}
+                    </dl>
+                  </>
+                )}
+                {!!model.derivedStats.length && (
+                  <>
+                    <h3 className="section-label">{t("Core stats")}</h3>
+                    <div className="combat-stats">
+                      {model.derivedStats.map(([name, value]) => <span key={name}>{t(name)} <b>{value}</b></span>)}
+                    </div>
+                  </>
+                )}
+                <h3 className="section-label">{t("Skills")}</h3>
+                {model.skills.length ? (
+                  <ul className={characterStyles.skillList}>{model.skills.slice(0, 5).map((skill) => <li key={skill}>{skill}</li>)}</ul>
+                ) : <p className="muted">{publicFacts === undefined && !reviewOnly ? t("Loading known capabilities…") : t("No capabilities recorded.")}</p>}
+                <h3 className="section-label">{t("Conditions")}</h3>
+                {model.conditions.length ? model.conditions.map((condition) => (
+                  <Badge key={condition}>{condition}</Badge>
+                )) : <Badge green>{t("None recorded")}</Badge>}
+              </div>
+              <CharacterEquipmentDoll data={data} entity={entity} model={model} onSelect={onSelect} reviewOnly={reviewOnly} />
+            </Panel>
+            <CharacterInventory data={data} items={model.carried} onSelect={onSelect} />
+          </div>
+        )}
+        {visibleSection === "abilities" && (
+          <Panel className={`character-tab-content ${characterStyles.tabContent}`} title={t("Abilities")}>
+            <div className={`card-grid ${characterStyles.detailCardGrid}`}>
+              {model.abilities.map((ability) => (
+                <article className={`ability-card ${characterStyles.detailCard}`} key={ability}>
+                  <Icon name="Sparkles" />
+                  <h3>{ability}</h3>
+                </article>
+              ))}
+              {model.limitations.map((limit) => (
+                <article className={`ability-card ${characterStyles.detailCard}`} key={limit}>
+                  <Icon name="Shield" />
+                  <h3>{limit}</h3>
+                  <Badge>{t("Limitations")}</Badge>
+                </article>
+              ))}
+            </div>
+          </Panel>
+        )}
+        {visibleSection === "skills" && (
+          <Panel className={`character-tab-content ${characterStyles.tabContent}`} title={t(reviewedSheet ? "Skills & capabilities" : "Capabilities")}>
+            {model.skills.length ? <ul className={characterStyles.sheetList}>{model.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul> : <p>{t("No capabilities recorded.")}</p>}
+          </Panel>
+        )}
+        {visibleSection === "spells" && sheet.spells.length > 0 && (
+          <Panel className={`character-tab-content ${characterStyles.tabContent}`} title={t("Spells / Powers")}>
+            <div className={`card-grid ${characterStyles.detailCardGrid}`}>
+              {sheet.spells.map((spell) => <article className={`ability-card ${characterStyles.detailCard}`} key={spell}><Icon name="Zap" /><h3>{spell}</h3></article>)}
+            </div>
+          </Panel>
+        )}
+        {visibleSection === "background" && (
+          <Panel className={`character-tab-content ${characterStyles.tabContent}`} title={t("Background")}>
+            {sheet.background && <p className="prose">{reviewedSheet ? sheet.background : characterDescription(sheet.background, t)}</p>}
+            {reviewedSheet && entity.details && <p className="prose">{characterDescription(entity.details, t)}</p>}
+            {!sheet.background && !entity.details && <p>{t("No background recorded.")}</p>}
+          </Panel>
+        )}
+        {visibleSection === "notes" && (
+          <Panel className={`character-tab-content ${characterStyles.tabContent}`} title={t("Notes")}>
+            <p>{t("Character notes are kept in the Journal.")}</p>
+            <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>{t("Open Journal")}</Link>
+          </Panel>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/** Journal-only owner correction access for public NPC records, separate from Party. */
+export function KnownPeopleCorrections({ data }: { data: CampaignSnapshot }) {
+  const { t } = useLanguage();
+  const [editingId, setEditingId] = useState<string | "new" | null>(null);
+  const people = data.entities.filter((row) => row.kind === "npc");
+  const editing = data.entities.find((row) => row.id === editingId);
+  return (
+    <div className={styles.peopleCorrections}>
+      <Button onClick={() => setEditingId("new")}>{t("Add known person")}</Button>
+      {people.map((person) => (
+        <div key={person.id} className={styles.peopleCorrectionRow}>
+          <span>{person.name}</span>
+          <Button onClick={() => setEditingId(person.id)}>{t("Edit public character record")}</Button>
+        </div>
+      ))}
+      {editingId && (
+        <EntityEditor
+          key={editingId}
+          entity={editingId === "new" ? undefined : editing}
+          defaultKind="npc"
+          onClose={() => setEditingId(null)}
+        />
+      )}
+    </div>
+  );
+}
+
 function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot; reviewOnly?: boolean }) {
   const { t } = useLanguage();
   const [storageId, setStorageId] = useState("");
@@ -1373,106 +1516,22 @@ function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot
     data.storages.find((row) => row.id === storageId) ||
     data.storages.find((row) => row.kind === "player") ||
     data.storages[0];
-  const storageGroup = (kind: Storage["kind"]) =>
-    kind === "player"
-      ? "Player"
-      : kind === "companion"
-        ? "Companions"
-        : kind === "camp"
-          ? "Camp / Shared Stash"
-          : kind === "transport"
-            ? "Transport & Mounts"
-            : "Other storage";
-  const groups = [...new Set(data.storages.map((row) => storageGroup(row.kind)))];
-  const hero = data.entities.find((row) => row.kind === "player");
-  const items = data.items.filter(
-    (row) =>
-      row.storage_id === storage?.id &&
-      (!category || row.category === category) &&
-      `${row.name} ${row.description}`
-        .toLocaleLowerCase()
-        .includes(search.toLocaleLowerCase()),
-  );
   const currentItem = data.items.find((row) => row.id === selected?.id);
   return (
     <>
-      <RecordHeading
-        title={t("Inventory")}
-        description="Possessions, equipment and shared supplies."
-      />
-      <div className="tabs" role="tablist" aria-label={t("Inventory storage")}>
-        {groups.map((group) => (
-          <button
-            key={group}
-            type="button"
-            role="tab"
-            aria-selected={storage ? storageGroup(storage.kind) === group : false}
-            className={storage && storageGroup(storage.kind) === group ? "active" : ""}
-            onClick={() => {
-              const next = data.storages.find((row) => storageGroup(row.kind) === group);
-              setStorageId(next?.id || "");
-              setCategory("");
-            }}
-          >
-            {t(group)}
-          </button>
-        ))}
-      </div>
-      <Panel
-        className="visual-inventory-panel"
-        title={storage?.name || t("Inventory")}
-      >
-        {!storage ? (
-          <p className="empty-state">
-            {t("Create storage before adding items.")}
-          </p>
-        ) : (
-          <>
-            {data.storages.filter((row) => storageGroup(row.kind) === storageGroup(storage.kind)).length > 1 && (
-              <RecordSelect
-                label={t("Inspect storage")}
-                value={storage.id}
-                options={data.storages
-                  .filter((row) => storageGroup(row.kind) === storageGroup(storage.kind))
-                  .map((row) => ({ value: row.id, label: row.name }))}
-                onChange={setStorageId}
-              />
-            )}
-            <RecordField
-              label={t("Search items")}
-              value={search}
-              onChange={setSearch}
-            />
-            <LiveDisclosure
-              title={t("Filters")}
-              storageKey={`${data.campaign.id}:inventory:filters`}
-            >
-              <RecordSelect
-                label={t("Item category filter")}
-                value={category}
-                empty
-                options={[
-                  ...new Set(
-                    data.items
-                      .filter((row) => row.storage_id === storage.id)
-                      .map((row) => row.category),
-                  ),
-                ].map((value) => ({ value, label: value }))}
-                onChange={setCategory}
-              />
-            </LiveDisclosure>
-            <PersistentItemGrid items={items} onSelect={setSelected} />
-          </>
+      <LiveInventoryPresentation
+        data={data}
+        storageId={storageId}
+        onStorageChange={setStorageId}
+        search={search}
+        onSearchChange={setSearch}
+        category={category}
+        onCategoryChange={setCategory}
+        onSelectItem={setSelected}
+        renderEquipment={(entity) => (
+          <RecordDoll entity={entity} items={data.items} onSelect={setSelected} />
         )}
-      </Panel>
-      {hero && (
-        <LiveDisclosure
-          title={t("Equipment & paper doll")}
-          storageKey={`${data.campaign.id}:inventory:equipment`}
-        >
-          <RecordDoll entity={hero} items={data.items} onSelect={setSelected} reviewOnly={reviewOnly} />
-        </LiveDisclosure>
-      )}
+      />
       <LiveDisclosure
         title={t("Edit / Correct records")}
         storageKey={`${data.campaign.id}:inventory:corrections`}
@@ -1515,21 +1574,41 @@ function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot
   );
 }
 
-export function PersistentInventory({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
+export function availableMerchant(view: FoundationLoopView, data: CampaignSnapshot) {
+  if (view.campaignId !== data.campaign.id || !sameTimeline(view.command.timeline, data.timeline)) return null;
+  return view.commerce?.merchants[0]?.label ?? null;
+}
+
+function ContextualTrade({ data }: { data: CampaignSnapshot }) {
   const { t } = useLanguage();
+  const [merchant, setMerchant] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    void loadFoundationLoop(data.campaign.id).then((view) => {
+      if (!cancelled) setMerchant(availableMerchant(view, data));
+    }).catch(() => {
+      if (!cancelled) setMerchant(null);
+    });
+    return () => { cancelled = true; };
+  }, [data]);
+  if (!merchant) return null;
+  return (
+    <LiveDisclosure
+      title={t("Trade with {name}", { name: merchant })}
+      storageKey={`${data.campaign.id}:inventory:trade`}
+    >
+      <FoundationLoopPanel section="trade" />
+    </LiveDisclosure>
+  );
+}
+
+export function PersistentInventory({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
   return (
     <RecordBoundary>
       {(data) => (
         <>
           <InventoryRecords key={data.campaign.id} data={data} reviewOnly={reviewOnly} />
-          {!reviewOnly && (
-            <LiveDisclosure
-              title={t("Use, transfer & trade")}
-              storageKey={`${data.campaign.id}:inventory:trade`}
-            >
-              <FoundationLoopPanel section="trade" />
-            </LiveDisclosure>
-          )}
+          {!reviewOnly && <ContextualTrade data={data} />}
         </>
       )}
     </RecordBoundary>

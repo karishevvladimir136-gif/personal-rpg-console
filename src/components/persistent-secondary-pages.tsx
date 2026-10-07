@@ -28,6 +28,7 @@ import type { VideoTransport } from "@/lib/scene-video/client";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
 import {
+  KnownPeopleCorrections,
   RecordBoundary,
   RecordEditor,
   RecordField,
@@ -37,6 +38,7 @@ import { PersistentSaves } from "./persistent-saves";
 import { PersistentTimelineExplorer } from "./persistent-timeline-explorer";
 import { PersistentPlacesBelonging } from "./persistent-places-belonging";
 import { PersistentAdventures } from "./persistent-adventures";
+import { CurrentAdventure } from "./current-adventure";
 import { PersistentAdventureLoot } from "./persistent-adventure-loot";
 import { PersistentMediaVisualFrame } from "./persistent-visual-frame";
 import { SessionMemoryPanel } from "./session-memory";
@@ -317,6 +319,7 @@ function JournalView({
       />
       {tab === "Quests" && (
         <>
+          <CurrentAdventure snapshot={data} reviewOnly={reviewOnly} />
           <div className={styles.grid}>
             {records.quests
               .filter((row) => row.status !== "archived")
@@ -343,7 +346,7 @@ function JournalView({
           <Disclosure
             campaignId={campaignId}
             name="journal-adventures"
-            title={w("Adventures & discoveries", "Приключения и находки")}
+            title={w("Advanced · Adventure management", "Дополнительно · Управление приключениями")}
           >
             <ReviewTool reviewOnly={reviewOnly}>
               <PersistentAdventures />
@@ -472,11 +475,15 @@ function JournalView({
               </Empty>
             </Panel>
           )}
-          <div className={styles.tools}>
-            <Link className="text-link" href={`/campaigns/${campaignId}/party`}>
-              {t("Party & Relationships")} <Icon name="ArrowRight" size={14} />
-            </Link>
-          </div>
+          <Disclosure
+            campaignId={campaignId}
+            name="journal-people-corrections"
+            title={w("Edit / Correct known people", "Изменить / Исправить знакомых людей")}
+          >
+            <ReviewTool reviewOnly={reviewOnly}>
+              <KnownPeopleCorrections data={data} />
+            </ReviewTool>
+          </Disclosure>
         </>
       )}
       {tab === "Locations" && (

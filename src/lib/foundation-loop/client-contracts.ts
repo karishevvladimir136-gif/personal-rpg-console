@@ -15,6 +15,12 @@ import type { PublicProgression } from "../progression/public.ts";
 
 export type FoundationLoopView = {
   campaignId: string;
+  /** Public, descriptive protagonist facts only; no World Actor or hidden knowledge DTO. */
+  playerCharacter?: {
+    entityId: string;
+    capabilities: string[];
+    limitations: string[];
+  } | null;
   command: Omit<FoundationCommand, "operationId">;
   profile: RulesetProfileRef;
   stateVersion: number;

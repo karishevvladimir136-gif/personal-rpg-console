@@ -279,6 +279,116 @@
   border: 0;
   padding: 0;
 }
+.characterPage {
+  min-width: 0;
+}
+.characterTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 14px;
+  padding: 6px;
+  border: 1px solid #705a3b;
+  border-radius: 6px;
+  background: linear-gradient(110deg, #111b1e, #0b1215);
+}
+.characterTabs button {
+  padding: 9px 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: #bdb9b0;
+  background: transparent;
+  font: 15px Georgia, serif;
+}
+.characterTabs button[aria-selected="true"] {
+  border-color: #a98855;
+  color: #f1dab5;
+  background: linear-gradient(145deg, #5140278a, #1a201c);
+}
+.characterTabs button:focus-visible {
+  outline: 2px solid #e3c58e;
+  outline-offset: 2px;
+}
+.characterRole {
+  margin: -3px 0 12px;
+  color: #d2b58c;
+  font: 17px Georgia, serif;
+}
+.characterBackgroundLink {
+  margin: -3px 0 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #e0bd82;
+  font: 14px Georgia, serif;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.characterBackgroundLink:focus-visible { outline: 2px solid #e3c58e; outline-offset: 3px; }
+.characterMilestones {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0 0 15px;
+}
+.attributeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 19px;
+}
+.attributeGrid > div {
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  padding: 10px 5px;
+  border: 1px solid #8c704a70;
+  border-radius: 5px;
+  background: #0b1418;
+}
+.attributeGrid span {
+  color: #b7a687;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+.attributeGrid strong {
+  color: #f1d5a5;
+  font: 22px Georgia, serif;
+}
+.mechanicsSummary h3 {
+  margin-bottom: 10px;
+}
+.sheetList {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sheetList li {
+  padding: 10px 12px;
+  border-left: 2px solid #af8a55;
+  color: #ddd5c9;
+  background: #a7854a13;
+  line-height: 1.5;
+}
+.sheetDetailGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.sheetDetailPanel,
+.sheetDetailGrid > * {
+  min-height: 190px;
+  border-color: #705a3b;
+  background: linear-gradient(145deg, #172126, #0c1417 72%);
+}
+.sheetDetailPanel :global(.prose) {
+  max-width: 75ch;
+  white-space: pre-wrap;
+  line-height: 1.75;
+}
 .characterLayout {
   display: grid;
   grid-template-columns: minmax(0, 1.4fr) minmax(250px, 0.8fr);
@@ -380,6 +490,79 @@
   color: #efd2a6;
   background: radial-gradient(circle at 30% 25%, #76604a, #263132 75%);
   font: 38px Georgia, serif;
+}
+.peopleCorrections {
+  display: grid;
+  gap: 12px;
+}
+.peopleCorrections > :global(button) {
+  justify-self: start;
+}
+.peopleCorrectionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid #a7854a33;
+}
+.peopleCorrectionRow span {
+  color: #e6d3b6;
+  font: 17px Georgia, serif;
+}
+.inventoryPanel {
+  background: linear-gradient(145deg, #162025, #0c1417 72%);
+  border-color: #765e3f;
+}
+.inventoryToolbar {
+  display: grid;
+  gap: 15px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #a7854a30;
+}
+.categoryFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.categoryFilters button {
+  padding: 7px 11px;
+  border: 1px solid #6d5940;
+  border-radius: 4px;
+  color: #cfc4b1;
+  background: #10191c;
+  font-size: 12px;
+}
+.categoryFilters button[aria-pressed="true"] {
+  border-color: #b99860;
+  color: #f0dab4;
+  background: #57452a77;
+}
+.categoryFilters button:focus-visible {
+  outline: 2px solid #e2c28a;
+  outline-offset: 2px;
+}
+.inventoryGroup {
+  margin-top: 18px;
+}
+.inventoryGroupHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 11px;
+  padding-bottom: 7px;
+  border-bottom: 1px solid #a7854a30;
+}
+.inventoryGroupHeading h3 {
+  margin: 0;
+  color: #e5c594;
+  font: 19px Georgia, serif;
+}
+.inventoryGroupHeading span {
+  color: #b8a98f;
+  font-size: 12px;
 }
 .itemVisual {
   max-width: 300px;
@@ -490,6 +673,17 @@
   }
 }
 @media (max-width: 650px) {
+  .characterTabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .characterTabs button {
+    flex: 0 0 auto;
+  }
+  .sheetDetailGrid {
+    grid-template-columns: 1fr;
+  }
   .sceneArtwork {
     margin-bottom: 12px;
   }

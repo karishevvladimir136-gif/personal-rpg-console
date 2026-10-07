@@ -132,9 +132,11 @@ export function AtlasMap({
   const acceptedArt = mapVisual.image;
   const previewArt = reviewOnly && reviewPreset?.artwork === "placeholder";
   const artworkVisible = showArtwork && (acceptedArt || previewArt);
-  const editorRow = byId.get(editLocationId);
+  // A provisional pin has no saved revision. Editing uses the actual layout row.
+  const editorRow = placements.find((row) => row.location_id === editLocationId);
   const parentLevel = editLevel === "region" ? "world" : "region";
-  const parentOptions = projection.placements.filter((row) => row.level === parentLevel);
+  const parentOptions = projection.placements.filter((row) =>
+    row.level === parentLevel && row.revision > 0);
   const editReady = editLevel === "world" || Boolean(editParentId && parentOptions.some((row) => row.location_id === editParentId));
   const editorCanUseViewport = placing && editReady && level === editLevel &&
     (editLevel === "world" || view.anchorId === editParentId);
@@ -344,6 +346,9 @@ export function AtlasMap({
                   {selected.id === destinationId && <Badge>{t("Destination selected")}</Badge>}
                 </div>
                 <p className={styles.description}>{selected.description || w("No description recorded yet.", "Описание пока не записано.")}</p>
+                {byId.get(selected.id)?.revision === 0 && <p className={styles.secondaryNote}>
+                  {w("This place is shown approximately.", "Это место показано приблизительно.")}
+                </p>}
                 <Button primary disabled={selected.id === currentId} onClick={() => setDestinationId(selected.id)}>
                   {t(selected.id === currentId ? "Current location" : destinationId === selected.id ? "Destination selected" : "Set destination")}
                 </Button>
@@ -376,7 +381,7 @@ export function AtlasMap({
         <AtlasDisclosure title={w("Map artwork", "Изображение карты")}>
           <p className={styles.secondaryNote}>{w("Cartographic art is optional. Pins and names come from current public records, never from pixels.", "Картографический фон необязателен. Метки и названия берутся из открытых записей, а не из пикселей.")}</p>
           {(acceptedArt || previewArt) && <Button onClick={() => setShowArtwork((value) => !value)}>{showArtwork ? w("Hide artwork", "Скрыть фон") : w("Show artwork", "Показать фон")}</Button>}
-          <GenerateMap snapshot={snapshot} placements={projection.placements} level={level} anchorId={view.anchorId} reviewOnly={reviewOnly} />
+          <GenerateMap snapshot={snapshot} placements={projection.placements} level={level} anchorId={view.anchorId} onPlacementsReady={setPlacements} reviewOnly={reviewOnly} />
         </AtlasDisclosure>
         <AtlasDisclosure title={w(`Unplaced known locations (${projection.unplaced.length})`, `Известные места без меток (${projection.unplaced.length})`)} open={reviewPreset?.panel === "unplaced-open"}>
           <p className={styles.secondaryNote}>{w("These places are known in the story. Their position and hierarchy have not been recorded.", "Эти места известны по истории. Их положение и иерархия ещё не записаны.")}</p>

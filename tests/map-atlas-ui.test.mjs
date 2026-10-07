@@ -89,9 +89,10 @@ test("old timeline and foreign placement metadata cannot reveal absent Locations
     location_id: f.unplaced.id,
   };
   const projection = projectAtlas(current, [...f.placements, foreign]);
-  assert.deepEqual(projection.placements.map((row) => row.location_id), [f.distantWorld.id, f.distantRegion.id, f.otherLocal.id]);
-  assert.deepEqual(projection.unplaced.map((row) => row.id), [f.region.id, f.local.id, f.unplaced.id]);
-  assert.deepEqual(projection.currentPath, { worldId: null, regionId: null, localId: null });
+  assert.deepEqual(projection.placements.map((row) => row.location_id), [f.distantWorld.id, f.distantRegion.id, f.otherLocal.id, f.local.id]);
+  assert.equal(projection.placements.at(-1).revision, 0);
+  assert.deepEqual(projection.unplaced.map((row) => row.id), [f.region.id, f.unplaced.id]);
+  assert.deepEqual(projection.currentPath, { worldId: f.local.id, regionId: null, localId: null });
   assert.equal(JSON.stringify(visibleAtlasPlacements(current, [...f.placements, foreign])).includes(f.world.id), false);
 });
 
@@ -104,18 +105,22 @@ test("placements with invalid or incomplete coordinates never become pins and re
     { ...f.placements[4], x: null, y: null },
   ];
   const projection = projectAtlas(f.snapshot, invalid);
-  assert.deepEqual(atlasLevelView(projection, "world", null, null).pins, []);
-  assert.deepEqual(projection.unplaced.map((row) => row.id), f.snapshot.locations.map((row) => row.id));
+  assert.deepEqual(atlasLevelView(projection, "world", null, null).pins.map((row) => row.location_id), [f.local.id]);
+  assert.deepEqual(projection.unplaced.map((row) => row.id), f.snapshot.locations.filter((row) => row.id !== f.local.id).map((row) => row.id));
   assert.equal(f.snapshot.publicState.current_location_id, f.local.id);
 });
 
-test("no placement metadata yields a useful unplaced known list without inferred hierarchy", () => {
+test("no placement metadata shows the current known Location provisionally without saving inferred hierarchy", () => {
   const f = atlasFixture();
+  const before = JSON.stringify(f.snapshot);
   const projection = projectAtlas(f.snapshot, []);
-  assert.equal(projection.placements.length, 0);
-  assert.deepEqual(projection.unplaced.map((row) => row.id), f.snapshot.locations.map((row) => row.id));
-  for (const level of ["world", "region", "local"])
+  assert.deepEqual(projection.placements.map((row) => ({ id: row.location_id, level: row.level, revision: row.revision, x: row.x, y: row.y })),
+    [{ id: f.local.id, level: "world", revision: 0, x: 0.5, y: 0.5 }]);
+  assert.deepEqual(projection.unplaced.map((row) => row.id), f.snapshot.locations.filter((row) => row.id !== f.local.id).map((row) => row.id));
+  assert.deepEqual(atlasLevelView(projection, "world", null, null).pins.map((row) => row.location_id), [f.local.id]);
+  for (const level of ["region", "local"])
     assert.equal(atlasLevelView(projection, level, null, null).pins.length, 0);
+  assert.equal(JSON.stringify(f.snapshot), before);
 });
 
 test("edge coordinates remain stored at 0 or 1 while the painted 44px pin stays inside the viewport", () => {
@@ -136,4 +141,12 @@ test("edge coordinates remain stored at 0 or 1 while the painted 44px pin stays 
   const css = readFileSync(new URL("../src/components/atlas-map.module.css", import.meta.url), "utf8");
   assert.match(css, /\.pin\s*\{[^}]*min-width:\s*44px;[^}]*min-height:\s*44px;/s);
   assert.equal(JSON.stringify(edge), before);
+});
+
+test("map image preparation updates the atlas with the persisted placement basis", () => {
+  const atlas = readFileSync(new URL("../src/components/atlas-map.tsx", import.meta.url), "utf8");
+  const generator = readFileSync(new URL("../src/components/visual-frame/generate-map.tsx", import.meta.url), "utf8");
+  assert.match(atlas, /onPlacementsReady=\{setPlacements\}/);
+  assert.match(generator, /onPlacementsReady\?\.\(layout\.placements\)/);
+  assert.match(generator, /ensureCurrentMapPlacement\(/);
 });

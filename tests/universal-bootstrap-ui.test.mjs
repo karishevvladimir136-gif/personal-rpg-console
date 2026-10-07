@@ -18,7 +18,7 @@ import {
   creationQuestionIsNumeric,
   creationReviewForCommit,
 } from "../src/lib/adventures/bootstrap-review.ts";
-import { parseCreationReview } from "../src/lib/adventures/bootstrap-validation.ts";
+import { initialCreationReview, parseCreationReview } from "../src/lib/adventures/bootstrap-validation.ts";
 import { fixture, id } from "./adventure-v1-fixtures.mjs";
 const root = fileURLToPath(new URL("../src/", import.meta.url)),
   require = createRequire(import.meta.url),
@@ -60,6 +60,122 @@ const noCall = () => assert.fail("No network/model/write at render"),
   render = (Component, props) =>
     renderToStaticMarkup(createElement(Component, props));
 const bootstrapText = ui("components/bootstrap/review.tsx").bootstrapText;
+test("v2 character proposal prepopulates the review and keeps corrections optional", () => {
+  const input = { name: "Mara", description: "A pathfinder from Greenmarch" };
+  const proposal = {
+    schemaVersion: 2,
+    sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Wilderness guide", background: "Knows the wooded roads.", level: null, tier: null,
+      attributes: { strength: 10, dexterity: 12, constitution: 10, intelligence: 11, wisdom: 13, charisma: 10 },
+      skills: ["Tracking"], abilities: ["Reading weather"], limitations: ["No formal magic"], spells: [] },
+    mechanics: { hp: 10, attack: 1, defense: 11, skill: 2, weaponName: "Simple sword", weaponDamage: 3 },
+    capabilities: [{ text: "Tracking", quote: "A skilled tracker" }],
+    limitations: [],
+    possessions: [{ name: "Simple sword", description: "A plain blade", quantity: 1, quote: "simple sword" }],
+    resources: [],
+    questions: [],
+  };
+  const review = initialCreationReview(input, proposal);
+  assert.deepEqual(review.sheet, proposal.sheet);
+  assert.deepEqual(review.mechanics, proposal.mechanics);
+  const html = render(ui("components/bootstrap/review.tsx").CharacterReview, {
+    language: "en", value: review, onChange: noCall, questions: [],
+  });
+  for (const phrase of ["Proposed character sheet", "Wilderness guide", "Tracking", "HP 10", "Simple sword", "Correct character sheet"])
+    assert.ok(html.includes(phrase), phrase);
+  assert.match(html, /<details><summary>Correct character sheet<\/summary>/);
+  assert.match(html, /type="checkbox"[^>]*checked=""/);
+  assert.match(html, /Approve a combat profile/);
+  assert.match(html, /Attack modifier/);
+});
+
+test("narrative v2 review offers a style correction without silently adding combat values", () => {
+  const review = {
+    name: "Mara", description: "A guide", capabilities: [], limitations: [],
+    possessions: [], resources: [], answers: [],
+    sheet: { schemaVersion: 1, mode: "narrative", role: "Guide", background: "Knows the roads.", level: null, tier: null, attributes: null, skills: ["Tracking"], abilities: [], limitations: [], spells: [] },
+  };
+  const html = render(ui("components/bootstrap/review.tsx").CharacterReview, {
+    language: "en", value: review, onChange: noCall, questions: [],
+  });
+  assert.match(html, /Guide|Tracking/);
+  assert.match(html, /Character sheet style/);
+  assert.match(html, /option value="structured_rpg"/);
+  assert.doesNotMatch(html, /type="checkbox"|Approve a combat profile|Attack modifier/);
+});
+
+test("v2 mode correction requires separate combat approval and clears it on a return to narrative", () => {
+  const m = ui("components/bootstrap/review.tsx");
+  const review = {
+    name: "Mara", description: "A guide", capabilities: [], limitations: [],
+    possessions: [], resources: [], answers: [],
+    sheet: { schemaVersion: 1, mode: "narrative", role: "Guide", background: "Knows the roads.", level: null, tier: null,
+      attributes: null, skills: ["Tracking"], abilities: [], limitations: [], spells: [] },
+  };
+  const proposal = { schemaVersion: 2, capabilities: [], limitations: [], possessions: [], resources: [], questions: [], sheet: review.sheet, mechanics: null };
+  const structured = m.changeCharacterSheetMode(review, "structured_rpg");
+  assert.deepEqual(structured.sheet.attributes, {
+    strength: 10, dexterity: 10, constitution: 10,
+    intelligence: 10, wisdom: 10, charisma: 10,
+  });
+  assert.equal(structured.mechanics, undefined);
+  assert.throws(() => parseCreationReview(structured, proposal));
+  const awaiting = render(m.CharacterReview, {
+    language: "en", value: structured, onChange: noCall, questions: [],
+  });
+  assert.match(awaiting, /review and approve the combat profile/);
+  assert.match(awaiting, /type="checkbox"/);
+  assert.doesNotMatch(awaiting, /type="checkbox"[^>]*checked=""/);
+  const approved = m.setCreationCombatApproval(structured, true);
+  assert.deepEqual(approved.mechanics, {
+    hp: 10, attack: 0, defense: 10, skill: 0,
+    weaponName: null, weaponDamage: null,
+  });
+  assert.deepEqual(parseCreationReview(approved, proposal), approved);
+  const narrative = m.changeCharacterSheetMode(approved, "narrative");
+  assert.equal(narrative.mechanics, undefined);
+  assert.equal(narrative.sheet.attributes, null);
+  assert.deepEqual(parseCreationReview(narrative, proposal), narrative);
+});
+
+test("Create remains disabled after a narrative-to-structured switch until combat approval", () => {
+  const f = fixture(), m = ui("components/bootstrap/review.tsx");
+  const review = {
+    name: "Mara", description: "A guide", capabilities: [], limitations: [],
+    possessions: [], resources: [], answers: [],
+    sheet: { schemaVersion: 1, mode: "narrative", role: "Guide", background: "Knows the roads.", level: null, tier: null,
+      attributes: null, skills: [], abilities: [], limitations: [], spells: [] },
+  };
+  const proposal = { schemaVersion: 2, capabilities: [], limitations: [], possessions: [], resources: [], questions: [], sheet: review.sheet, mechanics: null };
+  const state = { draft: { kind: "creation", draftId: id(183), input: { worldId: f.world.id }, proposal },
+    pending: null, busy: false, ready: true, error: false,
+    execute: noCall, resetProposal: noCall, setReview: noCall };
+  const props = { language: "en", onDirty: noCall, onCreated: noCall, onCancel: noCall,
+    initialWorlds: f.worlds, transport: { worlds: noCall }, persistPending: false };
+  const structured = m.changeCharacterSheetMode(review, "structured_rpg");
+  const blocked = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review: structured }).NewCampaignForm, props);
+  assert.match(blocked, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+  const approved = m.setCreationCombatApproval(structured, true);
+  const ready = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review: approved }).NewCampaignForm, props);
+  assert.doesNotMatch(ready, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+});
+
+for (const language of ["en", "ru"])
+  test(`${language} v2 review visibly distinguishes authoritative capabilities from sheet suggestions`, () => {
+    const review = {
+      name: "Mara", description: "A guide", capabilities: ["Can pick locks"], limitations: ["Cannot swim"],
+      possessions: [], resources: [], answers: [],
+      sheet: { schemaVersion: 1, mode: "narrative", role: "Guide", background: "Knows the roads.", level: null, tier: null,
+        attributes: null, skills: ["Tracking"], abilities: ["Careful observation"], limitations: ["Needs daylight"], spells: [] },
+    };
+    const html = render(ui("components/bootstrap/review.tsx").CharacterReview, {
+      language, value: review, onChange: noCall, questions: [],
+    });
+    const heading = language === "ru" ? "Открытые способности для записи" : "Public capabilities to record";
+    assert.ok(html.indexOf(heading) > -1 && html.indexOf(heading) < html.indexOf("<details"));
+    for (const text of ["Can pick locks", "Cannot swim", "Careful observation", "Needs daylight"])
+      assert.ok(html.includes(text), text);
+    assert.match(html, /do not add new gameplay abilities|не добавляют новых игровых способностей/);
+  });
 for (const language of ["en", "ru"])
   test(`${language} ordinary Campaign path leads with Name / Who are you, no required mechanics, preserves Advanced starter`, () => {
     const c = bootstrapText(language),
@@ -279,6 +395,32 @@ for (const language of ["en", "ru"])
     ])
       assert.ok(opening.includes(label));
   });
+
+test("complete opening leads with playable preview and keeps optional corrections collapsed", () => {
+  const review = {
+    location: { name: "Copper Lantern", description: "A public inn by the old road." },
+    situation: "A traveler waits by the hearth.",
+    narration: "Rain taps the shutters. The traveler looks up as you enter.",
+    actors: [{ name: "Orin", description: "A tired mapmaker.", capabilities: ["knows the road"], limitations: ["wary of strangers"] }],
+    answers: [],
+    publicOpeningConfirmed: false,
+  };
+  const before = structuredClone(review);
+  const html = render(ui("components/bootstrap/review.tsx").OpeningReviewFields, {
+    language: "en", value: review, onChange: noCall, questions: [],
+  });
+  assert.ok(html.indexOf("Proposed opening") < html.indexOf("Correct opening details"));
+  for (const value of ["Copper Lantern", "A traveler waits", "Rain taps", "Orin", "knows the road"])
+    assert.ok(html.includes(value), value);
+  assert.match(html, /<details><summary>Correct opening details<\/summary>/);
+  assert.doesNotMatch(html, /<details open=""/);
+  assert.deepEqual(review, before);
+  const missing = render(ui("components/bootstrap/review.tsx").OpeningReviewFields, {
+    language: "en", value: { ...review, narration: null }, onChange: noCall, questions: [],
+  });
+  assert.match(missing, /This opening still needs public details/);
+  assert.match(missing, /<details open=""/);
+});
 test("Pending command recovery is exact; invalid cache never grants state authority or a replacement attempt", () => {
   const f = fixture(),
     command = {

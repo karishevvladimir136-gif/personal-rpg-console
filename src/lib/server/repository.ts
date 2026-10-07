@@ -27,7 +27,7 @@ const columns = {
   settings: "campaign_id,revision,updated_at,values",
   settings_revisions: "id,campaign_id,revision,values,created_at",
   documents: `${base},title,status,current_version_id,body`,
-  entities: `${base},kind,name,details,hp,max_hp,stats,resources,conditions,equipment_slots`,
+  entities: `${base},kind,name,details,hp,max_hp,stats,resources,conditions,equipment_slots,character_sheet`,
   storages: `${base},name,kind,entity_id`,
   items: `${base},name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot`,
   sessions: `${base},title,status,recap`,

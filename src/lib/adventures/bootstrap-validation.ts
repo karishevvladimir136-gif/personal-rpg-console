@@ -4,6 +4,8 @@ import type {
   CreationInput,
   CreationProposal,
   CreationReview,
+  CreationMechanics,
+  CharacterSheetV1,
   OpeningActor,
   OpeningProposal,
   OpeningReview,
@@ -28,6 +30,9 @@ export const bootstrapLimits = {
   resources: 8,
   actors: 4,
   questions: 8,
+  sheetSkills: 12,
+  sheetAbilities: 12,
+  sheetLimitations: 12,
 } as const;
 const blankText = (v: unknown, max = 2000) => {
   ensure(typeof v === "string" && v.length <= max && !v.includes("\0"));
@@ -63,6 +68,60 @@ const questions = (v: unknown): BootstrapQuestion[] =>
     },
     bootstrapLimits.questions,
   );
+/** Sheet entries are public descriptions. They do not grant a spell, check
+ * modifier, class feature or any other gameplay permission. */
+export function parseCharacterSheet(value: unknown): CharacterSheetV1 {
+  const v = object(value, [
+    "schemaVersion", "mode", "role", "background", "level", "tier",
+    "attributes", "skills", "abilities", "limitations", "spells",
+  ]);
+  ensure(v.schemaVersion === 1);
+  const mode = literal(v.mode, ["structured_rpg", "narrative"]);
+  const attributes = v.attributes === null ? null : (() => {
+    const a = object(v.attributes, [
+      "strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma",
+    ]);
+    return {
+      strength: integer(a.strength, 1, 20),
+      dexterity: integer(a.dexterity, 1, 20),
+      constitution: integer(a.constitution, 1, 20),
+      intelligence: integer(a.intelligence, 1, 20),
+      wisdom: integer(a.wisdom, 1, 20),
+      charisma: integer(a.charisma, 1, 20),
+    };
+  })();
+  ensure((mode === "structured_rpg") === (attributes !== null));
+  // Universal World Logic bootstrap has no progression or spell ruleset.
+  ensure(v.level === null && v.tier === null);
+  const spells = list(v.spells, descriptiveCapability, 0);
+  return {
+    schemaVersion: 1,
+    mode,
+    role: nullable(v.role, (s) => text(s, 120)),
+    background: blankText(v.background, 2000),
+    level: null,
+    tier: null,
+    attributes,
+    skills: unique(list(v.skills, descriptiveCapability, bootstrapLimits.sheetSkills)),
+    abilities: unique(list(v.abilities, descriptiveCapability, bootstrapLimits.sheetAbilities)),
+    limitations: unique(list(v.limitations, descriptiveCapability, bootstrapLimits.sheetLimitations)),
+    spells,
+  };
+}
+function parseCreationMechanics(value: unknown): CreationMechanics {
+  const m = object(value, ["hp", "attack", "defense", "skill", "weaponName", "weaponDamage"]);
+  const weaponName = nullable(m.weaponName, (name) => text(name, 200));
+  const weaponDamage = nullable(m.weaponDamage, (damage) => integer(damage, 1, 20));
+  ensure((weaponName === null) === (weaponDamage === null));
+  return {
+    hp: integer(m.hp, 1, 10000),
+    attack: integer(m.attack, -20, 20),
+    defense: integer(m.defense, 1, 40),
+    skill: integer(m.skill, -20, 20),
+    weaponName,
+    weaponDamage,
+  };
+}
 export function parseCreationInput(value: unknown): CreationInput {
   const v = object(value, [
     "requestId",
@@ -87,6 +146,9 @@ export function parseCreationProposal(
   value: unknown,
   input?: CreationInput,
 ): CreationProposal {
+  const schemaVersion = value && typeof value === "object" && !Array.isArray(value)
+    ? (value as Record<string, unknown>).schemaVersion : null;
+  ensure(schemaVersion === 1 || schemaVersion === 2);
   const v = object(value, [
     "schemaVersion",
     "capabilities",
@@ -94,13 +156,13 @@ export function parseCreationProposal(
     "possessions",
     "resources",
     "questions",
+    ...(schemaVersion === 2 ? ["sheet", "mechanics"] : []),
   ]);
   const fact = (raw: unknown) => {
     const f = object(raw, ["text", "quote"]);
     return { text: descriptiveCapability(f.text), quote: text(f.quote, 1000) };
   };
-  const proposal: CreationProposal = {
-    schemaVersion: literal(v.schemaVersion, [1]),
+  const base = {
     capabilities: unique(
       list(v.capabilities, fact, bootstrapLimits.facts),
       (f) => f.text,
@@ -145,6 +207,16 @@ export function parseCreationProposal(
     ),
     questions: questions(v.questions),
   };
+  const proposal: CreationProposal = schemaVersion === 2
+    ? { ...base, schemaVersion: 2, sheet: parseCharacterSheet(v.sheet), mechanics: v.mechanics === null ? null : parseCreationMechanics(v.mechanics) }
+    : { ...base, schemaVersion: 1 };
+  if (proposal.schemaVersion === 2) {
+    // A new sheet may suggest ordinary presentation labels from the public
+    // premise. They do not become World Actor capabilities or check bonuses.
+    ensure((proposal.sheet.mode === "structured_rpg") === (proposal.mechanics !== null));
+    if (proposal.mechanics?.weaponName !== null && proposal.mechanics !== null)
+      ensure(proposal.possessions.some((item) => item.name === proposal.mechanics!.weaponName && item.quantity !== null));
+  }
   if (input) {
     const grounded = (quote: string, label: string) =>
       ensure(
@@ -199,6 +271,10 @@ export function initialCreationReview(
       amount: resource.amount,
     })),
     answers: p.questions.map(() => null),
+    ...(p.schemaVersion === 2 ? {
+      sheet: structuredClone(p.sheet),
+      ...(p.mechanics === null ? {} : { mechanics: structuredClone(p.mechanics) }),
+    } : {}),
   };
 }
 export function parseCreationReview(
@@ -215,7 +291,8 @@ export function parseCreationReview(
     "answers",
   ];
   const v = object(value, value && typeof value === "object" &&
-    Object.hasOwn(value, "mechanics") ? [...keys, "mechanics"] : keys);
+    Object.hasOwn(value, "mechanics") ? [...keys, "mechanics", ...(Object.hasOwn(value, "sheet") ? ["sheet"] : [])]
+      : value && typeof value === "object" && Object.hasOwn(value, "sheet") ? [...keys, "sheet"] : keys);
   const result: CreationReview = {
     name: text(v.name, 200),
     description: text(v.description, 8000),
@@ -254,22 +331,13 @@ export function parseCreationReview(
       (r) => r.key,
     ),
     answers: answers(v.answers),
-    ...(Object.hasOwn(v, "mechanics") ? { mechanics: (() => {
-      const m = object(v.mechanics, ["hp", "attack", "defense", "skill", "weaponName", "weaponDamage"]);
-      const weaponName = nullable(m.weaponName, (name) => text(name, 200));
-      const weaponDamage = nullable(m.weaponDamage, (damage) => integer(damage, 1, 20));
-      ensure((weaponName === null) === (weaponDamage === null));
-      return {
-        hp: integer(m.hp, 1, 10000),
-        attack: integer(m.attack, -20, 20),
-        defense: integer(m.defense, 1, 40),
-        skill: integer(m.skill, -20, 20),
-        weaponName,
-        weaponDamage,
-      };
-    })() } : {}),
+    ...(Object.hasOwn(v, "sheet") ? { sheet: parseCharacterSheet(v.sheet) } : {}),
+    ...(Object.hasOwn(v, "mechanics") ? { mechanics: parseCreationMechanics(v.mechanics) } : {}),
   };
   if (proposal) {
+    ensure(proposal.schemaVersion === 2 ? result.sheet !== undefined : result.sheet === undefined);
+    if (result.sheet)
+      ensure((result.sheet.mode === "structured_rpg") === (result.mechanics !== undefined));
     resolved(proposal.questions, result.answers);
     ensure(
       result.possessions.every((p) => p.quantity !== null) &&

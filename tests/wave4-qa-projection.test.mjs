@@ -40,6 +40,71 @@ test("QA projection: owner and player DTOs omit hidden Actor stock identities, n
   assert.equal(serialized.includes("PRIVATE_STOCK"), false);
 });
 
+function approvedCreationEvent(context, heroId) {
+  return {
+    schemaVersion: 1,
+    id: id("bootstrap-event"),
+    campaignId: context.foundation.campaignId,
+    originTimelineId: context.foundation.timeline.timelineId,
+    operationId: id("bootstrap-operation"),
+    sequence: 1,
+    worldMinutes: 0,
+    kind: "campaign.bootstrap.created",
+    visibility: "private",
+    text: "Owner-reviewed protagonist creation.",
+    actorIds: [],
+    threadIds: [],
+    evidence: [],
+    payload: {
+      schemaVersion: 1,
+      classification: "owner_authored_protagonist",
+      heroId,
+      review: {
+        capabilities: ["Reads tracks on the open road"],
+        limitations: ["No supernatural power"],
+      },
+    },
+  };
+}
+
+test("Character projection shows only current owner-approved creation facts, never private World Actor capabilities", () => {
+  const { context } = commerceFixture();
+  const player = context.snapshot.entities.find((row) => row.kind === "player");
+  const hero = context.world.actors.find((row) => row.control === "player" && row.entityId === player.id);
+  const other = context.world.actors.find((row) => row.control === "autonomous");
+  hero.capabilities = ["Reads tracks on the open road", "PRIVATE_HERO_CAPABILITY"];
+  hero.limitations = ["No supernatural power", "PRIVATE_HERO_LIMITATION"];
+  other.capabilities = ["PRIVATE_OTHER_ACTOR_CAPABILITY"];
+  other.limitations = ["PRIVATE_OTHER_ACTOR_LIMITATION"];
+  context.events.push(approvedCreationEvent(context, player.id));
+  const view = foundationLoopProjection(context);
+  assert.deepEqual(view.playerCharacter, {
+    entityId: player.id,
+    capabilities: ["Reads tracks on the open road"],
+    limitations: ["No supernatural power"],
+  });
+  assert.doesNotMatch(JSON.stringify(view), /PRIVATE_(HERO|OTHER_ACTOR)_/);
+  hero.capabilities = ["PRIVATE_HERO_CAPABILITY"];
+  assert.deepEqual(foundationLoopProjection(context).playerCharacter.capabilities, []);
+  hero.publicName = null;
+  assert.equal(foundationLoopProjection(context).playerCharacter, null);
+});
+
+test("Character creation-fact projection rejects absent, malformed and wrong-scope approvals", () => {
+  const { context } = commerceFixture();
+  const player = context.snapshot.entities.find((row) => row.kind === "player");
+  assert.equal(foundationLoopProjection(context).playerCharacter, null);
+  const creation = approvedCreationEvent(context, player.id);
+  context.events.push({ ...creation, payload: { ...creation.payload, heroId: id("other-player") } });
+  assert.equal(foundationLoopProjection(context).playerCharacter, null);
+  context.events[0] = { ...creation, campaignId: id("other-campaign") };
+  assert.throws(() => foundationLoopProjection(context), { code: "scope" });
+  context.events[0] = { ...creation, payload: { ...creation.payload, review: {
+    capabilities: ["PRIVATE_MALFORMED", 17], limitations: [],
+  } } };
+  assert.equal(foundationLoopProjection(context).playerCharacter, null);
+});
+
 test("QA projection: private stock, origin/provenance and private receipt payloads do not leak from ordinary owner view", () => {
   const { context } = commerceFixture();
   context.events.push({

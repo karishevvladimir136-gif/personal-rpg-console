@@ -2,6 +2,8 @@
 import { useState } from "react";
 import type {
   BootstrapQuestion,
+  CharacterSheetV1,
+  CreationMechanics,
   CreationReview,
   OpeningReview,
 } from "../../lib/adventures/bootstrap-contracts";
@@ -75,6 +77,9 @@ export function bootstrapText(language: "en" | "ru") {
         opening: "Начало приключения",
         openingHelp:
           "Сначала проверьте открытое начало. Приключение начнётся только после вашего утверждения.",
+        openingPreview: "Предложенное начало",
+        openingNeedsDetails: "Для начала нужны ещё открытые сведения. Заполните их ниже.",
+        openingCorrections: "Исправить детали начала",
         linesHelp: "По одному пункту в строке.",
       }
     : {
@@ -139,6 +144,9 @@ export function bootstrapText(language: "en" | "ru") {
         opening: "Adventure opening",
         openingHelp:
           "Review the public opening first. The Adventure starts only after your approval.",
+        openingPreview: "Proposed opening",
+        openingNeedsDetails: "This opening still needs public details. Complete them below.",
+        openingCorrections: "Correct opening details",
         linesHelp: "One entry per line.",
       };
 }
@@ -235,6 +243,83 @@ function InlineNumber({
 export function normalizeLines(values: string[]) {
   return values.map((v) => v.trim()).filter(Boolean);
 }
+const defaultStructuredAttributes: NonNullable<CharacterSheetV1["attributes"]> = {
+  strength: 10, dexterity: 10, constitution: 10,
+  intelligence: 10, wisdom: 10, charisma: 10,
+};
+const defaultCombatProfile: CreationMechanics = {
+  hp: 10, attack: 0, defense: 10, skill: 0,
+  weaponName: null, weaponDamage: null,
+};
+
+/** A mode correction never silently approves combat mechanics. */
+export function changeCharacterSheetMode(
+  review: CreationReview,
+  mode: CharacterSheetV1["mode"],
+): CreationReview {
+  if (!review.sheet || review.sheet.mode === mode) return review;
+  const { mechanics: _previousMechanics, ...withoutMechanics } = review;
+  void _previousMechanics;
+  return {
+    ...withoutMechanics,
+    sheet: {
+      ...review.sheet,
+      mode,
+      attributes: mode === "structured_rpg" ? { ...defaultStructuredAttributes } : null,
+    },
+  };
+}
+
+export function setCreationCombatApproval(
+  review: CreationReview,
+  approved: boolean,
+): CreationReview {
+  if (!review.sheet || review.sheet.mode !== "structured_rpg") return review;
+  if (approved) return { ...review, mechanics: review.mechanics ?? { ...defaultCombatProfile } };
+  const { mechanics: _previousMechanics, ...withoutMechanics } = review;
+  void _previousMechanics;
+  return withoutMechanics;
+}
+function MechanicsEditor({
+  mechanics,
+  possessions,
+  language,
+  onChange,
+}: {
+  mechanics: CreationMechanics;
+  possessions: CreationReview["possessions"];
+  language: "en" | "ru";
+  onChange: (next: CreationMechanics) => void;
+}) {
+  return (
+    <div className={styles.form}>
+      {(["hp", "attack", "defense", "skill"] as const).map((field) => (
+        <label className={styles.field} key={field}>
+          {field === "hp" ? "HP" : field === "attack" ? "Attack modifier" : field === "defense" ? "Defense" : "Skill modifier"}
+          <input
+            type="number"
+            min={field === "hp" || field === "defense" ? 1 : -20}
+            max={field === "hp" ? 10000 : field === "defense" ? 40 : 20}
+            value={mechanics[field]}
+            onChange={(event) => onChange({ ...mechanics, [field]: Number(event.target.value) })}
+          />
+        </label>
+      ))}
+      <label className={styles.field}>
+        {language === "ru" ? "Утверждённое оружие" : "Approved starting weapon"}
+        <select value={mechanics.weaponName ?? ""} onChange={(event) => onChange({ ...mechanics, weaponName: event.target.value || null, weaponDamage: event.target.value ? (mechanics.weaponDamage ?? 2) : null })}>
+          <option value="">{language === "ru" ? "Без оружия" : "Unarmed"}</option>
+          {possessions.filter((item) => item.name && item.quantity !== null).map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}
+        </select>
+      </label>
+      {mechanics.weaponName && <label className={styles.field}>
+        {language === "ru" ? "Урон оружия" : "Weapon damage"}
+        <input type="number" min={1} max={20} value={mechanics.weaponDamage ?? 2}
+          onChange={(event) => onChange({ ...mechanics, weaponDamage: Number(event.target.value) })} />
+      </label>}
+    </div>
+  );
+}
 export function Questions({
   questions,
   answers,
@@ -287,6 +372,9 @@ export function CharacterReview({
 }) {
   const c = bootstrapText(language);
   const missing = creationMissingDetails(value, questions);
+  const sheet = value.sheet;
+  const combatApprovalNeeded = sheet?.mode === "structured_rpg" && !value.mechanics;
+  const attributeFields = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"] as const;
   const possession = (
     index: number,
     change: Partial<CreationReview["possessions"][number]>,
@@ -315,9 +403,20 @@ export function CharacterReview({
         <h4>{value.name}</h4>
         <p>{value.description}</p>
         <div className={styles.characterFacts}>
-          <div><strong>{c.capabilities}</strong><ul>{value.capabilities.map((fact, i) => <li key={i}>{fact}</li>)}</ul></div>
-          <div><strong>{c.limitations}</strong><ul>{value.limitations.map((fact, i) => <li key={i}>{fact}</li>)}</ul></div>
+          <div>
+            <strong>{sheet ? (language === "ru" ? "Открытые способности для записи" : "Public capabilities to record") : c.capabilities}</strong>
+            {value.capabilities.length ? <ul>{value.capabilities.map((fact, i) => <li key={i}>{fact}</li>)}</ul>
+              : <p className={styles.muted}>{language === "ru" ? "Не указаны" : "None recorded"}</p>}
+          </div>
+          <div>
+            <strong>{sheet ? (language === "ru" ? "Открытые ограничения для записи" : "Public limitations to record") : c.limitations}</strong>
+            {value.limitations.length ? <ul>{value.limitations.map((fact, i) => <li key={i}>{fact}</li>)}</ul>
+              : <p className={styles.muted}>{language === "ru" ? "Не указаны" : "None recorded"}</p>}
+          </div>
         </div>
+        {sheet && <p className={styles.muted}>{language === "ru"
+          ? "Эти сведения станут открытыми фактами о герое. Предложения в листе персонажа ниже не добавляют новых игровых способностей."
+          : "These become public facts about your hero. The character sheet suggestions below do not add new gameplay abilities."}</p>}
         <details className={styles.reviewEdits}>
           <summary>{c.correctProtagonist}</summary>
           <div className={styles.form}>
@@ -328,6 +427,90 @@ export function CharacterReview({
           </div>
         </details>
       </div>
+      {sheet && (
+        <section className={styles.sheetReview} aria-label={language === "ru" ? "Лист персонажа" : "Character sheet proposal"}>
+          <div className={styles.sheetReviewHeader}>
+            <div>
+              <span className={styles.previewEyebrow}>{language === "ru" ? "Предложенный лист персонажа" : "Proposed character sheet"}</span>
+              <h3>{sheet.role || value.name}</h3>
+            </div>
+            <span className={styles.sheetMode}>{sheet.mode === "structured_rpg" ? (language === "ru" ? "Структурированный RPG" : "Structured RPG") : (language === "ru" ? "Повествовательный" : "Narrative")}</span>
+          </div>
+          {sheet.background && <p className={styles.sheetBackground}>{sheet.background}</p>}
+          {sheet.attributes && (
+            <div className={styles.sheetAttributes} aria-label={language === "ru" ? "Характеристики" : "Attributes"}>
+              {attributeFields.map((field) => (
+                <div key={field}><span>{field.slice(0, 3).toUpperCase()}</span><strong>{sheet.attributes![field]}</strong></div>
+              ))}
+            </div>
+          )}
+          <div className={styles.sheetFacts}>
+            <div><strong>{language === "ru" ? "Навыки" : "Skills"}</strong><ul>{sheet.skills.map((entry) => <li key={entry}>{entry}</li>)}</ul></div>
+            <div><strong>{language === "ru" ? "Способности" : "Abilities"}</strong><ul>{sheet.abilities.map((entry) => <li key={entry}>{entry}</li>)}</ul></div>
+            <div><strong>{c.limitations}</strong><ul>{sheet.limitations.map((entry) => <li key={entry}>{entry}</li>)}</ul></div>
+          </div>
+          <p className={styles.muted}>{language === "ru"
+            ? "Навыки и способности описывают персонажа. Они не добавляют автоматических боевых бонусов; ведущий определит, когда нужна проверка."
+            : "Skills and abilities describe your character. They do not add automatic combat bonuses; the DM decides when a check is needed."}</p>
+          {value.mechanics && (
+            <div className={styles.sheetMechanics}>
+              <strong>{language === "ru" ? "Боевые значения" : "Combat values"}</strong>
+              <span>HP {value.mechanics.hp} · Attack {value.mechanics.attack >= 0 ? "+" : ""}{value.mechanics.attack} · Defense {value.mechanics.defense} · Skill {value.mechanics.skill >= 0 ? "+" : ""}{value.mechanics.skill}</span>
+              {value.mechanics.weaponName && <span>{value.mechanics.weaponName} · {language === "ru" ? "урон" : "damage"} {value.mechanics.weaponDamage}</span>}
+            </div>
+          )}
+          <details className={styles.reviewEdits}>
+            <summary>{language === "ru" ? "Исправить лист персонажа" : "Correct character sheet"}</summary>
+            <div className={styles.form}>
+              <label className={styles.field}>
+                {language === "ru" ? "Стиль листа персонажа" : "Character sheet style"}
+                <select value={sheet.mode} onChange={(event) => onChange(changeCharacterSheetMode(value, event.target.value as CharacterSheetV1["mode"]))}>
+                  <option value="narrative">{language === "ru" ? "Повествовательный" : "Narrative"}</option>
+                  <option value="structured_rpg">{language === "ru" ? "Структурированный RPG" : "Structured RPG"}</option>
+                </select>
+              </label>
+              <p className={styles.muted}>{language === "ru"
+                ? "Смена стиля сбрасывает характеристики до 10 и отменяет утверждение боевых значений. Проверьте эти предварительные значения перед созданием кампании."
+                : "Changing style resets scores to 10 and clears combat approval. Review these starting values before creating the campaign."}</p>
+              <Field label={language === "ru" ? "Роль / архетип" : "Role / archetype"} value={sheet.role} max={120} onChange={(role) => onChange({ ...value, sheet: { ...sheet, role: role || null } })} />
+              <Field label={language === "ru" ? "Предыстория" : "Background"} value={sheet.background} max={2000} large onChange={(background) => onChange({ ...value, sheet: { ...sheet, background } })} />
+              {sheet.level !== null && <label className={styles.field}>
+                {language === "ru" ? "Уровень" : "Level"}
+                <input type="number" min={1} max={100} value={sheet.level} onChange={(event) => onChange({ ...value, sheet: { ...sheet, level: Number(event.target.value) } })} />
+              </label>}
+              {sheet.tier !== null && <Field label={language === "ru" ? "Ступень" : "Tier"} value={sheet.tier} max={120} onChange={(tier) => onChange({ ...value, sheet: { ...sheet, tier } })} />}
+              {sheet.attributes && (
+                <div className={styles.sheetAttributeEdits}>
+                  {attributeFields.map((field) => (
+                    <label className={styles.field} key={field}>
+                      {field[0].toUpperCase() + field.slice(1)}
+                      <input type="number" min={1} max={20} value={sheet.attributes![field]}
+                        onChange={(event) => onChange({ ...value, sheet: { ...sheet, attributes: { ...sheet.attributes!, [field]: Number(event.target.value) } } })} />
+                    </label>
+                  ))}
+                </div>
+              )}
+              <Lines label={language === "ru" ? "Навыки · по одному в строке" : "Skills · one per line"} value={sheet.skills} onChange={(skills) => onChange({ ...value, sheet: { ...sheet, skills: normalizeLines(skills) } })} />
+              <Lines label={language === "ru" ? "Способности · по одной в строке" : "Abilities · one per line"} value={sheet.abilities} onChange={(abilities) => onChange({ ...value, sheet: { ...sheet, abilities: normalizeLines(abilities) } })} />
+              <Lines label={c.limitations} value={sheet.limitations} onChange={(limitations) => onChange({ ...value, sheet: { ...sheet, limitations: normalizeLines(limitations) } })} />
+              {sheet.spells.length > 0 && <Lines label={language === "ru" ? "Заклинания · по одному в строке" : "Spells · one per line"} value={sheet.spells} onChange={(spells) => onChange({ ...value, sheet: { ...sheet, spells: normalizeLines(spells) } })} />}
+              {sheet.mode === "structured_rpg" && <>
+                <label className={styles.field}>
+                  <input type="checkbox" checked={!!value.mechanics}
+                    onChange={(event) => onChange(setCreationCombatApproval(value, event.target.checked))} />
+                  {language === "ru" ? "Утвердить боевой профиль" : "Approve a combat profile"}
+                </label>
+                {value.mechanics && <MechanicsEditor
+                  mechanics={value.mechanics}
+                  possessions={value.possessions}
+                  language={language}
+                  onChange={(mechanics) => onChange({ ...value, mechanics })}
+                />}
+              </>}
+            </div>
+          </details>
+        </section>
+      )}
       <h3>{c.startingGear}</h3>
       {!value.possessions.length && !value.resources.length && <p className={styles.muted}>{c.noEntries}</p>}
       {value.possessions.map((p, i) => (
@@ -376,7 +559,7 @@ export function CharacterReview({
           }}>{c.add} · {c.resources}</button>
         </div>
       </details>
-      <details className={styles.reviewEdits}>
+      {!sheet && <details className={styles.reviewEdits}>
         <summary>{language === "ru" ? "Механика боя (по желанию)" : "Combat readiness (optional)"}</summary>
         <p className={styles.muted}>{language === "ru"
           ? "Утвердите эти значения явно. Без них бой не начнётся автоматически. Только выбранный предмет будет записан как оружие."
@@ -393,28 +576,8 @@ export function CharacterReview({
           }} />
           {language === "ru" ? "Утвердить боевой профиль" : "Approve a combat profile"}
         </label>
-        {value.mechanics && <div className={styles.form}>
-          {(["hp", "attack", "defense", "skill"] as const).map((field) => (
-            <label className={styles.field} key={field}>
-              {field === "hp" ? "HP" : field === "attack" ? "Attack modifier" : field === "defense" ? "Defense" : "Skill modifier"}
-              <input type="number" min={field === "hp" || field === "defense" ? 1 : -20} max={field === "hp" ? 10000 : field === "defense" ? 40 : 20}
-                value={value.mechanics![field]} onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, [field]: Number(event.target.value) } })} />
-            </label>
-          ))}
-          <label className={styles.field}>
-            {language === "ru" ? "Утверждённое оружие" : "Approved starting weapon"}
-            <select value={value.mechanics.weaponName ?? ""} onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, weaponName: event.target.value || null, weaponDamage: event.target.value ? 2 : null } })}>
-              <option value="">{language === "ru" ? "Без оружия" : "Unarmed"}</option>
-              {value.possessions.filter((item) => item.name && item.quantity !== null).map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}
-            </select>
-          </label>
-          {value.mechanics.weaponName && <label className={styles.field}>
-            {language === "ru" ? "Урон оружия" : "Weapon damage"}
-            <input type="number" min={1} max={20} value={value.mechanics.weaponDamage ?? 2}
-              onChange={(event) => onChange({ ...value, mechanics: { ...value.mechanics!, weaponDamage: Number(event.target.value) } })} />
-          </label>}
-        </div>}
-      </details>
+        {value.mechanics && <MechanicsEditor mechanics={value.mechanics} possessions={value.possessions} language={language} onChange={(mechanics) => onChange({ ...value, mechanics })} />}
+      </details>}
       <Questions
         questions={questions}
         answers={value.answers}
@@ -423,8 +586,10 @@ export function CharacterReview({
         visible={(question) => !creationQuestionIsNumeric(question, value)}
         help={c.questionHelp}
       />
-      <p role="status" className={missing ? styles.notice : styles.muted}>
-        {missing ? c.missingDetails(missing) : c.reviewComplete}
+      <p role="status" className={missing || combatApprovalNeeded ? styles.notice : styles.muted}>
+        {missing ? c.missingDetails(missing) : combatApprovalNeeded
+          ? (language === "ru" ? "Откройте «Исправить лист персонажа», чтобы проверить и утвердить боевой профиль перед созданием кампании." : "Open Correct character sheet to review and approve the combat profile before creating the campaign.")
+          : c.reviewComplete}
       </p>
     </div>
   );
@@ -441,8 +606,39 @@ export function OpeningReviewFields({
   questions: BootstrapQuestion[];
 }) {
   const c = bootstrapText(language);
+  const needsDetails = !value.location.name?.trim() ||
+    !value.location.description?.trim() ||
+    !value.situation?.trim() ||
+    !value.narration?.trim() ||
+    value.actors.some((actor) => !actor.name.trim() || !actor.description.trim());
   return (
     <div className={styles.form}>
+      <section className={styles.openingPreview} aria-label={c.openingPreview}>
+        <span className={styles.previewEyebrow}>{c.openingPreview}</span>
+        {value.location.name && <h3>{value.location.name}</h3>}
+        {value.location.description && <p>{value.location.description}</p>}
+        {value.situation && <p className={styles.openingSituation}>{value.situation}</p>}
+        {value.narration && <p className={styles.openingNarration}>{value.narration}</p>}
+        {value.actors.length > 0 && (
+          <div className={styles.openingPeople}>
+            <h4>{c.actors}</h4>
+            <div className={styles.openingPeopleGrid}>
+              {value.actors.map((actor, index) => (
+                <article key={`${actor.name}-${index}`}>
+                  <strong>{actor.name}</strong>
+                  <p>{actor.description}</p>
+                  {actor.capabilities.length > 0 && <small>{c.capabilities}: {actor.capabilities.join(" · ")}</small>}
+                  {actor.limitations.length > 0 && <small>{c.limitations}: {actor.limitations.join(" · ")}</small>}
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+      {needsDetails && <p role="status" className={styles.notice}>{c.openingNeedsDetails}</p>}
+      <details className={styles.reviewEdits} open={!!needsDetails}>
+        <summary>{c.openingCorrections}</summary>
+        <div className={styles.form}>
       <Field
         label={c.location}
         value={value.location.name}
@@ -575,6 +771,8 @@ export function OpeningReviewFields({
           {c.add} · {c.actors}
         </button>
       </div>
+        </div>
+      </details>
       <Questions
         questions={questions}
         answers={value.answers}

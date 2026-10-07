@@ -105,7 +105,11 @@ for (const prefix of [9, 10, 11, 12]) {
       assert.deepEqual(restored.state.currencies, []);
       assert.deepEqual(restored.state.preparations, []);
       assert.deepEqual(restored.snapshot.items, before.items);
-      assert.deepEqual(restored.snapshot.entities, before.entities);
+      assert.ok(restored.snapshot.entities.every((entity) => entity.character_sheet === null));
+      assert.deepEqual(
+        restored.snapshot.entities,
+        before.entities.map((entity) => ({ ...entity, character_sheet: null })),
+      );
       assert.equal(
         restored.snapshot.publicState.summary,
         before.publicState.summary,

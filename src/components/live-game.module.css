@@ -1,0 +1,384 @@
+.liveGame {
+  min-width: 0;
+}
+
+.liveGame :global(.game-title) {
+  align-items: end;
+  gap: 18px;
+}
+
+.liveGame :global(.game-title > div) {
+  flex-wrap: wrap;
+}
+
+.storyNav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 15px;
+  font-size: 11px;
+}
+
+.liveGame :global(.scene-art > .art),
+.liveGame :global(.scene-art > .art figure),
+.liveGame :global(.scene-art > .art img) {
+  width: 100%;
+  height: 100%;
+}
+
+.liveGame :global(.scene-art > .art figure) {
+  margin: 0;
+}
+
+.liveGame :global(.scene-art > .art img) {
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  object-fit: cover;
+}
+
+.liveGame :global(.scene-art figcaption),
+.liveGame :global(.location-image figcaption) {
+  display: none;
+}
+
+.atmosphere {
+  display: grid;
+  place-items: center;
+  color: #d9bb80;
+  background:
+    radial-gradient(ellipse at 62% 28%, #7f72534a, transparent 42%),
+    radial-gradient(ellipse at 22% 68%, #35526779, transparent 45%),
+    linear-gradient(145deg, #263236 0%, #111a20 56%, #0a1016 100%);
+}
+
+.atmosphere svg {
+  opacity: 0.35;
+  filter: drop-shadow(0 0 24px #bba06e91);
+}
+
+.liveGame :global(.scene-art) {
+  overflow: hidden;
+}
+
+.liveGame :global(.scene-caption) {
+  text-shadow: 0 2px 10px #000;
+}
+
+.liveGame :global(.scene-caption p) {
+  max-width: 50ch;
+}
+
+.liveGame :global(.scene-kicker time) {
+  color: #879296;
+  font-size: 9px;
+}
+
+.liveGame :global(.narration) > .opening {
+  padding: 0 0 12px;
+}
+
+.liveGame :global(.narration) > .opening :global(.prose) {
+  max-width: 72ch;
+  color: #d6d8d4;
+  font: 18px/1.8 Georgia, serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.liveGame :global(.scene-actions) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 15px;
+}
+
+.storyFlow {
+  margin-top: 12px;
+}
+
+.liveGame :global(.gameplay-turns) {
+  display: grid;
+  gap: 12px;
+  max-height: max(360px, 65svh);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  scroll-padding: 20px;
+  margin-bottom: 12px;
+}
+
+.liveGame :global(.gameplay-turn) {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  border-color: #635238;
+  background: linear-gradient(145deg, #182024, #10171b 72%);
+}
+
+.liveGame :global(.gameplay-owner-input) {
+  display: flex;
+  align-items: start;
+  gap: 14px;
+  padding: 15px 18px;
+  border-bottom: 1px solid #ffffff12;
+  background: #ba985b09;
+}
+
+.liveGame :global(.gameplay-speaker-portrait) {
+  width: 43px;
+  height: 49px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #7d6543;
+  border-radius: 3px;
+  background: #34332e;
+  color: #e9cda0;
+  font: 24px Georgia, serif;
+}
+
+.liveGame :global(.gameplay-owner-words) {
+  min-width: 0;
+  flex: 1;
+}
+
+.liveGame :global(.gameplay-owner-words .prose) {
+  margin: 6px 0;
+  color: #b4bec0;
+  font: 15px/1.7 Georgia, serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.liveGame :global(.gameplay-owner-words time) {
+  color: #879296;
+  font-size: 9px;
+}
+
+.liveGame :global(.gameplay-narration) {
+  padding: 22px 27px 24px;
+}
+
+.liveGame :global(.gameplay-narration .prose) {
+  max-width: 72ch;
+  margin-top: 13px;
+  color: #e4dfd4;
+  font: 19px/1.8 Georgia, serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.liveGame :global(.gameplay-turn > .button-group:not(:empty)) {
+  padding: 0 18px 18px;
+}
+
+.liveGame :global(.gameplay-channel > form) {
+  position: sticky;
+  bottom: 12px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid #635238;
+  border-radius: 5px;
+  background: #11191bf5;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -8px 25px #0003;
+}
+
+.liveGame :global(.gameplay-channel > form > .field) {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+}
+
+.liveGame :global(.gameplay-channel > form > .field span) {
+  display: block;
+  margin-bottom: 6px;
+  color: #cdb88f;
+  font-size: 10px;
+}
+
+.liveGame :global(.gameplay-channel > form textarea) {
+  width: 100%;
+  min-height: 62px;
+  max-height: 180px;
+  font: 16px/1.45 Georgia, serif;
+  resize: vertical;
+}
+
+.liveGame :global(.gameplay-channel > form > .button-group) {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: end;
+  gap: 7px;
+  margin: 0;
+}
+
+.liveGame :global(.gameplay-channel > form > .button-group .button) {
+  min-height: 58px;
+}
+
+.liveGame :global(.gameplay-channel > form > p) {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 10px;
+}
+
+.liveGame :global(.gameplay-channel > form > p[role="status"]) {
+  opacity: 0.7;
+}
+
+.inputMode {
+  padding: 7px 0;
+  border: 0;
+}
+
+.inputMode :global(.tabs) {
+  margin: 0;
+  border: 0;
+}
+
+.inputMode :global(.tabs button) {
+  font-size: 11px;
+  padding: 8px 12px;
+}
+
+.heroAvatar {
+  display: grid;
+  place-items: center;
+  background: #34332e;
+  color: #e9cda0;
+  font: 36px Georgia, serif;
+}
+
+.heroDescription {
+  display: -webkit-box;
+  max-width: 22ch;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.singleResource {
+  color: #c4c9c4;
+  font-size: 11px;
+}
+
+.resources {
+  display: grid;
+  gap: 7px;
+  margin: 12px 0;
+}
+
+.resources > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ffffff0b;
+  font-size: 10px;
+}
+
+.resources dt {
+  color: #bfc6c6;
+}
+
+.resources dd {
+  margin: 0;
+  color: #e6ceaa;
+}
+
+.liveGame :global(.location-image) {
+  overflow: hidden;
+  display: block;
+}
+
+.liveGame :global(.location-image figure),
+.liveGame :global(.location-image img) {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.liveGame :global(.location-image img) {
+  object-fit: cover;
+  border: 0;
+}
+
+.liveGame :global(.small-quote) {
+  display: block;
+  margin-bottom: 11px;
+}
+
+.objectiveDetail {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  margin-bottom: 10px;
+  color: #aeb9b6;
+  font: 11px/1.55 Georgia, serif;
+}
+
+.personAvatar,
+.clueIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #34332e;
+  color: #e9cda0;
+  font: 17px Georgia, serif;
+}
+
+.clueIcon {
+  color: #bba678;
+  background: #1f2a2c;
+}
+
+.mediaControls {
+  scroll-margin-top: 90px;
+}
+
+@media (max-width: 760px) {
+  .storyNav {
+    gap: 10px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .liveGame :global(.game-title) {
+    flex-wrap: wrap;
+  }
+
+  .liveGame :global(.narration) > .opening :global(.prose) {
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .liveGame :global(.gameplay-turns) {
+    max-height: 54svh;
+  }
+
+  .liveGame :global(.gameplay-narration) {
+    padding: 16px 20px;
+  }
+
+  .liveGame :global(.gameplay-narration .prose) {
+    font-size: 18px;
+    line-height: 1.65;
+  }
+
+  .liveGame :global(.gameplay-channel > form) {
+    bottom: calc(68px + env(safe-area-inset-bottom));
+    margin-inline: -5px;
+    padding: 10px;
+  }
+
+  .liveGame :global(.gameplay-channel > form > .button-group .button) {
+    min-height: 57px;
+    padding-inline: 10px;
+  }
+}

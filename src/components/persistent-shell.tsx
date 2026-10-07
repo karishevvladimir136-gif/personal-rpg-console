@@ -106,11 +106,7 @@ export function PersistentShell({
           <br />
           {t("DIFFERENT WORLDS.")}
         </p>
-        <Link
-          href="/campaigns"
-          className="back-campaigns"
-          onClick={() => setMenu(false)}
-        >
+        <Link href="/campaigns" className="back-campaigns" onClick={() => setMenu(false)}>
           {t("Back to campaigns")}
         </Link>
         <nav aria-label={t("Campaign navigation")}>
@@ -131,6 +127,11 @@ export function PersistentShell({
           ))}
         </nav>
         <div className="sidebar-bottom">
+          <p>
+            {t("“Every road starts")}
+            <br />
+            {t("with a question.”")}
+          </p>
           <Link
             className="campaign-switch"
             href="/campaigns"

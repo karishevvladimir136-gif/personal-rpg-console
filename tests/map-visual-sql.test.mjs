@@ -2,10 +2,13 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { randomUUID } from "node:crypto";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
+import { ensureCurrentMapPlacement } from "../src/lib/map/auto-placement.ts";
+import { presentationAtlasPlacements } from "../src/lib/map/atlas-view.ts";
 import {
   buildMapVisualJob,
   mapVisualAssetMutation,
   mapVisualDocumentMutation,
+  mapVisualPendingIsCurrent,
   parseMapVisualJob,
   safeMapVisualAsset,
 } from "../src/lib/visual-frame/map-job.ts";
@@ -20,6 +23,107 @@ const placements = async (f, cid) => (await call(f,
 const sourceProof = async (f, cid) => call(f,
   "select public.rpg_frame_basis($1,$2,$3::jsonb) result",
   [f.owner, cid, JSON.stringify(await f.fence(cid))]);
+
+test("first-place map generation materializes only the provisional pin before SQL job preparation", async () => {
+  const f = await fixture(41);
+  try {
+    const w = await world(f);
+    const first = await snapshot(f, w.cid);
+    const provisional = presentationAtlasPlacements(first, []);
+    assert.equal(provisional.length, 1);
+    assert.equal(provisional[0].revision, 0);
+    const countBefore = await f.one("select count(*)::integer n from public.rpg_map_placements where campaign_id=$1", [w.cid]);
+    const pending = { current: null };
+    const ids = [];
+    const access = {
+      requestId: () => { const id = randomUUID(); ids.push(id); return id; },
+      load: (cid) => call(f,
+        "select public.rpg_map_layout($1,$2,'read','{}'::jsonb,$3::jsonb) result",
+        [f.owner, cid, JSON.stringify(first.timeline)]),
+      save: (cid, command) => call(f,
+        "select public.rpg_map_layout($1,$2,'save',$3::jsonb,$4::jsonb) result",
+        [f.owner, cid, JSON.stringify({
+          requestId: command.requestId, locationId: command.locationId,
+          expectedRevision: command.expectedRevision, level: command.level,
+          parentLocationId: command.parentLocationId, x: command.x, y: command.y,
+        }), JSON.stringify(command.timeline)]),
+    };
+    const layout = await ensureCurrentMapPlacement(first, provisional, pending, access);
+    assert.equal(layout.placements.length, 1);
+    assert.equal(layout.placements[0].revision, 1);
+    assert.deepEqual([layout.placements[0].x, layout.placements[0].y], [0.5, 0.5]);
+    assert.equal(ids.length, 1);
+    assert.equal(pending.current, null);
+    const countAfter = await f.one("select count(*)::integer n from public.rpg_map_placements where campaign_id=$1", [w.cid]);
+    assert.equal(countAfter.n, countBefore.n + 1);
+
+    // The paid pipeline still uses migration 41's unchanged SQL authority.
+    const job = buildMapVisualJob(first, layout.placements, "world", null,
+      [], model, parameters, await sourceProof(f, w.cid));
+    const queued = await call(f,
+      "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(first, job), requestId: randomUUID(),
+      })]);
+    assert.ok(queued.id);
+    assert.equal(mapVisualPendingIsCurrent(first, provisional, job), false);
+    assert.equal(mapVisualPendingIsCurrent(first, layout.placements, job), true);
+    const noMediaClaim = await f.one("select count(*)::integer n from rpg_private.media_reservations where campaign_id=$1", [w.cid]);
+    assert.equal(noMediaClaim.n, 0);
+  } finally { await f.db.close(); }
+});
+
+test("uncertain placement save keeps identity and retries from the actual map row", async () => {
+  const f = await fixture(41);
+  try {
+    const w = await world(f);
+    const first = await snapshot(f, w.cid);
+    const provisional = presentationAtlasPlacements(first, []);
+    const pending = { current: null };
+    const ids = [];
+    let calls = 0;
+    const access = {
+      requestId: () => { const id = randomUUID(); ids.push(id); return id; },
+      load: (cid) => call(f,
+        "select public.rpg_map_layout($1,$2,'read','{}'::jsonb,$3::jsonb) result",
+        [f.owner, cid, JSON.stringify(first.timeline)]),
+      save: async (cid, command) => {
+        calls++;
+        const result = await call(f,
+          "select public.rpg_map_layout($1,$2,'save',$3::jsonb,$4::jsonb) result",
+          [f.owner, cid, JSON.stringify({
+            requestId: command.requestId, locationId: command.locationId,
+            expectedRevision: command.expectedRevision, level: command.level,
+            parentLocationId: command.parentLocationId, x: command.x, y: command.y,
+          }), JSON.stringify(command.timeline)]);
+        if (calls === 1) throw new Error("response lost");
+        return result;
+      },
+    };
+    await assert.rejects(ensureCurrentMapPlacement(first, provisional, pending, access), /response lost/);
+    assert.equal(pending.current.requestId, ids[0]);
+    const recovered = await ensureCurrentMapPlacement(first, provisional, pending, access);
+    assert.equal(recovered.placements[0].revision, 1);
+    assert.equal(calls, 1);
+    assert.equal(ids.length, 1);
+    assert.equal(pending.current, null);
+
+    // An older unpositioned row is updated with its exact revision, not adopted
+    // as a fresh row with expectedRevision null.
+    const unplaced = await call(f,
+      "select public.rpg_map_layout($1,$2,'save',$3::jsonb,$4::jsonb) result",
+      [f.owner, w.cid, JSON.stringify({
+        requestId: randomUUID(), locationId: w.location,
+        expectedRevision: 1, level: "world", parentLocationId: null,
+        x: null, y: null,
+      }), JSON.stringify(first.timeline)]);
+    assert.equal(unplaced.placement.revision, 2);
+    const laidOut = await ensureCurrentMapPlacement(first,
+      presentationAtlasPlacements(first, [unplaced.placement]), pending, access);
+    assert.equal(laidOut.placements[0].revision, 3);
+    assert.deepEqual([laidOut.placements[0].x, laidOut.placements[0].y], [0.5, 0.5]);
+  } finally { await f.db.close(); }
+});
 
 test("map media schema 6 uses existing reservation, paid review, private draft and explicit owner acceptance", async () => {
   const f = await fixture(41);
@@ -163,6 +267,14 @@ test("an old playable save cannot authorize draft pixels from a later map basis"
   const f = await fixture(41);
   try {
     const w = await world(f);
+    await call(f, "select public.rpg_map_layout($1,$2,'save',$3::jsonb,$4::jsonb) result", [
+      f.owner, w.cid,
+      JSON.stringify({
+        requestId: randomUUID(), locationId: w.location,
+        expectedRevision: null, level: "world", parentLocationId: null,
+        x: 0.5, y: 0.5,
+      }), JSON.stringify(await f.fence(w.cid)),
+    ]);
     const before = await f.saves(w.cid, "create", await f.command(w.cid,
       { kind: "manual", name: "Before later map place" }));
     const later = (await f.mutation("location.save", w.cid, {

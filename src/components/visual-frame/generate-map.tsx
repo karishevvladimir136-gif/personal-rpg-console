@@ -3,6 +3,10 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { CampaignSnapshot, Mutation } from "@/lib/persistence/contracts";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
+import { loadMapLayout, saveMapPlacement } from "@/lib/map/placement-client";
+import { ensureCurrentMapPlacement } from "@/lib/map/auto-placement";
+import type { AutoPlacementAttempt } from "@/lib/map/auto-placement";
+import { sameTimeline } from "@/lib/saves/fence";
 import { useOptionalCampaignData } from "../persistence-context";
 import { useLanguage } from "../language-context";
 import { Button } from "../ui";
@@ -30,6 +34,7 @@ export function GenerateMap({
   placements,
   level,
   anchorId,
+  onPlacementsReady,
   reviewOnly = false,
   transport = defaultMediaFrameTransport,
 }: {
@@ -37,6 +42,7 @@ export function GenerateMap({
   placements: MapPlacement[];
   level: MapLevel;
   anchorId: string | null;
+  onPlacementsReady?: (placements: MapPlacement[]) => void;
   reviewOnly?: boolean;
   transport?: MediaFrameTransport;
 }) {
@@ -55,6 +61,7 @@ export function GenerateMap({
   const pending = useRef<MapVisualAttempt | null>(null);
   const decision = useRef<{ action: "media.accept" | "media.discard"; input: Mutation } | null>(null);
   const queuedDispatch = useRef<Mutation | null>(null);
+  const pendingPlacement = useRef<AutoPlacementAttempt | null>(null);
   const lock = useRef(false);
   const campaignId = snapshot?.campaign.id;
 
@@ -115,6 +122,28 @@ export function GenerateMap({
   function prepare() {
     void run(async () => {
       if (!currentSnapshot.timeline || !transport.prepareMap) throw new Error("unavailable");
+      // A provisional pin is presentation only. On this explicit owner action,
+      // persist it through the existing map-layout authority before preparing
+      // an image job; migration 41 accepts only real placement revisions.
+      if (level === "world" && anchorId === null) {
+        const fresh = await transport.load(currentSnapshot.campaign.id);
+        if (!sameTimeline(fresh.timeline, currentSnapshot.timeline) ||
+          fresh.publicState.revision !== currentSnapshot.publicState.revision ||
+          fresh.publicState.current_location_id !== currentSnapshot.publicState.current_location_id)
+          throw new Error("conflict");
+        const layout = await ensureCurrentMapPlacement(
+          currentSnapshot, placements, pendingPlacement,
+          { load: loadMapLayout, save: saveMapPlacement, requestId: () => crypto.randomUUID() },
+        );
+        if (layout) {
+          onPlacementsReady?.(layout.placements);
+          const placed = layout.placements.find((row) =>
+            row.location_id === currentSnapshot.publicState.current_location_id);
+          if (!placed || placed.level !== "world" || placed.parent_location_id !== null ||
+            placed.x === null || placed.y === null || placed.revision < 1)
+            throw new Error("conflict");
+        }
+      }
       const referenceIds = visualDocuments(currentSnapshot)
         .filter(({ value }) =>
           value.kind === "reference" && value.subject.kind === "style" &&

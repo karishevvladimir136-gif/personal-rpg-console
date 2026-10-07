@@ -208,9 +208,184 @@ function render(screen, state, props = {}) {
   const component =
     screen === "game"
       ? load("src/components/persistent-game.tsx").PersistentGame
+      : screen === "party"
+        ? load("src/components/persistent-records.tsx").PersistentParty
+        : screen === "inventory"
+          ? load("src/components/persistent-records.tsx").PersistentInventory
       : load("src/components/persistent-records.tsx").PersistentCharacter;
   return renderToStaticMarkup(createElement(component, props));
 }
+
+test("Party includes companions only while Journal correction access retains known NPCs", () => {
+  const state = sample();
+  const protagonist = state.data.entities[0];
+  state.data.entities.push(
+    { ...protagonist, id: id("known-innkeeper"), kind: "npc", name: "Mara the innkeeper" },
+    { ...protagonist, id: id("travel-companion"), kind: "companion", name: "Edren the traveler" },
+  );
+  const before = structuredClone(state);
+  const party = render("party", state);
+  assert.match(party, /Edren the traveler/);
+  assert.doesNotMatch(party, /Mara the innkeeper/);
+  const load = renderer(state);
+  const people = renderToStaticMarkup(createElement(
+    load("src/components/persistent-records.tsx").KnownPeopleCorrections,
+    { data: state.data },
+  ));
+  assert.match(people, /Mara the innkeeper/);
+  assert.doesNotMatch(people, /Edren the traveler/);
+  assert.deepEqual(state, before);
+});
+
+test("Inventory separates equipped and carried records with visible category filters", () => {
+  const state = sample();
+  const carried = {
+    ...state.data.items[0],
+    id: id("carried-supply"),
+    name: "Trail supplies",
+    category: "gear",
+    equipped_entity_id: null,
+    equipped_slot: null,
+  };
+  state.data.items.push(carried);
+  const before = structuredClone(state);
+  const html = render("inventory", state);
+  assert.match(html, /Equipped/);
+  assert.match(html, /class="storage-layout with-doll"/);
+  assert.match(html, /class="paper-doll recordDoll"/);
+  assert.match(html, /class="item-slot-grid"/);
+  assert.match(html, /Ordinary sword/);
+  assert.match(html, /Trail supplies/);
+  assert.match(html, /Inspect Ordinary sword, quantity 1, Equipped/);
+  assert.match(html, /Inspect Trail supplies, quantity 1, Stored/);
+  assert.match(html, /aria-label="Item category filter"/);
+  assert.match(html, /aria-pressed="true"/);
+  assert.doesNotMatch(html, /World Logic|ACTIVE RULES PROFILE|Use, transfer &amp; trade/);
+  assert.deepEqual(state, before);
+});
+
+test("Inventory keeps an Equipment section visible when no gear is assigned", () => {
+  const state = sample();
+  state.data.items = [];
+  state.data.entities[0].equipment_slots = [];
+  const html = render("inventory", state);
+  assert.match(html, /class="paper-doll recordDoll"/);
+  assert.match(html, /No equipment assigned yet\./);
+  assert.doesNotMatch(html, /No equipment profile is established|ACTIVE RULES PROFILE/);
+});
+
+test("trade appears only for an eligible merchant in the same campaign and timeline", () => {
+  const state = sample();
+  const availableMerchant = renderer(state)("src/components/persistent-records.tsx").availableMerchant;
+  const view = {
+    campaignId: state.data.campaign.id,
+    command: { timeline: state.data.timeline },
+    commerce: { merchants: [{ label: "Mara the trader" }] },
+  };
+  assert.equal(availableMerchant(view, state.data), "Mara the trader");
+  assert.equal(availableMerchant({ ...view, commerce: { merchants: [] } }, state.data), null);
+  assert.equal(availableMerchant({ ...view, campaignId: id("other-campaign") }, state.data), null);
+  assert.equal(availableMerchant({ ...view, command: { timeline: { ...state.data.timeline, epoch: 2 } } }, state.data), null);
+});
+
+test("reviewed character sheet displays approved traits and recorded mechanics without inventing powers", () => {
+  const state = sample();
+  state.data.entities[0].stats.level = 2;
+  state.data.entities[0].character_sheet = {
+    schemaVersion: 1,
+    mode: "narrative",
+    role: "Greenmarch scout",
+    background: "Knows the old woodland paths.",
+    level: null,
+    tier: null,
+    attributes: null,
+    skills: ["Tracking", "Wilderness craft"],
+    abilities: ["Reading weather signs"],
+    limitations: ["No formal magic"],
+    spells: [],
+  };
+  const before = structuredClone(state);
+  const html = render("character", state);
+  assert.match(html, /Greenmarch scout/);
+  assert.match(html, /Level 2/);
+  assert.match(html, /Tracking/);
+  assert.match(html, /Core stats/);
+  assert.doesNotMatch(html, /Spells \/ Powers/);
+  assert.doesNotMatch(html, /no automatic check bonuses/i);
+  assert.deepEqual(state, before);
+});
+
+test("legacy Character uses the same player-facing sheet while public World facts stay scope checked", () => {
+  const state = sample();
+  state.data.entities[0].character_sheet = null;
+  state.data.entities[0].details = `A scout who follows ordinary tracks. ${"The long road through Greenmarch is remembered. ".repeat(7)}FULL_BACKGROUND_END`;
+  const hero = state.data.entities[0];
+  const load = renderer(state);
+  const facts = load("src/components/persistent-records.tsx").acceptedPublicCharacterFacts;
+  const view = {
+    campaignId: state.data.campaign.id,
+    command: { timeline: state.data.timeline },
+    playerCharacter: {
+      entityId: hero.id,
+      capabilities: ["Tracks game through rough woods"],
+      limitations: ["Does not know formal magic"],
+    },
+  };
+  assert.deepEqual(facts(view, state.data, hero), {
+    capabilities: view.playerCharacter.capabilities,
+    limitations: view.playerCharacter.limitations,
+  });
+  assert.equal(facts({ ...view, campaignId: id("other-campaign") }, state.data, hero), null);
+  assert.equal(facts({ ...view, command: { timeline: { ...state.data.timeline, epoch: 2 } } }, state.data, hero), null);
+  assert.equal(facts({ ...view, playerCharacter: { ...view.playerCharacter, entityId: id("other-hero") } }, state.data, hero), null);
+  const html = render("character", state);
+  assert.match(html, /Character sections/);
+  assert.match(html, /class="character-grid characterGrid"/);
+  assert.match(html, /class="character-stats characterStats"/);
+  assert.match(html, /class="paper-doll paperDoll"/);
+  assert.match(html, /role="img" aria-label="No portrait yet"><svg[^>]+lucide-sparkles/);
+  assert.match(html, /Ordinary sword/);
+  assert.match(html, /attack/);
+  assert.match(html, /Read full background/);
+  assert.doesNotMatch(html, /FULL_BACKGROUND_END/);
+  assert.doesNotMatch(html, /STR<\/span>|Reading weather signs/);
+});
+
+test("Journal current adventure presents the public active chapter without management actions", () => {
+  const state = sample();
+  const catalog = {
+    campaignId: state.data.campaign.id,
+    timeline: state.data.timeline,
+    activeAdventureId: id("active-adventure"),
+    adventures: [{
+      id: id("active-adventure"),
+      status: "active",
+      title: "The Greenmarch Road",
+      premise: `Follow the missing caravan's trail. ${"A long public premise. ".repeat(15)}PREMISE_END`,
+      summary: `The party found the caravan and learned the bridge is unsafe. ${"A long public recap. ".repeat(30)}SUMMARY_END`,
+      review: { notes: "PRIVATE_REVIEW_NOT_STORY" },
+    }],
+  };
+  const before = structuredClone(state);
+  const load = renderer(state);
+  const html = renderToStaticMarkup(createElement(
+    load("src/components/current-adventure.tsx").CurrentAdventure,
+    { snapshot: state.data, initialCatalog: catalog },
+  ));
+  assert.match(html, /Current Adventure/);
+  assert.match(html, /The Greenmarch Road/);
+  assert.match(html, /Follow the missing caravan/);
+  assert.match(html, /Read full premise/);
+  assert.match(html, /PREMISE_END/);
+  assert.match(html, /Story so far/);
+  assert.match(html, /The party found the caravan and learned the bridge is unsafe/);
+  assert.match(html, /Read full story/);
+  assert.match(html, /SUMMARY_END/);
+  assert.doesNotMatch(html, /PRIVATE_REVIEW_NOT_STORY/);
+  assert.match(html, /Continue adventure/);
+  assert.doesNotMatch(html, /End Adventure|Abandon|Prepare Adventure/);
+  assert.deepEqual(state, before);
+});
 
 for (const language of ["en", "ru"]) {
   test(`${language} ordinary Game puts the opening and composer before optional owner tools`, () => {
@@ -252,11 +427,14 @@ for (const language of ["en", "ru"]) {
     assert.equal(html.includes("SYNTHETIC_PRIVATE_MARKER"), false);
     assert.deepEqual(state, before);
   });
-  test(`${language} Character uses a labelled equipment mannequin and only the three recorded Fighter slots`, () => {
+  test(`${language} Character uses the Phase-0 three-column composition with only recorded Fighter slots`, () => {
     const state = sample(),
       before = structuredClone(state);
     const html = render("character", { ...state, language });
-    assert.match(html, /<h1>Garrick<\/h1>/);
+    assert.match(html, /class="character-grid characterGrid"/);
+    assert.match(html, /class="panel character-sheet characterSheet"/);
+    assert.match(html, /class="character-stats characterStats"><h2 class="character-name">Garrick<\/h2>/);
+    assert.match(html, /class="panel visual-inventory-panel inventory-panel inventoryPanel"/);
     assert.ok(
       html.includes(translate(language, "Level {level}", { level: 1 })),
     );
@@ -264,24 +442,24 @@ for (const language of ["en", "ru"]) {
       html.includes(
         translate(
           language,
-          "Neutral equipment mannequin · appearance not established",
+          "No portrait yet",
         ),
       ),
     );
-    assert.equal(html.includes("lucide-user-round"), false);
     assert.equal(html.includes("James"), false);
     assert.equal(html.includes("Human"), false);
     assert.ok(html.includes("12 / 12"));
     assert.match(html, /<dt>crowns<\/dt><dd>20<\/dd>/);
-    assert.match(html, /class="shared-equipment-slot"><svg/);
-    assert.match(html, /class="shared-equipment-slot" disabled=""/);
+    assert.match(html, /class="equipment-slots equipmentSlots"/);
+    assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Main hand: Ordinary sword"/);
+    assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Off hand: [^"]+" disabled=""/);
     assert.ok(html.includes("Ordinary sword"));
     assert.equal(
-      (html.match(/class="shared-equipment-slot"/g) ?? []).length,
+      (html.match(/class="equipment-slot equipmentSlot"/g) ?? []).length,
       3,
     );
     assert.equal(
-      (html.match(/class="shared-equipment-slot" disabled=""/g) ?? []).length,
+      (html.match(/class="equipment-slot equipmentSlot"[^>]*disabled=""/g) ?? []).length,
       2,
     );
     for (const slot of ["Main hand", "Off hand", "Body"])
@@ -488,6 +666,7 @@ test("EN/RU item inspection is read-only; correction is secondary and existing g
     assert.ok(html.includes("Ordinary sword"));
     assert.ok(html.includes(state.data.items[0].description));
     assert.ok(html.includes(state.data.items[0].mechanics));
+    assert.ok(html.includes(translate(language, "Known properties")));
     assert.ok(html.includes("Main hand"));
     const advanced = html.match(
       /<details class="itemAdvanced">[\s\S]*?<\/details>/,
@@ -504,6 +683,14 @@ test("EN/RU item inspection is read-only; correction is secondary and existing g
       html,
       /<textarea|Recorded owner|Recorded storage|Recorded equipped character/,
     );
+    const plainItem = { ...state.data.items[0], mechanics: "" };
+    const plainHtml = renderToStaticMarkup(createElement(ItemDetails, {
+      item: plainItem,
+      onClose: noCall,
+      onEdit: noCall,
+    }));
+    assert.ok(!plainHtml.includes(translate(language, "Known properties")));
+    assert.ok(!plainHtml.includes(translate(language, "No mechanics recorded.")));
     for (const label of [
       "Use, transfer or equip",
       "Use item",
@@ -589,7 +776,7 @@ test("no scene or character metadata is fabricated for an empty or minimal conti
   assert.equal(game.includes("An ordinary beginning"), false);
   assert.equal(character.includes("Level 1"), false);
   assert.equal(character.includes("Human"), false);
-  assert.ok(character.includes("No equipment profile is established"));
+  assert.ok(character.includes("No equipment assigned yet."));
 });
 
 test("Game follows new narration until the reader scrolls back; other composers keep their layout", () => {

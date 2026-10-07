@@ -322,6 +322,19 @@ test("synthetic map editor is a disabled disclosure and no layout request starts
   assert.doesNotMatch(html, /href="\/campaigns\//);
 });
 
+test("the first known current place renders on the atlas and enables map review without manual placement", () => {
+  const data = sample();
+  const before = JSON.stringify(data);
+  const current = data.locations.find((row) => row.id === data.publicState.current_location_id);
+  const html = render(data, "map", "en", undefined, true, {
+    reviewMapPlacements: [], reviewMapPreset: { level: "world" },
+  });
+  assert.match(html, new RegExp(`${current.name} · (Visited|Known) · Current location`));
+  assert.match(html, /This place is shown approximately/);
+  assert.match(html, /Map artwork/);
+  assert.equal(JSON.stringify(data), before);
+});
+
 test("gallery Frames never shows stale or malformed map assets as ordinary frames", () => {
   const data = sample();
   data.assets[0].title = "STALE_MAP_ART";

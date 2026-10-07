@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   mockArtForAsset,
   MOCK_ASSET_PREFIX,
@@ -32,12 +32,13 @@ import { MockVisualArt } from "./visual-frame/mock-art";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
-import { Badge, Button, Icon, Panel } from "./ui";
+import { Badge, Button, Icon, Meter, Panel } from "./ui";
 import { useGameplayRuntime } from "./gameplay-runtime";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
 import { useSessionMemory } from "./session-memory-runtime";
 import styles from "./playtest-game-character.module.css";
-import { LiveDisclosure } from "./live-disclosure";
+import gameStyles from "./live-game.module.css";
+import { characterDescription } from "./character-presentation";
 import {
   GameplayComposer,
   type StoryHistoryPosition,
@@ -59,11 +60,13 @@ import {
 import type {
   Asset,
   CampaignSnapshot,
+  Entity,
   Location,
   Quest,
   Scene,
   Session,
 } from "@/lib/persistence/contracts";
+import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import {
   RecordValidationError,
   resumeIssue,
@@ -467,27 +470,8 @@ function GameSessionControls({ sessionId }: { sessionId: string | null }) {
   );
 }
 
-function GameRecords({
-  data,
-  reviewOnly = false,
-  frameTransport,
-  mediaTransport,
-  videoTransport,
-}: {
-  mediaTransport?: MediaFrameTransport;
-  videoTransport?: VideoTransport;
-  data: CampaignSnapshot;
-  reviewOnly?: boolean;
-  frameTransport?: CurrentSceneFrameTransport;
-}) {
-  const { t } = useLanguage();
-  const runtime = useGameplayRuntime(reviewOnly);
-  const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
-  const [historyPositions, setHistoryPositions] = useState<
-    Record<string, StoryHistoryPosition>
-  >({});
-  const [resume, setResume] = useState(false);
-  const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
+/** The Game presentation consumes only the public campaign projection. */
+export function createGameViewModel(data: CampaignSnapshot, play: PlaySnapshot | null) {
   const session = data.sessions.find(
     (row) => row.id === data.publicState.current_session_id,
   );
@@ -497,10 +481,16 @@ function GameRecords({
   const scene = data.scenes.find(
     (row) => row.id === data.publicState.current_scene_id,
   );
-  const player = data.entities.find((row) => row.kind === "player");
-  const companions = data.entities.filter((row) => row.kind === "companion");
-  const currentObjective = data.quests.find((row) => row.status === "open");
-  const recentClues = sceneOrder(
+  const controlledIds = new Set(play?.configuration?.controlledEntityIds ?? []);
+  const player = data.entities.find(
+    (row) => row.kind === "player" && controlledIds.has(row.id),
+  ) ?? data.entities.find((row) => row.kind === "player");
+  const presentIds = new Set(play?.configuration?.presentEntityIds ?? []);
+  const companions = data.entities.filter(
+    (row) => row.kind === "companion" && presentIds.has(row.id),
+  );
+  const objective = data.quests.find((row) => row.status === "open");
+  const clues = sceneOrder(
     data.scenes.filter((row) => row.role === "note"),
   ).slice(-3).reverse();
   const sceneFrame = scene
@@ -532,29 +522,109 @@ function GameRecords({
         (!firstPlayerScene || row.sequence < firstPlayerScene.sequence),
     )
     .at(-1);
-  const latest = runtime.play?.turns
-    .filter((turn) => turn.mode === inputMode)
-    .at(-1);
-  const hasNarration = runtime.play?.turns.some(
+  const hasNarration = play?.turns.some(
     (turn) =>
       turn.mode === "game" &&
       turn.session_id === session?.id &&
       turn.narration !== null,
   );
-  const opening = inputMode === "game" && (openingScene || !hasNarration) && (
-    <article className={styles.opening}>
-      <span className="eyebrow">{t("The story so far")}</span>
-      <h2>
-        {openingScene?.title ||
-          scene?.title ||
-          location?.name ||
-          t("Your next chapter")}
-      </h2>
+  return {
+    session,
+    location,
+    scene,
+    player,
+    companions,
+    objective,
+    clues,
+    sceneFrame,
+    openingScene,
+    showOpening: Boolean(openingScene || !hasNarration),
+    story:
+      openingScene?.body ||
+      (scene?.role === "narration" ? scene.body : data.publicState.summary),
+  };
+}
+
+function LiveCharacterSummary({
+  data,
+  player,
+}: {
+  data: CampaignSnapshot;
+  player?: Entity;
+}) {
+  const { t, language } = useLanguage();
+  if (!player) return <p className="muted">{language === "ru" ? "Персонажа пока нет." : "No character yet."}</p>;
+  const level = player.character_sheet?.level ?? player.stats.level;
+  const levelValue = typeof level === "number" && Number.isFinite(level) ? level : null;
+  const role = player.character_sheet?.role;
+  const hpPercent =
+    player.hp !== null && player.max_hp !== null && player.max_hp > 0
+      ? Math.max(0, Math.min(100, (player.hp / player.max_hp) * 100))
+      : 0;
+  return (
+    <>
+      <div className="identity">
+        <SubjectAvatar snapshot={data} entity={player} className={`art ${gameStyles.heroAvatar}`} />
+        <div>
+          <h2>{player.name}</h2>
+          {(role || levelValue !== null) && (
+            <p>{[role, levelValue !== null ? t("Level {level}", { level: levelValue }) : null].filter(Boolean).join(" · ")}</p>
+          )}
+          {player.details && <em className={gameStyles.heroDescription}>{characterDescription(player.details, t)}</em>}
+        </div>
+      </div>
+      {player.hp !== null && (
+        player.max_hp !== null && player.max_hp > 0 ? (
+          <Meter
+            label={t("HP")}
+            value={`${player.hp} / ${player.max_hp}`}
+            color="var(--red)"
+            percent={hpPercent}
+          />
+        ) : <p className={gameStyles.singleResource}>{t("HP")}: {player.hp}</p>
+      )}
+      {Object.keys(player.resources).length > 0 && (
+        <dl className={gameStyles.resources}>
+          {Object.entries(player.resources).map(([label, value]) => (
+            <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+          ))}
+        </dl>
+      )}
+    </>
+  );
+}
+
+function GameRecords({
+  data,
+  reviewOnly = false,
+  frameTransport,
+  mediaTransport,
+  videoTransport,
+}: {
+  mediaTransport?: MediaFrameTransport;
+  videoTransport?: VideoTransport;
+  data: CampaignSnapshot;
+  reviewOnly?: boolean;
+  frameTransport?: CurrentSceneFrameTransport;
+}) {
+  const { t, language } = useLanguage();
+  const runtime = useGameplayRuntime(reviewOnly);
+  const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
+  const [historyPositions, setHistoryPositions] = useState<
+    Record<string, StoryHistoryPosition>
+  >({});
+  const [resume, setResume] = useState(false);
+  const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
+  const mediaRef = useRef<HTMLDetailsElement>(null);
+  const view = createGameViewModel(data, runtime.play);
+  const { session, location, scene, player, companions, objective, clues, sceneFrame } = view;
+  const latest = runtime.play?.turns
+    .filter((turn) => turn.mode === inputMode)
+    .at(-1);
+  const opening = inputMode === "game" && view.showOpening && (
+    <article className={gameStyles.opening}>
       <div className="prose">
-        {openingScene?.body ||
-          (scene?.role === "narration"
-            ? scene.body
-            : data.publicState.summary) ||
+        {view.story ||
           t(
             "Your story is ready to begin. The opening of your Adventure will appear here.",
           )}
@@ -562,14 +632,24 @@ function GameRecords({
     </article>
   );
   const historyKey = `${data.timeline?.timelineId ?? "unfenced"}:${data.timeline?.epoch ?? 0}:${inputMode}`;
+  function openMedia(target: "frame" | "video") {
+    if (reviewOnly || !mediaRef.current) return;
+    mediaRef.current.open = true;
+    requestAnimationFrame(() => {
+      document.getElementById(`game-${target}-controls`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  }
   return (
-    <div className={styles.game}>
-      <header className={styles.gameHeader}>
+    <div className={gameStyles.liveGame}>
+      <header className="game-title">
         <div>
-          <span className="eyebrow">{session?.title || t("Game")}</span>
-          <h1>{location?.name || t("Your next chapter")}</h1>
+          <span className="eyebrow">{data.campaign.title}</span>
+          <h1>{session?.title || scene?.title || location?.name || t("Your next chapter")}</h1>
         </div>
-        <nav aria-label={t("Story navigation")}>
+        <nav className={gameStyles.storyNav} aria-label={t("Story navigation")}>
           <a
             className="text-link"
             href={latest ? `#saved-turn-${latest.id}` : "#play-action"}
@@ -589,35 +669,62 @@ function GameRecords({
       </header>
       <div className="game-grid gameplay-live">
         <div className="story-column">
-          <LiveDisclosure
-            title={t("Current scene artwork")}
-            storageKey={`${data.campaign.id}:game:artwork`}
-            defaultOpen
-            className={styles.sceneArtwork}
-          >
-            {sceneFrame ? (
-              <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
-            ) : (
-              <div className={styles.scenePlaceholder}>
-                <Icon name="Image" size={34} />
-                <div>
-                  <span className="eyebrow">{session?.title || t("Current scene")}</span>
-                  <h2>{location?.name || scene?.title || t("Your next chapter")}</h2>
-                  <p>
-                    {t("No approved image for this scene yet. Your story continues below.")}
-                  </p>
+          <details className="mobile-stats panel">
+            <summary>
+              {player?.name || t("Your character")}
+              {player?.hp !== null && player?.hp !== undefined && (
+                <span>{t("HP")} {player.hp}{player.max_hp === null ? "" : ` / ${player.max_hp}`}</span>
+              )}
+            </summary>
+            <LiveCharacterSummary data={data} player={player} />
+          </details>
+          <article className="scene panel">
+            <div className="scene-art">
+              {sceneFrame ? (
+                <div className="art">
+                  <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
                 </div>
+              ) : (
+                <div className={`art ${gameStyles.atmosphere}`} aria-hidden="true">
+                  <Icon name="Image" size={48} />
+                </div>
+              )}
+              <div className="scene-caption">
+                <div>
+                  <span className="eyebrow">{t("Current scene")}</span>
+                  <h2>{location?.name || scene?.title || t("Your next chapter")}</h2>
+                  {scene?.title && scene.title !== location?.name && <p>{scene.title}</p>}
+                </div>
+                {session && <span>{session.title}</span>}
               </div>
-            )}
-          </LiveDisclosure>
+            </div>
+            <div className="narration">
+              <div className="scene-kicker">
+                <span className="eyebrow">{t("The story so far")}</span>
+                {scene?.created_at && <time dateTime={scene.created_at}>{new Date(scene.created_at).toLocaleString(data.campaign.language)}</time>}
+              </div>
+              {opening}
+              <div className="scene-actions">
+                <Button primary disabled={reviewOnly} onClick={() => openMedia("frame")}>
+                  <Icon name="Image" />
+                  <span>{t("FRAME")}<small>{t("Capture this moment")}</small></span>
+                </Button>
+                {!frameTransport && (
+                  <Button primary disabled={reviewOnly} onClick={() => openMedia("video")}>
+                    <span className="play-symbol">▷</span>
+                    <span>{t("VIDEO")}<small>{t("A cinematic view")}</small></span>
+                  </Button>
+                )}
+              </div>
+            </div>
+          </article>
           {runtime.play && (
             <SessionPendingCompanion
               play={runtime.play}
               onSaved={runtime.afterMutation}
             />
           )}
-          <Panel className={styles.storySurface}>
-            {!runtime.play && opening}
+          <div className={gameStyles.storyFlow}>
             {reviewOnly && !runtime.play && (
               <div id="play-action" className={styles.reviewComposer}>
                 <div className="tabs" aria-label={t("Input mode")}>
@@ -672,7 +779,6 @@ function GameRecords({
                   mode={inputMode}
                   onSaved={runtime.afterMutation}
                   followLatest
-                  historyIntro={opening}
                   historyPosition={historyPositions[historyKey]}
                   onHistoryPositionChange={(position) => {
                     setHistoryPositions((previous) => ({
@@ -681,7 +787,7 @@ function GameRecords({
                     }));
                   }}
                   beforeInput={
-                    <div id="play-action" className={styles.inputMode}>
+                    <div id="play-action" className={gameStyles.inputMode}>
                       <div className="tabs" aria-label={t("Input mode")}>
                         <button
                           type="button"
@@ -705,23 +811,27 @@ function GameRecords({
                 />
               </>
             )}
-          </Panel>
+          </div>
           {reviewOnly ? (
             <details className={styles.secondary}>
               <summary>{t("FRAME & VIDEO · this scene")}</summary>
               <p className="muted">{t("Synthetic UI review only · media actions are unavailable.")}</p>
             </details>
           ) : (
-            <details className={styles.secondary}>
+            <details className={styles.secondary} ref={mediaRef}>
               <summary>{t("FRAME & VIDEO · this scene")}</summary>
               {scene && <p className="muted">{scene.title}</p>}
-              {frameTransport ? (
-                <CurrentSceneFrame transport={frameTransport} />
-              ) : (
-                <CurrentSceneMediaFrame transport={mediaTransport} />
-              )}
+              <div id="game-frame-controls" className={gameStyles.mediaControls}>
+                {frameTransport ? (
+                  <CurrentSceneFrame transport={frameTransport} />
+                ) : (
+                  <CurrentSceneMediaFrame transport={mediaTransport} />
+                )}
+              </div>
               {!frameTransport && (
-                <CurrentSceneVideo transport={videoTransport} />
+                <div id="game-video-controls" className={gameStyles.mediaControls}>
+                  <CurrentSceneVideo transport={videoTransport} />
+                </div>
               )}
             </details>
           )}
@@ -820,97 +930,74 @@ function GameRecords({
                 {t("Open sessions to create a transcript")}
               </Link>
             )}
-            <p>
-              <Link
-                className="text-link"
-                href="/preview/campaigns/long-road-west/game"
-              >
-                {t("Open isolated Phase 0 demonstrations")}
-              </Link>
-            </p>
           </details>
         </div>
         <aside className="context-column" aria-label={t("Story context")}>
-          <LiveDisclosure
-            title={t("At a glance")}
-            storageKey={`${data.campaign.id}:game:context`}
-            defaultOpen
-            className={styles.contextRail}
+          <Panel className="character-quick">
+            <LiveCharacterSummary data={data} player={player} />
+            <Link className="text-link" href={`/campaigns/${data.campaign.id}/character`}>
+              {t("Character sheet")} <Icon name="ChevronRight" size={14} />
+            </Link>
+          </Panel>
+          <Panel title={t("Current scene")}>
+            <div className="location-mini">
+              <Icon name="map" />
+              <div>
+                <h3>{location?.name || scene?.title || t("Current scene")}</h3>
+                {scene?.title && scene.title !== location?.name && <p>{scene.title}</p>}
+              </div>
+            </div>
+            {sceneFrame && (
+              <div className="location-image">
+                <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
+              </div>
+            )}
+            {location?.description && <em className="small-quote">{location.description}</em>}
+            <Link className="text-link" href={`/campaigns/${data.campaign.id}/map`}>
+              {t("Open map")}
+            </Link>
+          </Panel>
+          <Panel title={t("Current objective")}>
+            <div className="objective">
+              <Icon name="Crosshair" size={26} />
+              <p>{objective?.title || (language === "ru" ? "Пока нет текущей цели." : "No current objective yet.")}</p>
+            </div>
+            {objective?.description && <p className={gameStyles.objectiveDetail}>{objective.description}</p>}
+            <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>
+              {t("View in journal")} <Icon name="ArrowRight" size={14} />
+            </Link>
+          </Panel>
+          <Panel
+            title={t("Traveling together")}
+            action={<Link href={`/campaigns/${data.campaign.id}/party`} className="text-link">{t("View")}</Link>}
           >
-            <LiveDisclosure
-              title={t("Your character")}
-              storageKey={`${data.campaign.id}:game:character`}
-              defaultOpen
-            >
-              {player ? (
-                <>
-                  <h3>{player.name}</h3>
-                  {player.hp !== null && (
-                    <p>{t("HP")}: {player.hp}{player.max_hp === null ? "" : ` / ${player.max_hp}`}</p>
-                  )}
-                  {Object.keys(player.resources).length > 0 && (
-                    <dl className={styles.contextResources}>
-                      {Object.entries(player.resources).map(([label, value]) => (
-                        <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
-                      ))}
-                    </dl>
-                  )}
-                  <Link className="text-link" href={`/campaigns/${data.campaign.id}/character`}>
-                    {t("Character sheet")}
-                  </Link>
-                </>
-              ) : <p className="muted">{t("No public hero record yet.")}</p>}
-            </LiveDisclosure>
-            <LiveDisclosure
-              title={t("Current scene")}
-              storageKey={`${data.campaign.id}:game:scene`}
-              defaultOpen
-            >
-              <h3>{location?.name || t("Location not recorded")}</h3>
-              <p>{location?.description || scene?.title || t("No public scene detail recorded.")}</p>
-              <Link className="text-link" href={`/campaigns/${data.campaign.id}/map`}>
-                {t("Open map")}
+            {player && (
+              <div className="person-row">
+                <SubjectAvatar snapshot={data} entity={player} className={`art ${gameStyles.personAvatar}`} />
+                <span>{player.name}</span>
+                <small>{t("You")}</small>
+              </div>
+            )}
+            {companions.map((row) => (
+              <div className="person-row" key={row.id}>
+                <SubjectAvatar snapshot={data} entity={row} className={`art ${gameStyles.personAvatar}`} />
+                <span>{row.name}</span>
+              </div>
+            ))}
+            {!player && !companions.length && <p className="muted">{language === "ru" ? "Здесь пока никого нет." : "No one is here yet."}</p>}
+          </Panel>
+          <Panel
+            title={t("Recent clues")}
+            action={<Link href={`/campaigns/${data.campaign.id}/journal`} className="text-link">{t("View all")}</Link>}
+          >
+            {clues.length ? clues.map((row) => (
+              <Link className="clue-row" href={`/campaigns/${data.campaign.id}/journal`} key={row.id}>
+                <span className={`art ${gameStyles.clueIcon}`}><Icon name="BookOpen" size={18} /></span>
+                <div><h3>{row.title}</h3><small>{t("Clue")}</small></div>
+                <Icon name="ChevronRight" size={13} />
               </Link>
-            </LiveDisclosure>
-            <LiveDisclosure
-              title={t("Current objective")}
-              storageKey={`${data.campaign.id}:game:objective`}
-              defaultOpen
-            >
-              {currentObjective ? (
-                <><h3>{currentObjective.title}</h3><p>{currentObjective.description}</p></>
-              ) : <p className="muted">{t("No open quest recorded.")}</p>}
-              <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>
-                {t("Open journal")}
-              </Link>
-            </LiveDisclosure>
-            <LiveDisclosure
-              title={t("Traveling companions")}
-              storageKey={`${data.campaign.id}:game:companions`}
-              defaultOpen
-            >
-              {companions.length ? companions.map((row) => (
-                <div className={styles.contextPerson} key={row.id}>
-                  <SubjectAvatar snapshot={data} entity={row} className={styles.contextAvatar} />
-                  <span>{row.name}</span>
-                </div>
-              )) : <p className="muted">{t("No companions recorded.")}</p>}
-              <Link className="text-link" href={`/campaigns/${data.campaign.id}/party`}>
-                {t("Open party")}
-              </Link>
-            </LiveDisclosure>
-            <LiveDisclosure
-              title={t("Recent known clues")}
-              storageKey={`${data.campaign.id}:game:clues`}
-            >
-              {recentClues.length ? recentClues.map((row) => (
-                <p key={row.id}><strong>{row.title}</strong></p>
-              )) : <p className="muted">{t("No public clues recorded.")}</p>}
-              <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>
-                {t("Open journal")}
-              </Link>
-            </LiveDisclosure>
-          </LiveDisclosure>
+            )) : <p className="muted">{language === "ru" ? "Пока нет улик." : "No clues yet."}</p>}
+          </Panel>
         </aside>
       </div>
       {resume && <ResumeEditor data={data} onClose={() => setResume(false)} />}
@@ -1180,14 +1267,6 @@ function SupportingRecords({
             ))}
           </div>
           {!data.quests.length && <p>{t("No public quests recorded.")}</p>}
-          <p>
-            <Link
-              className="text-link"
-              href={`/campaigns/${data.campaign.id}/party`}
-            >
-              {t("Open known people")}
-            </Link>
-          </p>
         </Panel>
       )}
       {screen === "map" && (
