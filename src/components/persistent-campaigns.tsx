@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { NewCampaignForm as NewHeroForm } from "./bootstrap/new-campaign";
 import {
@@ -12,6 +13,11 @@ import { restoreWorldAttempt, worldPendingKey } from "@/lib/adventures/client";
 import { useLanguage } from "./language-context";
 import { useWorkspaceData, useUnsavedChanges } from "./persistence-context";
 import { Badge, Button, Icon, Panel } from "./ui";
+import { loadCampaign } from "@/lib/persistence/client";
+import { ownerAcceptedFrameAsset } from "@/lib/visual-frame/real-frame";
+import { defaultMediaFrameTransport } from "@/lib/visual-frame/media-client";
+import type { Campaign, CampaignSnapshot } from "@/lib/persistence/contracts";
+import styles from "./persistent-campaigns.module.css";
 import { CampaignPremiseFields } from "./campaign-premise-fields";
 import {
   optionalCreationPremise,
@@ -27,11 +33,154 @@ import {
 } from "@/lib/persistence/client";
 import type { Mutation } from "@/lib/persistence/contracts";
 
+function CampaignCard({
+  campaign,
+  reviewSnapshot,
+}: {
+  campaign: Campaign;
+  reviewSnapshot?: CampaignSnapshot | null;
+}) {
+  const { t } = useLanguage();
+  const [snapshot, setSnapshot] = useState<CampaignSnapshot | null>(null);
+  useEffect(() => {
+    if (reviewSnapshot !== undefined) return;
+    let current = true;
+    void loadCampaign(campaign.id)
+      .then((loaded) => {
+        if (current && loaded.campaign.id === campaign.id) setSnapshot(loaded);
+      })
+      .catch(() => {
+        // The campaign link remains usable when a public card preview is unavailable.
+      });
+    return () => {
+      current = false;
+    };
+  }, [campaign.id, reviewSnapshot]);
+  const current = reviewSnapshot === undefined ? snapshot : reviewSnapshot;
+  const session = current?.sessions.find(
+    (row) => row.id === current.publicState.current_session_id,
+  );
+  const scene = current?.scenes.find(
+    (row) => row.id === current.publicState.current_scene_id,
+  );
+  const location = current?.locations.find(
+    (row) => row.id === current.publicState.current_location_id,
+  );
+  const player = current?.entities.find((row) => row.kind === "player");
+  const cover = current?.assets
+    .filter((asset) => ownerAcceptedFrameAsset(current, asset))
+    .sort((left, right) => right.updated_at.localeCompare(left.updated_at))[0];
+  const review = reviewSnapshot !== undefined;
+  const destination = (screen: "game" | "library" | "sessions") =>
+    review
+      ? `/preview/live-ui?screen=${screen}`
+      : `/campaigns/${campaign.id}/${screen}`;
+  return (
+    <article className={`featured-campaign panel ${styles.card}`}>
+      <div className={`campaign-cover ${styles.cover}`}>
+        {cover ? (
+          <Image
+            unoptimized
+            src={defaultMediaFrameTransport.imageUrl(campaign.id, cover.id)}
+            alt=""
+            width={1536}
+            height={1024}
+            className={styles.coverImage}
+          />
+        ) : (
+          <div className={styles.coverFallback} aria-hidden="true">
+            <Icon name="BookOpen" size={96} />
+          </div>
+        )}
+        <div className="cover-title">
+          <span className="eyebrow">{t("YOUR CURRENT STORY")}</span>
+          <h2>{campaign.title}</h2>
+          {campaign.subtitle && <p>{campaign.subtitle}</p>}
+        </div>
+      </div>
+      <div className="campaign-info">
+        <Badge green>{t("In progress")}</Badge>
+        <h2>{campaign.title}</h2>
+        {campaign.subtitle && (
+          <p className="campaign-description">{campaign.subtitle}</p>
+        )}
+        <div className="campaign-meta">
+          {session && (
+            <span>
+              <Icon name="sessions" />
+              {session.title}
+            </span>
+          )}
+          {location && (
+            <span>
+              <Icon name="map" />
+              {location.name}
+            </span>
+          )}
+          {scene && (
+            <span>
+              <Icon name="BookOpen" />
+              {scene.title}
+            </span>
+          )}
+        </div>
+        {player && (
+          <div className="campaign-character">
+            <Icon name="UserRound" size={36} />
+            <div>
+              <h3>{player.name}</h3>
+              {Object.hasOwn(player.stats, "level") && (
+                <p>{t("Level {level}", { level: player.stats.level })}</p>
+              )}
+            </div>
+          </div>
+        )}
+        <Link
+          className="button primary continue-button"
+          href={destination("game")}
+        >
+          {t("Continue the story")} <Icon name="ArrowRight" />
+        </Link>
+        <div className="campaign-links">
+          <Link href={destination("library")}>
+            {t("Campaign library")}
+          </Link>
+          <Link href={destination("sessions")}>
+            {t("Previous sessions")}
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** Screenshot adapter: supplied public fixture records only; no campaign fetch. */
+export function CampaignCardsReview({
+  campaigns,
+  snapshots,
+}: {
+  campaigns: Campaign[];
+  snapshots: Record<string, CampaignSnapshot>;
+}) {
+  return (
+    <div className={styles.list}>
+      {campaigns.map((campaign) => (
+        <CampaignCard
+          key={campaign.id}
+          campaign={campaign}
+          reviewSnapshot={snapshots[campaign.id] ?? null}
+        />
+      ))}
+    </div>
+  );
+}
+
 export function PersistentCampaigns() {
   const { t, language: interfaceLanguage } = useLanguage();
   const premiseText = campaignPremiseText(interfaceLanguage);
   const adventureCopy = adventureText(interfaceLanguage);
   const [newHero, setNewHero] = useState(false);
+  const [query, setQuery] = useState("");
   const [heroDirty, setHeroDirty] = useState(false);
   useEffect(() => {
     Promise.resolve().then(() => {
@@ -147,9 +296,9 @@ export function PersistentCampaigns() {
     <>
       <div className="page-heading">
         <div>
-          <span className="eyebrow">{t("YOUR WORLDS AWAIT")}</span>
-          <h1>{t("Campaigns")}</h1>
-          <p>{t("Each campaign keeps its own world, records, and history.")}</p>
+          <span className="eyebrow">{t("YOUR STORIES, WAITING")}</span>
+          <h1>{t("My Campaigns")}</h1>
+          <p>{t("Worlds to explore. Stories to remember.")}</p>
         </div>
         <Button
           primary
@@ -195,6 +344,17 @@ export function PersistentCampaigns() {
       <Link className="text-link" href="/">
         {t("Back to main menu")}
       </Link>
+      <div className="campaign-toolbar">
+        <span className="small-quote">
+          {t("“Different worlds. Same stories.”")}
+        </span>
+        <input
+          aria-label={t("Search campaigns")}
+          placeholder={t("Search campaigns…")}
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+        />
+      </div>
       {loading && <p role="status">{t("Loading saved campaigns…")}</p>}
       {error && (
         <Panel>
@@ -301,25 +461,23 @@ export function PersistentCampaigns() {
           </p>
         </Panel>
       )}
-      <div className="campaign-list">
-        {data?.campaigns.map((campaign) => (
-          <Panel key={campaign.id} className="persistent-campaign-card">
-            <Icon name="BookOpen" size={34} />
-            <h2>{campaign.title}</h2>
-            <p>{campaign.subtitle}</p>
-            <Badge>
-              {campaign.language === "ru" ? t("Russian") : t("English")}
-            </Badge>
-            <p className="muted">{t("Private campaign · saved records")}</p>
-            <Link
-              className="button primary"
-              href={`/campaigns/${campaign.id}/game`}
-            >
-              {t("Continue")} <Icon name="ArrowRight" />
-            </Link>
-          </Panel>
-        ))}
+      <div className={styles.list}>
+        {data?.campaigns
+          .filter((campaign) =>
+            `${campaign.title} ${campaign.subtitle}`
+              .toLocaleLowerCase()
+              .includes(query.trim().toLocaleLowerCase()),
+          )
+          .map((campaign) => (
+            <CampaignCard key={campaign.id} campaign={campaign} />
+          ))}
       </div>
+      {data && data.campaigns.length > 0 && query.trim() &&
+        !data.campaigns.some((campaign) =>
+          `${campaign.title} ${campaign.subtitle}`
+            .toLocaleLowerCase()
+            .includes(query.trim().toLocaleLowerCase()),
+        ) && <p className="empty-state panel">{t("No campaigns found")}</p>}
     </>
   );
 }

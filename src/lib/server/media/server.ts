@@ -36,6 +36,12 @@ import {
 } from "./grounding-state";
 import { openAiFrameProvider } from "./provider";
 import { checkedPng, storedPixels, MAX_FRAME_IMAGE_BYTES } from "./png";
+import {
+  buildSubjectVisualJob,
+  parseSubjectVisualJob,
+  safeSubjectVisualAsset,
+} from "../../visual-frame/subject-job";
+import type { PublicVisualSubject } from "../../visual-frame/subject-visual";
 
 function serviceClient(ownerId: string) {
   const url = process.env.SUPABASE_URL,
@@ -127,6 +133,9 @@ async function basis(
     throw new PersistenceError("unavailable");
   return v as FrameSourceAuthority;
 }
+function isSubjectVisualMutation(input: Mutation): boolean {
+  return input.operation === "document.save" && Boolean(parseSubjectVisualJob(input.payload));
+}
 function authority(): MediaFrameAuthority {
   let ownerId: string | null = null;
   const owner = () => {
@@ -142,7 +151,7 @@ function authority(): MediaFrameAuthority {
     source: (campaignId) => basis(owner(), campaignId),
     lifecycle: async (input) => {
       const id = owner(),
-        response = await serviceClient(id).rpc("rpg_real_frame_lifecycle", {
+        response = await serviceClient(id).rpc(isSubjectVisualMutation(input) ? "rpg_subject_visual_lifecycle" : "rpg_real_frame_lifecycle", {
           p_owner_id: id,
           p_mutation: input,
         });
@@ -151,7 +160,7 @@ function authority(): MediaFrameAuthority {
     },
     claim: async (input, budgetId) => {
       const id = owner(),
-        response = await serviceClient(id).rpc("rpg_real_frame_claim", {
+        response = await serviceClient(id).rpc(isSubjectVisualMutation(input) ? "rpg_subject_visual_claim" : "rpg_real_frame_claim", {
           p_owner_id: id,
           p_mutation: input,
           p_budget_id: budgetId,
@@ -208,7 +217,7 @@ function authority(): MediaFrameAuthority {
     recoveryReceipt: async (input) => {
       const id = owner(),
         response = await serviceClient(id).rpc(
-          "rpg_real_frame_recovery_receipt",
+          isSubjectVisualMutation(input) ? "rpg_subject_visual_recovery_receipt" : "rpg_real_frame_recovery_receipt",
           { p_owner_id: id, p_intent: input },
         );
       if (response.error) throw databaseError(response.error);
@@ -216,7 +225,7 @@ function authority(): MediaFrameAuthority {
     },
     draft: async (input, output) => {
       const id = owner(),
-        response = await serviceClient(id).rpc("rpg_real_frame_draft", {
+        response = await serviceClient(id).rpc(isSubjectVisualMutation(input) ? "rpg_subject_visual_draft" : "rpg_real_frame_draft", {
           p_owner_id: id,
           p_mutation: input,
           p_output: output,
@@ -226,7 +235,7 @@ function authority(): MediaFrameAuthority {
     },
     complete: async (input, asset, output) => {
       const id = owner(),
-        response = await serviceClient(id).rpc("rpg_real_frame_complete", {
+        response = await serviceClient(id).rpc(isSubjectVisualMutation(input) ? "rpg_subject_visual_complete" : "rpg_real_frame_complete", {
           p_owner_id: id,
           p_mutation: input,
           p_asset: asset,
@@ -355,6 +364,42 @@ export async function prepareMediaFrame(value: unknown) {
     value.retryOf as string | null,
   );
 }
+export async function prepareSubjectVisual(value: unknown) {
+  if (
+    !exactKeys(value, [
+      "campaignId", "timeline", "expectedPublicStateRevision", "subject",
+      "referenceIds", "retryOf",
+    ]) ||
+    !isUuid(value.campaignId) ||
+    !isTimelineFence(value.timeline) ||
+    !Number.isSafeInteger(value.expectedPublicStateRevision) ||
+    !exactKeys(value.subject, ["kind", "id"]) ||
+    !["entity", "item", "location"].includes(String(value.subject.kind)) ||
+    !isUuid(value.subject.id) ||
+    !Array.isArray(value.referenceIds) ||
+    value.referenceIds.some((id) => !isUuid(id)) ||
+    !(value.retryOf === null || isUuid(value.retryOf))
+  )
+    throw new PersistenceError("validation");
+  const { user } = await authorizeCampaign(value.campaignId);
+  const selected = policy();
+  if (!selected) throw new PersistenceError("not_configured");
+  const snapshot = await readCampaign(value.campaignId);
+  if (
+    !sameTimeline(snapshot.timeline, value.timeline) ||
+    snapshot.publicState.revision !== value.expectedPublicStateRevision
+  )
+    throw new PersistenceError("conflict");
+  return buildSubjectVisualJob(
+    snapshot,
+    value.subject as PublicVisualSubject,
+    value.referenceIds as string[],
+    selected.model,
+    selected.parameters,
+    await basis(user.id, value.campaignId),
+    value.retryOf as string | null,
+  );
+}
 export async function runMediaFrame(value: unknown) {
   // The production adapter is closed by default. Only an explicit authenticated dispatch reaches generate().
   return executeMediaFrame(value, {
@@ -377,7 +422,7 @@ export async function signedFrameImage(campaignId: string, assetId: string) {
   const asset = snapshot.assets.find(
     (a) => a.id === assetId && a.campaign_id === campaignId,
   );
-  if (!asset || !safeFrameAsset(snapshot, asset) || !asset.storage_path)
+  if (!asset || !(safeFrameAsset(snapshot, asset) || safeSubjectVisualAsset(snapshot, asset)) || !asset.storage_path)
     throw new PersistenceError("not_found");
   const response = await serviceClient(user.id)
     .storage.from("rpg-media")
@@ -399,15 +444,15 @@ export async function signedFrameDraft(campaignId: string, jobId: string) {
       d.id === jobId &&
       d.status === "reference",
   );
-  const frame = record && parseRealFrame(record);
+  const frame = record && (parseRealFrame(record) ?? parseSubjectVisualJob(record));
   if (
     !record ||
-    frame?.schema !== 4 ||
+    !frame || ![4, 5].includes(frame.schema) ||
     frame.status !== "draft" ||
     !frame.review
   )
     throw new PersistenceError("not_found");
-  const check = await serviceClient(user.id).rpc("rpg_frame_draft_pixels", {
+  const check = await serviceClient(user.id).rpc(frame.schema === 5 ? "rpg_subject_visual_draft_pixels" : "rpg_frame_draft_pixels", {
     p_owner_id: user.id,
     p_campaign_id: campaignId,
     p_job_id: jobId,

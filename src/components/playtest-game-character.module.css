@@ -24,6 +24,83 @@
   border-color: #6d593c;
   background: linear-gradient(135deg, #171c1e, #0d1417 70%);
 }
+.sceneArtwork {
+  margin-bottom: 18px;
+}
+.sceneArtwork :global(figure) {
+  margin: 0;
+}
+.sceneArtwork :global(img) {
+  max-height: 320px;
+  object-fit: cover;
+}
+.scenePlaceholder {
+  min-height: 190px;
+  display: flex;
+  align-items: end;
+  gap: 18px;
+  padding: 24px;
+  color: #c8ac80;
+  background: radial-gradient(circle at 72% 16%, #987c5429, transparent 45%), linear-gradient(135deg, #1e2a2d, #11191c 62%, #26231f);
+}
+.scenePlaceholder h2 {
+  margin: 5px 0;
+  font: 28px/1.2 Georgia, serif;
+  color: #ead0a8;
+}
+.scenePlaceholder p {
+  margin: 5px 0 0;
+  color: #b4b4ab;
+  font-size: 13px;
+}
+.reviewComposer {
+  padding: 15px 24px 20px;
+  border-top: 1px solid #a7854a55;
+  background: #0b1215;
+}
+.reviewComposer textarea {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  min-height: 78px;
+  padding: 12px;
+  border: 1px solid #6d573b;
+  border-radius: 6px;
+  color: #dcd4c8;
+  background: #121b1d;
+  font: 17px/1.6 Georgia, serif;
+}
+.contextRail > :global(div) {
+  display: grid;
+  gap: 10px;
+}
+.contextRail h3 {
+  margin: 0 0 8px;
+  color: #e2c391;
+  font: 18px/1.3 Georgia, serif;
+}
+.contextRail p {
+  margin: 0 0 12px;
+  line-height: 1.55;
+}
+.contextPerson {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 10px;
+  flex-wrap: wrap;
+}
+.contextAvatar {
+  display: inline-grid;
+  place-items: center;
+  width: 31px;
+  height: 31px;
+  border: 1px solid #9d784d;
+  border-radius: 50%;
+  color: #efd0a0;
+  background: #3b342b;
+  font: 17px Georgia, serif;
+}
 .game :global(.gameplay-turns) {
   max-height: max(260px, calc(100svh - 395px));
   min-height: 210px;
@@ -264,6 +341,71 @@
   grid-row: 2;
   padding-top: 0;
 }
+.characterDetails > :global(details) {
+  margin-bottom: 11px;
+}
+.characterDetails > :global(details) :global(.stats-list) {
+  margin: 0;
+}
+.partyCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+  gap: 16px;
+  margin: 18px 0;
+}
+.partyCard {
+  padding: 22px;
+  border: 1px solid #735b3d;
+  border-radius: 8px;
+  background: linear-gradient(140deg, #202b2d, #121a1d 70%);
+  min-width: 0;
+}
+.partyCard h2 {
+  margin: 8px 0;
+  color: #e9cca0;
+  font: 24px/1.2 Georgia, serif;
+}
+.partyCard p {
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.partyPortrait {
+  display: grid;
+  place-items: center;
+  width: 66px;
+  height: 66px;
+  margin-bottom: 14px;
+  border: 1px solid #a78555;
+  border-radius: 50%;
+  color: #efd2a6;
+  background: radial-gradient(circle at 30% 25%, #76604a, #263132 75%);
+  font: 38px Georgia, serif;
+}
+.itemVisual {
+  max-width: 300px;
+  margin: 0 auto 12px;
+}
+.subjectPortrait {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  max-width: 190px;
+  align-self: center;
+  justify-self: center;
+}
+.subjectPortrait :global(img) {
+  max-height: 300px;
+  object-fit: contain;
+}
+.subjectActions {
+  grid-column: 1;
+  grid-row: 3;
+  justify-self: center;
+  max-width: 200px;
+  text-align: center;
+}
+.subjectActions :global(.button-group) {
+  justify-content: center;
+}
 .characterDetails h3:first-child {
   margin-top: 0;
 }
@@ -348,6 +490,23 @@
   }
 }
 @media (max-width: 650px) {
+  .sceneArtwork {
+    margin-bottom: 12px;
+  }
+  .sceneArtwork :global(img) {
+    max-height: 170px;
+  }
+  .scenePlaceholder {
+    min-height: 112px;
+    padding: 15px;
+    gap: 10px;
+  }
+  .scenePlaceholder h2 {
+    font-size: 23px;
+  }
+  .scenePlaceholder p {
+    font-size: 12px;
+  }
   .gameHeader,
   .characterHeader {
     flex-direction: column;
@@ -357,6 +516,19 @@
   .gameHeader h1 {
     font-size: 25px;
   }
+  .gameHeader {
+    margin-bottom: 12px;
+  }
+  .storySurface > .opening {
+    padding: 16px 18px;
+  }
+  .opening h2 {
+    margin: 5px 0 9px;
+    font-size: 23px;
+  }
+  .reviewComposer {
+    padding: 10px 16px 12px;
+  }
   .game :global(.gameplay-turns) {
     padding: 20px 17px 6px;
     min-height: 160px;
@@ -365,7 +537,7 @@
   .game :global(.gameplay-narration .prose),
   .opening :global(.prose) {
     font-size: 18px;
-    line-height: 1.8;
+    line-height: 1.55;
   }
   .inputMode,
   .game :global(.gameplay-channel form) {

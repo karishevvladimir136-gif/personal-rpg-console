@@ -14,6 +14,8 @@ import {
 } from "./visual-frame/current-scene-media-frame";
 import {
   safeFrameAsset,
+  ownerAcceptedFrameAsset,
+  realFrameDocuments,
   REAL_FRAME_ASSET_PREFIX,
 } from "@/lib/visual-frame/real-frame";
 import {
@@ -33,13 +35,13 @@ import { Badge, Button, Icon, Panel } from "./ui";
 import { useGameplayRuntime } from "./gameplay-runtime";
 import { useSessionMemory } from "./session-memory-runtime";
 import styles from "./playtest-game-character.module.css";
+import { LiveDisclosure } from "./live-disclosure";
 import {
   GameplayComposer,
   type StoryHistoryPosition,
 } from "./gameplay-composer";
 import {
   GameplayCamp,
-  GameplayCompanionTalk,
   GameplayRest,
 } from "./gameplay-actions";
 import { GameplayCombat } from "./gameplay-combat";
@@ -493,6 +495,30 @@ function GameRecords({
   const scene = data.scenes.find(
     (row) => row.id === data.publicState.current_scene_id,
   );
+  const player = data.entities.find((row) => row.kind === "player");
+  const companions = data.entities.filter((row) => row.kind === "companion");
+  const currentObjective = data.quests.find((row) => row.status === "open");
+  const recentClues = sceneOrder(
+    data.scenes.filter((row) => row.role === "note"),
+  ).slice(-3).reverse();
+  const sceneFrame = scene
+    ? realFrameDocuments(data)
+        .filter(
+          ({ value }) =>
+            value.status === "completed" &&
+            value.basis.scene.id === scene.id &&
+            value.resultAssetId !== null,
+        )
+        .reverse()
+        .map(({ value }) =>
+          data.assets.find(
+            (asset) =>
+              asset.id === value.resultAssetId &&
+              ownerAcceptedFrameAsset(data, asset),
+          ),
+        )
+        .find((asset) => asset !== undefined)
+    : undefined;
   const sessionScenes = sceneOrder(
     data.scenes.filter((row) => row.session_id === session?.id),
   );
@@ -561,6 +587,27 @@ function GameRecords({
       </header>
       <div className="game-grid gameplay-live">
         <div className="story-column">
+          <LiveDisclosure
+            title={t("Current scene artwork")}
+            storageKey={`${data.campaign.id}:game:artwork`}
+            defaultOpen
+            className={styles.sceneArtwork}
+          >
+            {sceneFrame ? (
+              <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
+            ) : (
+              <div className={styles.scenePlaceholder}>
+                <Icon name="Image" size={34} />
+                <div>
+                  <span className="eyebrow">{session?.title || t("Current scene")}</span>
+                  <h2>{location?.name || scene?.title || t("Your next chapter")}</h2>
+                  <p>
+                    {t("No approved image for this scene yet. Your story continues below.")}
+                  </p>
+                </div>
+              </div>
+            )}
+          </LiveDisclosure>
           {runtime.play && (
             <SessionPendingCompanion
               play={runtime.play}
@@ -569,6 +616,25 @@ function GameRecords({
           )}
           <Panel className={styles.storySurface}>
             {!runtime.play && opening}
+            {reviewOnly && !runtime.play && (
+              <div id="play-action" className={styles.reviewComposer}>
+                <div className="tabs" aria-label={t("Input mode")}>
+                  <button type="button" className="active" aria-pressed="true">
+                    {t("Your action")}
+                  </button>
+                  <button type="button" aria-pressed="false">
+                    {t("OOC")}
+                  </button>
+                </div>
+                <textarea
+                  aria-label={t("Your action")}
+                  placeholder={t("Describe your action")}
+                  disabled
+                  rows={3}
+                />
+                <p className="muted">{t("Synthetic UI review only · no gameplay is submitted.")}</p>
+              </div>
+            )}
             {runtime.loading && (
               <p role="status">{t("Loading saved gameplay…")}</p>
             )}
@@ -638,18 +704,25 @@ function GameRecords({
               </>
             )}
           </Panel>
-          <details className={styles.secondary}>
-            <summary>{t("FRAME & VIDEO · this scene")}</summary>
-            {scene && <p className="muted">{scene.title}</p>}
-            {frameTransport ? (
-              <CurrentSceneFrame transport={frameTransport} />
-            ) : (
-              <CurrentSceneMediaFrame transport={mediaTransport} />
-            )}
-            {!frameTransport && (
-              <CurrentSceneVideo transport={videoTransport} />
-            )}
-          </details>
+          {reviewOnly ? (
+            <details className={styles.secondary}>
+              <summary>{t("FRAME & VIDEO · this scene")}</summary>
+              <p className="muted">{t("Synthetic UI review only · media actions are unavailable.")}</p>
+            </details>
+          ) : (
+            <details className={styles.secondary}>
+              <summary>{t("FRAME & VIDEO · this scene")}</summary>
+              {scene && <p className="muted">{scene.title}</p>}
+              {frameTransport ? (
+                <CurrentSceneFrame transport={frameTransport} />
+              ) : (
+                <CurrentSceneMediaFrame transport={mediaTransport} />
+              )}
+              {!frameTransport && (
+                <CurrentSceneVideo transport={videoTransport} />
+              )}
+            </details>
+          )}
           {runtime.play && (runtime.play.rulesetId !== "world-logic-v1" ||
             runtime.play.configuration) && (
             <details
@@ -700,10 +773,13 @@ function GameRecords({
                 </details>
               )}
               {runtime.play.rulesetId !== "world-logic-v1" && (
-                <GameplayRest
-                  play={runtime.play}
-                  onSaved={runtime.afterMutation}
-                />
+                <details className={styles.secondary}>
+                  <summary>{t("Rest & camp")}</summary>
+                  <GameplayRest
+                    play={runtime.play}
+                    onSaved={runtime.afterMutation}
+                  />
+                </details>
               )}
               <p>
                 <Link
@@ -752,69 +828,87 @@ function GameRecords({
             </p>
           </details>
         </div>
-        <aside className="context-column">
-          <Panel className="visual-inventory-panel" title={t("Party")}>
-            {data.entities
-              .filter(
-                (row) => row.kind === "player" || row.kind === "companion",
-              )
-              .map((row) => (
-                <div key={row.id}>
-                  <h3>{row.name}</h3>
-                  {row.hp !== null && (
-                      <p>
-                        {t("HP")}
-                        {": "}
-                        {row.hp}
-                        {row.max_hp === null ? "" : ` / ${row.max_hp}`}
-                      </p>
-                    )}
-                  {Object.entries(row.resources).length > 0 && (
+        <aside className="context-column" aria-label={t("Story context")}>
+          <LiveDisclosure
+            title={t("At a glance")}
+            storageKey={`${data.campaign.id}:game:context`}
+            defaultOpen
+            className={styles.contextRail}
+          >
+            <LiveDisclosure
+              title={t("Your character")}
+              storageKey={`${data.campaign.id}:game:character`}
+              defaultOpen
+            >
+              {player ? (
+                <>
+                  <h3>{player.name}</h3>
+                  {player.hp !== null && (
+                    <p>{t("HP")}: {player.hp}{player.max_hp === null ? "" : ` / ${player.max_hp}`}</p>
+                  )}
+                  {Object.keys(player.resources).length > 0 && (
                     <dl className={styles.contextResources}>
-                      {Object.entries(row.resources).map(([label, value]) => (
-                        <div key={label}>
-                          <dt>{label}</dt>
-                          <dd>{value}</dd>
-                        </div>
+                      {Object.entries(player.resources).map(([label, value]) => (
+                        <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
                       ))}
                     </dl>
                   )}
-                  {row.conditions.length > 0 && (
-                    <p>{row.conditions.join(", ")}</p>
-                  )}
-                  {row.kind === "companion" && (
-                    <GameplayCompanionTalk entityId={row.id} />
-                  )}
-                </div>
-              ))}
-            {!data.entities.length && (
-              <p className="muted">
-                {t(
-                  "No public character records yet. Add only information the player knows.",
-                )}
-              </p>
-            )}
-            <Link
-              className="text-link"
-              href={`/campaigns/${data.campaign.id}/character`}
+                  <Link className="text-link" href={`/campaigns/${data.campaign.id}/character`}>
+                    {t("Character sheet")}
+                  </Link>
+                </>
+              ) : <p className="muted">{t("No public hero record yet.")}</p>}
+            </LiveDisclosure>
+            <LiveDisclosure
+              title={t("Current scene")}
+              storageKey={`${data.campaign.id}:game:scene`}
+              defaultOpen
             >
-              {t("Open character records")}
-            </Link>
-          </Panel>
-          <Panel className="visual-inventory-panel" title={t("Location")}>
-            <h3>{location?.name || t("None recorded")}</h3>
-            <p>{location?.description}</p>
-          </Panel>
-          <Panel className="visual-inventory-panel" title={t("Quests")}>
-            {data.quests
-              .filter((row) => row.status === "open")
-              .map((row) => (
-                <p key={row.id}>{row.title}</p>
-              ))}
-            {!data.quests.some((row) => row.status === "open") && (
-              <p>{t("No open quests recorded.")}</p>
-            )}
-          </Panel>
+              <h3>{location?.name || t("Location not recorded")}</h3>
+              <p>{location?.description || scene?.title || t("No public scene detail recorded.")}</p>
+              <Link className="text-link" href={`/campaigns/${data.campaign.id}/map`}>
+                {t("Open map")}
+              </Link>
+            </LiveDisclosure>
+            <LiveDisclosure
+              title={t("Current objective")}
+              storageKey={`${data.campaign.id}:game:objective`}
+              defaultOpen
+            >
+              {currentObjective ? (
+                <><h3>{currentObjective.title}</h3><p>{currentObjective.description}</p></>
+              ) : <p className="muted">{t("No open quest recorded.")}</p>}
+              <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>
+                {t("Open journal")}
+              </Link>
+            </LiveDisclosure>
+            <LiveDisclosure
+              title={t("Traveling companions")}
+              storageKey={`${data.campaign.id}:game:companions`}
+              defaultOpen
+            >
+              {companions.length ? companions.map((row) => (
+                <div className={styles.contextPerson} key={row.id}>
+                  <span className={styles.contextAvatar} aria-hidden="true">{row.name.slice(0, 1)}</span>
+                  <span>{row.name}</span>
+                </div>
+              )) : <p className="muted">{t("No companions recorded.")}</p>}
+              <Link className="text-link" href={`/campaigns/${data.campaign.id}/party`}>
+                {t("Open party")}
+              </Link>
+            </LiveDisclosure>
+            <LiveDisclosure
+              title={t("Recent known clues")}
+              storageKey={`${data.campaign.id}:game:clues`}
+            >
+              {recentClues.length ? recentClues.map((row) => (
+                <p key={row.id}><strong>{row.title}</strong></p>
+              )) : <p className="muted">{t("No public clues recorded.")}</p>}
+              <Link className="text-link" href={`/campaigns/${data.campaign.id}/journal`}>
+                {t("Open journal")}
+              </Link>
+            </LiveDisclosure>
+          </LiveDisclosure>
         </aside>
       </div>
       {resume && <ResumeEditor data={data} onClose={() => setResume(false)} />}

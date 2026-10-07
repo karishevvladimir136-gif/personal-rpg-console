@@ -524,7 +524,11 @@ function CampaignPreferencesForm({
   );
 }
 
-export function PersistentCampaignSettings() {
+export function PersistentCampaignSettings({
+  reviewOnly = false,
+}: {
+  reviewOnly?: boolean;
+} = {}) {
   const { t } = useLanguage();
   const { data, loading, error, refresh, campaignId } = useCampaignData();
   const [production, setProduction] =
@@ -533,6 +537,8 @@ export function PersistentCampaignSettings() {
     production && productionScopeMatches(production, campaignId, data?.timeline)
       ? production
       : null;
+  if (reviewOnly)
+    return data ? <CampaignSettingsReview snapshot={data} /> : null;
   return (
     <>
       {loading && <p role="status">{t("Loading campaign settings…")}</p>}
@@ -546,7 +552,17 @@ export function PersistentCampaignSettings() {
       )}
       {data && (
         <div key={campaignId}>
-          <CampaignIdentityForm current={data.campaign} />
+          <div className="page-heading">
+            <div>
+              <span className="eyebrow">{data.campaign.title}</span>
+              <h1>{t("Campaign Settings")}</h1>
+              <p>{t("A few quiet preferences for the road ahead.")}</p>
+            </div>
+          </div>
+          <details className="rules-advanced">
+            <summary>{t("Edit / Correct records")}</summary>
+            <CampaignIdentityForm current={data.campaign} />
+          </details>
           <CampaignPreferencesForm
             current={data}
             production={activeProduction}
@@ -556,6 +572,11 @@ export function PersistentCampaignSettings() {
             timeline={data.timeline}
             defaultLanguage={data.campaign.language}
           />
+          <p>
+            <Link className="text-link" href={`/campaigns/${campaignId}/dm-chat`}>
+              {t("Chat with DM")}
+            </Link>
+          </p>
           <details className="rules-advanced">
             <summary>{t("Advanced · AI, rules & world engine")}</summary>
             <CampaignProductionSettingsPanel
@@ -579,5 +600,32 @@ export function PersistentCampaignSettings() {
         </div>
       )}
     </>
+  );
+}
+
+/** Public fixture adapter for isolated visual review; never reads or writes live state. */
+export function CampaignSettingsReview({
+  snapshot,
+}: {
+  snapshot: CampaignSnapshot;
+}) {
+  const { t } = useLanguage();
+  return (
+    <div>
+      <div className="page-heading">
+        <div>
+          <span className="eyebrow">{snapshot.campaign.title}</span>
+          <h1>{t("Campaign Settings")}</h1>
+          <p>{t("A few quiet preferences for the road ahead.")}</p>
+        </div>
+      </div>
+      <CampaignSettingsEditor
+        title={snapshot.campaign.title}
+        settings={snapshot.settings.values}
+        onChange={() => {}}
+        showWorldAutonomy={false}
+        showMechanics={snapshot.settings.values.rulesSystem.id === "console-basic-v1"}
+      />
+    </div>
   );
 }

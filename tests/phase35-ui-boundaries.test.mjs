@@ -6,6 +6,7 @@ import ru from "../src/lib/locales/ru.json" with { type: "json" };
 import fragment from "../src/lib/locales/phase35-c-ru.json" with { type: "json" };
 import {
   mobileCampaignScreens,
+  playerNavigation,
   saveNavigation,
 } from "../src/lib/saves/navigation.ts";
 import {
@@ -19,6 +20,26 @@ import {
 
 const source = (path) =>
   readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
+test("live campaign shell has the ten player-facing Phase-0 destinations while legacy deep links remain", () => {
+  assert.deepEqual(playerNavigation.map(([screen]) => screen), [
+    "game",
+    "character",
+    "inventory",
+    "party",
+    "journal",
+    "map",
+    "library",
+    "gallery",
+    "sessions",
+    "settings",
+  ]);
+  for (const [screen] of playerNavigation)
+    assert.ok(saveNavigation.some(([legacy]) => legacy === screen));
+  for (const legacy of ["adventures", "timeline", "home", "world", "dm-chat", "frame", "saves"])
+    assert.ok(!playerNavigation.some(([screen]) => screen === legacy));
+  assert.match(source("src/components/persistent-shell.tsx"), /const persistentNavigation = playerNavigation/);
+  for (const [, label] of playerNavigation) assert.ok(ru[label], label);
+});
 test("Saves is first-class campaign navigation and More retains four permanent mobile essentials", () => {
   const screens = saveNavigation.map(([id]) => id);
   assert.deepEqual(screens.slice(screens.indexOf("library")), [

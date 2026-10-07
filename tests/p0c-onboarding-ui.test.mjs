@@ -136,7 +136,7 @@ const pending = () => {
   return state;
 };
 
-test("EN/RU Campaigns has one primary World Logic entry, advanced empty creation, and unchanged Continue cards", () => {
+test("EN/RU Campaigns keeps creation and real-data Continue cards", () => {
   for (const language of ["en", "ru"]) {
     const h = hooks(),
       c = adventureText(language);
@@ -172,8 +172,17 @@ test("EN/RU Campaigns has one primary World Logic entry, advanced empty creation
           walk(n).some((child) => child.props.children === c.createEmpty),
       ),
     );
+    const card = nodes.find(
+      (n) =>
+        n.type?.name === "CampaignCard" &&
+        n.props.campaign.id === campaign.id,
+    );
+    assert.ok(card);
+    h.reset([]);
     assert.ok(
-      nodes.some((n) => n.props.href === `/campaigns/${campaign.id}/game`),
+      walk(card.type(card.props)).some(
+        (n) => n.props.href === `/campaigns/${campaign.id}/game`,
+      ),
     );
     assert.ok(!nodes.some((n) => n.props.children === c.newHero));
     primary[0].props.onClick();
@@ -205,6 +214,61 @@ test("EN/RU Campaigns has one primary World Logic entry, advanced empty creation
     assert.ok(empty.some((n) => n.type === "form"));
     assert.ok(!empty.some((n) => n.type?.name === "NewHeroForm"));
   }
+});
+
+test("campaign card screenshot adapter uses supplied public records without fetching live data", () => {
+  const h = hooks();
+  h.react.useEffect = (effect) => effect();
+  const campaign = {
+    id: id(1),
+    title: "Fixture world",
+    subtitle: "A quiet road",
+    language: "en",
+  };
+  const snapshot = {
+    campaign,
+    publicState: {
+      current_session_id: id(2),
+      current_scene_id: id(3),
+      current_location_id: id(4),
+    },
+    sessions: [{ id: id(2), title: "The Return" }],
+    scenes: [{ id: id(3), title: "At the bridge" }],
+    locations: [{ id: id(4), name: "Old Bridge" }],
+    entities: [{ id: id(5), kind: "player", name: "Mara", stats: { level: 2 } }],
+    assets: [],
+  };
+  const ui = modules({
+    react: h.react,
+    "./language-context": label("en"),
+    "@/lib/persistence/client": { loadCampaign: fail },
+  });
+  const Review = ui("components/persistent-campaigns.tsx").CampaignCardsReview;
+  const card = walk(
+    Review({ campaigns: [campaign], snapshots: { [campaign.id]: snapshot } }),
+  ).find((node) => node.type?.name === "CampaignCard");
+  assert.ok(card);
+  h.begin();
+  const nodes = walk(card.type(card.props));
+  const strings = (value) =>
+    typeof value === "string"
+      ? [value]
+      : Array.isArray(value)
+        ? value.flatMap(strings)
+        : [];
+  const visibleText = nodes.flatMap((node) => strings(node.props.children)).join(" ");
+  for (const value of ["The Return", "At the bridge", "Old Bridge", "Mara"])
+    assert.ok(visibleText.includes(value), value);
+  assert.deepEqual(
+    nodes
+      .filter((node) => typeof node.props.href === "string")
+      .map((node) => node.props.href),
+    [
+      "/preview/live-ui?screen=game",
+      "/preview/live-ui?screen=library",
+      "/preview/live-ui?screen=sessions",
+    ],
+  );
 });
 
 test("starter Worlds distinguish compatible Worlds from Pack-backed advanced foundations", () => {
@@ -494,9 +558,14 @@ test("Settings reorder basics/play preferences/premise and keep scoped engine pa
         names.indexOf("CampaignPremisePanel"),
     );
     const advanced = nodes.filter((n) => n.type === "details");
-    assert.equal(advanced.length, 2);
+    assert.equal(advanced.length, 3);
     assert.ok(advanced.every((n) => !n.props.open));
-    const production = walk(advanced[0]).find(
+    assert.ok(
+      walk(advanced[0]).some(
+        (n) => n.type?.name === "CampaignIdentityForm",
+      ),
+    );
+    const production = walk(advanced[1]).find(
       (n) => n.type?.name === "CampaignProductionSettingsPanel",
     );
     assert.ok(production);
@@ -504,17 +573,133 @@ test("Settings reorder basics/play preferences/premise and keep scoped engine pa
     assert.deepEqual(production.props.timeline, f.catalog.timeline);
     assert.equal(typeof production.props.onLoaded, "function");
     assert.equal(
-      walk(advanced[1]).filter(
+      walk(advanced[2]).filter(
         (n) => n.type?.name === "CampaignPackSettingsPanel",
       ).length,
       1,
     );
     assert.equal(
-      walk(advanced[1]).filter((n) => n.type?.name === "FoundationLoopPanel")
+      walk(advanced[2]).filter((n) => n.type?.name === "FoundationLoopPanel")
         .length,
       1,
     );
+    h.begin();
+    const review = walk(
+      ui("components/persistent-settings.tsx").PersistentCampaignSettings({
+        reviewOnly: true,
+      }),
+    );
+    assert.ok(
+      review.some((node) => node.type?.name === "CampaignSettingsReview"),
+    );
+    assert.ok(
+      !review.some(
+        (node) => node.type?.name === "CampaignProductionSettingsPanel",
+      ),
+    );
   }
+});
+
+test("live Library groups real public documents and keeps editing inside selected detail", () => {
+  for (const language of ["en", "ru"]) {
+    const h = hooks();
+    const record = {
+      id: id(23),
+      campaign_id: id(1),
+      title: "Old Road Notes",
+      body: "Public route notes only.",
+      status: "canon",
+      revision: 2,
+      current_version_id: id(24),
+    };
+    const data = {
+      campaign: { id: id(1), title: "Current world" },
+      documents: [record],
+      dmGuideDocumentId: id(99),
+    };
+    const ui = modules({
+      react: h.react,
+      "./language-context": label(language),
+      "./persistence-context": {
+        useCampaignData: () => ({ data, campaignId: id(1), refresh: fail }),
+      },
+    });
+    const Library = ui("components/persistent-documents.tsx").PersistentLibrary;
+    const render = () => {
+      h.begin();
+      return walk(Library());
+    };
+    let nodes = render();
+    const tabs = nodes.find((node) => node.type?.name === "Tabs");
+    assert.deepEqual(tabs?.props.options, [
+      "All documents",
+      "Canon",
+      "Reference",
+      "Archived",
+    ]);
+    assert.ok(!nodes.some((node) => node.type?.name === "DocumentEditor"));
+    const row = nodes.find(
+      (node) =>
+        node.type === "button" && node.props.className === "document-row",
+    );
+    assert.ok(row);
+    row.props.onClick();
+    nodes = render();
+    assert.ok(
+      nodes.some(
+        (node) =>
+          node.props.className === "persistence-document-body" &&
+          node.props.children === record.body,
+      ),
+    );
+    assert.ok(
+      nodes.some(
+        (node) =>
+          node.type === "details" &&
+          walk(node).some((child) => child.type?.name === "DocumentEditor"),
+      ),
+    );
+  }
+});
+
+test("synthetic Library review keeps document detail read-only without version loading", () => {
+  const h = hooks();
+  const record = {
+    id: id(23),
+    campaign_id: id(1),
+    title: "Harbor notes",
+    body: "Public details only.",
+    status: "canon",
+    revision: 1,
+    current_version_id: id(24),
+  };
+  const ui = modules({
+    react: h.react,
+    "./language-context": label("en"),
+    "./persistence-context": {
+      useCampaignData: () => ({
+        data: {
+          campaign: { id: id(1), title: "Fixture world" },
+          documents: [record],
+          dmGuideDocumentId: null,
+        },
+        campaignId: id(1),
+        refresh: fail,
+      }),
+    },
+  });
+  const Library = ui("components/persistent-documents.tsx").PersistentLibrary;
+  h.begin();
+  let nodes = walk(Library({ reviewOnly: true }));
+  assert.ok(!nodes.some((node) => node.type?.name === "DocumentEditor"));
+  assert.ok(!nodes.some((node) => node.props.children === "New Document"));
+  assert.ok(nodes.some((node) => node.type === "details"));
+  nodes.find((node) => node.type === "button" && node.props.className === "document-row")
+    .props.onClick();
+  h.begin();
+  nodes = walk(Library({ reviewOnly: true }));
+  assert.ok(nodes.some((node) => node.props.className === "persistence-document-body"));
+  assert.ok(!nodes.some((node) => node.type?.name === "DocumentEditor"));
 });
 
 test("Premise prominently warns it is planning only; examples are optional prose rather than modes", () => {

@@ -8,7 +8,6 @@ import {
 } from "@/components/persistent-records";
 import {
   PersistentGame,
-  PersistentSessions,
   PersistentSupporting,
 } from "@/components/persistent-game";
 import { PersistentDmChat } from "@/components/persistent-dm-chat";
@@ -19,6 +18,7 @@ import { PersistentPlacesBelonging } from "@/components/persistent-places-belong
 import { PersistentMediaVisualFrame } from "@/components/persistent-visual-frame";
 import { PersistentAdventures } from "@/components/persistent-adventures";
 import { PersistentAdventureLoot } from "@/components/persistent-adventure-loot";
+import { PersistentSecondaryPage } from "@/components/persistent-secondary-pages";
 
 export default async function Page({
   params,
@@ -59,10 +59,10 @@ export default async function Page({
     case "settings":
       return <PersistentCampaignSettings />;
     case "sessions":
-      return <PersistentSessions />;
     case "journal":
     case "map":
     case "gallery":
+      return <PersistentSecondaryPage screen={screen} />;
     case "camp":
       return <PersistentSupporting screen={screen} />;
     default:

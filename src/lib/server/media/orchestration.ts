@@ -26,6 +26,14 @@ import type {
   FrameParameters,
   FrameSourceAuthority,
 } from "../../visual-frame/real-frame.ts";
+import {
+  parseSubjectVisualJob,
+  subjectVisualAssetMutation,
+  subjectVisualDocumentMutation,
+  subjectVisualIsCurrent,
+  validateSubjectVisualLifecycle,
+} from "../../visual-frame/subject-job.ts";
+import type { SubjectVisualJob } from "../../visual-frame/subject-job.ts";
 import { isFrameCheckResult } from "./grounding-state.ts";
 import type { FrameCheckResult } from "./grounding-state.ts";
 
@@ -75,6 +83,7 @@ export type MediaFrameAuthority = {
   ) => Promise<MutationResult>;
 };
 export type MediaPixels = { bytes: Uint8Array; output: FrameOutput };
+export type MediaImageJob = RealFrame | SubjectVisualJob;
 export type MediaStore = {
   read: (campaignId: string, jobId: string) => Promise<MediaPixels | null>;
   put: (
@@ -84,7 +93,7 @@ export type MediaStore = {
   ) => Promise<void>;
 };
 export type MediaProvider = {
-  generate: (frame: RealFrame, jobId: string) => Promise<MediaPixels>;
+  generate: (frame: MediaImageJob, jobId: string) => Promise<MediaPixels>;
 };
 export type MediaDependencies = {
   authority: MediaFrameAuthority;
@@ -92,15 +101,33 @@ export type MediaDependencies = {
   store: MediaStore;
   provider: MediaProvider;
   verifier?: {
-    preflight: (frame: RealFrame) => void;
+    preflight: (frame: MediaImageJob) => void;
     check: (
-      frame: RealFrame,
+      frame: MediaImageJob,
       pixels: MediaPixels,
       jobId: string,
       operationId: string,
     ) => Promise<FrameCheckResult>;
   };
 };
+const parseJob = (record: Pick<DocumentRecord, "body">): MediaImageJob | null =>
+  parseRealFrame(record) ?? parseSubjectVisualJob(record);
+const jobMutation = (
+  snapshot: CampaignSnapshot,
+  job: MediaImageJob,
+  record?: DocumentRecord,
+) =>
+  job.schema === 5
+    ? subjectVisualDocumentMutation(snapshot, job, record)
+    : realFrameDocumentMutation(snapshot, job, record);
+const jobIsCurrent = (
+  snapshot: CampaignSnapshot,
+  job: MediaImageJob,
+  source: FrameSourceAuthority,
+) =>
+  job.schema === 5
+    ? subjectVisualIsCurrent(snapshot, job, source)
+    : realFrameIsCurrent(snapshot, job, source);
 export type MediaCommand =
   | { action: "media.save"; input: Mutation }
   | { action: "media.dispatch"; input: Mutation }
@@ -133,13 +160,13 @@ function command(value: unknown): MediaCommand {
   if (
     input.operation !== "document.save" ||
     input.correctionScope !== "campaign" ||
-    !parseRealFrame(input.payload)
+    !parseJob(input.payload)
   )
     throw new MediaFrameError("validation");
   return { action: value.action as MediaCommand["action"], input };
 }
 function policyMatches(
-  frame: RealFrame,
+  frame: MediaImageJob,
   policy: MediaPolicy | null,
 ): policy is MediaPolicy {
   return Boolean(
@@ -161,27 +188,27 @@ function recordFor(snapshot: CampaignSnapshot, input: Mutation) {
     record.id === snapshot.dmGuideDocumentId
   )
     throw new MediaFrameError("not_found");
-  const frame = parseRealFrame(record);
+  const frame = parseJob(record);
   if (!frame || frame.campaign_id !== snapshot.campaign.id)
     throw new MediaFrameError("validation");
   return { record, frame };
 }
 function baseMutation(
   snapshot: CampaignSnapshot,
-  frame: RealFrame,
+  frame: MediaImageJob,
   record: DocumentRecord,
   requestId: string,
 ): Mutation {
-  return { ...realFrameDocumentMutation(snapshot, frame, record), requestId };
+  return { ...jobMutation(snapshot, frame, record), requestId };
 }
 function stripRequest(input: Mutation) {
   const { requestId, ...mutation } = input;
   void requestId;
   return mutation;
 }
-function requireVerifier(deps: MediaDependencies, frame: RealFrame) {
+function requireVerifier(deps: MediaDependencies, frame: MediaImageJob) {
   if (
-    frame.schema !== 4 ||
+    ![4, 5].includes(frame.schema) ||
     !deps.verifier ||
     !deps.authority.checkClaim ||
     !deps.authority.checkComplete
@@ -193,7 +220,7 @@ function requireVerifier(deps: MediaDependencies, frame: RealFrame) {
     throw new MediaFrameError("not_configured");
   }
 }
-function immutableClaim(previous: RealFrame, next: RealFrame) {
+function immutableClaim(previous: MediaImageJob, next: MediaImageJob) {
   return (
     previous.status === "queued" &&
     next.status === "generating" &&
@@ -212,18 +239,18 @@ export async function executeMediaFrame(
   const { action, input } = command(value);
   if (input.operation !== "document.save")
     throw new MediaFrameError("validation");
-  const next = parseRealFrame(input.payload)!;
+  const next = parseJob(input.payload)!;
   await deps.authority.authorize(input.campaignId);
   // Authorize and exact original receipt precede every mutable source/preflight. A replay never redispatches.
   const receipt =
-    action === "media.recover" && next.schema === 4
+    action === "media.recover" && [4, 5].includes(next.schema)
       ? ((await deps.authority.recoveryReceipt?.(input)) ?? null)
       : await deps.authority.receipt(input);
   if (receipt)
     return {
       result: receipt,
       status:
-        action === "media.recover" && next.schema === 4 ? "draft" : next.status,
+        action === "media.recover" && [4, 5].includes(next.schema) ? "draft" : next.status,
       dispatched: false,
     };
   if (action === "media.accept") {
@@ -231,15 +258,15 @@ export async function executeMediaFrame(
     const current = recordFor(snapshot, input);
     const previous = current.frame;
     if (
-      next.schema !== 4 ||
-      previous.schema !== 4 ||
+      ![4, 5].includes(next.schema) ||
+      previous.schema !== next.schema ||
       previous.status !== "draft" ||
       next.status !== "completed" ||
       next.resultAssetId !== current.record.id ||
       !previous.review ||
       current.record.revision !== input.expectedRevision ||
       !sameTimeline(snapshot.timeline, input.timeline) ||
-      !realFrameIsCurrent(
+      !jobIsCurrent(
         snapshot,
         previous,
         await deps.authority.source(input.campaignId),
@@ -250,7 +277,7 @@ export async function executeMediaFrame(
         resultAssetId: current.record.id,
       }) !== JSON.stringify(next) ||
       JSON.stringify(
-        realFrameDocumentMutation(snapshot, next, current.record),
+        jobMutation(snapshot, next, current.record),
       ) !== JSON.stringify(stripRequest(input))
     )
       throw new MediaFrameError("conflict");
@@ -266,14 +293,22 @@ export async function executeMediaFrame(
     )
       throw new MediaFrameError("unavailable");
     const asset: Mutation = {
-      ...realFrameAssetMutation(
-        snapshot,
-        current.record,
-        next,
-        pixels.output,
-        current.record.id,
-        input.requestId,
-      ),
+      ...(next.schema === 5
+        ? subjectVisualAssetMutation(
+            snapshot,
+            current.record,
+            next,
+            pixels.output,
+            input.requestId,
+          )
+        : realFrameAssetMutation(
+            snapshot,
+            current.record,
+            next,
+            pixels.output,
+            current.record.id,
+            input.requestId,
+          )),
       requestId: current.record.current_version_id,
     };
     return {
@@ -286,11 +321,10 @@ export async function executeMediaFrame(
     if (action === "media.discard" && next.status !== "discarded")
       throw new MediaFrameError("validation");
     const snapshot = await deps.authority.snapshot(input.campaignId);
-    validateRealFrameLifecycle(
-      snapshot,
-      stripRequest(input),
-      await deps.authority.source(input.campaignId),
-    );
+    const source = await deps.authority.source(input.campaignId);
+    if (next.schema === 5)
+      validateSubjectVisualLifecycle(snapshot, stripRequest(input), source);
+    else validateRealFrameLifecycle(snapshot, stripRequest(input), source);
     if (next.status === "queued") requireVerifier(deps, next);
     if (
       next.status === "queued" &&
@@ -313,7 +347,7 @@ export async function executeMediaFrame(
       ? input.requestId !== next.dispatch.requestId ||
         next.status !== "generating"
       : input.requestId !== input.payload.id ||
-        (next.schema === 4
+        ([4, 5].includes(next.schema)
           ? next.status !== "generating" || next.review !== null
           : next.status !== "completed" ||
             next.resultAssetId !== input.payload.id))
@@ -338,7 +372,7 @@ export async function executeMediaFrame(
   const current = recordFor(snapshot, input);
   if (
     !sameTimeline(snapshot.timeline, input.timeline) ||
-    !realFrameIsCurrent(
+    !jobIsCurrent(
       snapshot,
       next,
       await deps.authority.source(input.campaignId),
@@ -350,7 +384,7 @@ export async function executeMediaFrame(
     if (
       record.revision !== input.expectedRevision ||
       !immutableClaim(current.frame, next) ||
-      JSON.stringify(realFrameDocumentMutation(snapshot, next, record)) !==
+      JSON.stringify(jobMutation(snapshot, next, record)) !==
         JSON.stringify(stripRequest(input))
     )
       throw new MediaFrameError("conflict");
@@ -396,7 +430,7 @@ export async function executeMediaFrame(
       current.frame.status !== "generating" ||
       record.revision !== input.expectedRevision ||
       JSON.stringify(
-        next.schema === 4
+        [4, 5].includes(next.schema)
           ? current.frame
           : {
               ...current.frame,
@@ -404,7 +438,7 @@ export async function executeMediaFrame(
               resultAssetId: record.id,
             },
       ) !== JSON.stringify(next) ||
-      JSON.stringify(realFrameDocumentMutation(snapshot, next, record)) !==
+      JSON.stringify(jobMutation(snapshot, next, record)) !==
         JSON.stringify(stripRequest(input))
     )
       throw new MediaFrameError("conflict");
@@ -436,7 +470,7 @@ export async function executeMediaFrame(
       baseMutation(
         snapshot,
         {
-          ...parseRealFrame(record)!,
+          ...parseJob(record)!,
           status: "uncertain",
           failure: "uncertain",
         },
@@ -461,7 +495,7 @@ export async function executeMediaFrame(
     let result: FrameCheckResult;
     try {
       result = await deps.verifier!.check(
-        parseRealFrame(record)!,
+        parseJob(record)!,
         pixels,
         record.id,
         record.current_version_id,
@@ -477,7 +511,7 @@ export async function executeMediaFrame(
         await deps.authority.lifecycle(
           baseMutation(
             snapshot,
-            { ...parseRealFrame(record)!, status: "uncertain", failure: "uncertain" },
+            { ...parseJob(record)!, status: "uncertain", failure: "uncertain" },
             record,
             record.current_version_id,
           ),
@@ -495,7 +529,7 @@ export async function executeMediaFrame(
       baseMutation(
         snapshot,
         {
-          ...parseRealFrame(record)!,
+          ...parseJob(record)!,
           status: "uncertain",
           failure: "uncertain",
         },
@@ -511,7 +545,7 @@ export async function executeMediaFrame(
     const result = await deps.authority.lifecycle(
       baseMutation(
         snapshot,
-        { ...parseRealFrame(record)!, status: "failed", failure: "grounding" },
+        { ...parseJob(record)!, status: "failed", failure: "grounding" },
         record,
         record.current_version_id,
       ),

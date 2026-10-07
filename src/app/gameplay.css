@@ -290,3 +290,23 @@
     margin-bottom: 8px;
   }
 }
+.gameplay-speaker-portrait {
+  flex: 0 0 38px;
+  display: inline-grid;
+  place-items: center;
+  height: 38px;
+  border: 1px solid #a7834f;
+  border-radius: 50%;
+  color: #f0d4a7;
+  background: linear-gradient(150deg, #473929, #1c2627);
+  font: 22px Georgia, serif;
+}
+.gameplay-owner-input:has(.gameplay-speaker-portrait) {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.gameplay-owner-words {
+  min-width: 0;
+  flex: 1;
+}

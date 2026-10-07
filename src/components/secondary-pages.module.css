@@ -1,0 +1,273 @@
+.page {
+  min-width: 0;
+}
+.heading {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+.heading h1 {
+  margin: 6px 0;
+}
+.heading p {
+  margin: 0;
+  color: var(--muted);
+}
+.heading > div {
+  min-width: 0;
+}
+.heading h1,
+.heading p,
+.page h2,
+.page h3 {
+  overflow-wrap: anywhere;
+}
+.disclosure {
+  margin: 16px 0;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: var(--panel);
+}
+.disclosure > summary {
+  padding: 17px 20px;
+  color: var(--gold);
+  cursor: pointer;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+}
+.disclosure > summary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+.disclosureBody {
+  padding: 0 20px 20px;
+  min-width: 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 18px;
+}
+.card {
+  padding: 22px;
+  min-width: 0;
+}
+.card h2,
+.card h3 {
+  margin: 12px 0;
+}
+.prose {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.8;
+}
+.tools {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 14px 0;
+}
+.board {
+  padding: 24px;
+  background:
+    radial-gradient(ellipse at top, #8d62341c, transparent 70%), #171818;
+}
+.boardCard {
+  background: #272625;
+  border: 1px solid #76614566;
+  border-radius: 5px;
+  padding: 20px;
+  text-align: left;
+  color: inherit;
+  cursor: pointer;
+  min-width: 0;
+}
+.boardCard:hover {
+  border-color: var(--gold);
+}
+.boardCard h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  margin: 10px 0;
+}
+.boardCard p {
+  color: var(--muted);
+  margin: 0;
+}
+.symbol {
+  display: grid;
+  place-items: center;
+  min-height: 100px;
+  color: var(--gold);
+  background: radial-gradient(ellipse, #a1794322, transparent 72%);
+}
+.atlas {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+  gap: 0;
+  overflow: hidden;
+}
+.atlasField {
+  padding: 30px;
+  min-width: 0;
+  min-height: 410px;
+  background:
+    radial-gradient(ellipse at 40% 30%, #98734526, transparent 72%), #181c1c;
+}
+.atlasField h2 {
+  margin-top: 0;
+}
+.atlasDetail {
+  padding: 26px;
+  border-left: 1px solid var(--border);
+}
+.places {
+  display: grid;
+  gap: 12px;
+  margin: 25px 0;
+}
+.place {
+  padding: 15px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #212522;
+  border: 1px solid #92704455;
+  border-radius: 6px;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  min-width: 0;
+}
+.place > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.place small {
+  display: block;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.place[aria-pressed="true"] {
+  border-color: var(--gold);
+  background: #393127;
+}
+.destination {
+  border-left: 2px solid var(--gold);
+  padding: 12px 16px;
+  margin: 20px 0;
+  background: #a1794311;
+}
+.poster {
+  min-height: 330px;
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background:
+    radial-gradient(ellipse at top, #a179432b, transparent 70%),
+    linear-gradient(145deg, #252c2a, #121515);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+.poster h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  line-height: 1.2;
+}
+.moment {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.moment h3 {
+  margin: 5px 0;
+}
+.moment p {
+  margin: 0;
+  color: var(--muted);
+}
+.mediaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+  gap: 20px;
+}
+.mediaCard {
+  overflow: hidden;
+  padding: 0;
+  min-width: 0;
+}
+.mediaCard img,
+.mediaCard video,
+.mediaCard svg {
+  max-width: 100%;
+}
+.mediaBody {
+  padding: 18px;
+}
+.mediaBody h3 {
+  margin: 8px 0;
+}
+.mediaOpen {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.mediaOpen:hover {
+  color: var(--gold);
+}
+.lightbox {
+  max-height: 65vh;
+  overflow: auto;
+}
+.lightbox img,
+.lightbox video {
+  max-width: 100%;
+}
+.empty {
+  text-align: center;
+  padding: 36px 24px;
+  color: var(--muted);
+}
+.empty h2 {
+  color: var(--text);
+}
+.timeline {
+  padding: 22px;
+}
+.timeline article {
+  border-left: 1px solid var(--gold);
+  padding: 0 0 24px 22px;
+}
+@media (max-width: 760px) {
+  .heading {
+    flex-direction: column;
+  }
+  .atlas {
+    grid-template-columns: 1fr;
+  }
+  .atlasField {
+    min-height: 250px;
+    padding: 22px;
+  }
+  .atlasDetail {
+    border-left: 0;
+    border-top: 1px solid var(--border);
+  }
+  .poster {
+    min-height: 240px;
+    padding: 24px;
+  }
+  .disclosureBody {
+    padding: 0 14px 14px;
+  }
+  .board {
+    padding: 16px;
+  }
+}
