@@ -177,6 +177,10 @@ test("Create remains disabled after a narrative-to-structured switch until comba
     execute: noCall, resetProposal: noCall, setReview: noCall };
   const props = { language: "en", onDirty: noCall, onCreated: noCall, onCancel: noCall,
     initialWorlds: f.worlds, transport: { worlds: noCall }, persistPending: false };
+  const narrativePage = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review }).NewCampaignForm, props);
+  assert.match(narrativePage, /choose Structured RPG, and approve the combat profile/i);
+  assert.match(narrativePage, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+  assert.match(narrativePage, /option value="structured_rpg"/);
   const structured = m.changeCharacterSheetMode(review, "structured_rpg");
   const blocked = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review: structured }).NewCampaignForm, props);
   assert.match(blocked, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);

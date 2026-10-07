@@ -11,6 +11,7 @@ import type {
 } from "../../lib/adventures/bootstrap-contracts";
 import { parseCreationReview } from "../../lib/adventures/bootstrap-validation";
 import { creationReviewForCommit } from "../../lib/adventures/bootstrap-review";
+import { astraFirstCreationReviewReady } from "../../lib/adventures/astra-startup-review";
 import {
   createAdventureTransport,
   restoreWorldAttempt,
@@ -133,7 +134,7 @@ function UniversalCampaign({
   try {
     if (draft && corrected) {
       parseCreationReview(corrected, draft.proposal);
-      canCreate = true;
+      canCreate = astraFirstCreationReviewReady(corrected);
     }
   } catch {
     /* Clarifications and recorded balances must be resolved. */
@@ -193,6 +194,13 @@ function UniversalCampaign({
                   questions={draft.proposal.questions}
                 />
               </fieldset>
+              {draft.proposal.schemaVersion === 2 && corrected?.sheet?.mode === "narrative" && (
+                <p className={styles.notice} role="status">
+                  {language === "ru"
+                    ? "Для новой кампании с ведущим Astra откройте «Исправить лист персонажа», выберите «Структурированный RPG» и утвердите боевой профиль перед созданием."
+                    : "For a new Astra campaign, open Correct character sheet, choose Structured RPG, and approve the combat profile before creating it."}
+                </p>
+              )}
               <div className={styles.actions}>
                 <button
                   className={styles.primary}

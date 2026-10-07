@@ -10,6 +10,7 @@ import { resolveExecutionProfile } from "../model-runtime/registry.ts";
 import { applicationModelSelection } from "../model-runtime/defaults.ts";
 import { executionProviderOptions } from "./model-runtime/profiles.ts";
 import type { BootstrapCommand } from "../adventures/bootstrap-contracts.ts";
+import { astraFirstCreationReviewReady } from "../adventures/astra-startup-review.ts";
 export async function performBootstrap(command: BootstrapCommand) {
   const campaignId =
     command.action === "creation.propose" ||
@@ -52,6 +53,16 @@ export async function performBootstrap(command: BootstrapCommand) {
       );
     return result.data;
   };
+  if (process.env.RPG_ASTRA_PRIMARY_P1 === "1" &&
+    command.action === "creation.commit" &&
+    !astraFirstCreationReviewReady(command.input.review)) {
+    // A configuration change cannot invalidate an exact already-committed
+    // creation receipt after an uncertain client response. New narrative v2
+    // commits remain blocked before proposal inspection or provider work.
+    const replay = await rpc("creation_replay_status", null, command.input);
+    if ((replay as { approved?: unknown })?.approved !== true)
+      throw new PersistenceError("validation");
+  }
   return await createBootstrapService(
     rpc,
     (ticket) =>

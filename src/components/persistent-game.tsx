@@ -636,6 +636,7 @@ function GameRecords({
   );
   const historyKey = `${data.timeline?.timelineId ?? "unfenced"}:${data.timeline?.epoch ?? 0}:${inputMode}`;
   function openMedia(target: "frame" | "video") {
+    if (runtime.play?.startupPending) return;
     if (reviewOnly || !mediaRef.current) return;
     mediaRef.current.open = true;
     requestAnimationFrame(() => {
@@ -707,7 +708,7 @@ function GameRecords({
                 {scene?.created_at && <time dateTime={scene.created_at}>{new Date(scene.created_at).toLocaleString(data.campaign.language)}</time>}
               </div>
               {opening}
-              <div className="scene-actions">
+              {!runtime.play?.startupPending && <div className="scene-actions">
                 <Button disabled={reviewOnly} onClick={() => openMedia("frame")}>
                   <Icon name="Image" size={15} />
                   <span>{t("FRAME")}<small>{t("Capture this moment")}</small></span>
@@ -718,8 +719,8 @@ function GameRecords({
                     <span>{t("VIDEO")}<small>{t("A cinematic view")}</small></span>
                   </Button>
                 )}
-              </div>
-              {!reviewOnly && (
+              </div>}
+              {!reviewOnly && !runtime.play?.startupPending && (
                 <details className={gameStyles.sceneMedia} ref={mediaRef}>
                   <summary>{language === "ru" ? "Создать изображение этой сцены" : "Create art for this scene"}</summary>
                   {scene && <p className="muted">{scene.title}</p>}
@@ -739,7 +740,7 @@ function GameRecords({
               )}
             </div>
           </article>
-          {runtime.play && (
+          {runtime.play && !runtime.play.startupPending && (
             <SessionPendingCompanion
               play={runtime.play}
               onSaved={runtime.afterMutation}
@@ -776,7 +777,7 @@ function GameRecords({
             )}
             {runtime.play && (
               <>
-                {runtime.play.rulesetId === "world-logic-v1" && !reviewOnly && (
+                {runtime.play.rulesetId === "world-logic-v1" && !reviewOnly && !runtime.play.startupPending && (
                   <CombatReadiness campaignId={data.campaign.id} runtimeRevision={runtime.play.revision} onSaved={runtime.afterMutation} />
                 )}
                 {!runtime.play.configuration && runtime.play.rulesetId !== "world-logic-v1" && (
@@ -792,7 +793,17 @@ function GameRecords({
                       </Link>
                     </p>
                   )}
-                <GameplayComposer
+                {runtime.play.startupPending && (
+                  <div id="play-action" className="rules-preview-note" role="status">
+                    <p>{language === "ru"
+                      ? "Перед первым действием завершите вступление приключения и настройку ведущего. Игра откроется, когда подготовка будет закончена."
+                      : "The Adventure opening and DM setup must finish before your first action. The Game will be ready when startup is complete."}</p>
+                    <Link className="text-link" href={`/campaigns/${data.campaign.id}/adventures`}>
+                      {language === "ru" ? "Проверить вступление" : "Review Adventure opening"}
+                    </Link>
+                  </div>
+                )}
+                {!runtime.play.startupPending && <GameplayComposer
                   key={inputMode}
                   play={runtime.play}
                   mode={inputMode}
@@ -843,11 +854,11 @@ function GameRecords({
                       )}
                     </>
                   }
-                />
+                />}
               </>
             )}
           </div>
-          {runtime.play && (runtime.play.rulesetId !== "world-logic-v1" ||
+          {runtime.play && !runtime.play.startupPending && (runtime.play.rulesetId !== "world-logic-v1" ||
             runtime.play.configuration) && (
             <details
               className={styles.secondary}
@@ -915,7 +926,7 @@ function GameRecords({
               </p>
             </details>
           )}
-          {!reviewOnly && (
+          {!reviewOnly && !runtime.play?.startupPending && (
             <GameSessionControls sessionId={session?.id ?? null} />
           )}
           <details className={styles.secondary}>

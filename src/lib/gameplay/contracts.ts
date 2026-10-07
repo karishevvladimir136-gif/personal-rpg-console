@@ -257,6 +257,8 @@ export type ProvenanceRecord = {
 };
 export type PlaySnapshot = {
   rulesetId?: "console-basic-v1" | "world-logic-v1";
+  /** Public readiness only; the private takeover marker never enters this DTO. */
+  startupPending?: boolean;
   // Optional only for legacy unfenced fixtures; live Phase 3.5 projections include it.
   timeline?: TimelineFence;
   campaignId: string;

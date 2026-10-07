@@ -216,6 +216,25 @@ function render(screen, state, props = {}) {
   return renderToStaticMarkup(createElement(component, props));
 }
 
+test("modern campaign awaiting Astra opening has a recovery link and no gameplay composer", () => {
+  const state = sample();
+  state.play.rulesetId = "world-logic-v1";
+  state.play.startupPending = true;
+  const before = structuredClone(state);
+  const page = render("game", state);
+  assert.match(page, /Review Adventure opening/);
+  assert.match(page, new RegExp(`/campaigns/${state.data.campaign.id}/adventures`));
+  assert.doesNotMatch(page, /<textarea\b/);
+  assert.doesNotMatch(page, /Combat &amp; rest/);
+  assert.doesNotMatch(page, /game-frame-controls|game-video-controls|Capture this moment|A cinematic view/);
+  const ruLoad = renderer({ ...state, language: "ru" });
+  const ruPage = renderToStaticMarkup(createElement(
+    ruLoad("src/components/persistent-game.tsx").PersistentGame,
+  ));
+  assert.match(ruPage, /Проверить вступление/);
+  assert.deepEqual(state, before);
+});
+
 test("Party includes companions only while Journal correction access retains known NPCs", () => {
   const state = sample();
   const protagonist = state.data.entities[0];

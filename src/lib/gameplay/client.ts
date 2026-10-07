@@ -26,6 +26,8 @@ export function gameplayErrorMessage(error: unknown) {
       return "Only the configured owner can access this application.";
     case "conflict":
       return "Campaign records changed. Review the latest state before sending a new action.";
+    case "startup_pending":
+      return "The Adventure opening and DM setup must finish before your first action. Your text is still here.";
     case "configuration":
     case "not_configured":
       return "The DM needs local setup before it can respond. Your action is preserved.";

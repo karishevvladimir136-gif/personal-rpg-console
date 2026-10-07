@@ -5,6 +5,7 @@ const statuses = {
   forbidden: 403,
   not_found: 404,
   conflict: 409,
+  startup_pending: 409,
   validation: 422,
   context: 422,
   configuration: 503,
