@@ -7,6 +7,7 @@ import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
 import { runAstraTurn, selectAstraPrimaryRuntime } from "../src/lib/gameplay/astra-primary.ts";
 import { runTurn } from "../src/lib/gameplay/turn-engine.ts";
+import { createLabService } from "../src/lib/world-lab/service.ts";
 
 async function takeoverFixture() {
   const f = await setup(undefined, "en", 39);
@@ -240,9 +241,72 @@ test("Astra travel uses public Location authority and saved World Lab projection
     const worldRow = await f.one("select world from rpg_private.world_foundations where campaign_id=$1", [f.cid]);
     const actor = worldRow.world.actors.find((a) => a.entityId === hero);
     const origin = actor.locationId;
+    const localNpc = worldRow.world.actors.find((a) => a.control === "autonomous");
+    async function projectedPresence() {
+      return (await f.one(`select rpg_private.astra_takeover_travel_presence(
+        $1,(select configuration from rpg_private.runtime_state where campaign_id=$1),
+        (select jsonb_agg(to_jsonb(e)) from public.rpg_entities e
+          where e.campaign_id=$1)) present`, [f.cid])).present;
+    }
+    assert.deepEqual(await projectedPresence(), [hero]); // Player + local NPC.
+    const companion = (await f.mutation("entity.save", f.cid, {
+      kind: "companion", name: "Present companion", details: "Travels with the party",
+      hp: 6, max_hp: 6, stats: {}, resources: {}, conditions: [], equipment_slots: [],
+    })).id;
+    const absentCompanion = (await f.mutation("entity.save", f.cid, {
+      kind: "companion", name: "Absent companion", details: "Already elsewhere",
+      hp: 6, max_hp: 6, stats: {}, resources: {}, conditions: [], equipment_slots: [],
+    })).id;
+    const mount = (await f.mutation("entity.save", f.cid, {
+      kind: "mount", name: "Present mount", details: "No travel authority",
+      hp: 6, max_hp: 6, stats: {}, resources: {}, conditions: [], equipment_slots: [],
+    })).id;
+    const transport = (await f.mutation("entity.save", f.cid, {
+      kind: "transport", name: "Present cart", details: "No travel authority",
+      hp: 6, max_hp: 6, stats: {}, resources: {}, conditions: [], equipment_slots: [],
+    })).id;
+    const cartStorage = (await f.mutation("storage.save", f.cid, {
+      name: "Present cart cargo", kind: "transport", entity_id: transport,
+    })).id;
+    assert.deepEqual(await projectedPresence(), [hero]); // Absent companion stays absent.
+    worldRow.world.actors.push({ ...structuredClone(localNpc), id: companion,
+      entityId: companion, publicName: "Present companion", locationId: origin });
+    worldRow.world.actors.push({ ...structuredClone(localNpc), id: absentCompanion,
+      entityId: absentCompanion, publicName: "Absent companion", locationId: destination });
+    worldRow.world.actors.push({ ...structuredClone(localNpc), id: mount,
+      entityId: mount, publicName: "Present mount", locationId: origin });
+    worldRow.world.actors.push({ ...structuredClone(localNpc), id: transport,
+      entityId: transport, publicName: "Present cart", locationId: origin });
     actor.capabilities.push(`world.travel:${origin}:${destination}`);
     await f.one("update rpg_private.world_foundations set world=$2::jsonb,revision=revision+1 where campaign_id=$1",
       [f.cid, JSON.stringify(worldRow.world)]);
+    await f.one(`update rpg_private.runtime_state set configuration=jsonb_set(
+      jsonb_set(configuration,'{presentEntityIds}',$2::jsonb),
+      '{nearbyStorageIds}',$3::jsonb) where campaign_id=$1`,
+    [f.cid, JSON.stringify([hero, localNpc.entityId, companion, mount, transport]),
+      JSON.stringify([cartStorage])]);
+    assert.deepEqual(await projectedPresence(), [hero, companion]);
+    const preflightBefore = await f.one(`select
+      (select to_jsonb(w) from rpg_private.world_foundations w where campaign_id=$1) world,
+      (select to_jsonb(r) from rpg_private.runtime_state r where campaign_id=$1) runtime`,
+    [f.cid]);
+    const preflight = await f.runtime(f.cid, "astra_takeover_preflight", {},
+      await f.fence(f.cid));
+    assert.equal(preflight.controlledCount, 1);
+    assert.deepEqual(Object.fromEntries(preflight.present.map((p) =>
+      [p.id, [p.kind, p.travelPresence]])), {
+      [hero]: ["player", "controlled"],
+      [localNpc.entityId]: ["npc", "stays_at_origin"],
+      [companion]: ["companion", "accompanies"],
+      [mount]: ["mount", "stays_at_origin"],
+      [transport]: ["transport", "stays_at_origin"],
+    });
+    assert.deepEqual(preflight.nearbyStorageIds, [cartStorage]);
+    assert.deepEqual(preflight.nearbyStorageAfterTravel, []);
+    assert.deepEqual(await f.one(`select
+      (select to_jsonb(w) from rpg_private.world_foundations w where campaign_id=$1) world,
+      (select to_jsonb(r) from rpg_private.runtime_state r where campaign_id=$1) runtime`,
+    [f.cid]), preflightBefore);
     await f.one("update public.rpg_entities set resources='{\"focus\":2}'::jsonb,revision=revision+1 where id=$1",
       [hero]);
     const consumable = await f.one("select id from public.rpg_items where campaign_id=$1 and owner_entity_id=$2 limit 1",
@@ -276,7 +340,7 @@ test("Astra travel uses public Location authority and saved World Lab projection
         assert.deepEqual(caps.locationIds, [destination]);
         assert.ok(caps.itemIds.includes(consumable.id));
         assert.equal(JSON.parse(context.input).mandatory.worldTakeover.schemaVersion, 1);
-        assert.equal(source.worldTakeover.actors.length, 2);
+        assert.equal(source.worldTakeover.actors.length, 5);
         const travel = { changes: [{ family: "public_state", id: f.cid,
           expectedRevision: source.snapshot.publicState.revision,
           values: { current_location_id: destination } }],
@@ -285,7 +349,7 @@ test("Astra travel uses public Location authority and saved World Lab projection
           ($1,$2::jsonb,$3::jsonb) allowed`,
         [f.cid, JSON.stringify(source), JSON.stringify(travel)])).allowed, false);
         travel.configuration = { ...source.runtime.configuration,
-          presentEntityIds: source.runtime.configuration.controlledEntityIds };
+          presentEntityIds: [hero, companion], nearbyStorageIds: [] };
         assert.equal((await f.one(`select rpg_private.astra_takeover_resolution_configuration
           ($1,$2::jsonb,$3::jsonb) allowed`,
         [f.cid, JSON.stringify(source), JSON.stringify(travel)])).allowed, true);
@@ -318,8 +382,10 @@ test("Astra travel uses public Location authority and saved World Lab projection
       [hero])).value, "1");
     assert.equal((await f.one("select quantity from public.rpg_items where id=$1",
       [consumable.id])).quantity, 0);
-    assert.deepEqual((await f.one("select configuration from rpg_private.runtime_state where campaign_id=$1",
-      [f.cid])).configuration.presentEntityIds, [hero]);
+    const travelConfig = (await f.one("select configuration from rpg_private.runtime_state where campaign_id=$1",
+      [f.cid])).configuration;
+    assert.deepEqual(travelConfig.presentEntityIds, [hero, companion]);
+    assert.deepEqual(travelConfig.nearbyStorageIds, []);
     assert.equal((await f.one("select world->'actors'->0->>'locationId' old from rpg_private.world_foundations where campaign_id=$1",
       [f.cid])).old, origin);
     await assert.rejects(async () => f.one(
@@ -331,6 +397,12 @@ test("Astra travel uses public Location authority and saved World Lab projection
     const liveWorld = (await f.one("select public.rpg_world($1,$2,'read','{}'::jsonb,$3::jsonb) result",
       [f.owner, f.cid, JSON.stringify(await f.fence(f.cid))])).result;
     assert.equal(liveWorld.world.actors.find((a) => a.entityId === hero).locationId,
+      destination);
+    assert.equal(liveWorld.world.actors.find((a) => a.entityId === companion).locationId,
+      destination);
+    assert.equal(liveWorld.world.actors.find((a) => a.entityId === localNpc.entityId).locationId,
+      origin);
+    assert.equal(liveWorld.world.actors.find((a) => a.entityId === absentCompanion).locationId,
       destination);
     const save = await f.saves(f.cid, "create", await f.command(f.cid,
       { kind: "manual", name: "Post travel" }));
@@ -344,6 +416,8 @@ test("Astra travel uses public Location authority and saved World Lab projection
     const projected = await f.one("select rpg_private.lab_rows($1,$2,'rpg_private.world_foundations') rows",
       [f.cid, manifest.manifest_id]);
     assert.equal(projected.rows[0].world.actors.find((a) => a.entityId === hero).locationId,
+      destination);
+    assert.equal(projected.rows[0].world.actors.find((a) => a.entityId === companion).locationId,
       destination);
     assert.equal(projected.rows[0].world.actors.find((a) => a.entityId === hero).revision,
       actor.revision + 1);
@@ -363,6 +437,8 @@ test("Astra travel uses public Location authority and saved World Lab projection
       [refs["rpg_private.world_foundations"][0]]);
     assert.equal(detachedWorld.payload.world.actors.find((a) => a.entityId === hero).locationId,
       destination);
+    assert.equal(detachedWorld.payload.world.actors.find((a) => a.entityId === companion).locationId,
+      destination);
     assert.equal(detachedWorld.payload.world.actors.find((a) => a.entityId === hero).revision,
       actor.revision + 1);
     assert.equal((await f.one("select refs from rpg_private.timeline_manifests where id=$1",
@@ -373,28 +449,124 @@ test("Astra travel uses public Location authority and saved World Lab projection
         /astra_takeover_lab_refs\(cid,\s*base,\s*tid\)/);
     const nextPlay = await store.readPlay(f.cid);
     let queried = false;
+    const queryObserved = [];
     const queryInput = { ...input, operationId: randomUUID(),
       expectedRevision: nextPlay.revision, input: "What is here now?" };
     const queryProvider = {
       next: async (context, _input, receipts, _checks, caps) => {
-        assert.deepEqual(caps.entityIds, [hero]);
-        assert.equal(JSON.parse(context.input).mandatory.worldTakeover.actors.length, 1);
+        queryObserved.push({ caps: caps.entityIds,
+          worldActors: JSON.parse(context.input).mandatory.worldTakeover.actors.length,
+          receiptEntities: receipts[0]?.result.state?.entities?.map((e) => e.id) });
         if (!receipts.length) return { usage, output: { type: "tool", final: null,
           call: { kind: "query", actorId: null, targetId: null, dc: null,
             itemId: null, scope: "current-public" } } };
         queried = true;
-        assert.deepEqual(receipts[0].result.state.entities.map((e) => e.id), [hero]);
         return { usage, output: { type: "final", call: null, final: {
           worldMinutes: nextPlay.worldMinutes, changes: [], outcomes: [],
           privatePatches: [] } } };
       },
       narrate: provider.narrate,
     };
-    assert.equal((await runAstraTurn(queryInput, { store, memory,
+    const queryTurn = await runAstraTurn(queryInput, { store, memory,
       summaries: { summarize: () => assert.fail("no summary provider") },
-      provider: queryProvider })).status, "committed", JSON.stringify(errors));
+      provider: queryProvider });
+    assert.equal(queryTurn.status, "committed", JSON.stringify({ errors,
+      failure: queryTurn.failure, queryObserved }));
+    assert.deepEqual(queryObserved[0].caps.sort(), [hero, companion].sort());
+    assert.equal(queryObserved[0].worldActors, 2);
+    assert.deepEqual(queryObserved[1].receiptEntities.sort(), [hero, companion].sort());
     assert.equal(queried, true);
     assert.equal(takeover.status, "activated");
+
+    // An approved owner-authored scenario runs against both historical and
+    // post-takeover saves through the real detached World Lab service.
+    const approval = { ownerId: f.owner, reviewedConflictIds: [], reviewedUnknownIds: [] };
+    const record = (kind, body) => ({ schemaVersion: 1, ownerId: f.owner,
+      kind, id: randomUUID(), versionId: randomUUID(), version: 1,
+      previousVersionId: null, body });
+    const scenario = record("scenario", { schemaVersion: 1,
+      title: "Detached ridge observation", status: "approved",
+      packVersionIds: [], sourceVersionIds: [], sourcePriority: [],
+      entry: { label: "At the recorded moment", worldMinutes: 0, evidence: [] },
+      adaptation: "original", identities: [], assumptions: [{ id: randomUUID(),
+        text: "Observe a possible future.", visibility: "public" }],
+      carriedClaimIds: [], localHistory: null, unresolvedConflictIds: [], approval });
+    const divergence = record("divergence", { schemaVersion: 1,
+      scenarioVersionId: scenario.versionId, title: "Quiet future",
+      changes: [{ id: randomUUID(), text: "Time passes in the detached world.",
+        visibility: "public" }], approval });
+    for (const item of [scenario, divergence])
+      await f.one("select public.rpg_library($1,null,'put',$2::jsonb,null) result",
+        [f.owner, JSON.stringify({ operationId: randomUUID(), record: item })]);
+    const labRpc = async (args) => {
+      try { return { data: (await f.one(`select public.rpg_world_lab($1,$2,$3,$4::jsonb) result`,
+        [args.p_owner_id, args.p_campaign_id, args.p_action,
+          JSON.stringify(args.p_payload)])).result }; }
+      catch (error) { return { error: { message: error.message, code: error.code } }; }
+    };
+    let fakeResolverCalls = 0;
+    const labService = createLabService(f.owner, labRpc, "en", {
+      resolver: () => ({ simulate: async () => {
+        fakeResolverCalls++;
+        assert.fail("a clean detached world needs no model resolution");
+      } }),
+    });
+    const liveTables = ["public.rpg_public_state", "public.rpg_entities",
+      "public.rpg_items", "rpg_private.runtime_state",
+      "rpg_private.world_foundations", "rpg_private.world_events",
+      "rpg_private.timeline_campaigns"];
+    async function liveFingerprint() {
+      return Promise.all(liveTables.map(async (table) => [table,
+        await f.one(`select md5(coalesce(jsonb_agg(to_jsonb(t) order by
+          to_jsonb(t)::text)::text,'[]')) digest from ${table} t
+          where campaign_id=$1`, [f.cid])]));
+    }
+    const playableBeforeLab = await liveFingerprint();
+    const saveBeforeLab = await f.one("select to_jsonb(s) row from rpg_private.save_points s where id=$1",
+      [saved.id]);
+    const manifestBeforeLab = await f.one("select to_jsonb(m) row from rpg_private.timeline_manifests m where id=$1",
+      [manifest.manifest_id]);
+    async function completeDetached(saveId, label) {
+      let run = await labService.perform({ action: "prepare", input: {
+        operationId: randomUUID(), campaignId: f.cid, saveId,
+        scenarioVersionId: scenario.versionId,
+        divergenceVersionId: divergence.versionId, label,
+        horizonMinutes: 60 } });
+      for (let step = 0; step < 4 && run.status !== "completed"; step++)
+        run = await labService.perform({ action: "continue", input: {
+          operationId: randomUUID(), campaignId: f.cid, runId: run.id,
+          expectedRevision: run.revision } });
+      assert.equal(run.status, "completed", `${label}: ${run.status}/${run.reason}`);
+      return run;
+    }
+    const postRun = await completeDetached(saved.id, "Post-handoff detached run");
+    assert.equal(postRun.nonCanon, true);
+    assert.ok(postRun.currentWorldMinutes >= postRun.throughWorldMinutes);
+    const postRunWorld = await f.one(`select rpg_private.lab_rows($1,m.id,
+      'rpg_private.world_foundations') rows from rpg_private.timeline_manifests m
+      where m.id=(select head_manifest_id from rpg_private.timelines where id=$2)`,
+    [f.cid, postRun.timelineId]);
+    assert.equal(postRunWorld.rows[0].world.actors.find((a) => a.entityId === hero).locationId,
+      destination);
+    assert.equal(postRunWorld.rows[0].world.actors.find((a) => a.entityId === companion).locationId,
+      destination);
+    const preRun = await completeDetached(takeover.beforeSaveId,
+      "Pre-handoff detached run");
+    assert.equal(preRun.nonCanon, true);
+    assert.ok(preRun.currentWorldMinutes >= preRun.throughWorldMinutes);
+    const preRunWorld = await f.one(`select rpg_private.lab_rows($1,m.id,
+      'rpg_private.world_foundations') rows from rpg_private.timeline_manifests m
+      where m.id=(select head_manifest_id from rpg_private.timelines where id=$2)`,
+    [f.cid, preRun.timelineId]);
+    assert.equal(preRunWorld.rows[0].astra_takeover, null);
+    assert.equal(preRunWorld.rows[0].world.actors.find((a) => a.entityId === hero).locationId,
+      origin);
+    assert.deepEqual(await liveFingerprint(), playableBeforeLab);
+    assert.deepEqual(await f.one("select to_jsonb(s) row from rpg_private.save_points s where id=$1",
+      [saved.id]), saveBeforeLab);
+    assert.deepEqual(await f.one("select to_jsonb(m) row from rpg_private.timeline_manifests m where id=$1",
+      [manifest.manifest_id]), manifestBeforeLab);
+    assert.equal(fakeResolverCalls, 0);
   } finally { await f.db.close(); }
 });
 

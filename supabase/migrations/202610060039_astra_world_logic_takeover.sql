@@ -57,15 +57,30 @@ language sql stable set search_path='' as $$
      and f.ruleset->>'id'='world-logic-v1')
 $$;
 
+-- Only already-present companion Entities travel with the controlled player.
+-- Local NPCs, absent companions, mounts and transport gain no travel authority.
+create function rpg_private.astra_takeover_travel_presence(cid uuid,
+  config jsonb, entities jsonb) returns jsonb
+language sql immutable set search_path='' as $$
+ select coalesce(jsonb_agg(p.value order by p.n),'[]'::jsonb)
+ from jsonb_array_elements_text(config->'presentEntityIds') with ordinality p(value,n)
+ where config->'controlledEntityIds' ? p.value or exists (
+   select 1 from jsonb_array_elements(entities) e
+   where e->>'id'=p.value and e->>'campaign_id'=cid::text
+     and e->>'kind'='companion')
+$$;
+
 -- Projection only. Saved Foundation rows and historical World Events stay byte
--- identical; the controlled Actor's playable position comes from the matching
--- saved public-state row, or from the active public state for a live read.
-create function rpg_private.astra_takeover_project_world(raw_world jsonb, controlled uuid, current_place uuid)
+-- identical; player and present-companion playable positions come from the
+-- matching saved public state, or the active public state for a live read.
+create function rpg_private.astra_takeover_project_world(raw_world jsonb, controlled uuid,
+  current_place uuid, companions jsonb)
 returns jsonb language sql immutable set search_path='' as $$
  select case when raw_world is null or controlled is null or current_place is null
    then raw_world else jsonb_set(raw_world,'{actors}',
-     coalesce((select jsonb_agg(case when a.value->>'entityId'=controlled::text
-       and a.value->>'control'='player' and
+     coalesce((select jsonb_agg(case when
+       ((a.value->>'entityId'=controlled::text and a.value->>'control'='player')
+         or companions ? (a.value->>'entityId')) and
        a.value->>'locationId' is distinct from current_place::text
        then jsonb_set(jsonb_set(a.value,'{locationId}',to_jsonb(current_place)),
          '{revision}',to_jsonb((a.value->>'revision')::integer+1))
@@ -92,6 +107,10 @@ begin
  perform rpg_private.assert(place is not null and controller is not null);
  for actor in select value from jsonb_array_elements(f.world->'actors') loop
    if actor->>'entityId'=controller::text or
+     (source#>'{runtime,configuration,presentEntityIds}' ? (actor->>'entityId')
+       and exists(select 1 from jsonb_array_elements(source#>'{snapshot,entities}') e
+         where e->>'id'=actor->>'entityId' and e->>'kind'='companion'
+           and e->>'campaign_id'=cid::text)) or
      (actor->>'locationId'=place::text and
        source#>'{runtime,configuration,presentEntityIds}' ?
          (actor->>'entityId')) then
@@ -100,7 +119,11 @@ begin
        'id',actor->'id','entityId',actor->'entityId',
        'publicName',actor->'publicName','kind',actor->'kind',
        'control',actor->'control',
-       'locationId',case when actor->>'entityId'=controller::text
+       'locationId',case when actor->>'entityId'=controller::text or
+         (source#>'{runtime,configuration,presentEntityIds}' ? (actor->>'entityId')
+           and exists(select 1 from jsonb_array_elements(source#>'{snapshot,entities}') e
+             where e->>'id'=actor->>'entityId' and e->>'kind'='companion'
+               and e->>'campaign_id'=cid::text))
          then to_jsonb(place) else actor->'locationId' end,
        'capabilities',actor->'capabilities',
        'limitations',actor->'limitations',
@@ -112,7 +135,10 @@ begin
          '[]'::jsonb)));
      if source#>'{runtime,configuration,presentEntityIds}' ? (actor->>'entityId')
        and (actor->>'entityId'=controller::text or
-         actor->>'locationId'=place::text) then
+         actor->>'locationId'=place::text or
+         exists(select 1 from jsonb_array_elements(source#>'{snapshot,entities}') e
+           where e->>'id'=actor->>'entityId' and e->>'kind'='companion'
+             and e->>'campaign_id'=cid::text)) then
        present:=present||jsonb_build_array(actor->>'entityId');
      end if;
    end if;
@@ -156,6 +182,7 @@ alter function rpg_private.lab_rows(uuid,uuid,text) rename to lab_rows_before_as
 create function rpg_private.lab_rows(cid uuid,mid uuid,tab text) returns jsonb
 language plpgsql stable set search_path='' as $$
 declare rows jsonb; f jsonb; ps jsonb; rt jsonb; controlled uuid; place uuid;
+  companions jsonb;
 begin
  rows:=rpg_private.lab_rows_before_astra_takeover(cid,mid,tab);
  if tab<>'rpg_private.world_foundations' or jsonb_array_length(rows)<>1
@@ -169,8 +196,10 @@ begin
    rt->>'campaign_id'=cid::text and f->>'campaign_id'=cid::text);
  controlled:=(rt#>>'{configuration,controlledEntityIds,0}')::uuid;
  place:=(ps->>'current_location_id')::uuid;
+ companions:=rpg_private.astra_takeover_travel_presence(cid,rt->'configuration',
+   rpg_private.lab_rows_before_astra_takeover(cid,mid,'public.rpg_entities'));
  return jsonb_build_array(jsonb_set(f,'{world}',
-   rpg_private.astra_takeover_project_world(f->'world',controlled,place)));
+   rpg_private.astra_takeover_project_world(f->'world',controlled,place,companions)));
 end $$;
 
 -- A new detached run receives its own version of the saved Foundation with
@@ -179,7 +208,7 @@ end $$;
 create function rpg_private.astra_takeover_lab_refs(cid uuid, base rpg_private.timeline_manifests,
   detached_timeline uuid) returns jsonb language plpgsql set search_path='' as $$
 declare saved jsonb; ps jsonb; rt jsonb; projected jsonb; projected_hash text;
-  current_id uuid; new_id uuid; refs jsonb:=base.refs;
+  current_id uuid; new_id uuid; refs jsonb:=base.refs; companions jsonb;
 begin
   saved:=rpg_private.lab_rows_before_astra_takeover(cid,base.id,
     'rpg_private.world_foundations')->0;
@@ -198,9 +227,11 @@ begin
     ps->>'campaign_id'=cid::text and rt->>'campaign_id'=cid::text and
     jsonb_array_length(refs->'rpg_private.world_foundations')=1);
   current_id:=(rt#>>'{configuration,controlledEntityIds,0}')::uuid;
+  companions:=rpg_private.astra_takeover_travel_presence(cid,rt->'configuration',
+    rpg_private.lab_rows_before_astra_takeover(cid,base.id,'public.rpg_entities'));
   projected:=saved||jsonb_build_object('world',
     rpg_private.astra_takeover_project_world(saved->'world',current_id,
-      (ps->>'current_location_id')::uuid),
+      (ps->>'current_location_id')::uuid,companions),
     'revision',(saved->>'revision')::integer+1);
   projected_hash:=encode(sha256(convert_to(projected::text,'UTF8')),'hex');
   insert into rpg_private.timeline_versions(campaign_id,table_name,row_key,
@@ -231,8 +262,8 @@ do $$ declare definition text; needle text; replacement text; target regprocedur
   end loop;
 end $$;
 
--- A World Logic-origin travel commit may deterministically shed historical
--- nearby autonomous presence. The provider cannot choose configuration fields.
+-- A World Logic-origin travel commit sheds local NPC and transport access
+-- while retaining already-present companions. The provider cannot choose fields.
 create function rpg_private.astra_takeover_resolution_configuration(cid uuid,
   source jsonb, resolution jsonb) returns boolean
 language sql stable set search_path='' as $$
@@ -240,8 +271,11 @@ language sql stable set search_path='' as $$
    source->'worldTakeover' is not null and
    (select count(*) from jsonb_array_elements(resolution->'changes') c
      where c->>'family'='public_state')=1
-   then resolution->'configuration'=jsonb_set(source#>'{runtime,configuration}',
-     '{presentEntityIds}',source#>'{runtime,configuration,controlledEntityIds}')
+   then resolution->'configuration'=jsonb_set(jsonb_set(
+     source#>'{runtime,configuration}',
+     '{presentEntityIds}',rpg_private.astra_takeover_travel_presence(cid,
+       source#>'{runtime,configuration}',source#>'{snapshot,entities}')),
+     '{nearbyStorageIds}','[]'::jsonb)
    else resolution->'configuration'=source#>'{runtime,configuration}' end
 $$;
 
@@ -271,6 +305,7 @@ declare f rpg_private.world_foundations%rowtype; t rpg_private.turns%rowtype;
  expected_present jsonb:='[]'; source jsonb; call jsonb; changed jsonb;
  from_id uuid; to_id uuid; route text; pre_save uuid; post_save uuid;
   current_hash text; settings_id text; event_head bigint;
+  config jsonb; present_report jsonb;
 begin
  if p_owner_id is null or not exists(select 1 from rpg_private.owner_registry
    where user_id=p_owner_id) then raise exception 'rpg_forbidden' using errcode='42501'; end if;
@@ -280,6 +315,27 @@ begin
    p_action not in ('play','get','astra_runtime','astra_takeover_status'));
  select * into f from rpg_private.world_foundations where campaign_id=p_campaign_id for update;
  marker:=f.astra_takeover;
+ if p_action='astra_takeover_preflight' then
+   perform rpg_private.fields(p_payload,'{}');
+   select configuration into config from rpg_private.runtime_state
+     where campaign_id=p_campaign_id;
+   select coalesce(jsonb_agg(jsonb_build_object('id',p.value,'kind',
+     coalesce(e.kind,'missing'),'travelPresence',case
+       when config->'controlledEntityIds' ? p.value then 'controlled'
+       when e.kind='companion' then 'accompanies'
+       else 'stays_at_origin' end) order by p.n),'[]'::jsonb)
+     into present_report
+   from jsonb_array_elements_text(coalesce(config->'presentEntityIds','[]'::jsonb))
+     with ordinality p(value,n)
+   left join public.rpg_entities e on e.campaign_id=p_campaign_id
+     and e.id::text=p.value;
+   return jsonb_build_object('controlledCount',
+     jsonb_array_length(coalesce(config->'controlledEntityIds','[]'::jsonb)),
+     'present',present_report,'nearbyStorageIds',
+     coalesce(config->'nearbyStorageIds','[]'::jsonb),
+     'nearbyStorageAfterTravel','[]'::jsonb,
+     'takeoverActive',rpg_private.astra_takeover_active(p_campaign_id));
+ end if;
  if p_action='astra_takeover_status' then
    perform rpg_private.fields(p_payload,'{}');
    return jsonb_build_object('active',rpg_private.astra_takeover_active(p_campaign_id));
@@ -510,20 +566,24 @@ alter function public.rpg_world(uuid,uuid,text,jsonb,jsonb)
 create function public.rpg_world(p_owner_id uuid,p_campaign_id uuid,p_action text,
   p_payload jsonb default '{}',p_timeline jsonb default null) returns jsonb
 language plpgsql security definer set search_path='' as $$
-declare result jsonb; controlled uuid; place uuid;
+declare result jsonb; controlled uuid; place uuid; config jsonb; companions jsonb;
 begin
  if rpg_private.astra_takeover_active(p_campaign_id) then
    if p_action not in ('read','local_routes') then raise exception 'rpg_conflict'; end if;
    result:=public.rpg_world_before_astra_takeover(p_owner_id,p_campaign_id,
      p_action,p_payload,p_timeline);
    if p_action='read' then
-     controlled:=(select (configuration#>>'{controlledEntityIds,0}')::uuid
-       from rpg_private.runtime_state where campaign_id=p_campaign_id);
+     select configuration into config from rpg_private.runtime_state
+       where campaign_id=p_campaign_id;
+     controlled:=(config#>>'{controlledEntityIds,0}')::uuid;
+     companions:=rpg_private.astra_takeover_travel_presence(p_campaign_id,config,
+       (select coalesce(jsonb_agg(to_jsonb(e)),'[]'::jsonb)
+          from public.rpg_entities e where e.campaign_id=p_campaign_id));
      place:=(select current_location_id from public.rpg_public_state
        where campaign_id=p_campaign_id);
      result:=jsonb_set(result,'{world}',
        rpg_private.astra_takeover_project_world(result->'world',
-         controlled,place));
+         controlled,place,companions));
    end if;
    return result;
  end if;
@@ -541,7 +601,8 @@ revoke all on function rpg_private.astra_takeover_active(uuid),
   rpg_private.astra_takeover_freeze_world(),
   rpg_private.astra_takeover_freeze_events(),
   rpg_private.astra_takeover_context(uuid,jsonb),
-  rpg_private.astra_takeover_project_world(jsonb,uuid,uuid),
+  rpg_private.astra_takeover_project_world(jsonb,uuid,uuid,jsonb),
+  rpg_private.astra_takeover_travel_presence(uuid,jsonb,jsonb),
   rpg_private.astra_takeover_lab_refs(uuid,rpg_private.timeline_manifests,uuid),
   rpg_private.astra_takeover_resolution_configuration(uuid,jsonb,jsonb),
   rpg_private.lab_rows_before_astra_takeover(uuid,uuid,text),

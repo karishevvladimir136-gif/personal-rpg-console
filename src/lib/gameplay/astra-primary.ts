@@ -353,12 +353,16 @@ function validateFinal(source: RuntimeSource, input: TurnInput, next: AstraPriva
   assertNoPrivateDisclosure(source,input,next.outcomes.map((o)=>o.text).join("\n"));
   validateCharacterPatches(source, input, next.privatePatches);
   const travel = next.changes.some((change) => change.family === "public_state");
-  // World Logic-origin actor locations are historical after handoff. When the
-  // controlled player leaves, retain only controlled actors as live presence.
+  // World Logic-origin actor locations are historical after handoff. An
+  // already-present companion remains with the party; local NPCs do not.
   // This is server-derived; the provider has no configuration write capability.
   const configuration = source.worldTakeover && travel && source.runtime.configuration
     ? { ...source.runtime.configuration,
-        presentEntityIds: [...source.runtime.configuration.controlledEntityIds] }
+        presentEntityIds: source.runtime.configuration.presentEntityIds.filter((id) =>
+          source.runtime.configuration!.controlledEntityIds.includes(id) ||
+          source.snapshot.entities.some((entity) => entity.id === id &&
+            entity.campaign_id === input.campaignId && entity.kind === "companion")),
+        nearbyStorageIds: [] }
     : source.runtime.configuration;
   const resolution: MechanicsResolution = { changes: next.changes,
     worldMinutes: next.worldMinutes, configuration,
