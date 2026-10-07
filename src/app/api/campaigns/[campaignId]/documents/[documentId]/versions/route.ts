@@ -1,4 +1,4 @@
-import { readDocumentVersions } from "@/lib/server/repository";
+import { readPublicDocumentVersions } from "@/lib/server/public-campaign";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 export async function GET(
   _request: Request,
@@ -6,7 +6,7 @@ export async function GET(
 ) {
   try {
     const { campaignId, documentId } = await params;
-    return publicJson(await readDocumentVersions(campaignId, documentId));
+    return publicJson(await readPublicDocumentVersions(campaignId, documentId));
   } catch (error) {
     return errorResponse(error);
   }

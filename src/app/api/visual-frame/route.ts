@@ -3,6 +3,7 @@ import {
   mediaCapability,
   prepareMediaFrame,
   prepareSubjectVisual,
+  prepareMapVisual,
   runMediaFrame,
   signedFrameImage,
   signedFrameDraft,
@@ -25,6 +26,11 @@ export async function POST(request: Request) {
       value.action === "media.prepareSubject"
     )
       return publicJson(await prepareSubjectVisual(value.input));
+    if (
+      exactKeys(value, ["action", "input"]) &&
+      value.action === "media.prepareMap"
+    )
+      return publicJson(await prepareMapVisual(value.input));
     if (
       value &&
       typeof value === "object" &&

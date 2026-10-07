@@ -1,13 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   useCallback,
+  useEffect,
   useState,
   useSyncExternalStore,
   type ReactNode,
 } from "react";
 import type { Asset, CampaignSnapshot } from "@/lib/persistence/contracts";
+import type { MapPlacement } from "@/lib/map/placement-contracts";
+import { loadMapLayout } from "@/lib/map/placement-client";
 import {
   secondaryPageRecords,
   gallerySubjectAssets,
@@ -18,7 +22,8 @@ import {
   REAL_FRAME_ASSET_PREFIX,
 } from "@/lib/visual-frame/real-frame";
 import { safeVideoAsset, VIDEO_ASSET_PREFIX } from "@/lib/scene-video/model";
-import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
+import { defaultMediaFrameTransport, type MediaFrameTransport } from "@/lib/visual-frame/media-client";
+import { galleryMapAssets, safeMapVisualAsset, MAP_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/map-job";
 import type { VideoTransport } from "@/lib/scene-video/client";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon, Modal, Panel, Tabs } from "./ui";
@@ -44,7 +49,7 @@ import {
   SceneVideoHistory,
 } from "./visual-frame/current-scene-video";
 import { MockVisualArt } from "./visual-frame/mock-art";
-import { GenerateVisual } from "./visual-frame/generate-visual";
+import { AtlasMap } from "./atlas-map";
 import styles from "./secondary-pages.module.css";
 
 export type SecondaryScreen = "journal" | "map" | "sessions" | "gallery";
@@ -120,10 +125,12 @@ function Heading({
   data,
   title,
   description,
+  reviewOnly,
 }: {
   data: CampaignSnapshot;
   title: string;
   description: string;
+  reviewOnly?: boolean;
 }) {
   const { t } = useLanguage();
   return (
@@ -133,9 +140,13 @@ function Heading({
         <h1>{title}</h1>
         <p>{description}</p>
       </div>
-      <Link className="button" href={`/campaigns/${data.campaign.id}/game`}>
-        {t("Resume story")} <Icon name="ArrowRight" size={16} />
-      </Link>
+      {reviewOnly ? (
+        <span className="button" aria-disabled="true">{t("Resume story")}</span>
+      ) : (
+        <Link className="button" href={`/campaigns/${data.campaign.id}/game`}>
+          {t("Resume story")} <Icon name="ArrowRight" size={16} />
+        </Link>
+      )}
     </div>
   );
 }
@@ -188,11 +199,11 @@ function GalleryTabs({
     <div className="tabs" aria-label={t("View options")}>
       {[
         "Frames",
-        "Videos",
+        "Maps",
         "Characters",
         "Locations",
         "Items",
-        "Favorites",
+        "Videos",
         "Visual references",
       ].map((key) => (
         <button
@@ -289,6 +300,7 @@ function JournalView({
       <Heading
         data={data}
         title={t("Journal")}
+        reviewOnly={reviewOnly}
         description={t("What you’ve seen. What you suspect. What comes next.")}
       />
       <Tabs
@@ -669,213 +681,41 @@ function JournalView({
 function MapView({
   data,
   reviewOnly,
+  reviewPlacements,
+  reviewPreset,
 }: {
   data: CampaignSnapshot;
   reviewOnly?: boolean;
+  reviewPlacements?: MapPlacement[];
+  reviewPreset?: {
+    level?: "world" | "region" | "local";
+    artwork?: "placeholder" | "collapsed";
+    panel?: "edit-open" | "unplaced-open";
+    detail?: boolean;
+  };
 }) {
   const { t } = useLanguage();
   const w = useWords();
-  const records = secondaryPageRecords(data);
-  const [tab, setTab] = useState("World");
-  const [selectedId, setSelectedId] = useState(
-    records.currentLocation?.id ?? records.locations[0]?.id ?? "",
-  );
-  const [destinationId, setDestinationId] = useState<string | null>(null);
-  const selected =
-    tab === "Local"
-      ? records.currentLocation
-      : (records.locations.find((row) => row.id === selectedId) ??
-        records.currentLocation ??
-        records.locations[0]);
-  const destination = records.locations.find((row) => row.id === destinationId);
-  const visible =
-    tab === "Local"
-      ? records.locations.filter(
-          (row) => row.id === data.publicState.current_location_id,
-        )
-      : records.locations;
+  const campaignId = data.campaign.id;
   return (
     <>
       <Heading
         data={data}
         title={t("Map & Travel")}
+        reviewOnly={reviewOnly}
         description={w(
           "Known places. The next road is yours to choose.",
           "Знакомые места. Следующую дорогу выбираете вы.",
         )}
       />
-      <Panel className="map-panel">
-        <div className="map-heading">
-          <h2>
-            {records.currentLocation?.name ||
-              w("Your known world", "Ваш знакомый мир")}
-          </h2>
-          <Tabs
-            options={["World", "Region", "Local"]}
-            value={tab}
-            onChange={setTab}
-          />
-        </div>
-        <div className={styles.atlas}>
-          <div className={styles.atlasField}>
-            <span className="eyebrow">
-              {w("ATLAS OF KNOWN PLACES", "АТЛАС ЗНАКОМЫХ МЕСТ")}
-            </span>
-            <h2>
-              {w(
-                tab === "Local" ? "Current location" : "Known locations",
-                tab === "Local" ? "Текущее место" : "Знакомые места",
-              )}
-            </h2>
-            <p className="muted">
-              {w(
-                tab === "Region"
-                  ? "Regional boundaries are not recorded. These are your known places."
-                  : "Places are listed without invented distances, routes or geography.",
-                tab === "Region"
-                  ? "Границы регионов не записаны. Здесь показаны знакомые места."
-                  : "Места показаны без вымышленных расстояний, маршрутов и географии.",
-              )}
-            </p>
-            <div className={styles.places}>
-              {visible.map((location) => (
-                <button
-                  key={location.id}
-                  className={styles.place}
-                  aria-pressed={selected?.id === location.id}
-                  onClick={() => setSelectedId(location.id)}
-                >
-                  <Icon name="map" />
-                  <span>
-                    {location.name}
-                    <small>
-                      {t(
-                        location.id === data.publicState.current_location_id
-                          ? "Current location"
-                          : location.status === "visited"
-                            ? "Visited"
-                            : "Known",
-                      )}
-                    </small>
-                  </span>
-                </button>
-              ))}
-            </div>
-            {!visible.length && (
-              <Empty icon="map">{t("No known locations recorded.")}</Empty>
-            )}
-          </div>
-          <div className={styles.atlasDetail}>
-            {selected ? (
-              <>
-                <GenerateVisual
-                  snapshot={data}
-                  subject={{ kind: "location", id: selected.id }}
-                  reviewOnly={reviewOnly}
-                />
-                <Badge green={selected.status === "visited"}>
-                  {t(selected.status === "visited" ? "Visited" : "Known")}
-                </Badge>
-                <h2>{selected.name}</h2>
-                <p className={styles.prose}>
-                  {selected.description ||
-                    w(
-                      "No description recorded yet.",
-                      "Описание пока не записано.",
-                    )}
-                </p>
-                <Button
-                  primary
-                  disabled={
-                    selected.id === data.publicState.current_location_id
-                  }
-                  onClick={() => setDestinationId(selected.id)}
-                >
-                  {t(
-                    selected.id === data.publicState.current_location_id
-                      ? "Current location"
-                      : destination?.id === selected.id
-                        ? "Destination selected"
-                        : "Set destination",
-                  )}
-                </Button>
-                <Disclosure
-                  campaignId={data.campaign.id}
-                  name={`map-place-${selected.id}`}
-                  title={w("Location details", "Сведения о месте")}
-                >
-                  <p>
-                    {t(selected.status === "visited" ? "Visited" : "Known")}
-                  </p>
-                  <time dateTime={selected.updated_at}>
-                    {new Date(selected.updated_at).toLocaleDateString(
-                      data.campaign.language,
-                    )}
-                  </time>
-                </Disclosure>
-              </>
-            ) : (
-              <Empty icon="map">
-                {w(
-                  "Discover a place to begin your atlas.",
-                  "Откройте первое место, чтобы начать атлас.",
-                )}
-              </Empty>
-            )}
-          </div>
-        </div>
-      </Panel>
-      {destination && (
-        <div className={styles.destination} role="status">
-          <strong>
-            {w("Planned destination: ", "Выбранное направление: ")}
-            {destination.name}
-          </strong>
-          <p>
-            {w(
-              "No travel has started. Describe your journey in Game:",
-              "Путешествие ещё не началось. Опишите свой путь в Игре:",
-            )}
-          </p>
-          <p className={styles.prose}>
-            {w(
-              `I travel to ${destination.name}.`,
-              `Я отправляюсь в ${destination.name}.`,
-            )}
-          </p>
-          <Link className="button" href={`/campaigns/${data.campaign.id}/game`}>
-            {t("Game")} <Icon name="ArrowRight" size={14} />
-          </Link>
-        </div>
-      )}
+      <AtlasMap
+        snapshot={data}
+        reviewOnly={reviewOnly}
+        reviewPlacements={reviewPlacements}
+        reviewPreset={reviewPreset}
+      />
       <Disclosure
-        campaignId={data.campaign.id}
-        name="map-discovered"
-        title={t("Discovered locations")}
-      >
-        <div className={styles.grid}>
-          {records.locations.map((location) => (
-            <button
-              key={location.id}
-              className={styles.place}
-              onClick={() => {
-                setSelectedId(location.id);
-                setTab("World");
-              }}
-            >
-              <Icon name="map" />
-              <span>
-                {location.name}
-                <small>
-                  {t(location.status === "visited" ? "Visited" : "Known")}
-                </small>
-              </span>
-            </button>
-          ))}
-        </div>
-      </Disclosure>
-      <Disclosure
-        campaignId={data.campaign.id}
+        campaignId={campaignId}
         name="map-belonging"
         title={w("Places of belonging", "Места, где вы дома")}
       >
@@ -883,17 +723,28 @@ function MapView({
           <PersistentPlacesBelonging />
         </ReviewTool>
       </Disclosure>
-      <div className={styles.tools}>
-        <Link
-          className="text-link"
-          href={`/campaigns/${data.campaign.id}/world`}
-        >
-          {w("Explore a what-if", "Исследовать «что, если»")}{" "}
-          <Icon name="ArrowRight" size={14} />
-        </Link>
-      </div>
       <Disclosure
-        campaignId={data.campaign.id}
+        campaignId={campaignId}
+        name="map-what-if"
+        title={w("What-if tools", "Инструменты «что, если»")}
+      >
+        <p className="muted">
+          {w(
+            "World Lab is a detached possibility. Its places and routes do not change this playable atlas.",
+            "Лаборатория миров показывает отдельную возможность. Её места и маршруты не меняют этот игровой атлас.",
+          )}
+        </p>
+        {reviewOnly ? (
+          <span className="text-link" aria-disabled="true">{w("Explore a what-if", "Исследовать «что, если»")}</span>
+        ) : (
+          <Link className="text-link" href={`/campaigns/${campaignId}/world`}>
+            {w("Explore a what-if", "Исследовать «что, если»")}{" "}
+            <Icon name="ArrowRight" size={14} />
+          </Link>
+        )}
+      </Disclosure>
+      <Disclosure
+        campaignId={campaignId}
         name="map-corrections"
         title={w("Edit / Correct records", "Изменить / Исправить записи")}
       >
@@ -904,7 +755,6 @@ function MapView({
     </>
   );
 }
-
 function SessionsView({
   data,
   reviewOnly,
@@ -931,6 +781,7 @@ function SessionsView({
       <Heading
         data={data}
         title={w("Sessions", "Сессии")}
+        reviewOnly={reviewOnly}
         description={t("Some moments stay with you.")}
       />
       <Tabs options={["Session", "Saves"]} value={tab} onChange={setTab} />
@@ -1117,17 +968,25 @@ function SessionsView({
 function AssetVisual({
   data,
   asset,
+  mapPlacements,
   mediaTransport,
   videoTransport,
   reviewOnly,
 }: {
   data: CampaignSnapshot;
   asset: Asset;
+  mapPlacements: MapPlacement[];
   mediaTransport?: MediaFrameTransport;
   videoTransport?: VideoTransport;
   reviewOnly?: boolean;
 }) {
   const w = useWords();
+  if (safeMapVisualAsset(data, asset, mapPlacements))
+    return reviewOnly ? (
+      <div className={styles.syntheticGalleryMap} role="img" aria-label={w("Synthetic atlas illustration preview", "Синтетический пример изображения атласа")} />
+    ) : (
+      <Image unoptimized src={(mediaTransport ?? defaultMediaFrameTransport).imageUrl(data.campaign.id, asset.id)} alt={asset.title} width={1536} height={1024} className={styles.galleryMapImage} />
+    );
   if (safeFrameAsset(data, asset) && (!reviewOnly || mediaTransport))
     return <StoredFrameImage asset={asset} transport={mediaTransport} />;
   if (safeVideoAsset(data, asset) && (!reviewOnly || videoTransport))
@@ -1170,42 +1029,64 @@ function GalleryView({
   mediaTransport,
   videoTransport,
   reviewOnly,
+  reviewMapPlacements,
+  reviewInitialTab,
 }: {
   data: CampaignSnapshot;
   mediaTransport?: MediaFrameTransport;
   videoTransport?: VideoTransport;
   reviewOnly?: boolean;
+  reviewMapPlacements?: MapPlacement[];
+  reviewInitialTab?: "Maps";
 }) {
   const { t } = useLanguage();
   const w = useWords();
-  const [tab, setTab] = useState("Frames");
+  const [tab, setTab] = useState(reviewInitialTab ?? "Frames");
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [mapPlacements, setMapPlacements] = useState<MapPlacement[]>(reviewOnly ? reviewMapPlacements ?? [] : []);
+  const timelineId = data.timeline?.timelineId;
+  const timelineEpoch = data.timeline?.epoch;
+  useEffect(() => {
+    if (reviewOnly) return;
+    let active = true;
+    void loadMapLayout(data.campaign.id).then((result) => {
+      if (
+        active &&
+        result.timeline.timelineId === timelineId &&
+        result.timeline.epoch === timelineEpoch
+      ) setMapPlacements(result.placements);
+    }).catch(() => { if (active) setMapPlacements([]); });
+    return () => { active = false; };
+  }, [data.campaign.id, timelineId, timelineEpoch, reviewOnly]);
   const records = secondaryPageRecords(data);
-  const selected = records.assets.find((asset) => asset.id === selectedId);
+  const maps = galleryMapAssets(data, mapPlacements);
   const assets =
     tab === "Videos"
       ? records.assets.filter((asset) => asset.kind === "video")
+      : tab === "Maps"
+        ? maps
       : tab === "Characters"
         ? gallerySubjectAssets(data, "entity")
         : tab === "Locations"
           ? gallerySubjectAssets(data, "location")
           : tab === "Items"
             ? gallerySubjectAssets(data, "item")
-            : tab === "Favorites"
-              ? []
-              : records.assets.filter((asset) => asset.kind === "image");
+            : records.assets.filter((asset) => asset.kind === "image" && !asset.description.startsWith(MAP_VISUAL_ASSET_PREFIX));
+  const selected = assets.find((asset) => asset.id === selectedId);
   const reserved = (asset: Asset) =>
     [
       MOCK_ASSET_PREFIX,
       REAL_FRAME_ASSET_PREFIX,
       "RPG_OWNER_FRAME_ASSET_V1\n",
       VIDEO_ASSET_PREFIX,
+      MAP_VISUAL_ASSET_PREFIX,
     ].some((prefix) => asset.description.startsWith(prefix));
   return (
     <>
       <Heading
         data={data}
         title={t("Gallery")}
+        reviewOnly={reviewOnly}
         description={t("Some moments stay with you.")}
       />
       <GalleryTabs value={tab} onChange={setTab} />
@@ -1221,6 +1102,7 @@ function GalleryView({
                 <AssetVisual
                   data={data}
                   asset={asset}
+                  mapPlacements={mapPlacements}
                   mediaTransport={mediaTransport}
                   videoTransport={videoTransport}
                   reviewOnly={reviewOnly}
@@ -1233,6 +1115,7 @@ function GalleryView({
                     <h3>{asset.title}</h3>
                   </button>
                   <Badge>{t(asset.kind === "video" ? "Video" : "Image")}</Badge>
+                  {reviewOnly && tab === "Maps" && <Badge>{w("Synthetic preview", "Синтетический пример")}</Badge>}
                   {!reserved(asset) && asset.description && (
                     <p className={styles.prose}>{asset.description}</p>
                   )}
@@ -1242,15 +1125,15 @@ function GalleryView({
           </div>
           {!assets.length && (
             <Panel>
-              <Empty icon={tab === "Favorites" ? "Bookmark" : "Image"}>
+              <Empty icon="Image">
                 {w(
-                  tab === "Favorites"
-                    ? "Favorites are not recorded yet. Your saved images remain in Frames."
+                  tab === "Maps"
+                    ? "No accepted atlas images yet. The Map works without artwork. Generate one from its Map artwork section when you wish."
                     : ["Characters", "Locations", "Items"].includes(tab)
                       ? "No saved visual associations in this category. Manage associations under Visual references."
                       : "No saved media in this view yet. Capture a moment from Game when you want one.",
-                  tab === "Favorites"
-                    ? "Избранное пока не сохраняется. Сохранённые изображения доступны во вкладке «Кадры»."
+                  tab === "Maps"
+                    ? "Пока нет принятых изображений атласа. Карта работает без фона. При желании создайте его в разделе «Изображение карты»."
                     : ["Characters", "Locations", "Items"].includes(tab)
                       ? "В этой категории нет сохранённых визуальных связей. Настройте их во вкладке «Визуальные образы»."
                       : "В этом разделе пока нет сохранённых медиа. Создайте кадр из Игры, когда захотите.",
@@ -1259,13 +1142,17 @@ function GalleryView({
             </Panel>
           )}
           <div className={styles.tools}>
-            <Link
-              className="text-link"
-              href={`/campaigns/${data.campaign.id}/game`}
-            >
-              {w("Capture the current scene", "Запечатлеть текущую сцену")}{" "}
-              <Icon name="ArrowRight" size={14} />
-            </Link>
+            {reviewOnly ? (
+              <span className="text-link" aria-disabled="true">{w("Capture the current scene", "Запечатлеть текущую сцену")}</span>
+            ) : (
+              <Link
+                className="text-link"
+                href={`/campaigns/${data.campaign.id}/game`}
+              >
+                {w("Capture the current scene", "Запечатлеть текущую сцену")}{" "}
+                <Icon name="ArrowRight" size={14} />
+              </Link>
+            )}
             <Button onClick={() => setTab("Visual references")}>
               {w("Visual references", "Визуальные образы")}
             </Button>
@@ -1301,6 +1188,7 @@ function GalleryView({
             <AssetVisual
               data={data}
               asset={selected}
+              mapPlacements={mapPlacements}
               mediaTransport={mediaTransport}
               videoTransport={videoTransport}
               reviewOnly={reviewOnly}
@@ -1322,12 +1210,23 @@ export function SecondaryPageView({
   mediaTransport,
   videoTransport,
   reviewOnly,
+  reviewMapPlacements,
+  reviewMapPreset,
+  reviewGalleryTab,
 }: {
   screen: SecondaryScreen;
   data: CampaignSnapshot;
   mediaTransport?: MediaFrameTransport;
   videoTransport?: VideoTransport;
   reviewOnly?: boolean;
+  reviewMapPlacements?: MapPlacement[];
+  reviewGalleryTab?: "Maps";
+  reviewMapPreset?: {
+    level?: "world" | "region" | "local";
+    artwork?: "placeholder" | "collapsed";
+    panel?: "edit-open" | "unplaced-open";
+    detail?: boolean;
+  };
 }) {
   const w = useWords();
   return (
@@ -1347,7 +1246,7 @@ export function SecondaryPageView({
           reviewOnly={reviewOnly}
         />
       ) : screen === "map" ? (
-        <MapView key={data.campaign.id} data={data} reviewOnly={reviewOnly} />
+        <MapView key={data.campaign.id} data={data} reviewOnly={reviewOnly} reviewPlacements={reviewMapPlacements} reviewPreset={reviewMapPreset} />
       ) : screen === "sessions" ? (
         <SessionsView
           key={data.campaign.id}
@@ -1361,6 +1260,8 @@ export function SecondaryPageView({
           mediaTransport={mediaTransport}
           videoTransport={videoTransport}
           reviewOnly={reviewOnly}
+          reviewMapPlacements={reviewMapPlacements}
+          reviewInitialTab={reviewGalleryTab}
         />
       )}
     </div>

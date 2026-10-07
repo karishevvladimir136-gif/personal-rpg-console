@@ -3,6 +3,9 @@
 import { useState } from "react";
 import fixture from "@/lib/v1-completion/preview-fixtures.json";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
+import type { MapPlacement } from "@/lib/map/placement-contracts";
+import { buildMapVisualJob, MAP_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/map-job";
+import { VISUAL_FRAME_PREFIX } from "@/lib/visual-frame/model";
 import { CampaignDataPreview } from "./persistence-context";
 import { PersistentShell } from "./persistent-shell";
 import { CampaignCardsReview } from "./persistent-campaigns";
@@ -49,6 +52,8 @@ function syntheticSnapshot(): CampaignSnapshot {
   const heroStorageId = id(62);
   return {
     ...source,
+    // Keep review additions isolated across SSR requests, hydration, and HMR.
+    assets: source.assets.filter((asset) => asset.id !== id(95)),
     entities: [
       ...source.entities,
       {
@@ -141,6 +146,48 @@ function syntheticSnapshot(): CampaignSnapshot {
         description: "A watchtower visible from the harbor road.",
         status: "known",
       },
+      {
+        ...scoped(80),
+        name: "Harbor Reach",
+        description: "The known coast around the harbor and its inland watch roads.",
+        status: "visited",
+      },
+      {
+        ...scoped(81),
+        name: "Far Isles",
+        description: "Islands named on the public harbor chart; their shores remain unfamiliar.",
+        status: "known",
+      },
+      {
+        ...scoped(82),
+        name: "Lantern Ward",
+        description: "The harbor quarter of repair shops and night watch posts.",
+        status: "visited",
+      },
+      {
+        ...scoped(83),
+        name: "North Cliffs",
+        description: "The raised coast near the watchtower.",
+        status: "known",
+      },
+      {
+        ...scoped(84),
+        name: "Old Beacon",
+        description: "An older beacon known by name, with no map position recorded.",
+        status: "known",
+      },
+      {
+        ...scoped(85),
+        name: "Isle Haven",
+        description: "A public harbor marked among the Far Isles.",
+        status: "known",
+      },
+      {
+        ...scoped(86),
+        name: "South Landing",
+        description: "The landing at Isle Haven.",
+        status: "known",
+      },
     ],
     quests: [
       ...source.quests,
@@ -178,8 +225,119 @@ function syntheticSnapshot(): CampaignSnapshot {
   };
 }
 
+function syntheticMapPlacements(snapshot: CampaignSnapshot): MapPlacement[] {
+  const id = (number: number) =>
+    `11111111-1111-4111-8111-${String(number).padStart(12, "0")}`;
+  const make = (
+    locationId: string,
+    level: MapPlacement["level"],
+    parentLocationId: string | null,
+    x: number,
+    y: number,
+  ): MapPlacement => ({
+    campaign_id: snapshot.campaign.id,
+    location_id: locationId,
+    level,
+    parent_location_id: parentLocationId,
+    x,
+    y,
+    revision: 1,
+    updated_at: snapshot.campaign.updated_at,
+  });
+  return [
+    make(id(80), "world", null, 0.37, 0.47),
+    make(id(81), "world", null, 0.75, 0.61),
+    make(id(82), "region", id(80), 0.42, 0.58),
+    make(id(83), "region", id(80), 0.73, 0.27),
+    make(id(85), "region", id(81), 0.58, 0.47),
+    make(snapshot.publicState.current_location_id!, "local", id(82), 0.39, 0.54),
+    make(id(66), "local", id(82), 0.73, 0.36),
+    make(id(67), "local", id(83), 0.58, 0.36),
+    make(id(86), "local", id(85), 0.62, 0.61),
+  ];
+}
+
+/** A metadata-only accepted example. Review rendering uses CSS art and never requests stored pixels. */
+function addSyntheticAcceptedMap(snapshot: CampaignSnapshot, placements: MapPlacement[]) {
+  const id = (number: number) =>
+    `11111111-1111-4111-8111-${String(number).padStart(12, "0")}`;
+  const jobId = id(95);
+  const versionId = id(96);
+  const dispatchRequestId = id(97);
+  const queued = buildMapVisualJob(
+    snapshot,
+    placements,
+    "world",
+    null,
+    [],
+    "gpt-image-2.5-sunburst-2026-09-08",
+    { size: "1536x1024", quality: "high", outputFormat: "png", n: 1 },
+    { expectedHeadId: null, canonGeneration: 0 },
+  );
+  const output = {
+    storagePath: `${snapshot.campaign.id}/frames/${jobId}/output.png`,
+    sha256: "a".repeat(64),
+    bytes: 100,
+    contentType: "image/png" as const,
+    usage: null,
+    providerRequestId: "synthetic_ui_only",
+  };
+  const job = {
+    ...queued,
+    status: "completed" as const,
+    resultAssetId: jobId,
+    dispatch: { requestId: dispatchRequestId, reservationUsdMicros: 400000 },
+    review: { status: "safe_to_review" as const, imageSha256: output.sha256 },
+  };
+  snapshot.documents.push({
+    id: jobId,
+    campaign_id: snapshot.campaign.id,
+    revision: 4,
+    updated_at: snapshot.campaign.updated_at,
+    current_version_id: versionId,
+    title: "Synthetic atlas example",
+    status: "reference",
+    body: VISUAL_FRAME_PREFIX + JSON.stringify(job),
+  });
+  snapshot.assets.push({
+    id: jobId,
+    campaign_id: snapshot.campaign.id,
+    revision: 1,
+    updated_at: snapshot.campaign.updated_at,
+    title: "Harbor Reach atlas · synthetic example",
+    kind: "image",
+    storage_path: output.storagePath,
+    description: MAP_VISUAL_ASSET_PREFIX + JSON.stringify({
+      campaign_id: snapshot.campaign.id,
+      job_document_id: jobId,
+      job_version_id: versionId,
+      level: "world",
+      anchorLocationId: null,
+      timeline: job.basis.timeline,
+      provider: "OpenAI",
+      model: job.model,
+      dispatchRequestId,
+      output,
+      ownerApproval: { requestId: id(98), draftVersionId: versionId },
+    }),
+  });
+}
+
 /** Synthetic public data only. This route never loads an owner campaign. */
-export function LiveUiReview({ initialScreen }: { initialScreen: string }) {
+export function LiveUiReview({
+  initialScreen,
+  mapPreset,
+  galleryTab,
+}: {
+  initialScreen: string;
+  galleryTab?: "Maps";
+  mapPreset?: {
+    level?: "world" | "region" | "local";
+    artwork?: "placeholder" | "collapsed";
+    panel?: "edit-open" | "unplaced-open";
+    detail?: boolean;
+  };
+}) {
   const { t } = useLanguage();
   const [screen, setScreen] = useState<ReviewScreen>(
     screens.includes(initialScreen as ReviewScreen)
@@ -187,6 +345,8 @@ export function LiveUiReview({ initialScreen }: { initialScreen: string }) {
       : "campaigns",
   );
   const snapshot = syntheticSnapshot();
+  const reviewMapPlacements = syntheticMapPlacements(snapshot);
+  addSyntheticAcceptedMap(snapshot, reviewMapPlacements);
   const content =
     screen === "game" ? (
       <PersistentGame reviewOnly />
@@ -200,7 +360,14 @@ export function LiveUiReview({ initialScreen }: { initialScreen: string }) {
       screen === "map" ||
       screen === "gallery" ||
       screen === "sessions" ? (
-      <SecondaryPageView screen={screen} data={snapshot} reviewOnly />
+      <SecondaryPageView
+        screen={screen}
+        data={snapshot}
+        reviewOnly
+        reviewMapPlacements={reviewMapPlacements}
+        reviewMapPreset={mapPreset}
+        reviewGalleryTab={galleryTab}
+      />
     ) : screen === "library" ? (
       <PersistentLibrary reviewOnly />
     ) : (

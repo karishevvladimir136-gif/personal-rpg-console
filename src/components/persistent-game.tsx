@@ -18,6 +18,7 @@ import {
   realFrameDocuments,
   REAL_FRAME_ASSET_PREFIX,
 } from "@/lib/visual-frame/real-frame";
+import { MAP_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/map-job";
 import {
   CurrentSceneVideo,
   StoredSceneVideo,
@@ -1231,7 +1232,10 @@ function SupportingRecords({
           </p>
           <div className="card-grid">
             {data.assets
-              .filter((row) => row.campaign_id === data.campaign.id)
+              .filter((row) =>
+                row.campaign_id === data.campaign.id &&
+                !row.description.startsWith(MAP_VISUAL_ASSET_PREFIX),
+              )
               .map((row) => {
                 const frame = visualDocuments(data).find(
                   ({ value }) =>
@@ -1310,7 +1314,10 @@ function SupportingRecords({
                 );
               })}
           </div>
-          {!data.assets.length && (
+          {!data.assets.some((row) =>
+            row.campaign_id === data.campaign.id &&
+            !row.description.startsWith(MAP_VISUAL_ASSET_PREFIX),
+          ) && (
             <p>
               {t(
                 "No saved images yet. Use FRAME in Game to review and capture the current moment.",

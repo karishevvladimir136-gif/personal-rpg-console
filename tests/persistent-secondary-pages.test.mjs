@@ -138,7 +138,7 @@ test("gallery subject filtering requires approved current saved association; tit
   assert.equal(gallerySubjectAssets(data, "entity").length, 0);
 });
 
-function render(data, screen, language = "en", tab, reviewOnly = false) {
+function render(data, screen, language = "en", tab, reviewOnly = false, extraProps = {}) {
   const cache = new Map();
   function load(relative) {
     let path = resolve(root, relative);
@@ -221,8 +221,32 @@ function render(data, screen, language = "en", tab, reviewOnly = false) {
     reviewOnly ? "SecondaryPageView" : "PersistentSecondaryPage"
   ];
   return renderToStaticMarkup(
-    createElement(Component, { screen, data, reviewOnly }),
+    createElement(Component, { screen, data, reviewOnly, ...extraProps }),
   );
+}
+
+function atlasSample() {
+  const data = sample();
+  const current = data.locations.find((row) => row.id === data.publicState.current_location_id);
+  const world = { ...current, id: id("atlas-world"), name: "Harbor Reach" };
+  const otherWorld = { ...current, id: id("atlas-other-world"), name: "Far Isles" };
+  const region = { ...current, id: id("atlas-region"), name: "Lantern Ward" };
+  const otherRegion = { ...current, id: id("atlas-other-region"), name: "Isle Haven" };
+  const otherLocal = { ...current, id: id("atlas-other-local"), name: "Old Bridge" };
+  data.locations = [world, otherWorld, region, otherRegion, current, otherLocal];
+  const place = (location, level, parent, x) => ({
+    campaign_id: data.campaign.id,
+    location_id: location.id,
+    level,
+    parent_location_id: parent?.id ?? null,
+    x, y: .5, revision: 1, updated_at: current.updated_at,
+  });
+  const reviewMapPlacements = [
+    place(world, "world", null, .35), place(otherWorld, "world", null, .75),
+    place(region, "region", world, .35), place(otherRegion, "region", otherWorld, .6),
+    place(current, "local", region, .4), place(otherLocal, "local", otherRegion, .7),
+  ];
+  return { data, reviewMapPlacements, current, world, otherWorld, region, otherRegion, otherLocal };
 }
 
 for (const language of ["en", "ru"]) {
@@ -260,6 +284,50 @@ test("gallery suppresses malformed reserved metadata rather than rendering raw i
   data.assets[0].description = "RPG_REAL_FRAME_ASSET_V1\nRAW_INTERNAL_MARKER";
   const html = render(data, "gallery");
   assert.doesNotMatch(html, /RAW_INTERNAL_MARKER/);
+});
+
+test("synthetic atlas renders structured pins per level and highlights authoritative current ancestry", () => {
+  const f = atlasSample();
+  const world = render(f.data, "map", "en", undefined, true, {
+    reviewMapPlacements: f.reviewMapPlacements,
+    reviewMapPreset: { level: "world" },
+  });
+  assert.match(world, /aria-label="Harbor Reach · Visited · Current area"/);
+  assert.match(world, /aria-label="Far Isles · Visited"/);
+  assert.doesNotMatch(world, /aria-label="Lantern Ward ·/);
+  const region = render(f.data, "map", "en", undefined, true, {
+    reviewMapPlacements: f.reviewMapPlacements,
+    reviewMapPreset: { level: "region" },
+  });
+  assert.match(region, /aria-label="Lantern Ward · Visited · Current area"/);
+  assert.doesNotMatch(region, /aria-label="Isle Haven ·/);
+  const local = render(f.data, "map", "en", undefined, true, {
+    reviewMapPlacements: f.reviewMapPlacements,
+    reviewMapPreset: { level: "local" },
+  });
+  assert.match(local, /Current location/);
+  assert.doesNotMatch(local, /aria-label="Old Bridge ·/);
+  assert.doesNotMatch(local, /href="\/campaigns\//);
+});
+
+test("synthetic map editor is a disabled disclosure and no layout request starts while rendering", () => {
+  const f = atlasSample();
+  const html = render(f.data, "map", "en", undefined, true, {
+    reviewMapPlacements: f.reviewMapPlacements,
+    reviewMapPreset: { level: "world", panel: "edit-open" },
+  });
+  assert.match(html, /Edit map layout/);
+  assert.match(html, /Synthetic UI review · editing is disabled/);
+  assert.match(html, /<select[^>]*disabled=""/);
+  assert.doesNotMatch(html, /href="\/campaigns\//);
+});
+
+test("gallery Frames never shows stale or malformed map assets as ordinary frames", () => {
+  const data = sample();
+  data.assets[0].title = "STALE_MAP_ART";
+  data.assets[0].description = "RPG_MAP_VISUAL_ASSET_V1\nRAW_INTERNAL_MAP_METADATA";
+  const html = render(data, "gallery");
+  assert.doesNotMatch(html, /STALE_MAP_ART|RAW_INTERNAL_MAP_METADATA/);
 });
 
 for (const [screen, tab] of [

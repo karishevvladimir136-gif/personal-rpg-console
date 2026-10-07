@@ -241,6 +241,8 @@ function harness({
     AbortController,
     Date,
     Event,
+    structuredClone,
+    TextEncoder,
     fetch: async (input) => {
       requests.push(String(input));
       throw new Error("Synthetic test blocked a real transport request");

@@ -34,6 +34,15 @@ import {
   validateSubjectVisualLifecycle,
 } from "../../visual-frame/subject-job.ts";
 import type { SubjectVisualJob } from "../../visual-frame/subject-job.ts";
+import type { MapPlacement } from "../../map/placement-contracts.ts";
+import {
+  mapVisualAssetMutation,
+  mapVisualDocumentMutation,
+  mapVisualIsCurrent,
+  parseMapVisualJob,
+  validateMapVisualLifecycle,
+} from "../../visual-frame/map-job.ts";
+import type { MapVisualJob } from "../../visual-frame/map-job.ts";
 import { isFrameCheckResult } from "./grounding-state.ts";
 import type { FrameCheckResult } from "./grounding-state.ts";
 
@@ -62,6 +71,7 @@ export type MediaFrameAuthority = {
   receipt: (input: Mutation) => Promise<MutationResult | null>;
   snapshot: (campaignId: string) => Promise<CampaignSnapshot>;
   source: (campaignId: string) => Promise<FrameSourceAuthority>;
+  placements?: (campaignId: string, timeline: NonNullable<CampaignSnapshot["timeline"]>) => Promise<MapPlacement[]>;
   lifecycle: (input: Mutation) => Promise<MutationResult>;
   claim: (
     input: Mutation,
@@ -83,7 +93,7 @@ export type MediaFrameAuthority = {
   ) => Promise<MutationResult>;
 };
 export type MediaPixels = { bytes: Uint8Array; output: FrameOutput };
-export type MediaImageJob = RealFrame | SubjectVisualJob;
+export type MediaImageJob = RealFrame | SubjectVisualJob | MapVisualJob;
 export type MediaStore = {
   read: (campaignId: string, jobId: string) => Promise<MediaPixels | null>;
   put: (
@@ -111,23 +121,27 @@ export type MediaDependencies = {
   };
 };
 const parseJob = (record: Pick<DocumentRecord, "body">): MediaImageJob | null =>
-  parseRealFrame(record) ?? parseSubjectVisualJob(record);
+  parseRealFrame(record) ?? parseSubjectVisualJob(record) ?? parseMapVisualJob(record);
 const jobMutation = (
   snapshot: CampaignSnapshot,
   job: MediaImageJob,
   record?: DocumentRecord,
 ) =>
-  job.schema === 5
-    ? subjectVisualDocumentMutation(snapshot, job, record)
-    : realFrameDocumentMutation(snapshot, job, record);
-const jobIsCurrent = (
+  job.schema === 6 ? mapVisualDocumentMutation(snapshot, job, record) :
+  job.schema === 5 ? subjectVisualDocumentMutation(snapshot, job, record) :
+    realFrameDocumentMutation(snapshot, job, record);
+const jobIsCurrent = async (
   snapshot: CampaignSnapshot,
   job: MediaImageJob,
   source: FrameSourceAuthority,
+  authority: MediaFrameAuthority,
 ) =>
-  job.schema === 5
-    ? subjectVisualIsCurrent(snapshot, job, source)
-    : realFrameIsCurrent(snapshot, job, source);
+  job.schema === 6
+    ? Boolean(authority.placements && snapshot.timeline &&
+        mapVisualIsCurrent(snapshot, await authority.placements(snapshot.campaign.id, snapshot.timeline), job, source))
+    : job.schema === 5
+      ? subjectVisualIsCurrent(snapshot, job, source)
+      : realFrameIsCurrent(snapshot, job, source);
 export type MediaCommand =
   | { action: "media.save"; input: Mutation }
   | { action: "media.dispatch"; input: Mutation }
@@ -208,7 +222,7 @@ function stripRequest(input: Mutation) {
 }
 function requireVerifier(deps: MediaDependencies, frame: MediaImageJob) {
   if (
-    ![4, 5].includes(frame.schema) ||
+    ![4, 5, 6].includes(frame.schema) ||
     !deps.verifier ||
     !deps.authority.checkClaim ||
     !deps.authority.checkComplete
@@ -243,14 +257,14 @@ export async function executeMediaFrame(
   await deps.authority.authorize(input.campaignId);
   // Authorize and exact original receipt precede every mutable source/preflight. A replay never redispatches.
   const receipt =
-    action === "media.recover" && [4, 5].includes(next.schema)
+    action === "media.recover" && [4, 5, 6].includes(next.schema)
       ? ((await deps.authority.recoveryReceipt?.(input)) ?? null)
       : await deps.authority.receipt(input);
   if (receipt)
     return {
       result: receipt,
       status:
-        action === "media.recover" && [4, 5].includes(next.schema) ? "draft" : next.status,
+        action === "media.recover" && [4, 5, 6].includes(next.schema) ? "draft" : next.status,
       dispatched: false,
     };
   if (action === "media.accept") {
@@ -258,7 +272,7 @@ export async function executeMediaFrame(
     const current = recordFor(snapshot, input);
     const previous = current.frame;
     if (
-      ![4, 5].includes(next.schema) ||
+      ![4, 5, 6].includes(next.schema) ||
       previous.schema !== next.schema ||
       previous.status !== "draft" ||
       next.status !== "completed" ||
@@ -266,10 +280,11 @@ export async function executeMediaFrame(
       !previous.review ||
       current.record.revision !== input.expectedRevision ||
       !sameTimeline(snapshot.timeline, input.timeline) ||
-      !jobIsCurrent(
+      !await jobIsCurrent(
         snapshot,
         previous,
         await deps.authority.source(input.campaignId),
+        deps.authority,
       ) ||
       JSON.stringify({
         ...previous,
@@ -293,7 +308,9 @@ export async function executeMediaFrame(
     )
       throw new MediaFrameError("unavailable");
     const asset: Mutation = {
-      ...(next.schema === 5
+      ...(next.schema === 6
+        ? mapVisualAssetMutation(snapshot, current.record, next, pixels.output, input.requestId)
+        : next.schema === 5
         ? subjectVisualAssetMutation(
             snapshot,
             current.record,
@@ -322,7 +339,13 @@ export async function executeMediaFrame(
       throw new MediaFrameError("validation");
     const snapshot = await deps.authority.snapshot(input.campaignId);
     const source = await deps.authority.source(input.campaignId);
-    if (next.schema === 5)
+    if (next.schema === 6) {
+      if (!deps.authority.placements || !snapshot.timeline)
+        throw new MediaFrameError("not_configured");
+      validateMapVisualLifecycle(snapshot,
+        await deps.authority.placements(input.campaignId, snapshot.timeline),
+        stripRequest(input), source);
+    } else if (next.schema === 5)
       validateSubjectVisualLifecycle(snapshot, stripRequest(input), source);
     else validateRealFrameLifecycle(snapshot, stripRequest(input), source);
     if (next.status === "queued") requireVerifier(deps, next);
@@ -347,7 +370,7 @@ export async function executeMediaFrame(
       ? input.requestId !== next.dispatch.requestId ||
         next.status !== "generating"
       : input.requestId !== input.payload.id ||
-        ([4, 5].includes(next.schema)
+        ([4, 5, 6].includes(next.schema)
           ? next.status !== "generating" || next.review !== null
           : next.status !== "completed" ||
             next.resultAssetId !== input.payload.id))
@@ -372,10 +395,11 @@ export async function executeMediaFrame(
   const current = recordFor(snapshot, input);
   if (
     !sameTimeline(snapshot.timeline, input.timeline) ||
-    !jobIsCurrent(
+    !await jobIsCurrent(
       snapshot,
       next,
       await deps.authority.source(input.campaignId),
+      deps.authority,
     )
   )
     throw new MediaFrameError("conflict");
@@ -430,7 +454,7 @@ export async function executeMediaFrame(
       current.frame.status !== "generating" ||
       record.revision !== input.expectedRevision ||
       JSON.stringify(
-        [4, 5].includes(next.schema)
+        [4, 5, 6].includes(next.schema)
           ? current.frame
           : {
               ...current.frame,

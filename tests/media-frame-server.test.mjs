@@ -7,6 +7,7 @@ import ts from "typescript";
 import { fixture } from "./media-frame-fixture.mjs";
 import * as model from "../src/lib/visual-frame/real-frame.ts";
 import * as subjectJob from "../src/lib/visual-frame/subject-job.ts";
+import * as mapJob from "../src/lib/visual-frame/map-job.ts";
 import * as validation from "../src/lib/persistence/validation.ts";
 import * as fence from "../src/lib/saves/fence.ts";
 import * as orchestration from "../src/lib/server/media/orchestration.ts";
@@ -218,6 +219,8 @@ async function serverFixture() {
       "../../saves/fence": fence,
       "../../visual-frame/real-frame": model,
       "../../visual-frame/subject-job": subjectJob,
+      "../../visual-frame/map-job": mapJob,
+      "../map-layout": { readMapPlacementsForSnapshot: async () => [] },
       "./orchestration": orchestration,
       "./pricing": pricing,
       "./provider": { openAiFrameProvider: () => f.provider },

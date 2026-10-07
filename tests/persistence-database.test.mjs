@@ -195,12 +195,24 @@ test("PostgreSQL persistence and security with an explicit test-only auth stub",
         const tables = await db.query(
           "select tablename from pg_tables where schemaname='public' and tablename like 'rpg_%'",
         );
-        for (const { tablename } of tables.rows)
+        for (const { tablename } of tables.rows) {
+          const canRead = await db.query(
+            "select has_table_privilege('authenticated', $1, 'SELECT') as allowed",
+            [`public.${tablename}`],
+          );
+          if (!canRead.rows[0].allowed) {
+            await assert.rejects(
+              db.query(`select * from public.${tablename}`),
+              /permission denied/,
+            );
+            continue;
+          }
           assert.ok(
             !JSON.stringify(
               (await db.query(`select * from public.${tablename}`)).rows,
             ).includes(privateMarker),
           );
+        }
       },
     );
     await t.test(

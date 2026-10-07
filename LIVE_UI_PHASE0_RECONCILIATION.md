@@ -1,5 +1,7 @@
 # Live UI Phase-0 reconciliation — isolated review candidate
 
+**Map / Atlas V2 successor:** This document records the earlier Phase-0 screen and standalone subject-image milestone. The isolated `codex/astra-ui-media-map-integration` branch adds reviewed-scope World / Region / Local presentation placement and optional generated map artwork. Its current design and verification are recorded in [MAP_ATLAS_V2_IMPLEMENTATION.md](MAP_ATLAS_V2_IMPLEMENTATION.md); the earlier flat-Map limitation below remains accurate for the original Phase-0 candidate.
+
 **Status:** Presentation and standalone visual-job candidate for owner review. This branch starts from `3f59d8d82373c825b44ea7c79acbdbde210f9193`. It is not merged, deployed, or active in the owner app. The owner database and gameplay were not changed. The local Supabase service was unavailable for live-data acceptance, so the screenshots use an explicitly labeled synthetic public fixture; they do not show the owner's campaign.
 
 ## Player navigation

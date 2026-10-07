@@ -451,6 +451,9 @@ async function mountedGame(snapshot) {
       "react/jsx-runtime": { jsx, jsxs: jsx, Fragment: "fragment" },
       "@/lib/visual-frame/model": visualModel,
       "@/lib/visual-frame/real-frame": realModel,
+      "@/lib/visual-frame/map-job": {
+        MAP_VISUAL_ASSET_PREFIX: "RPG_MAP_VISUAL_ASSET_V1\n",
+      },
       "@/lib/scene-video/model": videoModel,
       "@/lib/persistence/record-model": { sceneOrder },
       "./visual-frame/current-scene-video": {
@@ -567,6 +570,7 @@ test("mounted Gallery displays only safe completed real art and keeps operationa
     "RPG_REAL_FRAME_ASSET_V1\n",
     "RPG_OWNER_FRAME_ASSET_V1\n",
     "RPG_SCENE_VIDEO_ASSET_V1\n",
+    "RPG_MAP_VISUAL_ASSET_V1\n",
   ]) {
     asset.description = prefix + "{malformed_private_operational_marker}";
     const invalid = ui.render("PersistentSupporting", { screen: "gallery" });
@@ -576,7 +580,7 @@ test("mounted Gallery displays only safe completed real art and keeps operationa
     );
     assert.doesNotMatch(
       ui.text(invalid),
-      /malformed_private_operational_marker|RPG_REAL_FRAME_ASSET_V1|RPG_OWNER_FRAME_ASSET_V1|RPG_SCENE_VIDEO_ASSET_V1/,
+      /malformed_private_operational_marker|RPG_REAL_FRAME_ASSET_V1|RPG_OWNER_FRAME_ASSET_V1|RPG_SCENE_VIDEO_ASSET_V1|RPG_MAP_VISUAL_ASSET_V1/,
     );
   }
 });

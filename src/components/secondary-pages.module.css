@@ -204,6 +204,22 @@
 .mediaCard svg {
   max-width: 100%;
 }
+.galleryMapImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.syntheticGalleryMap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background:
+    radial-gradient(ellipse at 28% 32%, #bea88069, transparent 17%),
+    radial-gradient(ellipse at 66% 66%, #9ea3758c, transparent 23%),
+    repeating-radial-gradient(ellipse at 43% 51%, #c4b48c3b 0 2px, transparent 3px 18px),
+    linear-gradient(130deg, #2d4d4d, #6d6850 52%, #304b4a);
+}
 .mediaBody {
   padding: 18px;
 }

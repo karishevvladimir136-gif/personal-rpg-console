@@ -16,6 +16,11 @@ import {
 } from "./subject-job.ts";
 import type { SubjectVisualJob } from "./subject-job.ts";
 import type { PublicVisualSubject } from "./subject-visual.ts";
+import type { MapLevel, MapVisualJob } from "./map-job.ts";
+import {
+  mapVisualDocumentMutation,
+  parseMapVisualJob,
+} from "./map-job.ts";
 import type {
   MediaCommand,
   MediaResult,
@@ -45,10 +50,20 @@ export type SubjectVisualPrepareIntent = {
   referenceIds: string[];
   retryOf: string | null;
 };
+export type MapVisualPrepareIntent = {
+  campaignId: string;
+  timeline: NonNullable<CampaignSnapshot["timeline"]>;
+  expectedPublicStateRevision: number;
+  level: MapLevel;
+  anchorId: string | null;
+  referenceIds: string[];
+  retryOf: string | null;
+};
 export type MediaFrameTransport = {
   capability: (campaignId: string) => Promise<MediaCapability>;
   prepare: (input: FramePrepareIntent) => Promise<RealFrame>;
   prepareSubject?: (input: SubjectVisualPrepareIntent) => Promise<SubjectVisualJob>;
+  prepareMap?: (input: MapVisualPrepareIntent) => Promise<MapVisualJob>;
   send: (command: MediaCommand) => Promise<MediaResult>;
   load: (campaignId: string) => Promise<CampaignSnapshot>;
   imageUrl: (campaignId: string, assetId: string) => string;
@@ -70,6 +85,12 @@ export const defaultMediaFrameTransport: MediaFrameTransport = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "media.prepareSubject", input }),
+    }),
+  prepareMap: (input) =>
+    readJson("/api/visual-frame", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action: "media.prepareMap", input }),
     }),
   send: (command) =>
     readJson("/api/visual-frame", {
@@ -332,4 +353,84 @@ export function createSubjectVisualOwnerDecision(
     },
     record,
   ));
+}
+export type MapVisualAttempt = {
+  job: MapVisualJob;
+  queue: Mutation;
+  dispatch: Mutation | null;
+  reservationUsdMicros: number;
+};
+export function createMapVisualAttempt(
+  snapshot: CampaignSnapshot,
+  job: MapVisualJob,
+  reservationUsdMicros: number,
+): MapVisualAttempt {
+  if (job.status !== "queued" || job.campaign_id !== snapshot.campaign.id ||
+    !Number.isSafeInteger(reservationUsdMicros) || reservationUsdMicros <= 0)
+    throw new Error("validation");
+  return {
+    job: structuredClone(job),
+    queue: createMutationAttempt(null, mapVisualDocumentMutation(snapshot, job)),
+    dispatch: null,
+    reservationUsdMicros,
+  };
+}
+export async function finishMapVisualAttempt(
+  attempt: MapVisualAttempt,
+  transport: MediaFrameTransport,
+) {
+  if (attempt.dispatch)
+    return transport.send({ action: "media.dispatch", input: structuredClone(attempt.dispatch) });
+  const queued = await transport.send({ action: "media.save", input: structuredClone(attempt.queue) });
+  const snapshot = await transport.load(attempt.job.campaign_id);
+  const record = snapshot.documents.find((row) =>
+    row.id === queued.result.id && row.campaign_id === attempt.job.campaign_id);
+  if (!record || record.revision !== queued.result.revision ||
+    JSON.stringify(parseMapVisualJob(record)) !== JSON.stringify(attempt.job))
+    throw new Error("conflict");
+  const requestId = crypto.randomUUID();
+  attempt.dispatch = {
+    ...mapVisualDocumentMutation(snapshot, {
+      ...attempt.job, status: "generating",
+      dispatch: { requestId, reservationUsdMicros: attempt.reservationUsdMicros },
+    }, record),
+    requestId,
+  };
+  return transport.send({ action: "media.dispatch", input: structuredClone(attempt.dispatch) });
+}
+export function storedMapVisualRecovery(snapshot: CampaignSnapshot, record: DocumentRecord): Mutation {
+  const job = parseMapVisualJob(record);
+  if (!job || job.status !== "generating" || !job.dispatch ||
+    record.campaign_id !== snapshot.campaign.id) throw new Error("validation");
+  return { ...mapVisualDocumentMutation(snapshot, job, record), requestId: record.id };
+}
+export function storedMapVisualDispatch(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+  reservationUsdMicros: number,
+): Mutation {
+  const job = parseMapVisualJob(record);
+  if (!job || job.status !== "queued" || record.campaign_id !== snapshot.campaign.id ||
+    !Number.isSafeInteger(reservationUsdMicros) || reservationUsdMicros <= 0)
+    throw new Error("validation");
+  const requestId = crypto.randomUUID();
+  return {
+    ...mapVisualDocumentMutation(snapshot, {
+      ...job, status: "generating", dispatch: { requestId, reservationUsdMicros },
+    }, record), requestId,
+  };
+}
+export function createMapVisualOwnerDecision(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+  decision: "accept" | "discard",
+): Mutation {
+  const job = parseMapVisualJob(record);
+  if (!job || job.status !== "draft" || !job.review ||
+    record.campaign_id !== snapshot.campaign.id || job.campaign_id !== snapshot.campaign.id)
+    throw new Error("validation");
+  return createMutationAttempt(null, mapVisualDocumentMutation(snapshot, {
+    ...job, status: decision === "accept" ? "completed" : "discarded",
+    resultAssetId: decision === "accept" ? record.id : null,
+  }, record));
 }

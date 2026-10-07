@@ -1,5 +1,7 @@
 # Astra takeover + live UI/media ordered integration
 
+**Map / Atlas V2 successor:** The isolated `codex/astra-ui-media-map-integration` branch extends this reviewed integration with Migration 41 and a presentation-only atlas. Migration ordering remains 38 → 39 → 40 → 41. See [MAP_ATLAS_V2_IMPLEMENTATION.md](MAP_ATLAS_V2_IMPLEMENTATION.md) for the new authority, media and review evidence. This original integration record below remains the historical 39→40 milestone.
+
 **Status:** Isolated owner-review candidate. This branch starts at the reviewed Astra World Logic takeover commit `3d5768aed99cb30a1631cd892efc2cdf49e4f320` and merges the exact accepted UI candidate `312b2647cb7f1407426d177a26dacee0233a439f`. It has not been merged to `main`, applied to the owner database, or activated in the owner app.
 
 ## Migration order and authority
