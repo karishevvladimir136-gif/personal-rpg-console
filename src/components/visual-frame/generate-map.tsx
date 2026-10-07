@@ -12,6 +12,7 @@ import { useLanguage } from "../language-context";
 import { Button } from "../ui";
 import { referenceIsCurrent, visualDocuments } from "@/lib/visual-frame/model";
 import {
+  createMapVisualUncertainClosure,
   createMapVisualAttempt,
   createMapVisualOwnerDecision,
   defaultMediaFrameTransport,
@@ -61,6 +62,7 @@ export function GenerateMap({
   const pending = useRef<MapVisualAttempt | null>(null);
   const decision = useRef<{ action: "media.accept" | "media.discard"; input: Mutation } | null>(null);
   const queuedDispatch = useRef<Mutation | null>(null);
+  const uncertainClosure = useRef<Mutation | null>(null);
   const pendingPlacement = useRef<AutoPlacementAttempt | null>(null);
   const lock = useRef(false);
   const campaignId = snapshot?.campaign.id;
@@ -94,6 +96,7 @@ export function GenerateMap({
   const latest = jobs.at(-1);
   const queued = [...jobs].reverse().find(({ value }) => value.status === "queued");
   const generating = [...jobs].reverse().find(({ value }) => value.status === "generating");
+  const uncertain = [...jobs].reverse().find(({ value }) => value.status === "uncertain");
   const draft = [...jobs].reverse().find(({ value }) => value.status === "draft");
   const accepted = [...jobs].reverse().find(({ value }) =>
     value.status === "completed" && value.resultAssetId &&
@@ -205,6 +208,21 @@ export function GenerateMap({
       queuedDispatch.current = null;
     });
   }
+  function closeUncertain() {
+    void run(async () => {
+      if (!uncertain) throw new Error("validation");
+      uncertainClosure.current ??= createMapVisualUncertainClosure(
+        currentSnapshot, uncertain.record);
+      await transport.send({
+        action: "media.save", input: structuredClone(uncertainClosure.current),
+      });
+      await refresh();
+      uncertainClosure.current = null;
+      pending.current = null;
+      setRetryRequest(false);
+      setProposal(null);
+    });
+  }
   function decide(action: "media.accept" | "media.discard") {
     void run(async () => {
       if (!draft) throw new Error("validation");
@@ -225,7 +243,7 @@ export function GenerateMap({
   return (
     <section className="space-y-2" aria-label={w("Map artwork", "Иллюстрация карты")}>
       <div className="button-group">
-        <Button disabled={busy || !capability?.enabled || Boolean(generating || queued)} onClick={prepare}>
+        <Button disabled={busy || !capability?.enabled || Boolean(generating || queued || uncertain)} onClick={prepare}>
           {accepted ? w("Regenerate map", "Создать карту заново") : w("Generate map", "Создать карту")}
         </Button>
         {jobs.length > 0 && (
@@ -261,6 +279,15 @@ export function GenerateMap({
         <p role="status">{w("A map request is saved but not yet sent.", "Запрос карты сохранён, но ещё не отправлен.")}</p>
         <Button disabled={busy || !capability?.enabled} onClick={continueQueued}>
           {w("Continue saved request", "Продолжить сохранённый запрос")}
+        </Button>
+      </div>}
+      {uncertain && !generating && !queued && <div className="space-y-2">
+        <p role="status" className="muted">{w(
+          "The previous map image outcome could not be verified and may have incurred a charge. Closing ends recovery for that request but preserves its history. A new image needs separate paid confirmation.",
+          "Результат предыдущего запроса карты не подтверждён, и расходы могли возникнуть. Закрытие завершит восстановление этого запроса, сохранив его историю. Для нового изображения потребуется отдельное платное подтверждение.",
+        )}</p>
+        <Button disabled={busy} onClick={closeUncertain}>
+          {w("Close uncertain request", "Закрыть неподтверждённый запрос")}
         </Button>
       </div>}
       {draft && <div className="space-y-2 rounded border border-[#765b36] p-3">

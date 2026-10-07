@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
 import { ensureCurrentMapPlacement } from "../src/lib/map/auto-placement.ts";
 import { presentationAtlasPlacements } from "../src/lib/map/atlas-view.ts";
+import { createMapVisualUncertainClosure } from "../src/lib/visual-frame/media-client.ts";
 import {
   buildMapVisualJob,
   mapVisualAssetMutation,
@@ -230,6 +231,135 @@ test("map media schema 6 uses existing reservation, paid review, private draft a
   } finally {
     await f.db.close();
   }
+});
+
+test("uncertain Map dispatch closes explicitly before a distinct retry while preserving history and reservation", async () => {
+  const f = await fixture(41);
+  try {
+    const w = await world(f);
+    await call(f, "select public.rpg_map_layout($1,$2,'save',$3::jsonb,$4::jsonb) result", [
+      f.owner, w.cid,
+      JSON.stringify({
+        requestId: randomUUID(), locationId: w.location,
+        expectedRevision: null, level: "world", parentLocationId: null,
+        x: 0.5, y: 0.5,
+      }), JSON.stringify(await f.fence(w.cid)),
+    ]);
+    const budget = randomUUID();
+    await f.one("select public.rpg_media_budget_prepare($1,$2,$3,1200000,2)", [
+      f.owner, budget, model,
+    ]);
+    const first = await snapshot(f, w.cid);
+    const job = buildMapVisualJob(first, await placements(f, w.cid), "world", null,
+      [], model, parameters, await sourceProof(f, w.cid));
+    const created = await call(f,
+      "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(first, job), requestId: randomUUID(),
+      })]);
+    const queued = await snapshot(f, w.cid);
+    const queuedRecord = queued.documents.find((row) => row.id === created.id);
+    const generating = {
+      ...job, status: "generating",
+      dispatch: { requestId: randomUUID(), reservationUsdMicros: 400000 },
+    };
+    const claim = await call(f,
+      "select public.rpg_map_visual_claim($1,$2::jsonb,$3) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(queued, generating, queuedRecord),
+        requestId: generating.dispatch.requestId,
+      }), budget]);
+    assert.equal(claim.claimed, true);
+
+    const active = await snapshot(f, w.cid);
+    const activeRecord = active.documents.find((row) => row.id === created.id);
+    const uncertain = { ...generating, status: "uncertain", failure: "uncertain" };
+    await call(f,
+      "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(active, uncertain, activeRecord),
+        requestId: randomUUID(),
+      })]);
+    const pending = await snapshot(f, w.cid);
+    const pendingRecord = pending.documents.find((row) => row.id === created.id);
+    assert.equal(parseMapVisualJob(pendingRecord).status, "uncertain");
+
+    const duplicate = buildMapVisualJob(pending, await placements(f, w.cid),
+      "world", null, [], model, parameters, await sourceProof(f, w.cid), created.id);
+    await assert.rejects(call(f,
+      "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(pending, duplicate), requestId: randomUUID(),
+      })]), /rpg_conflict/);
+    assert.equal((await f.query(
+      "select count(*)::integer n from public.rpg_documents where campaign_id=$1 and body like 'RPG_VISUAL_FRAME_V0%'",
+      [w.cid])).at(0).n, 1);
+
+    const beforeClose = await f.query(
+      "select id, version, body from public.rpg_document_versions where campaign_id=$1 and document_id=$2 order by version",
+      [w.cid, created.id]);
+    assert.deepEqual(beforeClose.map((row) => parseMapVisualJob(row)?.status),
+      ["queued", "generating", "uncertain"]);
+    const reservationBefore = await f.query(
+      "select request_id, budget_id, job_id, reservation_usd_micros, grounding_reservation_usd_micros from rpg_private.media_reservations where campaign_id=$1",
+      [w.cid]);
+    assert.equal(reservationBefore.length, 1);
+    assert.equal(reservationBefore[0].job_id, created.id);
+    assert.equal(reservationBefore[0].request_id, generating.dispatch.requestId);
+
+    const closure = createMapVisualUncertainClosure(pending, pendingRecord);
+    assert.equal(closure.expectedRevision, pendingRecord.revision);
+    await call(f, "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify(closure)]);
+    const closed = await snapshot(f, w.cid);
+    const closedRecord = closed.documents.find((row) => row.id === created.id);
+    assert.equal(parseMapVisualJob(closedRecord).status, "cancelled");
+    assert.equal(parseMapVisualJob(closedRecord).failure, null);
+    assert.throws(() => createMapVisualUncertainClosure(closed, pendingRecord), /validation/);
+
+    const retry = buildMapVisualJob(closed, await placements(f, w.cid),
+      "world", null, [], model, parameters, await sourceProof(f, w.cid), created.id);
+    const fresh = await call(f,
+      "select public.rpg_map_visual_lifecycle($1,$2::jsonb) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(closed, retry), requestId: randomUUID(),
+      })]);
+    assert.notEqual(fresh.id, created.id);
+    const after = await snapshot(f, w.cid);
+    assert.equal(parseMapVisualJob(after.documents.find((row) => row.id === fresh.id)).status, "queued");
+    assert.equal(parseMapVisualJob(after.documents.find((row) => row.id === fresh.id)).retryOf, created.id);
+    assert.equal(parseMapVisualJob(after.documents.find((row) => row.id === created.id)).status, "cancelled");
+    const versions = await f.query(
+      "select id, version, body from public.rpg_document_versions where campaign_id=$1 and document_id=$2 order by version",
+      [w.cid, created.id]);
+    assert.deepEqual(versions.slice(0, 3), beforeClose);
+    assert.deepEqual(versions.map((row) => parseMapVisualJob(row)?.status),
+      ["queued", "generating", "uncertain", "cancelled"]);
+    assert.deepEqual(await f.query(
+      "select request_id, budget_id, job_id, reservation_usd_micros, grounding_reservation_usd_micros from rpg_private.media_reservations where campaign_id=$1",
+      [w.cid]), reservationBefore);
+
+    const freshRecord = after.documents.find((row) => row.id === fresh.id);
+    const freshGenerating = {
+      ...retry, status: "generating",
+      dispatch: { requestId: randomUUID(), reservationUsdMicros: 400000 },
+    };
+    const freshClaim = await call(f,
+      "select public.rpg_map_visual_claim($1,$2::jsonb,$3) result",
+      [f.owner, JSON.stringify({
+        ...mapVisualDocumentMutation(after, freshGenerating, freshRecord),
+        requestId: freshGenerating.dispatch.requestId,
+      }), budget]);
+    assert.equal(freshClaim.claimed, true);
+    const reservations = await f.query(
+      "select request_id, budget_id, job_id, reservation_usd_micros, grounding_reservation_usd_micros from rpg_private.media_reservations where campaign_id=$1",
+      [w.cid]);
+    assert.equal(reservations.length, 2);
+    assert.deepEqual(reservations.find((row) => row.job_id === created.id), reservationBefore[0]);
+    assert.equal(reservations.find((row) => row.job_id === fresh.id)?.request_id,
+      freshGenerating.dispatch.requestId);
+    assert.notEqual(freshGenerating.dispatch.requestId, generating.dispatch.requestId);
+  } finally { await f.db.close(); }
 });
 
 test("map media rejects tampered prompt and cross-campaign basis without changing rows", async () => {

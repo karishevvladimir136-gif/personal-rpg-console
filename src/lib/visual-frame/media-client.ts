@@ -434,3 +434,21 @@ export function createMapVisualOwnerDecision(
     resultAssetId: decision === "accept" ? record.id : null,
   }, record));
 }
+
+/** Close an indeterminate dispatch without replaying it or erasing its history. */
+export function createMapVisualUncertainClosure(
+  snapshot: CampaignSnapshot,
+  record: DocumentRecord,
+): Mutation {
+  const job = parseMapVisualJob(record);
+  if (!job || job.status !== "uncertain" ||
+    record.campaign_id !== snapshot.campaign.id || job.campaign_id !== snapshot.campaign.id ||
+    !snapshot.documents.some((row) =>
+      row.id === record.id && row.campaign_id === record.campaign_id &&
+      row.revision === record.revision &&
+      row.current_version_id === record.current_version_id && row.body === record.body))
+    throw new Error("validation");
+  return createMutationAttempt(null, mapVisualDocumentMutation(snapshot, {
+    ...job, status: "cancelled", failure: null,
+  }, record));
+}
