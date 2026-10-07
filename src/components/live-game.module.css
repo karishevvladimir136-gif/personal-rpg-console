@@ -87,8 +87,31 @@
 }
 
 .liveGame :global(.scene-actions) {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.liveGame :global(.scene-actions .button) {
+  min-height: 32px;
+  padding: 5px 9px;
+  gap: 6px;
+  border-color: #5b503d;
+  background: #1b2424;
+}
+
+.liveGame :global(.scene-actions .button > span:not(.play-symbol)) {
+  font: 11px/1.2 Arial, sans-serif;
+  letter-spacing: .03em;
+}
+
+.liveGame :global(.scene-actions .button small) {
+  display: none;
+}
+
+.liveGame :global(.scene-actions .play-symbol) {
+  font-size: 15px;
 }
 
 .storyFlow {
@@ -221,6 +244,58 @@
   min-height: 58px;
 }
 
+.liveGame :global(.gameplay-channel > form > .composer-tools),
+.recordedDice {
+  grid-column: 1 / -1;
+}
+
+.liveGame :global(.composer-tools) {
+  gap: 10px 17px;
+  padding-top: 5px;
+  border-top: 1px solid #ffffff12;
+}
+
+.liveGame :global(.composer-tools button),
+.liveGame :global(.composer-tools a) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 3px 0;
+  border: 0;
+  background: transparent;
+  color: #a8b1b2;
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.liveGame :global(.composer-tools button:hover),
+.liveGame :global(.composer-tools a:hover),
+.liveGame :global(.composer-tools button.selected) {
+  color: var(--gold);
+}
+
+.liveGame :global(.composer-tools button[disabled]) {
+  cursor: default;
+  opacity: .65;
+}
+
+.recordedDice {
+  padding: 10px 12px;
+  border: 1px solid #5b503d;
+  border-radius: 4px;
+  background: #10191b;
+}
+
+.recordedDice p {
+  margin: 0;
+  color: #aeb9b6;
+  font-size: 11px;
+}
+
 .liveGame :global(.gameplay-channel > form > p) {
   grid-column: 1 / -1;
   margin: 0;
@@ -231,19 +306,21 @@
   opacity: 0.7;
 }
 
-.inputMode {
-  padding: 7px 0;
-  border: 0;
+.sceneMedia {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #ffffff12;
 }
 
-.inputMode :global(.tabs) {
-  margin: 0;
-  border: 0;
+.sceneMedia > summary {
+  width: fit-content;
+  color: #aeb9b6;
+  cursor: pointer;
+  font-size: 10px;
 }
 
-.inputMode :global(.tabs button) {
-  font-size: 11px;
-  padding: 8px 12px;
+.sceneMedia[open] > summary {
+  color: #e6ceaa;
 }
 
 .heroAvatar {

@@ -143,7 +143,7 @@ function ConfigurationForm({
             onChange={(event) => setAgreed(event.target.checked)}
           />
           {t(data.settings.values.rulesSystem.id === "world-logic-v1"
-            ? "Use the existing Console Basic mechanics for combat in this World Logic campaign"
+            ? "Use the existing starter mechanics for combat in this campaign"
             : "Use Console Basic house rules for future play in this campaign")}
         </label>
         <p className="muted">

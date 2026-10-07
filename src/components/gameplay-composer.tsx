@@ -73,6 +73,7 @@ export function GameplayComposer({
   historyPosition,
   onHistoryPositionChange,
   beforeInput,
+  inputTools,
   followLatest = false,
 }: {
   play: PlaySnapshot;
@@ -87,6 +88,7 @@ export function GameplayComposer({
   historyPosition?: StoryHistoryPosition;
   onHistoryPositionChange?: (position: StoryHistoryPosition) => void;
   beforeInput?: ReactNode;
+  inputTools?: ReactNode;
   followLatest?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
@@ -485,6 +487,8 @@ export function GameplayComposer({
               placeholder={t(
                 mode === "feedback"
                   ? "What would you like to change about the way this campaign is told?"
+                  : mode === "ooc"
+                    ? "A question outside the story…"
                   : "What do you do next?",
               )}
             />
@@ -583,6 +587,7 @@ export function GameplayComposer({
               </Button>
             )}
           </div>
+          {inputTools}
           <p className="muted" role="status">
             {t(
               journal.attempt

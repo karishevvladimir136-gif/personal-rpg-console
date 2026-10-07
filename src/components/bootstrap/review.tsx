@@ -3,6 +3,7 @@ import { useState } from "react";
 import type {
   BootstrapQuestion,
   CharacterSheetV1,
+  CreationEquipmentProfile,
   CreationMechanics,
   CreationReview,
   OpeningReview,
@@ -69,7 +70,7 @@ export function bootstrapText(language: "en" | "ru") {
         ready: "Кампания готова",
         next: "Подготовить первое приключение",
         intro:
-          "Опишите любого героя в своём мире. World Logic не требует класса, уровня, здоровья или человеческого тела.",
+          "Опишите любого героя в своём мире. Этот стиль кампании не требует класса, уровня, здоровья или человеческого тела.",
         title: "Название кампании",
         language: "Язык кампании",
         advanced: "Другие поддерживаемые правила",
@@ -136,7 +137,7 @@ export function bootstrapText(language: "en" | "ru") {
         ready: "Campaign ready",
         next: "Prepare the first Adventure",
         intro:
-          "Describe any protagonist in your world. World Logic requires no class, level, HP or human body.",
+          "Describe any protagonist in your world. This campaign style does not require a class, level, HP, or humanoid anatomy.",
         title: "Campaign title",
         language: "Campaign language",
         advanced: "Other supported rules",
@@ -262,11 +263,27 @@ export function changeCharacterSheetMode(
   void _previousMechanics;
   return {
     ...withoutMechanics,
+    equipmentProfile: "none",
     sheet: {
       ...review.sheet,
       mode,
       attributes: mode === "structured_rpg" ? { ...defaultStructuredAttributes } : null,
     },
+  };
+}
+
+/** Clearing anatomy also clears a weapon selection that cannot be equipped. */
+export function changeCreationEquipmentProfile(
+  review: CreationReview,
+  profile: CreationEquipmentProfile,
+): CreationReview {
+  if (!review.sheet || review.sheet.mode !== "structured_rpg") return review;
+  return {
+    ...review,
+    equipmentProfile: profile,
+    ...(profile === "none" && review.mechanics ? {
+      mechanics: { ...review.mechanics, weaponName: null, weaponDamage: null },
+    } : {}),
   };
 }
 
@@ -284,11 +301,13 @@ function MechanicsEditor({
   mechanics,
   possessions,
   language,
+  allowWeapon,
   onChange,
 }: {
   mechanics: CreationMechanics;
   possessions: CreationReview["possessions"];
   language: "en" | "ru";
+  allowWeapon: boolean;
   onChange: (next: CreationMechanics) => void;
 }) {
   return (
@@ -307,7 +326,7 @@ function MechanicsEditor({
       ))}
       <label className={styles.field}>
         {language === "ru" ? "Утверждённое оружие" : "Approved starting weapon"}
-        <select value={mechanics.weaponName ?? ""} onChange={(event) => onChange({ ...mechanics, weaponName: event.target.value || null, weaponDamage: event.target.value ? (mechanics.weaponDamage ?? 2) : null })}>
+        <select value={mechanics.weaponName ?? ""} disabled={!allowWeapon} onChange={(event) => onChange({ ...mechanics, weaponName: event.target.value || null, weaponDamage: event.target.value ? (mechanics.weaponDamage ?? 2) : null })}>
           <option value="">{language === "ru" ? "Без оружия" : "Unarmed"}</option>
           {possessions.filter((item) => item.name && item.quantity !== null).map((item) => <option key={item.name} value={item.name}>{item.name}</option>)}
         </select>
@@ -437,6 +456,9 @@ export function CharacterReview({
             <span className={styles.sheetMode}>{sheet.mode === "structured_rpg" ? (language === "ru" ? "Структурированный RPG" : "Structured RPG") : (language === "ru" ? "Повествовательный" : "Narrative")}</span>
           </div>
           {sheet.background && <p className={styles.sheetBackground}>{sheet.background}</p>}
+          {sheet.mode === "structured_rpg" && <p className={styles.muted}>{value.equipmentProfile === "standard_humanoid"
+            ? (language === "ru" ? "Обычные слоты снаряжения для гуманоида." : "Standard humanoid equipment slots.")
+            : (language === "ru" ? "Стандартные слоты снаряжения не назначены." : "No standard body equipment slots assigned.")}</p>}
           {sheet.attributes && (
             <div className={styles.sheetAttributes} aria-label={language === "ru" ? "Характеристики" : "Attributes"}>
               {attributeFields.map((field) => (
@@ -472,6 +494,13 @@ export function CharacterReview({
               <p className={styles.muted}>{language === "ru"
                 ? "Смена стиля сбрасывает характеристики до 10 и отменяет утверждение боевых значений. Проверьте эти предварительные значения перед созданием кампании."
                 : "Changing style resets scores to 10 and clears combat approval. Review these starting values before creating the campaign."}</p>
+              {sheet.mode === "structured_rpg" && <label className={styles.field}>
+                {language === "ru" ? "Профиль снаряжения" : "Equipment profile"}
+                <select value={value.equipmentProfile ?? "none"} onChange={(event) => onChange(changeCreationEquipmentProfile(value, event.target.value as CreationEquipmentProfile))}>
+                  <option value="standard_humanoid">{language === "ru" ? "Обычный гуманоид" : "Standard humanoid"}</option>
+                  <option value="none">{language === "ru" ? "Без стандартных слотов" : "No standard body slots"}</option>
+                </select>
+              </label>}
               <Field label={language === "ru" ? "Роль / архетип" : "Role / archetype"} value={sheet.role} max={120} onChange={(role) => onChange({ ...value, sheet: { ...sheet, role: role || null } })} />
               <Field label={language === "ru" ? "Предыстория" : "Background"} value={sheet.background} max={2000} large onChange={(background) => onChange({ ...value, sheet: { ...sheet, background } })} />
               {sheet.level !== null && <label className={styles.field}>
@@ -504,6 +533,7 @@ export function CharacterReview({
                   mechanics={value.mechanics}
                   possessions={value.possessions}
                   language={language}
+                  allowWeapon={value.equipmentProfile !== "none"}
                   onChange={(mechanics) => onChange({ ...value, mechanics })}
                 />}
               </>}
@@ -576,7 +606,7 @@ export function CharacterReview({
           }} />
           {language === "ru" ? "Утвердить боевой профиль" : "Approve a combat profile"}
         </label>
-        {value.mechanics && <MechanicsEditor mechanics={value.mechanics} possessions={value.possessions} language={language} onChange={(mechanics) => onChange({ ...value, mechanics })} />}
+        {value.mechanics && <MechanicsEditor mechanics={value.mechanics} possessions={value.possessions} language={language} allowWeapon onChange={(mechanics) => onChange({ ...value, mechanics })} />}
       </details>}
       <Questions
         questions={questions}

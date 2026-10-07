@@ -49,6 +49,7 @@ import {
 } from "./gameplay-actions";
 import { GameplayCombat } from "./gameplay-combat";
 import { CombatReadiness } from "./combat-readiness";
+import { GameplayCheck } from "./gameplay-dice";
 import { SessionMemoryPanel, SessionPendingCompanion } from "./session-memory";
 import {
   RecordBoundary,
@@ -610,6 +611,7 @@ function GameRecords({
   const { t, language } = useLanguage();
   const runtime = useGameplayRuntime(reviewOnly);
   const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
+  const [diceOpen, setDiceOpen] = useState(false);
   const [historyPositions, setHistoryPositions] = useState<
     Record<string, StoryHistoryPosition>
   >({});
@@ -621,6 +623,7 @@ function GameRecords({
   const latest = runtime.play?.turns
     .filter((turn) => turn.mode === inputMode)
     .at(-1);
+  const lastRecordedCheck = runtime.play?.turns.flatMap((turn) => turn.checks).at(-1);
   const opening = inputMode === "game" && view.showOpening && (
     <article className={gameStyles.opening}>
       <div className="prose">
@@ -705,17 +708,35 @@ function GameRecords({
               </div>
               {opening}
               <div className="scene-actions">
-                <Button primary disabled={reviewOnly} onClick={() => openMedia("frame")}>
-                  <Icon name="Image" />
+                <Button disabled={reviewOnly} onClick={() => openMedia("frame")}>
+                  <Icon name="Image" size={15} />
                   <span>{t("FRAME")}<small>{t("Capture this moment")}</small></span>
                 </Button>
                 {!frameTransport && (
-                  <Button primary disabled={reviewOnly} onClick={() => openMedia("video")}>
+                  <Button disabled={reviewOnly} onClick={() => openMedia("video")}>
                     <span className="play-symbol">▷</span>
                     <span>{t("VIDEO")}<small>{t("A cinematic view")}</small></span>
                   </Button>
                 )}
               </div>
+              {!reviewOnly && (
+                <details className={gameStyles.sceneMedia} ref={mediaRef}>
+                  <summary>{language === "ru" ? "Создать изображение этой сцены" : "Create art for this scene"}</summary>
+                  {scene && <p className="muted">{scene.title}</p>}
+                  <div id="game-frame-controls" className={gameStyles.mediaControls}>
+                    {frameTransport ? (
+                      <CurrentSceneFrame transport={frameTransport} />
+                    ) : (
+                      <CurrentSceneMediaFrame transport={mediaTransport} />
+                    )}
+                  </div>
+                  {!frameTransport && (
+                    <div id="game-video-controls" className={gameStyles.mediaControls}>
+                      <CurrentSceneVideo transport={videoTransport} />
+                    </div>
+                  )}
+                </details>
+              )}
             </div>
           </article>
           {runtime.play && (
@@ -727,20 +748,18 @@ function GameRecords({
           <div className={gameStyles.storyFlow}>
             {reviewOnly && !runtime.play && (
               <div id="play-action" className={styles.reviewComposer}>
-                <div className="tabs" aria-label={t("Input mode")}>
-                  <button type="button" className="active" aria-pressed="true">
-                    {t("Your action")}
-                  </button>
-                  <button type="button" aria-pressed="false">
-                    {t("OOC")}
-                  </button>
-                </div>
                 <textarea
                   aria-label={t("Your action")}
                   placeholder={t("Describe your action")}
                   disabled
                   rows={3}
                 />
+                <div className="composer-tools" aria-label={language === "ru" ? "Помощники ввода" : "Composer tools"}>
+                  <button type="button" aria-pressed="false" disabled>{t("OOC")} {t("Off")}</button>
+                  <button type="button" disabled>{language === "ru" ? "Кости" : "Dice"}</button>
+                  <button type="button" disabled><Icon name="BookOpen" size={14} />{t("Take note")}</button>
+                  <button type="button" disabled><Icon name="CircleHelp" size={14} />{t("What do I know?")}</button>
+                </div>
                 <p className="muted">{t("Synthetic UI review only · no gameplay is submitted.")}</p>
               </div>
             )}
@@ -786,55 +805,48 @@ function GameRecords({
                       [historyKey]: position,
                     }));
                   }}
-                  beforeInput={
-                    <div id="play-action" className={gameStyles.inputMode}>
-                      <div className="tabs" aria-label={t("Input mode")}>
-                        <button
-                          type="button"
-                          aria-pressed={inputMode === "game"}
-                          className={inputMode === "game" ? "active" : ""}
-                          onClick={() => setInputMode("game")}
-                        >
-                          {t("Your action")}
-                        </button>
+                  beforeInput={<span id="play-action" aria-hidden="true" />}
+                  inputTools={
+                    <>
+                      <div className="composer-tools" aria-label={language === "ru" ? "Помощники ввода" : "Composer tools"}>
                         <button
                           type="button"
                           aria-pressed={inputMode === "ooc"}
-                          className={inputMode === "ooc" ? "active" : ""}
-                          onClick={() => setInputMode("ooc")}
+                          className={inputMode === "ooc" ? "selected" : ""}
+                          onClick={() => setInputMode(inputMode === "ooc" ? "game" : "ooc")}
                         >
-                          {t("OOC")}
+                          {t("OOC")} {t(inputMode === "ooc" ? "On" : "Off")}
                         </button>
+                        <button
+                          type="button"
+                          aria-expanded={diceOpen}
+                          aria-controls="game-recorded-dice"
+                          onClick={() => setDiceOpen((open) => !open)}
+                        >
+                          <span aria-hidden="true">⚄</span> {language === "ru" ? "Кости" : "Dice"}
+                        </button>
+                        <Link href={`/campaigns/${data.campaign.id}/journal?tab=Notes&compose=note`}>
+                          <Icon name="BookOpen" size={14} /> {t("Take note")}
+                        </Link>
+                        <Link href={`/campaigns/${data.campaign.id}/journal?tab=Evidence`}>
+                          <Icon name="CircleHelp" size={14} /> {t("What do I know?")}
+                        </Link>
                       </div>
-                    </div>
+                      {diceOpen && (
+                        <div id="game-recorded-dice" className={gameStyles.recordedDice}>
+                          {lastRecordedCheck ? (
+                            <GameplayCheck check={lastRecordedCheck} />
+                          ) : (
+                            <p>{language === "ru" ? "Результаты бросков появятся здесь после проверки ведущего." : "Recorded rolls will appear here when the DM calls for a check."}</p>
+                          )}
+                        </div>
+                      )}
+                    </>
                   }
                 />
               </>
             )}
           </div>
-          {reviewOnly ? (
-            <details className={styles.secondary}>
-              <summary>{t("FRAME & VIDEO · this scene")}</summary>
-              <p className="muted">{t("Synthetic UI review only · media actions are unavailable.")}</p>
-            </details>
-          ) : (
-            <details className={styles.secondary} ref={mediaRef}>
-              <summary>{t("FRAME & VIDEO · this scene")}</summary>
-              {scene && <p className="muted">{scene.title}</p>}
-              <div id="game-frame-controls" className={gameStyles.mediaControls}>
-                {frameTransport ? (
-                  <CurrentSceneFrame transport={frameTransport} />
-                ) : (
-                  <CurrentSceneMediaFrame transport={mediaTransport} />
-                )}
-              </div>
-              {!frameTransport && (
-                <div id="game-video-controls" className={gameStyles.mediaControls}>
-                  <CurrentSceneVideo transport={videoTransport} />
-                </div>
-              )}
-            </details>
-          )}
           {runtime.play && (runtime.play.rulesetId !== "world-logic-v1" ||
             runtime.play.configuration) && (
             <details

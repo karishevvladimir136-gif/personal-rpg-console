@@ -21,7 +21,9 @@ export function SubjectVisual({
 }) {
   const { language } = useLanguage();
   const w = (en: string, ru: string) => (language === "ru" ? ru : en);
-  const visual = selectSubjectVisual(snapshot, subject);
+  // Ordinary subject art shows only explicitly accepted images. Drafts are
+  // visible in the dedicated review panel below the generation controls.
+  const visual = selectSubjectVisual(snapshot, subject, { acceptedOnly: true });
   if (!visual) return null;
 
   const caption =
@@ -29,10 +31,8 @@ export function SubjectVisual({
       ? visual.image
         ? w("Approved visual reference", "Утверждённый визуальный образец")
         : w("Approved guidance · no viewable image", "Утверждённый образец · изображение недоступно")
-      : visual.approval === "draft"
-        ? w("Draft visual reference · not approved", "Черновик визуального образца · не утверждён")
-        : visual.image
-          ? w("Generated image · not approved as a visual reference", "Созданное изображение · ещё не утверждено как визуальный образец")
+      : visual.image
+          ? w("Accepted image · visual reference is optional", "Принятое изображение · визуальный образец необязателен")
           : w("No image yet", "Изображения пока нет");
 
   return (

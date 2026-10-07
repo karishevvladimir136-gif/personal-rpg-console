@@ -249,9 +249,7 @@ export function FoundationLoopEditor({
             {section === "progression"
               ? view.profile.id === "console-basic-v1"
                 ? c.starterRules
-                : view.profile.id === "world-logic-v1"
-                  ? c.worldLogic
-                  : c.campaignRules
+                : c.campaignRules
               : profileName}
           </Badge>
         )}

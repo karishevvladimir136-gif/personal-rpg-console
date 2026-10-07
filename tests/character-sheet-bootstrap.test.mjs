@@ -17,18 +17,25 @@ const structuredSheet = {
 test("sparse fantasy owner input receives an explicitly reviewed v2 public sheet, not World Actor powers", async () => {
   const f = await setup({ ...examples.fantasy, description: "A wanderer. I carry a simple sword.", caps: [], limits: [], item: "simple sword" }, "en", 42);
   try {
-    f.creation = { ...f.creation, schemaVersion: 2, sheet: structuredSheet,
+    f.creation = { ...f.creation, schemaVersion: 2, sheet: structuredSheet, equipmentProfile: "standard_humanoid",
       mechanics: { hp: 10, attack: 1, defense: 11, skill: 2, weaponName: "simple sword", weaponDamage: 3 } };
     const draft = await f.service.perform({ action: "creation.propose", input: f.input });
     assert.equal(draft.proposal.sheet.skills[0], "Tracking");
     const review = initialCreationReview(f.input, draft.proposal);
     assert.equal(review.mechanics.hp, 10);
+    const { equipmentProfile: _omitted, ...withoutProfile } = review;
+    void _omitted;
+    await assert.rejects(f.one("select rpg_private.bootstrap_review('creation',$1::jsonb,$2::jsonb)",
+      [JSON.stringify(withoutProfile), JSON.stringify(draft.proposal)]), /rpg_validation/);
     const created = await f.service.perform({ action: "creation.commit", input: { requestId: randomUUID(), draftId: draft.draftId, review } });
-    const row = await f.one("select character_sheet,hp,max_hp,stats,revision from public.rpg_entities where campaign_id=$1 and id=$2", [created.campaignId, created.heroId]);
+    const row = await f.one("select character_sheet,hp,max_hp,stats,equipment_slots,revision from public.rpg_entities where campaign_id=$1 and id=$2", [created.campaignId, created.heroId]);
     assert.deepEqual(row.character_sheet, structuredSheet);
     assert.equal(row.hp, 10);
     assert.equal(row.max_hp, 10);
     assert.deepEqual(row.stats, { attack: 1, defense: 11, skill: 2 });
+    assert.deepEqual(row.equipment_slots.map((slot) => slot.id), ["head", "neck", "body", "hand", "offhand", "belt", "legs", "boots"]);
+    assert.equal(row.equipment_slots.find((slot) => slot.id === "hand").label, "Main Hand");
+    assert.deepEqual(row.equipment_slots.find((slot) => slot.id === "hand").accepts, ["weapon"]);
     const item = await f.one("select category,equipped_entity_id,equipped_slot from public.rpg_items where campaign_id=$1", [created.campaignId]);
     assert.equal(item.category, "weapon");
     assert.equal(item.equipped_entity_id, created.heroId);
@@ -39,21 +46,49 @@ test("sparse fantasy owner input receives an explicitly reviewed v2 public sheet
     assert.deepEqual(source.source.snapshot.entities.find((e) => e.id === created.heroId).character_sheet, structuredSheet);
     const saved = await f.saves(created.campaignId, "campaign");
     assert.deepEqual(saved.entities.find((e) => e.id === created.heroId).character_sheet, structuredSheet);
+    assert.deepEqual(saved.entities.find((e) => e.id === created.heroId).equipment_slots, row.equipment_slots);
     const captured = await f.one("select payload from rpg_private.timeline_versions where campaign_id=$1 and table_name='public.rpg_entities' and row_key=$2 order by created_at desc limit 1", [created.campaignId, created.heroId]);
     assert.deepEqual(captured.payload.character_sheet, structuredSheet);
     const save = await f.saves(created.campaignId, "create", await f.command(created.campaignId, { kind: "manual", name: "Reviewed character" }));
     await f.saves(created.campaignId, "load", await f.command(created.campaignId, { saveId: save.saveId, label: "Character branch", recovery: false }));
-    assert.deepEqual((await f.one("select character_sheet from public.rpg_entities where id=$1", [created.heroId])).character_sheet, structuredSheet);
+    const restored = await f.one("select character_sheet,equipment_slots from public.rpg_entities where id=$1", [created.heroId]);
+    assert.deepEqual(restored.character_sheet, structuredSheet);
+    assert.deepEqual(restored.equipment_slots, row.equipment_slots);
     await assert.rejects(f.one("select rpg_private.runtime_change($1,$2,$3::jsonb)", [created.campaignId, randomUUID(), JSON.stringify({ family: "entities", id: created.heroId, expectedRevision: row.revision, values: { character_sheet: { ...structuredSheet, role: "Unauthorized change" } } })]), /rpg_validation/);
     assert.deepEqual((await f.one("select character_sheet from public.rpg_entities where id=$1", [created.heroId])).character_sheet, structuredSheet);
   } finally { await f.db.close(); }
+});
+
+test("reviewed humanoid receives empty slots without a weapon, while non-humanoid structured creation receives none", async () => {
+  for (const equipmentProfile of ["standard_humanoid", "none"]) {
+    const f = await setup({ ...examples.fantasy, description: equipmentProfile === "none"
+      ? "A dragon scout with careful observation and no possessions."
+      : "A human scout with careful observation and no possessions.", caps: [], limits: [], item: undefined }, "en", 42);
+    try {
+      f.creation = { ...f.creation, schemaVersion: 2, sheet: { ...structuredSheet, role: equipmentProfile === "none" ? "Dragon scout" : "Humanoid scout" }, equipmentProfile,
+        mechanics: { hp: 10, attack: 1, defense: 11, skill: 2, weaponName: null, weaponDamage: null } };
+      const created = await f.create();
+      const row = await f.one("select equipment_slots from public.rpg_entities where campaign_id=$1 and id=$2", [created.campaignId, created.heroId]);
+      assert.deepEqual(row.equipment_slots.map((slot) => slot.id), equipmentProfile === "standard_humanoid"
+        ? ["head", "neck", "body", "hand", "offhand", "belt", "legs", "boots"] : []);
+      if (equipmentProfile === "standard_humanoid") {
+        const ru = await f.one("select rpg_private.bootstrap_humanoid_slots('ru') slots");
+        assert.equal(ru.slots.find((slot) => slot.id === "hand").label, "Основная рука");
+      }
+      assert.equal((await f.one("select count(*)::integer total from public.rpg_items where campaign_id=$1", [created.campaignId])).total, 0);
+    } finally { await f.db.close(); }
+  }
 });
 
 test("narrative v2 creates descriptive sheet without combat profile; legacy v1 remains NULL", async () => {
   const narrative = await setup(examples.orbital, "en", 42);
   try {
     narrative.creation = { ...narrative.creation, schemaVersion: 2,
-      sheet: { ...structuredSheet, mode: "narrative", role: "Cargo pilot", attributes: null, skills: ["Dock negotiation"] }, mechanics: null };
+      sheet: { ...structuredSheet, mode: "narrative", role: "Cargo pilot", attributes: null, skills: ["Dock negotiation"] }, mechanics: null, equipmentProfile: "none" };
+    await assert.rejects(narrative.one(
+      "select rpg_private.bootstrap_proposal('creation',$1::jsonb,$2::jsonb)",
+      [JSON.stringify({ ...narrative.creation, equipmentProfile: "standard_humanoid" }), JSON.stringify(narrative.input)],
+    ), /rpg_validation/);
     for (const invalid of ["unreviewed", 0, [], {}]) {
       await assert.rejects(narrative.one(
         "select rpg_private.bootstrap_proposal('creation',$1::jsonb,$2::jsonb)",
@@ -61,10 +96,11 @@ test("narrative v2 creates descriptive sheet without combat profile; legacy v1 r
       ), /rpg_validation/);
     }
     await narrative.create();
-    const row = await narrative.one("select character_sheet,hp,stats from public.rpg_entities where campaign_id=$1", [narrative.cid]);
+    const row = await narrative.one("select character_sheet,hp,stats,equipment_slots from public.rpg_entities where campaign_id=$1", [narrative.cid]);
     assert.equal(row.character_sheet.mode, "narrative");
     assert.equal(row.hp, null);
     assert.deepEqual(row.stats, {});
+    assert.deepEqual(row.equipment_slots, []);
   } finally { await narrative.db.close(); }
   const legacy = await setup(examples.fantasy, "en", 42);
   try {
@@ -82,6 +118,8 @@ test("v2 sheet is bounded and cannot smuggle powers or invent possession authori
   assert.throws(() => parseCreationProposal({ ...p, sheet: { ...structuredSheet, spells: ["Fireball"] } }));
   assert.throws(() => parseCreationProposal({ ...p, sheet: { ...structuredSheet, attributes: { ...structuredSheet.attributes, strength: 25 } } }));
   assert.throws(() => parseCreationProposal({ ...p, mechanics: { ...p.mechanics, weaponName: "Invented sword", weaponDamage: 3 } }));
+  assert.throws(() => parseCreationProposal({ ...p, equipmentProfile: "dragon_wings" }));
+  assert.throws(() => parseCreationProposal({ ...p, equipmentProfile: "none", mechanics: { ...p.mechanics, weaponName: "Invented sword", weaponDamage: 3 } }));
 });
 
 test("populated 41 to 42 preserves legacy rows and old timeline manifests", async () => {

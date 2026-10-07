@@ -62,6 +62,45 @@ function addMock(snapshot, idNumber, art = "portrait") {
   return asset;
 }
 
+function addAcceptedGenerated(snapshot, subject, idNumber, updatedAt) {
+  const jobId = id(idNumber), versionId = id(idNumber + 1);
+  const requestId = id(idNumber + 2);
+  const queued = buildSubjectVisualJob(snapshot, subject, [],
+    "gpt-image-2.5-sunburst-2026-09-08",
+    { size: "1536x1024", quality: "high", outputFormat: "png", n: 1 },
+    { expectedHeadId: null, canonGeneration: 0 });
+  const job = {
+    ...queued, status: "completed", resultAssetId: jobId,
+    dispatch: { requestId, reservationUsdMicros: 400000 },
+    review: { status: "safe_to_review", imageSha256: "a".repeat(64) },
+  };
+  snapshot.documents.push({
+    id: jobId, campaign_id: snapshot.campaign.id, revision: 4,
+    current_version_id: versionId, updated_at: updatedAt,
+    title: "VISUAL", status: "reference",
+    body: VISUAL_FRAME_PREFIX + JSON.stringify(job),
+  });
+  const output = {
+    storagePath: `${snapshot.campaign.id}/frames/${jobId}/output.png`,
+    sha256: "a".repeat(64), bytes: 100, contentType: "image/png",
+    usage: null, providerRequestId: "synthetic_only",
+  };
+  const asset = {
+    id: jobId, campaign_id: snapshot.campaign.id, revision: 1,
+    updated_at: updatedAt, title: "VISUAL", kind: "image",
+    storage_path: output.storagePath,
+    description: SUBJECT_VISUAL_ASSET_PREFIX + JSON.stringify({
+      campaign_id: snapshot.campaign.id, job_document_id: jobId,
+      job_version_id: versionId, subject: job.basis.subject,
+      timeline: job.basis.timeline, provider: "OpenAI", model: job.model,
+      dispatchRequestId: requestId, output,
+      ownerApproval: { requestId: id(idNumber + 3), draftVersionId: versionId },
+    }),
+  };
+  snapshot.assets.push(asset);
+  return asset;
+}
+
 test("subject visuals show only the public subject and an honest placeholder without art", () => {
   const snapshot = fixture();
   const player = snapshot.entities[0];
@@ -227,4 +266,52 @@ test("accepted standalone image displays before separate visual reference approv
   snapshot.entities[0].revision += 1;
   assert.equal(selectSubjectVisual(snapshot, subject).image, null);
   assert.equal(selectSubjectVisual(snapshot, subject, { acceptedOnly: true }).image, null);
+});
+
+test("newly kept portrait and item art replace older accepted art only after owner acceptance", () => {
+  for (const kind of ["entity", "item"]) {
+    const snapshot = fixture();
+    if (kind === "item") snapshot.items.push({
+      id: id(99), campaign_id: snapshot.campaign.id, revision: 1,
+      name: "Synthetic flask", description: "Plain flask",
+    });
+    const subject = kind === "entity"
+      ? { kind, id: snapshot.entities[0].id }
+      : { kind, id: snapshot.items[0].id };
+    const first = addAcceptedGenerated(snapshot, subject, 100, "2026-10-03T00:00:00Z");
+    addReference(snapshot, subject, {
+      id: 110, assetId: first.id, approval: "approved",
+      updatedAt: "2026-10-04T00:00:00Z",
+    });
+    assert.equal(selectSubjectVisual(snapshot, subject, { acceptedOnly: true }).image?.assetId, first.id);
+
+    const queued = buildSubjectVisualJob(snapshot, subject, [],
+      "gpt-image-2.5-sunburst-2026-09-08",
+      { size: "1536x1024", quality: "high", outputFormat: "png", n: 1 },
+      { expectedHeadId: null, canonGeneration: 0 }, first.id);
+    const replacement = {
+      id: id(120), campaign_id: snapshot.campaign.id, revision: 3,
+      current_version_id: id(121), updated_at: "2026-10-05T00:00:00Z",
+      title: "Replacement draft", status: "reference",
+      body: "",
+    };
+    snapshot.documents.push(replacement);
+    for (const status of ["queued", "generating", "draft", "failed", "uncertain", "discarded"]) {
+      replacement.body = VISUAL_FRAME_PREFIX + JSON.stringify({
+        ...queued, status,
+        dispatch: status === "queued" ? null :
+          { requestId: id(122), reservationUsdMicros: 400000 },
+        review: ["draft", "discarded"].includes(status)
+          ? { status: "safe_to_review", imageSha256: "b".repeat(64) }
+          : null,
+        failure: status === "failed" ? "review" : status === "uncertain" ? "uncertain" : null,
+      });
+      assert.equal(selectSubjectVisual(snapshot, subject, { acceptedOnly: true }).image?.assetId, first.id);
+    }
+    const second = addAcceptedGenerated(snapshot, subject, 130, "2026-10-06T00:00:00Z");
+    assert.equal(selectSubjectVisual(snapshot, subject, { acceptedOnly: true }).image?.assetId, second.id);
+    assert.equal(selectSubjectVisual(snapshot, subject, { acceptedOnly: true }).approval, null);
+    assert.equal(snapshot.entities[0].id, fixture().entities[0].id,
+      "portrait acceptance preserves the public Entity identity");
+  }
 });

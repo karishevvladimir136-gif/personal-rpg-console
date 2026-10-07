@@ -45,6 +45,8 @@ export type CreationMechanics = {
   weaponName: string | null;
   weaponDamage: number | null;
 };
+/** A reviewed creation choice; the Entity equipment slots remain authoritative. */
+export type CreationEquipmentProfile = "standard_humanoid" | "none";
 type CreationProposalBase = {
   capabilities: CreationFact[];
   limitations: CreationFact[];
@@ -57,6 +59,8 @@ export type CreationProposal = CreationProposalBase &
     schemaVersion: 2;
     sheet: CharacterSheetV1;
     mechanics: CreationMechanics | null;
+    /** Older v2 drafts omit this and conservatively create no anatomy. */
+    equipmentProfile?: CreationEquipmentProfile;
   });
 export type CreationInput = {
   requestId: string;
@@ -79,6 +83,8 @@ export type CreationReview = {
   sheet?: CharacterSheetV1;
   /** Explicit owner-reviewed mechanics; absent reviews retain historical no-HP creation. */
   mechanics?: CreationMechanics;
+  /** Only explicitly reviewed ordinary humanoids receive standard equipment slots. */
+  equipmentProfile?: CreationEquipmentProfile;
 };
 // Only additional NEW visible non-player people/creatures. The existing
 // protagonist is placed by authority, never recreated from this array.

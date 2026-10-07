@@ -92,7 +92,7 @@ export function CombatReadiness({ campaignId, runtimeRevision, onSaved }: { camp
           setBusy(false);
         }
       }}>
-        <p className="muted">{t("Review these small Console Basic mechanics. They are house defaults, not facts inferred from the story. Nothing is saved until you approve.")}</p>
+        <p className="muted">{t("Review these starter combat values. They are house defaults, not facts inferred from the story. Nothing is saved until you approve.")}</p>
         <fieldset disabled={busy} className="persistence-fields">
           <strong>{proposal.hero.name}</strong>
           {stats.map((stat) => <label key={stat}>
@@ -124,7 +124,7 @@ export function CombatReadiness({ campaignId, runtimeRevision, onSaved }: { camp
                 : <input type="number" required min={1} max={20} value={damage} onChange={(event) => { setDamage(Number(event.target.value)); attempt.current = null; }} />}
             </label>
           </div>}
-          <p className="muted">{t("Combat profile: Console Basic")}. {newlyPresent.length ? `${t("Add as present")}: ${newlyPresent.join(", ")}.` : t("Present people are already configured.")} {!proposal.configuration?.controlledEntityIds.includes(proposal.hero.id) ? `${t("Add as controlled")}: ${proposal.hero.name}.` : ""} {t("Existing values stay as saved.")}</p>
+          <p className="muted">{t("Starter combat rules")}. {newlyPresent.length ? `${t("Add as present")}: ${newlyPresent.join(", ")}.` : t("Present people are already configured.")} {!proposal.configuration?.controlledEntityIds.includes(proposal.hero.id) ? `${t("Add as controlled")}: ${proposal.hero.name}.` : ""} {t("Existing values stay as saved.")}</p>
           {error && <p role="alert">{t(error)} {t("If records changed, refresh Game to load the latest values.")}</p>}
           <Button type="submit" disabled={busy}>{t(busy ? "Saving…" : "Approve combat readiness")}</Button>
         </fieldset>

@@ -108,6 +108,16 @@ test("Trade keeps the rules profile inside a closed Advanced disclosure", () => 
   }
 });
 
+test("Character progression labels the world rules without exposing the internal ruleset name", () => {
+  for (const language of ["en", "ru"]) {
+    const view = foundationUiFixture();
+    view.profile.id = "world-logic-v1";
+    const html = render(language, "progression", view);
+    assert.ok(html.includes(foundationText(language).campaignRules));
+    assert.doesNotMatch(html, /World Logic|world-logic-v1|Логика мира/);
+  }
+});
+
 test("actual EN/RU progression shows explicit current and earned rank choices", () => {
   for (const language of ["en", "ru"]) {
     const c = foundationText(language),

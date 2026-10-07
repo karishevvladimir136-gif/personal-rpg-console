@@ -5,6 +5,7 @@ import type {
   CreationProposal,
   CreationReview,
   CreationMechanics,
+  CreationEquipmentProfile,
   CharacterSheetV1,
   OpeningActor,
   OpeningProposal,
@@ -122,6 +123,8 @@ function parseCreationMechanics(value: unknown): CreationMechanics {
     weaponDamage,
   };
 }
+const parseEquipmentProfile = (value: unknown): CreationEquipmentProfile =>
+  literal(value, ["standard_humanoid", "none"]);
 export function parseCreationInput(value: unknown): CreationInput {
   const v = object(value, [
     "requestId",
@@ -156,7 +159,8 @@ export function parseCreationProposal(
     "possessions",
     "resources",
     "questions",
-    ...(schemaVersion === 2 ? ["sheet", "mechanics"] : []),
+    ...(schemaVersion === 2 ? ["sheet", "mechanics",
+      ...(Object.hasOwn(value as object, "equipmentProfile") ? ["equipmentProfile"] : [])] : []),
   ]);
   const fact = (raw: unknown) => {
     const f = object(raw, ["text", "quote"]);
@@ -208,12 +212,17 @@ export function parseCreationProposal(
     questions: questions(v.questions),
   };
   const proposal: CreationProposal = schemaVersion === 2
-    ? { ...base, schemaVersion: 2, sheet: parseCharacterSheet(v.sheet), mechanics: v.mechanics === null ? null : parseCreationMechanics(v.mechanics) }
+    ? { ...base, schemaVersion: 2, sheet: parseCharacterSheet(v.sheet), mechanics: v.mechanics === null ? null : parseCreationMechanics(v.mechanics),
+      ...(Object.hasOwn(v, "equipmentProfile") ? { equipmentProfile: parseEquipmentProfile(v.equipmentProfile) } : {}) }
     : { ...base, schemaVersion: 1 };
   if (proposal.schemaVersion === 2) {
     // A new sheet may suggest ordinary presentation labels from the public
     // premise. They do not become World Actor capabilities or check bonuses.
     ensure((proposal.sheet.mode === "structured_rpg") === (proposal.mechanics !== null));
+    if (proposal.equipmentProfile === "standard_humanoid")
+      ensure(proposal.sheet.mode === "structured_rpg");
+    if (proposal.equipmentProfile === "none")
+      ensure(proposal.mechanics?.weaponName === null || proposal.mechanics === null);
     if (proposal.mechanics?.weaponName !== null && proposal.mechanics !== null)
       ensure(proposal.possessions.some((item) => item.name === proposal.mechanics!.weaponName && item.quantity !== null));
   }
@@ -274,6 +283,7 @@ export function initialCreationReview(
     ...(p.schemaVersion === 2 ? {
       sheet: structuredClone(p.sheet),
       ...(p.mechanics === null ? {} : { mechanics: structuredClone(p.mechanics) }),
+      ...(p.equipmentProfile ? { equipmentProfile: p.equipmentProfile } : {}),
     } : {}),
   };
 }
@@ -291,8 +301,8 @@ export function parseCreationReview(
     "answers",
   ];
   const v = object(value, value && typeof value === "object" &&
-    Object.hasOwn(value, "mechanics") ? [...keys, "mechanics", ...(Object.hasOwn(value, "sheet") ? ["sheet"] : [])]
-      : value && typeof value === "object" && Object.hasOwn(value, "sheet") ? [...keys, "sheet"] : keys);
+    Object.hasOwn(value, "mechanics") ? [...keys, "mechanics", ...(Object.hasOwn(value, "sheet") ? ["sheet"] : []), ...(Object.hasOwn(value, "equipmentProfile") ? ["equipmentProfile"] : [])]
+      : value && typeof value === "object" && Object.hasOwn(value, "sheet") ? [...keys, "sheet", ...(Object.hasOwn(value, "equipmentProfile") ? ["equipmentProfile"] : [])] : keys);
   const result: CreationReview = {
     name: text(v.name, 200),
     description: text(v.description, 8000),
@@ -333,11 +343,18 @@ export function parseCreationReview(
     answers: answers(v.answers),
     ...(Object.hasOwn(v, "sheet") ? { sheet: parseCharacterSheet(v.sheet) } : {}),
     ...(Object.hasOwn(v, "mechanics") ? { mechanics: parseCreationMechanics(v.mechanics) } : {}),
+    ...(Object.hasOwn(v, "equipmentProfile") ? { equipmentProfile: parseEquipmentProfile(v.equipmentProfile) } : {}),
   };
   if (proposal) {
     ensure(proposal.schemaVersion === 2 ? result.sheet !== undefined : result.sheet === undefined);
+    if (proposal.schemaVersion === 2 && proposal.equipmentProfile !== undefined)
+      ensure(result.equipmentProfile !== undefined);
     if (result.sheet)
       ensure((result.sheet.mode === "structured_rpg") === (result.mechanics !== undefined));
+    if (result.equipmentProfile === "standard_humanoid")
+      ensure(result.sheet?.mode === "structured_rpg");
+    if (result.equipmentProfile === "none")
+      ensure(result.mechanics?.weaponName === null || result.mechanics === undefined);
     resolved(proposal.questions, result.answers);
     ensure(
       result.possessions.every((p) => p.quantity !== null) &&

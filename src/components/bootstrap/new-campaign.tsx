@@ -59,7 +59,11 @@ export function NewCampaignForm(props: Props) {
         <summary>{c.advanced}</summary>
         <div className={styles.actions}>
           <button onClick={() => setAdvanced((v) => !v)}>
-            {advanced ? "World Logic" : c.fighter}
+            {advanced
+              ? props.language === "ru"
+                ? "Свободная кампания"
+                : "Free-form campaign"
+              : c.fighter}
           </button>
         </div>
       </details>

@@ -137,6 +137,32 @@ test("v2 mode correction requires separate combat approval and clears it on a re
   assert.deepEqual(parseCreationReview(narrative, proposal), narrative);
 });
 
+test("reviewed humanoid equipment choice is visible and removing it clears weapon equip intent", () => {
+  const m = ui("components/bootstrap/review.tsx");
+  const sheet = { schemaVersion: 1, mode: "structured_rpg", role: "Scout", background: "A traveler.", level: null, tier: null,
+    attributes: { strength: 10, dexterity: 10, constitution: 10, intelligence: 10, wisdom: 10, charisma: 10 },
+    skills: [], abilities: [], limitations: [], spells: [] };
+  const review = { name: "Mara", description: "A scout with a sword", capabilities: [], limitations: [],
+    possessions: [{ name: "sword", description: "", quantity: 1 }], resources: [], answers: [], sheet,
+    equipmentProfile: "standard_humanoid",
+    mechanics: { hp: 10, attack: 1, defense: 11, skill: 2, weaponName: "sword", weaponDamage: 3 } };
+  const proposal = { schemaVersion: 2, capabilities: [], limitations: [], possessions: [], resources: [], questions: [],
+    sheet, equipmentProfile: "standard_humanoid", mechanics: review.mechanics };
+  const html = render(m.CharacterReview, { language: "en", value: review, onChange: noCall, questions: [] });
+  const { equipmentProfile: _missingProfile, ...withoutProfile } = review;
+  void _missingProfile;
+  assert.throws(() => parseCreationReview(withoutProfile, proposal));
+  assert.match(html, /Standard humanoid equipment slots/);
+  assert.match(html, /Equipment profile/);
+  assert.match(html, /No standard body slots/);
+  const withoutAnatomy = m.changeCreationEquipmentProfile(review, "none");
+  assert.equal(withoutAnatomy.mechanics.weaponName, null);
+  assert.equal(withoutAnatomy.mechanics.weaponDamage, null);
+  assert.deepEqual(parseCreationReview(withoutAnatomy, proposal), withoutAnatomy);
+  const narrative = m.changeCharacterSheetMode(review, "narrative");
+  assert.equal(narrative.equipmentProfile, "none");
+});
+
 test("Create remains disabled after a narrative-to-structured switch until combat approval", () => {
   const f = fixture(), m = ui("components/bootstrap/review.tsx");
   const review = {

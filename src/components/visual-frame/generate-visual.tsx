@@ -322,7 +322,11 @@ export function GenerateVisual({
       {showArtwork && <SubjectVisual snapshot={snapshot} subject={subject} />}
       <div className="button-group">
         <Button disabled={busy || retryRequest || !capability?.enabled || Boolean(generating || queued)} onClick={prepare}>
-          {completed ? w("Regenerate", "Создать заново") : w(`Generate ${artLabel}`, `Создать ${artLabel}`)}
+          {completed
+            ? w(`Regenerate ${artLabel}`, `Создать заново: ${artLabel}`)
+            : draft
+              ? w(`Generate another ${artLabel}`, `Создать ещё: ${artLabel}`)
+              : w(`Generate ${artLabel}`, `Создать ${artLabel}`)}
         </Button>
         {completedAsset && (
           <Button onClick={() => setExpanded((value) => !value)}>

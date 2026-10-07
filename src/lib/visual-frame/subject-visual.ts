@@ -95,7 +95,7 @@ export function selectSubjectVisual(
     references.find((row) => row.image) ??
     references[0];
   const standalone =
-    (!selected?.image || (options.acceptedOnly && selected.image.kind === "mock"))
+    (!selected?.image || options.acceptedOnly)
     ? snapshot.assets
         .filter((asset) => {
           const value = safeSubjectVisualAsset(snapshot, asset);
@@ -107,14 +107,22 @@ export function selectSubjectVisual(
         })
         .sort((a, b) => b.updated_at.localeCompare(a.updated_at) || b.id.localeCompare(a.id))[0]
     : null;
+  // A newly kept image takes over ordinary presentation only after acceptance.
+  // An explicit, more recent approved visual reference can still be preferred.
+  const useStandalone = Boolean(standalone && (
+    !selected?.image ||
+    (options.acceptedOnly && (
+      selected.image.kind === "mock" ||
+      standalone.updated_at > selected.record.updated_at
+    ))
+  ));
   return {
     label: source.label,
     placeholderArt,
-    approval: selected?.approval ?? null,
-    referenceDocumentId: selected?.record.id ?? null,
-    image:
-      options.acceptedOnly && selected?.image?.kind === "mock"
-        ? imageFor(snapshot, standalone ?? undefined) ?? selected.image
-        : selected?.image ?? imageFor(snapshot, standalone ?? undefined),
+    approval: useStandalone ? null : selected?.approval ?? null,
+    referenceDocumentId: useStandalone ? null : selected?.record.id ?? null,
+    image: useStandalone
+      ? imageFor(snapshot, standalone ?? undefined)
+      : selected?.image ?? imageFor(snapshot, standalone ?? undefined),
   };
 }

@@ -415,14 +415,20 @@ for (const language of ["en", "ru"]) {
       html.includes(translate(language, "Edit public state and resume point")),
     );
     assert.ok(html.includes(translate(language, "Add transcript record")));
-    assert.ok(
-      html.includes(
-        translate(language, "FRAME & VIDEO · this scene").replaceAll(
-          "&",
-          "&amp;",
-        ),
-      ),
-    );
+    const sceneMedia = language === "ru"
+      ? "Создать изображение этой сцены"
+      : "Create art for this scene";
+    assert.ok(html.includes(sceneMedia));
+    assert.ok(html.indexOf(sceneMedia) < html.indexOf("<textarea"));
+    assert.doesNotMatch(html, /FRAME &amp; VIDEO · this scene/);
+    const tools = html.indexOf('class="composer-tools"');
+    assert.ok(tools > html.indexOf("<textarea"));
+    assert.ok(html.includes(translate(language, "OOC")));
+    assert.ok(html.includes(translate(language, "Take note")));
+    assert.ok(html.includes(translate(language, "What do I know?")));
+    assert.ok(html.includes("journal?tab=Notes&amp;compose=note"));
+    assert.ok(html.includes("journal?tab=Evidence"));
+    assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
     assert.ok(html.includes('href="#play-action"'));
     assert.equal(html.includes("SYNTHETIC_PRIVATE_MARKER"), false);
     assert.deepEqual(state, before);
@@ -530,6 +536,10 @@ test("OOC history does not repeat the Game opening", () => {
     },
   });
   assert.doesNotMatch(html, /<article class="opening">/);
+  assert.ok(html.includes(translate("en", "Brief out-of-character remark")));
+  assert.ok(html.includes(translate("en", "A question outside the story…")));
+  assert.match(html, /aria-pressed="true" class="selected"/);
+  assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
 });
 
 test("stock starter description is presentation-only, localized, and never overwrites owner-authored text", () => {

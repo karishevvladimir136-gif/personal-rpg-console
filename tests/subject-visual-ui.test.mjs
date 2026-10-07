@@ -144,6 +144,33 @@ test("terminal portrait review failure shows saved status without offering recov
   assert.equal(h.sends(), 0);
 });
 
+test("ordinary character and item art asks the selector for accepted images only", () => {
+  const requests = [];
+  const jsx = (type, props) => ({ type, props });
+  const SubjectVisual = compiled("src/components/visual-frame/subject-visual.tsx", {
+    "react/jsx-runtime": { jsx, jsxs: jsx },
+    "next/image": { default: "img" },
+    "../language-context": { useLanguage: () => ({ language: "en" }) },
+    "./mock-art": { MockVisualArt: "mock-art" },
+    "@/lib/visual-frame/subject-visual": {
+      selectSubjectVisual: (_snapshot, subject, options) => {
+        requests.push({ kind: subject.kind, options });
+        return { label: "Synthetic subject", placeholderArt: "portrait",
+          approval: null, image: null };
+      },
+    },
+  }).SubjectVisual;
+  for (const kind of ["entity", "item"]) {
+    const view = SubjectVisual({
+      snapshot: sourceSnapshot,
+      subject: { kind, id: sourceSnapshot.entities[0].id },
+    });
+    assert.equal(view.type, "figure");
+  }
+  assert.deepEqual(requests.map((request) => request.kind), ["entity", "item"]);
+  assert.ok(requests.every((request) => request.options.acceptedOnly === true));
+});
+
 test("terminal uncertain portrait does not promise unpaid recovery", async () => {
   const h = await harness("uncertain", "uncertain");
   assert.match(h.text(), /without a confirmed draft/);

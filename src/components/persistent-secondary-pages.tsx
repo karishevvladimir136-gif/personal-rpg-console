@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
   useSyncExternalStore,
   type ReactNode,
@@ -297,6 +298,23 @@ function JournalView({
     source: string;
   } | null>(null);
   const campaignId = data.campaign.id;
+  const appliedJournalLink = useRef(false);
+  useEffect(() => {
+    if (reviewOnly || appliedJournalLink.current) return;
+    const params = new URLSearchParams(window.location.search);
+    const requested = params.get("tab");
+    const openNote = requested === "Notes" &&
+      params.get("compose") === "note" &&
+      !reviewOnly &&
+      data.sessions.some((row) => row.id === data.publicState.current_session_id);
+    // Apply URL-selected panels after hydration so server and client start alike.
+    const timer = window.setTimeout(() => {
+      appliedJournalLink.current = true;
+      if (requested === "Notes" || requested === "Evidence") setTab(requested);
+      if (openNote) setNote(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, [data.publicState.current_session_id, data.sessions, reviewOnly]);
   return (
     <>
       <Heading

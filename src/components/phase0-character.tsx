@@ -81,7 +81,9 @@ export function CharacterEquipmentDoll({
       )}
       {!reviewOnly && (
         <details className={styles.portraitAction}>
-          <summary><Icon name="Image" size={14} />{language === "ru" ? "Создать портрет" : "Generate portrait"}</summary>
+          <summary><Icon name="Image" size={14} />{portrait
+            ? (language === "ru" ? "Создать новый портрет" : "Regenerate portrait")
+            : (language === "ru" ? "Создать портрет" : "Generate portrait")}</summary>
           <GenerateVisual
             subject={{ kind: "entity", id: entity.id }}
             showArtwork={false}
