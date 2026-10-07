@@ -77,6 +77,7 @@ export function createRpcTurnStore(
     return response.data as T;
   }
   return {
+    takeoverStatus: (campaignId) => rpc(campaignId, "astra_takeover_status"),
     begin: (input, runtimeIdentity) => rpc(input.campaignId, "begin",
       runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity } : input),
     runtimeIdentity: (campaignId, operationId) =>

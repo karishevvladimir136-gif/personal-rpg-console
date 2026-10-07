@@ -91,6 +91,18 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  // Server-pinned private projection for a World Logic-origin playable timeline.
+  // Never include this packet in a public DTO or narration source.
+  worldTakeover?: {
+    schemaVersion: 1;
+    sourceWorldRevision: number;
+    presentEntityIds: string[];
+    routeLocationIds: string[];
+    actors: JsonObject[];
+    policy: JsonObject;
+    unresolvedThreads: JsonObject[];
+    recentWorldEvents: JsonObject[];
+  };
   // Server-derived exact World Logic presence; never a legacy mechanics profile.
   worldLogicPresence?: { controlledEntityIds: string[]; presentEntityIds: string[] };
   worldLogicMundaneDetail?: import("../rulesets/world-logic-contracts.ts").MundanePublicDetail;
@@ -229,6 +241,7 @@ export type CommitPacket = {
 };
 export interface TurnStore {
   begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1"): Promise<PublicTurn>;
+  takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
   runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
   recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;
   readPlay(campaignId: string): Promise<PlaySnapshot>;

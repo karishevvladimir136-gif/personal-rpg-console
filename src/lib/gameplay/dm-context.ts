@@ -399,6 +399,7 @@ export function buildContext(
     ...(stage === "plan"
       ? {
           characterPacket: characterPacket(source, request, "plan"),
+          ...(source.worldTakeover ? { worldTakeover: source.worldTakeover } : {}),
           ...(!companion
             ? { privateState: privateStateWithoutCharacterModels(source) }
             : {}),

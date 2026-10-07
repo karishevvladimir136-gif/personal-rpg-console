@@ -41,10 +41,14 @@ function requireTimeline(value: { timeline?: TimelineFence }) {
   return value.timeline;
 }
 export async function readPlay(campaignId: string) {
-  const play = await (
-    await authorizedStore(campaignId)
-  ).store.readPlay(campaignId);
+  const { store } = await authorizedStore(campaignId);
+  const play = await store.readPlay(campaignId);
   const settings = await readProductionSettings(campaignId);
+  if (settings.ruleset.id === "world-logic-v1" &&
+    process.env.RPG_ASTRA_PRIMARY_P1 === "1" &&
+    (await store.takeoverStatus?.(campaignId))?.active === true)
+    return { ...play, configured: !!process.env.OPENAI_API_KEY,
+      model: "gpt-6-astra", rulesetId: settings.ruleset.id };
   let model: string | null = null;
   try {
     model = resolveExecutionProfile({
@@ -90,7 +94,10 @@ export async function submitTurn(campaignId: string, value: unknown) {
   const optIn = process.env.RPG_ASTRA_PRIMARY_P1 === "1";
   const rulesetId = pinned === null && optIn && input.mode === "game"
     ? (await readProductionSettings(campaignId)).ruleset.id : null;
-  const selected = selectAstraPrimaryRuntime(pinned,optIn,input.mode,rulesetId);
+  const worldTakeover = rulesetId === "world-logic-v1"
+    ? (await store.takeoverStatus?.(campaignId))?.active === true : false;
+  const selected = selectAstraPrimaryRuntime(pinned,optIn,input.mode,rulesetId,
+    worldTakeover);
   if (selected) return runAstraTurn(input, {
     store, memory, summaries: production.summaries,
     provider: production.astraProvider,
