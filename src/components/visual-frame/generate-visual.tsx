@@ -56,6 +56,7 @@ export function GenerateVisual({
   className = "",
   reviewOnly = false,
   showArtwork = true,
+  compactDetails = false,
   snapshot: snapshotOverride,
 }: {
   subject: PublicVisualSubject;
@@ -63,6 +64,8 @@ export function GenerateVisual({
   className?: string;
   reviewOnly?: boolean;
   showArtwork?: boolean;
+  /** Keep reference approval and job history behind one secondary disclosure in Item Details. */
+  compactDetails?: boolean;
   /** Public fixture/read model for standalone Map review without a campaign context. */
   snapshot?: CampaignSnapshot;
 }) {
@@ -156,6 +159,8 @@ export function GenerateVisual({
     completedAsset && completed && currentSubject &&
     JSON.stringify(currentSubject) === JSON.stringify(completed.value.basis.subject),
   );
+  const canApproveReference = canUseAsReference && (!reference ||
+    (reference.value.kind === "reference" && reference.value.approval !== "approved"));
   const artLabel = subject.kind === "entity"
     ? w("portrait", "портрет")
     : subject.kind === "item"
@@ -333,10 +338,10 @@ export function GenerateVisual({
             {w("View image", "Посмотреть изображение")}
           </Button>
         )}
-        {canUseAsReference && reference?.value.kind === "reference" && reference.value.approval !== "approved" && (
+        {!compactDetails && canUseAsReference && reference?.value.kind === "reference" && reference.value.approval !== "approved" && (
           <Button disabled={busy} onClick={useAsReference}>{w("Use as visual reference", "Использовать как визуальный образец")}</Button>
         )}
-        {canUseAsReference && !reference && (
+        {!compactDetails && canUseAsReference && !reference && (
           <Button disabled={busy} onClick={useAsReference}>{w("Use as visual reference", "Использовать как визуальный образец")}</Button>
         )}
       </div>
@@ -438,7 +443,22 @@ export function GenerateVisual({
           )}</p>
         </div>
       )}
-      {jobs.length > 0 && (
+      {compactDetails && (jobs.length > 0 || canApproveReference) && (
+        <details className="rounded border border-[#765b36] p-3">
+          <summary>{w("Visual details", "Детали изображения")}</summary>
+          {canApproveReference && (
+            <Button disabled={busy} onClick={useAsReference}>{w("Use as visual reference", "Использовать как визуальный образец")}</Button>
+          )}
+          {jobs.length > 0 && <ol className="mt-2 space-y-1">
+            {[...jobs].reverse().map(({ record, value }, index) => (
+              <li key={record.id}>
+                {w(`Request ${jobs.length - index}`, `Запрос ${jobs.length - index}`)} · {imageJobStatus(value.status, w)}
+              </li>
+            ))}
+          </ol>}
+        </details>
+      )}
+      {!compactDetails && jobs.length > 0 && (
         <details className="rounded border border-[#765b36] p-3">
           <summary>{w("Saved image requests", "Сохранённые запросы изображений")}</summary>
           <ol className="mt-2 space-y-1">

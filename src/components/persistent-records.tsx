@@ -12,6 +12,7 @@ import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
 import { LiveDisclosure } from "./live-disclosure";
 import { GenerateVisual } from "./visual-frame/generate-visual";
+import { SubjectVisual } from "./visual-frame/subject-visual";
 import { EquippedItemArt } from "./visual-frame/equipped-item-art";
 import { useGameplayRuntime } from "./gameplay-runtime";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
@@ -42,6 +43,7 @@ import type {
   Storage,
   StorageInput,
 } from "@/lib/persistence/contracts";
+import { itemDisplayDescription } from "@/lib/persistence/item-description";
 import {
   entityKindLabels,
   equipmentProfileForCorrection,
@@ -800,7 +802,7 @@ function PersistentItemGrid({
   items: Item[];
   onSelect: (item: Item) => void;
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   return (
     <>
       <div className="item-slot-grid">
@@ -828,7 +830,7 @@ function PersistentItemGrid({
               id={`record-${item.id}`}
               className="item-tooltip"
             >
-              {item.description || t("No description recorded.")}
+              {itemDisplayDescription(item, language)}
             </span>
           </div>
         ))}
@@ -855,7 +857,7 @@ export function ItemDetails({
   reviewOnly?: boolean;
   reviewItemRules?: import("@/lib/gameplay/contracts").ItemRule[];
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { data } = useCampaignData();
   const { play } = useGameplayRuntime(reviewOnly);
   const equipped = data?.entities.find(
@@ -873,18 +875,14 @@ export function ItemDetails({
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
-        {data ? (
-          <GenerateVisual
-            subject={{ kind: "item", id: item.id }}
-            className={styles.itemVisual}
-            reviewOnly={reviewOnly}
-          />
+        {data && selectSubjectVisual(data, { kind: "item", id: item.id }, { acceptedOnly: true }) ? (
+          <SubjectVisual snapshot={data} subject={{ kind: "item", id: item.id }} className={styles.itemVisual} />
         ) : (
           <Icon name={itemIcon(item.category)} size={52} />
         )}
       </div>
       <p className="prose">
-        {item.description || t("No description recorded.")}
+        {itemDisplayDescription(item, language)}
       </p>
       <dl className={`stats-list ${styles.itemEssentials}`}>
         <div>
@@ -918,6 +916,8 @@ export function ItemDetails({
         </Panel>
       )}
       <GameplayItemActions item={item} />
+      {data && <GenerateVisual subject={{ kind: "item", id: item.id }}
+        reviewOnly={reviewOnly} showArtwork={false} compactDetails />}
       <details className={styles.itemAdvanced}>
         <summary>{t("Record details")}</summary>
         <dl className="stats-list">

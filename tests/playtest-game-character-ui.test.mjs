@@ -781,6 +781,33 @@ test("EN/RU item inspection is read-only; correction is secondary and existing g
     assert.deepEqual(state, before);
   }
 });
+
+test("missing mundane Item description uses safe display-only flavor while stored copy wins", () => {
+  for (const language of ["en", "ru"]) {
+    const state=sample();
+    state.data.items[0].category="weapon";
+    state.data.items[0].name="Plain short sword";
+    state.data.items[0].description="";
+    state.data.items[0].mechanics="";
+    const before=structuredClone(state);
+    const load=renderer({...state,language});
+    const html=renderToStaticMarkup(createElement(load("src/components/persistent-records.tsx").ItemDetails,
+      {item:state.data.items[0],onClose:noCall,onEdit:noCall}));
+    assert.doesNotMatch(html,/No description recorded/);
+    assert.match(html,language==="en" ? /conversation has run its course/ : /разговор уже не помогает/);
+    assert.ok(html.includes(`<dt>${translate(language,"Damage")}</dt><dd>3</dd>`));
+    assert.match(html,/Main hand/);
+    assert.ok(html.indexOf("Plain short sword") < html.indexOf("conversation has run its course") || language==="ru");
+    const inventory=render("inventory",state);
+    assert.doesNotMatch(inventory,/No description recorded/);
+    assert.deepEqual(state,before);
+    state.data.items[0].description="Owner-recorded description.";
+    const stored=renderToStaticMarkup(createElement(load("src/components/persistent-records.tsx").ItemDetails,
+      {item:state.data.items[0],onClose:noCall,onEdit:noCall}));
+    assert.match(stored,/Owner-recorded description\./);
+    assert.doesNotMatch(stored,/conversation has run its course|разговор уже не помогает/);
+  }
+});
 test("successful DM narration is prominent without redundant committed status or duplicate opening", () => {
   const state = sample();
   state.play.turns = [turn(state.data)];

@@ -2,7 +2,7 @@ import "server-only";
 import type { TurnInput } from "../../gameplay/contracts.ts";
 import type { RuntimeSource, AstraToolCall, AstraToolReceipt, PrivatePatch } from "../../gameplay/server-contracts.ts";
 import type { AstraCapabilities, AstraDecision, AstraPrivateFinal, AstraPrimaryProvider } from "../../gameplay/astra-primary.ts";
-import type { AstraSettlementIntent } from "../../gameplay/astra-settlement.ts";
+import type { AstraEffectIntent, AstraSettlementIntent } from "../../gameplay/astra-settlement.ts";
 import { settlementItemTransferAllowed } from "../../gameplay/astra-settlement.ts";
 import { createStructuredRequester } from "./provider.ts";
 import { parseNarration, narrationSchema } from "../../gameplay/dm-schema.ts";
@@ -48,6 +48,16 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
   const purchasable=source.snapshot.items.filter((i)=>
     i.owner_entity_id && publicSellerIds.includes(i.owner_entity_id) &&
     transferable.includes(i.id)).map((i)=>i.id);
+  const sellable=source.snapshot.items.filter((i)=>
+    playerIds.includes(i.owner_entity_id ?? "") && i.quantity>0 &&
+    i.equipped_entity_id===null && i.equipped_slot===null &&
+    settlementItemTransferAllowed(source,i.id)).map((i)=>i.id);
+  const ingredients=source.snapshot.items.filter((i)=>
+    sellable.includes(i.id) && ["food","supply","misc"].includes(i.category) &&
+    i.mechanics.trim()==="" &&
+    !source.astraSettlementItemPolicies?.some((p)=>p.itemId===i.id &&
+      p.visibility!=="public")).map((i)=>i.id);
+  const merchantBuyers=publicSellerIds;
   const settlement=source.worldTakeover ? {anyOf:[
     obj({kind:enumString(["progression_award"]),
       recipientId:enumString(playerIds),
@@ -79,11 +89,28 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
       quantity:{type:"integer"},
       currencyName:enumString((source.astraSettlementCurrencies ?? []).map((c)=>c.label)),
       price:{type:"integer"}}),
+    obj({kind:enumString(["mundane_sale"]),buyerId:enumString(merchantBuyers),
+      sellerId:enumString(playerIds),itemId:enumString(sellable),
+      quantity:{type:"integer"},
+      currencyName:enumString((source.astraSettlementCurrencies ?? []).map((c)=>c.label)),
+      price:{type:"integer"}}),
+    obj({kind:enumString(["mundane_craft"]),crafterId:enumString(playerIds),
+      inputs:array(obj({itemId:enumString(ingredients),quantity:{type:"integer"}})),
+      itemName:{type:"string"},itemCategory:enumString(["food","supply","misc"]),
+      itemDescription:nil("string")}),
+    obj({kind:enumString(["item_exchange"]),playerId:enumString(playerIds),
+      counterpartyId:enumString(merchantBuyers),
+      giveItemId:enumString(sellable),giveQuantity:{type:"integer"},
+      receiveItemId:enumString(transferable),receiveQuantity:{type:"integer"}}),
     {type:"null"}
   ]} : {type:"null"};
+  const effects=source.worldTakeover
+    ? array({anyOf:[...(settlement as {anyOf:unknown[]}).anyOf.slice(0,-1),
+      obj({kind:enumString(["unsupported_optional"]),description:{type:"string"}})]})
+    : array(obj({kind:enumString(["__none__"])}));
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
-    outcomes:array(outcome), privatePatches:array(privatePatch),settlement });
+    outcomes:array(outcome), privatePatches:array(privatePatch),effects });
   return obj({ type:enumString(["tool","final"]),
     call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} });
 }
@@ -109,7 +136,8 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     return { type:"tool",call:call as AstraToolCall,final:null };
   }
   if (raw.type !== "final" || raw.call !== null ||
-    !(exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","settlement"]) ||
+    !(exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects"]) ||
+      exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","settlement"]) ||
       exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches"])))
     throw new DmError("validation");
   const value = raw.final;
@@ -179,11 +207,21 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     if(existing)existing.values=values;
     else changes.push({family:"encounter_participants",id:p.id,expectedRevision:null,values});
   }
+  const hasEffects=Object.hasOwn(value,"effects");
+  const rawEffects=hasEffects ? value.effects : [];
+  if (hasEffects && (!Array.isArray(rawEffects) || rawEffects.length > 6 ||
+    (!source.worldTakeover && rawEffects.length > 0))) throw new DmError("validation");
   const settlement=Object.hasOwn(value,"settlement") ? value.settlement : null;
-  if (settlement !== null) {
-    if (!source.worldTakeover || !settlement || typeof settlement!=="object" ||
-      Array.isArray(settlement)) throw new DmError("validation");
-    const kind=(settlement as Record<string,unknown>).kind;
+  for (const effect of hasEffects ? rawEffects as unknown[] : [settlement]) {
+    if (effect === null) continue;
+    if (exactKeys(effect,["kind","description"]) && effect.kind === "unsupported_optional") {
+      if (typeof effect.description !== "string" || effect.description.length < 1 ||
+        effect.description.length > 160) throw new DmError("validation");
+      continue;
+    }
+    if (!source.worldTakeover || !effect || typeof effect!=="object" ||
+      Array.isArray(effect)) throw new DmError("validation");
+    const kind=(effect as Record<string,unknown>).kind;
     const fields:Record<string,string[]>={
       progression_award:["kind","recipientId","trackId","amount"],
       job_offer:["kind","issuerId","title","description","currencyName","currencyAmount",
@@ -194,27 +232,36 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
       currency_transfer:["kind","sourceEntityId","recipientId","currencyName","amount"],
       item_transfer:["kind","sourceEntityId","recipientId","itemId","quantity"],
       mundane_purchase:["kind","sellerId","recipientId","itemId","quantity",
-        "currencyName","price"]};
-    if (typeof kind!=="string" || !fields[kind] || !exactKeys(settlement,fields[kind]))
+        "currencyName","price"],
+      mundane_sale:["kind","buyerId","sellerId","itemId","quantity",
+        "currencyName","price"],
+      mundane_craft:["kind","crafterId","inputs","itemName","itemCategory",
+        "itemDescription"],
+      item_exchange:["kind","playerId","counterpartyId","giveItemId",
+        "giveQuantity","receiveItemId","receiveQuantity"]};
+    if (typeof kind!=="string" || !fields[kind] || !exactKeys(effect,fields[kind]))
       throw new DmError("validation");
   }
   return {type:"final",call:null,final:{worldMinutes:value.worldMinutes as number,
     changes,outcomes:value.outcomes as AstraPrivateFinal["outcomes"],
     privatePatches:value.privatePatches as PrivatePatch[],
-    settlement:settlement as AstraSettlementIntent|null}};
+    ...(hasEffects ? {effects:rawEffects as AstraEffectIntent[]} :
+      {settlement:settlement as AstraSettlementIntent|null})}};
 }
 
 export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:typeof fetch }): AstraPrimaryProvider {
-  const planRequest = createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
-    reasoning:"high",fetcher:options.fetcher});
   return {
-    next: async (context,input,receipts,checks,caps,source) => {
+    next: async (context,input,receipts,checks,caps,source,observe) => {
       const enriched = { ...context, input:JSON.stringify({
         context:JSON.parse(context.input), toolReceipts:receipts, recordedChecks:checks }) };
       if (new TextEncoder().encode(enriched.input).length +
           new TextEncoder().encode(enriched.instructions).length > context.budget.inputCap)
         throw new DmError("context");
-      return planRequest(enriched,"plan",input.operationId,
+      return createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
+        reasoning:"high",fetcher:options.fetcher,
+        diagnosticObserver:observe ? (diagnostic) => observe({
+          responseReceived:diagnostic.responseReceived,phase:diagnostic.phase,
+        }) : undefined})(enriched,"plan",input.operationId,
         (raw)=>parseDecision(raw,source,input,caps,receipts),responseSchema(input,caps,source));
     },
     narrate: (context,input,observe) =>

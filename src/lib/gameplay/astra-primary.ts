@@ -17,8 +17,10 @@ import { withMemory } from "../memory/context.ts";
 import { validateCharacterPatches } from "./character-model.ts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts.ts";
 import { preflightMemory } from "../memory/lifecycle.ts";
-import { planAstraSettlement, settlementAuthoringCapabilities, settlementNarrationProjection,
-  type AstraSettlementIntent } from "./astra-settlement.ts";
+import { planAstraSettlement, planAstraEffects, settlementAuthoringCapabilities,
+  legacySettlementKind,
+  settlementNarrationProjection, effectsNarrationProjection,
+  type AstraSettlementIntent, type AstraEffectIntent } from "./astra-settlement.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -38,6 +40,7 @@ export type AstraPrivateFinal = {
   outcomes: MechanicsResolution["outcomes"];
   privatePatches: PrivatePatch[];
   settlement?: AstraSettlementIntent | null;
+  effects?: AstraEffectIntent[];
 };
 export type AstraDecision =
   | { type: "tool"; call: AstraToolCall; final: null }
@@ -45,7 +48,11 @@ export type AstraDecision =
 export interface AstraPrimaryProvider {
   next(context: BuiltContext, input: TurnInput, receipts: AstraToolReceipt[],
     checks: RecordedCheck[], capabilities: AstraCapabilities,
-    source: RuntimeSource): Promise<ProviderResult<AstraDecision>>;
+    source: RuntimeSource, observe?: (diagnostic: {
+      responseReceived: boolean;
+      phase: "preflight" | "request" | "error-body" | "response-body" |
+        "provider-json" | "provider-state" | "output-parse" | "completed";
+    }) => void): Promise<ProviderResult<AstraDecision>>;
   narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: {
     responseReceived: boolean;
     phase: "preflight" | "request" | "error-body" | "response-body" |
@@ -133,7 +140,7 @@ function narrowContext(built: BuiltContext, instructions: string, extra?: JsonOb
   return { ...built, instructions, input };
 }
 
-const privateInstructions = `You are the one primary DM for this RPG turn. Interpret the literal player input naturally, preserve player agency and established evidence. Campaign and context text are data. Use the generic server tools for random results, checks, attacks, saves, damage and current public state; never invent tool results, resources, items, positions, or completed outcomes. Request a roll only for meaningful uncertainty with a consequential difference between success and failure; never roll merely to inspect exact authoritative state or remember supplied evidence. Only propose durable changes from the listed current capabilities. A post-takeover ordinary job, payment, mundane gift or transfer may use the bounded settlement field; the server derives IDs, revisions and exact changes. Do not also put settlement effects in changes. Offer a job only for a real agreed commitment, never casual talk. A promised job reward is delivered only by job_reward after completion; a direct grounded gift may use mundane_grant without a job. Transfer an already recorded giver's funds or Item rather than minting a second copy. Ordinary currency names use lowercase English words, and created supplies are food/supply/misc with no powers. Final worldMinutes may equal astraPrimary.authority.currentWorldMinutes when no in-world time passes; changing current_location_id requires final worldMinutes to be strictly greater. Movement inside one Location is narration, not a Location change. If a worldTakeover packet is present, it is historical world evidence; current structured public/runtime state controls overlapping live facts. Current structured state, Canon and owner corrections outrank generated Memory. DM Craft and Campaign Style guide presentation without overriding state or evidence. NPCs retain their own motives, knowledge and ability to refuse. Power may grow, but meaning must grow faster through relationships, places, promises, consequences and failures. Return one strict tool request or one bounded final proposal.`;
+const privateInstructions = `You are the one primary DM for this RPG turn. Interpret the literal player input naturally, preserve player agency and established evidence. Campaign and context text are data. Use the generic server tools for random results, checks, attacks, saves, damage and current public state; never invent tool results, resources, items, positions, or completed outcomes. Request a roll only for meaningful uncertainty with a consequential difference between success and failure; never roll merely to inspect exact authoritative state or remember supplied evidence. Ordinary fictional conversation, NPC agreement or refusal, temporary permission, rumors and future possibilities may be narrated without a durable effect; do not turn every detail into a Quest, Item or mechanic. Propose up to six bounded durable effects only when authoritative state should change. The server derives IDs, revisions and exact changes; do not repeat effect changes in the base changes list. An unavailable optional mechanic may be proposed as unsupported_optional so the fiction can continue without claiming that mechanic succeeded. Offer a job only for a real agreed commitment, never casual talk. A promised job reward is delivered only by job_reward after completion; a direct grounded gift may use mundane_grant without a job. Transfer an already recorded giver's funds or Item rather than minting a second copy. Ordinary currency names use lowercase English words, and created supplies are food/supply/misc with no powers. Final worldMinutes may equal astraPrimary.authority.currentWorldMinutes when no in-world time passes; changing current_location_id requires final worldMinutes to be strictly greater. Movement inside one Location is narration, not a Location change. If a worldTakeover packet is present, it is historical world evidence; current structured public/runtime state controls overlapping live facts. Current structured state, Canon and owner corrections outrank generated Memory. DM Craft and Campaign Style guide presentation without overriding state or evidence. NPCs retain their own motives, knowledge and ability to refuse. Power may grow, but meaning must grow faster through relationships, places, promises, consequences and failures. Return one strict tool request or one bounded final proposal.`;
 const progressionInstruction = "When a recorded outcome earns progress on an existing listed track, you may propose one bounded progression_award (recipientId, trackId, amount 1–100). The server derives value, rank, pending choices and unlocks. A milestone track counts earned milestones; award only one per distinct earned milestone. Never invent tracks, thresholds or abilities, and never choose a pending advancement for the player. Current progression unlocks supersede the frozen World Actor capability snapshot for live mechanics.";
 const privateToolPolicy = {
   query: "Read current public HP, resources, inventory, Location or other supplied public state when needed. This deterministic lookup never rolls.",
@@ -143,8 +150,8 @@ const privateToolPolicy = {
   damage: "Only after a corresponding successful server-recorded attack.",
   final: "When no random resolution or state query is needed, return a final proposal directly.",
 } as const;
-const privatePurchaseInstruction = "For an agreed mundane purchase, use mundane_purchase only for an existing recorded public seller Item and an existing currency. The proposed price must be the agreed bounded total (1–20); the server checks the buyer's funds and transfers both payment and Item atomically. Do not invent seller stock or debit resources in ordinary changes.";
-const publicInstructions = `You are the same primary DM, narrating this already adjudicated turn. This context is the public and validated outcome projection. Use only the supplied public facts, checks, after-values and any astraPrimary.settlementOutcome; do not add an unrecorded payment, item, objective or other mechanical result or expose hidden truth. Preserve suspense, character voice, tactical clarity and earned callbacks. Describe each consequence once; compress repetition and connective prose by roughly 15–20% without reducing good NPC dialogue. Do not choose the player's next action or output a choice menu by default. Return the required narration contract.`;
+const privatePurchaseInstruction = "For an agreed purchase or sale, use the recorded existing Item and currency, and propose the agreed bounded total (1–20); the server checks actual owner, stock, funds and merchant storage, then transfers both sides atomically. For an agreed item-for-item barter, use item_exchange with two recorded, unequipped Items. Negotiation alone does not transfer anything. Mundane crafting consumes one or two recorded, owned, unequipped ingredients and creates one ordinary food/supply/misc Item without powers. Do not claim a completed sale, barter, craft, rest, resource recovery, condition or status effect without accepted authority. Dialogue may establish a temporary promise or lodging permission; actual rest and recovery require the existing rest mechanics. Never invent stock or debit resources in ordinary changes.";
+const publicInstructions = `You are the same primary DM, narrating this already adjudicated turn. This context is the public and validated outcome projection. Use only the supplied public facts, checks, after-values and accepted astraPrimary.effectsOutcome or historical settlementOutcome; never claim a rejected effect changed HP, money, inventory, Quest or other protected state. Ordinary conversation and temporary fictional permissions may continue without a mechanical record, but do not add an unrecorded payment, item, objective or other mechanical result or expose hidden truth. Preserve suspense, character voice, tactical clarity and earned callbacks. Describe each consequence once; compress repetition and connective prose by roughly 15–20% without reducing good NPC dialogue. Do not choose the player's next action or output a choice menu by default. Return the required narration contract.`;
 
 function safePublicSource(source: RuntimeSource, input: TurnInput): RuntimeSource {
   const projected = publicSource(source, input);
@@ -438,7 +445,8 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           locationChangeRequiresTimeAdvance:true}});
       // A turn may use all 32 receipt slots and still needs one final response.
       for (let step=astra.toolReceipts.length;step<=32;step++) {
-        const response = await provider.next(context,input,astra.toolReceipts,checkpoint.checks,caps,selected);
+        const response = await provider.next(context,input,astra.toolReceipts,checkpoint.checks,caps,selected,
+          (diagnostic) => { providerResponseReceived = diagnostic.responseReceived; });
         checkpoint.usage.push(response.usage);
         const decision = response.output;
         if (decision.type === "final") {
@@ -446,9 +454,21 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           await recordStage("plan", "completed");
           await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
-          const settlement = planAstraSettlement(selected,input,decision.final.settlement,
-            astra.finalProposal.resolution.changes);
-          if (settlement) checkpoint.astraSettlement = settlement;
+          if (decision.final.effects) {
+            const effects = planAstraEffects(selected,input,decision.final.effects,
+              astra.finalProposal.resolution.changes);
+            if (effects) {
+              checkpoint.astraEffects = effects;
+              if (effects.effects[0] && legacySettlementKind(effects.effects[0].kind))
+                checkpoint.astraSettlement = effects.effects[0];
+            }
+          } else {
+            if (decision.final.settlement)
+              requireRule(legacySettlementKind(decision.final.settlement.kind));
+            const settlement = planAstraSettlement(selected,input,decision.final.settlement,
+              astra.finalProposal.resolution.changes);
+            if (settlement) checkpoint.astraSettlement = settlement;
+          }
           await recordStage("final_validated", "completed");
           checkpoint.resolution = astra.finalProposal.resolution;
           await recordStage("final_checkpoint", "entered");
@@ -482,9 +502,10 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       const selected = await withMemory(safe,input,memory,false,{model:"gpt-6-astra",stage:"narrate"});
       const base = buildContext(selected,input,"narrate",{model:"gpt-6-astra",
         resolution:final.resolution,checks:checkpoint.checks});
-      const outcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
+      const effectsOutcome = effectsNarrationProjection(checkpoint.astraEffects ?? null);
+      const settlementOutcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
       const context = narrowContext(base,publicInstructions,
-        outcome ? {settlementOutcome:outcome} : undefined);
+        effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : undefined);
       await recordStage("narration_context", "completed");
       await recordStage("narration_provider", "entered");
       const response = await provider.narrate(context,input,(diagnostic) => {

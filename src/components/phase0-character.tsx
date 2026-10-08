@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { CampaignSnapshot, Entity, Item } from "@/lib/persistence/contracts";
 import type { CharacterViewModel } from "@/lib/character-view-model";
 import { itemIcon } from "@/lib/persistence/record-model";
+import { itemDisplayDescription } from "@/lib/persistence/item-description";
 import { EQUIPPED_FILTER, inventoryCategoryLabel } from "@/lib/live-inventory-view";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
@@ -179,7 +180,7 @@ export function CharacterInventory({
               </button>
               <span role="tooltip" id={`character-item-${item.id}`} className="item-tooltip">
                 <strong>{item.name}</strong>
-                {item.description || t("No description recorded.")}
+                {itemDisplayDescription(item, language)}
               </span>
             </div>
           );

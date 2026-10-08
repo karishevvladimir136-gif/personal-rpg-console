@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useLanguage } from "./language-context";
 import { Icon, Panel } from "./ui";
 import { itemIcon } from "@/lib/persistence/record-model";
+import { itemDisplayDescription } from "@/lib/persistence/item-description";
 import type {
   CampaignSnapshot,
   Entity,
@@ -179,7 +180,7 @@ export function LiveInventoryPresentation({
                       </button>
                       <span role="tooltip" id={tooltipId} className="item-tooltip">
                         <strong>{item.name}</strong>
-                        {item.description || t("No description recorded.")}
+                        {itemDisplayDescription(item, language)}
                       </span>
                     </div>
                   );

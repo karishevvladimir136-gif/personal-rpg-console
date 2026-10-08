@@ -208,6 +208,7 @@ export type AstraFinalProposal = {
 };
 export type TurnCheckpoint = {
   astraSettlement?: import("./astra-settlement.ts").AstraSettlementPlan | null;
+  astraEffects?: import("./astra-settlement.ts").AstraEffectsPlan | null;
   astraPrimary?: {
     schemaVersion: 1;
     toolReceipts: AstraToolReceipt[];

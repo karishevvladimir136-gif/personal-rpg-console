@@ -1,0 +1,37 @@
+# Astra Freedom Pass — isolated candidate
+
+**Status:** disposable implementation candidate. Not activated on the owner database or main branch.
+
+## Live Iris evidence
+
+The newest failed Iris operation is `63200791-13ff-4d58-92d3-7b94e6e0d478`. It is an `astra-primary-v1` failed, non-retryable Game turn at expected revision 50. Migration-44 diagnostics record `stage=plan`, `failureCategory=provider`, `narrationParseSucceeded=false`, and `providerResponseReceived=false`. This last field was not connected to the private planner's provider observer in the active code, so it does **not** prove that no provider response arrived. No raw proposal was retained. The exact rejection cause cannot be recovered from this operation. No final proposal, settlement, tool receipt, narration, or commit was recorded; no gameplay state committed. This branch connects the planner's existing bounded diagnostic observer for **future** failures. The historical Iris operation and `989bea8a-b105-4e35-852f-a2d897e5e177` are untouched.
+
+## Authority
+
+One Astra DM interprets the free-text action. Ordinary dialogue, refusals, rumors, promises, permissions and environmental details can enter the public Scene and existing scoped Memory without inventing a dedicated mechanic or Quest. A Quest is proposed only for a real agreed job. Scene/Memory preserve what was said; they do not confer mechanical permission or secret truth.
+
+The prior final contract allowed one private `settlement`. New finals may propose up to **six** `effects`. Existing pinned single-settlement turns and old save manifests continue to use the old contract. Each effect is converted from intent to exact server-owned changes against the same pinned source. An optional unsupported or individually invalid effect can be rejected before narration; the narrator receives only accepted outcomes and rejection categories. Foreign references, conflicting writes, stale revisions, tampered checkpoints, broken receipts and commit errors fail the whole turn. A conflict is never resolved by an arbitrary patch merge.
+
+Creative use of an existing Item still goes through the accepted Astra base authority: an owned Item quantity may decrease, and uncertain attacks/checks/damage use recorded deterministic tools. Encounter movement spends the existing Move; Location travel advances time. No free bonus, damage, healing or condition is inferred from prose. Unrepresentable protected mechanics are omitted from state and must not be described as completed.
+
+The general vocabulary reuses existing Entity resources, Storages, Items, Quests, progression, deterministic tools and `runtime_change`. A sale moves an existing, unequipped player Item into a present NPC's merchant storage and transfers a bounded price in an existing campaign currency. An item-for-item barter atomically exchanges two recorded owned Items, with no currency minted. If the buyer lacks a merchant storage, the server creates one with a stable operation-derived ID in the same atomic turn. A negotiated price alone changes no state. Mundane crafting consumes one or two recorded, publicly visible, unequipped, owned ingredient Items and creates one ordinary food/supply/misc Item with immutable provenance. The output has no mechanics or new power. These are reusable inventory/resource transformations, not sword or torch rules. The model supplies price and fictional interpretation; server code independently checks bounds, ownership, stock, merchant storage, resource balance, policy, revisions, IDs, and operation/timeline fences.
+
+Migration 47 is private and additive. Its `astra_effects` receipt lives on the existing turn row. Its validator reconstructs each accepted effect from current campaign rows, then the existing Migration-38/45/46 commit guards validate the pinned final and first legacy settlement. Remaining disjoint effects apply in the **same** transaction; autosave happens only after the complete bundle. One fenced committed operation is the exact-once receipt. No generic SQL or RecordChange is provider-authored. Historical World Actors, Events and Foundation authoring remain frozen; only the previously authorized bounded mechanics currency definition path may append a definition.
+
+## Public Item presentation
+
+When an Item has no recorded description, a deterministic, category-based display fallback appears in Item and equipment views. It is never written to state and never creates powers, provenance, ownership or Canon. Stored descriptions always take precedence. Item detail shows accepted art and essentials first; reference/history controls are collapsed. Draft art is not promoted by viewing it.
+
+## Disposable acceptance
+
+The isolated tests cover: pure lodging dialogue with next-turn recall; a later night's passage of time without fictitious HP/resource recovery; payment plus food plus a job in one atomic turn; optional rejection; conflicting writes; cross-campaign rejection; sword sale with separate negotiation and exact replay; sale plus a new job in one turn; item-for-item barter with no currency change; mundane crafting with consumed ingredients/provenance and save/load; pre-commit failure with no money/Item/Quest/World Event changes; an injected second-effect SQL failure that rolls back the earlier currency/Foundation change; the six-effect cap; and pre-47 save compatibility. Existing provider, diagnostic, combat, progression and save tests are run separately in the quality gates.
+
+## Remaining boundary
+
+The existing `rest.enter`/`rest.complete` mechanics check safe location, participants, supplies, elapsed time and recovery. Astra's current Game final cannot submit those actions; its generic HP patch authority also correctly forbids unrecorded healing. This candidate therefore allows a lodging agreement as story continuity, but **does not** claim that sleep, supply consumption, HP recovery or condition removal completed. The DM may continue the scene or explain the in-world obstacle. Bridging an actual rest from free text requires a separately reviewed adapter to the existing mechanics interpreter and an independently validated atomic commit path. No lodging subsystem or fake recovery has been added. The acceptance example “negotiate lodging, then complete rest through Astra” is not yet met. This is an activation blocker for the full addendum, not a reason to relax the existing rest guard.
+
+The minimum follow-up design is a generic *existing-mechanic action* adapter: Astra proposes intent and current record IDs; the server invokes `mechanicPlanForActions` / `resolveMechanics` with the current profile and any recorded checks, then pins only the exact derived resolution. The SQL commit guard must independently fence the rest record, safe Location, participants, supplies, elapsed time and recovery against the pinned source before applying it in the same turn transaction. It cannot treat a model-authored HP patch or prose as recovery authority. This is a substantive cross-runtime recovery/commit bridge, not a new lodging model; it needs its own disposable authority and rollback tests before owner activation.
+
+## Activation boundary
+
+Do not apply Migration 47 to the owner database or integrate this branch to main until review resolves the rest adapter and confirms full verification. A future activation would require a fresh owner backup, exact migration-46 preflight, Migration 47 once, row fingerprints, code integration, app restart, and zero-provider read-only smoke. No owner turn should be retried as part of activation.

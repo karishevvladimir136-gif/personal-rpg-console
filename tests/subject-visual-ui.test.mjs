@@ -35,7 +35,7 @@ function compiled(path, dependencies) {
   return compiledModule.exports;
 }
 
-async function harness(status, failure = null, ageMs = 0) {
+async function harness(status, failure = null, ageMs = 0, compactDetails = false) {
   const snapshot = structuredClone(sourceSnapshot);
   const subject = { kind: "entity", id: snapshot.entities[0].id };
   const job = subjectJobs.buildSubjectVisualJob(snapshot, subject, [], model,
@@ -98,7 +98,7 @@ async function harness(status, failure = null, ageMs = 0) {
   const h = { snapshot, record, subject, transport };
   h.render = () => {
     cursor = 0; refCursor = 0; effectCursor = 0;
-    h.tree = component({ subject, transport });
+    h.tree = component({ subject, transport, compactDetails });
     for (const effect of effects.splice(0)) effect();
     return h.tree;
   };
@@ -142,6 +142,16 @@ test("terminal portrait review failure shows saved status without offering recov
   assert.match(h.text(), /No usable draft/);
   assert.equal(h.button("Recover saved image"), undefined);
   assert.equal(h.sends(), 0);
+});
+
+test("Item visual history stays under Visual details without dispatch on render",async()=>{
+  const h=await harness("failed","grounding",0,true);
+  const details=h.nodes().find((node)=>node.type==="details" &&
+    h.text().includes("Visual details"));
+  assert.ok(details);
+  assert.match(h.text(),/Visual details/);
+  assert.match(h.text(),/No usable draft/);
+  assert.equal(h.sends(),0);
 });
 
 test("ordinary character and item art asks the selector for accepted images only", () => {
