@@ -558,7 +558,7 @@ test("Settings reorder basics/play preferences/premise and keep scoped engine pa
         names.indexOf("CampaignPremisePanel"),
     );
     const advanced = nodes.filter((n) => n.type === "details");
-    assert.equal(advanced.length, 3);
+    assert.equal(advanced.length, 4);
     assert.ok(advanced.every((n) => !n.props.open));
     assert.ok(
       walk(advanced[0]).some(
@@ -574,12 +574,18 @@ test("Settings reorder basics/play preferences/premise and keep scoped engine pa
     assert.equal(typeof production.props.onLoaded, "function");
     assert.equal(
       walk(advanced[2]).filter(
+        (n) => n.type?.name === "PersistentAdventures",
+      ).length,
+      1,
+    );
+    assert.equal(
+      walk(advanced[3]).filter(
         (n) => n.type?.name === "CampaignPackSettingsPanel",
       ).length,
       1,
     );
     assert.equal(
-      walk(advanced[2]).filter((n) => n.type?.name === "FoundationLoopPanel")
+      walk(advanced[3]).filter((n) => n.type?.name === "FoundationLoopPanel")
         .length,
       1,
     );

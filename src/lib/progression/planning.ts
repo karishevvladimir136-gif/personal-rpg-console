@@ -6,6 +6,7 @@ import type { Item } from "../persistence/contracts.ts";
 import type { FoundationCommand } from "../production/contracts.ts";
 import type {
   CharacterProgress,
+  FoundationLoopState,
   LoopContext,
   LoopPlan,
   ProgressionTrack,
@@ -174,7 +175,12 @@ function shares(total: number, recipients: readonly string[]) {
   }));
 }
 
-function progressFor(plan: LoopPlan, entityId: string, trackId: string) {
+type MechanicsPlan = Pick<LoopPlan, "state"> & {
+  world?: Pick<LoopPlan["world"], "actors">;
+  baselineCapabilities?: Record<string, string[]>;
+};
+
+function progressFor(plan: MechanicsPlan, entityId: string, trackId: string) {
   let progress = plan.state.progress.find(
     (row) => row.entityId === entityId && row.trackId === trackId,
   );
@@ -185,18 +191,19 @@ function progressFor(plan: LoopPlan, entityId: string, trackId: string) {
   return progress;
 }
 
-function availableCapabilities(plan: LoopPlan, entityId: string) {
+function availableCapabilities(plan: MechanicsPlan, entityId: string) {
   return new Set([
     ...plan.state.progress
       .filter((row) => row.entityId === entityId)
       .flatMap((row) => row.unlocks),
-    ...plan.world.actors
+    ...(plan.world?.actors ?? [])
       .filter((actor) => actor.entityId === entityId)
       .flatMap((actor) => actor.capabilities),
+    ...(plan.baselineCapabilities?.[entityId] ?? []),
   ]);
 }
 
-function assertPendingCapacity(plan: LoopPlan) {
+function assertPendingCapacity(plan: MechanicsPlan) {
   for (const entityId of new Set(
     plan.state.pending.map((row) => row.entityId),
   )) {
@@ -234,7 +241,7 @@ function assertPendingCapacity(plan: LoopPlan) {
 }
 
 function openAdvancements(
-  plan: LoopPlan,
+  plan: MechanicsPlan,
   track: ProgressionTrack,
   progress: CharacterProgress,
   provenanceId: string,
@@ -278,6 +285,76 @@ function openAdvancements(
     });
   }
   requireProgression(plan.state.pending.length <= MAX_PENDING);
+}
+
+/** One deterministic mechanics core for legacy source rewards and post-takeover
+ * turn awards. The latter passes frozen World actors only as a capability
+ * baseline and never writes those actors or historical Events. */
+export function awardEarnedProgression(
+  state: FoundationLoopState,
+  baselineCapabilities: Record<string, string[]>,
+  entityId: string,
+  trackId: string,
+  amount: number,
+  operationId: string,
+): FoundationLoopState {
+  requireProgression(state.progression === "on", "advancement_unavailable");
+  integer(amount, 1, 100);
+  const next = structuredClone(state);
+  const plan: MechanicsPlan = { state: next, baselineCapabilities };
+  const track = next.tracks.find((row) => row.id === trackId);
+  requireProgression(track, "advancement_unavailable");
+  const progress = progressFor(plan, entityId, trackId);
+  progress.value += amount;
+  integer(progress.value);
+  openAdvancements(plan, track, progress, operationId);
+  assertPendingCapacity(plan);
+  next.version += 1;
+  integer(next.version, 1);
+  return next;
+}
+
+function chooseAdvancementMechanics(plan: MechanicsPlan, input: AdvancementChoice) {
+  fields(input, ["pendingId", "optionId", "expectedTrackVersion"]);
+  uuid(input.pendingId);
+  identifier(input.optionId);
+  integer(input.expectedTrackVersion, 1);
+  requireProgression(plan.state.progression === "on", "advancement_unavailable");
+  const pending = plan.state.pending.find((row) => row.id === input.pendingId);
+  requireProgression(pending, "advancement_unavailable");
+  const track = plan.state.tracks.find((row) => row.id === pending.trackId)!;
+  requireProgression(input.expectedTrackVersion === pending.trackVersion &&
+    pending.trackVersion === track.version, "stale_progression");
+  const progress = progressFor(plan, pending.entityId, pending.trackId);
+  requireProgression(pending.rank === progress.rank + 1 &&
+    progress.value >= track.thresholds[pending.rank - 1], "advancement_unavailable");
+  const option = pending.options.find((row) => row.id === input.optionId);
+  requireProgression(option && track.choices.some((choice) => isDeepStrictEqual(choice, option)),
+    "advancement_unavailable");
+  requireProgression(!availableCapabilities(plan, pending.entityId).has(option.capability),
+    "advancement_unavailable");
+  const before = structuredClone(progress);
+  progress.rank = pending.rank;
+  progress.unlocks.push(option.capability);
+  plan.state.pending = plan.state.pending.filter((row) => row.id !== pending.id);
+  for (const row of plan.state.pending.filter((row) => row.entityId === pending.entityId)) {
+    row.options = row.options.filter((choice) => choice.capability !== option.capability);
+    requireProgression(row.options.length > 0, "advancement_unavailable");
+  }
+  assertPendingCapacity(plan);
+  return { pending, option, before, progress };
+}
+
+export function chooseEarnedAdvancement(
+  state: FoundationLoopState,
+  baselineCapabilities: Record<string, string[]>,
+  input: AdvancementChoice,
+): FoundationLoopState {
+  const next = structuredClone(state);
+  chooseAdvancementMechanics({ state: next, baselineCapabilities }, input);
+  next.version += 1;
+  integer(next.version, 1);
+  return next;
 }
 
 function destination(context: LoopContext, entityId: string) {
@@ -554,52 +631,7 @@ export function planAdvancement(
   input: AdvancementChoice,
 ): LoopPlan {
   const plan = begin(context, command);
-  fields(input, ["pendingId", "optionId", "expectedTrackVersion"]);
-  uuid(input.pendingId);
-  identifier(input.optionId);
-  integer(input.expectedTrackVersion, 1);
-  requireProgression(
-    plan.state.progression === "on",
-    "advancement_unavailable",
-  );
-  const pending = plan.state.pending.find((row) => row.id === input.pendingId);
-  requireProgression(pending, "advancement_unavailable");
-  const track = plan.state.tracks.find((row) => row.id === pending.trackId)!;
-  requireProgression(
-    input.expectedTrackVersion === pending.trackVersion &&
-      pending.trackVersion === track.version,
-    "stale_progression",
-  );
-  const progress = progressFor(plan, pending.entityId, pending.trackId);
-  requireProgression(
-    pending.rank === progress.rank + 1 &&
-      progress.value >= track.thresholds[pending.rank - 1],
-    "advancement_unavailable",
-  );
-  const option = pending.options.find((row) => row.id === input.optionId);
-  requireProgression(
-    option && track.choices.some((choice) => isDeepStrictEqual(choice, option)),
-    "advancement_unavailable",
-  );
-  requireProgression(
-    !availableCapabilities(plan, pending.entityId).has(option.capability),
-    "advancement_unavailable",
-  );
-  const before = structuredClone(progress);
-  progress.rank = pending.rank;
-  progress.unlocks.push(option.capability);
-  plan.state.pending = plan.state.pending.filter(
-    (row) => row.id !== pending.id,
-  );
-  // Other pending choices remain earned, but never offer an already owned capability.
-  for (const row of plan.state.pending.filter(
-    (row) => row.entityId === pending.entityId,
-  )) {
-    row.options = row.options.filter(
-      (choice) => choice.capability !== option.capability,
-    );
-    requireProgression(row.options.length > 0, "advancement_unavailable");
-  }
+  const { pending, option, before, progress } = chooseAdvancementMechanics(plan, input);
   installCapabilities(
     context,
     plan,

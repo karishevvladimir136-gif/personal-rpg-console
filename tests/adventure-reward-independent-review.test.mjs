@@ -108,6 +108,7 @@ async function server(f) {
       },
     },
     "./saves/store": { createSaveStore: () => ({ fence: f.fence }) },
+    "./dm": { createTurnStore: () => ({ takeoverStatus: async () => ({ active: false }) }) },
     "./production-configuration": { worldRpc: () => rpc },
     "./errors": { PersistenceError },
     "../foundation-loop/authority": authority,

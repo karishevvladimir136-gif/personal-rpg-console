@@ -70,6 +70,7 @@ export function GameplayComposer({
   initialText = "",
   historyOnly = false,
   historyIntro,
+  renderAfterTurn,
   historyPosition,
   onHistoryPositionChange,
   beforeInput,
@@ -85,6 +86,7 @@ export function GameplayComposer({
   initialText?: string;
   historyOnly?: boolean;
   historyIntro?: ReactNode;
+  renderAfterTurn?: (turn: PublicTurn) => ReactNode;
   historyPosition?: StoryHistoryPosition;
   onHistoryPositionChange?: (position: StoryHistoryPosition) => void;
   beforeInput?: ReactNode;
@@ -418,6 +420,7 @@ export function GameplayComposer({
                 }
                 onSaved={onSaved}
               />
+              {renderAfterTurn?.(turn)}
             </div>
           ))}
         </div>

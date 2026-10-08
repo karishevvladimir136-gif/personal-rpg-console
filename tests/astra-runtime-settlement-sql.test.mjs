@@ -8,6 +8,7 @@ import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
 import { runAstraTurn } from "../src/lib/gameplay/astra-primary.ts";
 import { planAstraSettlement } from "../src/lib/gameplay/astra-settlement.ts";
+import { commitRecordedPurchase } from "../src/lib/gameplay/astra-purchase.ts";
 
 const migration = new URL("../supabase/migrations/202610060045_astra_runtime_settlement.sql", import.meta.url);
 const migration44 = new URL("../supabase/migrations/202610060044_astra_execution_diagnostic.sql", import.meta.url);
@@ -539,6 +540,70 @@ test("mundane purchase debits hero, credits seller and splits one public Item ex
       from public.rpg_entities where id=$1`,[npc])).n,"3");
     assert.equal((await f.one(`select quantity from public.rpg_items
       where id=$1`,[sourceItemId])).quantity,1);
+  } finally {await f.db.close();}
+});
+
+test("explicit Trade purchase commits through the same Astra operation without a provider",async()=>{
+  const {f,hero,npc,errors,rpc,memoryRpc}=await takeoverFixture();
+  try {
+    const fence=await f.fence(f.cid);
+    const store=createRpcTurnStore(f.owner,rpc,"gpt-6-astra",fence,true);
+    const memory=createRpcMemoryStore(f.owner,memoryRpc,fence);
+    const play=await store.readPlay(f.cid);
+    const usage={model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0};
+    const grantInput={operationId:randomUUID(),campaignId:f.cid,timeline:play.timeline,
+      expectedRevision:play.revision,mode:"game",input:"I receive five silver.",
+      companionId:null,listenerIds:[],mechanic:null};
+    const provider={next:async(_context,_input,_receipts,_checks,_caps,source)=>(
+      {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],settlement:{kind:"mundane_grant",
+          issuerId:npc,recipientId:hero,currencyName:"silver",currencyAmount:5,
+          itemName:null,itemCategory:null,itemDescription:null}}}}),
+    narrate:async()=>({usage,output:{narration:"Five silver change hands.",
+      visualDescription:"",clarification:null}})};
+    assert.equal((await runAstraTurn(grantInput,{store,memory,provider,
+      summaries:{summarize:async()=>({usage,output:{schemaVersion:1,selections:[]}})}})).status,
+      "committed",JSON.stringify(errors));
+    const stockId=randomUUID();
+    const storage=randomUUID();
+    await f.one(`insert into public.rpg_storages(id,campaign_id,name,kind,
+      entity_id,revision) values($1,$2,'Seller stock','companion',$3,1)`,
+      [storage,f.cid,npc]);
+    await f.one(`insert into public.rpg_items(id,campaign_id,name,category,
+      quantity,description,mechanics,owner_entity_id,storage_id,revision)
+      values($1,$2,'bread','food',2,'Ordinary bread.','',$3,$4,1)`,
+      [stockId,f.cid,npc,storage]);
+    const beforeEvents=(await f.one(`select count(*)::integer n from rpg_private.world_events
+      where campaign_id=$1`,[f.cid])).n;
+    const next=await store.readPlay(f.cid);
+    const input={operationId:randomUUID(),campaignId:f.cid,timeline:next.timeline,
+      expectedRevision:next.revision,mode:"game",input:"Buy 1 bread for 2 silver.",
+      companionId:null,listenerIds:[],mechanic:null};
+    const intent={kind:"mundane_purchase",sellerId:npc,recipientId:hero,
+      itemId:stockId,quantity:1,currencyName:"silver",price:2};
+    const result=await commitRecordedPurchase(store,input,intent,"bread");
+    assert.equal(result.status,"committed",JSON.stringify(errors));
+    assert.equal((await commitRecordedPurchase(store,input,intent,"bread")).id,result.id);
+    assert.equal((await f.one(`select resources->>'currency_silver' n from
+      public.rpg_entities where id=$1`,[hero])).n,"3");
+    assert.equal((await f.one(`select resources->>'currency_silver' n from
+      public.rpg_entities where id=$1`,[npc])).n,"2");
+    assert.equal((await f.one(`select quantity from public.rpg_items
+      where id=$1`,[stockId])).quantity,1);
+    assert.equal((await f.one(`select count(*)::integer n from public.rpg_items
+      where campaign_id=$1 and owner_entity_id=$2 and name='bread'`,[f.cid,hero])).n,1);
+    assert.equal((await f.one(`select count(*)::integer n from rpg_private.world_events
+      where campaign_id=$1`,[f.cid])).n,beforeEvents);
+    const after=await store.readPlay(f.cid);
+    const rejected={...input,operationId:randomUUID(),timeline:after.timeline,
+      expectedRevision:after.revision};
+    const failed=await commitRecordedPurchase(store,rejected,
+      {...intent,price:20},"bread");
+    assert.equal(failed.status,"failed");
+    assert.equal((await f.one(`select resources->>'currency_silver' n from
+      public.rpg_entities where id=$1`,[hero])).n,"3");
+    assert.equal((await f.one(`select quantity from public.rpg_items
+      where id=$1`,[stockId])).quantity,1);
   } finally {await f.db.close();}
 });
 

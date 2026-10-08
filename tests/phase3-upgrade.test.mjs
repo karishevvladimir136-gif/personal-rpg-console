@@ -15,9 +15,11 @@ function withoutServingFence(value, expectedFence) {
   if (!value || typeof value !== "object") return value;
   if (Object.hasOwn(value, "timeline"))
     assert.deepEqual(value.timeline, expectedFence);
+  if (value.narrationSceneId !== undefined && value.narrationSceneId !== null)
+    assert.match(value.narrationSceneId, /^[0-9a-f-]{36}$/i);
   return Object.fromEntries(
     Object.entries(value)
-      .filter(([key]) => key !== "timeline")
+      .filter(([key]) => key !== "timeline" && key !== "narrationSceneId")
       .map(([key, child]) => [key, withoutServingFence(child, expectedFence)]),
   );
 }

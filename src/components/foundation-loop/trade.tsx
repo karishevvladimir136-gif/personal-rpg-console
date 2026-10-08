@@ -5,6 +5,7 @@ import type { FoundationLoopView } from "@/lib/foundation-loop/client-contracts"
 import type { TradeIntent, TradeQuote } from "@/lib/foundation-loop/contracts";
 import type { CommerceItem } from "@/lib/commerce/projection";
 import { useUnsavedChanges } from "../persistence-context";
+import { useLanguage } from "../language-context";
 import { Badge, Button, Icon } from "../ui";
 import { NumberField, SelectField, Toggle } from "./fields";
 import type { ApplyFoundation } from "./commerce-settings";
@@ -87,6 +88,7 @@ export function TradePanel({
   apply: ApplyFoundation;
   clearQuote: () => void;
 }) {
+  const { t } = useLanguage();
   const commerce = view.commerce;
   const [merchantId, setMerchantId] = useState(
     commerce?.merchants[0]?.actorId ?? "",
@@ -112,9 +114,16 @@ export function TradePanel({
     !!quote && quote.payment > (paymentCurrency?.balance ?? 0);
   const names = [...(merchant?.stock ?? []), ...(commerce?.inventory ?? [])];
   const hasLines = lines(take).length + lines(give).length > 0;
+  const postTakeover = view.postTakeover === true;
+  const stock = postTakeover ? (merchant?.stock ?? []).filter((item) =>
+    view.postTakeoverPurchasableItemIds?.includes(item.id) &&
+    item.trade === "allowed") : merchant?.stock ?? [];
   return (
     <div className={styles.form}>
-      <p className="muted">{c.tradeHelp}</p>
+      <p className="muted">{postTakeover
+        ? t("Choose a quantity from recorded stock, then review the purchase before confirming.")
+        : c.tradeHelp}</p>
+      {postTakeover && <p className="muted">{t("Recorded everyday stock can be purchased here. Sales and haggling are unavailable after takeover.")}</p>}
       <div className={styles.balances} aria-label={c.balances}>
         {commerce?.currencies.map((row) => (
           <span key={row.id}>
@@ -177,7 +186,7 @@ export function TradePanel({
               <div className={styles.offers}>
                 <ItemOffer
                   title={c.buy}
-                  items={merchant.stock}
+                  items={stock}
                   selected={take}
                   currencyId={currencyId}
                   acceptsStolen={true}
@@ -186,7 +195,7 @@ export function TradePanel({
                     setTake({ ...take, [id]: quantity })
                   }
                 />
-                <ItemOffer
+                {!postTakeover && <ItemOffer
                   title={c.sell}
                   items={commerce.inventory}
                   selected={give}
@@ -196,10 +205,10 @@ export function TradePanel({
                   change={(id, quantity) =>
                     setGive({ ...give, [id]: quantity })
                   }
-                />
+                />}
               </div>
-              <Toggle label={c.haggle} checked={haggle} onChange={setHaggle} />
-              <p className="muted">{c.haggleHelp}</p>
+              {!postTakeover && <><Toggle label={c.haggle} checked={haggle} onChange={setHaggle} />
+              <p className="muted">{c.haggleHelp}</p></>}
               <Button type="submit" primary disabled={!hasLines}>
                 {c.quote}
               </Button>
@@ -242,7 +251,7 @@ export function TradePanel({
               <div className="button-row">
                 <Button
                   primary
-                  disabled={insufficient}
+                  disabled={insufficient || (postTakeover && (quote.payment < 1 || quote.payment > 20))}
                   onClick={() => apply("trade", quote)}
                 >
                   {c.confirm}

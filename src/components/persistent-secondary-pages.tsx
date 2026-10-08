@@ -38,9 +38,7 @@ import { PersistentSessions, PersistentSupporting } from "./persistent-game";
 import { PersistentSaves } from "./persistent-saves";
 import { PersistentTimelineExplorer } from "./persistent-timeline-explorer";
 import { PersistentPlacesBelonging } from "./persistent-places-belonging";
-import { PersistentAdventures } from "./persistent-adventures";
 import { CurrentAdventure } from "./current-adventure";
-import { PersistentAdventureLoot } from "./persistent-adventure-loot";
 import { PersistentMediaVisualFrame } from "./persistent-visual-frame";
 import { SessionMemoryPanel } from "./session-memory";
 import {
@@ -676,16 +674,6 @@ function JournalView({
           </Disclosure>
         </>
       )}
-      <Disclosure
-        campaignId={campaignId}
-        name="journal-adventures"
-        title={w("Advanced · Adventure management", "Дополнительно · Управление приключениями")}
-      >
-        <ReviewTool reviewOnly={reviewOnly}>
-          <PersistentAdventures />
-          <PersistentAdventureLoot />
-        </ReviewTool>
-      </Disclosure>
       {note && !reviewOnly && (
         <NoteEditor data={data} onClose={() => setNote(false)} />
       )}

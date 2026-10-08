@@ -92,6 +92,20 @@ test("actual EN/RU commerce shows funds, stock, restrictions and ordinary Game l
   }
 });
 
+test("post-takeover Trade shows only bounded recorded stock and no frozen sale or haggle action",()=>{
+  const view=foundationUiFixture();
+  view.postTakeover=true;
+  view.postTakeoverPurchasableItemIds=[view.commerce.merchants[0].stock[0].id];
+  const html=render("en","trade",view);
+  assert.match(html,/Recorded everyday stock can be purchased here/);
+  assert.match(html,/Travel cloak/);
+  assert.doesNotMatch(html,/<h3>Sell<\/h3>/);
+  assert.doesNotMatch(html,/>Haggle</);
+  view.postTakeoverPurchasableItemIds=[];
+  const empty=render("en","trade",view);
+  assert.doesNotMatch(empty,/<strong>Travel cloak/);
+});
+
 test("Trade keeps the rules profile inside a closed Advanced disclosure", () => {
   for (const language of ["en", "ru"]) {
     const view = foundationUiFixture();
@@ -135,6 +149,20 @@ test("actual EN/RU progression shows explicit current and earned rank choices", 
     assert.ok(html.includes("Trail reading"));
     assert.match(html, /type="radio"/);
     assert.match(html, /<button[^>]*disabled=""[^>]*>[^<]*<\/button>/);
+  }
+});
+
+test("post-takeover progression keeps earned player choice and hides frozen reward claims", () => {
+  const view = foundationUiFixture();
+  view.postTakeover = true;
+  for (const language of ["en", "ru"]) {
+    const html = render(language, "progression", view);
+    const c = foundationText(language);
+    assert.ok(html.includes(c.pendingTitle));
+    assert.ok(html.includes("Trail reading"));
+    assert.match(html, /type="radio"/);
+    assert.ok(html.includes(c.choose));
+    assert.doesNotMatch(html, new RegExp(`<h3>${c.rewards}<\\/h3>`));
   }
 });
 

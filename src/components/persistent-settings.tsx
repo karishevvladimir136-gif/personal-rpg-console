@@ -1,5 +1,7 @@
 "use client";
 import { FoundationLoopPanel } from "./foundation-loop/foundation-loop";
+import { PersistentAdventures } from "./persistent-adventures";
+import { PersistentAdventureLoot } from "./persistent-adventure-loot";
 
 import Link from "next/link";
 import { useRef, useState } from "react";
@@ -585,6 +587,11 @@ export function PersistentCampaignSettings({
               onLoaded={setProduction}
               afterSave={refresh}
             />
+          </details>
+          <details className="rules-advanced">
+            <summary>{t("Advanced · Adventure management")}</summary>
+            <PersistentAdventures />
+            <PersistentAdventureLoot />
           </details>
           <details className="rules-advanced">
             <summary>

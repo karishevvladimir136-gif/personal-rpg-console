@@ -14,6 +14,10 @@ import type { CommerceProjection } from "../commerce/projection.ts";
 import type { PublicProgression } from "../progression/public.ts";
 
 export type FoundationLoopView = {
+  /** Public routing capability only; the private takeover marker stays server-side. */
+  postTakeover?: boolean;
+  /** Public stock IDs whose current records fit the bounded Astra purchase path. */
+  postTakeoverPurchasableItemIds?: string[];
   campaignId: string;
   /** Public, descriptive protagonist facts only; no World Actor or hidden knowledge DTO. */
   playerCharacter?: {

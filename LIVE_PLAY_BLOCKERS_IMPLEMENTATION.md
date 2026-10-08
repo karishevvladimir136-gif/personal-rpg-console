@@ -1,3 +1,33 @@
+# Live play blockers — final isolated closure candidate
+
+## Closure from the accepted checkpoint
+
+This continuation starts at `fe7c577932612040b17a7ec79efd22fc88392b45` on `codex/live-play-blockers`. Migrations 44 and 45 are retained exactly as the reviewed diagnostic and bounded runtime-settlement work. Additive Migration 46, `202610060046_astra_live_progression.sql`, is the only new database authority in this closure. The owner database remains at its prior level; 44, 45 and 46 were applied only to disposable databases. Main, the owner campaign and the historical Iris operation `989bea8a-b105-4e35-852f-a2d897e5e177` remain untouched. There were no real model, media or review-provider calls.
+
+## Earned progression after takeover
+
+The owner-authored progression enabled state, tracks, thresholds, option definitions and reward definitions remain frozen. Astra can propose only an existing track, the controlled recipient and a bounded earned amount. Shared pure progression planning computes the new value, rank and pending choice; Migration 46 independently checks the pinned result before atomic commit. The committed campaign/timeline/operation turn is the exact-once receipt. There is no new World Event or second progression ledger. Save/load and replay keep the same progress and pending choice.
+
+An earned choice is explicitly selected by the player through a narrow service action with exact pending ID, option ID, track version, timeline, head and runtime fences. A duplicate choice returns the existing result; a stale or different choice conflicts. Selected unlocks are projected from the historical actor baseline and the current mechanics progress. Future Astra private context receives the derived capability. The historical World Actor and World Event rows are unchanged. The World Foundation exception is restricted to mechanics `loop_state.progress`, `pending` and its version; World authoring remains frozen.
+
+## Trade, story media and player-facing surfaces
+
+Post-takeover Trade now routes an explicitly confirmed, recorded mundane-stock purchase through the existing Astra turn store and Migration 45 settlement validator. It recomputes the current quote, uses the same campaign/timeline/operation receipt, debits the player, credits seller funds where applicable, transfers the Item and commits narration atomically. Exact replay does not charge or transfer twice; insufficient funds produce no settlement. The UI shows only public stock that fits this bounded path and hides sale/haggle controls. Unsupported stock is unavailable rather than sent to frozen Foundation authority.
+
+Committed turns expose only their public narration Scene ID as presentation metadata. Accepted FRAME/VIDEO for that Scene renders after the matching saved turn, or after the opening if generated before ordinary play. Gallery history remains unchanged. This adds no fake gameplay turn; generation remains separate. The permanent top scene card no longer duplicates large media. Journal Quests no longer contains Adventure management; the owner entry is under Campaign Settings → Advanced. The disposable Short sword preview now supplies an authoritative weapon rule so Item Details visibly renders **Weapon · Damage 3 · Quantity 1 · Equipped · Main Hand** without hard-coded damage in presentation.
+
+The review-only synthetic Game preview can show a committed turn with accepted inline FRAME, and the review-only Inventory preview can open the Short sword detail directly. These preview options do not read owner data or dispatch gameplay/media. The prior Phase-0 layout and compact composer tool row remain unchanged. The optional Map disclosure regrouping was not needed for this bounded closure; Atlas versus Location illustration remains distinct.
+
+## Verification and remaining limits
+
+Disposable Migration 43→44→45→46, populated 45→46, old-save restoration, progression exact-once, advancement, frozen World Actor/Event and private DTO tests are in `tests/astra-live-progression-sql.test.mjs`. Commerce, Trade, Game media, Journal and Item regressions run against the existing production components. The final focused batch passed **99/99**. The complete suite passed **2,139/2,140** with zero failures and one existing skip. TypeScript, zero-warning ESLint and the production build passed. The final Trade wording and synthetic preview label were separately covered by six focused translation/UI checks plus the final typecheck, lint and build; no runtime authority changed after the complete suite.
+
+Updated disposable captures in ignored `test-results/live-play-ux/` are `closure-inline-frame-large.png` (desktop Game, story turn then accepted FRAME), `closure-game-390px.png` (actual 390px viewport with no horizontal page overflow), `closure-composer-tools.png`, `closure-journal.png`, `closure-item-damage.png`, `closure-trade.png`, and `closure-progression.png`. All use synthetic public records and locally served schematic art. The item capture visibly shows Damage 3 from its review-only `itemRules` entry. These screenshots are local review artifacts, not committed gameplay or provider outputs.
+
+This path does not add a lodging permission subsystem. Trade after takeover is limited to one recorded mundane stock purchase with an existing currency, bounded price and available funds; sale and haggle remain unavailable. The historical Iris failure's original cause remains unknown. No owner playtest or provider-quality claim is inferred from scripted/disposable tests. Eventual owner activation needs separate approval for migrations **44 → 45 → 46**, followed by code activation; none occurred here.
+
+## Earlier checkpoint report (historical)
+
 # Live play blockers — isolated implementation candidate
 
 ## Scope and authority

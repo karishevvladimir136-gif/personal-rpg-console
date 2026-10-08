@@ -43,6 +43,7 @@ import {
   GameplayComposer,
   type StoryHistoryPosition,
 } from "./gameplay-composer";
+import { GameplayTurn } from "./gameplay-turn";
 import {
   GameplayCamp,
   GameplayRest,
@@ -617,6 +618,7 @@ function LiveCharacterSummary({
 function GameRecords({
   data,
   reviewOnly = false,
+  reviewPlay,
   frameTransport,
   mediaTransport,
   videoTransport,
@@ -625,6 +627,7 @@ function GameRecords({
   videoTransport?: VideoTransport;
   data: CampaignSnapshot;
   reviewOnly?: boolean;
+  reviewPlay?: PlaySnapshot;
   frameTransport?: CurrentSceneFrameTransport;
 }) {
   const { t, language } = useLanguage();
@@ -638,7 +641,26 @@ function GameRecords({
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
   const [mediaOpen, setMediaOpen] = useState(false);
   const view = createGameViewModel(data, runtime.play);
-  const { session, location, scene, player, companions, objective, clues, sceneFrame, sceneVideo } = view;
+  const { session, location, scene, player, companions, objective, clues } = view;
+  const mediaForScene = (sceneId: string | null | undefined) => {
+    if (!sceneId) return null;
+    const frame = realFrameDocuments(data).filter(({ value }) =>
+      value.status === "completed" && value.basis.scene.id === sceneId && value.resultAssetId,
+    ).reverse().map(({ value }) => data.assets.find((asset) =>
+      asset.id === value.resultAssetId && ownerAcceptedFrameAsset(data, asset),
+    )).find(Boolean);
+    const video = videoDocuments(data).filter(({ value }) =>
+      value.status === "ready" && value.basis.scene.id === sceneId && value.resultAssetId,
+    ).reverse().map(({ value }) => data.assets.find((asset) =>
+      asset.id === value.resultAssetId && safeVideoAsset(data, asset),
+    )).find(Boolean);
+    return frame || video ? (
+      <div className={gameStyles.sceneIllustrations} aria-label={t("Saved scene media")}>
+        {frame && <StoredFrameImage asset={frame} transport={mediaTransport} />}
+        {video && <StoredSceneVideo asset={video} transport={videoTransport} />}
+      </div>
+    ) : null;
+  };
   const latest = runtime.play?.turns
     .filter((turn) => turn.mode === inputMode)
     .at(-1);
@@ -651,6 +673,7 @@ function GameRecords({
             "Your story is ready to begin. The opening of your Adventure will appear here.",
           )}
       </div>
+      {mediaForScene(view.openingScene?.id)}
     </article>
   );
   const historyKey = `${data.timeline?.timelineId ?? "unfenced"}:${data.timeline?.epoch ?? 0}:${inputMode}`;
@@ -716,16 +739,6 @@ function GameRecords({
                 {scene?.created_at && <time dateTime={scene.created_at}>{new Date(scene.created_at).toLocaleString(data.campaign.language)}</time>}
               </div>
               {opening}
-              {(sceneFrame || sceneVideo) && (
-                <div className={gameStyles.sceneIllustrations} aria-label={t("Saved scene media")}>
-                  {sceneFrame && (
-                    <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
-                  )}
-                  {sceneVideo && (
-                    <StoredSceneVideo asset={sceneVideo} transport={videoTransport} />
-                  )}
-                </div>
-              )}
             </div>
           </article>
           {runtime.play && !runtime.play.startupPending && (
@@ -735,6 +748,16 @@ function GameRecords({
             />
           )}
           <div className={gameStyles.storyFlow}>
+            {reviewOnly && reviewPlay && (
+              <div className="gameplay-turns" role="log" aria-label={t("Saved gameplay turns")}>
+                {reviewPlay.turns.map((turn) => (
+                  <div key={turn.id} className="session-saved-turn">
+                    <GameplayTurn turn={turn} busy onCommand={() => {}} onSaved={async () => {}} />
+                    {mediaForScene(turn.narrationSceneId)}
+                  </div>
+                ))}
+              </div>
+            )}
             {reviewOnly && !runtime.play && (
               <div id="play-action" className={styles.reviewComposer}>
                 <textarea
@@ -799,6 +822,8 @@ function GameRecords({
                   mode={inputMode}
                   onSaved={runtime.afterMutation}
                   followLatest
+                  renderAfterTurn={(turn) => turn.status === "committed" && turn.mode === "game"
+                    ? mediaForScene(turn.narrationSceneId) : null}
                   historyPosition={historyPositions[historyKey]}
                   onHistoryPositionChange={(position) => {
                     setHistoryPositions((previous) => ({
@@ -1064,11 +1089,13 @@ function GameRecords({
 
 export function PersistentGame({
   reviewOnly = false,
+  reviewPlay,
   frameTransport,
   mediaTransport,
   videoTransport,
 }: {
   reviewOnly?: boolean;
+  reviewPlay?: PlaySnapshot;
   frameTransport?: CurrentSceneFrameTransport;
   mediaTransport?: MediaFrameTransport;
   videoTransport?: VideoTransport;
@@ -1080,6 +1107,7 @@ export function PersistentGame({
           key={data.campaign.id}
           data={data}
           reviewOnly={reviewOnly}
+          reviewPlay={reviewPlay}
           frameTransport={frameTransport}
           mediaTransport={mediaTransport}
           videoTransport={videoTransport}

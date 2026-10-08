@@ -175,6 +175,69 @@ export async function sendFoundationCommand(
   }
 }
 
+export async function sendAstraAdvancement(
+  view: FoundationLoopView, attempt: FoundationUiCommand,
+): Promise<FoundationLoopView> {
+  const input = attempt.input as { pendingId: string; optionId: string;
+    expectedTrackVersion: number };
+  const pending = view.progression.pending.find((row) => row.id === input.pendingId);
+  if (!view.postTakeover || attempt.kind !== "advancement" || !pending ||
+    !pending.selectable || !pending.options.some((row) => row.id === input.optionId))
+    throw new FoundationClientError("advancement_unavailable");
+  let response: Response;
+  try {
+    response = await fetch(`/api/campaigns/${encodeURIComponent(view.campaignId)}/advancement`, {
+      method: "POST", credentials: "same-origin", cache: "no-store",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        requestId:attempt.command.operationId,
+        timeline:attempt.command.timeline,
+        recipientId:pending.entityId,pendingId:pending.id,
+        optionId:input.optionId,expectedTrackVersion:input.expectedTrackVersion,
+        expectedRevision:view.command.expectedRuntimeRevision,
+        expectedWorldRevision:view.command.expectedRevision,
+        expectedStateVersion:view.stateVersion,
+      }),
+    });
+  } catch { throw new FoundationClientError("connection",true); }
+  const result = await response.json().catch(() => null);
+  if (!response.ok) {
+    const code = typeof result?.error?.code === "string" ? result.error.code : "connection";
+    throw new FoundationClientError(code,response.status>=500 || code==="connection");
+  }
+  if (result?.status !== "selected" || result.pendingId !== pending.id ||
+    result.optionId !== input.optionId)
+    throw new FoundationClientError("connection",true);
+  try { return await loadFoundationLoop(view.campaignId); }
+  catch { throw new FoundationClientError("connection",true); }
+}
+
+export async function sendAstraTrade(
+  view: FoundationLoopView, attempt: FoundationUiCommand,
+): Promise<FoundationLoopView> {
+  if (!view.postTakeover || attempt.kind !== "trade")
+    throw new FoundationClientError("unavailable");
+  const quote = attempt.input as TradeQuote;
+  if (quote?.command?.operationId !== attempt.command.operationId ||
+    quote?.command?.campaignId !== view.campaignId ||
+    !sameTimeline(quote.command.timeline,attempt.command.timeline))
+    throw new FoundationClientError("conflict");
+  let response: Response;
+  try {
+    response = await fetch(`/api/campaigns/${encodeURIComponent(view.campaignId)}/trade`, {
+      method:"POST",credentials:"same-origin",cache:"no-store",
+      headers:{"Content-Type":"application/json"},body:JSON.stringify(quote),
+    });
+  } catch { throw new FoundationClientError("connection",true); }
+  const result = await response.json().catch(() => null);
+  if (!response.ok) {
+    const code = typeof result?.error?.code === "string" ? result.error.code : "connection";
+    throw new FoundationClientError(code,response.status>=500 || code==="connection");
+  }
+  try { return validateFoundationView(result,view.campaignId); }
+  catch { throw new FoundationClientError("connection",true); }
+}
+
 export function sameValue(a: unknown, b: unknown): boolean {
   const canonical = (v: unknown): string =>
     Array.isArray(v)

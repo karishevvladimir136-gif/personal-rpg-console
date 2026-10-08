@@ -299,6 +299,7 @@ function acceptedCurrentSceneVideo(snapshot, frameId) {
  */
 function harness({
   data = publicSnapshot(),
+  play = null,
   pathname = "/preview/live-ui",
   language = "en",
   open = true,
@@ -458,6 +459,9 @@ function harness({
           usePathname: () => pathname,
           useRouter: () => ({ push: noMutation, refresh: noMutation }),
         };
+      if (play && name.endsWith("gameplay-runtime"))
+        return {useGameplayRuntime:()=>({play,loading:false,error:"",
+          refresh:async()=>play,afterMutation:async()=>{} })};
       if (name.endsWith(".css"))
         return {
           __esModule: true,
@@ -636,6 +640,41 @@ test("Game shows accepted scene art beside story text, without an empty hero or 
   await h.runEffects();
   assert.deepEqual(h.requests, []);
   assert.deepEqual(data, before);
+});
+
+test("accepted FRAME for a committed turn follows that turn in transcript chronology",async()=>{
+  const data=publicSnapshot();
+  const opening=data.scenes[0];
+  const player={...opening,id:id("inline-player-scene"),role:"player",
+    sequence:2,body:"I step inside."};
+  const narration={...opening,id:id("inline-narration"),role:"narration",
+    sequence:3,body:"A lantern lights the room."};
+  data.scenes=[opening,player,narration];
+  data.publicState.current_scene_id=narration.id;
+  const assetId=acceptedCurrentSceneFrame(data);
+  const turn={id:id("inline-turn"),campaign_id:data.campaign.id,
+    session_id:data.sessions[0].id,mode:"game",input:"I step inside.",
+    status:"committed",expectedRevision:1,committedRevision:2,
+    settingsRevision:1,created_at:opening.created_at,updated_at:opening.updated_at,
+    narration:"A lantern lights the room.",visualDescription:null,
+    checks:[],proposal:null,failure:null,canRetry:false,canCancel:false,
+    companionId:null,listenerIds:[],timeline:data.timeline,
+    narrationSceneId:narration.id};
+  const play={campaignId:data.campaign.id,revision:2,timeline:data.timeline,
+    rulesetId:"world-logic-v1",configured:true,model:"gpt-6-astra",
+    configuration:{profile:"console-basic-v1",
+      controlledEntityIds:[data.entities[0].id],presentEntityIds:[data.entities[0].id],
+      nearbyStorageIds:[],safeLocationIds:[],itemRules:[]},turns:[turn],
+    encounters:[],participants:[],pendingActions:[],rests:[]};
+  const h=harness({data,play});
+  const html=h.render("src/components/persistent-game.tsx","PersistentGame",{
+    reviewOnly:true,mediaTransport:{imageUrl:(_campaignId,id)=>`/synthetic/${id}`}});
+  const turnAt=html.indexOf(`id="saved-turn-${turn.id}"`);
+  const artAt=html.indexOf(`src="/synthetic/${assetId}"`);
+  assert.ok(turnAt>=0 && artAt>turnAt);
+  assert.equal(html.slice(0,turnAt).includes(`src="/synthetic/${assetId}"`),false);
+  assert.equal((html.match(new RegExp(`src="/synthetic/${assetId}"`,"g"))??[]).length,1);
+  assert.deepEqual(h.requests,[]);
 });
 
 for (const [exported, expected] of [

@@ -169,7 +169,7 @@ export function ProgressionPanel({
           ))}
         </>
       )}
-      {view.availableRewards.length > 0 && (
+      {!view.postTakeover && view.availableRewards.length > 0 && (
         <section className={styles.rewards}>
           <h3>{c.rewards}</h3>
           <p className="muted">{c.rewardHelp}</p>

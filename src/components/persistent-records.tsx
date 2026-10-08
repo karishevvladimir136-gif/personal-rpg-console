@@ -847,11 +847,13 @@ export function ItemDetails({
   onClose,
   onEdit,
   reviewOnly = false,
+  reviewItemRules,
 }: {
   item: Item;
   onClose: () => void;
   onEdit: () => void;
   reviewOnly?: boolean;
+  reviewItemRules?: import("@/lib/gameplay/contracts").ItemRule[];
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
@@ -862,12 +864,12 @@ export function ItemDetails({
   const equippedSlot = equipped?.equipment_slots.find(
     (slot) => slot.id === item.equipped_slot,
   );
-  const weaponRule = data && play?.campaignId === data.campaign.id &&
+  const rules = reviewOnly ? reviewItemRules : data && play?.campaignId === data.campaign.id &&
     sameTimeline(play.timeline, data.timeline) && item.campaign_id === data.campaign.id
-    ? play.configuration?.itemRules.find(
+    ? play.configuration?.itemRules : null;
+  const weaponRule = rules?.find(
       (rule) => rule.itemId === item.id && rule.tag === "weapon",
-    )
-    : null;
+    );
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
@@ -1526,7 +1528,7 @@ export function KnownPeopleCorrections({ data }: { data: CampaignSnapshot }) {
   );
 }
 
-function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot; reviewOnly?: boolean }) {
+function InventoryRecords({ data, reviewOnly = false, reviewItemRules, reviewSelectedItemId }: { data: CampaignSnapshot; reviewOnly?: boolean; reviewItemRules?: import("@/lib/gameplay/contracts").ItemRule[]; reviewSelectedItemId?: string }) {
   const { t } = useLanguage();
   const [storageId, setStorageId] = useState("");
   const [search, setSearch] = useState("");
@@ -1535,7 +1537,9 @@ function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot
   const [storageEditor, setStorageEditor] = useState<Storage | "new" | null>(
     null,
   );
-  const [selected, setSelected] = useState<Item | null>(null);
+  const [selected, setSelected] = useState<Item | null>(
+    reviewOnly ? data.items.find((item) => item.id === reviewSelectedItemId) ?? null : null,
+  );
   const storage =
     data.storages.find((row) => row.id === storageId) ||
     data.storages.find((row) => row.kind === "player") ||
@@ -1575,6 +1579,7 @@ function InventoryRecords({ data, reviewOnly = false }: { data: CampaignSnapshot
           item={currentItem}
           onClose={() => setSelected(null)}
           reviewOnly={reviewOnly}
+          reviewItemRules={reviewItemRules}
           onEdit={() => {
             setEditor(currentItem);
             setSelected(null);
@@ -1626,12 +1631,12 @@ function ContextualTrade({ data }: { data: CampaignSnapshot }) {
   );
 }
 
-export function PersistentInventory({ reviewOnly = false }: { reviewOnly?: boolean } = {}) {
+export function PersistentInventory({ reviewOnly = false, reviewItemRules, reviewSelectedItemId }: { reviewOnly?: boolean; reviewItemRules?: import("@/lib/gameplay/contracts").ItemRule[]; reviewSelectedItemId?: string } = {}) {
   return (
     <RecordBoundary>
       {(data) => (
         <>
-          <InventoryRecords key={data.campaign.id} data={data} reviewOnly={reviewOnly} />
+          <InventoryRecords key={data.campaign.id} data={data} reviewOnly={reviewOnly} reviewItemRules={reviewItemRules} reviewSelectedItemId={reviewSelectedItemId} />
           {!reviewOnly && <ContextualTrade data={data} />}
         </>
       )}

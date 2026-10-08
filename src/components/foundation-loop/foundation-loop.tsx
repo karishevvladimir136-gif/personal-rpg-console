@@ -15,6 +15,8 @@ import {
   foundationScopeMatches,
   loadFoundationLoop,
   sendFoundationCommand,
+  sendAstraAdvancement,
+  sendAstraTrade,
 } from "@/lib/foundation-loop-client";
 import { useLanguage } from "../language-context";
 import { useCampaignData, useUnsavedChanges } from "../persistence-context";
@@ -139,7 +141,11 @@ export function FoundationLoopEditor({
     );
     pending.current = attempt;
     try {
-      const result = await (send
+      const result = await (view.postTakeover && attempt.kind === "advancement"
+        ? sendAstraAdvancement(view,attempt)
+        : view.postTakeover && attempt.kind === "trade"
+        ? sendAstraTrade(view,attempt)
+        : send
         ? send(attempt)
         : sendFoundationCommand(view.campaignId, attempt));
       if (!mounted.current) return;

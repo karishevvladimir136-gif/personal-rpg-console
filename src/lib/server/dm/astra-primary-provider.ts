@@ -49,6 +49,11 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
     i.owner_entity_id && publicSellerIds.includes(i.owner_entity_id) &&
     transferable.includes(i.id)).map((i)=>i.id);
   const settlement=source.worldTakeover ? {anyOf:[
+    obj({kind:enumString(["progression_award"]),
+      recipientId:enumString(playerIds),
+      trackId:enumString(source.astraProgressionState?.progression === "on"
+        ? source.astraProgressionState.tracks.map((track)=>track.id) : []),
+      amount:{type:"integer"}}),
     obj({kind:enumString(["job_offer"]),issuerId:enumString(npcIds),
       title:{type:"string"},description:{type:"string"},currencyName:nil("string"),
       currencyAmount:nil("integer"),itemName:nil("string"),
@@ -180,6 +185,7 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
       Array.isArray(settlement)) throw new DmError("validation");
     const kind=(settlement as Record<string,unknown>).kind;
     const fields:Record<string,string[]>={
+      progression_award:["kind","recipientId","trackId","amount"],
       job_offer:["kind","issuerId","title","description","currencyName","currencyAmount",
         "itemName","itemCategory","itemDescription"],
       job_complete:["kind","questId"],job_reward:["kind","questId","recipientId"],

@@ -155,6 +155,8 @@ export type GuidanceProposal = {
   documentRevision: number;
 };
 export type PublicTurn = {
+  /** Public narration scene written by this committed turn, for inline media. */
+  narrationSceneId?: string | null;
   worldRecovery?: "available" | "review_required" | null;
   worldUncertainty?:
     "missing_evidence" | "contradiction" | "unsupported" | null;

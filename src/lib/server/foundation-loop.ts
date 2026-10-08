@@ -8,6 +8,7 @@ import {
   ownerLootView,
 } from "../adventure-loot/owner-planning";
 import { authorizeCampaign } from "./campaign-authorization";
+import { createTurnStore } from "./dm";
 import { createSaveStore } from "./saves/store";
 import { worldRpc } from "./production-configuration";
 import { createLibraryStore } from "./world-library/store";
@@ -42,6 +43,10 @@ import {
   planPreparation,
 } from "../playable-world/preparation";
 import { object, uuid } from "../world-library/validation";
+import { isTimelineFence, sameTimeline } from "../saves/fence";
+import { astraPurchaseLiteral, astraRecordedPurchase } from "../commerce/astra-trade";
+import { commitRecordedPurchase } from "../gameplay/astra-purchase";
+import { DmError } from "../gameplay/dm-errors";
 
 async function contextFor(campaignId: string) {
   const { user } = await authorizeCampaign(campaignId);
@@ -54,7 +59,91 @@ export async function readAdventureLoot(campaignId: string) {
   return ownerLootView((await contextFor(campaignId)).context);
 }
 export async function readFoundationCampaign(campaignId: string) {
-  return foundationLoopProjection((await contextFor(campaignId)).context);
+  const { user, context } = await contextFor(campaignId);
+  const status = await createTurnStore(user.id).takeoverStatus?.(campaignId);
+  const postTakeover = status?.active === true;
+  const projected=foundationLoopProjection(context);
+  const publicStock=new Set(projected.commerce?.merchants.flatMap((merchant)=>
+    merchant.stock.map((item)=>item.id)) ?? []);
+  return { ...projected, postTakeover,
+    ...(postTakeover ? {postTakeoverPurchasableItemIds: context.snapshot.items
+      .filter((item) => publicStock.has(item.id) &&
+        ["food","supply","misc"].includes(item.category) &&
+        item.mechanics.trim() === "" && item.equipped_entity_id === null &&
+        item.equipped_slot === null)
+      .map((item) => item.id)} : {}) };
+}
+
+/** One explicit quoted stock purchase becomes one fenced Astra Game operation.
+ * The committed turn is the exact-once receipt; no World Event is written. */
+export async function buyAstraRecordedStock(campaignId: string, raw: unknown) {
+  const quote = parseTradeQuote(raw);
+  if (quote.command.campaignId !== campaignId) throw new PersistenceError("validation");
+  const { user } = await authorizeCampaign(campaignId);
+  const timeline = await createSaveStore(user.id).fence(campaignId);
+  if (!sameTimeline(timeline,quote.command.timeline))
+    throw new PersistenceError("conflict");
+  const store = createTurnStore(user.id,undefined,timeline);
+  if ((await store.takeoverStatus?.(campaignId))?.active !== true ||
+    process.env.RPG_ASTRA_PRIMARY_P1 !== "1")
+    throw new PersistenceError("unavailable");
+  const { context } = await contextFor(campaignId);
+  const priorRuntime = await store.runtimeIdentity?.(campaignId,
+    quote.command.operationId);
+  if (priorRuntime !== null && priorRuntime !== undefined) {
+    if (priorRuntime !== "astra-primary-v1") throw new PersistenceError("conflict");
+    const prior = await store.getPublic(campaignId,quote.command.operationId);
+    if (prior.status === "committed") {
+      // The operation is already settled. Never re-quote changed stock or pay again.
+      if (prior.mode !== "game" || prior.expectedRevision !==
+        quote.command.expectedRuntimeRevision ||
+        prior.input !== astraPurchaseLiteral(context,quote))
+        throw new PersistenceError("conflict");
+      return readFoundationCampaign(campaignId);
+    }
+  }
+  const recomputed = astraRecordedPurchase(context,quote);
+  const play = await store.readPlay(campaignId);
+  if (play.revision !== quote.command.expectedRuntimeRevision)
+    throw new PersistenceError("conflict");
+  const turn = await commitRecordedPurchase(store,{
+    campaignId,operationId:quote.command.operationId,timeline,
+    expectedRevision:quote.command.expectedRuntimeRevision,mode:"game",
+    input:recomputed.literal,companionId:null,
+    listenerIds:[],mechanic:null,
+  },recomputed.intent,recomputed.itemName);
+  if (turn.status !== "committed") throw new DmError("unavailable",true);
+  return readFoundationCampaign(campaignId);
+}
+
+/** Explicit player choice after takeover. Existing runtime command identity
+ * and the Migration-46 Foundation guard own the exact-once update. */
+export async function chooseAstraAdvancement(campaignId: string, raw: unknown) {
+  const row = object(raw, ["requestId", "timeline", "recipientId", "pendingId",
+    "optionId", "expectedTrackVersion", "expectedRevision",
+    "expectedWorldRevision", "expectedStateVersion"]);
+  const requestId = uuid(row.requestId);
+  const recipientId = uuid(row.recipientId);
+  const pendingId = uuid(row.pendingId);
+  if (!isTimelineFence(row.timeline) || typeof row.optionId !== "string" ||
+    !/^[a-z0-9][a-z0-9._:-]{0,79}$/.test(row.optionId) ||
+    ![row.expectedTrackVersion,row.expectedRevision,row.expectedWorldRevision,
+      row.expectedStateVersion].every((value) =>
+        Number.isSafeInteger(value) && Number(value) >= 0))
+    throw new PersistenceError("validation");
+  const { user } = await authorizeCampaign(campaignId);
+  const timeline = await createSaveStore(user.id).fence(campaignId);
+  if (!sameTimeline(timeline,row.timeline)) throw new PersistenceError("conflict");
+  const store = createTurnStore(user.id,undefined,timeline);
+  const result = await store.advanceProgression?.(campaignId, {
+    requestId,campaignId,recipientId,pendingId,optionId:row.optionId,
+    expectedTrackVersion:Number(row.expectedTrackVersion),
+    expectedRevision:Number(row.expectedRevision),
+    expectedWorldRevision:Number(row.expectedWorldRevision),
+    expectedStateVersion:Number(row.expectedStateVersion),
+  });
+  if (!result) throw new PersistenceError("unavailable");
+  return result;
 }
 async function preparationSource(context: LoopContext, bindingId: string) {
   const binding = context.foundation.bindings.find((b) => b.id === bindingId);
@@ -94,6 +183,8 @@ export async function writeFoundationCampaign(
     const request = parseLoopRequest(raw);
     if (request.command.campaignId !== campaignId) throw new LoopError();
     const { user } = await authorizeCampaign(campaignId);
+    const postTakeover = (await createTurnStore(user.id).takeoverStatus?.(campaignId))?.active === true;
+    if (postTakeover && request.kind === "trade") throw new LoopError("unavailable");
     const rpc = worldRpc(user.id),
       store = createLoopStore(rpc, user.id, campaignId);
     if (request.kind !== "quote" && (await store.receipt(request)))
@@ -105,12 +196,15 @@ export async function writeFoundationCampaign(
       request.command.timeline,
     );
     const command = assertLoopCommand(context, request.command);
-    if (request.kind === "quote")
-      return createTradeQuote(
+    if (request.kind === "quote") {
+      const quote = createTradeQuote(
         context,
         command,
         parseTradeIntent(request.input),
       );
+      if (postTakeover) astraRecordedPurchase(context,quote);
+      return quote;
+    }
     let plan: LoopPlan;
     switch (request.kind) {
       case "trade": {

@@ -3,8 +3,11 @@ import type { RecordChange, RuntimeSource } from "./server-contracts.ts";
 import { stableGameplayId } from "./dice.ts";
 import { requireRule, TurnError } from "./turn-errors.ts";
 import { settledCurrencyBalance, settledItemTransfer } from "../progression/settlement-core.ts";
+import { awardEarnedProgression } from "../progression/planning.ts";
+import type { FoundationLoopState } from "../foundation-loop/contracts.ts";
 
 export type AstraSettlementIntent =
+  | { kind: "progression_award"; recipientId: string; trackId: string; amount: number }
   | { kind: "job_offer"; issuerId: string; title: string; description: string;
       currencyName: string | null; currencyAmount: number | null;
       itemName: string | null; itemCategory: "food" | "supply" | "misc" | null;
@@ -28,6 +31,7 @@ export type AstraSettlementPublicOutcome = {
   questStatus: "open" | "complete" | null;
   currency: { name: string; amount: number; resourceKey: string; after: number } | null;
   item: { id: string; name: string; quantity: number } | null;
+  progression?: { trackId: string; value: number; rank: number; pendingIds: string[] };
 };
 
 export type AstraSettlementPlan = {
@@ -39,6 +43,7 @@ export type AstraSettlementPlan = {
     id: string; label: string; resourceKey: string; version: 1;
   } | null;
   publicOutcome: AstraSettlementPublicOutcome;
+  progressionState?: FoundationLoopState;
 };
 
 const asciiCurrency = /^[a-z]+(?: [a-z]+)*$/;
@@ -187,7 +192,21 @@ export function planAstraSettlement(source: RuntimeSource, input: TurnInput,
   const outcome = empty(intent.kind);
   let changes: RecordChange[] = [];
   let currencyDefinition: AstraSettlementPlan["currencyDefinition"] = null;
-  if (intent.kind === "job_offer") {
+  if (intent.kind === "progression_award") {
+    const trackId = intent.trackId;
+    requireRule(intent.recipientId === hero.id && !!source.astraProgressionState &&
+      Number.isInteger(intent.amount) && intent.amount >= 1 && intent.amount <= 100);
+    const baseline = { [hero.id]: source.astraProgressionBaseline ?? [] };
+    const progressionState = awardEarnedProgression(source.astraProgressionState,
+      baseline, hero.id, trackId, intent.amount, input.operationId);
+    const progress = progressionState.progress.find((row) =>
+      row.entityId === hero.id && row.trackId === trackId)!;
+    outcome.progression = { trackId, value: progress.value,
+      rank: progress.rank, pendingIds: progressionState.pending.filter((row) =>
+        row.entityId === hero.id && row.trackId === trackId).map((row) => row.id) };
+    return { schemaVersion: 1, kind: intent.kind, intent, changes: [],
+      currencyDefinition: null, publicOutcome: outcome, progressionState };
+  } else if (intent.kind === "job_offer") {
     presentNpc(source,intent.issuerId);
     requireRule(boundedText(intent.title,120) && boundedText(intent.description,500));
     const hasCurrency = intent.currencyName !== null || intent.currencyAmount !== null;
@@ -349,6 +368,9 @@ export function settlementAuthoringCapabilities(source: RuntimeSource): JsonObje
           issuerId:job.issuerId,rewardTerms:job.rewardTerms}] : [];
   });
   return {controlledPlayerId:controlled.length===1 ? controlled[0] : null,
+    progressionTracks: source.astraProgressionState?.progression === "on"
+      ? source.astraProgressionState.tracks.map((track) => ({ id: track.id,
+          label: track.label, kind: track.kind, thresholds: track.thresholds })) : [],
     presentNpcIds:npcs.map((e)=>e.id),jobs,
     existingCurrencies:(source.astraSettlementCurrencies ?? []).map((c)=>({
       name:c.label,resourceKey:c.resourceKey})),

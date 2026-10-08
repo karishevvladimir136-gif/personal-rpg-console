@@ -14,6 +14,7 @@ import {
   validatedItemTransfer,
   findHaggleGrant,
 } from "../src/lib/commerce/index.ts";
+import { astraRecordedPurchase } from "../src/lib/commerce/astra-trade.ts";
 import {
   fixture,
   id,
@@ -27,6 +28,28 @@ function rejectsWithoutMutation(f, work) {
   assert.throws(work, CommerceValidationError);
   assert.deepEqual(f, before);
 }
+
+test("post-takeover Trade admits only an exact mundane one-item quote",()=>{
+  const f=fixture();
+  const stock=f.context.snapshot.items.find((item)=>item.id===id("stock"));
+  stock.category="food";
+  stock.mechanics="";
+  f.context.state.itemPolicies.find((p)=>p.itemId===stock.id).unitValue=2;
+  f.intent.take[0].quantity=1;
+  const quote=createTradeQuote(f.context,f.command,f.intent);
+  const purchase=astraRecordedPurchase(f.context,quote);
+  assert.equal(purchase.intent.kind,"mundane_purchase");
+  assert.equal(purchase.intent.itemId,stock.id);
+  assert.equal(purchase.intent.price,2);
+  assert.match(purchase.literal,/Buy 1 Synthetic lantern for 2 credits/);
+  const before=structuredClone(f.context);
+  rejectsWithoutMutation(f.context,()=>astraRecordedPurchase(f.context,
+    {...quote,payment:3}));
+  const sale=createTradeQuote(f.context,commandFor(f.context,"sale"),{
+    ...f.intent,take:[],give:[{itemId:id("coffee"),quantity:1}]});
+  rejectsWithoutMutation(f.context,()=>astraRecordedPurchase(f.context,sale));
+  assert.deepEqual(f.context,before);
+});
 
 test("buy quote and one atomic plan use existing item/storage/resources and stable split identities", () => {
   const f = fixture(),

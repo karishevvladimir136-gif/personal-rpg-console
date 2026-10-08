@@ -91,6 +91,9 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  /** Private claim-pinned mechanics definitions; World authoring stays frozen. */
+  astraProgressionState?: import("../foundation-loop/contracts.ts").FoundationLoopState;
+  astraProgressionBaseline?: string[];
   // Private claim-only mechanics registry and agreed-job terms. These are not
   // part of the public snapshot or player-facing narration source.
   astraSettlementCurrencies?: {
@@ -258,6 +261,12 @@ export type CommitPacket = {
   guidanceProposal: string | null;
 };
 export interface TurnStore {
+  advanceProgression?(campaignId: string, payload: {
+    requestId: string; campaignId: string; expectedRevision: number;
+    expectedWorldRevision: number; expectedStateVersion: number;
+    recipientId: string; pendingId: string; optionId: string;
+    expectedTrackVersion: number;
+  }): Promise<{ status: "selected"; pendingId: string; optionId: string; stateVersion: number }>;
   begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1"): Promise<PublicTurn>;
   takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
   runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;

@@ -406,7 +406,7 @@ test("Journal current adventure presents the public active chapter without manag
   assert.deepEqual(state, before);
 });
 
-test("Journal Quests contains recorded objectives while Adventure lives behind an Advanced surface", () => {
+test("Journal Quests contains recorded objectives while Adventure management lives in Settings", () => {
   const state = sample();
   const before = structuredClone(state);
   const load = renderer(state);
@@ -416,8 +416,11 @@ test("Journal Quests contains recorded objectives while Adventure lives behind a
   ));
   assert.match(html, /Synthetic objective/);
   assert.doesNotMatch(html, /aria-label="Current Adventure"/);
-  assert.match(html, /Advanced · Adventure management/);
+  assert.doesNotMatch(html, /Advanced · Adventure management/);
   assert.doesNotMatch(html, /Prepare Adventure|End Adventure|Abandon/);
+  const settings = readFileSync(resolve(root, "src/components/persistent-settings.tsx"), "utf8");
+  assert.match(settings, /Advanced · Adventure management/);
+  assert.match(settings, /<PersistentAdventures \/>/);
   assert.deepEqual(state, before);
 });
 

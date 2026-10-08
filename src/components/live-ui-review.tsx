@@ -3,6 +3,9 @@
 import { useState } from "react";
 import fixture from "@/lib/v1-completion/preview-fixtures.json";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
+import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import type { FoundationLoopView } from "@/lib/foundation-loop/client-contracts";
+import { foundationUiFixture } from "../../tests/wave4-ui-fixtures.mjs";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
 import { buildMapVisualJob, MAP_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/map-job";
 import { buildRealFrame } from "@/lib/visual-frame/real-frame";
@@ -22,6 +25,7 @@ import { PersistentLibrary } from "./persistent-documents";
 import { CampaignSettingsReview } from "./persistent-settings";
 import { useLanguage } from "./language-context";
 import { Button } from "./ui";
+import { FoundationLoopEditor } from "./foundation-loop/foundation-loop";
 
 const screens = [
   "campaigns",
@@ -35,6 +39,8 @@ const screens = [
   "gallery",
   "sessions",
   "settings",
+  "trade",
+  "progression",
 ] as const;
 type ReviewScreen = (typeof screens)[number];
 
@@ -279,6 +285,64 @@ function syntheticMapPlacements(snapshot: CampaignSnapshot): MapPlacement[] {
   ];
 }
 
+/** A saved synthetic turn exists only in the opt-in visual review. No Game request is sent. */
+function syntheticInlineTurn(snapshot: CampaignSnapshot): PlaySnapshot {
+  const id = (number: number) =>
+    `11111111-1111-4111-8111-${String(number).padStart(12, "0")}`;
+  const session = snapshot.sessions.find((row) => row.id === snapshot.publicState.current_session_id);
+  const scene = snapshot.scenes.find((row) => row.id === snapshot.publicState.current_scene_id);
+  return {
+    campaignId: snapshot.campaign.id,
+    timeline: snapshot.timeline,
+    rulesetId: "console-basic-v1",
+    revision: 2,
+    configured: true,
+    model: null,
+    configuration: {
+      profile: "console-basic-v1",
+      controlledEntityIds: [id(60)],
+      presentEntityIds: [id(60), id(61)],
+      nearbyStorageIds: [],
+      safeLocationIds: [snapshot.publicState.current_location_id!],
+      itemRules: [{ itemId: id(63), tag: "weapon", damage: 3 }],
+    },
+    worldMinutes: 3,
+    turns: [{
+      id: id(109),
+      campaign_id: snapshot.campaign.id,
+      session_id: session?.id ?? null,
+      timeline: snapshot.timeline,
+      mode: "game",
+      input: "I ask Ilya about the lantern.",
+      companionId: null,
+      listenerIds: [],
+      status: "committed",
+      expectedRevision: 1,
+      committedRevision: 2,
+      settingsRevision: 1,
+      created_at: snapshot.campaign.updated_at,
+      updated_at: snapshot.campaign.updated_at,
+      narration: "Ilya sets the repaired lantern on the table. Its light catches the old crossing on the harbor chart.",
+      narrationSceneId: scene?.id ?? null,
+      visualDescription: null,
+      checks: [],
+      proposal: null,
+      failure: null,
+      canRetry: false,
+      canCancel: false,
+    }],
+    restRecords: [],
+    recipes: [],
+    effects: [],
+    encounters: [],
+    participants: [],
+    pendingActions: [],
+    conversations: [],
+    sessionGuidance: [],
+    provenance: [],
+  };
+}
+
 /** Synthetic accepted metadata for inspecting real scene and equipped-art components. */
 function addSyntheticAcceptedSceneAndItem(snapshot: CampaignSnapshot) {
   const id = (number: number) =>
@@ -464,9 +528,13 @@ export function LiveUiReview({
   initialScreen,
   mapPreset,
   galleryTab,
+  reviewInlineTurn = false,
+  reviewItemDetail = false,
 }: {
   initialScreen: string;
   galleryTab?: "Maps";
+  reviewInlineTurn?: boolean;
+  reviewItemDetail?: boolean;
   mapPreset?: {
     level?: "world" | "region" | "local";
     artwork?: "placeholder" | "collapsed";
@@ -484,13 +552,21 @@ export function LiveUiReview({
   addSyntheticAcceptedSceneAndItem(snapshot);
   const reviewMapPlacements = syntheticMapPlacements(snapshot);
   addSyntheticAcceptedMap(snapshot, reviewMapPlacements);
+  const foundationReview = foundationUiFixture() as unknown as FoundationLoopView;
+  foundationReview.postTakeover = true;
+  foundationReview.postTakeoverPurchasableItemIds = [foundationReview.commerce!.merchants[0].stock[0].id];
+  foundationReview.commerce!.merchants[0].stock[0].name = "Travel cloak";
   const content =
     screen === "game" ? (
-      <PersistentGame reviewOnly />
+      <PersistentGame reviewOnly reviewPlay={reviewInlineTurn ? syntheticInlineTurn(snapshot) : undefined} />
     ) : screen === "character" ? (
       <PersistentCharacter reviewOnly />
     ) : screen === "inventory" ? (
-      <PersistentInventory reviewOnly />
+      <PersistentInventory
+        reviewOnly
+        reviewItemRules={[{ itemId: snapshot.items.find((item) => item.name === "Short sword")!.id, tag: "weapon", damage: 3 }]}
+        reviewSelectedItemId={reviewItemDetail ? snapshot.items.find((item) => item.name === "Short sword")?.id : undefined}
+      />
     ) : screen === "party" ? (
       <PersistentParty reviewOnly />
     ) : screen === "journal" ||
@@ -507,6 +583,15 @@ export function LiveUiReview({
       />
     ) : screen === "library" ? (
       <PersistentLibrary reviewOnly />
+    ) : screen === "trade" || screen === "progression" ? (
+      <div className="page">
+        <FoundationLoopEditor
+          section={screen}
+          initialData={foundationReview}
+          load={async () => { throw Error("Synthetic review cannot load owner data"); }}
+          send={async () => { throw Error("Synthetic review cannot write owner data"); }}
+        />
+      </div>
     ) : (
       <CampaignSettingsReview snapshot={snapshot} />
     );
