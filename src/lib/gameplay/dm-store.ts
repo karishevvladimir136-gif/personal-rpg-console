@@ -18,6 +18,7 @@ export function createRpcTurnStore(
   execute: RuntimeRpc,
   model: string | null = null,
   timeline?: TimelineFence,
+  astraDiagnostics = false,
 ): TurnStore {
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
@@ -84,6 +85,9 @@ export function createRpcTurnStore(
       rpc(campaignId, "astra_runtime", { operationId }),
     recordAstraTool: (lease, position, call, result) =>
       rpc(lease.campaignId, "astra_tool", { ...lease, position, call, result }),
+    ...(astraDiagnostics ? { recordAstraStage: (lease: import("./server-contracts.ts").TurnLease,
+      diagnostic: Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]) =>
+      rpc<void>(lease.campaignId, "astra_diagnostic", { ...lease, diagnostic }) } : {}),
     readPlay: async (campaignId) => {
       const result = await rpc<Awaited<ReturnType<TurnStore["readPlay"]>>>(
         campaignId,

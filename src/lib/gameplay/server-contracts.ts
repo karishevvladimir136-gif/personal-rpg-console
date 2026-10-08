@@ -244,6 +244,15 @@ export interface TurnStore {
   takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
   runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
   recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;
+  recordAstraStage?(lease: TurnLease, diagnostic: {
+    stage: "plan" | "final_validated" | "final_checkpoint" | "narration_context" | "narration_provider" |
+      "narration_parse" | "narration_safety" | "narration_checkpoint" | "commit";
+    phase: "entered" | "completed" | "failed";
+    providerResponseReceived: boolean;
+    narrationParseSucceeded: boolean;
+    failureCategory: "configuration" | "provider" | "context" | "validation" |
+      "conflict" | "unavailable" | null;
+  }): Promise<void>;
   readPlay(campaignId: string): Promise<PlaySnapshot>;
   getPublic(campaignId: string, operationId: string): Promise<PublicTurn>;
   claim(campaignId: string, operationId: string): Promise<TurnClaim | null>;

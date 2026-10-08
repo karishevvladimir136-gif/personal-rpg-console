@@ -43,7 +43,11 @@ export interface AstraPrimaryProvider {
   next(context: BuiltContext, input: TurnInput, receipts: AstraToolReceipt[],
     checks: RecordedCheck[], capabilities: AstraCapabilities,
     source: RuntimeSource): Promise<ProviderResult<AstraDecision>>;
-  narrate(context: BuiltContext, input: TurnInput): Promise<ProviderResult<{
+  narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: {
+    responseReceived: boolean;
+    phase: "preflight" | "request" | "error-body" | "response-body" |
+      "provider-json" | "provider-state" | "output-parse" | "completed";
+  }) => void): Promise<ProviderResult<{
     narration: string; visualDescription: string; clarification: null;
   }>>;
 }
@@ -380,6 +384,15 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   const { source, lease } = claim;
   const input = claim.turn.input;
   const checkpoint = structuredClone(claim.turn.checkpoint);
+  type Stage = Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]["stage"];
+  let stage: Stage = "plan";
+  let providerResponseReceived = false;
+  let narrationParseSucceeded = false;
+  const recordStage = async (next: Stage, phase: "entered" | "completed") => {
+    stage = next;
+    await store.recordAstraStage?.(lease, { stage: next, phase,
+      providerResponseReceived, narrationParseSucceeded, failureCategory: null });
+  };
   try {
     if (source.worldTakeover)
       source.worldLogicPresence = {
@@ -403,6 +416,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
     if (command?.action === "continue")
       requireRule(checkpoint.checks.some((c) => isDisplayedCheck(source,c)));
     if (!astra.finalProposal) {
+      await recordStage("plan", "entered");
       const selected = await withMemory(source,input,memory,true,{model:"gpt-6-astra",stage:"plan"});
       const base = buildContext(selected,input,"plan",{model:"gpt-6-astra"});
       const context = narrowContext(base,privateInstructions,{capabilities:caps,
@@ -416,9 +430,14 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         const decision = response.output;
         if (decision.type === "final") {
           requireRule(decision.call === null);
+          await recordStage("plan", "completed");
+          await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
+          await recordStage("final_validated", "completed");
           checkpoint.resolution = astra.finalProposal.resolution;
+          await recordStage("final_checkpoint", "entered");
           await store.checkpoint(lease,checkpoint,"generating");
+          await recordStage("final_checkpoint", "completed");
           break;
         }
         requireRule(decision.type === "tool" && decision.final === null);
@@ -442,27 +461,46 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
     }
     const final = astra.finalProposal!;
     if (!checkpoint.narration) {
+      await recordStage("narration_context", "entered");
       const safe = safePublicSource(source,input);
       const selected = await withMemory(safe,input,memory,false,{model:"gpt-6-astra",stage:"narrate"});
       const base = buildContext(selected,input,"narrate",{model:"gpt-6-astra",
         resolution:final.resolution,checks:checkpoint.checks});
       const context = narrowContext(base,publicInstructions);
-      const response = await provider.narrate(context,input);
+      await recordStage("narration_context", "completed");
+      await recordStage("narration_provider", "entered");
+      const response = await provider.narrate(context,input,(diagnostic) => {
+        providerResponseReceived = diagnostic.responseReceived;
+        if (diagnostic.phase === "output-parse") stage = "narration_parse";
+        if (diagnostic.phase === "completed") narrationParseSucceeded = true;
+      });
+      providerResponseReceived = true;
+      narrationParseSucceeded = true;
+      await recordStage("narration_provider", "completed");
+      await recordStage("narration_parse", "completed");
       checkpoint.narration = response.output;
       checkpoint.usage.push(response.usage);
+      await recordStage("narration_safety", "entered");
       requireRule(typeof checkpoint.narration.narration === "string" &&
         checkpoint.narration.narration.trim().length > 0 &&
         checkpoint.narration.narration.length <= 6000);
       assertNoPrivateDisclosure(source,input,
         checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription);
+      await recordStage("narration_safety", "completed");
+      await recordStage("narration_checkpoint", "entered");
       await store.checkpoint(lease,checkpoint,"generating");
+      await recordStage("narration_checkpoint", "completed");
     }
+    await recordStage("commit", "entered");
     return await store.commit(lease,{ narration:checkpoint.narration.narration,
       visualDescription:checkpoint.narration.visualDescription,
       resolution:final.resolution,privatePatches:final.privatePatches,
       checks:checkpoint.checks,guidanceProposal:null });
   } catch (error) {
     const safe = safeTurnFailure(error);
+    try { await store.recordAstraStage?.(lease, {stage,phase:"failed",
+      providerResponseReceived,narrationParseSucceeded,
+      failureCategory:safe.code}); } catch { /* Preserve the original failure. */ }
     try { return await store.fail(lease,safe.code,safe.retryable); }
     catch { throw new TurnError(safe.code,safe.retryable); }
   }

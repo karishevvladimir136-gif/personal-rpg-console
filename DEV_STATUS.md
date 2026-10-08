@@ -1,3 +1,13 @@
+# Development status — live play blockers — DIAGNOSTIC CHECKPOINT, REWARD AUTHORITY BLOCKED
+
+**Milestone/status (2026-10-07):** On isolated `codex/live-play-blockers` from `4f64a01d69d7c3a299283e63154d559f03d38de0`, a private Astra execution-stage diagnostic is implemented and tested. The historical Iris failed operation is unchanged; its exact original post-proposal rejection remains unknown. Reward handoff and the requested player-facing cleanup are blocked by the post-takeover Foundation reward authority conflict documented in `LIVE_PLAY_BLOCKERS_BOUNDARY.md`. This is not a completed live-play fix or owner-approved activation.
+
+**Changed areas/decisions:** Additive private Migration 44 adds a nullable diagnostic field and service-only runtime action; Astra execution and its existing provider observer record bounded safe stages. No arbitrary Astra write, reward ledger, Foundation freeze exception, UI redesign, or owner data change was made. Migration 44 was tested on disposable databases only and would have to precede activation of this code. The next architecture decision is how the existing approved Foundation reward definitions and exact-once World Event receipt may operate for a post-takeover campaign without reactivating a second world-state authority.
+
+**Verification/remaining work:** Diagnostic tests **10/10**; focused Astra/diagnostic/migration/takeover checks **35/35**; complete suite **2,112 passed / 2,113 total**, zero failures and one existing skip. TypeScript, zero-warning ESLint and production build passed. No provider calls, owner gameplay changes, owner DB migration, merge, or deployment occurred. Reward/currency/item, objective, lodging and the UI acceptance screens remain open; obtain the narrow authority decision before implementation resumes.
+
+---
+
 # Development status — Astra-first new-campaign startup — ISOLATED CANDIDATE
 
 **Milestone/status (2026-10-07):** Accepted Character / Inventory / Game / media / Map SHA `7b08292cdc523f949318184583d6f7dd5e44f0e3` was integrated into local and remote main by fast-forward from `4d4de0b0cc16ff21f84c24b63df7cbd5290f81df`. The real owner database was backed up and advanced from Migration 41 to 42 exactly once, with pre-existing RPG row fingerprints preserved. The Astra-first opening implementation is being verified on the isolated `codex/astra-first-startup` branch. Its additive Migration 43 has only been tested on disposable databases and has not been applied to the owner database. No fresh owner test campaign or owner gameplay turn has been created yet.

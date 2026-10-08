@@ -43,5 +43,6 @@ export function createTurnStore(
     },
     model,
     timeline,
+    true,
   );
 }
