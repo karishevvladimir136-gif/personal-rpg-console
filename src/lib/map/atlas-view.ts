@@ -175,3 +175,16 @@ export function atlasLevelView(
     currentAreaId: projection.currentPath.localId,
   };
 }
+
+/** Open at the deepest mapped current area that actually has public pins.
+ * A provisional current place remains at World until its hierarchy is saved.
+ */
+export function atlasOpeningLevel(projection: AtlasProjection): AtlasLevel {
+  if (projection.currentPath.localId &&
+      atlasLevelView(projection, "local", null, null).pins.length > 0)
+    return "local";
+  if (projection.currentPath.regionId &&
+      atlasLevelView(projection, "region", null, null).pins.length > 0)
+    return "region";
+  return "world";
+}

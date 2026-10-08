@@ -31,9 +31,11 @@ const outcomeLabels: Record<EncounterOutcome, string> = {
 export function GameplayCombat({
   play,
   onSaved,
+  manualControls = true,
 }: {
   play: PlaySnapshot;
   onSaved: () => Promise<void>;
+  manualControls?: boolean;
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
@@ -51,6 +53,7 @@ export function GameplayCombat({
   const [outcome, setOutcome] = useState<EncounterOutcome>("escape");
   if (!data) return null;
   const encounter = play.encounters.find((row) => row.status === "active");
+  if (!encounter && !manualControls) return null;
   const participants = play.participants
     .filter((row) => row.encounter_id === encounter?.id)
     .sort((a, b) => a.turn_order - b.turn_order);
@@ -160,6 +163,7 @@ export function GameplayCombat({
               </li>
             ))}
           </ol>
+          {manualControls && <>
           <RecordSelect
             label={t("Acting character")}
             value={actor?.id ?? ""}
@@ -261,6 +265,7 @@ export function GameplayCombat({
               onSaved={onSaved}
             />
           </details>
+          </>}
         </>
       )}
     </Panel>

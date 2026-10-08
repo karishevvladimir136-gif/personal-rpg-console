@@ -19,54 +19,38 @@
   font-size: 11px;
 }
 
-.liveGame :global(.scene-art > .art),
-.liveGame :global(.scene-art > .art figure),
-.liveGame :global(.scene-art > .art img) {
-  width: 100%;
-  height: 100%;
-}
-
-.liveGame :global(.scene-art > .art figure) {
-  margin: 0;
-}
-
-.liveGame :global(.scene-art > .art img) {
-  max-height: none;
-  border: 0;
-  border-radius: 0;
-  object-fit: cover;
-}
-
-.liveGame :global(.scene-art figcaption),
-.liveGame :global(.location-image figcaption) {
-  display: none;
-}
-
-.atmosphere {
-  display: grid;
-  place-items: center;
-  color: #d9bb80;
+.sceneHeading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 76px;
+  padding: 17px 27px 14px;
+  border-bottom: 1px solid #a7854a24;
   background:
-    radial-gradient(ellipse at 62% 28%, #7f72534a, transparent 42%),
-    radial-gradient(ellipse at 22% 68%, #35526779, transparent 45%),
-    linear-gradient(145deg, #263236 0%, #111a20 56%, #0a1016 100%);
+    radial-gradient(ellipse at 82% 0%, #8b72412a, transparent 55%),
+    linear-gradient(120deg, #202a2a, #11191c 72%);
 }
 
-.atmosphere svg {
-  opacity: 0.35;
-  filter: drop-shadow(0 0 24px #bba06e91);
+.sceneHeading > div {
+  min-width: 0;
 }
 
-.liveGame :global(.scene-art) {
-  overflow: hidden;
+.sceneHeading h2 {
+  margin: 4px 0 0;
+  color: #e8d6b4;
+  font: 22px/1.2 Georgia, serif;
 }
 
-.liveGame :global(.scene-caption) {
-  text-shadow: 0 2px 10px #000;
+.sceneHeading p,
+.sceneHeading > span {
+  margin: 4px 0 0;
+  color: #aeb9b7;
+  font-size: 11px;
 }
 
-.liveGame :global(.scene-caption p) {
-  max-width: 50ch;
+.sceneHeading > span {
+  flex-shrink: 0;
 }
 
 .liveGame :global(.scene-kicker time) {
@@ -86,32 +70,22 @@
   overflow-wrap: anywhere;
 }
 
-.liveGame :global(.scene-actions) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
+.sceneIllustrations {
+  display: grid;
+  gap: 10px;
   margin-top: 12px;
 }
 
-.liveGame :global(.scene-actions .button) {
-  min-height: 32px;
-  padding: 5px 9px;
-  gap: 6px;
-  border-color: #5b503d;
-  background: #1b2424;
+.sceneIllustrations :global(figure) {
+  margin: 0;
 }
 
-.liveGame :global(.scene-actions .button > span:not(.play-symbol)) {
-  font: 11px/1.2 Arial, sans-serif;
-  letter-spacing: .03em;
-}
-
-.liveGame :global(.scene-actions .button small) {
-  display: none;
-}
-
-.liveGame :global(.scene-actions .play-symbol) {
-  font-size: 15px;
+.sceneIllustrations :global(img),
+.sceneIllustrations :global(video) {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  object-fit: contain;
 }
 
 .storyFlow {
@@ -308,19 +282,32 @@
 
 .sceneMedia {
   margin-top: 10px;
-  padding-top: 8px;
-  border-top: 1px solid #ffffff12;
+  padding: 14px;
+  border: 1px solid #635238;
+  border-radius: 5px;
+  background: #141c1e;
 }
 
-.sceneMedia > summary {
-  width: fit-content;
-  color: #aeb9b6;
-  cursor: pointer;
-  font-size: 10px;
+.mediaHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
 }
 
-.sceneMedia[open] > summary {
+.mediaHeading h3 {
+  margin: 0;
   color: #e6ceaa;
+  font: 15px Georgia, serif;
+}
+
+.mediaHeading button {
+  padding: 4px 8px;
+  border: 1px solid #635238;
+  border-radius: 3px;
+  color: #c8c4ba;
+  background: transparent;
+  cursor: pointer;
 }
 
 .heroAvatar {
@@ -366,23 +353,6 @@
 .resources dd {
   margin: 0;
   color: #e6ceaa;
-}
-
-.liveGame :global(.location-image) {
-  overflow: hidden;
-  display: block;
-}
-
-.liveGame :global(.location-image figure),
-.liveGame :global(.location-image img) {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
-
-.liveGame :global(.location-image img) {
-  object-fit: cover;
-  border: 0;
 }
 
 .liveGame :global(.small-quote) {
@@ -433,6 +403,19 @@
   .liveGame :global(.narration) > .opening :global(.prose) {
     font-size: 18px;
     line-height: 1.75;
+  }
+
+  .sceneHeading {
+    min-height: 0;
+    padding: 13px 18px;
+  }
+
+  .sceneHeading h2 {
+    font-size: 19px;
+  }
+
+  .sceneHeading > span {
+    display: none;
   }
 
   .liveGame :global(.gameplay-turns) {

@@ -2,6 +2,8 @@ import "server-only";
 import type { TurnInput } from "../../gameplay/contracts.ts";
 import type { RuntimeSource, AstraToolCall, AstraToolReceipt, PrivatePatch } from "../../gameplay/server-contracts.ts";
 import type { AstraCapabilities, AstraDecision, AstraPrivateFinal, AstraPrimaryProvider } from "../../gameplay/astra-primary.ts";
+import type { AstraSettlementIntent } from "../../gameplay/astra-settlement.ts";
+import { settlementItemTransferAllowed } from "../../gameplay/astra-settlement.ts";
 import { createStructuredRequester } from "./provider.ts";
 import { parseNarration, narrationSchema } from "../../gameplay/dm-schema.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
@@ -12,7 +14,7 @@ const nil = (type: string) => ({ type: [type,"null"] });
 const enumString = (values: string[]) => ({ type: "string", enum: values.length ? values : ["__none__"] });
 const array = (items: unknown) => ({ type: "array", items });
 
-function responseSchema(input: TurnInput, caps: AstraCapabilities) {
+function responseSchema(input: TurnInput, caps: AstraCapabilities, source: RuntimeSource) {
   const actors = caps.entityIds;
   const ids = [...new Set([input.campaignId,...actors,...caps.itemIds,...caps.participantIds])];
   const resourceKeys = [...new Set(Object.values(caps.resources).flat())];
@@ -31,9 +33,52 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities) {
     value:nil("string"),amount:nil("integer") });
   const outcome = obj({ kind:{type:"string"}, entityIds:array(enumString(actors)),
     itemIds:array(enumString([...new Set([...caps.itemIds,...caps.toolItemIds])])), text:{type:"string"} });
+  const npcIds=source.snapshot.entities.filter((e)=>e.kind==="npc" &&
+    source.worldTakeover?.presentEntityIds.includes(e.id)).map((e)=>e.id);
+  const publicSellerIds=npcIds.filter((id)=>source.worldTakeover?.actors.some((a)=>
+    a.entityId===id && typeof a.publicName==="string" && a.publicName.length>0));
+  const playerIds=source.runtime.configuration?.controlledEntityIds ?? [];
+  const jobs=(source.astraSettlementJobs ?? []).filter((j)=>j.rewardTerms &&
+    !j.rewardOperationId).map((j)=>j.questId);
+  const transferable=source.snapshot.items.filter((i)=>i.owner_entity_id &&
+    npcIds.includes(i.owner_entity_id) && i.equipped_entity_id===null &&
+    i.equipped_slot===null && ["food","supply","misc"].includes(i.category) &&
+    i.mechanics.trim()==="" && settlementItemTransferAllowed(source,i.id))
+    .map((i)=>i.id);
+  const purchasable=source.snapshot.items.filter((i)=>
+    i.owner_entity_id && publicSellerIds.includes(i.owner_entity_id) &&
+    transferable.includes(i.id)).map((i)=>i.id);
+  const settlement=source.worldTakeover ? {anyOf:[
+    obj({kind:enumString(["job_offer"]),issuerId:enumString(npcIds),
+      title:{type:"string"},description:{type:"string"},currencyName:nil("string"),
+      currencyAmount:nil("integer"),itemName:nil("string"),
+      itemCategory:{type:["string","null"],enum:["food","supply","misc",null]},
+      itemDescription:nil("string")}),
+    obj({kind:enumString(["job_complete"]),questId:enumString(jobs)}),
+    obj({kind:enumString(["job_reward"]),questId:enumString(jobs),
+      recipientId:enumString(playerIds)}),
+    obj({kind:enumString(["mundane_grant"]),issuerId:enumString(npcIds),
+      recipientId:enumString(playerIds),currencyName:nil("string"),
+      currencyAmount:nil("integer"),itemName:nil("string"),
+      itemCategory:{type:["string","null"],enum:["food","supply","misc",null]},
+      itemDescription:nil("string")}),
+    obj({kind:enumString(["currency_transfer"]),sourceEntityId:enumString(npcIds),
+      recipientId:enumString(playerIds),
+      currencyName:enumString((source.astraSettlementCurrencies ?? []).map((c)=>c.label)),
+      amount:{type:"integer"}}),
+    obj({kind:enumString(["item_transfer"]),sourceEntityId:enumString(npcIds),
+      recipientId:enumString(playerIds),itemId:enumString(transferable),
+      quantity:{type:"integer"}}),
+    obj({kind:enumString(["mundane_purchase"]),sellerId:enumString(publicSellerIds),
+      recipientId:enumString(playerIds),itemId:enumString(purchasable),
+      quantity:{type:"integer"},
+      currencyName:enumString((source.astraSettlementCurrencies ?? []).map((c)=>c.label)),
+      price:{type:"integer"}}),
+    {type:"null"}
+  ]} : {type:"null"};
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
-    outcomes:array(outcome), privatePatches:array(privatePatch) });
+    outcomes:array(outcome), privatePatches:array(privatePatch),settlement });
   return obj({ type:enumString(["tool","final"]),
     call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} });
 }
@@ -58,8 +103,10 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
       (call.itemId !== null && !caps.toolItemIds.includes(String(call.itemId)))) throw new DmError("validation");
     return { type:"tool",call:call as AstraToolCall,final:null };
   }
-  if (raw.type !== "final" || raw.call !== null || !exactKeys(raw.final,
-    ["schemaVersion","worldMinutes","changes","outcomes","privatePatches"])) throw new DmError("validation");
+  if (raw.type !== "final" || raw.call !== null ||
+    !(exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","settlement"]) ||
+      exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches"])))
+    throw new DmError("validation");
   const value = raw.final;
   if (value.schemaVersion !== 1 || !Array.isArray(value.changes) ||
     value.changes.length > 12 || !Array.isArray(value.outcomes) ||
@@ -127,9 +174,28 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     if(existing)existing.values=values;
     else changes.push({family:"encounter_participants",id:p.id,expectedRevision:null,values});
   }
+  const settlement=Object.hasOwn(value,"settlement") ? value.settlement : null;
+  if (settlement !== null) {
+    if (!source.worldTakeover || !settlement || typeof settlement!=="object" ||
+      Array.isArray(settlement)) throw new DmError("validation");
+    const kind=(settlement as Record<string,unknown>).kind;
+    const fields:Record<string,string[]>={
+      job_offer:["kind","issuerId","title","description","currencyName","currencyAmount",
+        "itemName","itemCategory","itemDescription"],
+      job_complete:["kind","questId"],job_reward:["kind","questId","recipientId"],
+      mundane_grant:["kind","issuerId","recipientId","currencyName","currencyAmount",
+        "itemName","itemCategory","itemDescription"],
+      currency_transfer:["kind","sourceEntityId","recipientId","currencyName","amount"],
+      item_transfer:["kind","sourceEntityId","recipientId","itemId","quantity"],
+      mundane_purchase:["kind","sellerId","recipientId","itemId","quantity",
+        "currencyName","price"]};
+    if (typeof kind!=="string" || !fields[kind] || !exactKeys(settlement,fields[kind]))
+      throw new DmError("validation");
+  }
   return {type:"final",call:null,final:{worldMinutes:value.worldMinutes as number,
     changes,outcomes:value.outcomes as AstraPrivateFinal["outcomes"],
-    privatePatches:value.privatePatches as PrivatePatch[]}};
+    privatePatches:value.privatePatches as PrivatePatch[],
+    settlement:settlement as AstraSettlementIntent|null}};
 }
 
 export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:typeof fetch }): AstraPrimaryProvider {
@@ -143,7 +209,7 @@ export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:ty
           new TextEncoder().encode(enriched.instructions).length > context.budget.inputCap)
         throw new DmError("context");
       return planRequest(enriched,"plan",input.operationId,
-        (raw)=>parseDecision(raw,source,input,caps,receipts),responseSchema(input,caps));
+        (raw)=>parseDecision(raw,source,input,caps,receipts),responseSchema(input,caps,source));
     },
     narrate: (context,input,observe) =>
       createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",

@@ -406,6 +406,21 @@ test("Journal current adventure presents the public active chapter without manag
   assert.deepEqual(state, before);
 });
 
+test("Journal Quests contains recorded objectives while Adventure lives behind an Advanced surface", () => {
+  const state = sample();
+  const before = structuredClone(state);
+  const load = renderer(state);
+  const html = renderToStaticMarkup(createElement(
+    load("src/components/persistent-secondary-pages.tsx").SecondaryPageView,
+    { screen: "journal", data: state.data, reviewOnly: true },
+  ));
+  assert.match(html, /Synthetic objective/);
+  assert.doesNotMatch(html, /aria-label="Current Adventure"/);
+  assert.match(html, /Advanced · Adventure management/);
+  assert.doesNotMatch(html, /Prepare Adventure|End Adventure|Abandon/);
+  assert.deepEqual(state, before);
+});
+
 for (const language of ["en", "ru"]) {
   test(`${language} ordinary Game puts the opening and composer before optional owner tools`, () => {
     const state = sample(),
@@ -414,12 +429,7 @@ for (const language of ["en", "ru"]) {
     assert.ok(
       html.indexOf("public meeting house is quiet") < html.indexOf("<textarea"),
     );
-    assert.ok(
-      html.indexOf("<textarea") <
-        html.indexOf(
-          translate(language, "Session & continuity").replaceAll("&", "&amp;"),
-        ),
-    );
+    assert.ok(!html.includes(translate(language, "Session & continuity").replaceAll("&", "&amp;")));
     assert.ok(
       html.indexOf("<textarea") <
         html.indexOf(
@@ -434,17 +444,22 @@ for (const language of ["en", "ru"]) {
       html.includes(translate(language, "Edit public state and resume point")),
     );
     assert.ok(html.includes(translate(language, "Add transcript record")));
-    const sceneMedia = language === "ru"
-      ? "Создать изображение этой сцены"
-      : "Create art for this scene";
-    assert.ok(html.includes(sceneMedia));
-    assert.ok(html.indexOf(sceneMedia) < html.indexOf("<textarea"));
+    assert.match(html, /class="sceneHeading"/);
+    assert.doesNotMatch(html, /class="scene-art"/);
     assert.doesNotMatch(html, /FRAME &amp; VIDEO · this scene/);
     const tools = html.indexOf('class="composer-tools"');
     assert.ok(tools > html.indexOf("<textarea"));
     assert.ok(html.includes(translate(language, "OOC")));
     assert.ok(html.includes(translate(language, "Take note")));
     assert.ok(html.includes(translate(language, "What do I know?")));
+    assert.ok(html.indexOf(translate(language, "FRAME"), tools) > tools);
+    assert.ok(html.indexOf(translate(language, "VIDEO"), tools) > tools);
+    assert.match(html.slice(tools), /type="button" aria-controls="game-scene-media"/);
+    assert.doesNotMatch(html, /Scene image &amp; video|Изображение и видео этой сцены/);
+    assert.ok(
+      html.indexOf(translate(language, "Manual encounter controls")) >
+        html.indexOf(translate(language, "Advanced · records & corrections").replaceAll("&", "&amp;")),
+    );
     assert.ok(html.includes("journal?tab=Notes&amp;compose=note"));
     assert.ok(html.includes("journal?tab=Evidence"));
     assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
@@ -499,6 +514,22 @@ for (const language of ["en", "ru"]) {
     assert.deepEqual(state, before);
   });
 }
+
+test("active encounter status remains readable while manual combat actions live in Advanced", () => {
+  const state = sample();
+  state.play.encounters.push({
+    id: id("ui-active-encounter"), campaign_id: state.data.campaign.id,
+    status: "active", round: 3, settings_revision: state.data.settings.revision,
+    public_summary: "Encounter active.",
+  });
+  const html = render("game", state);
+  const advanced = html.indexOf("Advanced · records &amp; corrections");
+  assert.ok(advanced > 0);
+  assert.match(html.slice(0, advanced), /Round 3/);
+  assert.doesNotMatch(html.slice(0, advanced), /Start an encounter|Acting character|Confirm encounter action/);
+  assert.match(html.slice(advanced), /Manual encounter controls/);
+  assert.match(html.slice(advanced), /Acting character/);
+});
 
 test("Game keeps the saved opening before the first committed exchange", () => {
   const state = sample();
@@ -697,9 +728,12 @@ test("EN/RU item inspection is read-only; correction is secondary and existing g
     assert.ok(html.includes(state.data.items[0].mechanics));
     assert.ok(html.includes(translate(language, "Known properties")));
     assert.ok(html.includes("Main hand"));
-    const advanced = html.match(
-      /<details class="itemAdvanced">[\s\S]*?<\/details>/,
-    )?.[0];
+    assert.ok(html.includes(`<dt>${translate(language, "Damage")}</dt><dd>3</dd>`));
+    assert.ok(html.includes(`<dt>${translate(language, "Type")}</dt>`));
+    assert.ok(html.includes(translate(language, "Record details")));
+    const advanced = [...html.matchAll(/<details class="itemAdvanced">[\s\S]*?<\/details>/g)]
+      .map(([value]) => value)
+      .find((value) => value.includes(translate(language, "Advanced · owner correction")));
     assert.ok(advanced);
     assert.ok(
       advanced.includes(translate(language, "Advanced · owner correction")),
@@ -720,6 +754,19 @@ test("EN/RU item inspection is read-only; correction is secondary and existing g
     }));
     assert.ok(!plainHtml.includes(translate(language, "Known properties")));
     assert.ok(!plainHtml.includes(translate(language, "No mechanics recorded.")));
+    const withoutWeaponRule = {
+      ...state,
+      play: {
+        ...state.play,
+        configuration: { ...state.play.configuration, itemRules: [] },
+      },
+    };
+    const noRuleLoad = renderer({ ...withoutWeaponRule, language });
+    const withoutDamage = renderToStaticMarkup(createElement(
+      noRuleLoad("src/components/persistent-records.tsx").ItemDetails,
+      { item: state.data.items[0], onClose: noCall, onEdit: noCall },
+    ));
+    assert.ok(!withoutDamage.includes(`<dt>${translate(language, "Damage")}</dt>`));
     for (const label of [
       "Use, transfer or equip",
       "Use item",

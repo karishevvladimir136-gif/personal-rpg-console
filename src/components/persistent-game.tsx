@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   mockArtForAsset,
   MOCK_ASSET_PREFIX,
@@ -24,7 +24,7 @@ import {
   StoredSceneVideo,
   SceneVideoHistory,
 } from "./visual-frame/current-scene-video";
-import { safeVideoAsset, VIDEO_ASSET_PREFIX } from "@/lib/scene-video/model";
+import { safeVideoAsset, videoDocuments, VIDEO_ASSET_PREFIX } from "@/lib/scene-video/model";
 import type { VideoTransport } from "@/lib/scene-video/client";
 import type { MediaFrameTransport } from "@/lib/visual-frame/media-client";
 import type { CurrentSceneFrameTransport } from "@/lib/visual-frame/current-scene";
@@ -463,8 +463,9 @@ function GameSessionControls({ sessionId }: { sessionId: string | null }) {
     !!memory.error ||
     (!!memory.snapshot?.currentBoundary &&
       memory.snapshot.currentBoundary.state !== "continued");
+  if (!needsReview) return null;
   return (
-    <details className={styles.secondary} open={needsReview || undefined}>
+    <details className={styles.secondary} open>
       <summary>{t("Session & continuity")}</summary>
       <SessionMemoryPanel sessionId={sessionId} />
     </details>
@@ -512,6 +513,23 @@ export function createGameViewModel(data: CampaignSnapshot, play: PlaySnapshot |
         )
         .find((asset) => asset !== undefined)
     : undefined;
+  const sceneVideo = scene
+    ? videoDocuments(data)
+        .filter(
+          ({ value }) =>
+            value.status === "ready" &&
+            value.basis.scene.id === scene.id &&
+            value.resultAssetId !== null,
+        )
+        .reverse()
+        .map(({ value }) =>
+          data.assets.find(
+            (asset) =>
+              asset.id === value.resultAssetId && safeVideoAsset(data, asset),
+          ),
+        )
+        .find((asset) => asset !== undefined)
+    : undefined;
   const sessionScenes = sceneOrder(
     data.scenes.filter((row) => row.session_id === session?.id),
   );
@@ -538,6 +556,7 @@ export function createGameViewModel(data: CampaignSnapshot, play: PlaySnapshot |
     objective,
     clues,
     sceneFrame,
+    sceneVideo,
     openingScene,
     showOpening: Boolean(openingScene || !hasNarration),
     story:
@@ -617,9 +636,9 @@ function GameRecords({
   >({});
   const [resume, setResume] = useState(false);
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
-  const mediaRef = useRef<HTMLDetailsElement>(null);
+  const [mediaOpen, setMediaOpen] = useState(false);
   const view = createGameViewModel(data, runtime.play);
-  const { session, location, scene, player, companions, objective, clues, sceneFrame } = view;
+  const { session, location, scene, player, companions, objective, clues, sceneFrame, sceneVideo } = view;
   const latest = runtime.play?.turns
     .filter((turn) => turn.mode === inputMode)
     .at(-1);
@@ -637,8 +656,8 @@ function GameRecords({
   const historyKey = `${data.timeline?.timelineId ?? "unfenced"}:${data.timeline?.epoch ?? 0}:${inputMode}`;
   function openMedia(target: "frame" | "video") {
     if (runtime.play?.startupPending) return;
-    if (reviewOnly || !mediaRef.current) return;
-    mediaRef.current.open = true;
+    if (reviewOnly) return;
+    setMediaOpen(true);
     requestAnimationFrame(() => {
       document.getElementById(`game-${target}-controls`)?.scrollIntoView({
         behavior: "smooth",
@@ -683,60 +702,29 @@ function GameRecords({
             <LiveCharacterSummary data={data} player={player} />
           </details>
           <article className="scene panel">
-            <div className="scene-art">
-              {sceneFrame ? (
-                <div className="art">
-                  <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
-                </div>
-              ) : (
-                <div className={`art ${gameStyles.atmosphere}`} aria-hidden="true">
-                  <Icon name="Image" size={48} />
-                </div>
-              )}
-              <div className="scene-caption">
-                <div>
-                  <span className="eyebrow">{t("Current scene")}</span>
-                  <h2>{location?.name || scene?.title || t("Your next chapter")}</h2>
-                  {scene?.title && scene.title !== location?.name && <p>{scene.title}</p>}
-                </div>
-                {session && <span>{session.title}</span>}
+            <header className={gameStyles.sceneHeading}>
+              <div>
+                <span className="eyebrow">{t("Current scene")}</span>
+                <h2>{location?.name || scene?.title || t("Your next chapter")}</h2>
+                {scene?.title && scene.title !== location?.name && <p>{scene.title}</p>}
               </div>
-            </div>
+              {session && <span>{session.title}</span>}
+            </header>
             <div className="narration">
               <div className="scene-kicker">
                 <span className="eyebrow">{t("The story so far")}</span>
                 {scene?.created_at && <time dateTime={scene.created_at}>{new Date(scene.created_at).toLocaleString(data.campaign.language)}</time>}
               </div>
               {opening}
-              {!runtime.play?.startupPending && <div className="scene-actions">
-                <Button disabled={reviewOnly} onClick={() => openMedia("frame")}>
-                  <Icon name="Image" size={15} />
-                  <span>{t("FRAME")}<small>{t("Capture this moment")}</small></span>
-                </Button>
-                {!frameTransport && (
-                  <Button disabled={reviewOnly} onClick={() => openMedia("video")}>
-                    <span className="play-symbol">▷</span>
-                    <span>{t("VIDEO")}<small>{t("A cinematic view")}</small></span>
-                  </Button>
-                )}
-              </div>}
-              {!reviewOnly && !runtime.play?.startupPending && (
-                <details className={gameStyles.sceneMedia} ref={mediaRef}>
-                  <summary>{language === "ru" ? "Создать изображение этой сцены" : "Create art for this scene"}</summary>
-                  {scene && <p className="muted">{scene.title}</p>}
-                  <div id="game-frame-controls" className={gameStyles.mediaControls}>
-                    {frameTransport ? (
-                      <CurrentSceneFrame transport={frameTransport} />
-                    ) : (
-                      <CurrentSceneMediaFrame transport={mediaTransport} />
-                    )}
-                  </div>
-                  {!frameTransport && (
-                    <div id="game-video-controls" className={gameStyles.mediaControls}>
-                      <CurrentSceneVideo transport={videoTransport} />
-                    </div>
+              {(sceneFrame || sceneVideo) && (
+                <div className={gameStyles.sceneIllustrations} aria-label={t("Saved scene media")}>
+                  {sceneFrame && (
+                    <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
                   )}
-                </details>
+                  {sceneVideo && (
+                    <StoredSceneVideo asset={sceneVideo} transport={videoTransport} />
+                  )}
+                </div>
               )}
             </div>
           </article>
@@ -760,6 +748,8 @@ function GameRecords({
                   <button type="button" disabled>{language === "ru" ? "Кости" : "Dice"}</button>
                   <button type="button" disabled><Icon name="BookOpen" size={14} />{t("Take note")}</button>
                   <button type="button" disabled><Icon name="CircleHelp" size={14} />{t("What do I know?")}</button>
+                  <button type="button" disabled><Icon name="Image" size={14} />{t("FRAME")}</button>
+                  {!frameTransport && <button type="button" disabled><span aria-hidden="true">▷</span>{t("VIDEO")}</button>}
                 </div>
                 <p className="muted">{t("Synthetic UI review only · no gameplay is submitted.")}</p>
               </div>
@@ -842,6 +832,14 @@ function GameRecords({
                         <Link href={`/campaigns/${data.campaign.id}/journal?tab=Evidence`}>
                           <Icon name="CircleHelp" size={14} /> {t("What do I know?")}
                         </Link>
+                        <button type="button" aria-controls="game-scene-media" onClick={() => openMedia("frame")}>
+                          <Icon name="Image" size={14} /> {t("FRAME")}
+                        </button>
+                        {!frameTransport && (
+                          <button type="button" aria-controls="game-scene-media" onClick={() => openMedia("video")}>
+                            <span aria-hidden="true">▷</span> {t("VIDEO")}
+                          </button>
+                        )}
                       </div>
                       {diceOpen && (
                         <div id="game-recorded-dice" className={gameStyles.recordedDice}>
@@ -857,9 +855,32 @@ function GameRecords({
                 />}
               </>
             )}
+            {!reviewOnly && !runtime.play?.startupPending && runtime.play && mediaOpen && (
+              <div id="game-scene-media" className={gameStyles.sceneMedia}>
+                <div className={gameStyles.mediaHeading}>
+                  <h3>{language === "ru" ? "Изображение и видео этой сцены" : "Scene image & video"}</h3>
+                  <button type="button" onClick={() => setMediaOpen(false)}>{t("Close")}</button>
+                </div>
+                {scene && <p className="muted">{scene.title}</p>}
+                <div id="game-frame-controls" className={gameStyles.mediaControls}>
+                  {frameTransport ? (
+                    <CurrentSceneFrame transport={frameTransport} />
+                  ) : (
+                    <CurrentSceneMediaFrame transport={mediaTransport} />
+                  )}
+                </div>
+                {!frameTransport && (
+                  <div id="game-video-controls" className={gameStyles.mediaControls}>
+                    <CurrentSceneVideo transport={videoTransport} />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-          {runtime.play && !runtime.play.startupPending && (runtime.play.rulesetId !== "world-logic-v1" ||
-            runtime.play.configuration) && (
+          {runtime.play && !runtime.play.startupPending &&
+            (runtime.play.encounters.some((row) => row.status === "active") ||
+              runtime.play.turns.some((turn) => turn.mode === "mechanic") ||
+              runtime.play.rulesetId !== "world-logic-v1") && (
             <details
               className={styles.secondary}
               open={
@@ -883,6 +904,7 @@ function GameRecords({
               <GameplayCombat
                 play={runtime.play}
                 onSaved={runtime.afterMutation}
+                manualControls={false}
               />
               {runtime.play.turns.some((turn) => turn.mode === "mechanic") && (
                 <details
@@ -931,6 +953,16 @@ function GameRecords({
           )}
           <details className={styles.secondary}>
             <summary>{t("Advanced · records & corrections")}</summary>
+            {runtime.play && !runtime.play.startupPending &&
+              (runtime.play.rulesetId !== "world-logic-v1" || runtime.play.configuration) && (
+                <details className={styles.secondary}>
+                  <summary>{t("Manual encounter controls")}</summary>
+                  <GameplayCombat
+                    play={runtime.play}
+                    onSaved={runtime.afterMutation}
+                  />
+                </details>
+              )}
             <Button onClick={() => setResume(true)}>
               {t("Edit public state and resume point")}
             </Button>
@@ -970,11 +1002,6 @@ function GameRecords({
                 {scene?.title && scene.title !== location?.name && <p>{scene.title}</p>}
               </div>
             </div>
-            {sceneFrame && (
-              <div className="location-image">
-                <StoredFrameImage asset={sceneFrame} transport={mediaTransport} />
-              </div>
-            )}
             {location?.description && <em className="small-quote">{location.description}</em>}
             <Link className="text-link" href={`/campaigns/${data.campaign.id}/map`}>
               {t("Open map")}

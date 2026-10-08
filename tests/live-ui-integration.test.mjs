@@ -19,6 +19,12 @@ import {
   buildRealFrame,
   REAL_FRAME_ASSET_PREFIX,
 } from "../src/lib/visual-frame/real-frame.ts";
+import {
+  buildSceneVideo,
+  videoAssetMutation,
+  VIDEO_PREFIX,
+  VIDEO_RESERVATION_USD_MICROS,
+} from "../src/lib/scene-video/model.ts";
 import { selectSubjectVisual } from "../src/lib/visual-frame/subject-visual.ts";
 import {
   buildSubjectVisualJob,
@@ -205,6 +211,86 @@ function draftOnlyPortrait(snapshot, entity) {
     }),
   });
   return assetId;
+}
+
+function acceptedCurrentSceneFrame(snapshot) {
+  const jobId = id("accepted-current-scene-frame");
+  const versionId = id("accepted-current-scene-frame-version");
+  const dispatchId = id("accepted-current-scene-frame-dispatch");
+  const frame = buildRealFrame(
+    snapshot, [], "wide", "gpt-image-2.5-sunburst-2026-09-08",
+    { size: "1536x1024", quality: "high", outputFormat: "png", n: 1 },
+    { expectedHeadId: null, canonGeneration: 0 },
+  );
+  frame.status = "completed";
+  frame.resultAssetId = jobId;
+  frame.dispatch = { requestId: dispatchId, reservationUsdMicros: 400000 };
+  frame.review = { status: "safe_to_review", imageSha256: "c".repeat(64) };
+  snapshot.documents.push({
+    id: jobId, campaign_id: snapshot.campaign.id, revision: 4,
+    current_version_id: versionId, updated_at: "2026-10-05T00:00:00Z",
+    title: "Accepted current scene FRAME", status: "reference",
+    body: VISUAL_FRAME_PREFIX + JSON.stringify(frame),
+  });
+  const output = {
+    storagePath: `${snapshot.campaign.id}/frames/${jobId}/output.png`,
+    sha256: "c".repeat(64), bytes: 100, contentType: "image/png",
+    usage: null, providerRequestId: "synthetic_only",
+  };
+  snapshot.assets.push({
+    id: jobId, campaign_id: snapshot.campaign.id, revision: 1,
+    updated_at: "2026-10-05T00:00:00Z", title: "Accepted current scene FRAME",
+    kind: "image", storage_path: output.storagePath,
+    description: "RPG_OWNER_FRAME_ASSET_V1\n" + JSON.stringify({
+      campaign_id: snapshot.campaign.id,
+      job_document_id: jobId,
+      job_version_id: versionId,
+      scene_id: frame.basis.scene.id,
+      scene_revision: frame.basis.scene.revision,
+      timeline: frame.basis.timeline,
+      provider: "OpenAI", model: frame.model,
+      dispatchRequestId: dispatchId,
+      output,
+      ownerApproval: {
+        requestId: id("accepted-current-scene-frame-approval"),
+        draftVersionId: versionId,
+      },
+    }),
+  });
+  return jobId;
+}
+
+function acceptedCurrentSceneVideo(snapshot, frameId) {
+  const jobId = id("accepted-current-scene-video");
+  const versionId = id("accepted-current-scene-video-version");
+  const value = buildSceneVideo(
+    snapshot, frameId, { expectedHeadId: null, canonGeneration: 0 },
+  );
+  value.status = "ready";
+  value.resultAssetId = jobId;
+  value.dispatch = {
+    requestId: id("accepted-current-scene-video-dispatch"),
+    reservationUsdMicros: VIDEO_RESERVATION_USD_MICROS,
+  };
+  const record = {
+    id: jobId, campaign_id: snapshot.campaign.id, revision: 3,
+    current_version_id: versionId, updated_at: "2026-10-05T00:00:00Z",
+    title: "Accepted current scene VIDEO", status: "reference",
+    body: VIDEO_PREFIX + JSON.stringify(value),
+  };
+  snapshot.documents.push(record);
+  const output = {
+    storagePath: `${snapshot.campaign.id}/videos/${jobId}/output.mp4`,
+    sha256: "d".repeat(64), bytes: 100, contentType: "video/mp4",
+    providerRequestId: id("accepted-current-scene-video-provider"),
+    actualModel: value.model,
+  };
+  const asset = videoAssetMutation(snapshot, record, value, output).payload;
+  snapshot.assets.push({
+    ...asset, campaign_id: snapshot.campaign.id, revision: 1,
+    updated_at: "2026-10-05T00:00:00Z",
+  });
+  return jobId;
 }
 
 /** Mount real components, collect their effects, and block every fetch at the boundary.
@@ -523,6 +609,32 @@ test("Game contextual rail renders recorded public state without promoting narra
   for (const screen of ["character", "map", "journal", "party"])
     assert.ok(rail.includes(`/campaigns/${data.campaign.id}/${screen}`));
   assert.ok(!html.includes(privateCanary));
+  assert.deepEqual(data, before);
+});
+
+test("Game shows accepted scene art beside story text, without an empty hero or draft pixels", async () => {
+  const data = publicSnapshot();
+  const draftId = draftOnlyPortrait(data, data.entities[0]);
+  const acceptedId = acceptedCurrentSceneFrame(data);
+  const videoId = acceptedCurrentSceneVideo(data, acceptedId);
+  const before = structuredClone(data);
+  const h = harness({ data });
+  const view = h.load("src/components/persistent-game.tsx").createGameViewModel(data, null);
+  assert.equal(view.sceneFrame?.id, acceptedId);
+  assert.equal(view.sceneVideo?.id, videoId);
+  const html = h.render("src/components/persistent-game.tsx", "PersistentGame", {
+    reviewOnly: true,
+    mediaTransport: { imageUrl: (_campaignId, assetId) => `/synthetic/${assetId}` },
+    videoTransport: { videoUrl: (_campaignId, assetId) => `/synthetic/${assetId}` },
+  });
+  assert.match(html, /class="sceneHeading"/);
+  assert.doesNotMatch(html, /class="scene-art"/);
+  assert.match(html, new RegExp(`class="sceneIllustrations"[^>]*>.*src="/synthetic/${acceptedId}"`));
+  assert.match(html, new RegExp(`src="/synthetic/${videoId}"`));
+  assert.ok(html.indexOf("Narrative mentions a clue") < html.indexOf('class="sceneIllustrations"'));
+  assert.ok(!html.includes(`/synthetic/${draftId}`));
+  await h.runEffects();
+  assert.deepEqual(h.requests, []);
   assert.deepEqual(data, before);
 });
 

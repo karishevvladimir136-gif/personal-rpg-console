@@ -432,7 +432,7 @@ test("FRAME lifecycle does not invalidate an already claimed text gameplay lease
   }
 });
 
-async function mountedGame(snapshot) {
+async function mountedGame(snapshot, { play = null, mediaOpen = false } = {}) {
   const source = await readFile(
       new URL("src/components/persistent-game.tsx", root),
       "utf8",
@@ -445,10 +445,11 @@ async function mountedGame(snapshot) {
       target: ts.ScriptTarget.ES2022,
     },
   }).outputText;
+  let stateSlot = 0;
   const jsx = (type, props) => ({ type, props }),
     dependencies = {
       react: {
-        useState: (initial) => [initial, () => {}],
+        useState: (initial) => [++stateSlot === 6 ? mediaOpen : initial, () => {}],
         useRef: (initial) => ({ current: initial }),
       },
       "react/jsx-runtime": { jsx, jsxs: jsx, Fragment: "fragment" },
@@ -482,7 +483,7 @@ async function mountedGame(snapshot) {
         }),
       },
       "./gameplay-runtime": {
-        useGameplayRuntime: () => ({ play: null, loading: false, error: null }),
+        useGameplayRuntime: () => ({ play, loading: false, error: null }),
       },
       "./ui": {
         Button: "button",
@@ -502,6 +503,7 @@ async function mountedGame(snapshot) {
     console,
   });
   const render = (name, props) => {
+    stateSlot = 0;
     const boundary = compiledModule.exports[name](props),
       child = boundary.props.children(snapshot);
     return child.type(child.props);
@@ -529,7 +531,10 @@ async function mountedGame(snapshot) {
 }
 test("mounted ordinary Game chooses real FRAME while explicit synthetic transport keeps accepted MOCK review", async () => {
   const f = mediaFixture(),
-    ui = await mountedGame(f.snapshot),
+    play = { startupPending: false, rulesetId: "console-basic-v1",
+      configuration: { controlledEntityIds: [], presentEntityIds: [] },
+      turns: [], encounters: [] },
+    ui = await mountedGame(f.snapshot, { play, mediaOpen: true }),
     normal = ui.nodes(ui.render("PersistentGame", { reviewOnly: false }));
   assert.equal(normal.filter((n) => n.type === "real-frame").length, 1);
   assert.equal(

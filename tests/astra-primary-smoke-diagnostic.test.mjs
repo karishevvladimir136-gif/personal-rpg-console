@@ -72,7 +72,8 @@ test("actual production provider parse failure retains raw synthetic output and 
   const input={operationId:randomUUID(),campaignId:randomUUID()};
   const caps={entityIds:[],itemIds:[],participantIds:[],resources:{},
     toolItemIds:[],locationIds:[]};
-  await assert.rejects(provider.next(context,input,[],[],caps,{}),
+  const source={snapshot:{entities:[],items:[]},runtime:{configuration:null},worldTakeover:null};
+  await assert.rejects(provider.next(context,input,[],[],caps,source),
     (error)=>error.code==="validation");
   assert.equal(state.responses[0].outputText.text,JSON.stringify(raw));
   assert.equal(state.events.at(-1).method,"provider.next");

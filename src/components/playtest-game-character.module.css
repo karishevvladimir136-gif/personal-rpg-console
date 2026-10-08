@@ -568,6 +568,22 @@
   max-width: 300px;
   margin: 0 auto 12px;
 }
+.itemEssentials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 15px 0 20px;
+}
+.itemEssentials > div {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px;
+  border: 1px solid #8c704a6b;
+  border-radius: 4px;
+  background: #a7854a12;
+}
+.itemEssentials dt { color: #b5a586; font-size: 11px; }
+.itemEssentials dd { margin: 0; color: #f0dac0; font: 17px Georgia, serif; }
 .subjectPortrait {
   grid-column: 1;
   grid-row: 1 / span 2;

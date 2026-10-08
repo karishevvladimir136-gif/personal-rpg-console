@@ -226,6 +226,13 @@
   box-shadow: 0 0 15px #0007;
 }
 
+.equipmentImage {
+  width: 57px;
+  height: 57px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
 .equipmentSlot:not(:disabled):hover .equipmentIcon,
 .equipmentSlot:not(:disabled):focus-visible .equipmentIcon {
   background: #57442bed;

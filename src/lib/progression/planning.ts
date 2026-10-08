@@ -1,5 +1,6 @@
 import { isDeepStrictEqual } from "node:util";
 import { stableGameplayId } from "../gameplay/dice.ts";
+import { settledCurrencyBalance } from "./settlement-core.ts";
 import type { RecordChange } from "../gameplay/server-contracts.ts";
 import type { Item } from "../persistence/contracts.ts";
 import type { FoundationCommand } from "../production/contracts.ts";
@@ -429,8 +430,7 @@ export function planReward(
         ) as Record<string, number>;
         const balance = resources[currency.resourceKey] ?? 0;
         integer(balance, 0, MAX_RESOURCE);
-        resources[currency.resourceKey] = balance + share.amount;
-        integer(resources[currency.resourceKey], 0, MAX_RESOURCE);
+        resources[currency.resourceKey] = settledCurrencyBalance(balance, share.amount);
         requireProgression(Object.keys(resources).length <= 50);
         entities.set(entity.id, {
           family: "entities",

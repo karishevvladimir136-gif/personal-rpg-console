@@ -51,6 +51,13 @@
   cursor: default;
 }
 
+.equipmentImage {
+  width: 57px;
+  height: 57px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
 .emptyEquipment {
   bottom: 22px !important;
 }

@@ -1856,5 +1856,11 @@
   "Established capabilities": "Установленные возможности",
   "Established limitations": "Установленные ограничения",
   "Known properties": "Известные свойства",
-  "Core stats": "Основные показатели"
+  "Core stats": "Основные показатели",
+  "Saved scene media": "Сохранённые материалы сцены",
+  "Manual encounter controls": "Ручное управление столкновением",
+  "Damage": "Урон",
+  "Yes": "Да",
+  "No": "Нет",
+  "Record details": "Сведения о записи"
 }

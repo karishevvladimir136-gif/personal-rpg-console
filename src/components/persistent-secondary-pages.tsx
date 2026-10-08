@@ -337,7 +337,6 @@ function JournalView({
       />
       {tab === "Quests" && (
         <>
-          <CurrentAdventure snapshot={data} reviewOnly={reviewOnly} />
           <div className={styles.grid}>
             {records.quests
               .filter((row) => row.status !== "archived")
@@ -349,10 +348,6 @@ function JournalView({
                     {t(quest.status === "complete" ? "Complete" : "Open")}
                   </Badge>
                   <p className={styles.prose}>{quest.description}</p>
-                  <Button onClick={() => setTab("Evidence")}>
-                    {w("Open evidence", "Открыть улики")}{" "}
-                    <Icon name="ArrowRight" size={14} />
-                  </Button>
                 </Panel>
               ))}
           </div>
@@ -361,16 +356,6 @@ function JournalView({
               <Empty>{t("No public quests recorded.")}</Empty>
             </Panel>
           )}
-          <Disclosure
-            campaignId={campaignId}
-            name="journal-adventures"
-            title={w("Advanced · Adventure management", "Дополнительно · Управление приключениями")}
-          >
-            <ReviewTool reviewOnly={reviewOnly}>
-              <PersistentAdventures />
-              <PersistentAdventureLoot />
-            </ReviewTool>
-          </Disclosure>
           <Disclosure
             campaignId={campaignId}
             name="journal-archived"
@@ -401,6 +386,7 @@ function JournalView({
       )}
       {tab === "Timeline" && (
         <>
+          <CurrentAdventure snapshot={data} reviewOnly={reviewOnly} />
           <Panel className={styles.timeline}>
             <h2>{t("The road so far")}</h2>
             {records.sessions
@@ -690,6 +676,16 @@ function JournalView({
           </Disclosure>
         </>
       )}
+      <Disclosure
+        campaignId={campaignId}
+        name="journal-adventures"
+        title={w("Advanced · Adventure management", "Дополнительно · Управление приключениями")}
+      >
+        <ReviewTool reviewOnly={reviewOnly}>
+          <PersistentAdventures />
+          <PersistentAdventureLoot />
+        </ReviewTool>
+      </Disclosure>
       {note && !reviewOnly && (
         <NoteEditor data={data} onClose={() => setNote(false)} />
       )}

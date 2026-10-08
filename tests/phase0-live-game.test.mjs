@@ -8,7 +8,7 @@ import { fixture, id } from "./phase2-mechanics-fixtures.mjs";
 
 const require = createRequire(import.meta.url);
 
-test("live Game keeps the Phase-0 scene and right-rail composition", () => {
+test("live Game keeps the Phase-0 story and right-rail composition without a large empty scene banner", () => {
   const phase = readFileSync(new URL("../src/components/game.tsx", import.meta.url), "utf8");
   const live = readFileSync(new URL("../src/components/persistent-game.tsx", import.meta.url), "utf8");
   const presentation = [
@@ -16,11 +16,8 @@ test("live Game keeps the Phase-0 scene and right-rail composition", () => {
     "game-grid gameplay-live",
     "story-column",
     "scene panel",
-    "scene-art",
-    "scene-caption",
     "narration",
     "scene-kicker",
-    "scene-actions",
     "context-column",
     "character-quick",
     "location-mini",
@@ -33,6 +30,8 @@ test("live Game keeps the Phase-0 scene and right-rail composition", () => {
     assert.ok(phase.includes(`className="${phaseClass}"`), `Phase-0 ${phaseClass}`);
     assert.ok(live.includes(`className="${className}"`), `Live ${className}`);
   }
+  assert.doesNotMatch(live, /className="scene-art"/);
+  assert.match(live, /className=\{gameStyles\.storyFlow\}/);
   const gameOnly = live.slice(live.indexOf("function GameRecords("), live.indexOf("export function PersistentGame("));
   assert.doesNotMatch(gameOnly, /usePreview|<Art\b|mockArtForAsset|James|Jinn|New York/);
 });
@@ -61,6 +60,8 @@ function viewModel(frameDocuments = []) {
           realFrameDocuments: () => frameDocuments,
           ownerAcceptedFrameAsset: (_data, asset) => asset.description === "accepted",
         };
+      if (name.endsWith("/scene-video/model"))
+        return { videoDocuments: () => [], safeVideoAsset: () => false };
       if (name.endsWith("/record-model"))
         return { sceneOrder: (scenes) => scenes.toSorted((a, b) => a.sequence - b.sequence) };
       return { __esModule: true, default: {} };

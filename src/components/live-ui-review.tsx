@@ -5,6 +5,8 @@ import fixture from "@/lib/v1-completion/preview-fixtures.json";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
 import { buildMapVisualJob, MAP_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/map-job";
+import { buildRealFrame } from "@/lib/visual-frame/real-frame";
+import { buildSubjectVisualJob, SUBJECT_VISUAL_ASSET_PREFIX } from "@/lib/visual-frame/subject-job";
 import { VISUAL_FRAME_PREFIX } from "@/lib/visual-frame/model";
 import { CampaignDataPreview } from "./persistence-context";
 import { PersistentShell } from "./persistent-shell";
@@ -277,6 +279,120 @@ function syntheticMapPlacements(snapshot: CampaignSnapshot): MapPlacement[] {
   ];
 }
 
+/** Synthetic accepted metadata for inspecting real scene and equipped-art components. */
+function addSyntheticAcceptedSceneAndItem(snapshot: CampaignSnapshot) {
+  const id = (number: number) =>
+    `11111111-1111-4111-8111-${String(number).padStart(12, "0")}`;
+  const model = "gpt-image-2.5-sunburst-2026-09-08";
+  const parameters = { size: "1536x1024", quality: "high", outputFormat: "png", n: 1 } as const;
+  const basis = { expectedHeadId: null, canonGeneration: 0 };
+  const frameId = id(101);
+  const frameVersionId = id(102);
+  const frameDispatchId = id(103);
+  const frame = buildRealFrame(snapshot, [], "wide", model, parameters, basis);
+  const acceptedFrame = {
+    ...frame,
+    status: "completed" as const,
+    resultAssetId: frameId,
+    dispatch: { requestId: frameDispatchId, reservationUsdMicros: 400000 },
+    review: { status: "safe_to_review" as const, imageSha256: "b".repeat(64) },
+  };
+  snapshot.documents.push({
+    id: frameId,
+    campaign_id: snapshot.campaign.id,
+    revision: 4,
+    updated_at: snapshot.campaign.updated_at,
+    current_version_id: frameVersionId,
+    title: "Synthetic accepted scene art",
+    status: "reference",
+    body: VISUAL_FRAME_PREFIX + JSON.stringify(acceptedFrame),
+  });
+  const frameOutput = {
+    storagePath: `${snapshot.campaign.id}/frames/${frameId}/output.png`,
+    sha256: "b".repeat(64),
+    bytes: 100,
+    contentType: "image/png" as const,
+    usage: null,
+    providerRequestId: "synthetic_ui_only",
+  };
+  snapshot.assets.push({
+    id: frameId,
+    campaign_id: snapshot.campaign.id,
+    revision: 1,
+    updated_at: snapshot.campaign.updated_at,
+    title: "Synthetic accepted scene art",
+    kind: "image",
+    storage_path: frameOutput.storagePath,
+    description: "RPG_OWNER_FRAME_ASSET_V1\n" + JSON.stringify({
+      campaign_id: snapshot.campaign.id,
+      job_document_id: frameId,
+      job_version_id: frameVersionId,
+      scene_id: frame.basis.scene.id,
+      scene_revision: frame.basis.scene.revision,
+      timeline: frame.basis.timeline,
+      provider: "OpenAI",
+      model,
+      dispatchRequestId: frameDispatchId,
+      output: frameOutput,
+      ownerApproval: { requestId: id(104), draftVersionId: frameVersionId },
+    }),
+  });
+
+  const itemId = id(63);
+  const itemJobId = id(105);
+  const itemVersionId = id(106);
+  const itemDispatchId = id(107);
+  const itemJob = buildSubjectVisualJob(
+    snapshot, { kind: "item", id: itemId }, [], model, parameters, basis,
+  );
+  const acceptedItem = {
+    ...itemJob,
+    status: "completed" as const,
+    resultAssetId: itemJobId,
+    dispatch: { requestId: itemDispatchId, reservationUsdMicros: 400000 },
+    review: { status: "safe_to_review" as const, imageSha256: "c".repeat(64) },
+  };
+  snapshot.documents.push({
+    id: itemJobId,
+    campaign_id: snapshot.campaign.id,
+    revision: 4,
+    updated_at: snapshot.campaign.updated_at,
+    current_version_id: itemVersionId,
+    title: "Synthetic accepted sword art",
+    status: "reference",
+    body: VISUAL_FRAME_PREFIX + JSON.stringify(acceptedItem),
+  });
+  const itemOutput = {
+    storagePath: `${snapshot.campaign.id}/frames/${itemJobId}/output.png`,
+    sha256: "c".repeat(64),
+    bytes: 100,
+    contentType: "image/png" as const,
+    usage: null,
+    providerRequestId: "synthetic_ui_only",
+  };
+  snapshot.assets.push({
+    id: itemJobId,
+    campaign_id: snapshot.campaign.id,
+    revision: 1,
+    updated_at: snapshot.campaign.updated_at,
+    title: "Synthetic accepted sword art",
+    kind: "image",
+    storage_path: itemOutput.storagePath,
+    description: SUBJECT_VISUAL_ASSET_PREFIX + JSON.stringify({
+      campaign_id: snapshot.campaign.id,
+      job_document_id: itemJobId,
+      job_version_id: itemVersionId,
+      subject: itemJob.basis.subject,
+      timeline: itemJob.basis.timeline,
+      provider: "OpenAI",
+      model,
+      dispatchRequestId: itemDispatchId,
+      output: itemOutput,
+      ownerApproval: { requestId: id(108), draftVersionId: itemVersionId },
+    }),
+  });
+}
+
 /** A metadata-only accepted example. Review rendering uses CSS art and never requests stored pixels. */
 function addSyntheticAcceptedMap(snapshot: CampaignSnapshot, placements: MapPlacement[]) {
   const id = (number: number) =>
@@ -365,6 +481,7 @@ export function LiveUiReview({
       : "campaigns",
   );
   const snapshot = syntheticSnapshot();
+  addSyntheticAcceptedSceneAndItem(snapshot);
   const reviewMapPlacements = syntheticMapPlacements(snapshot);
   addSyntheticAcceptedMap(snapshot, reviewMapPlacements);
   const content =

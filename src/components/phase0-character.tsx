@@ -9,6 +9,7 @@ import { EQUIPPED_FILTER, inventoryCategoryLabel } from "@/lib/live-inventory-vi
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { GenerateVisual } from "./visual-frame/generate-visual";
+import { EquippedItemArt } from "./visual-frame/equipped-item-art";
 import { Icon, Panel } from "./ui";
 import styles from "./phase0-character.module.css";
 
@@ -69,7 +70,7 @@ export function CharacterEquipmentDoll({
               >
                 <span>{slot.label}</span>
                 <span className={`equipment-icon ${styles.equipmentIcon}`}>
-                  <Icon name={item ? itemIcon(item.category) : "Package"} size={24} />
+                  <EquippedItemArt snapshot={data} item={item} className={styles.equipmentImage} />
                 </span>
                 <small>{item?.name || t("Empty")}</small>
               </button>

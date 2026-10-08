@@ -2,6 +2,7 @@ import type { ItemPolicy, LoopContext } from "../foundation-loop/contracts.ts";
 import type { RecordChange } from "../gameplay/server-contracts.ts";
 import type { FoundationCommand } from "../production/contracts.ts";
 import { stableGameplayId } from "../gameplay/dice.ts";
+import { settledItemTransfer } from "../progression/settlement-core.ts";
 import {
   isLive,
   ownedItem,
@@ -101,59 +102,19 @@ export function itemTransferChanges(
       storage.id !== item.storage_id,
     "unavailable",
   );
-  const values = {
-    quantity,
-    owner_entity_id: destinationEntityId,
-    storage_id: destinationStorageId,
-    equipped_entity_id: null,
-    equipped_slot: null,
-  };
-  if (item.quantity === quantity)
-    return {
-      changes: [
-        {
-          family: "items",
-          id: item.id,
-          expectedRevision: item.revision,
-          values,
-        },
-      ],
-      transferredItemId: item.id,
-      itemPolicy: structuredClone(policy),
-      split: false,
-    };
   const transferredItemId = stableGameplayId(
     command.operationId,
     `commerce:transfer:${item.id}:${destinationEntityId}:${destinationStorageId}`,
   );
-  requireCommerce(
+  if (item.quantity > quantity) requireCommerce(
     !context.snapshot.items.some((i) => i.id === transferredItemId) &&
       !context.state.itemPolicies.some((p) => p.itemId === transferredItemId),
     "conflict",
   );
-  return {
-    changes: [
-      {
-        family: "items",
-        id: item.id,
-        expectedRevision: item.revision,
-        values: { quantity: item.quantity - quantity },
-      },
-      {
-        family: "items",
-        id: transferredItemId,
-        expectedRevision: null,
-        values: {
-          name: item.name,
-          category: item.category,
-          description: item.description,
-          mechanics: item.mechanics,
-          ...values,
-        },
-      },
-    ],
-    transferredItemId,
-    itemPolicy: { ...policy, itemId: transferredItemId, version: 1 },
-    split: true,
-  };
+  const settled = settledItemTransfer(item, quantity, destinationEntityId,
+    destinationStorageId, transferredItemId);
+  return { ...settled,
+    itemPolicy: settled.split
+      ? { ...policy, itemId: settled.transferredItemId, version: 1 }
+      : structuredClone(policy) };
 }

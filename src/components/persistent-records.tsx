@@ -12,6 +12,8 @@ import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
 import { LiveDisclosure } from "./live-disclosure";
 import { GenerateVisual } from "./visual-frame/generate-visual";
+import { EquippedItemArt } from "./visual-frame/equipped-item-art";
+import { useGameplayRuntime } from "./gameplay-runtime";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
 import { LiveInventoryPresentation } from "./live-inventory-presentation";
@@ -853,9 +855,19 @@ export function ItemDetails({
 }) {
   const { t } = useLanguage();
   const { data } = useCampaignData();
+  const { play } = useGameplayRuntime(reviewOnly);
   const equipped = data?.entities.find(
     (row) => row.id === item.equipped_entity_id,
   );
+  const equippedSlot = equipped?.equipment_slots.find(
+    (slot) => slot.id === item.equipped_slot,
+  );
+  const weaponRule = data && play?.campaignId === data.campaign.id &&
+    sameTimeline(play.timeline, data.timeline) && item.campaign_id === data.campaign.id
+    ? play.configuration?.itemRules.find(
+      (rule) => rule.itemId === item.id && rule.tag === "weapon",
+    )
+    : null;
   return (
     <Modal title={item.name} onClose={onClose}>
       <div className="item-hero">
@@ -868,51 +880,59 @@ export function ItemDetails({
         ) : (
           <Icon name={itemIcon(item.category)} size={52} />
         )}
-        <Badge>{item.category}</Badge>
       </div>
       <p className="prose">
         {item.description || t("No description recorded.")}
       </p>
-      {item.mechanics.trim().length > 0 && (
-        <Panel title={t("Known properties")}>
-          <p style={{ whiteSpace: "pre-wrap" }}>{item.mechanics}</p>
-        </Panel>
-      )}
-      <dl className="stats-list">
+      <dl className={`stats-list ${styles.itemEssentials}`}>
+        <div>
+          <dt>{t("Type")}</dt>
+          <dd>{t(item.category)}</dd>
+        </div>
+        {weaponRule?.damage != null && (
+          <div>
+            <dt>{t("Damage")}</dt>
+            <dd>{weaponRule.damage}</dd>
+          </div>
+        )}
         <div>
           <dt>{t("Quantity")}</dt>
           <dd>{item.quantity}</dd>
         </div>
         <div>
-          <dt>{t("Owner")}</dt>
-          <dd>
-            {data?.entities.find((row) => row.id === item.owner_entity_id)
-              ?.name || t("None recorded")}
-          </dd>
+          <dt>{t("Equipped")}</dt>
+          <dd>{equipped ? t("Yes") : t("No")}</dd>
         </div>
-        <div>
-          <dt>{t("Storage")}</dt>
-          <dd>
-            {data?.storages.find((row) => row.id === item.storage_id)?.name ||
-              t("Not recorded")}
-          </dd>
-        </div>
-        <div>
-          <dt>{t("Equipped by")}</dt>
-          <dd>{equipped?.name || t("Not equipped")}</dd>
-        </div>
-        {equipped && (
+        {equippedSlot && (
           <div>
             <dt>{t("Equipment slot")}</dt>
-            <dd>
-              {equipped.equipment_slots.find(
-                (slot) => slot.id === item.equipped_slot,
-              )?.label || t("Not recorded")}
-            </dd>
+            <dd>{equippedSlot.id === "hand" ? t("Main hand") : equippedSlot.label}</dd>
           </div>
         )}
       </dl>
+      {item.mechanics.trim().length > 0 && (
+        <Panel title={t("Known properties")}>
+          <p style={{ whiteSpace: "pre-wrap" }}>{item.mechanics}</p>
+        </Panel>
+      )}
       <GameplayItemActions item={item} />
+      <details className={styles.itemAdvanced}>
+        <summary>{t("Record details")}</summary>
+        <dl className="stats-list">
+          <div>
+            <dt>{t("Owner")}</dt>
+            <dd>{data?.entities.find((row) => row.id === item.owner_entity_id)?.name || t("None recorded")}</dd>
+          </div>
+          <div>
+            <dt>{t("Storage")}</dt>
+            <dd>{data?.storages.find((row) => row.id === item.storage_id)?.name || t("Not recorded")}</dd>
+          </div>
+          <div>
+            <dt>{t("Equipped by")}</dt>
+            <dd>{equipped?.name || t("Not equipped")}</dd>
+          </div>
+        </dl>
+      </details>
       <details className={styles.itemAdvanced}>
         <summary>{t("Advanced · owner correction")}</summary>
         <Button onClick={onEdit}>{t("Correct item record")}</Button>
@@ -979,7 +999,11 @@ function RecordDoll({
               >
                 <span>{slot.label}</span>
                 <span className="equipment-icon">
-                  <Icon name={item ? itemIcon(item.category) : "Package"} size={24} />
+                  {data ? (
+                    <EquippedItemArt snapshot={data} item={item} className={dollStyles.equipmentImage} />
+                  ) : (
+                    <Icon name={item ? itemIcon(item.category) : "Package"} size={24} />
+                  )}
                 </span>
                 <small>{item?.name || t("Empty")}</small>
               </button>

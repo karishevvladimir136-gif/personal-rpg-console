@@ -1,0 +1,40 @@
+# Live play blockers — isolated implementation candidate
+
+## Scope and authority
+
+This branch continues the diagnostic checkpoint at `fe2ed1f6ca0ae2c290b5cd967501e3a4978f18dd`. Migration 44 remains an isolated private execution-stage diagnostic. The historical Iris operation `989bea8a-b105-4e35-852f-a2d897e5e177` was not retried, cancelled, repaired or reattributed; its exact historical rejection remains unknown.
+
+The owner authorized Astra ordinary mechanics after takeover while retaining the Migration 39 freeze on historical World authoring, old World Logic ordinary-play decisions, World Actors, topology, and generic World Events. Migration 45 provides the narrow mechanics bridge. The committed, campaign/timeline-fenced Game operation is its exact-once receipt. It creates no second reward ledger, Item store or Quest store.
+
+## Runtime settlement
+
+The private Astra final may include one bounded settlement intent. Current kinds are `job_offer`, `job_complete`, `job_reward`, `mundane_grant`, `currency_transfer`, `item_transfer`, and `mundane_purchase`. The model cannot supply RecordChanges, revisions, server IDs, SQL, or a receipt identity. TypeScript plans exact changes from the pinned current source; Migration 45 independently recomputes the plan and pins it privately before narration. The public narrator receives only the validated public outcome. The existing Astra final/commit validator still checks the base proposal and generic tool receipts. The settlement wrapper applies the recomputed changes with the existing `runtime_change` inside the same SQL transaction, updates the committed revision, then captures the paid autosave. A failure rolls back narration, mechanics, Quest, Item, currency definition, and save together.
+
+The shared pure settlement core supplies bounded currency arithmetic to existing authored Foundation rewards and Astra rewards, and exact Item transfer changes to existing commerce and Astra transfers. Existing Foundation RewardDefinitions and their pre-takeover path remain intact. A new ordinary job or direct mundane gift needs no pre-authored RewardDefinition.
+
+An ordinary currency name is normalized to bounded lowercase words. A new name derives a stable campaign currency ID and resource key, checks collisions, and appends only a versioned currency definition to the existing mechanics registry. No World Actor, route, thread, policy, historical event or authored World record is changed. Existing compatible definitions are reused. A mundane reward Item is one bounded `food`, `supply` or `misc` record with server-derived identity, empty mechanics and no equipment power. A bounded purchase uses an existing public NPC stock Item and an existing currency: hero debit, NPC credit and Item transfer commit together, with a server-derived split ID if needed. It never offers unknown stock or debits an insufficient balance. Jobs use the existing public Quest record with bounded pinned terms and one reward operation marker. The current Game objective already reads an open durable Quest. Exact replay returns the committed result without paying again.
+
+**Remaining authority boundary:** Historical commerce and progression controls still call `public.rpg_world`. After takeover Migration 39 correctly rejects that path because it would mutate frozen World Foundation loop state and write World Events. The new Astra purchase intent handles one ordinary purchase from recorded, present NPC stock; it does not make the old quote UI valid after takeover or cover every commerce operation. Existing progression tracks, earned progress, pending choices and capability unlocks live in the frozen Foundation. The existing reward/advancement planners also emit World Events, and advancement changes World Actor capabilities. This branch does not reopen those writes or introduce a second progression store. Full post-takeover progression needs a separate narrow mechanics-only authority design, including save/timeline and capability semantics; it is **not verified ready** here. Fresh bootstrap has progression off and no configured track, so no level-up is implied. This sprint does not add a lodging subsystem. `safeLocationIds` and rest records do not express a one-night NPC lodging permission from ordinary dialogue without changing owner/runtime configuration authority, so the DM may narrate hospitality but cannot yet grant a durable rest permission through this narrow settlement field.
+
+## Player-facing closure
+
+- Game gives story and composer the primary space. The scene heading is compact and the Phase-0 ambient treatment is subtle.
+- FRAME and VIDEO sit with OOC, Dice, Take note and What do I know? as secondary composer actions. Accepted media appears beside its scene in the transcript and remains in Gallery; draft pixels stay out of ordinary play.
+- Healthy flow hides request/history controls. Recovery appears when an actual saved-turn problem occurs. Manual encounter controls sit under Advanced.
+- Journal Quests shows recorded jobs/quests/leads. Adventure management moves to Advanced; People still contains ordinary known NPCs.
+- Item Details shows public image, description, type, authoritative weapon damage, equipped slot and ownership in player language. Accepted Item art appears in equipped slots; unaccepted drafts do not.
+- Map distinguishes a Location illustration from Atlas artwork and opens at a populated level of the known current area.
+
+The UI screenshots in `test-results/live-play-ux/` use the real components with a disposable public fixture and schematic locally served accepted art. They make no image request. The read-only preview has no live `PlaySnapshot`, so its Item screenshot cannot show a weapon's Damage value; the focused Item test proves Damage 3 appears only when the authoritative `itemRules` entry is present. A full-page 390px browser capture may stitch the fixed bottom navigation over content outside its viewport; the viewport itself remains usable.
+
+Screenshot files: `game-desktop.jpg`, `game-390px.jpg`, `composer-tools.jpg`, `contextual-media.jpg`, `journal-quests.jpg`, `item-detail.jpg`, `equipment-slot-art.jpg`, `map-art-distinction.jpg`.
+
+## Verification and activation boundary
+
+Disposable clean and populated Migration 43→44→45 tests passed **10/10**. They covered old rows and immutable save manifests, paid job offer/completion/reward, direct lazy currency and Item grant, present NPC transfer, bounded purchase, exact replay, paid save/load isolation, failed pre-commit and injected settlement-stage rollback, restricted Item policy, World Event freeze and private DTO exclusion. The final focused batch passed **70/70**. The complete repository suite passed **2,130/2,131**, zero failures with one existing skip. TypeScript, zero-warning ESLint and production build passed. All provider decisions in these tests were scripted; there were zero real model/media calls.
+
+This candidate remains **blocked for full post-takeover mechanics acceptance** by progression. A safe follow-up must separate earned track/progress/pending mechanics from the frozen historical World Actor and World Event path, including exact operation receipt, save/timeline restoration and capability unlock authority. The existing `character_sheet` bootstrap schema also requires `level` and `tier` to remain null, so a generic level-up must not be inferred from a Quest reward. The limited ordinary purchase path is ready for review, while the historical trade quote UI still has no post-takeover route. No owner activation is authorized by this report.
+
+The prior diagnostic checkpoint is preserved as historical evidence in `LIVE_PLAY_BLOCKERS_BOUNDARY.md`. Migration 44 and Migration 45 are for disposable verification only in this branch. Neither has been applied to the owner database. No owner gameplay, provider/media request, main merge, app activation or deployment is part of this candidate.
+
+The disposable screenshots listed above remain outside the committed repository in ignored `test-results/live-play-ux/` and can be opened directly for visual review.

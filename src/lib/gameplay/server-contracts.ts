@@ -91,6 +91,23 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  // Private claim-only mechanics registry and agreed-job terms. These are not
+  // part of the public snapshot or player-facing narration source.
+  astraSettlementCurrencies?: {
+    id: string; label: string; resourceKey: string; version: number;
+  }[];
+  astraSettlementItemPolicies?: {
+    itemId: string; visibility: "public" | "private";
+    trade: "allowed" | "restricted" | "quest";
+  }[];
+  astraSettlementJobs?: {
+    questId: string; issuerId: string; rewardTerms: {
+      schemaVersion: 1;
+      currencyName: string | null; currencyAmount: number | null;
+      itemName: string | null; itemCategory: "food" | "supply" | "misc" | null;
+      itemDescription: string | null;
+    } | null; rewardOperationId: string | null;
+  }[];
   // Server-pinned private projection for a World Logic-origin playable timeline.
   // Never include this packet in a public DTO or narration source.
   worldTakeover?: {
@@ -187,6 +204,7 @@ export type AstraFinalProposal = {
   toolRefs: string[];
 };
 export type TurnCheckpoint = {
+  astraSettlement?: import("./astra-settlement.ts").AstraSettlementPlan | null;
   astraPrimary?: {
     schemaVersion: 1;
     toolReceipts: AstraToolReceipt[];

@@ -42,6 +42,32 @@ function loadPresentation(selectSubjectVisual) {
     },
     "./phase0-character.module.css": { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) },
   };
+  const artFile = new URL("../src/components/visual-frame/equipped-item-art.tsx", import.meta.url);
+  const artCode = ts.transpileModule(readFileSync(artFile, "utf8"), {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2022,
+      jsx: ts.JsxEmit.ReactJSX,
+      esModuleInterop: true,
+    },
+  }).outputText;
+  const artModule = { exports: {} };
+  const artImports = {
+    "react/jsx-runtime": JSXRuntime,
+    "next/image": stubs["next/image"],
+    "@/lib/persistence/record-model": stubs["@/lib/persistence/record-model"],
+    "@/lib/visual-frame/subject-visual": stubs["@/lib/visual-frame/subject-visual"],
+    "../ui": stubs["./ui"],
+  };
+  vm.runInThisContext(`(function(require,module,exports){${artCode}\n})`, { filename: artFile.pathname })(
+    (name) => {
+      if (!(name in artImports)) throw new Error(`Unexpected art import: ${name}`);
+      return artImports[name];
+    },
+    artModule,
+    artModule.exports,
+  );
+  stubs["./visual-frame/equipped-item-art"] = artModule.exports;
   vm.runInThisContext(`(function(require,module,exports){${compiled}\n})`, { filename: file.pathname })(
     (name) => {
       if (!(name in stubs)) throw new Error(`Unexpected import: ${name}`);
@@ -145,7 +171,9 @@ test("narrow Character layout stacks the sheet and exposes every tab", () => {
 test("Character renders accepted standalone portrait and item art without a reference", () => {
   const { snapshot } = fixture();
   const hero = snapshot.entities[0];
-  const item = { ...snapshot.items[0], owner_entity_id: hero.id };
+  hero.equipment_slots = [{ id: "hand", label: "Main hand", accepts: ["weapon"] }];
+  const item = { ...snapshot.items[0], owner_entity_id: hero.id, equipped_entity_id: hero.id, equipped_slot: "hand" };
+  snapshot.items = [item];
   const model = characterViewModel(snapshot, hero);
   const calls = [];
   const presentation = loadPresentation((_data, subject, options) => {
@@ -162,6 +190,7 @@ test("Character renders accepted standalone portrait and item art without a refe
     data: snapshot, items: [item], onSelect() {},
   }));
   assert.match(portrait, /src="\/accepted-entity\.png"/);
+  assert.match(portrait, /src="\/accepted-item\.png"/);
   assert.match(inventory, /src="\/accepted-item\.png"/);
   assert.ok(calls.every((call) => call.options.acceptedOnly === true));
 });
@@ -169,7 +198,7 @@ test("Character renders accepted standalone portrait and item art without a refe
 test("Character excludes draft art and keeps a literal Equipped category distinct", () => {
   const { snapshot } = fixture();
   const hero = snapshot.entities[0];
-  const model = characterViewModel(snapshot, hero);
+  hero.equipment_slots = [{ id: "hand", label: "Main hand", accepts: ["weapon"] }];
   const presentation = loadPresentation((_data, _subject, options) => {
     assert.equal(options.acceptedOnly, true);
     return null; // A draft is excluded by the accepted-only selector.
@@ -180,9 +209,11 @@ test("Character excludes draft art and keeps a literal Equipped category distinc
   };
   const wornItem = {
     ...snapshot.items[0], id: id("worn-item"), category: "weapon",
-    owner_entity_id: hero.id, equipped_entity_id: hero.id, name: "Road sword",
+    owner_entity_id: hero.id, equipped_entity_id: hero.id, equipped_slot: "hand", name: "Road sword",
   };
   const items = [categoryItem, wornItem];
+  snapshot.items = items;
+  const model = characterViewModel(snapshot, hero);
   assert.deepEqual(presentation.filterCharacterInventory(items, EQUIPPED_FILTER, "", "en").map((item) => item.id), [wornItem.id]);
   assert.deepEqual(presentation.filterCharacterInventory(items, "Equipped", "", "en").map((item) => item.id), [categoryItem.id]);
   const portrait = renderToStaticMarkup(React.createElement(presentation.CharacterEquipmentDoll, {
@@ -192,6 +223,8 @@ test("Character excludes draft art and keeps a literal Equipped category distinc
     data: snapshot, items, onSelect() {},
   }));
   assert.doesNotMatch(portrait + inventory, /<img/);
+  assert.match(portrait, /Main hand: Road sword/);
+  assert.match(portrait, /data-icon="Package"/);
   assert.match(inventory, />Equipped<\/button>/);
   assert.match(inventory, />Category: Equipped<\/button>/);
 });

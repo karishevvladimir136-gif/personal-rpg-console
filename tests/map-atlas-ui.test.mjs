@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { fixture, id } from "./phase2-mechanics-fixtures.mjs";
 import {
   atlasLevelView,
+  atlasOpeningLevel,
   atlasPinStyle,
   projectAtlas,
   visibleAtlasPlacements,
@@ -64,6 +65,28 @@ test("World, Region, and Local show only structured children of the current ance
   assert.equal(atlasLevelView(projection, "region", null, null).currentAreaId, f.region.id);
   assert.equal(atlasLevelView(projection, "world", null, null).currentAreaId, f.world.id);
   assert.deepEqual(projection.unplaced.map((row) => row.id), [f.unplaced.id]);
+});
+
+test("the atlas opens at the deepest populated current level and falls back to a known World pin", () => {
+  const f = atlasFixture();
+  assert.equal(atlasOpeningLevel(projectAtlas(f.snapshot, f.placements)), "local");
+  f.snapshot.publicState.current_location_id = f.region.id;
+  assert.equal(atlasOpeningLevel(projectAtlas(f.snapshot, f.placements)), "region");
+  f.snapshot.publicState.current_location_id = f.world.id;
+  assert.equal(atlasOpeningLevel(projectAtlas(f.snapshot, f.placements)), "world");
+  f.snapshot.publicState.current_location_id = f.local.id;
+  assert.equal(atlasOpeningLevel(projectAtlas(f.snapshot, [])), "world");
+});
+
+test("location illustrations and atlas artwork remain distinct accepted-only presentation", () => {
+  const atlas = readFileSync(new URL("../src/components/atlas-map.tsx", import.meta.url), "utf8");
+  assert.match(atlas, /selectSubjectVisual\([\s\S]*?acceptedOnly: true/);
+  assert.match(atlas, /LOCATION ILLUSTRATION/);
+  assert.match(atlas, /<SubjectVisual snapshot=\{snapshot\} subject=\{\{ kind: "location", id: selected\.id \}\} \/>/);
+  assert.match(atlas, /showArtwork=\{false\}/);
+  assert.match(atlas, /Atlas artwork for this view/);
+  assert.match(atlas, /const level = chosenLevel \?\? atlasOpeningLevel\(projection\)/);
+  assert.match(atlas, /View \$\{fallbackLevel\} instead/);
 });
 
 test("an explicit selected World changes the viewed subtree without changing gameplay current Location", () => {

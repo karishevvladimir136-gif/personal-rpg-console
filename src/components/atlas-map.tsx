@@ -5,12 +5,14 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import type { CampaignSnapshot, Location } from "@/lib/persistence/contracts";
 import { errorMessage } from "@/lib/persistence/client";
-import { atlasLevelView, atlasPinStyle, projectAtlas, type AtlasLevel } from "@/lib/map/atlas-view";
+import { atlasLevelView, atlasOpeningLevel, atlasPinStyle, projectAtlas, type AtlasLevel } from "@/lib/map/atlas-view";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
 import { loadMapLayout, saveMapPlacement } from "@/lib/map/placement-client";
 import { selectMapVisual } from "@/lib/visual-frame/map-job";
+import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { GenerateMap } from "./visual-frame/generate-map";
 import { GenerateVisual } from "./visual-frame/generate-visual";
+import { SubjectVisual } from "./visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon } from "./ui";
 import styles from "./atlas-map.module.css";
@@ -64,7 +66,7 @@ export function AtlasMap({
 }) {
   const { language, t } = useLanguage();
   const w = (en: string, ru: string) => (language === "ru" ? ru : en);
-  const [level, setLevel] = useState<AtlasLevel>(reviewPreset?.level ?? "world");
+  const [chosenLevel, setChosenLevel] = useState<AtlasLevel | null>(reviewPreset?.level ?? null);
   const [placements, setPlacements] = useState<MapPlacement[]>(reviewOnly ? reviewPlacements : []);
   const [layoutError, setLayoutError] = useState("");
   const [selectedWorldId, setSelectedWorldId] = useState<string | null>(null);
@@ -119,19 +121,29 @@ export function AtlasMap({
     () => projectAtlas(snapshot, placements),
     [snapshot, placements],
   );
+  const level = chosenLevel ?? atlasOpeningLevel(projection);
   const view = atlasLevelView(projection, level, selectedWorldId, selectedRegionId);
+  const fallbackLevel = ({
+    world: ["region", "local"],
+    region: ["world", "local"],
+    local: ["region", "world"],
+  } as const)[level].find((option) =>
+    atlasLevelView(projection, option, selectedWorldId, selectedRegionId).pins.length > 0);
   const byId = new Map(projection.placements.map((row) => [row.location_id, row]));
   const currentId = snapshot.publicState.current_location_id;
   const defaultId = view.currentAreaId && view.pins.some((row) => row.location_id === view.currentAreaId)
     ? view.currentAreaId
     : view.pins[0]?.location_id ?? currentId;
   const selected = knownLocation(snapshot, selectedLocationId ?? defaultId);
+  const selectedIllustration = selected && selectSubjectVisual(
+    snapshot, { kind: "location", id: selected.id }, { acceptedOnly: true },
+  );
   const destination = knownLocation(snapshot, destinationId);
   const anchor = knownLocation(snapshot, view.anchorId);
   const mapVisual = selectMapVisual(snapshot, projection.placements, level, view.anchorId);
   const acceptedArt = mapVisual.image;
   const previewArt = reviewOnly && reviewPreset?.artwork === "placeholder";
-  const artworkVisible = showArtwork && (acceptedArt || previewArt);
+  const artworkVisible = showArtwork && (reviewOnly ? previewArt : Boolean(acceptedArt));
   // A provisional pin has no saved revision. Editing uses the actual layout row.
   const editorRow = placements.find((row) => row.location_id === editLocationId);
   const parentLevel = editLevel === "region" ? "world" : "region";
@@ -149,7 +161,7 @@ export function AtlasMap({
     setSelectedLocationId(locationId);
     const row = byId.get(locationId);
     if (!row) return;
-    setLevel(row.level);
+    setChosenLevel(row.level);
     if (row.level === "world") {
       setSelectedWorldId(locationId);
       setSelectedRegionId(null);
@@ -177,7 +189,7 @@ export function AtlasMap({
 
   function preparePlacement() {
     if (!editLocationId || !editReady) return;
-    setLevel(editLevel);
+    setChosenLevel(editLevel);
     if (editLevel === "region") setSelectedWorldId(editParentId);
     if (editLevel === "local") {
       setSelectedRegionId(editParentId);
@@ -249,7 +261,7 @@ export function AtlasMap({
                 type="button"
                 aria-pressed={level === option}
                 className={level === option ? styles.activeTab : ""}
-                onClick={() => { setLevel(option); setSelectedLocationId(null); setPlacing(false); }}
+                onClick={() => { setChosenLevel(option); setSelectedLocationId(null); setPlacing(false); }}
               >
                 {t(option[0].toUpperCase() + option.slice(1))}
               </button>
@@ -271,6 +283,11 @@ export function AtlasMap({
               )}
               {artworkVisible && previewArt && <div className={styles.previewArtwork} aria-hidden="true" />}
               <div className={styles.atlasGrain} aria-hidden="true" />
+              <span className={styles.artworkLabel}>
+                {artworkVisible
+                  ? w("ATLAS ARTWORK · illustrative background", "ИЗОБРАЖЕНИЕ АТЛАСА · условный фон")
+                  : w("KNOWN PLACES · current public records", "ИЗВЕСТНЫЕ МЕСТА · открытые записи")}
+              </span>
               <div
                 ref={placementSurface}
                 className={editorCanUseViewport ? styles.placeSurface : styles.staticSurface}
@@ -323,7 +340,15 @@ export function AtlasMap({
                 )}
               </div>
               {!view.pins.length && (
-                <p className={styles.noPins}>{w("No placed locations at this level. Known places remain below.", "На этом уровне нет меток. Известные места перечислены ниже.")}</p>
+                <div className={styles.noPins}>
+                  <p>{w(
+                    `No known places are placed on this ${level} view yet. The location list remains below.`,
+                    `На уровне «${t(level[0].toUpperCase() + level.slice(1))}» пока нет известных мест с метками. Список мест — ниже.`,
+                  )}</p>
+                  {fallbackLevel && <button type="button" onClick={() => setChosenLevel(fallbackLevel)}>
+                    {w(`View ${fallbackLevel} instead`, `Открыть уровень «${t(fallbackLevel[0].toUpperCase() + fallbackLevel.slice(1))}»`)}
+                  </button>}
+                </div>
               )}
               {placing && <p className={styles.placementHint}>{w("Click or tap to place the pin. Keyboard: Enter places at center; arrow keys move it.", "Нажмите на карту, чтобы разместить метку. Клавиатура: Enter — центр, стрелки — перемещение.")}</p>}
             </div>
@@ -338,7 +363,13 @@ export function AtlasMap({
           <aside className={styles.detail} aria-label={w("Selected location", "Выбранное место")}>
             {selected ? (
               <>
-                <span className="eyebrow">{w("SELECTED PLACE", "ВЫБРАННОЕ МЕСТО")}</span>
+                {selectedIllustration?.image && (
+                  <div className={styles.locationIllustration}>
+                    <span className="eyebrow">{w("LOCATION ILLUSTRATION", "ИЛЛЮСТРАЦИЯ МЕСТА")}</span>
+                    <SubjectVisual snapshot={snapshot} subject={{ kind: "location", id: selected.id }} />
+                  </div>
+                )}
+                <span className="eyebrow">{w("PLACE RECORD", "ЗАПИСЬ О МЕСТЕ")}</span>
                 <h2>{selected.name}</h2>
                 <div className={styles.badges}>
                   <Badge green={selected.status === "visited"}>{t(selected.status === "visited" ? "Visited" : "Known")}</Badge>
@@ -352,9 +383,9 @@ export function AtlasMap({
                 <Button primary disabled={selected.id === currentId} onClick={() => setDestinationId(selected.id)}>
                   {t(selected.id === currentId ? "Current location" : destinationId === selected.id ? "Destination selected" : "Set destination")}
                 </Button>
-                <AtlasDisclosure title={w("Location artwork & details", "Изображение и сведения о месте")} open={reviewPreset?.detail}>
-                  <GenerateVisual snapshot={snapshot} subject={{ kind: "location", id: selected.id }} reviewOnly={reviewOnly} />
-                  <p className={styles.secondaryNote}>{w("This depiction is separate from the atlas background. Neither image changes the place or travel rules.", "Изображение места отдельно от фона карты. Ни одно из них не меняет место или правила путешествия.")}</p>
+                <AtlasDisclosure title={w("Location illustration & history", "Иллюстрация места и история")} open={reviewPreset?.detail}>
+                  <p className={styles.secondaryNote}>{w("This illustration depicts this place. Atlas artwork depicts the wider map behind its pins. Neither image changes the place or travel rules.", "Иллюстрация показывает это место. Изображение атласа служит фоном карты за метками. Ни одно изображение не меняет место или правила путешествия.")}</p>
+                  <GenerateVisual snapshot={snapshot} subject={{ kind: "location", id: selected.id }} reviewOnly={reviewOnly} showArtwork={false} />
                   <time dateTime={selected.updated_at}>{new Date(selected.updated_at).toLocaleDateString(language)}</time>
                 </AtlasDisclosure>
               </>
@@ -378,8 +409,8 @@ export function AtlasMap({
       )}
       {layoutError && <p role="alert" className={styles.secondaryNote}>{layoutError}</p>}
       <div className={styles.lowerPanels}>
-        <AtlasDisclosure title={w("Map artwork", "Изображение карты")}>
-          <p className={styles.secondaryNote}>{w("Cartographic art is optional. Pins and names come from current public records, never from pixels.", "Картографический фон необязателен. Метки и названия берутся из открытых записей, а не из пикселей.")}</p>
+        <AtlasDisclosure title={w("Atlas artwork for this view", "Изображение атласа для этого уровня")}>
+          <p className={styles.secondaryNote}>{w("This optional image is the background for the selected map level, not an illustration of one location. Pins and names come from current public records, never from pixels.", "Это необязательное изображение служит фоном выбранного уровня карты, а не иллюстрацией одного места. Метки и названия берутся из открытых записей, а не из пикселей.")}</p>
           {(acceptedArt || previewArt) && <Button onClick={() => setShowArtwork((value) => !value)}>{showArtwork ? w("Hide artwork", "Скрыть фон") : w("Show artwork", "Показать фон")}</Button>}
           <GenerateMap snapshot={snapshot} placements={projection.placements} level={level} anchorId={view.anchorId} onPlacementsReady={setPlacements} reviewOnly={reviewOnly} />
         </AtlasDisclosure>

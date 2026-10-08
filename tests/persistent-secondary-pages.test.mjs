@@ -331,7 +331,8 @@ test("the first known current place renders on the atlas and enables map review 
   });
   assert.match(html, new RegExp(`${current.name} · (Visited|Known) · Current location`));
   assert.match(html, /This place is shown approximately/);
-  assert.match(html, /Map artwork/);
+  assert.match(html, /Location illustration &amp; history/);
+  assert.match(html, /Atlas artwork for this view/);
   assert.equal(JSON.stringify(data), before);
 });
 

@@ -588,13 +588,11 @@ export function GameplayComposer({
             )}
           </div>
           {inputTools}
-          <p className="muted" role="status">
-            {t(
-              journal.attempt
-                ? "Your accepted action keeps the same identity through retry and refresh."
-                : "Drafts stay in this browser tab. Sending saves the original action to this campaign.",
-            )}
-          </p>
+          {(journal.attempt || journal.command) && (
+            <p className="muted" role="status">
+              {t("Your accepted action keeps the same identity through retry and refresh.")}
+            </p>
+          )}
         </form>
       )}
     </div>

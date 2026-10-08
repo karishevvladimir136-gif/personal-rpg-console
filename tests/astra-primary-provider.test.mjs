@@ -71,3 +71,61 @@ test("production OpenAI adapter keeps Astra/high planning, Astra/medium narratio
     assert.equal(bodies[1].store,false);
   } finally {await f.db.close();}
 });
+
+test("post-takeover provider contract parses bounded settlement intent without raw changes",async()=>{
+  const cid=randomUUID(),hero=randomUUID(),npc=randomUUID(),op=randomUUID();
+  const input={operationId:op,campaignId:cid,expectedRevision:3,mode:"game",
+    input:"I accept the packing job.",companionId:null,listenerIds:[],mechanic:null};
+  const source={worldTakeover:{presentEntityIds:[hero,npc],
+    actors:[{entityId:npc,publicName:"Trader"}]},
+    snapshot:{entities:[{id:npc,kind:"npc"}],items:[]},
+    runtime:{configuration:{controlledEntityIds:[hero]},participants:[]},
+    astraSettlementCurrencies:[],astraSettlementJobs:[]};
+  const caps={entityIds:[hero,npc],itemIds:[],toolItemIds:[],
+    locationIds:[],participantIds:[],resources:{[hero]:[],[npc]:[]}};
+  const settlement={kind:"job_offer",issuerId:npc,title:"Pack the crates",
+    description:"Pack the vegetable crates.",currencyName:"silver",
+    currencyAmount:2,itemName:"vegetables",itemCategory:"food",
+    itemDescription:null};
+  const raw={type:"final",call:null,final:{schemaVersion:1,worldMinutes:0,
+    changes:[],outcomes:[],privatePatches:[],settlement}};
+  let schema;
+  const provider=createAstraPrimaryProvider({apiKey:"synthetic-only",fetcher:async(_url,init)=>{
+    schema=JSON.parse(init.body).text.format.schema;
+    return new Response(JSON.stringify({model:"gpt-6-astra",status:"completed",
+      output:[{type:"message",role:"assistant",status:"completed",
+        content:[{type:"output_text",text:JSON.stringify(raw)}]}],
+      usage:{input_tokens:5,output_tokens:5}}));
+  }});
+  const context={instructions:"Private authoring",input:"{}",
+    budget:modelBudget("gpt-6-astra"),estimatedTokens:12,sourceIds:[]};
+  const parsed=await provider.next(context,input,[],[],caps,source);
+  assert.deepEqual(parsed.output.final.settlement,settlement);
+  const finalSchema=schema.properties.final.anyOf.find((entry)=>entry.type==="object");
+  assert.ok(finalSchema.required.includes("settlement"));
+  assert.equal(finalSchema.properties.settlement.anyOf.at(-1).type,"null");
+  const directGift={kind:"mundane_grant",issuerId:npc,recipientId:hero,
+    currencyName:"silver",currencyAmount:2,itemName:"bread",
+    itemCategory:"food",itemDescription:null};
+  raw.final.settlement=directGift;
+  assert.deepEqual((await provider.next(context,input,[],[],caps,source)).output.final.settlement,
+    directGift);
+  const itemId=randomUUID();
+  source.snapshot.items.push({id:itemId,owner_entity_id:npc,
+    equipped_entity_id:null,equipped_slot:null,category:"food",mechanics:""});
+  source.astraSettlementCurrencies.push({id:"currency:silver",label:"silver",
+    resourceKey:"currency_silver",version:1});
+  const purchase={kind:"mundane_purchase",sellerId:npc,recipientId:hero,
+    itemId,quantity:1,currencyName:"silver",price:2};
+  raw.final.settlement=purchase;
+  assert.deepEqual((await provider.next(context,input,[],[],caps,source)).output.final.settlement,
+    purchase);
+  const purchaseSchema=schema.properties.final.anyOf.find((entry)=>entry.type==="object")
+    .properties.settlement.anyOf.find((entry)=>
+      entry.type==="object" && entry.properties.kind.enum[0]==="mundane_purchase");
+  assert.deepEqual(purchaseSchema.properties.itemId.enum,[itemId]);
+  assert.deepEqual(purchaseSchema.properties.currencyName.enum,["silver"]);
+  raw.final.settlement={...purchase,price:undefined};
+  await assert.rejects(provider.next(context,input,[],[],caps,source),
+    {name:"DmError"});
+});
