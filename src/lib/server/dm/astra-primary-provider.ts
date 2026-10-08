@@ -7,12 +7,41 @@ import { settlementItemTransferAllowed } from "../../gameplay/astra-settlement.t
 import { createStructuredRequester } from "./provider.ts";
 import { parseNarration, narrationSchema } from "../../gameplay/dm-schema.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
+import { validateMechanicChoice } from "../../gameplay/request-validation.ts";
+import { astraMechanicActionKinds } from "../../gameplay/astra-mechanics.ts";
 
 const obj = (properties: Record<string, unknown>) => ({ type: "object",
   additionalProperties: false, properties, required: Object.keys(properties) });
 const nil = (type: string) => ({ type: [type,"null"] });
 const enumString = (values: string[]) => ({ type: "string", enum: values.length ? values : ["__none__"] });
 const array = (items: unknown) => ({ type: "array", items });
+
+/** Repeated dynamic ID selections count toward the provider's total enum
+ * budget unless they are referenced once. References preserve the exact
+ * allowed values and nullability; no broader record-ID enum is introduced. */
+function withSharedEnums(schema: Record<string, unknown>): Record<string, unknown> {
+  const definitions: Record<string, unknown> = {};
+  const names = new Map<string, string>();
+  const visit = (value: unknown): unknown => {
+    if (Array.isArray(value)) return value.map(visit);
+    if (!value || typeof value !== "object") return value;
+    const node = value as Record<string, unknown>;
+    if (Array.isArray(node.enum) && (node.enum.length > 1 ||
+      node.enum.some((entry) => typeof entry === "string" &&
+        /^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(entry)))) {
+      const key = JSON.stringify(node);
+      let name = names.get(key);
+      if (!name) {
+        name = `selection${names.size}`;
+        names.set(key, name);
+        definitions[name] = node;
+      }
+      return { $ref: `#/$defs/${name}` };
+    }
+    return Object.fromEntries(Object.entries(node).map(([key, child]) => [key, visit(child)]));
+  };
+  return { ...(visit(schema) as Record<string, unknown>), $defs: definitions };
+}
 
 function responseSchema(input: TurnInput, caps: AstraCapabilities, source: RuntimeSource) {
   const actors = caps.entityIds;
@@ -58,6 +87,56 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
     !source.astraSettlementItemPolicies?.some((p)=>p.itemId===i.id &&
       p.visibility!=="public")).map((i)=>i.id);
   const merchantBuyers=publicSellerIds;
+  // Propose existing choices only. The resolver owns revisions, rest IDs,
+  // supplies, recovery, elapsed time and every resulting RecordChange.
+  const config=source.runtime.configuration;
+  const mechanicActors=actors.filter((id)=>playerIds.includes(id));
+  const mechanicItems=source.snapshot.items.filter((i)=>
+    !source.astraSettlementItemPolicies?.some((p)=>p.itemId===i.id && p.visibility==="private") &&
+    (actors.includes(i.owner_entity_id ?? "") ||
+    mechanicActors.includes(i.equipped_entity_id ?? "") ||
+    i.owner_entity_id===null || config?.nearbyStorageIds.includes(i.storage_id ?? "")))
+    .map((i)=>i.id);
+  const storageIds=(source.snapshot.storages ?? []).filter((s)=>
+    mechanicActors.includes(s.entity_id ?? "") || s.entity_id===null ||
+    config?.nearbyStorageIds.includes(s.id)).map((s)=>s.id);
+  const questIds=(source.snapshot.quests ?? []).map((q)=>q.id);
+  const restIds=(source.runtime.restRecords ?? []).filter((r)=>
+    r.status==="planned").map((r)=>r.id);
+  const slots=[...new Set(source.snapshot.entities.filter((e)=>
+    mechanicActors.includes(e.id)).flatMap((e)=>
+    (e.equipment_slots ?? []).map((s)=>s.id)))];
+  const quantity=obj({itemId:enumString(mechanicItems),quantity:{type:"integer"}});
+  const restSafety={anyOf:[obj({locationId:enumString(
+    (source.snapshot.locations ?? []).filter((l)=>
+      l.id===source.snapshot.publicState?.current_location_id &&
+      ["known","visited"].includes(l.status)).map((l)=>l.id)),
+    suitable:{type:"boolean"}}),{type:"null"}]};
+  const mechanicAction={anyOf:[
+    obj({kind:enumString(["resource.spend"]),entityId:enumString(mechanicActors),
+      resource:enumString(resourceKeys),amount:{type:"integer"}}),
+    obj({kind:enumString(["item.consume"]),actorId:enumString(mechanicActors),
+      itemId:enumString(mechanicItems),quantity:{type:"integer"}}),
+    obj({kind:enumString(["item.transfer"]),actorId:enumString(mechanicActors),
+      itemId:enumString(mechanicItems),quantity:{type:"integer"},
+      destinationStorageId:enumString(storageIds)}),
+    obj({kind:enumString(["item.equip"]),actorId:enumString(mechanicActors),
+      itemId:enumString(mechanicItems),
+      slot:{anyOf:[enumString(slots),{type:"null"}]}}),
+    obj({kind:enumString(["quest.transition"]),questId:enumString(questIds),
+      status:enumString(["open","complete","archived"])}),
+    obj({kind:enumString(["location.move"]),locationId:enumString(caps.locationIds)}),
+    obj({kind:enumString(["rest.enter"]),restKind:enumString(["short","long"]),
+      participantIds:array(enumString(mechanicActors))}),
+    obj({kind:enumString(["rest.leave"]),restId:enumString(restIds)}),
+    obj({kind:enumString(["rest.complete"]),restId:enumString(restIds),
+      supplies:array(quantity)}),
+    obj({kind:enumString(["recipe.prepare"]),actorId:enumString(mechanicActors),
+      recipe:enumString(["meal","coffee"]),ingredients:array(quantity),
+      outputStorageId:enumString(storageIds)}),
+    obj({kind:enumString(["recipe.serve"]),actorId:enumString(mechanicActors),
+      itemId:enumString(mechanicItems),recipientIds:array(enumString(mechanicActors))}),
+  ]};
   const settlement=source.worldTakeover ? {anyOf:[
     obj({kind:enumString(["progression_award"]),
       recipientId:enumString(playerIds),
@@ -102,6 +181,8 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
       counterpartyId:enumString(merchantBuyers),
       giveItemId:enumString(sellable),giveQuantity:{type:"integer"},
       receiveItemId:enumString(transferable),receiveQuantity:{type:"integer"}}),
+    obj({kind:enumString(["mechanic_actions"]),actions:array(mechanicAction),restSafety}),
+    obj({kind:enumString(["formal_rest"]),restKind:enumString(["short","long"]),restSafety}),
     {type:"null"}
   ]} : {type:"null"};
   const effects=source.worldTakeover
@@ -111,8 +192,8 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
     outcomes:array(outcome), privatePatches:array(privatePatch),effects });
-  return obj({ type:enumString(["tool","final"]),
-    call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} });
+  return withSharedEnums(obj({ type:enumString(["tool","final"]),
+    call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} }));
 }
 
 type RawChange = { family:string; id:string; expectedRevision:number|null;
@@ -238,9 +319,30 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
       mundane_craft:["kind","crafterId","inputs","itemName","itemCategory",
         "itemDescription"],
       item_exchange:["kind","playerId","counterpartyId","giveItemId",
-        "giveQuantity","receiveItemId","receiveQuantity"]};
+        "giveQuantity","receiveItemId","receiveQuantity"],
+      mechanic_actions:["kind","actions","restSafety"],
+      formal_rest:["kind","restKind","restSafety"]};
     if (typeof kind!=="string" || !fields[kind] || !exactKeys(effect,fields[kind]))
       throw new DmError("validation");
+    if (kind==="mechanic_actions" || kind==="formal_rest") {
+      const row=effect as Record<string,unknown>;
+      if (row.restSafety!==null && (!exactKeys(row.restSafety,["locationId","suitable"]) ||
+        typeof row.restSafety.locationId!=="string" ||
+        typeof row.restSafety.suitable!=="boolean")) throw new DmError("validation");
+      if (kind==="formal_rest") {
+        if (!["short","long"].includes(String(row.restKind))) throw new DmError("validation");
+      } else {
+        if (!Array.isArray(row.actions) || row.actions.length<1 ||
+          row.actions.length>6) throw new DmError("validation");
+        try {
+          for (const action of row.actions) {
+            const parsed=validateMechanicChoice(action);
+            if (!(astraMechanicActionKinds as readonly string[]).includes(parsed.kind))
+              throw new DmError("validation");
+          }
+        } catch { throw new DmError("validation"); }
+      }
+    }
   }
   return {type:"final",call:null,final:{worldMinutes:value.worldMinutes as number,
     changes,outcomes:value.outcomes as AstraPrivateFinal["outcomes"],

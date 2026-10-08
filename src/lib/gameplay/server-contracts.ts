@@ -105,7 +105,8 @@ export type RuntimeSource = {
   }[];
   astraSettlementJobs?: {
     questId: string; issuerId: string; rewardTerms: {
-      schemaVersion: 1;
+      schemaVersion?: 1;
+      issuerId?: string;
       currencyName: string | null; currencyAmount: number | null;
       itemName: string | null; itemCategory: "food" | "supply" | "misc" | null;
       itemDescription: string | null;

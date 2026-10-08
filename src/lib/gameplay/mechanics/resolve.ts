@@ -428,7 +428,7 @@ export function resolveMechanics(
     changes.set(key, {
       family,
       id,
-      expectedRevision: previous?.expectedRevision ?? row.revision ?? null,
+      expectedRevision: previous ? previous.expectedRevision : row.revision ?? null,
       values: { ...previous?.values, ...saved },
     });
     Object.assign(row, values);

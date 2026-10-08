@@ -1,4 +1,6 @@
-# Astra Freedom Pass — isolated candidate
+# Astra Freedom Pass — historical checkpoint and closure
+
+The final existing-mechanics and ordered-composition closure is documented in [ASTRA_FREEDOM_CLOSURE.md](ASTRA_FREEDOM_CLOSURE.md). The report below preserves the reviewed `27be7c5` checkpoint, including its then-open rest boundary; it is historical evidence, not the current closure status.
 
 **Status:** disposable implementation candidate. Not activated on the owner database or main branch.
 

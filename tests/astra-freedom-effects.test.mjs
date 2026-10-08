@@ -3,10 +3,10 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { fixture, world } from "./phase35-storage-fixture.mjs";
-import { setup } from "./universal-bootstrap-fixture.mjs";
-import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
-import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
-import { runAstraTurn } from "../src/lib/gameplay/astra-primary.ts";
+
+
+
+
 
 const migration = new URL("../supabase/migrations/202610070047_astra_bounded_effects.sql", import.meta.url);
 
@@ -48,73 +48,7 @@ test("populated 46 to 47 keeps prior rows and old saves load without an effects 
   } finally {await f.db.close();}
 });
 
-const usage = {model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0};
-async function takenOver() {
-  const f = await setup(undefined,"en",47);
-  await f.create();
-  await f.startOpening();
-  const foundation = await f.one("select world from rpg_private.world_foundations where campaign_id=$1",[f.cid]);
-  const hero=foundation.world.actors.find((actor)=>actor.control==="player").entityId;
-  const npc=foundation.world.actors.find((actor)=>actor.control==="autonomous").entityId;
-  const config={profile:"console-basic-v1",controlledEntityIds:[hero],
-    presentEntityIds:foundation.world.actors.map((actor)=>actor.entityId),
-    nearbyStorageIds:[],safeLocationIds:[],itemRules:[]};
-  const play=await f.runtime(f.cid,"play");
-  await f.runtime(f.cid,"configure",{requestId:randomUUID(),campaignId:f.cid,
-    expectedRevision:play.revision,configuration:config});
-  const timeline=await f.fence(f.cid);
-  const row=await f.one(`select r.revision runtime_revision,p.revision public_revision,
-    w.revision world_revision,encode(sha256(convert_to(w.world::text,'UTF8')),'hex') world_digest,
-    t.head_manifest_id head_id,
-    (select coalesce(max(sequence),0) from rpg_private.world_events
-      where campaign_id=r.campaign_id) world_event_sequence
-    from rpg_private.runtime_state r join public.rpg_public_state p using(campaign_id)
-    join rpg_private.world_foundations w using(campaign_id)
-    join rpg_private.timeline_campaigns c using(campaign_id)
-    join rpg_private.timelines t on t.id=c.active_timeline_id
-    where r.campaign_id=$1`,[f.cid]);
-  await f.runtime(f.cid,"astra_takeover",{requestId:randomUUID(),campaignId:f.cid,
-    timeline,expectedRuntimeRevision:row.runtime_revision,
-    expectedWorldRevision:row.world_revision,
-    expectedPublicRevision:row.public_revision,expectedHeadId:row.head_id,
-    expectedWorldDigest:row.world_digest,
-    expectedWorldEventSequence:row.world_event_sequence});
-  const errors=[];
-  const rpc=async(args)=>{
-    try {return {data:await f.runtime(args.p_campaign_id,args.p_action,
-      args.p_payload,args.p_timeline)};}
-    catch(error) {errors.push({action:args.p_action,message:error.message,where:error.where});
-      return {error:{message:error.message,code:error.code}};}
-  };
-  const memoryRpc=async(args)=>{
-    try {return {data:await f.memory(args.p_campaign_id,args.p_action,
-      args.p_payload,args.p_timeline)};}
-    catch(error) {return {error:{message:error.message,code:error.code}};}
-  };
-  const turn=async(text,effects,narrate,forceCommitFailure=false,inspectContext=null,
-    advanceMinutes=0)=>{
-    const fence=await f.fence(f.cid);
-    const store=createRpcTurnStore(f.owner,rpc,"gpt-6-astra",fence,true);
-    const memory=createRpcMemoryStore(f.owner,memoryRpc,fence);
-    const play=await store.readPlay(f.cid);
-    const input={operationId:randomUUID(),campaignId:f.cid,timeline:play.timeline,
-      expectedRevision:play.revision,mode:"game",input:text,
-      companionId:null,listenerIds:[],mechanic:null};
-    if (forceCommitFailure) store.commit=async()=>{throw Error("synthetic commit interruption");};
-    const provider={next:async(ctx,_input,_receipts,_checks,_caps,source)=>{
-      inspectContext?.(ctx);
-      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes+advanceMinutes,
-        changes:[],outcomes:[],privatePatches:[],effects}}};
-    },
-    narrate:async(ctx)=>({usage,output:{narration:narrate(ctx),visualDescription:"",clarification:null}})};
-    const result=await runAstraTurn(input,{store,memory,provider,
-      summaries:{summarize:async(job)=>({usage,output:{schemaVersion:1,
-        selections:job.sources.map((source)=>({sourceId:source.id,
-          version:source.ref.version}))}})}});
-    return {input,result,store};
-  };
-  return {f,hero,npc,errors,turn};
-}
+import { takenOver } from "./astra-freedom-fixture.mjs";
 
 test("pure lodging fiction and optional unsupported effect do not require a durable mechanic",async()=>{
   const {f,errors,turn}=await takenOver();
@@ -196,27 +130,27 @@ test("payment, vegetables and a new job commit once while lodging remains fictio
       {saveId:save.id,label:"Bounded effects restored",recovery:false}));
     assert.equal((await f.one(`select resources->>'currency_silver' balance
       from public.rpg_entities where id=$1`,[hero])).balance,"2");
-    assert.ok((await f.one(`select astra_effects from rpg_private.turns where id=$1`,
+    assert.ok((await f.one(`select astra_ordered_effects astra_effects from rpg_private.turns where id=$1`,
       [committed.input.operationId])).astra_effects);
     assert.doesNotMatch(JSON.stringify(replay),/astraEffects|astra_effects/);
   } finally {await f.db.close();}
 });
 
-test("conflicting durable effects fail before narration and commit nothing",async()=>{
+test("a colliding newly created Item is omitted while its accepted predecessor commits",async()=>{
   const {f,hero,npc,errors,turn}=await takenOver();
   try {
     let narrations=0;
     const gift=(name)=>({kind:"mundane_grant",issuerId:npc,recipientId:hero,
       currencyName:"silver",currencyAmount:2,itemName:name,
       itemCategory:"food",itemDescription:null});
-    const before=await f.one(`select revision from rpg_private.runtime_state where campaign_id=$1`,[f.cid]);
     const conflict=await turn("Give me two separate rewards.",
       [gift("vegetables"),gift("bread")],()=>{narrations++;return "Paid.";});
-    assert.equal(conflict.result.status,"failed",JSON.stringify(errors));
-    assert.equal(narrations,0);
-    assert.equal((await f.one(`select revision from rpg_private.runtime_state where campaign_id=$1`,[f.cid])).revision,before.revision);
+    assert.equal(conflict.result.status,"committed",JSON.stringify(errors));
+    assert.equal(narrations,1);
     assert.equal((await f.one(`select count(*)::integer n from public.rpg_items
-      where campaign_id=$1 and name in ('vegetables','bread')`,[f.cid])).n,0);
+      where campaign_id=$1 and name in ('vegetables','bread')`,[f.cid])).n,1);
+    assert.equal((await f.one(`select resources->>'currency_silver' balance
+      from public.rpg_entities where id=$1`,[hero])).balance,"2");
   } finally {await f.db.close();}
 });
 
@@ -342,7 +276,7 @@ test("mundane craft consumes exact ingredients and records a provenance Item",as
       {saveId:save.id,label:"Craft restored",recovery:false}));
     assert.equal((await f.one(`select count(*)::integer n from public.rpg_items
       where campaign_id=$1 and name='torch'`,[f.cid])).n,1);
-    assert.equal((await f.one(`select astra_effects#>>'{effects,0,kind}' kind
+    assert.equal((await f.one(`select astra_ordered_effects#>>'{effects,0,kind}' kind
       from rpg_private.turns where id=$1`,[made.input.operationId])).kind,
       "mundane_craft");
   } finally {await f.db.close();}

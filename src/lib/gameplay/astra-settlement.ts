@@ -39,14 +39,24 @@ export const legacySettlementKind = (kind: string) =>
 
 /** A bounded non-mechanical request can be declined as a durable effect while
  * the DM still handles its ordinary fictional meaning in the scene. */
-export type AstraEffectIntent = AstraSettlementIntent |
+export type AstraEffectIntent = AstraSettlementIntent | import("./astra-mechanics.ts").AstraMechanicsIntent |
   { kind: "unsupported_optional"; description: string };
 
-export type AstraEffectsPlan = {
+export type AstraLegacyEffectsPlan = {
   schemaVersion: 1;
   effects: AstraSettlementPlan[];
   rejected: { index: number; reason: "not_authorized" }[];
 };
+export type AstraOrderedEffectsPlan = {
+  schemaVersion: 2;
+  effects: (AstraSettlementPlan | import("./astra-mechanics.ts").AstraMechanicsPlan)[];
+  indices: number[];
+  intents: AstraEffectIntent[];
+  rejected: { index: number; reason: "not_authorized" }[];
+  resolution: import("./server-contracts.ts").MechanicsResolution;
+  foundationState: FoundationLoopState | null;
+};
+export type AstraEffectsPlan = AstraLegacyEffectsPlan | AstraOrderedEffectsPlan;
 
 export type AstraSettlementPublicOutcome = {
   kind: AstraSettlementIntent["kind"];
@@ -496,7 +506,7 @@ export function settlementNarrationProjection(plan: AstraSettlementPlan | null):
   return plan ? plan.publicOutcome as unknown as JsonObject : null;
 }
 
-function assertEffectScope(source: RuntimeSource, intent: AstraSettlementIntent) {
+export function assertEffectScope(source: RuntimeSource, intent: AstraSettlementIntent) {
   const campaignId=source.snapshot.campaign.id;
   const controlled=source.runtime.configuration?.controlledEntityIds ?? [];
   requireRule(controlled.length===1);
@@ -534,7 +544,7 @@ function assertEffectScope(source: RuntimeSource, intent: AstraSettlementIntent)
  * writes fail the whole turn before narration; individually unrepresentable
  * optional effects are omitted, never translated into a free-form patch. */
 export function planAstraEffects(source: RuntimeSource, input: TurnInput,
-  intents: AstraEffectIntent[], baseChanges: RecordChange[]): AstraEffectsPlan | null {
+  intents: Exclude<AstraEffectIntent, import("./astra-mechanics.ts").AstraMechanicsIntent>[], baseChanges: RecordChange[]): AstraLegacyEffectsPlan | null {
   requireRule(Array.isArray(intents) && intents.length <= 6);
   if (!intents.length) return null;
   requireRule(input.mode === "game" && !!source.worldTakeover);

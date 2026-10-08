@@ -17,10 +17,12 @@ import { withMemory } from "../memory/context.ts";
 import { validateCharacterPatches } from "./character-model.ts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts.ts";
 import { preflightMemory } from "../memory/lifecycle.ts";
-import { planAstraSettlement, planAstraEffects, settlementAuthoringCapabilities,
+import { planAstraSettlement, settlementAuthoringCapabilities,
   legacySettlementKind,
   settlementNarrationProjection, effectsNarrationProjection,
   type AstraSettlementIntent, type AstraEffectIntent } from "./astra-settlement.ts";
+import { planAstraOrderedEffects } from "./astra-ordered-effects.ts";
+import { mechanicsAuthoringCapabilities } from "./astra-mechanics.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -151,6 +153,7 @@ const privateToolPolicy = {
   final: "When no random resolution or state query is needed, return a final proposal directly.",
 } as const;
 const privatePurchaseInstruction = "For an agreed purchase or sale, use the recorded existing Item and currency, and propose the agreed bounded total (1–20); the server checks actual owner, stock, funds and merchant storage, then transfers both sides atomically. For an agreed item-for-item barter, use item_exchange with two recorded, unequipped Items. Negotiation alone does not transfer anything. Mundane crafting consumes one or two recorded, owned, unequipped ingredients and creates one ordinary food/supply/misc Item without powers. Do not claim a completed sale, barter, craft, rest, resource recovery, condition or status effect without accepted authority. Dialogue may establish a temporary promise or lodging permission; actual rest and recovery require the existing rest mechanics. Never invent stock or debit resources in ordinary changes.";
+const privateMechanicsInstruction = "Effects execute in their listed order against the validated after-state, so compatible payments, purchases, jobs and mechanics may share rows. For formal sleep/recovery use formal_rest with short/long and your bounded safety judgment for the current known Location; the server selects eligible participants and supplies and computes recovery/time. Keep base worldMinutes at currentWorldMinutes when these mechanics calculate elapsed time, so rest or travel time is not counted twice. Ordinary lodging dialogue remains fiction. For supported existing mechanics use mechanic_actions with current IDs. Never author HP recovery, dice, revisions, effect definitions or a safeLocationIds configuration. Missing supplies, unsafe or interrupted rest cannot recover HP. Use generic server tools for check-bearing improvisation; do not invent a new action kind for a fictional verb.";
 const publicInstructions = `You are the same primary DM, narrating this already adjudicated turn. This context is the public and validated outcome projection. Use only the supplied public facts, checks, after-values and accepted astraPrimary.effectsOutcome or historical settlementOutcome; never claim a rejected effect changed HP, money, inventory, Quest or other protected state. Ordinary conversation and temporary fictional permissions may continue without a mechanical record, but do not add an unrecorded payment, item, objective or other mechanical result or expose hidden truth. Preserve suspense, character voice, tactical clarity and earned callbacks. Describe each consequence once; compress repetition and connective prose by roughly 15–20% without reducing good NPC dialogue. Do not choose the player's next action or output a choice menu by default. Return the required narration contract.`;
 
 function safePublicSource(source: RuntimeSource, input: TurnInput): RuntimeSource {
@@ -437,9 +440,10 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       const progress = selected.astraProgressionState?.progress.filter((row) => row.entityId === heroId) ?? [];
       const currentCapabilities = [...new Set([...(selected.astraProgressionBaseline ?? []),
         ...progress.flatMap((row) => row.unlocks)])];
-      const context = narrowContext(base,`${privateInstructions} ${privatePurchaseInstruction} ${progressionInstruction}`,{capabilities:caps,
+      const context = narrowContext(base,`${privateInstructions} ${privatePurchaseInstruction} ${privateMechanicsInstruction} ${progressionInstruction}`,{capabilities:caps,
         toolPolicy:privateToolPolicy,
         settlementAuthority:settlementAuthoringCapabilities(selected),
+        mechanicsAuthority:mechanicsAuthoringCapabilities(selected),
         currentProgression: { progress, currentCapabilities },
         authority:{currentWorldMinutes:source.runtime.worldMinutes,
           locationChangeRequiresTimeAdvance:true}});
@@ -455,12 +459,11 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
           if (decision.final.effects) {
-            const effects = planAstraEffects(selected,input,decision.final.effects,
-              astra.finalProposal.resolution.changes);
+            const effects = planAstraOrderedEffects(selected,input,decision.final.effects,
+              astra.finalProposal.resolution);
             if (effects) {
               checkpoint.astraEffects = effects;
-              if (effects.effects[0] && legacySettlementKind(effects.effects[0].kind))
-                checkpoint.astraSettlement = effects.effects[0];
+              checkpoint.astraSettlement = null;
             }
           } else {
             if (decision.final.settlement)
@@ -500,8 +503,10 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       await recordStage("narration_context", "entered");
       const safe = safePublicSource(source,input);
       const selected = await withMemory(safe,input,memory,false,{model:"gpt-6-astra",stage:"narrate"});
+      const narrationResolution = checkpoint.astraEffects?.schemaVersion === 2
+        ? checkpoint.astraEffects.resolution : final.resolution;
       const base = buildContext(selected,input,"narrate",{model:"gpt-6-astra",
-        resolution:final.resolution,checks:checkpoint.checks});
+        resolution:narrationResolution,checks:checkpoint.checks});
       const effectsOutcome = effectsNarrationProjection(checkpoint.astraEffects ?? null);
       const settlementOutcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
       const context = narrowContext(base,publicInstructions,
