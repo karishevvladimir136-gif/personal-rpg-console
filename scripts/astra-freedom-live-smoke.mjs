@@ -222,15 +222,17 @@ async function saveProof(f,w){
 }
 
 export async function runFreedomSmoke({offline=false,realFetch=fetch,
-  offlineNarrations,offlineProviderFactory}={}){
+  offlineNarrations,offlineProviderFactory,onlyC=false}={}){
   if(!offline && (process.env.ASTRA_FREEDOM_LIVE_SMOKE!=="yes" ||
     process.env.ASTRA_FREEDOM_OFFLINE_GATES!=="passed" || !process.env.OPENAI_API_KEY))
     throw Error("Explicit disposable live authorization, passed offline gates and server key are required");
+  const indices=onlyC?[2]:[0,1,2],maxRequests=onlyC?4:8;
   const state=diagnosticState(offline?"":process.env.OPENAI_API_KEY,
-    {maxRequests:8,maxSpendUsd:8});
+    {maxRequests,maxSpendUsd:8});
   state.providerDiagnostics=[];
-  const report={scope:"three-independent-disposable-PGlite-campaigns",mode:offline?"offline-fixture-check":"live",
-    maxTurns:3,maxTextRequests:8,mediaCalls:0,status:"not-started",turns:[]};
+  const report={scope:onlyC?"one-disposable-PGlite-campaign":"three-independent-disposable-PGlite-campaigns",
+    mode:offline?"offline-fixture-check":"live",
+    maxTurns:indices.length,maxTextRequests:maxRequests,mediaCalls:0,status:"not-started",turns:[]};
   let f,w,actual;
   try {
     if(!offline){
@@ -244,10 +246,10 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch,
           fetcher:freedomFetcher(state,realFetch)}));
       } finally {hook.deregister();}
     }
-    for(let index=0;index<3;index++){
+    for(const index of indices){
       // Reserve at least planning+narration for every new turn. No probing
       // retries are permitted if the provider/route/budget gate fails.
-      if(!offline && state.requests>6)throw Error("freedom_insufficient_remaining_request_budget");
+      if(!offline && state.requests>maxRequests-2)throw Error("freedom_insufficient_remaining_request_budget");
       ({f,w}=await createFreedomWorld(index));
       const fence=await f.fence(f.cid),rpc=rpcFor(f,state);
       const store=diagnosticStore(state,createRpcTurnStore(f.owner,rpc.runtime,"gpt-6-astra",fence,true));
@@ -344,7 +346,8 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch,
 }
 
 if(process.argv[1]&&pathToFileURL(resolve(process.argv[1])).href===import.meta.url){
-  const report=await runFreedomSmoke({offline:process.argv.includes("--offline-fixture-check")});
+  const report=await runFreedomSmoke({offline:process.argv.includes("--offline-fixture-check"),
+    onlyC:process.argv.includes("--scenario-c")});
   process.stdout.write(JSON.stringify(report)+"\n");
   if(report.status!=="passed")process.exitCode=1;
 }

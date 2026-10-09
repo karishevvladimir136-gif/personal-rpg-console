@@ -1,4 +1,8 @@
-# Astra Freedom closure — corrected live A/B passed; C blocked
+# Astra Freedom closure — live A/B/C complete, awaiting owner review
+
+**Latest continuation correction (2026-10-08):** From reviewed `4dd09b988935b358a0f7366605e1affe37b744ac`, valid displayed-check Continue now checkpoints the unchanged state as `generating` before resumed diagnostics. Migration 44 remains strict; no Migration 49 or Migration 47/48 edit was required. Diagnostics-enabled Migration-48 regressions pass **5/5**, focused total **41/41**; full suite **2,207/2,208**, zero failures and one existing opt-in persistence skip. TypeScript, zero-warning repository lint and production webpack build pass. Fresh live C selected a generic attack, server roll **2**, then continued and committed the miss with the same receipt. Three text requests, estimated **$0.2782**, provider latency **33.295 s**; replay adds no call or state change. Accepted A/B and previous failed C evidence remain intact. See [correction and exact new evidence](ASTRA_FREEDOM_CONTINUATION_FIX.md). No owner/main/database/app/deployment activation occurred.
+
+## Historical harness closure — failure evidence preserved
 
 **Latest harness-only closure (2026-10-08):** Starting reviewed SHA `4a85ae8c9483b89ea28da0305daacea3f65721d2`, independent live A and B passed, including replay and B save/load. C persisted a generic attack check, then failed before continuation planning because the post-44 diagnostic guard excludes the retained `awaiting_confirmation` status. Five text requests, estimated $0.4836; no further call or production repair occurred. See [exact new evidence and diagnosis](ASTRA_FREEDOM_LIVE_ACCEPTANCE.md). The implementation/history below is preserved; its earlier live protocol stop is historical and was accepted as a harness error by the owner.
 

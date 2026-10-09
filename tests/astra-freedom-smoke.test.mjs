@@ -198,6 +198,20 @@ test("improvisation acceptance permits alternative fiction without a fixed barte
   assert.equal(report.requests,0);
 });
 
+test("C-only retest creates one independent scenario with a four-request maximum",async()=>{
+  const report=await runFreedomSmoke({offline:true,onlyC:true,
+    realFetch:async()=>{throw Error("unreachable");}});
+  assert.equal(report.status,"passed",JSON.stringify(report));
+  assert.equal(report.maxTurns,1);
+  assert.equal(report.maxTextRequests,4);
+  assert.equal(report.turns.length,1);
+  assert.equal(report.turns[0].turn,"C");
+  assert.equal(report.turns[0].literalInput,freedomArc[2]);
+  assert.equal(report.turns[0].before.open_jobs,0);
+  assert.equal(report.requests,0);
+  assert.equal(report.mediaCalls,0);
+});
+
 test("a provider failure stops acceptance before any later scenario or retry",async()=>{
   const visited=[];
   const report=await runFreedomSmoke({offline:true,realFetch:async()=>{throw Error("unreachable");},

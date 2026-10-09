@@ -1,4 +1,14 @@
-# Development status — Astra Freedom harness closure, live A/B passed / C blocked
+# Development status — Astra Freedom Pass complete candidate, awaiting owner review
+
+**Current milestone/status (2026-10-08):** Isolated `codex/astra-freedom-pass` continues reviewed `4dd09b988935b358a0f7366605e1affe37b744ac`. The narrow interactive continuation fix now validates the displayed recorded check and uses existing checkpoint authority to return the same checkpoint to `generating` before any resumed diagnostic/provider call. Renewed lease, fences, receipts, checks and final pins are preserved. Reroll still waits for confirmation. No Migration 49, Migration 44 relaxation or Migration 47/48 redesign occurred.
+
+**Actual verification:** New diagnostics-enabled Migration-48 interactive tests **5/5**, focused total **41/41**. Fresh complete suite **2,207/2,208**, zero failures, one existing opt-in disposable Supabase Auth/PostgREST skip. TypeScript, repository ESLint with zero warnings and production webpack build passed. The isolated unconfigured port-3017 preview was stopped; owner app was not restarted.
+
+**Fresh live C:** Disposable operation `9da4783b-d3b4-4f67-b717-7d26f12fd7e9` committed after existing attack → server roll **2** → displayed pause → one normal Continue → valid miss final/narration. One receipt/check, no reroll/duplicate/damage/condition/resource mutation; HP 4/12, supplies 3, time 0 and Location unchanged. Exact replay added zero calls and changed no gameplay state. **3 text requests**, **22,009 input / 1,163 output / 3,642 cached / 706 reasoning tokens**, estimated **$0.2782**, summed provider latency **33.295 s**, zero media calls or SQL errors. Accepted prior A/B and both earlier live JSON artifacts are unchanged.
+
+**Files/decision/remaining work:** `src/lib/gameplay/astra-primary.ts`, new interactive regression, C-only harness selector/test, correction report/evidence and closure/status docs. No new blocker in the tested Continue/C scope; the separate pre-final provider-failure Retry lifecycle remains outside this fix and is explicitly disclosed in [ASTRA_FREEDOM_CONTINUATION_FIX.md](ASTRA_FREEDOM_CONTINUATION_FIX.md). Other genuine limits remain in the closure. Ready for owner review only: main remains `edeb3542cb00c068b129faa95f24a21eeb3b9425`; owner DB, both historical Iris failures, gameplay, app/environment and deployment were untouched. Separate approval is required for integration and owner Migration **47 → 48** activation.
+
+## Historical harness-only checkpoint — retained failure evidence
 
 **Current milestone/status (2026-10-08):** Harness-only follow-up from reviewed `4a85ae8c9483b89ea28da0305daacea3f65721d2` on isolated `codex/astra-freedom-pass`. Three independent disposable campaigns replaced the coupled acceptance sequence; A no longer requires a Quest for an inquiry or interprets later lodging permission as sleep. Returned route and final-response billing failures now stop the harness immediately. Production runtime/schemas/mechanics and Migrations 47/48 are unchanged.
 

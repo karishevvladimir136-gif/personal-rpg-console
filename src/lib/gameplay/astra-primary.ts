@@ -430,8 +430,10 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
       return store.getPublic(input.campaignId, input.operationId);
     }
-    if (command?.action === "continue")
+    if (command?.action === "continue") {
       requireRule(checkpoint.checks.some((c) => isDisplayedCheck(source,c)));
+      await store.checkpoint(lease, checkpoint, "generating");
+    }
     if (!astra.finalProposal) {
       await recordStage("plan", "entered");
       const selected = await withMemory(source,input,memory,true,{model:"gpt-6-astra",stage:"plan"});
