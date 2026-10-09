@@ -1,4 +1,6 @@
-# Astra Freedom closure — offline gates passed; live protocol incomplete
+# Astra Freedom closure — corrected live A/B passed; C blocked
+
+**Latest harness-only closure (2026-10-08):** Starting reviewed SHA `4a85ae8c9483b89ea28da0305daacea3f65721d2`, independent live A and B passed, including replay and B save/load. C persisted a generic attack check, then failed before continuation planning because the post-44 diagnostic guard excludes the retained `awaiting_confirmation` status. Five text requests, estimated $0.4836; no further call or production repair occurred. See [exact new evidence and diagnosis](ASTRA_FREEDOM_LIVE_ACCEPTANCE.md). The implementation/history below is preserved; its earlier live protocol stop is historical and was accepted as a harness error by the owner.
 
 Starting checkpoint: `27be7c5f300e5607769814664b16aefb68e8cd11` on `codex/astra-freedom-pass`. Main remains `edeb3542cb00c068b129faa95f24a21eeb3b9425`. This document records implementation and disposable verification; it does not authorize owner activation.
 

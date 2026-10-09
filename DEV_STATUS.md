@@ -1,4 +1,14 @@
-# Development status — Astra Freedom closure, offline passed / live protocol incomplete
+# Development status — Astra Freedom harness closure, live A/B passed / C blocked
+
+**Current milestone/status (2026-10-08):** Harness-only follow-up from reviewed `4a85ae8c9483b89ea28da0305daacea3f65721d2` on isolated `codex/astra-freedom-pass`. Three independent disposable campaigns replaced the coupled acceptance sequence; A no longer requires a Quest for an inquiry or interprets later lodging permission as sleep. Returned route and final-response billing failures now stop the harness immediately. Production runtime/schemas/mechanics and Migrations 47/48 are unchanged.
+
+**Actual verification:** Corrected offline A/B/C passed; harness **10/10** and provider/rest/ordered/recovery **39/39** passed (**49/49** focused total), with zero-warning harness/test ESLint. No shared production code changed, so the accepted starting candidate's complete-suite/typecheck/build evidence below was retained rather than rerun.
+
+**New live evidence:** A committed +2 silver/vegetables/job completion without rest, healing, supply cost or accepted future job; exact replay passed. Independent B committed existing long rest: HP 4/12→10/12, supplies 3→2, time 0→480, unchanged persistent safety; replay and save/load passed. C's existing attack tool recorded raw 20, then its displayed-check continuation failed in `astra_diagnostic` (`22023`, `rpg_validation`) before another provider/narrator/final/commit. The active lease still has `awaiting_confirmation`, excluded by Migration 44's diagnostic guard. Gameplay state was not applied for C. **5 text requests**, **36,693 input / 2,334 output / 0 cached / 1,244 reasoning tokens**, estimated **$0.4836**, summed provider latency **58.066 s**. No retry, reroll, further call or repair followed.
+
+**Files/next step:** `scripts/astra-freedom-live-smoke.mjs`, its focused test, `ASTRA_FREEDOM_LIVE_ACCEPTANCE.md` / `_DATA.json`, closure/status documentation only. Prior live JSON remains unchanged. The missing regression is interactive continuation with post-44 diagnostics enabled. STOP for owner review before a narrow lifecycle fix; no owner Migration 47/48, main integration, owner app/environment/gameplay/database change or deployment occurred. Existing genuine limits remain below; see [new exact diagnosis](ASTRA_FREEDOM_LIVE_ACCEPTANCE.md).
+
+## Historical implementation checkpoint — retained evidence
 
 **Milestone/status (2026-10-08):** Isolated `codex/astra-freedom-pass` continues reviewed checkpoint `27be7c5f300e5607769814664b16aefb68e8cd11`; Migration 47 is unchanged. Additive private Migration 48 and the existing-mechanics adapter implement temporary DM rest safety, deterministic formal rest, ordered shadow composition, original-revision collapse, exact atomic commit and save/retry compatibility. No owner database migration, main integration, owner gameplay, app activation or deployment occurred. See `ASTRA_FREEDOM_CLOSURE.md` and the retained `ASTRA_FREEDOM_LIVE_SMOKE_DATA.json`.
 

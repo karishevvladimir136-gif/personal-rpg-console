@@ -15,8 +15,8 @@ import { diagnosticState, diagnosticFetcher, diagnosticProvider, diagnosticStore
   diagnosticRpc, privateSnapshot } from "./astra-primary-production-smoke.mjs";
 
 export const freedomArc=[
-  "I finished the agreed crate work. Give me the agreed pay and food, let me sleep in the loft, and tell me whether you have more work tomorrow.",
-  "I eat, settle into the loft and sleep until morning.",
+  "The crate work is finished. Give me the agreed two silver and vegetables. May I use the loft later tonight? I am not going to sleep yet. Also, do you have any work available tomorrow? I am only asking what is available; I am not accepting a new job yet.",
+  "I am done for the night. I eat what I need, lie down in the permitted secure loft, and sleep until morning.",
   "I scoop the disgusting cold dishwater from the slop bucket into a mug and fling it at the bartender. What happens?",
 ];
 const fakeUsage={model:"offline-fixture",inputTokens:0,outputTokens:0,calls:0,latencyMs:0};
@@ -76,6 +76,11 @@ export function freedomFetcher(state,realFetch){
       diagnostic.providerCode=safe(payload.error?.code,state.secret,80);
       diagnostic.providerType=safe(payload.error?.type,state.secret,80);
       diagnostic.providerMessage=safe(payload.error?.message,state.secret);
+      if(response.ok){
+        diagnostic.returnedRouteValid=payload.model==="gpt-6-astra" && payload.service_tier==="default";
+        diagnostic.accountingValid=[payload.usage?.input_tokens,payload.usage?.output_tokens]
+          .every((n)=>Number.isSafeInteger(n) && n>=0);
+      }
     } catch(error) {
       state.usageKnown=false;
       diagnostic.captureError=safeError(error,state.secret);
@@ -83,7 +88,22 @@ export function freedomFetcher(state,realFetch){
     state.providerDiagnostics.push(diagnostic);
     return response;
   };
-  return diagnosticFetcher(state,observed);
+  const captured=diagnosticFetcher(state,observed);
+  return async(url,init)=>{
+    const response=await captured(url,init);
+    const diagnostic=state.providerDiagnostics.at(-1);
+    if(response.ok){
+      if(!diagnostic?.accountingValid || !state.usageKnown){
+        state.usageKnown=false;
+        throw Error("freedom_billing_unknown");
+      }
+      if(!diagnostic.returnedRouteValid){
+        state.usageKnown=false;
+        throw Error("freedom_returned_route_rejected");
+      }
+    }
+    return response;
+  };
 }
 
 export async function freedomSnapshot(f,w){
@@ -102,12 +122,22 @@ export async function freedomSnapshot(f,w){
     safeLocationIds:row.configuration.safeLocationIds,...counts};
 }
 
-export async function createFreedomWorld(){
+export async function createFreedomWorld(index=0){
+  const situations=[
+    "The public work organiser also tends the bar. Rowan has just finished the agreed crate packing; the organiser owes two silver and vegetables. The secure loft may be available tonight, and cellar sorting work may be available tomorrow; no tomorrow job has been accepted.",
+    "Rowan is injured and has travel rations. The bartender has already granted Rowan permission to sleep in the quiet, secure loft tonight. The loft is suitable for a full night's rest; no encounter or interruption is underway.",
+    "Rowan stands at the bar facing the visible bartender. An ordinary mug and a bucket of disgusting cold dishwater are plainly on the bar. There is no active encounter and no other agreed work or payment.",
+  ];
+  const openings=[
+    "The bartender inspects Rowan's packed crates and confirms the work is done. Two silver and vegetables are the agreed pay. Rowan has not yet slept or accepted tomorrow's work.",
+    "The bartender has already given Rowan permission to sleep in the secure loft. Injured Rowan has three travel rations in the pack and is ready to decide what to do tonight.",
+    "The bartender is working behind the bar. Rowan can see the ordinary mug and the cold, filthy dishwater bucket. The scene is quiet; no attack has happened yet.",
+  ];
   const example={...examples.fantasy,
     location:"Copper Lantern tavern",
-    situation:"The public work organiser also tends the bar. Rowan has just finished the agreed crate packing; the organiser owes two silver and vegetables, permits the secure loft tonight, and has a cellar sorting job tomorrow. A mug and a disgusting cold dishwater bucket are plainly on the bar.",
+    situation:situations[index],
     npc:"Work organiser and bartender",
-    narration:"The bartender inspects Rowan's packed crates and confirms the work is done. Two silver and vegetables are the agreed pay. Tonight's secure loft is available; tomorrow he will need the cellar sorted. A mug and a dishwater bucket stand on the bar."};
+    narration:openings[index]};
   const f=await setup(example,"en",48);
   const state=diagnosticState();state.providerDiagnostics=[];
   try {
@@ -141,38 +171,39 @@ export async function createFreedomWorld(){
     const rpc=rpcFor(f,state);
     const store=createRpcTurnStore(f.owner,rpc.runtime,"gpt-6-astra",await f.fence(f.cid),true);
     const memory=createRpcMemoryStore(f.owner,rpc.memory,await f.fence(f.cid));
-    const initial=await store.readPlay(f.cid);
-    const input={operationId:randomUUID(),campaignId:f.cid,timeline:initial.timeline,
-      expectedRevision:initial.revision,mode:"game",input:"Record our agreed crate-packing terms: two silver and vegetables.",
-      companionId:null,listenerIds:[],mechanic:null};
-    const seeded=await runAstraTurn(input,{store,memory,summaries,provider:{
-      next:async(_context,_input,_receipts,_checks,_caps,source)=>({usage:fakeUsage,
-        output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
-          changes:[],outcomes:[],privatePatches:[],effects:[{kind:"job_offer",
-            issuerId:npc,title:"Pack the agreed crates",description:"The agreed crate work is done; payment is due.",
-            currencyName:"silver",currencyAmount:2,itemName:"vegetables",itemCategory:"food",itemDescription:null}]}}}),
-      narrate:async()=>({usage:fakeUsage,output:{narration:example.narration,visualDescription:"",clarification:null}}),
-    }});
-    assert.equal(seeded.status,"committed",JSON.stringify(state.sqlErrors));
-    const job=await f.one("select id from public.rpg_quests where campaign_id=$1 and title='Pack the agreed crates'",[f.cid]);
+    let job=null;
+    if(index===0){
+      const initial=await store.readPlay(f.cid);
+      const input={operationId:randomUUID(),campaignId:f.cid,timeline:initial.timeline,
+        expectedRevision:initial.revision,mode:"game",input:"Record our agreed crate-packing terms: two silver and vegetables.",
+        companionId:null,listenerIds:[],mechanic:null};
+      const seeded=await runAstraTurn(input,{store,memory,summaries,provider:{
+        next:async(_context,_input,_receipts,_checks,_caps,source)=>({usage:fakeUsage,
+          output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+            changes:[],outcomes:[],privatePatches:[],effects:[{kind:"job_offer",
+              issuerId:npc,title:"Pack the agreed crates",description:"The agreed crate work is done; payment is due.",
+              currencyName:"silver",currencyAmount:2,itemName:"vegetables",itemCategory:"food",itemDescription:null}]}}}),
+        narrate:async()=>({usage:fakeUsage,output:{narration:example.narration,visualDescription:"",clarification:null}}),
+      }});
+      assert.equal(seeded.status,"committed",JSON.stringify(state.sqlErrors));
+      job=await f.one("select id from public.rpg_quests where campaign_id=$1 and title='Pack the agreed crates'",[f.cid]);
+    }
     const location=(await f.one("select current_location_id id from public.rpg_public_state where campaign_id=$1",[f.cid])).id;
-    return {f,w:{hero,npc,supplies:supplies.id,job:job.id,location}};
+    return {f,w:{hero,npc,supplies:supplies.id,job:job?.id??null,location}};
   } catch(error) {
     error.fixtureDiagnostics={sqlErrors:state.sqlErrors,sqlDetails:state.sqlDetails??[],trace:state.events};
     await f.db.close();throw error;
   }
 }
 
-function offlineProvider(index,w){
+function offlineProvider(index,w,narrations){
   return {next:async(_context,_input,_receipts,_checks,_caps,source)=>({usage:fakeUsage,
     output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
       changes:[],outcomes:[],privatePatches:[],effects:index===0 ? [
-        {kind:"job_complete",questId:w.job},{kind:"job_reward",questId:w.job,recipientId:w.hero},
-        {kind:"job_offer",issuerId:w.npc,title:"Sort the cellar",description:"Sort the cellar tomorrow.",
-          currencyName:"silver",currencyAmount:1,itemName:null,itemCategory:null,itemDescription:null}]
+        {kind:"job_complete",questId:w.job},{kind:"job_reward",questId:w.job,recipientId:w.hero}]
         : index===1 ? [{kind:"formal_rest",restKind:"long",restSafety:{locationId:w.location,suitable:true}}] : []}}}),
-    narrate:async()=>({usage:fakeUsage,output:{narration:[
-      "The bartender pays the agreed two silver and vegetables, offers the secure loft and asks you to sort the cellar tomorrow.",
+    narrate:async()=>({usage:fakeUsage,output:{narration:narrations?.[index]??[
+      "The bartender pays the agreed two silver and vegetables. You may use the loft later. Cellar work might be available tomorrow; its terms remain unsettled and you have not accepted it.",
       "You eat a travel ration and sleep in the secure loft until morning. The completed long rest restores your condition.",
       "The cold dishwater splashes the bartender's apron. He recoils and demands you put the mug down before the conversation can continue.",
     ][index],visualDescription:"",clarification:null}})};
@@ -190,18 +221,18 @@ async function saveProof(f,w){
   return {saved:true,loaded:true,unchanged:true};
 }
 
-export async function runFreedomSmoke({offline=false,realFetch=fetch}={}){
+export async function runFreedomSmoke({offline=false,realFetch=fetch,
+  offlineNarrations,offlineProviderFactory}={}){
   if(!offline && (process.env.ASTRA_FREEDOM_LIVE_SMOKE!=="yes" ||
     process.env.ASTRA_FREEDOM_OFFLINE_GATES!=="passed" || !process.env.OPENAI_API_KEY))
     throw Error("Explicit disposable live authorization, passed offline gates and server key are required");
   const state=diagnosticState(offline?"":process.env.OPENAI_API_KEY,
     {maxRequests:8,maxSpendUsd:8});
   state.providerDiagnostics=[];
-  const report={scope:"disposable-PGlite-only",mode:offline?"offline-fixture-check":"live",
+  const report={scope:"three-independent-disposable-PGlite-campaigns",mode:offline?"offline-fixture-check":"live",
     maxTurns:3,maxTextRequests:8,mediaCalls:0,status:"not-started",turns:[]};
   let f,w,actual;
   try {
-    ({f,w}=await createFreedomWorld());
     if(!offline){
       const hook=registerHooks({resolve(specifier,context,nextResolve){
         return specifier==="server-only"?{url:"data:text/javascript,export%20{}",shortCircuit:true}
@@ -217,6 +248,7 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch}={}){
       // Reserve at least planning+narration for every new turn. No probing
       // retries are permitted if the provider/route/budget gate fails.
       if(!offline && state.requests>6)throw Error("freedom_insufficient_remaining_request_budget");
+      ({f,w}=await createFreedomWorld(index));
       const fence=await f.fence(f.cid),rpc=rpcFor(f,state);
       const store=diagnosticStore(state,createRpcTurnStore(f.owner,rpc.runtime,"gpt-6-astra",fence,true));
       const memory=createRpcMemoryStore(f.owner,rpc.memory,fence);
@@ -226,31 +258,39 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch}={}){
         companionId:null,listenerIds:[],mechanic:null};
       const start={requests:state.requests,inputTokens:state.inputTokens,
         outputTokens:state.outputTokens,responses:state.responses.length,
-        decisions:state.parsedDecisions.length};
-      const deps={store,memory,summaries,provider:offline?offlineProvider(index,w):actual};
+        decisions:state.parsedDecisions.length,latencies:state.latenciesMs.length};
+      const fake=offline?offlineProvider(index,w,offlineNarrations):null;
+      const deps={store,memory,summaries,provider:offline
+        ?offlineProviderFactory?.(index,w,fake)??fake:actual};
       let result=await runAstraTurn(input,deps);
       if(result.status==="awaiting_confirmation")result=await resumeAstraTurn({
         commandId:randomUUID(),campaignId:f.cid,operationId:input.operationId,
         timeline:fence,action:"continue",checkId:null},deps);
       const after=await freedomSnapshot(f,w);
       const stored=await privateSnapshot(f,f.cid,input.operationId);
+      stored.orderedEffects=(await f.one("select astra_ordered_effects from rpg_private.turns where id=$1",
+        [input.operationId])).astra_ordered_effects;
       const narration=(await f.one("select narration from rpg_private.turns where id=$1",[input.operationId])).narration;
-      const row={turn:String.fromCharCode(65+index),operationId:input.operationId,
+      const row={turn:String.fromCharCode(65+index),campaignId:f.cid,operationId:input.operationId,
+        literalInput:input.input,
         status:result.status,requests:state.requests-start.requests,
         inputTokens:state.inputTokens-start.inputTokens,outputTokens:state.outputTokens-start.outputTokens,
-        before,after,narration,responses:state.responses.slice(start.responses),
+        before,after,narration,latenciesMs:state.latenciesMs.slice(start.latencies),
+        responses:state.responses.slice(start.responses),
         parsedDecisions:state.parsedDecisions.slice(start.decisions),checkpoint:stored};
       report.turns.push(row);
       assert.equal(result.status,"committed",`turn ${row.turn} failed: ${stored?.failure}`);
       assert.doesNotMatch(JSON.stringify(result),/astraEffects|astra_effects|PRIVATE_BEFORE_FORK/);
       assert.ok(narration?.length>0,"story continues");
-      if(index===0){
+      try { if(index===0){
         assert.equal(after.resources.currency_silver,2,"agreed pay settles exactly");
         assert.equal(after.food,1,"agreed food settles exactly once");
         assert.equal(after.completed_jobs,before.completed_jobs+1,"agreed job completes");
-        assert.ok(after.open_jobs>=1,"tomorrow's agreed job is recorded");
         assert.equal(after.completed_rests,before.completed_rests,"lodging remains fiction");
         assert.equal(after.hp,before.hp,"lodging itself never heals");
+        assert.equal(after.supplies,before.supplies,"permission alone consumes no supplies");
+        assert.ok(after.worldMinutes-before.worldMinutes<basicProfile.longMinutes,
+          "permission alone cannot jump through a night's sleep");
       }
       if(index===1){
         const settings=(await f.one("select values from public.rpg_settings_revisions where campaign_id=$1 order by revision desc limit 1",[f.cid])).values;
@@ -262,6 +302,18 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch}={}){
         assert.equal(after.completed_rests,before.completed_rests+1);
         assert.deepEqual(after.safeLocationIds,[],"operation safety never rewrites persistent configuration");
       }
+      if(index===2){
+        assert.ok(after.hp<=before.hp,"improvisation does not invent healing");
+        assert.deepEqual(after.resources,before.resources,"improvisation does not invent resources");
+      }
+      row.acceptance={passed:true};
+      } catch(error) {
+        if(!(error instanceof assert.AssertionError))throw error;
+        row.acceptance={passed:false,error:safeError(error,state.secret)};
+        // Record semantic acceptance differences, but obtain the other
+        // independent scenarios. Runtime/provider/SQL and replay failures
+        // remain hard stops outside this catch.
+      }
       const noCall={next:async()=>{throw Error("replay_provider_call");},
         narrate:async()=>{throw Error("replay_provider_call");}};
       const replay=await runAstraTurn(input,{...deps,provider:noCall});
@@ -269,8 +321,9 @@ export async function runFreedomSmoke({offline=false,realFetch=fetch}={}){
       assert.deepEqual(await freedomSnapshot(f,w),after,"exact replay cannot duplicate the outcome");
       row.replay={committed:true,providerRequests:0,unchanged:true};
       if(index===1)row.saveLoad=await saveProof(f,w);
+      await f.db.close();f=null;w=null;
     }
-    report.status="passed";
+    report.status=report.turns.every(row=>row.acceptance.passed)?"passed":"acceptance-failed";
   } catch(error) {
     report.status="failed";report.error=safeError(error,state.secret);
     if(error.fixtureDiagnostics)report.fixtureDiagnostics=error.fixtureDiagnostics;
