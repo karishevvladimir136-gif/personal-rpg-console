@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
 import { registerHooks } from "node:module";
-import { createIrisWorld,irisInput,irisSnapshot,irisTurn } from "./astra-iris-fixture.mjs";
+import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
+import { runAstraTurn,resumeAstraTurn } from "../src/lib/gameplay/astra-primary.ts";
+import { createIrisWorld,irisInput,irisSnapshot,irisTurn,syntheticSummaries } from
+  "./astra-iris-fixture.mjs";
 
 const hook=registerHooks({resolve(specifier,context,nextResolve){
   return specifier==="server-only"
@@ -40,15 +44,18 @@ test("Iris public-history reward grants two silver and vegetables with no Curren
     assert.equal(state.quests,0);assert.deepEqual(state.currencies,[]);
     const {provider,calls}=mockProvider(final([{kind:"mundane_grant",issuerId:seller,
       recipientId:hero,currencyName:"silver",currencyAmount:2,
-      itemName:"vegetables",itemCategory:"food",itemDescription:null}]));
+      itemName:"vegetables",itemCategory:"food",itemDescription:null}]),
+    "The seller pays Iris two silver and vegetables, offers a loft, and says she may ask about morning work.");
     const observed={...provider,next:async(...args)=>{
       const source=args[5];
       assert.deepEqual(source.astraSettlementJobs,[]);
       assert.deepEqual(source.astraSettlementCurrencies,[]);
       return provider.next(...args);
     }};
-    const {result}=await irisTurn(world,observed);
+    const {result,input,store}=await irisTurn(world,observed);
     assert.equal(result.status,"committed");
+    assert.match(result.narration,/loft/);
+    assert.match(result.narration,/morning work/);
     assert.deepEqual(calls.map((call)=>call.stage),["dm_plan","dm_narrate"]);
     const effects=calls[0].schema.properties.final.anyOf.find((node)=>node.type==="object")
       .properties.effects.items.anyOf;
@@ -59,6 +66,27 @@ test("Iris public-history reward grants two silver and vegetables with no Curren
     assert.equal(after.quests,0,"history-only debt does not invent a Quest");
     assert.equal(after.completed_rests,0);
     assert.equal(after.hp,10);
+    assert.equal(after.world_minutes,state.world_minutes);
+    let replayProviderCalls=0;
+    const refuseProvider={next:async()=>{replayProviderCalls++;throw Error("replay_called_provider");},
+      narrate:async()=>{replayProviderCalls++;throw Error("replay_called_provider");}};
+    const memory=createRpcMemoryStore(f.owner,async(args)=>({data:await f.memory(
+      args.p_campaign_id,args.p_action,args.p_payload,args.p_timeline)}),world.timeline);
+    const replay=await runAstraTurn(input,{store,memory,provider:refuseProvider,
+      summaries:syntheticSummaries});
+    assert.equal(replay.status,"committed");
+    assert.equal(replayProviderCalls,0,"same operation never calls the provider again");
+    assert.deepEqual(await irisSnapshot(f,hero),after,
+      "replay creates no duplicate silver, vegetables, Quest, rest or recovery");
+    const retry=await resumeAstraTurn({commandId:randomUUID(),
+      campaignId:f.cid,operationId:input.operationId,timeline:world.timeline,
+      action:"retry",checkId:null},{store,memory,provider:refuseProvider,
+      summaries:syntheticSummaries});
+    assert.equal(retry.status,"committed","retry of a committed operation is a no-op");
+    assert.equal(replayProviderCalls,0);
+    assert.deepEqual(await irisSnapshot(f,hero),after,
+      "retry also creates no duplicate reward, Quest, rest or recovery");
+    assert.deepEqual(calls.map((call)=>call.stage),["dm_plan","dm_narrate"]);
   } finally {await world.f.db.close();}
 });
 
