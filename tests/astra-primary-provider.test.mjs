@@ -24,7 +24,7 @@ function assertProviderSchema(schema){
   assert.equal(schema.anyOf,undefined);
   const stats={properties:0,enums:0,identifierChars:0,maxDepth:0};
   const allowed=new Set(["type","properties","required","additionalProperties","enum",
-    "items","anyOf","$ref","$defs"]);
+    "items","anyOf","$ref","$defs","minLength","maxLength"]);
   const visit=(node,depth,count=true)=>{
     assert.ok(node && typeof node==="object" && !Array.isArray(node));
     for(const key of Object.keys(node))assert.ok(allowed.has(key),`unsupported keyword ${key}`);
@@ -36,6 +36,11 @@ function assertProviderSchema(schema){
       return;
     }
     const types=Array.isArray(node.type)?node.type:[node.type];
+    if(node.minLength!==undefined || node.maxLength!==undefined){
+      assert.deepEqual(types,["string"]);
+      assert.ok(Number.isSafeInteger(node.minLength) && node.minLength>=0);
+      assert.ok(Number.isSafeInteger(node.maxLength) && node.maxLength>=node.minLength);
+    }
     if(node.anyOf){
       assert.ok(node.anyOf.length>=2);
       node.anyOf.forEach((branch)=>visit(branch,depth,count));

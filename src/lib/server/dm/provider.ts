@@ -16,6 +16,13 @@ import { modelReasoning } from "./config.ts";
 import type { RuntimeTask } from "../../production/contracts.ts";
 import { recognizedActualModel } from "../../model-runtime/capabilities.ts";
 import { STANDARD_SERVICE_TIER } from "../../model-runtime/defaults.ts";
+import {
+  PlanValidationError,
+  planValidation,
+  planValidationReason,
+  type PlanDiagnostic,
+  type PlanDiagnosticReasonCode,
+} from "./plan-diagnostic.ts";
 
 export type ProviderAttempt = {
   operationId: string | null;
@@ -170,6 +177,7 @@ export type ProviderOptions = {
   timeoutMs?: number;
   observer?: (attempt: ProviderAttempt) => void;
   diagnosticObserver?: (diagnostic: ProviderTransportDiagnostic) => void;
+  planDiagnosticObserver?: (diagnostic: PlanDiagnostic) => void;
 };
 export function createStructuredRequester(
   options: ProviderOptions,
@@ -238,6 +246,7 @@ export function createStructuredRequester(
       jsonParseFailed: false,
       elapsedMs: 0,
     };
+    let planReasonCode: PlanDiagnosticReasonCode | null = null;
     try {
       if (!options.apiKey || !options.model)
         throw new DmError("configuration", true);
@@ -419,23 +428,32 @@ export function createStructuredRequester(
           item.status !== "completed" ||
           !Array.isArray(item.content)
         )
-          throw new DmError("validation");
+          planValidation("output_message_shape");
         for (const content of item.content) {
           if (
             content.type !== "output_text" ||
             typeof content.text !== "string"
-          )
+          ) {
+            planReasonCode = "output_content_shape";
             throw new DmError("provider");
+          }
           chunks.push(content.text);
         }
       }
-      if (chunks.length !== 1) throw new DmError("validation");
+      if (chunks.length !== 1) planValidation("output_chunk_count");
       let output: T;
       diagnostic.phase = "output-parse";
+      let parsedJson: unknown;
       try {
-        output = parse(JSON.parse(chunks[0]));
+        parsedJson = JSON.parse(chunks[0]);
       } catch {
-        throw new DmError("validation");
+        planValidation("output_json_invalid");
+      }
+      try {
+        output = parse(parsedJson);
+      } catch (error) {
+        if (error instanceof PlanValidationError) throw error;
+        planValidation("output_semantic_invalid");
       }
       const usage = payload.usage as Record<string, unknown> | null;
       if (
@@ -460,6 +478,7 @@ export function createStructuredRequester(
         },
       };
     } catch (error) {
+      planReasonCode = planValidationReason(error) ?? planReasonCode;
       const safeError =
         error instanceof DmError ? error : new DmError("provider", true);
       attempt.category = safeError.code;
@@ -479,6 +498,18 @@ export function createStructuredRequester(
         options.diagnosticObserver?.({ ...diagnostic });
       } catch {
         /* Diagnostics never affect settlement or gameplay errors. */
+      }
+      if (stage === "plan") {
+        try {
+          options.planDiagnosticObserver?.({
+            httpStatus: attempt.httpStatus,
+            phase: diagnostic.phase,
+            resultStatus: attempt.success ? "success" : attempt.category ?? "provider",
+            reasonCode: planReasonCode,
+          });
+        } catch {
+          /* Private diagnostics never affect gameplay. */
+        }
       }
     }
   };
