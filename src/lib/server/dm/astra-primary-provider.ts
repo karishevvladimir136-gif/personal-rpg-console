@@ -9,6 +9,8 @@ import { parseNarration, narrationSchema } from "../../gameplay/dm-schema.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { validateMechanicChoice } from "../../gameplay/request-validation.ts";
 import { astraMechanicActionKinds } from "../../gameplay/astra-mechanics.ts";
+import { planValidation, type PlanDiagnostic } from "./plan-diagnostic.ts";
+export type { PlanDiagnostic, PlanDiagnosticReasonCode } from "./plan-diagnostic.ts";
 
 const obj = (properties: Record<string, unknown>) => ({ type: "object",
   additionalProperties: false, properties, required: Object.keys(properties) });
@@ -187,7 +189,7 @@ function responseSchema(input: TurnInput, caps: AstraCapabilities, source: Runti
   ]} : {type:"null"};
   const effects=source.worldTakeover
     ? array({anyOf:[...(settlement as {anyOf:unknown[]}).anyOf.slice(0,-1),
-      obj({kind:enumString(["unsupported_optional"]),description:{type:"string"}})]})
+      obj({kind:enumString(["unsupported_optional"]),description:{type:"string",minLength:1,maxLength:160}})]})
     : array(obj({kind:enumString(["__none__"])}));
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
@@ -205,40 +207,40 @@ function exactKeys(value: unknown, keys: string[]): value is Record<string,unkno
 }
 function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
   caps: AstraCapabilities, receipts: AstraToolReceipt[]): AstraDecision {
-  if (!exactKeys(raw,["type","call","final"])) throw new DmError("validation");
+  if (!exactKeys(raw,["type","call","final"])) planValidation("decision_root_shape");
   if (raw.type === "tool") {
     if (raw.final !== null || !exactKeys(raw.call,
-      ["kind","actorId","targetId","dc","itemId","scope"])) throw new DmError("validation");
+      ["kind","actorId","targetId","dc","itemId","scope"])) planValidation("decision_tool_shape");
     const call = raw.call;
     if (!["query","skill","attack","save","damage"].includes(String(call.kind)) ||
       (call.actorId !== null && !caps.entityIds.includes(String(call.actorId))) ||
       (call.targetId !== null && !caps.entityIds.includes(String(call.targetId))) ||
-      (call.itemId !== null && !caps.toolItemIds.includes(String(call.itemId)))) throw new DmError("validation");
+      (call.itemId !== null && !caps.toolItemIds.includes(String(call.itemId)))) planValidation("decision_tool_selection");
     return { type:"tool",call:call as AstraToolCall,final:null };
   }
   if (raw.type !== "final" || raw.call !== null ||
     !(exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects"]) ||
       exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","settlement"]) ||
       exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches"])))
-    throw new DmError("validation");
+    planValidation("decision_final_shape");
   const value = raw.final;
   if (value.schemaVersion !== 1 || !Array.isArray(value.changes) ||
     value.changes.length > 12 || !Array.isArray(value.outcomes) ||
     value.outcomes.length > 12 || !Array.isArray(value.privatePatches) ||
-    value.privatePatches.length > 6) throw new DmError("validation");
+    value.privatePatches.length > 6) planValidation("decision_final_limits");
   const changes: AstraPrivateFinal["changes"] = [];
   for (const entry of value.changes) {
     if (!exactKeys(entry,["family","id","expectedRevision","hp","resources",
-      "quantity","locationId","position"])) throw new DmError("validation");
+      "quantity","locationId","position"])) planValidation("decision_change_shape");
     const c = entry as RawChange;
     if (c.family === "entities") {
       if (!caps.entityIds.includes(c.id) || c.quantity !== null || c.locationId !== null ||
         c.position !== null || (c.hp === null && (!c.resources || !c.resources.length)))
-        throw new DmError("validation");
+        planValidation("decision_change_scope");
       const resources: Record<string,number> = {};
       if (c.resources) for (const pair of c.resources) {
         if (!caps.resources[c.id]?.includes(pair.key) || Object.hasOwn(resources,pair.key) ||
-          !Number.isInteger(pair.value)) throw new DmError("validation");
+          !Number.isInteger(pair.value)) planValidation("decision_change_scope");
         resources[pair.key] = pair.value;
       }
       changes.push({family:"entities",id:c.id,expectedRevision:c.expectedRevision,
@@ -247,26 +249,26 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     } else if (c.family === "items") {
       if (!caps.itemIds.includes(c.id) || c.quantity === null || c.hp !== null ||
         c.resources !== null || c.locationId !== null || c.position !== null)
-        throw new DmError("validation");
+        planValidation("decision_change_scope");
       changes.push({family:"items",id:c.id,expectedRevision:c.expectedRevision,
         values:{quantity:c.quantity}});
     } else if (c.family === "public_state") {
       if (c.id !== input.campaignId || !c.locationId ||
         !caps.locationIds.includes(c.locationId) || c.hp !== null ||
         c.resources !== null || c.quantity !== null || c.position !== null)
-        throw new DmError("validation");
+        planValidation("decision_change_scope");
       changes.push({family:"public_state",id:c.id,expectedRevision:c.expectedRevision,
         values:{current_location_id:c.locationId}});
     } else if (c.family === "encounter_participants") {
       const p = source.runtime.participants.find((p) => p.id === c.id && caps.participantIds.includes(p.id));
       if (!p || !["nearby","far","cover"].includes(c.position ?? "") ||
         c.expectedRevision !== null || c.hp !== null || c.resources !== null ||
-        c.quantity !== null || c.locationId !== null) throw new DmError("validation");
+        c.quantity !== null || c.locationId !== null) planValidation("decision_change_scope");
       changes.push({family:"encounter_participants",id:c.id,expectedRevision:null,
         values:{public_position:{position:c.position},
           public_resources:{...p.public_resources,
             move:Number(p.public_resources.move)-(c.position===p.public_position.position?0:1)}}});
-    } else throw new DmError("validation");
+    } else planValidation("decision_change_scope");
   }
   // Existing encounter Action and defeat flags are server-derived consequences
   // of recorded tools and validated HP. The model chooses narrative intent and
@@ -291,17 +293,17 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
   const hasEffects=Object.hasOwn(value,"effects");
   const rawEffects=hasEffects ? value.effects : [];
   if (hasEffects && (!Array.isArray(rawEffects) || rawEffects.length > 6 ||
-    (!source.worldTakeover && rawEffects.length > 0))) throw new DmError("validation");
+    (!source.worldTakeover && rawEffects.length > 0))) planValidation("decision_effect_scope");
   const settlement=Object.hasOwn(value,"settlement") ? value.settlement : null;
   for (const effect of hasEffects ? rawEffects as unknown[] : [settlement]) {
     if (effect === null) continue;
     if (exactKeys(effect,["kind","description"]) && effect.kind === "unsupported_optional") {
       if (typeof effect.description !== "string" || effect.description.length < 1 ||
-        effect.description.length > 160) throw new DmError("validation");
+        effect.description.length > 160) planValidation("decision_effect_shape");
       continue;
     }
     if (!source.worldTakeover || !effect || typeof effect!=="object" ||
-      Array.isArray(effect)) throw new DmError("validation");
+      Array.isArray(effect)) planValidation("decision_effect_scope");
     const kind=(effect as Record<string,unknown>).kind;
     const fields:Record<string,string[]>={
       progression_award:["kind","recipientId","trackId","amount"],
@@ -322,25 +324,27 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
         "giveQuantity","receiveItemId","receiveQuantity"],
       mechanic_actions:["kind","actions","restSafety"],
       formal_rest:["kind","restKind","restSafety"]};
-    if (typeof kind!=="string" || !fields[kind] || !exactKeys(effect,fields[kind]))
-      throw new DmError("validation");
+    if (typeof kind!=="string" || !fields[kind])
+      planValidation("decision_effect_kind");
+    if (!exactKeys(effect,fields[kind]))
+      planValidation("decision_effect_fields");
     if (kind==="mechanic_actions" || kind==="formal_rest") {
       const row=effect as Record<string,unknown>;
       if (row.restSafety!==null && (!exactKeys(row.restSafety,["locationId","suitable"]) ||
         typeof row.restSafety.locationId!=="string" ||
-        typeof row.restSafety.suitable!=="boolean")) throw new DmError("validation");
+        typeof row.restSafety.suitable!=="boolean")) planValidation("decision_rest_safety");
       if (kind==="formal_rest") {
-        if (!["short","long"].includes(String(row.restKind))) throw new DmError("validation");
+        if (!["short","long"].includes(String(row.restKind))) planValidation("decision_rest_kind");
       } else {
         if (!Array.isArray(row.actions) || row.actions.length<1 ||
-          row.actions.length>6) throw new DmError("validation");
+          row.actions.length>6) planValidation("decision_mechanic_actions");
         try {
           for (const action of row.actions) {
             const parsed=validateMechanicChoice(action);
             if (!(astraMechanicActionKinds as readonly string[]).includes(parsed.kind))
-              throw new DmError("validation");
+              planValidation("decision_mechanic_actions");
           }
-        } catch { throw new DmError("validation"); }
+        } catch { planValidation("decision_mechanic_actions"); }
       }
     }
   }
@@ -351,7 +355,15 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
       {settlement:settlement as AstraSettlementIntent|null})}};
 }
 
-export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:typeof fetch }): AstraPrimaryProvider {
+export function createAstraPrimaryProvider(options: {
+  apiKey:string;
+  fetcher?:typeof fetch;
+  planDiagnosticObserver?: (diagnostic: PlanDiagnostic) => void;
+}): AstraPrimaryProvider {
+  const planDiagnosticObserver = options.planDiagnosticObserver ?? ((diagnostic: PlanDiagnostic) => {
+    if (diagnostic.resultStatus !== "success")
+      console.warn("astra_plan_diagnostic", diagnostic);
+  });
   return {
     next: async (context,input,receipts,checks,caps,source,observe) => {
       const enriched = { ...context, input:JSON.stringify({
@@ -361,6 +373,7 @@ export function createAstraPrimaryProvider(options: { apiKey:string; fetcher?:ty
         throw new DmError("context");
       return createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
         reasoning:"high",fetcher:options.fetcher,
+        planDiagnosticObserver,
         diagnosticObserver:observe ? (diagnostic) => observe({
           responseReceived:diagnostic.responseReceived,phase:diagnostic.phase,
         }) : undefined})(enriched,"plan",input.operationId,
