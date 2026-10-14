@@ -5,6 +5,11 @@ begin;
 create function rpg_private.astra_rest_provision(s jsonb,rid uuid)
 returns boolean language sql immutable set search_path='' as $$
  select rpg_private.astra_shadow_row(s,'items',rid) is not null
+   and not exists(select 1 from jsonb_array_elements(
+     coalesce(s->'astraSettlementItemPolicies','[]'::jsonb)) policy
+     where policy.value->>'itemId'=rid::text and
+       (policy.value->>'visibility'='private' or
+        policy.value->>'trade' is distinct from 'allowed'))
    and lower(coalesce(rpg_private.astra_shadow_row(s,'items',rid)->>'category',''))
      not in ('weapon','weapons')
    and not rpg_private.astra_mechanic_tagged(s,rid,'weapon')

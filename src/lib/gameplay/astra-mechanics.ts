@@ -220,9 +220,7 @@ function restSupplies(source: RuntimeSource, restKind: "short" | "long",
   const eligible = (row: Item) => row.campaign_id === source.snapshot.campaign.id &&
     row.quantity > 0 && (row.owner_entity_id === null ||
       config.controlledEntityIds.includes(row.owner_entity_id)) &&
-    !source.astraSettlementItemPolicies?.some((policy) =>
-      policy.itemId === row.id && policy.visibility === "private") &&
-    isRestProvision(row, config.itemRules) &&
+    isRestProvision(row, config.itemRules, source.astraSettlementItemPolicies) &&
     source.snapshot.storages.some((storage) => storage.id === row.storage_id &&
       storage.campaign_id === source.snapshot.campaign.id &&
       (storage.kind === "camp" ? restKind === "long" :

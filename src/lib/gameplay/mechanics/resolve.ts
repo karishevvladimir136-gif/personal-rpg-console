@@ -886,9 +886,8 @@ export function resolveMechanics(
         requireRule(
           supplies.every(
             ({ row }) =>
-              isRestProvision(row, config!.itemRules) &&
-              !source.astraSettlementItemPolicies?.some((policy) =>
-                policy.itemId === row.id && policy.visibility === "private"),
+              isRestProvision(row, config!.itemRules,
+                source.astraSettlementItemPolicies),
           ),
         );
         requireRule(supplies.reduce((sum, p) => sum + p.quantity, 0) === cost);

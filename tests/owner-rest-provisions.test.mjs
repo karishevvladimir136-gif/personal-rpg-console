@@ -23,6 +23,11 @@ test("ordinary food and supply categories qualify without a tag, with weapon and
   assert.equal(isRestProvision(item("food"), tag("weapon")), false);
   assert.equal(isRestProvision(item("food"), tag("meal-serving")), false);
   assert.equal(isRestProvision(item("food"), tag("coffee-serving")), false);
+  assert.equal(isRestProvision(item("food"), [], [
+    { itemId: "item", visibility: "public", trade: "allowed" }]), true);
+  for (const trade of ["restricted", "quest"])
+    assert.equal(isRestProvision(item("food"), [], [
+      { itemId: "item", visibility: "public", trade }]), false, trade);
 });
 
 test("formal-rest planner and resolver consume one untagged food unit without changing saved safety", () => {
@@ -68,6 +73,10 @@ test("formal-rest planner rejects ineligible food across every existing authorit
     }],
     ["private item policy", (s) => { s.astraSettlementItemPolicies = [
       { itemId: food, visibility: "private", trade: "restricted" }]; }],
+    ["public restricted item policy", (s) => { s.astraSettlementItemPolicies = [
+      { itemId: food, visibility: "public", trade: "restricted" }]; }],
+    ["public quest item policy", (s) => { s.astraSettlementItemPolicies = [
+      { itemId: food, visibility: "public", trade: "quest" }]; }],
     ["meal serving", (s) => { s.runtime.configuration.itemRules.push(
       { itemId: food, tag: "meal-serving", damage: null }); }],
     ["coffee serving", (s) => { s.runtime.configuration.itemRules.push(
@@ -111,6 +120,22 @@ test("migration 49 SQL provision predicate agrees with TypeScript", async () => 
         [JSON.stringify(source), id]);
       assert.equal(sql.allowed, expected, `${category}/${tags.join(",")}`);
       assert.equal(isRestProvision({ id, category }, rules), expected);
+    }
+    for (const [visibility, trade, expected] of [
+      ["public", "allowed", true],
+      ["private", "allowed", false],
+      ["public", "restricted", false],
+      ["public", "quest", false],
+    ]) {
+      const id = randomUUID();
+      const policies = [{ itemId: id, visibility, trade }];
+      const source = { snapshot: { items: [{ id, category: "food" }] },
+        runtime: { configuration: { itemRules: [] } },
+        astraSettlementItemPolicies: policies };
+      const sql = await world.f.one(`select rpg_private.astra_rest_provision($1::jsonb,$2::uuid) allowed`,
+        [JSON.stringify(source), id]);
+      assert.equal(sql.allowed, expected, `${visibility}/${trade}`);
+      assert.equal(isRestProvision({ id, category: "food" }, [], policies), expected);
     }
   } finally { await world.f.db.close(); }
 });
