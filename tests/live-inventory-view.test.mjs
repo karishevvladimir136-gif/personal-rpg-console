@@ -44,7 +44,7 @@ test("live Inventory derives Phase-0 storage tabs and filters only current publi
   assert.equal(buildLiveInventoryView(snapshot, id("camp"), "", "").storage.kind, "camp");
   assert.equal(inventoryCategoryLabel("weapon"), "Weapons");
   assert.equal(inventoryCategoryLabel("consumable"), "Consumables");
-  assert.equal(inventoryCategoryLabel("arcane relic"), "arcane relic");
+  assert.equal(inventoryCategoryLabel("arcane relic"), "Arcane relic");
 });
 
 test("inventory cards use accepted real item art and keep icon fallback for draft or mock art", () => {
@@ -119,6 +119,20 @@ test("inventory cards use accepted real item art and keep icon fallback for draf
     }),
   });
   assert.match(acceptedItemArtwork(snapshot, item), /\/api\/visual-frame\?/);
+  const otherItem = { ...item, id: id("other-item"), name: "Waterskin" };
+  snapshot.items.push(otherItem);
+  const borrowedReference = {
+    ...newVisualReference(snapshot, { kind: "item", id: otherItem.id }),
+    approval: "approved", imageAssetId: jobId, imageAssetRevision: 1,
+  };
+  snapshot.documents.push({
+    id: id("borrowed-reference"), campaign_id: snapshot.campaign.id,
+    revision: 1, updated_at: "2026-10-04T00:00:00Z",
+    current_version_id: id("borrowed-version"), title: "Wrong item reference",
+    status: "reference", body: serializeVisualMetadata(borrowedReference),
+  });
+  assert.equal(acceptedItemArtwork(snapshot, otherItem), null,
+    "an approved reference cannot reuse another item's generated image");
   item.revision += 1;
   assert.equal(acceptedItemArtwork(snapshot, item), null);
 });

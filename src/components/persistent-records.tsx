@@ -7,6 +7,7 @@ import Image from "next/image";
 import { characterDescription } from "./character-presentation";
 import type { CharacterSheetV1 } from "@/lib/adventures/bootstrap-contracts";
 import { characterViewModel, type CharacterProgress } from "@/lib/character-view-model";
+import { readableLabel, resourcePresentation } from "@/lib/resource-presentation";
 import { CharacterEquipmentDoll, CharacterInventory } from "./phase0-character";
 import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
@@ -18,6 +19,7 @@ import { useGameplayRuntime } from "./gameplay-runtime";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
 import { LiveInventoryPresentation } from "./live-inventory-presentation";
+import { inventoryCategoryLabel, inventoryItemLabel } from "@/lib/live-inventory-view";
 import dollStyles from "./phase0-record-doll.module.css";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -820,9 +822,9 @@ function PersistentItemGrid({
             >
               <span className="slot-quantity">{`×${item.quantity}`}</span>
               <Icon name={itemIcon(item.category)} size={32} />
-              <strong>{item.name}</strong>
+              <strong title={item.name}>{inventoryItemLabel(item.name)}</strong>
               <small>
-                {item.equipped_entity_id ? t("Equipped") : item.category}
+                {item.equipped_entity_id ? t("Equipped") : t(inventoryCategoryLabel(item.category))}
               </small>
             </button>
             <span
@@ -887,7 +889,7 @@ export function ItemDetails({
       <dl className={`stats-list ${styles.itemEssentials}`}>
         <div>
           <dt>{t("Type")}</dt>
-          <dd>{t(item.category)}</dd>
+          <dd>{t(inventoryCategoryLabel(item.category))}</dd>
         </div>
         {weaponRule?.damage != null && (
           <div>
@@ -1414,11 +1416,19 @@ function PlayerSheet({
                     color="var(--red)"
                   />
                 ) : <dl className="stats-list"><div><dt>{t("HP")}</dt><dd>{entity.hp}</dd></div></dl>)}
-                {!!model.resources.length && (
+                {!!model.resources.filter(([key]) => resourcePresentation(key).kind === "money").length && (
+                  <>
+                    <h3 className="section-label">{t("Money")}</h3>
+                    <dl className="stats-list">
+                      {model.resources.filter(([key]) => resourcePresentation(key).kind === "money").map(([key, value]) => <div key={key}><dt>{t(resourcePresentation(key).label)}</dt><dd>{value}</dd></div>)}
+                    </dl>
+                  </>
+                )}
+                {!!model.resources.filter(([key]) => resourcePresentation(key).kind === "resource").length && (
                   <>
                     <h3 className="section-label">{t("Resources")}</h3>
                     <dl className="stats-list">
-                      {model.resources.map(([name, value]) => <div key={name}><dt>{t(name)}</dt><dd>{value}</dd></div>)}
+                      {model.resources.filter(([key]) => resourcePresentation(key).kind === "resource").map(([key, value]) => <div key={key}><dt>{t(resourcePresentation(key).label)}</dt><dd>{value}</dd></div>)}
                     </dl>
                   </>
                 )}
@@ -1434,7 +1444,7 @@ function PlayerSheet({
                   <>
                     <h3 className="section-label">{t("Core stats")}</h3>
                     <div className="combat-stats">
-                      {model.derivedStats.map(([name, value]) => <span key={name}>{t(name)} <b>{value}</b></span>)}
+                      {model.derivedStats.map(([name, value]) => <span key={name}>{t(readableLabel(name.replaceAll("_", " ")))} <b>{value}</b></span>)}
                     </div>
                   </>
                 )}
@@ -1444,7 +1454,7 @@ function PlayerSheet({
                 ) : <p className="muted">{publicFacts === undefined && !reviewOnly ? t("Loading known capabilities…") : t("No capabilities recorded.")}</p>}
                 <h3 className="section-label">{t("Conditions")}</h3>
                 {model.conditions.length ? model.conditions.map((condition) => (
-                  <Badge key={condition}>{condition}</Badge>
+                  <Badge key={condition}>{t(readableLabel(condition.replaceAll("_", " ")))}</Badge>
                 )) : <Badge green>{t("None recorded")}</Badge>}
               </div>
               <CharacterEquipmentDoll data={data} entity={entity} model={model} onSelect={onSelect} reviewOnly={reviewOnly} />

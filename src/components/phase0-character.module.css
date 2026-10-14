@@ -20,6 +20,10 @@
   margin-bottom: 20px;
 }
 
+.tabs button {
+  font-size: var(--play-control);
+}
+
 .tabs button[aria-selected="true"] {
   border-bottom-color: var(--gold);
   color: #f3d7a9;
@@ -57,7 +61,7 @@
 }
 
 .characterStats > p {
-  font: 11px/1.7 Georgia, serif;
+  font: var(--play-body)/1.7 Georgia, serif;
   color: #afb9bb;
   margin: 7px 0 19px;
 }
@@ -72,7 +76,7 @@
   padding-top: 16px;
   margin-top: 21px;
   margin-bottom: 12px;
-  font-size: 16px;
+  font-size: var(--play-card-title);
 }
 
 .characterStats :global(.stats-list) {
@@ -85,7 +89,7 @@
   gap: 8px;
   padding: 5px 0;
   color: #c3cccd;
-  font-size: 11px;
+  font-size: var(--play-body);
 }
 
 .characterStats :global(.stats-list dd) {
@@ -105,7 +109,7 @@
   display: flex;
   justify-content: space-between;
   gap: 6px;
-  font-size: 10px;
+  font-size: var(--play-body);
   color: #a7b5b7;
 }
 
@@ -121,7 +125,7 @@
   padding: 0;
   list-style: none;
   color: #c3cccd;
-  font: 11px/1.45 Georgia, serif;
+  font: var(--play-body)/1.45 Georgia, serif;
 }
 
 .conditionBadge {
@@ -135,7 +139,7 @@
   padding: 0;
   background: transparent;
   color: #e0bd82;
-  font: 11px Georgia, serif;
+  font: var(--play-control) Georgia, serif;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -192,7 +196,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 78px) minmax(0, 78px);
+  grid-template-columns: minmax(0, 96px) minmax(0, 96px);
   justify-content: space-between;
   align-content: start;
   gap: 25px 5px;
@@ -201,25 +205,27 @@
 
 .equipmentSlot {
   text-align: center;
-  background: none;
-  border: 0;
+  background: #0b1318ed;
+  border: 1px solid #bd9560;
+  border-radius: 5px;
+  box-shadow: 0 4px 16px #000b;
   color: #e5c99e;
-  padding: 0;
+  padding: 7px;
   min-width: 0;
 }
 
 .equipmentSlot > span:first-child {
-  font: 11px Georgia, serif;
+  font: var(--play-meta) Georgia, serif;
   display: block;
   margin-bottom: 7px;
   overflow-wrap: anywhere;
 }
 
 .equipmentIcon {
-  border: 1px solid #a7814b;
-  background: #0b1418c2;
+  border: 1px solid #c29b66;
+  background: #0b1418f2;
   border-radius: 4px;
-  height: 65px;
+  height: 88px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,8 +233,8 @@
 }
 
 .equipmentImage {
-  width: 57px;
-  height: 57px;
+  width: 77px;
+  height: 77px;
   object-fit: cover;
   border-radius: 3px;
 }
@@ -240,14 +246,14 @@
 }
 
 .equipmentSlot:disabled {
-  opacity: 0.58;
+  opacity: 0.85;
 }
 
 .equipmentSlot small {
   display: block;
   margin-top: 5px;
   color: #c1c1b4;
-  font-size: 9px;
+  font-size: var(--play-meta);
   line-height: 1.4;
   text-shadow: 0 1px 4px #000;
   overflow-wrap: anywhere;
@@ -312,7 +318,7 @@
   width: 100%;
   margin-bottom: 14px;
   padding: 9px 11px;
-  font-size: 11px;
+  font-size: var(--play-body);
 }
 
 .filterChips {
@@ -327,7 +333,7 @@
   border: 1px solid #3a443f;
   border-radius: 4px;
   background: #0b1416;
-  font-size: 9px;
+  font-size: var(--play-control);
   color: #a9b1b0;
 }
 
@@ -338,12 +344,12 @@
 }
 
 .itemSlot {
-  height: 148px;
+  min-height: 190px;
 }
 
 .itemImage {
-  width: 68px;
-  height: 68px;
+  width: 86px;
+  height: 86px;
   object-fit: cover;
   border: 1px solid #6e5b40;
   border-radius: 3px;
@@ -373,7 +379,7 @@
   border: 1px solid #a7854a33;
   background: #a7854a10;
   color: #ddd5c9;
-  font: 14px/1.6 Georgia, serif;
+  font: var(--play-body)/1.6 Georgia, serif;
 }
 
 .detailCardGrid {
@@ -444,11 +450,11 @@
   .characterStats > p,
   .characterStats :global(.stats-list > div),
   .skillList {
-    font-size: 10px;
+    font-size: var(--play-body);
   }
 
   .characterStats :global(.section-label) {
-    font-size: 15px;
+    font-size: var(--play-card-title);
   }
 
   .paperDoll {
@@ -456,21 +462,21 @@
   }
 
   .equipmentSlots {
-    grid-template-columns: minmax(0, 53px) minmax(0, 53px);
+    grid-template-columns: minmax(0, 72px) minmax(0, 72px);
     padding: 80px 7px 65px;
     gap: 23px 0;
   }
 
   .equipmentIcon {
-    height: 57px;
+    height: 62px;
   }
 
   .equipmentSlot > span:first-child {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .equipmentSlot small {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .inventoryPanel {
@@ -480,7 +486,7 @@
   .filterChips button {
     padding: 10px;
     min-height: 37px;
-    font-size: 10px;
+    font-size: var(--play-control);
   }
 
   .tabContent {
@@ -520,7 +526,7 @@
   .characterStats > p,
   .characterStats :global(.stats-list > div),
   .skillList {
-    font-size: 12px;
+    font-size: var(--play-body);
   }
 
   .paperDoll {
@@ -530,7 +536,7 @@
   }
 
   .equipmentSlots {
-    grid-template-columns: minmax(0, 70px) minmax(0, 70px);
+    grid-template-columns: minmax(0, 84px) minmax(0, 84px);
     padding: 65px 18px 75px;
   }
 

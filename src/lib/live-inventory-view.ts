@@ -1,5 +1,6 @@
 import type { CampaignSnapshot, Item, Storage } from "./persistence/contracts.ts";
 import { selectSubjectVisual } from "./visual-frame/subject-visual.ts";
+import { readableLabel } from "./resource-presentation.ts";
 
 export const EQUIPPED_FILTER = "@equipped";
 
@@ -20,7 +21,12 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 /** Presentation label only. The original category remains the filter authority. */
 export function inventoryCategoryLabel(category: string): string {
-  return CATEGORY_LABELS[category.trim().toLowerCase()] ?? category;
+  return CATEGORY_LABELS[category.trim().toLowerCase()] ?? readableLabel(category.replaceAll("_", " "));
+}
+
+/** Correct casing in the UI without changing the owner's item record. */
+export function inventoryItemLabel(name: string): string {
+  return readableLabel(name);
 }
 
 const STORAGE_TABS: { kind: Storage["kind"]; label: string }[] = [

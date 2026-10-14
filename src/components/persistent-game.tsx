@@ -44,6 +44,7 @@ import {
   type StoryHistoryPosition,
 } from "./gameplay-composer";
 import { GameplayTurn } from "./gameplay-turn";
+import { resourcePresentation } from "@/lib/resource-presentation";
 import {
   GameplayCamp,
   GameplayRest,
@@ -606,8 +607,8 @@ function LiveCharacterSummary({
       )}
       {Object.keys(player.resources).length > 0 && (
         <dl className={gameStyles.resources}>
-          {Object.entries(player.resources).map(([label, value]) => (
-            <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+          {Object.entries(player.resources).map(([key, value]) => (
+            <div key={key}><dt>{t(resourcePresentation(key).label)}</dt><dd>{value}</dd></div>
           ))}
         </dl>
       )}

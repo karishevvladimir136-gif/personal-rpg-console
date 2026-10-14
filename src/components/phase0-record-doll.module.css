@@ -40,10 +40,10 @@
   text-shadow: 0 2px 9px #000;
 }
 
-.recordSlots {
+.recordDoll .recordSlots {
   padding-top: 52px;
   padding-bottom: 54px;
-  grid-auto-rows: minmax(99px, auto);
+  grid-auto-rows: minmax(130px, auto);
   align-content: space-between;
 }
 
@@ -52,8 +52,8 @@
 }
 
 .equipmentImage {
-  width: 57px;
-  height: 57px;
+  width: 76px;
+  height: 76px;
   object-fit: cover;
   border-radius: 3px;
 }
@@ -67,7 +67,8 @@
     min-height: 520px;
   }
 
-  .recordSlots {
+  .recordDoll .recordSlots {
+    grid-template-columns: 84px 84px;
     padding-top: 38px;
     padding-bottom: 54px;
   }

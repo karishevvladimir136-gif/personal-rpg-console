@@ -8,7 +8,7 @@ import * as JSXRuntime from "react/jsx-runtime";
 import { renderToStaticMarkup } from "react-dom/server";
 import { fixture, id } from "./phase2-mechanics-fixtures.mjs";
 import { characterViewModel } from "../src/lib/character-view-model.ts";
-import { EQUIPPED_FILTER, inventoryCategoryLabel } from "../src/lib/live-inventory-view.ts";
+import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "../src/lib/live-inventory-view.ts";
 import { itemDisplayDescription } from "../src/lib/persistence/item-description.ts";
 
 function loadPresentation(selectSubjectVisual) {
@@ -34,7 +34,7 @@ function loadPresentation(selectSubjectVisual) {
     },
     "@/lib/persistence/record-model": { itemIcon: () => "Package" },
     "@/lib/persistence/item-description": { itemDisplayDescription },
-    "@/lib/live-inventory-view": { EQUIPPED_FILTER, inventoryCategoryLabel },
+    "@/lib/live-inventory-view": { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel },
     "@/lib/visual-frame/subject-visual": { selectSubjectVisual },
     "./language-context": { useLanguage: () => ({ language: "en", t: (key) => key }) },
     "./visual-frame/generate-visual": { GenerateVisual: () => null },

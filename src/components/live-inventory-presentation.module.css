@@ -6,8 +6,22 @@
   min-width: 0;
 }
 
+.inventoryPanel :global(.item-search) {
+  font-size: var(--play-body);
+}
+
+.inventoryPanel :global(.filter-chips button) {
+  min-height: 40px;
+  font-size: var(--play-control);
+}
+
 .itemSlot {
   overflow: hidden;
+}
+
+.itemSlot > svg {
+  width: 52px;
+  height: 52px;
 }
 
 .itemSlot strong {
@@ -16,11 +30,12 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   overflow: hidden;
+  min-height: 2.7em;
 }
 
 .itemArtwork {
-  width: 76px;
-  height: 70px;
+  width: 96px;
+  height: 88px;
   flex-shrink: 0;
   object-fit: contain;
   filter: drop-shadow(0 2px 12px #c2914d38);
@@ -28,5 +43,5 @@
 
 .gridHint {
   margin-top: 18px;
-  font-size: 11px;
+  font-size: var(--play-meta);
 }

@@ -79,10 +79,16 @@ export function selectSubjectVisual(
           row.campaign_id === snapshot.campaign.id &&
           row.revision === value.imageAssetRevision,
       );
+      const subjectAsset = asset && safeSubjectVisualAsset(snapshot, asset);
+      const belongsToSubject = !subjectAsset || (
+        subjectAsset.subject.kind === subject.kind &&
+        subjectAsset.subject.id === subject.id &&
+        subjectAsset.subject.revision === source.revision
+      );
       return {
         record,
         approval: value.approval as "approved" | "draft",
-        image: imageFor(snapshot, asset),
+        image: belongsToSubject ? imageFor(snapshot, asset) : null,
       };
     })
     .sort((a, b) =>

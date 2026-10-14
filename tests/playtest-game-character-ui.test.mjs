@@ -293,6 +293,20 @@ test("Inventory keeps an Equipment section visible when no gear is assigned", ()
   assert.doesNotMatch(html, /No equipment profile is established|ACTIVE RULES PROFILE/);
 });
 
+test("Game and Character display public money and resources without storage keys", () => {
+  const state = sample();
+  state.data.entities[0].resources = { currency_silver: 2, Focus: 1 };
+  const game = render("game", state);
+  const character = render("character", state);
+  assert.match(game, /<dt>Silver<\/dt><dd>2<\/dd>/);
+  assert.doesNotMatch(game, /currency_silver/);
+  assert.match(character, /<h3 class="section-label">Money<\/h3>/);
+  assert.match(character, /<dt>Silver<\/dt><dd>2<\/dd>/);
+  assert.match(character, /<h3 class="section-label">Resources<\/h3>/);
+  assert.match(character, /<dt>Focus<\/dt><dd>1<\/dd>/);
+  assert.doesNotMatch(character, /currency_silver/);
+});
+
 test("trade appears only for an eligible merchant in the same campaign and timeline", () => {
   const state = sample();
   const availableMerchant = renderer(state)("src/components/persistent-records.tsx").availableMerchant;
@@ -364,7 +378,7 @@ test("legacy Character uses the same player-facing sheet while public World fact
   assert.match(html, /class="paper-doll paperDoll"/);
   assert.match(html, /role="img" aria-label="No portrait yet"><svg[^>]+lucide-sparkles/);
   assert.match(html, /Ordinary sword/);
-  assert.match(html, /attack/);
+  assert.match(html, /Attack/);
   assert.match(html, /Read full background/);
   assert.doesNotMatch(html, /FULL_BACKGROUND_END/);
   assert.doesNotMatch(html, /STR<\/span>|Reading weather signs/);
@@ -492,7 +506,7 @@ for (const language of ["en", "ru"]) {
     assert.equal(html.includes("James"), false);
     assert.equal(html.includes("Human"), false);
     assert.ok(html.includes("12 / 12"));
-    assert.match(html, /<dt>crowns<\/dt><dd>20<\/dd>/);
+    assert.match(html, /<dt>Crowns<\/dt><dd>20<\/dd>/);
     assert.match(html, /class="equipment-slots equipmentSlots"/);
     assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Main hand: Ordinary sword"/);
     assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Off hand: [^"]+" disabled=""/);

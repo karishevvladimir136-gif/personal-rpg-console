@@ -16,6 +16,7 @@ import {
   buildLiveInventoryView,
   EQUIPPED_FILTER,
   inventoryCategoryLabel,
+  inventoryItemLabel,
 } from "@/lib/live-inventory-view";
 import styles from "./live-inventory-presentation.module.css";
 
@@ -168,18 +169,18 @@ export function LiveInventoryPresentation({
                             unoptimized
                             src={artwork}
                             alt=""
-                            width={76}
-                            height={70}
+                            width={96}
+                            height={88}
                             className={styles.itemArtwork}
                           />
                         ) : (
                           <Icon name={itemIcon(item.category)} size={32} />
                         )}
-                        <strong>{item.name}</strong>
+                        <strong title={item.name}>{inventoryItemLabel(item.name)}</strong>
                         <small>{item.equipped_entity_id ? t("Equipped") : t(inventoryCategoryLabel(item.category))}</small>
                       </button>
                       <span role="tooltip" id={tooltipId} className="item-tooltip">
-                        <strong>{item.name}</strong>
+                        <strong>{inventoryItemLabel(item.name)}</strong>
                         {itemDisplayDescription(item, language)}
                       </span>
                     </div>

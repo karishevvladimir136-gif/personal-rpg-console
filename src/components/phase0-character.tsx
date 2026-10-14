@@ -6,7 +6,7 @@ import type { CampaignSnapshot, Entity, Item } from "@/lib/persistence/contracts
 import type { CharacterViewModel } from "@/lib/character-view-model";
 import { itemIcon } from "@/lib/persistence/record-model";
 import { itemDisplayDescription } from "@/lib/persistence/item-description";
-import { EQUIPPED_FILTER, inventoryCategoryLabel } from "@/lib/live-inventory-view";
+import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "@/lib/live-inventory-view";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { GenerateVisual } from "./visual-frame/generate-visual";
@@ -171,15 +171,15 @@ export function CharacterInventory({
               >
                 <span className="slot-quantity">{item.quantity > 1 ? `×${item.quantity}` : ""}</span>
                 {art ? (
-                  <Image unoptimized src={art.url} alt="" width={78} height={78} className={styles.itemImage} />
+                  <Image unoptimized src={art.url} alt="" width={86} height={86} className={styles.itemImage} />
                 ) : (
                   <Icon name={itemIcon(item.category)} size={32} />
                 )}
-                <strong>{item.name}</strong>
+                <strong title={item.name}>{inventoryItemLabel(item.name)}</strong>
                 <small>{item.equipped_entity_id ? t("Equipped") : t(inventoryCategoryLabel(item.category))}</small>
               </button>
               <span role="tooltip" id={`character-item-${item.id}`} className="item-tooltip">
-                <strong>{item.name}</strong>
+                <strong>{inventoryItemLabel(item.name)}</strong>
                 {itemDisplayDescription(item, language)}
               </span>
             </div>
