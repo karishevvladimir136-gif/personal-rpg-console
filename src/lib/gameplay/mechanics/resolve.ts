@@ -18,6 +18,7 @@ import type {
   RuntimeSource,
 } from "../server-contracts.ts";
 import { stableGameplayId } from "../dice.ts";
+import { isRestProvision } from "../rest-provisions.ts";
 import { requireRule, TurnError } from "../turn-errors.ts";
 import {
   basicProfile,
@@ -885,9 +886,9 @@ export function resolveMechanics(
         requireRule(
           supplies.every(
             ({ row }) =>
-              tagged(row.id, "supply") &&
-              !tagged(row.id, "meal-serving") &&
-              !tagged(row.id, "coffee-serving"),
+              isRestProvision(row, config!.itemRules) &&
+              !source.astraSettlementItemPolicies?.some((policy) =>
+                policy.itemId === row.id && policy.visibility === "private"),
           ),
         );
         requireRule(supplies.reduce((sum, p) => sum + p.quantity, 0) === cost);

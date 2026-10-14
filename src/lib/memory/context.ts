@@ -1,11 +1,11 @@
 import { DmError } from "../gameplay/dm-errors.ts";
 import {
   buildContext,
-  modelBudget,
   modelInputLimit,
 } from "../gameplay/dm-context.ts";
 import type { TurnInput } from "../gameplay/contracts.ts";
 import type { RuntimeSource } from "../gameplay/server-contracts.ts";
+import type { BuiltContext } from "../gameplay/server-contracts.ts";
 import type { ContextStage } from "../gameplay/server-contracts.ts";
 import type {
   MemoryStore,
@@ -24,7 +24,9 @@ export async function withMemory(
   input: TurnInput,
   store: MemoryStore,
   includePrivate = true,
-  budget?: { model: string; stage?: ContextStage },
+  budget?: { model: string; stage?: ContextStage;
+    builder?: (source: RuntimeSource, input: TurnInput,
+      requiredOnly: boolean) => BuiltContext },
 ): Promise<RuntimeSource> {
   if (input.mode === "feedback" || input.mode === "ooc") return source;
   const cid = input.campaignId;
@@ -91,23 +93,20 @@ export async function withMemory(
     complete: true,
   };
   const stage = budget?.stage ?? (includePrivate ? "plan" : "narrate");
-  const room = budget
-    ? Math.max(
-        0,
-        modelInputLimit(modelBudget(budget.model)) -
-          buildContext(
-            {
-              ...source,
-              historyComplete: true,
-              checkpoint: null,
-              memory: baselineMemory,
-            },
-            input,
-            stage,
-            { model: budget.model, requiredOnly: true },
-          ).estimatedTokens -
-          1024,
+  const requiredContext = budget
+    ? budget.builder
+      ? budget.builder({ ...source, historyComplete: true,
+        checkpoint: null, memory: baselineMemory }, input, true)
+      : buildContext(
+        { ...source, historyComplete: true,
+          checkpoint: null, memory: baselineMemory },
+        input, stage,
+        { model: budget.model, requiredOnly: true },
       )
+    : null;
+  const room = requiredContext
+    ? Math.max(0, modelInputLimit(requiredContext.budget) -
+      requiredContext.estimatedTokens - 1024)
     : 16000;
   // Merely witnessing the current scene is not evidence that every old exchange
   // involving that actor is relevant. Exact participants/quests remain mandatory

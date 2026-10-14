@@ -5,6 +5,8 @@ import { fixture, world } from "./phase35-storage-fixture.mjs";
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
 import { createRpcMemoryStore } from "../src/lib/memory/store.ts";
 import { astraCapabilities, astraToolResult, runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../src/lib/gameplay/astra-primary.ts";
+import { ContextCapacityError } from "../src/lib/gameplay/dm-errors.ts";
+import { memorySource } from "./phase3-long-fixtures.mjs";
 
 test("only new opted-in Console Basic game turns select Astra; legacy pins stay legacy",()=>{
   assert.equal(selectAstraPrimaryRuntime(null,true,"game","console-basic-v1"),true);
@@ -151,14 +153,97 @@ test("Astra context failure retains the literal input and pinned runtime",async(
     const input={operationId:randomUUID(),campaignId:w.cid,timeline:play.timeline,
       expectedRevision:play.revision,mode:"game",input:"Keep this exact action after context fails",
       companionId:null,listenerIds:[],mechanic:null};
-    deps.memory={...deps.memory,read:async()=>{throw Error("synthetic context interruption")}};
+    deps.memory={...deps.memory,context:async()=>{throw new ContextCapacityError(false)}};
     deps.provider={next:()=>assert.fail("provider reached before context"),
       narrate:()=>assert.fail("narrator reached before context")};
-    await assert.rejects(runAstraTurn(input,deps),/synthetic context interruption/);
-    const saved=await f.one("select input,status,runtime_identity from rpg_private.turns where id=$1",[input.operationId]);
+    const turn=await runAstraTurn(input,deps);
+    assert.equal(turn.status,"failed");
+    assert.equal(turn.failure,"context");
+    assert.equal(turn.canRetry,false);
+    const saved=await f.one("select input,status,runtime_identity,source from rpg_private.turns where id=$1",[input.operationId]);
     assert.equal(saved.input.input,input.input);
-    assert.equal(saved.status,"pending");
+    assert.equal(saved.status,"failed");
     assert.equal(saved.runtime_identity,"astra-primary-v1");
+    assert.ok(saved.source);
+  } finally {await f.db.close();}
+});
+
+test("overlapping requests for one operation let only the claimant summarize and plan",async()=>{
+  const f=await fixture(38);
+  try {
+    const w=await world(f),deps=await adapters(f,w.cid);
+    const play=await deps.store.readPlay(w.cid);
+    const input={operationId:randomUUID(),campaignId:w.cid,timeline:play.timeline,
+      expectedRevision:play.revision,mode:"game",
+      input:"Ask Nera whether the room is available",
+      companionId:null,listenerIds:[],mechanic:null};
+    let enteredResolve,releaseResolve;
+    const entered=new Promise((resolve)=>{enteredResolve=resolve;});
+    const release=new Promise((resolve)=>{releaseResolve=resolve;});
+    const originalMemory=deps.memory;
+    const row=memorySource(`synthetic-summary-${randomUUID()}`,
+      "Nera offered the party an ordinary room.",{
+        campaignId:w.cid,sequence:1,sessionId:w.sid,
+        timeline:input.timeline });
+    row.ref={...row.ref,timeline:input.timeline};
+    const job={id:randomUUID(),campaignId:w.cid,timeline:input.timeline,
+      boundaryId:null,visibility:"public",generation:1,token:randomUUID(),
+      attempts:1,stateRevision:play.revision,settingsRevision:1,
+      guideVersionId:randomUUID(),fromSequence:1,throughSequence:1,
+      sources:[row],requiredSourceIds:[row.id]};
+    let memoryReads=0,privateReads=0,memoryClaims=0,enqueues=0,publishes=0,summaries=0;
+    deps.memory={...originalMemory,
+      context:async(...args)=>{
+        memoryReads++;
+        if(args[2]) privateReads++;
+        if(memoryReads===1){
+          enteredResolve();
+          await release;
+          throw new ContextCapacityError(true);
+        }
+        return originalMemory.context(...args);
+      },
+      enqueue:async()=>{enqueues++;},
+      claim:async()=>{memoryClaims++;return memoryClaims===1?job:null;},
+      publish:async(_job,output)=>{
+        assert.deepEqual(output.selections,[{sourceId:row.id,version:"1"}]);
+        publishes++;
+      },
+      fail:async()=>assert.fail("synthetic summary should not fail")};
+    deps.summaries={summarize:async()=>{
+      summaries++;
+      return {output:{schemaVersion:1,
+        selections:[{sourceId:row.id,version:"1"}]},
+        usage:{inputTokens:0,outputTokens:0}};
+    }};
+    let plans=0,narrations=0;
+    const usage={model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0};
+    deps.provider={next:async()=>{
+      plans++;
+      return {usage,output:{type:"final",call:null,
+        final:{worldMinutes:0,changes:[],outcomes:[],privatePatches:[]}}};
+    },narrate:async()=>{
+      narrations++;
+      return {usage,output:{narration:"Nera considers the request.",
+        visualDescription:"",clarification:null}};
+    }};
+    const first=runAstraTurn(input,deps);
+    await entered; // the first request owns the runtime lease and is in Memory
+    const duplicate=await runAstraTurn(input,deps);
+    assert.notEqual(duplicate.status,"committed");
+    assert.equal(memoryReads,1);
+    assert.equal(summaries,0);
+    releaseResolve();
+    const result=await first;
+    assert.equal(result.status,"committed",JSON.stringify(deps.errors));
+    assert.equal(privateReads,2);
+    assert.equal(memoryReads,3); // two private preflight reads and public narration
+    assert.equal(enqueues,1);
+    assert.equal(memoryClaims,2);
+    assert.equal(summaries,1);
+    assert.equal(publishes,1);
+    assert.equal(plans,1);
+    assert.equal(narrations,1);
   } finally {await f.db.close();}
 });
 

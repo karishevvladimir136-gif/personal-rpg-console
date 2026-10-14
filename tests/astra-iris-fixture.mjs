@@ -47,9 +47,9 @@ export async function irisSnapshot(f,hero){
     jobs:foundation.jobs??[]};
 }
 
-export async function createIrisWorld(){
+export async function createIrisWorld(migrationLevel=48){
   // PGlite is disposable and wholly in-process; no owner connection or database is imported.
-  const f=await setup(example,"en",48);
+  const f=await setup(example,"en",migrationLevel);
   try {
     f.creation.possessions.push({name:"waterskin",description:"",
       quantity:1,quote:example.description});
@@ -101,7 +101,7 @@ export async function createIrisWorld(){
   } catch(error){await f.db.close();throw error;}
 }
 
-export async function irisTurn(world,provider,inputText=irisInput){
+export async function irisTurn(world,provider,inputText=irisInput,beforeRun=null){
   const {f,timeline}=world;
   const store=createRpcTurnStore(f.owner,rpcFor(f,"runtime"),"gpt-6-astra",timeline,true);
   const memory=createRpcMemoryStore(f.owner,rpcFor(f,"memory"),timeline);
@@ -109,6 +109,7 @@ export async function irisTurn(world,provider,inputText=irisInput){
   const input={operationId:randomUUID(),campaignId:f.cid,timeline:play.timeline,
     expectedRevision:play.revision,mode:"game",input:inputText,
     companionId:null,listenerIds:[],mechanic:null};
+  await beforeRun?.({store,memory,input});
   const result=await runAstraTurn(input,{store,memory,provider,summaries:syntheticSummaries});
   return {result,input,store};
 }

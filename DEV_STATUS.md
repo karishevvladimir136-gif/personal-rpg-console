@@ -1,3 +1,14 @@
+# Development status — owner playtest closure, isolated runtime checkpoint
+
+**Milestone/status:** Candidate `codex/owner-playtest-closure` starts from main `02ebc4b42ff06606b25e9989bb7f9eda068727d7`. Runtime closure is implemented and focused-tested; prose/UI, complete gates and authorized disposable live acceptance remain pending. Not activated or owner-accepted. See `OWNER_PLAYTEST_CLOSURE.md`.
+
+**Changes/decisions:** Shared Astra-specific planning projection and actual provider-schema/envelope accounting replace the legacy precursor capacity check. The operation is claimed before private-plan Memory work, with at most three existing summary jobs and one reread. Required evidence is preserved; the cap stays 64,000 bytes. Ordinary accessible food/supply provisions work through existing rest mechanics and independent private SQL reconstruction. Additive Migration 49 is disposable-only; owner DB stays at 48. No owner failed operation was retried, cancelled or altered.
+
+**Verification:** Context/Memory/runtime/provider/parser 77/77; rest/ordered/recovery/Migration-49 44/44; harness offline 3/3. TypeScript and targeted zero-warning lint pass. Populated 48→49 row/function/privilege preservation, forged supply rejection and committed replay are covered. Full integrated suite/build and browser/live acceptance are pending. Existing 300-second operation lease remains a timing limit for unusually slow multi-summary turns.
+
+**Remaining/next:** Natural-English narration guidance, scoped Game/Character/Inventory readability and visual fallback closure, complete integrated gates, one fresh disposable long-rest acceptance, then owner review. Main, owner DB/Iris/app, saves/timelines and deployment remain untouched; no provider or media call has been made in this candidate yet.
+
+---
 # Development status — Astra parser/reward integration and local read-only smoke complete
 
 **Runtime closure (2026-10-13):** After the owner recovered Docker Desktop, the Linux engine and existing local Supabase services respond normally. The real owner database remains at Migration **48**. Integrated production code remains `579697f27b15f9ca720e8d283579a3f8133e69b9`; prior status-only main was `4681cddad93e3beacbe3df4bac33030349f42cdc`. This follow-up changes only status documentation; no additional production change or migration occurred.

@@ -26,6 +26,10 @@ import {
 } from "./character-model.ts";
 import { modelCapabilities } from "../model-runtime/capabilities.ts";
 
+/** A stage-specific projection applied before every capacity decision. */
+export type ContextProjection = (input: string, instructions: string,
+  budget: ModelBudget) => { input: string; instructions: string; estimatedBytes: number };
+
 // Only validated, player-visible state fields may inform final narration.
 // Never serialize an entire resolution: it may also contain check/action metadata.
 function publicResults(resolution: MechanicsResolution | undefined) {
@@ -146,6 +150,7 @@ export function buildContext(
     budget?: ModelBudget;
     /** Internal sizing pass before optional retrieval and recent prose. */
     requiredOnly?: boolean;
+    projection?: ContextProjection;
   },
 ): BuiltContext {
   try {
@@ -610,8 +615,11 @@ export function buildContext(
     store: false,
     truncation: "disabled",
   });
-  const estimate = (input: string) =>
-    new TextEncoder().encode(JSON.stringify(bodyFor(input))).length + 2048;
+  const project = (input: string) => options.projection
+    ? options.projection(input, finalInstructions, budget)
+    : { input, instructions: finalInstructions,
+      estimatedBytes: new TextEncoder().encode(JSON.stringify(bodyFor(input))).length + 2048 };
+  const estimate = (input: string) => project(input).estimatedBytes;
   // Mandatory state, evidence, and the stage schema always enter first. Drop
   // optional cards from the tail; never trim source evidence to fit guidance.
   if (options.requiredOnly) {
@@ -724,13 +732,14 @@ export function buildContext(
       } else break;
     }
   }
-  const estimatedTokens = estimate(input);
+  const projected = project(input);
+  const estimatedTokens = projected.estimatedBytes;
   // The fully assembled context must fit; memory never licenses slicing current
   // input, exact uncovered events, required state, or pending outcomes.
   if (estimatedTokens > inputBudget) throw new DmError("context");
   return {
-    instructions: finalInstructions,
-    input,
+    instructions: projected.instructions,
+    input: projected.input,
     estimatedTokens,
     budget,
     sourceCount:

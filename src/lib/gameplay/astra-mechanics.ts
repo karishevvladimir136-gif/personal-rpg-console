@@ -2,6 +2,7 @@ import type { Item } from "../persistence/contracts.ts";
 import type { TimelineFence } from "../saves/contracts.ts";
 import type { ItemQuantity, JsonObject, MechanicChoice, TurnInput } from "./contracts.ts";
 import type { MechanicsResolution, RuntimeSource } from "./server-contracts.ts";
+import { isRestProvision } from "./rest-provisions.ts";
 import { stableGameplayId } from "./dice.ts";
 import { mechanicPlanForActions, resolveMechanics, validateMechanicChoice,
   validatePlan } from "./mechanics/resolve.ts";
@@ -221,9 +222,7 @@ function restSupplies(source: RuntimeSource, restKind: "short" | "long",
       config.controlledEntityIds.includes(row.owner_entity_id)) &&
     !source.astraSettlementItemPolicies?.some((policy) =>
       policy.itemId === row.id && policy.visibility === "private") &&
-    config.itemRules.some((rule) => rule.itemId === row.id && rule.tag === "supply") &&
-    !config.itemRules.some((rule) => rule.itemId === row.id &&
-      ["meal-serving", "coffee-serving"].includes(rule.tag)) &&
+    isRestProvision(row, config.itemRules) &&
     source.snapshot.storages.some((storage) => storage.id === row.storage_id &&
       storage.campaign_id === source.snapshot.campaign.id &&
       (storage.kind === "camp" ? restKind === "long" :
