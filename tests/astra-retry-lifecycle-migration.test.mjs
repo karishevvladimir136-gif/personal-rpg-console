@@ -123,3 +123,63 @@ test("migration 50 leaves legacy, nonretryable, leased and wrong-timeline claims
       [fencedInput.operationId])).status,"failed");
   } finally {await f.db.close();}
 });
+
+test("only service_role can execute the wrapper; no caller can bypass it through the predecessor",async()=>{
+  const f=await fixture(50);
+  try {
+    const w=await world(f,"Retry function privilege guard");
+    const input=await inputFor(f,w.cid);
+    await failed(f,input);
+    const pinned=await f.one(`select source,checkpoint from rpg_private.turns
+      where campaign_id=$1 and id=$2`,[w.cid,input.operationId]);
+    const fence=await f.fence(w.cid);
+    await f.db.exec("create role retry_acl_probe");
+    const acl=await f.one(`select
+      has_function_privilege('service_role',
+        'public.rpg_runtime(uuid,uuid,text,jsonb,jsonb)','EXECUTE') wrapper_service,
+      has_function_privilege('service_role',
+        'public.rpg_runtime_before_astra_retry_lifecycle(uuid,uuid,text,jsonb,jsonb)',
+        'EXECUTE') predecessor_service,
+      has_function_privilege('retry_acl_probe',
+        'public.rpg_runtime(uuid,uuid,text,jsonb,jsonb)','EXECUTE') wrapper_public,
+      has_function_privilege('retry_acl_probe',
+        'public.rpg_runtime_before_astra_retry_lifecycle(uuid,uuid,text,jsonb,jsonb)',
+        'EXECUTE') predecessor_public`);
+    assert.equal(acl.wrapper_service,true);
+    assert.equal(acl.predecessor_service,false);
+    assert.equal(acl.wrapper_public,false);
+    assert.equal(acl.predecessor_public,false);
+
+    const args=[f.owner,w.cid,"get",JSON.stringify({operationId:input.operationId}),
+      JSON.stringify(fence)];
+    const wrapper=`select public.rpg_runtime($1,$2,$3,$4::jsonb,$5::jsonb) result`;
+    const predecessor=`select public.rpg_runtime_before_astra_retry_lifecycle(
+      $1,$2,$3,$4::jsonb,$5::jsonb) result`;
+    async function underRole(role,run) {
+      await f.db.exec(`set role ${role}`);
+      try {return await run();}
+      finally {await f.db.exec("reset role");}
+    }
+    for(const role of ["anon","authenticated","retry_acl_probe"]){
+      await underRole(role,async()=>{
+        await assert.rejects(f.one(wrapper,args),(error)=>error.code==="42501");
+        await assert.rejects(f.one(predecessor,args),(error)=>error.code==="42501");
+      });
+    }
+    await underRole("service_role",async()=>{
+      await assert.rejects(f.one(predecessor,args),(error)=>error.code==="42501");
+      const get=await f.one(wrapper,args);
+      assert.equal(get.result.status,"failed");
+      const claimed=await f.one(wrapper,[f.owner,w.cid,"claim",
+        JSON.stringify({operationId:input.operationId}),JSON.stringify(fence)]);
+      assert.equal(claimed.result.turn.public.status,"generating");
+      assert.deepEqual(claimed.result.source,pinned.source);
+      assert.deepEqual(claimed.result.turn.checkpoint,pinned.checkpoint);
+    });
+    const row=await f.one(`select status,source,checkpoint from rpg_private.turns
+      where campaign_id=$1 and id=$2`,[w.cid,input.operationId]);
+    assert.equal(row.status,"generating");
+    assert.deepEqual(row.source,pinned.source);
+    assert.deepEqual(row.checkpoint,pinned.checkpoint);
+  } finally {await f.db.close();}
+});

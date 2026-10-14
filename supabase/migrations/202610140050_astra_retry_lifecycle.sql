@@ -36,7 +36,7 @@ begin
 end $$;
 
 revoke all on function public.rpg_runtime_before_astra_retry_lifecycle(uuid,uuid,text,jsonb,jsonb)
-  from public,anon,authenticated;
+  from public,anon,authenticated,service_role;
 revoke all on function public.rpg_runtime(uuid,uuid,text,jsonb,jsonb)
   from public,anon,authenticated;
 grant execute on function public.rpg_runtime(uuid,uuid,text,jsonb,jsonb)

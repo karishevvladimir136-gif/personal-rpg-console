@@ -1,4 +1,16 @@
-# Development status — natural play closure review candidate
+# Development status — Migration 50 privilege closure
+
+**Milestone/status (2026-10-14):** Continue `codex/natural-play-closure` from reviewed `968cda1ede97faf39e0732855d017767ba19cbd2`. The owner-reviewed predecessor ACL finding is reproduced and fixed, and all required gates pass. Ready for owner review; not integrated or activated.
+
+**Exact change:** Add `service_role` only to the Migration-50 renamed predecessor's revoke list. The new public runtime retains its service-role execute grant and SECURITY DEFINER chain. All other migration SQL, retry behavior, TypeScript, UI and portrait work remain unchanged. No Migration 51. Disposable use of the exact pre-fix SQL proved the inherited service-role grant allowed a direct predecessor call. The corrected regression verifies real role denials, successful internal delegation and unchanged retry source/checkpoint. See `NATURAL_PLAY_CLOSURE.md`.
+
+**Verification:** Focused migration/retry **12/12** pass. Fresh full suite **2,273/2,274**, zero failures, one existing explicit-opt-in live disposable Supabase Auth/PostgREST skip. TypeScript, repository ESLint with zero warnings and production webpack build pass. Scope comparison confirms the exact one-line SQL delta and no `src` change. Ignored logs are under `test-results/migration50-privilege-*`; the isolated test server was stopped and generated type-header changes restored afterward.
+
+**Safety/next:** Owner DB/Iris were not accessed or changed in this follow-up; Migration 50 was tested only in disposable PGlite. Main remains untouched at `f94d25bd4d6a6609d8539c59bc973d15007509c3`. No gameplay recovery, provider/media call or deployment occurred. Separate owner review and activation authorization remain required.
+
+---
+
+# Historical review checkpoint — natural play closure review candidate
 
 **Milestone/status (2026-10-14):** Isolated `codex/natural-play-closure` starts from main `f94d25bd4d6a6609d8539c59bc973d15007509c3`. Bounded provider resilience, compact normal Game processing/recovery and shared Character/Inventory portrait framing are implemented and all required quality gates pass. Ready for owner review; not activated or owner-accepted. See `NATURAL_PLAY_CLOSURE.md`.
 
