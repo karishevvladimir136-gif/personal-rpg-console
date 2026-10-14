@@ -1,4 +1,16 @@
-# Development status — Astra parser/reward fixes integrated; owner smoke blocked by local infrastructure
+# Development status — Astra parser/reward integration and local read-only smoke complete
+
+**Runtime closure (2026-10-13):** After the owner recovered Docker Desktop, the Linux engine and existing local Supabase services respond normally. The real owner database remains at Migration **48**. Integrated production code remains `579697f27b15f9ca720e8d283579a3f8133e69b9`; prior status-only main was `4681cddad93e3beacbe3df4bac33030349f42cdc`. This follow-up changes only status documentation; no additional production change or migration occurred.
+
+**Actual signed-in smoke:** The normal main owner app restarted and stays running at `http://127.0.0.1:3000/`. Iris Game, Character, Inventory, waterskin Item detail, Journal and Map loaded in the real signed-in browser. The Item description fallback, compact visual controls, saved history and composer are present. Browser error logs are empty. Astra activation and OpenAI-key presence were verified as booleans only; the ignored owner environment hash is unchanged. No provider was called to prove routing, and no image generation was tested or enabled. Existing media configuration was preserved.
+
+**Read-only integrity:** All **18/18** captured Iris areas retain identical row counts and full-row aggregate hashes across smoke: runtime/public state, Entities, Items, Quests, rests, Scenes/Sessions, saves/timeline history, World Foundation/Events, runtime events, private DM state and turns. The exact failed operation `c7503d7e-081d-483c-b764-cde009390f9f` retains its full-row hash, failed/nonretryable/validation state. Both failed-turn recovery controls remain visible and Send is disabled; no retry, cancel, repair or replacement input was attempted. No owner SQL mutation, gameplay operation, migration, model/media call or deployment occurred.
+
+**Verification/next step:** The integrated **25/25** focused, **2,223/2,224** complete-suite result (zero failures, one existing opt-in skip), TypeScript, zero-warning ESLint and production webpack build reported below remain the actual verification evidence; no application test suite or live evaluation was rerun for this runtime/status closure. Local infrastructure no longer blocks the signed-in smoke. Ready for the owner's Iris retest, with the preserved failed operations left for the owner's explicit decision.
+
+---
+
+# Historical runtime blocker — Astra parser/reward fixes integrated; local infrastructure unavailable
 
 **Milestone/status (2026-10-13):** Reviewed parser/diagnostic commit `f0ee52ebe9f298970942b15c8743fe8db2b22af7` and legacy grounded reward guidance commit `8d05f83701528dc7143134afa47d3f3dd2358fde` were cherry-picked in order onto exact main `cf3427c6945e59b05a3174e5d22859a183529873` in fresh `codex/astra-parser-reward-integration`. Integrated product HEAD is `579697f27b15f9ca720e8d283579a3f8133e69b9` (parser cherry-pick `767b469a85ace34099ec868dd5c6205c9948a5a0`). Main was fast-forwarded and pushed only after all offline gates passed. Both conflicts were confined to `DEV_STATUS.md`; the prior main activation record below was preserved and the newer reviewed parser/reward status appended. All non-status files exactly match reviewed `8d05f83`; no production conflict or additional implementation edit occurred.
 
