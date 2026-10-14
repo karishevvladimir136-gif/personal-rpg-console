@@ -1,3 +1,19 @@
+# Development status — trusted local owner mode activated
+
+**Activation (2026-10-14):** Owner-approved `c0660d1507c130b07cf42531dbccec8db8431914` was fast-forwarded from exact local/remote main `9bf73b58e14b8a297009b826e4429f9b21a06ce9` and pushed. This separate follow-up changes only `DEV_STATUS.md`. No squash, rebase, force push, migration, new production behavior or external deployment occurred.
+
+**Primary startup:** The verified review-checkout Next process was stopped and `Start RPG Console.cmd` was run from the normal main checkout `C:/Users/karis/.codex/worktrees/playtest2-natural-play/personal-rpg-console`. Docker and the healthy existing owner Supabase stack were reused. Next started only at `127.0.0.1:3000`; the second launcher exited **0** and reused the same server PID **19012**. All **11** owner container identities and all **5** existing Docker volumes remain identical; no container/volume was created or removed. Docker's IPv4/IPv6 binding serialization order was normalized for set comparison. API/Auth **34321**, PostgreSQL **34322**, Studio **34323**, mail **34324**, analytics **34327** publish only on 127.0.0.1/::1.
+
+**Owner session/UI:** The actual application establishes normal HTTP-only Supabase Auth cookies without a password form. Auth `getUser` returned the unchanged configured owner UUID and authenticated `rpg_is_owner()` returned **true**. Campaigns and Iris Game load; composer is present; direct `/login` redirects to campaigns; local Sign out is hidden. The ignored owner environment and existing credential file retain their exact pre-activation hashes; no credentials file was created or password changed.
+
+**Security verification:** Fresh focused gate/session/launcher/target-guard tests **17/17**. Raw non-loopback Host gets health **404**, anonymous workspace **401**, no Auth cookies, and the normal login form; forwarded-host bootstrap is also denied. Production remains excluded by the tested gate and retains the previously verified normal login behavior for this exact product candidate. Anonymous Supabase campaign reads return **401** and public signup remains disabled. Scan of **151** generated client/log files plus actual HTML found zero secret/password exposure. Existing owner UUID/registry, `requireOwner()`, owner RPC and database RLS remain authoritative.
+
+**Integrity:** Owner database remains Migration **49**. All **79/79** pre/post RPG table counts/full-row fingerprints match. Iris remains present at runtime revision **63**, world minute **493**; runtime/timeline/inventory/saves, all failed operations, World history, Memory and media records are unchanged. No gameplay input, retry/cancel/repair, Astra/model request, media request or deployment occurred. Activation evidence and the ready-Game screenshot are outside Git at `C:/Users/karis/.codex/activation/trusted-local-owner-20261014214929/`.
+
+**Verification/next:** This activation made no production-code changes, so the accepted candidate's **2,256/2,257** complete-suite result (one existing opt-in skip), TypeScript, zero-warning ESLint and production webpack build remain the quality record; paid work and the full suite were not repeated. Normal entry is now `Start RPG Console.cmd` in the main checkout, or the running `http://127.0.0.1:3000/campaigns`. One-click local activation is complete, ready for owner play.
+
+---
+
 # Development status — trusted local owner startup candidate
 
 **Milestone/status (2026-10-14):** Isolated `codex/trusted-local-owner` starts from local/remote main `9bf73b58e14b8a297009b826e4429f9b21a06ce9`. Local infrastructure/auth UX only. Implementation, real login-free cold-start/duplicate-launch checks and all required quality gates pass. This is a review candidate, not main integration or external deployment.
