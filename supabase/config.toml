@@ -2,13 +2,14 @@ project_id = "personal-rpg-console"
 
 [api]
 enabled = true
-port = 54321
+port = 34321
 schemas = ["public", "graphql_public"]
 extra_search_path = ["public", "extensions"]
 max_rows = 1000
 
 [db]
-port = 54322
+port = 34322
+shadow_port = 34320
 major_version = 17
 
 [db.seed]
@@ -16,7 +17,13 @@ enabled = false
 
 [studio]
 enabled = true
-port = 54323
+port = 34323
+
+[inbucket]
+port = 34324
+
+[analytics]
+port = 34327
 
 [auth]
 enabled = true

@@ -31,7 +31,8 @@ export function testConfig() {
     throw new Error(
       "This script only permits a disposable local Supabase URL. It will not seed a hosted project.",
     );
-  if (url.port === ownerApiPort)
+  // Keep the former owner address protected during the local port transition too.
+  if ([ownerApiPort, "54321"].includes(url.port))
     throw new Error(
       "Synthetic acceptance cannot target the normal owner Supabase project. Start a separate disposable project and use its API port.",
     );

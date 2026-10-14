@@ -1,5 +1,9 @@
 # Personal RPG Console — Phase 1 persistence
 
+## Local owner app
+
+Double-click **Start RPG Console.cmd** for the real saved-campaign application. It starts the existing local services, signs the existing owner in silently on loopback, and opens the campaign list. See [local owner startup](LOCAL_OWNER_STARTUP.md) for the privacy boundary and recovery behavior. **Start Preview.cmd** remains the isolated demonstration launcher.
+
 A private application for one owner. Phase 0 is approved at commit 96b69dcd63d2fa015f5e75bcc5d632c41e04369e. Phase 1 adds saved records and owner access; gameplay, AI and deployment remain deferred.
 
 ## Open the application

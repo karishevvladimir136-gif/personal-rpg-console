@@ -24,6 +24,8 @@ function configured(url, check) {
 }
 
 test("synthetic acceptance refuses the normal owner Supabase port even with test opt-in", () => {
+  configured("http://127.0.0.1:34321", () =>
+    assert.throws(testConfig, /normal owner Supabase project/));
   configured("http://127.0.0.1:54321", () =>
     assert.throws(testConfig, /normal owner Supabase project/));
 });

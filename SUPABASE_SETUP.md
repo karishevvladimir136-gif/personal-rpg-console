@@ -1,5 +1,7 @@
 # Phase 1 persistence setup
 
+**Current local owner startup:** use [Start RPG Console.cmd](Start%20RPG%20Console.cmd) and [the local startup guide](LOCAL_OWNER_STARTUP.md). The preserved owner project now uses API **34321**, PostgreSQL **34322**, Studio **34323** to avoid the former Windows-reserved range. The launcher reuses existing volumes and performs silent verified owner sign-in only in explicitly enabled loopback development. The historical setup/account-creation instructions below are not steps to repeat against the populated owner database.
+
 This document preserves the accepted Phase 1 setup procedure. For the authorized Phase 2 additions, use [PHASE2_SETUP.md](PHASE2_SETUP.md): the server runtime also needs a local service credential and an owner-configured OpenAI key/model. Do not repeat the empty-database seed or reset the accepted local database. Actual results are in `DEV_STATUS.md`.
 
 No hosted project was created or deployed. The application needs one Supabase database and one owner account before persistent screens can save. The approved synthetic Phase 0 preview remains separate.

@@ -139,7 +139,11 @@ export function SetupRequired() {
     </section>
   );
 }
-export function PersistentMainMenu() {
+export function PersistentMainMenu({
+  trustedLocalOwner = false,
+}: {
+  trustedLocalOwner?: boolean;
+}) {
   const { t } = useLanguage();
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -170,30 +174,32 @@ export function PersistentMainMenu() {
           <Icon name="BookOpen" />
           {t("DM Craft")}
         </Link>
-        <Button
-          disabled={busy}
-          onClick={async () => {
-            if (submitting.current) return;
-            submitting.current = true;
-            setBusy(true);
-            setError("");
-            try {
-              await readJson("/api/auth/sign-out", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: "{}",
-              });
-              window.location.replace("/login");
-            } catch (cause) {
-              setError(errorMessage(cause));
-              setBusy(false);
-              submitting.current = false;
-            }
-          }}
-        >
-          <Icon name="Exit" />
-          {t(busy ? "Signing out…" : "Sign out")}
-        </Button>
+        {!trustedLocalOwner && (
+          <Button
+            disabled={busy}
+            onClick={async () => {
+              if (submitting.current) return;
+              submitting.current = true;
+              setBusy(true);
+              setError("");
+              try {
+                await readJson("/api/auth/sign-out", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: "{}",
+                });
+                window.location.replace("/login");
+              } catch (cause) {
+                setError(errorMessage(cause));
+                setBusy(false);
+                submitting.current = false;
+              }
+            }}
+          >
+            <Icon name="Exit" />
+            {t(busy ? "Signing out…" : "Sign out")}
+          </Button>
+        )}
       </nav>
       {error && <p role="alert">{t(error)}</p>}
       <Link className="text-link" href="/preview">
