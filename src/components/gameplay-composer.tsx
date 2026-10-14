@@ -55,6 +55,20 @@ function localStorageForDraft() {
     return null;
   }
 }
+const connectionInterruptionMessage =
+  "The DM connection was interrupted. Try again.";
+
+export function shouldShowComposerError(
+  error: string,
+  turn: PublicTurn | null | undefined,
+) {
+  return !!error && !(
+    error === connectionInterruptionMessage &&
+    turn?.status === "failed" &&
+    turn.canRetry &&
+    (turn.failure === "provider" || turn.failure === "unavailable")
+  );
+}
 export type StoryHistoryPosition = {
   scrollTop: number;
   following: boolean;
@@ -157,6 +171,7 @@ export function GameplayComposer({
   const knownAttempt =
     journal.attempt &&
     play.turns.find((turn) => turn.id === journal.attempt?.operationId);
+  const activeKnownAttempt = !!knownAttempt && isUnresolved(knownAttempt);
   useEffect(() => {
     if (!knownAttempt || scope.stale) return;
     const next = reconcileJournal(current.current, knownAttempt);
@@ -177,7 +192,12 @@ export function GameplayComposer({
     try {
       await action();
     } catch (cause) {
-      setError(gameplayErrorMessage(cause));
+      setError(
+        cause instanceof GameplayClientError &&
+        !["unavailable", "provider"].includes(cause.code)
+          ? gameplayErrorMessage(cause)
+          : connectionInterruptionMessage,
+      );
     } finally {
       busyRef.current = false;
       setBusy(false);
@@ -533,35 +553,40 @@ export function GameplayComposer({
               )}
             </p>
           )}
-          {error && <p role="alert">{t(error)}</p>}
+          {shouldShowComposerError(error, knownAttempt) && (
+            <p role="alert">{t(error)}</p>
+          )}
           <div className="button-group">
-            <Button
-              primary
-              type="submit"
-              disabled={
-                !ready ||
-                timelineBlocked ||
-                busy ||
-                !sessionAllowed ||
-                (mode !== "feedback" && !currentSession) ||
-                (!journal.attempt &&
-                  (!journal.text.trim() || stateChangingBusy))
-              }
-            >
-              <Icon name="Send" />
-              {t(
-                busy
-                  ? "Sending…"
-                  : journal.command
-                    ? "Retry pending confirmation"
-                    : journal.attempt
-                      ? "Retry same submission"
+            {!activeKnownAttempt && (
+              <Button
+                primary
+                type="submit"
+                disabled={
+                  !ready ||
+                  timelineBlocked ||
+                  busy ||
+                  !sessionAllowed ||
+                  (mode !== "feedback" && !currentSession) ||
+                  (!journal.attempt &&
+                    (!journal.text.trim() || stateChangingBusy))
+                }
+              >
+                <Icon name="Send" />
+                {t(
+                  busy
+                    ? "DM is thinking…"
+                    : journal.command || journal.attempt
+                      ? "Try again"
                       : mode === "feedback"
                         ? "Send feedback"
                         : "Send",
-              )}
-            </Button>
-            {journal.attempt && (
+                )}
+              </Button>
+            )}
+          </div>
+          {journal.attempt && timelineBlocked && !knownAttempt && (
+            <details>
+              <summary>{t("More options")}</summary>
               <Button
                 disabled={busy}
                 onClick={() =>
@@ -588,14 +613,9 @@ export function GameplayComposer({
               >
                 {t("Check saved turn")}
               </Button>
-            )}
-          </div>
-          {inputTools}
-          {(journal.attempt || journal.command) && (
-            <p className="muted" role="status">
-              {t("Your accepted action keeps the same identity through retry and refresh.")}
-            </p>
+            </details>
           )}
+          {inputTools}
         </form>
       )}
     </div>

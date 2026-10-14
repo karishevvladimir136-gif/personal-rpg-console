@@ -21,6 +21,7 @@ import { SubjectAvatar } from "./visual-frame/subject-avatar";
 import { LiveInventoryPresentation } from "./live-inventory-presentation";
 import { inventoryCategoryLabel, inventoryItemLabel } from "@/lib/live-inventory-view";
 import dollStyles from "./phase0-record-doll.module.css";
+import framing from "./paper-doll-framing.module.css";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -968,7 +969,7 @@ function RecordDoll({
       className={`paper-doll ${dollStyles.recordDoll}`}
       aria-label={t("{name} equipment", { name: entity.name })}
     >
-      <div className={`art ${dollStyles.recordArt}`}>
+      <div className={`${framing.portraitStage} ${dollStyles.recordArt}`}>
         {acceptedImage ? (
           <Image
             unoptimized
@@ -976,7 +977,7 @@ function RecordDoll({
             alt={entity.name}
             width={820}
             height={1200}
-            className={dollStyles.recordImage}
+            className={framing.portraitImage}
           />
         ) : (
           <div className={dollStyles.recordPlaceholder} role="img" aria-label={t("No portrait yet")}>
@@ -989,7 +990,7 @@ function RecordDoll({
       </div>
       <div className={dollStyles.nameplate}>{entity.name}</div>
       {entity.equipment_slots.length ? (
-        <div className={`equipment-slots ${dollStyles.recordSlots}`}>
+        <div className={`equipment-slots ${framing.portraitRails} ${dollStyles.recordSlots}`}>
           {entity.equipment_slots.map((slot) => {
             const item = equipped.find((row) => row.equipped_slot === slot.id);
             return (

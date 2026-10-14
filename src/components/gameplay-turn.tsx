@@ -18,10 +18,6 @@ import {
   GameplayClientError,
   gameplayErrorMessage,
 } from "@/lib/gameplay/client";
-import {
-  turnFailureLabels,
-  turnStatusLabels,
-} from "@/lib/gameplay/client-state";
 import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
 
@@ -248,6 +244,20 @@ export function GameplayTurn({
         ? data.entities.find((row) => row.kind === "player")
         : undefined
       : undefined;
+  const thinking = turn.status === "pending" || turn.status === "generating";
+  const interrupted =
+    turn.status === "failed" &&
+    turn.canRetry &&
+    (turn.failure === "provider" || turn.failure === "unavailable");
+  const failureMessage = interrupted
+    ? "The DM connection was interrupted. Try again."
+    : turn.failure === "configuration"
+      ? "The DM needs setup before play can continue."
+      : turn.failure === "context" || turn.failure === "validation"
+        ? "The DM needs more context for this action."
+        : turn.failure === "conflict"
+          ? "The world changed while this action was underway. Review the latest scene."
+          : "The DM could not finish this action.";
   return (
     <Panel className="gameplay-turn">
       <article className="gameplay-owner-input">
@@ -268,31 +278,13 @@ export function GameplayTurn({
         </time>
         </div>
       </article>
-      {turn.status !== "committed" && (
+      {thinking && (
         <p role="status" className="muted">
-          {t(turnStatusLabels[turn.status])}
+          {t("DM is thinking…")}
         </p>
       )}
-      {turn.status === "failed" && turn.failure && (
-        <p role="alert">{t(turnFailureLabels[turn.failure])}</p>
-      )}
-      {turn.worldUncertainty && (
-        <p role="status">
-          {language === "ru"
-            ? "Для этого действия не хватает подтверждённых обстоятельств, есть противоречие или требуются неподдерживаемые последствия. Мир не изменён. Отмените незавершённый ход, уточните ситуацию и явно задайте новое действие."
-            : "This action needs established information, contains a contradiction, or requires unsupported consequences. The world has not changed. Cancel the unfinished turn, clarify the situation, and explicitly submit a new action."}
-        </p>
-      )}
-      {turn.worldRecovery && (
-        <p role="status" className="muted">
-          {language === "ru"
-            ? turn.worldRecovery === "review_required"
-              ? "Безопасно продолжить это действие нельзя. Ввод и результаты сохранены. Отмените незавершённый ход и явно выберите новое действие."
-              : "Действие и уже полученные результаты сохранены. Продолжение проверит текущий мир; повторного броска не будет."
-            : turn.worldRecovery === "review_required"
-              ? "This action could not safely continue and needs review. Your input and recorded results are preserved. Cancel the unfinished turn, then explicitly choose a new action."
-              : "Your action and recorded results are preserved. Resuming checks the current world without rolling again."}
-        </p>
+      {turn.status === "failed" && (
+        <p role="alert">{t(failureMessage)}</p>
       )}
       {turn.checks.map((check) => (
         <div key={check.id}>
@@ -326,15 +318,18 @@ export function GameplayTurn({
         )}
         {turn.canRetry && (
           <Button primary disabled={busy} onClick={() => onCommand("retry")}>
-            {t("Resume this turn")}
-          </Button>
-        )}
-        {turn.canCancel && (
-          <Button disabled={busy} onClick={() => onCommand("cancel")}>
-            {t("Cancel unfinished turn")}
+            {t("Try again")}
           </Button>
         )}
       </div>
+      {turn.canCancel && (
+        <details className="gameplay-turn-options">
+          <summary>{t("More options")}</summary>
+          <Button disabled={busy} onClick={() => onCommand("cancel")}>
+            {t("Abandon this action")}
+          </Button>
+        </details>
+      )}
     </Panel>
   );
 }

@@ -43,6 +43,7 @@ function loadPresentation(selectSubjectVisual) {
       Panel: ({ title, className, children }) => React.createElement("section", { className }, React.createElement("h2", null, title), children),
     },
     "./phase0-character.module.css": { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) },
+    "./paper-doll-framing.module.css": { __esModule: true, default: new Proxy({}, { get: (_, key) => String(key) }) },
   };
   const artFile = new URL("../src/components/visual-frame/equipped-item-art.tsx", import.meta.url);
   const artCode = ts.transpileModule(readFileSync(artFile, "utf8"), {

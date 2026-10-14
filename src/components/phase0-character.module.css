@@ -162,18 +162,7 @@
 }
 
 .portraitArt {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  opacity: 0.84;
-}
-
-.portraitImage {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  opacity: 0.92;
 }
 
 .portraitPlaceholder {
@@ -200,7 +189,7 @@
   justify-content: space-between;
   align-content: start;
   gap: 25px 5px;
-  padding: 85px 10px 85px;
+  padding: 0 10px 85px;
 }
 
 .equipmentSlot {
@@ -463,7 +452,7 @@
 
   .equipmentSlots {
     grid-template-columns: minmax(0, 72px) minmax(0, 72px);
-    padding: 80px 7px 65px;
+    padding: 0 7px 65px;
     gap: 23px 0;
   }
 
@@ -537,7 +526,7 @@
 
   .equipmentSlots {
     grid-template-columns: minmax(0, 84px) minmax(0, 84px);
-    padding: 65px 18px 75px;
+    padding: 0 18px 75px;
   }
 
   .noEquipment {

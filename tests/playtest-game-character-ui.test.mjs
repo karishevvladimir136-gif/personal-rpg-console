@@ -507,7 +507,7 @@ for (const language of ["en", "ru"]) {
     assert.equal(html.includes("Human"), false);
     assert.ok(html.includes("12 / 12"));
     assert.match(html, /<dt>Crowns<\/dt><dd>20<\/dd>/);
-    assert.match(html, /class="equipment-slots equipmentSlots"/);
+    assert.match(html, /class="equipment-slots portraitRails equipmentSlots"/);
     assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Main hand: Ordinary sword"/);
     assert.match(html, /class="equipment-slot equipmentSlot" aria-label="Off hand: [^"]+" disabled=""/);
     assert.ok(html.includes("Ordinary sword"));
@@ -837,7 +837,7 @@ test("successful DM narration is prominent without redundant committed status or
   assert.equal(story.match(/The public meeting house is quiet/g)?.length, 1);
   assert.match(html, /href="#saved-turn-/);
 });
-test("clarification, failure and preserved-turn recovery remain visible in the primary feed", () => {
+test("failure recovery offers one clear action in the primary feed", () => {
   const state = sample();
   state.play.turns = [
     turn(state.data, {
@@ -852,11 +852,68 @@ test("clarification, failure and preserved-turn recovery remain visible in the p
   ];
   const html = render("game", state);
   assert.match(html, /role="alert"/);
-  assert.ok(html.includes("needs clarification"));
-  assert.ok(html.includes("needs review"));
-  assert.ok(html.indexOf("needs review") < html.indexOf("Advanced · records"));
-  assert.ok(html.includes("Resume this turn"));
-  assert.ok(html.includes("Cancel unfinished turn"));
+  assert.ok(html.includes("The DM needs more context for this action."));
+  assert.ok(html.includes("Try again"));
+  assert.ok(html.includes("More options"));
+  assert.ok(html.includes("Abandon this action"));
+  assert.doesNotMatch(html, /Resume this turn|Cancel unfinished turn|recorded results|needs review|unsupported consequences/);
+});
+test("Game processing and provider interruption use restrained copy", () => {
+  const state = sample();
+  state.play.turns = [turn(state.data, {
+    status: "generating", narration: null, committedRevision: null,
+  })];
+  const thinking = render("game", state);
+  assert.match(thinking, /DM is thinking…/);
+  assert.doesNotMatch(thinking, /Action saved\. Ready to continue|Check saved turn|Retry same submission|Resume this turn|recorded results/);
+  state.play.turns = [turn(state.data, {
+    status: "failed", narration: null, committedRevision: null,
+    failure: "provider", canRetry: true, canCancel: true,
+  })];
+  const failed = render("game", state);
+  assert.match(failed, /The DM connection was interrupted\. Try again\./);
+  assert.equal((failed.match(/>Try again</g) ?? []).length, 1);
+  assert.doesNotMatch(failed, /The DM could not respond|Retry same submission|Check saved turn|Resume this turn/);
+  assert.ok(failed.indexOf("More options") < failed.indexOf("Abandon this action"));
+  assert.equal(translate("ru", "The DM connection was interrupted. Try again."), "Связь с DM прервалась. Попробуйте снова.");
+  assert.equal(translate("ru", "DM is thinking…"), "DM обдумывает ответ…");
+});
+test("composer hides only a connection error already shown by the failed turn", () => {
+  const state = sample();
+  const { shouldShowComposerError } = renderer(state)("src/components/gameplay-composer.tsx");
+  const failed = turn(state.data, {
+    status: "failed", failure: "provider", canRetry: true, narration: null,
+  });
+  const connection = "The DM connection was interrupted. Try again.";
+  assert.equal(shouldShowComposerError(connection, failed), false);
+  assert.equal(shouldShowComposerError("Campaign records changed.", failed), true);
+  assert.equal(shouldShowComposerError("This action needs clarification.", failed), true);
+  assert.equal(shouldShowComposerError("The DM needs local setup.", failed), true);
+  assert.equal(shouldShowComposerError(connection, { ...failed, status: "awaiting_confirmation" }), true);
+  assert.equal(shouldShowComposerError(connection, { ...failed, failure: "validation" }), true);
+});
+test("committed narration clears processing copy and interactive dice remain visible", () => {
+  const state = sample();
+  const check = {
+    id: id("check"), kind: "skill", actorId: state.data.entities[0].id,
+    actorName: "Garrick", dice: [14], kept: 14, modifier: 2,
+    total: 16, success: true, dc: 12, advantage: "normal",
+    interactive: true, canReroll: true, rollNumber: 1,
+  };
+  state.play.turns = [turn(state.data, {
+    status: "awaiting_confirmation", narration: null, committedRevision: null,
+    checks: [check], canCancel: true,
+  })];
+  const awaiting = render("game", state);
+  assert.match(awaiting, /View recorded check/);
+  assert.match(awaiting, /Continue with this result/);
+  assert.match(awaiting, /Request an allowed reroll/);
+  assert.doesNotMatch(awaiting, /DM is thinking…|Review the recorded result/);
+  state.play.turns = [turn(state.data, { checks: [check] })];
+  const committed = render("game", state);
+  assert.match(committed, /A few crates need carrying/);
+  assert.match(committed, /View recorded check/);
+  assert.doesNotMatch(committed, /DM is thinking…|Try again|Action saved|Saved to this campaign/);
 });
 test("a failed session read expands continuity rather than hiding the recovery controls", () => {
   const html = render("game", {

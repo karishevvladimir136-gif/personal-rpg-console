@@ -50,19 +50,16 @@ export type AstraPrivateFinal = {
 export type AstraDecision =
   | { type: "tool"; call: AstraToolCall; final: null }
   | { type: "final"; call: null; final: AstraPrivateFinal };
+type ProviderProgress = {
+  responseReceived: boolean;
+  phase: "preflight" | "request" | "error-body" | "response-body" |
+    "provider-json" | "provider-state" | "output-parse" | "completed";
+};
 export interface AstraPrimaryProvider {
   next(context: BuiltContext, input: TurnInput, receipts: AstraToolReceipt[],
     checks: RecordedCheck[], capabilities: AstraCapabilities,
-    source: RuntimeSource, observe?: (diagnostic: {
-      responseReceived: boolean;
-      phase: "preflight" | "request" | "error-body" | "response-body" |
-        "provider-json" | "provider-state" | "output-parse" | "completed";
-    }) => void): Promise<ProviderResult<AstraDecision>>;
-  narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: {
-    responseReceived: boolean;
-    phase: "preflight" | "request" | "error-body" | "response-body" |
-      "provider-json" | "provider-state" | "output-parse" | "completed";
-  }) => void): Promise<ProviderResult<{
+    source: RuntimeSource, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<AstraDecision>>;
+  narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<{
     narration: string; visualDescription: string; clarification: null;
   }>>;
 }
@@ -356,6 +353,34 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   let stage: Stage = "plan";
   let providerResponseReceived = false;
   let narrationParseSucceeded = false;
+  let automaticTransportRetryUsed = false;
+  const providerRequest = async <T>(send: (observe: (progress: ProviderProgress) => void) => Promise<T>,
+    unchanged: () => boolean,
+    onProgress?: (progress: ProviderProgress) => void): Promise<T> => {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const observation: { progress: ProviderProgress | null } = { progress: null };
+      providerResponseReceived = false;
+      try {
+        const result = await send((progress) => {
+          observation.progress = progress;
+          providerResponseReceived = progress.responseReceived;
+          onProgress?.(progress);
+        });
+        return result;
+      } catch (error) {
+        const safe = safeTurnFailure(error);
+        // The provider reports its transport boundary. A missing observation,
+        // any received response, or any newly recorded result forbids replay.
+        if (attempt !== 0 || automaticTransportRetryUsed ||
+          observation.progress?.phase !== "request" ||
+          observation.progress.responseReceived || !unchanged() || !safe.retryable ||
+          !["provider", "unavailable"].includes(safe.code) ||
+          !(error instanceof DmError || error instanceof TurnError)) throw error;
+        automaticTransportRetryUsed = true;
+      }
+    }
+    throw new TurnError("unavailable", true);
+  };
   const recordStage = async (next: Stage, phase: "entered" | "completed") => {
     stage = next;
     await store.recordAstraStage?.(lease, { stage: next, phase,
@@ -393,8 +418,12 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           { requiredOnly, caps }));
       // A turn may use all 32 receipt slots and still needs one final response.
       for (let step=astra.toolReceipts.length;step<=32;step++) {
-        const response = await provider.next(context,input,astra.toolReceipts,checkpoint.checks,caps,selected,
-          (diagnostic) => { providerResponseReceived = diagnostic.responseReceived; });
+        const priorReceipts = astra.toolReceipts.length;
+        const priorChecks = checkpoint.checks.length;
+        const response = await providerRequest(
+          (observe) => provider.next(context,input,astra.toolReceipts,checkpoint.checks,caps,selected,observe),
+          () => astra.toolReceipts.length === priorReceipts &&
+            checkpoint.checks.length === priorChecks && !astra.finalProposal && !checkpoint.narration);
         checkpoint.usage.push(response.usage);
         const decision = response.output;
         if (decision.type === "final") {
@@ -459,11 +488,18 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : undefined);
       await recordStage("narration_context", "completed");
       await recordStage("narration_provider", "entered");
-      const response = await provider.narrate(context,input,(diagnostic) => {
-        providerResponseReceived = diagnostic.responseReceived;
-        if (diagnostic.phase === "output-parse") stage = "narration_parse";
-        if (diagnostic.phase === "completed") narrationParseSucceeded = true;
-      });
+      const priorReceipts = astra.toolReceipts.length;
+      const priorChecks = checkpoint.checks.length;
+      const pinnedFinal = astra.finalProposal;
+      const response = await providerRequest(
+        (observe) => provider.narrate(context,input,observe),
+        () => astra.toolReceipts.length === priorReceipts &&
+          checkpoint.checks.length === priorChecks && astra.finalProposal === pinnedFinal &&
+          !checkpoint.narration,
+        (diagnostic) => {
+          if (diagnostic.phase === "output-parse") stage = "narration_parse";
+          if (diagnostic.phase === "completed") narrationParseSucceeded = true;
+        });
       providerResponseReceived = true;
       narrationParseSucceeded = true;
       await recordStage("narration_provider", "completed");

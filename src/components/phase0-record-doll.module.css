@@ -11,14 +11,6 @@
 .recordArt {
   display: grid;
   place-items: center;
-  width: 100%;
-}
-
-.recordImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 24%;
 }
 
 .recordPlaceholder {
@@ -31,17 +23,20 @@
 }
 
 .nameplate {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  padding: 15px;
+  top: 8px;
+  right: 8px;
+  max-width: 48%;
+  padding: 9px;
   color: #ecd2a8;
-  text-align: center;
+  text-align: right;
   font: 23px Georgia, serif;
   text-shadow: 0 2px 9px #000;
 }
 
 .recordDoll .recordSlots {
-  padding-top: 52px;
+  padding-top: 0;
   padding-bottom: 54px;
   grid-auto-rows: minmax(130px, auto);
   align-content: space-between;
@@ -49,6 +44,7 @@
 
 .recordSlots :global(.equipment-slot:disabled) {
   cursor: default;
+  opacity: 0.85;
 }
 
 .equipmentImage {
@@ -69,7 +65,7 @@
 
   .recordDoll .recordSlots {
     grid-template-columns: 84px 84px;
-    padding-top: 38px;
+    padding-top: 0;
     padding-bottom: 54px;
   }
 }

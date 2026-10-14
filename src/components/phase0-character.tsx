@@ -13,6 +13,7 @@ import { GenerateVisual } from "./visual-frame/generate-visual";
 import { EquippedItemArt } from "./visual-frame/equipped-item-art";
 import { Icon, Panel } from "./ui";
 import styles from "./phase0-character.module.css";
+import framing from "./paper-doll-framing.module.css";
 
 export function CharacterEquipmentDoll({
   data,
@@ -40,7 +41,7 @@ export function CharacterEquipmentDoll({
       className={`paper-doll ${styles.paperDoll}`}
       aria-label={t("{name} equipment", { name: entity.name })}
     >
-      <div className={`art ${styles.portraitArt}`}>
+      <div className={`${framing.portraitStage} ${styles.portraitArt}`}>
         {portrait ? (
           <Image
             unoptimized
@@ -48,7 +49,7 @@ export function CharacterEquipmentDoll({
             alt={entity.name}
             width={820}
             height={1200}
-            className={styles.portraitImage}
+            className={framing.portraitImage}
           />
         ) : (
           <div className={styles.portraitPlaceholder} role="img" aria-label={t("No portrait yet")}>
@@ -57,7 +58,7 @@ export function CharacterEquipmentDoll({
         )}
       </div>
       {entity.equipment_slots.length ? (
-        <div className={`equipment-slots ${styles.equipmentSlots}`}>
+        <div className={`equipment-slots ${framing.portraitRails} ${styles.equipmentSlots}`}>
           {entity.equipment_slots.map((slot) => {
             const item = model.equipped.find((row) => row.equipped_slot === slot.id);
             return (
