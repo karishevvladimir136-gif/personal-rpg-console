@@ -85,6 +85,14 @@ The only authorized live work is one fresh disposable long-rest turn after
 offline gates: one Astra High planner and one Astra Medium narrator, default
 tier, at most two requests, no quality retry and a conservative $2 ceiling.
 
-## Prose and UX
+## Prose
 
-Pending separate implementation commits after runtime focused gates.
+English campaign narration receives one compact instruction for idiomatic,
+natural conversation while retaining character/setting voice and intentional
+fantasy diction. Other campaign languages are unchanged. There is no text
+postprocessor or hardcoded replacement dialogue. Tests inspect the actual
+public narrator instruction, not the generated sentence.
+
+## UX
+
+Pending its separate implementation commit after runtime/prose focused gates.

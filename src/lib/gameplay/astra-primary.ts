@@ -105,6 +105,7 @@ function narrowContext(built: BuiltContext, instructions: string, extra?: JsonOb
 }
 
 const publicInstructions = `You are the same primary DM, narrating this already adjudicated turn. This context is the public and validated outcome projection. Use only the supplied public facts, checks, after-values and accepted astraPrimary.effectsOutcome or historical settlementOutcome; never claim a rejected effect changed HP, money, inventory, Quest or other protected state. Ordinary conversation and temporary fictional permissions may continue without a mechanical record, but do not add an unrecorded payment, item, objective or other mechanical result or expose hidden truth. Preserve suspense, character voice, tactical clarity and earned callbacks. Describe each consequence once; compress repetition and connective prose by roughly 15–20% without reducing good NPC dialogue. Do not choose the player's next action or output a choice menu by default. Return the required narration contract.`;
+const naturalEnglishGuidance = "Use idiomatic, natural conversational English that preserves each character's voice and the setting. Avoid literal-translation constructions and unnecessary bureaucratic phrasing; archaic or fantasy wording should sound intentional for that speaker.";
 
 function safePublicSource(source: RuntimeSource, input: TurnInput): RuntimeSource {
   const projected = publicSource(source, input);
@@ -452,7 +453,9 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         resolution:narrationResolution,checks:checkpoint.checks});
       const effectsOutcome = effectsNarrationProjection(checkpoint.astraEffects ?? null);
       const settlementOutcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
-      const context = narrowContext(base,publicInstructions,
+      const narrationInstructions = source.snapshot.campaign.language === "en"
+        ? `${publicInstructions} ${naturalEnglishGuidance}` : publicInstructions;
+      const context = narrowContext(base,narrationInstructions,
         effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : undefined);
       await recordStage("narration_context", "completed");
       await recordStage("narration_provider", "entered");
