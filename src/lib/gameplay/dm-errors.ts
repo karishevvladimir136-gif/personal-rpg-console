@@ -17,8 +17,8 @@ export class DmError extends Error {
 // or incomplete Memory projection inside the server.
 export class ContextCapacityError extends DmError {
   readonly summaryMayHelp: boolean;
-  constructor(summaryMayHelp = false) {
-    super("context");
+  constructor(summaryMayHelp = false, retryable = false) {
+    super("context", retryable);
     this.name = "ContextCapacityError";
     this.message = "context_capacity_mandatory";
     this.summaryMayHelp = summaryMayHelp;

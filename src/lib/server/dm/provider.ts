@@ -42,6 +42,11 @@ export type ProviderAttempt = {
   maxOutputTokens: number;
   timeoutMs: number;
   sourceCount: number;
+  reasoning: string | null;
+  serviceTier: string;
+  requestBytes: number | null;
+  reasoningTokens: number | null;
+  cachedInputTokens: number | null;
 };
 
 // Opt-in server-side diagnostics only. The ordinary attempt observer and
@@ -178,6 +183,8 @@ export type ProviderOptions = {
   observer?: (attempt: ProviderAttempt) => void;
   diagnosticObserver?: (diagnostic: ProviderTransportDiagnostic) => void;
   planDiagnosticObserver?: (diagnostic: PlanDiagnostic) => void;
+  // Older World/Lab usage receipts require exactly the original five keys.
+  includeUsageMetadata?: boolean;
 };
 export function createStructuredRequester(
   options: ProviderOptions,
@@ -219,6 +226,13 @@ export function createStructuredRequester(
       maxOutputTokens: context.budget.outputReserve,
       timeoutMs,
       sourceCount: context.sourceCount,
+      // Never log raw configuration. A model-validated enum is assigned below
+      // only after modelReasoning succeeds; earlier failures retain null.
+      reasoning: null,
+      serviceTier: STANDARD_SERVICE_TIER,
+      requestBytes: null,
+      reasoningTokens: null,
+      cachedInputTokens: null,
     };
     const diagnostic: ProviderTransportDiagnostic = {
       stage,
@@ -280,6 +294,9 @@ export function createStructuredRequester(
           },
         },
       };
+      attempt.reasoning = body.reasoning.effort;
+      const serializedBody = JSON.stringify(body);
+      attempt.requestBytes = new TextEncoder().encode(serializedBody).length;
       let response: Response;
       const signal = AbortSignal.timeout(timeoutMs);
       try {
@@ -293,7 +310,7 @@ export function createStructuredRequester(
               Authorization: `Bearer ${options.apiKey}`,
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(body),
+            body: serializedBody,
             signal,
             ...(visualCheck ? { redirect: "error" as const } : {}),
           },
@@ -411,6 +428,10 @@ export function createStructuredRequester(
           : null;
       attempt.inputTokens = tokenCount(rawUsage?.input_tokens);
       attempt.outputTokens = tokenCount(rawUsage?.output_tokens);
+      attempt.reasoningTokens = tokenCount((rawUsage?.output_tokens_details as
+        Record<string, unknown> | undefined)?.reasoning_tokens);
+      attempt.cachedInputTokens = tokenCount((rawUsage?.input_tokens_details as
+        Record<string, unknown> | undefined)?.cached_tokens);
       if (visualCheck && (attempt.inputTokens === null || attempt.inputTokens > 20000 || attempt.outputTokens === null || attempt.outputTokens > 4096)) throw new DmError("provider");
       if (
         !payload ||
@@ -475,6 +496,13 @@ export function createStructuredRequester(
           outputTokens: usage.output_tokens as number,
           calls: 1,
           latencyMs: Date.now() - started,
+          ...(options.includeUsageMetadata ? {
+            ...(attempt.reasoningTokens === null ? {} : { reasoningTokens: attempt.reasoningTokens }),
+            ...(attempt.cachedInputTokens === null ? {} : { cachedInputTokens: attempt.cachedInputTokens }),
+            reasoning: body.reasoning.effort,
+            serviceTier: STANDARD_SERVICE_TIER,
+            requestBytes: attempt.requestBytes!,
+          } : {}),
         },
       };
     } catch (error) {
@@ -499,7 +527,7 @@ export function createStructuredRequester(
       } catch {
         /* Diagnostics never affect settlement or gameplay errors. */
       }
-      if (stage === "plan") {
+      if (stage === "plan" || stage === "narrate") {
         try {
           options.planDiagnosticObserver?.({
             httpStatus: attempt.httpStatus,

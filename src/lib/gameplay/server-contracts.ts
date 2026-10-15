@@ -79,6 +79,11 @@ export type ProviderUsage = {
   outputTokens: number;
   calls: number;
   latencyMs: number;
+  reasoningTokens?: number;
+  cachedInputTokens?: number;
+  reasoning?: string;
+  serviceTier?: string;
+  requestBytes?: number;
 };
 export type ProviderResult<T> = { output: T; usage: ProviderUsage };
 export type CurrentCheckpoint = {
@@ -91,6 +96,8 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  /** Server-owned begin pin. Missing historical values retain two-stage play. */
+  astraResponseContract?: "unified-v1";
   /** Private claim-pinned mechanics definitions; World authoring stays frozen. */
   astraProgressionState?: import("../foundation-loop/contracts.ts").FoundationLoopState;
   astraProgressionBaseline?: string[];
@@ -244,6 +251,7 @@ export type TurnLease = {
   expectedRevision: number;
 };
 export type TurnClaim = {
+  astraResponseContract?: "unified-v1" | null;
   runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
   lease: TurnLease;
   turn: StoredTurn;
@@ -269,7 +277,10 @@ export interface TurnStore {
     recipientId: string; pendingId: string; optionId: string;
     expectedTrackVersion: number;
   }): Promise<{ status: "selected"; pendingId: string; optionId: string; stateVersion: number }>;
-  begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1"): Promise<PublicTurn>;
+  begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1",
+    astraResponseContract?: "unified-v1"): Promise<PublicTurn>;
+  astraResponseContract?(campaignId: string, operationId: string):
+    Promise<"legacy-two-stage" | "unified-v1" | null>;
   takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
   runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
   recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;

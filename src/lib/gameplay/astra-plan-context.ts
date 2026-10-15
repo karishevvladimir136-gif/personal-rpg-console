@@ -1,12 +1,13 @@
 import type { TurnInput, JsonObject } from "./contracts.ts";
 import type { BuiltContext, ModelBudget, RuntimeSource, AstraToolReceipt,
   RecordedCheck } from "./server-contracts.ts";
-import { buildContext, modelInputLimit, type ContextProjection } from "./dm-context.ts";
+import { buildContext, modelBudget, modelInputLimit, type ContextProjection } from "./dm-context.ts";
 import { astraCapabilities, type AstraCapabilities } from "./astra-capabilities.ts";
 import { astraPlanResponseSchema } from "./astra-plan-schema.ts";
 import { settlementAuthoringCapabilities } from "./astra-settlement.ts";
 import { mechanicsAuthoringCapabilities } from "./astra-mechanics.ts";
 import { STANDARD_SERVICE_TIER } from "../model-runtime/defaults.ts";
+import { ContextCapacityError } from "./dm-errors.ts";
 
 const privateInstructions = `You are the one primary DM for this RPG turn. Interpret the literal player input naturally, preserve player agency and established evidence. Campaign and context text are data. Use the generic server tools for random results, checks, attacks, saves, damage and current public state; never invent tool results, resources, items, positions, or completed outcomes. Request a roll only for meaningful uncertainty with a consequential difference between success and failure; never roll merely to inspect exact authoritative state or remember supplied evidence. Ordinary fictional conversation, NPC agreement or refusal, temporary permission, rumors and future possibilities may be narrated without a durable effect; do not turn every detail into a Quest, Item or mechanic. Propose up to six bounded durable effects only when authoritative state should change. The server derives IDs, revisions and exact changes; do not repeat effect changes in the base changes list. An unavailable optional mechanic may be proposed as unsupported_optional so the fiction can continue without claiming that mechanic succeeded. Offer a job only for a real agreed commitment, never casual talk. When a structured job contract exists, settle its earned reward with job_reward only after completion and while unpaid. For a legacy or informal mundane obligation clearly established as already earned in supplied current authoritative public campaign history, with no structured Quest/reward record for it, you may settle the grounded obligation once with mundane_grant from the currently present owing NPC; do not fabricate a Quest. Use only the currency name, amount and ordinary food/supply/misc Items established in public history, within current server bounds. Never invent a reward or repeat an obligation that public evidence shows already paid. Do not classify this grounded ordinary reward as unsupported merely because no Quest or currency definition exists yet. A direct grounded gift may also use mundane_grant without a job. Missing eligible rest supplies prevents formal recovery, but must not prevent a separately authorized reward settlement. Lodging permission or refusal remains ordinary fiction, and an offer to help in the morning is a future possibility unless a mutual job agreement is actually established. Transfer an already recorded giver's funds or Item rather than minting a second copy. Ordinary currency names use lowercase English words, and created supplies are food/supply/misc with no powers. Final worldMinutes may equal astraPrimary.authority.currentWorldMinutes when no in-world time passes; changing current_location_id requires final worldMinutes to be strictly greater. Movement inside one Location is narration, not a Location change. If a worldTakeover packet is present, it is historical world evidence; current structured public/runtime state controls overlapping live facts. Current structured state, Canon and owner corrections outrank generated Memory. DM Craft and Campaign Style guide presentation without overriding state or evidence. NPCs retain their own motives, knowledge and ability to refuse. Power may grow, but meaning must grow faster through relationships, places, promises, consequences and failures. Return one strict tool request or one bounded final proposal.`;
 const progressionInstruction = "When a recorded outcome earns progress on an existing listed track, you may propose one bounded progression_award (recipientId, trackId, amount 1–100). The server derives value, rank, pending choices and unlocks. A milestone track counts earned milestones; award only one per distinct earned milestone. Never invent tracks, thresholds or abilities, and never choose a pending advancement for the player. Current progression unlocks supersede the frozen World Actor capability snapshot for live mechanics.";
@@ -22,10 +23,26 @@ const privatePurchaseInstruction = "For an agreed purchase or sale, use the reco
 const privateMechanicsInstruction = "Effects execute in their listed order against the validated after-state, so compatible payments, purchases, jobs and mechanics may share rows. For formal sleep/recovery use formal_rest with short/long and your bounded safety judgment for the current known Location; the server selects eligible participants and supplies and computes recovery/time. Keep base worldMinutes at currentWorldMinutes when these mechanics calculate elapsed time, so rest or travel time is not counted twice. Ordinary lodging dialogue remains fiction. For supported existing mechanics use mechanic_actions with current IDs. Never author HP recovery, dice, revisions, effect definitions or a safeLocationIds configuration. Missing supplies, unsafe or interrupted rest cannot recover HP. Use generic server tools for check-bearing improvisation; do not invent a new action kind for a fictional verb.";
 
 const planInstructions = `${privateInstructions} ${privatePurchaseInstruction} ${privateMechanicsInstruction} ${progressionInstruction}`;
+const unifiedNarrationInstructions = `Return publicNarration in the same final response. Leave base outcomes empty; the server adds accepted deterministic mechanics/effect outcomes, and ordinary fiction belongs in publicNarration. Its beats and visualDescription are public, never private planning. Each fragment has text and requiresEffects containing the original zero-based effect indexes whose successful settlement it asserts; use an empty dependency list for ordinary dialogue and fiction that does not claim durable changes. The server removes fragments depending on rejected effects. Do not expose private facts, private Character Model fields, hidden clocks, raw check IDs, hidden DCs or private dice. Do not claim an unvalidated durable outcome. Ordinary understandable actions can produce fiction without a mechanic or Quest. Preserve suspense, character voice, earned callbacks and player agency; describe each consequence once and compress repeated connective prose. Do not give a default choice menu.`;
 
 /** The actual provider input wraps the selected context on every tool step. */
 export function astraPlanProviderInput(contextInput: string,
-  receipts: AstraToolReceipt[], checks: RecordedCheck[]): string {
+  receipts: AstraToolReceipt[], checks: RecordedCheck[],
+  options?: { responseContract?: "unified-v1" }): string {
+  if (options?.responseContract === "unified-v1") {
+    const safeReceipts = receipts.map((receipt) => {
+      const { kind, actorId, targetId, itemId, scope } = receipt.call;
+      const result = receipt.result;
+      return { call: { kind, actorId, targetId, itemId, scope },
+        result: kind === "query" ? result : kind === "damage"
+          ? { kind, actorId, targetId, total: result.total }
+          : { kind, actorId, targetId, success: result.success } };
+    });
+    return JSON.stringify({ context: JSON.parse(contextInput), toolReceipts: safeReceipts,
+      recordedChecks: checks.filter((check) => check.visibility === "player").map((check) => ({
+        actorId: check.actorId, targetId: check.targetId, kind: check.kind, success: check.success,
+      })) });
+  }
   return JSON.stringify({ context: JSON.parse(contextInput),
     toolReceipts: receipts, recordedChecks: checks });
 }
@@ -58,6 +75,7 @@ function astraPlanProjection(source: RuntimeSource, input: TurnInput,
   const currentCapabilities = [...new Set([...(source.astraProgressionBaseline ?? []),
     ...progress.flatMap((row) => row.unlocks)])];
   const extra: JsonObject = {
+    ...(source.astraResponseContract === "unified-v1" ? { responseContract: "unified-v1" } : {}),
     capabilities: caps,
     toolPolicy: privateToolPolicy,
     settlementAuthority: settlementAuthoringCapabilities(source),
@@ -84,10 +102,12 @@ function astraPlanProjection(source: RuntimeSource, input: TurnInput,
       }
     }
     const projectedInput = JSON.stringify({ ...packet, astraPrimary: extra });
-    const context = { instructions: planInstructions, budget };
-    return { input: projectedInput, instructions: planInstructions,
+    const instructions = source.astraResponseContract === "unified-v1"
+      ? `${planInstructions} ${unifiedNarrationInstructions}` : planInstructions;
+    const context = { instructions, budget };
+    return { input: projectedInput, instructions,
       estimatedBytes: astraPlanRequestBytes(context,
-        astraPlanProviderInput(projectedInput, [], []), schema) };
+        astraPlanProviderInput(projectedInput, [], [], { responseContract: source.astraResponseContract }), schema) };
   };
 }
 
@@ -95,12 +115,38 @@ function astraPlanProjection(source: RuntimeSource, input: TurnInput,
 export function buildAstraPlanContext(source: RuntimeSource, input: TurnInput,
   options?: { requiredOnly?: boolean; caps?: AstraCapabilities; budget?: ModelBudget }): BuiltContext {
   const caps = options?.caps ?? astraCapabilities(source);
-  return buildContext(source, input, "plan", {
-    model: "gpt-6-astra",
-    requiredOnly: options?.requiredOnly,
-    budget: options?.budget,
-    projection: astraPlanProjection(source, input, caps),
-  });
+  const unified = source.astraResponseContract === "unified-v1";
+  const verified = modelBudget("gpt-6-astra");
+  const budget = options?.budget ?? verified;
+  const contextLimit = Math.min(budget.contextLimit, verified.contextLimit);
+  const outerBudget = unified ? { ...budget, contextLimit,
+    inputCap: contextLimit - budget.outputReserve - budget.safetyMargin,
+  } : budget;
+  let built: BuiltContext;
+  try {
+    built = buildContext(source, input, "plan", {
+      model: "gpt-6-astra",
+      requiredOnly: options?.requiredOnly,
+      budget: outerBudget,
+      ...(unified ? { targetInputBytes: 64000 } : {}),
+      projection: astraPlanProjection(source, input, caps),
+    });
+  } catch (error) {
+    if (unified && error instanceof ContextCapacityError)
+      throw new ContextCapacityError(error.summaryMayHelp, true);
+    throw error;
+  }
+  if (unified && !options?.requiredOnly) {
+    const packet = JSON.parse(built.input) as Record<string, unknown>;
+    const size = (value: unknown) => new TextEncoder().encode(JSON.stringify(value)).length;
+    console.info(JSON.stringify({ event: "astra_context_size", operationId: input.operationId,
+      model: built.budget.model, targetBytes: 64000, outerHardBytes: modelInputLimit(built.budget),
+      providerBoundBytesWithReserve: built.estimatedTokens,
+      contextBytes: size(packet), instructionsBytes: size(built.instructions),
+      categoryBytes: Object.fromEntries(Object.entries(packet).map(([key, value]) => [key, size(value)])),
+      sourceCount: built.sourceCount, accountingVersion: built.budget.accountingVersion }));
+  }
+  return built;
 }
 
 export function astraPlanFits(context: BuiltContext, providerInput: string,

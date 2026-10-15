@@ -62,8 +62,11 @@ async function run(value, { text, output, fetcher } = {}) {
   assert.equal(diagnostics.length, 1);
   assert.deepEqual(Object.keys(diagnostics[0]).sort(),
     ["httpStatus", "phase", "reasonCode", "resultStatus"]);
-  assert.deepEqual(runtime, [{ responseReceived: true,
-    phase: diagnostics[0].phase }]);
+  assert.equal(runtime.length,1);
+  assert.equal(runtime[0].responseReceived,true);
+  assert.equal(runtime[0].phase,diagnostics[0].phase);
+  assert.ok(Number.isFinite(runtime[0].elapsedMs));
+  assert.equal(runtime[0].abortKind,null);
   return { result, diagnostic: diagnostics[0], f };
 }
 

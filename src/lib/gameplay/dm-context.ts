@@ -151,6 +151,8 @@ export function buildContext(
     /** Internal sizing pass before optional retrieval and recent prose. */
     requiredOnly?: boolean;
     projection?: ContextProjection;
+    /** Preferred size for optional context; never the correctness boundary. */
+    targetInputBytes?: number;
   },
 ): BuiltContext {
   try {
@@ -160,6 +162,8 @@ export function buildContext(
   }
   const budget = options.budget ?? modelBudget(options.model);
   const inputBudget = modelInputLimit(budget);
+  const inputTarget = Math.min(inputBudget, options.targetInputBytes ?? inputBudget);
+  const unified = source.astraResponseContract === "unified-v1";
   if (
     budget.model !== options.model ||
     !Number.isSafeInteger(inputBudget) ||
@@ -335,7 +339,8 @@ export function buildContext(
           ),
           quests: companion ? [] : snapshot.quests,
           configuration: companion ? null : runtime.configuration,
-          rest: companion ? [] : runtime.restRecords,
+          rest: companion ? [] : unified
+            ? runtime.restRecords.filter((row) => row.status === "planned") : runtime.restRecords,
           effects: companion ? [] : runtime.effects,
           encounters: companion
             ? runtime.encounters
@@ -345,7 +350,7 @@ export function buildContext(
                   status: encounter.status,
                   round: encounter.round,
                 }))
-            : runtime.encounters,
+            : unified ? runtime.encounters.filter((row) => row.status !== "ended") : runtime.encounters,
           participants: companion
             ? runtime.participants
                 .filter(
@@ -365,8 +370,11 @@ export function buildContext(
                   public_name: participant.public_name,
                   public_position: participant.public_position,
                 }))
-            : runtime.participants,
-          pendingActions: companion ? [] : runtime.pendingActions,
+            : unified ? runtime.participants.filter((row) => runtime.encounters.some((encounter) =>
+              encounter.id === row.encounter_id && encounter.status !== "ended")) : runtime.participants,
+          pendingActions: companion ? [] : unified
+            ? runtime.pendingActions.filter((row) => row.status === "proposed" || row.status === "confirmed")
+            : runtime.pendingActions,
           ...(request.mode === "game" && source.adventureContext
             ? { adventure: source.adventureContext }
             : {}),
@@ -376,7 +384,11 @@ export function buildContext(
             ? { foundationOptions: source.foundationOptions }
             : {}),
         },
-    canon: feedback
+    canon: unified && !feedback && !companion
+      ? [...snapshot.documents.filter((doc) => doc.status === "canon").map((doc) => ({
+          id: doc.id, version: doc.current_version_id, title: doc.title, body: doc.body,
+        })), ...(memory?.canon ?? [])]
+      : feedback
       ? []
       : memory
         ? memory.canon
@@ -620,6 +632,17 @@ export function buildContext(
     : { input, instructions: finalInstructions,
       estimatedBytes: new TextEncoder().encode(JSON.stringify(bodyFor(input))).length + 2048 };
   const estimate = (input: string) => project(input).estimatedBytes;
+  if (unified) {
+    // The committed turn explicitly points to its narration Scene. Keep one
+    // source-linked representation, never deduplicate by prose similarity.
+    originalScenes = originalScenes.filter((scene) => {
+      if (scene.id === snapshot.publicState.current_scene_id) return true;
+      return !exchanges.some((exchange) => {
+        const turn = runtime.turns.find((row) => row.id === exchange.id);
+        return turn?.narrationSceneId === scene.id && scene.body === exchange.narration;
+      });
+    });
+  }
   // Mandatory state, evidence, and the stage schema always enter first. Drop
   // optional cards from the tail; never trim source evidence to fit guidance.
   if (options.requiredOnly) {
@@ -644,7 +667,7 @@ export function buildContext(
   // Selection order is stable: current authority and exact evidence, critical
   // continuity, ranked retrieval, then recent supporting prose. Retrieval is
   // already ranked by Memory; discard its least relevant optional tail last.
-  while (estimate(input) > inputBudget) {
+  while (estimate(input) > inputTarget) {
     const optionalScene = originalScenes.findIndex(
       (scene) => scene.id !== snapshot.publicState.current_scene_id,
     );
@@ -669,6 +692,7 @@ export function buildContext(
         if (removed) break;
       }
       if (!removed) {
+        if (unified && estimate(input) <= inputBudget) break;
         // An uncovered exact event is still mandatory for this prompt. A
         // validated Memory rebuild may advance coverage; test that possibility
         // without actually deleting the event or claiming the digest replaces it.
@@ -685,7 +709,8 @@ export function buildContext(
           memoryPayload.privateContinuity.exactEvents = privateExact;
         throw new ContextCapacityError(summaryMayHelp);
       }
-    } else throw new ContextCapacityError();
+    } else if (unified && estimate(input) <= inputBudget) break;
+    else throw new ContextCapacityError();
     payload = payloadFor();
     input = JSON.stringify(payload);
   }
@@ -722,7 +747,7 @@ export function buildContext(
           cards: selected,
         },
       });
-      if (estimate(candidate) <= inputBudget) {
+      if (estimate(candidate) <= inputTarget) {
         input = candidate;
         break;
       }

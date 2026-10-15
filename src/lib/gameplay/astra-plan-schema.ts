@@ -184,7 +184,17 @@ export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilitie
     : array(obj({kind:enumString(["__none__"])}));
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
-    outcomes:array(outcome), privatePatches:array(privatePatch),effects });
+    outcomes:{...array(outcome), ...(source.astraResponseContract === "unified-v1" ? {maxItems:0} : {})},
+    privatePatches:array(privatePatch),effects,
+    ...(source.astraResponseContract === "unified-v1" ? {
+      publicNarration: obj({
+        beats: { ...array(obj({ text: { type: "string", minLength: 1, maxLength: 6000 },
+          requiresEffects: { ...array({ type: "integer", minimum: 0, maximum: 5 }), maxItems: 6 } })),
+          minItems: 1, maxItems: 12 },
+        visualDescription: obj({ text: { type: "string", maxLength: 2000 },
+          requiresEffects: { ...array({ type: "integer", minimum: 0, maximum: 5 }), maxItems: 6 } }),
+      }),
+    } : {}) });
   return withSharedEnums(obj({ type:enumString(["tool","final"]),
     call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} }));
 }

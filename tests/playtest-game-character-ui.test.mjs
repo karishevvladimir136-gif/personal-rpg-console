@@ -852,7 +852,8 @@ test("failure recovery offers one clear action in the primary feed", () => {
   ];
   const html = render("game", state);
   assert.match(html, /role="alert"/);
-  assert.ok(html.includes("The DM needs more context for this action."));
+  assert.ok(html.includes("The DM could not finish this turn. Your action is preserved."));
+  assert.doesNotMatch(html, /The DM needs more context for this action/);
   assert.ok(html.includes("Try again"));
   assert.ok(html.includes("More options"));
   assert.ok(html.includes("Abandon this action"));

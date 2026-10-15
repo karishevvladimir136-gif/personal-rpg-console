@@ -210,6 +210,7 @@ test("unsupported reasoning fails safely before transport without dropping it or
     });
     assert.equal(observed[0].attempted, false);
     assert.equal(observed[0].configuredModel, model);
+    assert.equal(observed[0].reasoning, null);
     assert.ok(!JSON.stringify(observed).includes("SYNTHETIC_PRIVATE"));
   }
   assert.equal(calls, 0);
@@ -437,6 +438,11 @@ test("authentication setup failures are retryable and failed/successful attempts
         "maxOutputTokens",
         "timeoutMs",
         "sourceCount",
+        "reasoning",
+        "serviceTier",
+        "requestBytes",
+        "reasoningTokens",
+        "cachedInputTokens",
       ].sort(),
     );
   }

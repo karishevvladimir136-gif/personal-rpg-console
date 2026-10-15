@@ -7,6 +7,22 @@ import { withMemory } from "./context.ts";
 import { processMemoryJobs } from "./jobs.ts";
 import { sameTimeline } from "./timeline.ts";
 import { validateCharacterPatches } from "../gameplay/character-model.ts";
+import type { TimelineFence } from "../saves/contracts.ts";
+
+/** A committed response may schedule this existing, bounded Memory lifecycle.
+ * No timer, second store, or foreground model work is introduced. */
+export async function maintainAstraMemoryAfterCommit(campaignId: string,
+  store: MemoryStore, summaries: SummaryProvider, timeline?: TimelineFence) {
+  const current = await store.context(campaignId, [], true);
+  if (current.campaignId !== campaignId || !sameTimeline(timeline, current.timeline))
+    throw new DmError("conflict");
+  const bytes = new TextEncoder().encode(JSON.stringify(current.uncovered)).length;
+  if (!current.overflow && current.uncovered.length < 8 && bytes < 12000)
+    return { processed: 0, failed: false, scheduled: false };
+  await store.enqueue(campaignId, "pressure");
+  const result = await processMemoryJobs(campaignId, store, summaries, 3, timeline);
+  return { ...result, scheduled: true };
+}
 
 export function memoryAwareProvider(
   provider: DmProvider,
@@ -66,6 +82,7 @@ export async function preflightAstraPlanMemory(
     });
     return { selected, context: builder(selected, input, false) };
   };
+  if (source.astraResponseContract === "unified-v1") return evaluate();
   let current: Awaited<ReturnType<typeof evaluate>> | null = null;
   let rebuild = false;
   try {

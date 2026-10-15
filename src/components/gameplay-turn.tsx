@@ -254,7 +254,7 @@ export function GameplayTurn({
     : turn.failure === "configuration"
       ? "The DM needs setup before play can continue."
       : turn.failure === "context" || turn.failure === "validation"
-        ? "The DM needs more context for this action."
+        ? "The DM could not finish this turn. Your action is preserved."
         : turn.failure === "conflict"
           ? "The world changed while this action was underway. Review the latest scene."
           : "The DM could not finish this action.";

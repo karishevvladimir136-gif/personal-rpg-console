@@ -25,6 +25,10 @@ export const PLAN_DIAGNOSTIC_REASONS = [
   "decision_rest_safety",
   "decision_rest_kind",
   "decision_mechanic_actions",
+  "decision_public_narration_shape",
+  "decision_public_narration_bounds",
+  "narration_contract_invalid",
+  "narration_clarification_present",
 ] as const;
 export type PlanDiagnosticReasonCode = typeof PLAN_DIAGNOSTIC_REASONS[number];
 const allowedReasons: ReadonlySet<string> = new Set(PLAN_DIAGNOSTIC_REASONS);

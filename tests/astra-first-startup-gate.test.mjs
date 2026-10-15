@@ -7,6 +7,7 @@ import ts from "typescript";
 import { astraStartupPending, AstraStartupPendingError } from "../src/lib/gameplay/startup-admission.ts";
 import { safeGameplayError } from "../src/lib/gameplay/http-response.ts";
 import { gameplayErrorMessage, GameplayClientError } from "../src/lib/gameplay/client.ts";
+import { runWithAstraMemoryMaintenance } from "../src/lib/memory/after-commit.ts";
 
 const structured = { schemaVersion: 1, mode: "structured_rpg" };
 const narrative = { schemaVersion: 1, mode: "narrative" };
@@ -69,6 +70,8 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
   }) }) };
   const modules = {
     "server-only": {},
+    "next/server": { after: () => {} },
+    "../memory/after-commit": { runWithAstraMemoryMaintenance },
     "./campaign-authorization": { authorizeCampaign: async () => ({ user: { id: "owner" }, client }) },
     "./errors": { PersistenceError: class extends Error {} },
     "../persistence/validation": { isUuid: () => true },

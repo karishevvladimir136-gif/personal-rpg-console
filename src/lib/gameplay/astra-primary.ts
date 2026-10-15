@@ -26,6 +26,7 @@ import { planAstraSettlement,
   settlementNarrationProjection, effectsNarrationProjection,
   type AstraSettlementIntent, type AstraEffectIntent } from "./astra-settlement.ts";
 import { planAstraOrderedEffects } from "./astra-ordered-effects.ts";
+import { planAstraCompatibleEffects } from "./astra-compatible-effects.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -46,14 +47,21 @@ export type AstraPrivateFinal = {
   privatePatches: PrivatePatch[];
   settlement?: AstraSettlementIntent | null;
   effects?: AstraEffectIntent[];
+  publicNarration?: {
+    beats: { text: string; requiresEffects: number[] }[];
+    visualDescription: { text: string; requiresEffects: number[] };
+  };
 };
 export type AstraDecision =
   | { type: "tool"; call: AstraToolCall; final: null }
   | { type: "final"; call: null; final: AstraPrivateFinal };
-type ProviderProgress = {
+export type ProviderProgress = {
   responseReceived: boolean;
   phase: "preflight" | "request" | "error-body" | "response-body" |
     "provider-json" | "provider-state" | "output-parse" | "completed";
+  elapsedMs?: number;
+  abortKind?: "timeout" | "abort" | null;
+  causeCode?: string | null;
 };
 export interface AstraPrimaryProvider {
   next(context: BuiltContext, input: TurnInput, receipts: AstraToolReceipt[],
@@ -136,19 +144,89 @@ function activeParticipant(source: RuntimeSource, entityId: string) {
     participant.public_resources.withdrawn !== true ? participant : null;
 }
 
-function assertNoPrivateDisclosure(source: RuntimeSource, input: TurnInput, publicText: string) {
+function assertNoPrivateDisclosure(source: RuntimeSource, input: TurnInput, publicText: string,
+  receipts: AstraToolReceipt[] = []) {
   const fact = source.privateState.fact;
   const values = fact && typeof fact === "object" && !Array.isArray(fact)
     ? Object.values(fact).filter((v):v is string=>typeof v === "string") : [];
   const privateMemory = [ ...(source.memory?.privateHistorical ?? []),
     ...(source.memory?.exactEvents.filter((e)=>e.ref.visibility === "private") ?? []) ]
     .map((e)=>e.text);
+  // The unified response has a private authoring context. Public projection is
+  // still an allowlist; reject verbatim private values before any public commit.
+  // This catches nested Character Models and generic private buckets as well
+  // as ordinary facts. It is not a semantic/paraphrase secrecy guarantee.
+  const nestedStrings = (value: unknown, into: Set<string>, depth = 0) => {
+    if (depth > 20 || value === null) return;
+    if (typeof value === "string") {
+      into.add(value);
+      if (/^[\[{]/.test(value.trim())) {
+        try { nestedStrings(JSON.parse(value), into, depth + 1); } catch { /* prose */ }
+      }
+    } else if (Array.isArray(value)) {
+      for (const child of value) nestedStrings(child, into, depth + 1);
+    } else if (typeof value === "object") {
+      for (const child of Object.values(value)) nestedStrings(child, into, depth + 1);
+    }
+  };
+  const privateValues = new Set([...values, ...privateMemory]);
+  const publicValues = new Set<string>([input.input]);
+  if (source.astraResponseContract === "unified-v1") {
+    nestedStrings(source.privateState, privateValues);
+    nestedStrings(source.worldTakeover, privateValues);
+    nestedStrings(source.narrationBridge, privateValues);
+    nestedStrings(source.memory?.privateHistorical, privateValues);
+    nestedStrings(source.memory?.exactEvents.filter((event) => event.ref.visibility === "private"), privateValues);
+    nestedStrings(source.memory?.privateSummary, privateValues);
+    nestedStrings(source.checkpoint?.privateText, privateValues);
+    const visible = safePublicSource(source, input);
+    nestedStrings(visible.snapshot, publicValues);
+    nestedStrings(visible.memory, publicValues);
+    nestedStrings(visible.observableCharacters, publicValues);
+    nestedStrings(visible.checkpoint?.publicText, publicValues);
+  }
+  const knownPublic = [...publicValues].join("\n").toLocaleLowerCase();
   const lower = publicText.toLocaleLowerCase();
-  for (const secret of [...values,...privateMemory]) {
+  for (const receipt of receipts) {
+    // Receipt identity is private replay authority, not fictional content.
+    // Even player-visible Checks expose their ID only through the Check DTO.
+    const identifiers = [receipt.id, receipt.result.id]
+      .filter((value): value is string => typeof value === "string" && value.length >= 8);
+    for (const identifier of identifiers)
+      requireRule(!lower.includes(identifier.toLocaleLowerCase()));
+    if (source.astraResponseContract === "unified-v1")
+      privateValues.add(JSON.stringify(receipt));
+  }
+  for (const secret of privateValues) {
     const text = secret.trim();
-    if (text.length >= 8 && !input.input.toLocaleLowerCase().includes(text.toLocaleLowerCase()))
+    if (text.length >= 8 && !knownPublic.includes(text.toLocaleLowerCase()))
       requireRule(!lower.includes(text.toLocaleLowerCase()));
   }
+}
+
+function unifiedNarration(value: AstraPrivateFinal["publicNarration"],
+  effectCount: number, acceptedIndexes: number[]) {
+  requireRule(value && typeof value === "object" && Array.isArray(value.beats) &&
+    value.beats.length > 0 && value.beats.length <= 12 && value.visualDescription);
+  const accepted = new Set(acceptedIndexes);
+  const keep = (fragment: { text: string; requiresEffects: number[] }, max: number) => {
+    requireRule(fragment && typeof fragment === "object" &&
+      Object.keys(fragment).length === 2 && typeof fragment.text === "string" &&
+      fragment.text.length <= max && Array.isArray(fragment.requiresEffects) &&
+      fragment.requiresEffects.length <= 6 &&
+      new Set(fragment.requiresEffects).size === fragment.requiresEffects.length &&
+      fragment.requiresEffects.every((index) => Number.isInteger(index) &&
+        index >= 0 && index < effectCount));
+    return fragment.requiresEffects.every((index) => accepted.has(index));
+  };
+  const beats = value.beats.filter((beat) => keep(beat, 6000));
+  const narration = beats.map((beat) => beat.text).filter((text) => text.trim()).join("\n\n");
+  // Do not invent replacement fiction when all supplied public text depended
+  // on rejected authority. Preserve the input and use a technical retry state.
+  if (!narration.trim() || narration.length > 6000) throw new DmError("provider", true);
+  const visualDescription = keep(value.visualDescription, 2000)
+    ? value.visualDescription.text : "";
+  return { narration, visualDescription, clarification: null };
 }
 
 export function astraToolResult(source: RuntimeSource, input: TurnInput,
@@ -232,6 +310,10 @@ function validateFinal(source: RuntimeSource, input: TurnInput, next: AstraPriva
     Number.isInteger(next.worldMinutes) &&
     next.worldMinutes >= source.runtime.worldMinutes &&
     next.worldMinutes <= source.runtime.worldMinutes + 1440);
+  // Unified fiction belongs in dependency-tagged narration. Model-written
+  // outcomes must not be indexed as validated facts independently of rejected
+  // effects. Accepted mechanics/settlement outcomes are added by the server.
+  if (source.astraResponseContract === "unified-v1") requireRule(next.outcomes.length === 0);
   const caps = astraCapabilities(source);
   const seen = new Set<string>();
   for (const change of next.changes) {
@@ -319,7 +401,7 @@ function validateFinal(source: RuntimeSource, input: TurnInput, next: AstraPriva
         patch.value === null && Number.isInteger(patch.amount) &&
         patch.amount! >= 0 && patch.amount! <= 100)));
   }
-  assertNoPrivateDisclosure(source,input,next.outcomes.map((o)=>o.text).join("\n"));
+  assertNoPrivateDisclosure(source,input,next.outcomes.map((o)=>o.text).join("\n"),receipts);
   validateCharacterPatches(source, input, next.privatePatches);
   const travel = next.changes.some((change) => change.family === "public_state");
   // World Logic-origin actor locations are historical after handoff. An
@@ -347,6 +429,10 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   const { store, memory, provider, summaries } = deps;
   assertAstraStore(store);
   const { source, lease } = claim;
+  // Durable begin owns this pin. A historical/missing pin remains two-stage
+  // regardless of the current application or provider defaults.
+  const unified = claim.astraResponseContract === "unified-v1";
+  source.astraResponseContract = unified ? "unified-v1" : undefined;
   const input = claim.turn.input;
   const checkpoint = structuredClone(claim.turn.checkpoint);
   type Stage = Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]["stage"];
@@ -366,6 +452,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           providerResponseReceived = progress.responseReceived;
           onProgress?.(progress);
         });
+        providerResponseReceived = true;
         return result;
       } catch (error) {
         const safe = safeTurnFailure(error);
@@ -374,9 +461,19 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         if (attempt !== 0 || automaticTransportRetryUsed ||
           observation.progress?.phase !== "request" ||
           observation.progress.responseReceived || !unchanged() || !safe.retryable ||
+          observation.progress.abortKind !== null ||
+          !Number.isFinite(observation.progress.elapsedMs) ||
+          observation.progress.elapsedMs! < 0 ||
+          observation.progress.elapsedMs! > 5000 ||
+          !["ECONNRESET", "ECONNREFUSED", "EPIPE", "EAI_AGAIN", "UND_ERR_SOCKET"]
+            .includes(observation.progress.causeCode ?? "") ||
           !["provider", "unavailable"].includes(safe.code) ||
           !(error instanceof DmError || error instanceof TurnError)) throw error;
         automaticTransportRetryUsed = true;
+        console.info(JSON.stringify({ event: "astra_transport_retry",
+          operationId: input.operationId, stage, automaticRetry: true,
+          elapsedMs: observation.progress.elapsedMs,
+          causeCode: observation.progress.causeCode }));
       }
     }
     throw new TurnError("unavailable", true);
@@ -432,11 +529,18 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
           if (decision.final.effects) {
-            const effects = planAstraOrderedEffects(selected,input,decision.final.effects,
-              astra.finalProposal.resolution);
+            const compatible = unified ? planAstraCompatibleEffects(selected, input,
+              decision.final.effects, astra.finalProposal.resolution) : null;
+            const effects = compatible ? compatible.plan :
+              planAstraOrderedEffects(selected,input,decision.final.effects,
+                astra.finalProposal.resolution);
             if (effects) {
               checkpoint.astraEffects = effects;
               checkpoint.astraSettlement = null;
+            }
+            if (unified) {
+              checkpoint.narration = unifiedNarration(decision.final.publicNarration,
+                decision.final.effects.length, compatible!.acceptedIndexes);
             }
           } else {
             if (decision.final.settlement)
@@ -444,6 +548,16 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             const settlement = planAstraSettlement(selected,input,decision.final.settlement,
               astra.finalProposal.resolution.changes);
             if (settlement) checkpoint.astraSettlement = settlement;
+            if (unified) {
+              requireRule(!decision.final.settlement);
+              checkpoint.narration = unifiedNarration(decision.final.publicNarration, 0, []);
+            }
+          }
+          if (unified) {
+            assertNoPrivateDisclosure(selected,input,
+              checkpoint.narration!.narration+"\n"+checkpoint.narration!.visualDescription,
+              astra.toolReceipts);
+            narrationParseSucceeded = true;
           }
           await recordStage("final_validated", "completed");
           checkpoint.resolution = astra.finalProposal.resolution;
@@ -472,6 +586,9 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       requireRule(astra.finalProposal);
     }
     const final = astra.finalProposal!;
+    // A new-contract final must carry its public allowlisted narration in the
+    // same checkpoint. Never fall back to a dedicated narrator on recovery.
+    if (unified) requireRule(checkpoint.narration);
     if (!checkpoint.narration) {
       await recordStage("narration_context", "entered");
       const safe = safePublicSource(source,input);
@@ -511,7 +628,8 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         checkpoint.narration.narration.trim().length > 0 &&
         checkpoint.narration.narration.length <= 6000);
       assertNoPrivateDisclosure(source,input,
-        checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription);
+        checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription,
+        astra.toolReceipts);
       await recordStage("narration_safety", "completed");
       await recordStage("narration_checkpoint", "entered");
       await store.checkpoint(lease,checkpoint,"generating");
@@ -533,7 +651,11 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
 }
 
 export async function runAstraTurn(input: TurnInput,deps:AstraDependencies):Promise<PublicTurn> {
-  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME),
+  const contract = deps.store.astraResponseContract
+    ? await deps.store.astraResponseContract(input.campaignId, input.operationId) : undefined;
+  const requestedContract = contract === "legacy-two-stage" || contract === undefined
+    ? undefined : "unified-v1";
+  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME,requestedContract),
     input.campaignId,input.operationId,input.timeline);
   if (["committed","cancelled","awaiting_confirmation"].includes(current.status) ||
       (current.status === "failed" && !current.canRetry)) return current;

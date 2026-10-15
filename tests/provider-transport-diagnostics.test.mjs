@@ -344,7 +344,9 @@ test("credential-like provider codes, request IDs and messages cannot enter diag
 test("completed valid response preserves response ID and leaves normal observer unchanged", async () => {
   const { plan } = runtimeFixture();
   const f = setup(async () => completed(plan));
-  await f.run();
+  const result=await f.run();
+  assert.deepEqual(Object.keys(result.usage).sort(),
+    ["calls","inputTokens","latencyMs","model","outputTokens"]);
   assert.equal(f.attempts.length, 1);
   assert.equal(f.attempts[0].success, true);
   assert.equal(f.diagnostics.length, 1);

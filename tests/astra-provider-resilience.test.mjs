@@ -10,7 +10,8 @@ import { DmError } from "../src/lib/gameplay/dm-errors.ts";
 const usage={model:"fake",inputTokens:0,outputTokens:0,calls:1,latencyMs:0};
 const narration={narration:"The village answers.",visualDescription:"",clarification:null};
 const transport=(observe)=>{
-  observe?.({phase:"request",responseReceived:false});
+  observe?.({phase:"request",responseReceived:false,elapsedMs:12,
+    abortKind:null,causeCode:"ECONNRESET"});
   throw new DmError("provider",true);
 };
 
@@ -223,5 +224,27 @@ for(const scenario of [
     const result=await runAstraTurn(input,deps);
     assert.equal(result.status,"failed");
     assert.equal(calls,1);
+  } finally {await f.db.close();}
+});
+
+for(const progress of [
+  {elapsedMs:60000,abortKind:"timeout",causeCode:"ETIMEDOUT"},
+  {elapsedMs:60000,abortKind:null,causeCode:"ECONNRESET"},
+  {elapsedMs:12,abortKind:"abort",causeCode:"ECONNRESET"},
+  {elapsedMs:12,abortKind:null,causeCode:null},
+]) test(`no automatic replay for ${JSON.stringify(progress)}`,async()=>{
+  const {f,input,deps,row}=await setup();
+  try {
+    let calls=0;
+    deps.provider={next:async(_context,_input,_receipts,_checks,_caps,_source,observe)=>{
+      calls++;
+      observe?.({phase:"request",responseReceived:false,...progress});
+      throw new DmError("provider",true);
+    },narrate:()=>assert.fail("narration must not run")};
+    const result=await runAstraTurn(input,deps);
+    assert.equal(result.status,"failed");
+    assert.equal(result.canRetry,true);
+    assert.equal(calls,1);
+    assert.equal((await row()).committed_revision,null);
   } finally {await f.db.close();}
 });

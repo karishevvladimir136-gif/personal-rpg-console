@@ -141,7 +141,7 @@ for (const scenario of [
     assert.equal(row.astra_diagnostic.failureCategory,
       scenario.kind==="provider"?"provider":"validation");
     assert.equal(row.astra_diagnostic.providerResponseReceived,
-      !["final","final_checkpoint","context","provider"].includes(scenario.kind));
+      scenario.kind!=="provider");
     assert.equal(row.astra_diagnostic.narrationParseSucceeded,
       ["safety","narration_checkpoint","commit"].includes(scenario.kind));
     assert.equal(JSON.stringify(row.astra_diagnostic).includes("SYNTHETIC_PRIVATE_MARKER"),false);

@@ -19,6 +19,7 @@ export function createRpcTurnStore(
   model: string | null = null,
   timeline?: TimelineFence,
   astraDiagnostics = false,
+  options?: { astraResponseContract: "unified-v1" },
 ): TurnStore {
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
@@ -81,8 +82,11 @@ export function createRpcTurnStore(
     advanceProgression: (campaignId, payload) =>
       rpc(campaignId, "astra_advancement", payload),
     takeoverStatus: (campaignId) => rpc(campaignId, "astra_takeover_status"),
-    begin: (input, runtimeIdentity) => rpc(input.campaignId, "begin",
-      runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity } : input),
+    begin: (input, runtimeIdentity, responseContract) => rpc(input.campaignId, "begin",
+      runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity,
+        ...(options && responseContract ? { serverAstraContract: responseContract } : {}) } : input),
+    ...(options ? { astraResponseContract: (campaignId: string, operationId: string) =>
+      rpc<"legacy-two-stage" | "unified-v1" | null>(campaignId, "astra_contract", { operationId }) } : {}),
     runtimeIdentity: (campaignId, operationId) =>
       rpc(campaignId, "astra_runtime", { operationId }),
     recordAstraTool: (lease, position, call, result) =>

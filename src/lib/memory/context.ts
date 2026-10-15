@@ -18,6 +18,7 @@ import {
   selectCriticalSourceIds,
 } from "./retrieval.ts";
 import { sameTimeline, refsOnTimeline, sourceOnTimeline } from "./timeline.ts";
+import { withUnifiedMemory } from "./unified-context.ts";
 
 export async function withMemory(
   source: RuntimeSource,
@@ -29,6 +30,8 @@ export async function withMemory(
       requiredOnly: boolean) => BuiltContext },
 ): Promise<RuntimeSource> {
   if (input.mode === "feedback" || input.mode === "ooc") return source;
+  if (source.astraResponseContract === "unified-v1" && input.mode === "game")
+    return withUnifiedMemory(source, input, store, includePrivate);
   const cid = input.campaignId;
   const timeline = source.runtime.timeline;
   if (!sameTimeline(timeline, input.timeline)) throw new DmError("conflict");

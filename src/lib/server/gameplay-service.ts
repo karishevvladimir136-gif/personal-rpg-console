@@ -1,4 +1,5 @@
 import "server-only";
+import { after } from "next/server";
 import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError } from "./errors";
 import { isUuid } from "../persistence/validation";
@@ -19,6 +20,7 @@ import type { CharacterSheetV1 } from "../adventures/bootstrap-contracts";
 import { DmError } from "../gameplay/dm-errors";
 import { createMemoryStore } from "./memory/store";
 import { memoryAwareProvider, preflightMemory } from "../memory/lifecycle";
+import { runWithAstraMemoryMaintenance } from "../memory/after-commit";
 import {
   validateConfigurePlayInput,
   validateGuidanceApproval,
@@ -152,10 +154,11 @@ export async function submitTurn(campaignId: string, value: unknown) {
   );
   const selected = selectAstraPrimaryRuntime(runtime,optIn,input.mode,rulesetId,
     worldTakeover);
-  if (selected) return runAstraTurn(input, {
-    store, memory, summaries: production.summaries,
-    provider: production.astraProvider,
-  });
+  if (selected) return runWithAstraMemoryMaintenance(store, memory, production.summaries,
+    requireTimeline(input), (observedStore) => runAstraTurn(input, {
+      store: observedStore, memory, summaries: production.summaries,
+      provider: production.astraProvider,
+    }), after);
   if (!existing && process.env.OPENAI_API_KEY)
     await preflightMemory(
       input,
@@ -191,10 +194,11 @@ export async function continueTurn(
     requireTimeline(input),
   );
   if ((await store.runtimeIdentity?.(campaignId, operationId)) === "astra-primary-v1")
-    return resumeAstraTurn(input, {
-      store, memory, summaries: production.summaries,
-      provider: production.astraProvider,
-    });
+    return runWithAstraMemoryMaintenance(store, memory, production.summaries,
+      requireTimeline(input), (observedStore) => resumeAstraTurn(input, {
+        store: observedStore, memory, summaries: production.summaries,
+        provider: production.astraProvider,
+      }), after);
   return resumeTurn(input, {
     store,
     provider: memoryAwareProvider(
