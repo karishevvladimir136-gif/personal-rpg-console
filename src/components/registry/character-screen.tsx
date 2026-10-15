@@ -91,14 +91,14 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         </div>
         {entity.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={entity.hp} max={entity.max_hp} />}
         {model.derivedStats.length > 0 && (
-          <div className={r.stats}>
+          <div className={`${r.stats} ${s.stats}`}>
             {model.derivedStats.map(([key, value]) => (
               <div key={key} className={r.stat}><div className={r.statKey}>{c.label(statLabel(key))}</div><div className={r.statMain}>{value}</div></div>
             ))}
           </div>
         )}
         {model.attributes.length > 0 && (
-          <div className={r.stats}>
+          <div className={`${r.stats} ${s.stats}`}>
             {model.attributes.map(([label, value]) => (
               <div key={label} className={r.stat}><div className={r.statKey}>{c.t(label)}</div><div className={r.statMain}>{value}</div></div>
             ))}
