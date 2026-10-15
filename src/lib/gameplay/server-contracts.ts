@@ -96,6 +96,8 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  astraGenericPrefix?: import("./astra-generic-contract.ts").GenericOperation[];
+  astraStateContract?: "generic-v1";
   /** Server-owned begin pin. Missing historical values retain two-stage play. */
   astraResponseContract?: "unified-v1";
   /** Selected-context privacy boundary, privately pinned before provider work. */
@@ -201,6 +203,7 @@ export type AstraToolCall = {
   scope: "current-public" | null;
 };
 export type AstraToolReceipt = {
+  prefixLength?: number;
   position: number;
   id: string;
   call: AstraToolCall;
@@ -217,6 +220,7 @@ export type AstraFinalProposal = {
   toolRefs: string[];
 };
 export type TurnCheckpoint = {
+  astraGeneric?: import("./astra-generic-compiler.ts").GenericPlan | null;
   astraSettlement?: import("./astra-settlement.ts").AstraSettlementPlan | null;
   astraEffects?: import("./astra-settlement.ts").AstraEffectsPlan | null;
   astraPrimary?: {
@@ -253,6 +257,7 @@ export type TurnLease = {
   expectedRevision: number;
 };
 export type TurnClaim = {
+  astraStateContract?: "generic-v1" | null;
   astraResponseContract?: "unified-v1" | null;
   astraResponseMode?: "public-unified" | "private-informed" | null;
   runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
@@ -281,7 +286,8 @@ export interface TurnStore {
     expectedTrackVersion: number;
   }): Promise<{ status: "selected"; pendingId: string; optionId: string; stateVersion: number }>;
   begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1",
-    astraResponseContract?: "unified-v1"): Promise<PublicTurn>;
+    astraResponseContract?: "unified-v1", astraStateContract?: "generic-v1"): Promise<PublicTurn>;
+  astraStateContract?(campaignId:string,operationId:string):Promise<"generic-v1"|"legacy-state"|null>;
   astraResponseContract?(campaignId: string, operationId: string):
     Promise<"legacy-two-stage" | "unified-v1" | null>;
   pinAstraResponseMode?(lease: TurnLease, mode: "public-unified" | "private-informed"):

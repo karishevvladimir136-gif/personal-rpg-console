@@ -2,6 +2,7 @@ import type { TurnInput } from "./contracts.ts";
 import type { RuntimeSource } from "./server-contracts.ts";
 import type { AstraCapabilities } from "./astra-capabilities.ts";
 import { settlementItemTransferAllowed } from "./astra-settlement.ts";
+import { genericResponseSchema } from "./astra-generic-contract.ts";
 
 const obj = (properties: Record<string, unknown>) => ({ type: "object",
   additionalProperties: false, properties, required: Object.keys(properties) });
@@ -33,10 +34,12 @@ function withSharedEnums(schema: Record<string, unknown>): Record<string, unknow
     }
     return Object.fromEntries(Object.entries(node).map(([key, child]) => [key, visit(child)]));
   };
-  return { ...(visit(schema) as Record<string, unknown>), $defs: definitions };
+  const visited=visit(schema) as Record<string,unknown>;
+  return { ...visited, $defs: {...(visited.$defs as Record<string,unknown> ?? {}),...definitions} };
 }
 
 export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilities, source: RuntimeSource) {
+  if(source.astraStateContract==="generic-v1")return withSharedEnums(genericResponseSchema(source,input));
   const actors = caps.entityIds;
   const ids = [...new Set([input.campaignId,...actors,...caps.itemIds,...caps.participantIds])];
   const resourceKeys = [...new Set(Object.values(caps.resources).flat())];

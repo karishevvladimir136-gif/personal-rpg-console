@@ -1,4 +1,15 @@
-# Development status — fictional world freedom review candidate
+# Development status — Astra Generic State V1 implementation
+
+**Current milestone:** isolated implementation in progress on `codex/astra-generic-state-v1`, starting at `65dc99c105d86b2860d284d10846c450d20b3e2d`. Production main remains `8ad7b87da43100320e93a44646a87016fc9a95ad`.
+
+- Unit 1 implements the closed six-family contract, known/local references, bounded public-evidence quotations, explicit payer references, ordered shadow compilation, atomic groups and independent narration filtering.
+- Seven focused compiler tests pass, including current-input acceptance, unseeded bread exchange, rollback and distinct untracked/sufficient/insufficient/zero payer balances. TypeScript and focused zero-warning lint pass.
+- Runtime/database integration is still being verified on disposable databases. The first sequential production-path unseeded journey passes; this is not final candidate acceptance.
+- Replacement Migration 52 remains disposable-only and unapproved for owner activation. The original WIP migration/checkpoint/report branch is preserved unchanged.
+- Remaining: migration/legacy/save/retry/privacy/tool/rest/isolation coverage, sixteen-case matrix, 200-turn soak, complete quality gates and bounded live synthetic verification.
+- No owner database query/write, owner application change, Iris operation or provider/media request has occurred. Owner DB is reported at Migration 51; it was not accessed for this implementation.
+
+## Preserved starting-candidate record
 
 **Milestone/status (2026-10-14):** Isolated `codex/astra-fictional-world-freedom` starts from exact local/remote main `8ad7b87da43100320e93a44646a87016fc9a95ad`. The owner-directed fictional authority correction is implemented for review. Not merged, activated or deployed. See `FICTIONAL_WORLD_FREEDOM.md`.
 
