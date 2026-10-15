@@ -29,6 +29,11 @@ as in the owner's chat campaign, instead of fragments picked per turn.
    "how to run" guidance, plus DM Style, Positive Afterglow, and the new stances from §11 and §10.6 (below). Pick
    cards by relevance only if the library does not fit a stated token budget for this layer; record the budget and the
    actual size. Replace the role line "You are the Dungeon Master" with a system-neutral "game master" wording.
+   Facts from the review: the active library is 1 doctrine and 10 cards, about 1k tokens per language, so it fits
+   trivially. The real work is condensing the source prose — `RPG_DESIGN_DOCTRINE.md` (41.5 KB, 39 sections),
+   `COGNITIVE_DM_CRAFT_RESEARCH.md`, `LIVING_CHARACTERS_BRIEF.md`, `POSITIVE_AFTERGLOW_BRIEF.md`,
+   `SYSTEMIC_WORLD_REFERENCES.md` (about 78 KB together) — into "how to run" guidance. Store the result as new versions
+   through the existing versioned DM Craft flow so the owner approves it, not as hardcoded prompt text.
 2. **The world (layer 2, cached).** World bible, rules as knowledge (World Library), canon, owner corrections.
 3. **The living dossier (layer 3, cached).** One assembled document: party and sheets in short form; the codex of people
    (Character Models of every important NPC that fits the token budget, nearest relationship links first); factions;
@@ -75,6 +80,26 @@ Three Stage 3 follow-ups:
   quests into the loop's format automatically, so `claim_reward` works without the DM re-recording anything. Test it on
   the Stage 3 switched synthetic campaign.
 
+## 2b. Built features the new loop must not lose
+
+A review of the original repo found accepted features that the old turn path used and `dm-loop-v1` does not. Each one
+is a regression for loop campaigns until it is wired:
+- **Adventures.** The active adventure's guidance (pacing, premise, canon or detached mode, limits) and the loot and
+  reward rules (`src/lib/adventures/*`, `src/lib/adventure-loot/*`) go into the dossier. Bench check: a quick adventure
+  and an evening adventure are paced differently; reward limits hold.
+- **World Engine as the structure of off-screen life.** NPC and faction plans live in the existing World Engine goals,
+  deadlines, fair warnings and events (`src/lib/world/*`; frozen today after a campaign leaves the old runtime), not
+  only in free-form private notes. The loop reads them into the dossier and advances them through an action on an
+  existing tool. Result: the living world is structured and testable, and **World Lab** («Мастерская мира», What-If)
+  gets a usable world save from loop campaigns — today it needs a schema-2 world save that loop campaigns never produce.
+  Test: play a loop campaign, then start a World Lab run from one of its checkpoints.
+- **Chat with DM and Teach DM.** On a loop campaign the out-of-game question is answered by the campaign's model, and it
+  may propose a DM Style change or a craft card through the existing approve/reject flow (the loop sets
+  `guidanceProposal: null` today).
+- **Mega DM in the bench.** Port the 48-scene synthetic campaign and the 20 living-character, 13 cognitive and 8
+  afterglow probes (`test-fixtures/mega-dm/*`) into `scripts/eval`, on the fake and live providers. Sections 3, 6 and 10
+  use them.
+
 ## 3. Living characters and the world off screen (§9)
 
 - **Room for a long life.** A whole Character Model is capped at 6000 bytes (the loop's private-note limit from
@@ -85,8 +110,8 @@ Three Stage 3 follow-ups:
   still limits anything.
 - New important NPCs get a Character Model in the turn they appear (already possible; make the guidance explicit).
 - When notable time passes (rest, travel, skipped days), the receipt of `advance_time`, `rest` or `move_party` lists the
-  clocks, plans and consequences now due; the DM advances NPC and faction plans in the same turn with `note_world` and
-  `note_character`. The player sees only what reaches the hero. No new agent and no background process.
+  World Engine goals, deadlines and consequences now due (§2b); the DM advances NPC and faction plans in the same turn
+  through that action and `note_character`. The player sees only what reaches the hero. No new agent and no background process.
 - Bench: a grudge, three days of travel, and on return consequences consistent with that NPC's model; plus the 20
   Living Characters probes of Mega DM.
 
