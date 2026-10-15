@@ -62,8 +62,8 @@ tool set compact (§11, rpg-mcp lesson): extend existing tools with actions inst
 - Journal: threads, debts, promises (#3), main arc with steps (#4); the DM manages them with the `quest` tool.
 - People: `companionView` (#6), public relation group and note for the Codex (#7), factions (#8), `important` (#9);
   map status «слухи» and quest locations (#10); crew and people back home (#11).
-- Holdings: bases, features, armament, passengers through the existing `holding` tool (#12); item rarity (#13);
-  a full-figure picture composition (#14).
+- Holdings: bases, features, armament, passengers through the existing `holding` tool (#12); item rarity (#13).
+  (#14–#16 are pictures: the visual stage.)
 - Campaign: `playMinutes` and `status` (#17), `previously` (#18), `playerLikes` (#19), choices made in the creation
   wizard before the campaign exists (#20), world counts (#21).
 - Replace the Stage 5 «появится позже» placeholders with the real data on every screen that now has it.
@@ -168,16 +168,13 @@ is a regression for loop campaigns until it is wired:
 - Background work that does not need the DM's voice (memory compaction, service summaries, image prompts, Codex drafts)
   may use a smaller model of the same provider; the DM, session prep and «Ранее в…» always use the campaign's model.
 
-## 8. Pictures (`UI_DATA_NEEDS` #15, #16)
+## 8. Pictures — moved to the parallel visual stage
 
-- SQL validators of `subject_visual` jobs and asset provenance accept `provider = 'fal'`, the fal model IDs and a fal
-  reservation (additive migration). Autopilot settings move into campaign settings.
-- Autopilot runs after commit, in the background, never blocking a turn: a new item kind gets one picture (same items
-  share it), important NPCs get a portrait on first meeting, new places and holdings get an illustration, everything in
-  the world's visual bible, within the daily cap.
-- fal `validation` errors (5 of 22 portrait calls in Stage 5): log the error body once (no keys), fix the cause; on a
-  validation error retry once with a simplified prompt, never in a loop.
-- Paid fal smoke within its own cap (below).
+All picture work (fal persistence, autopilot, reference images, styles, live frames) belongs to a parallel cloud session
+on `claude/stage-v-visuals` (`docs/stages/STAGE_V.md`). Do not change `src/lib/visual-frame/*`, `src/lib/server/media/*`,
+`src/lib/ui/visual-autopilot.ts`, `src/components/registry/visual-autopilot.tsx`, `live-images.tsx` or the picture block of
+the settings screen, and add no migrations for subject visuals. What this stage owes the visual stage: `finish_turn` keeps
+its scene kinds and focus, and the public turn exposes `playerMoment` (#2) — the visual stage reads them.
 
 ## 9. Sandbox for the owner's first play
 
@@ -209,7 +206,7 @@ the owner's real campaigns.
 ## Budget and checks
 
 Paid calls within **$35** in total, stopped by the bench guard: blind comparison ≤ $12; depth and speed probes ≤ $6;
-living-world, long-campaign and power-creep runs ≤ $12; fal smoke ≤ $2; reserve $3. Report tokens and cost per part.
+living-world, long-campaign and power-creep runs ≤ $12; reserve $5. Report tokens and cost per part.
 
 Done when:
 - typecheck, lint, test, build pass on the final code; fake bench green including every new scenario;
@@ -218,7 +215,7 @@ Done when:
 - cache read share and cost per turn reported per layer; the dossier fits its budgets on the synthetic long campaign;
 - the sandbox starts and plays in the cloud VM; blind samples are written.
 
-You may use subagents for independent parts (pictures, sandbox, UI data wiring), but run one full test suite at a time:
+You may use subagents for independent parts (sandbox, UI data wiring), but run one full test suite at a time:
 the VM has 16 GB. Commit in small logical steps; push `claude/stage-4-dm` regularly so progress is visible. Nothing to
 `main`, never the owner's database. Update `docs/TURN_LOOP.md`, `docs/MODELS.md`, `docs/SPEED.md`, `docs/UI_DATA_NEEDS.md`
 and the top of `DEV_STATUS.md`. Report in English: what changed per section, the numbers, the spend, what the owner should
