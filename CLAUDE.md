@@ -1,8 +1,9 @@
 # Personal RPG Console — rules for Claude Code
 
 Private single-user home app for long AI-DM role-playing campaigns. Not a SaaS.
-The owner is non-technical: **always report to the owner in Russian**, in plain words —
-what changed, how to check it, what is next. Code, comments and commit messages stay in English.
+The owner is non-technical: **always work and report to the owner in English**, in plain words —
+what changed, how to check it, what is next. Code, comments and commit messages are in English.
+Stage task files may be written in Russian; treat them as the spec.
 
 ## Current initiative
 
