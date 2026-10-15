@@ -37,6 +37,15 @@ client state now, and wire the final streaming at the end, after rebasing on the
   Fonts: Old Standard TT (display), Alegreya Sans (body), PT Mono (labels, numbers) — load with `next/font/google`.
   One dark theme. Minimum 44 px touch targets, visible focus, Russian first, English kept.
 
+## Universal by design
+
+The UI serves any world, any campaign and any ruleset. Sample content ("Мир Шва" and the rest of the design data)
+lives only in preview fixtures. Nothing ruleset-specific is hardcoded: ability scores, skills, resources, equipment
+slots, currency, item categories and rarity labels come from the campaign's ruleset/character data and the existing
+presentation helpers; a concept the ruleset lacks is simply not shown. Holdings are labelled by kind (transport, base,
+mount, camp). Prove it with a second preview campaign on a non-D&D ruleset, and grep non-preview code for sample names
+and D&D-specific labels before finishing.
+
 ## Screens
 
 | Board | Route / current code | What to build |
