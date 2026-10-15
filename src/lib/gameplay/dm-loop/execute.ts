@@ -376,8 +376,13 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   }
   if (action === "equip") {
     reject(item.owner_entity_id, `${item.name} lies in ${ownerName(shadow, item)}; only an owned item can be equipped.`);
-    const owner = shadow.entity(item.owner_entity_id)!;
+    let owner = shadow.entity(item.owner_entity_id)!;
     reject(item.quantity > 0, `${item.name} is used up.`);
+    if (!owner.equipment_slots.length && ["player", "companion", "npc"].includes(owner.kind)) {
+      // A character recorded before equipment existed gets the standard slots on first use.
+      shadow.apply(entityChange(shadow, owner, { equipment_slots: humanoidSlots(shadow.snapshot.settings.values.language) as unknown as JsonObject[] }));
+      owner = shadow.entity(owner.id)!;
+    }
     const slots = owner.equipment_slots.filter((slot) => slot.accepts.includes(item.category));
     reject(slots.length > 0, `${owner.name} has no slot that takes a ${item.category}.`,
       `Slots: ${owner.equipment_slots.map((slot) => `${slot.id} (${slot.accepts.join("/")})`).join(", ") || "none"}.`);

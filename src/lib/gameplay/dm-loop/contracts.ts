@@ -113,4 +113,6 @@ export type DmLoopObservation =
   | { type: "request_finished"; operationId: string; request: number; usage: DmLoopUsageEntry; stop: string }
   | { type: "tool_receipt"; operationId: string; receipt: DmLoopReceipt }
   | { type: "diagnostic"; operationId: string; diagnostic: DmLoopDiagnostic }
-  | { type: "live"; operationId: string; event: DmLoopLiveEvent };
+  | { type: "live"; operationId: string; event: DmLoopLiveEvent }
+  /** The safe failure category plus the error's own message (never provider or SQL payloads). */
+  | { type: "failure"; operationId: string; code: string; retryable: boolean; message: string; stack: string | null };

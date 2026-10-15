@@ -205,10 +205,14 @@ begin
          and runtime_identity is null;
    end if;
    perform rpg_private.assert(found);
+   -- The neutral plan placeholder lets the accepted reroll authority (which
+   -- requires a plan) serve this runtime's checks unchanged.
    update rpg_private.turns set checkpoint=checkpoint||jsonb_build_object('dmLoop',
      jsonb_build_object('schemaVersion',1,'createdTimeline',p_timeline,'receipts','[]'::jsonb,
        'transcript','[]'::jsonb,'text','','meta',null,'usage','[]'::jsonb,'diagnostics','[]'::jsonb,
-       'requests',0,'pin',null,'shadow',null))
+       'requests',0,'pin',null,'shadow',null),
+     'plan',jsonb_build_object('narration','','checks','[]'::jsonb,'publicPatches','[]'::jsonb,
+       'privatePatches','[]'::jsonb,'visualDescription','','clarification',null,'guidanceProposal',null))
      where id=op and campaign_id=p_campaign_id and owner_id=p_owner_id;
    return result;
  end if;

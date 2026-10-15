@@ -103,6 +103,14 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
   try {
     requireRule(claim.runtimeIdentity === DM_LOOP_RUNTIME && loop && loop.schemaVersion === 1 &&
       (input.mode === "game" || input.mode === "companion") && input.expectedRevision === source.runtime.revision);
+    // A campaign that was never configured for the old mechanics profile still
+    // has a hero: the hero is controlled and present, nothing else is assumed.
+    if (!source.runtime.configuration) {
+      const hero = source.snapshot.entities.find((row) => row.kind === "player" && row.campaign_id === input.campaignId);
+      requireRule(hero);
+      source.runtime.configuration = { profile: "console-basic-v1", controlledEntityIds: [hero.id],
+        presentEntityIds: [hero.id], nearbyStorageIds: [], safeLocationIds: [], itemRules: [] };
+    }
     if (command?.action === "reroll") {
       const check = checkpoint.checks.find((row) => row.id === command.checkId && isDisplayedCheck(source, row));
       requireRule(check && source.snapshot.settings.values.difficulty.rerolls !== "disabled");
@@ -265,6 +273,9 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     return result;
   } catch (error) {
     const safe = safeTurnFailure(error);
+    observe({ type: "failure", operationId, code: safe.code, retryable: safe.retryable,
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error && error.stack ? error.stack.split("\n").slice(0, 4).join("\n") : null });
     live({ type: "status", status: "failed" });
     try { return await store.fail(lease, safe.code, safe.retryable); }
     catch { throw new TurnError(safe.code, safe.retryable); }

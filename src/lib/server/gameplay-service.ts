@@ -99,6 +99,9 @@ function logDmLoop(observation: DmLoopObservation) {
       tool: observation.receipt.call.name, ok: observation.receipt.result.ok }));
   } else if (observation.type === "diagnostic") {
     console.info(JSON.stringify({ event: "dm_loop_diagnostic", operationId: observation.operationId, ...observation.diagnostic }));
+  } else if (observation.type === "failure") {
+    console.info(JSON.stringify({ event: "dm_loop_failed", operationId: observation.operationId, code: observation.code,
+      retryable: observation.retryable, message: observation.message }));
   } else if (observation.type === "request_started") {
     console.info(JSON.stringify({ event: "dm_loop_request_started", operationId: observation.operationId,
       request: observation.request, requestBytes: observation.requestBytes, cachedPrefixBytes: observation.cachedPrefixBytes }));
