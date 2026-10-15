@@ -61,7 +61,12 @@ exit 0
    `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`. Never put `ANTHROPIC_API_KEY` into
    Claude Code's own environment. There is no owner database here: anything that needs Supabase settings gets local
    placeholders, never a real project URL or key.
-4. `pnpm install`, then typecheck, lint, test and build for a baseline.
+4. `pnpm install`, then typecheck, lint, test and build for a baseline. Cloud clones can be shallow: run
+   `git fetch --unshallow` (ignore the error if it is already complete) before tests that read git history.
+5. Known environment differences from the owner's Windows machine: a test that fails only because of Windows line
+   endings (CRLF) or missing git history is environment-specific — record it in the report, do not rewrite line endings
+   of tracked files to make it pass. If the `APP_*` variables are missing, the session was started in the wrong
+   environment: say so at once (live runs need the `rpg-console` environment).
 
 Rules stay as in `CLAUDE.md`: work only on the task's `claude/*` branch, never `main`; paid calls only within the task's
 cap; report in English. If a push to an existing `claude/*` branch is refused, push to the session's own branch and say
