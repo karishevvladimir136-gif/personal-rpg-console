@@ -61,7 +61,8 @@ exit 0
    `OPENAI_API_KEY` from `$APP_OPENAI_API_KEY`, `FAL_KEY` from `$APP_FAL_KEY`. Never put `ANTHROPIC_API_KEY` into
    Claude Code's own environment. There is no owner database here: anything that needs Supabase settings gets local
    placeholders, never a real project URL or key.
-4. `pnpm install`, then typecheck, lint, test and build for a baseline. Cloud clones can be shallow: run
+4. `pnpm install`, then typecheck, lint, test and build for a baseline. The VM has 4 vCPUs: run the full suite as
+   `node --test --test-concurrency=2 tests/*.test.mjs` — at default parallelism about 290 tests time out from load alone. Cloud clones can be shallow: run
    `git fetch --unshallow` (ignore the error if it is already complete) before tests that read git history.
 5. Known environment differences from the owner's Windows machine: a test that fails only because of Windows line
    endings (CRLF) or missing git history is environment-specific — record it in the report, do not rewrite line endings

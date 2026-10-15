@@ -20,6 +20,13 @@ migrations for pictures only. In `game-screen.tsx` add the frames panel and noth
 `src/lib/gameplay/dm-loop/*`, the composer logic or any other screen block: Stage 4 changes them. Use timestamped
 migration names as the repo already does, so the two branches never collide.
 
+## 0. One small layout fix from the Stage 5 review
+
+On phones the stat tiles of the character sheet now break the Russian labels mid-word («СЛОЖНОС-ТЬ ЗАКЛИНА-НИЙ»,
+«СКОРОСТ-Ь»). In `character.module.css` (the only non-picture file you may touch for this): fewer tiles per row on narrow
+screens, or the ruleset's short labels where it provides them, and `hyphens: auto` with the campaign language. Check
+the phone screenshot.
+
 ## 1. Pictures that persist (`UI_DATA_NEEDS` #14–#16)
 
 - SQL validators of `subject_visual` jobs and asset provenance accept `provider = 'fal'`, the fal model IDs and a fal
