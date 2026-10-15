@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Бой</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible,input:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+input::placeholder{color:#8d7142}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 2px #16110d,0 0 0 4px #e7c47d}50%{box-shadow:0 0 0 2px #16110d,0 0 14px 4px #e7c47d}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 60% at 50% -10%, rgba(201,86,63,0.12), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px">
+
+  <header style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; background: linear-gradient(180deg, #3a2018, #271612); border: 1px solid rgba(201,86,63,0.6); border-radius: 8px; padding: 10px 14px">
+    <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap">
+      <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 26px; font-weight: 700; color: #e8a08c">Бой · раунд 3</span>
+      <span style="color: #ab9a80">Пещера Альварешей, причал · сыро, полумрак</span>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap">
+      <span style="font-family: 'PT Mono', monospace; font-size: 12px; color: #ab9a80">Хиты врагов:</span>
+      <sc-for list="{{hpModes}}" as="m" hint-placeholder-count="2">
+        <button type="button" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <section aria-label="Порядок ходов" style="display: flex; gap: 8px; align-items: center; overflow-x: auto; padding: 4px 2px">
+    <sc-for list="{{order}}" as="o" hint-placeholder-count="7">
+      <button type="button" onClick="{{o.pick}}" style="{{o.wrap}}">
+        <span style="{{o.ring}}">
+          <sc-if value="{{o.hasImg}}" hint-placeholder-val="{{ true }}"><img src="{{o.img}}" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block"></sc-if>
+          <sc-if value="{{o.noImg}}" hint-placeholder-val="{{ false }}"><span style="{{o.fallback}}">{{o.initial}}</span></sc-if>
+        </span>
+        <span style="font-size: 12.5px; max-width: 86px; text-align: center; line-height: 1.15">{{o.name}}</span>
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; color: #8d7142">{{o.init}}</span>
+      </button>
+    </sc-for>
+  </section>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) 340px; gap: 12px; align-items: start">
+
+    <section aria-label="Поле боя" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Поле боя · зоны</span>
+        <span style="font-size: 12.5px; color: #8d7142">театр воображения · сетка — по желанию</span>
+      </div>
+      <sc-for list="{{zones}}" as="z" hint-placeholder-count="3">
+        <div style="{{z.style}}">
+          <div style="display: flex; justify-content: space-between; align-items: baseline">
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700">{{z.name}}</span>
+            <span style="font-size: 12.5px; color: #ab9a80">{{z.note}}</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px">
+            <sc-for list="{{z.tokens}}" as="t" hint-placeholder-count="2">
+              <button type="button" onClick="{{t.pick}}" style="{{t.style}}">
+                <span style="{{t.dot}}"></span>{{t.name}}<sc-if value="{{t.hasTag}}" hint-placeholder-val="{{ false }}"><span style="font-family: 'PT Mono', monospace; font-size: 10px; color: #ab9a80; margin-left: 4px">{{t.tag}}</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-label="Ход боя" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 16.5px; line-height: 1.55; color: #e8dcc4">Сержант разворачивается на скрежещущих шарнирах, котёл за его спиной плюётся паром. Пуля Мэг высекает искру из наплечника — и уходит в темноту. Он смотрит прямо на неё.</p>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <sc-for list="{{log}}" as="l" hint-placeholder-count="4">
+          <div style="display: flex; justify-content: space-between; gap: 8px; padding: 6px 8px; border-radius: 5px; background: #120d0a; border: 1px solid rgba(207,168,96,0.14); font-size: 13.5px">
+            <span><b style="font-weight: 700">{{l.who}}</b> · {{l.what}}</span>
+            <span style="{{l.resStyle}}">{{l.res}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <aside aria-label="Цель" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(201,86,63,0.55); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column">
+      <sc-if value="{{sel.drawing}}" hint-placeholder-val="{{ true }}">
+        <div role="img" aria-label="Портрет рисуется" style="aspect-ratio: 16 / 9; display: grid; place-items: center; border-bottom: 1px dashed #c9563f; background: linear-gradient(90deg, #1b1511 0, #3a2018 50%, #1b1511 100%); background-size: 600px 100%; animation: shimmer 2s linear infinite; font-family: 'PT Mono', monospace; font-size: 12px; color: #e8a08c">портрет врага рисуется…</div>
+      </sc-if>
+      <sc-if value="{{sel.isImg}}" hint-placeholder-val="{{ false }}">
+        <img src="{{sel.img}}" alt="" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 25%; display: block; border-bottom: 1px solid rgba(207,168,96,0.26)">
+      </sc-if>
+      <div style="padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{sel.kind}}</span>
+        <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 21px; font-weight: 700; line-height: 1.15">{{sel.name}}</span>
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="display: flex; gap: 3px">
+            <sc-for list="{{sel.segs}}" as="s" hint-placeholder-count="5"><span style="{{s}}"></span></sc-for>
+          </div>
+          <span style="{{sel.stateStyle}}">{{sel.state}}</span>
+        </div>
+        <div style="display: flex; gap: 5px; flex-wrap: wrap">
+          <sc-for list="{{sel.conds}}" as="c" hint-placeholder-count="2"><span style="font-size: 12.5px; padding: 2px 8px; border-radius: 999px; background: #3a2018; border: 1px solid rgba(201,86,63,0.5); color: #e8a08c">{{c}}</span></sc-for>
+        </div>
+        <div style="border-top: 1px dotted rgba(207,168,96,0.26); padding-top: 8px; display: flex; flex-direction: column; gap: 4px">
+          <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">Что известно</span>
+          <sc-for list="{{sel.known}}" as="k" hint-placeholder-count="3"><span style="{{k.style}}">{{k.text}}</span></sc-for>
+        </div>
+        <sc-if value="{{sel.hasIntent}}" hint-placeholder-val="{{ true }}">
+          <div style="background: rgba(201,86,63,0.12); border: 1px solid rgba(201,86,63,0.45); border-radius: 6px; padding: 8px 10px; font-size: 14px">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #e8a08c">Замысел · {{sel.intentBy}}</span><br>{{sel.intent}}
+          </div>
+        </sc-if>
+      </div>
+    </aside>
+  </div>
+
+  <section aria-label="Твой ход" style="background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid #cfa860; border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; animation: glow 2.4s ease-in-out infinite">
+    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap">
+      <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 19px; font-weight: 700; color: #f1dca8">Твой ход, Джеймс</span>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 13.5px">
+        <sc-for list="{{economy}}" as="e" hint-placeholder-count="4"><span><span style="{{e.dot}}"></span>{{e.label}}</span></sc-for>
+      </div>
+    </div>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap">
+      <sc-for list="{{actions}}" as="a" hint-placeholder-count="7">
+        <button type="button" onClick="{{a.pick}}" style="{{a.style}}">{{a.label}}<sc-if value="{{a.hasSub}}" hint-placeholder-val="{{ false }}"><span style="font-family: 'PT Mono', monospace; font-size: 11px; color: #8d7142; margin-left: 6px">{{a.sub}}</span></sc-if></button>
+      </sc-for>
+    </div>
+    <div style="display: flex; gap: 8px">
+      <input type="text" value="{{draft}}" placeholder="Опиши, что делаешь — кнопки выше только подсказки" style="flex: 1; min-width: 0; min-height: 46px; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.35); border-radius: 6px; padding: 0 12px; color: #ece1cb; font: inherit">
+      <button type="button" style="min-height: 46px; padding: 0 18px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700; cursor: pointer">Действовать</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { target: "sgt", hp: "words", draft: "" };
+  }
+  renderVals() {
+    const st = this.state;
+    const AV = { james: "/_blob/63387743fbeba1b2a86ee3b73af6fa3b", meg: "/_blob/fd4bf335cac4365ea86781b7b243d16e", urzul: "/_blob/857c58ffbc3555862bbcb500a7fb6c4b", irena: "/_blob/6f1f1225e910e0fff48f242dc5585b3d" };
+    const pill = (on) => "min-height: 32px; padding: 0 10px; border-radius: 999px; cursor: pointer; font-size: 13px; " + (on ? "background: #3a2c1f; color: #f1dca8; border: 1px solid #cfa860;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);");
+    const hpModes = [["words", "описанием"], ["numbers", "числами"]].map(([id, label]) => ({ label, style: pill(st.hp === id), pick: () => this.setState({ hp: id }) }));
+    const E = {
+      hound: { name: "Гончая Лиги", kind: "механоид · стая", hp: 4, max: 5, img: null, drawing: false, conds: [], known: [["Нюх на эфирит", true], ["Слабость: ??? (Анализ КС 13)", false]], intent: null, intentBy: "", zone: 1 },
+      sgt: { name: "Сержант Лиги в паровом доспехе", kind: "солдат · элита", hp: 2, max: 5, img: null, drawing: true, conds: ["сбит с ног", "котёл перегрет"], known: [["Котёл за спиной можно пробить (Анализ 14 ✓)", true], ["Сопротивление огню", true], ["Сколько у него ещё сил — по виду «тяжело ранен»", true]], intent: "Готовит паровой рывок в сторону Мэг.", intentBy: "заметила Ирэна", zone: 0 },
+      mech: { name: "Механоид-носильщик", kind: "машина", hp: 5, max: 5, img: null, drawing: false, conds: ["медленный"], known: [["??? — ещё не изучен", false]], intent: null, intentBy: "", zone: 2 }
+    };
+    const W = ["при смерти", "тяжело ранен", "ранен", "задет", "цел"];
+    const order = [
+      ["irena", "Ирэна", 19, "party"], ["james", "Джеймс", 17, "party"], ["hound", "Гончая Лиги", 15, "foe"], ["meg", "Мэг", 14, "party"],
+      ["sgt", "Сержант Лиги", 12, "foe"], ["urzul", "Урзул", 9, "party"], ["mech", "Механоид", 6, "foe"]
+    ].map(([id, name, init, side]) => {
+      const active = id === "james", sel = id === st.target, foe = side === "foe";
+      return {
+        name, init: "иниц. " + init, img: AV[id] || "", hasImg: !!AV[id], noImg: !AV[id], initial: name[0],
+        pick: () => { if (foe) this.setState({ target: id }); },
+        wrap: "display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; padding: 2px; cursor: " + (foe ? "pointer" : "default") + "; color: #ece1cb; flex: none;",
+        ring: "position: relative; width: 56px; height: 56px; border-radius: 50%; display: block; box-sizing: border-box; border: 2.5px solid " + (foe ? "#c9563f" : "#64a998") + "; background: #0e0a08;" + (active ? " animation: glow 2.4s ease-in-out infinite;" : "") + (sel ? " outline: 2px solid #e8a08c; outline-offset: 3px;" : ""),
+        fallback: "width: 100%; height: 100%; border-radius: 50%; display: grid; place-items: center; font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; color: #e8a08c; background: radial-gradient(circle at 50% 35%, #3a2018, #120d0a 75%);"
+      };
+    });
+    const tok = (id, name, foe, tag) => ({
+      name, tag: tag || "", hasTag: !!tag,
+      pick: () => { if (foe) this.setState({ target: id }); },
+      style: "display: inline-flex; align-items: center; gap: 6px; min-height: 34px; padding: 0 10px; border-radius: 999px; font-size: 13.5px; color: #ece1cb; cursor: " + (foe ? "pointer" : "default") + "; background: #120d0a; border: 1px solid " + (st.target === id ? "#e8a08c" : foe ? "rgba(201,86,63,0.5)" : "rgba(100,169,152,0.5)") + ";",
+      dot: "width: 9px; height: 9px; border-radius: 50%; background: " + (foe ? "#c9563f" : "#64a998") + ";"
+    });
+    const zoneStyle = (hot) => "border-radius: 6px; padding: 8px 10px; " + (hot ? "background: rgba(201,86,63,0.08); border: 1px solid rgba(201,86,63,0.4);" : "background: #1b1511; border: 1px solid rgba(207,168,96,0.18);");
+    const zones = [
+      { name: "Вплотную", note: "рукопашная · до 5 фт", style: zoneStyle(true), tokens: [tok("urzul", "Урзул", false), tok("sgt", "Сержант Лиги", true, "сбит с ног")] },
+      { name: "Рядом", note: "один рывок · ~30 фт", style: zoneStyle(false), tokens: [tok("james", "Джеймс", false, "за ящиками"), tok("irena", "Ирэна", false, "в тени"), tok("hound", "Гончая Лиги", true)] },
+      { name: "Далеко", note: "стрельба · 60 фт и дальше", style: zoneStyle(false), tokens: [tok("meg", "Мэг", false, "на трапе"), tok("mech", "Механоид", true, "у воды")] }
+    ];
+    const log = [
+      { who: "Урзул", what: "топор по Сержанту", res: "18 против КД 17 · попал, 11 урона", resStyle: "font-family: 'PT Mono', monospace; font-size: 12.5px; color: #64a998;" },
+      { who: "Сержант", what: "спасбросок СИЛ против толчка", res: "7 · сбит с ног", resStyle: "font-family: 'PT Mono', monospace; font-size: 12.5px; color: #64a998;" },
+      { who: "Гончая", what: "укус по Ирэне", res: "9 против КД 16 · мимо", resStyle: "font-family: 'PT Mono', monospace; font-size: 12.5px; color: #ab9a80;" },
+      { who: "Мэг", what: "выстрел по Сержанту", res: "12 против КД 17 · мимо", resStyle: "font-family: 'PT Mono', monospace; font-size: 12.5px; color: #c9563f;" }
+    ];
+    const e = E[st.target] || E.sgt;
+    const segs = Array.from({ length: e.max }, (_, i) => "flex: 1; height: 10px; border-radius: 3px; background: " + (i < e.hp ? (e.hp <= 2 ? "#c9563f" : e.hp <= 3 ? "#d99a3e" : "#64a998") : "#120d0a") + "; border: 1px solid rgba(207,168,96,0.2);");
+    const sel = {
+      ...e, segs, isImg: !!e.img, drawing: !e.img && e.drawing,
+      state: st.hp === "numbers" ? "хиты: " + (e.hp * 9) + " из " + (e.max * 9) : W[e.hp - 1] || "цел",
+      stateStyle: "font-size: 14px; color: " + (e.hp <= 2 ? "#e8a08c" : "#d8ccb4") + ";",
+      known: e.known.map(([text, ok]) => ({ text, style: "font-size: 14px; color: " + (ok ? "#d8ccb4" : "#8d7142") + ";" })),
+      hasIntent: !!e.intent, intent: e.intent || "", intentBy: e.intentBy
+    };
+    const dot = (on) => "display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; " + (on ? "background: #cfa860;" : "border: 1.5px solid #8d7142;");
+    const economy = [["Действие", true], ["Бонусное", true], ["Реакция", false], ["Движение 30 фт", true]].map(([label, on]) => ({ label, dot: dot(on) }));
+    const act = (label, sub, text) => ({
+      label, sub: sub || "", hasSub: !!sub, pick: () => this.setState({ draft: text }),
+      style: "min-height: 38px; padding: 0 12px; border-radius: 6px; cursor: pointer; font-size: 14.5px; background: #211913; color: #ece1cb; border: 1px solid rgba(207,168,96,0.4);"
+    });
+    const actions = [
+      act("Выстрел из «Аргумента»", "+6", "Стреляю из «Аргумента» в котёл Сержанта."),
+      act("Огненный снаряд", "ячейка 1", "Огненный снаряд в Гончую."),
+      act("Бомба Тинки", "×4", "Бросаю бомбу Тинки к Сержанту, пока он лежит."),
+      act("Зелье лечения", "×4", "Пью зелье лечения."),
+      act("Крикнуть Мэг", "", "Кричу Мэг: «Уходи с трапа, он идёт к тебе!»"),
+      act("Отход", "", "Отхожу за ящики к Ирэне."),
+      act("Свой вариант…", "", "")
+    ];
+    return { hpModes, order, zones, log, sel, economy, actions, draft: st.draft };
+  }
+}
+</script>
+</body>
+</html>
