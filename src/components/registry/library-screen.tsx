@@ -16,7 +16,7 @@ import { effortLabel } from "@/lib/ui/effort";
 import { NewCampaignForm } from "../bootstrap/new-campaign";
 import { useWorkspaceData } from "../persistence-context";
 import { dmModelLabel } from "./shell";
-import { Art, Later, Panel, Plate, registry as r, useCopy } from "./primitives";
+import { Art, LaterLine, Panel, Plate, registry as r, useCopy } from "./primitives";
 import s from "./library.module.css";
 
 export type LibraryPreview = {
@@ -28,6 +28,11 @@ export type LibraryPreview = {
 };
 
 const campaignHref = (id: string, screen: string) => `/campaigns/${encodeURIComponent(id)}/${screen}`;
+
+/** A model's own default effort (its capabilities' default, as the server resolves it). */
+function defaultEffort(entry: (typeof dmTurnModels)[number]) {
+  return entry.defaultEffort;
+}
 
 /** The previous closed session's recap: the "Previously in…" block. Hidden when absent. */
 export function previouslyIn(snapshot: CampaignSnapshot) {
@@ -235,7 +240,8 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
   const [known] = useState(() => new Set((workspace.data?.campaigns ?? []).map((row) => row.id)));
   const [createdId, setCreatedId] = useState<string | null>(null);
   const [model, setModel] = useState(dmTurnModels[0].modelId);
-  const [effort, setEffort] = useState("medium");
+  // The effort starts at the selected model's own default (the same one the server resolves).
+  const [effort, setEffort] = useState(() => defaultEffort(dmTurnModels[0]));
   const [saved, setSaved] = useState(false);
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
@@ -277,7 +283,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
               <p className={r.note}>{c("Выбери мир, опиши героя своими словами — ведущий соберёт черновик листа по правилам кампании, ты его проверишь и поправишь.", "Pick a world and describe your hero in your own words — the DM drafts a sheet for the campaign's rules; you review and correct it.")}</p>
               {preview ? (
                 <Panel>
-                  <Later>{c("Предпросмотр: здесь работает существующая форма создания (мир → герой → черновик листа → проверка).", "Preview: the existing creation form runs here (world → hero → draft sheet → review).")}</Later>
+                  <p className={r.note}>{c("Предпросмотр: здесь работает существующая форма создания (мир → герой → черновик листа → проверка).", "Preview: the existing creation form runs here (world → hero → draft sheet → review).")}</p>
                 </Panel>
               ) : (
                 <div className={s.legacyForm}>
@@ -292,7 +298,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
               <h2 className={r.h2}>{c("Какой будет игра?", "What kind of game?")}</h2>
               <div className={r.choices}>
                 {dmTurnModels.map((row) => (
-                  <button key={row.modelId} type="button" className={r.choice} aria-pressed={model === row.modelId} onClick={() => { setModel(row.modelId); setSaved(false); }}>
+                  <button key={row.modelId} type="button" className={r.choice} aria-pressed={model === row.modelId} onClick={() => { setModel(row.modelId); setEffort(defaultEffort(row)); setSaved(false); }}>
                     <span className={r.eyebrow}>{row.providerId === "anthropic" ? "Anthropic" : "OpenAI"}</span>
                     <span className={r.choiceTitle}>{row.label}</span>
                   </button>
@@ -302,7 +308,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
                 {entry.efforts.map((value) => <button key={value} type="button" className={r.segment} aria-pressed={effort === value} onClick={() => { setEffort(value); setSaved(false); }}>{effortLabel(value, c.language)}</button>)}
               </div>
               <p className={r.note}>{c("Тон истории, правила бросков и книги правил настраиваются в настройках кампании; поменять можно в любой момент.", "Story tone, roll rules and rule books live in the campaign settings; change them any time.")}</p>
-              <Later title={c("Что мне нравится в играх", "What I enjoy in games")}>{c("Записка «что нравится игроку» появится вместе с этапом 4.", "The “what the player enjoys” note arrives with stage 4.")}</Later>
+              <LaterLine>{c("Записка «что мне нравится в играх» появится вместе с этапом 4.", "The “what I enjoy in games” note arrives with stage 4.")}</LaterLine>
               <div className={r.row}>
                 <button type="button" className={r.btnMain} onClick={() => void saveDm().then(() => setStep(3))}>{c("Дальше →", "Next →")}</button>
                 {saved && <span className={r.note}>{c("Сохранено", "Saved")}</span>}

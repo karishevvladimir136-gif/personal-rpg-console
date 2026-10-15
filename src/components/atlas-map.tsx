@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import type { CampaignSnapshot, Location } from "@/lib/persistence/contracts";
 import { errorMessage } from "@/lib/persistence/client";
 import { atlasLevelView, atlasOpeningLevel, atlasPinStyle, projectAtlas, type AtlasLevel } from "@/lib/map/atlas-view";
 import type { MapPlacement } from "@/lib/map/placement-contracts";
 import { loadMapLayout, saveMapPlacement } from "@/lib/map/placement-client";
+import { placePinLabels, sameLayout, type LabelPlacement } from "@/lib/map/label-layout";
 import { selectMapVisual } from "@/lib/visual-frame/map-job";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { GenerateMap } from "./visual-frame/generate-map";
@@ -91,6 +92,8 @@ export function AtlasMap({
   const [reload, setReload] = useState(0);
   const pendingSave = useRef<{ signature: string; requestId: string } | null>(null);
   const placementSurface = useRef<HTMLDivElement>(null);
+  const pinLayer = useRef<HTMLDivElement>(null);
+  const [labelLayout, setLabelLayout] = useState<Record<string, LabelPlacement>>({});
   const campaignId = snapshot.campaign.id;
   const timelineId = snapshot.timeline?.timelineId;
   const timelineEpoch = snapshot.timeline?.epoch;
@@ -147,11 +150,37 @@ export function AtlasMap({
     setDestinationId(location.id);
     setCourseInserted(!reviewOnly && appendToComposerDraft(draftStorage(), {
       campaignId, mode: "game", companionId: null, timeline: snapshot.timeline,
-      text: w(`I travel to ${location.name}.`, `Я отправляюсь в ${location.name}.`),
+      text: w(`I travel to ${location.name}.`, `Отправляюсь. Цель — ${location.name}.`),
     }));
   };
   const routeFrom = view.pins.find((row) => row.location_id === currentId);
   const routeTo = destinationId ? view.pins.find((row) => row.location_id === destinationId) : undefined;
+  // Label collision handling: measured after layout, re-measured when the viewport resizes.
+  const pinSignature = view.pins.map((row) => `${row.location_id}:${row.x}:${row.y}`).join("|");
+  const selectedId = selected?.id ?? null;
+  useLayoutEffect(() => {
+    const layer = pinLayer.current;
+    if (!layer) return;
+    const measure = () => {
+      const pins = [...layer.querySelectorAll<HTMLElement>("[data-pin]")].flatMap((button) => {
+        const id = button.dataset.pin ?? "";
+        const mark = button.querySelector<HTMLElement>("[data-pin-mark]");
+        const label = button.querySelector<HTMLElement>("[data-pin-label]");
+        if (!mark || !label) return [];
+        const box = mark.getBoundingClientRect();
+        const status = button.dataset.pinStatus;
+        const priority = id === currentId ? 0 : id === destinationId ? 1 : id === selectedId ? 2 : status === "visited" ? 3 : 4;
+        return [{ id, mark: { x: box.left, y: box.top, w: box.width, h: box.height }, label: { w: label.offsetWidth, h: label.offsetHeight }, priority }];
+      });
+      const next = placePinLabels(pins);
+      setLabelLayout((previous) => (sameLayout(previous, next) ? previous : next));
+    };
+    // ResizeObserver reports once on observe(), which is the first measurement; without it labels stay as rendered.
+    if (typeof ResizeObserver !== "function") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(layer);
+    return () => observer.disconnect();
+  }, [pinSignature, currentId, destinationId, selectedId, level]);
   const selectedIllustration = selected && selectSubjectVisual(
     snapshot, { kind: "location", id: selected.id }, { acceptedOnly: true },
   );
@@ -331,7 +360,7 @@ export function AtlasMap({
                   pendingSave.current = null;
                 }}
               />
-              <div className={styles.pinLayer}>
+              <div className={styles.pinLayer} ref={pinLayer}>
                 {routeFrom && routeTo && routeFrom.x !== null && routeFrom.y !== null && routeTo.x !== null && routeTo.y !== null && (
                   <svg className={styles.route} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
                     <line x1={routeFrom.x * 100} y1={routeFrom.y * 100} x2={routeTo.x * 100} y2={routeTo.y * 100} />
@@ -344,18 +373,21 @@ export function AtlasMap({
                   const isCurrentArea = location.id === view.currentAreaId && !isCurrent;
                   const isSelected = location.id === selected?.id;
                   const isDestination = location.id === destinationId;
+                  const labelPlacement = labelLayout[location.id] ?? "below";
                   return (
                     <button
-                      className={[styles.pin, location.status === "visited" ? styles.visitedPin : styles.knownPin, isCurrent ? styles.currentPin : "", isCurrentArea ? styles.currentAreaPin : "", isSelected ? styles.selectedPin : "", isDestination ? styles.destinationPin : ""].filter(Boolean).join(" ")}
+                      className={[styles.pin, location.status === "visited" ? styles.visitedPin : styles.knownPin, isCurrent ? styles.currentPin : "", isCurrentArea ? styles.currentAreaPin : "", isSelected ? styles.selectedPin : "", isDestination ? styles.destinationPin : "", labelPlacement === "above" ? styles.labelAbove : labelPlacement === "hidden" ? styles.labelHidden : ""].filter(Boolean).join(" ")}
                       key={location.id}
                       type="button"
+                      data-pin={location.id}
+                      data-pin-status={location.status}
                       style={atlasPinStyle(row.x, row.y)}
                       aria-label={`${location.name} · ${t(location.status === "visited" ? "Visited" : "Known")}${isCurrent ? ` · ${t("Current location")}` : isCurrentArea ? ` · ${w("Current area", "Текущая область")}` : ""}${isDestination ? ` · ${t("Destination selected")}` : ""}`}
                       aria-pressed={isSelected}
                       onClick={() => selectLocation(location.id)}
                     >
-                      <span className={styles.pinMark} aria-hidden="true" />
-                      <span className={styles.pinLabel}>{location.name}</span>
+                      <span className={styles.pinMark} data-pin-mark aria-hidden="true" />
+                      <span className={styles.pinLabel} data-pin-label>{location.name}</span>
                     </button>
                   );
                 })}
@@ -426,7 +458,7 @@ export function AtlasMap({
           <p>{courseInserted
             ? w("No travel has started. This is already in your turn box — the DM decides the road, the time and who you meet:", "Путешествие ещё не началось. В поле хода уже вставлено — путь, время и встречи решает ведущий:")
             : w("No travel has started. Describe your journey in Game:", "Путешествие ещё не началось. Опишите свой путь в Игре:")}</p>
-          <p className={styles.journey}>{w(`I travel to ${destination.name}.`, `Я отправляюсь в ${destination.name}.`)}</p>
+          <p className={styles.journey}>{w(`I travel to ${destination.name}.`, `Отправляюсь. Цель — ${destination.name}.`)}</p>
           {reviewOnly ? (
             <span className="button" aria-disabled="true">{t("Game")}</span>
           ) : (

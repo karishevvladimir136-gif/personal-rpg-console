@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Package, X } from "lucide-react";
+import { Backpack, FlaskConical, KeyRound, Package, Shield, Sword, Target, Wrench, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot, Entity, Item } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
@@ -93,7 +93,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         {model.derivedStats.length > 0 && (
           <div className={r.stats}>
             {model.derivedStats.map(([key, value]) => (
-              <div key={key} className={r.stat}><div className={r.statKey}>{c.t(statLabel(key))}</div><div className={r.statMain}>{value}</div></div>
+              <div key={key} className={r.stat}><div className={r.statKey}>{c.label(statLabel(key))}</div><div className={r.statMain}>{value}</div></div>
             ))}
           </div>
         )}
@@ -109,12 +109,12 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
             <span className={r.eyebrow}>{c("Ресурсы", "Resources")}</span>
             {resources.map((resource) => (
               <div key={resource.key} className={r.resRow}>
-                <span>{c.t(resource.label)}</span>
-                {resource.max ? <Pips left={resource.value} max={resource.max} label={c.t(resource.label)} /> : <span className={r.num}>{resource.value}</span>}
+                <span>{c.label(resource.label)}</span>
+                {resource.max ? <Pips left={resource.value} max={resource.max} label={c.label(resource.label)} /> : <span className={r.num}>{resource.value}</span>}
               </div>
             ))}
             {money.map((row) => (
-              <div key={row.key} className={r.resRow}><span>{c.t(row.label)}</span><span className={r.num} style={{ color: "var(--brass)" }}>{row.value}</span></div>
+              <div key={row.key} className={r.resRow}><span>{c.label(row.label)}</span><span className={r.num} style={{ color: "var(--brass)" }}>{row.value}</span></div>
             ))}
           </div>
         )}
@@ -153,7 +153,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
     </Panel>
   );
   const inventory = (
-    <Panel label={c("Инвентарь", "Inventory")} title={c("Вещи при себе", "Carried")} action={money.length ? <span className={r.num} style={{ color: "var(--brass)" }}>{money.map((row) => `${row.value} ${c.t(row.label)}`).join(" · ")}</span> : undefined}>
+    <Panel label={c("Инвентарь", "Inventory")} title={c("Вещи при себе", "Carried")} action={money.length ? <span className={r.num} style={{ color: "var(--brass)" }}>{money.map((row) => `${row.value} ${c.label(row.label)}`).join(" · ")}</span> : undefined}>
       <div className={r.stack}>
         {items.length > 0 && (
           <div className={r.chips} role="group" aria-label={c("Фильтр", "Filter")}>
@@ -162,7 +162,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
               <button type="button" className={r.chipButton} aria-pressed={filter === EQUIPPED_FILTER} onClick={() => setFilter(EQUIPPED_FILTER)}>{c.t("Equipped")}</button>
             )}
             {categories.map((category) => (
-              <button key={category} type="button" className={r.chipButton} aria-pressed={filter === category} onClick={() => setFilter(category)}>{c.t(inventoryCategoryLabel(category))}</button>
+              <button key={category} type="button" className={r.chipButton} aria-pressed={filter === category} onClick={() => setFilter(category)}>{c.label(inventoryCategoryLabel(category))}</button>
             ))}
           </div>
         )}
@@ -192,8 +192,8 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
     <div className={s.page}>
       <div className={s.header}>
         <div className={r.row}>
-          <TabBar tabs={tabs} value={tab} onChange={setTab} label={c("Разделы листа", "Sheet sections")} />
-          <div className={r.tabs}>{links.map((link) => <a key={link.id} className={r.tab} href={href(link.id)}>{link.label}</a>)}</div>
+          <TabBar tabs={tabs} value={tab} onChange={setTab} label={c("Разделы листа", "Sheet sections")} wrap />
+          <div className={`${r.tabs} ${r.tabsWrap}`}>{links.map((link) => <a key={link.id} className={r.tab} href={href(link.id)}>{link.label}</a>)}</div>
         </div>
         {members.length > 1 && (
           <div className={s.switcher} role="group" aria-label={c("Чей лист", "Whose sheet")}>
@@ -261,12 +261,39 @@ function Figure({ entity, figure, onRedraw }: { entity: Entity; figure: string |
   );
 }
 
+/** A glyph for the common category words records use; anything else gets the generic box. */
+const CATEGORY_GLYPHS: Record<string, LucideIcon> = {
+  weapon: Sword, armour: Shield, consumable: FlaskConical, tool: Wrench, ammunition: Target, key: KeyRound, gear: Backpack, other: Package,
+};
+const CATEGORY_WORDS: [RegExp, keyof typeof CATEGORY_GLYPHS][] = [
+  [/weapon|blade|firearm|gun/i, "weapon"],
+  [/armou?r|shield|cloth|wear/i, "armour"],
+  [/consum|potion|food|drink|ration|medic/i, "consumable"],
+  [/tool|kit|instrument/i, "tool"],
+  [/ammo|ammunition|round|arrow|bolt/i, "ammunition"],
+  [/quest|key|story|document|letter|evidence/i, "key"],
+  [/gear|pack|equipment|supply|travel/i, "gear"],
+];
+export function categoryGlyphKey(category: string): string {
+  return CATEGORY_WORDS.find(([pattern]) => pattern.test(category))?.[1] ?? "other";
+}
+
+/** Until an item has a picture its tile shows the short name with a category glyph;
+ * the plain box stays only for items without a name. */
 export function ItemCell({ item, pressed, onPick }: { item: Item; pressed: boolean; onPick: () => void }) {
   const rarity = itemRarity(item);
   const image = useSubjectImage({ kind: "item", id: item.id });
+  const name = inventoryItemLabel(item.name).trim();
+  const Glyph = CATEGORY_GLYPHS[categoryGlyphKey(item.category)];
   return (
     <button type="button" className={`${r.cell} ${rarity ? rarityClass[rarity] : ""}`} aria-pressed={pressed} aria-label={item.name} title={item.name} onClick={onPick}>
-      {image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} className={s.cellArt} drawingLabel="…" /> : <Package size={26} aria-hidden="true" />}
+      {image.url || image.drawing ? <Art subject={{ kind: "item", id: item.id }} name={item.name} className={s.cellArt} drawingLabel="…" />
+        : name ? (
+          <span className={s.cellText} aria-hidden="true">
+            <Glyph size={14} />
+            <span className={s.cellName}>{name}</span>
+          </span>
+        ) : <Package size={26} aria-hidden="true" />}
       {item.quantity > 1 && <span className={r.qty}>{item.quantity}</span>}
     </button>
   );
@@ -282,7 +309,7 @@ export function ItemCard({ item, entity, onRedraw, onUse, onGive }: { item: Item
         <button type="button" className={r.btnGhost} onClick={onRedraw}>{image.url ? c("Перерисовать", "Redraw") : c("Нарисовать", "Draw")}</button>
       </div>
       <div className={s.card}>
-        <span className={r.eyebrow}>{[c.t(inventoryCategoryLabel(item.category)), item.quantity > 1 ? c(`${item.quantity} шт.`, `×${item.quantity}`) : null,
+        <span className={r.eyebrow}>{[c.label(inventoryCategoryLabel(item.category)), item.quantity > 1 ? c(`${item.quantity} шт.`, `×${item.quantity}`) : null,
           entity && item.equipped_entity_id === entity.id ? c.t("Equipped") : null].filter(Boolean).join(" · ")}</span>
         <span className={r.parchmentTitle}>{inventoryItemLabel(item.name)}</span>
         {item.description && <span className={r.parchmentText}>{item.description}</span>}

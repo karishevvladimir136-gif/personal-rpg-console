@@ -10,7 +10,7 @@ import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
 import { GenerateVisual } from "../visual-frame/generate-visual";
 import { useChrome } from "./shell";
-import { Art, Later, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
+import { Art, LaterLine, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
 import s from "./party.module.css";
 
 type Group = "party" | "reserve" | "nearby";
@@ -68,9 +68,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
           ))}
         </div>
       ) : <Panel><p className={r.empty}>{group === "nearby" ? c("Рядом никого нет.", "No one is nearby.") : c("Здесь пока никого.", "No one here yet.")}</p></Panel>}
-      <Later title={c("Экипаж и люди дома", "Crew and people back home")}>
-        {c("Списки экипажа транспорта и людей, оставшихся дома, появятся, когда приложение начнёт их отдавать.", "Lists of a transport's crew and of people back home appear once the app provides them.")}
-      </Later>
+      <LaterLine>{c("«К тебе» на карточках, экипаж транспорта и люди дома появятся, когда приложение начнёт их отдавать.", "“Toward you” on the cards, a transport's crew and people back home appear once the app provides them.")}</LaterLine>
       <footer className={r.note}>
         {c("«К тебе» — только то, что герой мог заметить сам. Тайные мысли спутников видит один ведущий. Поговорить можно в любой момент, кроме боя: разговор — это сцена в мире, идёт время, а спутник запоминает сказанное.",
           "“Toward you” is only what the hero could notice. Companions' private thoughts stay with the DM. You can talk any time except in combat: a talk is a scene in the world — time passes and the companion remembers.")}
@@ -144,14 +142,11 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
         )}
         {(stats.length > 0 || entity.conditions.length > 0) && (
           <div className={r.chips}>
-            {stats.map(([key, value]) => <span key={key} className={r.badge}>{c.t(statLabel(key))} {value}</span>)}
+            {stats.map(([key, value]) => <span key={key} className={r.badge}>{c.label(statLabel(key))} {value}</span>)}
             {entity.conditions.map((condition) => <span key={condition} className={r.badgeAmber}>{condition}</span>)}
           </div>
         )}
         {chips.length > 0 && <div className={r.chips}>{chips.map((chip) => <span key={chip} className={r.chip}>{chip}</span>)}</div>}
-        {entity.kind === "companion" && (
-          <Later title={c("К тебе", "Toward you")}>{c("Что герой успел заметить в отношении спутника — появится, когда приложение начнёт это отдавать.", "What the hero has noticed about this companion's attitude appears once the app provides it.")}</Later>
-        )}
         {entity.kind === "companion" && (
           <button type="button" className={canTalk ? r.btnMain : r.btnGhost} disabled={!canTalk} onClick={onTalk}
             title={combat ? c("В бою недоступно", "Not during combat") : undefined}>
@@ -174,7 +169,8 @@ function PreviewTalk({ play, companionId }: { play: PlaySnapshot | null; compani
         {!turns.length && <p className={r.empty}>{c("Вы ещё не говорили.", "You haven't talked yet.")}</p>}
       </div>
       <div className={r.chips}>
-        {[c("Как ты?", "How are you?"), c("Что думаешь о плане?", "What do you think of the plan?"), c("Что ты заметил?", "What did you notice?")].map((prompt) => (
+        {/* Gender-neutral wording: the record carries no gender for its companions. */}
+        {[c("Как ты?", "How are you?"), c("Что думаешь о плане?", "What do you think of the plan?"), c("Что удалось заметить?", "What did you notice?")].map((prompt) => (
           <button key={prompt} type="button" className={r.chipButton} disabled>{prompt}</button>
         ))}
       </div>

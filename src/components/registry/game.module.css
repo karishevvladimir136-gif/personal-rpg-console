@@ -449,6 +449,32 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
+/* Narrow phones: the dice receipt stacks — icon and label first, DC badge and result below. */
+@media (max-width: 480px) {
+  .game :global(.gameplay-check) {
+    grid-template-columns: 40px minmax(0, 1fr) auto;
+    grid-template-areas:
+      "icon who who"
+      "icon detail detail"
+      "dc dc result";
+    gap: 4px 12px;
+    align-items: start;
+  }
+  .game :global(.gameplay-check > strong) {
+    overflow-wrap: anywhere;
+  }
+  .game :global(.gameplay-check > .badge) {
+    justify-self: start;
+    align-self: center;
+    margin-top: 6px;
+  }
+  .game :global(.gameplay-check .dice-result-heading) {
+    margin-top: 6px;
+  }
+  .game :global(.gameplay-check .dice-result > p:first-of-type) {
+    overflow-wrap: anywhere;
+  }
+}
 @media (max-width: 760px) {
   .asideToggle {
     display: inline-flex;

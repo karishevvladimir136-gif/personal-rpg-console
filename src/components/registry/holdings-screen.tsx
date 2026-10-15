@@ -10,7 +10,7 @@ import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { GenerateVisual } from "../visual-frame/generate-visual";
 import { useChrome, type CampaignScreenId } from "./shell";
 import { ItemCard, ItemCell } from "./character-screen";
-import { Art, Gauge, Later, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
+import { Art, Gauge, LaterLine, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
 import s from "./holdings.module.css";
 
 const ICONS: Record<HoldingKind, LucideIcon> = { camp: Tent, transport: Ship, mount: PawPrint };
@@ -58,12 +58,12 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
               </button>
             );
           })}
-          <Later title={c("Базы", "Bases")}>{c("Отдельного вида записи «база» в приложении пока нет; она появится вместе с инструментом владений.", "The app has no separate “base” record kind yet; it arrives with the holdings tool.")}</Later>
         </nav>
         <Detail holding={selected} itemId={itemId} onItem={setItemId}
           onRedraw={setRedraw} onAct={act} />
       </div>
       {notice && <p className={r.note} role="status">{notice}</p>}
+      <LaterLine>{c("Базы, особенности владений и люди на борту появятся вместе с инструментом владений.", "Bases, holding features and people aboard arrive with the holdings tool.")}</LaterLine>
       <p className={r.note}>
         {c("Прежние экраны лагеря и мест, где вы дома, остаются доступны: ", "The earlier camp and places-of-belonging screens stay available: ")}
         <Link href={href("camp")} style={{ color: "var(--brass)" }}>{c("Лагерь и отдых", "Camp and rest")}</Link>{" · "}
@@ -111,23 +111,18 @@ function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
           </div>
         </div>
       </Panel>
-      {entity && (
-        <div className={s.columns}>
-          <Panel eyebrow={c("Характеристики", "Specifications")}>
-            <div className={r.stack}>
-              {entity.hp !== null && <Gauge label={c("Состояние", "Condition")} value={entity.hp} max={entity.max_hp} />}
-              {Object.keys(entity.stats).length > 0 && (
-                <div className={r.kv}>
-                  {Object.entries(entity.stats).map(([key, value]) => <div key={key}><span>{c.t(statLabel(key))}</span><span>{value}</span></div>)}
-                </div>
-              )}
-              {entity.conditions.length > 0 && <div className={r.chips}>{entity.conditions.map((row) => <span key={row} className={r.badgeAmber}>{row}</span>)}</div>}
-            </div>
-          </Panel>
-          <Panel eyebrow={c("Особенности и люди на борту", "Features and people aboard")}>
-            <Later>{c("Особенности, вооружение и пассажиры появятся, когда их начнёт отдавать запись владения.", "Features, armament and passengers appear once the holding record provides them.")}</Later>
-          </Panel>
-        </div>
+      {entity && (entity.hp !== null || Object.keys(entity.stats).length > 0 || entity.conditions.length > 0) && (
+        <Panel eyebrow={c("Характеристики", "Specifications")}>
+          <div className={r.stack}>
+            {entity.hp !== null && <Gauge label={c("Состояние", "Condition")} value={entity.hp} max={entity.max_hp} />}
+            {Object.keys(entity.stats).length > 0 && (
+              <div className={r.kv}>
+                {Object.entries(entity.stats).map(([key, value]) => <div key={key}><span>{c.label(statLabel(key))}</span><span>{value}</span></div>)}
+              </div>
+            )}
+            {entity.conditions.length > 0 && <div className={r.chips}>{entity.conditions.map((row) => <span key={row} className={r.badgeAmber}>{row}</span>)}</div>}
+          </div>
+        </Panel>
       )}
       <Panel eyebrow={holding.storage?.name ?? c("Хранилище", "Storage")} title={c("Что лежит внутри", "What's inside")}
         action={<span className={`${r.small} ${r.muted}`}>{c(`${holding.items.length} предм.`, `${holding.items.length} items`)}</span>}>

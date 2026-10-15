@@ -12,7 +12,7 @@ import { workshopJobs, type AutopilotSettings } from "@/lib/ui/visual-autopilot"
 import { effortLabel } from "@/lib/ui/effort";
 import { useChrome, useDmSettings, type CampaignScreenId } from "./shell";
 import { useAutopilot } from "./visual-autopilot";
-import { Later, Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
+import { LaterLine, Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
 import s from "./settings.module.css";
 
 type ProviderInfo = { fal: { configured: boolean; persistence: boolean } } | null;
@@ -42,7 +42,8 @@ export function RegistrySettings({ data, more, preview }: {
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const chosenModel = model ?? (current?.dmTurn ? current.dmTurn.modelId : null);
   const entry = dmTurnModels.find((row) => row.modelId === chosenModel) ?? null;
-  const chosenEffort = effort ?? current?.dmTurn?.reasoning ?? "medium";
+  // Without a saved choice the effort is the selected model's own default, as the server resolves it.
+  const chosenEffort = effort ?? current?.dmTurn?.reasoning ?? entry?.defaultEffort ?? "";
   const save = async (next: { runtime?: DmSettings["runtime"]; modelId?: string | null; reasoning?: string }) => {
     if (!current || saving || chrome?.href) return;
     setSaving(true);
@@ -79,7 +80,7 @@ export function RegistrySettings({ data, more, preview }: {
   return (
     <div className={s.page}>
       <Plate eyebrow={c(`Кампания «${data.campaign.title}» · настройки этой кампании`, `Campaign “${data.campaign.title}” · settings of this campaign`)}
-        title={c("Ведущий и картинки", "Dungeon Master and pictures")} sub={c("Ключи хранятся только у тебя на компьютере", "Keys stay on your own computer")} />
+        title={c("Ведущий и картинки", "Game Master and pictures")} sub={c("Ключи хранятся только у тебя на компьютере", "Keys stay on your own computer")} />
       <div className={s.columns}>
         <div className={s.column}>
           <Panel eyebrow={c("Кто ведёт игру", "Who runs the game")}>
@@ -112,7 +113,7 @@ export function RegistrySettings({ data, more, preview }: {
               </div>
               {error && <p className={r.error} role="alert">{error}</p>}
               <p className={r.note}>{c("Модель можно сменить посреди кампании: память, мир и квитанции общие. Новый ведущий продолжит с того же места; ход, который уже идёт, доиграет прежний.", "You can switch models mid-campaign: memory, world and receipts are shared. The new DM continues from the same place; a turn in progress finishes with the previous one.")}</p>
-              <Later title={c("Последние ходы", "Recent turns")}>{c("Время до первых слов, цена хода и отклонённые действия появятся, когда приложение начнёт отдавать сводку ходов.", "Time to first words, cost per turn and rejected actions appear once the app provides a turn summary.")}</Later>
+              <LaterLine>{c("Сводка последних ходов и записка «что мне нравится» появятся, когда приложение начнёт их отдавать.", "A summary of recent turns and the “what I enjoy” note appear once the app provides them.")}</LaterLine>
             </div>
           </Panel>
           <Panel eyebrow={c("Как ведущий работает", "How the DM works")}>
@@ -129,7 +130,6 @@ export function RegistrySettings({ data, more, preview }: {
                 <div><span>{c("Важные броски кидаю я", "I roll important checks")}</span><span>{settings.interactiveDice ? c("да", "yes") : c("нет", "no")}</span></div>
               </div>
               <a className={r.btnGhost} href="#more-settings">{c("Изменить в полных настройках", "Change in the full settings")}</a>
-              <Later title={c("Что мне нравится", "What I enjoy")}>{c("Записка ведущего «что нравится игроку» появится здесь — видимая и редактируемая.", "The DM's note on what the player enjoys appears here — visible and editable.")}</Later>
             </div>
           </Panel>
           <Panel eyebrow={c("Правила и пределы кампании", "Rules and campaign limits")}>
@@ -166,7 +166,7 @@ export function RegistrySettings({ data, more, preview }: {
                       <span className={r.note}>{c(row.note.ru, row.note.en)}</span>
                     </div>
                   ))}
-                  <Later>{c("Сохранение картинок от fal заработает после обновления базы (этап 3/4): сейчас база принимает только задания OpenAI.", "Saving fal pictures starts after the database update (stage 3/4): today the database accepts OpenAI jobs only.")}</Later>
+                  <p className={r.note}>{c("Сохранение картинок от fal заработает после обновления базы (этап 3/4): сейчас база принимает только задания OpenAI.", "Saving fal pictures starts after the database update (stage 3/4): today the database accepts OpenAI jobs only.")}</p>
                 </div>
               )}
               <Switch title={c("Рисовать само", "Draw automatically")} hint={c("После хода, в фоне. Ход никогда не ждёт картинку.", "After a turn, in the background. A turn never waits for a picture.")}

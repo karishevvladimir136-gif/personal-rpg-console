@@ -221,3 +221,49 @@ test("effort names follow the model's own levels", () => {
   assert.equal(effortLabel("max", "en"), "max");
   assert.equal(effortLabel("turbo", "en"), "turbo", "an unknown level is shown as the model names it");
 });
+
+import { displayLabel } from "../src/lib/ui/labels.ts";
+import { placePinLabels } from "../src/lib/map/label-layout.ts";
+import { translate } from "../src/lib/i18n.ts";
+
+test("display labels: a label the record provides wins, then the catalog (numbered keys too), then the raw phrase", () => {
+  const ru = (key, values) => translate("ru", key, values);
+  const en = (key, values) => translate("en", key, values);
+  assert.equal(displayLabel("Armor class", ru), "Класс доспеха");
+  assert.equal(displayLabel("Spell slots 1", ru), "Ячейки заклинаний 1");
+  assert.equal(displayLabel("Spell slots 1", en), "Spell slots 1", "the English sample stays English");
+  assert.equal(displayLabel("Armor class", en), "Armor class");
+  assert.equal(displayLabel("Nerve", ru), "Nerve", "an unknown ruleset key is shown as the record names it");
+  assert.equal(displayLabel("Gold", ru, "Дукаты"), "Дукаты");
+  for (const phrase of ["Spell dc", "Sorcery points", "Gold", "Crew", "Cargo", "Tool", "Misc"]) assert.notEqual(displayLabel(phrase, ru), phrase, phrase);
+});
+
+test("pin labels: the current place is always placed; crowded labels go above, then hide", () => {
+  const mark = (x, y) => ({ x, y, w: 17, h: 17 });
+  const label = { w: 90, h: 22 };
+  // Three pins 30 px apart on one row, one far away: labels avoid other labels and marks.
+  const layout = placePinLabels([
+    { id: "far", mark: mark(400, 300), label, priority: 4 },
+    { id: "b", mark: mark(130, 100), label, priority: 3 },
+    { id: "current", mark: mark(100, 100), label, priority: 0 },
+    { id: "c", mark: mark(160, 100), label, priority: 3 },
+  ]);
+  assert.equal(layout.current, "below");
+  assert.equal(layout.far, "below");
+  assert.equal(layout.b, "above");
+  assert.equal(layout.c, "hidden");
+  // Later priorities never push the current place away.
+  assert.equal(placePinLabels([{ id: "x", mark: mark(100, 100), label, priority: 3 }, { id: "cur", mark: mark(100, 100), label, priority: 0 }]).cur, "below");
+});
+
+import { dmTurnModels } from "../src/lib/gameplay/dm-settings-client.ts";
+import { dmModelSpec } from "../src/lib/model-runtime/dm-models.ts";
+
+test("the client model list carries each model's own default effort and levels, as the server resolves them", () => {
+  for (const entry of dmTurnModels) {
+    const spec = dmModelSpec(entry.providerId, entry.modelId);
+    assert.ok(spec, entry.modelId);
+    assert.equal(entry.defaultEffort, spec.defaultReasoning, entry.modelId);
+    assert.deepEqual([...entry.efforts], [...spec.reasoning], entry.modelId);
+  }
+});

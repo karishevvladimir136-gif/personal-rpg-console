@@ -137,6 +137,7 @@
   text-transform: uppercase;
   color: var(--brass-dim);
   display: block;
+  overflow-wrap: anywhere;
 }
 .slotName {
   font-size: 13px;
@@ -145,6 +146,8 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 .slotEmpty .slotName {
   color: var(--muted);
@@ -213,6 +216,31 @@
 .cellArt[role="img"] {
   font-size: 18px;
 }
+.cellText {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  padding: 3px 3px 10px;
+  box-sizing: border-box;
+  color: var(--brass-dim);
+}
+.cellName {
+  font-family: var(--f-body);
+  font-size: 10px;
+  line-height: 1.15;
+  text-align: center;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  max-width: 100%;
+}
 .card {
   display: grid;
   gap: 8px;
@@ -263,9 +291,25 @@
     grid-template-columns: minmax(0, 1fr);
   }
   .doll {
-    grid-template-columns: minmax(0, 1fr) minmax(96px, 120px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(88px, 112px) minmax(0, 1fr);
   }
   .figure {
     min-height: 240px;
+  }
+  .slot {
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 5px;
+    padding: 4px;
+  }
+  .slotIcon {
+    width: 30px;
+    height: 30px;
+  }
+  .slotName {
+    font-size: 12px;
+  }
+  /* The sheet tabs and the section links wrap into rows of their own on a phone. */
+  .header > :first-child {
+    width: 100%;
   }
 }

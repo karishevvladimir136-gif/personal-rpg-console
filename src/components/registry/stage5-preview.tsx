@@ -103,7 +103,7 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
     case "map":
       return (
         <div style={{ display: "grid", gap: 14 }}>
-          <Plate eyebrow={c(`${snapshot.campaign.title} · атлас знакомых мест`, `${snapshot.campaign.title} · atlas of known places`)} title={c("Карта", "Map")} />
+          <Plate eyebrow={snapshot.campaign.title} title={c("Карта", "Map")} />
           <AtlasMap snapshot={snapshot} reviewOnly reviewPlacements={sample.placements} reviewPreset={{ artwork: sample.atlas ? "placeholder" : undefined }}
             reviewArtworkUrl={sample.atlas ?? undefined} reviewDestinationId={sample.course ?? undefined} />
         </div>

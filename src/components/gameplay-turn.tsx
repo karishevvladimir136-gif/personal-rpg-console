@@ -20,6 +20,21 @@ import {
 } from "@/lib/gameplay/client";
 import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
+import { Art, useSubjectImage } from "./registry/primitives";
+import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
+
+/** The speaker's portrait: the accepted picture through the screen's image resolver
+ * (with the initial-letter fallback when it fails to load), else the snapshot's own. */
+function SpeakerPortrait({ snapshot, entity }: { snapshot: CampaignSnapshot; entity: Entity }) {
+  const image = useSubjectImage({ kind: "entity", id: entity.id });
+  if (image.url)
+    return (
+      <span className="gameplay-speaker-portrait" aria-hidden="true">
+        <Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 25%" />
+      </span>
+    );
+  return <SubjectAvatar snapshot={snapshot} entity={entity} className="gameplay-speaker-portrait" />;
+}
 
 export function GameplayGuidanceProposal({
   turn,
@@ -261,13 +276,7 @@ export function GameplayTurn({
   return (
     <Panel className="gameplay-turn">
       <article className="gameplay-owner-input">
-        {speaker && data && (
-          <SubjectAvatar
-            snapshot={data}
-            entity={speaker}
-            className="gameplay-speaker-portrait"
-          />
-        )}
+        {speaker && data && <SpeakerPortrait snapshot={data} entity={speaker} />}
         <div className="gameplay-owner-words">
         <span className="eyebrow">
           {speaker?.name || t(turn.mode === "feedback" ? "Owner feedback" : "Your action")}

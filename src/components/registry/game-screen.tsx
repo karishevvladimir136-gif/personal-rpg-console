@@ -44,7 +44,7 @@ import {
   Art,
   Avatar,
   Gauge,
-  Later,
+  LaterLine,
   Panel,
   Pips,
   registry as r,
@@ -72,7 +72,7 @@ export function heroSummary(data: CampaignSnapshot, hero: Entity, c: Copy) {
 /** The first mechanical values the record keeps (whatever the ruleset calls them). */
 function quickStats(data: CampaignSnapshot, hero: Entity, c: Copy) {
   return characterViewModel(data, hero).derivedStats.slice(0, 3)
-    .map(([key, value]) => `${c.t(statLabel(key))} ${value}`).join(" · ");
+    .map(([key, value]) => `${c.label(statLabel(key))} ${value}`).join(" · ");
 }
 
 /** Skills and spells exactly as the character's sheet lists them; absent when the sheet has none. */
@@ -320,7 +320,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 <div>
                   <div className={g.heroName}>{hero.name}</div>
                   {heroSummary(data, hero, c) && <div className={`${r.small} ${r.muted}`}>{heroSummary(data, hero, c)}</div>}
-                  {quickStats(data, hero, c) && <div className={`${r.num} ${r.small}`} style={{ color: "var(--brass)" }}>{quickStats(data, hero, c)}</div>}
+                  {quickStats(data, hero, c) && <div className={r.small} style={{ color: "var(--brass)" }}>{quickStats(data, hero, c)}</div>}
                 </div>
               </div>
               {hero.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={hero.hp} max={hero.max_hp} />}
@@ -328,12 +328,12 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 <dl className={g.resources}>
                   {resources.slice(0, 6).map((resource) => (
                     <div key={resource.key} className={r.resRow}>
-                      <dt>{c.t(resource.label)}</dt>
-                      <dd>{resource.max ? <Pips left={resource.value} max={resource.max} label={c.t(resource.label)} /> : resource.value}</dd>
+                      <dt>{c.label(resource.label)}</dt>
+                      <dd>{resource.max ? <Pips left={resource.value} max={resource.max} label={c.label(resource.label)} /> : resource.value}</dd>
                     </div>
                   ))}
                   {money.map((row) => (
-                    <div key={row.key} className={r.resRow}><dt>{c.t(row.label)}</dt><dd>{row.value}</dd></div>
+                    <div key={row.key} className={r.resRow}><dt>{c.label(row.label)}</dt><dd>{row.value}</dd></div>
                   ))}
                 </dl>
               )}
@@ -376,9 +376,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             </Link>
           )) : <p className={r.empty}>{c("Рядом никого из спутников.", "No companions nearby.")}</p>}
         </Panel>
-        <Panel eyebrow={c("Открытые нити", "Open threads")}>
-          <Later>{c("Нити и долги ведёт ведущий; приложение пока не отдаёт их интерфейсу.", "The DM tracks threads and debts; the app does not expose them to the interface yet.")}</Later>
-        </Panel>
+        <LaterLine>{c("Открытые нити и долги появятся, когда приложение начнёт их отдавать.", "Open threads and debts appear once the app provides them.")}</LaterLine>
       </aside>
     </div>
   );
