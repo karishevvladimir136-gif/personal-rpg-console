@@ -293,7 +293,10 @@ export function astraToolResult(source: RuntimeSource, input: TurnInput,
     !receipts.some((r) => ["attack","skill"].includes(r.call.kind) &&
       r.call.actorId === actor.id));
   if (target && source.runtime.encounters.some((e) => e.status === "active"))
-    requireRule(activeParticipant(source,target.id));
+    requireRule(source.astraStateContract==="generic-v1"
+      ? source.runtime.participants.some(p=>p.entity_id===target.id && p.public_resources.withdrawn!==true &&
+        source.runtime.encounters.some(e=>e.id===p.encounter_id && e.status==="active"))
+      : activeParticipant(source,target.id));
   requireRule(call.kind === "attack" ? call.dc === null :
     call.targetId === null && Number.isInteger(call.dc) && call.dc! >= 1 && call.dc! <= 40);
   const item = call.itemId === null ? null : source.snapshot.items.find((i) =>
@@ -584,7 +587,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             genericBehavior(selected,genericManifest(selected,input),value.publicBehavior);
             if(responseMode==="public-unified"){
               requireRule(value.publicNarration);checkpoint.narration=genericPublication(value.publicNarration,plan.accepted);
-              assertNoPrivateDisclosure(disclosureSource,input,checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription,astra.toolReceipts);
+              assertNoPrivateDisclosure(disclosureSource,input,checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription+"\n"+(checkpoint.narration.sceneLocale ?? ""),astra.toolReceipts);
               narrationParseSucceeded=true;
             }else requireRule(value.publicNarration===null);
             checkpoint.resolution=plan.resolution;
@@ -752,7 +755,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         checkpoint.narration.narration.trim().length > 0 &&
         checkpoint.narration.narration.length <= 6000);
       assertNoPrivateDisclosure(disclosureSource,input,
-        checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription,
+        checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription+"\n"+(checkpoint.narration.sceneLocale ?? ""),
         astra.toolReceipts);
       await recordStage("narration_safety", "completed");
       await recordStage("narration_checkpoint", "entered");

@@ -84,6 +84,16 @@ Separate:
 
 Server validates patches before persistence.
 
+Preserve ordinary-play authority:
+- Astra is the DM; structured state is authoritative, not exhaustive.
+- Missing records do not block plausible, non-contradictory mundane fiction. Do not add one subsystem per fictional verb, NPC, place or object.
+- Use the closed six-family generic state contract for new durable consequences and existing deterministic mechanics internally. Narration-only is valid.
+- Current pinned input, selected public context and pinned DM adjudication may establish ordinary facts, acceptance and completion. Source handles identify evidence, not semantic proof. `basis:null` is bounded adjudication, not arbitrary write authority.
+- Resolve named payers explicitly; Quest claims use stored issuer/terms. Authoritatively absent balances differ from explicit zero. Never infer untracked funds from prompt omission or failed reads.
+- Reject invalid optional operations/groups and dependent consequence prose while preserving valid independent narration. Never turn failed mechanics into narrated success.
+- Keep recorded dice, balances, ownership, active rules, corrections, exact-once atomic commits, timeline/revision fences and private/public generation boundaries. Private-informed public text must use exact public evidence; do not launder private prose through record fields.
+- Preserve old operation/save contracts and frozen historical World authority. Do not add arbitrary model writes, a second ledger, agent or backend.
+
 ## Dice
 
 Visible dice results must come from a real server dice function, not model improvisation.

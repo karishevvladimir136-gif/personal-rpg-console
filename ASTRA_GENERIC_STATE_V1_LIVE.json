@@ -1,0 +1,2390 @@
+{
+  "schemaVersion": 1,
+  "syntheticOnly": true,
+  "limits": {
+    "requests": 10,
+    "reservedUsd": 5,
+    "maxOutputTokens": 4096,
+    "maxRequestBytes": 100000
+  },
+  "requests": 7,
+  "reservedUsd": 4.843674999999999,
+  "requestBudget": [
+    {
+      "request": 1,
+      "requestBytes": 31685,
+      "inputUpperTokens": 33733,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.6264625,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:37:38.811Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 18737.4689
+    },
+    {
+      "request": 2,
+      "requestBytes": 37399,
+      "inputUpperTokens": 39447,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.6978875,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:37:57.952Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 52253.1306
+    },
+    {
+      "request": 3,
+      "requestBytes": 43820,
+      "inputUpperTokens": 45868,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.77815,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:38:51.422Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 31045.73370000001
+    },
+    {
+      "request": 4,
+      "requestBytes": 46675,
+      "inputUpperTokens": 48723,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.8138375,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:39:25.019Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 14521.235100000005
+    },
+    {
+      "request": 5,
+      "requestBytes": 49056,
+      "inputUpperTokens": 51104,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.8436,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:39:40.237Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 16026.967600000004
+    },
+    {
+      "request": 6,
+      "requestBytes": 34629,
+      "inputUpperTokens": 36677,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.6632625,
+      "reasoning": "high",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:39:57.768Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 10507.595100000006
+    },
+    {
+      "request": 7,
+      "requestBytes": 15206,
+      "inputUpperTokens": 17254,
+      "maxOutputTokens": 4096,
+      "reserveUsd": 0.420475,
+      "reasoning": "medium",
+      "pricing": {
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra.md",
+        "checkedAt": "2026-10-15T06:40:09.069Z",
+        "inputPerMillion": 10,
+        "cacheWritePerMillion": 12.5,
+        "outputPerMillion": 50
+      },
+      "status": 200,
+      "latencyMs": 8163.096699999995
+    }
+  ],
+  "stopReason": null,
+  "initialState": {
+    "entities": [
+      {
+        "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+        "name": "Ari",
+        "kind": "player",
+        "hp": 10,
+        "max_hp": 10,
+        "resources": {
+          "focus": 2,
+          "currency_silver": 5
+        }
+      }
+    ],
+    "items": [
+      {
+        "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+        "name": "compass",
+        "quantity": 1,
+        "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+        "mechanics": ""
+      }
+    ],
+    "quests": [],
+    "runtime": {
+      "revision": 24,
+      "world_minutes": 0,
+      "configuration": {
+        "profile": "console-basic-v1",
+        "itemRules": [],
+        "safeLocationIds": [],
+        "nearbyStorageIds": [],
+        "presentEntityIds": [
+          "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+        ],
+        "controlledEntityIds": [
+          "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+        ]
+      }
+    }
+  },
+  "finalState": {
+    "entities": [
+      {
+        "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+        "name": "Bessa",
+        "kind": "npc",
+        "hp": null,
+        "max_hp": null,
+        "resources": {
+          "currency_silver": 2
+        }
+      },
+      {
+        "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+        "name": "Ari",
+        "kind": "player",
+        "hp": 10,
+        "max_hp": 10,
+        "resources": {
+          "focus": 2,
+          "currency_silver": 5
+        }
+      },
+      {
+        "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+        "name": "Hobb",
+        "kind": "npc",
+        "hp": null,
+        "max_hp": null,
+        "resources": {}
+      }
+    ],
+    "items": [
+      {
+        "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+        "name": "compass",
+        "quantity": 1,
+        "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+        "mechanics": ""
+      },
+      {
+        "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+        "name": "Ordinary loaf of bread",
+        "quantity": 0,
+        "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+        "mechanics": ""
+      }
+    ],
+    "quests": [
+      {
+        "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+        "title": "Hobb's crate-packing job",
+        "status": "complete",
+        "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+        "reward_terms": {
+          "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+          "itemName": null,
+          "currencyName": "silver",
+          "itemCategory": null,
+          "currencyAmount": 2,
+          "itemDescription": null
+        }
+      }
+    ],
+    "runtime": {
+      "revision": 53,
+      "world_minutes": 60,
+      "configuration": {
+        "profile": "console-basic-v1",
+        "itemRules": [],
+        "safeLocationIds": [],
+        "nearbyStorageIds": [],
+        "presentEntityIds": [
+          "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+          "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+          "74e932fc-381e-5f29-8497-ab5dd9356815"
+        ],
+        "controlledEntityIds": [
+          "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+        ]
+      }
+    }
+  },
+  "turns": [
+    {
+      "scenario": "A-introduction",
+      "operationId": "3aef267a-811d-426f-8067-8cf9e96bc2c0",
+      "input": "I follow the lead to the village mill and greet Hobb, the miller. I ask whether he has ordinary crate-packing work for two silver.",
+      "status": "committed",
+      "failure": null,
+      "requests": 1,
+      "fullTurnMs": 19278.7413,
+      "mode": "public-unified",
+      "contract": "generic-v1",
+      "narration": "You find the village mill by its steady wooden clatter. Inside, pale light catches flour dust above a packing bench. Hobb, a broad-handed man in a dusty apron, sets down his tally stick and returns your greeting.\n\n“Crate-packing? Aye, there's a batch waiting.” He points to six open crates beside a stack of small flour sacks. “Two silver for the lot—about an hour's work. Check the sack ties, pack them snug, then nail the lids down. I'll pay when they're finished.”\n\nHe shifts a hammer out of the flour dust. “I'll show you the first one, if that suits.”",
+      "accepted": [],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [],
+        "runtime": {
+          "revision": 24,
+          "world_minutes": 0,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [],
+        "runtime": {
+          "revision": 28,
+          "world_minutes": 0,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 24,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "I follow the lead to the village mill and greet Hobb, the miller. I ask whether he has ordinary crate-packing work for two silver.",
+          "toolRefs": [],
+          "campaignId": "e5adbecb-e9c5-4ffe-824d-bc69b4aec1cb",
+          "resolution": {
+            "changes": [],
+            "outcomes": [],
+            "worldMinutes": 0,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ],
+              "controlledEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ]
+            }
+          },
+          "operationId": "3aef267a-811d-426f-8067-8cf9e96bc2c0",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 24
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    },
+    {
+      "scenario": "BCD-accept-complete-reward",
+      "operationId": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+      "input": "I accept Hobb's crate-packing job for two silver. Please record our agreement. I spend the time carefully packing the crates as agreed, ask him to inspect the finished work, then collect the earned two silver.",
+      "status": "committed",
+      "failure": null,
+      "requests": 1,
+      "fullTurnMs": 53231.957500000004,
+      "mode": "public-unified",
+      "contract": "generic-v1",
+      "narration": "The mill's wooden clatter fills the packing room. Pale light catches the flour dust above the bench.\n\nHobb confirms the terms, and your agreement is recorded: pack all six crates, checking the sack ties and nailing down the lids, for two silver payable when finished.\n\nOver the next hour, you check each tie, nestle the sacks snugly together, and hammer the lids into place. At your request, Hobb inspects the finished batch, testing the lids and looking along the seams. “Aye. Good, tidy work.” He accepts all six crates.\n\nHobb counts two silver into your hand. The job is complete, and your agreed wage is paid in full.",
+      "accepted": [
+        "hobb",
+        "record-job",
+        "work-time",
+        "complete-job",
+        "claim-wages"
+      ],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [],
+        "runtime": {
+          "revision": 28,
+          "world_minutes": 0,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 7
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 36,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 28,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "I accept Hobb's crate-packing job for two silver. Please record our agreement. I spend the time carefully packing the crates as agreed, ask him to inspect the finished work, then collect the earned two silver.",
+          "toolRefs": [],
+          "campaignId": "e5adbecb-e9c5-4ffe-824d-bc69b4aec1cb",
+          "resolution": {
+            "changes": [
+              {
+                "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+                "family": "entities",
+                "values": {
+                  "hp": null,
+                  "kind": "npc",
+                  "name": "Hobb",
+                  "stats": {},
+                  "max_hp": null,
+                  "details": "The village miller, a broad-handed man in a dusty apron.",
+                  "resources": {},
+                  "conditions": [],
+                  "equipment_slots": []
+                },
+                "expectedRevision": null
+              },
+              {
+                "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+                "family": "quests",
+                "values": {
+                  "title": "Hobb's crate-packing job",
+                  "status": "complete",
+                  "description": "Ari accepts Hobb's offer to pack six crates of flour sacks at the village mill: check the sack ties, pack them snugly, and nail the lids down. About one hour's work; Hobb owes Ari two silver when the work is finished.\nAri carefully checked the sack ties, packed all six crates snugly, and nailed down their lids. Hobb inspected and accepted the finished work."
+                },
+                "expectedRevision": null
+              },
+              {
+                "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "family": "entities",
+                "values": {
+                  "resources": {
+                    "focus": 2,
+                    "currency_silver": 7
+                  }
+                },
+                "expectedRevision": 1
+              }
+            ],
+            "outcomes": [],
+            "worldMinutes": 60,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "b67c0a20-7627-5c58-809e-dc24cc2e6d94"
+              ],
+              "controlledEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ]
+            }
+          },
+          "operationId": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 28
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    },
+    {
+      "scenario": "E-unseeded-purchase",
+      "operationId": "9e6bd326-1bc5-47f6-8c97-6895d06da346",
+      "input": "I meet Bessa at the village bakery and agree to buy one ordinary loaf of bread for two silver. I pay her from my purse and put the loaf in my pack.",
+      "status": "committed",
+      "failure": null,
+      "requests": 1,
+      "fullTurnMs": 32719.026700000002,
+      "mode": "public-unified",
+      "contract": "generic-v1",
+      "narration": "The village bakery smells of browned crust and warm flour. Behind the counter, cooling loaves give off faint, dry crackles.\n\n“Two silver. Thank you,” Bessa says, accepting your coins and passing you a loaf. You tuck it into your pack, leaving five silver in your purse.",
+      "accepted": [
+        "introduce-bessa",
+        "create-loaf",
+        "pay-bessa",
+        "receive-loaf"
+      ],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 7
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 36,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+            "name": "Bessa",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {
+              "currency_silver": 2
+            }
+          },
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          },
+          {
+            "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+            "name": "Ordinary loaf of bread",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 44,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "74e932fc-381e-5f29-8497-ab5dd9356815"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 36,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "I meet Bessa at the village bakery and agree to buy one ordinary loaf of bread for two silver. I pay her from my purse and put the loaf in my pack.",
+          "toolRefs": [],
+          "campaignId": "e5adbecb-e9c5-4ffe-824d-bc69b4aec1cb",
+          "resolution": {
+            "changes": [
+              {
+                "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+                "family": "entities",
+                "values": {
+                  "hp": null,
+                  "kind": "npc",
+                  "name": "Bessa",
+                  "stats": {},
+                  "max_hp": null,
+                  "details": "A baker who sells bread at the village bakery.",
+                  "resources": {
+                    "currency_silver": 2
+                  },
+                  "conditions": [],
+                  "equipment_slots": []
+                },
+                "expectedRevision": null
+              },
+              {
+                "id": "36947bdb-0b2c-5c26-91f7-4d56f0beb3db",
+                "family": "storages",
+                "values": {
+                  "kind": "merchant",
+                  "name": "Inventory of Bessa",
+                  "entity_id": "74e932fc-381e-5f29-8497-ab5dd9356815"
+                },
+                "expectedRevision": null
+              },
+              {
+                "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+                "family": "items",
+                "values": {
+                  "name": "Ordinary loaf of bread",
+                  "category": "food",
+                  "quantity": 1,
+                  "mechanics": "",
+                  "storage_id": "5ff9729b-ffe2-557f-822f-9f78910e62f2",
+                  "description": "An ordinary loaf of bread with a browned crust.",
+                  "equipped_slot": null,
+                  "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                  "equipped_entity_id": null
+                },
+                "expectedRevision": null
+              },
+              {
+                "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "family": "entities",
+                "values": {
+                  "resources": {
+                    "focus": 2,
+                    "currency_silver": 5
+                  }
+                },
+                "expectedRevision": 2
+              }
+            ],
+            "outcomes": [],
+            "worldMinutes": 60,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+                "74e932fc-381e-5f29-8497-ab5dd9356815"
+              ],
+              "controlledEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ]
+            }
+          },
+          "operationId": "9e6bd326-1bc5-47f6-8c97-6895d06da346",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 36
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    },
+    {
+      "scenario": "F-consume",
+      "operationId": "865ca086-8a5e-4c86-9614-aa4bb65b00ba",
+      "input": "I sit beside the mill stream and eat the bread I just bought.",
+      "status": "committed",
+      "failure": null,
+      "requests": 1,
+      "fullTurnMs": 15951.714899999992,
+      "mode": "public-unified",
+      "contract": "generic-v1",
+      "narration": "You settle on a dry patch of bank beside the mill stream. Water curls around the stones, its soft rush mingling with the familiar wooden clatter from the mill.\n\nBessa’s loaf has a crisp, browned crust and a soft middle. You eat it slowly, tearing off pieces until the loaf is finished. A wagtail hops along the opposite bank, pausing between stones.",
+      "accepted": [
+        "eat-bread"
+      ],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+            "name": "Bessa",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {
+              "currency_silver": 2
+            }
+          },
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          },
+          {
+            "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+            "name": "Ordinary loaf of bread",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 44,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "74e932fc-381e-5f29-8497-ab5dd9356815"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+            "name": "Bessa",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {
+              "currency_silver": 2
+            }
+          },
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          },
+          {
+            "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+            "name": "Ordinary loaf of bread",
+            "quantity": 0,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 49,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "74e932fc-381e-5f29-8497-ab5dd9356815"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 44,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "I sit beside the mill stream and eat the bread I just bought.",
+          "toolRefs": [],
+          "campaignId": "e5adbecb-e9c5-4ffe-824d-bc69b4aec1cb",
+          "resolution": {
+            "changes": [
+              {
+                "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+                "family": "items",
+                "values": {
+                  "quantity": 0
+                },
+                "expectedRevision": 1
+              }
+            ],
+            "outcomes": [],
+            "worldMinutes": 60,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+                "74e932fc-381e-5f29-8497-ab5dd9356815"
+              ],
+              "controlledEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ]
+            }
+          },
+          "operationId": "865ca086-8a5e-4c86-9614-aa4bb65b00ba",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 44
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    },
+    {
+      "scenario": "G-return",
+      "operationId": "2d2fed03-87d1-4a04-bab5-ecdc7bdfbed7",
+      "input": "I return to Hobb. I thank him for the crate work and ask how his morning has gone since we spoke.",
+      "status": "committed",
+      "failure": null,
+      "requests": 1,
+      "fullTurnMs": 16644.33020000001,
+      "mode": "public-unified",
+      "contract": "generic-v1",
+      "narration": "Back in the mill’s packing room, you find Hobb sweeping flour away from the bench. The machinery’s steady clatter nearly swallows your greeting, but he looks up and rests both hands on the broom.\n\n“You’re welcome. Glad to have had a careful pair of hands.” At your question, he glances toward the doorway. “Morning’s been fair. Caught up on my tallies. Been trying to sweep this floor, but every time someone opens that door, the breeze gives me the flour back.” He smiles faintly. “Not much to complain of, if that’s the worst of it.”\n\nHe props the broom against the bench, willing to leave it a moment. “And yours? Had a chance to put your feet up after all that hammering?”",
+      "accepted": [],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+            "name": "Bessa",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {
+              "currency_silver": 2
+            }
+          },
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          },
+          {
+            "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+            "name": "Ordinary loaf of bread",
+            "quantity": 0,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 49,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "74e932fc-381e-5f29-8497-ab5dd9356815"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "74e932fc-381e-5f29-8497-ab5dd9356815",
+            "name": "Bessa",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {
+              "currency_silver": 2
+            }
+          },
+          {
+            "id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          },
+          {
+            "id": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          }
+        ],
+        "items": [
+          {
+            "id": "72cd0a67-5275-594f-bc88-7a7192918c34",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          },
+          {
+            "id": "d6953e2d-3a40-5cb4-88a0-68eb2b9b4506",
+            "name": "Ordinary loaf of bread",
+            "quantity": 0,
+            "owner_entity_id": "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+            "mechanics": ""
+          }
+        ],
+        "quests": [
+          {
+            "id": "cb4a31ea-7638-5407-9474-d73512af80b6",
+            "title": "Hobb's crate-packing job",
+            "status": "complete",
+            "reward_operation_id": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+            "reward_terms": {
+              "issuerId": "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "itemName": null,
+              "currencyName": "silver",
+              "itemCategory": null,
+              "currencyAmount": 2,
+              "itemDescription": null
+            }
+          }
+        ],
+        "runtime": {
+          "revision": 53,
+          "world_minutes": 60,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+              "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+              "74e932fc-381e-5f29-8497-ab5dd9356815"
+            ],
+            "controlledEntityIds": [
+              "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 49,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "I return to Hobb. I thank him for the crate work and ask how his morning has gone since we spoke.",
+          "toolRefs": [],
+          "campaignId": "e5adbecb-e9c5-4ffe-824d-bc69b4aec1cb",
+          "resolution": {
+            "changes": [],
+            "outcomes": [],
+            "worldMinutes": 60,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11",
+                "b67c0a20-7627-5c58-809e-dc24cc2e6d94",
+                "74e932fc-381e-5f29-8497-ab5dd9356815"
+              ],
+              "controlledEntityIds": [
+                "b0d0319b-ffed-5c12-b7a6-5b90a6a68c11"
+              ]
+            }
+          },
+          "operationId": "2d2fed03-87d1-4a04-bab5-ecdc7bdfbed7",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 49
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    },
+    {
+      "scenario": "private-informed-refusal",
+      "operationId": "2bbb6d26-bd32-439c-93f4-cf50b9db2107",
+      "input": "Hobb, may I go into the locked back room? I ask politely and wait for his answer.",
+      "status": "committed",
+      "failure": null,
+      "requests": 2,
+      "fullTurnMs": 20781.269500000024,
+      "mode": "private-informed",
+      "contract": "generic-v1",
+      "narration": "Hobb pauses beside the packing crates, wiping flour from his palms. He glances toward the locked back-room door, then meets your eyes.\n\n“No, I keep that room private.” His voice is firm, without irritation. “Thank you for asking, though. If you’re after the packing work, there’s no need to go in there.”\n\nHe rests a hand on a crate and waits for your reply.",
+      "accepted": [],
+      "rejected": [],
+      "diagnostic": {
+        "phase": "entered",
+        "stage": "commit",
+        "failureCategory": null,
+        "narrationParseSucceeded": true,
+        "providerResponseReceived": true
+      },
+      "before": {
+        "entities": [
+          {
+            "id": "47191d9b-74bc-532f-9ddd-2e48bfe87fe3",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          },
+          {
+            "id": "edb382b3-0af1-5107-8bd4-de67d99e3600",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "289152aa-f84c-528e-a78d-7b89cbb7d0fb",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "edb382b3-0af1-5107-8bd4-de67d99e3600",
+            "mechanics": ""
+          }
+        ],
+        "quests": [],
+        "runtime": {
+          "revision": 29,
+          "world_minutes": 0,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "edb382b3-0af1-5107-8bd4-de67d99e3600",
+              "47191d9b-74bc-532f-9ddd-2e48bfe87fe3"
+            ],
+            "controlledEntityIds": [
+              "edb382b3-0af1-5107-8bd4-de67d99e3600"
+            ]
+          }
+        }
+      },
+      "after": {
+        "entities": [
+          {
+            "id": "47191d9b-74bc-532f-9ddd-2e48bfe87fe3",
+            "name": "Hobb",
+            "kind": "npc",
+            "hp": null,
+            "max_hp": null,
+            "resources": {}
+          },
+          {
+            "id": "edb382b3-0af1-5107-8bd4-de67d99e3600",
+            "name": "Ari",
+            "kind": "player",
+            "hp": 10,
+            "max_hp": 10,
+            "resources": {
+              "focus": 2,
+              "currency_silver": 5
+            }
+          }
+        ],
+        "items": [
+          {
+            "id": "289152aa-f84c-528e-a78d-7b89cbb7d0fb",
+            "name": "compass",
+            "quantity": 1,
+            "owner_entity_id": "edb382b3-0af1-5107-8bd4-de67d99e3600",
+            "mechanics": ""
+          }
+        ],
+        "quests": [],
+        "runtime": {
+          "revision": 33,
+          "world_minutes": 0,
+          "configuration": {
+            "profile": "console-basic-v1",
+            "itemRules": [],
+            "safeLocationIds": [],
+            "nearbyStorageIds": [],
+            "presentEntityIds": [
+              "edb382b3-0af1-5107-8bd4-de67d99e3600",
+              "47191d9b-74bc-532f-9ddd-2e48bfe87fe3"
+            ],
+            "controlledEntityIds": [
+              "edb382b3-0af1-5107-8bd4-de67d99e3600"
+            ]
+          }
+        }
+      },
+      "privateCheckpoint": {
+        "runtimeIdentity": "astra-primary-v1",
+        "status": "committed",
+        "failure": null,
+        "retryable": false,
+        "expectedRevision": 29,
+        "sourcePresent": true,
+        "checkpointKeys": [
+          "astraPrimary",
+          "checks",
+          "feedback",
+          "narration",
+          "plan",
+          "resolution",
+          "usage"
+        ],
+        "toolReceipts": [],
+        "finalProposal": {
+          "input": "Hobb, may I go into the locked back room? I ask politely and wait for his answer.",
+          "toolRefs": [],
+          "campaignId": "e37c2ff6-0940-4aaf-b191-55124ad32bc9",
+          "resolution": {
+            "changes": [],
+            "outcomes": [],
+            "worldMinutes": 0,
+            "configuration": {
+              "profile": "console-basic-v1",
+              "itemRules": [],
+              "safeLocationIds": [],
+              "nearbyStorageIds": [],
+              "presentEntityIds": [
+                "edb382b3-0af1-5107-8bd4-de67d99e3600",
+                "47191d9b-74bc-532f-9ddd-2e48bfe87fe3"
+              ],
+              "controlledEntityIds": [
+                "edb382b3-0af1-5107-8bd4-de67d99e3600"
+              ]
+            }
+          },
+          "operationId": "2bbb6d26-bd32-439c-93f4-cf50b9db2107",
+          "schemaVersion": 1,
+          "privatePatches": [],
+          "expectedRevision": 29
+        },
+        "resolutionExists": true,
+        "narrationExists": true
+      }
+    }
+  ],
+  "attempts": [
+    {
+      "operationId": "3aef267a-811d-426f-8067-8cf9e96bc2c0",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 7181,
+      "outputTokens": 602,
+      "latencyMs": 19175,
+      "estimatedInputTokens": 33733,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 4,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 31685,
+      "reasoningTokens": 338,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "f140e709-0e01-4a70-869c-679f3de8ca2b",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 8695,
+      "outputTokens": 2277,
+      "latencyMs": 52452,
+      "estimatedInputTokens": 39447,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 9,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 37399,
+      "reasoningTokens": 1309,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "9e6bd326-1bc5-47f6-8c97-6895d06da346",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 10732,
+      "outputTokens": 1477,
+      "latencyMs": 31262,
+      "estimatedInputTokens": 45868,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 15,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 43820,
+      "reasoningTokens": 690,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "865ca086-8a5e-4c86-9614-aa4bb65b00ba",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 11868,
+      "outputTokens": 581,
+      "latencyMs": 14916,
+      "estimatedInputTokens": 48723,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 17,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 46675,
+      "reasoningTokens": 282,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "2d2fed03-87d1-4a04-bab5-ecdc7bdfbed7",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 12468,
+      "outputTokens": 595,
+      "latencyMs": 16314,
+      "estimatedInputTokens": 51104,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 21,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 49056,
+      "reasoningTokens": 289,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "2bbb6d26-bd32-439c-93f4-cf50b9db2107",
+      "stage": "plan",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 8180,
+      "outputTokens": 275,
+      "latencyMs": 10785,
+      "estimatedInputTokens": 36677,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 8,
+      "reasoning": "high",
+      "serviceTier": "default",
+      "requestBytes": 34629,
+      "reasoningTokens": 163,
+      "cachedInputTokens": 0
+    },
+    {
+      "operationId": "2bbb6d26-bd32-439c-93f4-cf50b9db2107",
+      "stage": "narrate",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "httpStatus": 200,
+      "providerCode": null,
+      "providerType": null,
+      "attempted": true,
+      "success": true,
+      "category": null,
+      "inputTokens": 4031,
+      "outputTokens": 178,
+      "latencyMs": 8426,
+      "estimatedInputTokens": 16503,
+      "maxOutputTokens": 4096,
+      "timeoutMs": 60000,
+      "sourceCount": 7,
+      "reasoning": "medium",
+      "serviceTier": "default",
+      "requestBytes": 15206,
+      "reasoningTokens": 0,
+      "cachedInputTokens": 0
+    }
+  ],
+  "parses": [
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    }
+  ],
+  "responses": [
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 7181,
+        "outputTokens": 602,
+        "reasoningTokens": 338,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": {\n      \"beats\": [\n        {\n          \"text\": \"You find the village mill by its steady wooden clatter. Inside, pale light catches flour dust above a packing bench. Hobb, a broad-handed man in a dusty apron, sets down his tally stick and returns your greeting.\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"“Crate-packing? Aye, there's a batch waiting.” He points to six open crates beside a stack of small flour sacks. “Two silver for the lot—about an hour's work. Check the sack ties, pack them snug, then nail the lids down. I'll pay when they're finished.”\\n\\nHe shifts a hammer out of the flour dust. “I'll show you the first one, if that suits.”\",\n          \"requiresOperations\": []\n        }\n      ],\n      \"visualDescription\": null,\n      \"sceneLocale\": {\n        \"label\": \"Village mill — packing room\",\n        \"requiresOperations\": []\n      }\n    },\n    \"genericOperations\": [],\n    \"privatePatches\": [],\n    \"publicBehavior\": []\n  }\n}",
+        "bytes": 1072,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 8695,
+        "outputTokens": 2277,
+        "reasoningTokens": 1309,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": {\n      \"beats\": [\n        {\n          \"text\": \"The mill's wooden clatter fills the packing room. Pale light catches the flour dust above the bench.\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"Hobb confirms the terms, and your agreement is recorded: pack all six crates, checking the sack ties and nailing down the lids, for two silver payable when finished.\",\n          \"requiresOperations\": [\"record-job\"]\n        },\n        {\n          \"text\": \"Over the next hour, you check each tie, nestle the sacks snugly together, and hammer the lids into place. At your request, Hobb inspects the finished batch, testing the lids and looking along the seams. “Aye. Good, tidy work.” He accepts all six crates.\",\n          \"requiresOperations\": [\"work-time\", \"complete-job\"]\n        },\n        {\n          \"text\": \"Hobb counts two silver into your hand. The job is complete, and your agreed wage is paid in full.\",\n          \"requiresOperations\": [\"claim-wages\"]\n        }\n      ],\n      \"visualDescription\": null,\n      \"sceneLocale\": {\n        \"label\": \"Village mill — packing room\",\n        \"requiresOperations\": []\n      }\n    },\n    \"genericOperations\": [\n      {\n        \"opId\": \"hobb\",\n        \"requiresOperations\": [],\n        \"atomicGroup\": \"crate-packing-contract\",\n        \"kind\": \"entity.upsert\",\n        \"target\": null,\n        \"name\": {\n          \"source\": \"inline\",\n          \"text\": \"Hobb\"\n        },\n        \"description\": {\n          \"source\": \"inline\",\n          \"text\": \"The village miller, a broad-handed man in a dusty apron.\"\n        },\n        \"profile\": null,\n        \"present\": true\n      },\n      {\n        \"opId\": \"record-job\",\n        \"requiresOperations\": [\"hobb\"],\n        \"atomicGroup\": \"crate-packing-contract\",\n        \"kind\": \"quest.mutate\",\n        \"mutation\": {\n          \"action\": \"create\",\n          \"title\": {\n            \"source\": \"inline\",\n            \"text\": \"Hobb's crate-packing job\"\n          },\n          \"description\": {\n            \"source\": \"inline\",\n            \"text\": \"Ari accepts Hobb's offer to pack six crates of flour sacks at the village mill: check the sack ties, pack them snugly, and nail the lids down. About one hour's work; Hobb owes Ari two silver when the work is finished.\"\n          },\n          \"issuer\": {\n            \"source\": \"local\",\n            \"key\": \"hobb\"\n          },\n          \"reward\": {\n            \"currency\": {\n              \"existing\": null,\n              \"publicName\": {\n                \"source\": \"inline\",\n                \"text\": \"silver\"\n              }\n            },\n            \"amount\": 2,\n            \"item\": null\n          },\n          \"basis\": {\n            \"source\": \"public-evidence\",\n            \"key\": \"input/current\"\n          }\n        }\n      },\n      {\n        \"opId\": \"work-time\",\n        \"requiresOperations\": [\"record-job\"],\n        \"atomicGroup\": \"crate-packing-contract\",\n        \"kind\": \"time.advance\",\n        \"minutes\": 60,\n        \"basis\": null\n      },\n      {\n        \"opId\": \"complete-job\",\n        \"requiresOperations\": [\"record-job\", \"work-time\"],\n        \"atomicGroup\": \"crate-packing-contract\",\n        \"kind\": \"quest.mutate\",\n        \"mutation\": {\n          \"action\": \"status\",\n          \"target\": {\n            \"source\": \"local\",\n            \"key\": \"record-job\"\n          },\n          \"status\": \"complete\",\n          \"outcome\": {\n            \"source\": \"inline\",\n            \"text\": \"Ari carefully checked the sack ties, packed all six crates snugly, and nailed down their lids. Hobb inspected and accepted the finished work.\"\n          },\n          \"basis\": null\n        }\n      },\n      {\n        \"opId\": \"claim-wages\",\n        \"requiresOperations\": [\"complete-job\"],\n        \"atomicGroup\": \"crate-packing-contract\",\n        \"kind\": \"quest.mutate\",\n        \"mutation\": {\n          \"action\": \"claim\",\n          \"target\": {\n            \"source\": \"local\",\n            \"key\": \"record-job\"\n          },\n          \"basis\": null\n        }\n      }\n    ],\n    \"privatePatches\": [],\n    \"publicBehavior\": []\n  }\n}",
+        "bytes": 4134,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 10732,
+        "outputTokens": 1477,
+        "reasoningTokens": 690,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": {\n      \"beats\": [\n        {\n          \"text\": \"The village bakery smells of browned crust and warm flour. Behind the counter, cooling loaves give off faint, dry crackles.\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"“Two silver. Thank you,” Bessa says, accepting your coins and passing you a loaf. You tuck it into your pack, leaving five silver in your purse.\",\n          \"requiresOperations\": [\n            \"introduce-bessa\",\n            \"create-loaf\",\n            \"pay-bessa\",\n            \"receive-loaf\"\n          ]\n        }\n      ],\n      \"visualDescription\": null,\n      \"sceneLocale\": {\n        \"label\": \"Village bakery\",\n        \"requiresOperations\": []\n      }\n    },\n    \"genericOperations\": [\n      {\n        \"opId\": \"introduce-bessa\",\n        \"requiresOperations\": [],\n        \"atomicGroup\": \"bread-purchase\",\n        \"kind\": \"entity.upsert\",\n        \"target\": null,\n        \"name\": {\n          \"source\": \"inline\",\n          \"text\": \"Bessa\"\n        },\n        \"description\": {\n          \"source\": \"inline\",\n          \"text\": \"A baker who sells bread at the village bakery.\"\n        },\n        \"profile\": null,\n        \"present\": true\n      },\n      {\n        \"opId\": \"create-loaf\",\n        \"requiresOperations\": [\n          \"introduce-bessa\"\n        ],\n        \"atomicGroup\": \"bread-purchase\",\n        \"kind\": \"item.mutate\",\n        \"mutation\": {\n          \"action\": \"create\",\n          \"name\": {\n            \"source\": \"inline\",\n            \"text\": \"Ordinary loaf of bread\"\n          },\n          \"description\": {\n            \"source\": \"inline\",\n            \"text\": \"An ordinary loaf of bread with a browned crust.\"\n          },\n          \"category\": \"food\",\n          \"quantity\": 1,\n          \"owner\": {\n            \"source\": \"local\",\n            \"key\": \"introduce-bessa\"\n          },\n          \"storage\": null,\n          \"basis\": null\n        }\n      },\n      {\n        \"opId\": \"pay-bessa\",\n        \"requiresOperations\": [\n          \"introduce-bessa\",\n          \"create-loaf\"\n        ],\n        \"atomicGroup\": \"bread-purchase\",\n        \"kind\": \"resource.adjust\",\n        \"mutation\": {\n          \"action\": \"transfer\",\n          \"from\": {\n            \"source\": \"known\",\n            \"key\": \"hero\"\n          },\n          \"to\": {\n            \"source\": \"local\",\n            \"key\": \"introduce-bessa\"\n          },\n          \"currency\": {\n            \"existing\": \"currency_silver\",\n            \"publicName\": null\n          },\n          \"amount\": 2,\n          \"basis\": null\n        }\n      },\n      {\n        \"opId\": \"receive-loaf\",\n        \"requiresOperations\": [\n          \"create-loaf\",\n          \"pay-bessa\"\n        ],\n        \"atomicGroup\": \"bread-purchase\",\n        \"kind\": \"item.mutate\",\n        \"mutation\": {\n          \"action\": \"transfer\",\n          \"target\": {\n            \"source\": \"local\",\n            \"key\": \"create-loaf\"\n          },\n          \"quantity\": 1,\n          \"recipient\": {\n            \"source\": \"known\",\n            \"key\": \"hero\"\n          },\n          \"storage\": {\n            \"source\": \"known\",\n            \"key\": \"storages-0\"\n          },\n          \"basis\": null\n        }\n      }\n    ],\n    \"privatePatches\": [],\n    \"publicBehavior\": []\n  }\n}",
+        "bytes": 3293,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 11868,
+        "outputTokens": 581,
+        "reasoningTokens": 282,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": {\n      \"beats\": [\n        {\n          \"text\": \"You settle on a dry patch of bank beside the mill stream. Water curls around the stones, its soft rush mingling with the familiar wooden clatter from the mill.\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"Bessa’s loaf has a crisp, browned crust and a soft middle. You eat it slowly, tearing off pieces until the loaf is finished. A wagtail hops along the opposite bank, pausing between stones.\",\n          \"requiresOperations\": [\"eat-bread\"]\n        }\n      ],\n      \"visualDescription\": null,\n      \"sceneLocale\": {\n        \"label\": \"Village mill — stream bank\",\n        \"requiresOperations\": []\n      }\n    },\n    \"genericOperations\": [\n      {\n        \"opId\": \"eat-bread\",\n        \"requiresOperations\": [],\n        \"atomicGroup\": null,\n        \"kind\": \"item.mutate\",\n        \"mutation\": {\n          \"action\": \"consume\",\n          \"target\": {\n            \"source\": \"known\",\n            \"key\": \"items-1\"\n          },\n          \"quantity\": 1,\n          \"basis\": null\n        }\n      }\n    ],\n    \"privatePatches\": [],\n    \"publicBehavior\": []\n  }\n}",
+        "bytes": 1212,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 12468,
+        "outputTokens": 595,
+        "reasoningTokens": 289,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": {\n      \"beats\": [\n        {\n          \"text\": \"Back in the mill’s packing room, you find Hobb sweeping flour away from the bench. The machinery’s steady clatter nearly swallows your greeting, but he looks up and rests both hands on the broom.\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"“You’re welcome. Glad to have had a careful pair of hands.” At your question, he glances toward the doorway. “Morning’s been fair. Caught up on my tallies. Been trying to sweep this floor, but every time someone opens that door, the breeze gives me the flour back.” He smiles faintly. “Not much to complain of, if that’s the worst of it.”\",\n          \"requiresOperations\": []\n        },\n        {\n          \"text\": \"He props the broom against the bench, willing to leave it a moment. “And yours? Had a chance to put your feet up after all that hammering?”\",\n          \"requiresOperations\": []\n        }\n      ],\n      \"visualDescription\": null,\n      \"sceneLocale\": {\n        \"label\": \"Village mill — packing room\",\n        \"requiresOperations\": []\n      }\n    },\n    \"genericOperations\": [],\n    \"privatePatches\": [],\n    \"publicBehavior\": []\n  }\n}",
+        "bytes": 1278,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 8180,
+        "outputTokens": 275,
+        "reasoningTokens": 163,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"type\": \"final\",\n  \"toolRequest\": null,\n  \"final\": {\n    \"publicNarration\": null,\n    \"genericOperations\": [],\n    \"privatePatches\": [],\n    \"publicBehavior\": [\n      {\n        \"actor\": {\n          \"source\": \"known\",\n          \"key\": \"entities-0\"\n        },\n        \"stance\": \"refuse\",\n        \"tone\": \"firm\",\n        \"intensity\": 1\n      }\n    ]\n  }\n}",
+        "bytes": 356,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    },
+    {
+      "httpStatus": 200,
+      "model": "gpt-6-astra",
+      "serviceTier": "default",
+      "responseStatus": "completed",
+      "usage": {
+        "inputTokens": 4031,
+        "outputTokens": 178,
+        "reasoningTokens": 0,
+        "cachedTokens": 0
+      },
+      "outputText": {
+        "text": "{\n  \"narration\": \"Hobb pauses beside the packing crates, wiping flour from his palms. He glances toward the locked back-room door, then meets your eyes.\\n\\n“No, I keep that room private.” His voice is firm, without irritation. “Thank you for asking, though. If you’re after the packing work, there’s no need to go in there.”\\n\\nHe rests a hand on a crate and waits for your reply.\",\n  \"visualDescription\": \"Inside the village mill, pale window light catches flour dust above rough wooden packing crates. Hobb stands beside them, facing Ari; the closed back-room door sits in shadow behind him. Grounded cinematic noir, muted colors, widescreen framing.\",\n  \"clarification\": null,\n  \"sceneLocale\": \"Village mill\"\n}",
+        "bytes": 725,
+        "truncated": false,
+        "redacted": false
+      },
+      "outputTextCount": 1
+    }
+  ],
+  "parsedDecisions": [
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":{\"beats\":[{\"text\":\"You find the village mill by its steady wooden clatter. Inside, pale light catches flour dust above a packing bench. Hobb, a broad-handed man in a dusty apron, sets down his tally stick and returns your greeting.\",\"requiresOperations\":[]},{\"text\":\"“Crate-packing? Aye, there's a batch waiting.” He points to six open crates beside a stack of small flour sacks. “Two silver for the lot—about an hour's work. Check the sack ties, pack them snug, then nail the lids down. I'll pay when they're finished.”\\n\\nHe shifts a hammer out of the flour dust. “I'll show you the first one, if that suits.”\",\"requiresOperations\":[]}],\"visualDescription\":null,\"sceneLocale\":{\"label\":\"Village mill — packing room\",\"requiresOperations\":[]}},\"genericOperations\":[],\"privatePatches\":[],\"publicBehavior\":[]}}",
+      "bytes": 885,
+      "truncated": false,
+      "redacted": false
+    },
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":{\"beats\":[{\"text\":\"The mill's wooden clatter fills the packing room. Pale light catches the flour dust above the bench.\",\"requiresOperations\":[]},{\"text\":\"Hobb confirms the terms, and your agreement is recorded: pack all six crates, checking the sack ties and nailing down the lids, for two silver payable when finished.\",\"requiresOperations\":[\"record-job\"]},{\"text\":\"Over the next hour, you check each tie, nestle the sacks snugly together, and hammer the lids into place. At your request, Hobb inspects the finished batch, testing the lids and looking along the seams. “Aye. Good, tidy work.” He accepts all six crates.\",\"requiresOperations\":[\"work-time\",\"complete-job\"]},{\"text\":\"Hobb counts two silver into your hand. The job is complete, and your agreed wage is paid in full.\",\"requiresOperations\":[\"claim-wages\"]}],\"visualDescription\":null,\"sceneLocale\":{\"label\":\"Village mill — packing room\",\"requiresOperations\":[]}},\"genericOperations\":[{\"opId\":\"hobb\",\"requiresOperations\":[],\"atomicGroup\":\"crate-packing-contract\",\"kind\":\"entity.upsert\",\"target\":null,\"name\":{\"source\":\"inline\",\"text\":\"Hobb\"},\"description\":{\"source\":\"inline\",\"text\":\"The village miller, a broad-handed man in a dusty apron.\"},\"profile\":null,\"present\":true},{\"opId\":\"record-job\",\"requiresOperations\":[\"hobb\"],\"atomicGroup\":\"crate-packing-contract\",\"kind\":\"quest.mutate\",\"mutation\":{\"action\":\"create\",\"title\":{\"source\":\"inline\",\"text\":\"Hobb's crate-packing job\"},\"description\":{\"source\":\"inline\",\"text\":\"Ari accepts Hobb's offer to pack six crates of flour sacks at the village mill: check the sack ties, pack them snugly, and nail the lids down. About one hour's work; Hobb owes Ari two silver when the work is finished.\"},\"issuer\":{\"source\":\"local\",\"key\":\"hobb\"},\"reward\":{\"currency\":{\"existing\":null,\"publicName\":{\"source\":\"inline\",\"text\":\"silver\"}},\"amount\":2,\"item\":null},\"basis\":{\"source\":\"public-evidence\",\"key\":\"input/current\"}}},{\"opId\":\"work-time\",\"requiresOperations\":[\"record-job\"],\"atomicGroup\":\"crate-packing-contract\",\"kind\":\"time.advance\",\"minutes\":60,\"basis\":null},{\"opId\":\"complete-job\",\"requiresOperations\":[\"record-job\",\"work-time\"],\"atomicGroup\":\"crate-packing-contract\",\"kind\":\"quest.mutate\",\"mutation\":{\"action\":\"status\",\"target\":{\"source\":\"local\",\"key\":\"record-job\"},\"status\":\"complete\",\"outcome\":{\"source\":\"inline\",\"text\":\"Ari carefully checked the sack ties, packed all six crates snugly, and nailed down their lids. Hobb inspected and accepted the finished work.\"},\"basis\":null}},{\"opId\":\"claim-wages\",\"requiresOperations\":[\"complete-job\"],\"atomicGroup\":\"crate-packing-contract\",\"kind\":\"quest.mutate\",\"mutation\":{\"action\":\"claim\",\"target\":{\"source\":\"local\",\"key\":\"record-job\"},\"basis\":null}}],\"privatePatches\":[],\"publicBehavior\":[]}}",
+      "bytes": 2803,
+      "truncated": false,
+      "redacted": false
+    },
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":{\"beats\":[{\"text\":\"The village bakery smells of browned crust and warm flour. Behind the counter, cooling loaves give off faint, dry crackles.\",\"requiresOperations\":[]},{\"text\":\"“Two silver. Thank you,” Bessa says, accepting your coins and passing you a loaf. You tuck it into your pack, leaving five silver in your purse.\",\"requiresOperations\":[\"introduce-bessa\",\"create-loaf\",\"pay-bessa\",\"receive-loaf\"]}],\"visualDescription\":null,\"sceneLocale\":{\"label\":\"Village bakery\",\"requiresOperations\":[]}},\"genericOperations\":[{\"opId\":\"introduce-bessa\",\"requiresOperations\":[],\"atomicGroup\":\"bread-purchase\",\"kind\":\"entity.upsert\",\"target\":null,\"name\":{\"source\":\"inline\",\"text\":\"Bessa\"},\"description\":{\"source\":\"inline\",\"text\":\"A baker who sells bread at the village bakery.\"},\"profile\":null,\"present\":true},{\"opId\":\"create-loaf\",\"requiresOperations\":[\"introduce-bessa\"],\"atomicGroup\":\"bread-purchase\",\"kind\":\"item.mutate\",\"mutation\":{\"action\":\"create\",\"name\":{\"source\":\"inline\",\"text\":\"Ordinary loaf of bread\"},\"description\":{\"source\":\"inline\",\"text\":\"An ordinary loaf of bread with a browned crust.\"},\"category\":\"food\",\"quantity\":1,\"owner\":{\"source\":\"local\",\"key\":\"introduce-bessa\"},\"storage\":null,\"basis\":null}},{\"opId\":\"pay-bessa\",\"requiresOperations\":[\"introduce-bessa\",\"create-loaf\"],\"atomicGroup\":\"bread-purchase\",\"kind\":\"resource.adjust\",\"mutation\":{\"action\":\"transfer\",\"from\":{\"source\":\"known\",\"key\":\"hero\"},\"to\":{\"source\":\"local\",\"key\":\"introduce-bessa\"},\"currency\":{\"existing\":\"currency_silver\",\"publicName\":null},\"amount\":2,\"basis\":null}},{\"opId\":\"receive-loaf\",\"requiresOperations\":[\"create-loaf\",\"pay-bessa\"],\"atomicGroup\":\"bread-purchase\",\"kind\":\"item.mutate\",\"mutation\":{\"action\":\"transfer\",\"target\":{\"source\":\"local\",\"key\":\"create-loaf\"},\"quantity\":1,\"recipient\":{\"source\":\"known\",\"key\":\"hero\"},\"storage\":{\"source\":\"known\",\"key\":\"storages-0\"},\"basis\":null}}],\"privatePatches\":[],\"publicBehavior\":[]}}",
+      "bytes": 1976,
+      "truncated": false,
+      "redacted": false
+    },
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":{\"beats\":[{\"text\":\"You settle on a dry patch of bank beside the mill stream. Water curls around the stones, its soft rush mingling with the familiar wooden clatter from the mill.\",\"requiresOperations\":[]},{\"text\":\"Bessa’s loaf has a crisp, browned crust and a soft middle. You eat it slowly, tearing off pieces until the loaf is finished. A wagtail hops along the opposite bank, pausing between stones.\",\"requiresOperations\":[\"eat-bread\"]}],\"visualDescription\":null,\"sceneLocale\":{\"label\":\"Village mill — stream bank\",\"requiresOperations\":[]}},\"genericOperations\":[{\"opId\":\"eat-bread\",\"requiresOperations\":[],\"atomicGroup\":null,\"kind\":\"item.mutate\",\"mutation\":{\"action\":\"consume\",\"target\":{\"source\":\"known\",\"key\":\"items-1\"},\"quantity\":1,\"basis\":null}}],\"privatePatches\":[],\"publicBehavior\":[]}}",
+      "bytes": 860,
+      "truncated": false,
+      "redacted": false
+    },
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":{\"beats\":[{\"text\":\"Back in the mill’s packing room, you find Hobb sweeping flour away from the bench. The machinery’s steady clatter nearly swallows your greeting, but he looks up and rests both hands on the broom.\",\"requiresOperations\":[]},{\"text\":\"“You’re welcome. Glad to have had a careful pair of hands.” At your question, he glances toward the doorway. “Morning’s been fair. Caught up on my tallies. Been trying to sweep this floor, but every time someone opens that door, the breeze gives me the flour back.” He smiles faintly. “Not much to complain of, if that’s the worst of it.”\",\"requiresOperations\":[]},{\"text\":\"He props the broom against the bench, willing to leave it a moment. “And yours? Had a chance to put your feet up after all that hammering?”\",\"requiresOperations\":[]}],\"visualDescription\":null,\"sceneLocale\":{\"label\":\"Village mill — packing room\",\"requiresOperations\":[]}},\"genericOperations\":[],\"privatePatches\":[],\"publicBehavior\":[]}}",
+      "bytes": 1049,
+      "truncated": false,
+      "redacted": false
+    },
+    {
+      "text": "{\"type\":\"final\",\"toolRequest\":null,\"final\":{\"publicNarration\":null,\"genericOperations\":[],\"privatePatches\":[],\"publicBehavior\":[{\"actor\":{\"source\":\"known\",\"key\":\"entities-0\"},\"stance\":\"refuse\",\"tone\":\"firm\",\"intensity\":1}]}}",
+      "bytes": 224,
+      "truncated": false,
+      "redacted": false
+    }
+  ],
+  "trace": [
+    {
+      "order": 1,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 2,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 3,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 4,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 5,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 6,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 1
+    },
+    {
+      "order": 7,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 8,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 9,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 10,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 11,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 12,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    },
+    {
+      "order": 13,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 14,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 15,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 16,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 17,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 18,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 2
+    },
+    {
+      "order": 19,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 20,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 21,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 22,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 23,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 24,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    },
+    {
+      "order": 25,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 26,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 27,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 28,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 29,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 30,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 3
+    },
+    {
+      "order": 31,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 32,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 33,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 34,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 35,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 36,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    },
+    {
+      "order": 37,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 38,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 39,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 40,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 41,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 42,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 4
+    },
+    {
+      "order": 43,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 44,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 45,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 46,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 47,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 48,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    },
+    {
+      "order": 49,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 50,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 51,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 52,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 53,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 54,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 5
+    },
+    {
+      "order": 55,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 56,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 57,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 58,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 59,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 60,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    },
+    {
+      "order": 61,
+      "method": "store.begin",
+      "phase": "entered"
+    },
+    {
+      "order": 62,
+      "method": "store.begin",
+      "phase": "returned",
+      "status": "pending"
+    },
+    {
+      "order": 63,
+      "method": "store.claim",
+      "phase": "entered"
+    },
+    {
+      "order": 64,
+      "method": "store.claim",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 65,
+      "method": "provider.next",
+      "phase": "entered"
+    },
+    {
+      "order": 66,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 6
+    },
+    {
+      "order": 67,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 68,
+      "method": "provider.next",
+      "phase": "returned",
+      "decisionType": "final"
+    },
+    {
+      "order": 69,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 70,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 71,
+      "method": "provider.narrate",
+      "phase": "entered"
+    },
+    {
+      "order": 72,
+      "method": "provider.http",
+      "phase": "entered",
+      "request": 7
+    },
+    {
+      "order": 73,
+      "method": "provider.http",
+      "phase": "returned",
+      "httpStatus": 200,
+      "outputTextExtracted": true
+    },
+    {
+      "order": 74,
+      "method": "provider.narrate",
+      "phase": "returned"
+    },
+    {
+      "order": 75,
+      "method": "store.checkpoint",
+      "phase": "entered"
+    },
+    {
+      "order": 76,
+      "method": "store.checkpoint",
+      "phase": "returned",
+      "status": null
+    },
+    {
+      "order": 77,
+      "method": "store.commit",
+      "phase": "entered"
+    },
+    {
+      "order": 78,
+      "method": "store.commit",
+      "phase": "returned",
+      "status": "committed"
+    }
+  ],
+  "sqlErrors": [],
+  "estimatedSpendUsd": 0.9308,
+  "inputTokens": 63155,
+  "outputTokens": 5985,
+  "realMediaCalls": 0
+}

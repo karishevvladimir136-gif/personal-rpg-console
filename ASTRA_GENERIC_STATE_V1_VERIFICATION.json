@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "syntheticOnly": true,
+  "startingSha": "65dc99c105d86b2860d284d10846c450d20b3e2d",
+  "productionMain": "8ad7b87da43100320e93a44646a87016fc9a95ad",
+  "checkedAt": "2026-10-15T06:37:33.775Z",
+  "focused": 37,
+  "full": {
+    "pass": 2411,
+    "total": 2412,
+    "fail": 0,
+    "skip": 1,
+    "durationMs": 982400.4355
+  },
+  "typecheck": "pass",
+  "lint": "zero warnings",
+  "build": "webpack pass",
+  "sourceHashes": {
+    "src/lib/gameplay/astra-capabilities.ts": "c835939a05066b4607cc2ceee8cc9851404b5a8a0000d8a0f3377055bf7c897d",
+    "src/lib/gameplay/astra-generic-compiler.ts": "03f22168d3b1f811e46e8fb180be5615efc03daa89e0cb47ae8f544bab112cda",
+    "src/lib/gameplay/astra-generic-contract.ts": "5587a81c662c68e60b94943a7b077f5c7d9b42d51a793995db5fc7e51bf3a222",
+    "src/lib/gameplay/astra-plan-context.ts": "0ae32a6932f7ffa5e18ee0b687a9e0af808bf1eba46e7527ff51cb28dfef61af",
+    "src/lib/gameplay/astra-plan-schema.ts": "58c33640895101c4165c417dd98e47c9f959d20e18d8930c04da556386c02f29",
+    "src/lib/gameplay/astra-primary.ts": "6b94a74d01518cb5b3bfabb0cabee82dcc5b3df076488c9ae3eee5464493b8d3",
+    "src/lib/gameplay/astra-privacy-context.ts": "77d619a7ebcd7f89f95bc4e3ceb8bf3a3e0331900438a6f8dbeee2ce3c0cb201",
+    "src/lib/gameplay/astra-settlement.ts": "075098aa86d3ce110f395b68c10fd521d048f1a3e54257230752f06a22fb7fb5",
+    "src/lib/gameplay/dm-store.ts": "3adbfcd4fcd9679b999c114d973e287dbb4ba8f4497650cd699df080185b74ee",
+    "src/lib/gameplay/server-contracts.ts": "812d4144895ed61c756fed8e01b9d65226a020219498304da1c812ff914bdede",
+    "src/lib/progression/settlement-core.ts": "288109945939916ea04c2febf341b49ba990a5358606b2c08c1069ba541b5e80",
+    "src/lib/server/dm/astra-primary-provider.ts": "0432750ca1613bd13958cc893206cea44f471043f3541ab8cba0635abfd7b62f",
+    "src/lib/server/dm/store.ts": "5867f27fbd365c314a9ed1279f8a7e689bdb1ce1a54ed2a9aaff9ebbdce49127",
+    "supabase/migrations/202610140052_astra_generic_state.sql": "3d5a4be99e04b39a92cb3d547919b68bebf5efd9d74d226a2500370bcfa6f9d4"
+  },
+  "soak": {
+    "committed": 200,
+    "matrixCases": 16,
+    "summaryCalls": 23,
+    "memoryInterleavings": 11,
+    "worldMinutes": 660,
+    "heroHp": 10,
+    "heroSilver": 5,
+    "bakerSilver": 2,
+    "ratHp": 8,
+    "provisions": 29
+  },
+  "live": {
+    "turns": 6,
+    "requests": 7,
+    "allCommitted": true,
+    "allParsed": true,
+    "reservedUsd": 4.843674999999999,
+    "estimatedSpendUsd": 0.9308,
+    "tokens": {
+      "input": 63155,
+      "output": 5985,
+      "cached": 0,
+      "reasoning": 3071
+    },
+    "fullTurnMedianMs": 20030.005400000013,
+    "fullTurnNearestRankP95Ms": 53231.957500000004,
+    "remainingReservationUsd": 0.1563250000000007,
+    "additionalToolContinuation": "not dispatched: remaining reservation insufficient",
+    "mediaCalls": 0
+  },
+  "ownerDbAccess": false,
+  "ownerGameplayCalls": 0,
+  "ownerAppChanged": false,
+  "mainChanged": false,
+  "activated": false
+}

@@ -730,6 +730,22 @@ After creation these live at **Campaign → Rules & Play Style**, the existing d
 
 The DM is one primary AI runtime.
 
+## Astra DM and generic durable state authority
+
+Astra is the campaign's primary DM. Console supplies authoritative structured state, long-term Memory, Canon/corrections, saves/timelines, deterministic dice/tools, validation and UI.
+
+1. Structured state is authoritative, not exhaustive. Missing records never block plausible, non-contradictory mundane fiction.
+2. Ordinary player actions do not require handlers for each fictional verb, object, NPC or place. Narration-only turns are valid; incidental details need no row.
+3. Astra adjudicates fictional possibility, agreements, current acceptance and completion subject to owner corrections, current state, Canon, public history and active campaign rules. Console validates durable mutations and system invariants.
+4. The six-family generic vocabulary is `entity.upsert`, `location.upsert`, `item.mutate`, `resource.adjust`, `quest.mutate` and `time.advance`. Server-issued known handles and backward local references compile into existing authorities; models never supply persistence UUIDs, SQL, arbitrary columns or executable mechanics.
+5. Current pinned input, selected public context and pinned DM adjudication can establish a new mundane fact. Evidence handles locate real sources/versions; they do not prove dialogue semantics. `basis:null` means bounded current adjudication, not unrestricted writes or automatic rejection.
+6. Source-specific positive currency deltas resolve a typed payer; Quest claims derive their payer and exact terms from the stored job. Authoritatively untracked NPC funds permit the bounded mundane-grant policy. Tracked funds, including explicit zero, must conserve actual debit/credit. An omitted prompt field or failed read never proves untracked funds.
+7. Independent narration survives rejected optional operations. Consequence fragments depending on rejected operations are removed; reciprocal exchanges and rule-derived rest bundles apply atomically or not at all. Narration cannot establish a failed mechanical outcome.
+8. Active rules, actual balances, ownership, corrections, server dice, exact-once replay, revisions and campaign/timeline fences remain authoritative. Generic state V1 is a pinned state contract of `astra-primary-v1`, not a second runtime. Null historical contracts retain their original behavior.
+9. Selected secret-bearing evidence requires private adjudication followed by generation from a context containing no DM-private semantic material. Unrelated secrets do not force two stages. Private-informed public operation text must quote exact public evidence; enum-only observable behavior may cross the boundary. New public text that cannot cross safely remains an explicit initial limitation.
+
+Scene locale uses the existing public Scene title/body. It need not create an atlas Location. Standard post-takeover records own live play; frozen World Foundation/Events remain historical. Detached World Lab projections derive overlapping actor/location fields from the same saved standard state, without modifying playable history. Relationships, conditions and persistent ground placement have no new generic write family in V1.
+
 Future DM Craft adds non-canonical guidance to that same runtime: **authoritative RPG state + Canon / Memory + approved Global DM Craft + Campaign DM Style → existing DmProvider plan / narrate / feedback → server-validated consequences → authoritative commit**. Stage-specific privacy still applies; feedback proposes preferences, not gameplay consequences. The frontier model remains the reasoning/generative engine. See [DM Craft runtime boundaries](MODEL_RUNTIME_BRIEF.md#dm-craft-context-and-authority--future-design).
 
 It uses the campaign's selected execution policy and applicable ruleset. OpenAI is the accepted initial transport, not a universal dependency. Future World Resolver/Compiler/Memory tasks return bounded validated proposals through the shared Model Runtime; they are not autonomous DMs. Models never write state directly. Proposed world settlement extends the durable turn lifecycle with atomic player/world outcomes, recorded dice and the existing timeline fences (World Engine brief).

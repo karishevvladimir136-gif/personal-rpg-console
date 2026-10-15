@@ -153,7 +153,7 @@ begin
    exists(select 1 from jsonb_array_elements(s#>'{runtime,encounters}') e where e.value->'id'=p.value->'encounter_id' and e.value->>'status'='active')) and
    not exists(select 1 from jsonb_array_elements(receipts) where value#>>'{call,kind}' in ('attack','skill') and value#>'{call,actorId}'=call->'actorId'));
   if call->>'kind'='attack' then perform rpg_private.assert(exists(select 1 from jsonb_array_elements(s#>'{runtime,participants}') p where p.value->'entity_id'=call->'targetId' and
-   p.value#>'{public_resources,active}'='true' and p.value#>'{public_resources,withdrawn}'='false' and exists(select 1 from jsonb_array_elements(s#>'{runtime,encounters}') e
+   p.value#>'{public_resources,withdrawn}'='false' and exists(select 1 from jsonb_array_elements(s#>'{runtime,encounters}') e
     where e.value->'id'=p.value->'encounter_id' and e.value->>'status'='active')));end if;
  end if;
  perform rpg_private.assert(result->'actorId'=call->'actorId' and result->'targetId'=call->'targetId' and jsonb_typeof(result->'dice')='array' and

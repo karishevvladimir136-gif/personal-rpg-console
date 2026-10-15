@@ -180,3 +180,35 @@ test("unrelated private facts do not force two-stage; relevant private literal a
   assert.equal(leaked.result.status,"failed");assert.equal(leaked.result.narration,null);
  }finally{await s.f.db.close();}
 });
+
+test("private literal disclosure is rejected in Scene locale as well as narration",async()=>{
+ const s=await genericFixture();try{
+  const secret="SYNTHETIC_HOBB_HIDDEN_ROOM";
+  committed(await s.turn("I meet Hobb.",(_c,_i,_r,_k,_a,source)=>{const d=final(source,[],"Hobb waits.");d.final.privatePatches=[{kind:"fact",key:"hobb_room",operation:"set",value:secret,amount:null}];return d;}),s);
+  const before=await s.f.one("select current_scene_id from public.rpg_public_state where campaign_id=$1",[s.f.cid]);
+  const leak=await s.turn("Hobb, may I enter?",(_c,_i,_r,_k,_a,source)=>final(source),{privateSceneLocale:secret});
+  assert.equal(leak.result.status,"failed");assert.deepEqual(await s.f.one("select current_scene_id from public.rpg_public_state where campaign_id=$1",[s.f.cid]),before);
+ }finally{await s.f.db.close();}
+});
+
+test("generic combat spends authoritative encounter action and cannot attack again from an empty action budget",async()=>{
+ const s=await genericFixture();try{
+  const rat=npc("rat","Cellar rat");rat.profile="actor-profile:hero";
+  committed(await s.turn("A rat confronts me.",(_c,_i,_r,_k,_a,source)=>final(source,[rat])),s);
+  const target=(await s.f.one("select id from public.rpg_entities where campaign_id=$1 and name='Cellar rat'",[s.f.cid])).id;
+  // Initial active-encounter fixture, not a between-turn balance/stock repair.
+  // Uses the existing profile's exact participant/action representation.
+  const encounterId=randomUUID(),settings=await s.f.one("select revision from public.rpg_settings where campaign_id=$1",[s.f.cid]);
+  await s.f.one("insert into public.rpg_encounters(id,campaign_id,status,settings_revision) values($1,$2,'active',$3)",[encounterId,s.f.cid,settings.revision]);
+  for(const [index,id] of [s.hero,target].entries())await s.f.one("insert into public.rpg_encounter_participants(id,campaign_id,encounter_id,entity_id,public_name,turn_order,public_position,public_resources) values($1,$2,$3,$4,$5,$6,$7::jsonb,$8::jsonb)",
+   [randomUUID(),s.f.cid,encounterId,id,index?"Cellar rat":"Ari",index,JSON.stringify({position:"nearby"}),JSON.stringify({action:1,move:1,reaction:1,active:index===0,defending:false,withdrawn:false,originalMaxHp:10})]);
+  const attack=(_c,input,receipts,_checks,_caps,source)=>{
+   if(!receipts.length)return {type:"tool",final:null,toolRequest:{operations:[],call:{kind:"attack",actor:known("hero"),target:handle(source,input,"entities","Cellar rat"),item:null,dc:null,scope:null}}};
+   return final(source,[],"Your attack misses.");};
+  committed(await s.turn("I attack the rat.",attack,{random:()=>1}),s);
+  assert.equal((await s.f.one("select public_resources->>'action' action from public.rpg_encounter_participants where campaign_id=$1 and entity_id=$2",[s.f.cid,s.hero])).action,"0");
+  let rolls=0;const next=await s.turn("I attack again without waiting.",attack,{random:()=>{rolls++;return 1;}});
+  assert.equal(next.result.status,"failed");assert.equal(rolls,0);
+  assert.equal((await s.f.one("select hp from public.rpg_entities where id=$1",[target])).hp,10);
+ }finally{await s.f.db.close();}
+});

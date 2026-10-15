@@ -62,7 +62,7 @@ export async function genericFixture(level=52,options={}){
     input:inputText,mode:"game",companionId:null,listenerIds:[],mechanic:null};let calls=0,narrators=0;
    const deps={store,memory,summaries:{summarize:()=>assert.fail("foreground Memory call")},random:options.random??(()=>18),
     provider:{next:async(...args)=>{calls++;return {usage,output:await decision(...args)};},
-     narrate:async(ctx)=>{narrators++;options.narratorCheck?.(ctx);return {usage,output:{narration:options.privateNarration??"The miller hears your answer.",visualDescription:"",clarification:null}};}}};
+     narrate:async(ctx)=>{narrators++;options.narratorCheck?.(ctx);return {usage,output:{narration:options.privateNarration??"The miller hears your answer.",visualDescription:"",clarification:null,...(options.privateSceneLocale?{sceneLocale:options.privateSceneLocale}:{})}};}}};
    const result=await runAstraTurn(input,deps);return {input,result,deps,calls,narrators};
   };
   return {f,hero,errors,captures,turn,stores,resumeAstraTurn};
