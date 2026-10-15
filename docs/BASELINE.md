@@ -350,3 +350,14 @@ treat the world as theirs: they rename NPCs, record them at first sight, let job
 "expected" checks are a poor pass/fail measure for live play; the runtime measure (committed turns, rejections with
 usable reasons, no leaks, cost) is the one that holds. (4) Opus keeps hitting the Stage 1 Character Model limits
 (3 values, 120-character texts): Stage 4's relaxation is needed, not optional.
+
+## 10. Stage 2b: speed and fluency (2026-10-15)
+
+The per-request analysis of the Stage 2 runs, the changes (narration first with tools inside the story,
+relaxed Character Model bounds, explicit cache breakpoints for Astra, outcome-based live checks, the
+fluency scenario 12) and the live results are in `docs/SPEED.md`. Medians, Stage 2 → Stage 2b:
+Opus 5.5 high — first word 31.8 s → 8.2 s, full turn 35.3 s → 25.9 s, 4 → 1 requests per turn,
+$0.104 → $0.075 per turn; GPT‑6 Astra medium — first word 23.6 s → 2.0 s, full turn 35.1 s → 14.3 s,
+4 → 2 requests per turn, $0.147 → $0.093 per turn, cache reads 75% → 84%. Astra xhigh on scenarios
+01, 03 and 08: first word 1.8 s, turn 19.8 s, $0.105 per turn, 27/28 checks. Samples for the owner:
+`docs/samples/stage-2b/`. Total paid spend of the stage: $9.05 recorded of the $10 cap.
