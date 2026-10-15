@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Игра — Мир Шва</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+a{color:#cfa860}a:hover{color:#e7c47d}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.5; padding: 16px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+
+  <nav aria-label="Разделы" style="flex: 1 1 220px; max-width: 260px; box-sizing: border-box; display: flex; flex-direction: column; gap: 16px; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 20px 14px">
+    <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 6px 14px; border-bottom: 1px solid rgba(207,168,96,0.26)">
+      <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: #8d7142">Personal RPG Console</span>
+      <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; font-weight: 700; color: {{accent}}; line-height: 1.1">Мир Шва</span>
+      <span style="font-size: 13px; color: #ab9a80">Кампания · Джеймс Хейл</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <sc-for list="{{nav}}" as="item" hint-placeholder-count="9">
+        <button type="button" onClick="{{item.pick}}" style="{{item.style}}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{item.icon}}"></path></svg>
+          <span>{{item.label}}</span>
+        </button>
+      </sc-for>
+    </div>
+    <div style="margin-top: 8px; padding: 12px; border: 1px dashed rgba(207,168,96,0.26); border-radius: 6px; display: flex; flex-direction: column; gap: 4px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Ведущий</span>
+      <span style="font-size: 15px; color: #ece1cb">Claude Opus 5.5</span>
+      <span style="font-size: 13px; color: #ab9a80">глубина: medium · кэш 91%</span>
+    </div>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+    <header style="position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 12px 18px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.12)">
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; font-size: 15px; color: #ab9a80; min-width: 0">
+        <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: {{accent}}">Нить</span>
+        <span aria-hidden="true">›</span><span>Сессия 7</span>
+        <span aria-hidden="true">›</span><span style="color: #ece1cb">Рассвет над Тежу</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap">
+        <span style="font-family: 'PT Mono', monospace; font-size: 13px; color: #ab9a80">День 5 · 06:40</span>
+        <span style="font-family: 'PT Mono', monospace; font-size: 12px; letter-spacing: 0.06em; color: #16110d; background: linear-gradient(180deg, #e7c47d, #a98340); border-radius: 999px; padding: 3px 10px">Opus 5.5</span>
+        <button type="button" aria-label="Сохранить игру" style="width: 40px; height: 40px; display: grid; place-items: center; background: #211913; color: #cfa860; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; cursor: pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3h12l2 2v16H5zM8 3v5h8V3M8 14h8v7H8z"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <section aria-label="Сцена" style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(207,168,96,0.55)">
+      <img src="/_blob/3cafd2595df52c06714fd948bae33d78" alt="«Железная Бабка» над облаками" style="display: block; width: 100%; height: 300px; object-fit: cover; object-position: center 40%">
+      <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 20px 14px; background: linear-gradient(180deg, rgba(22,17,13,0), rgba(22,17,13,0.92)); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px">
+        <div style="display: flex; flex-direction: column">
+          <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 28px; font-weight: 700; color: #ece1cb; line-height: 1.1">Пещера дома Альвареш</span>
+          <span style="font-size: 14px; color: #ab9a80">Лиссабон · «Бабка» готовится к вылету</span>
+        </div>
+        <span style="font-family: 'Old Standard TT', Georgia, serif; font-style: italic; font-size: 16px; color: #e3cf9f">«Рубец сегодня тусклее вчерашнего»</span>
+      </div>
+    </section>
+
+    <article aria-label="Ход" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 20px 22px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: #1b1511; border: 1px solid rgba(207,168,96,0.18); border-radius: 8px">
+        <img src="/_blob/63387743fbeba1b2a86ee3b73af6fa3b" alt="Джеймс" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid #cfa860; flex: none">
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+          <span style="font-size: 13px; color: #8d7142; font-family: 'PT Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase">Джеймс</span>
+          <span style="font-size: 16px; color: #ece1cb">Проверяю, всё ли готово к вылету, и присматриваюсь к Изольде — не задумала ли она чего.</span>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; font-size: 17px; line-height: 1.6; max-width: 70ch">
+        <p style="margin: 0">Туман над Тежу ещё не решил, уходить ему или остаться. Под сводами пещеры пахнет мокрым камнем, машинным маслом и жареной сардиной — Грук уже колдует над камбузом.</p>
+        <p style="margin: 0">Тинка висит вниз головой на кормовой балке, гаечный ключ в зубах. Она выплёвывает его в ладонь: «Левый двигатель дышит, правый кашляет. До Женевы дотянем, если по дороге в нас никто не будет стрелять».</p>
+        <p style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-style: italic; color: #e3cf9f">«Кто-нибудь обязательно будет, — Мэг гасит сигариллу о борт. — Мы же туда летим».</p>
+      </div>
+
+      <div role="group" aria-label="Бросок" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 12px 16px; border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; background: radial-gradient(circle at 0% 50%, rgba(207,168,96,0.12), transparent 60%), #1b1511">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#cfa860" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7zM12 2v20M3 7l9 6 9-6"></path></svg>
+        <div style="display: flex; flex-direction: column; min-width: 0">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Проницательность · Джеймс</span>
+          <span style="font-family: 'PT Mono', monospace; font-size: 15px; color: #ece1cb">d20 (17) + 3 = 20 против КС 15</span>
+        </div>
+        <span style="margin-left: auto; font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700; color: #64a998">Успех</span>
+      </div>
+
+      <div style="font-size: 17px; line-height: 1.6; max-width: 70ch">
+        <p style="margin: 0">Изольда Вэйл стоит у трапа, руки за спиной; перстня-печати на пальце больше нет. Смотрит она не на тебя, а на сердечник Г-7, торчащий из твоей торбы. Дважды за минуту она оборачивается к выходу, туда, где за скалой гудит кабель Дома голосов<span style="display: inline-block; width: 9px; height: 18px; margin-left: 2px; vertical-align: -3px; background: {{accent}}; opacity: 0.85"></span></p>
+        <span style="display: block; margin-top: 6px; font-family: 'PT Mono', monospace; font-size: 12px; color: #8d7142">ведущий пишет…</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px dashed rgba(207,168,96,0.26)">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Что изменилось за ход</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{changes}}" as="c" hint-placeholder-count="4">
+            <span style="{{c.style}}">{{c.text}}</span>
+          </sc-for>
+        </div>
+      </div>
+    </article>
+
+    <sc-if value="{{diceOpen}}" hint-placeholder-val="{{ false }}">
+      <section aria-label="Лоток с кубами" style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 14px 16px; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142; margin-right: 6px">Быстрые броски</span>
+        <sc-for list="{{quick}}" as="q" hint-placeholder-count="4">
+          <button type="button" style="display: flex; gap: 8px; align-items: baseline; min-height: 44px; padding: 8px 12px; background: #211913; color: #ece1cb; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-family: 'Alegreya Sans', sans-serif; font-size: 15px; cursor: pointer">{{q.label}} <span style="font-family: 'PT Mono', monospace; font-size: 13px; color: #cfa860">{{q.bonus}}</span></button>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <form aria-label="Ход игрока" style="display: flex; flex-direction: column; gap: 10px; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 14px">
+      <label for="turn-input" style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Твой ход</label>
+      <div style="display: flex; gap: 10px; align-items: stretch">
+        <textarea id="turn-input" rows="2" placeholder="Что делает Джеймс?" style="flex: 1; min-width: 0; resize: vertical; background: #120d0a; color: #ece1cb; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 12px; font-family: 'Alegreya Sans', sans-serif; font-size: 16px"></textarea>
+        <button type="button" aria-label="Отправить ход" style="width: 56px; flex: none; display: grid; place-items: center; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; cursor: pointer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-3-7z"></path></svg>
+        </button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <button type="button" onClick="{{toggleDice}}" aria-pressed="{{diceOpenText}}" style="{{diceBtnStyle}}">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7zM12 2v20M3 7l9 6 9-6"></path></svg>Кубы
+        </button>
+        <button type="button" style="display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-family: 'Alegreya Sans', sans-serif; font-size: 15px; cursor: pointer">Вопрос ведущему</button>
+        <button type="button" style="display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-family: 'Alegreya Sans', sans-serif; font-size: 15px; cursor: pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18v14H3zM3 16l5-5 4 4 3-3 6 6"></path></svg>Кадр сцены
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <aside aria-label="Партия и сцена" style="flex: 1 1 300px; max-width: 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+    <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; gap: 12px; align-items: center">
+        <img src="/_blob/63387743fbeba1b2a86ee3b73af6fa3b" alt="Портрет Джеймса" style="width: 72px; height: 72px; border-radius: 8px; object-fit: cover; border: 1px solid #cfa860">
+        <div style="display: flex; flex-direction: column; min-width: 0">
+          <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700; color: #ece1cb; line-height: 1.1">Джеймс Хейл</span>
+          <span style="font-size: 13px; color: #ab9a80">Чародей 6 · красная драконья кровь</span>
+          <span style="font-family: 'PT Mono', monospace; font-size: 12px; color: #cfa860">КД 17 · КС 15 · атака +8</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="color: #ab9a80">Хиты</span><span style="font-family: 'PT Mono', monospace">49 / 56</span></div>
+        <div role="meter" aria-label="Хиты" aria-valuemin="0" aria-valuemax="56" aria-valuenow="49" style="height: 12px; border-radius: 6px; background: #0f0b08; border: 1px solid rgba(207,168,96,0.55); overflow: hidden"><div style="width: 87%; height: 100%; background: #64a998"></div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{resources}}" as="r" hint-placeholder-count="4">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+            <span style="font-size: 14px; color: #ab9a80">{{r.name}}</span>
+            <span style="display: flex; gap: 4px">
+              <sc-for list="{{r.pips}}" as="p" hint-placeholder-count="4">
+                <span style="{{p.style}}"></span>
+              </sc-for>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Цель</span>
+      <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; color: #ece1cb; line-height: 1.3">Добраться до Женевы: «Глубина-1», ещё два сердца и Узор Семи</span>
+      <a href="Character.dc.html" style="font-size: 14px">Открыть журнал заданий</a>
+    </section>
+
+    <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Партия</span>
+      <sc-for list="{{party}}" as="m" hint-placeholder-count="5">
+        <div style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; align-items: center">
+          <img src="{{m.avatar}}" alt="{{m.name}}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1.5px solid #8d7142">
+          <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+            <div style="display: flex; justify-content: space-between; font-size: 14px"><span style="color: #ece1cb">{{m.name}}</span><span style="font-family: 'PT Mono', monospace; color: #ab9a80">{{m.hp}}</span></div>
+            <div style="height: 6px; border-radius: 3px; background: #0f0b08; overflow: hidden"><div style="{{m.bar}}"></div></div>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Открытые нити</span>
+      <sc-for list="{{threads}}" as="t" hint-placeholder-count="3">
+        <div style="display: flex; gap: 8px; font-size: 14px; color: #ece1cb; padding-bottom: 8px; border-bottom: 1px dotted rgba(207,168,96,0.26)"><span style="color: #b8703f">◆</span><span>{{t}}</span></div>
+      </sc-for>
+    </section>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#cfa860","options":["#cfa860","#b8703f","#64a998","#ae93d6"]},"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { active: 'game', diceOpen: false };
+  }
+  renderVals() {
+    const accent = this.props.accent ?? '#cfa860';
+    const icons = {
+      game: 'M20 4c-6 0-12 4-14 12l-2 4 4-2c8-2 12-8 12-14zM6 16l6-6',
+      character: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6',
+      inventory: 'M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2',
+      party: 'M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3 3-5 6-5s6 2 6 5M17 11a2.5 2.5 0 1 0 0-5M17 15c2 .5 4 2 4 5',
+      journal: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 10h5',
+      map: 'M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14',
+      holdings: 'M3 10h18v10H3zM4 10l2-5h12l2 5M10 14h4',
+      codex: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6',
+      library: 'M4 4h4v16H4zM10 4h4v16h-4zM16 5l3.5-1 3 15-3.5 1z',
+      settings: 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2'
+    };
+    const navItems = [
+      ['game', 'Игра'], ['character', 'Персонаж'], ['inventory', 'Инвентарь'], ['party', 'Партия'],
+      ['journal', 'Журнал'], ['codex', 'Кодекс'], ['map', 'Карта'], ['holdings', 'Имущество'], ['library', 'Библиотека'], ['settings', 'Настройки']
+    ];
+    const nav = navItems.map(([id, label]) => {
+      const on = this.state.active === id;
+      return {
+        label, icon: icons[id],
+        pick: () => this.setState({ active: id }),
+        style: 'display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 6px; cursor: pointer; text-align: left; font-family: \'Old Standard TT\', Georgia, serif; font-size: 17px; ' +
+          (on ? 'background: linear-gradient(180deg, #4a3825, #33261b); color: #f1dca8; border: 1px solid ' + accent + ';' : 'background: transparent; color: #ab9a80; border: 1px solid transparent;')
+      };
+    });
+    const chip = (text, tone) => ({
+      text,
+      style: 'display: inline-flex; align-items: center; min-height: 30px; padding: 4px 12px; border-radius: 999px; font-size: 14px; background: #1b1511; border: 1px solid ' + tone + '; color: #ece1cb;'
+    });
+    const changes = [
+      chip('Время +40 мин', '#8d7142'),
+      chip('−12 зм · Тиаго, за ремонт', '#c9563f'),
+      chip('+ запасной кристалл эфирита', '#ae93d6'),
+      chip('Задание «Экспедиция Рурка» обновлено', '#cfa860')
+    ];
+    const pips = (max, left) => Array.from({ length: max }, (_, i) => ({
+      style: 'width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid ' + (i < left ? accent : '#8d7142') + '; background: ' + (i < left ? 'radial-gradient(circle at 35% 35%, #f3d99e, #a17b38 70%)' : 'transparent') + ';'
+    }));
+    const resources = [
+      { name: 'Ячейки 1 круга', pips: pips(4, 3) },
+      { name: 'Ячейки 2 круга', pips: pips(3, 2) },
+      { name: 'Ячейки 3 круга', pips: pips(3, 3) },
+      { name: 'Очки чародейства', pips: pips(6, 4) }
+    ];
+    const member = (name, avatar, hp, max) => ({
+      name, avatar, hp: hp + ' / ' + max,
+      bar: 'width: ' + Math.round(hp / max * 100) + '%; height: 100%; background: ' + (hp / max > 0.5 ? '#64a998' : hp / max > 0.25 ? '#d99a3e' : '#c9563f') + ';'
+    });
+    const party = [
+      member('Мэг Рыжая', '/_blob/fd4bf335cac4365ea86781b7b243d16e', 45, 45),
+      member('Урзул Железный Бок', '/_blob/857c58ffbc3555862bbcb500a7fb6c4b', 61, 68),
+      member('Вольф Кесслер', '/_blob/09e2eba3d950fe15b2f2075915ac847c', 60, 60),
+      member('Зарга', '/_blob/564dcefc7972346914b9ab9a5a4e29d9', 40, 40),
+      member('Ирэна', '/_blob/6f1f1225e910e0fff48f242dc5585b3d', 29, 42)
+    ];
+    const threads = [
+      'Двое людей Рурка не вышли из складки под Женевой',
+      'Финч и Сирин ушли из-под наблюдения',
+      'Рубец тускнеет — Пип видел мерцание'
+    ];
+    const quick = [
+      { label: 'Убеждение', bonus: '+7' }, { label: 'Проницательность', bonus: '+3' },
+      { label: '«Аргумент»', bonus: '+5' }, { label: 'Огненный шар', bonus: '8d6' },
+      { label: 'Своя формула', bonus: 'd20…' }
+    ];
+    const open = this.state.diceOpen;
+    return {
+      accent, nav, changes, resources, party, threads, quick,
+      diceOpen: open,
+      diceOpenText: open ? 'true' : 'false',
+      toggleDice: () => this.setState({ diceOpen: !this.state.diceOpen }),
+      diceBtnStyle: 'display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 6px; font-family: \'Alegreya Sans\', sans-serif; font-size: 15px; cursor: pointer; ' +
+        (open ? 'background: #3a2c1f; color: #f1dca8; border: 1px solid ' + accent + ';' : 'background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);')
+    };
+  }
+}
+</script>
+</body>
+</html>

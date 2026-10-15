@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Имущество</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(207,168,96,0.55); background: linear-gradient(180deg, #3a2c1f, #271d15); border-radius: 6px; padding: 14px 18px 12px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.12), 0 6px 18px rgba(0,0,0,0.4)">
+    <div style="display: grid; gap: 4px; min-width: 0">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">{{eyebrow}}</span>
+      <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1.05; color: #cfa860; text-shadow: 0 1px 0 rgba(0,0,0,0.6)">{{title}}</h1>
+      <span style="color: #ab9a80; font-size: 14px">{{subtitle}}</span>
+    </div>
+    <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+      <span style="font-size: 14px; color: #ab9a80">Пример:</span>
+      <sc-for list="{{modes}}" as="m" hint-placeholder-count="2">
+        <button type="button" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <div style="display: flex; gap: 14px; align-items: flex-start; flex-wrap: wrap">
+    <nav aria-label="Владения партии" style="flex: 0 0 300px; display: flex; flex-direction: column; gap: 8px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+        <button type="button" onClick="{{t.pick}}" style="{{t.style}}">
+          <span style="{{t.iconBox}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{t.icon}}"></path></svg></span>
+          <span style="display: flex; flex-direction: column; min-width: 0; text-align: left">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{t.kind}}</span>
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700; line-height: 1.2">{{t.name}}</span>
+            <span style="font-size: 13px; color: #ab9a80">{{t.where}}</span>
+          </span>
+        </button>
+      </sc-for>
+      <div style="border: 1px dashed rgba(207,168,96,0.3); border-radius: 6px; padding: 10px 12px; font-size: 13.5px; color: #ab9a80; line-height: 1.4">{{hint}}</div>
+    </nav>
+
+    <div style="flex: 1 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <sc-if value="{{d.hasImage}}" hint-placeholder-val="{{ true }}">
+          <div style="position: relative; aspect-ratio: 21 / 8; background: #0e0a08; border-bottom: 1px solid rgba(207,168,96,0.26)">
+            <img src="{{d.image}}" alt="{{d.name}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+            <button type="button" style="position: absolute; right: 12px; top: 12px; min-height: 36px; padding: 0 12px; display: flex; align-items: center; gap: 6px; background: rgba(14,10,8,0.82); color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 5px; font-family: 'Alegreya Sans', sans-serif; font-size: 14px; cursor: pointer">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"></path></svg>
+              Перерисовать
+            </button>
+          </div>
+        </sc-if>
+        <sc-if value="{{d.drawing}}" hint-placeholder-val="{{ false }}">
+          <div role="img" aria-label="Картинка рисуется" style="aspect-ratio: 21 / 6; display: grid; place-items: center; border-bottom: 1px dashed #cfa860; background: linear-gradient(90deg, #1b1511 0, #3a2c1f 50%, #1b1511 100%); background-size: 600px 100%; animation: shimmer 2s linear infinite; font-family: 'PT Mono', monospace; font-size: 13px; color: #e3cf9f">картинка рисуется · fal · ~20 с</div>
+        </sc-if>
+        <div style="padding: 14px 16px">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">{{d.kind}}</span>
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 26px; font-weight: 700; color: #cfa860; margin: 2px 0 6px">{{d.name}}</div>
+          <p style="margin: 0 0 10px; color: #ab9a80">{{d.desc}}</p>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; row-gap: 3px; font-size: 14px">
+            <sc-for list="{{d.specs}}" as="k" hint-placeholder-count="6">
+              <div style="display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dotted rgba(207,168,96,0.26); padding: 3px 0"><span>{{k.k}}</span><span style="font-family: 'PT Mono', monospace; text-align: right">{{k.v}}</span></div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start">
+        <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <sc-if value="{{d.hasFeats}}" hint-placeholder-val="{{ true }}">
+            <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px">
+              <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 6px">{{d.featsTitle}}</div>
+              <sc-for list="{{d.feats}}" as="f" hint-placeholder-count="5">
+                <div style="{{f.style}}"><b style="font-weight: 700">{{f.name}}</b><p style="margin: 2px 0 0; font-size: 14px; color: #ab9a80">{{f.desc}}</p></div>
+              </sc-for>
+            </section>
+          </sc-if>
+          <sc-if value="{{d.hasRoster}}" hint-placeholder-val="{{ true }}">
+            <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px">
+              <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 6px">{{d.rosterTitle}}</div>
+              <sc-for list="{{d.roster}}" as="p" hint-placeholder-count="4">
+                <div style="display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 10px; padding: 7px 0; border-bottom: 1px dotted rgba(207,168,96,0.26); font-size: 14.5px"><b style="font-weight: 700">{{p.name}}</b><span style="color: #ab9a80">{{p.role}}</span></div>
+              </sc-for>
+            </section>
+          </sc-if>
+        </div>
+        <section style="flex: 1.2 1 420px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+            <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860">{{d.gridTitle}}</div>
+            <span style="font-family: 'PT Mono', monospace; font-size: 12px; color: #ab9a80">{{d.gridCap}}</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+            <sc-for list="{{d.cells}}" as="c" hint-placeholder-count="18">
+              <button type="button" onClick="{{c.pick}}" aria-label="{{c.name}}" style="{{c.style}}">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>
+                <sc-if value="{{c.hasQty}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; right: 3px; bottom: 2px; font-family: 'PT Mono', monospace; font-size: 11px; color: #ece1cb; background: rgba(0,0,0,0.65); border-radius: 3px; padding: 0 3px">{{c.qty}}</span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #ab9a80">
+            <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #9b938a; border-radius: 2px; margin-right: 4px"></span>обычное</span>
+            <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #64a998; border-radius: 2px; margin-right: 4px"></span>реликт</span>
+            <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #ae93d6; border-radius: 2px; margin-right: 4px"></span>магическое</span>
+            <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #cfa860; border-radius: 2px; margin-right: 4px"></span>сюжетное</span>
+          </div>
+          <div style="background: linear-gradient(180deg, #eadcbd, #dccaa3); color: #2a1f16; border: 1px solid #b89a5c; border-radius: 6px; padding: 10px 12px; display: grid; gap: 2px">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c2e">{{sel.kind}}</span>
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{sel.name}}</span>
+            <span style="font-size: 14px">{{sel.desc}}</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: "ship", sel: "ship", item: 0 };
+  }
+  renderVals() {
+    const SHIP = {"name": "«Железная Бабка»", "desc": "Бывший боевой крейсер Лиги, трофей Гхара. Таран-клык на носу.", "specs": [["Корпус", "Гхар"], ["Руны левитации", "мастера Сарэта"], ["Двигатели", "кристаллы эфирита · Тинка"], ["Капитан", "Бьорн «Якорь» Халвардсон"], ["Штурман", "Пип Звездочёт"], ["Курс", "Лиссабон → Женева"]], "weapons": [{"desc": "На носу. Для тех, кто не понял с первого раза.", "name": "Таран-клык"}, {"desc": "Довоенный крупнокалиберный пулемёт на турели, механический. 2 ленты по 250.", "name": "«Шептун»"}, {"desc": "Орочьи. Против драконов и виверн.", "name": "Гарпунные баллисты ×2"}, {"desc": "За ним Кассия Пепел.", "name": "Бортовое орудие"}, {"desc": "Эльфийские руны по корпусу: один раз гасят попадание, которое пробило бы оболочку.", "name": "Терновый оберег"}], "guests": [{"name": "Изольда Вэйл", "role": "пленница под клятвой"}, {"name": "Секретарь Директрисы", "role": "пленный"}, {"name": "Леди Эйлин Сол'Тарен", "role": "просится в Женеву"}, {"name": "Таэль", "role": "под клятвой лилии"}], "hold": [{"cat": "consumable", "desc": "Боезапас партии.", "icon": "crate", "name": "Ящики эфиритовых патронов", "rarity": "common"}, {"cat": "consumable", "desc": "Запас Тинки.", "icon": "bomb", "name": "Бомбы", "rarity": "common"}, {"cat": "consumable", "desc": "Забота Грука.", "icon": "crate", "name": "Припасы на месяц", "rarity": "common"}, {"cat": "gear", "desc": "Для двигателей.", "icon": "crystal", "name": "Запасные кристаллы эфирита", "qty": 2, "rarity": "magic"}, {"cat": "gear", "desc": "Трофей Лиссабона. Целый — один, ещё два на запчасти. Один целый забрал Урзул.", "icon": "armor", "name": "Паровые доспехи", "qty": 3, "rarity": "common"}, {"cat": "gear", "desc": "Трофей Лиссабона.", "icon": "blade", "name": "Паровые мечи", "rarity": "common"}, {"cat": "gear", "desc": "Трофей Лиссабона.", "icon": "revolver", "name": "Пистолеты Лиги", "qty": 3, "rarity": "common"}, {"cat": "consumable", "desc": "Трофей Лиссабона, не поделено.", "icon": "coin", "name": "Золото", "qty": 480, "rarity": "common"}, {"cat": "story", "desc": "Печать Изольды Вэйл.", "icon": "seal", "name": "Перстень-печать Директрисы", "rarity": "story"}, {"cat": "relic", "desc": "Её личное оружие.", "icon": "revolver", "name": "Довоенный пистолет Директрисы", "rarity": "relic"}, {"cat": "relic", "desc": "Мини-Искра с крошечной бутылкой. Сгорел.", "icon": "ring", "name": "Сгоревший медальон", "rarity": "relic"}, {"cat": "story", "desc": "Мёртвые сердечники с фабрики. Лига не умеет делать бутылки.", "icon": "core", "name": "Бутылки-подделки", "qty": 3, "rarity": "common"}, {"cat": "story", "desc": "Новая. Открывает гелиосообщения Лиги.", "icon": "book", "name": "Книга кодов Лиги", "rarity": "story"}, {"cat": "story", "desc": "Договор, письма Корнелиуса, карта Женевы с маршрутом Рурка.", "icon": "briefcase", "name": "Портфель Директрисы", "rarity": "story"}, {"cat": "story", "desc": "План станции под Женевой. От Церкви.", "icon": "book", "name": "Буклет «Глубина-1»", "rarity": "story"}, {"cat": "story", "desc": "Трансатлантический кабель АРИАДНА-3: через него она дотягивается до Европы.", "icon": "map", "name": "Атлас кабелей", "rarity": "story"}, {"cat": "gear", "desc": "Старая броня Урзула. Сменил на трофейный паровой доспех, но выбрасывать не стал.", "icon": "armor", "name": "Сапёрный бронекостюм Урзула", "rarity": "common"}]};
+    const st = this.state;
+    const I = {
+      crate: "M4 6h16v13H4zM4 10h16M9 6v4M15 6v4",
+      bomb: "M11 20a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM15 9.5l2.5-2.5M19 4l1-1",
+      crystal: "M12 2l5 6-5 14-5-14zM7 8h10",
+      armor: "M7 4l5 2 5-2 3 4-3 2v10H7V10L4 8zM10 12h4M10 15h4",
+      blade: "M4 20L15 9M15 9l4-5 1 1-5 4M7 14l3 3",
+      revolver: "M3 9h13l2-2h3v4h-4l-1 2H9l-1 6H5l1-6H3z",
+      coin: "M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM12 7v10M9.5 9.5h4M9.5 14.5h5",
+      seal: "M12 14a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM9 13l-2 8 5-3 5 3-2-8",
+      ring: "M12 20a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM9.5 9l2.5-5 2.5 5z",
+      core: "M6 7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3zM9 4v16M15 4v16",
+      book: "M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 10h5",
+      briefcase: "M3 7h18v12H3zM9 7V5h6v2M3 12h18",
+      map: "M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14",
+      ship: "M4 13c0-4 4-7 8-7s8 3 8 7-4 5-8 5-8-1-8-5zM7 18l-1 3M17 18l1 3M12 6V3",
+      house: "M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6",
+      cave: "M3 20c0-8 4-14 9-14s9 6 9 14M9 20c0-3 1.5-5 3-5s3 2 3 5",
+      tower: "M8 21V9h8v12M6 9h12M9 5h6v4H9zM12 13v3",
+      tent: "M12 4L3 20h18zM12 4v16M8 20l4-6 4 6",
+      pot: "M5 9h14v6a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5zM3 9h18M9 5c0 1 1 1 1 2M14 5c0 1 1 1 1 2",
+      rope: "M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z",
+      mule: "M5 10h10l3-4 2 1-1 4v3h-2v6h-2v-5H9v5H7v-6H5zM5 10l-2 3",
+      lamp: "M9 3h6M7 5h10v3l-1 11H8L7 8zM12 10v5",
+      key: "M7 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM10 12h11M17 12v3M20 12v2"
+    };
+    const R = { common: "#9b938a", relic: "#64a998", magic: "#ae93d6", story: "#cfa860" };
+    const RN = { common: "обычное", relic: "реликт Старого мира", magic: "магическое", story: "сюжетное" };
+    const it = (name, icon, rarity, desc, qty) => ({ name, icon, rarity, desc, qty });
+    const H = {
+      ship: { kind: "Транспорт · дирижабль", tab: "«Железная Бабка»", where: "Пещера Альварешей", icon: "ship",
+        name: SHIP.name, desc: SHIP.desc, image: "/_blob/3cafd2595df52c06714fd948bae33d78",
+        specs: SHIP.specs.map(([k, v]) => ({ k, v })),
+        featsTitle: "Вооружение", feats: SHIP.weapons,
+        rosterTitle: "Пассажиры и пленные", roster: SHIP.guests.map((g) => ({ name: g.name, role: g.role })),
+        gridTitle: "Трюм", cap: 40, items: SHIP.hold.map((h) => it(h.name, h.icon, h.rarity, h.desc, h.qty)) },
+      rose: { kind: "База · дом", tab: "Лавка Розы", where: "Нуйорк-Гхар", icon: "house",
+        name: "Лавка Розы", desc: "Рыбная лавка на Гудзонских причалах. Здесь всегда накормят и ничего не спросят.", drawing: true,
+        specs: [{ k: "Хозяйка", v: "Роза Хейл" }, { k: "Сейчас там", v: "Томас на поправке" }, { k: "Тайник", v: "дедов ящик · 0317" }, { k: "Безопасность", v: "своя" }],
+        featsTitle: "Что здесь можно", feats: [{ name: "Отдохнуть", desc: "Длинный отдых без риска." }, { name: "Оставить вещи", desc: "Всё, что не нужно в дороге." }],
+        rosterTitle: "Кто живёт", roster: [{ name: "Роза Хейл", role: "бабушка" }, { name: "Томас Хейл", role: "отец, на поправке" }],
+        gridTitle: "Хранится здесь", cap: 12, items: [it("Дедов ящик", "crate", "story", "Тетрадь, половина чертежа, письмо отцу. Код 0317."), it("Бабушкин ром", "pot", "common", "Неприкосновенный запас.", 6)] },
+      cave: { kind: "База · стоянка", tab: "Пещера Альварешей", where: "Лиссабон", icon: "cave",
+        name: "Пещера Альварешей", desc: "Морская пещера контрабандистов. Сюда «Бабка» входит с прилива.", drawing: true,
+        specs: [{ k: "Хозяева", v: "Тиаго и Инеш" }, { k: "Вход", v: "с моря, в прилив" }, { k: "Стоит", v: "«Железная Бабка»" }, { k: "Риск", v: "Лига ищет" }],
+        featsTitle: "Что здесь можно", feats: [{ name: "Чинить корабль", desc: "Причал и тали Альварешей." }, { name: "Сбыть трофеи", desc: "Тиаго берёт всё, кроме Искр." }],
+        rosterTitle: "Кто рядом", roster: [{ name: "Тиаго Альвареш", role: "должен Розе с 62 года" }, { name: "Инеш Альвареш", role: "взорвала мост" }],
+        gridTitle: "Хранится здесь", cap: 12, items: [] },
+      voices: { kind: "Место под защитой", tab: "Дом голосов", where: "Каркавелуш", icon: "tower",
+        name: "Дом голосов", desc: "Станция трансатлантического кабеля. Через неё говорит АРИАДНА.", drawing: true,
+        specs: [{ k: "Охрана", v: "прихожане Марианы" }, { k: "Ещё", v: "люди Инеш" }, { k: "Внутри", v: "рубильник АРИАДНЫ" }, { k: "Статус", v: "под защитой" }],
+        featsTitle: "Что здесь можно", feats: [{ name: "Говорить с АРИАДНОЙ", desc: "Без пропуска, напрямую через кабель." }],
+        rosterTitle: "Кто рядом", roster: [{ name: "Мариана", role: "её прихожане охраняют дом" }],
+        gridTitle: "Хранится здесь", cap: 12, items: [] },
+      camp: { kind: "Лагерь · общий запас", tab: "Походный лагерь", where: "всегда с партией", icon: "tent",
+        name: "Походный лагерь", desc: "То, что партия несёт на себе и раскладывает на ночь. Есть всегда, даже когда больше ничего нет.", drawing: false,
+        specs: [{ k: "Ночёвка", v: "у Старой дороги" }, { k: "Дозор", v: "Ирэна, Урзул" }, { k: "Еды", v: "на 3 дня" }, { k: "Костёр", v: "без дыма" }],
+        featsTitle: "Что можно в лагере", feats: [{ name: "Короткий и длинный отдых", desc: "Ведущий решает, спокойна ли ночь." }, { name: "Поговорить у костра", desc: "Лучшее время для разговоров со спутниками." }],
+        rosterTitle: "", roster: [],
+        gridTitle: "Общий запас", cap: 16, items: [it("Палатка на четверых", "tent", "common", "Латаная, но держит дождь."), it("Котелок", "pot", "common", "Общий."), it("Верёвка, 50 футов", "rope", "common", "Пеньковая."), it("Припасы", "crate", "common", "На три дня пути.", 3), it("Фонарь", "lamp", "common", "Масляный.")] },
+      mule: { kind: "Вьючное животное", tab: "Мул Гвоздь", where: "куплен в Сломанном мосту", icon: "mule",
+        name: "Мул Гвоздь", desc: "Упрямый, кусачий, но тащит больше, чем вся партия вместе.", drawing: true,
+        specs: [{ k: "Скорость", v: "40 футов" }, { k: "Грузоподъёмность", v: "до 420 фунтов" }, { k: "Характер", v: "кусается" }, { k: "Хиты", v: "11/11" }],
+        featsTitle: "Особенности", feats: [{ name: "Вьючный", desc: "Несёт общий груз — партия идёт налегке." }],
+        rosterTitle: "", roster: [],
+        gridTitle: "Поклажа", cap: 8, items: [it("Мешок руды", "crate", "common", "Продать в городе.", 2), it("Ключ от тайника", "key", "story", "Тайник в Подземке.")] }
+    };
+    const ship = st.mode === "ship";
+    const order = ship ? ["ship", "rose", "cave", "voices", "camp"] : ["camp", "mule"];
+    const selId = order.includes(st.sel) ? st.sel : order[0];
+    const h = H[selId];
+    const pill = (on) => "min-height: 40px; padding: 0 14px; border-radius: 999px; cursor: pointer; font-family: 'Alegreya Sans', sans-serif; font-size: 14px; " +
+      (on ? "background: #3a2c1f; color: #f1dca8; border: 1px solid #cfa860;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);");
+    const modes = [["foot", "кампания 1 · пешком"], ["ship", "кампания 2 · с дирижаблем"]].map(([id, label]) => ({
+      label, style: pill(st.mode === id), pick: () => this.setState({ mode: id, sel: id === "ship" ? "ship" : "camp", item: 0 })
+    }));
+    const tabs = order.map((id) => {
+      const x = H[id], on = id === selId;
+      return {
+        kind: x.kind, name: x.tab, where: x.where, icon: I[x.icon],
+        pick: () => this.setState({ sel: id, item: 0 }),
+        style: "display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 10px; align-items: center; padding: 10px; border-radius: 6px; cursor: pointer; color: #ece1cb; " +
+          (on ? "background: #3a2c1f; border: 1px solid #cfa860; box-shadow: 0 0 0 2px rgba(207,168,96,0.15);" : "background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26);"),
+        iconBox: "width: 42px; height: 42px; display: grid; place-items: center; border-radius: 6px; background: #120d0a; border: 1.5px solid " + (on ? "#cfa860" : "rgba(207,168,96,0.4)") + "; color: #cfa860;"
+      };
+    });
+    const cells = h.items.map((x, i) => ({
+      name: x.name, icon: I[x.icon] || I.crate, qty: x.qty || "", hasQty: !!x.qty && x.qty > 1,
+      pick: () => this.setState({ item: i }),
+      style: "position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 6px; background: radial-gradient(circle at 50% 40%, #2a2019, #130e0b 75%); color: " + R[x.rarity] + "; border: 1.5px solid " + R[x.rarity] + ";" + (i === st.item ? " box-shadow: 0 0 0 2px #16110d, 0 0 12px " + R[x.rarity] + ";" : "")
+    }));
+    const shown = Math.max(h.cap > 18 ? 18 : h.cap, Math.ceil((cells.length + 1) / 6) * 6);
+    while (cells.length < shown) cells.push({ name: "Свободно", icon: "", qty: "", hasQty: false, pick: () => {}, style: "aspect-ratio: 1 / 1; padding: 0; border-radius: 6px; background: #120d0a; border: 1.5px dashed rgba(207,168,96,0.14); cursor: default;" });
+    const cur = h.items[st.item] || null;
+    return {
+      modes, tabs,
+      eyebrow: "Мир Шва · партия Джеймса",
+      title: ship ? "Имущество" : "Лагерь",
+      subtitle: ship ? "В меню раздел зовётся «Имущество»: у партии есть корабль и базы." : "Пока у партии нет ни транспорта, ни баз, раздел в меню зовётся «Лагерь».",
+      hint: ship
+        ? "Вкладки собираются сами: ведущий добавляет корабль, базу или зверя, когда они появляются в истории, и убирает, если их потеряли."
+        : "Купите телегу, угоните дирижабль или снимите дом — тут появится новая вкладка, а раздел переименуется в «Имущество».",
+      d: {
+        kind: h.kind, name: h.name, desc: h.desc, specs: h.specs,
+        hasImage: !!h.image, image: h.image || "", drawing: !h.image && !!h.drawing,
+        hasFeats: h.feats.length > 0, featsTitle: h.featsTitle,
+        feats: h.feats.map((f, i) => ({ name: f.name, desc: f.desc, style: i ? "border-top: 1px dashed rgba(207,168,96,0.26); padding: 8px 0;" : "padding: 0 0 8px;" })),
+        hasRoster: h.roster.length > 0, rosterTitle: h.rosterTitle, roster: h.roster,
+        gridTitle: h.gridTitle, gridCap: h.items.length + " из " + h.cap + " мест", cells
+      },
+      sel: cur ? { kind: RN[cur.rarity] + (cur.qty ? " · " + cur.qty + " шт." : ""), name: cur.name, desc: cur.desc } : { kind: "пусто", name: "Здесь пока ничего нет", desc: "Ведущий положит сюда вещи, когда партия что-то оставит." }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Журнал</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="border: 1px solid rgba(207,168,96,0.55); background: linear-gradient(180deg, #3a2c1f, #271d15); border-radius: 6px; padding: 14px 18px 12px; display: grid; gap: 4px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.12), 0 6px 18px rgba(0,0,0,0.4)">
+    <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Мир Шва · журнал партии</span>
+    <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1.05; color: #cfa860; text-shadow: 0 1px 0 rgba(0,0,0,0.6)">Журнал</h1>
+    <span style="color: #ab9a80; font-size: 14px"><b style="color: #ece1cb; font-weight: 500">Лиссабон</b> · рассвет после ночи у Белой башни · дальше: Женева</span>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+    <div style="flex: 1.5 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <div style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142; margin: 0 0 8px">Главная арка</div>
+        <div style="border-left: 3px solid #cfa860; padding: 4px 0 4px 12px; display: grid; gap: 4px">
+          <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{main.title}}</span>
+          <p style="margin: 0; font-size: 14.5px; color: #ab9a80">{{main.desc}}</p>
+          <div style="margin: 6px 0 0; display: grid; gap: 4px; font-size: 14.5px">
+            <sc-for list="{{main.steps}}" as="s" hint-placeholder-count="6">
+              <div style="display: grid; grid-template-columns: 20px 1fr; gap: 6px">
+                <span style="{{s.markStyle}}">{{s.mark}}</span>
+                <span style="{{s.textStyle}}">{{s.text}}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; display: grid; gap: 12px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860">Задания</div>
+        <sc-for list="{{active}}" as="q" hint-placeholder-count="4">
+          <div style="border-left: 3px solid #b8703f; padding: 4px 0 4px 12px; display: grid; gap: 4px">
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{q.title}}</span>
+            <p style="margin: 0; font-size: 14.5px; color: #ab9a80">{{q.desc}}</p>
+          </div>
+        </sc-for>
+      </section>
+
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <button type="button" onClick="{{toggleDone}}" aria-expanded="{{doneOpenAttr}}" style="background: none; border: 0; padding: 0; cursor: pointer; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; color: #cfa860">{{doneLabel}}</button>
+        <sc-if value="{{doneOpen}}" hint-placeholder-val="{{ false }}">
+          <div style="display: grid; gap: 12px; margin-top: 10px">
+            <sc-for list="{{done}}" as="q" hint-placeholder-count="5">
+              <div style="border-left: 3px solid #64a998; padding: 4px 0 4px 12px; display: grid; gap: 4px">
+                <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{q.title}}</span>
+                <p style="margin: 0; font-size: 14.5px; color: #ab9a80">{{q.desc}}</p>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+      </section>
+    </div>
+
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <section style="background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid rgba(207,168,96,0.55); border-radius: 6px; padding: 14px; display: grid; gap: 6px">
+        <div style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Цель сейчас</div>
+        <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">Добраться до Женевы: «Глубина-1», ещё два сердца и Узор Семи.</span>
+        <span style="font-size: 14.5px; color: #ab9a80">Майор Рурк ждёт у края складки. Двое его людей так и не вышли.</span>
+      </section>
+
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 10px">Открытые нити</div>
+        <ul style="margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14.5px">
+          <sc-for list="{{threads}}" as="t" hint-placeholder-count="6"><li>{{t}}</li></sc-for>
+        </ul>
+      </section>
+
+      <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+        <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 10px">Долги и обещания</div>
+        <ul style="margin: 0; padding-left: 18px; display: grid; gap: 5px; font-size: 14.5px">
+          <sc-for list="{{debts}}" as="t" hint-placeholder-count="4"><li>{{t}}</li></sc-for>
+        </ul>
+      </section>
+
+      <span style="font-size: 13px; color: #8d7142">Журнал ведёт ведущий: задания, нити и долги появляются и закрываются по ходу игры. Здесь только то, что знает герой.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { doneOpen: false };
+  }
+  renderVals() {
+    const steps = [
+      ["Первое сердце — сердечник Г-7 (у Джеймса)", true],
+      ["Ещё два сердца — в Женеве, на «Глубине-1»", false],
+      ["Узор Семи — шесть частей на камнях круга Аэль-Тириона", false],
+      ["Топливо — зал эфирита Гронны", false],
+      ["Ток — возвращать постепенно", false],
+      ["Наладчик — Джеймс", true]
+    ].map(([text, ok]) => ({
+      text, mark: ok ? "✓" : "○",
+      markStyle: "font-family: 'PT Mono', monospace; color: " + (ok ? "#64a998" : "#8d7142") + ";",
+      textStyle: ok ? "color: #ab9a80;" : "color: #ece1cb;"
+    }));
+    const done = [
+      { title: "Должок", desc: "Искра запрещена в Нуйорк-Гхаре, Лига платит семьям погибших и снимает розыск. Эйлин изгнана." },
+      { title: "Дедов ящик", desc: "Код 0317 — Час Ноль. Тетрадь, половина чертежа, письмо отцу." },
+      { title: "Брат Ноль", desc: "Это Томас Хейл. Роза дала ему оплеуху и обняла. АРИАДНА: «не опоздал»." },
+      { title: "Саботаж на борту", desc: "Термитный заряд в кормовом трюме обезврежен, Таэль под клятвой лилии." },
+      { title: "Лиссабон", desc: "Фабрика Искр в Алкантаре взорвана, «Звезда Атлантики» сгорела в Тежу, Директриса в плену и под клятвой." }
+    ];
+    const open = this.state.doneOpen;
+    return {
+      main: { title: "Нить: Новый Мост", desc: "Мост, который кормят оба мира — магия и ток, — без АРИАДНЫ и Сарэта в роли предохранителей.", steps },
+      active: [
+        { title: "Экспедиция Рурка", desc: "Майор Рурк, около 30 человек и 2 паровых шагохода у края складки под Женевой. Внутри время течёт иначе. Двое ушли и не вернулись. Приказ: ждать «Бабку» и подчиняться Хейлу." },
+        { title: "Время на «Глубине-1»", desc: "Догадка АРИАДНЫ: внутри всё ещё 03:17. Импульсы раз в несколько лет, промежутки растут." },
+        { title: "Эйлин и Таэль", desc: "Эйлин просит взять её и Таэля в Женеву: читает древний эльфийский и знает Зал Семи Камней." },
+        { title: "Совет Моста", desc: "Четыре голоса: Лига (Изольда), наладчик (Джеймс), эльфы, орки." }
+      ],
+      threads: [
+        "Финч и Сирин ушли из-под наблюдения в Нуйорк-Гхаре. Сирин получила «отбой» от Эйлин.",
+        "Корнелиус Вэйл на свободе и затаил обиду.",
+        "Сарэт ушёл вниз к Мосту, двери закрыты.",
+        "Рубец тускнеет: Пип заметил мерцание.",
+        "Письмо Брата Ноль общинам Тихого Голоса: Бостон, Лиссабон, Марсель.",
+        "Дом голосов в Каркавелуше: рубильник АРИАДНЫ, охрана — прихожане Марианы и люди Инеш."
+      ],
+      debts: [
+        "Зарге — бутылка эльфийского вина.",
+        "Мэг — две трети, раз уж спасаем мир.",
+        "Альварешам — монополия на перевозку эфирита Гхара в Европу, под печатью вождя.",
+        "Гронне — всё о серых сначала ей; зал эфирита и вход к Мосту — её."
+      ],
+      done, doneOpen: open, doneOpenAttr: open ? "true" : "false",
+      doneLabel: (open ? "▾ " : "▸ ") + "Выполнено · " + done.length,
+      toggleDone: () => this.setState({ doneOpen: !open })
+    };
+  }
+}
+</script>
+</body>
+</html>

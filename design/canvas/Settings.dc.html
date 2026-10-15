@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Настройки кампании</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+@keyframes shimmer{0%{background-position:-160px 0}100%{background-position:160px 0}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 12px 16px">
+    <div style="display: flex; flex-direction: column">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Кампания «Мир Шва» · настройки сохраняются для этой кампании</span>
+      <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 28px; font-weight: 700; color: #cfa860; line-height: 1.1">Ведущий и картинки</h1>
+    </div>
+    <span style="font-size: 14px; color: #ab9a80">Ключи хранятся только у тебя на компьютере</span>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+
+    <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <section aria-label="Модель ведущего" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Кто ведёт игру</span>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+          <sc-for list="{{models}}" as="m" hint-placeholder-count="2">
+            <button type="button" onClick="{{m.pick}}" aria-pressed="{{m.on}}" style="{{m.style}}">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{m.vendor}}</span>
+              <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700">{{m.name}}</span>
+              <span style="font-size: 14px; color: #d8ccb4">{{m.desc}}</span>
+              <span style="font-family: 'PT Mono', monospace; font-size: 12px; color: #ab9a80">{{m.meta}}</span>
+            </button>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <span style="font-size: 15px">Глубина размышлений</span>
+          <div role="group" aria-label="Глубина" style="display: flex; flex-wrap: wrap; gap: 6px">
+            <sc-for list="{{efforts}}" as="e" hint-placeholder-count="4">
+              <button type="button" onClick="{{e.pick}}" style="{{e.style}}">{{e.label}}</button>
+            </sc-for>
+          </div>
+          <span style="font-size: 13.5px; color: #ab9a80">{{effortHint}}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 10px 12px; border-radius: 6px; background: #1b1511; border: 1px solid rgba(207,168,96,0.18); font-size: 14px">
+          <span style="color: #ab9a80">Последние 20 ходов</span>
+          <span><span style="font-family: 'PT Mono', monospace; color: #cfa860">{{stats.time}}</span> <span style="color: #ab9a80">до первых слов</span></span>
+          <span><span style="font-family: 'PT Mono', monospace; color: #cfa860">{{stats.cost}}</span> <span style="color: #ab9a80">за ход</span></span>
+          <span><span style="font-family: 'PT Mono', monospace; color: #cfa860">{{stats.rej}}</span> <span style="color: #ab9a80">отклонённых действий</span></span>
+        </div>
+        <span style="font-size: 13px; color: #8d7142">Модель можно сменить посреди кампании: память, мир и квитанции общие. Новый ведущий продолжит с того же места.</span>
+      </section>
+
+      <section aria-label="Как ведущий работает" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Как ведущий работает</span>
+        <sc-for list="{{choices}}" as="c" hint-placeholder-count="2">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 15px">{{c.title}}</span>
+            <div role="group" aria-label="{{c.title}}" style="display: flex; flex-wrap: wrap; gap: 6px">
+              <sc-for list="{{c.opts}}" as="o" hint-placeholder-count="3">
+                <button type="button" onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
+              </sc-for>
+            </div>
+            <span style="font-size: 13.5px; color: #ab9a80">{{c.hint}}</span>
+          </div>
+        </sc-for>
+      </section>
+
+      <section aria-label="Правила и пределы" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Правила и пределы кампании</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">
+          <span style="font-size: 15px; margin-right: 4px">Книги правил:</span>
+          <span style="font-size: 14px; padding: 4px 10px; border-radius: 999px; background: #3a2c1f; border: 1px solid #cfa860; color: #f1dca8">D&amp;D 5e (2024)</span>
+          <span style="font-size: 14px; padding: 4px 10px; border-radius: 999px; background: #211913; border: 1px solid rgba(207,168,96,0.26); color: #d8ccb4">Домашние правила Шва</span>
+          <button type="button" style="min-height: 32px; padding: 0 10px; background: transparent; color: #cfa860; border: 1px dashed rgba(207,168,96,0.55); border-radius: 999px; font-size: 14px; cursor: pointer">+ добавить систему</button>
+        </div>
+        <span style="font-size: 13.5px; color: #ab9a80">Правила — это знания ведущего, а не код. Подойдёт любая система: Pathfinder, GURPS, своя.</span>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+          <sc-for list="{{limits}}" as="l" hint-placeholder-count="3">
+            <div style="padding: 10px; border-radius: 6px; background: #1b1511; border: 1px solid rgba(207,168,96,0.18); display: flex; flex-direction: column; gap: 2px">
+              <span style="font-size: 13.5px; color: #ab9a80">{{l.k}}</span>
+              <span style="font-family: 'PT Mono', monospace; font-size: 18px; color: #ece1cb">{{l.v}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+
+    <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <section aria-label="Картинки" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Картинки · fal</span>
+          <span style="font-size: 13.5px; color: #64a998">● подключено</span>
+        </div>
+        <sc-for list="{{toggles}}" as="t" hint-placeholder-count="5">
+          <button type="button" onClick="{{t.flip}}" role="switch" aria-checked="{{t.on}}" style="display: grid; grid-template-columns: minmax(0, 1fr) 48px; gap: 12px; align-items: center; min-height: 56px; padding: 8px 10px; border-radius: 6px; background: #1b1511; border: 1px solid rgba(207,168,96,0.18); color: #ece1cb; cursor: pointer; text-align: left">
+            <span style="display: flex; flex-direction: column">
+              <span style="font-size: 15.5px">{{t.title}}</span>
+              <span style="font-size: 13px; color: #ab9a80">{{t.hint}}</span>
+            </span>
+            <span style="{{t.track}}"><span style="{{t.knob}}"></span></span>
+          </button>
+        </sc-for>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px">
+          <div style="display: flex; justify-content: space-between; font-size: 14px">
+            <span>Сегодня нарисовано</span>
+            <span style="font-family: 'PT Mono', monospace; color: #cfa860">12 / 40</span>
+          </div>
+          <div style="height: 8px; border-radius: 6px; background: #120d0a; border: 1px solid rgba(207,168,96,0.26); overflow: hidden"><div style="width: 30%; height: 100%; background: linear-gradient(90deg, #a98340, #e7c47d)"></div></div>
+          <span style="font-size: 13px; color: #8d7142">После лимита новые предметы получают значок, а картинку можно заказать вручную.</span>
+        </div>
+      </section>
+
+      <section aria-label="Визуальная библия" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+        <div style="display: flex; justify-content: space-between; align-items: baseline">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Стиль мира · визуальная библия</span>
+          <button type="button" style="min-height: 32px; padding: 0 10px; background: #211913; color: #cfa860; border: 1px solid rgba(207,168,96,0.26); border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 11.5px; cursor: pointer">Изменить</button>
+        </div>
+        <p style="margin: 0; font-size: 14.5px; color: #d8ccb4; font-style: italic">Стимпанк поверх постапокалипсиса, масляная живопись, тёплый латунный свет, дым и эфиритовое сияние; без текста на картинке. Предметы — на тёмном бархате, три четверти, мягкая тень.</p>
+        <div style="display: flex; gap: 8px; align-items: center">
+          <img src="/_blob/63387743fbeba1b2a86ee3b73af6fa3b" alt="образец: портрет" style="width: 56px; height: 56px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(207,168,96,0.4)">
+          <img src="/_blob/3cafd2595df52c06714fd948bae33d78" alt="образец: дирижабль" style="width: 96px; height: 56px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(207,168,96,0.4)">
+          <img src="/_blob/564dcefc7972346914b9ab9a5a4e29d9" alt="образец: портрет" style="width: 56px; height: 56px; border-radius: 6px; object-fit: cover; border: 1px solid rgba(207,168,96,0.4)">
+          <span style="font-size: 13px; color: #ab9a80">образцы, по которым держится стиль</span>
+        </div>
+      </section>
+
+      <section aria-label="Очередь" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 6px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Мастерская художника</span>
+        <sc-for list="{{jobs}}" as="j" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: center; min-height: 52px; padding: 6px 8px; border-radius: 6px; background: #1b1511; border: 1px solid rgba(207,168,96,0.14)">
+            <span style="{{j.thumb}}"></span>
+            <span style="display: flex; flex-direction: column; min-width: 0">
+              <span style="font-size: 15px">{{j.name}}</span>
+              <span style="{{j.statusStyle}}">{{j.status}}</span>
+            </span>
+            <button type="button" style="min-height: 34px; padding: 0 10px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 11.5px; cursor: pointer">{{j.action}}</button>
+          </div>
+        </sc-for>
+        <span style="font-size: 13px; color: #8d7142">Ход никогда не ждёт картинку. При перерисовке старая версия остаётся, пока новая не готова; прошлые версии можно вернуть.</span>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { model: 'opus', effort: 'high', narrator: 'one', rolls: 'mixed', items: true, npc: true, scenes: true, holdings: true, retry: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const seg = (on) => 'min-height: 38px; padding: 0 14px; border-radius: 5px; cursor: pointer; font-family: \'Alegreya Sans\', sans-serif; font-size: 15px; ' +
+      (on ? 'background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; font-weight: 700;' : 'background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);');
+    const models = [
+      { id: 'opus', vendor: 'Anthropic', name: 'Claude Opus 5.5', desc: 'Сильнее в длинной памяти, персонажах и последствиях. Окно на 1 млн токенов.', meta: '$4 / $20 за млн · кэш −95%' },
+      { id: 'astra', vendor: 'OpenAI', name: 'GPT-6 Astra', desc: 'Быстрее отвечает, хорош в бою и механике. Текущий ведущий приложения.', meta: 'цены — по тарифу OpenAI' }
+    ].map((m) => ({
+      ...m, on: st.model === m.id ? 'true' : 'false', pick: () => this.setState({ model: m.id }),
+      style: 'display: flex; flex-direction: column; gap: 4px; padding: 14px; border-radius: 8px; cursor: pointer; text-align: left; color: #ece1cb; ' +
+        (st.model === m.id ? 'background: #3a2c1f; border: 1.5px solid #cfa860; box-shadow: 0 0 0 3px rgba(207,168,96,0.15);' : 'background: #1b1511; border: 1.5px solid rgba(207,168,96,0.2);')
+    }));
+    const E = { low: ['Быстро', 'Короткие ответы за секунды. Для болтовни в таверне.'], medium: ['Обычно', 'Хороший баланс скорости и продуманности.'], high: ['Глубоко', 'Ведущий дольше думает над последствиями и тайнами. Рекомендуется.'], max: ['Максимум', 'Для финалов арок и сложных сцен. Дольше и дороже.'] };
+    const efforts = Object.keys(E).map((id) => ({ label: E[id][0], pick: () => this.setState({ effort: id }), style: seg(st.effort === id) }));
+    const opt = (key, id, label) => ({ label, pick: () => this.setState({ [key]: id }), style: seg(st[key] === id) });
+    const choices = [
+      { title: 'Рассказчик', opts: [opt('narrator', 'one', 'Один ведущий видит всё'), opt('narrator', 'two', 'Два этапа: план, потом рассказ')],
+        hint: st.narrator === 'one' ? 'Один вызов модели: знает тайны мира и мысли персонажей, но не выдаёт их. Быстрее и живее.' : 'Сначала скрытый план с тайнами, потом отдельный рассказ без них. Строже, но медленнее.' },
+      { title: 'Броски', opts: [opt('rolls', 'me', 'Все кидаю я'), opt('rolls', 'mixed', 'Важные — я, остальные — ведущий'), opt('rolls', 'dm', 'Все кидает ведущий')],
+        hint: st.rolls === 'mixed' ? 'В решающий момент ход встаёт на паузу и открывается лоток. Остальные броски ведущий делает сам и показывает квитанцию.' : st.rolls === 'me' ? 'Каждая проверка героя ждёт твоего броска в лотке.' : 'Ведущий бросает всё сам; каждая квитанция видна в ленте.' }
+    ];
+    const limits = [{ k: 'Изменений мира за ход', v: 'до 20' }, { k: 'Новых персонажей за ход', v: 'до 5' }, { k: 'Деньги и предметы', v: 'без лимита' }];
+    const tg = (key, title, hint) => ({
+      title, hint, on: st[key] ? 'true' : 'false', flip: () => this.setState({ [key]: !st[key] }),
+      track: 'position: relative; width: 48px; height: 26px; border-radius: 999px; box-sizing: border-box; ' + (st[key] ? 'background: linear-gradient(180deg, #e7c47d, #a98340); border: 1px solid #e7c47d;' : 'background: #120d0a; border: 1px solid rgba(207,168,96,0.3);'),
+      knob: 'position: absolute; top: 2px; width: 20px; height: 20px; border-radius: 50%; background: ' + (st[key] ? '#16110d' : '#8d7142') + '; left: ' + (st[key] ? '24px' : '2px') + ';'
+    });
+    const toggles = [
+      tg('items', 'Рисовать новые предметы сразу', 'Предмет попал в инвентарь — запрос в fal уходит сам. Одинаковые предметы делят одну картинку.'),
+      tg('npc', 'Портреты новых людей', 'Спутникам и важным NPC — при первой встрече. Прохожим — только по кнопке.'),
+      tg('scenes', 'Иллюстрации ключевых сцен', 'Новое место или поворот арки получают картинку над текстом.'),
+      tg('holdings', 'Транспорт, звери и базы', 'Корабль, ездовой ящер или лагерь — картинка при появлении.'),
+      tg('retry', 'Перерисовывать без подтверждения', 'Выключено: перед перерисовкой можно поправить описание.')
+    ];
+    const thumb = (kind) => 'width: 40px; height: 40px; border-radius: 6px; box-sizing: border-box; ' + ({
+      drawing: 'border: 1.5px dashed #cfa860; background: linear-gradient(90deg, #1b1511 0, #3a2c1f 50%, #1b1511 100%); background-size: 160px 100%; animation: shimmer 1.6s linear infinite;',
+      done: 'border: 1.5px solid #ae93d6; background: radial-gradient(circle at 50% 40%, #6b5a8a, #1b1511 70%);',
+      error: 'border: 1.5px solid #c0563a; background: #1b1511;',
+      queued: 'border: 1.5px dashed rgba(207,168,96,0.3); background: #120d0a;'
+    })[kind];
+    const S = { drawing: ['рисуется · ~15 с', '#e3cf9f'], done: ['готово · версия 2', '#64a998'], error: ['fal не ответил · старая картинка на месте', '#c0563a'], queued: ['в очереди', '#ab9a80'] };
+    const job = (name, kind, action) => ({ name, thumb: thumb(kind), status: S[kind][0], statusStyle: 'font-size: 13px; color: ' + S[kind][1] + ';', action });
+    const jobs = [
+      job('Ледяной клинок Ирэны · предмет', 'drawing', 'Отменить'),
+      job('Лиран Ин\'Ваэль · портрет', 'drawing', 'Отменить'),
+      job('Слеза Аэль-Тириона · предмет', 'done', 'Версии'),
+      job('Пещера Альварешей · база', 'error', 'Повторить'),
+      job('Дом голосов · сцена', 'queued', 'Убрать')
+    ];
+    const T = { opus: ['2,1 с', '$0,06', '1'], astra: ['1,4 с', '—', '2'] }[st.model];
+    return {
+      models, efforts, effortHint: E[st.effort][1], choices, limits, toggles, jobs,
+      stats: { time: T[0], cost: T[1], rej: T[2] }
+    };
+  }
+}
+</script>
+</body>
+</html>

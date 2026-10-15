@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Карта и путешествия</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(231,196,125,0.6)}100%{box-shadow:0 0 0 14px rgba(231,196,125,0)}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; border: 1px solid rgba(207,168,96,0.55); background: linear-gradient(180deg, #3a2c1f, #271d15); border-radius: 6px; padding: 14px 18px 12px">
+    <div style="display: grid; gap: 4px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Атлас знакомых мест · {{crumbs}}</span>
+      <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 700; font-size: 32px; line-height: 1.05; color: #cfa860">{{levelTitle}}</h1>
+    </div>
+    <div role="group" aria-label="Уровень карты" style="display: flex; gap: 6px">
+      <sc-for list="{{levels}}" as="s" hint-placeholder-count="3">
+        <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.on}}" style="{{s.style}}">{{s.label}}</button>
+      </sc-for>
+    </div>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+    <div style="flex: 2 1 640px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+      <section aria-label="Карта" style="position: relative; aspect-ratio: 1000 / 560; border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #1d2a2c, #0f1416 80%)">
+        <sc-if value="{{isWorld}}" hint-placeholder-val="{{ true }}">
+          <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+            <path d="M0 40C50 70 90 110 140 135C175 155 190 200 215 235C232 265 200 305 175 345C150 390 110 440 75 490L0 525Z" fill="#2b241b" stroke="#8d7142" stroke-width="1.4"></path>
+            <path d="M1000 70C950 85 900 100 862 135C825 170 812 182 775 195C738 208 712 245 680 282C662 305 675 342 693 373C712 403 750 415 787 421C825 427 875 402 912 421C950 440 987 465 1000 475Z" fill="#2b241b" stroke="#8d7142" stroke-width="1.4"></path>
+            <path d="M40 26C280 0 650 12 990 40" fill="none" stroke="#e3cf9f" stroke-opacity="0.5" stroke-width="2" stroke-dasharray="2 6"></path>
+            <text x="500" y="34" text-anchor="middle" font-family="PT Mono, monospace" font-size="13" fill="#e3cf9f" fill-opacity="0.75">РУБЕЦ</text>
+            <path d="M120 213C300 150 520 260 700 347" fill="none" stroke="#cfa860" stroke-width="3"></path>
+            <path d="M700 347C760 305 815 275 870 246" fill="none" stroke="#cfa860" stroke-width="3" stroke-dasharray="10 8"></path>
+            <text x="410" y="232" text-anchor="middle" font-family="Alegreya Sans, sans-serif" font-size="15" fill="#8d7142">Атлантика · 4 дня полёта</text>
+            <text x="800" y="318" text-anchor="middle" font-family="Alegreya Sans, sans-serif" font-size="15" fill="#8d7142">≈ 2 дня</text>
+          </svg>
+        </sc-if>
+        <sc-if value="{{isRegion}}" hint-placeholder-val="{{ false }}">
+          <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+            <path d="M0 0H1000V560H640C600 470 560 430 470 410C380 390 300 420 210 430C130 440 60 470 0 520Z" fill="#2b241b" stroke="#8d7142" stroke-width="1.4"></path>
+            <path d="M1000 300C880 320 780 360 700 395C640 420 560 430 470 410" fill="none" stroke="#3d6b70" stroke-width="26" stroke-linecap="round" stroke-opacity="0.8"></path>
+            <text x="820" y="300" font-family="Old Standard TT, serif" font-style="italic" font-size="18" fill="#7fa9ac">Тежу</text>
+            <text x="120" y="520" font-family="Old Standard TT, serif" font-style="italic" font-size="18" fill="#7fa9ac">Атлантика</text>
+          </svg>
+        </sc-if>
+        <sc-if value="{{isLocal}}" hint-placeholder-val="{{ false }}">
+          <svg viewBox="0 0 1000 560" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+            <path d="M0 0H1000V560H0Z" fill="#221b15"></path>
+            <path d="M0 360C120 330 220 380 300 420C380 460 480 470 560 440C640 410 700 330 760 300C820 270 900 280 1000 260V560H0Z" fill="#1b3033" stroke="#3d6b70" stroke-width="2"></path>
+            <path d="M260 120C420 60 640 70 760 150C860 215 840 300 760 300C700 300 640 360 560 380C470 400 380 380 330 330C280 280 200 200 260 120Z" fill="#120d0a" stroke="#8d7142" stroke-width="1.6" stroke-dasharray="6 5"></path>
+          </svg>
+        </sc-if>
+        <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,230,180,0.05) 1px, transparent 1px); background-size: 4px 4px; pointer-events: none"></div>
+        <span style="position: absolute; left: 12px; top: 10px; font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #ab9a80; background: rgba(14,10,8,0.7); padding: 3px 8px; border-radius: 3px">Фон атласа · иллюстрация fal</span>
+        <div style="position: absolute; right: 10px; top: 8px; display: flex; gap: 6px">
+          <button type="button" onClick="{{toggleEdit}}" style="{{editBtnStyle}}">{{editLabel}}</button>
+          <button type="button" style="min-height: 32px; padding: 0 10px; background: rgba(14,10,8,0.82); color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 5px; font-family: 'Alegreya Sans', sans-serif; font-size: 13.5px; cursor: pointer">Перерисовать фон</button>
+        </div>
+        <sc-for list="{{pins}}" as="p" hint-placeholder-count="4">
+          <button type="button" onClick="{{p.pick}}" aria-pressed="{{p.on}}" aria-label="{{p.aria}}" style="{{p.wrap}}">
+            <span style="{{p.mark}}"></span>
+            <span style="{{p.label}}">{{p.name}}</span>
+          </button>
+        </sc-for>
+        <sc-if value="{{editing}}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); background: rgba(14,10,8,0.88); border: 1px dashed #cfa860; border-radius: 6px; padding: 8px 12px; font-size: 14px; color: #e3cf9f">Выбери место справа и нажми на карту, чтобы поставить метку. Это только оформление: путь и правила не меняются.</div>
+        </sc-if>
+      </section>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 13px; color: #ab9a80">
+        <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #e7c47d; vertical-align: -1px; margin-right: 6px"></span>вы здесь</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #64a998; vertical-align: -2px; margin-right: 6px"></span>посещено</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #9b938a; vertical-align: -2px; margin-right: 6px"></span>известно</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #ae93d6; vertical-align: -2px; margin-right: 6px"></span>цель</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 2px dashed #b8703f; vertical-align: -2px; margin-right: 6px"></span>слухи</span>
+        <span style="color: #8d7142">Метки берутся из записей ведущего, фон — только иллюстрация.</span>
+      </div>
+      <sc-if value="{{hasCourse}}" hint-placeholder-val="{{ false }}">
+        <div role="status" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid #cfa860; border-radius: 6px; padding: 12px 14px">
+          <div style="display: grid; gap: 2px">
+            <b style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px">Курс намечен: {{course}}</b>
+            <span style="font-size: 14px; color: #ab9a80">Путешествие ещё не началось. В поле хода уже вставлено: <i style="color: #e3cf9f">«Берём курс на {{course}}»</i>. Путь, время и встречи решает ведущий.</span>
+          </div>
+          <button type="button" style="min-height: 42px; padding: 0 16px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700; cursor: pointer">В игру →</button>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <section aria-label="Выбранное место" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; overflow: hidden">
+        <sc-if value="{{sel.drawing}}" hint-placeholder-val="{{ true }}">
+          <div role="img" aria-label="Иллюстрация места рисуется" style="aspect-ratio: 16 / 7; display: grid; place-items: center; border-bottom: 1px dashed #cfa860; background: linear-gradient(90deg, #1b1511 0, #3a2c1f 50%, #1b1511 100%); background-size: 600px 100%; animation: shimmer 2s linear infinite; font-family: 'PT Mono', monospace; font-size: 12px; color: #e3cf9f">иллюстрация места рисуется…</div>
+        </sc-if>
+        <sc-if value="{{sel.blank}}" hint-placeholder-val="{{ false }}">
+          <div style="aspect-ratio: 16 / 7; display: grid; place-items: center; border-bottom: 1px solid rgba(207,168,96,0.2); background: #120d0a">
+            <button type="button" style="min-height: 36px; padding: 0 12px; background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 5px; font-family: 'Alegreya Sans', sans-serif; font-size: 14px; cursor: pointer">Нарисовать место</button>
+          </div>
+        </sc-if>
+        <div style="padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Запись о месте</span>
+          <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 26px; font-weight: 700">{{sel.name}}</h2>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap"><span style="{{sel.badge}}">{{sel.status}}</span><span style="font-size: 13px; color: #ab9a80">{{sel.where}}</span></div>
+          <p style="margin: 0; color: #d8ccb4">{{sel.desc}}</p>
+          <span style="font-size: 14px; color: #ab9a80">{{sel.facts}}</span>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px">
+            <button type="button" onClick="{{setCourse}}" style="{{courseBtn}}">{{courseLabel}}</button>
+            <button type="button" style="min-height: 44px; padding: 0 14px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-family: 'Alegreya Sans', sans-serif; font-size: 15px; cursor: pointer">Заметка</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Известные места" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 4px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Известные места · {{placesCount}}</span>
+        <sc-for list="{{places}}" as="p" hint-placeholder-count="7">
+          <button type="button" onClick="{{p.pick}}" style="{{p.style}}">
+            <span style="display: flex; flex-direction: column; min-width: 0; text-align: left">
+              <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 16.5px">{{p.name}}</span>
+              <span style="font-size: 12.5px; color: #8d7142">{{p.where}}</span>
+            </span>
+            <span style="{{p.badge}}">{{p.status}}</span>
+          </button>
+        </sc-for>
+        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(207,168,96,0.26); display: flex; justify-content: space-between; align-items: center; gap: 8px">
+          <span style="font-size: 13.5px; color: #ab9a80">Без метки на карте: Бостон</span>
+          <button type="button" onClick="{{toggleEdit}}" style="min-height: 32px; padding: 0 10px; background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.4); border-radius: 5px; font-family: 'Alegreya Sans', sans-serif; font-size: 13px; cursor: pointer">Поставить метку</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { level: "world", place: "geneva", course: null, editing: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const TONE = { "вы здесь": "#e7c47d", "посещено": "#64a998", "известно": "#9b938a", "цель": "#ae93d6", "слухи": "#b8703f", "разрушено": "#c9563f" };
+    const P = {
+      ny: { name: "Нуйорк-Гхар", where: "Гудзонские причалы", status: "посещено", desc: "Родной город Джеймса. Роза, Томас, Гронна и Сарэт остались там.", facts: "Узел-7 под Гхар-Маазом · лавка Розы", art: "blank" },
+      lisbon: { name: "Лиссабон", where: "город контрабандистов", status: "посещено", desc: "Порт контрабандистов и союзников Розы. Фабрика Искр взорвана.", facts: "Союзники: Тиаго и Инеш Альвареш", art: "drawing" },
+      geneva: { name: "Женева", where: "«Глубина-1», край складки", status: "цель", desc: "Главная установка Моста. По догадке АРИАДНЫ, внутри всё ещё 03:17.", facts: "Экспедиция майора Рурка ждёт у края · двое не вернулись", art: "drawing" },
+      marseille: { name: "Марсель", where: "Совет Лиги?", status: "слухи", desc: "Изольда обмолвилась о собрании Лиги. Подтверждений нет.", facts: "Слух, не установленный факт", art: "blank" },
+      carc: { name: "Каркавелуш", where: "Дом голосов", status: "посещено", desc: "Станция трансатлантического кабеля, через которую говорит АРИАДНА.", facts: "Охрана: прихожане Марианы и люди Инеш", art: "drawing" },
+      alc: { name: "Алкантара", where: "бывшая Фабрика Искр", status: "разрушено", desc: "Фабрика Искр взорвана. «Звезда Атлантики» сгорела в Тежу.", facts: "Лига ищет виновных", art: "blank" },
+      cave: { name: "Пещера Альварешей", where: "морская пещера", status: "вы здесь", desc: "Стоянка «Железной Бабки». Вход с моря, только в прилив.", facts: "Хозяева: Тиаго и Инеш", art: "drawing" },
+      dock: { name: "Причал «Бабки»", where: "внутри пещеры", status: "вы здесь", desc: "Тали, бочки с водой и запах смолы. Тинка что-то чинит.", facts: "Экипаж на борту", art: "blank" },
+      seaway: { name: "Вход с моря", where: "прилив · 06:10–09:40", status: "известно", desc: "Узкий проход в скалах. В отлив корабль не пройдёт.", facts: "Ближайшее окно — сейчас", art: "blank" },
+      store: { name: "Склад Тиаго", where: "верхний ярус", status: "известно", desc: "Ящики без маркировки. Тиаго не любит, когда сюда ходят.", facts: "Сбыт трофеев", art: "blank" },
+      boston: { name: "Бостон", where: "Община Тихого Голоса", status: "известно", desc: "Одна из общин, которым Брат Ноль писал письма.", facts: "Метки на карте пока нет", art: "blank" }
+    };
+    const LV = {
+      world: { title: "Известный мир", crumbs: "Мир", pins: [["ny", 12, 38], ["lisbon", 70, 62], ["geneva", 87, 44], ["marseille", 81, 69]] },
+      region: { title: "Лиссабон и окрестности", crumbs: "Мир › Лиссабон", pins: [["lisbon", 50, 32], ["alc", 38, 52], ["carc", 22, 70], ["cave", 64, 64]] },
+      local: { title: "Пещера Альварешей", crumbs: "Мир › Лиссабон › Пещера", pins: [["dock", 52, 46], ["seaway", 18, 70], ["store", 72, 30]] }
+    };
+    const lv = LV[st.level];
+    const levels = [["world", "Мир"], ["region", "Регион"], ["local", "Местность"]].map(([id, label]) => ({
+      label, on: st.level === id ? "true" : "false",
+      pick: () => this.setState({ level: id, place: LV[id].pins[0][0] }),
+      style: "min-height: 40px; padding: 0 14px; border-radius: 5px; cursor: pointer; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; " +
+        (st.level === id ? "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; font-weight: 700;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);")
+    }));
+    const statusAt = (id) => (st.level === "world" && id === "lisbon") || (st.level === "region" && id === "cave") || (st.level === "local" && id === "dock") ? "вы здесь" : P[id].status;
+    const pins = lv.pins.map(([id, x, y]) => {
+      const s = statusAt(id), col = TONE[s], on = st.place === id, here = s === "вы здесь", course = st.course === id;
+      return {
+        name: P[id].name, on: on ? "true" : "false", aria: P[id].name + " · " + s,
+        pick: () => this.setState({ place: id }),
+        wrap: "position: absolute; left: " + x + "%; top: " + y + "%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 4px; background: none; border: 0; padding: 4px; cursor: pointer;",
+        mark: "display: block; width: " + (here ? 18 : 14) + "px; height: " + (here ? 18 : 14) + "px; border-radius: 50%; box-sizing: border-box; " +
+          (here ? "background: #e7c47d; border: 3px solid #16110d; animation: pulse 1.8s ease-out infinite;" : "background: #16110d; border: 2.5px " + (s === "слухи" ? "dashed " : "solid ") + col + ";") +
+          (on ? " outline: 2px solid #f1dca8; outline-offset: 3px;" : "") + (course ? " box-shadow: 0 0 0 6px rgba(174,147,214,0.35);" : ""),
+        label: "font-family: 'Old Standard TT', Georgia, serif; font-size: " + (here ? 17 : 15) + "px; font-weight: " + (here || on ? 700 : 400) + "; color: " + (on ? "#f1dca8" : "#ece1cb") + "; background: rgba(14,10,8,0.72); padding: 0 6px; border-radius: 3px; white-space: nowrap;"
+      };
+    });
+    const sel = P[st.place] || P[lv.pins[0][0]];
+    const selStatus = statusAt(st.place);
+    const isHere = selStatus === "вы здесь";
+    const badge = (s) => "font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; border: 1px solid " + TONE[s] + "; color: " + TONE[s] + ";";
+    const listIds = ["lisbon", "geneva", "ny", "carc", "alc", "marseille", "cave"];
+    const places = listIds.map((id) => ({
+      name: P[id].name, where: P[id].where, status: P[id].status, badge: badge(P[id].status),
+      pick: () => {
+        const lvl = ["world", "region", "local"].find((l) => LV[l].pins.some((p) => p[0] === id)) || st.level;
+        this.setState({ place: id, level: lvl });
+      },
+      style: "display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 46px; padding: 4px 10px; border-radius: 6px; cursor: pointer; color: #ece1cb; " +
+        (st.place === id ? "background: #3a2c1f; border: 1px solid #cfa860;" : "background: transparent; border: 1px solid transparent;")
+    }));
+    return {
+      levels, pins, places, placesCount: listIds.length + 1,
+      levelTitle: lv.title, crumbs: lv.crumbs,
+      isWorld: st.level === "world", isRegion: st.level === "region", isLocal: st.level === "local",
+      sel: { ...sel, status: selStatus, badge: badge(selStatus), drawing: sel.art === "drawing", blank: sel.art !== "drawing" },
+      setCourse: () => { if (!isHere) this.setState({ course: st.place }); },
+      courseLabel: isHere ? "Вы здесь" : st.course === st.place ? "Курс намечен" : "Наметить курс",
+      courseBtn: "min-height: 44px; padding: 0 16px; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700; " +
+        (isHere ? "background: #1b1511; color: #6f5f4a; border: 1px dashed rgba(207,168,96,0.2); cursor: default;" : "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; cursor: pointer;"),
+      hasCourse: !!st.course, course: st.course ? P[st.course].name : "",
+      editing: st.editing, toggleEdit: () => this.setState({ editing: !st.editing }),
+      editLabel: st.editing ? "Готово" : "Переставить метки",
+      editBtnStyle: "min-height: 32px; padding: 0 10px; border-radius: 5px; font-family: 'Alegreya Sans', sans-serif; font-size: 13.5px; cursor: pointer; " +
+        (st.editing ? "background: #cfa860; color: #16110d; border: 1px solid #e7c47d;" : "background: rgba(14,10,8,0.82); color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55);")
+    };
+  }
+}
+</script>
+</body>
+</html>
