@@ -47,9 +47,28 @@ Three sequential synthetic scenarios cover ordinary conversation, movement/searc
 
 Pricing source checked for this run: [official GPT-6 Astra model page](https://developers.openai.com/api/docs/models/gpt-6-astra). Estimated Standard spend uses $10/M uncached input, $1/M cached input and $50/M output; reasoning tokens are included in output, not billed twice. Actual invoiced/cache-write charges are not exposed by this harness, so the conservative ceiling remains the spending safeguard.
 
-## Final results
+## Final live results — passed
 
-All required offline gates have passed. No paid request has been made at this code checkpoint. Final live measurements, exact tested code SHA and synthetic evidence paths will be appended without changing the verified implementation.
+Exact live-tested code: **`18df9906c6ba54185dd03ebb9f37f0b48b6105ff`**. The subsequent evidence/status commit changes documentation/data only. All **four paid text requests** returned **HTTP 200**, actual model **`gpt-6-astra`**, reasoning **high**, service tier **default**, completed provider responses and successful schema/decision parsing. All **three turns committed** in `public-unified` mode, with **zero dedicated narrator calls**, **zero summary calls**, **zero SQL failures**, **zero media calls** and **zero quality retries**.
+
+| Request | Scenario/response | Request bytes | Provider seconds | Input tokens | Output tokens | Reasoning tokens | Cached input | Parse |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | Conversation — final | 38,979 | 24.227 | 9,807 | 780 | 506 | 0 | Pass |
+| 2 | Movement/search — skill request | 42,432 | 4.661 | 10,923 | 157 | 85 | 4,205 | Pass |
+| 3 | Movement/search — final continuation | 42,793 | 17.267 | 11,060 | 649 | 491 | 4,205 | Pass |
+| 4 | Ordinary bread gift — final/effect | 43,476 | 26.156 | 11,267 | 1,052 | 690 | 4,205 | Pass |
+
+Provider latency includes response body completion; full turn latency includes context, tools and persistence. Conversation completed in **24.321s**, movement/search with its tool continuation in **22.076s**, and the gift in **26.260s**. Observed full-turn median is **24.321s**, nearest-rank p95 **26.260s**, from only **three** turns. Mean provider-request latency is **18.078s**. These are measured samples, not a general performance guarantee or comparison against historical owner failures/Fast tiers.
+
+Totals: **43,057 input**, **2,638 output**, **1,772 reasoning**, **12,615 cached input tokens**. Estimated Standard spend accounting for reported cache reads: **US $0.448935**. The harness's all-input-uncached estimate is **$0.562470**; pricing all actual input conservatively at $12.50/M gives approximately **$0.670113**. The pre-dispatch worst-case reservations totaled **$3.017600**, below $5. Invoice/cache-write details are not exposed, so none of these estimates is represented as an invoice.
+
+**Consequences:** the production server recorded raw skill die **18**, modifier **+2**, total **20**, success, then the same Astra continued. Movement remained within the existing Location. The gift proposed one existing `mundane_grant`; index **0** was accepted, its consequence beat depended on that index, and one new hero-owned Item persisted at quantity **1** (`ce14a703-3976-53f2-8bb4-be539bb187da`). HP stayed **4**, Focus **40**, supplies **0**, Nera HP **100**, rests **0**, Location unchanged; world minutes advanced **0 → 2 → 3** across the three turns. No Quest/job effect was proposed.
+
+**Prose observations, without scores or repair:** conversation was reciprocal and let Nera answer without forcing business; search described the server-authorized successful crossing clearly without inventing dice; the gift consequence appeared once and the offer to help later remained ordinary dialogue. Original outputs are preserved in the data artifact. No rejected optional effect happened in this live run; rejection/compatible-fiction remains covered offline. The private-informed branch was verified offline, not with additional paid calls.
+
+Evidence: [P0_RUNTIME_LIVE_SMOKE_DATA.json](P0_RUNTIME_LIVE_SMOKE_DATA.json). Bounded raw synthetic evidence remains outside Git at `C:/Users/karis/.codex/owner-backups/p0-live-playability/20261014-2331/final-privacy-gate/live-smoke-raw-synthetic.json`, SHA-256 **`33826bc7ca8031b0c0effa974cdb4a21c985139906c9e81df93624dab8b28f79`**. Ignored focused/full/type/lint/build logs are under `test-results/p0-runtime/final-gate/`. There will be no further provider dispatch in this gate.
+
+**Candidate status:** privacy boundary and unified live contract gates passed. Ready for owner activation review; Migration 51/main integration/owner activation still require separate authorization.
 
 ## Owner safety
 

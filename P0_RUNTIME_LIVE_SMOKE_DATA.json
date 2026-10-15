@@ -1,0 +1,826 @@
+{
+  "schemaVersion": 1,
+  "syntheticOnly": true,
+  "startingReviewedSha": "56d2e3b0b41602758d87fbbf46dc2fc267e8fb80",
+  "testedCodeSha": "18df9906c6ba54185dd03ebb9f37f0b48b6105ff",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "serviceTier": "default",
+  "ownerDataUsed": false,
+  "requestsMade": 4,
+  "limits": {
+    "maxRequests": 4,
+    "maxSpendUsd": 5,
+    "maxInputUpperBytes": 64000,
+    "maxOutputTokens": 4096,
+    "inputUsdPerMillion": 12.5,
+    "outputUsdPerMillion": 50
+  },
+  "actualReservedCeilingUsd": 3.0176,
+  "estimatedStandardSpendUsd": 0.448935,
+  "uncachedStandardUpperEstimateUsd": 0.56247,
+  "conservativeUsageUpperEstimateUsd": 0.6701125,
+  "tokenTotals": {
+    "input": 43057,
+    "output": 2638,
+    "reasoning": 1772,
+    "cachedInput": 12615
+  },
+  "providerLatencyMs": {
+    "mean": 18077.70845,
+    "median": 20747.0014
+  },
+  "turnLatencyMs": {
+    "median": 24320.8448,
+    "observedP95NearestRank": 26259.566,
+    "sampleCount": 3
+  },
+  "totals": {
+    "committedTurns": 3,
+    "narratorCalls": 0,
+    "foregroundSummaryCalls": 0,
+    "mediaProviderCalls": 0,
+    "sqlFailures": 0
+  },
+  "coverage": {
+    "conversation": true,
+    "movementSearch": true,
+    "skillContinuation": true,
+    "acceptedDurableEffect": true,
+    "rejectedOptionalEffect": false,
+    "privateInformedLive": false
+  },
+  "initialState": {
+    "state": {
+      "hp": 4,
+      "resources": {
+        "focus": 40
+      },
+      "world_minutes": 0,
+      "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+    },
+    "npcHp": 100,
+    "supplies": 0,
+    "items": [
+      {
+        "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+        "quantity": 1,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_slot": "hand"
+      },
+      {
+        "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+        "quantity": 1,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": null,
+        "equipped_slot": null
+      },
+      {
+        "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+        "quantity": 0,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": null,
+        "equipped_slot": null
+      },
+      {
+        "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+        "quantity": 1,
+        "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+        "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+        "equipped_slot": "hand"
+      }
+    ],
+    "rests": 0,
+    "turns": 4,
+    "events": 0
+  },
+  "finalState": {
+    "state": {
+      "hp": 4,
+      "resources": {
+        "focus": 40
+      },
+      "world_minutes": 3,
+      "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+    },
+    "npcHp": 100,
+    "supplies": 0,
+    "items": [
+      {
+        "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+        "quantity": 1,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_slot": "hand"
+      },
+      {
+        "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+        "quantity": 1,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": null,
+        "equipped_slot": null
+      },
+      {
+        "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+        "quantity": 0,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": null,
+        "equipped_slot": null
+      },
+      {
+        "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+        "quantity": 1,
+        "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+        "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+        "equipped_slot": "hand"
+      },
+      {
+        "id": "ce14a703-3976-53f2-8bb4-be539bb187da",
+        "quantity": 1,
+        "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+        "equipped_entity_id": null,
+        "equipped_slot": null
+      }
+    ],
+    "rests": 0,
+    "turns": 7,
+    "events": 3
+  },
+  "requests": [
+    {
+      "request": 1,
+      "scenario": "ordinary-conversation",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "reasoning": "high",
+      "serviceTier": "default",
+      "httpStatus": 200,
+      "responseStatus": "completed",
+      "requestBytes": 38979,
+      "inputUpperBytesWithReserve": 41027,
+      "providerLatencyMs": 24226.5843,
+      "inputTokens": 9807,
+      "outputTokens": 780,
+      "reasoningTokens": 506,
+      "cachedInputTokens": 0,
+      "schemaParseSucceeded": true,
+      "estimatedStandardSpendUsd": 0.13707,
+      "reservedCeilingUsd": 0.717638,
+      "assistantOutputJson": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "schemaVersion": 1,
+          "worldMinutes": 0,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "“Quiet so far,” Nera says, glancing toward the notice board. “Mostly waiting for someone to ask about the work. I try not to hover when people read the notices. Nobody likes someone looking over their shoulder.”\n\nShe gives a small, rueful smile. “Not that I'm particularly good at waiting.”",
+                "requiresEffects": []
+              },
+              {
+                "text": "With your attention still on her, she leaves it at that for a moment rather than turning the conversation toward business.\n\n“It's kind of you to ask, Ari. How has yours been?”",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "Morning light falls across the village notice board. Nera faces Ari in the square, with the shallow millrace and its narrow plank crossing nearby.",
+              "requiresEffects": []
+            }
+          }
+        }
+      },
+      "normalizedParsedDecision": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "worldMinutes": 0,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "“Quiet so far,” Nera says, glancing toward the notice board. “Mostly waiting for someone to ask about the work. I try not to hover when people read the notices. Nobody likes someone looking over their shoulder.”\n\nShe gives a small, rueful smile. “Not that I'm particularly good at waiting.”",
+                "requiresEffects": []
+              },
+              {
+                "text": "With your attention still on her, she leaves it at that for a moment rather than turning the conversation toward business.\n\n“It's kind of you to ask, Ari. How has yours been?”",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "Morning light falls across the village notice board. Nera faces Ari in the square, with the shallow millrace and its narrow plank crossing nearby.",
+              "requiresEffects": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": 2,
+      "scenario": "movement-search-and-skill",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "reasoning": "high",
+      "serviceTier": "default",
+      "httpStatus": 200,
+      "responseStatus": "completed",
+      "requestBytes": 42432,
+      "inputUpperBytesWithReserve": 44480,
+      "providerLatencyMs": 4661.2798,
+      "inputTokens": 10923,
+      "outputTokens": 157,
+      "reasoningTokens": 85,
+      "cachedInputTokens": 4205,
+      "schemaParseSucceeded": true,
+      "estimatedStandardSpendUsd": 0.079235,
+      "reservedCeilingUsd": 0.7608,
+      "assistantOutputJson": {
+        "type": "tool",
+        "call": {
+          "kind": "skill",
+          "actorId": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+          "targetId": null,
+          "dc": 12,
+          "itemId": null,
+          "scope": null
+        },
+        "final": null
+      },
+      "normalizedParsedDecision": {
+        "type": "tool",
+        "call": {
+          "kind": "skill",
+          "actorId": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+          "targetId": null,
+          "dc": 12,
+          "itemId": null,
+          "scope": null
+        },
+        "final": null
+      }
+    },
+    {
+      "request": 3,
+      "scenario": "movement-search-and-skill",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "reasoning": "high",
+      "serviceTier": "default",
+      "httpStatus": 200,
+      "responseStatus": "completed",
+      "requestBytes": 42793,
+      "inputUpperBytesWithReserve": 44841,
+      "providerLatencyMs": 17267.4185,
+      "inputTokens": 11060,
+      "outputTokens": 649,
+      "reasoningTokens": 491,
+      "cachedInputTokens": 4205,
+      "schemaParseSucceeded": true,
+      "estimatedStandardSpendUsd": 0.105205,
+      "reservedCeilingUsd": 0.765312,
+      "assistantOutputJson": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "schemaVersion": 1,
+          "worldMinutes": 2,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "You test the loose boards beside the millrace, watching how the narrow plank shifts under pressure. It rocks as you commit your weight, but you pause, steady yourself, and continue in short, measured steps. With a final creak behind you, you reach the opposite bank without slipping into the water.",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "A narrow, weathered plank spans the shallow millrace beside the village square; rippling water breaks its reflection into wavering strips.",
+              "requiresEffects": []
+            }
+          }
+        }
+      },
+      "normalizedParsedDecision": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "worldMinutes": 2,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "You test the loose boards beside the millrace, watching how the narrow plank shifts under pressure. It rocks as you commit your weight, but you pause, steady yourself, and continue in short, measured steps. With a final creak behind you, you reach the opposite bank without slipping into the water.",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "A narrow, weathered plank spans the shallow millrace beside the village square; rippling water breaks its reflection into wavering strips.",
+              "requiresEffects": []
+            }
+          }
+        }
+      }
+    },
+    {
+      "request": 4,
+      "scenario": "safe-optional-mundane-gift",
+      "configuredModel": "gpt-6-astra",
+      "actualModel": "gpt-6-astra",
+      "reasoning": "high",
+      "serviceTier": "default",
+      "httpStatus": 200,
+      "responseStatus": "completed",
+      "requestBytes": 43476,
+      "inputUpperBytesWithReserve": 45524,
+      "providerLatencyMs": 26155.5512,
+      "inputTokens": 11267,
+      "outputTokens": 1052,
+      "reasoningTokens": 690,
+      "cachedInputTokens": 4205,
+      "schemaParseSucceeded": true,
+      "estimatedStandardSpendUsd": 0.127425,
+      "reservedCeilingUsd": 0.77385,
+      "assistantOutputJson": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "schemaVersion": 1,
+          "worldMinutes": 3,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [
+            {
+              "kind": "mundane_grant",
+              "issuerId": "d9717655-4de9-5acf-b583-a5030a0acefa",
+              "recipientId": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+              "currencyName": null,
+              "currencyAmount": null,
+              "itemName": "Loaf of bread",
+              "itemCategory": "food",
+              "itemDescription": "One ordinary loaf of bread, given freely by Nera."
+            }
+          ],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "Nera hands you the offered loaf, and you tuck it into your pack.",
+                "requiresEffects": [
+                  0
+                ]
+              },
+              {
+                "text": "“You're welcome, Ari.” She glances toward the notice board. “If you meet anyone looking for work later, send them my way. I'd rather explain the notices than stand about waiting for someone to read them.” A small smile returns. “That would help.”",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "Ari and Nera in the village square, the public notice board nearby and the shallow millrace running along the square’s edge.",
+              "requiresEffects": []
+            }
+          }
+        }
+      },
+      "normalizedParsedDecision": {
+        "type": "final",
+        "call": null,
+        "final": {
+          "worldMinutes": 3,
+          "changes": [],
+          "outcomes": [],
+          "privatePatches": [],
+          "effects": [
+            {
+              "kind": "mundane_grant",
+              "issuerId": "d9717655-4de9-5acf-b583-a5030a0acefa",
+              "recipientId": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+              "currencyName": null,
+              "currencyAmount": null,
+              "itemName": "Loaf of bread",
+              "itemCategory": "food",
+              "itemDescription": "One ordinary loaf of bread, given freely by Nera."
+            }
+          ],
+          "publicNarration": {
+            "beats": [
+              {
+                "text": "Nera hands you the offered loaf, and you tuck it into your pack.",
+                "requiresEffects": [
+                  0
+                ]
+              },
+              {
+                "text": "“You're welcome, Ari.” She glances toward the notice board. “If you meet anyone looking for work later, send them my way. I'd rather explain the notices than stand about waiting for someone to read them.” A small smile returns. “That would help.”",
+                "requiresEffects": []
+              }
+            ],
+            "visualDescription": {
+              "text": "Ari and Nera in the village square, the public notice board nearby and the shallow millrace running along the square’s edge.",
+              "requiresEffects": []
+            }
+          }
+        }
+      }
+    }
+  ],
+  "turns": [
+    {
+      "scenario": "ordinary-conversation",
+      "operationId": "a0d7b07a-a2fc-4609-a311-6c5fb147334e",
+      "literalInput": "Nera, how has your morning been? I listen to her answer.",
+      "status": "committed",
+      "responseMode": "public-unified",
+      "providerRequests": 1,
+      "narratorCalls": 0,
+      "totalLatencyMs": 24320.8448,
+      "narration": "“Quiet so far,” Nera says, glancing toward the notice board. “Mostly waiting for someone to ask about the work. I try not to hover when people read the notices. Nobody likes someone looking over their shoulder.”\n\nShe gives a small, rueful smile. “Not that I'm particularly good at waiting.”\n\nWith your attention still on her, she leaves it at that for a moment rather than turning the conversation toward business.\n\n“It's kind of you to ask, Ari. How has yours been?”",
+      "checks": [],
+      "acceptedEffectIndexes": [],
+      "rejectedEffects": [],
+      "before": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 0,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          }
+        ],
+        "rests": 0,
+        "turns": 4,
+        "events": 0
+      },
+      "after": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 0,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          }
+        ],
+        "rests": 0,
+        "turns": 5,
+        "events": 1
+      }
+    },
+    {
+      "scenario": "movement-search-and-skill",
+      "operationId": "9e64399a-e5de-4bfb-95ae-702c7a06ef8f",
+      "literalInput": "I search the loose boards beside the square's millrace for a safe crossing, then carefully try the unstable narrow plank. Let a skill check decide the meaningful risk of slipping into the shallow water.",
+      "status": "committed",
+      "responseMode": "public-unified",
+      "providerRequests": 2,
+      "narratorCalls": 0,
+      "totalLatencyMs": 22075.6356,
+      "narration": "You test the loose boards beside the millrace, watching how the narrow plank shifts under pressure. It rocks as you commit your weight, but you pause, steady yourself, and continue in short, measured steps. With a final creak behind you, you reach the opposite bank without slipping into the water.",
+      "checks": [
+        {
+          "dc": null,
+          "id": "d321d8db-f1bd-5e6c-abea-9b2b94eaa21d",
+          "dice": [
+            18
+          ],
+          "kept": 18,
+          "kind": "skill",
+          "total": 20,
+          "actorId": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+          "success": true,
+          "modifier": 2,
+          "actorName": "Ari",
+          "advantage": "normal",
+          "canReroll": false,
+          "rollNumber": 1,
+          "interactive": false
+        }
+      ],
+      "acceptedEffectIndexes": [],
+      "rejectedEffects": [],
+      "before": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 0,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          }
+        ],
+        "rests": 0,
+        "turns": 5,
+        "events": 1
+      },
+      "after": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 2,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          }
+        ],
+        "rests": 0,
+        "turns": 6,
+        "events": 2
+      }
+    },
+    {
+      "scenario": "safe-optional-mundane-gift",
+      "operationId": "4a5d6fa1-aa6b-461d-bb27-576f6665d8eb",
+      "literalInput": "Nera, thank you; I accept the ordinary loaf of bread you offered me. I put it in my pack and ask how I can help you later.",
+      "status": "committed",
+      "responseMode": "public-unified",
+      "providerRequests": 1,
+      "narratorCalls": 0,
+      "totalLatencyMs": 26259.566,
+      "narration": "Nera hands you the offered loaf, and you tuck it into your pack.\n\n“You're welcome, Ari.” She glances toward the notice board. “If you meet anyone looking for work later, send them my way. I'd rather explain the notices than stand about waiting for someone to read them.” A small smile returns. “That would help.”",
+      "checks": [],
+      "acceptedEffectIndexes": [
+        0
+      ],
+      "rejectedEffects": [],
+      "before": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 2,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          }
+        ],
+        "rests": 0,
+        "turns": 6,
+        "events": 2
+      },
+      "after": {
+        "state": {
+          "hp": 4,
+          "resources": {
+            "focus": 40
+          },
+          "world_minutes": 3,
+          "location": "70c4c6b8-3d5d-5a78-9a61-f46e9403e915"
+        },
+        "npcHp": 100,
+        "supplies": 0,
+        "items": [
+          {
+            "id": "39a2246c-2673-4bd6-b618-933a94a0ee2e",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "88a12fd9-cc67-525c-8f09-602e6fd450fc",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "94efb07d-f95d-486f-b5a0-31904e0b3f83",
+            "quantity": 0,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          },
+          {
+            "id": "ab172cb9-cfec-46ad-a0bc-ca90dc2866d7",
+            "quantity": 1,
+            "owner_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_entity_id": "d9717655-4de9-5acf-b583-a5030a0acefa",
+            "equipped_slot": "hand"
+          },
+          {
+            "id": "ce14a703-3976-53f2-8bb4-be539bb187da",
+            "quantity": 1,
+            "owner_entity_id": "a826fc23-ec3e-5c1a-ae58-f0b4e6827c49",
+            "equipped_entity_id": null,
+            "equipped_slot": null
+          }
+        ],
+        "rests": 0,
+        "turns": 7,
+        "events": 3
+      }
+    }
+  ],
+  "parseDiagnostics": [
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    },
+    {
+      "httpStatus": 200,
+      "phase": "completed",
+      "resultStatus": "success",
+      "reasonCode": null
+    }
+  ],
+  "rawSyntheticEvidence": {
+    "path": "C:/Users/karis/.codex/owner-backups/p0-live-playability/20261014-2331/final-privacy-gate/live-smoke-raw-synthetic.json",
+    "sha256": "33826bc7ca8031b0c0effa974cdb4a21c985139906c9e81df93624dab8b28f79"
+  },
+  "offline": {
+    "focusedDistinct": 202,
+    "privacy": 11,
+    "migration51": 4,
+    "liveHarnessOffline": 6,
+    "fullTotal": 2363,
+    "passed": 2362,
+    "failed": 0,
+    "skipped": 1,
+    "skipReason": "existing explicit-opt-in live disposable Supabase Auth/PostgREST",
+    "durationMs": 503820.0732,
+    "typecheck": "passed",
+    "lintWarnings": 0,
+    "productionWebpackBuild": "passed"
+  }
+}
