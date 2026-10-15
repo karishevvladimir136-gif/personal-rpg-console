@@ -344,3 +344,34 @@ test("finish_turn before any narration asks the model for the text instead of fa
     assert.equal(row.checkpoint.dmLoop.requests, 2);
   } finally { await c.f.db.close(); }
 });
+
+test("a payment from the quest's issuer after completion settles the reward; a later claim is refused", async () => {
+  const c = await loopCampaign();
+  try {
+    const setup = await c.turn("I take the organiser's job.", [
+      { text: "Chalked up. ", toolCalls: [
+        { name: "money", arguments: { action: "grant", currency: "coins", amount: 20, toRef: c.npc, reason: "the organiser's purse" } },
+        { name: "quest", arguments: { action: "create", localKey: "flour", title: "Haul flour", description: "Twenty sacks.", issuerRef: c.npc, reward: { currency: "coins", amount: 5 } } },
+      ] },
+      { text: "Done. " },
+    ]);
+    assert.equal(setup.result.status, "committed", JSON.stringify(c.errors));
+    const quest = (await c.state()).quests.find((row) => row.title === "Haul flour");
+    const paid = await c.turn("I finish the work and he pays me.", [
+      { text: "He counts coins. ", toolCalls: [
+        { name: "quest", arguments: { action: "complete", questRef: quest.id } },
+        { name: "money", arguments: { action: "transfer", currency: "coins", amount: 4, fromRef: c.npc, toRef: c.hero } },
+        { name: "quest", arguments: { action: "claim_reward", questRef: quest.id } },
+      ] },
+      { text: "Four it is. " },
+    ]);
+    assert.equal(paid.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = (await c.row(paid.input.operationId)).checkpoint.dmLoop.receipts;
+    assert.deepEqual(receipts.map((r) => r.result.ok), [true, true, false]);
+    assert.equal(receipts[1].result.value.settlesQuest, "Haul flour");
+    assert.match(receipts[2].result.reason, /already paid/);
+    const state = await c.state();
+    assert.equal(state.entities.find((row) => row.id === c.hero).resources.currency_coins, 4);
+    assert.equal(state.entities.find((row) => row.id === c.npc).resources.currency_coins, 16);
+  } finally { await c.f.db.close(); }
+});

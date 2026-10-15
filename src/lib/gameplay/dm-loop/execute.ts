@@ -432,8 +432,17 @@ function moneyTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     setResources(shadow, from, { ...from.resources, [key]: have - amount });
     const toNow = shadow.entity(to.id)!;
     setResources(shadow, toNow, { ...toNow.resources, [key]: moneyOf(toNow, key) + amount });
-    return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance: moneyOf(toNow, key) },
-      `${from.name} pays ${to.name} ${fmt(amount)}`);
+    // A payment from a quest's issuer to its recipient after completion settles
+    // that reward: the server keeps the reward paid exactly once either way.
+    const settled = shadow.snapshot.quests.find((quest) => quest.campaign_id === shadow.campaignId && quest.status === "complete" &&
+      (() => { const terms = rewardTerms(shadow, quest); return !!terms && !terms.paidOperationId && terms.issuerId === from.id && terms.currency === label; })());
+    if (settled) {
+      const terms = rewardTerms(shadow, settled)!;
+      shadow.setPrivate("fact", `quest_reward_${settled.id}`, JSON.stringify({ ...terms, paidOperationId: shadow.operationId }));
+    }
+    return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance: moneyOf(toNow, key),
+      ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : {}) },
+      `${from.name} pays ${to.name} ${fmt(amount)}${settled ? ` (reward for "${settled.title}")` : ""}`);
   }
   if (action === "grant") {
     const to = entityOf(shadow, args.toRef, "toRef");
