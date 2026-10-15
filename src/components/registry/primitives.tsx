@@ -199,7 +199,7 @@ export function Art({ subject, name, className = "", drawingLabel, fit = "cover"
 export function Avatar({ subject, name, small }: { subject: SubjectRef | null; name: string; small?: boolean }) {
   return (
     <span className={small ? s.avatarSmall : s.avatar}>
-      <Art subject={subject} name={name} position="center 25%" />
+      <Art subject={subject} name={name} position="center 25%" drawingLabel="…" />
     </span>
   );
 }

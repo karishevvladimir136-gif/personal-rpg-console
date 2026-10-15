@@ -200,7 +200,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
             {members.map((member) => (
               <button key={member.id} type="button" className={s.member} aria-pressed={member.id === entity.id} aria-label={member.name} title={member.name}
                 onClick={() => { setSelectedId(member.id); setItemId(null); setFilter(""); }}>
-                <Art subject={{ kind: "entity", id: member.id }} name={member.name} position="center 25%" />
+                <Art subject={{ kind: "entity", id: member.id }} name={member.name} position="center 25%" drawingLabel="…" />
               </button>
             ))}
           </div>

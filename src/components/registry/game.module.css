@@ -477,3 +477,12 @@
     font-size: 16.5px;
   }
 }
+.game :global(.gameplay-narration .prose),
+.game :global(.gameplay-live-turn .prose),
+.game :global(.gameplay-owner-words .prose) {
+  font-family: var(--f-body);
+}
+.game :global(.gameplay-owner-words .prose) {
+  font-size: 16px;
+  font-weight: 400;
+}

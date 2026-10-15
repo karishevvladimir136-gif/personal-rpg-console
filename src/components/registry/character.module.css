@@ -75,7 +75,7 @@
 .skill:last-child {
   border-bottom: 0;
 }
-.skill span:last-child {
+.skillValue {
   font-family: var(--f-mono);
   color: var(--brass);
 }

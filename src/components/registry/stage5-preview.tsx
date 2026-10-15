@@ -36,7 +36,6 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   const { setLanguage } = useLanguage();
   useEffect(() => setLanguage(language), [language, setLanguage]);
   const snapshot = useMemo(() => sample.snapshot(), [sample]);
-  const play = useMemo(() => sample.play({ combat: variant.combat }), [sample, variant.combat]);
   const query = new URLSearchParams({ ...(variant.world === "noir" ? { world: "noir" } : {}), ...(lang ? { lang } : {}) }).toString();
   const suffix = query ? `?${query}` : "";
   const chrome = useMemo(() => ({

@@ -60,7 +60,7 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
           })}
           <Later title={c("Базы", "Bases")}>{c("Отдельного вида записи «база» в приложении пока нет; она появится вместе с инструментом владений.", "The app has no separate “base” record kind yet; it arrives with the holdings tool.")}</Later>
         </nav>
-        <Detail data={data} holding={selected} itemId={itemId} onItem={setItemId}
+        <Detail holding={selected} itemId={itemId} onItem={setItemId}
           onRedraw={setRedraw} onAct={act} />
       </div>
       {notice && <p className={r.note} role="status">{notice}</p>}
@@ -85,8 +85,8 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
   );
 }
 
-function Detail({ data, holding, itemId, onItem, onRedraw, onAct }: {
-  data: CampaignSnapshot; holding: HoldingView; itemId: string | null; onItem: (id: string) => void;
+function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
+  holding: HoldingView; itemId: string | null; onItem: (id: string) => void;
   onRedraw: (subject: { kind: "entity" | "item"; id: string }) => void; onAct: (text: string) => void;
 }) {
   const c = useCopy();
