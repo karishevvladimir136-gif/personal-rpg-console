@@ -101,6 +101,7 @@ for (const scenario of selected) {
     runId, requestLog });
   process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
     `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
+    `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +
     ` · ${summary.turns} turns · ${(summary.totalMs / 1000).toFixed(1)} s\n`);
   stopReason ??= summary.stopReason;
 }

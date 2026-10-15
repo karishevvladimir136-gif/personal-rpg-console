@@ -281,9 +281,11 @@ export async function runScenario(scenario, options) {
       const afterState = await snapshot(f, cid, hero);
       record.changes = diff(before, afterState);
       const checks = [];
-      for (const check of step.expect ?? [])
-        checks.push(await evaluateCheck(check, { f, campaignId: cid, before, after: afterState,
-          steps, turn, narrations }));
+      for (const { weakness, ...check } of step.expect ?? []) {
+        const evaluated = await evaluateCheck(check, { f, campaignId: cid, before, after: afterState,
+          steps, turn, narrations });
+        checks.push(weakness ? { ...evaluated, weakness } : evaluated);
+      }
       record.checks = checks;
       steps.set(step.id, afterState);
       results.push(record);
@@ -302,6 +304,9 @@ export async function runScenario(scenario, options) {
     checksPassed: core.filter((check) => check.pass).length, checksTotal: core.length,
     probesPassed: probes.filter((check) => check.pass).length, probesTotal: probes.length,
     passed: core.length > 0 && core.every((check) => check.pass),
+    // Known weaknesses recorded in docs/BASELINE.md: red until the stage that closes them.
+    weaknesses: all.filter((check) => check.weakness).map((check) =>
+      ({ id: check.weakness, label: check.label, step: check.step, pass: check.pass, detail: check.detail })),
     failedChecks: all.filter((check) => !check.pass).map((check) =>
       `${check.probe ? "[probe] " : ""}${check.step}: ${check.label} — ${check.detail}`),
     harnessErrors: results.flatMap((record) => (record.scriptProblems ?? []).map((problem) => `${record.step}: ${problem}`)),

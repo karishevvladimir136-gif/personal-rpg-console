@@ -127,7 +127,7 @@
         ]
       },
       "expect": [
-        { "label": "server keeps the reward at exactly one payment", "heroMoney": { "eq": 5 } }
+        { "label": "server keeps the reward at exactly one payment (no second payment via a gift)", "weakness": "W1", "heroMoney": { "eq": 5 } }
       ]
     }
   ]

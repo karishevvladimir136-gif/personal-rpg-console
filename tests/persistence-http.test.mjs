@@ -4,11 +4,15 @@ import {
   readWriteRequest,
   safeError,
 } from "../src/lib/persistence/http-policy.ts";
-const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
+import { previewTarget } from "./preview-target.mjs";
+// Network checks run only against an explicit isolated server; never the
+// owner app on :3000. The pure policy checks need only a synthetic origin.
+const { base, skip } = previewTarget();
+const policyOrigin = "http://preview.invalid";
 const request = (body = "{}", headers = {}) =>
-  new Request(base + "/api/mutations", {
+  new Request(policyOrigin + "/api/mutations", {
     method: "POST",
-    headers: { origin: base, "content-type": "application/json", ...headers },
+    headers: { origin: policyOrigin, "content-type": "application/json", ...headers },
     body,
   });
 test("write policy rejects missing or foreign origins and non-JSON bodies", async () => {
@@ -44,7 +48,7 @@ test("server errors never forward raw provider or private payloads", () => {
     assert.ok([409, 503].includes(result.status));
   }
 });
-test("unauthenticated persistence reads fail closed with safe no-store errors", async () => {
+test("unauthenticated persistence reads fail closed with safe no-store errors", { skip }, async () => {
   for (const path of [
     "/api/workspace",
     "/api/campaigns/11111111-1111-4111-8111-111111111111",
@@ -66,7 +70,7 @@ test("unauthenticated persistence reads fail closed with safe no-store errors", 
     assert.equal(body.error.message, body.error.code);
   }
 });
-test("HTTP mutations require same-origin and owner authorization", async () => {
+test("HTTP mutations require same-origin and owner authorization", { skip }, async () => {
   const body = JSON.stringify({
     operation: "feedback.send",
     campaignId: "11111111-1111-4111-8111-111111111111",
@@ -90,7 +94,7 @@ test("HTTP mutations require same-origin and owner authorization", async () => {
   });
   assert.ok([401, 403, 503].includes(ownerGate.status));
 });
-test("Phase 1 exposes neither gameplay nor private state endpoints", async () => {
+test("Phase 1 exposes neither gameplay nor private state endpoints", { skip }, async () => {
   for (const path of [
     "/api/dm",
     "/api/dice",

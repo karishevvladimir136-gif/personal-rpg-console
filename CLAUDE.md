@@ -36,6 +36,9 @@ Rules of any RPG system are knowledge (World Library sources or model knowledge)
 - Never touch the owner's database (the running local Supabase with real campaigns) unless the
   stage task says so **and** the owner confirms a fresh full dump exists. Tests use disposable
   PGlite databases only.
+- HTTP tests and acceptance scripts must never reach the owner's app on `127.0.0.1:3000`. They run only
+  with an explicit `PREVIEW_URL` pointing at an isolated server without `.env.local` (otherwise they are
+  skipped); port 3000 is refused unless `RPG_TEST_ALLOW_OWNER_PORT=1` is set (`tests/preview-target.mjs`).
 - Never edit or delete already-applied migrations. New migrations are additive.
 - Never delete or rewrite historical turns, saves, scenes, Canon or document versions.
 - No paid model/media calls unless the stage task allows them and states a budget.

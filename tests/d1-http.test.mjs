@@ -1,9 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
+import { previewTarget } from "./preview-target.mjs";
+// Runs only against an explicit isolated server; never the owner app on :3000.
+const { base, skip } = previewTarget();
 const campaignId = "11111111-1111-4111-8111-111111111111";
 
-test("D1 HTTP reads require owner authorization and never expose a private envelope", async () => {
+test("D1 HTTP reads require owner authorization and never expose a private envelope", { skip }, async () => {
   const response = await fetch(
     `${base}/api/world-lab?campaignId=${campaignId}`,
   );
@@ -19,7 +21,7 @@ test("D1 HTTP reads require owner authorization and never expose a private envel
   );
 });
 
-test("D1 HTTP write boundary rejects cross-origin and arbitrary branch authority", async () => {
+test("D1 HTTP write boundary rejects cross-origin and arbitrary branch authority", { skip }, async () => {
   const forged = {
     action: "commit",
     input: {

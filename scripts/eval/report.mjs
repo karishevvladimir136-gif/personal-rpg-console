@@ -83,6 +83,15 @@ export function formatReport(records) {
     ` paused for dice ${fresh.filter((turn) => turn.paused).length}`);
   if (header?.provider === "live")
     lines.push(`  spend ${fmt(end?.spentUsd, 4)} USD of ${fmt(header?.budgetUsd, 2)} USD`);
+  const weaknesses = scenarios.flatMap((scenario) => (scenario.weaknesses ?? []).map((weakness) =>
+    ({ ...weakness, scenario: scenario.scenario })))
+    .sort((a, b) => a.id.localeCompare(b.id));
+  if (weaknesses.length) {
+    lines.push("");
+    lines.push(`Known weaknesses (docs/BASELINE.md; red until fixed): ${weaknesses.filter((w) => !w.pass).length} open, ${weaknesses.filter((w) => w.pass).length} closed`);
+    for (const weakness of weaknesses)
+      lines.push(`  ${weakness.id} ${weakness.pass ? "CLOSED" : "OPEN  "} ${weakness.label} (${weakness.scenario}/${weakness.step}) — ${weakness.detail}`);
+  }
   const failures = scenarios.flatMap((scenario) => scenario.failedChecks.map((check) => `${scenario.scenario}  ${check}`));
   if (failures.length) {
     lines.push("");

@@ -3,10 +3,12 @@
 import assert from "node:assert/strict";
 import { createServerClient } from "@supabase/ssr";
 import { testConfig, testOptIn } from "./persistence-fixtures.mjs";
+import { requirePreviewBase } from "../tests/preview-target.mjs";
 
 assert.equal(process.env.RPG_ALLOW_DISPOSABLE_TESTS, testOptIn);
 const config = testConfig();
-const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
+// Explicit isolated server only; port 3000 (the owner app) needs an opt-in.
+const base = requirePreviewBase();
 assert.ok(["127.0.0.1", "localhost"].includes(new URL(base).hostname));
 assert.equal(new URL(base).protocol, "http:");
 const privateMarker = "SYNTHETIC_PRIVATE_ACCEPTANCE_CANARY";

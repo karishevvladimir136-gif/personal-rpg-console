@@ -1,7 +1,9 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
+import { previewTarget } from "./preview-target.mjs";
+// Runs only against an explicit isolated server; never the owner app on :3000.
+const { base, skip } = previewTarget();
 const campaign = "11111111-1111-4111-8111-111111111111";
 const operation = "22222222-2222-4222-8222-222222222222";
 const root = `/api/campaigns/${campaign}`;
@@ -19,7 +21,7 @@ async function safeFailure(response, allowed) {
   return body;
 }
 
-test("runtime reads require verified owner authorization, including turn reconnection", async () => {
+test("runtime reads require verified owner authorization, including turn reconnection", { skip }, async () => {
   for (const path of [`${root}/play`, `${root}/turns/${operation}`]) {
     const body = await safeFailure(await fetch(base + path), [401, 403, 503]);
     assert.ok(
@@ -30,7 +32,7 @@ test("runtime reads require verified owner authorization, including turn reconne
   }
 });
 
-test("all gameplay writes reject foreign origins and anonymous callers before execution", async () => {
+test("all gameplay writes reject foreign origins and anonymous callers before execution", { skip }, async () => {
   for (const path of [
     `${root}/turns`,
     `${root}/turns/${operation}/resume`,

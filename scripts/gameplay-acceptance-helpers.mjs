@@ -2,12 +2,13 @@
 import assert from "node:assert/strict";
 import { createServerClient } from "@supabase/ssr";
 import { testConfig } from "./persistence-fixtures.mjs";
+import { requirePreviewBase } from "../tests/preview-target.mjs";
 
 export const privateMarker = "SYNTHETIC_PRIVATE_PHASE2_CANARY";
 export function acceptanceEnvironment() {
   const config = testConfig();
-  const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
-  const url = new URL(base);
+  // Explicit isolated server only; port 3000 (the owner app) needs an opt-in.
+  const url = new URL(requirePreviewBase());
   assert.ok(["127.0.0.1", "localhost"].includes(url.hostname));
   assert.equal(url.protocol, "http:");
   return { config, base: url.origin };

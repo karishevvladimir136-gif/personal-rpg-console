@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-const base = process.env.PREVIEW_URL || "http://127.0.0.1:3000";
+import { previewTarget } from "./preview-target.mjs";
+// Runs only against an explicit isolated server; never the owner app on :3000.
+const { base, skip } = previewTarget();
 const prefix = "/preview/campaigns/long-road-west";
 const routes = {
   game: "The Letter",
@@ -27,7 +29,7 @@ const paths = {
   ),
 };
 for (const [path, heading] of Object.entries(paths))
-  test(path + " renders its screen and valid local navigation", async () => {
+  test(path + " renders its screen and valid local navigation", { skip }, async () => {
     const response = await fetch(base + path);
     assert.equal(response.status, 200);
     const html = await response.text();
@@ -55,7 +57,7 @@ for (const [path, heading] of Object.entries(paths))
       assert.ok(!html.includes('class="bottom-nav'));
     }
   });
-test("protected legacy routes never redirect an owner into sample data", async () => {
+test("protected legacy routes never redirect an owner into sample data", { skip }, async () => {
   for (const route of [
     "game",
     "character",
@@ -68,12 +70,12 @@ test("protected legacy routes never redirect an owner into sample data", async (
     assert.ok(["/setup", "/login"].includes(response.headers.get("location")));
   }
 });
-test("campaign root continues into its own Game", async () => {
+test("campaign root continues into its own Game", { skip }, async () => {
   const response = await fetch(base + prefix, { redirect: "manual" });
   assert.ok([307, 308].includes(response.status));
   assert.equal(response.headers.get("location"), prefix + "/game");
 });
-test("unknown screens and campaign IDs return 404 without sample campaign fallback", async () => {
+test("unknown screens and campaign IDs return 404 without sample campaign fallback", { skip }, async () => {
   for (const path of [
     "/not-a-campaign-screen",
     "/preview/campaigns/unknown/game",
@@ -87,7 +89,7 @@ test("unknown screens and campaign IDs return 404 without sample campaign fallba
     assert.ok(!html.includes('class="narration"'));
   }
 });
-test("Game has reachable Rest and dice previews without unsolicited live results", async () => {
+test("Game has reachable Rest and dice previews without unsolicited live results", { skip }, async () => {
   const html = await (await fetch(base + prefix + "/game")).text();
   assert.ok(html.includes("Dice preview"));
   assert.ok(html.includes("Preview Combat"));
@@ -95,7 +97,7 @@ test("Game has reachable Rest and dice previews without unsolicited live results
   assert.ok(html.includes(">Rest<"));
   assert.ok(!/You rolled|Dice result|Critical hit!/i.test(html));
 });
-test("direct camp navigation starts closed and cannot expose the active stash or cooking", async () => {
+test("direct camp navigation starts closed and cannot expose the active stash or cooking", { skip }, async () => {
   const html = await (await fetch(base + prefix + "/camp")).text();
   assert.ok(html.includes("Demo camp closed"));
   assert.ok(html.includes("Enter demo camp"));

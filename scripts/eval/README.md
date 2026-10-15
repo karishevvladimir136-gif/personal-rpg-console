@@ -55,3 +55,8 @@ Checks (see `lib/state.mjs`): `outcome`, `responseMode`, `modelRequests`,
 `heroMoneySince`, `heroItem`, `heroItemDelta`, `heroItemCategory`,
 `itemOwnedBy`, `effectsAccepted`, `narrationExcludes`, `noPublicLeak`,
 `stateEquals`, `locationIs`.
+
+A check may carry `"weakness": "W1"`: a known weakness from `docs/BASELINE.md`.
+The report lists them separately as OPEN/CLOSED; they are expected to stay red
+until the stage that closes them (W1 second payment via a gift — stage 3;
+W2 paraphrased secret leak and W3 harmless private detail failing a turn — stage 2).
