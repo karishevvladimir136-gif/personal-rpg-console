@@ -209,7 +209,10 @@ export function validateProductionSettings(
       CampaignProductionSettings["runtimePolicy"]
     >["taskOverrides"] = {};
     for (const [task, value] of Object.entries(runtime.taskOverrides)) {
-      requireValue(productionTasks.some((supported) => supported === task));
+      // "dm.turn" (the campaign DM model) is kept but has no selector yet, so
+      // saving other settings preserves it unchanged.
+      requireValue(task === "dm.turn" ||
+        productionTasks.some((supported) => supported === task));
       const chosen = selection(value);
       requireValue(chosen);
       taskOverrides[task as RuntimeTask] = chosen;

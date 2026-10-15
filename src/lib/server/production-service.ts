@@ -11,6 +11,7 @@ import {
   persistentProfileResolver,
   type ProfileRpc,
 } from "../production/profiles";
+import { pinAstraTurnModel } from "../production/dm-turn-pin";
 import {
   worldTurnPreparer,
   worldLogicTurnPreparer,
@@ -132,6 +133,11 @@ export function productionServices(
     astraProvider: createAstraPrimaryProvider({
       apiKey: process.env.OPENAI_API_KEY ?? "",
     }),
+    // Records the campaign's "dm.turn" choice and the Astra profiles that
+    // actually serve an Astra-runtime turn, once per operation.
+    pinDmTurnModel: (operationId: string) =>
+      pinAstraTurnModel(profiles, { ownerId, campaignId, operationId, timeline },
+        async () => (await readWorldFoundation(world, ownerId, campaignId, timeline)).executionPolicy),
     planModel: async (stage: "plan" | "narrate" = "plan") => {
       const snapshot = await readWorldFoundation(
         world,

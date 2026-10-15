@@ -22,7 +22,9 @@ export type RulesetProfileRef = {
   validatorVersion: string;
 };
 export type RuntimeTask =
-  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary" | "world.resolve" | "world.compose" | "canon.compile" | "media.frame.verify";
+  "dm.plan" | "dm.narrate" | "dm.feedback" | "memory.summary" | "world.resolve" | "world.compose" | "canon.compile" | "media.frame.verify" |
+  // The campaign's DM model for a whole turn (Claude Opus 5.5 or GPT-6 Astra).
+  "dm.turn";
 export type ModelSelection = {
   providerId: string;
   modelId: string;

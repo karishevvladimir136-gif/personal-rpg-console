@@ -99,6 +99,7 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
           mode === "game" && ruleset === "world-logic-v1" && active),
     },
     "../gameplay/startup-admission": { astraStartupPending, AstraStartupPendingError },
+    "../production/dm-turn-pin": { withAstraTurnPin: (store) => store },
     "../gameplay/dm-errors": { DmError: class extends Error {} },
     "./memory/store": { createMemoryStore: () => ({}) },
     "../memory/lifecycle": {

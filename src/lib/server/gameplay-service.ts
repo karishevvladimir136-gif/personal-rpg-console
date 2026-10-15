@@ -15,6 +15,7 @@ import { applicationGameplayTaskSelection } from "../production/task-defaults";
 import { randomUUID } from "node:crypto";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
+import { withAstraTurnPin } from "../production/dm-turn-pin";
 import { astraStartupPending, AstraStartupPendingError } from "../gameplay/startup-admission";
 import type { CharacterSheetV1 } from "../adventures/bootstrap-contracts";
 import { DmError } from "../gameplay/dm-errors";
@@ -156,8 +157,8 @@ export async function submitTurn(campaignId: string, value: unknown) {
     worldTakeover);
   if (selected) return runWithAstraMemoryMaintenance(store, memory, production.summaries,
     requireTimeline(input), (observedStore) => runAstraTurn(input, {
-      store: observedStore, memory, summaries: production.summaries,
-      provider: production.astraProvider,
+      store: withAstraTurnPin(observedStore, production.pinDmTurnModel), memory,
+      summaries: production.summaries, provider: production.astraProvider,
     }), after);
   if (!existing && process.env.OPENAI_API_KEY)
     await preflightMemory(
@@ -196,8 +197,8 @@ export async function continueTurn(
   if ((await store.runtimeIdentity?.(campaignId, operationId)) === "astra-primary-v1")
     return runWithAstraMemoryMaintenance(store, memory, production.summaries,
       requireTimeline(input), (observedStore) => resumeAstraTurn(input, {
-        store: observedStore, memory, summaries: production.summaries,
-        provider: production.astraProvider,
+        store: withAstraTurnPin(observedStore, production.pinDmTurnModel), memory,
+        summaries: production.summaries, provider: production.astraProvider,
       }), after);
   return resumeTurn(input, {
     store,
