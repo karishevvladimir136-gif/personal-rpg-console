@@ -1,5 +1,6 @@
 // Synthetic Stage 5 preview campaign ("Мир Шва", the sample of design/canvas).
 // Public DTO shapes only; no request ever reaches a server with these records.
+import { DM_LOOP_DEFAULT_LIMITS } from "../../gameplay/dm-loop/limits.ts";
 import type {
   Campaign,
   CampaignSnapshot,
@@ -281,7 +282,7 @@ export const shovSample: PreviewSample = {
     pacing: { kind: "evening", custom: null }, mode: "canon", status: "active",
     start: { worldMinutes: 4 * 1440 + 300, sceneId: null }, completion: null, summary: null, review: null, createdAt: at(0),
   }),
-  dmSettings: { campaignId: PREVIEW_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "medium" }, revision: 3 },
+  dmSettings: { campaignId: PREVIEW_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "medium" }, limits: { ...DM_LOOP_DEFAULT_LIMITS }, customLimits: false, revision: 3 },
   library: previewLibrary,
   images: previewImages,
   drawing: previewDrawing,

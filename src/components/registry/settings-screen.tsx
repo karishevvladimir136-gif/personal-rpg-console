@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from "@/lib/campaign-settings";
-import { dmTurnModels, saveDmSettings, type DmSettings } from "@/lib/gameplay/dm-settings-client";
+import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmTurnModels, saveDmSettings, type DmLoopTurnLimits, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
 import { readJson } from "@/lib/persistence/client";
 import { FAL_IMAGE_MODELS, usd } from "@/lib/visual-frame/fal-image";
@@ -33,6 +33,9 @@ export function RegistrySettings({ data, more, preview }: {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [providers, setProviders] = useState<ProviderInfo>(preview?.providers ?? null);
+  // The six per-turn limits (stage 3) as the owner edits them; null = nothing being edited.
+  const [limitsDraft, setLimitsDraft] = useState<Record<keyof DmLoopTurnLimits, string> | null>(null);
+  const [limitsError, setLimitsError] = useState("");
   const autopilot = useAutopilot();
   useEffect(() => {
     if (preview) return;
@@ -62,6 +65,49 @@ export function RegistrySettings({ data, more, preview }: {
     } finally {
       setSaving(false);
     }
+  };
+  const limitLabels: Record<keyof DmLoopTurnLimits, string> = {
+    moneyPerTurn: c("Денег создаётся за ход", "Money created per turn"),
+    itemsPerTurn: c("Новых предметов за ход", "Items created per turn"),
+    charactersPerTurn: c("Новых персонажей за ход", "New characters per turn"),
+    minutesPerTurn: c("Игровых минут за ход", "Game minutes per turn"),
+    toolCallsPerTurn: c("Действий за ход", "Tool calls per turn"),
+    modelRequestsPerTurn: c("Запросов к модели за ход", "Model requests per turn"),
+  };
+  const shownLimits = current?.limits ?? DM_LOOP_DEFAULT_LIMITS;
+  const limitValue = (key: keyof DmLoopTurnLimits) => limitsDraft ? limitsDraft[key] : String(shownLimits[key]);
+  const editLimit = (key: keyof DmLoopTurnLimits, value: string) => {
+    const base = limitsDraft ?? Object.fromEntries(DM_LOOP_LIMIT_KEYS.map((k) => [k, String(shownLimits[k])])) as Record<keyof DmLoopTurnLimits, string>;
+    setLimitsDraft({ ...base, [key]: value });
+  };
+  /** Saves the edited limits (or returns the campaign to the defaults) through the same settings API as the model. */
+  const saveLimits = async (limits: DmLoopTurnLimits | null) => {
+    if (!current || saving || chrome?.href) return;
+    setSaving(true);
+    setLimitsError("");
+    try {
+      const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn, limits });
+      setDm(saved);
+      setLimitsDraft(null);
+    } catch {
+      setLimitsError(c("Не удалось сохранить пределы. Проверь числа и соединение.", "Could not save the limits. Check the numbers and the connection."));
+    } finally {
+      setSaving(false);
+    }
+  };
+  const submitLimits = () => {
+    if (!limitsDraft) return;
+    const parsed = {} as DmLoopTurnLimits;
+    for (const key of DM_LOOP_LIMIT_KEYS) {
+      const n = Number(limitsDraft[key]);
+      const bound = DM_LOOP_LIMIT_CEILINGS[key];
+      if (!Number.isInteger(n) || n < bound.min || n > bound.max) {
+        setLimitsError(c(`«${limitLabels[key]}»: целое число от ${bound.min} до ${bound.max.toLocaleString(c.language)}.`, `“${limitLabels[key]}”: a whole number between ${bound.min} and ${bound.max.toLocaleString(c.language)}.`));
+        return;
+      }
+      parsed[key] = n;
+    }
+    void saveLimits(parsed);
   };
   const settings = data.settings.values;
   const style = effectiveDmStyle(settings);
@@ -140,13 +186,29 @@ export function RegistrySettings({ data, more, preview }: {
                 <Link className={r.btnGhost} href={href("library")}>{c("Книги правил в библиотеке", "Rule books in the library")}</Link>
               </div>
               <p className={r.note}>{c("Правила — это знания ведущего, а не код. Подойдёт любая система.", "Rules are the DM's knowledge, not code. Any system works.")}</p>
+              <div className={r.stack} style={{ gap: 6 }}>
+                <span className={r.eyebrow}>{c("Пределы одного хода", "Limits of one turn")}</span>
+                {DM_LOOP_LIMIT_KEYS.map((key) => (
+                  <label key={key} className={s.limit}>
+                    <span>{limitLabels[key]}</span>
+                    <input type="number" inputMode="numeric" min={DM_LOOP_LIMIT_CEILINGS[key].min} max={DM_LOOP_LIMIT_CEILINGS[key].max}
+                      value={limitValue(key)} disabled={saving || !current || !!chrome?.href} aria-label={limitLabels[key]}
+                      onChange={(event) => editLimit(key, event.target.value)} />
+                  </label>
+                ))}
+                <div className={r.row}>
+                  <button type="button" className={r.btnMain} disabled={saving || !limitsDraft} onClick={submitLimits}>{c("Сохранить пределы", "Save limits")}</button>
+                  <button type="button" className={r.btnGhost} disabled={saving || !current || (!current.customLimits && !limitsDraft)} onClick={() => void saveLimits(null)}>{c("Вернуть по умолчанию", "Back to defaults")}</button>
+                  {current?.customLimits && <span className={r.chip}>{c("свои пределы", "custom limits")}</span>}
+                </div>
+                {limitsError && <p className={r.error} role="alert">{limitsError}</p>}
+              </div>
               <div className={r.kv}>
-                <div><span>{c("Запросов к модели за ход", "Model requests per turn")}</span><span>{dmLoopLimits.maxModelRequests}</span></div>
-                <div><span>{c("Действий за ход", "Actions per turn")}</span><span>{dmLoopLimits.maxToolCalls}</span></div>
                 <div><span>{c("Денег за одно действие", "Money per action")}</span><span>{dmLoopLimits.maxMoneyPerCall.toLocaleString(c.language)}</span></div>
                 <div><span>{c("Предметов в стопке", "Items per stack")}</span><span>{dmLoopLimits.maxItemQuantity.toLocaleString(c.language)}</span></div>
+                <div><span>{c("Бросков за ход", "Checks per turn")}</span><span>{dmLoopLimits.maxChecksPerTurn}</span></div>
               </div>
-              <p className={r.note}>{c("Пределы пока только для чтения; их можно будет менять после этапа 3.", "Limits are read-only for now; they become editable after stage 3.")}</p>
+              <p className={r.note}>{c("Пределы — защита записей, а не правила игры: ход, который в них упёрся, не падает, а ведущий получает причину. Новые значения действуют со следующего хода.", "Limits protect the records, they are not game rules: a turn that hits one does not fail, the DM gets the reason. New values apply from the next turn.")}</p>
             </div>
           </Panel>
         </div>

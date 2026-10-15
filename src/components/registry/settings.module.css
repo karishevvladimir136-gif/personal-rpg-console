@@ -78,3 +78,22 @@
 .samples img:nth-child(n + 4) {
   display: none;
 }
+
+/* One per-turn limit: label left, number right (stage 4 wires the stage 3 limits). */
+.limit {
+  display: grid;
+  grid-template-columns: 1fr 9ch;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+.limit input {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper, transparent);
+  color: inherit;
+  font: inherit;
+  text-align: right;
+}
