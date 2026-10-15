@@ -182,6 +182,11 @@ export type PublicTurn = {
   failure: TurnFailure | null;
   canRetry: boolean;
   canCancel: boolean;
+  /** Committed dm-loop-v1 turns (Stage 4, UI_DATA_NEEDS #1, #2): the public
+   * receipt summaries, the player moment and the scene kinds of the finish. */
+  changes?: { tool: string; ok: true; summary: string }[];
+  playerMoment?: boolean;
+  sceneKinds?: string[];
 };
 export type RestRecord = {
   id: string;

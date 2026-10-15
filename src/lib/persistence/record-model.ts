@@ -14,6 +14,8 @@ export const entityKindLabels = {
   npc: "Known NPC",
   transport: "Transport",
   mount: "Mount",
+  /** Stage 4: a faction record the DM keeps (not created by hand in the editor). */
+  faction: "Faction",
 } as const;
 export const storageKindLabels = {
   player: "Player",

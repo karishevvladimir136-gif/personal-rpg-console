@@ -113,21 +113,21 @@ language sql immutable set search_path='' as $$
       or (jsonb_typeof(v->(e.key||'_max'))='number' and (e.value#>>'{}')::numeric>(v->>(e.key||'_max'))::numeric))
 $$;
 
--- 3. Character Models: 32 KB of stored JSON (migration 54 allowed 6000 bytes) --
+-- 3. Character Models: 32 000 characters of stored JSON, 80 000 bytes in UTF-8 (migration 54 allowed 6000 bytes) --
 do $$ declare d text; begin
  select pg_get_functiondef('rpg_private.character_model_valid(uuid,uuid,jsonb,jsonb,boolean)'::regprocedure) into d;
- d:=replace(d,'octet_length(model::text)<=6000','octet_length(model::text)<=40000');
+ d:=replace(d,'octet_length(model::text)<=6000','octet_length(model::text)<=80000');
  d:=replace(d,'jsonb_array_length(model->''episodes'')<=20','jsonb_array_length(model->''episodes'')<=40');
- perform rpg_private.assert(d like '%<=40000%' and d like '%episodes'')<=40%');
+ perform rpg_private.assert(d like '%<=80000%' and d like '%episodes'')<=40%');
  execute d;
 end $$;
 -- The loop's private note limit (migration 53): a Character Model note may hold
--- 40 000 characters; other notes keep 6000.
+-- 80 000 bytes (32 000 characters of Russian); other notes keep 6000.
 do $$ declare d text; begin
  select pg_get_functiondef('public.rpg_runtime_before_record_integrity(uuid,uuid,text,jsonb,jsonb)'::regprocedure) into d;
  d:=replace(d,'length(entry->>''value'')<=6000 and entry->''amount''=''null''::jsonb',
-             'length(entry->>''value'')<=(case when patch_kind=''npc'' then 40000 else 6000 end) and entry->''amount''=''null''::jsonb');
- perform rpg_private.assert(d like '%then 40000 else 6000 end%');
+             'length(entry->>''value'')<=(case when patch_kind=''npc'' then 80000 else 6000 end) and entry->''amount''=''null''::jsonb');
+ perform rpg_private.assert(d like '%then 80000 else 6000 end%');
  execute d;
 end $$;
 
@@ -397,6 +397,58 @@ declare c public.rpg_campaigns%rowtype; rid uuid; saved rpg_private.dossier_rece
  insert into rpg_private.dossier_receipts(request_id,owner_id,campaign_id,action,payload) values(rid,p_owner_id,p_campaign_id,p_action,p_payload);
  return rpg_private.dossier_read(p_campaign_id);
 end $$;
+
+-- 8. The public projections carry the new columns --------------------------------
+-- runtime_source builds the claim source and (through timeline_campaign_json)
+-- the public campaign DTO with explicit columns: the new public columns are
+-- added here, nothing private. The public turn of a committed dm-loop-v1
+-- operation exposes the public receipt summaries, the player moment and the
+-- scene kinds of its finish (UI_DATA_NEEDS #1, #2).
+alter function rpg_private.runtime_source(uuid,uuid,text) rename to runtime_source_before_stage4;
+create function rpg_private.runtime_source(cid uuid,uid uuid,mode text default 'game') returns jsonb
+language plpgsql stable set search_path='' as $$
+declare result jsonb:=rpg_private.runtime_source_before_stage4(cid,uid,mode); rows jsonb; begin
+ select coalesce(jsonb_agg(x.value||jsonb_build_object('public_profile',e.public_profile) order by x.ordinality),'[]'::jsonb) into rows
+  from jsonb_array_elements(result#>'{snapshot,entities}') with ordinality x(value,ordinality)
+  join public.rpg_entities e on e.campaign_id=cid and e.id=(x.value->>'id')::uuid;
+ result:=jsonb_set(result,'{snapshot,entities}',rows);
+ select coalesce(jsonb_agg(x.value||jsonb_build_object('kind',q.kind,'detail',q.detail) order by x.ordinality),'[]'::jsonb) into rows
+  from jsonb_array_elements(result#>'{snapshot,quests}') with ordinality x(value,ordinality)
+  join public.rpg_quests q on q.campaign_id=cid and q.id=(x.value->>'id')::uuid;
+ result:=jsonb_set(result,'{snapshot,quests}',rows);
+ select coalesce(jsonb_agg(x.value||jsonb_build_object('detail',l.detail) order by x.ordinality),'[]'::jsonb) into rows
+  from jsonb_array_elements(result#>'{snapshot,locations}') with ordinality x(value,ordinality)
+  join public.rpg_locations l on l.campaign_id=cid and l.id=(x.value->>'id')::uuid;
+ result:=jsonb_set(result,'{snapshot,locations}',rows);
+ select coalesce(jsonb_agg(x.value||jsonb_build_object('rarity',i.rarity) order by x.ordinality),'[]'::jsonb) into rows
+  from jsonb_array_elements(result#>'{snapshot,items}') with ordinality x(value,ordinality)
+  join public.rpg_items i on i.campaign_id=cid and i.id=(x.value->>'id')::uuid;
+ result:=jsonb_set(result,'{snapshot,items}',rows);
+ select coalesce(jsonb_agg(x.value||jsonb_build_object('detail',s.detail) order by x.ordinality),'[]'::jsonb) into rows
+  from jsonb_array_elements(result#>'{snapshot,storages}') with ordinality x(value,ordinality)
+  join public.rpg_storages s on s.campaign_id=cid and s.id=(x.value->>'id')::uuid;
+ result:=jsonb_set(result,'{snapshot,storages}',rows);
+ select (result#>'{snapshot,campaign}')||jsonb_build_object('play_minutes',c.play_minutes,'status',c.status,
+   'player_likes',c.player_likes,'theme',c.theme,'pinned_facts',c.pinned_facts) into rows
+  from public.rpg_campaigns c where c.id=cid;
+ result:=jsonb_set(result,'{snapshot,campaign}',rows);
+ return result;
+end $$;
+
+alter function rpg_private.runtime_public_turn(rpg_private.turns) rename to runtime_public_turn_before_stage4;
+create function rpg_private.runtime_public_turn(t rpg_private.turns)
+returns jsonb language sql stable set search_path='' as $$
+ select rpg_private.runtime_public_turn_before_stage4(t)||
+   case when t.runtime_identity='dm-loop-v1' and t.status='committed' then jsonb_build_object(
+     'changes',coalesce((select jsonb_agg(jsonb_build_object('tool',r.value#>>'{call,name}','ok',true,'summary',r.value#>>'{result,summary}') order by (r.value->>'position')::integer)
+        from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,receipts}','[]'::jsonb)) r
+        where r.value#>'{result,ok}'='true'::jsonb and r.value#>>'{call,name}'<>'finish_turn' and r.value#>>'{call,name}'<>'query_state'),'[]'::jsonb),
+     'playerMoment',coalesce(t.checkpoint#>'{dmLoop,meta,playerMoment}','false'::jsonb),
+     'sceneKinds',coalesce(t.checkpoint#>'{dmLoop,meta,sceneKinds}','[]'::jsonb))
+   else '{}'::jsonb end
+$$;
+revoke all on function rpg_private.runtime_source_before_stage4(uuid,uuid,text),rpg_private.runtime_source(uuid,uuid,text),
+  rpg_private.runtime_public_turn_before_stage4(rpg_private.turns),rpg_private.runtime_public_turn(rpg_private.turns) from public,anon,authenticated;
 
 revoke all on function rpg_private.dossier_read(uuid) from public,anon,authenticated;
 revoke all on function rpg_private.dm_depth_valid(jsonb) from public,anon,authenticated;

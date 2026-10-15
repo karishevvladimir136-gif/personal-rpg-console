@@ -4,7 +4,7 @@
 // A rejected call returns a reason the model can act on; the turn continues.
 import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
-import type { Entity, EquipmentSlot, Item, Quest } from "../../persistence/contracts.ts";
+import type { Entity, EquipmentSlot, Item, PublicProfile, Quest, QuestDetail } from "../../persistence/contracts.ts";
 import type { RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
 import { recordServerRoll, stableGameplayId } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
@@ -12,9 +12,10 @@ import { settledItemTransfer } from "../../progression/settlement-core.ts";
 import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from "../character-model.ts";
 import { validateToolArguments } from "../../server/dm/model/schema-compiler.ts";
 import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
-import { dmLoopTools, ITEM_CATEGORIES } from "./tools.ts";
+import { dmLoopTools, ITEM_CATEGORIES, ITEM_RARITIES, QUEST_KINDS, RELATION_GROUPS, TENSION_CLASSES } from "./tools.ts";
+import { duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
-import type { DmLoopMeta, DmLoopReceiptResult, DmLoopToolCall } from "./contracts.ts";
+import type { DmLoopMeta, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -66,11 +67,56 @@ function entityChange(shadow: ShadowState, entity: Entity, values: JsonObject): 
   return { family: "entities", id: entity.id, expectedRevision: entity.revision, values };
 }
 
+/** The lower bound of a counter: a stored "<name>_min" (a ruleset's signed
+ * counter such as reputation or momentum), otherwise 0 (stage task §2). */
+export function resourceFloor(resources: Record<string, number>, key: string): number {
+  const min = resources[`${key}_min`];
+  return typeof min === "number" && Number.isInteger(min) ? min : 0;
+}
 function setResources(shadow: ShadowState, entity: Entity, resources: Record<string, number>) {
-  for (const [key, value] of Object.entries(resources))
-    reject(Number.isInteger(value) && value >= 0 && value <= L.maxResourceValue,
-      `${entity.name}: ${key} would become ${value}; counters stay between 0 and ${L.maxResourceValue}.`);
+  for (const [key, value] of Object.entries(resources)) {
+    const floor = resourceFloor(resources, key);
+    reject(Number.isInteger(value) && value >= floor && value <= L.maxResourceValue,
+      `${entity.name}: ${key} would become ${value}; it stays between ${floor} and ${L.maxResourceValue}.`);
+  }
   shadow.apply(entityChange(shadow, entity, { resources }));
+}
+function publicProfileOf(entity: Entity): PublicProfile {
+  return entity.public_profile && typeof entity.public_profile === "object" ? structuredClone(entity.public_profile) : {};
+}
+/** The public-profile fields of upsert_character (hero knowledge only). */
+function profilePatch(shadow: ShadowState, args: Args, entity: Entity | null, kind: string, description: string | undefined): PublicProfile | null {
+  const profile = entity ? publicProfileOf(entity) : {};
+  let touched = false;
+  if (args.relation !== undefined) {
+    const relation = args.relation as { group: string; note: string };
+    reject((RELATION_GROUPS as readonly string[]).includes(relation.group), `relation.group: ${RELATION_GROUPS.join(", ")}.`);
+    profile.relation = { group: relation.group as NonNullable<PublicProfile["relation"]>["group"], note: str(relation.note) };
+    touched = true;
+  }
+  if (args.important !== undefined) { profile.important = !!args.important; touched = true; }
+  if (args.attitude !== undefined) {
+    reject(kind === "companion", "attitude belongs to a companion (what the hero observes of them).");
+    profile.attitude = { text: str(args.attitude), lastNoticed: String(shadow.worldMinutes) };
+    touched = true;
+  }
+  if (args.factionRef !== undefined) {
+    const faction = entityOf(shadow, args.factionRef, "factionRef");
+    reject(faction.kind === "faction", `${faction.name} is not a faction record.`, "Create the faction with upsert_character kind faction first.");
+    profile.factionId = faction.id;
+    touched = true;
+  }
+  if (args.homeRef !== undefined) {
+    profile.homePlaceId = shadow.resolve(args.homeRef, ["locations"], "homeRef").id;
+    touched = true;
+  }
+  if (kind === "faction") {
+    const relation = profile.relation?.group;
+    profile.faction = { publicNote: description ?? entity?.details ?? "",
+      relation: relation === "ally" ? "ally" : relation === "foe" ? "foe" : relation === "neutral" || relation === "family" ? "neutral" : relation === "murky" ? "unknown" : profile.faction?.relation ?? "unknown" };
+    touched = true;
+  }
+  return touched ? profile : null;
 }
 
 /** Dice formula: NdS with an optional +/- modifier. */
@@ -222,7 +268,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     const entity = entityOf(shadow, args.ref, "ref");
     reject(entity.kind !== "player", `${entity.name} is the player's hero; the hero's record is not rewritten by the DM.`,
       "Use resource for HP and counters, item for possessions.");
-    reject(entity.kind === "npc" || entity.kind === "companion", `${entity.name} is a ${entity.kind}, not a character.`);
+    reject(entity.kind === "npc" || entity.kind === "companion" || entity.kind === "faction", `${entity.name} is a ${entity.kind}, not a character.`);
     const values: JsonObject = {};
     if (args.name !== undefined) values.name = str(args.name);
     if (args.description !== undefined) values.details = str(args.description);
@@ -230,6 +276,8 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
       reject(entity.kind === "npc" && args.kind === "companion", `${entity.name} cannot change from ${entity.kind} to ${String(args.kind)}.`);
       values.kind = "companion";
     }
+    const profile = profilePatch(shadow, args, entity, (values.kind as string | undefined) ?? entity.kind, args.description !== undefined ? str(args.description) : undefined);
+    if (profile) values.public_profile = profile as unknown as JsonObject;
     if (args.stats !== undefined) values.stats = statsFrom(args, entity.stats);
     if (args.maxHp !== undefined || args.hp !== undefined) {
       const maxHp = int(args.maxHp) ?? entity.max_hp ?? int(args.hp);
@@ -243,6 +291,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     const party = args.party === undefined ? config.controlledEntityIds.includes(entity.id) : !!args.party;
     const kind = (values.kind as string | undefined) ?? entity.kind;
     reject(!party || kind === "companion", "Only a companion can join the party.");
+    reject(!present || kind !== "faction", "A faction is never present in a scene; its people are.");
     config.presentEntityIds = present ? [...new Set([...config.presentEntityIds, entity.id])] : config.presentEntityIds.filter((id) => id !== entity.id);
     config.controlledEntityIds = party ? [...new Set([...config.controlledEntityIds, entity.id])] : config.controlledEntityIds.filter((id) => id !== entity.id);
     if (party) config.presentEntityIds = [...new Set([...config.presentEntityIds, entity.id])];
@@ -255,7 +304,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   reject(shadow.counters.charactersCreated < ctx.limits.charactersPerTurn,
     `This turn already introduced ${ctx.limits.charactersPerTurn} new characters, the campaign's limit per turn.`,
     "Refer to existing records with ref, or introduce the rest in a later turn.");
-  const kind = str(args.kind) === "companion" ? "companion" : "npc";
+  const kind = str(args.kind) === "companion" ? "companion" : str(args.kind) === "faction" ? "faction" : "npc";
   const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
   const similar = shadow.similarEntities(name).filter((row) => row.kind !== "player");
   const id = shadow.newId(`entity:${key}`);
@@ -264,13 +313,16 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   const maxHp = int(args.maxHp) ?? int(args.hp);
   const hp = int(args.hp) ?? maxHp;
   reject(maxHp === null || (hp !== null && hp >= 0 && hp <= maxHp), `HP ${hp} must stay within 0..${maxHp}.`);
+  reject(kind !== "faction" || (maxHp === null && args.party === undefined), "A faction has no hit points and never joins the party.");
+  const profile = profilePatch(shadow, args, null, kind, str(args.description));
   shadow.apply({ family: "entities", id, expectedRevision: null, values: {
     kind, name, details: str(args.description), hp: maxHp === null ? null : hp, max_hp: maxHp,
-    stats: statsFrom(args, {}), resources: {}, conditions: [], equipment_slots: humanoidSlots(language) as unknown as JsonObject[],
+    stats: statsFrom(args, {}), resources: {}, conditions: [], equipment_slots: (kind === "faction" ? [] : humanoidSlots(language)) as unknown as JsonObject[],
+    ...(profile ? { public_profile: profile as unknown as JsonObject } : {}),
   } });
   shadow.bindLocalKey(key, { family: "entities", id });
   if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${id}`, str(args.statblock));
-  const present = args.present === undefined ? true : !!args.present;
+  const present = kind === "faction" ? false : args.present === undefined ? true : !!args.present;
   const party = kind === "companion" && (args.party === undefined ? true : !!args.party);
   if (present || party) config.presentEntityIds = [...new Set([...config.presentEntityIds, id])];
   if (party) config.controlledEntityIds = [...new Set([...config.controlledEntityIds, id])];
@@ -278,10 +330,22 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   void ctx;
   const value: JsonObject = { id, localKey: key, name, kind, present, party,
     ...(similar.length ? { hint: `Similar existing characters: ${similar.map((row) => `${row.name} (${row.id})`).join(", ")}. If this is the same person, update that record with ref instead.` } : {}) };
-  return ok(value, `${name} recorded as ${kind === "companion" ? "a companion" : "a character"}`);
+  return ok(value, `${name} recorded as ${kind === "companion" ? "a companion" : kind === "faction" ? "a faction" : "a character"}`);
 }
 
 // --- upsert_place ----------------------------------------------------------
+/** Ties a place to quests both ways (location.detail.questIds, quest.detail.locationIds). */
+function linkPlaceToQuests(shadow: ShadowState, placeId: string, questRefs: unknown[]) {
+  const quests = questRefs.map((ref) => questOf(shadow, ref, "questRefs"));
+  const place = shadow.location(placeId)!;
+  const detail = { ...(place.detail ?? {}), questIds: [...new Set(quests.map((q) => q.id))] };
+  shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values: { detail: detail as unknown as JsonObject } });
+  for (const quest of quests) {
+    const current = shadow.quest(quest.id)!;
+    const questDetail: QuestDetail = { ...(current.detail ?? {}), locationIds: [...new Set([...(current.detail?.locationIds ?? []), placeId])] };
+    shadow.apply({ family: "quests", id: current.id, expectedRevision: current.revision, values: { detail: questDetail as unknown as JsonObject } });
+  }
+}
 function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   if (args.ref !== undefined) {
     const ref = shadow.resolve(args.ref, ["locations"], "ref");
@@ -289,8 +353,12 @@ function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     const values: JsonObject = {};
     if (args.name !== undefined) values.name = str(args.name);
     if (args.description !== undefined) values.description = str(args.description);
-    if (args.status !== undefined) values.status = str(args.status);
+    if (args.status !== undefined) {
+      reject(place.status !== "visited" || args.status === "visited", `${place.name} was visited; it cannot become merely ${String(args.status)}.`);
+      values.status = str(args.status);
+    }
     if (Object.keys(values).length) shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values });
+    if (Array.isArray(args.questRefs)) linkPlaceToQuests(shadow, place.id, args.questRefs);
     return ok({ id: place.id, name: (values.name as string) ?? place.name }, `${(values.name as string) ?? place.name} updated`);
   }
   const name = str(args.name);
@@ -301,7 +369,8 @@ function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   shadow.apply({ family: "locations", id, expectedRevision: null, values: {
     name, description: str(args.description), status: str(args.status) || "known" } });
   shadow.bindLocalKey(key, { family: "locations", id });
-  return ok({ id, localKey: key, name }, `Place recorded: ${name}`);
+  if (Array.isArray(args.questRefs)) linkPlaceToQuests(shadow, id, args.questRefs);
+  return ok({ id, localKey: key, name, status: str(args.status) || "known" }, `Place recorded: ${name}${str(args.status) === "rumored" ? " (a rumour)" : ""}`);
 }
 
 // --- time and travel -------------------------------------------------------
@@ -314,10 +383,21 @@ function advanceMinutes(shadow: ShadowState, minutes: number, what: string, ctx:
   shadow.source.runtime.worldMinutes += minutes;
   shadow.minutesAdvanced += minutes;
 }
+/** Off-screen plans that came due by the new time (stage task §2b, §3): the
+ * receipt lists them so the DM advances them in the same turn. */
+function dueAfterTime(shadow: ShadowState, before: number): JsonObject {
+  const due = duePlans(shadow.source.privateState, shadow.worldMinutes).map((plan) => ({
+    key: plan.key, actor: plan.actorId ? shadow.entity(plan.actorId)?.name ?? "someone" : "the world", goal: plan.goal,
+    consequence: plan.consequence, warning: plan.warning || null, overdueMinutes: shadow.worldMinutes - plan.dueWorldMinutes }));
+  if (!due.length) return {};
+  return { duePlans: due, hint: `${due.length} off-screen plan${due.length > 1 ? "s" : ""} came due while time passed (${shadow.worldMinutes - before} min). Advance them now in this turn: note_world (set the plan's next step or planStatus done/dropped), note_character for the people involved, and let the hero notice only what reaches them.` };
+}
 function advanceTime(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const minutes = int(args.minutes) ?? 0;
+  const before = shadow.worldMinutes;
   advanceMinutes(shadow, minutes, "advance_time", ctx);
-  return ok({ minutes, worldMinutes: shadow.worldMinutes }, `${minutes} minutes pass (${str(args.reason)})`);
+  const due = dueAfterTime(shadow, before);
+  return ok({ minutes, worldMinutes: shadow.worldMinutes, ...due }, `${minutes} minutes pass (${str(args.reason)})${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
 }
 function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const ref = shadow.resolve(args.placeRef, ["locations"], "placeRef");
@@ -326,6 +406,7 @@ function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
   reject(minutes > 0, "Travel takes time: minutes must be greater than 0.");
   const previous = shadow.snapshot.publicState.current_location_id;
   reject(previous !== place.id, `The party is already at ${place.name}.`, "Movement inside one place is narration, not a Location change.");
+  const before = shadow.worldMinutes;
   advanceMinutes(shadow, minutes, "move_party", ctx);
   shadow.apply({ family: "public_state", id: shadow.campaignId, expectedRevision: shadow.snapshot.publicState.revision,
     values: { current_location_id: place.id } });
@@ -336,14 +417,32 @@ function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
   config.presentEntityIds = config.presentEntityIds.filter((id) => party.has(id));
   config.nearbyStorageIds = [];
   shadow.setConfiguration(config);
-  return ok({ placeId: place.id, name: place.name, minutes, worldMinutes: shadow.worldMinutes }, `The party travels to ${place.name} (${minutes} min)`);
+  const due = dueAfterTime(shadow, before);
+  return ok({ placeId: place.id, name: place.name, minutes, worldMinutes: shadow.worldMinutes, ...due }, `The party travels to ${place.name} (${minutes} min)${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
 }
 
 // --- items -----------------------------------------------------------------
 function destinationOf(shadow: ShadowState, value: unknown, what: string): { entity: Entity | null; storageId: string; label: string } {
   if (str(value).toLowerCase() === "camp") return { entity: null, storageId: shadow.campStorage().id, label: "the camp" };
   const entity = entityOf(shadow, value, what);
+  reject(entity.kind !== "faction", `${entity.name} is a faction; items belong to its people or a holding.`);
   return { entity, storageId: shadow.storageFor(entity).id, label: entity.name };
+}
+/** An accepted transfer or payment that matches an open job's issuer: the
+ * receipt tells the DM the job may be complete (the one miss of every live
+ * bench; stage task §2). */
+function openJobHint(shadow: ShadowState, from: Entity | null, to: Entity | null): JsonObject {
+  const party = new Set(shadow.partyIds());
+  const open = shadow.snapshot.quests.filter((quest) => quest.campaign_id === shadow.campaignId && quest.status === "open" && (quest.kind ?? "quest") === "quest");
+  const matches = open.filter((quest) => {
+    const issuer = rewardTerms(shadow, quest)?.issuerId ?? null;
+    if (!issuer) return false;
+    // The party delivers to the issuer, or the issuer pays the party.
+    return (to && to.id === issuer && from && party.has(from.id)) || (from && from.id === issuer && to && party.has(to.id));
+  });
+  if (!matches.length) return {};
+  return { openQuests: matches.map((quest) => ({ id: quest.id, title: quest.title })),
+    hint: `This may complete the open job "${matches[0].title}" (${matches[0].id}). If it does, close it in this turn: quest complete, then quest claim_reward for the agreed reward (a plain payment from the issuer after completion settles it too).` };
 }
 function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
@@ -361,14 +460,22 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const id = shadow.newId(`item:${key}`);
     reject(!shadow.item(id), `The local key "${key}" already names an item in this turn.`);
     shadow.counters.itemsCreated++;
+    const rarity = args.rarity !== undefined ? str(args.rarity) : null;
+    reject(rarity === null || (ITEM_RARITIES as readonly string[]).includes(rarity), `rarity: ${ITEM_RARITIES.join(", ")}.`);
     shadow.apply({ family: "items", id, expectedRevision: null, values: {
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
-      equipped_entity_id: null, equipped_slot: null } });
+      equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}) } });
     shadow.bindLocalKey(key, { family: "items", id });
-    return ok({ id, localKey: key, name, category, quantity, owner: destination.label }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`);
+    return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`);
   }
-  const item = itemOf(shadow, args.itemRef, "itemRef");
+  let item = itemOf(shadow, args.itemRef, "itemRef");
+  if (args.rarity !== undefined) {
+    const rarity = str(args.rarity);
+    reject((ITEM_RARITIES as readonly string[]).includes(rarity), `rarity: ${ITEM_RARITIES.join(", ")}.`);
+    shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { rarity } });
+    item = shadow.item(item.id)!;
+  }
   if (action === "transfer") {
     const destination = destinationOf(shadow, args.ownerRef, "ownerRef");
     const quantity = int(args.quantity) ?? item.quantity;
@@ -384,7 +491,8 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       shadow.apply(change);
     }
     if (settled.split && args.localKey !== undefined) shadow.bindLocalKey(str(args.localKey), { family: "items", id: splitId });
-    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label },
+    const owner = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
+    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label, ...openJobHint(shadow, owner, destination.entity) },
       `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label}`);
   }
   if (action === "consume") {
@@ -471,7 +579,7 @@ function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
       shadow.setPrivate("fact", `quest_reward_${settled.id}`, JSON.stringify({ ...terms, paidOperationId: shadow.operationId }));
     }
     return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance: moneyOf(toNow, key),
-      ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : {}) },
+      ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : openJobHint(shadow, from, to)) },
       `${from.name} pays ${to.name} ${fmt(amount)}${settled ? ` (reward for "${settled.title}")` : ""}`);
   }
   if (action === "grant") {
@@ -520,7 +628,9 @@ function resourceTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   const current = Number(resources[key] ?? 0);
   const cap = max ?? (Number.isFinite(Number(resources[`${key}_max`])) && resources[`${key}_max`] !== undefined ? Number(resources[`${key}_max`]) : null);
   let next = set ?? current + (delta ?? 0);
-  reject(next >= 0, `${actor.name}: ${name} is ${current}; it cannot drop below 0 (asked for ${next}).`);
+  const floor = resourceFloor(resources, key);
+  reject(next >= floor, `${actor.name}: ${name} is ${current}; it cannot drop below ${floor} (asked for ${next}).`,
+    floor === 0 ? "A ruleset that keeps a signed counter stores its floor as <name>_min." : null);
   if (cap !== null) { next = Math.min(next, cap); resources[`${key}_max`] = cap; }
   resources[key] = next;
   setResources(shadow, actor, resources);
@@ -560,44 +670,95 @@ function rewardText(terms: RewardTerms | null): string {
 }
 function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
+  const kindArg = args.kind !== undefined ? str(args.kind) : null;
+  reject(kindArg === null || (QUEST_KINDS as readonly string[]).includes(kindArg), `kind: ${QUEST_KINDS.join(", ")}.`);
+  /** The journal detail of a quest, thread, debt, promise or arc (public, hero knowledge). */
+  const detailPatch = (current: QuestDetail | undefined, kind: string): QuestDetail | null => {
+    const detail: QuestDetail = { ...(current ?? {}) };
+    let touched = false;
+    if (args.steps !== undefined) {
+      reject(kind === "arc", "steps belong to the main arc (kind arc).");
+      detail.steps = (args.steps as { text: unknown; done: unknown }[]).map((step) => ({ text: str(step.text), done: !!step.done }));
+      touched = true;
+    }
+    if (args.locationRefs !== undefined) {
+      detail.locationIds = [...new Set((args.locationRefs as unknown[]).map((ref) => shadow.resolve(ref, ["locations"], "locationRefs").id))];
+      touched = true;
+    }
+    if (args.counterpartRef !== undefined) {
+      detail.counterpartId = entityOf(shadow, args.counterpartRef, "counterpartRef").id;
+      touched = true;
+    }
+    return touched ? detail : null;
+  };
   if (action === "create") {
     const title = str(args.title);
     reject(title.length > 0, "quest create needs a title.");
+    const kind = kindArg ?? "quest";
+    reject(kind !== "arc" || !shadow.snapshot.quests.some((row) => row.campaign_id === shadow.campaignId && row.kind === "arc" && row.status === "open"),
+      "The campaign already has an open main arc.", "Update it with quest update (steps, description) or complete it first.");
     const issuer = args.issuerRef !== undefined ? entityOf(shadow, args.issuerRef, "issuerRef") : null;
-    const terms = parseReward(shadow, args.reward, issuer?.id ?? null);
+    const terms = kind === "quest" ? parseReward(shadow, args.reward, issuer?.id ?? null) : null;
+    reject(kind === "quest" || args.reward === undefined, "Only a quest (kind quest) carries reward terms.");
     const key = localKey(args.localKey) ?? title.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
     const id = shadow.newId(`quest:${key}`);
     reject(!shadow.quest(id), `The local key "${key}" already names a quest in this turn.`);
     const reward = rewardText(terms);
-    shadow.apply({ family: "quests", id, expectedRevision: null, values: { title,
-      description: `${str(args.description)}${reward ? `\nReward: ${reward}.` : ""}`.trim() || title, status: "open" } });
+    const session = shadow.snapshot.publicState.current_session_id ?? null;
+    const detail = { ...(detailPatch(undefined, kind) ?? {}), sinceSessionId: session };
+    shadow.apply({ family: "quests", id, expectedRevision: null, values: { title, kind,
+      description: `${str(args.description)}${reward ? `\nReward: ${reward}.` : ""}`.trim() || title, status: "open",
+      detail: detail as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "quests", id });
+    for (const placeId of detail.locationIds ?? []) {
+      const place = shadow.location(placeId)!;
+      const placeDetail = { ...(place.detail ?? {}), questIds: [...new Set([...(place.detail?.questIds ?? []), id])] };
+      shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values: { detail: placeDetail as unknown as JsonObject } });
+    }
     if (terms) shadow.setPrivate("fact", `quest_reward_${id}`, JSON.stringify(terms));
-    return ok({ id, localKey: key, title, status: "open", reward: reward || null, issuer: issuer?.name ?? null },
-      `Quest taken: ${title}${reward ? ` (reward: ${reward})` : ""}`);
+    const noun = kind === "quest" ? "Quest taken" : kind === "thread" ? "Thread opened" : kind === "debt" ? "Debt recorded" : kind === "promise" ? "Promise recorded" : "Main arc set";
+    return ok({ id, localKey: key, title, kind, status: "open", reward: reward || null, issuer: issuer?.name ?? null },
+      `${noun}: ${title}${reward ? ` (reward: ${reward})` : ""}`);
   }
   const quest = questOf(shadow, args.questRef, "questRef");
   if (action === "update") {
     const values: JsonObject = {};
     if (args.title !== undefined) values.title = str(args.title);
     if (args.description !== undefined) values.description = str(args.description);
+    if (kindArg !== null && kindArg !== (quest.kind ?? "quest")) {
+      reject((quest.kind ?? "quest") !== "quest" && kindArg !== "quest", `"${quest.title}" is a quest with its own record; threads, debts and promises are other records.`);
+      values.kind = kindArg;
+    }
+    const detail = detailPatch(quest.detail, (values.kind as string | undefined) ?? quest.kind ?? "quest");
+    if (detail) {
+      values.detail = detail as unknown as JsonObject;
+      for (const placeId of detail.locationIds ?? []) {
+        const place = shadow.location(placeId)!;
+        if (place.detail?.questIds?.includes(quest.id)) continue;
+        const placeDetail = { ...(place.detail ?? {}), questIds: [...new Set([...(place.detail?.questIds ?? []), quest.id])] };
+        shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values: { detail: placeDetail as unknown as JsonObject } });
+      }
+    }
     if (args.reward !== undefined) {
+      reject((quest.kind ?? "quest") === "quest", "Only a quest carries reward terms.");
       const existing = rewardTerms(shadow, quest);
       reject(!existing?.paidOperationId, `The reward of "${quest.title}" was already paid; its terms are closed.`);
       const terms = parseReward(shadow, args.reward, existing?.issuerId ?? null);
       if (terms) shadow.setPrivate("fact", `quest_reward_${quest.id}`, JSON.stringify(terms));
     }
     if (Object.keys(values).length) shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values });
-    return ok({ id: quest.id, title: (values.title as string) ?? quest.title }, `Quest updated: ${(values.title as string) ?? quest.title}`);
+    return ok({ id: quest.id, title: (values.title as string) ?? quest.title }, `${(quest.kind ?? "quest") === "quest" ? "Quest" : "Journal"} updated: ${(values.title as string) ?? quest.title}`);
   }
   if (action === "complete" || action === "fail") {
     reject(quest.status === "open", `"${quest.title}" is already ${quest.status}.`);
     const status = action === "complete" ? "complete" : "archived";
     shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values: { status,
       ...(action === "fail" ? { description: `${quest.description}\nFailed.` } : {}) } });
-    return ok({ id: quest.id, title: quest.title, status }, `Quest ${action === "complete" ? "completed" : "failed"}: ${quest.title}`);
+    const noun = (quest.kind ?? "quest") === "quest" ? "Quest" : quest.kind === "arc" ? "Main arc" : quest.kind === "thread" ? "Thread" : quest.kind === "debt" ? "Debt" : "Promise";
+    return ok({ id: quest.id, title: quest.title, status }, `${noun} ${action === "complete" ? (quest.kind === "debt" || quest.kind === "promise" ? "settled" : quest.kind === "thread" ? "closed" : "completed") : "failed"}: ${quest.title}`);
   }
   reject(action === "claim_reward", `Unknown quest action "${action}".`);
+  reject((quest.kind ?? "quest") === "quest", `"${quest.title}" is a ${quest.kind}; only a quest pays a reward.`);
   reject(quest.status === "complete", `"${quest.title}" is ${quest.status}; complete it before paying the reward.`);
   const terms = rewardTerms(shadow, quest);
   reject(terms, `"${quest.title}" has no recorded reward terms.`, "If a reward was agreed in play, add it with quest update first.");
@@ -639,6 +800,7 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   const kind = str(args.kind) === "long" ? "long" : "short";
   const safe = !!args.safe;
   const minutes = int(args.minutes) ?? (kind === "long" ? basicProfile.longMinutes : basicProfile.shortMinutes);
+  const before = shadow.worldMinutes;
   advanceMinutes(shadow, minutes, "rest", ctx);
   const participants = (args.participantRefs as unknown[] | undefined)?.map((ref) => entityOf(shadow, ref, "participantRefs"))
     ?? shadow.partyIds().map((id) => shadow.entity(id)!);
@@ -664,8 +826,9 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   shadow.apply({ family: "rest_records", id, expectedRevision: null, values: { kind, status: safe ? "complete" : "interrupted",
     settings_revision: shadow.snapshot.settings.revision,
     public_outcome: { participants: participants.map((p) => p.name), recovered, consumed, minutes } } });
-  return ok({ kind, safe, minutes, recovered, consumed },
-    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}`);
+  const due = dueAfterTime(shadow, before);
+  return ok({ kind, safe, minutes, recovered, consumed, ...due },
+    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
 }
 
 // --- combat ----------------------------------------------------------------
@@ -712,6 +875,16 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
 }
 
 // --- holdings --------------------------------------------------------------
+type HoldingDetails = NonNullable<PublicProfile["holding"]>;
+/** features, armament and passengers of a holding (public: the hero's own property). */
+function holdingDetails(shadow: ShadowState, args: Args, current: HoldingDetails): HoldingDetails {
+  if (args.features === undefined && args.armament === undefined && args.passengerRefs === undefined) return current;
+  return {
+    features: args.features !== undefined ? (args.features as { name: unknown; description: unknown }[]).map((f) => ({ name: str(f.name), description: str(f.description) })) : current.features,
+    armament: args.armament !== undefined ? str(args.armament) : current.armament,
+    passengers: args.passengerRefs !== undefined ? [...new Set((args.passengerRefs as unknown[]).map((ref) => entityOf(shadow, ref, "passengerRefs").id))] : current.passengers,
+  };
+}
 function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   const action = str(args.action);
   if (action === "create") {
@@ -720,10 +893,12 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     const kind = str(args.kind);
     reject(["transport", "base", "mount"].includes(kind), "holding kind: transport, base or mount.");
     const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
+    const holding = holdingDetails(shadow, args, { features: [], armament: "", passengers: [] });
     if (kind === "base") {
       const id = shadow.newId(`storage:${key}`);
       reject(!shadow.storage(id), `The local key "${key}" is taken.`);
-      shadow.apply({ family: "storages", id, expectedRevision: null, values: { name, kind: "camp", entity_id: null } });
+      shadow.apply({ family: "storages", id, expectedRevision: null, values: { name, kind: "camp", entity_id: null,
+        detail: { holding: { kind: "base", description: str(args.description), ...holding } } as unknown as JsonObject } });
       shadow.bindLocalKey(key, { family: "storages", id });
       shadow.setPrivate("fact", `holding_${id}`, JSON.stringify({ kind, name, description: str(args.description) }));
       return ok({ id, localKey: key, kind, name }, `New base: ${name}`);
@@ -731,7 +906,7 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     const id = shadow.newId(`entity:${key}`);
     reject(!shadow.entity(id), `The local key "${key}" is taken.`);
     shadow.apply({ family: "entities", id, expectedRevision: null, values: { kind, name, details: str(args.description),
-      hp: null, max_hp: null, stats: {}, resources: {}, conditions: [], equipment_slots: [] } });
+      hp: null, max_hp: null, stats: {}, resources: {}, conditions: [], equipment_slots: [], public_profile: { holding } as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "entities", id });
     shadow.storageFor(shadow.entity(id)!);
     return ok({ id, localKey: key, kind, name }, `New ${kind}: ${name}`);
@@ -741,7 +916,13 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     const storage = shadow.storage(ref.id)!;
     reject(storage.kind === "camp", `${storage.name} is not a holding.`);
     if (action === "update") {
-      if (args.name !== undefined) shadow.apply({ family: "storages", id: storage.id, expectedRevision: storage.revision, values: { name: str(args.name) } });
+      const values: JsonObject = {};
+      if (args.name !== undefined) values.name = str(args.name);
+      const current = storage.detail?.holding ?? { kind: "base" as const, description: "", features: [], armament: "", passengers: [] };
+      const holding = holdingDetails(shadow, args, current);
+      if (args.description !== undefined || holding !== current)
+        values.detail = { holding: { kind: "base", description: args.description !== undefined ? str(args.description) : current.description, ...holding } } as unknown as JsonObject;
+      if (Object.keys(values).length) shadow.apply({ family: "storages", id: storage.id, expectedRevision: storage.revision, values });
       return ok({ id: storage.id, name: str(args.name) || storage.name }, `${str(args.name) || storage.name} updated`);
     }
     shadow.setPrivate("fact", `holding_${storage.id}`, JSON.stringify({ removed: true }));
@@ -753,6 +934,10 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     const values: JsonObject = {};
     if (args.name !== undefined) values.name = str(args.name);
     if (args.description !== undefined) values.details = str(args.description);
+    const profile = publicProfileOf(entity);
+    const current = profile.holding ?? { features: [], armament: "", passengers: [] };
+    const holding = holdingDetails(shadow, args, current);
+    if (holding !== current) values.public_profile = { ...profile, holding } as unknown as JsonObject;
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
     return ok({ id: entity.id, name: (values.name as string) ?? entity.name }, `${(values.name as string) ?? entity.name} updated`);
   }
@@ -774,6 +959,28 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     shadow.advanceClock(key, amount);
     return ok({ kind, key, value: shadow.privateValue("clock", key) }, "DM note updated");
   }
+  if (planKey(key)) {
+    // An off-screen plan: a structured private fact (plans.ts).
+    reject(kind === "fact", "A plan_ key is a fact note.");
+    const existing = parsePlan(key, shadow.privateValue("fact", key));
+    const status = args.planStatus !== undefined ? str(args.planStatus) as OffScreenPlan["status"] : existing?.status ?? "open";
+    reject(["open", "done", "dropped"].includes(status), "planStatus: open, done or dropped.");
+    const goal = args.value !== undefined ? str(args.value) : existing?.goal ?? "";
+    reject(goal.length > 0 && goal.length <= 2000, "A plan needs its goal and steps as value (up to 2000 characters).");
+    const actorId = args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef").id : existing?.actorId ?? null;
+    const due = args.dueInMinutes !== undefined ? shadow.worldMinutes + (int(args.dueInMinutes) ?? 0)
+      : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.worldMinutes;
+    reject(status !== "open" || args.dueInMinutes !== undefined || (existing !== null && existing.status === "open"),
+      "An open plan needs dueInMinutes: when its next step lands.", "Give dueInMinutes (game minutes from now), or resolve the plan with planStatus.");
+    const plan: OffScreenPlan = { key, actorId, goal, dueWorldMinutes: due, setAtWorldMinutes: shadow.worldMinutes,
+      consequence: args.consequence !== undefined ? str(args.consequence) : existing?.consequence ?? "",
+      warning: args.warning !== undefined ? str(args.warning) : existing?.warning ?? "", status };
+    shadow.setPrivate("fact", key, serializePlan(plan));
+    return ok({ kind, key, plan: { status, dueWorldMinutes: due, actor: actorId ? shadow.entity(actorId)?.name ?? null : null } },
+      status === "open" ? "DM plan updated" : "DM plan resolved");
+  }
+  reject(args.actorRef === undefined && args.dueInMinutes === undefined && args.planStatus === undefined && args.consequence === undefined && args.warning === undefined,
+    "actorRef, dueInMinutes, consequence, warning and planStatus belong to a plan: use a fact key that starts with plan_.");
   const value = str(args.value);
   reject(value.length > 0 && value.length <= 2000, "A set note needs a value of up to 2000 characters.");
   // A clock is a counter: SQL advances it as an integer, so a text value would
@@ -781,6 +988,7 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   if (kind === "clock")
     reject(/^\d{1,6}$/.test(value), `A clock's value is a whole number (its current position, for example "2"), not text: "${value.slice(0, 60)}".`,
       "Set the clock to a number, or advance it with operation \"advance\" and amount; keep its description in a fact note with the same key.");
+  reject(!["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state"].includes(key) && !key.startsWith("plan_"), "That key is kept by the server.");
   shadow.setPrivate(kind, key, value);
   return ok({ kind, key }, "DM note updated");
 }
@@ -829,10 +1037,22 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
           respect: str(r.respect) as "low" | "mixed" | "high", unresolvedHurt: r.unresolvedHurt !== undefined ? str(r.unresolvedHurt) || null : null, evidence };
       })).slice(-L.characterModel.relationships)
     : existing?.relationships ?? [];
+  // Stage 4: when the list is full the DM folds the oldest episodes into one
+  // summary episode instead of getting a rejection; the new ones are appended.
+  let kept = existing?.episodes ?? [];
+  if (args.foldEpisodes !== undefined) {
+    const fold = args.foldEpisodes as { keep: number; summary: unknown };
+    reject(existing !== null, `${actor.name} has no episodes to fold yet.`);
+    const keep = Math.max(0, Math.min(kept.length, int(fold.keep) ?? 0));
+    const folded = kept.slice(0, kept.length - keep);
+    kept = [...(folded.length ? [{ evidence: folded[0].evidence, meaning: str(fold.summary), cue: null }] : []), ...kept.slice(kept.length - keep)];
+  }
   const episodes = args.episodes !== undefined
-    ? ((args.episodes as { meaning: unknown; cue?: unknown }[]).map((e) => ({ evidence, meaning: str(e.meaning), cue: e.cue !== undefined ? str(e.cue) || null : null })))
+    ? [...(args.foldEpisodes !== undefined ? kept : []), ...((args.episodes as { meaning: unknown; cue?: unknown }[]).map((e) => ({ evidence, meaning: str(e.meaning), cue: e.cue !== undefined ? str(e.cue) || null : null })))]
       .slice(-L.characterModel.episodes)
-    : existing?.episodes ?? [];
+    : kept;
+  reject(episodes.length <= L.characterModel.episodes, `${actor.name} has ${episodes.length} episodes; the list holds ${L.characterModel.episodes}.`,
+    "Fold the oldest into one summary with foldEpisodes { keep, summary } and append the new ones.");
   const model: CharacterModel = { schemaVersion: 1, actorId: actor.id, basisOperationId: ctx.input.operationId,
     identity, current, beliefs, relationships, episodes };
   let parsed: CharacterModel;
@@ -847,9 +1067,9 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
       ...beliefs.filter((b) => b.text.length > B.longText).map((b) => `a belief (${b.text.length} chars, max ${B.longText})`),
       ...episodes.filter((e) => e.meaning.length > B.longText || (e.cue ?? "").length > B.cue).map((e) => `an episode (${e.meaning.length} chars, max ${B.longText}; cue max ${B.cue})`),
     ];
-    const size = Buffer.byteLength(JSON.stringify(model), "utf8");
-    throw new ToolReject(`${actor.name}'s Character Model was not saved: ${tooLong.length ? tooLong.join("; ") : size > B.bytes ? `${size} bytes in total, max ${B.bytes}` : "a field is empty or malformed"}.`,
-      `Shorten the listed fields and call note_character again with the same content; the limits are generous (${B.listText}–${B.longText} characters per text, ${B.listItems} entries per list).`);
+    const size = JSON.stringify(model).length;
+    throw new ToolReject(`${actor.name}'s Character Model was not saved: ${tooLong.length ? tooLong.join("; ") : size > B.chars ? `${size} characters in total, max ${B.chars}` : "a field is empty or malformed"}.`,
+      `Shorten the listed fields and call note_character again with the same content; the limits are generous (${B.listText}–${B.longText} characters per text, ${B.listItems} entries per list, ${B.episodes} episodes — fold the oldest with foldEpisodes when the list is full).`);
   }
   reject(new Set(parsed.relationships.map((r) => r.actorId)).size === parsed.relationships.length, "One relationship per character.");
   shadow.setPrivate("npc", `character_${actor.id}`, JSON.stringify(parsed));
@@ -861,7 +1081,13 @@ function finishTurn(shadow: ShadowState, args: Args): { result: DmLoopReceiptRes
   const spotlight = ((args.spotlight as unknown[]) ?? []).flatMap((ref) => {
     try { return [shadow.resolve(ref, ["entities"], "spotlight").id]; } catch { return []; }
   });
-  const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)], playerMoment: !!args.playerMoment };
+  const threads = ((args.threadRefs as unknown[]) ?? []).flatMap((ref) => {
+    try { return [shadow.resolve(ref, ["quests"], "threadRefs").id]; } catch { return []; }
+  });
+  const tension = args.nextTension !== undefined && (TENSION_CLASSES as readonly string[]).includes(str(args.nextTension)) ? str(args.nextTension) as DmLoopTension : null;
+  const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)],
+    playerMoment: !!args.playerMoment, nextTension: tension, threads: [...new Set(threads)],
+    playerLikes: args.playerLikes !== undefined ? str(args.playerLikes) || null : null };
   shadow.finished = true;
   return { result: ok({ recorded: true, playerMoment: meta.playerMoment }, meta.playerMoment ? "Your moment: describe how you do it" : "Turn recorded"), meta };
 }

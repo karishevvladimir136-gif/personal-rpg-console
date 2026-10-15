@@ -436,7 +436,7 @@ function EntityEditor({
           <RecordSelect
             label={t("Record kind")}
             value={draft.kind}
-            options={Object.entries(entityKindLabels).map(([value, label]) => ({
+            options={Object.entries(entityKindLabels).filter(([value]) => value !== "faction").map(([value, label]) => ({
               value,
               label: t(label),
             }))}

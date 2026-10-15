@@ -1,7 +1,12 @@
 // The dm-loop-v1 tool set: sixteen tools (plan §3), one neutral schema each.
+// Stage 4 extends them with actions and fields instead of adding tools (plan
+// §11, the rpg-mcp lesson): quest kinds, public relations, factions, rumours,
+// rarity, holding details, off-screen plans, episode folding, tension hints.
 // Strict mode where the provider limits allow it (docs/MODELS.md): OpenAI
 // strict everywhere; on Anthropic the tools with many optional fields are
-// non-strict, because at most 24 optional parameters may be strict in total.
+// non-strict (upsert_character, upsert_place, item, quest, note_character,
+// holding and, since Stage 4, note_world), because at most 24 optional
+// parameters may be strict in total.
 // The server validates every call against the shadow state regardless.
 import type { DmObjectSchema, DmSchema, DmToolDefinition } from "../../server/dm/model/schema-compiler.ts";
 import { dmLoopLimits as L } from "./limits.ts";
@@ -14,6 +19,10 @@ const object = (properties: Record<string, DmSchema>): DmObjectSchema => ({ type
 
 export const ITEM_CATEGORIES = ["weapon", "armor", "gear", "tool", "consumable", "misc"] as const;
 export const SCENE_KINDS = ["combat", "conversation", "mystery", "exploration", "quiet", "humor", "trade", "travel", "other"] as const;
+export const QUEST_KINDS = ["quest", "thread", "debt", "promise", "arc"] as const;
+export const RELATION_GROUPS = ["family", "ally", "murky", "neutral", "foe"] as const;
+export const ITEM_RARITIES = ["common", "relic", "magic", "story"] as const;
+export const TENSION_CLASSES = ["calm", "tense", "climax"] as const;
 export const ENCOUNTER_OUTCOMES = ["victory", "escape", "surrender", "negotiation", "objective-completion"] as const;
 export const POSITIONS = ["nearby", "far", "cover"] as const;
 
@@ -44,16 +53,21 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "upsert_character",
-    description: "Create or update a non-player character or companion the moment the story needs one: name, description, presence in the scene, optional stat block. A new companion joins the party when party is true. The player's hero cannot be rewritten here. If the name is close to an existing character the receipt returns that ID as a hint; you decide whether it is the same person.",
+    description: "Create or update a non-player character, companion or faction the moment the story needs one: name, description, presence in the scene, optional stat block. A new companion joins the party when party is true. The player's hero cannot be rewritten here. If the name is close to an existing character the receipt returns that ID as a hint; you decide whether it is the same person. Public knowledge the hero has goes here too: relation (how this person stands to the hero, as the hero sees it), important (a person worth a Character Model and a portrait), attitude (a companion's observable attitude toward the hero), factionRef, homeRef. A faction is a record of kind faction with its public note as description and its standing in relation.",
     strict: { anthropic: false },
     parameters: object({
-      ref: opt(ref("Existing character to update.")),
+      ref: opt(ref("Existing character or faction to update.")),
       localKey: opt({ type: "string", minLength: 1, maxLength: 60, pattern: "^[a-z0-9_-]+$", description: "Your own key for a new record, reusable in later calls of this turn (for example miller)." }),
       name: opt(str("Display name.", L.maxName)),
-      kind: opt({ type: "string", enum: ["npc", "companion"] }),
-      description: opt(str("Public description, appearance, role.", L.maxLongText)),
+      kind: opt({ type: "string", enum: ["npc", "companion", "faction"] }),
+      description: opt(str("Public description, appearance, role; for a faction its public note.", L.maxLongText)),
       present: opt({ type: "boolean", description: "Is the character in the current scene." }),
       party: opt({ type: "boolean", description: "Companion travels with the party." }),
+      relation: opt(object({ group: { type: "string", enum: [...RELATION_GROUPS] }, note: str("One public line: why, as the hero knows it.", L.maxShortText) })),
+      important: opt({ type: "boolean", description: "An important person: keep a Character Model for them (note_character)." }),
+      attitude: opt(str("A companion's attitude toward the hero as the hero could observe it now (not private thoughts).", L.maxShortText)),
+      factionRef: opt(ref("Faction this person belongs to, as the hero knows.")),
+      homeRef: opt(ref("Place where this person lives when not with the party.")),
       hp: opt({ type: "integer", minimum: 0, maximum: L.maxResourceValue }),
       maxHp: opt({ type: "integer", minimum: 1, maximum: L.maxResourceValue }),
       stats: opt({ type: "array", maxItems: 40, items: object({ name: sheetField("Stat name, lowercase (skill, attack, defense, stealth...)."), value: { type: "integer", minimum: -100, maximum: 1000 } }) }),
@@ -62,14 +76,15 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "upsert_place",
-    description: "Create or update a location: name, description, known or visited.",
+    description: "Create or update a location: name, description, status (rumored: the hero only heard of it; known; visited). questRefs ties the place to the goals of quests (the map shows it as a goal).",
     strict: { anthropic: false },
     parameters: object({
       ref: opt(ref("Existing place to update.")),
       localKey: opt({ type: "string", minLength: 1, maxLength: 60, pattern: "^[a-z0-9_-]+$", description: "Your key for a new place." }),
       name: opt(str("Place name.", L.maxName)),
       description: opt(str("Description.", L.maxLongText)),
-      status: opt({ type: "string", enum: ["known", "visited"] }),
+      status: opt({ type: "string", enum: ["rumored", "known", "visited"] }),
+      questRefs: opt({ type: "array", maxItems: 8, items: ref("A quest whose goal lies here.") }),
     }),
   },
   {
@@ -92,6 +107,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       category: opt({ type: "string", enum: [...ITEM_CATEGORIES] }),
       description: opt(str("What it looks like, where it came from (create).", L.maxLongText)),
       properties: opt(str("Mechanical properties as text: damage dice, armor value, effects, charges (create).", L.maxLongText)),
+      rarity: opt({ type: "string", enum: [...ITEM_RARITIES], description: "Significance of the item (create, or with itemRef to set it later): common, relic, magic, story." }),
       quantity: opt({ type: "integer", minimum: 1, maximum: L.maxItemQuantity, description: "Create: stack size (default 1). Transfer/consume/split: how many (default all / 1 / required)." }),
       ownerRef: opt(ref("Create: the owner; transfer: the recipient. Use \"camp\" for the shared camp stock.")),
       slot: opt({ type: "string", minLength: 1, maxLength: 80, description: "Equip: slot id (head, body, hand, offhand, belt, legs, boots, neck); default the first free slot that accepts the category." }),
@@ -124,15 +140,19 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "quest",
-    description: "Quests and jobs: create (title, description, reward terms, issuer), update, complete, fail, claim_reward (pays the agreed reward exactly once, to the recipient, default the hero). Reward terms are kept by the server; a second claim is refused.",
+    description: "The journal: quests and jobs, open threads, debts, promises and the main arc share this record (kind). create (title, description, reward terms, issuer, kind, steps for the arc), update (also the arc's steps, done flags, places), complete, fail, claim_reward (pays the agreed reward exactly once, to the recipient, default the hero). Reward terms are kept by the server; a second claim is refused. A debt or promise names its counterpart.",
     strict: { anthropic: false },
     parameters: object({
       action: { type: "string", enum: ["create", "update", "complete", "fail", "claim_reward"] },
-      questRef: opt(ref("Existing quest.")),
+      questRef: opt(ref("Existing quest, thread, debt, promise or arc.")),
       localKey: opt({ type: "string", minLength: 1, maxLength: 60, pattern: "^[a-z0-9_-]+$" }),
-      title: opt(str("Quest title.", L.maxName)),
+      kind: opt({ type: "string", enum: [...QUEST_KINDS], description: "quest (default), thread (an open story line the hero knows), debt, promise, arc (the main arc; one per campaign)." }),
+      title: opt(str("Title.", L.maxName)),
       description: opt(str("What must be done, for whom, by when.", L.maxLongText)),
       issuerRef: opt(ref("Who gives the job.")),
+      counterpartRef: opt(ref("Debt or promise: the other party.")),
+      steps: opt({ type: "array", maxItems: 12, items: object({ text: str("A step of the main arc.", L.maxShortText), done: { type: "boolean" } }), description: "The arc's steps (replace the list)." }),
+      locationRefs: opt({ type: "array", maxItems: 8, items: ref("A place tied to this goal.") }),
       recipientRef: opt(ref("Who receives the reward (claim_reward; default the hero).")),
       reward: opt(object({
         currency: opt(str("Currency name.", 32)),
@@ -184,17 +204,25 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       beliefs: opt({ type: "array", maxItems: L.characterModel.beliefs, items: object({ text: str("What they believe.", L.characterModel.longText), confidence: { type: "string", enum: ["tentative", "supported"] }, aboutRef: opt(ref("Who it is about.")) }) }),
       relationships: opt({ type: "array", maxItems: L.characterModel.relationships, items: object({ actorRef: ref("The other person."), affection: { type: "string", enum: ["distant", "open", "close"] }, trust: { type: "string", enum: ["low", "guarded", "earned"] }, respect: { type: "string", enum: ["low", "mixed", "high"] }, unresolvedHurt: opt(str("An unresolved hurt.", L.characterModel.listText)) }) }),
       episodes: opt({ type: "array", maxItems: L.characterModel.episodes, items: object({ meaning: str("What this episode meant to them.", L.characterModel.longText), cue: opt(str("What brings it back.", L.characterModel.cue)) }) }),
+      foldEpisodes: opt({ ...object({ keep: { type: "integer", minimum: 1, maximum: L.characterModel.episodes, description: "How many of the newest stored episodes to keep." }, summary: str("One episode that stands for the older ones.", L.characterModel.longText) }),
+        description: "When the episode list is full: fold the stored older episodes into one summary episode, then append the new ones from episodes." }),
     }),
   },
   {
     name: "note_world",
-    description: "Private DM notes about the world: facts (set), clocks (set or advance by an amount), factions, consequences. Keys are stable identifiers (lowercase, dashes). The player never sees these.",
+    strict: { anthropic: false },
+    description: "Private DM notes about the world: facts (set), clocks (set or advance by an amount), factions, consequences, and off-screen plans. Keys are stable identifiers (lowercase, dashes). A plan is a fact whose key starts with plan_: who pursues what, when it comes due (in game minutes from now), the consequence and whether the hero gets a fair warning; the receipts of advance_time, move_party and rest list the plans that came due, and you resolve a plan by setting planStatus. The player never sees these.",
     parameters: object({
       kind: { type: "string", enum: ["fact", "clock", "faction", "consequence"] },
       key: { type: "string", minLength: 1, maxLength: 120, pattern: "^[a-zA-Z0-9_-]+$" },
       operation: { type: "string", enum: ["set", "advance"] },
-      value: opt(str("The note (set).", 2000)),
+      value: opt(str("The note (set); for a plan: the goal and the steps in a few lines.", 2000)),
       amount: opt({ type: "integer", minimum: 0, maximum: 100, description: "Clock advance (advance)." }),
+      actorRef: opt(ref("Plan: who pursues it (a character or faction).")),
+      dueInMinutes: opt({ type: "integer", minimum: 0, maximum: 525600, description: "Plan: game minutes from now until the next step lands." }),
+      consequence: opt(str("Plan: what happens when it lands and nobody interferes.", L.maxShortText)),
+      warning: opt(str("Plan: the fair warning the hero may notice before it lands (empty: none).", L.maxShortText)),
+      planStatus: opt({ type: "string", enum: ["open", "done", "dropped"], description: "Plan: resolve it (done or dropped) or reopen it with a new due time." }),
     }),
   },
   {
@@ -210,7 +238,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "holding",
-    description: "Party property with its own storage: a transport (cart, boat, ship), a base (house, camp site, hideout) or a mount. create, update, remove. Items can be transferred to a holding by its reference.",
+    description: "Party property with its own storage: a transport (cart, boat, ship), a base (house, camp site, hideout) or a mount. create, update, remove. Items can be transferred to a holding by its reference. Public details the hero knows: features (a cabin, a forge), armament, passengerRefs (crew and people aboard).",
     strict: { anthropic: false },
     parameters: object({
       action: { type: "string", enum: ["create", "update", "remove"] },
@@ -219,15 +247,21 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       kind: opt({ type: "string", enum: ["transport", "base", "mount"] }),
       name: opt(str("Name.", L.maxName)),
       description: opt(str("Description, capacity, condition.", L.maxLongText)),
+      features: opt({ type: "array", maxItems: 12, items: object({ name: str("Feature name.", L.maxName), description: str("What it gives.", L.maxShortText) }), description: "Replace the list of features." }),
+      armament: opt(str("Armament as text (empty: none).", L.maxShortText)),
+      passengerRefs: opt({ type: "array", maxItems: 20, items: ref("A person aboard or living here."), description: "Replace the list of passengers and crew." }),
     }),
   },
   {
     name: "finish_turn",
-    description: "Call once when the narration is complete: what kinds of scene this turn was, which characters were in focus, and whether you hand the decisive moment to the player (playerMoment: the turn ends with an invitation and the player's next input describes the moment within the already accepted result).",
+    description: "Call once when the narration is complete: what kinds of scene this turn was, which characters and threads were in focus, whether you hand the decisive moment to the player (playerMoment: the turn ends with an invitation and the player's next input describes the moment within the already accepted result), how tense the next turn will be (nextTension: calm, tense or climax — the depth of thinking follows it), and, when you learned something new about what the player enjoys, a short playerLikes note.",
     parameters: object({
       sceneKinds: { type: "array", minItems: 1, maxItems: 4, items: { type: "string", enum: [...SCENE_KINDS] } },
       spotlight: { type: "array", maxItems: 12, items: ref("A character in focus.") },
       playerMoment: { type: "boolean" },
+      nextTension: opt({ type: "string", enum: [...TENSION_CLASSES] }),
+      threadRefs: opt({ type: "array", maxItems: 8, items: ref("A thread, debt, promise or quest this turn touched.") }),
+      playerLikes: opt(str("What the player seems to enjoy (themes, scene kinds, pace); replaces the note.", L.maxShortText)),
     }),
   },
 ];

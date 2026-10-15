@@ -41,6 +41,9 @@ export type DmLoopPin = {
    * Validation reads them from here, never from the live settings; a retry
    * keeps them. Absent on operations pinned before stage 3 (defaults apply). */
   limits?: DmLoopTurnLimits;
+  /** Stage 4 depth per scene: the campaign's range, the tension class this
+   * turn was judged at and why. `effort` above is the level chosen inside the range. */
+  depth?: { min: DmEffort; max: DmEffort; tension: DmLoopTension; reason: string; boosted: boolean };
 };
 
 /** What this turn has created so far, against the pinned per-turn limits. */
@@ -76,17 +79,30 @@ export type DmLoopDiagnostic =
   | { kind: "empty_narration" }
   /** The turn ended after a message of accepted bookkeeping that closed with
    * time passing, without a finish_turn round of its own (stage 3 §4). */
-  | { kind: "implicit_finish"; calls: number };
+  | { kind: "implicit_finish"; calls: number }
+  /** Stage 4: the dossier layers against their token budgets. */
+  | { kind: "dossier_budget"; layer: number; budgetTokens: number; usedTokens: number; dropped: string[] }
+  /** Stage 4: the depth chosen for this turn inside the campaign's range. */
+  | { kind: "depth"; effort: DmEffort; tension: DmLoopTension; reason: string }
+  /** Stage 4: an NPC revealed their own information in character (not a DM leak). */
+  | { kind: "self_disclosure"; detail: string };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";
 
+export type DmLoopTension = "calm" | "tense" | "climax";
 export type DmLoopMeta = {
   sceneKinds: DmLoopSceneKind[];
   /** Entity IDs whose story this turn touched (attention accounting, plan §10.4). */
   spotlight: string[];
   /** "How do you want to do this?" — the next player input narrates the decisive moment. */
   playerMoment: boolean;
+  /** The DM's hint about the next turn's tension (depth per scene, plan §8б). Absent before Stage 4. */
+  nextTension?: DmLoopTension | null;
+  /** Quest/thread/debt/promise IDs this turn touched (attention ledger). */
+  threads?: string[];
+  /** A new "what the player enjoys" note, when the DM wrote one (UI_DATA_NEEDS #19). */
+  playerLikes?: string | null;
 };
 
 /** The shadow state's delta, persisted at every checkpoint so a resume rebuilds

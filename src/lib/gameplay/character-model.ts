@@ -50,13 +50,18 @@ export const CHARACTER_MODEL_BOUNDS = {
   cue: 160,
   beliefs: 12,
   relationships: 12,
-  episodes: 20,
-  /** Bytes of the stored JSON (the loop's SQL limit on a private note). */
-  bytes: 6000,
+  episodes: 40,
+  /** Characters of the stored JSON (Stage 4: text limits are measured in
+   * characters; migration 55 lets a Character Model note hold 80 000 bytes,
+   * which this many characters never exceed in UTF-8). */
+  chars: 32_000,
+  /** Kept for callers that still size the model in bytes (the SQL bound). */
+  bytes: 80_000,
 } as const;
-const MAX_VALUE_BYTES = CHARACTER_MODEL_BOUNDS.bytes;
-const MAX_PACKET_BYTES = 6200;
-const MAX_ACTORS = 2;
+const MAX_VALUE_CHARS = CHARACTER_MODEL_BOUNDS.chars;
+const MAX_PACKET_BYTES = 48_000;
+/** The old turn path's packet of present characters: a budget, not two people (plan §9). */
+const MAX_ACTORS = 8;
 
 function object(value: unknown, keys: string[]): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value) ||
@@ -125,7 +130,7 @@ export function parseCharacterModel(value: unknown): CharacterModel {
     }),
   };
   if (new Set(model.relationships.map((r) => r.actorId)).size !== model.relationships.length ||
-      Buffer.byteLength(JSON.stringify(model), "utf8") > MAX_VALUE_BYTES) throw new DmError("validation");
+      JSON.stringify(model).length > MAX_VALUE_CHARS) throw new DmError("validation");
   return model;
 }
 

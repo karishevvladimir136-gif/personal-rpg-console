@@ -10,6 +10,29 @@ export type Campaign = ScopedRow & {
   title: string;
   subtitle: string;
   language: Language;
+  /** Stage 4 (UI_DATA_NEEDS #17, #19, pins). Optional in older fixtures. */
+  play_minutes?: number;
+  status?: "active" | "finished";
+  player_likes?: string;
+  theme?: string;
+  pinned_facts?: PinnedFact[];
+};
+/** An owner-pinned fact: always in front of the DM (plan §11). */
+export type PinnedFact = { id: string; text: string; source: { kind: "entity" | "quest" | "location" | "scene" | "item"; id: string } | null; at: string };
+/** What the hero knows about a person or faction (UI_DATA_NEEDS #6–#9, #11, #12). Public only. */
+export type PublicProfile = {
+  relation?: { group: "family" | "ally" | "murky" | "neutral" | "foe"; note: string };
+  important?: boolean;
+  /** A companion's observable attitude toward the hero. */
+  attitude?: { text: string; lastNoticed: string };
+  /** Faction records: the public note and the hero's standing with it. */
+  faction?: { publicNote: string; relation: "ally" | "neutral" | "foe" | "unknown" };
+  /** Membership of a person in a faction (entity ID of the faction record). */
+  factionId?: string;
+  /** Where this person lives when not with the party (location ID). */
+  homePlaceId?: string;
+  /** Holding details of a transport, base or mount. */
+  holding?: { features: { name: string; description: string }[]; armament: string; passengers: string[] };
 };
 export type Preferences = Revision & {
   language: Language;
@@ -46,7 +69,7 @@ export type DocumentVersion = {
 };
 export type EquipmentSlot = { id: string; label: string; accepts: string[] };
 export type Entity = ScopedRow & {
-  kind: "player" | "companion" | "npc" | "transport" | "mount";
+  kind: "player" | "companion" | "npc" | "transport" | "mount" | "faction";
   name: string;
   details: string;
   hp: number | null;
@@ -57,11 +80,15 @@ export type Entity = ScopedRow & {
   equipment_slots: EquipmentSlot[];
   /** Reviewed public profile. Historical entities and saves omit it or use NULL. */
   character_sheet?: import("../adventures/bootstrap-contracts.ts").CharacterSheetV1 | null;
+  /** Stage 4: hero-knowledge projection (never Character Model text). */
+  public_profile?: PublicProfile;
 };
 export type Storage = ScopedRow & {
   name: string;
   kind: "player" | "companion" | "camp" | "transport" | "merchant";
   entity_id: string | null;
+  /** Stage 4 (#12): a base's holding details. */
+  detail?: { holding?: PublicProfile["holding"] & { kind: "base"; description: string } };
 };
 export type Item = ScopedRow & {
   name: string;
@@ -73,6 +100,8 @@ export type Item = ScopedRow & {
   storage_id: string;
   equipped_entity_id: string | null;
   equipped_slot: string | null;
+  /** Stage 4 (#13): significance of the item, when the DM set it. */
+  rarity?: "common" | "relic" | "magic" | "story" | null;
 };
 export type Session = ScopedRow & {
   title: string;
@@ -95,15 +124,31 @@ export type PublicState = Revision & {
   current_scene_id: string | null;
   current_location_id: string | null;
 };
+export type QuestKind = "quest" | "thread" | "debt" | "promise" | "arc";
+export type QuestDetail = {
+  /** The main arc's steps (kind "arc"). */
+  steps?: { text: string; done: boolean }[];
+  /** Places tied to the goal (UI_DATA_NEEDS #10). */
+  locationIds?: string[];
+  /** Session in which the thread, debt or promise was opened. */
+  sinceSessionId?: string | null;
+  /** Who the debt or promise is owed to / by, as the hero knows it (entity ID). */
+  counterpartId?: string | null;
+};
 export type Quest = ScopedRow & {
   title: string;
   description: string;
   status: "open" | "complete" | "archived";
+  /** Stage 4 (#3, #4): quests, threads, debts, promises and the main arc share the record. */
+  kind?: QuestKind;
+  detail?: QuestDetail;
 };
 export type Location = ScopedRow & {
   name: string;
   description: string;
-  status: "known" | "visited";
+  status: "known" | "visited" | "rumored";
+  /** Stage 4 (#10): quests whose goal is here. */
+  detail?: { questIds?: string[] };
 };
 export type Asset = ScopedRow & {
   title: string;
