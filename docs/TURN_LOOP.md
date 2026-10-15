@@ -48,10 +48,15 @@ and use its text as the narration. Nothing in the tools, receipts or commit chan
 
 Four system blocks, most stable first, a cache breakpoint at each of the first three
 (Anthropic: explicit `cache_control` on blocks 1–3 plus the automatic top-level one;
-OpenAI: blocks 1–3 form the `instructions` prefix, block 4 is a developer message):
+OpenAI since Stage 2b: blocks 1–3 are developer messages with an explicit
+`prompt_cache_breakpoint` each and the campaign ID as `prompt_cache_key`, block 4 is a plain
+developer message — OpenAI's implicit breakpoint sits after the latest message, so without
+the explicit ones the first request of every turn wrote the whole prefix and read nothing):
 
-1. **How to DM** — role and tool policy, campaign language, DM Craft core doctrine, DM Style.
-   Identical across turns and campaigns with the same doctrine and style.
+1. **How to DM** — role and tool policy (narration first, tools inside the story, bookkeeping
+   in one final message with `finish_turn`), three examples of the turn's shape in the campaign
+   language, campaign language, DM Craft core doctrine, DM Style. Identical across turns and
+   campaigns with the same doctrine and style.
 2. **World** — campaign title, DM guide, Canon documents (≤ 60 KB), the historical World
    Logic packet if the campaign had a takeover, roll mode and difficulty settings.
 3. **Living** — Character Models (all present/mentioned ones within 24 KB, no two-actor cap),
@@ -78,7 +83,28 @@ Arguments are always validated on the server (`validateToolArguments`), then aga
 shadow state.
 
 References: an ID from the context, the `localKey` of a record created earlier in the same
-turn, or a unique exact name. `"camp"` is the shared camp stock, `"dm"` a roll of nobody.
+turn (also by an earlier call of the same message), or a unique exact name. `"camp"` is the
+shared camp stock, `"dm"` a roll of nobody. A reference nobody has is rejected with the
+closest existing names and their IDs, so one retry is enough.
+
+### The shape of a turn (Stage 2b)
+
+The instructions teach the order of a live DM: narration text at once; a call that *decides*
+an outcome (roll, payment, transfer, reward) before the sentence that describes it; pure
+*bookkeeping* (new characters and places, items, quests, time, notes) after the text, all in
+one final message that ends with `finish_turn`; independent calls together in one message.
+Text written around a tool call is joined into one narration by `joinText` (a dash continues
+the sentence, a finished sentence starts a paragraph) and the live stream emits the same
+pieces, so the player reads the first sentence before the first tool runs. The loop still
+asks for the narration if a model calls `finish_turn` before writing (safety net).
+
+Requests after the first may run at a pinned **continuation effort** (`pin.continuationEffort`;
+bench flag `--continuation-effort`): Anthropic takes it as the request's top-level
+`output_config.effort` (which restarts the message cache — the per-message form only applies
+after a user turn with new input, never after tool results); OpenAI keeps the request-level
+effort and inserts one GPT-6 `configuration_update` item before the first tool outputs, which
+keeps the cached prefix. Whether a campaign setting for it is worth having is decided from
+the Stage 2b bench (docs/SPEED.md).
 
 | Tool | Does | Server checks (data integrity, not plausibility) |
 | --- | --- | --- |
@@ -93,7 +119,7 @@ turn, or a unique exact name. `"camp"` is the shared camp stock, `"dm"` a roll o
 | `quest` | create / update / complete / fail / claim_reward | reward terms kept privately by the server; `claim_reward` pays exactly once (the issuer pays if they can, otherwise the reward is minted) and marks the operation |
 | `advance_time` | minutes with a reason | ≤ one week per turn in total |
 | `rest` | short/long rest for the party or listed participants | time passes; recovery by the campaign's recovery setting when safe; listed supplies consumed; a rest record is written |
-| `note_character` | Character Model: identity (set once), current state, beliefs, relationships, episodes | existing validator (`parseCharacterModel`); identity is fixed once established; evidence for this turn's entries is the turn's own narration scene |
+| `note_character` | Character Model: identity (set once), current state, beliefs, relationships, episodes | `parseCharacterModel` with the Stage 2b anti-garbage bounds (`CHARACTER_MODEL_BOUNDS`: 12 entries per list, 400–600 characters per text, 6000 bytes per model); identity is fixed once established; evidence for this turn's entries is the turn's own narration scene; a rejection names the field and the bound |
 | `note_world` | private facts, clocks (set/advance), factions, consequences | key format; clock advance 0–100; reserved key prefixes |
 | `combat` | start / position / end an encounter | one active encounter; participants exist |
 | `holding` | create / update / remove a transport, base or mount with its own storage | — |

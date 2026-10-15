@@ -146,3 +146,19 @@ Per-request numbers (tokens in / cache read / cache write / out / reasoning, cos
 | Optional field in strict schema | leave out of `required` | keep in `required`, type `X \| null` |
 | Number/length bounds in strict schema | not allowed | allowed |
 | Our effort mapping (`DmModel`) | `low`→low, `medium`→medium, `high`→high, `max`→max | same names |
+
+## Checked for Stage 2b (2026-10-15): effort changes and cache breakpoints
+
+Sources: [effort](https://platform.claude.com/docs/en/build-with-claude/effort.md),
+[prompt caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md),
+[thinking](https://platform.claude.com/docs/en/build-with-claude/thinking.md);
+[OpenAI prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching),
+[OpenAI reasoning](https://developers.openai.com/api/docs/guides/reasoning).
+
+| Topic | Claude Opus 5.5 | GPT‑6 Astra |
+| --- | --- | --- |
+| Changing effort between requests | The top-level `output_config.effort` is rendered into the prompt: a change always invalidates the messages cache and, model-dependent, the tools/system cache ("treat any thinking or top-level effort change as starting the cache over"). Per-message effort (beta `mid-conversation-output-config-2026-07-01`, a `role: "system"` message with `output_config`) keeps the cache but **takes effect only from the next user turn with new input — a user turn of tool results does not count**, so it cannot lower the effort of a continuation inside a tool loop | `reasoning.effort` is part of the rendered prefix too. GPT-6 models accept a `{type: "configuration_update", reasoning: {effort}}` input item that changes the level from that point on while the request-level value (and the cached prefix) stays; never two adjacent updates; not with automatic compaction |
+| Explicit cache breakpoints | `cache_control` on up to 4 blocks (we use 3 layers + the automatic one) | GPT-5.6 and later: `prompt_cache_breakpoint: {mode: "explicit"}` on an `input_text` block of an input message (not on the top-level `instructions`); up to 4 cache writes per request, the implicit breakpoint (end of the latest eligible message: a user message, the last of a group of tool outputs, the last of the initial developer messages) uses one of them. `prompt_cache_options.mode: "explicit"` turns the implicit one off |
+| Cache key / retention | TTL 5 min (refreshed) or `ttl: "1h"` | `prompt_cache_key` optional on GPT-5.6+ (routing is automatic; the key separates accounting); `prompt_cache_options.ttl` only `"30m"` |
+| Why Astra's first request of a turn read 0 cached tokens in Stage 2 | — | the only breakpoint was the implicit one after the player's input, so no earlier request shared that prefix; Stage 2b puts explicit breakpoints after each stable layer |
+| Interleaved text and tool calls | Text and `tool_use` blocks in one assistant message; the continuation after `tool_result` is a new assistant message (joined by the loop) | A `message` item followed by `function_call` items in one response; the reasoning guide recommends a `phase: "commentary"` preamble before tool calls |

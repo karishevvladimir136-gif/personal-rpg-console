@@ -39,6 +39,14 @@ case could exceed `--budget-usd`.
   `toolAccepted`, `contextIncludes`, `characterModelExists`, `leakLogged`, `diagnostic`, `retried`;
   a step may set `companion` (a companion-mode turn) or `retryOnFailure`. The report adds the
   Stage 2 medians (first word, turn, cost, cache read share, rejected and failed shares, leaks).
+  Stage 2b: a check with `"scripted": true` pins the scripted model's timing (which turn records
+  what) and is skipped in live runs, where only outcome checks count; `npcExists` and friends match
+  a character's name or, failing that, its public description; scenario 12 is the fluency set;
+  `--continuation-effort E` runs the requests after the first of every turn at level E (Anthropic:
+  top-level change, cache restarts; OpenAI: a `configuration_update` item); each turn record keeps the
+  full narration, the accepted receipts' summaries and per-request tool lists (`calls[].tools`).
+  `node scripts/eval/samples.mjs <run> --count 5 --out docs/samples/stage-2b/<model>.md` writes
+  sample turns (player line, narration, accepted changes) for the owner.
 - **live**: real `gpt-6-astra` requests. `--budget-usd` is required; before
   every request the worst case is reserved and a request that could exceed the
   budget is never sent. Probe steps and scripted answers are skipped.
