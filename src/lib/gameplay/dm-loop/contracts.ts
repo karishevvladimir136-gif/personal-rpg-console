@@ -109,7 +109,9 @@ export type DmLoopLiveEvent =
 
 /** Diagnostics the loop reports to the server log / bench (never to the player). */
 export type DmLoopObservation =
-  | { type: "request_started"; operationId: string; request: number; requestBytes: number; cachedPrefixBytes: number }
+  | { type: "request_started"; operationId: string; request: number; requestBytes: number; cachedPrefixBytes: number;
+      /** Size and content hash of each system layer: a changed hash in layers 1–3 breaks the cache. */
+      layers: { bytes: number; hash: string }[] }
   | { type: "request_finished"; operationId: string; request: number; usage: DmLoopUsageEntry; stop: string }
   | { type: "tool_receipt"; operationId: string; receipt: DmLoopReceipt }
   | { type: "diagnostic"; operationId: string; diagnostic: DmLoopDiagnostic }

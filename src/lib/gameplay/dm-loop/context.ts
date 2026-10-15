@@ -88,18 +88,30 @@ function privateNotes(source: RuntimeSource): string {
   return parts.length ? `Private DM notes (never shown to the player; update with note_world):\n${parts.join("\n\n")}` : "";
 }
 
-function memoryText(source: RuntimeSource): string {
+type MemoryRow = { text: string; attribution: string | null; authority: string; unresolved: boolean };
+const memoryLine = (row: MemoryRow) =>
+  `- [${row.authority}${row.unresolved ? ", unresolved" : ""}${row.attribution ? `, ${row.attribution}` : ""}] ${row.text}`;
+
+/** Memory digests: slow-moving, so they sit in the cached living layer. */
+function memorySummaries(source: RuntimeSource): string {
   const memory = source.memory;
   if (!memory) return "";
-  const line = (row: { text: string; attribution: string | null; authority: string; unresolved: boolean }) =>
-    `- [${row.authority}${row.unresolved ? ", unresolved" : ""}${row.attribution ? `, ${row.attribution}` : ""}] ${row.text}`;
+  const rows = (summary: { entries: MemoryRow[] } | null) => summary?.entries.map(memoryLine) ?? [];
   const parts: string[] = [];
-  const summaryRows = (summary: { entries: { text: string; attribution: string | null; authority: string; unresolved: boolean }[] } | null) =>
-    summary?.entries.map(line) ?? [];
-  const publicRows = [...summaryRows(memory.publicSummary), ...memory.historical.map(line)];
-  const privateRows = [...summaryRows(memory.privateSummary), ...memory.privateHistorical.map(line)];
-  if (publicRows.length) parts.push(`Campaign memory (public evidence, quoted; owner corrections outrank everything else):\n${publicRows.join("\n")}`);
-  if (privateRows.length) parts.push(`Private memory (DM-only evidence):\n${privateRows.join("\n")}`);
+  const publicRows = rows(memory.publicSummary);
+  const privateRows = rows(memory.privateSummary);
+  if (publicRows.length) parts.push(`Campaign memory digest (public evidence, quoted; owner corrections outrank everything else):\n${publicRows.join("\n")}`);
+  if (privateRows.length) parts.push(`Private memory digest (DM-only evidence):\n${privateRows.join("\n")}`);
+  return parts.join("\n\n");
+}
+
+/** Recent and retrieved memory rows change with every turn and input: volatile layer. */
+function memoryRecent(source: RuntimeSource): string {
+  const memory = source.memory;
+  if (!memory) return "";
+  const parts: string[] = [];
+  if (memory.historical.length) parts.push(`Recent and retrieved memory (public, quoted):\n${memory.historical.map(memoryLine).join("\n")}`);
+  if (memory.privateHistorical.length) parts.push(`Recent and retrieved private memory (DM-only):\n${memory.privateHistorical.map(memoryLine).join("\n")}`);
   if (memory.checkpoint) parts.push(`Resume point: ${json(memory.checkpoint.resume)}`);
   return parts.join("\n\n");
 }
@@ -160,13 +172,16 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
   try { narrateCards = pinnedCraftForStage(source, input, "narrate")?.cards ?? []; } catch { narrateCards = []; }
   const cards = [...(craft?.cards ?? []), ...narrateCards].filter((card, index, all) =>
     all.findIndex((other) => other.title === card.title) === index);
+  // Layer 1 holds only what is identical from turn to turn; the cards picked
+  // per operation by relevance go with the volatile layer (Stage 4 puts the
+  // whole approved library here once it is sized for the cache).
   const howToDm = [
     ROLE,
     `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
     craft?.doctrine ? `DM Craft — core doctrine:\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
-    cards.length ? `DM Craft cards:\n${cards.map((card) => `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}`).join("\n\n")}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null),
   ].filter(Boolean).join("\n\n");
+  const cardText = cards.length ? `DM Craft cards relevant to this turn:\n${cards.map((card) => `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}`).join("\n\n")}` : "";
 
   const guide = snapshot.documents.find((doc) => doc.id === snapshot.dmGuideDocumentId);
   const canon = snapshot.documents.filter((doc) => doc.status === "canon" && doc.id !== guide?.id);
@@ -184,10 +199,10 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
     rollMode(source),
   ].filter(Boolean).join("\n\n");
 
-  const living = [characterModels(source, input), privateNotes(source), memoryText(source)].filter(Boolean).join("\n\n")
+  const living = [characterModels(source, input), privateNotes(source), memorySummaries(source)].filter(Boolean).join("\n\n")
     || "No private notes or Character Models yet. Start them with note_character / note_world when a character or secret matters.";
 
-  const now = currentState(source, input);
+  const now = [cardText, memoryRecent(source), currentState(source, input)].filter(Boolean).join("\n\n");
   const addressee = input.mode === "companion" && input.companionId
     ? `The player speaks to ${snapshot.entities.find((e) => e.id === input.companionId)?.name ?? "a companion"} (${input.companionId})${input.listenerIds.length ? `; also listening: ${input.listenerIds.map((id) => snapshot.entities.find((e) => e.id === id)?.name ?? id).join(", ")}` : ""}. The companion answers in their own voice from what they know.`
     : "";

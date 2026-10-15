@@ -10,7 +10,7 @@
 // A failure resumes from the last checkpoint: recorded receipts are replayed,
 // dice are never rolled twice. Only lease/fence/revision violations and broken
 // transport fail the turn; a rejected tool call just returns its reason.
-import { randomInt } from "node:crypto";
+import { createHash, randomInt } from "node:crypto";
 import type { PublicTurn, ResumeInput, TurnInput } from "../contracts.ts";
 import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../server-contracts.ts";
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
@@ -215,7 +215,9 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
         toolset: dmLoopToolset, effort: pin.effort, maxOutputTokens: L.maxOutputTokens, operationId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
-      observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes });
+      observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
+        layers: context.system.map((block) => ({ bytes: new TextEncoder().encode(block.text).length,
+          hash: createHash("sha256").update(block.text).digest("hex").slice(0, 12) })) });
       const started = now();
       let firstTextMs: number | null = null;
       let roundText = "";
