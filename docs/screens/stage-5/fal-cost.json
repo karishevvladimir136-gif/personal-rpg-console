@@ -1,7 +1,7 @@
 {
-  "date": "2026-10-15T19:42:25.719Z",
+  "date": "2026-10-15T19:55:31.333Z",
   "capUsd": "$3.000",
-  "totalUsd": "$0.465",
+  "totalUsd": "$0.560",
   "images": [
     {
       "name": "cave",
@@ -151,6 +151,42 @@
       "bytes": 469595,
       "seconds": 16.7,
       "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-dana",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 411019,
+      "seconds": 12.3,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-car",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 329263,
+      "seconds": 12.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-stack",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 380381,
+      "seconds": 10.5,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-chip",
+      "model": "fal-ai/flux-2/flash",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 860351,
+      "seconds": 4,
+      "priceUsd": "$0.005"
     }
   ]
 }

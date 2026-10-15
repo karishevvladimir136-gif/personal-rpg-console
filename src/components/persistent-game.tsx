@@ -50,6 +50,7 @@ import {
   GameplayRest,
 } from "./gameplay-actions";
 import { GameplayCombat } from "./gameplay-combat";
+import { RegistryGame } from "./registry/game-screen";
 import { CombatReadiness } from "./combat-readiness";
 import { GameplayCheck } from "./gameplay-dice";
 import { SessionMemoryPanel, SessionPendingCompanion } from "./session-memory";
@@ -139,7 +140,7 @@ function SessionEditor({
   );
 }
 
-function SceneEditor({
+export function SceneEditor({
   scene,
   sessionId,
   onClose,
@@ -208,7 +209,7 @@ function SceneEditor({
   );
 }
 
-function ResumeEditor({
+export function ResumeEditor({
   data,
   onClose,
 }: {
@@ -301,7 +302,7 @@ function ResumeEditor({
   );
 }
 
-function Transcript({
+export function Transcript({
   data,
   session,
   onEdit,
@@ -458,7 +459,7 @@ export function PersistentSessions() {
   );
 }
 
-function GameSessionControls({ sessionId }: { sessionId: string | null }) {
+export function GameSessionControls({ sessionId }: { sessionId: string | null }) {
   const { t } = useLanguage();
   const memory = useSessionMemory();
   const needsReview =
@@ -1101,6 +1102,13 @@ export function PersistentGame({
   mediaTransport?: MediaFrameTransport;
   videoTransport?: VideoTransport;
 } = {}) {
+  // The live game uses the Stage 5 layout; synthetic reviews keep the earlier one.
+  if (!reviewOnly && !frameTransport && !mediaTransport && !videoTransport)
+    return (
+      <RecordBoundary>
+        {(data) => <RegistryGame key={data.campaign.id} data={data} />}
+      </RecordBoundary>
+    );
   return (
     <RecordBoundary>
       {(data) => (

@@ -10,9 +10,11 @@ export { s as registry };
 /** Russian first, English kept. New Stage 5 screens carry both phrases inline
  * so the shared catalog (`ru.json`) is not reformatted by this stage. */
 export function useCopy() {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const ru = language === "ru";
-  return Object.assign((russian: string, english: string) => (ru ? russian : english), { ru, language });
+  // `t` translates labels produced by the shared presentation helpers (resourcePresentation,
+  // inventoryCategoryLabel, characterViewModel) through the shared catalog.
+  return Object.assign((russian: string, english: string) => (ru ? russian : english), { ru, language, t });
 }
 export type Copy = ReturnType<typeof useCopy>;
 

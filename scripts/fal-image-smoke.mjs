@@ -14,6 +14,7 @@ import {
   generateFalImage,
   usd,
 } from "../src/lib/visual-frame/fal-image.ts";
+import { previewArtJobs } from "../src/lib/ui/preview/stage5-art.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const args = process.argv.slice(2);
@@ -30,22 +31,8 @@ function readKey() {
   return line ? line.slice("FAL_KEY=".length).trim().replace(/^["']|["']$/g, "") : "";
 }
 
-const style = "Steampunk over the ruins of an old world, oil painting, warm brass light, smoke and violet aether glow, painterly texture.";
-const jobs = [
-  ["hero-portrait", "portrait", "fal-ai/flux-2-pro", "James Hale", "A wiry man in his thirties with a short dark beard, a travelling mechanic and mage, warm amber light in his eyes, worn brown leather coat, brass goggles pushed up on his forehead, a pocket-watch chain on his waistcoat, friendly wry smile."],
-  ["hero-figure", "figure", "fal-ai/flux-2-pro", "James Hale", "The same wiry sorcerer-mechanic seen in full: worn leather coat, tool belt with a smuggler's satchel, a heavy engraved revolver holstered at the hip, army boots, faint red scales at one temple."],
-  ["meg", "portrait", "fal-ai/flux-2-pro", "Red Meg", "A confident red-haired woman airship pilot in her forties, freckles, aviator cap with goggles, fur-collared brown leather flight jacket, knowing smile."],
-  ["urzul", "portrait", "fal-ai/flux-2-pro", "Urzul Ironside", "A massive orc warrior with green-grey skin, tusks, one side of his torso plated with riveted iron, many scars, calm eyes."],
-  ["wolf", "portrait", "fal-ai/flux-2-pro", "Wolf Kessler", "A grizzled German engineer-soldier in his fifties, grey stubble, a brass monocle, oil-stained officer coat."],
-  ["zarga", "portrait", "fal-ai/flux-2-pro", "Zarga", "An orc shaman woman with braided black hair, chalk-white tattoos, bone and copper charms, piercing amber eyes."],
-  ["airship", "holding", "fal-ai/flux-2-pro", "The Iron Granny", "A battered old steampunk airship: patched canvas balloon, riveted wooden gondola, two brass propeller engines, one of them smoking, flying above clouds at sunrise."],
-  ["cave", "location", "fal-ai/flux-2-pro", "Alvares family sea cave", "A sea cave hangar under the cliffs of Lisbon at dawn, an old airship moored inside, lanterns, crates, fog drifting in from the Tagus river."],
-  ["geneva", "location", "fal-ai/flux-2-pro", "Geneva", "A lakeside city of spires under a shimmering violet tear in the sky, steam trams on the bridges, evening light."],
-  ["atlas", "atlas", "fal-ai/flux-2-pro", "Atlas of Western Europe", "An old hand-drawn atlas of western Europe and the Atlantic coast, parchment, sepia ink, faint compass rose, coastlines and mountains, no labels."],
-  ["crystal", "item", "fal-ai/flux-2/flash", "Aetherite crystal", "A glowing violet-blue aetherite crystal held in a small brass cage setting."],
-  ["revolver", "item", "fal-ai/flux-2/flash", "The Argument revolver", "A heavy engraved six-shot revolver with brass fittings and a worn walnut grip."],
-  ["watch", "item", "fal-ai/flux-2/flash", "Father's pocket watch", "An old silver pocket watch with a cracked glass, its hands stopped at 3:17."],
-];
+// The sample subjects live with the preview fixtures, never in app code.
+const jobs = previewArtJobs;
 
 const key = readKey();
 if (!key && !dry) {
@@ -62,7 +49,7 @@ const previous = existsSync(reportFile) ? JSON.parse(readFileSync(reportFile, "u
 const paid = previous.filter((row) => row.priceUsd || row.countedUsd);
 let spent = paid.reduce((sum, row) => sum + micros(row.priceUsd ?? row.countedUsd), 0);
 const report = [...paid];
-for (const [name, composition, model, subject, description] of jobs) {
+for (const { name, composition, model, subject, description, style } of jobs) {
   if (only && !only.includes(name)) continue;
   const file = join(out, `${name}.jpg`);
   if (existsSync(file) && !force) continue;

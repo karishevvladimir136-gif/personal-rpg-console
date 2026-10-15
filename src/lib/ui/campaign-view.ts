@@ -55,6 +55,9 @@ export function heroOf(data: CampaignSnapshot, play?: PlaySnapshot | null): Enti
 
 export type ResourceView = { key: string; label: string; value: number; max: number | null };
 export type MoneyView = { key: string; label: string; value: number };
+/** Named counters and money exactly as the record keeps them. Labels come from
+ * resourcePresentation (English source phrases for the shared catalog);
+ * a paired `<key>_max` value is the cap. No ruleset vocabulary here. */
 export function resourcesOf(entity: Pick<Entity, "resources">) {
   const resources: ResourceView[] = [];
   const money: MoneyView[] = [];
@@ -68,29 +71,9 @@ export function resourcesOf(entity: Pick<Entity, "resources">) {
   return { resources, money };
 }
 
-const ATTRIBUTES = [
-  ["strength", "СИЛ", "STR"], ["dexterity", "ЛОВ", "DEX"], ["constitution", "ТЕЛ", "CON"],
-  ["intelligence", "ИНТ", "INT"], ["wisdom", "МДР", "WIS"], ["charisma", "ХАР", "CHA"],
-] as const;
-export type StatView = { key: string; label: string; score: number; mod: string | null };
-const signed = (value: number) => (value >= 0 ? `+${value}` : `−${Math.abs(value)}`);
-/** Ability scores from the reviewed sheet; mechanical stats from the record otherwise. */
-export function statsOf(entity: Pick<Entity, "stats" | "character_sheet">, lang: Lang): StatView[] {
-  const attributes = entity.character_sheet?.attributes;
-  if (attributes)
-    return ATTRIBUTES.map(([key, ru, en]) => ({
-      key, label: pick(lang, ru, en), score: attributes[key], mod: signed(Math.floor((attributes[key] - 10) / 2)),
-    }));
-  return Object.entries(entity.stats)
-    .filter(([key, value]) => key !== "level" && Number.isFinite(value))
-    .map(([key, value]) => ({ key, label: resourcePresentation(key).label, score: value, mod: null }));
-}
-
-export function heroLine(entity: Pick<Entity, "character_sheet" | "stats">, lang: Lang) {
-  const sheet = entity.character_sheet;
-  const level = sheet?.level ?? (Number.isFinite(entity.stats.level) ? entity.stats.level : null);
-  return [sheet?.role, level !== null && level !== undefined ? `${pick(lang, "уровень", "level")} ${level}` : null, sheet?.tier]
-    .filter(Boolean).join(" · ");
+/** A label for a mechanical stat key of the record (no ruleset assumptions). */
+export function statLabel(key: string) {
+  return resourcePresentation(key).label;
 }
 
 export function inventoryOf(data: CampaignSnapshot, entityId: string): Item[] {

@@ -49,6 +49,7 @@ import {
   worldClock,
 } from "@/lib/ui/campaign-view";
 import { useCopy, registry as r } from "./primitives";
+import { LiveImages } from "./live-images";
 import s from "./shell.module.css";
 
 export type CampaignScreenId =
@@ -209,7 +210,8 @@ export function CampaignShell({ children }: { children: ReactNode }) {
             </div>
           </header>
           <main id="main" tabIndex={-1} className={s.main} style={{ padding: 0 }}>
-            {children}
+            {/* Previews supply their own sample art; the live app shows accepted subject visuals. */}
+            {chrome?.href ? children : <LiveImages data={data}>{children}</LiveImages>}
           </main>
         </div>
         <nav className={s.tabbar} aria-label={c("Разделы", "Sections")}>
