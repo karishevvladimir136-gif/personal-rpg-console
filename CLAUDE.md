@@ -54,7 +54,7 @@ Rules of any RPG system are knowledge (World Library sources or model knowledge)
 - While iterating, run focused tests. Before saying a stage is done, run on the final code:
   `pnpm typecheck`, `pnpm lint`, `pnpm test`, `pnpm build`. Report real results, including failures.
 - Commit in small logical steps. Do not merge to `main` and do not push to `main`.
-- Finish every stage with a short owner report in Russian (what changed, what to click/try,
+- Finish every stage with a short owner report in English (what changed, what to click/try,
   known limits, what the next stage is) and update the top section of `DEV_STATUS.md`.
 
 ## Commands

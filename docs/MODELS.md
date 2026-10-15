@@ -81,11 +81,38 @@ stable prefix of 13,885 characters (3,530 real tokens on Astra), one local `roll
 Russian player lines (offer of work; sneaking to the barn; haggling), each model/effort played twice in a row,
 `maxOutputTokens` 3000. Raw records: `scripts/eval/out/probe-20261015-075059.jsonl` (git-ignored).
 
-**Claude Opus 5.5 — not measured.** All 12 requests were refused with HTTP 401 `authentication_error`
-("invalid x-api-key") before any generation; nothing was billed. The `ANTHROPIC_API_KEY` value in `.env.local` starts
-with `sk-ant-` twice (the prefix appears to have been pasted twice). The owner needs to fix the key; the Opus half can
-then be re-run with the remaining $1.66 of the probe budget:
-`node scripts/eval/probe-models.mjs --budget-usd 1.65 --models opus`.
+**Claude Opus 5.5 — measured after a key fix** (second run, `--budget-usd 1.65 --models opus`; raw records
+`scripts/eval/out/probe-20261015-164544.jsonl`; 18 paid requests, **$0.2173** in total). The first attempt was refused
+with HTTP 401 because the key in `.env.local` had its `sk-ant-` prefix twice; the owner fixed it, and a free
+`GET /v1/models/claude-opus-5-5` check (200; 1,000,000 input / 128,000 output tokens) preceded the paid run.
+
+| Effort | Player turn | First word | Whole turn | Requests | Cost per turn |
+| --- | --- | --- | --- | --- | --- |
+| medium | no roll | 6.9 s cold, 2.9 s cached | 10.0 s cold, 5.8 s cached | 1 | $0.037 first (cache write), $0.009 cached |
+| medium | with a roll | 7.6–10.8 s (= whole turn) | 7.6–10.8 s | 2 | $0.016–0.021 |
+| high | no roll | 2.6–2.8 s | 6.3–6.7 s | 1 | $0.010 (prefix already cached) |
+| high | with a roll | 9.0–11.5 s (= whole turn) | 9.0–11.5 s | 2 | $0.018–0.022 |
+
+- Medians per turn: medium — first word 8.3 s, turn 9.1 s, $0.0177; high — first word 9.5 s, turn 9.5 s, $0.0180.
+- The same prompt counts as **5,798 tokens on Opus vs 3,530 on Astra** (different tokenizer; tools render
+  differently). Opus still costs the same or less per turn thanks to lower prices and the 5% cache-read rate.
+- Caching: 95–96% of the second run's input was read from the cache; the tools+system prefix written during the
+  medium runs was also read by the first high-effort request.
+- **After a roll, Opus's reply arrived in one burst** at the end of the second request (first and last text 0–30 ms
+  apart), so the player sees nothing for 7–11 s and then the whole paragraph. Astra streamed its post-roll text over
+  ~4–5 s. Like Astra, Opus wrote no text before calling `roll`.
+- Rolls were sensible (sneaking DC 12, haggling DC 15–20), never for plain conversation. Some roll reasons came back in
+  English or mixed language, and the narration kept the name "Oswin" partly in Latin script ("Оswin") where Astra
+  transliterated "Освин" — a prompt matter for Stage 4.
+
+**Side by side (this probe):**
+
+| | Opus medium | Opus high | Astra medium | Astra high |
+| --- | --- | --- | --- | --- |
+| First word, no roll (cached) | 2.9 s | 2.6–2.8 s | 1.4 s | 5.7 s |
+| First word, with a roll | 7.6–10.8 s | 9.0–11.5 s | 3.8–5.3 s | 7.1–10.2 s |
+| Whole turn, median | 9.1 s | 9.5 s | 8.5 s | 12.4 s |
+| Cost per turn, median | $0.018 | $0.018 | $0.020 | $0.030 |
 
 **GPT-6 Astra — measured** (20 paid requests, **$0.3422** in total):
 
