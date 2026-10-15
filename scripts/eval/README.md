@@ -9,7 +9,16 @@ node scripts/eval/run.mjs --scenario 01-miller           # one scenario
 node scripts/eval/run.mjs --scenario 01-miller,03-reward-once
 node scripts/eval/run.mjs --scenario all --provider live --budget-usd 10   # paid, see docs/BASELINE.md
 node scripts/eval/report.mjs <run-id>                    # table + medians for a finished run
+node scripts/eval/probe-models.mjs --dry-run             # live DmModel probe; paid without --dry-run:
+node scripts/eval/probe-models.mjs --budget-usd 2 [--models opus,astra] [--efforts medium,high] [--runs 2]
 ```
+
+`probe-models.mjs` talks to both DmModel adapters directly (no game state): a
+stable ~3.5k-token prefix, one local `roll` tool, three Russian player lines,
+each model/effort twice so the second run reads the cache. It records time to
+first word, turn time, tokens and cost per request and per turn in
+`scripts/eval/out/probe-<time>.jsonl`, and never sends a request whose worst
+case could exceed `--budget-usd`.
 
 - Each scenario starts from a freshly created campaign (World → character
   creation → opening → configuration → Astra takeover), the same preparation

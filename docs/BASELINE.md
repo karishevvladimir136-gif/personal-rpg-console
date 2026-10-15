@@ -240,3 +240,37 @@ node scripts/eval/report.mjs <run-id из вывода>
    `PRODUCTION_SPRINT_CONTRACTS.md`, `SOURCE_OF_TRUTH_INTEGRATION.md`, `V1_COMPLETION_WAVE1_CONTRACTS.md`,
    `VERIFICATION.md`. Решение — за владельцем. Ни код, ни тесты не читают ни один из перенесённых файлов по имени
    (по имени упоминаются только `MASTER_SPEC.md` и `SUPABASE_SETUP.md`, они в корне).
+
+## 8. Live baseline of the old Astra turn (added in Stage 1, 2026-10-15)
+
+`node scripts/eval/run.mjs --scenario 01-miller,03-reward-once,08-secret-pressure --provider live --budget-usd 3`
+on commit `3b822ab` (the Stage 0 turn path, unchanged). Probes are skipped in live mode. The run stopped at the
+budget guard after **22 paid requests, $2.2854**: the next request's worst case (~$0.8) could have crossed $3, so
+scenario 08 ended after 7 of its 10 turns. Raw records: `scripts/eval/out/20261015-075400-live-…jsonl` (git-ignored).
+
+| Scenario | Result | Turns | Notes |
+| --- | --- | --- | --- |
+| 01 miller | 2/6 (same as fake) | 2 committed | The live model narrated the miller and the job but proposed **no** effect at all (no job, no `unsupported_optional`): the gap is silent |
+| 03 reward once | 11/11 (same as fake) | 4 committed + 1 replay | Live Astra completed and paid the job in one turn (`job_complete` + `job_reward`); replay made 0 requests; "he still owes me" paid nothing |
+| 08 secret | 12/17 | 3 committed, **4 failed**, 1 not sent | Four turns failed with `validation`, not retryable — the player sees a failed turn; the secret itself never leaked |
+
+| Measure (live) | Value |
+| --- | --- |
+| Full turn, median | 20.6 s (committed only 19.3 s); range 13.4–45.6 s |
+| Requests per turn | median 2 (private-informed 2, public-unified 1) |
+| Plan request | 7.9–11.5k input tokens, 240–1,270 output tokens (130–1,030 reasoning), 5.9–33.5 s |
+| Narrator request | 3.5–5.8k input tokens, 200–360 output tokens, 7.5–14.7 s |
+| Cost per turn | $0.10–0.24 (median ≈ $0.18) |
+
+Findings:
+1. **Cache writes are a 25% surcharge on most input.** GPT‑6 Astra bills cache writes at 1.25× input. Nearly every
+   request wrote almost its whole prompt to the cache (e.g. 9,875 of 9,878 tokens) and read back little (0–4.4k):
+   each turn's prompt diverges early, so the written cache is rarely reused. A stable, cacheable prefix (Stage 4) or
+   explicit cache breakpoints would turn this into a 90% discount instead.
+2. **Non-retryable validation failures in normal play.** 4 of 7 attempted secret-scenario turns failed. Three failed
+   after the narrator answered (the literal privacy guard runs there); one failed after planning. The failed text is not
+   stored, so the exact cause is unproven. A confirmed mechanism (offline test): the guard treats every private string of
+   8+ characters as secret, including Character Model words such as the stress value `strained` — a narrator line
+   that merely says "his voice sounds strained" fails the whole turn. Since Stage 1 the bench records the failing
+   stage (`stageDiagnostic`, e.g. `narration_safety`) so the next live run shows it.
+3. **Latency is the model.** Server work stays under ~0.1 s; a two-request turn spends 20–45 s waiting for Astra.

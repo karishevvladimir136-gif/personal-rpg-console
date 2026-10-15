@@ -74,6 +74,38 @@ event and usage field names checked in the official SDK types
 | Errors | Retry with backoff: 429 rate limit / `slow_down` (honour `Retry-After`), 500, 503 `server_is_overloaded`. Do not retry: 401, 403, 429 billing/quota codes (`credit_balance_exhausted`, `organization_spend_limit_exceeded`, `project_spend_limit_exceeded`, `organization_usage_limit_exceeded`) |
 | Price per 1M tokens | input **$10**, cached input **$1**, cache write **$12.50**, output **$50** (Standard tier; Flex/Batch 50%, Fast 2×) |
 
+## Live probe (Stage 1, 2026-10-15)
+
+`node scripts/eval/probe-models.mjs --budget-usd 2` — toy DM loop through the new `DmModel` adapters:
+stable prefix of 13,885 characters (3,530 real tokens on Astra), one local `roll(formula, reason)` tool, three short
+Russian player lines (offer of work; sneaking to the barn; haggling), each model/effort played twice in a row,
+`maxOutputTokens` 3000. Raw records: `scripts/eval/out/probe-20261015-075059.jsonl` (git-ignored).
+
+**Claude Opus 5.5 — not measured.** All 12 requests were refused with HTTP 401 `authentication_error`
+("invalid x-api-key") before any generation; nothing was billed. The `ANTHROPIC_API_KEY` value in `.env.local` starts
+with `sk-ant-` twice (the prefix appears to have been pasted twice). The owner needs to fix the key; the Opus half can
+then be re-run with the remaining $1.66 of the probe budget:
+`node scripts/eval/probe-models.mjs --budget-usd 1.65 --models opus`.
+
+**GPT-6 Astra — measured** (20 paid requests, **$0.3422** in total):
+
+| Effort | Player turn | First word | Whole turn | Requests | Cost per turn |
+| --- | --- | --- | --- | --- | --- |
+| medium | no roll (offer of work) | 1.4–2.2 s | 6.1–7.3 s | 1 | $0.052 first (cache write), $0.011 cached |
+| medium | with a roll (sneak, haggle) | 3.8–5.3 s | 8.1–9.4 s | 2 | $0.018–0.021 |
+| high | no roll | 5.7–8.4 s | 10.3–12.6 s | 1 | $0.061 first, $0.018 cached |
+| high | with a roll | 7.1–10.2 s | 10.3–15.4 s | 2 | $0.029–0.032 |
+
+- Medians per turn: medium — first word 4.2 s, turn 8.5 s, $0.0195; high — first word 7.8 s, turn 12.4 s, $0.0304.
+- Caching works through the adapter: the second run read 96–97% of its input from the cache; the first request of a
+  run writes the 3,530-token prefix once at $12.50/1M.
+- Rolls: Astra called `roll` exactly where an uncertain outcome existed (sneaking DC 12, haggling DC 15–20), never for
+  plain conversation, with sensible Russian reasons. Narration was natural Russian, within the length asked.
+- With a roll, the first word arrives only after the roll round trip (~2–3.4 s for the tool request) — the turn loop in
+  Stage 2 should stream a short line before or while a tool runs, or accept this latency.
+
+Per-request numbers (tokens in / cache read / cache write / out / reasoning, cost) are in the JSONL file.
+
 ## Side by side
 
 | | Claude Opus 5.5 | GPT‑6 Astra |

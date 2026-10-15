@@ -1,28 +1,35 @@
 # Development status
 
-**Current stage:** Stage 0 — preparation and baseline — done, waiting for the owner's review and «дальше».
-Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_0.md`; rules: `CLAUDE.md`; baseline: `docs/BASELINE.md`.
+**Current stage:** Stage 1 — two models — implemented; waiting for the owner's review and «дальше».
+Blocked item: the Claude Opus 5.5 live probe (the `ANTHROPIC_API_KEY` in `.env.local` is rejected as invalid —
+its `sk-ant-` prefix appears twice). Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_1.md`; rules: `CLAUDE.md`.
 
-**Branch:** `claude/stage-0-baseline` from `claude/rebuild-base` (= `65dc99c`, `codex/astra-fictional-world-freedom`).
-Not merged, not pushed. No `src/` or migration changes; no paid model calls; the owner's database was not used.
+**Branch:** `claude/stage-1-models` from `claude/stage-0-baseline`. Not merged, not pushed.
 
-**Checks on the final branch state:** typecheck pass; lint pass (0 warnings); build pass;
-tests 2375: 2374 pass, 0 fail, 1 existing opt-in skip, 494 s (HTTP tests against an isolated
-credential-free build of this branch on port 3197).
+**What exists now:**
+- `DmModel` (`src/lib/server/dm/model/`): one streaming call per request, Anthropic (`claude-opus-5-5`) and OpenAI
+  (`gpt-6-astra`) adapters on `fetch`, tool-schema compiler with provider limits, classified errors, retries only
+  before the first event. Facts: `docs/MODELS.md`.
+- One price table and cost-by-usage: `src/lib/model-runtime/dm-models.ts`.
+- Campaign choice: `runtimePolicy.taskOverrides["dm.turn"]` may be Claude Opus 5.5 or GPT-6 Astra (default Astra);
+  every other task stays OpenAI-only. Migration 52. An Astra turn pins the choice plus the models that actually
+  serve it; retries keep the pin. The old Astra turn is unchanged and still runs on Astra.
+- HTTP tests never reach the owner's app on :3000 (skipped without `PREVIEW_URL`).
+- Bench: three tracked known weaknesses W1–W3 (red by design); fake bench still 2 of 8.
 
-**Evaluation bench:** `node scripts/eval/run.mjs --scenario all` (fake provider, disposable PGlite).
-Baseline: 2 of 8 scenarios pass (03 reward-once, 08 secret-pressure); 01, 02, 04, 05, 06, 07 fail because
-NPCs/places/quests/companions cannot be created in play, rewards are capped at 1–20 and created items are
-food/supply/misc only, and eating works only for healing items. Probes: a second payment via `mundane_grant`
-is accepted; the privacy guard misses paraphrases and fails a whole turn on any quoted private string.
-Median 2 model requests per turn; ~2/3 of turns take the two-request private-informed path.
+**Checks on the final branch state:** typecheck pass; lint pass (0 warnings); build pass; tests 2401 — 2374 pass,
+0 fail, 27 skipped (26 HTTP tests without `PREVIEW_URL`, by design, + 1 existing opt-in), 480 s. Fake bench: 2 of 8,
+same checks as BASELINE, W1–W3 open.
 
-**Known issues:** HTTP tests default to `127.0.0.1:3000` (the owner's running app) — always run `pnpm test`
-with `PREVIEW_URL` pointing to an isolated server. No system Node.js on PATH (Codex runtime Node 24.19.0 used).
-Stale leftover edits from the old detached checkout are kept in `git stash` ("pre-stage-0: …").
-13 root documents match neither the archive patterns nor the keep list — owner to decide. Details: `docs/BASELINE.md` §7.
+**Paid runs (2026-10-15):** model probe $0.3422 of $2 (Astra only; Opus 401); old Astra turn on bench 01/03/08
+$2.2854 of $3 (stopped by the budget guard). Numbers: `docs/MODELS.md` (probe), `docs/BASELINE.md` §8 (live baseline).
 
-**Next step:** owner review of Stage 0; optional live Astra baseline (`--provider live --budget-usd 10`, ≈ $6–9)
-only with the owner's approval; then Stage 1 (two models) after «дальше».
+**Known issues:** after the Astra takeover a campaign's settings (including the DM model) cannot be changed —
+`rpg_world` accepts reads only (migration 39); the choice can be set before takeover. Live Astra failed 4 of 7 secret-scenario
+turns with non-retryable validation (literal privacy guard; see BASELINE §8). Cache writes make most Astra input
+cost 1.25×. Stale leftover edits from the old detached checkout are in `git stash` ("pre-stage-0: …").
+
+**Next step:** owner fixes `ANTHROPIC_API_KEY`; re-run the Opus probe (≤ $1.65 left of the approved $2). Then Stage 2
+(new turn loop) after «дальше».
 
 The full pre-rebuild status history is in `docs/archive/DEV_STATUS_history.md`.
