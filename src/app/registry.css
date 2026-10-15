@@ -1,0 +1,226 @@
+/* Stage 5 · the registry look (design/registry-reference.html).
+   One dark theme: leather, brass and parchment. Loaded after the legacy
+   stylesheets, so the legacy tokens below re-skin older screens too. */
+:root {
+  --ink: #16110d;
+  --leather: #211913;
+  --leather-2: #2b211a;
+  --leather-3: #36291f;
+  --leather-hi: #3a2c1f;
+  --brass: #cfa860;
+  --brass-hi: #e7c47d;
+  --brass-dim: #8d7142;
+  --copper: #b8703f;
+  --verdigris: #64a998;
+  --arcane: #ae93d6;
+  --iron: #9b938a;
+  --crimson: #c9563f;
+  --amber: #d99a3e;
+  --parch: #eadcbd;
+  --parch-2: #dccaa3;
+  --parch-ink: #2a1f16;
+  --line: rgba(207, 168, 96, 0.26);
+  --line-strong: rgba(207, 168, 96, 0.55);
+  --f-display: var(--font-registry-display), "Old Standard TT", "Times New Roman", Georgia, serif;
+  --f-body: var(--font-registry-body), "Alegreya Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: var(--font-registry-mono), "PT Mono", ui-monospace, "Courier New", monospace;
+  --rarity-common: #9b938a;
+  --rarity-relic: #64a998;
+  --rarity-magic: #ae93d6;
+  --rarity-story: #cfa860;
+  --touch: 44px;
+
+  /* Legacy tokens, re-pointed at the registry palette. */
+  --bg: var(--ink);
+  --panel: var(--leather);
+  --text: #ece1cb;
+  --muted: #ab9a80;
+  --gold: var(--brass);
+  --bronze: var(--brass-dim);
+  --border: var(--line);
+  --red: var(--crimson);
+  --blue: #7d9fb8;
+  --font-serif: var(--f-display);
+  --font-display: var(--f-display);
+  --font-sans: var(--f-body);
+  --play-body: 1.0625rem;
+  --play-control: 1rem;
+  --play-meta: 0.9375rem;
+  --play-card-title: 1.3rem;
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--ink);
+  background-image:
+    radial-gradient(120% 60% at 50% -10%, rgba(207, 168, 96, 0.1), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 7px);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--f-display);
+}
+h1 {
+  font-weight: 700;
+  color: var(--brass);
+}
+em {
+  font-family: var(--f-display);
+  color: #e3cf9f;
+}
+small {
+  font-size: 13px;
+}
+:focus-visible,
+button:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+input,
+textarea,
+select {
+  min-height: var(--touch);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: #120d0a;
+  color: var(--text);
+  font-size: 16px;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brass);
+  box-shadow: 0 0 0 2px rgba(207, 168, 96, 0.12);
+}
+input::placeholder,
+textarea::placeholder {
+  color: #8f7f68;
+}
+textarea {
+  min-height: 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  min-height: 0;
+  accent-color: var(--brass);
+}
+
+/* Legacy building blocks, re-skinned. Flows and markup are unchanged. */
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass-dim);
+}
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: linear-gradient(180deg, var(--leather-2), var(--leather));
+  box-shadow: inset 0 1px 0 rgba(255, 230, 180, 0.05);
+}
+.panel-heading {
+  border-bottom-color: var(--line);
+}
+.panel-heading h2 {
+  color: var(--brass);
+  font-weight: 700;
+}
+.button {
+  min-height: var(--touch);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  background: var(--leather);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: 15px;
+}
+.button:hover:not(:disabled) {
+  border-color: var(--brass);
+  background: var(--leather-3);
+}
+.button.primary {
+  border-color: var(--brass-hi);
+  color: var(--ink);
+  background: linear-gradient(180deg, var(--brass-hi), #a98340);
+  box-shadow: none;
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+.button.primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #f0d08c, #b48c46);
+  color: var(--ink);
+}
+.text-link {
+  color: var(--brass);
+  font-size: 14px;
+  min-height: 32px;
+}
+.text-link:hover {
+  color: var(--brass-hi);
+}
+.badge {
+  border-color: var(--line-strong);
+  color: var(--brass);
+  background: rgba(207, 168, 96, 0.06);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.badge.green {
+  border-color: var(--verdigris);
+  color: var(--verdigris);
+}
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+.tabs {
+  border-bottom-color: var(--line);
+  gap: 6px;
+}
+.tabs button {
+  min-height: var(--touch);
+  color: var(--muted);
+  font-family: var(--f-display);
+}
+.tabs button.active {
+  border-bottom-color: var(--brass);
+  color: var(--brass-hi);
+}
+.field {
+  color: var(--text);
+  font-size: 15px;
+}
+.page-heading p {
+  color: var(--muted);
+  font-family: var(--f-display);
+}
+.modal {
+  border: 1px solid var(--line-strong);
+  background: linear-gradient(180deg, var(--leather-2), var(--leather));
+  color: var(--text);
+}
+details > summary {
+  min-height: var(--touch);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
