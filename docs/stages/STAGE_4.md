@@ -173,6 +173,14 @@ The owner must be able to play this branch on his laptop without touching his re
   `docs/samples/stage-4/blind/` as JSON. Do not build a rating page: the planner builds the blind page from these files
   so the owner never sees which is which. Defaults for new campaigns are chosen after the owner's ratings, not here.
 
+## Research-grade records
+
+The owner plans a case study and a research paper on how models behave as world simulators and DMs. From this stage on,
+no paid run is thrown away: every live bench run writes one record (scenario, model ID and version, effort, a hash of
+each prompt layer, the player inputs, the full outputs, receipts, metrics, timings, tokens and cost) to a committed
+`docs/runs/` folder, and the metrics are recomputable from those records by a script. Synthetic campaigns only; never
+the owner's real campaigns.
+
 ## Budget and checks
 
 Paid calls within **$35** in total, stopped by the bench guard: blind comparison ≤ $12; depth and speed probes ≤ $6;
