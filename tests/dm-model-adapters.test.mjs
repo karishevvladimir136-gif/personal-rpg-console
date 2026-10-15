@@ -421,9 +421,14 @@ test("schema compiler: provider limits fail at compile time with every problem l
   const many = Array.from({ length: 21 }, (_, n) => tool(`t${n}`, { a: { type: "string" } }));
   assert.throws(() => compileToolset(many), (error) => error instanceof DmToolSchemaError && /21 strict tools/.test(error.message));
   const optional = Object.fromEntries(Array.from({ length: 25 }, (_, n) => [`o${n}`, { type: "string", optional: true }]));
-  assert.throws(() => compileToolset([tool("opt", optional)]), /25 optional parameters exceed the limit of 24/);
+  assert.throws(() => compileToolset([tool("opt", optional)]), /25 optional parameters in strict tools exceed the limit of 24/);
   const nullable = Object.fromEntries(Array.from({ length: 17 }, (_, n) => [`n${n}`, { type: "string", nullable: true }]));
-  assert.throws(() => compileToolset([tool("nul", nullable)]), /17 nullable \(union-type\) parameters exceed the limit of 16/);
+  // A tool marked non-strict for Anthropic is exempt from its strict limits and keeps its bounds.
+  const relaxed = compileToolset([{ ...tool("opt", { ...optional, n: { type: "integer", minimum: 1, maximum: 5 } }), strict: { anthropic: false } }]);
+  assert.equal(relaxed.anthropic[0].strict, undefined);
+  assert.equal(relaxed.anthropic[0].input_schema.properties.n.minimum, 1);
+  assert.equal(relaxed.openai[0].strict, true);
+  assert.throws(() => compileToolset([tool("nul", nullable)]), /17 nullable \(union-type\) parameters in strict tools exceed the limit of 16/);
   let deep = { type: "string" };
   for (let n = 0; n < 11; n++) deep = { type: "object", properties: { x: deep } };
   assert.throws(() => compileToolset([tool("deep", { x: deep })]), /nesting depth 12 exceeds the limit of 10/);
