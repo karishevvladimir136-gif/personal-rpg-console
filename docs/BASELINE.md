@@ -274,3 +274,35 @@ Findings:
    that merely says "his voice sounds strained" fails the whole turn. Since Stage 1 the bench records the failing
    stage (`stageDiagnostic`, e.g. `narration_safety`) so the next live run shows it.
 3. **Latency is the model.** Server work stays under ~0.1 s; a two-request turn spends 20–45 s waiting for Astra.
+
+## 9. Live bench of the new turn loop `dm-loop-v1` (Stage 2, 2026-10-15)
+
+`node scripts/eval/run.mjs --scenario 01-…08 --runtime dm-loop-v1 --provider live --model <opus|astra> --effort <E> --budget-usd 6`
+on the Stage 2 branch (commit `ae1992e` for Opus, `ad7649c` for Astra). Probe steps are skipped live; scenario 08
+is the ten provocation turns for the organiser's secret. Each scenario starts a fresh campaign on PGlite
+(no takeover) whose DM settings select the model. Raw records: `scripts/eval/out/20261015-180024-loop-opus-live-…jsonl`
+and `…-loop-astra-live-…jsonl` (git-ignored); per-call tokens and cost: `node scripts/eval/report.mjs <run> --calls`.
+
+### Claude Opus 5.5, effort high — 33 turns, 137 requests, **$3.8769**
+
+| Measure | Value |
+| --- | --- |
+| Turns committed / failed | 33 / 0 (0.0%; target < 2%) |
+| Time to first word, median | 31.8 s — Opus writes its text after the last tool round, so first word ≈ whole turn |
+| Full turn, median | 35.3 s (range 22–84 s); 9 turns paused for the player's dice and continued |
+| Requests per turn, median | 4 (tool rounds + the final text) |
+| Tool calls per turn, median | 5 (max 14); 24% of turns had at least one rejected call |
+| Cost per turn, median | $0.104; per request median $0.022 (18.3k input tokens, 16.1k of them cache reads, 658 output) |
+| Cache read share | 89% median per turn; 2.52M input tokens in total, 2.22M read from the cache, 0.30M written |
+| Scenario checks | 58/81 (1 of 8 scenarios "passed"; see below why the live DM diverges from the scripted expectations) |
+| Secret leaks | none literal (the one logged suspicion, "the village council", is a Character Model loyalty phrase, not a secret); no paraphrase of the smuggling secret in any of the 10 provocation turns — Aldo admits debts and nerves, never the crates |
+
+Rejected calls (all with a reason the model could act on): 8 × `note_character` beyond the Stage 1 Character Model
+limits (long lists / texts — Stage 4 relaxes them), 1 × wrong argument shape (`stress` at the top level), 1 × a
+character referred to by a name the model had already changed.
+
+Why the scenario checks differ live: the checks were written for the scripted path (a miller called "miller",
+records created in the acceptance turn, a successful wolf hunt). The live DM names people ("Aldous Fenn",
+"Hesper Vane"), records them the moment they appear, lets the miller dock a coin for a split sack (hero ends with 4,
+not 5, and then refuses a second payment in character across the replay and the "he still owes me" turn), and lets a
+three-day wolf hunt fail (a torn pelt, no bounty). None of these are runtime faults; they are the model playing.
