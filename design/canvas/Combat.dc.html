@@ -48,10 +48,38 @@ input::placeholder{color:#8d7142}
   <div style="display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) 340px; gap: 12px; align-items: start">
 
     <section aria-label="Поле боя" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px">
-      <div style="display: flex; justify-content: space-between; align-items: baseline">
-        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Поле боя · зоны</span>
-        <span style="font-size: 12.5px; color: #8d7142">театр воображения · сетка — по желанию</span>
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Поле боя</span>
+        <div role="group" aria-label="Вид поля" style="display: flex; gap: 4px">
+          <sc-for list="{{views}}" as="v" hint-placeholder-count="2">
+            <button type="button" onClick="{{v.pick}}" style="{{v.style}}">{{v.label}}</button>
+          </sc-for>
+        </div>
       </div>
+      <sc-if value="{{isMap}}" hint-placeholder-val="{{ false }}">
+        <div style="position: relative; border-radius: 6px; overflow: hidden; border: 1px solid rgba(207,168,96,0.35)">
+          <svg viewBox="0 0 600 380" width="100%" role="img" aria-label="Карта боя: причал в пещере" style="display: block; background: #15100c">
+            <defs>
+              <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#cfa860" stroke-opacity="0.08"/></pattern>
+              <radialGradient id="cave" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#3a2c1f"/><stop offset="1" stop-color="#120d0a"/></radialGradient>
+            </defs>
+            <rect width="600" height="380" fill="url(#cave)"/>
+            <path d="M0 300C90 280 160 320 250 330C340 340 420 300 520 310C560 314 590 320 600 322V380H0Z" fill="#1b3033" stroke="#3d6b70" stroke-width="2"/>
+            <rect x="330" y="150" width="210" height="60" rx="4" fill="#4a3825" stroke="#8d7142"/>
+            <text x="435" y="185" text-anchor="middle" font-family="PT Mono, monospace" font-size="11" fill="#ab9a80">ТРАП «БАБКИ»</text>
+            <rect x="150" y="190" width="70" height="40" fill="#2b211a" stroke="#8d7142" stroke-dasharray="4 3"/>
+            <text x="185" y="214" text-anchor="middle" font-family="PT Mono, monospace" font-size="10" fill="#ab9a80">ящики</text>
+            <rect width="600" height="380" fill="url(#grid)"/>
+            <line x1="185" y1="250" x2="300" y2="120" stroke="#e8a08c" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="250" y="178" font-family="PT Mono, monospace" font-size="11" fill="#e8a08c">35 фт</text>
+          </svg>
+          <sc-for list="{{mapTokens}}" as="t" hint-placeholder-count="7">
+            <button type="button" onClick="{{t.pick}}" aria-label="{{t.name}}" style="{{t.style}}">{{t.initial}}</button>
+          </sc-for>
+          <span style="position: absolute; left: 8px; bottom: 6px; font-family: 'PT Mono', monospace; font-size: 10.5px; color: #ab9a80; background: rgba(14,10,8,0.75); padding: 2px 6px; border-radius: 3px">фон — иллюстрация fal · клетка 5 фт · перетащи фишку — ход встанет в поле ввода</span>
+        </div>
+      </sc-if>
+      <sc-if value="{{isZones}}" hint-placeholder-val="{{ true }}">
       <sc-for list="{{zones}}" as="z" hint-placeholder-count="3">
         <div style="{{z.style}}">
           <div style="display: flex; justify-content: space-between; align-items: baseline">
@@ -67,6 +95,7 @@ input::placeholder{color:#8d7142}
           </div>
         </div>
       </sc-for>
+      </sc-if>
     </section>
 
     <section aria-label="Ход боя" style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
@@ -136,7 +165,7 @@ input::placeholder{color:#8d7142}
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { target: "sgt", hp: "words", draft: "" };
+    this.state = { target: "sgt", hp: "words", draft: "", view: "map" };
   }
   renderVals() {
     const st = this.state;
@@ -204,7 +233,14 @@ class Component extends DCLogic {
       act("Отход", "", "Отхожу за ящики к Ирэне."),
       act("Свой вариант…", "", "")
     ];
-    return { hpModes, order, zones, log, sel, economy, actions, draft: st.draft };
+    const views = [["zones", "Зоны"], ["map", "Карта"]].map(([id, label]) => ({ label, style: pill(st.view === id), pick: () => this.setState({ view: id }) }));
+    const MT = [["urzul", "Урзул", 300, 120, false], ["sgt", "Сержант Лиги", 330, 110, true], ["james", "Джеймс", 185, 250, false], ["irena", "Ирэна", 120, 150, false], ["hound", "Гончая Лиги", 240, 200, true], ["meg", "Мэг", 470, 165, false], ["mech", "Механоид", 520, 290, true]];
+    const mapTokens = MT.map(([id, name, x, y, foe]) => ({
+      name, initial: name[0],
+      pick: () => { if (foe) this.setState({ target: id }); },
+      style: "position: absolute; left: " + (x / 6) + "%; top: " + (y / 3.8) + "%; transform: translate(-50%, -50%); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: 'Old Standard TT', Georgia, serif; font-size: 15px; font-weight: 700; cursor: grab; color: #ece1cb; background: " + (foe ? "#3a2018" : "#1b2a26") + "; border: 2.5px solid " + (foe ? "#c9563f" : "#64a998") + ";" + (st.target === id ? " box-shadow: 0 0 0 3px #e8a08c;" : "") + (id === "james" ? " animation: glow 2.4s ease-in-out infinite;" : "")
+    }));
+    return { hpModes, order, zones, log, sel, economy, actions, draft: st.draft, views, mapTokens, isMap: st.view === "map", isZones: st.view !== "map" };
   }
 }
 </script>
