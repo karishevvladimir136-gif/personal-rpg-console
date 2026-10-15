@@ -103,7 +103,11 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const play = preview?.play ?? runtime.play;
   useShellClock(play?.worldMinutes);
   const [addressee, setAddressee] = useState<string | null>(null);
-  const [ooc, setOoc] = useState(false);
+  // The same input-mode state the earlier game screen kept ("game" or out-of-character).
+  const [inputMode, setInputMode] = useState<"game" | "ooc">("game");
+  const ooc = inputMode === "ooc";
+  const setOoc = (next: boolean | ((value: boolean) => boolean)) =>
+    setInputMode((current) => ((typeof next === "function" ? next(current === "ooc") : next) ? "ooc" : "game"));
   const [diceOpen, setDiceOpen] = useState(preview?.diceOpen ?? false);
   const [mediaOpen, setMediaOpen] = useState(false);
   const [asideOpen, setAsideOpen] = useState(preview?.asideOpen ?? false);
@@ -124,6 +128,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const talkTo = combat ? null : addressee;
   const mode = ooc ? "ooc" : talkTo ? "companion" : "game";
   const busy = !!play?.turns.some(isUnresolved);
+  const latestTurn = play?.turns.filter((turn) => turn.mode === mode).at(-1) ?? null;
   const href = (screen: CampaignScreenId) =>
     chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const insert = (text: string) => {
@@ -135,7 +140,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const rolls = quickRolls(hero);
   const { resources, money } = hero ? resourcesOf(hero) : { resources: [], money: [] };
   const opening = mode === "game" && view.showOpening && (
-    <div className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</div>
+    <article className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</article>
   );
   const moment = preview?.playerMoment ? (
     <div className={g.moment} role="status">
@@ -184,7 +189,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       {play?.startupPending && (
         <div role="status" className={r.later}>
           <span>{c("Перед первым ходом закончи вступление приключения и настройку ведущего.", "Finish the adventure opening and DM setup before the first action.")}</span>
-          <Link className={r.btn} href={href("adventures")}>{c("Проверить вступление", "Review the opening")}</Link>
+          <Link className={r.btn} href={href("adventures")}>{c("Проверить вступление", "Review Adventure opening")}</Link>
         </div>
       )}
       {play && !play.startupPending && (
@@ -246,11 +251,19 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             <span className={r.note}>{c("Кубы бросает сервер, ведущий решает, нужна ли проверка. Кнопка только подсказывает текст хода.", "The server rolls; the DM decides whether a check is needed. These buttons only suggest the text of your turn.")}</span>
           </section>
         )}
-        <article className={g.feed} aria-label={c("Ход", "Turn")}>{feed}</article>
+        <article className={g.feed} aria-label={c("Ход", "Turn")}>
+          {latestTurn && <a className={g.latest} href={`#saved-turn-${latestTurn.id}`}>{c("К последнему ходу", "Latest moment")}</a>}
+          {feed}
+        </article>
         {mediaOpen && !preview && (
           <section className={g.media} aria-label={c("Кадр и видео сцены", "Scene frame and video")}>
             <CurrentSceneMediaFrame />
             <CurrentSceneVideo />
+          </section>
+        )}
+        {!preview && play && !play.startupPending && combat && (
+          <section className={g.media} aria-label={c("Бой", "Combat")}>
+            <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
           </section>
         )}
         {!preview && play && !play.startupPending && (
@@ -258,7 +271,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             <summary>{c("Ещё · бой, отдых, сессия, записи и правки", "More · combat, rest, session, records and corrections")}</summary>
             <div className={r.stack}>
               {play.rulesetId === "world-logic-v1" && <CombatReadiness campaignId={data.campaign.id} runtimeRevision={play.revision} onSaved={runtime.afterMutation} />}
-              {(combat || play.turns.some((turn) => turn.mode === "mechanic") || play.rulesetId !== "world-logic-v1") && (
+              {!combat && (play.turns.some((turn) => turn.mode === "mechanic") || play.rulesetId !== "world-logic-v1") && (
                 <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
               )}
               {play.turns.some((turn) => turn.mode === "mechanic") && (
@@ -271,8 +284,16 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}
                 <Link className={r.btnGhost} href={href("sessions")}>{c("Сессии", "Sessions")}</Link>
                 <Link className={r.btnGhost} href={href("camp")}>{c("Лагерь и отдых", "Camp and rest")}</Link>
+                <Link className={r.btnGhost} href={`${href("journal")}?tab=Notes&compose=note`}>{c("Записать заметку", "Take note")}</Link>
+                <Link className={r.btnGhost} href={`${href("journal")}?tab=Evidence`}>{c("Что я знаю?", "What do I know?")}</Link>
               </div>
               {session && <Transcript data={data} session={session} onEdit={setSceneEditor} />}
+              {(play.rulesetId !== "world-logic-v1" || play.configuration) && (
+                <details>
+                  <summary>{c.t("Manual encounter controls")}</summary>
+                  <GameplayCombat play={play} onSaved={runtime.afterMutation} />
+                </details>
+              )}
             </div>
           </details>
         )}
@@ -292,17 +313,19 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
                 </div>
               </div>
               {hero.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={hero.hp} max={hero.max_hp} />}
-              {resources.length > 0 && (
-                <div>
+              {(resources.length > 0 || money.length > 0) && (
+                <dl className={g.resources}>
                   {resources.slice(0, 6).map((resource) => (
                     <div key={resource.key} className={r.resRow}>
-                      <span>{c.t(resource.label)}</span>
-                      {resource.max ? <Pips left={resource.value} max={resource.max} label={c.t(resource.label)} /> : <span className={r.num}>{resource.value}</span>}
+                      <dt>{c.t(resource.label)}</dt>
+                      <dd>{resource.max ? <Pips left={resource.value} max={resource.max} label={c.t(resource.label)} /> : resource.value}</dd>
                     </div>
                   ))}
-                </div>
+                  {money.map((row) => (
+                    <div key={row.key} className={r.resRow}><dt>{c.t(row.label)}</dt><dd>{row.value}</dd></div>
+                  ))}
+                </dl>
               )}
-              {money.length > 0 && <span className={`${r.num} ${r.small}`} style={{ color: "var(--brass)" }}>{money.map((row) => `${row.value} ${c.t(row.label)}`).join(" · ")}</span>}
               <Link className={r.btnGhost} href={href("character")}>{c("Лист персонажа", "Character sheet")}</Link>
             </div>
           ) : <p className={r.empty}>{c("Героя пока нет.", "No hero yet.")}</p>}

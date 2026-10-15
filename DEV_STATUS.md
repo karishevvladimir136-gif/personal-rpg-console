@@ -1,5 +1,36 @@
 # Development status
 
+**Stage 5 — the new interface — built in parallel with stages 2b–4 (owner-approved exception).**
+Branch `claude/stage-5-ui` from `claude/stage-2-turn-loop`, worktree `../rpg-console-ui`. Not merged, not pushed.
+Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_DATA_NEEDS.md`.
+
+- Registry look (leather, brass, parchment; Old Standard TT / Alegreya Sans / PT Mono) as tokens in
+  `src/app/registry.css`; older screens are re-skinned through the same tokens. New library and campaign shells
+  (left nav with dynamic «Лагерь»/«Имущество» and «Приключения», breadcrumb, model pill, phone tab bar + drawer).
+- New screens on real records, earlier editors kept under «Ещё»: Campaigns (continue card, «Ранее в…» from the
+  last closed session, old-runtime badge with «Перевести на новый ход»), New campaign (4 steps over the existing
+  bootstrap), Game (around the existing composer and stream; dice tray, addressee, sidebar with hero, goal,
+  adventure, party), Character/Inventory (paper doll from the record's slots, parchment item card), Party
+  (talk/council drawer = companion composer, disabled in combat), Journal, Codex (new), Map (route line, goal,
+  «Наметить курс» into the turn box), Holdings (new; camp always, transports/mounts from records), Settings
+  (DM model/effort/runtime live; images; all old settings under «Ещё»). Main menu and adventures restyled.
+- Universal: no ruleset vocabulary or sample content in app code (a test guards it); labels come from the
+  records and the existing presentation helpers. Two synthetic samples: `/preview/stage-5/<screen>` and
+  `?world=noir` (a narrative noir without classes, levels, ability scores, spells or gold).
+- Pictures: fal adapter (FLUX.2 pro $0.03 / flash $0.005 per 1 MP image), a visual autopilot that queues the
+  existing subject-visual jobs after a committed snapshot (toggles, daily cap, auto-accept only without a review
+  warning, never retries), «Перерисовать» everywhere, previous picture kept until a new one is accepted, one
+  picture per item type. Saving fal pictures needs the SQL provider update (UI_DATA_NEEDS #15).
+- Paid fal tests: 22 requests, 17 images kept, $0.56 counted of the $3 cap (`docs/screens/stage-5/fal-cost.json`).
+- Screenshots: `docs/screens/stage-5/` (48: desktop 1440 and phone 390, no horizontal overflow).
+- Checks on the final branch state: typecheck pass; lint pass (0 warnings); build pass; tests 2426 — 2399 pass,
+  0 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). Two older game-screen tests were moved from the
+  Phase-0 markup to the new layout with the same behaviors. No change in the stage 2b–4 paths.
+- Not done here: the final streaming wiring waits for the accepted 2b branch (2b has not touched the UI so far);
+  saving fal pictures and the data in `docs/UI_DATA_NEEDS.md` belong to stages 3–4.
+
+---
+
 **Current stage:** Stage 2b — speed and fluency of the new turn — done, including the live bench of both
 models; waiting for the owner's review and «дальше». Plan: `docs/REBUILD_PLAN.md`; task:
 `docs/stages/STAGE_2B.md`; results and the breakdown of where the time goes: `docs/SPEED.md`; design of the
