@@ -226,7 +226,7 @@ export async function runScenario(scenario, options) {
         for (const callback of pending) await callback();
         const maintenanceMs = Math.round(performance.now() - maintenanceStarted);
         const row = await f.one(`select status,failure,retryable,astra_response_mode,checkpoint,
-          astra_ordered_effects from rpg_private.turns where id=$1`, [input.operationId]);
+          astra_ordered_effects,astra_diagnostic from rpg_private.turns where id=$1`, [input.operationId]);
         const requests = requestSummary(requestLog.slice(firstRequest));
         if (result?.status === "committed" && result.narration) narrations.push(result.narration);
         turn = {
@@ -239,6 +239,8 @@ export async function runScenario(scenario, options) {
           cancelledAfterFailure,
           exception: thrown ? String(thrown.message).slice(0, 200) : null,
           responseMode: row?.astra_response_mode ?? null,
+          // Last recorded Astra stage (e.g. narration_safety = literal privacy guard).
+          stageDiagnostic: row?.astra_diagnostic ?? null,
           durationMs,
           maintenanceMs,
           ...requests,

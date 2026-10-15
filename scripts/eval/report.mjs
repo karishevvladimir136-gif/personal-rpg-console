@@ -101,7 +101,9 @@ export function formatReport(records) {
   const problems = scenarios.flatMap((scenario) => scenario.harnessErrors.map((problem) => `${scenario.scenario}  ${problem}`));
   if (problems.length) {
     lines.push("");
-    lines.push("Harness problems (scripted answers that the live API could not return):");
+    lines.push(header?.provider === "live"
+      ? "Harness notes (requests not sent or not completed):"
+      : "Harness problems (scripted answers that the live API could not return):");
     for (const problem of problems) lines.push(`  ${problem}`);
   }
   if (end?.stopReason) lines.push(`\nStopped: ${end.stopReason}`);
