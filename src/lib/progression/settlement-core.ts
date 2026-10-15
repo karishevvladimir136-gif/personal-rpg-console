@@ -15,7 +15,7 @@ export function settledCurrencyBalance(before: number, delta: number): number {
 /** Shared deterministic item movement for commerce and runtime settlement.
  * Callers establish consent, presence, item policy, and destination authority. */
 export function settledItemTransfer(item: Item, quantity: number,
-  destinationEntityId: string, destinationStorageId: string,
+  destinationEntityId: string | null, destinationStorageId: string,
   splitItemId: string): { changes: RecordChange[]; transferredItemId: string; split: boolean } {
   requireProgression(Number.isSafeInteger(quantity) && quantity >= 1 &&
     quantity <= item.quantity && item.equipped_entity_id === null &&

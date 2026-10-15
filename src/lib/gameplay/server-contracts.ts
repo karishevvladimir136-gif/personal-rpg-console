@@ -96,6 +96,10 @@ export type CurrentCheckpoint = {
   privateText: string | null;
 };
 export type RuntimeSource = {
+  /** New-operation-only private natural-play contract; historical NULL stays legacy. */
+  astraNaturalContract?: "natural-v1";
+  astraNaturalState?: import("./astra-natural-promotion.ts").NaturalTurnState;
+  astraNaturalOrigins?: { subjectRef: string; kind: "npc" | "creature" | "place" | "item"; recordId: string }[];
   /** Server-owned begin pin. Missing historical values retain two-stage play. */
   astraResponseContract?: "unified-v1";
   /** Selected-context privacy boundary, privately pinned before provider work. */
@@ -253,6 +257,8 @@ export type TurnLease = {
   expectedRevision: number;
 };
 export type TurnClaim = {
+  astraNaturalContract?: "natural-v1" | null;
+  astraNaturalState?: import("./astra-natural-promotion.ts").NaturalTurnState | null;
   astraResponseContract?: "unified-v1" | null;
   astraResponseMode?: "public-unified" | "private-informed" | null;
   runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
@@ -273,6 +279,11 @@ export type CommitPacket = {
   checks: RecordedCheck[];
   guidanceProposal: string | null;
 };
+export type AstraNaturalPublication = {
+  continuity: import("./astra-natural-continuity.ts").SceneContinuityProposal | null;
+  behavior: import("./astra-natural-behavior.ts").NaturalBehavior[];
+  effectiveRecordIds: string[];
+};
 export interface TurnStore {
   advanceProgression?(campaignId: string, payload: {
     requestId: string; campaignId: string; expectedRevision: number;
@@ -281,7 +292,14 @@ export interface TurnStore {
     expectedTrackVersion: number;
   }): Promise<{ status: "selected"; pendingId: string; optionId: string; stateVersion: number }>;
   begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1",
-    astraResponseContract?: "unified-v1"): Promise<PublicTurn>;
+    astraResponseContract?: "unified-v1", astraNaturalContract?: "natural-v1"): Promise<PublicTurn>;
+  astraNaturalContract?(campaignId: string, operationId: string):
+    Promise<"natural-v1" | "legacy-natural" | null>;
+  recordAstraMaterialization?(lease: TurnLease, position: number,
+    request: import("./astra-natural-promotion.ts").NaturalMaterializationRequest):
+    Promise<import("./astra-natural-promotion.ts").NaturalMaterializationReceipt>;
+  recordAstraPublication?(lease: TurnLease, publication: AstraNaturalPublication):
+    Promise<import("./astra-natural-promotion.ts").NaturalTurnState>;
   astraResponseContract?(campaignId: string, operationId: string):
     Promise<"legacy-two-stage" | "unified-v1" | null>;
   pinAstraResponseMode?(lease: TurnLease, mode: "public-unified" | "private-informed"):
@@ -305,6 +323,7 @@ export interface TurnStore {
     lease: TurnLease,
     checkpoint: TurnCheckpoint,
     status: "generating" | "awaiting_confirmation",
+    astraNaturalPublication?: AstraNaturalPublication,
   ): Promise<void>;
   recordChecks(
     lease: TurnLease,

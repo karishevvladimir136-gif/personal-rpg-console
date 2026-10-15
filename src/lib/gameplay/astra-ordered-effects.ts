@@ -5,6 +5,8 @@ import { assertEffectScope, planAstraSettlement, type AstraEffectIntent,
   type AstraOrderedEffectsPlan, type AstraSettlementPlan } from "./astra-settlement.ts";
 import { assertAstraMechanicsScope, planAstraMechanics,
   type AstraMechanicsIntent } from "./astra-mechanics.ts";
+import { isNaturalEffectIntent, isNaturalEncounterIntent, assertNaturalEffectScope,
+  planNaturalEffect, planNaturalEncounter } from "./astra-natural-effects.ts";
 
 const snapshotFamilies = new Set(["entities", "storages", "items", "quests", "locations"]);
 const runtimeFamilies: Record<string, string> = {
@@ -111,11 +113,18 @@ export function planAstraOrderedEffects(source: RuntimeSource, input: TurnInput,
     }
     // Foreign identities are hard integrity failures even if the requested
     // mechanic would otherwise be unavailable in the current fiction.
-    if (isMechanics(intent)) assertAstraMechanicsScope(shadow, input, intent);
+    const natural=source.astraNaturalContract === "natural-v1";
+    if (isNaturalEffectIntent(intent)) {
+      requireRule(natural); assertNaturalEffectScope(shadow,input,intent);
+    }
+    else if (natural && isNaturalEncounterIntent(intent)) { /* exact resolver scope below */ }
+    else if (isMechanics(intent)) assertAstraMechanicsScope(shadow, input, intent);
     else assertEffectScope(shadow, intent);
     const candidate = structuredClone(shadow);
     try {
-      const plan = isMechanics(intent) ? planAstraMechanics(candidate, input, intent)
+      const plan = isNaturalEffectIntent(intent) ? planNaturalEffect(candidate,input,intent,index)
+        : natural && isNaturalEncounterIntent(intent) ? planNaturalEncounter(candidate,input,intent)
+        : isMechanics(intent) ? planAstraMechanics(candidate, input, intent)
         : planAstraSettlement(candidate, input, intent, []);
       requireRule(plan);
       const resolution = "resolution" in plan ? plan.resolution : null;

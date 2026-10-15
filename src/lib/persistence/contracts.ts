@@ -60,8 +60,10 @@ export type Entity = ScopedRow & {
 };
 export type Storage = ScopedRow & {
   name: string;
-  kind: "player" | "companion" | "camp" | "transport" | "merchant";
+  kind: "player" | "companion" | "camp" | "transport" | "merchant" | "ground";
   entity_id: string | null;
+  location_id?: string | null;
+  locale_key?: string | null;
 };
 export type Item = ScopedRow & {
   name: string;
@@ -80,6 +82,8 @@ export type Session = ScopedRow & {
   recap: string;
 };
 export type Scene = ScopedRow & {
+  /** Public incidental continuity; no private cognition or gameplay write authority. */
+  public_continuity?: import("../gameplay/astra-natural-continuity.ts").SceneContinuityV1 | null;
   sequence: number;
   session_id: string;
   title: string;

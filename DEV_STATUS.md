@@ -1,4 +1,16 @@
-# Development status — fictional world freedom review candidate
+# Development status — natural play exhaustive closure in progress
+
+**Milestone/status (2026-10-14):** Isolated `codex/natural-play-exhaustive-closure`, starting from reviewed Fictional World Freedom `65dc99c105d86b2860d284d10846c450d20b3e2d`. Implementation and disposable verification are in progress. Not accepted, merged, activated or deployed. Owner/main remain unchanged. Migration 52 is authorized for disposable databases only; owner baseline remains Migration 51.
+
+**Current design:** Public incidental continuity is bounded Scene metadata, separate from tracked Location and durable records. New operations pin a private `natural-v1` contract while retaining `astra-primary-v1`; historical operations keep their original semantics. Server-derived provisional materialization reuses existing five-kind dice authority and atomic commit. The private/public boundary uses selected evidence and an enum-only observable behavior bridge. Rejected optional promotion is pruned before final reconstruction. See `NATURAL_PLAY_CONTRACTS.md` for the implementation boundary.
+
+**Verification in progress:** Pure continuity, selected-context routing, behavior, deterministic Item transfer, companion and encounter adapters have focused passing coverage. Database promotion/atomicity/recovery and the required matrix/200-turn soak are still being integrated. No new live provider/media calls have occurred. UX closure has not begun because runtime acceptance is not yet green. Complete suite/typecheck/lint/build and bounded live synthetic acceptance remain required.
+
+**Safety:** This task has not accessed the owner application, owner database or Iris, and has not retried/cancelled an owner operation. HTTP verification will use an explicitly selected credential-free isolated preview; never the owner port by default. No activation is authorized.
+
+---
+
+# Historical review candidate — fictional world freedom
 
 **Milestone/status (2026-10-14):** Isolated `codex/astra-fictional-world-freedom` starts from exact local/remote main `8ad7b87da43100320e93a44646a87016fc9a95ad`. The owner-directed fictional authority correction is implemented for review. Not merged, activated or deployed. See `FICTIONAL_WORLD_FREEDOM.md`.
 

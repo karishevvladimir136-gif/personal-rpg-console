@@ -2,7 +2,7 @@ import { randomInt } from "node:crypto";
 import { astraFictionAuthorityInstructions } from "./astra-fiction-authority.ts";
 import type { PublicTurn, ResumeInput, TurnInput, JsonObject } from "./contracts.ts";
 import type {
-  AstraFinalProposal, AstraToolCall, AstraToolReceipt, BuiltContext,
+  AstraFinalProposal, AstraNaturalPublication, AstraToolCall, AstraToolReceipt, BuiltContext,
   MechanicsResolution, PrivatePatch, ProviderResult, RecordedCheck,
   RuntimeSource, TurnClaim, TurnStore,
 } from "./server-contracts.ts";
@@ -28,8 +28,13 @@ import { planAstraSettlement,
   type AstraSettlementIntent, type AstraEffectIntent } from "./astra-settlement.ts";
 import { planAstraOrderedEffects } from "./astra-ordered-effects.ts";
 import { planAstraCompatibleEffects } from "./astra-compatible-effects.ts";
-import { astraContextHasPrivateEvidence, projectAstraPublicSource } from "./astra-privacy-context.ts";
+import { astraContextHasPrivateEvidence, projectAstraPublicSource, curateAstraContextSource } from "./astra-privacy-context.ts";
 import { withUnifiedMemory } from "../memory/unified-context.ts";
+import { projectNaturalSource, materializeNaturalSubject } from "./astra-natural-promotion.ts";
+import { buildSceneContinuity, selectSceneContinuity } from "./astra-natural-continuity.ts";
+import { validateNaturalBehavior, projectNaturalBehavior } from "./astra-natural-behavior.ts";
+import { resolveNaturalReferences } from "./astra-natural-contract.ts";
+import { effectiveNaturalRecordIds, pruneRejectedPromotionIntents } from "./astra-natural-effective.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -44,6 +49,8 @@ export function selectAstraPrimaryRuntime(
     (rulesetId === "world-logic-v1" && worldTakeover));
 }
 export type AstraPrivateFinal = {
+  continuity?: import("./astra-natural-continuity.ts").SceneContinuityProposal;
+  behavior?: import("./astra-natural-behavior.ts").NaturalBehavior[];
   worldMinutes: number;
   changes: MechanicsResolution["changes"];
   outcomes: MechanicsResolution["outcomes"];
@@ -51,13 +58,16 @@ export type AstraPrivateFinal = {
   settlement?: AstraSettlementIntent | null;
   effects?: AstraEffectIntent[];
   publicNarration?: {
+    independentBeat?: string;
     beats: { text: string; requiresEffects: number[] }[];
     visualDescription: { text: string; requiresEffects: number[] };
   };
 };
 export type AstraDecision =
-  | { type: "tool"; call: AstraToolCall; final: null }
-  | { type: "final"; call: null; final: AstraPrivateFinal };
+  | { type: "tool"; call: AstraToolCall; final: null;
+      materializations?: import("./astra-natural-promotion.ts").NaturalMaterializationRequest[] }
+  | { type: "final"; call: null; final: AstraPrivateFinal;
+      materializations?: import("./astra-natural-promotion.ts").NaturalMaterializationRequest[] };
 export type ProviderProgress = {
   responseReceived: boolean;
   phase: "preflight" | "request" | "error-body" | "response-body" |
@@ -72,6 +82,7 @@ export interface AstraPrimaryProvider {
     source: RuntimeSource, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<AstraDecision>>;
   narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<{
     narration: string; visualDescription: string; clarification: null;
+    continuity?: import("./astra-natural-continuity.ts").SceneContinuityProposal;
   }>>;
 }
 export type AstraDependencies = {
@@ -139,13 +150,13 @@ function availableEntity(source: RuntimeSource, caps: AstraCapabilities, id: str
   return actor;
 }
 
-function activeParticipant(source: RuntimeSource, entityId: string) {
+function activeParticipant(source: RuntimeSource, entityId: string, requireActive = true) {
   const encounter = source.runtime.encounters.find((e) => e.status === "active");
   if (!encounter) return null;
   const participant = source.runtime.participants.find((p) =>
     p.campaign_id === source.snapshot.campaign.id &&
     p.encounter_id === encounter.id && p.entity_id === entityId);
-  return participant && participant.public_resources.active === true &&
+  return participant && (!requireActive || participant.public_resources.active === true) &&
     participant.public_resources.withdrawn !== true ? participant : null;
 }
 
@@ -211,9 +222,11 @@ function assertNoPrivateDisclosure(source: RuntimeSource, input: TurnInput, publ
 }
 
 function unifiedNarration(value: AstraPrivateFinal["publicNarration"],
-  effectCount: number, acceptedIndexes: number[]) {
+  effectCount: number, acceptedIndexes: number[], natural = false) {
   requireRule(value && typeof value === "object" && Array.isArray(value.beats) &&
-    value.beats.length > 0 && value.beats.length <= 12 && value.visualDescription);
+    (natural || value.beats.length > 0) && value.beats.length <= 12 && value.visualDescription);
+  if(natural) requireRule(typeof value.independentBeat === "string" &&
+    value.independentBeat.trim().length>0 && value.independentBeat.length<=6000);
   const accepted = new Set(acceptedIndexes);
   const keep = (fragment: { text: string; requiresEffects: number[] }, max: number) => {
     requireRule(fragment && typeof fragment === "object" &&
@@ -226,7 +239,8 @@ function unifiedNarration(value: AstraPrivateFinal["publicNarration"],
     return fragment.requiresEffects.every((index) => accepted.has(index));
   };
   const beats = value.beats.filter((beat) => keep(beat, 6000));
-  const narration = beats.map((beat) => beat.text).filter((text) => text.trim()).join("\n\n");
+  const narration = [...(natural ? [value.independentBeat!] : []),...beats.map((beat) => beat.text)]
+    .filter((text) => text.trim()).join("\n\n");
   // Do not invent replacement fiction when all supplied public text depended
   // on rejected authority. Preserve the input and use a technical retry state.
   if (!narration.trim() || narration.length > 6000) throw new DmError("provider", true);
@@ -289,7 +303,7 @@ export function astraToolResult(source: RuntimeSource, input: TurnInput,
     !receipts.some((r) => ["attack","skill"].includes(r.call.kind) &&
       r.call.actorId === actor.id));
   if (target && source.runtime.encounters.some((e) => e.status === "active"))
-    requireRule(activeParticipant(source,target.id));
+    requireRule(activeParticipant(source,target.id,source.astraNaturalContract!=="natural-v1"));
   requireRule(call.kind === "attack" ? call.dc === null :
     call.targetId === null && Number.isInteger(call.dc) && call.dc! >= 1 && call.dc! <= 40);
   const item = call.itemId === null ? null : source.snapshot.items.find((i) =>
@@ -357,7 +371,8 @@ function validateFinal(source: RuntimeSource, input: TurnInput, next: AstraPriva
         caps.locationIds.includes(change.values.current_location_id) &&
         next.worldMinutes > source.runtime.worldMinutes);
     } else if (change.family === "encounter_participants") {
-      const p = source.runtime.participants.find((p) => p.id === change.id && caps.participantIds.includes(p.id));
+      const p = source.runtime.participants.find((p) => p.id === change.id &&
+        (caps.participantIds.includes(p.id) || source.astraNaturalContract === "natural-v1"));
       const actionCost = receipts.filter((r) => ["attack","skill"].includes(r.call.kind) &&
         r.call.actorId === p?.entity_id).length;
       const position = String((change.values.public_position as JsonObject)?.position);
@@ -365,6 +380,8 @@ function validateFinal(source: RuntimeSource, input: TurnInput, next: AstraPriva
       const defeated = next.changes.some((c) => c.family === "entities" &&
         c.id === p?.entity_id && c.values.hp === 0);
       requireRule(p && change.expectedRevision === null &&
+        (p.public_resources.active===true || source.astraNaturalContract==="natural-v1" &&
+          defeated && actionCost===0 && moveCost===0) &&
         Object.keys(change.values).length === 2 &&
         ["nearby","far","cover"].includes(position) &&
         actionCost <= 1 && (actionCost > 0 || moveCost > 0 || defeated) &&
@@ -434,7 +451,11 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   command: ResumeInput | null): Promise<PublicTurn> {
   const { store, memory, provider, summaries } = deps;
   assertAstraStore(store);
-  const { source, lease } = claim;
+  const { lease } = claim;
+  const natural=claim.astraNaturalContract==="natural-v1";
+  let source=natural ? projectNaturalSource(claim.source,claim.astraNaturalState ??
+    {schemaVersion:1,materializations:[]}) : claim.source;
+  source.astraNaturalContract=natural ? "natural-v1" : undefined;
   // Durable begin owns this pin. A historical/missing pin remains two-stage
   // regardless of the current application or provider defaults.
   const modern = claim.astraResponseContract === "unified-v1";
@@ -443,6 +464,20 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   source.astraResponseMode = responseMode ?? undefined;
   const input = claim.turn.input;
   const checkpoint = structuredClone(claim.turn.checkpoint);
+  let pendingNaturalPublication: AstraNaturalPublication | undefined;
+  const persistCheckpoint = async (status: "generating" | "awaiting_confirmation") => {
+    // Publication and the exact final/narration checkpoint share one database
+    // transaction. An uncertain response can never leave publication alone.
+    if(pendingNaturalPublication)await store.checkpoint(lease,checkpoint,status,pendingNaturalPublication);
+    else await store.checkpoint(lease,checkpoint,status);
+    if(pendingNaturalPublication) {
+      source.astraNaturalState={...source.astraNaturalState!,
+        effectiveRecordIds:pendingNaturalPublication.effectiveRecordIds,
+        publication:JSON.parse(JSON.stringify({continuity:pendingNaturalPublication.continuity,
+          behavior:pendingNaturalPublication.behavior}))};
+      pendingNaturalPublication=undefined;
+    }
+  };
   let disclosureSource = source;
   let selectedPrivateMemory = false;
   type Stage = Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]["stage"];
@@ -502,7 +537,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
     requireRule(claim.runtimeIdentity === ASTRA_PRIMARY_RUNTIME && input.mode === "game" &&
       !!checkpoint.astraPrimary && input.expectedRevision === source.runtime.revision);
     const astra = checkpoint.astraPrimary!;
-    const caps = astraCapabilities(source);
+    let caps = astraCapabilities(source);
     if (command?.action === "reroll") {
       const check = checkpoint.checks.find((c) => c.id === command.checkId && isDisplayedCheck(source,c));
       requireRule(check && !astra.finalProposal &&
@@ -544,6 +579,24 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         context = buildAstraPlanContext(selected,input,{caps});
       }
       // A turn may use all 32 receipt slots and still needs one final response.
+      const naturalProjection = (state: NonNullable<RuntimeSource["astraNaturalState"]>) => {
+        source=projectNaturalSource(claim.source,state);
+        source.astraNaturalContract="natural-v1";
+        source.astraResponseContract="unified-v1";
+        source.astraResponseMode=responseMode!;
+        if(source.worldTakeover) source.worldLogicPresence={
+          controlledEntityIds:source.runtime.configuration?.controlledEntityIds ?? [],
+          presentEntityIds:source.worldTakeover.presentEntityIds};
+        // Keep the verified bounded Memory selection/coverage result when
+        // rebuilding provisional rows. Raw claim history is intentionally
+        // truncated after the existing turn window; it is not the selection's
+        // coverage verdict and must not reintroduce the old foreground cliff.
+        selected=curateAstraContextSource({...source,memory:selected.memory,
+          historyComplete:selected.historyComplete,checkpoint:selected.checkpoint},input);
+        if(responseMode==="public-unified")selected=projectAstraPublicSource(selected,input);
+        caps=astraCapabilities(source);
+        context=buildAstraPlanContext(selected,input,{caps});
+      };
       for (let step=astra.toolReceipts.length;step<=32;step++) {
         const priorReceipts = astra.toolReceipts.length;
         const priorChecks = checkpoint.checks.length;
@@ -552,15 +605,43 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           () => astra.toolReceipts.length === priorReceipts &&
             checkpoint.checks.length === priorChecks && !astra.finalProposal && !checkpoint.narration);
         checkpoint.usage.push(response.usage);
-        const decision = response.output;
+        let decision = response.output;
+        if(natural) {
+          requireRule(Array.isArray(decision.materializations) && decision.materializations.length<=3 &&
+            store.recordAstraMaterialization && store.recordAstraPublication);
+          for(const request of decision.materializations) {
+            const position=source.astraNaturalState?.materializations.length ?? 0;
+            const expected=materializeNaturalSubject(source,input,request,position);
+            const receipt=await store.recordAstraMaterialization(lease,position,request);
+            // RPC independently reconstructs; compare semantic JSON, never key order.
+            const canonical=(value:unknown):string=>JSON.stringify(value,(_key,entry)=>
+              entry && typeof entry==="object" && !Array.isArray(entry) ?
+                Object.fromEntries(Object.entries(entry).sort(([a],[b])=>a.localeCompare(b))) : entry);
+            requireRule(canonical(receipt)===canonical(expected.receipt));
+            source=expected.source;
+          }
+          const aliases=new Map([...(source.astraNaturalOrigins ?? []),
+            ...(source.astraNaturalState?.materializations.map((row)=>({subjectRef:row.request.subjectRef,recordId:row.recordId})) ?? [])]
+            .map((row)=>[row.subjectRef,row.recordId]));
+          decision=resolveNaturalReferences(decision,aliases);
+          naturalProjection(source.astraNaturalState!);
+        }
         if (decision.type === "final") {
           requireRule(decision.call === null);
           await recordStage("plan", "completed");
           await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
           if (decision.final.effects) {
-            const compatible = modern ? planAstraCompatibleEffects(selected, input,
+            let compatible = modern ? planAstraCompatibleEffects(selected, input,
               decision.final.effects, astra.finalProposal.resolution) : null;
+            if(natural) {
+              const state=source.astraNaturalState!;
+              const active=effectiveNaturalRecordIds(state,compatible!.plan,astra.toolReceipts);
+              const normalized=pruneRejectedPromotionIntents(compatible!.plan,decision.final.effects,active,state);
+              naturalProjection({...state,effectiveRecordIds:active});
+              astra.finalProposal=validateFinal(selected,input,decision.final,astra.toolReceipts);
+              compatible=planAstraCompatibleEffects(selected,input,normalized,astra.finalProposal.resolution);
+            }
             const effects = compatible ? compatible.plan :
               planAstraOrderedEffects(selected,input,decision.final.effects,
                 astra.finalProposal.resolution);
@@ -570,7 +651,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             }
             if (modern && responseMode === "public-unified") {
               checkpoint.narration = unifiedNarration(decision.final.publicNarration,
-                decision.final.effects.length, compatible!.acceptedIndexes);
+                decision.final.effects.length, compatible!.acceptedIndexes,natural);
             }
           } else {
             if (decision.final.settlement)
@@ -580,8 +661,21 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             if (settlement) checkpoint.astraSettlement = settlement;
             if (modern && responseMode === "public-unified") {
               requireRule(!decision.final.settlement);
-              checkpoint.narration = unifiedNarration(decision.final.publicNarration, 0, []);
+              checkpoint.narration = unifiedNarration(decision.final.publicNarration, 0, [],natural);
             }
+          }
+          if(natural) {
+            const state=source.astraNaturalState!;
+            if(!state.effectiveRecordIds)
+              naturalProjection({...state,effectiveRecordIds:effectiveNaturalRecordIds(state,null,astra.toolReceipts)});
+            const behavior=validateNaturalBehavior(selected,input,decision.final.behavior);
+            if(responseMode==="public-unified") {
+              buildSceneContinuity(selected,input,decision.final.continuity,input.operationId);
+              assertNoPrivateDisclosure(disclosureSource,input,JSON.stringify(decision.final.continuity),astra.toolReceipts);
+            }
+            pendingNaturalPublication={
+              continuity:responseMode==="public-unified" ? decision.final.continuity! : null,behavior,
+              effectiveRecordIds:source.astraNaturalState!.effectiveRecordIds!};
           }
           if (modern && responseMode === "public-unified") {
             assertNoPrivateDisclosure(disclosureSource,input,
@@ -592,7 +686,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           await recordStage("final_validated", "completed");
           checkpoint.resolution = astra.finalProposal.resolution;
           await recordStage("final_checkpoint", "entered");
-          await store.checkpoint(lease,checkpoint,"generating");
+          await persistCheckpoint("generating");
           await recordStage("final_checkpoint", "completed");
           break;
         }
@@ -645,11 +739,15 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       }
       const effectsOutcome = effectsNarrationProjection(checkpoint.astraEffects ?? null);
       const settlementOutcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
-      const narrationInstructions = source.snapshot.campaign.language === "en"
+      let narrationInstructions = source.snapshot.campaign.language === "en"
         ? `${publicInstructions} ${naturalEnglishGuidance}` : publicInstructions;
+      if(natural) narrationInstructions += " Preserve the exact supplied public behavior stance; choose wording only from this public context, never invent its secret reason. Return a bounded public continuity snapshot for the current scene: locale within the tracked parent Location and present/relevant incidental subjects. Reuse supplied subjectRef identities, use null only for a new incidental subject. Ordinary subjects need no gameplay records.";
       const extra: JsonObject = effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : {};
       const context = narrowContext(base,narrationInstructions,
-        modern ? {...extra,responseContract:"unified-v1",responseMode:"private-informed"} :
+        modern ? {...extra,responseContract:"unified-v1",responseMode:"private-informed",
+          ...(natural ? {naturalContract:"natural-v1",sceneContinuity:selectSceneContinuity(selected,input),
+            behavior:projectNaturalBehavior((source.astraNaturalState?.publication?.behavior ?? []) as
+              import("./astra-natural-behavior.ts").NaturalBehavior[])} : {})} :
           Object.keys(extra).length ? extra : undefined);
       await recordStage("narration_context", "completed");
       await recordStage("narration_provider", "entered");
@@ -669,7 +767,17 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       narrationParseSucceeded = true;
       await recordStage("narration_provider", "completed");
       await recordStage("narration_parse", "completed");
-      checkpoint.narration = response.output;
+      checkpoint.narration = {narration:response.output.narration,
+        visualDescription:response.output.visualDescription,clarification:null};
+      if(natural) {
+        buildSceneContinuity(source,input,response.output.continuity,input.operationId);
+        assertNoPrivateDisclosure(disclosureSource,input,JSON.stringify(response.output.continuity),astra.toolReceipts);
+        pendingNaturalPublication={
+          continuity:response.output.continuity!,behavior:projectNaturalBehavior(
+            (source.astraNaturalState?.publication?.behavior ?? []) as
+            import("./astra-natural-behavior.ts").NaturalBehavior[]),
+          effectiveRecordIds:source.astraNaturalState?.effectiveRecordIds ?? []};
+      }
       checkpoint.usage.push(response.usage);
       await recordStage("narration_safety", "entered");
       requireRule(typeof checkpoint.narration.narration === "string" &&
@@ -680,7 +788,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
         astra.toolReceipts);
       await recordStage("narration_safety", "completed");
       await recordStage("narration_checkpoint", "entered");
-      await store.checkpoint(lease,checkpoint,"generating");
+      await persistCheckpoint("generating");
       await recordStage("narration_checkpoint", "completed");
     }
     await recordStage("commit", "entered");
@@ -699,11 +807,13 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
 }
 
 export async function runAstraTurn(input: TurnInput,deps:AstraDependencies):Promise<PublicTurn> {
+  const naturalContract=await deps.store.astraNaturalContract?.(input.campaignId,input.operationId);
   const contract = deps.store.astraResponseContract
     ? await deps.store.astraResponseContract(input.campaignId, input.operationId) : undefined;
   const requestedContract = contract === "legacy-two-stage" || contract === undefined
     ? undefined : "unified-v1";
-  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME,requestedContract),
+  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME,requestedContract,
+    naturalContract===null || naturalContract==="natural-v1" ? "natural-v1" : undefined),
     input.campaignId,input.operationId,input.timeline);
   if (["committed","cancelled","awaiting_confirmation"].includes(current.status) ||
       (current.status === "failed" && !current.canRetry)) return current;

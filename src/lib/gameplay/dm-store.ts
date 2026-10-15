@@ -19,7 +19,7 @@ export function createRpcTurnStore(
   model: string | null = null,
   timeline?: TimelineFence,
   astraDiagnostics = false,
-  options?: { astraResponseContract: "unified-v1" },
+  options?: { astraResponseContract: "unified-v1"; astraNaturalContract?: "natural-v1" },
 ): TurnStore {
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
@@ -82,9 +82,22 @@ export function createRpcTurnStore(
     advanceProgression: (campaignId, payload) =>
       rpc(campaignId, "astra_advancement", payload),
     takeoverStatus: (campaignId) => rpc(campaignId, "astra_takeover_status"),
-    begin: (input, runtimeIdentity, responseContract) => rpc(input.campaignId, "begin",
+    begin: (input, runtimeIdentity, responseContract, naturalContract) => rpc(input.campaignId, "begin",
       runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity,
-        ...(options && responseContract ? { serverAstraContract: responseContract } : {}) } : input),
+        ...(options && responseContract ? { serverAstraContract: responseContract } : {}),
+        ...(options?.astraNaturalContract && naturalContract ? { serverNaturalContract: naturalContract } : {}) } : input),
+    ...(options?.astraNaturalContract ? {
+      astraNaturalContract: (campaignId: string, operationId: string) =>
+        rpc<"natural-v1" | "legacy-natural" | null>(campaignId,"astra_natural_contract",{operationId}),
+      recordAstraMaterialization: (lease: import("./server-contracts.ts").TurnLease, position: number,
+        request: import("./astra-natural-promotion.ts").NaturalMaterializationRequest) =>
+        rpc<import("./astra-natural-promotion.ts").NaturalMaterializationReceipt>(lease.campaignId,
+          "astra_materialize",{...lease,position,request}),
+      recordAstraPublication: (lease: import("./server-contracts.ts").TurnLease,
+        publication: Parameters<NonNullable<TurnStore["recordAstraPublication"]>>[1]) =>
+        rpc<import("./astra-natural-promotion.ts").NaturalTurnState>(lease.campaignId,
+          "astra_natural_publication",{...lease,publication}),
+    } : {}),
     ...(options ? { astraResponseContract: (campaignId: string, operationId: string) =>
       rpc<"legacy-two-stage" | "unified-v1" | null>(campaignId, "astra_contract", { operationId }),
       pinAstraResponseMode: (lease: import("./server-contracts.ts").TurnLease,
@@ -122,8 +135,9 @@ export function createRpcTurnStore(
           }
         : null;
     },
-    checkpoint: (lease, checkpoint, status) =>
-      rpc(lease.campaignId, "checkpoint", { ...lease, checkpoint, status }),
+    checkpoint: (lease, checkpoint, status, astraNaturalPublication) =>
+      rpc(lease.campaignId, "checkpoint", { ...lease, checkpoint, status,
+        ...(astraNaturalPublication ? {astraNaturalPublication} : {}) }),
     recordChecks: (lease, checks) =>
       rpc(lease.campaignId, "checks", { ...lease, checks }),
     reroll: (lease, command, check) =>

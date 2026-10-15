@@ -10,6 +10,11 @@ import { parseNarration, narrationSchema } from "../../gameplay/dm-schema.ts";
 import { DmError } from "../../gameplay/dm-errors.ts";
 import { validateMechanicChoice } from "../../gameplay/request-validation.ts";
 import { astraMechanicActionKinds } from "../../gameplay/astra-mechanics.ts";
+import { astraCapabilities } from "../../gameplay/astra-capabilities.ts";
+import { materializeNaturalSubject, type NaturalMaterializationRequest } from "../../gameplay/astra-natural-promotion.ts";
+import { buildSceneContinuity, type SceneContinuityProposal } from "../../gameplay/astra-natural-continuity.ts";
+import { validateNaturalBehavior } from "../../gameplay/astra-natural-behavior.ts";
+import { naturalContinuitySchema, resolveNaturalReferences } from "../../gameplay/astra-natural-contract.ts";
 import { planValidation, planValidationReason, type PlanDiagnostic } from "./plan-diagnostic.ts";
 export type { PlanDiagnostic, PlanDiagnosticReasonCode } from "./plan-diagnostic.ts";
 
@@ -20,7 +25,7 @@ function exactKeys(value: unknown, keys: string[]): value is Record<string,unkno
   return !!value && typeof value === "object" && !Array.isArray(value) &&
     Object.keys(value).length === keys.length && keys.every((k)=>Object.hasOwn(value,k));
 }
-function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
+function parseBaseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
   caps: AstraCapabilities, receipts: AstraToolReceipt[]): AstraDecision {
   const modern = source.astraResponseContract === "unified-v1";
   const unified = modern && source.astraResponseMode !== "private-informed";
@@ -93,7 +98,8 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
   // Existing encounter Action and defeat flags are server-derived consequences
   // of recorded tools and validated HP. The model chooses narrative intent and
   // tactical position, not free Action or an invented defeat state.
-  for(const p of source.runtime.participants.filter((p)=>caps.participantIds.includes(p.id))){
+  for(const p of source.runtime.participants.filter((p)=>caps.participantIds.includes(p.id) ||
+    source.astraNaturalContract === "natural-v1" && source.runtime.encounters.some((e)=>e.id===p.encounter_id && e.status==="active"))){
     const actionCost=receipts.filter((r)=>["attack","skill"].includes(r.call.kind) &&
       r.call.actorId===p.entity_id).length;
     const defeated=changes.some((c)=>c.family==="entities" && c.id===p.entity_id && c.values.hp===0);
@@ -144,6 +150,10 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
         "giveQuantity","receiveItemId","receiveQuantity"],
       mechanic_actions:["kind","actions","restSafety"],
       formal_rest:["kind","restKind","restSafety"]};
+    if(source.astraNaturalContract==="natural-v1") {
+      fields.item_relocate=["kind","actorId","itemId","quantity","destinationEntityId"];
+      fields.companion_join=["kind","entityId"];
+    }
     if (typeof kind!=="string" || !fields[kind])
       planValidation("decision_effect_kind");
     if (!exactKeys(effect,fields[kind]))
@@ -161,7 +171,8 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
         try {
           for (const action of row.actions) {
             const parsed=validateMechanicChoice(action);
-            if (!(astraMechanicActionKinds as readonly string[]).includes(parsed.kind))
+            if (!(astraMechanicActionKinds as readonly string[]).includes(parsed.kind) &&
+              !(source.astraNaturalContract==="natural-v1" && ["encounter.start","encounter.end"].includes(parsed.kind)))
               planValidation("decision_mechanic_actions");
           }
         } catch { planValidation("decision_mechanic_actions"); }
@@ -195,6 +206,63 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     ...(hasEffects ? {effects:rawEffects as AstraEffectIntent[]} :
       {settlement:settlement as AstraSettlementIntent|null}),
     ...(publicNarration ? { publicNarration } : {})}};
+}
+
+function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
+  caps: AstraCapabilities, receipts: AstraToolReceipt[]): AstraDecision {
+  if(source.astraNaturalContract!=="natural-v1")return parseBaseDecision(raw,source,input,caps,receipts);
+  if(!exactKeys(raw,["type","call","final","materializations"]) ||
+    !Array.isArray(raw.materializations) || raw.materializations.length>3)
+    planValidation("decision_root_shape");
+  let projected=source;
+  const aliases=new Map<string,string>([...(source.astraNaturalOrigins ?? []),
+    ...(source.astraNaturalState?.materializations.map((entry)=>({subjectRef:entry.request.subjectRef,recordId:entry.recordId})) ?? [])]
+    .map((entry)=>[entry.subjectRef,entry.recordId]));
+  const materializations:NaturalMaterializationRequest[]=[];
+  for(const candidate of raw.materializations) {
+    if(!exactKeys(candidate,["subjectRef","kind","purpose","ownerRef"]))planValidation("decision_effect_shape");
+    const request=candidate as unknown as NaturalMaterializationRequest;
+    try {
+      const result=materializeNaturalSubject(projected,input,request,
+        projected.astraNaturalState?.materializations.length ?? 0);
+      projected=result.source; aliases.set(request.subjectRef,result.receipt.recordId);
+    } catch {planValidation("decision_effect_scope");}
+    materializations.push(request);
+  }
+  const normalized=resolveNaturalReferences({type:raw.type,call:raw.call,final:raw.final},aliases);
+  if(raw.type==="tool")return {...parseBaseDecision(normalized,projected,input,astraCapabilities(projected),receipts),materializations};
+  const unified=source.astraResponseMode!=="private-informed";
+  const final=normalized.final as Record<string,unknown> | null;
+  const fields=["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects","behavior",
+    ...(unified?["publicNarration","continuity"]:[])];
+  if(!exactKeys(final,fields))planValidation("decision_final_shape");
+  let behavior;
+  try {behavior=validateNaturalBehavior(projected,input,final.behavior);}
+  catch {planValidation("decision_effect_scope");}
+  const {behavior: _behavior,continuity,publicNarration,...baseFinal}=final;
+  void _behavior;
+  let independentBeat: string | undefined;
+  if(unified) {
+    if(!exactKeys(publicNarration,["independentBeat","beats","visualDescription"]) ||
+      typeof publicNarration.independentBeat!=="string" || !publicNarration.independentBeat.trim() ||
+      publicNarration.independentBeat.length>6000)planValidation("decision_public_narration_shape");
+    independentBeat=publicNarration.independentBeat;
+    try {buildSceneContinuity(projected,input,continuity,input.operationId);}
+    catch {planValidation("decision_public_narration_shape");}
+    baseFinal.publicNarration={beats:publicNarration.beats,visualDescription:publicNarration.visualDescription};
+    // Base legacy validator requires a beat; the independent beat is preserved
+    // explicitly below, and never acquires an effect dependency.
+    if(Array.isArray(publicNarration.beats) && publicNarration.beats.length===0)
+      (baseFinal.publicNarration as {beats:unknown[]}).beats=[{text:independentBeat,requiresEffects:[]}];
+  }
+  const parsed=parseBaseDecision({...normalized,final:baseFinal},projected,input,astraCapabilities(projected),receipts);
+  if(parsed.type!=="final")planValidation("decision_final_shape");
+  if(unified && parsed.final.publicNarration) {
+    parsed.final.publicNarration.independentBeat=independentBeat;
+    parsed.final.publicNarration.beats=(publicNarration as {beats:{text:string;requiresEffects:number[]}[]}).beats;
+  }
+  return {...parsed,materializations,final:{...parsed.final,behavior,
+    ...(unified ? {continuity:continuity as SceneContinuityProposal} : {})}};
 }
 
 export function createAstraPrimaryProvider(options: {
@@ -259,7 +327,7 @@ export function createAstraPrimaryProvider(options: {
       const marker = (() => {
         try {
           return (JSON.parse(context.input) as {astraPrimary?:{
-            responseContract?:unknown;responseMode?:unknown}}).astraPrimary;
+            responseContract?:unknown;responseMode?:unknown;naturalContract?:unknown}}).astraPrimary;
         }
         catch { return null; }
       })();
@@ -270,11 +338,20 @@ export function createAstraPrimaryProvider(options: {
         diagnosticObserver:progress(input,"narrate",observe)})(context,"narrate",input.operationId,
         (raw)=>{
           let parsed;
+          let continuity:SceneContinuityProposal | undefined;
+          if(marker?.naturalContract==="natural-v1") {
+            if(!exactKeys(raw,["narration","visualDescription","clarification","continuity"]))
+              planValidation("narration_contract_invalid");
+            continuity=raw.continuity as SceneContinuityProposal;
+            raw={narration:raw.narration,visualDescription:raw.visualDescription,clarification:raw.clarification};
+          }
           try { parsed = parseNarration(raw); }
           catch { planValidation("narration_contract_invalid"); }
           if (parsed.clarification !== null) planValidation("narration_clarification_present");
-          return { ...parsed, clarification:null };
-        },narrationSchema);
+          return { ...parsed, clarification:null, ...(continuity ? {continuity} : {}) };
+        },marker?.naturalContract==="natural-v1" ? {type:"object",additionalProperties:false,
+          properties:{...narrationSchema.properties,continuity:naturalContinuitySchema},
+          required:["narration","visualDescription","clarification","continuity"]} : narrationSchema);
       } catch (error) {
         if (marker?.responseContract === "unified-v1" && marker.responseMode === "private-informed" &&
           ["output_json_invalid", "narration_contract_invalid", "narration_clarification_present"]

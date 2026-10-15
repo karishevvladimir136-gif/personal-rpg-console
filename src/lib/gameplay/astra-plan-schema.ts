@@ -2,6 +2,8 @@ import type { TurnInput } from "./contracts.ts";
 import type { RuntimeSource } from "./server-contracts.ts";
 import type { AstraCapabilities } from "./astra-capabilities.ts";
 import { settlementItemTransferAllowed } from "./astra-settlement.ts";
+import { naturalContinuitySchema, naturalBehaviorSchema, naturalMaterializationsSchema,
+  naturalizeReferenceSelections } from "./astra-natural-contract.ts";
 
 const obj = (properties: Record<string, unknown>) => ({ type: "object",
   additionalProperties: false, properties, required: Object.keys(properties) });
@@ -37,6 +39,7 @@ function withSharedEnums(schema: Record<string, unknown>): Record<string, unknow
 }
 
 export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilities, source: RuntimeSource) {
+  const natural=source.astraNaturalContract==="natural-v1";
   const actors = caps.entityIds;
   const ids = [...new Set([input.campaignId,...actors,...caps.itemIds,...caps.participantIds])];
   const resourceKeys = [...new Set(Object.values(caps.resources).flat())];
@@ -106,6 +109,10 @@ export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilitie
       ["known","visited"].includes(l.status)).map((l)=>l.id)),
     suitable:{type:"boolean"}}),{type:"null"}]};
   const mechanicAction={anyOf:[
+    ...(natural ? [
+      obj({kind:enumString(["encounter.start"]),participantIds:array(enumString(actors))}),
+      obj({kind:enumString(["encounter.end"]),outcome:enumString(["victory","escape","surrender","negotiation","objective-completion"])}),
+    ] : []),
     obj({kind:enumString(["resource.spend"]),entityId:enumString(mechanicActors),
       resource:enumString(resourceKeys),amount:{type:"integer"}}),
     obj({kind:enumString(["item.consume"]),actorId:enumString(mechanicActors),
@@ -180,22 +187,33 @@ export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilitie
   ]} : {type:"null"};
   const effects=source.worldTakeover
     ? array({anyOf:[...(settlement as {anyOf:unknown[]}).anyOf.slice(0,-1),
+      ...(natural ? [
+        obj({kind:enumString(["item_relocate"]),actorId:enumString(playerIds),
+          itemId:enumString(mechanicItems),quantity:{type:"integer"},
+          destinationEntityId:{anyOf:[enumString(actors),{type:"null"}]}}),
+        obj({kind:enumString(["companion_join"]),entityId:enumString(npcIds)}),
+      ] : []),
       obj({kind:enumString(["unsupported_optional"]),description:{type:"string",minLength:1,maxLength:160}})]})
     : array(obj({kind:enumString(["__none__"])}));
   const final = obj({ schemaVersion:{type:"integer",enum:[1]},
     worldMinutes:{type:"integer"},changes:array(change),
     outcomes:{...array(outcome), ...(source.astraResponseContract === "unified-v1" ? {maxItems:0} : {})},
     privatePatches:array(privatePatch),effects,
+    ...(natural ? {behavior:naturalBehaviorSchema} : {}),
     ...(source.astraResponseContract === "unified-v1" && source.astraResponseMode !== "private-informed" ? {
       publicNarration: obj({
+        ...(natural ? {independentBeat:{type:"string",minLength:1,maxLength:6000}} : {}),
         beats: { ...array(obj({ text: { type: "string", minLength: 1, maxLength: 6000 },
           requiresEffects: { ...array({ type: "integer", minimum: 0, maximum: 5 }), maxItems: 6 } })),
-          minItems: 1, maxItems: 12 },
+          minItems: natural ? 0 : 1, maxItems: 12 },
         visualDescription: obj({ text: { type: "string", maxLength: 2000 },
           requiresEffects: { ...array({ type: "integer", minimum: 0, maximum: 5 }), maxItems: 6 } }),
       }),
+      ...(natural ? {continuity:naturalContinuitySchema} : {}),
     } : {}) });
-  return withSharedEnums(obj({ type:enumString(["tool","final"]),
-    call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} }));
+  const root=obj({ type:enumString(["tool","final"]),
+    ...(natural ? {materializations:naturalMaterializationsSchema} : {}),
+    call:{anyOf:[tool,{type:"null"}]},final:{anyOf:[final,{type:"null"}]} });
+  return withSharedEnums(natural ? naturalizeReferenceSelections(root,source,input) : root);
 }
 

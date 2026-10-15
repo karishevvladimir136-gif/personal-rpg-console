@@ -62,31 +62,49 @@ function publicWorld(source: RuntimeSource): RuntimeSource["worldTakeover"] {
  * private prompt. A selected private original always remains private evidence. */
 export function curateAstraContextSource(source: RuntimeSource, input: TurnInput): RuntimeSource {
   if (source.astraResponseContract !== "unified-v1") return source;
+  const natural = (source as RuntimeSource & { astraNaturalContract?: "natural-v1" }).astraNaturalContract === "natural-v1";
   const terms = new Set(memoryTerms(input.input));
   const lower = input.input.toLocaleLowerCase();
   const present = new Set(source.worldTakeover?.presentEntityIds ??
     source.runtime.configuration?.presentEntityIds ?? []);
-  const relevantActors = new Set(source.snapshot.entities.filter((row) =>
+  const addressedActors = source.snapshot.entities.filter((row) =>
     row.kind !== "player" && row.campaign_id === input.campaignId &&
     (row.id === input.companionId || input.listenerIds.includes(row.id) ||
       (row.name.length >= 3 && lower.includes(row.name.toLocaleLowerCase())) ||
       (present.has(row.id) && memoryTerms(row.name).some((term) => terms.has(term)))))
-    .map((row) => row.id));
+    .map((row) => row.id);
+  const relevantActors = new Set(natural ? [] : addressedActors);
   // Reuse the accepted bounded Character Packet selection. In-scene models
   // remain relevant even when ordinary dialogue uses a pronoun or no name.
-  for (const row of characterPacket(source, input, "plan")) relevantActors.add(row.actorId);
+  const characterModels = characterPacket(source, input, "plan");
+  if (!natural) for (const row of characterModels) relevantActors.add(row.actorId);
   const locationId = source.snapshot.publicState.current_location_id;
+  const actorTerms = new Set(natural ? source.snapshot.entities.flatMap((row) => memoryTerms(row.name)) : []);
   const overlaps = (value: unknown, minimum = 2) => {
     const selected = memoryTerms(typeof value === "string" ? value : JSON.stringify(value));
-    return [...new Set(selected)].filter((term) => terms.has(term)).length >= minimum;
+    return [...new Set(selected)].filter((term) => terms.has(term) && !actorTerms.has(term)).length >= minimum;
   };
+  if (natural) {
+    // Presence, a name, and a settled model are not themselves reasons to send
+    // cognition. This is bounded lexical selection, not a semantic classifier:
+    // selected private Memory remains an independent private routing trigger.
+    for (const row of characterModels) {
+      const cognition = [...row.identity.values, ...row.identity.wants, ...row.identity.boundaries,
+        ...row.identity.loyalties, ...row.identity.signatures, row.current.goal,
+        row.current.preoccupation, row.current.obligation, ...row.beliefs.map((entry) => entry.text),
+        ...row.relationships.map((entry) => entry.unresolvedHurt),
+        ...row.episodes.flatMap((entry) => [entry.meaning, entry.cue])].filter((value) => value !== null).join(" ");
+      if (overlaps(cognition)) relevantActors.add(row.actorId);
+    }
+  }
   const explicitlyScoped = (value: Json): boolean => {
     const row = typeof value === "string" && /^[\[{]/.test(value.trim())
       ? (() => { try { return JSON.parse(value) as Json; } catch { return null; } })() : value;
     if (!row || typeof row !== "object" || Array.isArray(row)) return false;
-    return ["actorId", "entityId", "npcId"].some((key) => typeof row[key] === "string" &&
-      relevantActors.has(row[key] as string)) ||
-      ["locationId", "currentLocationId"].some((key) => locationId !== null && row[key] === locationId);
+    const actor = ["actorId", "entityId", "npcId"].some((key) => typeof row[key] === "string" &&
+      relevantActors.has(row[key] as string));
+    const location = ["locationId", "currentLocationId"].some((key) => locationId !== null && row[key] === locationId);
+    return actor || (location && (!natural || overlaps(row)));
   };
   const selectedPrivate = [
     ...(source.memory?.privateHistorical ?? []),
@@ -105,7 +123,7 @@ export function curateAstraContextSource(source: RuntimeSource, input: TurnInput
     }
     const selected = Object.fromEntries(Object.entries(bucket).filter(([key, value]) =>
       key.startsWith("character_") ? relevantActors.has(key.slice("character_".length)) :
-        relevantActors.has(key) || (locationId !== null && key === locationId) ||
+        relevantActors.has(key) || (locationId !== null && key === locationId && (!natural || overlaps(value))) ||
         explicitlyScoped(value) || overlaps(key, 1) || overlaps([bucketKey, key, value])));
     if (Object.keys(selected).length) privateState[bucketKey] = selected;
   }
@@ -138,7 +156,10 @@ export function curateAstraContextSource(source: RuntimeSource, input: TurnInput
       overlaps(row) || (Array.isArray(row.actorIds) && row.actorIds.some((id) =>
         typeof id === "string" && relevantActors.has(id))));
   }
-  return { ...source, privateState, memory, worldTakeover: world,
+  const observableCharacters = natural ? [...new Map([
+    ...(source.observableCharacters ?? []), ...characterPacket(source, input, "narrate"),
+  ].map((row) => [row.actorId, row])).values()].slice(0, 2) : source.observableCharacters;
+  return { ...source, privateState, memory, worldTakeover: world, observableCharacters,
     narrationBridge: undefined };
 }
 
@@ -186,6 +207,7 @@ export function astraContextHasPrivateEvidence(context: Pick<BuiltContext, "inpu
   // An unknown future authoring field must be reviewed before the one-call
   // public route may receive it; it cannot bypass routing by another key name.
   const unknownAuthoring = unknown(authoring, ["responseContract", "responseMode", "capabilities", "toolPolicy",
+    ...(authoring?.naturalContract === "natural-v1" ? ["naturalContract", "sceneContinuity", "characterVoices"] : []),
     "settlementAuthority", "mechanicsAuthority", "currentProgression", "authority"]) ||
     unknown(settlement, ["controlledPlayerId", "progressionTracks", "presentNpcIds", "jobs", "existingCurrencies",
       "transferableItemIds", "purchasableItemIds", "sellableItemIds", "merchantBuyerIds", "mundaneIngredientItemIds",
@@ -223,7 +245,8 @@ export function projectAstraPublicSource(source: RuntimeSource, input: TurnInput
     observableCharacters, narrationBridge: undefined, foundationOptions: undefined,
     lootChecks: undefined, worldLogicMundaneDetail: undefined,
     worldTakeover: options?.forNarration ? undefined : publicWorld(source),
-    ...(options?.forNarration ? { astraSettlementJobs: undefined, astraSettlementCurrencies: undefined,
+    ...(options?.forNarration ? { astraNaturalState: undefined,
+      astraSettlementJobs: undefined, astraSettlementCurrencies: undefined,
       astraSettlementItemPolicies: undefined, astraProgressionState: undefined, astraProgressionBaseline: undefined } : {}),
     memory: source.memory ? { ...source.memory, privateHistorical: [], privateSummary: null,
       requiredPrivateHistoricalSourceIds: [],

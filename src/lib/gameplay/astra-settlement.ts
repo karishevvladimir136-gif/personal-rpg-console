@@ -40,6 +40,7 @@ export const legacySettlementKind = (kind: string) =>
 /** A bounded non-mechanical request can be declined as a durable effect while
  * the DM still handles its ordinary fictional meaning in the scene. */
 export type AstraEffectIntent = AstraSettlementIntent | import("./astra-mechanics.ts").AstraMechanicsIntent |
+  import("./astra-natural-effects.ts").NaturalEffectIntent |
   { kind: "unsupported_optional"; description: string };
 
 export type AstraLegacyEffectsPlan = {
@@ -49,7 +50,8 @@ export type AstraLegacyEffectsPlan = {
 };
 export type AstraOrderedEffectsPlan = {
   schemaVersion: 2;
-  effects: (AstraSettlementPlan | import("./astra-mechanics.ts").AstraMechanicsPlan)[];
+  effects: (AstraSettlementPlan | import("./astra-mechanics.ts").AstraMechanicsPlan |
+    import("./astra-natural-effects.ts").NaturalEffectPlan)[];
   indices: number[];
   intents: AstraEffectIntent[];
   rejected: { index: number; reason: "not_authorized" }[];
@@ -544,7 +546,8 @@ export function assertEffectScope(source: RuntimeSource, intent: AstraSettlement
  * writes fail the whole turn before narration; individually unrepresentable
  * optional effects are omitted, never translated into a free-form patch. */
 export function planAstraEffects(source: RuntimeSource, input: TurnInput,
-  intents: Exclude<AstraEffectIntent, import("./astra-mechanics.ts").AstraMechanicsIntent>[], baseChanges: RecordChange[]): AstraLegacyEffectsPlan | null {
+  intents: Exclude<AstraEffectIntent, import("./astra-mechanics.ts").AstraMechanicsIntent |
+    import("./astra-natural-effects.ts").NaturalEffectIntent>[], baseChanges: RecordChange[]): AstraLegacyEffectsPlan | null {
   requireRule(Array.isArray(intents) && intents.length <= 6);
   if (!intents.length) return null;
   requireRule(input.mode === "game" && !!source.worldTakeover);
