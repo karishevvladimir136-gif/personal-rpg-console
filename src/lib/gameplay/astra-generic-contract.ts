@@ -60,7 +60,10 @@ export type GenericManifest = { records: Record<string, { family: string; id: st
   evidence: Record<string, string>; resources: string[]; currencies: string[] };
 export function genericProfiles(source:RuntimeSource,manifest:GenericManifest):string[] {
   return Object.entries(manifest.records).filter(([,r])=>r.family==="entities" && source.snapshot.entities.some(e=>e.id===r.id &&
-    Number.isInteger(e.max_hp) && Number(e.max_hp)>0 && ["attack","defense","skill"].every(k=>Number.isInteger(e.stats[k]))))
+    Number.isInteger(e.max_hp) && Number(e.max_hp)>0 && Number(e.max_hp)<=1000000 &&
+    ["attack","skill"].every(k=>Number.isInteger(e.stats[k]) && e.stats[k]>=-20 && e.stats[k]<=20) &&
+    Number.isInteger(e.stats.defense) && e.stats.defense>=1 && e.stats.defense<=40 &&
+    (e.stats.save===undefined || Number.isInteger(e.stats.save) && e.stats.save>=-20 && e.stats.save<=20)))
     .map(([handle])=>`actor-profile:${handle}`);
 }
 
@@ -70,6 +73,7 @@ export function genericManifest(source: RuntimeSource, input: TurnInput): Generi
   const evidence: Record<string,string> = { "input/current": input.input };
   for (const family of ["entities","locations","items","storages","quests"] as const) {
     source.snapshot[family].forEach((row,index) => {
+      if(family==="items" && source.astraSettlementItemPolicies?.some(policy=>policy.itemId===row.id && policy.visibility!=="public"))return;
       const key = family === "entities" && source.runtime.configuration?.controlledEntityIds.includes(row.id)
         ? "hero" : `${family}-${index}`;
       records[key] = {family,id:row.id};
@@ -78,7 +82,11 @@ export function genericManifest(source: RuntimeSource, input: TurnInput): Generi
         if (typeof publicRow[field] === "string") evidence[`${key}/${field}`] = publicRow[field];
     });
   }
-  source.snapshot.scenes.forEach((row,index) => { evidence[`scene-${index}`] = `${row.title}\n${row.body}`; });
+  const terms=[...new Set(input.input.toLowerCase().match(/[a-z0-9]{3,}/g) ?? [])];
+  const scenes=source.snapshot.scenes.map((row,index)=>({row,index,score:terms.filter(term=>`${row.title}\n${row.body}`.toLowerCase().includes(term)).length}));
+  const current=scenes.find(v=>v.row.id===source.snapshot.publicState.current_scene_id) ?? scenes.at(-1);
+  const continuity=[...(current?[current]:[]),...scenes.filter(v=>v!==current).sort((a,b)=>b.score-a.score || b.index-a.index).slice(0,3)];
+  for(const {row,index} of continuity)evidence[`scene-${index}`]=`${row.title}\n${row.body}`;
   source.snapshot.documents.filter(row => row.status === "canon").forEach((row,index) => {
     evidence[`canon-${index}`] = row.body;
   });
@@ -146,6 +154,19 @@ export function parseGenericDecision(value: unknown): GenericDecision {
   const row=value as Record<string,unknown>;
   requireRule(Object.keys(row).length===3 && ["type","toolRequest","final"].every(key=>Object.hasOwn(row,key)));
   requireRule(row.type==="tool" ? row.final===null && !!row.toolRequest : row.type==="final" && row.toolRequest===null && !!row.final);
+  if(row.type==="tool"){
+    const request=row.toolRequest as Record<string,unknown>;
+    requireRule(typeof request==="object" && Object.keys(request).length===2 && Array.isArray(request.operations) && request.operations.length<=12 &&
+      request.call && typeof request.call==="object" && !Array.isArray(request.call));
+    const call=request.call as Record<string,unknown>;
+    requireRule(Object.keys(call).length===6 && ["kind","actor","target","item","dc","scope"].every(key=>Object.hasOwn(call,key)));
+  }else{
+    const final=row.final as Record<string,unknown>;
+    requireRule(typeof final==="object" && !Array.isArray(final) && Object.keys(final).length===4 &&
+      ["publicNarration","genericOperations","privatePatches","publicBehavior"].every(key=>Object.hasOwn(final,key)) &&
+      Array.isArray(final.genericOperations) && final.genericOperations.length<=12 && Array.isArray(final.privatePatches) &&
+      final.privatePatches.length<=6 && Array.isArray(final.publicBehavior) && final.publicBehavior.length<=2);
+  }
   return value as GenericDecision;
 }
 
@@ -154,7 +175,11 @@ export const genericInstructions = `Astra is the DM. Structured state is authori
 export function genericAuthority(source: RuntimeSource,input: TurnInput): JsonObject {
   const manifest=genericManifest(source,input);
   return {stateContract:"generic-v1",handles:Object.entries(manifest.records).map(([handle,record])=>({
-    handle,family:record.family,id:record.id})),publicEvidence:manifest.evidence,
+    handle,family:record.family,id:record.id,
+    label:String((source.snapshot as unknown as Record<string,{id:string;name?:string;title?:string}[]>)[record.family]
+      .find(row=>row.id===record.id)?.name ??
+      (source.snapshot as unknown as Record<string,{id:string;title?:string}[]>)[record.family].find(row=>row.id===record.id)?.title ?? "")
+    })),publicEvidence:manifest.evidence,
     currentWorldMinutes:source.runtime.worldMinutes,locationChangeRequiresTimeAdvance:true,
     profiles:genericProfiles(source,manifest),
     ruleHandles:["long-rest","short-rest"],resources:manifest.resources,currencies:manifest.currencies,

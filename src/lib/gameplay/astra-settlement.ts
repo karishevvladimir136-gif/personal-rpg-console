@@ -2,7 +2,7 @@ import type { TurnInput, JsonObject } from "./contracts.ts";
 import type { RecordChange, RuntimeSource } from "./server-contracts.ts";
 import { stableGameplayId } from "./dice.ts";
 import { requireRule, TurnError } from "./turn-errors.ts";
-import { settledCurrencyBalance, settledItemTransfer } from "../progression/settlement-core.ts";
+import { settledCurrencyBalance, settledItemTransfer, settledActorStorage } from "../progression/settlement-core.ts";
 import { awardEarnedProgression } from "../progression/planning.ts";
 import type { FoundationLoopState } from "../foundation-loop/contracts.ts";
 
@@ -137,11 +137,9 @@ function npcStorage(source: RuntimeSource, input: TurnInput, npcId: string) {
   if (storage) return {id:storage.id,change:null};
   const name=source.worldTakeover?.actors.find((a)=>a.entityId===npcId)?.publicName;
   requireRule(typeof name==="string" && name.length>0);
-  const id=stableGameplayId(input.operationId,`astra:sale-storage:${npcId}`);
-  requireRule(!source.snapshot.storages.some((s)=>s.id===id));
-  return {id,change:{family:"storages",id,expectedRevision:null,
-    values:{name:`Inventory of ${name}`.slice(0,160),kind:"merchant",
-      entity_id:npcId}} as RecordChange};
+  requireRule(!source.snapshot.storages.some(s=>s.id===stableGameplayId(input.operationId,`astra:sale-storage:${npcId}`)));
+  return settledActorStorage(source.snapshot.storages.filter(s=>s.kind==="merchant"),
+    input.campaignId,npcId,name,input.operationId,`astra:sale-storage:${npcId}`);
 }
 
 function existingQuest(source: RuntimeSource, id: string) {

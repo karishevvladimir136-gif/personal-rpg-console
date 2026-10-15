@@ -11,6 +11,7 @@ import { DmError } from "../../gameplay/dm-errors.ts";
 import { validateMechanicChoice } from "../../gameplay/request-validation.ts";
 import { astraMechanicActionKinds } from "../../gameplay/astra-mechanics.ts";
 import { planValidation, planValidationReason, type PlanDiagnostic } from "./plan-diagnostic.ts";
+import { parseGenericDecision } from "../../gameplay/astra-generic-contract.ts";
 export type { PlanDiagnostic, PlanDiagnosticReasonCode } from "./plan-diagnostic.ts";
 
 type RawChange = { family:string; id:string; expectedRevision:number|null;
@@ -244,7 +245,8 @@ export function createAstraPrimaryProvider(options: {
           reasoning:"high",fetcher:options.fetcher,includeUsageMetadata:true,
           planDiagnosticObserver:planDiagnosticObserver(input,"plan"),observer:attemptObserver,
           diagnosticObserver:progress(input,"plan",observe)})(enriched,"plan",input.operationId,
-          (raw)=>parseDecision(raw,source,input,caps,receipts),schema);
+          (raw)=>{if(source.astraStateContract!=="generic-v1")return parseDecision(raw,source,input,caps,receipts);
+            try{return parseGenericDecision(raw);}catch{planValidation("decision_root_shape");}},schema);
       } catch (error) {
         // A malformed public output is a manual technical retry, never an
         // automatic semantic retry. State/scope/privacy validators stay closed.
@@ -259,7 +261,7 @@ export function createAstraPrimaryProvider(options: {
       const marker = (() => {
         try {
           return (JSON.parse(context.input) as {astraPrimary?:{
-            responseContract?:unknown;responseMode?:unknown}}).astraPrimary;
+            responseContract?:unknown;responseMode?:unknown;stateContract?:unknown}}).astraPrimary;
         }
         catch { return null; }
       })();
@@ -270,11 +272,21 @@ export function createAstraPrimaryProvider(options: {
         diagnosticObserver:progress(input,"narrate",observe)})(context,"narrate",input.operationId,
         (raw)=>{
           let parsed;
-          try { parsed = parseNarration(raw); }
+          let locale:string|null|undefined;
+          let narrationValue=raw;
+          if(marker?.stateContract==="generic-v1"){
+            if(!exactKeys(raw,["narration","visualDescription","clarification","sceneLocale"]) ||
+              raw.sceneLocale!==null && (typeof raw.sceneLocale!=="string" || raw.sceneLocale.trim().length===0 || raw.sceneLocale.length>120))
+              planValidation("narration_contract_invalid");
+            locale=raw.sceneLocale as string|null;const {sceneLocale: _locale,...remaining}=raw;void _locale;narrationValue=remaining;
+          }
+          try { parsed = parseNarration(narrationValue); }
           catch { planValidation("narration_contract_invalid"); }
           if (parsed.clarification !== null) planValidation("narration_clarification_present");
-          return { ...parsed, clarification:null };
-        },narrationSchema);
+          return { ...parsed, clarification:null, ...(locale!==undefined?{sceneLocale:locale}:{}) };
+        },marker?.stateContract==="generic-v1"?{...narrationSchema,
+          properties:{...narrationSchema.properties,sceneLocale:{anyOf:[{type:"string",minLength:1,maxLength:120},{type:"null"}]}},
+          required:[...(narrationSchema.required ?? []),"sceneLocale"]}:narrationSchema);
       } catch (error) {
         if (marker?.responseContract === "unified-v1" && marker.responseMode === "private-informed" &&
           ["output_json_invalid", "narration_contract_invalid", "narration_clarification_present"]

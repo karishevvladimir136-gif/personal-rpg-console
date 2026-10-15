@@ -1,6 +1,20 @@
 import { requireProgression, MAX_RESOURCE } from "./validation.ts";
-import type { Item } from "../persistence/contracts.ts";
+import type { Item, Storage } from "../persistence/contracts.ts";
 import type { RecordChange } from "../gameplay/server-contracts.ts";
+import { stableGameplayId } from "../gameplay/dice.ts";
+
+/** Scope and eligible actor kind are caller authority; construction and identity
+ * are shared by historical commerce and the generic ownership adapter. */
+export function settledActorStorage(storages:readonly Storage[],campaignId:string,actorId:string,
+  actorName:string,operationId:string,identity:string):{id:string;change:RecordChange|null} {
+  const existing=storages.filter(s=>s.campaign_id===campaignId && s.entity_id===actorId)
+    .sort((a,b)=>a.id.localeCompare(b.id))[0];
+  if(existing)return {id:existing.id,change:null};
+  requireProgression(typeof actorName==="string" && actorName.length>0);
+  const id=stableGameplayId(operationId,identity);requireProgression(!storages.some(s=>s.id===id));
+  return {id,change:{family:"storages",id,expectedRevision:null,
+    values:{name:`Inventory of ${actorName}`.slice(0,160),kind:"merchant",entity_id:actorId}}};
+}
 
 /** Shared arithmetic for authored Foundation rewards and bounded live rewards.
  * This is pure arithmetic; the caller still owns source and recipient authority. */

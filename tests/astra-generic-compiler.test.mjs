@@ -33,7 +33,7 @@ test("generic contract has six families and no raw record change authoring",()=>
   const walk=value=>{if(Array.isArray(value))value.forEach(walk);else if(value && typeof value==="object"){
     if(value.$ref)assert.ok(value.$ref.split('/').slice(1).reduce((v,k)=>v?.[k],providerSchema),`unresolved ${value.$ref}`);
     Object.values(value).forEach(walk);}};walk(providerSchema);
-  assert.deepEqual(parseGenericDecision({type:"final",toolRequest:null,final:{}}),{type:"final",toolRequest:null,final:{}});
+  assert.throws(()=>parseGenericDecision({type:"final",toolRequest:null,final:{}}));
   assert.throws(()=>parseGenericDecision({type:"final",toolRequest:null,final:{},sql:"bad"}));
 });
 test("current DM judgment creates issuer and accepted job with backward refs without historical receipt",()=>{

@@ -186,7 +186,7 @@ export function astraContextHasPrivateEvidence(context: Pick<BuiltContext, "inpu
   // An unknown future authoring field must be reviewed before the one-call
   // public route may receive it; it cannot bypass routing by another key name.
   const unknownAuthoring = unknown(authoring, ["responseContract", "responseMode", "capabilities", "toolPolicy",
-    "settlementAuthority", "mechanicsAuthority", "currentProgression", "authority"]) ||
+    "settlementAuthority", "mechanicsAuthority", "currentProgression", "authority", "genericAuthority"]) ||
     unknown(settlement, ["controlledPlayerId", "progressionTracks", "presentNpcIds", "jobs", "existingCurrencies",
       "transferableItemIds", "purchasableItemIds", "sellableItemIds", "merchantBuyerIds", "mundaneIngredientItemIds",
       "barterOfferItemIds", "limits"]) ||
@@ -219,7 +219,7 @@ export function projectAstraPublicSource(source: RuntimeSource, input: TurnInput
       voices.set(row.actorId, { actorId: row.actorId, observableVoice: row.observableVoice });
   }
   const observableCharacters = [...voices.values()].slice(0, 2);
-  return { ...source, privateState: {}, privateStateRevision: undefined,
+  return { ...source, ...(options?.forNarration ? {astraGenericPrefix:undefined}:{}), privateState: {}, privateStateRevision: undefined,
     observableCharacters, narrationBridge: undefined, foundationOptions: undefined,
     lootChecks: undefined, worldLogicMundaneDetail: undefined,
     worldTakeover: options?.forNarration ? undefined : publicWorld(source),

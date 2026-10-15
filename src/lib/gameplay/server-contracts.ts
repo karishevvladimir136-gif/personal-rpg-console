@@ -63,6 +63,7 @@ export type DmPlan = {
   guidanceProposal: string | null;
 };
 export type NarrationResult = {
+  sceneLocale?: string | null;
   narration: string;
   visualDescription: string;
   clarification: string | null;
@@ -288,6 +289,7 @@ export interface TurnStore {
   begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1",
     astraResponseContract?: "unified-v1", astraStateContract?: "generic-v1"): Promise<PublicTurn>;
   astraStateContract?(campaignId:string,operationId:string):Promise<"generic-v1"|"legacy-state"|null>;
+  astraRerollReceipt?(lease:TurnLease,command:ResumeInput):Promise<RecordedCheck[]|null>;
   astraResponseContract?(campaignId: string, operationId: string):
     Promise<"legacy-two-stage" | "unified-v1" | null>;
   pinAstraResponseMode?(lease: TurnLease, mode: "public-unified" | "private-informed"):

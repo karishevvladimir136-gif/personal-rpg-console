@@ -44,6 +44,6 @@ export function createTurnStore(
     model,
     timeline,
     true,
-    { astraResponseContract: "unified-v1" },
+    { astraResponseContract: "unified-v1", astraStateContract:"generic-v1" },
   );
 }

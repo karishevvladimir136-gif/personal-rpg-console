@@ -3,10 +3,11 @@
 **Current milestone:** isolated implementation in progress on `codex/astra-generic-state-v1`, starting at `65dc99c105d86b2860d284d10846c450d20b3e2d`. Production main remains `8ad7b87da43100320e93a44646a87016fc9a95ad`.
 
 - Unit 1 implements the closed six-family contract, known/local references, bounded public-evidence quotations, explicit payer references, ordered shadow compilation, atomic groups and independent narration filtering.
-- Seven focused compiler tests pass, including current-input acceptance, unseeded bread exchange, rollback and distinct untracked/sufficient/insufficient/zero payer balances. TypeScript and focused zero-warning lint pass.
-- Runtime/database integration is still being verified on disposable databases. The first sequential production-path unseeded journey passes; this is not final candidate acceptance.
+- Unit 2 adds one private nullable state-contract pin, schema-3 plan reconstruction, durable tool-prefix/final authority, replay and existing save/fork recovery through replacement Migration 52. The old runtime/effect branches remain delegated for null historical pins; no historical rows are backfilled.
+- Compiler/runtime/migration tests pass **24/24** on disposable PGlite databases, including the unseeded journey, both payer paths, prompt-omission tampering, private-informed acceptance, interactive reroll replay, final-pinned save/load and detached World Lab projection. TypeScript and focused zero-warning lint pass. These are intermediate results, not final acceptance.
+- The 200-turn matrix/soak and complete quality gates are still being finalized. Its first assertion incorrectly counted four existing bootstrap OOC receipts as Game turns; the assertion now explicitly counts mode=game.
 - Replacement Migration 52 remains disposable-only and unapproved for owner activation. The original WIP migration/checkpoint/report branch is preserved unchanged.
-- Remaining: migration/legacy/save/retry/privacy/tool/rest/isolation coverage, sixteen-case matrix, 200-turn soak, complete quality gates and bounded live synthetic verification.
+- Remaining: final sixteen-case matrix/200-turn soak, source-of-truth wording, complete quality gates and bounded live synthetic verification under verified official pricing.
 - No owner database query/write, owner application change, Iris operation or provider/media request has occurred. Owner DB is reported at Migration 51; it was not accessed for this implementation.
 
 ## Preserved starting-candidate record

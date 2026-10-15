@@ -4,9 +4,9 @@ import { stableGameplayId } from "./dice.ts";
 import { requireRule, TurnError } from "./turn-errors.ts";
 import { applyAstraShadowChanges } from "./astra-ordered-effects.ts";
 import { planAstraMechanics } from "./astra-mechanics.ts";
-import { settledCurrencyBalance, settledItemTransfer } from "../progression/settlement-core.ts";
+import { settledCurrencyBalance, settledItemTransfer, settledActorStorage } from "../progression/settlement-core.ts";
 import { ProgressionValidationError } from "../progression/validation.ts";
-import { genericManifest, genericStances, genericTones, type GenericBehavior, type GenericCurrency,
+import { genericManifest, genericProfiles, genericStances, genericTones, type GenericBehavior, type GenericCurrency,
   type GenericManifest, type GenericOperation, type GenericPublication, type GenericRef, type GenericText } from "./astra-generic-contract.ts";
 
 type Job = { questId: string; issuerId: string | null; rewardTerms: JsonObject | null; rewardOperationId: string | null };
@@ -15,9 +15,10 @@ export type GenericPlan = { schemaVersion: 3; intents: GenericOperation[]; accep
   resolution: MechanicsResolution; foundationState: JsonObject | null; jobs: Job[];
   publication: GenericPublication | null; behavior: GenericBehavior[];
   rulePlans: {opId:string;plan:ReturnType<typeof planAstraMechanics>}[];
-  refs:Record<string,{family:string;id:string}> };
+  refs:Record<string,{family:string;id:string}>; damageRefs:string[] };
 type State = { source: RuntimeSource; manifest: GenericManifest; refs: Record<string,{family:string;id:string}>;
-  changes: Map<string,RecordChange>; jobs: Job[]; foundationState: JsonObject | null; intents: GenericOperation[] };
+  changes: Map<string,RecordChange>; jobs: Job[]; foundationState: JsonObject | null; intents: GenericOperation[];
+  damageApplied:Set<string>;damageRefs:string[] };
 const idPattern=/^[a-z][a-z0-9_-]{0,31}$/;
 const fields=(v:object,keys:string[])=>requireRule(v && typeof v==="object" && !Array.isArray(v) &&
   Object.keys(v).length===keys.length && keys.every(key=>Object.hasOwn(v,key)));
@@ -61,12 +62,10 @@ function storage(s:State,input:TurnInput,owner:string|null,explicit:GenericRef|n
   if(explicit){const id=resolve(s,explicit,"storages"),found=row(s,"storages",id);
     requireRule(found.entity_id===owner && owner!==null);return id;}
   requireRule(owner!==null);const actor=present(s,owner);
-  const found=s.source.snapshot.storages.find(v=>v.entity_id===owner);
-  if(found)return found.id;
-  requireRule(actor.kind==="npc");
-  const id=stableGameplayId(input.operationId,`generic-v1:${input.campaignId}:storage:${owner}`);
-  add(s,{family:"storages",id,expectedRevision:null,values:{name:`Inventory of ${actor.name}`.slice(0,160),kind:"merchant",entity_id:owner}});
-  return id;
+  requireRule(actor.kind==="npc" || s.source.snapshot.storages.some(v=>v.entity_id===owner));
+  const result=settledActorStorage(s.source.snapshot.storages,input.campaignId,owner,String(actor.name),input.operationId,
+    `generic-v1:${input.campaignId}:storage:${owner}`);
+  if(result.change)add(s,result.change);return result.id;
 }
 function currency(s:State,value:GenericCurrency):{name:string;key:string} {
   fields(value,["existing","publicName"]);requireRule((value.existing===null)!==(value.publicName===null));
@@ -96,7 +95,7 @@ function pay(s:State,recipient:string,payer:string,selection:GenericCurrency,amo
   const {key}=currency(s,selection),from=present(s,payer),resources=from.resources as Record<string,number>;
   // An authoritative missing property is untracked; explicit zero is not missing.
   if(Object.hasOwn(resources,key)) adjust(s,payer,key,-amount);
-  else requireRule(from.kind==="npc");
+  else requireRule(from.kind==="npc" && s.source.runtime.configuration?.controlledEntityIds.includes(recipient));
   adjust(s,recipient,key,amount);
 }
 function references(value:unknown,into=new Set<string>()):Set<string> {
@@ -136,7 +135,7 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
     const id=op.target?resolve(s,op.target,"entities"):newId;
     const current=op.target?row(s,"entities",id):null;
     requireRule(!current || current.kind==="npc" || current.kind==="companion");
-    requireRule(op.profile===null || !current && op.profile.startsWith("actor-profile:"));
+    requireRule(op.profile===null || !current && typeof op.profile==="string" && op.profile.startsWith("actor-profile:"));
     const values:JsonObject={};
     if(op.name!==null)values.name=publicText(s,op.name,200);
     if(op.description!==null)values.details=publicText(s,op.description,1000);
@@ -144,6 +143,7 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
       Object.assign(values,{kind:"npc",details:values.details ?? `An ordinary person named ${values.name}.`,hp:null,max_hp:null,
         stats:{},resources:{},conditions:[],equipment_slots:[]});}
     if(op.profile!==null){const templateId=resolve(s,{source:"known",key:op.profile.slice("actor-profile:".length)},"entities");
+      requireRule(genericProfiles(s.source,s.manifest).includes(op.profile));
       const template=row(s,"entities",templateId),stats=template.stats as Record<string,number>;
       requireRule(Number.isInteger(template.max_hp) && Number(template.max_hp)>0 &&
         ["attack","defense","skill"].every(k=>Number.isInteger(stats[k])));
@@ -219,6 +219,7 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
       const {key}=currency(s,m.currency);adjust(s,from,key,-m.amount);adjust(s,to,key,m.amount);
     }else{
       fields(m,["action","actor","resource","amount","payer","basis"]);integer(m.amount,-1000000,1000000);
+      requireRule(m.resource && typeof m.resource==="object" && !Array.isArray(m.resource));
       const actor=resolve(s,m.actor,"entities"),current=present(s,actor);
       if(m.resource.kind==="currency"){
         fields(m.resource,["kind","currency"]);const selection=m.resource.currency;
@@ -232,8 +233,9 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
         const damage=receipts.filter(r=>r.call.kind==="damage" && r.call.targetId===actor);
         const total=damage.reduce((n,r)=>n+Number(r.result.total),0);
         requireRule(damage.some(r=>m.basis!.key===`tool-${r.position}`) && typeof current.hp==="number" &&
-          m.amount===-Math.min(current.hp,total) && !s.changes.get(`entities:${actor}`)?.values.hp);
+          m.amount===-Math.min(current.hp,total) && !s.damageApplied.has(actor));
         change(s,"entities",actor,{hp:current.hp+m.amount});
+        s.damageApplied.add(actor);s.damageRefs.push(...damage.map(r=>r.id));
       }
     }
   }else if(op.kind==="quest.mutate"){
@@ -242,7 +244,7 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
       fields(m,["action","title","description","issuer","reward","basis"]);
       const issuer=m.issuer?resolve(s,m.issuer,"entities"):null;if(issuer)requireRule(present(s,issuer).kind==="npc");
       const title=publicText(s,m.title,120),description=publicText(s,m.description,500);
-      let rewardTerms:JsonObject|null=null;
+      let rewardTerms:JsonObject|null=issuer ? {issuerId:issuer,currencyName:null,currencyAmount:null,itemName:null,itemCategory:null,itemDescription:null} : null;
       if(m.reward){fields(m.reward,["currency","amount","item"]);requireRule(issuer);
         const c=m.reward.currency?currency(s,m.reward.currency):null;integer(m.reward.amount,c?1:0,c?20:0);
         const item=m.reward.item;if(item){fields(item,["name","category","description"]);requireRule(["food","supply","misc"].includes(item.category));}
@@ -264,7 +266,7 @@ function one(s:State,input:TurnInput,op:GenericOperation,receipts:AstraToolRecei
         change(s,"quests",id,values);
       }else{
         fields(m,["action","target","basis"]);requireRule(m.action==="claim" && quest.status==="complete" && job?.issuerId &&
-          job.rewardTerms && job.rewardOperationId===null);
+          job.rewardTerms && (job.rewardTerms.currencyName || job.rewardTerms.itemName) && job.rewardOperationId===null);
         const terms=job.rewardTerms;
         if(terms.currencyName)pay(s,s.source.runtime.configuration!.controlledEntityIds[0],job.issuerId,
           {existing:null,publicName:{source:"public-evidence",evidence:`job/${id}/currency`,text:String(terms.currencyName)}},Number(terms.currencyAmount));
@@ -291,7 +293,8 @@ export function compileGenericOperations(source:RuntimeSource,input:TurnInput,in
   requireRule(input.campaignId===source.snapshot.campaign.id && input.campaignId===source.runtime.campaignId &&
     input.expectedRevision===source.runtime.revision && input.mode==="game" && Array.isArray(intents) && intents.length<=12);
   let s:State={source:structuredClone(source),manifest:genericManifest(source,input),refs:{},changes:new Map(),
-    jobs:(source.astraSettlementJobs ?? []).map(v=>({...v,rewardTerms:v.rewardTerms as JsonObject|null})),foundationState:null,intents};
+    jobs:(source.astraSettlementJobs ?? []).map(v=>({...v,rewardTerms:v.rewardTerms as JsonObject|null})),foundationState:null,intents,
+    damageApplied:new Set(),damageRefs:[]};
   origins.set(s.source,source.runtime.worldMinutes);
   for(const job of s.jobs)if(job.rewardTerms?.currencyName)s.manifest.evidence[`job/${job.questId}/currency`]=String(job.rewardTerms.currencyName);
   const accepted:string[]=[],rejected:GenericPlan["rejected"]=[],seen=new Set<string>(),closedGroups=new Set<string>();
@@ -313,14 +316,21 @@ export function compileGenericOperations(source:RuntimeSource,input:TurnInput,in
           op.mutation.basis?.source==="rule" && op.mutation.basis.key===rest.basis.key));
           // Explicit duplicated recovery/consumption requires exact rule result; never apply twice.
           if(op.kind==="resource.adjust" && op.mutation.action==="delta"){
+            fields(op,["opId","kind","requiresOperations","atomicGroup","mutation"]);
+            fields(op.mutation,["action","actor","resource","amount","payer","basis"]);
+            fields(op.mutation.resource,["kind"]);requireRule(op.mutation.payer===null);
             const actor=resolve(candidate,op.mutation.actor,"entities"),old=row(candidate,"entities",actor);
             requireRule(op.mutation.resource.kind==="hp" && result.resolution.changes.some(c=>c.family==="entities" && c.id===actor &&
               c.values.hp===Number(old.hp)+op.mutation.amount));
           }else if(op.kind==="item.mutate" && op.mutation.action==="consume"){
+            fields(op,["opId","kind","requiresOperations","atomicGroup","mutation"]);
+            fields(op.mutation,["action","target","quantity","basis"]);
             const id=resolve(candidate,op.mutation.target,"items"),old=row(candidate,"items",id);
             const quantity=op.mutation.quantity;
             requireRule(result.resolution.changes.some(c=>c.family==="items" && c.id===id && c.values.quantity===Number(old.quantity)-quantity));
-          }else requireRule(op.kind==="time.advance");
+          }else {requireRule(op.kind==="time.advance");fields(op,["opId","kind","requiresOperations","atomicGroup","minutes","basis"]);
+            requireRule(op===rest);}
+          basis(candidate,op,receipts);
         }
         for(const c of result.resolution.changes)add(candidate,c);
         candidate.source.runtime.worldMinutes=result.resolution.worldMinutes;
@@ -351,7 +361,7 @@ export function compileGenericOperations(source:RuntimeSource,input:TurnInput,in
   for(const participant of source.runtime.participants){
     if(!source.runtime.encounters.some(e=>e.id===participant.encounter_id && e.status==="active"))continue;
     const cost=receipts.filter(r=>["attack","skill"].includes(r.call.kind) && r.call.actorId===participant.entity_id).length;
-    const defeated=s.source.snapshot.entities.some(e=>e.id===participant.entity_id && e.hp===0);
+    const defeated=s.changes.get(`entities:${participant.entity_id}`)?.values.hp===0;
     if(!cost && !defeated)continue;
     requireRule(cost<=1 && Number(participant.public_resources.action)>=cost);
     add(s,{family:"encounter_participants",id:participant.id,expectedRevision:null,values:{public_position:participant.public_position,
@@ -361,7 +371,7 @@ export function compileGenericOperations(source:RuntimeSource,input:TurnInput,in
   return {schemaVersion:3,intents:structuredClone(intents),accepted,rejected,
     resolution:{changes:[...s.changes.values()],worldMinutes:s.source.runtime.worldMinutes,
       configuration:s.source.runtime.configuration,outcomes:[]},foundationState:s.foundationState,
-    jobs:s.jobs,publication,behavior,rulePlans,refs:s.refs};
+    jobs:s.jobs,publication,behavior,rulePlans,refs:s.refs,damageRefs:s.damageRefs};
 }
 
 export function genericPublication(value:GenericPublication,accepted:string[]) {

@@ -1,4 +1,5 @@
 import { randomInt } from "node:crypto";
+import { isDeepStrictEqual } from "node:util";
 import { astraFictionAuthorityInstructions } from "./astra-fiction-authority.ts";
 import type { PublicTurn, ResumeInput, TurnInput, JsonObject } from "./contracts.ts";
 import type {
@@ -30,6 +31,9 @@ import { planAstraOrderedEffects } from "./astra-ordered-effects.ts";
 import { planAstraCompatibleEffects } from "./astra-compatible-effects.ts";
 import { astraContextHasPrivateEvidence, projectAstraPublicSource } from "./astra-privacy-context.ts";
 import { withUnifiedMemory } from "../memory/unified-context.ts";
+import { compileGenericOperations, genericPublication, genericBehavior } from "./astra-generic-compiler.ts";
+import { genericManifest, type GenericDecision } from "./astra-generic-contract.ts";
+import { applyAstraShadowChanges } from "./astra-ordered-effects.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -69,7 +73,7 @@ export type ProviderProgress = {
 export interface AstraPrimaryProvider {
   next(context: BuiltContext, input: TurnInput, receipts: AstraToolReceipt[],
     checks: RecordedCheck[], capabilities: AstraCapabilities,
-    source: RuntimeSource, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<AstraDecision>>;
+    source: RuntimeSource, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<AstraDecision | GenericDecision>>;
   narrate(context: BuiltContext, input: TurnInput, observe?: (diagnostic: ProviderProgress) => void): Promise<ProviderResult<{
     narration: string; visualDescription: string; clarification: null;
   }>>;
@@ -438,11 +442,16 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   // Durable begin owns this pin. A historical/missing pin remains two-stage
   // regardless of the current application or provider defaults.
   const modern = claim.astraResponseContract === "unified-v1";
+  const generic=claim.astraStateContract==="generic-v1";
+  source.astraStateContract=generic?"generic-v1":undefined;
+  if(generic && source.worldTakeover && source.runtime.configuration)
+    source.worldTakeover={...source.worldTakeover,presentEntityIds:[...source.runtime.configuration.presentEntityIds]};
   let responseMode = modern ? claim.astraResponseMode ?? null : null;
   source.astraResponseContract = modern ? "unified-v1" : undefined;
   source.astraResponseMode = responseMode ?? undefined;
   const input = claim.turn.input;
   const checkpoint = structuredClone(claim.turn.checkpoint);
+  if(generic)source.astraGenericPrefix=checkpoint.astraGeneric?.intents ?? [];
   let disclosureSource = source;
   let selectedPrivateMemory = false;
   type Stage = Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]["stage"];
@@ -507,9 +516,13 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       const check = checkpoint.checks.find((c) => c.id === command.checkId && isDisplayedCheck(source,c));
       requireRule(check && !astra.finalProposal &&
         source.snapshot.settings.values.difficulty.rerolls !== "disabled");
-      const replacement = recordServerRoll(input.operationId, check, check.modifier,
-        check.rollNumber + 1,deps.random);
-      checkpoint.checks = await store.reroll(lease, command, replacement);
+      const replay=generic ? await store.astraRerollReceipt?.(lease,command) : null;
+      if(replay)checkpoint.checks=replay;
+      else {
+        const replacement = recordServerRoll(input.operationId, check, check.modifier,
+          check.rollNumber + 1,deps.random);
+        checkpoint.checks = await store.reroll(lease, command, replacement);
+      }
       await store.checkpoint(lease, checkpoint, "awaiting_confirmation");
       return store.getPublic(input.campaignId, input.operationId);
     }
@@ -553,6 +566,64 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             checkpoint.checks.length === priorChecks && !astra.finalProposal && !checkpoint.narration);
         checkpoint.usage.push(response.usage);
         const decision = response.output;
+        if(generic){
+          requireRule("toolRequest" in decision);
+          if(decision.type==="final"){
+            await recordStage("plan","completed");await recordStage("final_validated","entered");
+            const value=decision.final;
+            requireRule(value && Object.keys(value).length===4 &&
+              ["publicNarration","genericOperations","privatePatches","publicBehavior"].every(k=>Object.hasOwn(value,k)));
+            const plan=compileGenericOperations(selected,input,value.genericOperations,astra.toolReceipts,
+              value.publicNarration,value.publicBehavior);
+            requireRule(astra.toolReceipts.filter(r=>r.call.kind==="damage" && Number(r.result.total)>0).every(r=>plan.damageRefs.includes(r.id)));
+            const prefix=checkpoint.astraGeneric?.intents ?? [];
+            requireRule(isDeepStrictEqual(plan.intents.slice(0,prefix.length),prefix));
+            const validated=validateFinal(selected,input,{worldMinutes:selected.runtime.worldMinutes,changes:[],outcomes:[],privatePatches:value.privatePatches},[]);
+            validated.resolution=plan.resolution;validated.toolRefs=astra.toolReceipts.filter(r=>r.call.kind!=="query").map(r=>r.id);
+            astra.finalProposal=validated;checkpoint.astraGeneric=plan;
+            genericBehavior(selected,genericManifest(selected,input),value.publicBehavior);
+            if(responseMode==="public-unified"){
+              requireRule(value.publicNarration);checkpoint.narration=genericPublication(value.publicNarration,plan.accepted);
+              assertNoPrivateDisclosure(disclosureSource,input,checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription,astra.toolReceipts);
+              narrationParseSucceeded=true;
+            }else requireRule(value.publicNarration===null);
+            checkpoint.resolution=plan.resolution;
+            await recordStage("final_validated","completed");await recordStage("final_checkpoint","entered");
+            await store.checkpoint(lease,checkpoint,"generating");await recordStage("final_checkpoint","completed");break;
+          }
+          const request=decision.toolRequest;
+          requireRule(astra.toolReceipts.length<12);
+          const plan=compileGenericOperations(selected,input,request.operations,astra.toolReceipts);
+          const prior=checkpoint.astraGeneric?.intents ?? [];
+          requireRule(isDeepStrictEqual(plan.intents.slice(0,prior.length),prior));
+          checkpoint.astraGeneric=plan;await store.checkpoint(lease,checkpoint,"generating");
+          const virtual=structuredClone(selected);applyAstraShadowChanges(virtual,plan.resolution.changes);
+          virtual.runtime.configuration=plan.resolution.configuration;virtual.runtime.worldMinutes=plan.resolution.worldMinutes;
+          if(virtual.worldTakeover && virtual.runtime.configuration)virtual.worldTakeover.presentEntityIds=virtual.runtime.configuration.presentEntityIds;
+          const manifest=genericManifest(selected,input);
+          const refId=(ref:import("./astra-generic-contract.ts").GenericRef|null,family:string):string|null=>{
+            if(!ref)return null;
+            const record=ref.source==="known"?manifest.records[ref.key]:null;
+            if(record){requireRule(record.family===family);return record.id;}
+            requireRule(ref.source==="local" && plan.accepted.includes(ref.key));
+            const local=plan.refs[ref.key];requireRule(local?.family===family);return local.id;
+          };
+          const call:AstraToolCall={kind:request.call.kind,actorId:refId(request.call.actor,"entities"),targetId:refId(request.call.target,"entities"),
+            itemId:refId(request.call.item,"items"),dc:request.call.dc,scope:request.call.scope};
+          const result=astraToolResult(virtual,input,call,astra.toolReceipts,checkpoint.checks,astraCapabilities(virtual),deps.random);
+          const receipt=await store.recordAstraTool(lease,astra.toolReceipts.length,call,result);astra.toolReceipts.push(receipt);
+          selected.astraGenericPrefix=plan.intents;
+          context=buildAstraPlanContext(selected,input,{caps});
+          if(["skill","attack","save"].includes(call.kind)){
+            checkpoint.checks.push(receipt.result as unknown as RecordedCheck);
+            if(isDisplayedCheck(source,checkpoint.checks.at(-1)!) &&
+              (source.snapshot.settings.values.interactiveDice || source.snapshot.settings.values.difficulty.rerolls!=="disabled")){
+              await store.checkpoint(lease,checkpoint,"awaiting_confirmation");return store.getPublic(input.campaignId,input.operationId);
+            }
+          }
+          continue;
+        }
+        requireRule("call" in decision);
         if (decision.type === "final") {
           requireRule(decision.call === null);
           await recordStage("plan", "completed");
@@ -648,6 +719,11 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       const narrationInstructions = source.snapshot.campaign.language === "en"
         ? `${publicInstructions} ${naturalEnglishGuidance}` : publicInstructions;
       const extra: JsonObject = effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : {};
+      if(generic && checkpoint.astraGeneric){
+        extra.stateContract="generic-v1";
+        extra.genericOutcomes={acceptedOperationCount:checkpoint.astraGeneric.accepted.length};
+        extra.observableBehavior=genericBehavior(source,genericManifest(source,input),checkpoint.astraGeneric.behavior);
+      }
       const context = narrowContext(base,narrationInstructions,
         modern ? {...extra,responseContract:"unified-v1",responseMode:"private-informed"} :
           Object.keys(extra).length ? extra : undefined);
@@ -699,11 +775,13 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
 }
 
 export async function runAstraTurn(input: TurnInput,deps:AstraDependencies):Promise<PublicTurn> {
+  const stateContract=deps.store.astraStateContract?await deps.store.astraStateContract(input.campaignId,input.operationId):"legacy-state";
   const contract = deps.store.astraResponseContract
     ? await deps.store.astraResponseContract(input.campaignId, input.operationId) : undefined;
   const requestedContract = contract === "legacy-two-stage" || contract === undefined
     ? undefined : "unified-v1";
-  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME,requestedContract),
+  const current = requireTurnTimeline(await deps.store.begin(input,ASTRA_PRIMARY_RUNTIME,requestedContract,
+    stateContract==="legacy-state"?undefined:"generic-v1"),
     input.campaignId,input.operationId,input.timeline);
   if (["committed","cancelled","awaiting_confirmation"].includes(current.status) ||
       (current.status === "failed" && !current.canRetry)) return current;

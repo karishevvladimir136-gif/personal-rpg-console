@@ -19,7 +19,7 @@ export function createRpcTurnStore(
   model: string | null = null,
   timeline?: TimelineFence,
   astraDiagnostics = false,
-  options?: { astraResponseContract: "unified-v1" },
+  options?: { astraResponseContract: "unified-v1"; astraStateContract?: "generic-v1" },
 ): TurnStore {
   const projectPlay = (play: Awaited<ReturnType<TurnStore["readPlay"]>>) => ({
     ...play,
@@ -82,14 +82,19 @@ export function createRpcTurnStore(
     advanceProgression: (campaignId, payload) =>
       rpc(campaignId, "astra_advancement", payload),
     takeoverStatus: (campaignId) => rpc(campaignId, "astra_takeover_status"),
-    begin: (input, runtimeIdentity, responseContract) => rpc(input.campaignId, "begin",
+    begin: (input, runtimeIdentity, responseContract, stateContract) => rpc(input.campaignId, "begin",
       runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity,
+        ...(options?.astraStateContract && stateContract ? {serverAstraStateContract:stateContract}:{}),
         ...(options && responseContract ? { serverAstraContract: responseContract } : {}) } : input),
     ...(options ? { astraResponseContract: (campaignId: string, operationId: string) =>
       rpc<"legacy-two-stage" | "unified-v1" | null>(campaignId, "astra_contract", { operationId }),
       pinAstraResponseMode: (lease: import("./server-contracts.ts").TurnLease,
         mode: "public-unified" | "private-informed") =>
         rpc<"public-unified" | "private-informed">(lease.campaignId, "astra_response_mode", { ...lease, mode }) } : {}),
+    ...(options?.astraStateContract ? {astraStateContract:(campaignId:string,operationId:string)=>
+      rpc<"generic-v1"|"legacy-state"|null>(campaignId,"astra_state_contract",{operationId}),
+      astraRerollReceipt:(lease:import("./server-contracts.ts").TurnLease,command:import("./contracts.ts").ResumeInput)=>
+        rpc<import("./server-contracts.ts").RecordedCheck[]|null>(lease.campaignId,"astra_reroll_receipt",{...lease,command})}:{}),
     runtimeIdentity: (campaignId, operationId) =>
       rpc(campaignId, "astra_runtime", { operationId }),
     recordAstraTool: (lease, position, call, result) =>
