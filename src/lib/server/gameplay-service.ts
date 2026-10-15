@@ -20,7 +20,8 @@ import { DM_LOOP_RUNTIME, runDmLoopTurn, resumeDmLoopTurn, type DmLoopDependenci
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { publishLiveTurnEvent } from "./dm/live-turns";
-import { readDmSettings, type DmSettings } from "./dm-settings";
+import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
+import { dossierService } from "./dossier";
 import { maintainAstraMemoryAfterCommit } from "../memory/lifecycle";
 import type { TurnStore } from "../gameplay/server-contracts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts";
@@ -108,16 +109,22 @@ function logDmLoop(observation: DmLoopObservation) {
   }
 }
 function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: SummaryProvider,
-  production: ReturnType<typeof productionServices>, settings: () => Promise<DmSettings>): DmLoopDependencies {
+  production: ReturnType<typeof productionServices>, settings: () => Promise<DmSettings>, ownerId: string, campaignId: string): DmLoopDependencies {
   return {
     store, memory, summaries,
     model: (pin) => createDmModel(pin),
     pin: async (claim) => {
-      // The campaign's DM settings at the turn's start: the model and the
-      // per-turn limits are pinned together and stay with the operation.
+      // The campaign's DM settings at the turn's start: the model, the
+      // per-turn limits, the depth range and the «important turn» flag are
+      // pinned together and stay with the operation.
       const current = await settings();
       return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.dmTurn)),
-        limits: current.limits };
+        limits: current.limits, depth: current.depth, boostNext: current.boostNext };
+    },
+    afterCommit: async ({ playerLikes, boostUsed }) => {
+      const dossier = await dossierService(ownerId, campaignId);
+      if (playerLikes) await dossier.likes(playerLikes);
+      if (boostUsed) await markBoostUsed(campaignId);
     },
     observe: logDmLoop,
   };
@@ -231,7 +238,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
       throw new AstraStartupPendingError();
     const loopProduction = productionServices(user.id, campaignId, requireTimeline(input));
     const deps = dmLoopDependencies(store, memory, loopProduction.summaries, loopProduction,
-      async () => dmSettings ?? readDmSettings(campaignId));
+      async () => dmSettings ?? readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, loopProduction.summaries, requireTimeline(input), campaignId,
       () => runDmLoopTurn(input, deps));
   }
@@ -288,7 +295,7 @@ export async function continueTurn(
   );
   const identity = await store.runtimeIdentity?.(campaignId, operationId);
   if (identity === DM_LOOP_RUNTIME) {
-    const deps = dmLoopDependencies(store, memory, production.summaries, production, () => readDmSettings(campaignId));
+    const deps = dmLoopDependencies(store, memory, production.summaries, production, () => readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, production.summaries, requireTimeline(input), campaignId,
       () => resumeDmLoopTurn(input, deps));
   }

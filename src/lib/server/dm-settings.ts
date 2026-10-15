@@ -2,7 +2,7 @@ import "server-only";
 import { createClient } from "@supabase/supabase-js";
 import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError } from "./errors";
-import { readDmSettingsWith, saveDmSettingsWith, type DmSettings, type DmSettingsRpc } from "../gameplay/dm-loop/settings";
+import { markBoostUsedWith, readDmSettingsWith, saveDmSettingsWith, type DmSettings, type DmSettingsRpc } from "../gameplay/dm-loop/settings";
 
 export type { DmSettings } from "../gameplay/dm-loop/settings";
 
@@ -21,4 +21,10 @@ export async function readDmSettings(campaignId: string): Promise<DmSettings> {
 export async function saveDmSettings(campaignId: string, value: unknown): Promise<DmSettings> {
   const { user } = await authorizeCampaign(campaignId);
   return saveDmSettingsWith(serviceRpc(user.id), user.id, campaignId, value);
+}
+
+/** The turn that honoured «important turn» clears the flag (stage 4 §7). */
+export async function markBoostUsed(campaignId: string): Promise<void> {
+  const { user } = await authorizeCampaign(campaignId);
+  await markBoostUsedWith(serviceRpc(user.id), user.id, campaignId);
 }

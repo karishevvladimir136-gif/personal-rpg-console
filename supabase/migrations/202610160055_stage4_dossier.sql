@@ -402,8 +402,10 @@ end $$;
 -- runtime_source builds the claim source and (through timeline_campaign_json)
 -- the public campaign DTO with explicit columns: the new public columns are
 -- added here, nothing private. The public turn of a committed dm-loop-v1
--- operation exposes the public receipt summaries, the player moment and the
--- scene kinds of its finish (UI_DATA_NEEDS #1, #2).
+-- operation exposes the public receipt summaries, the player moment, the scene
+-- kinds, the characters and threads in focus (IDs of public records) and the
+-- DM's tension hint for the next turn (UI_DATA_NEEDS #1, #2; the ledger, the
+-- variety counter and the depth per scene read them).
 alter function rpg_private.runtime_source(uuid,uuid,text) rename to runtime_source_before_stage4;
 create function rpg_private.runtime_source(cid uuid,uid uuid,mode text default 'game') returns jsonb
 language plpgsql stable set search_path='' as $$
@@ -444,7 +446,10 @@ returns jsonb language sql stable set search_path='' as $$
         from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,receipts}','[]'::jsonb)) r
         where r.value#>'{result,ok}'='true'::jsonb and r.value#>>'{call,name}'<>'finish_turn' and r.value#>>'{call,name}'<>'query_state'),'[]'::jsonb),
      'playerMoment',coalesce(t.checkpoint#>'{dmLoop,meta,playerMoment}','false'::jsonb),
-     'sceneKinds',coalesce(t.checkpoint#>'{dmLoop,meta,sceneKinds}','[]'::jsonb))
+     'sceneKinds',coalesce(t.checkpoint#>'{dmLoop,meta,sceneKinds}','[]'::jsonb),
+     'spotlight',coalesce(t.checkpoint#>'{dmLoop,meta,spotlight}','[]'::jsonb),
+     'threads',coalesce(t.checkpoint#>'{dmLoop,meta,threads}','[]'::jsonb),
+     'nextTension',coalesce(t.checkpoint#>'{dmLoop,meta,nextTension}','null'::jsonb))
    else '{}'::jsonb end
 $$;
 revoke all on function rpg_private.runtime_source_before_stage4(uuid,uuid,text),rpg_private.runtime_source(uuid,uuid,text),

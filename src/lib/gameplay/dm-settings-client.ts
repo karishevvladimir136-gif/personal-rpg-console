@@ -2,6 +2,7 @@ import type { ModelSelection } from "../production/contracts.ts";
 import { GameplayClientError } from "./client.ts";
 import type { DmRuntimeId, DmSettings, DmSettingsSave } from "./dm-loop/settings.ts";
 import { effectiveDmLoopLimits, type DmLoopTurnLimits } from "./dm-loop/limits.ts";
+import { parseDepthRange } from "./dm-loop/depth.ts";
 
 export type { DmRuntimeId, DmSettings, DmSettingsSave } from "./dm-loop/settings.ts";
 export type { DmLoopTurnLimits } from "./dm-loop/limits.ts";
@@ -38,7 +39,9 @@ function parse(value: unknown): DmSettings {
   const dmTurn = v.dmTurn && typeof v.dmTurn === "object" ? v.dmTurn as ModelSelection : null;
   let limits: DmLoopTurnLimits;
   try { limits = effectiveDmLoopLimits(v.limits); } catch { throw new GameplayClientError(); }
-  return { campaignId: v.campaignId, runtime: v.runtime, dmTurn, limits, customLimits: !!v.customLimits, revision: v.revision as number };
+  return { campaignId: v.campaignId, runtime: v.runtime, dmTurn, limits, customLimits: !!v.customLimits,
+    depth: v.depth === null || v.depth === undefined ? null : parseDepthRange(v.depth),
+    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, revision: v.revision as number };
 }
 
 async function request(url: string, body?: unknown): Promise<DmSettings> {

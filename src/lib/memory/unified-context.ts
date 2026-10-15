@@ -11,7 +11,7 @@ const bytes = (value: unknown) => new TextEncoder().encode(JSON.stringify(value)
 /** Unified play reads bounded evidence. Optional maintenance never runs here.
  * Current records and Canon remain in RuntimeSource regardless of this index. */
 export async function withUnifiedMemory(source: RuntimeSource, input: TurnInput,
-  store: MemoryStore, includePrivate: boolean): Promise<RuntimeSource> {
+  store: MemoryStore, includePrivate: boolean, query: string = input.input): Promise<RuntimeSource> {
   const cid = input.campaignId;
   const timeline = source.runtime.timeline;
   if (!source.ownerId || source.snapshot.campaign.id !== cid ||
@@ -52,7 +52,7 @@ export async function withUnifiedMemory(source: RuntimeSource, input: TurnInput,
   const aliases = memory.aliases.filter((row) => row.campaignId === cid && sameTimeline(timeline, row.timeline));
   async function retrieve(visibility: "public" | "private") {
     const request: RetrievalRequest = expandRetrievalRequest({ timeline, campaignId: cid,
-      visibility, actorIds: [], historicalOnly: true, query: input.input, entityIds: [],
+      visibility, actorIds: [], historicalOnly: true, query, entityIds: [],
       requiredSourceIds: [], worldMinutes: source.runtime.worldMinutes,
       maxBytes: visibility === "public" ? 24000 : 8000, maxExcerpts: visibility === "public" ? 12 : 4,
       historicalComparison: false }, aliases);
@@ -65,7 +65,7 @@ export async function withUnifiedMemory(source: RuntimeSource, input: TurnInput,
     if (batch.campaignId !== cid || !sameTimeline(timeline, batch.timeline)) throw new DmError("conflict");
     if (batch.generation !== memory.generation) return { sources: [] as MemorySource[], required: [] as string[] };
     batch.sources.forEach((row) => scoped(row, visibility));
-    const required = selectCriticalSourceIds({ ...request, query: input.input }, batch);
+    const required = selectCriticalSourceIds({ ...request, query }, batch);
     const selected = retrieveMemory({ ...request, requiredSourceIds: required }, batch);
     if (!selected.paused) return { sources: selected.sources, required };
     // Required Canon/corrections survive optional selection pressure. Other

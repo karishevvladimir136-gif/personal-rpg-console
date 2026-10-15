@@ -262,6 +262,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       nextTension: opt({ type: "string", enum: [...TENSION_CLASSES] }),
       threadRefs: opt({ type: "array", maxItems: 8, items: ref("A thread, debt, promise or quest this turn touched.") }),
       playerLikes: opt(str("What the player seems to enjoy (themes, scene kinds, pace); replaces the note.", L.maxShortText)),
+      npcRefused: opt({ type: "boolean", description: "True when a character refused, bargained down or walked away from the hero this turn." }),
     }),
   },
 ];

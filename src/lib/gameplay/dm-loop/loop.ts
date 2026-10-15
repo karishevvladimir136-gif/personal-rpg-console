@@ -24,6 +24,9 @@ import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../serve
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
+import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
+import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
+import { chooseDepth, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool } from "./execute.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
@@ -40,9 +43,14 @@ export type DmLoopDependencies = {
   /** The model adapter for the pinned selection. */
   model: (pin: DmLoopPin) => DmModel;
   /** Resolve and pin the campaign's DM model — and, since stage 3, the
-   * campaign's per-turn limits — for this operation (read-first: a retry
+   * campaign's per-turn limits; since stage 4 the depth range and the
+   * «important turn» flag — for this operation (read-first: a retry
    * returns the first pin even if the campaign settings changed). */
-  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort" | "limits">>;
+  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort" | "limits"> &
+    { depth?: DepthRange | null; boostNext?: boolean }>;
+  /** Stage 4 hooks after a commit (never block or fail the turn): the DM's
+   * player-likes note, the used «important turn» flag. */
+  afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean }) => Promise<void>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -193,9 +201,18 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     live({ type: "status", status: "generating" });
     if (!loop.pin) {
       const selected = await deps.pin(claim);
-      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: selected.effort,
-        ...(selected.continuationEffort && selected.continuationEffort !== selected.effort ? { continuationEffort: selected.continuationEffort } : {}),
-        runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) } };
+      // Depth per scene (stage 4 §7): the level of this turn inside the
+      // campaign's range, from the server's signals and the DM's hint of the
+      // previous turn, with hysteresis; stored with the pin, so a retry keeps it.
+      const range = parseDepthRange(selected.depth ?? null);
+      const lastLoopTurn = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId);
+      const signal = tensionSignals(source, input, lastLoopTurn?.nextTension ?? null);
+      const depth = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
+      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: depth.effort,
+        ...(selected.continuationEffort && selected.continuationEffort !== depth.effort ? { continuationEffort: selected.continuationEffort } : {}),
+        runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
+        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext } } : {}) };
+      if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
     }
     const pin = loop.pin;
     // Operations pinned before stage 3 carry no limits: the defaults apply to them.
@@ -205,7 +222,9 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     const model = deps.model(pin);
     let informed: RuntimeSource = source;
     try {
-      informed = await withUnifiedMemory(source, input, memory, true);
+      // Memory query rewriting (plan §11): explicit questions with the names of
+      // the scene's participants, mentioned entities and the open journal.
+      informed = await withUnifiedMemory(source, input, memory, true, buildDmLoopContext(source, input).memoryQuery);
     } catch (error) {
       if (error instanceof DmError && error.code === "conflict") throw error;
       informed = source; // An unavailable Memory index never blocks play; current state and Canon stay.
@@ -213,7 +232,12 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     const narrationSceneId = stableGameplayId(operationId, "scene:narration");
     const shadow = ShadowState.restore(source, operationId, loop.shadow);
     const context = buildDmLoopContext(informed, input);
-    if (loop.transcript.length === 0) loop.transcript.push({ role: "user", text: context.user });
+    if (loop.transcript.length === 0) {
+      loop.transcript.push({ role: "user", text: context.user });
+      for (const layer of context.layers)
+        if (layer.dropped.length || layer.usedTokens > layer.budgetTokens)
+          loop.diagnostics.push({ kind: "dossier_budget", layer: layer.layer, budgetTokens: layer.budgetTokens, usedTokens: layer.usedTokens, dropped: layer.dropped });
+    }
     const persist = async (status: "generating" | "awaiting_confirmation") => {
       loop.shadow = shadow.delta();
       checkpoint.dmLoop = loop;
@@ -293,8 +317,9 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         maxOutputTokens: L.maxOutputTokens, operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
-        layers: context.system.map((block) => ({ bytes: new TextEncoder().encode(block.text).length,
-          hash: createHash("sha256").update(block.text).digest("hex").slice(0, 12) })) });
+        layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,
+          hash: createHash("sha256").update(block.text).digest("hex").slice(0, 12),
+          tokens: context.layers[index]?.usedTokens ?? 0, budgetTokens: context.layers[index]?.budgetTokens ?? 0 })) });
       const started = now();
       let firstTextMs: number | null = null;
       let roundText = "";
@@ -349,9 +374,23 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       throw new DmError("provider", true);
     }
     if (narration.length > L.maxNarrationChars) narration = `${narration.slice(0, L.maxNarrationChars - 1)}…`;
-    for (const leak of suspectedLiteralLeaks(informed, input, narration))
-      diagnostic({ kind: "suspected_leak", detail: leak });
-    if (loop.diagnostics.some((row) => row.kind === "suspected_leak")) await persist("generating");
+    const leakCheck = suspectedLiteralLeaks(informed, input, narration);
+    for (const leak of leakCheck.leaks) diagnostic({ kind: "suspected_leak", detail: leak });
+    for (const detail of leakCheck.selfDisclosures) diagnostic({ kind: "self_disclosure", detail });
+    // Stage 4 bookkeeping of the server: the attention ledger, the resistance
+    // metrics and the depth state are private facts the commit carries.
+    const controlledIds = new Set(shadow.runtime.configuration?.controlledEntityIds ?? []);
+    const companionIds = shadow.snapshot.entities.filter((row) => row.kind === "companion" && controlledIds.has(row.id)).map((row) => row.id);
+    const openThreadIds = shadow.snapshot.quests.filter((row) => row.status === "open").map((row) => row.id);
+    const ledger = advanceLedger(parseLedger(source.privateState), { sessionId: shadow.snapshot.publicState.current_session_id ?? null,
+      companionIds, openThreadIds, spotlight: loop.meta?.spotlight ?? [], threads: loop.meta?.threads ?? [] });
+    shadow.setPrivate("fact", "ledger", serializeLedger(ledger));
+    const partyNames = new Set(shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => row.name));
+    const metrics = advanceMetrics(parseMetrics(source.privateState), loop.receipts, loop.meta, partyNames,
+      shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })));
+    shadow.setPrivate("fact", "metrics", serializeMetrics(metrics.metrics));
+    if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort }));
+    if (loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure")) await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",
       resolution: { changes: shadow.orderedChanges(), worldMinutes: shadow.worldMinutes,
@@ -360,6 +399,10 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       dmLoop: { receipts: loop.receipts, meta: loop.meta, usage: loop.usage, requests: loop.requests },
     });
     live({ type: "status", status: result.status === "committed" ? "committed" : "failed" });
+    if (result.status === "committed" && deps.afterCommit) {
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted }); }
+      catch { /* a note or a flag never fails a committed turn */ }
+    }
     return result;
   } catch (error) {
     const safe = safeTurnFailure(error);

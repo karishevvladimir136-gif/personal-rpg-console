@@ -50,7 +50,8 @@ export function pinnedCraftForStage(
     !Array.isArray(pinned.plan) ||
     !Array.isArray(pinned.narrate) ||
     pinned.plan.length > 2 ||
-    pinned.narrate.length > 2
+    pinned.narrate.length > 2 ||
+    (pinned.library !== undefined && (!Array.isArray(pinned.library) || pinned.library.length > 60))
   )
     throw new DmError("context");
   const turn = source.runtime.turns.find((entry) => entry.id === request.operationId);
@@ -63,7 +64,7 @@ export function pinnedCraftForStage(
     throw new DmError("context");
   }
   if (stage === "feedback")
-    return { styleRevision: pinned.styleRevision, style, doctrine: null, cards: [] };
+    return { styleRevision: pinned.styleRevision, style, doctrine: null, cards: [], library: [] };
   const locale = source.snapshot.settings.values.language;
   if (locale !== "en" && locale !== "ru") throw new DmError("context");
   if (pinned.doctrine && (pinned.doctrine.kind !== "doctrine" || pinned.doctrine.key !== "core-doctrine"))
@@ -71,10 +72,14 @@ export function pinnedCraftForStage(
   const selected = stage === "plan" ? pinned.plan : pinned.narrate;
   if (new Set(selected.map((entry) => entry.id)).size !== selected.length || selected.some((entry) => entry.kind !== "card"))
     throw new DmError("context");
+  const library = (pinned.library ?? []).filter((entry) => entry.kind === "card" && entry.stages.includes(stage));
+  if (new Set(library.map((entry) => entry.id)).size !== library.length) throw new DmError("context");
   return {
     styleRevision: pinned.styleRevision,
     style,
     doctrine: pinned.doctrine ? card(pinned.doctrine, stage, locale) : null,
     cards: selected.map((entry) => card(entry, stage, locale)),
+    /** The whole approved library (stage 4 layer 1); empty before migration 55. */
+    library: library.map((entry) => card(entry, stage, locale)),
   };
 }

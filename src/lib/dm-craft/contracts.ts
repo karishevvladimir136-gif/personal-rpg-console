@@ -31,6 +31,9 @@ export type PinnedCraft = {
   doctrine: CraftVersion | null;
   plan: CraftVersion[];
   narrate: CraftVersion[];
+  /** Stage 4: every active card, for the cached first layer of the turn loop.
+   * Absent on operations pinned before migration 55. */
+  library?: CraftVersion[];
 };
 export type CraftEffective = {
   key: string;

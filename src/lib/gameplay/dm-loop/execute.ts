@@ -1087,7 +1087,7 @@ function finishTurn(shadow: ShadowState, args: Args): { result: DmLoopReceiptRes
   const tension = args.nextTension !== undefined && (TENSION_CLASSES as readonly string[]).includes(str(args.nextTension)) ? str(args.nextTension) as DmLoopTension : null;
   const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)],
     playerMoment: !!args.playerMoment, nextTension: tension, threads: [...new Set(threads)],
-    playerLikes: args.playerLikes !== undefined ? str(args.playerLikes) || null : null };
+    playerLikes: args.playerLikes !== undefined ? str(args.playerLikes) || null : null, npcRefused: !!args.npcRefused };
   shadow.finished = true;
   return { result: ok({ recorded: true, playerMoment: meta.playerMoment }, meta.playerMoment ? "Your moment: describe how you do it" : "Turn recorded"), meta };
 }

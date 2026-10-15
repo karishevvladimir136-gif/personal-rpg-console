@@ -54,6 +54,11 @@ export async function attachLoop(f) {
     read: () => readDmSettingsWith(dmSettingsRpc, f.owner, f.cid),
     save: (value) => saveDmSettingsWith(dmSettingsRpc, f.owner, f.cid, value),
   };
+  /** rpg_dossier (stage 4): pins, likes, theme, status, play time, the notebook and the session digest. */
+  const dossier = async (action, payload = {}, timeline = null) => (await f.one(
+    "select public.rpg_dossier($1,$2,$3,$4::jsonb,$5::jsonb) result",
+    [f.owner, f.cid, action, JSON.stringify(["read", "notebook"].includes(action) ? payload : { requestId: randomUUID(), ...payload }),
+      timeline ? JSON.stringify(timeline) : null])).result;
   const summaries = { summarize: async (job) => ({ usage, output: { schemaVersion: 1,
     selections: job.sources.map((source) => ({ sourceId: source.id, version: source.ref.version })) } }) };
   const observations = [];
@@ -76,7 +81,12 @@ export async function attachLoop(f) {
         const current = await settings.read();
         return { ...dmLoopPinFromProfile(await pinDmLoopModel(profileRpc,
           { ownerId: f.owner, campaignId: f.cid, operationId: claim.lease.operationId, timeline },
-          async () => ({ policy: null, dmTurn: current.dmTurn }))), limits: current.limits };
+          async () => ({ policy: null, dmTurn: current.dmTurn }))), limits: current.limits, depth: current.depth, boostNext: current.boostNext };
+      },
+      // Stage 4: the DM's player-likes note and the used «important turn» flag.
+      afterCommit: async ({ playerLikes, boostUsed }) => {
+        if (playerLikes) await dossier("likes", { playerLikes });
+        if (boostUsed) await dmSettingsRpc({ p_owner_id: f.owner, p_campaign_id: f.cid, p_action: "boost_used", p_payload: {} });
       },
       random,
       observe: (observation) => { observations.push(observation); if (observation.type === "live") live.push(observation.event); },
@@ -147,6 +157,6 @@ export async function attachLoop(f) {
     };
   };
   const forceDice = (values = []) => diceValues.splice(0, diceValues.length, ...values);
-  return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings,
+  return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings, dossier,
     deps, input, turn, retry, row, state, dump, random, forceDice };
 }

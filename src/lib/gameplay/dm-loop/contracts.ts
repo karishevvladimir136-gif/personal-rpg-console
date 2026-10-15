@@ -103,6 +103,8 @@ export type DmLoopMeta = {
   threads?: string[];
   /** A new "what the player enjoys" note, when the DM wrote one (UI_DATA_NEEDS #19). */
   playerLikes?: string | null;
+  /** Self-reported: an NPC refused the hero this turn (the one model-reported metric of §6). */
+  npcRefused?: boolean;
 };
 
 /** The shadow state's delta, persisted at every checkpoint so a resume rebuilds
@@ -146,8 +148,9 @@ export type DmLoopLiveEvent =
 /** Diagnostics the loop reports to the server log / bench (never to the player). */
 export type DmLoopObservation =
   | { type: "request_started"; operationId: string; request: number; requestBytes: number; cachedPrefixBytes: number;
-      /** Size and content hash of each system layer: a changed hash in layers 1–3 breaks the cache. */
-      layers: { bytes: number; hash: string }[] }
+      /** Size and content hash of each system layer: a changed hash in layers 1–3 breaks the cache.
+       * Stage 4 adds the estimated tokens and the layer's budget. */
+      layers: { bytes: number; hash: string; tokens?: number; budgetTokens?: number }[] }
   | { type: "request_finished"; operationId: string; request: number; usage: DmLoopUsageEntry; stop: string }
   | { type: "tool_receipt"; operationId: string; receipt: DmLoopReceipt }
   | { type: "diagnostic"; operationId: string; diagnostic: DmLoopDiagnostic }

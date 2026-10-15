@@ -187,6 +187,9 @@ export type PublicTurn = {
   changes?: { tool: string; ok: true; summary: string }[];
   playerMoment?: boolean;
   sceneKinds?: string[];
+  spotlight?: string[];
+  threads?: string[];
+  nextTension?: "calm" | "tense" | "climax" | null;
 };
 export type RestRecord = {
   id: string;
