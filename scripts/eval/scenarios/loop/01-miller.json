@@ -1,0 +1,28 @@
+{
+  "talk": {
+    "note": "Fiction only: the miller is met and the offer is made; nothing durable is agreed yet.",
+    "rounds": [
+      { "text": "The lane ends at a squat stone mill, its wheel turning lazily in the brook. The miller, a broad man dusted white to the elbows, wipes his hands on his apron.\n\n\"Work? Aye. The bakery needs twenty sacks of flour hauled up the hill before dusk. Five coins if every sack arrives dry.\"",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } },
+          { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": [], "playerMoment": false } }
+        ] }
+    ]
+  },
+  "accept": {
+    "note": "The agreement is durable: the miller becomes a character, the mill a place, the job a quest with its reward terms, all in this turn.",
+    "rounds": [
+      { "text": "The miller spits in his palm and shakes on it.",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "localKey": "miller", "name": "Oswin the miller", "kind": "npc", "description": "A broad man dusted white to the elbows; runs the village mill.", "present": true } },
+          { "name": "upsert_place", "arguments": { "localKey": "mill", "name": "The village mill", "description": "A squat stone mill by the brook at the end of the lane.", "status": "visited" } },
+          { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "title": "Haul the flour sacks", "description": "Carry twenty sacks of flour from the mill up to the bakery before dusk, every sack dry.", "issuerRef": "miller", "reward": { "currency": "coins", "amount": 5 } } }
+        ] },
+      { "text": "\"Sacks are stacked by the door. Mind the third step, it's loose.\"",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "sealing the deal" } },
+          { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "trade"], "spotlight": ["miller"], "playerMoment": false } }
+        ] }
+    ]
+  }
+}

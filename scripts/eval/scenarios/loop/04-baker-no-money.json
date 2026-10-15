@@ -1,0 +1,22 @@
+{
+  "stall": {
+    "note": "A new seller with stock: the baker becomes a character and her bread items she owns.",
+    "rounds": [
+      { "text": "A new stall at the edge of the square: a woman with flour in her hair sets out loaves under a cloth.",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "localKey": "baker", "name": "Mira the baker", "kind": "npc", "description": "A young baker with a new stall at the edge of the square.", "present": true } },
+          { "name": "item", "arguments": { "action": "create", "localKey": "bread", "name": "Loaf of bread", "category": "consumable", "quantity": 8, "ownerRef": "baker", "description": "Fresh from the oven.", "properties": "A meal for one; restores a little strength when eaten." } },
+          { "name": "advance_time", "arguments": { "minutes": 3, "reason": "walking over to the stall" } }
+        ] },
+      { "text": "\"Two coins a loaf, three for a pair,\" she says, \"and they won't be this warm tomorrow.\"" }
+    ]
+  },
+  "buy": {
+    "note": "The purchase: money first (the hero has none, so the transfer is refused), and the bread stays with the baker.",
+    "rounds": [
+      { "text": "You reach for your purse.",
+        "toolCalls": [ { "name": "money", "arguments": { "action": "transfer", "currency": "coins", "amount": 3, "fromRef": "{{hero}}", "toRef": "{{npc:baker}}" } } ] },
+      { "text": "It is empty. Mira watches your hand come up with nothing and shrugs, not unkindly. \"Come back when the mill pays you.\" She folds the cloth back over the loaves." }
+    ]
+  }
+}

@@ -117,6 +117,7 @@ export async function loopCampaign(options = {}) {
     encounters: await f.query("select id,status,outcome from public.rpg_encounters where campaign_id=$1", [f.cid]),
     rests: await f.query("select id,kind,status,public_outcome from public.rpg_rest_records where campaign_id=$1", [f.cid]),
   });
+  const forceDice = (values = []) => diceValues.splice(0, diceValues.length, ...values);
   return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings,
-    deps, input, turn, retry, row, state, random };
+    deps, input, turn, retry, row, state, random, forceDice };
 }

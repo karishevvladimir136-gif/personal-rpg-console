@@ -1,0 +1,36 @@
+{
+  "title": "A crash mid-loop resumes from the checkpoint without rolling again",
+  "description": "Two dice rolls are recorded, then the model connection drops. The turn fails retryable; the retry replays the recorded receipts (no new dice), continues the conversation and commits. On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "leap",
+      "say": "I take a run-up and leap the chasm.",
+      "dice": [9, 3, 4],
+      "retryOnFailure": true,
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the turn was retried after the crash", "retried": true },
+        { "label": "both rolls were recorded once, no re-roll", "toolAccepted": { "name": "roll", "eq": 2 } },
+        { "label": "the resumed turn applied the landing damage", "toolAccepted": { "name": "resource", "eq": 1 } },
+        { "label": "the narration spans both attempts", "narrationExcludes": "^(?![\\s\\S]*run at the edge)[\\s\\S]*$" }
+      ]
+    }
+  ],
+  "loop": {
+    "leap": {
+      "note": "Round 1 rolls twice; round 2 is a dropped connection; round 3 (after retry) applies damage and finishes.",
+      "rounds": [
+        { "text": "You run at the edge…", "toolCalls": [
+          { "name": "roll", "arguments": { "formula": "1d20+2", "reason": "the leap", "actorRef": "{{hero}}", "visibility": "private", "dc": 10 } },
+          { "name": "roll", "arguments": { "formula": "2d6", "reason": "fall damage if it goes wrong", "actorRef": "dm", "visibility": "private" } }
+        ] },
+        { "failBefore": "transport" },
+        { "text": "…and land hard on the far side, the breath knocked out of you.", "toolCalls": [
+          { "name": "resource", "arguments": { "actorRef": "{{hero}}", "resource": "hp", "delta": -3, "max": 10, "reason": "a rough landing" } },
+          { "name": "finish_turn", "arguments": { "sceneKinds": ["exploration"], "spotlight": [], "playerMoment": false } }
+        ] }
+      ]
+    }
+  }
+}

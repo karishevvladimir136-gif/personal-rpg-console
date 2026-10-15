@@ -23,6 +23,7 @@ import {
   CampaignProductionSettingsPanel,
 } from "./production-settings";
 import type { CampaignProductionSettings } from "@/lib/production/configuration-contracts";
+import { DmRuntimeSettingsPanel } from "./dm-runtime-settings";
 import { productionScopeMatches } from "@/lib/production-client";
 import { wave2ConfigText } from "@/lib/locales/wave2-config";
 import { updateCampaignSettings } from "@/lib/campaign-settings";
@@ -579,6 +580,7 @@ export function PersistentCampaignSettings({
               {t("Chat with DM")}
             </Link>
           </p>
+          <DmRuntimeSettingsPanel campaignId={campaignId} />
           <details className="rules-advanced">
             <summary>{t("Advanced · AI, rules & world engine")}</summary>
             <CampaignProductionSettingsPanel

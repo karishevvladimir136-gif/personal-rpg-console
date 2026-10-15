@@ -1,0 +1,23 @@
+{
+  "bounty": {
+    "note": "A bounty with a big reward: 500 coins and a weapon, recorded as the quest's terms.",
+    "rounds": [
+      { "text": "The organiser pins a fresh notice: wolves on the north road, five hundred coins and the old captain's sword to whoever clears them.",
+        "toolCalls": [ { "name": "quest", "arguments": { "action": "create", "localKey": "wolves", "title": "Wolf bounty on the north road", "description": "Clear the wolves off the north road and bring back the pelts as proof.", "issuerRef": "{{npc:work organiser}}", "reward": { "currency": "coins", "amount": 500, "items": [ { "name": "Captain's trophy sword", "category": "weapon", "quantity": 1, "properties": "1d8 slashing; an old officer's blade, well kept." } ] } } } ] },
+      { "text": "\"Pelts as proof,\" he adds. \"The council doesn't pay for stories.\"" }
+    ]
+  },
+  "claim": {
+    "note": "Three days later: time passes, the quest completes, the reward is paid once in full — coins and the sword.",
+    "rounds": [
+      { "text": "Three days on the north road. You come back with the pelts over your shoulder.",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 4320, "reason": "three days hunting wolves on the north road" } },
+          { "name": "quest", "arguments": { "action": "complete", "questRef": "{{quest:wolf|bounty}}" } },
+          { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "{{quest:wolf|bounty}}" } }
+        ] },
+      { "text": "The organiser counts out five hundred coins and lays the captain's sword across the counter. \"Council's thanks. Don't spend it all in one tavern.\"",
+        "toolCalls": [ { "name": "finish_turn", "arguments": { "sceneKinds": ["travel", "trade"], "spotlight": [], "playerMoment": false } } ] }
+    ]
+  }
+}

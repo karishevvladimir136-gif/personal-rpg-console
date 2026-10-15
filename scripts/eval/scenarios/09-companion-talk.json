@@ -1,0 +1,46 @@
+{
+  "title": "Talking to a companion: the same loop with an addressee",
+  "description": "A companion joins the party; the player then talks to her directly (a companion-mode turn: same DM, same tools, game time passes, she remembers the talk in her Character Model). On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "recruit",
+      "say": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "expect": [ { "outcome": "committed" }, { "npcExists": "tamsin" }, { "label": "Tamsin has a Character Model", "characterModelExists": "tamsin" } ]
+    },
+    {
+      "id": "talk",
+      "say": "Tamsin, what do you make of the work organiser?",
+      "companion": "tamsin",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the companion turn used the loop's tools", "toolAccepted": { "name": "note_character", "min": 1 } },
+        { "label": "game time passed during the talk", "toolAccepted": { "name": "advance_time", "min": 1 } }
+      ]
+    }
+  ],
+  "loop": {
+    "recruit": {
+      "note": "A companion is a character with party membership; her model starts in the same turn.",
+      "rounds": [
+        { "text": "Tamsin shrugs the switch onto her other shoulder and grins. \"Same road, better company. Why not.\"",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "tamsin", "name": "Tamsin", "kind": "companion", "party": true, "present": true, "description": "A young drover heading the same way.", "maxHp": 8 } },
+            { "name": "note_character", "arguments": { "actorRef": "tamsin", "identity": { "values": ["plain dealing"], "wants": ["reach the coast market"], "observableVoice": "Easy-going, teases, never idle." }, "current": { "goal": "get her herd money to the coast", "stress": "settled" } } }
+          ] },
+        { "text": "She falls in beside you." }
+      ]
+    },
+    "talk": {
+      "note": "The companion answers in her own voice; the DM records what she now thinks.",
+      "rounds": [
+        { "text": "Tamsin glances back at the square. \"Him? Keeps good books and bad hours. A man who counts carts that carefully is counting something else too.\"",
+          "toolCalls": [
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "a quiet talk on the road" } },
+            { "name": "note_character", "arguments": { "actorRef": "{{npc:tamsin}}", "beliefs": [ { "text": "The organiser hides something about the mill.", "confidence": "tentative", "aboutRef": "{{npc:work organiser}}" } ], "episodes": [ { "meaning": "The hero asked her honest opinion and listened.", "cue": "the organiser" } ] } }
+          ] },
+        { "text": "\"But I'd still take his coin,\" she adds." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "offer": {
+    "note": "A real agreed job from the present organiser: quest with reward terms.",
+    "rounds": [
+      { "text": "The organiser chalks your name next to the notice. \"Twenty sacks, mill to bakery, before dusk. Five coins when it's done.\"",
+        "toolCalls": [
+          { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "title": "Haul flour for the mill", "description": "Carry twenty sacks of flour from the mill up to the bakery before dusk.", "issuerRef": "{{npc:work organiser}}", "reward": { "currency": "coins", "amount": 5 } } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "agreeing the job" } }
+        ] },
+      { "text": "He turns back to his ledger." }
+    ]
+  },
+  "work": {
+    "note": "Work done: the quest is complete; time passes.",
+    "rounds": [
+      { "text": "By late afternoon your shoulders ache and the bakery's storeroom is full.",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 180, "reason": "hauling the sacks" } },
+          { "name": "quest", "arguments": { "action": "complete", "questRef": "{{quest:flour}}" } }
+        ] },
+      { "text": "The organiser strikes the job off the board. \"Done, and dry. Good.\"" }
+    ]
+  },
+  "pay": {
+    "note": "Completed and unpaid: claim_reward pays the agreed five coins once.",
+    "rounds": [
+      { "text": "You hold out your hand.",
+        "toolCalls": [ { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "{{quest:flour}}" } } ] },
+      { "text": "Five coins clink into your palm." }
+    ]
+  },
+  "still-owes": {
+    "note": "The DM refuses in character; no tool is needed.",
+    "rounds": [
+      { "text": "The organiser raises an eyebrow and taps the ledger. \"Paid, five coins, this afternoon. It's written here. Try that line on someone who doesn't keep books.\"" }
+    ]
+  },
+  "still-owes-probe": {
+    "note": "PROBE: the model gives in and tries to pay again, first as a second claim, then as a plain grant for the same quest. The server must refuse both.",
+    "rounds": [
+      { "text": "Flustered, the organiser reaches for his purse.",
+        "toolCalls": [
+          { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "{{quest:flour}}" } },
+          { "name": "money", "arguments": { "action": "grant", "currency": "coins", "amount": 5, "toRef": "{{hero}}", "reason": "paying the flour job again", "questRef": "{{quest:flour}}" } }
+        ] },
+      { "text": "Then he stops, checks the ledger again, and shakes his head. \"No. Paid.\"" }
+    ]
+  }
+}

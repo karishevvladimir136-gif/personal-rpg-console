@@ -1,0 +1,48 @@
+{
+  "ask-organiser": {
+    "note": "The organiser's owner-established Character Model is in the living layer; his voice shapes the answer. Fiction only.",
+    "rounds": [
+      { "text": "The organiser taps the notice board twice before answering. \"Honest work? The mill. Oswin needs twenty sacks of flour up at the bakery before dusk, and he pays on delivery.\"",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "asking around the square" } }
+        ] },
+      { "text": "He is already looking past you at the next person in line." }
+    ]
+  },
+  "talk": {
+    "note": "The miller repeats the offer; nothing durable yet.",
+    "rounds": [
+      { "text": "The lane ends at the mill. The miller, dusted white to the elbows, names the job: twenty sacks, before dusk, five coins.",
+        "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } } ] },
+      { "text": "He waits for your answer." }
+    ]
+  },
+  "accept": {
+    "note": "The miller becomes a character with a Character Model in the same turn, the job a quest.",
+    "rounds": [
+      { "text": "The miller spits in his palm and shakes on it.",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "localKey": "miller", "name": "Oswin the miller", "kind": "npc", "description": "A broad man dusted white to the elbows; runs the village mill.", "present": true } },
+          { "name": "note_character", "arguments": { "actorRef": "miller", "identity": { "values": ["a day's work for a day's pay"], "wants": ["the bakery order filled before dusk"], "signatures": ["spits in his palm before a handshake"], "observableVoice": "Blunt, few words, counts everything twice." }, "current": { "goal": "get twenty sacks up the hill before dusk", "stress": "settled" } } },
+          { "name": "upsert_place", "arguments": { "localKey": "mill", "name": "The village mill", "description": "A squat stone mill by the brook.", "status": "visited" } },
+          { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "title": "Haul the flour sacks", "description": "Twenty sacks of flour from the mill to the bakery before dusk.", "issuerRef": "miller", "reward": { "currency": "coins", "amount": 5 } } }
+        ] },
+      { "text": "\"Sacks are by the door. Mind the loose step.\"",
+        "toolCalls": [ { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "trade"], "spotlight": ["miller"], "playerMoment": false } } ] }
+    ]
+  },
+  "expect": {
+    "ask-organiser": [
+      { "outcome": "committed" },
+      { "label": "the organiser's Character Model voice is in the DM's context", "contextIncludes": "Brisk, practical" }
+    ],
+    "accept": [
+      { "outcome": "committed" },
+      { "label": "the miller is a recorded NPC", "npcExists": "miller|мельник" },
+      { "label": "the accepted job is a recorded quest", "questExists": { "title": "flour|mill|sack|мук|мельн" } },
+      { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|мельник" },
+      { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн" },
+      { "label": "the miller has a Character Model from the same turn", "characterModelExists": "miller" }
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "title": "A turn that hits the per-turn tool cap still ends with narration",
+  "description": "The scripted model calls far more tools than one turn allows. Calls past the cap are refused with a 'wrap up' reason, the model is told to finish, and the turn commits with its narration. On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "wait",
+      "say": "I wait by the well and count the carts, hour after hour.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the cap was reached and logged", "diagnostic": "tool_cap_reached" },
+        { "label": "calls past the cap were refused, not the turn", "rejectedCalls": { "min": 1 } },
+        { "label": "the narration still ends the turn", "narrationExcludes": "^$" }
+      ]
+    }
+  ],
+  "loop": {
+    "wait": {
+      "note": "43 advance_time calls (the cap is 40), then one more, then the wrap-up.",
+      "rounds": [
+        { "text": "You settle on the well's edge.", "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 1" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 2" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 3" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 4" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 5" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 6" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 7" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 8" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 9" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 10" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 11" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 12" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 13" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 14" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 15" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 16" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 17" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 18" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 19" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 20" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 21" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 22" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 23" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 24" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 25" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 26" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 27" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 28" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 29" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 30" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 31" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 32" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 33" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 34" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 35" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 36" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 37" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 38" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 39" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 40" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 41" } }, { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 42" } },
+          { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 43" } }
+        ] },
+        { "text": "Still counting.", "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 5, "reason": "cart 44" } } ] },
+        { "text": "The light goes amber, then grey. Forty carts, give or take, and not one of them stops at the mill." }
+      ]
+    }
+  }
+}

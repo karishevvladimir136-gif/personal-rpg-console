@@ -83,6 +83,29 @@ export function formatReport(records) {
     ` paused for dice ${fresh.filter((turn) => turn.paused).length}`);
   if (header?.provider === "live")
     lines.push(`  spend ${fmt(end?.spentUsd, 4)} USD of ${fmt(header?.budgetUsd, 2)} USD`);
+  if (header?.runtime === "dm-loop-v1") {
+    // The Stage 2 report (docs/stages/STAGE_2.md §6).
+    const withText = fresh.filter((turn) => turn.firstWordMs !== null && turn.firstWordMs !== undefined);
+    const rejectedShare = fresh.length ? fresh.filter((turn) => (turn.effects?.rejected ?? []).length > 0).length / fresh.length : null;
+    const failedShare = fresh.length ? fresh.filter((turn) => turn.outcome === "failed" || turn.outcome === "error").length / fresh.length : null;
+    const leaks = scenarios.flatMap((scenario) => scenario.leaks ?? []);
+    lines.push("");
+    lines.push(`dm-loop-v1 · ${header.model ?? "scripted model"} · effort ${header.effort ?? "–"}`);
+    lines.push(`  time to first word, median ${fmt(median(withText.map((turn) => turn.firstWordMs)))} ms (${withText.length} turns with text)`);
+    lines.push(`  full turn, median ${fmt(median(fresh.map((turn) => turn.durationMs)))} ms; cost per turn, median ${fmt(median(fresh.map((turn) => turn.costUsd)), 4)} USD` +
+      ` (total ${fmt(fresh.reduce((sum, turn) => sum + (turn.costUsd ?? 0), 0), 4)} USD over ${fresh.length} turns)`);
+    lines.push(`  cache read share, median ${fmt(median(fresh.map((turn) => turn.cacheReadShare)) * 100)}%;` +
+      ` requests per turn, median ${fmt(median(fresh.map((turn) => turn.modelRequests?.total)), 1)}; tool calls per turn, median ${fmt(median(fresh.map((turn) => turn.effects?.proposed?.length)), 1)}`);
+    lines.push(`  turns with at least one rejected call ${rejectedShare === null ? "–" : fmt(rejectedShare * 100)}%; failed turns ${failedShare === null ? "–" : fmt(failedShare * 100, 1)}% (target < 2%)`);
+    lines.push(`  scenario checks passed ${scenarios.reduce((sum, s) => sum + s.checksPassed, 0)}/${scenarios.reduce((sum, s) => sum + s.checksTotal, 0)};` +
+      ` scenarios passed ${scenarios.filter((s) => s.passed).length}/${scenarios.length}`);
+    lines.push(`  suspected literal secret leaks logged: ${leaks.length}${leaks.length ? ` — ${leaks.join(" | ")}` : ""}`);
+    const rejected = fresh.flatMap((turn) => (turn.effects?.rejected ?? []).map((r) => `${turn.scenario}/${turn.step}: ${r.name} — ${r.reason}`));
+    if (rejected.length) { lines.push("  rejected calls:"); for (const line of rejected) lines.push(`    ${line}`); }
+    const failures = fresh.filter((turn) => turn.outcome === "failed" || turn.outcome === "error")
+      .map((turn) => `${turn.scenario}/${turn.step}: ${turn.errorCode ?? turn.outcome}${turn.failure?.length ? ` (${turn.failure.map((f) => f.message).join("; ")})` : ""}`);
+    if (failures.length) { lines.push("  failed turns:"); for (const line of failures) lines.push(`    ${line}`); }
+  }
   const weaknesses = scenarios.flatMap((scenario) => (scenario.weaknesses ?? []).map((weakness) =>
     ({ ...weakness, scenario: scenario.scenario })))
     .sort((a, b) => a.id.localeCompare(b.id));

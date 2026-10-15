@@ -17,7 +17,7 @@ import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
 import { withAstraTurnPin } from "../production/dm-turn-pin";
 import { DM_LOOP_RUNTIME, runDmLoopTurn, resumeDmLoopTurn, type DmLoopDependencies } from "../gameplay/dm-loop/loop";
-import { dmLoopPinFromProfile, pinDmLoopModel } from "../production/dm-loop-pin";
+import { dmLoopPinFromProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { publishLiveTurnEvent } from "./dm/live-turns";
 import { readDmSettings, type DmSettings } from "./dm-settings";

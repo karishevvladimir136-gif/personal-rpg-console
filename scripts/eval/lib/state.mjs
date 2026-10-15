@@ -258,6 +258,36 @@ export async function evaluateCheck(check, ctx) {
       const location = after.locations.find((l) => l.id === after.currentLocationId);
       return result(location && matcher(arg).test(location.name), `current location: ${location?.name ?? "none"}`);
     }
+    // dm-loop-v1 checks ---------------------------------------------------
+    case "rejectedCalls": {
+      const n = (ctx.turn?.effects.rejected ?? []).length;
+      return result(compare(n, arg), `rejected: ${(ctx.turn?.effects.rejected ?? []).map((r) => `${r.name} (${r.reason})`).join("; ") || "none"}`);
+    }
+    case "toolAccepted": {
+      const n = (ctx.turn?.effects.accepted ?? []).filter((name) => name === arg.name).length;
+      return result(compare(n, arg), `accepted ${arg.name} × ${n}`);
+    }
+    case "contextIncludes": {
+      const text = ctx.turn?.contextText ?? "";
+      return result(matcher(arg).test(text), text ? `request context ${text.length} chars` : "no request context recorded");
+    }
+    case "characterModelExists": {
+      const rows = await ctx.f.query("select contents from rpg_private.dm_state where campaign_id=$1", [ctx.campaignId]);
+      const npc = rows[0]?.contents?.npc ?? {};
+      const actors = people(after).filter((e) => matcher(arg).test(e.name));
+      const pass = actors.some((actor) => typeof npc[`character_${actor.id}`] === "string");
+      return result(pass, `${actors.length} matching character(s); models: ${Object.keys(npc).filter((k) => k.startsWith("character_")).length}`);
+    }
+    case "leakLogged": {
+      const hits = (ctx.turn?.diagnostics ?? []).filter((d) => d.kind === "suspected_leak" && matcher(arg).test(d.detail));
+      return result(hits.length > 0, hits.length ? `logged: ${hits.map((d) => d.detail).join("; ")}` : "no suspected leak logged");
+    }
+    case "diagnostic": {
+      const hits = (ctx.turn?.diagnostics ?? []).filter((d) => d.kind === arg);
+      return result(hits.length > 0, `${hits.length} × ${arg}`);
+    }
+    case "retried":
+      return result(ctx.turn?.retried === arg, `retried ${ctx.turn?.retried ?? "n/a"}`);
     default:
       throw Error(`unknown check kind ${kind}`);
   }

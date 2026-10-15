@@ -1,0 +1,40 @@
+{
+  "gift": {
+    "note": "A gift from the organiser: two loaves created for the hero.",
+    "rounds": [
+      { "text": "The organiser pulls two loaves from under the counter and pushes them across. \"For the road. Don't say the square never fed you.\"",
+        "toolCalls": [ { "name": "item", "arguments": { "action": "create", "localKey": "bread", "name": "Loaf of bread", "category": "consumable", "quantity": 2, "ownerRef": "{{hero}}", "description": "Two loaves from the organiser.", "properties": "A meal for one." } } ] },
+      { "text": "They are still warm." }
+    ]
+  },
+  "recruit": {
+    "note": "A new companion: a character with party membership.",
+    "rounds": [
+      { "text": "Tamsin, a young drover with a switch over her shoulder, listens, shrugs, and grins. \"Same road, better company. Why not.\"",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "localKey": "tamsin", "name": "Tamsin", "kind": "companion", "party": true, "present": true, "description": "A young drover heading the same way.", "maxHp": 8 } },
+          { "name": "note_character", "arguments": { "actorRef": "tamsin", "identity": { "values": ["plain dealing"], "wants": ["reach the coast market"], "observableVoice": "Easy-going, teases, never idle." }, "current": { "goal": "get her herd money to the coast", "stress": "settled" } } }
+        ] },
+      { "text": "She falls in beside you." }
+    ]
+  },
+  "eat": {
+    "note": "Eating is consuming a consumable; no healing rule is needed.",
+    "rounds": [
+      { "text": "You sit on the well's edge and tear into one loaf.",
+        "toolCalls": [
+          { "name": "item", "arguments": { "action": "consume", "itemRef": "{{heroItem:loaf}}", "quantity": 1 } },
+          { "name": "advance_time", "arguments": { "minutes": 15, "reason": "eating" } }
+        ] },
+      { "text": "Good bread; the square's noise fades for a while." }
+    ]
+  },
+  "share": {
+    "note": "Giving the other loaf to the companion is a transfer.",
+    "rounds": [
+      { "text": "You hold out the second loaf.",
+        "toolCalls": [ { "name": "item", "arguments": { "action": "transfer", "itemRef": "{{heroItem:loaf}}", "quantity": 1, "ownerRef": "{{npc:tamsin}}" } } ] },
+      { "text": "Tamsin takes it without ceremony and tucks it into her pack. \"Later. Walking first.\"" }
+    ]
+  }
+}

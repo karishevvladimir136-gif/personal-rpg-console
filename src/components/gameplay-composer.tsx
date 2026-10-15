@@ -47,6 +47,7 @@ import {
   turnAllowedBySession,
 } from "@/lib/memory/client-state";
 import { sameTimeline, timelineChangedMessage } from "@/lib/saves/client-state";
+import { followLiveTurn, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
 
 function localStorageForDraft() {
   try {
@@ -120,6 +121,15 @@ export function GameplayComposer({
   const [error, setError] = useState("");
   const [listeners, setListeners] = useState<string[]>([]);
   const [reviewAbsent, setReviewAbsent] = useState(false);
+  // Provisional narration of the turn in flight (dm-loop-v1 streams it).
+  const [live, setLive] = useState<LiveTurnView | null>(null);
+  const stopLive = useRef<() => void>(() => {});
+  const follow = (operationId: string) => {
+    stopLive.current();
+    setLive(null);
+    stopLive.current = followLiveTurn(campaignId, operationId, (view) => setLive(view));
+  };
+  useEffect(() => () => stopLive.current(), []);
   const key = journalKey(campaignId, mode, companionId, scope.timeline);
   const write = (next: DraftJournal) => {
     next = { ...next, timeline: next.timeline ?? scope.timeline };
@@ -182,6 +192,9 @@ export function GameplayComposer({
   }, [knownAttempt, key, scope.stale]);
   const accept = async (turn: PublicTurn) => {
     write(reconcileJournal(current.current, turn));
+    // The committed turn replaces the provisional text; a failed one discards it.
+    stopLive.current();
+    setLive(null);
     await onSaved();
   };
   const run = async (action: () => Promise<void>) => {
@@ -224,6 +237,7 @@ export function GameplayComposer({
       )
         return;
       if (current.current.command) {
+        if (mode === "game" || mode === "companion") follow(current.current.command.operationId);
         const result = await resumeTurn(current.current.command);
         write({ ...current.current, command: null });
         await accept(result);
@@ -239,6 +253,7 @@ export function GameplayComposer({
           checkId: null,
         });
         write({ ...current.current, command: pending });
+        if (mode === "game" || mode === "companion") follow(previous.operationId);
         const result = await resumeTurn(pending);
         write({ ...current.current, command: null });
         await accept(result);
@@ -256,6 +271,7 @@ export function GameplayComposer({
         mechanic,
       });
       write({ ...current.current, attempt });
+      if (mode === "game" || mode === "companion") follow(attempt.operationId);
       try {
         await accept(await sendTurn(attempt));
       } catch (cause) {
@@ -325,6 +341,7 @@ export function GameplayComposer({
         command: pending,
         recovered: current.current.recovered || !current.current.attempt,
       });
+      if (turn.mode === "game" || turn.mode === "companion") follow(turn.id);
       const result = await resumeTurn(pending);
       write({ ...current.current, command: null });
       await accept(result);
@@ -465,6 +482,19 @@ export function GameplayComposer({
             }
             onSaved={onSaved}
           />
+        </div>
+      )}
+      {live && busy && (live.text || live.changes.length > 0) && (
+        <div className="gameplay-live-turn" role="status" aria-live="polite">
+          <span className="eyebrow">{t("DM is writing… (provisional until saved)")}</span>
+          {live.text && <div className="prose">{live.text}</div>}
+          {live.changes.length > 0 && (
+            <ul className="gameplay-live-changes">
+              {live.changes.map((change, index) => (
+                <li key={index} className={change.ok ? "" : "muted"}>{change.ok ? "✓" : "✗"} {change.summary}</li>
+              ))}
+            </ul>
+          )}
         </div>
       )}
       {!historyOnly && !play.configured && mode !== "mechanic" && (

@@ -1,0 +1,52 @@
+{
+  "job": {
+    "note": "The job from the organiser.",
+    "rounds": [
+      { "text": "\"Twenty sacks, mill to bakery, before dusk. Five coins.\" He chalks your name on the board.",
+        "toolCalls": [ { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "title": "Haul flour for the mill", "description": "Twenty sacks of flour from the mill to the bakery before dusk.", "issuerRef": "{{npc:work organiser}}", "reward": { "currency": "coins", "amount": 5 } } } ] },
+      { "text": "Done." }
+    ]
+  },
+  "meet-miller": {
+    "note": "The miller is met and recorded as a character; the mill as a place.",
+    "rounds": [
+      { "text": "The lane ends at the mill. \"Oswin,\" the miller says, not offering a floury hand. \"You're the organiser's hands? Sacks are by the door.\"",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "localKey": "oswin", "name": "Oswin the miller", "kind": "npc", "description": "The village miller, broad and floury.", "present": true } },
+          { "name": "upsert_place", "arguments": { "localKey": "mill", "name": "The village mill", "description": "A stone mill by the brook.", "status": "visited" } },
+          { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } }
+        ] },
+      { "text": "He goes back to his grindstone." }
+    ]
+  },
+  "deliver": {
+    "note": "The job is completed.",
+    "rounds": [
+      { "text": "By late afternoon every sack is in the bakery's storeroom.",
+        "toolCalls": [
+          { "name": "advance_time", "arguments": { "minutes": 180, "reason": "hauling the sacks" } },
+          { "name": "quest", "arguments": { "action": "complete", "questRef": "{{quest:flour}}" } }
+        ] },
+      { "text": "The organiser strikes it off the board." }
+    ]
+  },
+  "idle-1": {
+    "note": "Quiet turn.",
+    "rounds": [ { "text": "Carts roll through; a dog sleeps in the shade of the well.", "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 30, "reason": "watching the square" } } ] }, { "text": "The afternoon drifts." } ]
+  },
+  "idle-2": {
+    "note": "Quiet turn.",
+    "rounds": [ { "text": "\"Dry summer,\" the organiser says. \"Good for roads, bad for mills.\"", "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 10, "reason": "small talk" } } ] }, { "text": "He shrugs." } ]
+  },
+  "return": {
+    "note": "The same miller: the existing record is updated (present again), never duplicated.",
+    "rounds": [
+      { "text": "Oswin looks up from the grindstone as you come down the lane again.",
+        "toolCalls": [
+          { "name": "upsert_character", "arguments": { "ref": "{{npc:oswin|miller}}", "present": true } },
+          { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } }
+        ] },
+      { "text": "\"Back for more sacks, or just the view?\"" }
+    ]
+  }
+}
