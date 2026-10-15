@@ -35,19 +35,22 @@ PLAYWRIGHT_MODULE=/opt/node24/lib/node_modules/playwright
 ```bash
 #!/bin/bash
 # Node 24 for the project (the image ships 20-22), pnpm, and Chromium for screenshots.
-set -e
-if [ ! -x /opt/node24/bin/node ]; then
-  V=$(curl -fsSL https://nodejs.org/dist/index.json | python3 -c "import json,sys; print(next(r['version'] for r in json.load(sys.stdin) if r['version'].startswith('v24.')))")
-  curl -fsSL "https://nodejs.org/dist/$V/node-$V-linux-x64.tar.xz" | tar -xJ -C /opt
+# Never fails the session start: a missing piece is reported by the session itself.
+install_node24() {
+  [ -x /opt/node24/bin/node ] && return 0
+  V=$(curl -fsSL https://nodejs.org/dist/index.json | python3 -c "import json,sys; print(next(r['version'] for r in json.load(sys.stdin) if r['version'].startswith('v24.')))") || return 1
+  curl -fsSL "https://nodejs.org/dist/$V/node-$V-linux-x64.tar.xz" | tar -xJ -C /opt || return 1
   mv "/opt/node-$V-linux-x64" /opt/node24
-fi
+}
+install_node24 || echo "node24 install failed"
 export PATH=/opt/node24/bin:$PATH
-npm install -g pnpm playwright
-playwright install --with-deps chromium || true
+npm install -g pnpm playwright || echo "pnpm/playwright install failed"
+playwright install --with-deps chromium || echo "chromium install failed"
 echo 'export PATH=/opt/node24/bin:$PATH' > /etc/profile.d/node24.sh
 for f in /root/.bashrc /root/.profile; do
   grep -q /opt/node24/bin "$f" 2>/dev/null || echo 'export PATH=/opt/node24/bin:$PATH' >> "$f"
 done
+exit 0
 ```
 
 ## Session start (every cloud session does this first)
