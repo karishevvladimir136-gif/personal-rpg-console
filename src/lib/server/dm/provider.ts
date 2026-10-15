@@ -100,7 +100,8 @@ function diagnosticIdentifier(
     : null;
 }
 
-function diagnosticMessage(value: unknown, apiKey: string): string | null {
+// Also used by the DmModel adapters (./model) to redact provider messages.
+export function diagnosticMessage(value: unknown, apiKey: string): string | null {
   if (typeof value !== "string") return null;
   let message = value;
   if (apiKey) message = message.replaceAll(apiKey, "[REDACTED]");
