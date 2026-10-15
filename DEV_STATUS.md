@@ -42,7 +42,9 @@ loop: `docs/TURN_LOOP.md`; rules: `CLAUDE.md`.
   request (~$0.55 on Astra), so a live run stops ~$0.6 before its limit.
 - Paid runs of this stage: $9.05 recorded (at most $9.20 with one unrecorded in-flight request of a run the
   owner stopped) of the $10 cap; per run in `docs/SPEED.md` §3.
-- Checks on the final branch state: see the line below once the final run finished.
+- Checks on the final branch state (commit `2a04772` plus this line): typecheck pass; lint pass; build pass;
+  tests 2423 — 2396 pass, 0 fail, 27 skipped (26 HTTP tests without `PREVIEW_URL`, by design, + 1 opt-in),
+  456 s; fake bench on `dm-loop-v1` 12 of 12 scenarios, 109/109 checks; old Astra fake bench 2 of 8 (unchanged).
 
 **Stage 2 (accepted) — what exists:**
 - `dm-loop-v1` (`src/lib/gameplay/dm-loop/`): the DM model (Opus 5.5 or Astra through `DmModel`) writes free
