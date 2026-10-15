@@ -1,11 +1,5 @@
 import { notFound } from "next/navigation";
 import { PersistentLibrary } from "@/components/persistent-documents";
-import { PersistentCampaignSettings } from "@/components/persistent-settings";
-import {
-  PersistentCharacter,
-  PersistentInventory,
-  PersistentParty,
-} from "@/components/persistent-records";
 import {
   PersistentGame,
   PersistentSupporting,
@@ -19,6 +13,14 @@ import { PersistentMediaVisualFrame } from "@/components/persistent-visual-frame
 import { PersistentAdventures } from "@/components/persistent-adventures";
 import { PersistentAdventureLoot } from "@/components/persistent-adventure-loot";
 import { PersistentSecondaryPage } from "@/components/persistent-secondary-pages";
+import {
+  CharacterRoute,
+  CodexRoute,
+  HoldingsRoute,
+  JournalRoute,
+  PartyRoute,
+  SettingsRoute,
+} from "@/components/registry/routes";
 
 export default async function Page({
   params,
@@ -49,17 +51,22 @@ export default async function Page({
     case "game":
       return <PersistentGame />;
     case "character":
-      return <PersistentCharacter />;
+      return <CharacterRoute tab="char" />;
     case "inventory":
-      return <PersistentInventory />;
+      return <CharacterRoute tab="inv" />;
     case "party":
-      return <PersistentParty />;
+      return <PartyRoute />;
+    case "codex":
+      return <CodexRoute />;
+    case "holdings":
+      return <HoldingsRoute />;
     case "library":
       return <PersistentLibrary />;
     case "settings":
-      return <PersistentCampaignSettings />;
-    case "sessions":
+      return <SettingsRoute />;
     case "journal":
+      return <JournalRoute />;
+    case "sessions":
     case "map":
     case "gallery":
       return <PersistentSecondaryPage screen={screen} />;

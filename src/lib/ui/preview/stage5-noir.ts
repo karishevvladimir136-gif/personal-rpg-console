@@ -113,7 +113,10 @@ function play(options: { combat?: boolean } = {}): PlaySnapshot {
     rulesetId: "world-logic-v1", startupPending: false, timeline: { timelineId: id(900), epoch: 1 }, campaignId: NOIR_CAMPAIGN_ID,
     revision: 4, configured: true, model: "gpt-6-astra",
     configuration: { profile: "console-basic-v1", controlledEntityIds: [N.dana], presentEntityIds: [N.dana, N.rook, N.mara], nearbyStorageIds: [N.trunk], safeLocationIds: [], itemRules: [] },
-    worldMinutes: 1 * 1440 + 23 * 60 + 10, turns: [turn], restRecords: [], recipes: [], effects: [],
+    worldMinutes: 1 * 1440 + 23 * 60 + 10, turns: [
+      { ...turn, id: id(201), mode: "companion", companionId: N.mara, input: "Can you get into the chip tonight?", narration: "Mara turns the chip over in her fingers. \"Tonight, maybe. Quietly, no. Somebody built a tripwire into it — and they'll know who pulled it.\"" },
+      turn,
+    ], restRecords: [], recipes: [], effects: [],
     encounters: options.combat ? [{ id: id(400), campaign_id: NOIR_CAMPAIGN_ID, status: "active", round: 1, outcome: null, settings_revision: 1, public_summary: "Ambush in the lift" }] : [],
     participants: [], pendingActions: [], conversations: [], sessionGuidance: [], provenance: [],
   } satisfies PlaySnapshot);
@@ -152,4 +155,9 @@ export const noirSample: PreviewSample = {
   figure: null,
   atlas: null,
   talkTo: N.mara,
+  course: N.spire,
+  placements: [[N.stack, 0.38, 0.62], [N.harbor, 0.18, 0.78], [N.spire, 0.7, 0.24]].map(([location, x, y]) => ({
+    campaign_id: NOIR_CAMPAIGN_ID, location_id: location as string, level: "world" as const, parent_location_id: null, x: x as number, y: y as number, revision: 1, updated_at: at(0),
+  })),
+  worlds: { worlds: [{ id: id(600), versionId: id(601), version: 1, title: "The Stacks", premise: "A rain-soaked city of stacked towers, syndicates and implants.", packVersionIds: [] }], packs: [] },
 };

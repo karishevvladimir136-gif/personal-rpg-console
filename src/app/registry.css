@@ -224,3 +224,38 @@ details > summary {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Main menu (Campaigns · General settings · Exit), in the library shell. */
+.main-menu-scene {
+  position: relative;
+  margin: 0 auto;
+  width: min(100%, 640px);
+  min-height: 0;
+  padding: 40px 28px 34px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(207, 168, 96, 0.16), transparent 65%),
+    linear-gradient(180deg, #3a2c1f, #211913);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 180, 0.12),
+    0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.main-menu-scene h1 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  color: var(--brass);
+  font-size: clamp(30px, 4vw, 46px);
+}
+.main-menu-scene > p {
+  font-family: var(--f-display);
+  color: var(--muted);
+}
+.menu-ornament {
+  color: var(--brass);
+  font-size: 56px;
+}
+.main-menu-links .button {
+  min-height: 52px;
+  font-size: 17px;
+}

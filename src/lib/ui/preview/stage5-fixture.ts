@@ -216,6 +216,7 @@ export function previewPlay(options: { combat?: boolean } = {}): PlaySnapshot {
     },
     worldMinutes: 4 * 1440 + 400,
     turns: [
+      { ...turn(201, "Как думаешь, Изольде можно верить?", "Мэг щёлкает затвором, не глядя на тебя. «Клятве — да. Ей — нет. Клятва держит руки, а не язык. Следи, с кем она заговорит в Женеве».", [], 6, id(104)), mode: "companion", companionId: I.meg, listenerIds: [] },
       turn(200, "Проверяю, всё ли готово к вылету, и присматриваюсь к Изольде — не задумала ли она чего.",
         "Тинка висит вниз головой на кормовой балке, гаечный ключ в зубах. Она выплёвывает его в ладонь: «Левый двигатель дышит, правый кашляет. До Женевы дотянем, если по дороге в нас никто не будет стрелять».\n\n«Кто-нибудь обязательно будет, — Мэг гасит сигариллу о борт. — Мы же туда летим».\n\nИзольда Вэйл стоит у трапа, руки за спиной; перстня-печати на пальце больше нет. Смотрит она не на тебя, а на сердечник Г-7, торчащий из твоей торбы. Дважды за минуту она оборачивается к выходу, туда, где за скалой гудит кабель Дома голосов.",
         [check], 8, id(104)),
@@ -287,4 +288,9 @@ export const shovSample: PreviewSample = {
   figure: previewFigure,
   atlas: previewAtlas,
   talkTo: I.meg,
+  course: I.geneva,
+  placements: [
+    [I.lisbon, 0.3, 0.64], [I.cave, 0.27, 0.7], [I.alcantara, 0.34, 0.6], [I.tower, 0.29, 0.58], [I.geneva, 0.66, 0.36], [I.boston, 0.07, 0.3],
+  ].map(([location, x, y]) => ({ campaign_id: PREVIEW_CAMPAIGN_ID, location_id: location as string, level: "world" as const, parent_location_id: null, x: x as number, y: y as number, revision: 1, updated_at: at(0) })),
+  worlds: { worlds: [{ id: id(600), versionId: id(601), version: 2, title: "Мир Шва", premise: "Стимпанк поверх руин Старого мира: Шов, эфирит, Паровая Лига и орочий Гхар.", packVersionIds: [] }], packs: [] },
 };

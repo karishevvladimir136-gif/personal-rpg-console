@@ -361,7 +361,7 @@ function PreviewFeed({ data, play, live, opening, moment, tools, inserted, heroN
     <>
       <div className="gameplay-turns" role="log" aria-label={c("Сохранённые ходы", "Saved turns")}>
         {opening}
-        {play.turns.map((turn) => (
+        {play.turns.filter((turn) => turn.mode === "game").map((turn) => (
           <div key={turn.id} className="session-saved-turn">
             <GameplayTurn turn={turn} busy onCommand={() => {}} onSaved={async () => {}} />
           </div>

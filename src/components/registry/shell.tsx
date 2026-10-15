@@ -50,6 +50,7 @@ import {
 } from "@/lib/ui/campaign-view";
 import { useCopy, registry as r } from "./primitives";
 import { LiveImages } from "./live-images";
+import { VisualAutopilot } from "./visual-autopilot";
 import s from "./shell.module.css";
 
 export type CampaignScreenId =
@@ -211,7 +212,11 @@ export function CampaignShell({ children }: { children: ReactNode }) {
           </header>
           <main id="main" tabIndex={-1} className={s.main} style={{ padding: 0 }}>
             {/* Previews supply their own sample art; the live app shows accepted subject visuals. */}
-            {chrome?.href ? children : <LiveImages data={data}>{children}</LiveImages>}
+            {chrome?.href ? children : (
+              <LiveImages data={data}>
+                <VisualAutopilot data={data} refresh={snapshot!.refresh}>{children}</VisualAutopilot>
+              </LiveImages>
+            )}
           </main>
         </div>
         <nav className={s.tabbar} aria-label={c("Разделы", "Sections")}>
