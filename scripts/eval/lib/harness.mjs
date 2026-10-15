@@ -115,6 +115,10 @@ function requestSummary(entries) {
       estimated: entries.some((entry) => entry.tokensEstimated) },
     requestBytes: entries.map((entry) => entry.requestBytes),
     costUsd: entries.reduce((total, entry) => total + (entry.costUsd ?? 0), 0),
+    calls: entries.map((entry) => ({ stage: entry.stage, httpStatus: entry.httpStatus ?? null,
+      latencyMs: entry.latencyMs, inputTokens: entry.inputTokens, cachedInputTokens: entry.cachedInputTokens,
+      cacheWriteTokens: entry.cacheWriteTokens ?? null, outputTokens: entry.outputTokens,
+      reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, estimated: entry.tokensEstimated })),
     scriptProblems: entries.flatMap((entry) => [
       ...(entry.scriptError ? [entry.scriptError] : []),
       ...entry.schemaViolations.map((violation) => `schema: ${violation}`)]),

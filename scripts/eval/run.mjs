@@ -3,7 +3,8 @@
 // Every scenario starts from a freshly created campaign on a disposable PGlite
 // database. Metrics go to scripts/eval/out/<run>.jsonl (git-ignored).
 import { mkdir, readdir, readFile, appendFile } from "node:fs/promises";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync } from "node:fs";
+import { providerKey } from "./lib/keys.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
@@ -36,13 +37,7 @@ function parseArgs(argv) {
 }
 
 /** OPENAI_API_KEY from the environment or .env.local; the value is never printed. */
-function openAiKey() {
-  if (process.env.OPENAI_API_KEY) return process.env.OPENAI_API_KEY;
-  const file = join(root, ".env.local");
-  if (!existsSync(file)) return null;
-  const line = readFileSync(file, "utf8").split(/\r?\n/).find((entry) => /^\s*OPENAI_API_KEY\s*=/.test(entry));
-  return line ? line.replace(/^\s*OPENAI_API_KEY\s*=\s*/, "").replace(/^["']|["']$/g, "").trim() || null : null;
-}
+const openAiKey = () => providerKey("OPENAI_API_KEY");
 
 async function scenarios(selection) {
   const folder = join(here, "scenarios");

@@ -2,18 +2,12 @@
 // astra-primary-provider.ts). Only the HTTP exchange with OpenAI is replaced:
 // request building, schema, parsing and every server validator stay real.
 import { validateSchema } from "./schema.mjs";
+import { dmModels, dmRequestReservation, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
 
 const RESPONSES_URL = "https://api.openai.com/v1/responses";
 
-/** Price assumptions for gpt-6-astra already used by the repository's live
- * smoke scripts (scripts/astra-simplified-live-smoke.mjs). Verify against the
- * current OpenAI price list before a live run. Cached input is charged at the
- * full input price here (conservative; no cached price is recorded). */
-export const ASTRA_PRICE = Object.freeze({
-  inputUsdPerMillion: 10,
-  outputUsdPerMillion: 50,
-  reserveInputUsdPerMillion: 12.5,
-});
+/** gpt-6-astra prices from the single price table (docs/MODELS.md). */
+export const ASTRA_PRICE = dmModels["openai/gpt-6-astra"].price;
 
 const bytes = (text) => Buffer.byteLength(text, "utf8");
 const stageOf = (body) => String(body?.text?.format?.name ?? "unknown").replace(/^dm_/, "");
@@ -125,8 +119,8 @@ export function createLiveOpenAi(log, budgetUsd) {
         reasoningTokens: null, tokensEstimated: false, costUsd: null, latencyMs: null, httpStatus: null };
       log.push(entry);
       const maxOutput = Number(body.max_output_tokens);
-      const reservation = ((entry.requestBytes + 2048) * ASTRA_PRICE.reserveInputUsdPerMillion +
-        (Number.isSafeInteger(maxOutput) ? maxOutput : 128000) * ASTRA_PRICE.outputUsdPerMillion) / 1_000_000;
+      const reservation = dmRequestReservation(dmModels["openai/gpt-6-astra"], entry.requestBytes,
+        Number.isSafeInteger(maxOutput) ? maxOutput : 128000);
       if (budget.spentUsd + budget.reservedUsd + reservation > budget.limitUsd) {
         budget.exhausted = true;
         entry.scriptError = "budget_reached: request not sent";
@@ -143,9 +137,12 @@ export function createLiveOpenAi(log, budgetUsd) {
           entry.inputTokens = usage.input_tokens ?? null;
           entry.outputTokens = usage.output_tokens ?? null;
           entry.cachedInputTokens = usage.input_tokens_details?.cached_tokens ?? null;
+          entry.cacheWriteTokens = usage.input_tokens_details?.cache_write_tokens ?? 0;
           entry.reasoningTokens = usage.output_tokens_details?.reasoning_tokens ?? null;
-          entry.costUsd = ((entry.inputTokens ?? 0) * ASTRA_PRICE.inputUsdPerMillion +
-            (entry.outputTokens ?? 0) * ASTRA_PRICE.outputUsdPerMillion) / 1_000_000;
+          entry.costUsd = dmUsageCost(dmModels["openai/gpt-6-astra"], {
+            inputTokens: entry.inputTokens ?? 0, outputTokens: entry.outputTokens ?? 0,
+            cacheReadTokens: entry.cachedInputTokens ?? 0, cacheWriteTokens: entry.cacheWriteTokens,
+            reasoningTokens: entry.reasoningTokens });
         } else {
           // Unknown usage after dispatch: keep the whole reservation as spent.
           entry.costUsd = reservation;
