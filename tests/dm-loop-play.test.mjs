@@ -324,3 +324,23 @@ test("DM settings: runtime and model are editable; a turn pins the model at its 
     assert.equal(back.runtime, "astra-primary-v1");
   } finally { await c.f.db.close(); }
 });
+
+test("finish_turn before any narration asks the model for the text instead of failing the turn", async () => {
+  const c = await loopCampaign();
+  try {
+    const played = await c.turn("I look around the square.", [
+      { toolCalls: [
+        { name: "advance_time", arguments: { minutes: 2, reason: "looking around" } },
+        { name: "finish_turn", arguments: { sceneKinds: ["quiet"], spotlight: [], playerMoment: false } },
+      ] },
+      { text: "Carts, dust, the smell of bread from somewhere behind the well." },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify([c.errors, c.observations.filter((o) => o.type === "failure")]));
+    assert.match(played.result.narration, /smell of bread/);
+    const nudge = played.model.requests.at(-1).messages.filter((m) => m.role === "user").at(-1);
+    assert.match(nudge.text, /not seen any narration yet/);
+    const row = await c.row(played.input.operationId);
+    assert.deepEqual(row.checkpoint.dmLoop.meta.sceneKinds, ["quiet"]);
+    assert.equal(row.checkpoint.dmLoop.requests, 2);
+  } finally { await c.f.db.close(); }
+});

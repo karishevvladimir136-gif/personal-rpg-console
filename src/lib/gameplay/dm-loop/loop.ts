@@ -50,6 +50,7 @@ export type DmLoopDependencies = {
 export const dmLoopToolset = compileToolset(dmLoopTools);
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
+const NARRATE_NOW = "The player has not seen any narration yet. Write the narration of this turn now, as text, in the campaign language, based on the accepted tool results. No more tool calls are needed.";
 
 function joinText(previous: string, next: string): string {
   if (!next.trim()) return previous;
@@ -190,6 +191,12 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
           const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
           return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
         }) });
+        // finish_turn ends the turn once narration exists; a model that calls it
+        // before writing (Opus tends to put text last) is asked for the text.
+        if (shadow.finished && !loop.text.trim()) {
+          shadow.finished = false;
+          loop.transcript.push({ role: "user", text: NARRATE_NOW });
+        }
         await persist(pause ? "awaiting_confirmation" : "generating");
         if (pause) {
           live({ type: "status", status: "awaiting_confirmation" });
