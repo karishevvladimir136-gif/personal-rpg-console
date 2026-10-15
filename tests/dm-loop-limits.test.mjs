@@ -28,7 +28,8 @@ test("campaign limits are settings: defaults, custom values, keep, reset, and va
     assert.equal(reset.customLimits, false);
     // Validation: whole numbers within the ceilings, exactly the six keys.
     for (const bad of [{ ...SMALL, itemsPerTurn: 0 }, { ...SMALL, minutesPerTurn: DM_LOOP_LIMIT_CEILINGS.minutesPerTurn.max + 1 },
-      { ...SMALL, moneyPerTurn: 1.5 }, { ...SMALL, extra: 1 }, (({ toolCallsPerTurn: _t, ...rest }) => rest)(SMALL), "many", null]) {
+      { ...SMALL, moneyPerTurn: 1.5 }, { ...SMALL, extra: 1 },
+      Object.fromEntries(Object.entries(SMALL).filter(([key]) => key !== "toolCallsPerTurn")), "many", null]) {
       if (bad !== null) assert.throws(() => parseDmLoopLimits(bad), RangeError);
       if (bad !== null) await assert.rejects(c.settings.save({ expectedRevision: reset.revision, runtime: "dm-loop-v1", dmTurn: null, limits: bad }), { code: "validation" });
     }

@@ -7,8 +7,6 @@ import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { world } from "./phase35-storage-fixture.mjs";
 
-const FOREIGN = "00000000-0000-4000-8000-00000000abcd";
-
 /** A campaign with money, a stack of bread, an NPC and a paid quest reward. */
 async function prepared() {
   const c = await loopCampaign();
