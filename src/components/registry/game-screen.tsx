@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
-import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users } from "lucide-react";
+import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users, Zap } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
@@ -19,17 +19,19 @@ import {
   statLabel,
   heroOf,
   inCombat,
+  journalOf,
   partyOf,
   questsOf,
   resourcesOf,
 } from "@/lib/ui/campaign-view";
+import { saveDmSettings } from "@/lib/gameplay/dm-settings-client";
 import { useGameplayRuntime } from "../gameplay-runtime";
 import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
 import { GameplayCombat } from "../gameplay-combat";
 import { GameplayRest } from "../gameplay-actions";
 import { CombatReadiness } from "../combat-readiness";
-import { SessionPendingCompanion } from "../session-memory";
+import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
 import { CurrentSceneMediaFrame } from "../visual-frame/current-scene-media-frame";
 import { CurrentSceneVideo } from "../visual-frame/current-scene-video";
 import {
@@ -39,12 +41,11 @@ import {
   SceneEditor,
   Transcript,
 } from "../persistent-game";
-import { useChrome, useShellClock, type CampaignScreenId } from "./shell";
+import { useChrome, useDmSettings, useShellClock, type CampaignScreenId } from "./shell";
 import {
   Art,
   Avatar,
   Gauge,
-  Later,
   Panel,
   Pips,
   registry as r,
@@ -125,7 +126,19 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const party = partyOf(data, play);
   const present = party.filter((row) => row.present);
   const quests = questsOf(data);
+  const journal = journalOf(data);
   const session = currentSession(data);
+  // «⚡ важный ход» (stage 4 §7): the next turn takes the top of the depth range.
+  const dmSettings = useDmSettings(data.campaign.id);
+  const [boost, setBoost] = useState<boolean | null>(null);
+  const boosted = boost ?? dmSettings?.boostNext ?? false;
+  const toggleBoost = async () => {
+    if (!dmSettings || chrome?.href) { setBoost((value) => !(value ?? false)); return; }
+    const next = !boosted;
+    setBoost(next);
+    try { await saveDmSettings(data.campaign.id, { expectedRevision: dmSettings.revision, runtime: dmSettings.runtime, dmTurn: dmSettings.dmTurn, boostNext: next }); }
+    catch { setBoost(!next); }
+  };
   const place = currentPlace(data);
   const combat = inCombat(play);
   const talkTo = combat ? null : addressee;
@@ -149,8 +162,14 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
   // A saved turn keeps its accepted changes on screen until the next turn starts.
   const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
-  const liveBlock = live && phase !== "discarded" && liveIsLatest ? <LiveBlock view={live} phase={phase ?? "streaming"} /> : null;
-  const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live));
+  // After a reload the committed turn carries its own changes (UI_DATA_NEEDS #1).
+  const savedView: LiveTurnView | null = !live && latestTurn?.status === "committed" && latestTurn.changes?.length
+    ? { operationId: latestTurn.id, text: "", changes: latestTurn.changes.map((change) => ({ name: change.tool, ok: true, summary: change.summary })), status: "committed" }
+    : null;
+  const liveBlock = live && phase !== "discarded" && liveIsLatest ? <LiveBlock view={live} phase={phase ?? "streaming"} />
+    : savedView ? <LiveBlock view={savedView} phase="saved" /> : null;
+  const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live)) ||
+    (!live && latestTurn?.status === "committed" && latestTurn.playerMoment === true);
   const moment = showMoment ? (
     <div className={g.moment} role="status">
       <Sparkles size={26} color="var(--brass-hi)" aria-hidden="true" />
@@ -185,6 +204,12 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         <button type="button" className={mediaOpen ? r.btn : r.btnGhost} aria-pressed={mediaOpen} disabled={!!preview} onClick={() => setMediaOpen((open) => !open)}>
           <ImageIcon size={18} aria-hidden="true" />{c("Кадр сцены", "Scene frame")}
         </button>
+        {(dmSettings?.depth || preview) && (
+          <button type="button" className={boosted ? r.btn : r.btnGhost} aria-pressed={boosted} onClick={() => void toggleBoost()}
+            title={c("Следующий ход ведущий обдумает на максимальной глубине из диапазона", "The DM thinks the next turn through at the top of the depth range")}>
+            <Zap size={18} aria-hidden="true" />{c("Важный ход", "Important turn")}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -290,6 +315,11 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
               )}
               {play.rulesetId !== "world-logic-v1" && <GameplayRest play={play} onSaved={runtime.afterMutation} />}
               <GameSessionControls sessionId={session?.id ?? null} />
+              <details className={r.stack}>
+                <summary>{c("Закончить сессию · ведущий подведёт итог и подготовится к следующей", "End the session · the DM sums it up and prepares the next one")}</summary>
+                <p className={r.note}>{c("Закрытая сессия получает название главы и «Ранее в…» голосом ведущего; его блокнот подготовки пишется в фоне, игра не ждёт.", "A closed session gets a chapter title and “Previously in…” in the DM's voice; the prep notebook is written in the background, play never waits.")}</p>
+                <SessionMemoryPanel sessionId={session?.id ?? null} />
+              </details>
               <div className={r.row}>
                 <button type="button" className={r.btnGhost} onClick={() => setResume(true)}>{c("Правка точки продолжения", "Edit the resume point")}</button>
                 {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}
@@ -377,7 +407,17 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           )) : <p className={r.empty}>{c("Рядом никого из спутников.", "No companions nearby.")}</p>}
         </Panel>
         <Panel eyebrow={c("Открытые нити", "Open threads")}>
-          <Later>{c("Нити и долги ведёт ведущий; приложение пока не отдаёт их интерфейсу.", "The DM tracks threads and debts; the app does not expose them to the interface yet.")}</Later>
+          {journal.threads.length || journal.debts.length || journal.promises.length ? (
+            <ul className={r.stack} style={{ listStyle: "none", margin: 0, padding: 0, gap: 6 }}>
+              {[...journal.threads, ...journal.debts, ...journal.promises].slice(0, 6).map((entry) => (
+                <li key={entry.quest.id} className={r.row} style={{ gap: 6 }}>
+                  <span className={r.chip}>{entry.kind === "thread" ? c("нить", "thread") : entry.kind === "debt" ? c("долг", "debt") : c("обещание", "promise")}</span>
+                  <span>{entry.quest.title}</span>
+                </li>
+              ))}
+            </ul>
+          ) : <p className={r.empty}>{c("Открытых нитей пока нет.", "No open threads yet.")}</p>}
+          <Link className={r.small} href={href("journal")} style={{ color: "var(--brass)" }}>{c("Журнал", "Journal")}</Link>
         </Panel>
       </aside>
     </div>

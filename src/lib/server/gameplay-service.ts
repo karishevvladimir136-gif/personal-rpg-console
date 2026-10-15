@@ -22,6 +22,9 @@ import { createDmModel } from "./dm/model";
 import { publishLiveTurnEvent } from "./dm/live-turns";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
+import { digestOnEntry } from "./session-digest";
+import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
+import { readPublicCampaign } from "./public-campaign";
 import { maintainAstraMemoryAfterCommit } from "../memory/lifecycle";
 import type { TurnStore } from "../gameplay/server-contracts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts";
@@ -163,6 +166,12 @@ export async function readPlay(campaignId: string) {
     const pending = await openingPending(owner.client, campaignId, timeline, settings.ruleset.id);
     const choice = dmLoopPinFromProfile(dmLoopProfile(settings.runtimePolicy, dmSettings.dmTurn));
     const key = choice.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
+    // Stage 4 §4: on entry, a stale open session is closed and digested, a
+    // closed one without «Ранее в…» gets its digest; never blocks the read.
+    if (!pending && key?.trim()) {
+      try { await digestOnEntry(campaignId, await readPublicCampaign(campaignId), play, owner.user.id); }
+      catch { /* the digest is a background courtesy */ }
+    }
     return { ...(pending ? { ...play, startupPending: true } : play), configured: !!key?.trim(), model: choice.modelId,
       rulesetId: settings.ruleset.id };
   }
@@ -259,13 +268,22 @@ export async function submitTurn(campaignId: string, value: unknown) {
       store: withAstraTurnPin(observedStore, production.pinDmTurnModel), memory,
       summaries: production.summaries, provider: production.astraProvider,
     }), after);
-  if (!existing && process.env.OPENAI_API_KEY)
+  // Stage 4 §2b: Chat with DM / Teach DM on a loop campaign run on the
+  // campaign's own model (the old engine commits the answer and the proposal).
+  const loopFeedback = (input.mode === "feedback" || input.mode === "ooc") && !existing &&
+    (await readDmSettings(campaignId)).runtime === DM_LOOP_RUNTIME;
+  if (!existing && process.env.OPENAI_API_KEY && !loopFeedback)
     await preflightMemory(
       input,
       memory,
       production.summaries,
       (stage) => production.planModel(stage),
     );
+  if (loopFeedback) {
+    const feedbackSettings = await readDmSettings(campaignId);
+    const pin = dmLoopPinFromProfile(dmLoopProfile((await readProductionSettings(campaignId)).runtimePolicy, feedbackSettings.dmTurn));
+    return runTurn(input, { store, provider: loopFeedbackProvider(createDmModel(pin), pin.effort, production.provider) });
+  }
   return runTurn(input, {
     store,
     provider: memoryAwareProvider(

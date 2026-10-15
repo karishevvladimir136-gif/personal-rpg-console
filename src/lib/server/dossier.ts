@@ -5,6 +5,8 @@ import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError, databaseError } from "./errors";
 import { readDmSettings } from "./dm-settings";
 import type { DossierRpc } from "../gameplay/dossier/contracts";
+import type { RuntimeSource } from "../gameplay/server-contracts";
+import type { TimelineFence } from "../saves/contracts";
 import { parseDossier, parseNotebook, type DossierView, type NotebookView } from "../gameplay/dossier/contracts";
 
 export type { DossierView, NotebookView } from "../gameplay/dossier/contracts";
@@ -53,6 +55,8 @@ export async function dossierService(ownerId: string, campaignId: string) {
     likes: (playerLikes: string) => call(ownerId, campaignId, "likes", { requestId: randomUUID(), playerLikes }),
     playTime: (minutes: number) => call(ownerId, campaignId, "play_time", { requestId: randomUUID(), minutes }),
     notebook: () => call(ownerId, campaignId, "notebook", {}).then(parseNotebook),
+    /** The same source a turn claims (private state included); server-only. */
+    source: () => call(ownerId, campaignId, "source", {}) as Promise<RuntimeSource & { timeline: TimelineFence }>,
     digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string }, timeline: unknown) =>
       call(ownerId, campaignId, "digest", { requestId: randomUUID(), ...payload }, timeline),
   };

@@ -9,6 +9,7 @@ import type { AdventureTransport } from "@/lib/adventures/client";
 import type { BootstrapTransport } from "@/lib/adventures/bootstrap-contracts";
 import { createAdventureTransport } from "@/lib/adventures/client";
 import { loadCampaign } from "@/lib/persistence/client";
+import { readJson } from "@/lib/persistence/client";
 import { dmTurnModels, loadDmSettings, saveDmSettings, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { characterViewModel } from "@/lib/character-view-model";
 import { currentPlace, currentSession, heroOf, sessionNumber } from "@/lib/ui/campaign-view";
@@ -108,6 +109,10 @@ export function RegistryCampaigns({ preview, more }: { preview?: LibraryPreview;
             <article key={world.id} className={s.world}>
               <span className={r.eyebrow}>{c(`мир · версия ${world.version}`, `world · version ${world.version}`)}</span>
               <span className={r.choiceTitle}>{world.title}</span>
+              {(world.campaignCount !== undefined || world.rulesLabel || world.hasVisualStyle) && (
+                <span className={`${r.small} ${r.muted}`}>{[world.campaignCount !== undefined ? c(`кампаний: ${world.campaignCount}`, `campaigns: ${world.campaignCount}`) : null,
+                  world.rulesLabel ?? null, world.hasVisualStyle ? c("стиль задан", "visual style set") : null].filter(Boolean).join(" · ")}</span>
+              )}
               {world.premise && <span className={`${r.small} ${r.muted}`}>{world.premise.slice(0, 220)}</span>}
             </article>
           ))}
@@ -206,7 +211,9 @@ function CampaignCard({ campaign, snapshot, settings, href, onSwitch, switching 
         <span className={r.choiceTitle}>{campaign.title}</span>
         <RuntimeBadge settings={settings} />
       </div>
-      <span className={`${r.small} ${r.muted}`}>{[campaign.subtitle, sessions ? c(`${sessions} сесс.`, `${sessions} sessions`) : null].filter(Boolean).join(" · ")}</span>
+      <span className={`${r.small} ${r.muted}`}>{[campaign.subtitle, sessions ? c(`${sessions} сесс.`, `${sessions} sessions`) : null,
+        campaign.play_minutes ? c(`${Math.round(campaign.play_minutes / 60 * 10) / 10} ч игры`, `${Math.round(campaign.play_minutes / 60 * 10) / 10} h played`) : null].filter(Boolean).join(" · ")}</span>
+      {campaign.status === "finished" && <span className={r.badgeAmber}>{c("завершена", "finished")}</span>}
       {old && <span className={r.note}>{c("Играет на прежнем ходе Astra. Можно перевести на новый — история и сейвы сохранятся.", "Plays on the previous Astra turn. You can switch it — story and saves stay.")}</span>}
       <div className={r.row}>
         <Link className={r.btn} href={href(campaign.id, "game")}>{c("Продолжить", "Continue")}</Link>
@@ -236,6 +243,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
   const [createdId, setCreatedId] = useState<string | null>(null);
   const [model, setModel] = useState(dmTurnModels[0].modelId);
   const [effort, setEffort] = useState("medium");
+  const [likes, setLikes] = useState("");
   const [saved, setSaved] = useState(false);
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
@@ -254,6 +262,12 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
     if (!createdId || preview) { setSaved(true); return; }
     const current = await loadDmSettings(createdId);
     await saveDmSettings(createdId, { expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: { providerId: entry.providerId, modelId: entry.modelId, reasoning: effort } });
+    if (likes.trim()) {
+      try {
+        await readJson(`/api/campaigns/${encodeURIComponent(createdId)}/dossier`, { method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "likes", playerLikes: likes.trim() }) });
+      } catch { /* the note can be written in the settings later */ }
+    }
     setSaved(true);
   };
   return (
@@ -302,7 +316,12 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
                 {entry.efforts.map((value) => <button key={value} type="button" className={r.segment} aria-pressed={effort === value} onClick={() => { setEffort(value); setSaved(false); }}>{effortLabel(value, c.language)}</button>)}
               </div>
               <p className={r.note}>{c("Тон истории, правила бросков и книги правил настраиваются в настройках кампании; поменять можно в любой момент.", "Story tone, roll rules and rule books live in the campaign settings; change them any time.")}</p>
-              <Later title={c("Что мне нравится в играх", "What I enjoy in games")}>{c("Записка «что нравится игроку» появится вместе с этапом 4.", "The “what the player enjoys” note arrives with stage 4.")}</Later>
+              <div className={r.stack} style={{ gap: 6 }}>
+                <span className={r.eyebrow}>{c("Что мне нравится в играх", "What I enjoy in games")}</span>
+                <textarea rows={3} maxLength={2000} value={likes} onChange={(event) => { setLikes(event.target.value); setSaved(false); }}
+                  aria-label={c("Что мне нравится в играх", "What I enjoy in games")}
+                  placeholder={c("Темы, виды сцен, темп боёв — то, что ты сказал бы мастеру на нулевой сессии. Ведущий будет вести записку дальше; её можно править в настройках.", "Themes, kinds of scenes, the pace of fights — what you would tell the DM at session zero. The DM keeps the note from here; edit it in the settings.")} />
+              </div>
               <div className={r.row}>
                 <button type="button" className={r.btnMain} onClick={() => void saveDm().then(() => setStep(3))}>{c("Дальше →", "Next →")}</button>
                 {saved && <span className={r.note}>{c("Сохранено", "Saved")}</span>}

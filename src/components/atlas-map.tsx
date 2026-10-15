@@ -504,7 +504,7 @@ function LocationList({
       {rows.map((row) => (
         <button type="button" key={row.id} aria-pressed={selectedId === row.id} onClick={() => onSelect(row.id)}>
           <Icon name="map" size={18} />
-          <span>{row.name}<small>{t(row.id === currentId ? "Current location" : row.status === "visited" ? "Visited" : "Known")}</small></span>
+          <span>{row.name}<small>{t(row.id === currentId ? "Current location" : row.status === "visited" ? "Visited" : row.status === "rumored" ? "Rumoured" : "Known")}</small></span>
         </button>
       ))}
     </div>

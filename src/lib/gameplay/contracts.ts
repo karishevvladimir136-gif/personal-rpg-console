@@ -190,6 +190,8 @@ export type PublicTurn = {
   spotlight?: string[];
   threads?: string[];
   nextTension?: "calm" | "tense" | "climax" | null;
+  /** Owner-facing numbers of the turn (UI_DATA_NEEDS #5); no private content. */
+  stats?: { requests: number; latencyMs: number; firstTextMs: number | null; costUsd: number; cacheReadShare: number | null; rejectedCalls: number; effort: string | null };
 };
 export type RestRecord = {
   id: string;

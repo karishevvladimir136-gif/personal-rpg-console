@@ -20,6 +20,10 @@ export type PublicWorld = {
   title: string;
   premise: string;
   packVersionIds: string[];
+  /** Stage 4 (UI_DATA_NEEDS #21); absent from older catalogs. */
+  campaignCount?: number;
+  rulesLabel?: string | null;
+  hasVisualStyle?: boolean;
 };
 export type WorldCatalog = {
   worlds: PublicWorld[];

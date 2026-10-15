@@ -52,6 +52,9 @@ export function parseAdventureReview(value: unknown): AdventureReview {
   };
 }
 export function parseWorld(value: unknown): PublicWorld {
+  // Stage 4 adds three optional keys (older catalogs omit them).
+  const extras = ["campaignCount", "rulesLabel", "hasVisualStyle"];
+  const present = value && typeof value === "object" ? extras.filter((key) => Object.hasOwn(value, key)) : [];
   const v = object(value, [
     "id",
     "versionId",
@@ -59,6 +62,7 @@ export function parseWorld(value: unknown): PublicWorld {
     "title",
     "premise",
     "packVersionIds",
+    ...present,
   ]);
   return {
     id: uuid(v.id),
@@ -67,6 +71,9 @@ export function parseWorld(value: unknown): PublicWorld {
     title: text(v.title, 200),
     premise: text(v.premise, 20000),
     packVersionIds: ids(v.packVersionIds, 16),
+    ...(v.campaignCount !== undefined ? { campaignCount: integer(v.campaignCount, 0) } : {}),
+    ...(v.rulesLabel !== undefined ? { rulesLabel: v.rulesLabel === null ? null : text(v.rulesLabel, 200) } : {}),
+    ...(v.hasVisualStyle !== undefined ? { hasVisualStyle: v.hasVisualStyle === true } : {}),
   };
 }
 export function parseWorldCatalog(value: unknown): WorldCatalog {

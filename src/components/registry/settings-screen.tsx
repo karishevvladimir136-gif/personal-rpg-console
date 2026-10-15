@@ -3,6 +3,10 @@
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
+import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import type { DossierView, NotebookView } from "@/lib/gameplay/dossier/contracts";
+import { turnStatsOf } from "@/lib/ui/campaign-view";
+import { EFFORT_ORDER } from "@/lib/gameplay/dm-loop/depth";
 import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from "@/lib/campaign-settings";
 import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmTurnModels, saveDmSettings, type DmLoopTurnLimits, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
@@ -36,6 +40,51 @@ export function RegistrySettings({ data, more, preview }: {
   // The six per-turn limits (stage 3) as the owner edits them; null = nothing being edited.
   const [limitsDraft, setLimitsDraft] = useState<Record<keyof DmLoopTurnLimits, string> | null>(null);
   const [limitsError, setLimitsError] = useState("");
+  // Stage 4: the player-likes note and the theme question (owner-editable), the
+  // depth range, the notebook option, the last turns' numbers.
+  const [dossier, setDossier] = useState<DossierView | null>(null);
+  const [likesDraft, setLikesDraft] = useState<string | null>(null);
+  const [themeDraft, setThemeDraft] = useState<string | null>(null);
+  const [notebook, setNotebook] = useState<NotebookView | null>(null);
+  const [play, setPlay] = useState<PlaySnapshot | null>(null);
+  useEffect(() => {
+    if (preview) return;
+    const id = encodeURIComponent(data.campaign.id);
+    readJson<DossierView>(`/api/campaigns/${id}/dossier`).then(setDossier, () => setDossier(null));
+    readJson<PlaySnapshot>(`/api/campaigns/${id}/play`).then(setPlay, () => setPlay(null));
+  }, [data.campaign.id, preview]);
+  const notebookVisible = !preview && !!current?.notebookVisible;
+  useEffect(() => {
+    if (!notebookVisible) return;
+    let live = true;
+    readJson<NotebookView | null>(`/api/campaigns/${encodeURIComponent(data.campaign.id)}/dossier?view=notebook`)
+      .then((value) => { if (live) setNotebook(value); }, () => { if (live) setNotebook(null); });
+    return () => { live = false; };
+  }, [data.campaign.id, notebookVisible]);
+  const saveNote = async (action: "likes" | "theme", value: string) => {
+    if (chrome?.href) return;
+    try {
+      const saved = await readJson<DossierView>(`/api/campaigns/${encodeURIComponent(data.campaign.id)}/dossier`, { method: "POST",
+        headers: { "Content-Type": "application/json" }, body: JSON.stringify(action === "likes" ? { action, playerLikes: value } : { action, theme: value }) });
+      setDossier(saved);
+      if (action === "likes") setLikesDraft(null); else setThemeDraft(null);
+    } catch { setError(c("Не удалось сохранить записку.", "Could not save the note.")); }
+  };
+  const saveDepth = async (patch: { depth?: { min: string; max: string } | null; notebookVisible?: boolean }) => {
+    if (!current || saving || chrome?.href) return;
+    setSaving(true);
+    try {
+      const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn,
+        ...(patch.depth !== undefined ? { depth: patch.depth as DmSettings["depth"] } : {}), ...(patch.notebookVisible !== undefined ? { notebookVisible: patch.notebookVisible } : {}) });
+      setDm(saved);
+    } catch { setError(c("Не удалось сохранить. Проверь соединение и попробуй ещё раз.", "Could not save. Check the connection and try again.")); }
+    finally { setSaving(false); }
+  };
+  const stats = play ? turnStatsOf(play.turns) : null;
+  const likes = likesDraft ?? dossier?.playerLikes ?? data.campaign.player_likes ?? "";
+  const theme = themeDraft ?? dossier?.theme ?? data.campaign.theme ?? "";
+  const depthMin = current?.depth?.min ?? null;
+  const depthMax = current?.depth?.max ?? null;
   const autopilot = useAutopilot();
   useEffect(() => {
     if (preview) return;
@@ -158,7 +207,35 @@ export function RegistrySettings({ data, more, preview }: {
               </div>
               {error && <p className={r.error} role="alert">{error}</p>}
               <p className={r.note}>{c("Модель можно сменить посреди кампании: память, мир и квитанции общие. Новый ведущий продолжит с того же места; ход, который уже идёт, доиграет прежний.", "You can switch models mid-campaign: memory, world and receipts are shared. The new DM continues from the same place; a turn in progress finishes with the previous one.")}</p>
-              <Later title={c("Последние ходы", "Recent turns")}>{c("Время до первых слов, цена хода и отклонённые действия появятся, когда приложение начнёт отдавать сводку ходов.", "Time to first words, cost per turn and rejected actions appear once the app provides a turn summary.")}</Later>
+              {entry && (
+                <div className={r.stack} style={{ gap: 6 }}>
+                  <span className={r.eyebrow}>{c("Глубина по сцене", "Depth per scene")}</span>
+                  <p className={r.note} style={{ margin: 0 }}>{c("Диапазон: спокойные сцены идут по нижней границе, напряжённые и бой — по верхней. Без диапазона каждый ход идёт на выбранной выше глубине.", "A range: calm scenes run at the bottom, tense ones and combat at the top. Without a range every turn runs at the effort chosen above.")}</p>
+                  <div className={r.row}>
+                    <span className={r.muted}>{c("от", "from")}</span>
+                    <Segmented label={c("Нижняя граница", "Lower bound")} value={depthMin ?? "off"} disabled={saving}
+                      options={[{ value: "off", label: c("нет", "none") }, ...entry.efforts.map((value) => ({ value, label: effortLabel(value, c.language) }))]}
+                      onChange={(value) => void saveDepth({ depth: value === "off" ? null : { min: value, max: depthMax && EFFORT_ORDER.indexOf(depthMax as never) >= EFFORT_ORDER.indexOf(value as never) ? depthMax : value } })} />
+                    <span className={r.muted}>{c("до", "to")}</span>
+                    <Segmented label={c("Верхняя граница", "Upper bound")} value={depthMax ?? "off"} disabled={saving || !depthMin}
+                      options={[{ value: "off", label: c("нет", "none") }, ...entry.efforts.map((value) => ({ value, label: effortLabel(value, c.language) }))]}
+                      onChange={(value) => void saveDepth({ depth: value === "off" || !depthMin ? null : { min: EFFORT_ORDER.indexOf(depthMin as never) <= EFFORT_ORDER.indexOf(value as never) ? depthMin : value, max: value } })} />
+                  </div>
+                </div>
+              )}
+              <div className={r.stack} style={{ gap: 6 }}>
+                <span className={r.eyebrow}>{c("Последние ходы", "Recent turns")}</span>
+                {stats ? (
+                  <div className={r.kv}>
+                    <div><span>{c("Ходов в сводке", "Turns counted")}</span><span>{stats.turns}</span></div>
+                    <div><span>{c("Первые слова, медиана", "First words, median")}</span><span>{stats.medianFirstWordMs === null ? "–" : `${(stats.medianFirstWordMs / 1000).toFixed(1)} s`}</span></div>
+                    <div><span>{c("Ход, медиана", "Turn, median")}</span><span>{`${(stats.medianTurnMs / 1000).toFixed(1)} s`}</span></div>
+                    <div><span>{c("Цена хода, средняя", "Cost per turn, average")}</span><span>{`$${stats.avgCostUsd.toFixed(3)}`}</span></div>
+                    <div><span>{c("Из кэша", "From cache")}</span><span>{stats.cacheReadShare === null ? "–" : `${Math.round(stats.cacheReadShare * 100)}%`}</span></div>
+                    <div><span>{c("Отклонённых действий", "Rejected actions")}</span><span>{stats.rejectedCalls}</span></div>
+                  </div>
+                ) : <p className={r.note} style={{ margin: 0 }}>{c("Сводка появится после первых ходов на новом ходе.", "The summary appears after the first turns on the new loop.")}</p>}
+              </div>
             </div>
           </Panel>
           <Panel eyebrow={c("Как ведущий работает", "How the DM works")}>
@@ -175,7 +252,27 @@ export function RegistrySettings({ data, more, preview }: {
                 <div><span>{c("Важные броски кидаю я", "I roll important checks")}</span><span>{settings.interactiveDice ? c("да", "yes") : c("нет", "no")}</span></div>
               </div>
               <a className={r.btnGhost} href="#more-settings">{c("Изменить в полных настройках", "Change in the full settings")}</a>
-              <Later title={c("Что мне нравится", "What I enjoy")}>{c("Записка ведущего «что нравится игроку» появится здесь — видимая и редактируемая.", "The DM's note on what the player enjoys appears here — visible and editable.")}</Later>
+              <div className={r.stack} style={{ gap: 6 }}>
+                <span className={r.eyebrow}>{c("Что мне нравится", "What I enjoy")}</span>
+                <p className={r.note} style={{ margin: 0 }}>{c("Записка ведущего о том, что тебе нравится в игре. Её видишь ты, её пишет ведущий, и ты можешь поправить.", "The DM's note on what you enjoy in the game. You see it, the DM writes it, and you can correct it.")}</p>
+                <textarea className={s.note} rows={3} value={likes} maxLength={2000} disabled={!!chrome?.href} aria-label={c("Что мне нравится", "What I enjoy")}
+                  onChange={(event) => setLikesDraft(event.target.value)} />
+                {likesDraft !== null && <div className={r.row}><button type="button" className={r.btnMain} onClick={() => void saveNote("likes", likesDraft)}>{c("Сохранить", "Save")}</button><button type="button" className={r.btnGhost} onClick={() => setLikesDraft(null)}>{c("Отмена", "Cancel")}</button></div>}
+                <span className={r.eyebrow}>{c("Тема кампании (вопрос)", "Campaign theme (a question)")}</span>
+                <input className={s.note} value={theme} maxLength={500} disabled={!!chrome?.href} aria-label={c("Тема кампании", "Campaign theme")}
+                  placeholder={c("Например: что стоит верность, когда никто не смотрит?", "For example: what does loyalty cost when nobody is watching?")}
+                  onChange={(event) => setThemeDraft(event.target.value)} />
+                {themeDraft !== null && <div className={r.row}><button type="button" className={r.btnMain} onClick={() => void saveNote("theme", themeDraft)}>{c("Сохранить", "Save")}</button><button type="button" className={r.btnGhost} onClick={() => setThemeDraft(null)}>{c("Отмена", "Cancel")}</button></div>}
+                <Switch title={c("Заглянуть в блокнот мастера", "Peek into the DM's notebook")} hint={c("Показывает заметки подготовки между сессиями. По умолчанию выключено.", "Shows the prep notes between sessions. Off by default.")}
+                  checked={!!current?.notebookVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ notebookVisible: value })} />
+                {current?.notebookVisible && (
+                  <div className={r.stack} style={{ gap: 4 }}>
+                    <span className={r.eyebrow}>{c("Блокнот мастера", "DM notebook")}</span>
+                    {notebookVisible && notebook?.notebook ? <p className={r.note} style={{ margin: 0, whiteSpace: "pre-wrap" }}>{notebook.notebook}</p>
+                      : <p className={r.note} style={{ margin: 0 }}>{c("Пока пусто: блокнот пишется после закрытия сессии.", "Empty so far: the notebook is written after a session closes.")}</p>}
+                  </div>
+                )}
+              </div>
             </div>
           </Panel>
           <Panel eyebrow={c("Правила и пределы кампании", "Rules and campaign limits")}>

@@ -5,11 +5,13 @@ import type {
   Entity,
   Item,
   Location,
+  PinnedFact,
+  PublicProfile,
   Quest,
   Scene,
   Storage,
 } from "../persistence/contracts.ts";
-import type { PlaySnapshot } from "../gameplay/contracts.ts";
+import type { PlaySnapshot, PublicTurn } from "../gameplay/contracts.ts";
 import { resourcePresentation } from "../resource-presentation.ts";
 
 export type Lang = "en" | "ru";
@@ -106,7 +108,8 @@ export function inCombat(play?: PlaySnapshot | null) {
   return Boolean(play?.encounters.some((row) => row.status === "active"));
 }
 
-export type HoldingKind = "camp" | "transport" | "mount";
+export type HoldingKind = "camp" | "transport" | "mount" | "base";
+export type HoldingDetails = { features: { name: string; description: string }[]; armament: string; passengers: Entity[] };
 export type HoldingView = {
   id: string;
   kind: HoldingKind;
@@ -114,22 +117,29 @@ export type HoldingView = {
   storage: Storage | null;
   entity: Entity | null;
   items: Item[];
+  /** Features, armament and people aboard (UI_DATA_NEEDS #12), when the record has them. */
+  details: HoldingDetails | null;
 };
-/** Camp always; transports and mounts when the DM created them (storage kinds). */
+/** Camp always; transports, mounts and bases when the DM created them. */
 export function holdingsOf(data: CampaignSnapshot): HoldingView[] {
   const itemsIn = (storageId: string | null) =>
     storageId ? data.items.filter((item) => item.storage_id === storageId && item.quantity > 0) : [];
+  const people = (ids: string[]) => ids.map((id) => data.entities.find((row) => row.id === id)).filter((row): row is Entity => !!row);
+  const details = (holding: PublicProfile["holding"] | undefined): HoldingDetails | null =>
+    holding ? { features: holding.features ?? [], armament: holding.armament ?? "", passengers: people(holding.passengers ?? []) } : null;
   const camps = data.storages.filter((row) => row.kind === "camp");
-  const result: HoldingView[] = camps.length
-    ? camps.map((storage) => ({ id: storage.id, kind: "camp", name: storage.name, storage, entity: null, items: itemsIn(storage.id) }))
-    : [{ id: "camp", kind: "camp", name: "", storage: null, entity: null, items: [] }];
+  const result: HoldingView[] = camps.filter((row) => row.detail?.holding?.kind !== "base").length
+    ? camps.filter((row) => row.detail?.holding?.kind !== "base").map((storage) => ({ id: storage.id, kind: "camp" as const, name: storage.name, storage, entity: null, items: itemsIn(storage.id), details: null }))
+    : [{ id: "camp", kind: "camp", name: "", storage: null, entity: null, items: [], details: null }];
+  for (const storage of camps.filter((row) => row.detail?.holding?.kind === "base"))
+    result.push({ id: storage.id, kind: "base", name: storage.name, storage, entity: null, items: itemsIn(storage.id), details: details(storage.detail?.holding) });
   const vehicles = data.entities.filter((row) => row.kind === "transport" || row.kind === "mount");
   for (const entity of vehicles) {
     const storage = data.storages.find((row) => row.entity_id === entity.id) ?? null;
-    result.push({ id: entity.id, kind: entity.kind === "mount" ? "mount" : "transport", name: entity.name, storage, entity, items: itemsIn(storage?.id ?? null) });
+    result.push({ id: entity.id, kind: entity.kind === "mount" ? "mount" : "transport", name: entity.name, storage, entity, items: itemsIn(storage?.id ?? null), details: details(profileOf(entity).holding) });
   }
   for (const storage of data.storages.filter((row) => row.kind === "transport" && !vehicles.some((entity) => entity.id === row.entity_id)))
-    result.push({ id: storage.id, kind: "transport", name: storage.name, storage, entity: null, items: itemsIn(storage.id) });
+    result.push({ id: storage.id, kind: "transport", name: storage.name, storage, entity: null, items: itemsIn(storage.id), details: null });
   return result;
 }
 export function holdingsNavLabel(holdings: HoldingView[], lang: Lang) {
@@ -138,32 +148,106 @@ export function holdingsNavLabel(holdings: HoldingView[], lang: Lang) {
     : pick(lang, "Лагерь", "Camp");
 }
 
+const questKind = (row: Quest) => row.kind ?? "quest";
+/** Quests proper (jobs the hero took); threads, debts, promises and the arc are in journalOf. */
 export function questsOf(data: CampaignSnapshot) {
   const byDate = (a: Quest, b: Quest) => b.updated_at.localeCompare(a.updated_at) || a.title.localeCompare(b.title);
-  const active = data.quests.filter((row) => row.status === "open").sort(byDate);
-  const done = data.quests.filter((row) => row.status === "complete").sort(byDate);
+  const active = data.quests.filter((row) => row.status === "open" && questKind(row) === "quest").sort(byDate);
+  const done = data.quests.filter((row) => row.status === "complete" && questKind(row) === "quest").sort(byDate);
   return { active, done, goal: active[0] ?? null };
 }
 
-export type CodexGroup = { id: "allies" | "known"; title: string; entries: Entity[] };
-/** Only records the player can see. Relationship groups need data the backend does not expose yet. */
+export type JournalEntry = { quest: Quest; kind: "thread" | "debt" | "promise"; counterpart: Entity | null; sinceSession: number | null };
+/** The journal (UI_DATA_NEEDS #3, #4): the main arc with its steps, open threads, debts and promises. */
+export function journalOf(data: CampaignSnapshot) {
+  const arc = data.quests.filter((row) => questKind(row) === "arc" && row.status === "open").sort((a, b) => b.updated_at.localeCompare(a.updated_at))[0] ?? null;
+  const entry = (quest: Quest): JournalEntry => ({ quest, kind: questKind(quest) as JournalEntry["kind"],
+    counterpart: quest.detail?.counterpartId ? data.entities.find((row) => row.id === quest.detail?.counterpartId) ?? null : null,
+    sinceSession: sessionNumber(data, quest.detail?.sinceSessionId ?? null) });
+  const open = data.quests.filter((row) => row.status === "open").sort((a, b) => b.updated_at.localeCompare(a.updated_at) || a.title.localeCompare(b.title));
+  return {
+    arc: arc ? { quest: arc, steps: arc.detail?.steps ?? [] } : null,
+    threads: open.filter((row) => questKind(row) === "thread").map(entry),
+    debts: open.filter((row) => questKind(row) === "debt").map(entry),
+    promises: open.filter((row) => questKind(row) === "promise").map(entry),
+    closed: data.quests.filter((row) => row.status !== "open" && ["thread", "debt", "promise"].includes(questKind(row))).map(entry),
+  };
+}
+
+export const profileOf = (entity: Entity): PublicProfile => (entity.public_profile && typeof entity.public_profile === "object" ? entity.public_profile : {});
+
+export type CodexGroup = { id: "allies" | "family" | "ally" | "murky" | "neutral" | "foe" | "known"; title: string; entries: Entity[] };
+/** Only records the player can see, grouped by the hero's known relation (UI_DATA_NEEDS #7). */
 export function codexOf(data: CampaignSnapshot, query: string, lang: Lang): CodexGroup[] {
   const needle = query.trim().toLocaleLowerCase();
-  const match = (row: Entity) => !needle || `${row.name}\n${row.details}`.toLocaleLowerCase().includes(needle);
-  const byName = (a: Entity, b: Entity) => a.name.localeCompare(b.name);
+  const match = (row: Entity) => !needle || `${row.name}\n${row.details}\n${profileOf(row).relation?.note ?? ""}`.toLocaleLowerCase().includes(needle);
+  const byName = (a: Entity, b: Entity) => Number(!!profileOf(b).important) - Number(!!profileOf(a).important) || a.name.localeCompare(b.name);
+  const npcs = data.entities.filter((row) => row.kind === "npc" && match(row));
+  const group = (id: CodexGroup["id"], title: string, filter: (row: Entity) => boolean): CodexGroup =>
+    ({ id, title, entries: npcs.filter(filter).sort(byName) });
+  const relation = (row: Entity) => profileOf(row).relation?.group ?? null;
   const groups: CodexGroup[] = [
     { id: "allies", title: pick(lang, "Спутники", "Companions"), entries: data.entities.filter((row) => row.kind === "companion" && match(row)).sort(byName) },
-    { id: "known", title: pick(lang, "Встреченные", "People met"), entries: data.entities.filter((row) => row.kind === "npc" && match(row)).sort(byName) },
+    group("family", pick(lang, "Семья и свои", "Family"), (row) => relation(row) === "family"),
+    group("ally", pick(lang, "Союзники", "Allies"), (row) => relation(row) === "ally"),
+    group("murky", pick(lang, "Мутные", "Murky"), (row) => relation(row) === "murky"),
+    group("foe", pick(lang, "Враги", "Foes"), (row) => relation(row) === "foe"),
+    group("neutral", pick(lang, "Нейтральные", "Neutral"), (row) => relation(row) === "neutral"),
+    group("known", pick(lang, "Встреченные", "People met"), (row) => relation(row) === null),
   ];
   return groups.filter((group) => group.entries.length);
 }
 
-export type PlaceView = { location: Location; current: boolean };
+export type FactionView = { entity: Entity; publicNote: string; relation: "ally" | "neutral" | "foe" | "unknown"; members: Entity[] };
+/** Factions the hero knows (UI_DATA_NEEDS #8). */
+export function factionsOf(data: CampaignSnapshot): FactionView[] {
+  return data.entities.filter((row) => row.kind === "faction").map((entity) => ({ entity,
+    publicNote: profileOf(entity).faction?.publicNote ?? entity.details, relation: profileOf(entity).faction?.relation ?? "unknown",
+    members: data.entities.filter((row) => row.kind !== "faction" && profileOf(row).factionId === entity.id).sort((a, b) => a.name.localeCompare(b.name)) }))
+    .sort((a, b) => a.entity.name.localeCompare(b.entity.name));
+}
+
+/** A companion's observable attitude toward the hero (UI_DATA_NEEDS #6); never Character Model text. */
+export function companionAttitude(entity: Entity): { text: string; lastNoticed: string } | null {
+  return profileOf(entity).attitude ?? null;
+}
+
+/** People back home (UI_DATA_NEEDS #11): everyone with a known home place, grouped by place. */
+export function homeRosterOf(data: CampaignSnapshot): { place: Location; people: Entity[] }[] {
+  const byPlace = new Map<string, Entity[]>();
+  for (const row of data.entities) {
+    const home = profileOf(row).homePlaceId;
+    if (!home || row.kind === "player" || row.kind === "faction") continue;
+    (byPlace.get(home) ?? byPlace.set(home, []).get(home)!).push(row);
+  }
+  return [...byPlace.entries()].flatMap(([placeId, people]) => {
+    const place = data.locations.find((row) => row.id === placeId);
+    return place ? [{ place, people: people.sort((a, b) => a.name.localeCompare(b.name)) }] : [];
+  }).sort((a, b) => a.place.name.localeCompare(b.place.name));
+}
+
+export const pinnedOf = (data: CampaignSnapshot): PinnedFact[] => data.campaign.pinned_facts ?? [];
+
+/** Owner-facing numbers of the last turns (UI_DATA_NEEDS #5) from the public turns. */
+export function turnStatsOf(turns: PublicTurn[], count = 20) {
+  const rows = turns.filter((turn) => turn.status === "committed" && turn.stats).slice(-count).map((turn) => turn.stats!);
+  if (!rows.length) return null;
+  const median = (values: number[]) => { const sorted = [...values].sort((a, b) => a - b); return sorted[Math.floor(sorted.length / 2)]; };
+  const firstWords = rows.map((row) => row.firstTextMs).filter((value): value is number => value !== null);
+  return { turns: rows.length, medianFirstWordMs: firstWords.length ? median(firstWords) : null, medianTurnMs: median(rows.map((row) => row.latencyMs)),
+    avgCostUsd: rows.reduce((sum, row) => sum + row.costUsd, 0) / rows.length, rejectedCalls: rows.reduce((sum, row) => sum + row.rejectedCalls, 0),
+    cacheReadShare: rows.filter((row) => row.cacheReadShare !== null).length ? rows.reduce((sum, row) => sum + (row.cacheReadShare ?? 0), 0) / rows.filter((row) => row.cacheReadShare !== null).length : null };
+}
+
+export type PlaceView = { location: Location; current: boolean; rumored: boolean; goal: boolean };
+/** Known, visited and rumoured places (UI_DATA_NEEDS #10); a place tied to an open quest's goal is marked. */
 export function placesOf(data: CampaignSnapshot): PlaceView[] {
+  const openQuests = new Set(data.quests.filter((row) => row.status === "open").map((row) => row.id));
   return data.locations
-    .filter((row) => row.status === "known" || row.status === "visited")
-    .map((location) => ({ location, current: location.id === data.publicState.current_location_id }))
-    .sort((a, b) => Number(b.current) - Number(a.current) || Number(b.location.status === "visited") - Number(a.location.status === "visited") || a.location.name.localeCompare(b.location.name));
+    .filter((row) => row.status === "known" || row.status === "visited" || row.status === "rumored")
+    .map((location) => ({ location, current: location.id === data.publicState.current_location_id, rumored: location.status === "rumored",
+      goal: (location.detail?.questIds ?? []).some((id) => openQuests.has(id)) }))
+    .sort((a, b) => Number(b.current) - Number(a.current) || Number(a.rumored) - Number(b.rumored) || Number(b.location.status === "visited") - Number(a.location.status === "visited") || a.location.name.localeCompare(b.location.name));
 }
 
 /** The visible story of the current session: player inputs and narration, in order. */

@@ -7,6 +7,7 @@ import { validateMemoryRequest } from "../../memory/request-validation";
 import type { TimelineFence } from "../../saves/contracts";
 import { createSaveStore } from "../saves/store";
 import { DmError } from "../../gameplay/dm-errors";
+import { scheduleDigest } from "../session-digest";
 
 async function authorizedMemory(campaignId: string, timeline?: TimelineFence) {
   const { user } = await authorizeCampaign(campaignId);
@@ -39,6 +40,8 @@ export async function mutateMemory(
             validateMemoryRequest(value, campaignId, "continue"),
           )
         : await store.retry(validateMemoryRequest(value, campaignId, "retry"));
+  // Stage 4 §4: «Закончить сессию» — a loop campaign's closed session is digested in the background.
+  if (action === "end") scheduleDigest(campaignId, validateMemoryRequest(value, campaignId, "end").sessionId, "end");
   return {
     snapshot,
     // Capture already-authorized store, not request cookies, for after-response work.

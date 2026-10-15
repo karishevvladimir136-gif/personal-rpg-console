@@ -315,6 +315,12 @@ declare c public.rpg_campaigns%rowtype; rid uuid; saved rpg_private.dossier_rece
    perform rpg_private.fields(p_payload,'{}');
    return rpg_private.dossier_read(p_campaign_id);
  end if;
+ if p_action='source' then
+   -- Server-only: the session digest and Chat with DM read the same source a
+   -- turn claims (private state included); never reachable from a client route.
+   perform rpg_private.fields(p_payload,'{}');
+   return rpg_private.runtime_source(p_campaign_id,p_owner_id,'game')||jsonb_build_object('timeline',rpg_private.timeline_fence(p_campaign_id));
+ end if;
  if p_action='notebook' then
    -- Server-only: the loop reads the notebook into layer 3; the owner sees it
    -- only when the campaign's notebookVisible setting is on (checked in TypeScript).
@@ -449,11 +455,29 @@ returns jsonb language sql stable set search_path='' as $$
      'sceneKinds',coalesce(t.checkpoint#>'{dmLoop,meta,sceneKinds}','[]'::jsonb),
      'spotlight',coalesce(t.checkpoint#>'{dmLoop,meta,spotlight}','[]'::jsonb),
      'threads',coalesce(t.checkpoint#>'{dmLoop,meta,threads}','[]'::jsonb),
-     'nextTension',coalesce(t.checkpoint#>'{dmLoop,meta,nextTension}','null'::jsonb))
+     'nextTension',coalesce(t.checkpoint#>'{dmLoop,meta,nextTension}','null'::jsonb),
+     'stats',(select jsonb_build_object('requests',count(*),'latencyMs',coalesce(sum((u.value->>'latencyMs')::numeric),0),
+        'firstTextMs',(select (x.value->>'firstTextMs')::numeric from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,usage}','[]'::jsonb)) x where x.value->>'firstTextMs' is not null order by 1 limit 1),
+        'costUsd',coalesce(sum((u.value->>'costUsd')::numeric),0),
+        'cacheReadShare',case when coalesce(sum((u.value->>'inputTokens')::numeric),0)>0 then round(coalesce(sum((u.value->>'cacheReadTokens')::numeric),0)/sum((u.value->>'inputTokens')::numeric),3) else null end,
+        'rejectedCalls',(select count(*) from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,receipts}','[]'::jsonb)) r where r.value#>'{result,ok}'='false'::jsonb),
+        'effort',(select x.value->>'effort' from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,usage}','[]'::jsonb)) x limit 1))
+        from jsonb_array_elements(coalesce(t.checkpoint#>'{dmLoop,usage}','[]'::jsonb)) u))
    else '{}'::jsonb end
 $$;
 revoke all on function rpg_private.runtime_source_before_stage4(uuid,uuid,text),rpg_private.runtime_source(uuid,uuid,text),
   rpg_private.runtime_public_turn_before_stage4(rpg_private.turns),rpg_private.runtime_public_turn(rpg_private.turns) from public,anon,authenticated;
+
+-- 9. Worlds: how many campaigns, which rules, whether a visual style is set (UI_DATA_NEEDS #21)
+create or replace function rpg_private.adventure_world_json(v rpg_private.adventure_world_versions) returns jsonb
+language sql stable set search_path='' as $$
+ select jsonb_build_object('id',v.id,'versionId',v.version_id,'version',v.version,'title',v.title,'premise',v.premise,'packVersionIds',v.pack_version_ids,
+   'campaignCount',(select count(*) from public.rpg_campaigns c where (rpg_private.adventure_binding(c.id)->>'worldId')::uuid=v.id),
+   'rulesLabel',(select s.values#>>'{rulesSystem,label}' from public.rpg_campaigns c join public.rpg_settings s on s.campaign_id=c.id
+      where (rpg_private.adventure_binding(c.id)->>'worldId')::uuid=v.id order by c.updated_at desc limit 1),
+   'hasVisualStyle',exists(select 1 from public.rpg_campaigns c join public.rpg_settings s on s.campaign_id=c.id
+      where (rpg_private.adventure_binding(c.id)->>'worldId')::uuid=v.id and length(btrim(coalesce(s.values->>'visualStyle','')))>0))
+$$;
 
 revoke all on function rpg_private.dossier_read(uuid) from public,anon,authenticated;
 revoke all on function rpg_private.dm_depth_valid(jsonb) from public,anon,authenticated;

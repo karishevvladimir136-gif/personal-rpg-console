@@ -97,3 +97,15 @@
   font: inherit;
   text-align: right;
 }
+
+/* Owner notes (stage 4): the player-likes note and the theme question. */
+.note {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--paper, transparent);
+  color: inherit;
+  font: inherit;
+  resize: vertical;
+}

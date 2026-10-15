@@ -3,21 +3,22 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { PawPrint, Ship, Tent, X, type LucideIcon } from "lucide-react";
+import { Home, PawPrint, Ship, Tent, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import { holdingsNavLabel, holdingsOf, statLabel, type HoldingKind, type HoldingView } from "@/lib/ui/campaign-view";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { GenerateVisual } from "../visual-frame/generate-visual";
 import { useChrome, type CampaignScreenId } from "./shell";
 import { ItemCard, ItemCell } from "./character-screen";
-import { Art, Gauge, Later, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
+import { Art, Gauge, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
 import s from "./holdings.module.css";
 
-const ICONS: Record<HoldingKind, LucideIcon> = { camp: Tent, transport: Ship, mount: PawPrint };
+const ICONS: Record<HoldingKind, LucideIcon> = { camp: Tent, transport: Ship, mount: PawPrint, base: Home };
 export function holdingKindLabel(kind: HoldingKind, c: Copy) {
   return kind === "camp" ? c("Лагерь · общий запас", "Camp · shared stash")
     : kind === "transport" ? c("Транспорт", "Transport")
-      : c("Ездовое животное", "Mount");
+      : kind === "base" ? c("База", "Base")
+        : c("Ездовое животное", "Mount");
 }
 
 export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; initialId?: string | null }) {
@@ -58,7 +59,6 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
               </button>
             );
           })}
-          <Later title={c("Базы", "Bases")}>{c("Отдельного вида записи «база» в приложении пока нет; она появится вместе с инструментом владений.", "The app has no separate “base” record kind yet; it arrives with the holdings tool.")}</Later>
         </nav>
         <Detail holding={selected} itemId={itemId} onItem={setItemId}
           onRedraw={setRedraw} onAct={act} />
@@ -82,6 +82,30 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
         </>
       )}
     </div>
+  );
+}
+
+/** Features, armament and people aboard (UI_DATA_NEEDS #12). */
+function HoldingDetails({ holding }: { holding: HoldingView }) {
+  const c = useCopy();
+  const details = holding.details;
+  return (
+    <Panel eyebrow={c("Особенности и люди на борту", "Features and people aboard")}>
+      {details && (details.features.length || details.armament || details.passengers.length) ? (
+        <div className={r.stack} style={{ gap: 8 }}>
+          {details.features.length > 0 && (
+            <div className={r.kv}>{details.features.map((row) => <div key={row.name}><span>{row.name}</span><span>{row.description}</span></div>)}</div>
+          )}
+          {details.armament && <div className={r.row}><span className={r.eyebrow}>{c("Вооружение", "Armament")}</span><span>{details.armament}</span></div>}
+          {details.passengers.length > 0 && (
+            <div className={r.stack} style={{ gap: 4 }}>
+              <span className={r.eyebrow}>{c("На борту", "Aboard")}</span>
+              <div className={r.chips}>{details.passengers.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
+            </div>
+          )}
+        </div>
+      ) : <p className={r.empty}>{c("Ведущий ещё не записал особенностей, вооружения или людей на борту.", "The DM has not recorded features, armament or people aboard yet.")}</p>}
+    </Panel>
   );
 }
 
@@ -124,11 +148,10 @@ function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
               {entity.conditions.length > 0 && <div className={r.chips}>{entity.conditions.map((row) => <span key={row} className={r.badgeAmber}>{row}</span>)}</div>}
             </div>
           </Panel>
-          <Panel eyebrow={c("Особенности и люди на борту", "Features and people aboard")}>
-            <Later>{c("Особенности, вооружение и пассажиры появятся, когда их начнёт отдавать запись владения.", "Features, armament and passengers appear once the holding record provides them.")}</Later>
-          </Panel>
+          <HoldingDetails holding={holding} />
         </div>
       )}
+      {!entity && holding.kind === "base" && <div className={s.columns}><HoldingDetails holding={holding} /></div>}
       <Panel eyebrow={holding.storage?.name ?? c("Хранилище", "Storage")} title={c("Что лежит внутри", "What's inside")}
         action={<span className={`${r.small} ${r.muted}`}>{c(`${holding.items.length} предм.`, `${holding.items.length} items`)}</span>}>
         {holding.items.length ? (

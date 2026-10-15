@@ -5,12 +5,12 @@ import { MessagesSquare, X } from "lucide-react";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
-import { currentPlace, inCombat, partyOf, statLabel, worldClock } from "@/lib/ui/campaign-view";
+import { companionAttitude, currentPlace, holdingsOf, homeRosterOf, inCombat, partyOf, statLabel, worldClock } from "@/lib/ui/campaign-view";
 import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
 import { GenerateVisual } from "../visual-frame/generate-visual";
 import { useChrome } from "./shell";
-import { Art, Later, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
+import { Art, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
 import s from "./party.module.css";
 
 type Group = "party" | "reserve" | "nearby";
@@ -68,9 +68,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
           ))}
         </div>
       ) : <Panel><p className={r.empty}>{group === "nearby" ? c("Рядом никого нет.", "No one is nearby.") : c("Здесь пока никого.", "No one here yet.")}</p></Panel>}
-      <Later title={c("Экипаж и люди дома", "Crew and people back home")}>
-        {c("Списки экипажа транспорта и людей, оставшихся дома, появятся, когда приложение начнёт их отдавать.", "Lists of a transport's crew and of people back home appear once the app provides them.")}
-      </Later>
+      <CrewAndHome data={data} />
       <footer className={r.note}>
         {c("«К тебе» — только то, что герой мог заметить сам. Тайные мысли спутников видит один ведущий. Поговорить можно в любой момент, кроме боя: разговор — это сцена в мире, идёт время, а спутник запоминает сказанное.",
           "“Toward you” is only what the hero could notice. Companions' private thoughts stay with the DM. You can talk any time except in combat: a talk is a scene in the world — time passes and the companion remembers.")}
@@ -149,8 +147,12 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
           </div>
         )}
         {chips.length > 0 && <div className={r.chips}>{chips.map((chip) => <span key={chip} className={r.chip}>{chip}</span>)}</div>}
-        {entity.kind === "companion" && (
-          <Later title={c("К тебе", "Toward you")}>{c("Что герой успел заметить в отношении спутника — появится, когда приложение начнёт это отдавать.", "What the hero has noticed about this companion's attitude appears once the app provides it.")}</Later>
+        {entity.kind === "companion" && companionAttitude(entity) && (
+          <div className={r.stack} style={{ gap: 2 }}>
+            <span className={r.eyebrow}>{c("К тебе", "Toward you")}</span>
+            <span>{companionAttitude(entity)!.text}</span>
+            {worldClock(Number(companionAttitude(entity)!.lastNoticed), c.language) && <span className={`${r.small} ${r.muted}`}>{c("замечено:", "noticed:")} {worldClock(Number(companionAttitude(entity)!.lastNoticed), c.language)}</span>}
+          </div>
         )}
         {entity.kind === "companion" && (
           <button type="button" className={canTalk ? r.btnMain : r.btnGhost} disabled={!canTalk} onClick={onTalk}
@@ -160,6 +162,32 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
         )}
       </div>
     </article>
+  );
+}
+
+/** Crew aboard the party's holdings and people back home (UI_DATA_NEEDS #11). */
+function CrewAndHome({ data }: { data: CampaignSnapshot }) {
+  const c = useCopy();
+  const crews = holdingsOf(data).filter((row) => row.details?.passengers.length);
+  const homes = homeRosterOf(data);
+  if (!crews.length && !homes.length) return null;
+  return (
+    <Panel eyebrow={c("Экипаж и люди дома", "Crew and people back home")}>
+      <div className={r.stack} style={{ gap: 10 }}>
+        {crews.map((holding) => (
+          <div key={holding.id} className={r.stack} style={{ gap: 4 }}>
+            <span className={r.eyebrow}>{holding.name}</span>
+            <div className={r.chips}>{holding.details!.passengers.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
+          </div>
+        ))}
+        {homes.map((home) => (
+          <div key={home.place.id} className={r.stack} style={{ gap: 4 }}>
+            <span className={r.eyebrow}>{home.place.name}</span>
+            <div className={r.chips}>{home.people.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
+          </div>
+        ))}
+      </div>
+    </Panel>
   );
 }
 
