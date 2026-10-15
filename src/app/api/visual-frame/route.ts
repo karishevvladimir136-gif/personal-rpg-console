@@ -10,13 +10,28 @@ import {
 } from "@/lib/server/media/server";
 import { readWriteRequest } from "@/lib/persistence/http-policy";
 import { imageProviderCapability } from "@/lib/server/media/fal-image-provider";
+import { after } from "next/server";
+import {
+  activatePictureStyle,
+  clearPictureStyle,
+  hidePicture,
+  readPictureBoard,
+  savePictureSettings,
+  savePictureStyle,
+  signedPictureUrl,
+  signedStyleReferenceUrl,
+} from "@/lib/server/media/pictures-store";
+import { autopilotStep, requestAnchor, requestFrame, restyleCampaign, type Schedule } from "@/lib/server/media/pictures-service";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
+import { PersistenceError } from "@/lib/server/errors";
 export const maxDuration = 240; // Image deadline + bounded foreground visual QA + storage/receipt overhead.
 
 export async function POST(request: Request) {
   try {
     const value = await readWriteRequest(request);
+    if (exactKeys(value, ["action", "campaignId", "input"]) && typeof value.action === "string" && value.action.startsWith("pictures.") && typeof value.campaignId === "string")
+      return publicJson(await picturesAction(value.action, value.campaignId, value.input));
     if (
       exactKeys(value, ["action", "input"]) &&
       value.action === "media.prepare"
@@ -53,6 +68,14 @@ export async function GET(request: Request) {
       return publicJson(await mediaCapability(campaignId));
     if (url.searchParams.get("action") === "image-providers")
       return publicJson(await imageProviderCapability(campaignId));
+    if (url.searchParams.get("action") === "pictures")
+      return publicJson(await readPictureBoard(campaignId));
+    if (url.searchParams.get("action") === "picture" || url.searchParams.get("action") === "style-reference") {
+      const signed = url.searchParams.get("action") === "picture"
+        ? await signedPictureUrl(campaignId, url.searchParams.get("pictureId") ?? "")
+        : await signedStyleReferenceUrl(campaignId, url.searchParams.get("styleId") ?? "");
+      return new Response(null, { status: 302, headers: { Location: signed, "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff" } });
+    }
     const signed =
       url.searchParams.get("action") === "draft"
         ? await signedFrameDraft(
@@ -73,5 +96,22 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     return errorResponse(error);
+  }
+}
+
+// Stage V pictures: the paid work runs after the response (a turn never waits for a picture).
+const schedule: Schedule = (work) => after(() => work().catch((error) => console.error(JSON.stringify({ event: "picture_job_failed", message: String((error as Error)?.message ?? error).slice(0, 200) }))));
+async function picturesAction(action: string, campaignId: string, input: unknown) {
+  switch (action) {
+    case "pictures.frame": return requestFrame(campaignId, input, schedule);
+    case "pictures.anchor": return requestAnchor(campaignId, input, schedule);
+    case "pictures.autopilot": return autopilotStep(campaignId, schedule);
+    case "pictures.restyle": return restyleCampaign(campaignId, input, schedule);
+    case "pictures.settings": return savePictureSettings(campaignId, input);
+    case "pictures.style.save": return savePictureStyle(campaignId, input);
+    case "pictures.style.activate": return activatePictureStyle(campaignId, input);
+    case "pictures.style.clear": return clearPictureStyle(campaignId, input);
+    case "pictures.hide": return hidePicture(campaignId, input);
+    default: throw new PersistenceError("validation");
   }
 }
