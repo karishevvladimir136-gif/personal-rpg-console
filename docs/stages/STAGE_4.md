@@ -63,7 +63,11 @@ tool set compact (§11, rpg-mcp lesson): extend existing tools with actions inst
   wizard before the campaign exists (#20), world counts (#21).
 - Replace the Stage 5 «появится позже» placeholders with the real data on every screen that now has it.
 
-Two Stage 3 follow-ups:
+Three Stage 3 follow-ups:
+- **Counters that may go below zero.** The new `rpg_entities_resources_within_bounds` CHECK forbids every negative
+  resource. Most counters are non-negative, but some rulesets keep signed ones (reputation, standing, momentum). Keep
+  0 as the default lower bound and honour a stored `<name>_min` the same way `<name>_max` is honoured (additive
+  migration; tests for both).
 - **Delivered job left open** (the one miss of every live bench): when an accepted item transfer or payment matches an
   open quest's terms or its issuer, the receipt tells the DM that the quest may be complete and should be closed in this
   turn. Add a bench check.
@@ -73,6 +77,12 @@ Two Stage 3 follow-ups:
 
 ## 3. Living characters and the world off screen (§9)
 
+- **Room for a long life.** A whole Character Model is capped at 6000 bytes (the loop's private-note limit from
+  migration 53, mirrored in `CHARACTER_MODEL_BOUNDS.bytes`). In a Russian campaign that is about 3000 characters
+  including the evidence references, so an important NPC fills up after a few sessions. Raise the stored limit (additive
+  migration, for example 32 KB), measure text limits in characters rather than bytes, and when a list is full let the
+  DM fold the oldest episodes into one summary episode instead of getting a rejection. Remove `MAX_ACTORS = 2` where it
+  still limits anything.
 - New important NPCs get a Character Model in the turn they appear (already possible; make the guidance explicit).
 - When notable time passes (rest, travel, skipped days), the receipt of `advance_time`, `rest` or `move_party` lists the
   clocks, plans and consequences now due; the DM advances NPC and faction plans in the same turn with `note_world` and
