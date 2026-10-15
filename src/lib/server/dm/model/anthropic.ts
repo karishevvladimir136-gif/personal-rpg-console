@@ -66,16 +66,17 @@ function anthropicMessages(messages: DmMessage[], modelId: string) {
 
 /** The exact Messages API body for one request (exported for contract tests). */
 export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
-  const lastCached = request.system.map((block) => block.cache).lastIndexOf(true);
+  // One explicit breakpoint per cached layer (the turn loop sends up to three:
+  // how to DM, world, living) plus the automatic top-level one for the growing
+  // conversation: four breakpoints at most, the provider's limit.
+  const cached = request.system.flatMap((block, index) => (block.cache ? [index] : [])).slice(-3);
   return {
     model: modelId,
     max_tokens: request.maxOutputTokens,
     stream: true,
-    // Explicit breakpoint at the end of the stable prefix (caches tools and
-    // system together) plus automatic caching of the growing conversation.
     cache_control: { type: "ephemeral" },
     system: request.system.map((block, index) => ({ type: "text", text: block.text,
-      ...(index === lastCached ? { cache_control: { type: "ephemeral" } } : {}) })),
+      ...(cached.includes(index) ? { cache_control: { type: "ephemeral" } } : {}) })),
     messages: anthropicMessages(request.messages, modelId),
     ...(request.toolset && request.toolset.anthropic.length ? { tools: request.toolset.anthropic } : {}),
     // Adaptive thinking is always on for Opus 5.5; effort is the only control.

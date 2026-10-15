@@ -217,6 +217,8 @@ export type AstraFinalProposal = {
   toolRefs: string[];
 };
 export type TurnCheckpoint = {
+  /** dm-loop-v1 transcript, receipts and shadow delta (Stage 2). */
+  dmLoop?: import("./dm-loop/contracts.ts").DmLoopCheckpoint | null;
   astraSettlement?: import("./astra-settlement.ts").AstraSettlementPlan | null;
   astraEffects?: import("./astra-settlement.ts").AstraEffectsPlan | null;
   astraPrimary?: {
@@ -255,12 +257,20 @@ export type TurnLease = {
 export type TurnClaim = {
   astraResponseContract?: "unified-v1" | null;
   astraResponseMode?: "public-unified" | "private-informed" | null;
-  runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
+  runtimeIdentity?: RuntimeIdentity;
   lease: TurnLease;
   turn: StoredTurn;
   source: RuntimeSource;
 };
+export type RuntimeIdentity = "legacy-v1" | "astra-primary-v1" | "dm-loop-v1";
 export type CommitPacket = {
+  /** dm-loop-v1 receipts and turn metadata, recorded with the commit event. */
+  dmLoop?: {
+    receipts: import("./dm-loop/contracts.ts").DmLoopReceipt[];
+    meta: import("./dm-loop/contracts.ts").DmLoopMeta | null;
+    usage: import("./dm-loop/contracts.ts").DmLoopUsageEntry[];
+    requests: number;
+  };
   teachingCandidate?:
     import("../dm-craft/contracts.ts").TeachingCandidate | null;
   foundationSettlement?:
@@ -280,14 +290,20 @@ export interface TurnStore {
     recipientId: string; pendingId: string; optionId: string;
     expectedTrackVersion: number;
   }): Promise<{ status: "selected"; pendingId: string; optionId: string; stateVersion: number }>;
-  begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1",
+  begin(input: TurnInput, runtimeIdentity?: "astra-primary-v1" | "dm-loop-v1",
     astraResponseContract?: "unified-v1"): Promise<PublicTurn>;
+  /** dm-loop-v1: append one tool receipt at a position; a replayed position
+   * with the same call returns the recorded receipt (no second dice roll). */
+  recordDmTool?(lease: TurnLease, position: number,
+    call: import("./dm-loop/contracts.ts").DmLoopToolCall,
+    result: import("./dm-loop/contracts.ts").DmLoopReceiptResult,
+  ): Promise<import("./dm-loop/contracts.ts").DmLoopReceipt>;
   astraResponseContract?(campaignId: string, operationId: string):
     Promise<"legacy-two-stage" | "unified-v1" | null>;
   pinAstraResponseMode?(lease: TurnLease, mode: "public-unified" | "private-informed"):
     Promise<"public-unified" | "private-informed">;
   takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
-  runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
+  runtimeIdentity?(campaignId: string, operationId: string): Promise<RuntimeIdentity | null>;
   recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;
   recordAstraStage?(lease: TurnLease, diagnostic: {
     stage: "plan" | "final_validated" | "final_checkpoint" | "narration_context" | "narration_provider" |

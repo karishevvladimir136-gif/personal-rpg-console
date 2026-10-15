@@ -94,6 +94,8 @@ export function createRpcTurnStore(
       rpc(campaignId, "astra_runtime", { operationId }),
     recordAstraTool: (lease, position, call, result) =>
       rpc(lease.campaignId, "astra_tool", { ...lease, position, call, result }),
+    recordDmTool: (lease, position, call, result) =>
+      rpc(lease.campaignId, "dm_tool", { ...lease, position, call, result }),
     ...(astraDiagnostics ? { recordAstraStage: (lease: import("./server-contracts.ts").TurnLease,
       diagnostic: Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]) =>
       rpc<void>(lease.campaignId, "astra_diagnostic", { ...lease, diagnostic }) } : {}),

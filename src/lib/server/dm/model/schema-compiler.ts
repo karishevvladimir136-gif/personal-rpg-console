@@ -18,20 +18,28 @@ export type DmSchema = Common & (
   | { type: "object"; properties: Record<string, DmSchema> }
 );
 export type DmObjectSchema = { type: "object"; properties: Record<string, DmSchema> };
-export type DmToolDefinition = { name: string; description: string; parameters: DmObjectSchema };
+export type DmToolDefinition = {
+  name: string;
+  description: string;
+  parameters: DmObjectSchema;
+  /** Strict schema per provider (default true). A tool whose optional fields
+   * would exceed Anthropic's strict limits stays non-strict there; the server
+   * validates its arguments either way (validateToolArguments). */
+  strict?: { anthropic?: boolean; openai?: boolean };
+};
 
 export type AnthropicTool = {
   name: string;
   description: string;
   input_schema: Record<string, unknown>;
-  strict: true;
+  strict?: true;
 };
 export type OpenAiFunctionTool = {
   type: "function";
   name: string;
   description: string;
   parameters: Record<string, unknown>;
-  strict: true;
+  strict: boolean;
 };
 export type CompiledToolset = {
   tools: readonly DmToolDefinition[];
@@ -80,23 +88,35 @@ function withNull(type: string, nullable: boolean) {
 }
 
 /** Anthropic strict: optional fields are simply not required; length, number
- * and maxItems bounds are not accepted, so they move into the description. */
-function anthropicSchema(schema: DmSchema): Record<string, unknown> {
+ * and maxItems bounds are not accepted, so they move into the description.
+ * A non-strict tool keeps the bounds as ordinary JSON Schema keywords. */
+function anthropicSchema(schema: DmSchema, strict: boolean): Record<string, unknown> {
   const nullable = !!schema.nullable;
-  const notes = bounds(schema);
+  const notes = strict ? bounds(schema) : [];
   const description = [schema.description, notes.length ? `(${notes.join("; ")})` : ""]
     .filter(Boolean).join(" ");
   const out: Record<string, unknown> = { type: withNull(schema.type, nullable) };
   if (description) out.description = description;
   if ((schema.type === "string" || schema.type === "integer" || schema.type === "number") && schema.enum)
     out.enum = nullable ? [...schema.enum, null] : [...schema.enum];
+  if (!strict) {
+    if (schema.type === "string") {
+      if (schema.minLength !== undefined) out.minLength = schema.minLength;
+      if (schema.maxLength !== undefined) out.maxLength = schema.maxLength;
+      if (schema.pattern !== undefined) out.pattern = schema.pattern;
+    } else if (schema.type === "integer" || schema.type === "number") {
+      if (schema.minimum !== undefined) out.minimum = schema.minimum;
+      if (schema.maximum !== undefined) out.maximum = schema.maximum;
+    } else if (schema.type === "array" && schema.maxItems !== undefined) out.maxItems = schema.maxItems;
+  }
   if (schema.type === "array") {
-    out.items = anthropicSchema(schema.items);
-    if (schema.minItems === 0 || schema.minItems === 1) out.minItems = schema.minItems;
+    out.items = anthropicSchema(schema.items, strict);
+    if (schema.minItems !== undefined && (!strict || schema.minItems === 0 || schema.minItems === 1))
+      out.minItems = schema.minItems;
   }
   if (schema.type === "object") {
     out.properties = Object.fromEntries(Object.entries(schema.properties)
-      .map(([key, value]) => [key, anthropicSchema(value)]));
+      .map(([key, value]) => [key, anthropicSchema(value, strict)]));
     out.required = Object.entries(schema.properties).filter(([, value]) => !value.optional).map(([key]) => key);
     out.additionalProperties = false;
   }
@@ -158,8 +178,9 @@ export function compileToolset(tools: readonly DmToolDefinition[]): CompiledTool
     problems.push(`${tools.length} strict tools exceed the limit of ${strictLimits.maxTools}`);
   const names = new Set<string>();
   const stats: Stats = { optional: 0, union: 0, properties: 0, depth: 0, enumValues: 0, text: 0 };
-  // An OpenAI optional field becomes a union with null; Anthropic counts only
-  // explicitly nullable fields as unions.
+  // Anthropic's optional/union limits apply across its strict tools only; an
+  // OpenAI optional field becomes a union with null and has no such limit.
+  const anthropicStrict: Stats = { optional: 0, union: 0, properties: 0, depth: 0, enumValues: 0, text: 0 };
   for (const tool of tools) {
     if (!toolName.test(tool.name)) problems.push(`${tool.name}: tool names must match ${toolName}`);
     if (names.has(tool.name)) problems.push(`${tool.name}: duplicate tool name`);
@@ -167,13 +188,15 @@ export function compileToolset(tools: readonly DmToolDefinition[]): CompiledTool
     if (!tool.description.trim()) problems.push(`${tool.name}: description is required`);
     if (tool.parameters?.type !== "object" || (tool.parameters as DmSchema).optional || (tool.parameters as DmSchema).nullable)
       problems.push(`${tool.name}: parameters must be a required, non-null object`);
-    else walk(tool.parameters, tool.name, 0, stats, problems);
+    else {
+      walk(tool.parameters, tool.name, 0, stats, problems);
+      if (tool.strict?.anthropic !== false) walk(tool.parameters, tool.name, 0, anthropicStrict, []);
+    }
   }
-  const anthropicUnions = stats.union;
-  if (stats.optional > strictLimits.anthropic.maxOptionalParameters)
-    problems.push(`anthropic: ${stats.optional} optional parameters exceed the limit of ${strictLimits.anthropic.maxOptionalParameters}`);
-  if (anthropicUnions > strictLimits.anthropic.maxUnionParameters)
-    problems.push(`anthropic: ${anthropicUnions} nullable (union-type) parameters exceed the limit of ${strictLimits.anthropic.maxUnionParameters}`);
+  if (anthropicStrict.optional > strictLimits.anthropic.maxOptionalParameters)
+    problems.push(`anthropic: ${anthropicStrict.optional} optional parameters in strict tools exceed the limit of ${strictLimits.anthropic.maxOptionalParameters}`);
+  if (anthropicStrict.union > strictLimits.anthropic.maxUnionParameters)
+    problems.push(`anthropic: ${anthropicStrict.union} nullable (union-type) parameters in strict tools exceed the limit of ${strictLimits.anthropic.maxUnionParameters}`);
   if (stats.properties > strictLimits.openai.maxProperties)
     problems.push(`openai: ${stats.properties} properties exceed the limit of ${strictLimits.openai.maxProperties}`);
   if (stats.depth > strictLimits.openai.maxDepth)
@@ -186,9 +209,10 @@ export function compileToolset(tools: readonly DmToolDefinition[]): CompiledTool
   return {
     tools,
     anthropic: tools.map((tool) => ({ name: tool.name, description: tool.description,
-      input_schema: anthropicSchema(tool.parameters), strict: true })),
+      input_schema: anthropicSchema(tool.parameters, tool.strict?.anthropic !== false),
+      ...(tool.strict?.anthropic !== false ? { strict: true as const } : {}) })),
     openai: tools.map((tool) => ({ type: "function", name: tool.name, description: tool.description,
-      parameters: openAiSchema(tool.parameters), strict: true })),
+      parameters: openAiSchema(tool.parameters), strict: tool.strict?.openai !== false })),
   };
 }
 

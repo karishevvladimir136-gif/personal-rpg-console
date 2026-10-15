@@ -12,6 +12,8 @@ import {
   type ProfileRpc,
 } from "../production/profiles";
 import { pinAstraTurnModel } from "../production/dm-turn-pin";
+import { pinDmLoopModel } from "../production/dm-loop-pin";
+import type { ModelSelection } from "../production/contracts";
 import {
   worldTurnPreparer,
   worldLogicTurnPreparer,
@@ -138,6 +140,11 @@ export function productionServices(
     pinDmTurnModel: (operationId: string) =>
       pinAstraTurnModel(profiles, { ownerId, campaignId, operationId, timeline },
         async () => (await readWorldFoundation(world, ownerId, campaignId, timeline)).executionPolicy),
+    // dm-loop-v1: only the "dm.turn" model is pinned, once per operation.
+    pinDmLoopModel: (operationId: string, dmTurn: () => Promise<ModelSelection | null>) =>
+      pinDmLoopModel(profiles, { ownerId, campaignId, operationId, timeline },
+        async () => ({ policy: (await readWorldFoundation(world, ownerId, campaignId, timeline)).executionPolicy,
+          dmTurn: await dmTurn() })),
     planModel: async (stage: "plan" | "narrate" = "plan") => {
       const snapshot = await readWorldFoundation(
         world,

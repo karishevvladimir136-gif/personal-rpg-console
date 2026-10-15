@@ -3,7 +3,7 @@
 // (checked 2026-10-15). Prices are USD per 1M tokens, Standard tier.
 
 export type DmProviderId = "anthropic" | "openai";
-export type DmEffort = "low" | "medium" | "high" | "max";
+export type DmEffort = "low" | "medium" | "high" | "xhigh" | "max";
 
 export type DmModelSpec = {
   providerId: DmProviderId;
