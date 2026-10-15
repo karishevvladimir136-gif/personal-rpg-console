@@ -26,11 +26,19 @@ export type DmModelRequest = {
   system: DmSystemBlock[];
   messages: DmMessage[];
   toolset: CompiledToolset | null;
+  /** Effort of this request. */
   effort: DmEffort;
+  /** Effort the conversation started with, when `effort` differs from it
+   * (a continuation after tool results at a lower level). Anthropic changes the
+   * top-level value (which restarts the message cache); OpenAI keeps the
+   * request-level value and inserts a configuration_update item. */
+  turnEffort?: DmEffort;
   maxOutputTokens: number;
   signal?: AbortSignal;
   /** Opaque request label for diagnostics (an operation ID); never sent. */
   operationId?: string;
+  /** Stable key for the provider's prompt-cache routing/accounting (a campaign ID). */
+  cacheKey?: string;
 };
 
 export type DmStopReason = "end" | "tool_use" | "max_tokens" | "refusal" | "other";

@@ -80,6 +80,10 @@ export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
     messages: anthropicMessages(request.messages, modelId),
     ...(request.toolset && request.toolset.anthropic.length ? { tools: request.toolset.anthropic } : {}),
     // Adaptive thinking is always on for Opus 5.5; effort is the only control.
+    // A continuation at another level than the turn started with is a top-level
+    // change: the per-message form (beta) only takes effect from the next user
+    // turn with new input, never after tool results, so the message cache (and
+    // possibly the system cache) restarts for that request (docs/MODELS.md).
     output_config: { effort: request.effort },
   };
 }

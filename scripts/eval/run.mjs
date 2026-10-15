@@ -19,7 +19,7 @@ const root = join(here, "..", "..");
 
 function parseArgs(argv) {
   const args = { provider: "fake", scenario: null, budgetUsd: null, verbose: false, runtime: "astra-primary-v1",
-    model: "astra", effort: null };
+    model: "astra", effort: null, continuationEffort: null };
   for (let index = 0; index < argv.length; index++) {
     const flag = argv[index];
     const value = () => {
@@ -33,9 +33,12 @@ function parseArgs(argv) {
     else if (flag === "--runtime") args.runtime = value();
     else if (flag === "--model") args.model = value();
     else if (flag === "--effort") args.effort = value();
+    else if (flag === "--continuation-effort") args.continuationEffort = value();
     else if (flag === "--verbose") args.verbose = true;
     else throw Error(`unknown argument ${flag}`);
   }
+  if (args.continuationEffort && !["low", "medium", "high", "xhigh", "max"].includes(args.continuationEffort))
+    throw Error("--continuation-effort must be low, medium, high, xhigh or max");
   if (!args.scenario) throw Error("--scenario is required (a name from scripts/eval/scenarios, a comma list, or all)");
   if (!["fake", "live"].includes(args.provider)) throw Error("--provider must be fake or live");
   if (!["astra-primary-v1", "dm-loop-v1"].includes(args.runtime)) throw Error("--runtime must be astra-primary-v1 or dm-loop-v1");
@@ -107,10 +110,10 @@ if (args.runtime === "dm-loop-v1") {
   const effort = args.effort ?? loopModels[args.model].defaultEffort;
   const budget = args.provider === "live" ? createLoopBudget(args.budgetUsd) : null;
   write({ type: "run", run: runId, provider: args.provider, runtime: "dm-loop-v1", model: loopModels[args.model].modelId,
-    effort, scenarios: selected.map((s) => s.name), commit: gitCommit(), node: process.version,
+    effort, continuationEffort: args.continuationEffort, scenarios: selected.map((s) => s.name), commit: gitCommit(), node: process.version,
     startedAt: new Date().toISOString(), budgetUsd: args.budgetUsd });
   if (args.provider === "live")
-    console.log(`Live ${loopModels[args.model].modelId} (${effort}) run on dm-loop-v1 with a hard budget of ${args.budgetUsd} USD.`);
+    console.log(`Live ${loopModels[args.model].modelId} (${effort}${args.continuationEffort ? `, continuations ${args.continuationEffort}` : ""}) run on dm-loop-v1 with a hard budget of ${args.budgetUsd} USD.`);
   for (const scenario of selected) {
     if (budget?.exhausted) { stopReason = "budget_reached"; break; }
     const script = await loadLoopScript(scenario.name);
@@ -120,7 +123,7 @@ if (args.runtime === "dm-loop-v1") {
     }
     process.stdout.write(`▶ ${scenario.name} — ${scenario.title}\n`);
     const summary = await runLoopScenario({ ...scenario, loop: scenario.loop ?? script ?? {} }, { live: args.provider === "live",
-      model: args.model, effort, apiKey, budget, write, runId, verbose: args.verbose });
+      model: args.model, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose });
     process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
       `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
       `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +

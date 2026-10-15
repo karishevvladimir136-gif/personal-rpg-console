@@ -1,4 +1,15 @@
 {
+  "expect": {
+    "bounty": [
+      { "outcome": "committed" },
+      { "label": "the bounty is a recorded quest", "questExists": { "title": "wolf|wolves|bounty|north|road|волк|дорог|награ" } }
+    ],
+    "claim": [
+      { "outcome": "committed" },
+      { "label": "the bounty was paid (money went up)", "heroMoneyDelta": { "min": 1 } },
+      { "label": "a weapon item is in the hero's inventory", "heroItemCategory": { "name": ".", "category": "weapon" } }
+    ]
+  },
   "bounty": {
     "note": "A bounty with a big reward: 500 coins and a weapon, recorded as the quest's terms.",
     "rounds": [

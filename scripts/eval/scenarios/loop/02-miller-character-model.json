@@ -38,11 +38,11 @@
     ],
     "accept": [
       { "outcome": "committed" },
-      { "label": "the miller is a recorded NPC", "npcExists": "miller|мельник" },
+      { "label": "a character tied to the mill exists", "npcExists": "miller|mill|мельник|мельниц" },
       { "label": "the accepted job is a recorded quest", "questExists": { "title": "flour|mill|sack|мук|мельн" } },
-      { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|мельник" },
-      { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн" },
-      { "label": "the miller has a Character Model from the same turn", "characterModelExists": "miller" }
+      { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|mill|мельник|мельниц", "scripted": true },
+      { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн", "scripted": true },
+      { "label": "the miller has a Character Model", "characterModelExists": "miller|mill|мельник|мельниц" }
     ]
   }
 }

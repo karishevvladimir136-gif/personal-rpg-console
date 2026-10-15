@@ -1,4 +1,30 @@
 {
+  "expect": {
+    "offer": [
+      { "outcome": "committed" },
+      { "label": "job recorded as an open quest", "questExists": { "title": "flour|mill|sack|мук|мельн", "status": "open" } }
+    ],
+    "work": [
+      { "outcome": "committed" },
+      { "label": "quest complete once the work is done", "questExists": { "title": "flour|mill|sack|мук|мельн", "status": "complete" }, "scripted": true }
+    ],
+    "pay": [
+      { "outcome": "committed" },
+      { "label": "the hero was paid for the job (once, in any amount)", "heroMoneySince": { "step": "start", "min": 1 } }
+    ],
+    "replay-pay": [
+      { "label": "replay returns the committed turn", "outcome": "committed" },
+      { "label": "replay makes no model request", "modelRequests": { "eq": 0 } },
+      { "label": "replay pays nothing again", "heroMoneyDelta": { "eq": 0 } }
+    ],
+    "still-owes": [
+      { "outcome": "committed" },
+      { "label": "no second payment", "heroMoneyDelta": { "max": 0 } }
+    ],
+    "still-owes-probe": [
+      { "label": "server keeps the reward at exactly one payment (no second payment via a gift)", "weakness": "W1", "heroMoneyDelta": { "max": 0 } }
+    ]
+  },
   "offer": {
     "note": "A real agreed job from the present organiser: quest with reward terms.",
     "rounds": [

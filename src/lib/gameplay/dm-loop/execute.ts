@@ -806,7 +806,20 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
     identity, current, beliefs, relationships, episodes };
   let parsed: CharacterModel;
   try { parsed = parseCharacterModel(JSON.parse(JSON.stringify(model))); }
-  catch { throw new ToolReject(`${actor.name}'s Character Model does not fit the limits (3 values, 2 wants, 2 boundaries, 2 loyalties, 3 signatures, texts up to 120–180 characters, 3 beliefs, 2 relationships, 3 episodes).`); }
+  catch {
+    const B = L.characterModel;
+    const tooLong = [
+      ...Object.entries(identity).flatMap(([field, value]) => Array.isArray(value)
+        ? value.filter((text) => text.length > B.listText).map((text) => `identity.${field} entry (${text.length} chars, max ${B.listText})`)
+        : value.length > B.voice ? [`identity.observableVoice (${value.length} chars, max ${B.voice})`] : []),
+      ...Object.entries(current).filter(([, value]) => typeof value === "string" && value.length > B.listText).map(([field, value]) => `current.${field} (${(value as string).length} chars, max ${B.listText})`),
+      ...beliefs.filter((b) => b.text.length > B.longText).map((b) => `a belief (${b.text.length} chars, max ${B.longText})`),
+      ...episodes.filter((e) => e.meaning.length > B.longText || (e.cue ?? "").length > B.cue).map((e) => `an episode (${e.meaning.length} chars, max ${B.longText}; cue max ${B.cue})`),
+    ];
+    const size = Buffer.byteLength(JSON.stringify(model), "utf8");
+    throw new ToolReject(`${actor.name}'s Character Model was not saved: ${tooLong.length ? tooLong.join("; ") : size > B.bytes ? `${size} bytes in total, max ${B.bytes}` : "a field is empty or malformed"}.`,
+      `Shorten the listed fields and call note_character again with the same content; the limits are generous (${B.listText}–${B.longText} characters per text, ${B.listItems} entries per list).`);
+  }
   reject(new Set(parsed.relationships.map((r) => r.actorId)).size === parsed.relationships.length, "One relationship per character.");
   shadow.setPrivate("npc", `character_${actor.id}`, JSON.stringify(parsed));
   return ok({ actor: actor.name, established: !existing, stress: parsed.current.stress }, `${actor.name}'s character notes ${existing ? "updated" : "started"}`);

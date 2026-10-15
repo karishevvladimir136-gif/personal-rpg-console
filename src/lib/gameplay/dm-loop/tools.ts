@@ -168,11 +168,11 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
     parameters: object({
       actorRef: ref("Whose model."),
       identity: opt(object({
-        values: opt({ type: "array", maxItems: 3, items: str("A value.", L.characterModel.listText) }),
-        wants: opt({ type: "array", maxItems: 2, items: str("A want.", L.characterModel.listText) }),
-        boundaries: opt({ type: "array", maxItems: 2, items: str("A boundary.", L.characterModel.listText) }),
-        loyalties: opt({ type: "array", maxItems: 2, items: str("A loyalty.", L.characterModel.listText) }),
-        signatures: opt({ type: "array", maxItems: 3, items: str("A signature habit or phrase.", L.characterModel.listText) }),
+        values: opt({ type: "array", maxItems: L.characterModel.listItems, items: str("A value.", L.characterModel.listText) }),
+        wants: opt({ type: "array", maxItems: L.characterModel.listItems, items: str("A want.", L.characterModel.listText) }),
+        boundaries: opt({ type: "array", maxItems: L.characterModel.listItems, items: str("A boundary.", L.characterModel.listText) }),
+        loyalties: opt({ type: "array", maxItems: L.characterModel.listItems, items: str("A loyalty.", L.characterModel.listText) }),
+        signatures: opt({ type: "array", maxItems: L.characterModel.listItems, items: str("A signature habit or phrase.", L.characterModel.listText) }),
         observableVoice: opt(str("How they sound and behave to an observer.", L.characterModel.voice)),
       })),
       current: opt(object({
@@ -181,9 +181,9 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
         preoccupation: opt(str("What occupies them now.", L.characterModel.listText)),
         obligation: opt(str("What they owe or must do.", L.characterModel.listText)),
       })),
-      beliefs: opt({ type: "array", maxItems: 3, items: object({ text: str("What they believe.", L.characterModel.longText), confidence: { type: "string", enum: ["tentative", "supported"] }, aboutRef: opt(ref("Who it is about.")) }) }),
-      relationships: opt({ type: "array", maxItems: 2, items: object({ actorRef: ref("The other person."), affection: { type: "string", enum: ["distant", "open", "close"] }, trust: { type: "string", enum: ["low", "guarded", "earned"] }, respect: { type: "string", enum: ["low", "mixed", "high"] }, unresolvedHurt: opt(str("An unresolved hurt.", L.characterModel.listText)) }) }),
-      episodes: opt({ type: "array", maxItems: 3, items: object({ meaning: str("What this episode meant to them.", L.characterModel.longText), cue: opt(str("What brings it back.", 80)) }) }),
+      beliefs: opt({ type: "array", maxItems: L.characterModel.beliefs, items: object({ text: str("What they believe.", L.characterModel.longText), confidence: { type: "string", enum: ["tentative", "supported"] }, aboutRef: opt(ref("Who it is about.")) }) }),
+      relationships: opt({ type: "array", maxItems: L.characterModel.relationships, items: object({ actorRef: ref("The other person."), affection: { type: "string", enum: ["distant", "open", "close"] }, trust: { type: "string", enum: ["low", "guarded", "earned"] }, respect: { type: "string", enum: ["low", "mixed", "high"] }, unresolvedHurt: opt(str("An unresolved hurt.", L.characterModel.listText)) }) }),
+      episodes: opt({ type: "array", maxItems: L.characterModel.episodes, items: object({ meaning: str("What this episode meant to them.", L.characterModel.longText), cue: opt(str("What brings it back.", L.characterModel.cue)) }) }),
     }),
   },
   {

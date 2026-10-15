@@ -30,6 +30,9 @@ export type DmLoopPin = {
   providerId: DmProviderId;
   modelId: string;
   effort: DmEffort;
+  /** Effort of the requests after the first (continuations after tool results),
+   * when it differs from `effort` (stage 2b §3). Absent: the same level throughout. */
+  continuationEffort?: DmEffort;
   runtime: DmLoopRuntimeId;
   /** One narrator sees secrets and Character Models. Two-stage is a later option. */
   privacy: "single-narrator";

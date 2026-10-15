@@ -287,9 +287,44 @@ test("OpenAI: text only with encrypted reasoning kept for replay and cache-read 
   assert.equal(f.calls[0].headers.Authorization, `Bearer ${KEY}`);
   assert.deepEqual([sent.stream, sent.store, sent.service_tier, sent.reasoning.effort, sent.max_output_tokens],
     [true, false, "default", "medium", 2000]);
-  assert.equal(sent.instructions, "STABLE DM PREFIX");
-  assert.deepEqual(sent.input[0], { role: "developer", content: "Scene: the mill." });
+  // Stage 2b: each stable layer is a developer message with an explicit cache
+  // breakpoint (the top-level `instructions` field cannot carry one), the
+  // volatile layer follows without one.
+  assert.equal(sent.instructions, undefined);
+  assert.deepEqual(sent.input[0], { role: "developer", content: [
+    { type: "input_text", text: "STABLE DM PREFIX", prompt_cache_breakpoint: { mode: "explicit" } }] });
+  assert.deepEqual(sent.input[1], { role: "developer", content: "Scene: the mill." });
+  assert.equal(sent.prompt_cache_key, undefined);
   assert.deepEqual(sent.include, ["reasoning.encrypted_content"]);
+});
+
+test("OpenAI: at most three explicit breakpoints, a cache key, and a continuation effort as a configuration_update", () => {
+  const four = openAiRequestBody("gpt-6-astra", request({ cacheKey: "campaign-1", system: [
+    { text: "A", cache: true }, { text: "B", cache: true }, { text: "C", cache: true }, { text: "D", cache: true }, { text: "now", cache: false }] }));
+  assert.equal(four.prompt_cache_key, "campaign-1");
+  assert.deepEqual(four.input.slice(0, 4).map((item) => typeof item.content === "string" ? item.content : item.content[0].text),
+    ["A", "B", "C\n\nD", "now"]);
+  assert.equal(four.input.filter((item) => Array.isArray(item.content) && item.content[0].prompt_cache_breakpoint).length, 3);
+  // The request-level effort stays the turn's; the update sits once before the
+  // first tool outputs, at the same position on every later request.
+  const messages = [
+    { role: "user", text: "Я атакую." },
+    { role: "assistant", text: "", toolCalls: [{ id: "call_a", name: "roll", arguments: "{}" }], native: null },
+    { role: "tool_results", results: [{ callId: "call_a", output: '{"total":4}', isError: false }] },
+    { role: "assistant", text: "", toolCalls: [{ id: "call_b", name: "roll", arguments: "{}" }], native: null },
+    { role: "tool_results", results: [{ callId: "call_b", output: '{"total":5}', isError: false }] },
+  ];
+  const lower = openAiRequestBody("gpt-6-astra", request({ messages, effort: "low", turnEffort: "medium" }));
+  assert.equal(lower.reasoning.effort, "medium");
+  const updates = lower.input.map((item, index) => [item.type, index]).filter(([type]) => type === "configuration_update");
+  // stable, volatile, user, the assistant's function_call, then the update.
+  assert.deepEqual(updates, [["configuration_update", 4]]);
+  assert.deepEqual(lower.input[4], { type: "configuration_update", reasoning: { effort: "low" } });
+  assert.equal(lower.input[5].type, "function_call_output");
+  const same = openAiRequestBody("gpt-6-astra", request({ messages, effort: "medium", turnEffort: "medium" }));
+  assert.ok(!same.input.some((item) => item.type === "configuration_update"));
+  // Anthropic: a continuation effort is the top-level value of that request.
+  assert.equal(anthropicRequestBody("claude-opus-5-5", request({ effort: "low", turnEffort: "high" })).output_config.effort, "low");
 });
 
 test("OpenAI: one tool call and two parallel calls; continuation returns reasoning with the outputs", async () => {
@@ -310,8 +345,8 @@ test("OpenAI: one tool call and two parallel calls; continuation returns reasoni
       { callId: "call_b", output: "formula rejected", isError: true },
     ] },
   ] }));
-  assert.deepEqual(body.input.slice(2, 4), native.items);
-  assert.deepEqual(body.input.slice(4), [
+  assert.deepEqual(body.input.slice(3, 5), native.items);
+  assert.deepEqual(body.input.slice(5), [
     { type: "function_call_output", call_id: "call_a", output: '{"total":4}' },
     { type: "function_call_output", call_id: "call_b", output: "ERROR: formula rejected" },
   ]);
@@ -456,5 +491,8 @@ test("cost by usage and the pre-request reservation use one price table", () => 
   assert.equal(dmUsageCost(opus, usage), (12 * 4 + 3000 * 0.2 + 42 * 20) / 1_000_000);
   const written = { inputTokens: 3200, outputTokens: 50, cacheReadTokens: 0, cacheWriteTokens: 3000, reasoningTokens: 20 };
   assert.equal(dmUsageCost(astra, written), (200 * 10 + 3000 * 12.5 + 50 * 50) / 1_000_000);
-  assert.ok(dmRequestReservation(astra, 12_800, 2000) > dmUsageCost(astra, { ...written, inputTokens: 12_800, outputTokens: 2000 }));
+  // The reservation counts half a token per byte at the cache-write price plus
+  // the whole output allowance (measured prompts: 0.2–0.3 tokens per byte).
+  assert.ok(dmRequestReservation(astra, 12_800, 2000) > dmUsageCost(astra, { ...written, inputTokens: 6400, cacheWriteTokens: 6400, outputTokens: 2000 }));
+  assert.equal(dmRequestReservation(astra, 12_800, 2000), ((6400 + 2048) * 12.5 + 2000 * 50) / 1_000_000);
 });

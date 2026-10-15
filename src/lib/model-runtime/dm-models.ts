@@ -73,11 +73,13 @@ export function dmUsageCost(spec: Pick<DmModelSpec, "price">, usage: DmUsage): n
     usage.outputTokens * spec.price.output) / 1_000_000;
 }
 
-/** Worst case before a request is sent: every prompt byte counted as an
- * uncached input token (bytes are an upper bound on tokens), cache-write
- * price if higher, plus the full output allowance. */
+/** Upper estimate before a request is sent: half a token per prompt byte
+ * (measured prompts run at 0.2–0.3 tokens per byte on both models) at the
+ * cache-write price if higher, plus the full output allowance. Stage 2 used
+ * one token per byte, which refused Astra requests at $5.4 of a $6 budget
+ * while $3.8 was spent. */
 export function dmRequestReservation(spec: Pick<DmModelSpec, "price">,
   requestBytes: number, maxOutputTokens: number): number {
   const inputPrice = Math.max(spec.price.input, spec.price.cacheWrite, spec.price.cacheWrite1h ?? 0);
-  return ((requestBytes + 2048) * inputPrice + maxOutputTokens * spec.price.output) / 1_000_000;
+  return ((requestBytes / 2 + 2048) * inputPrice + maxOutputTokens * spec.price.output) / 1_000_000;
 }

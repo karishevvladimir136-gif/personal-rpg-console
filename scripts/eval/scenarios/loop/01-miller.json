@@ -1,4 +1,14 @@
 {
+  "expect": {
+    "talk": [ { "outcome": "committed" } ],
+    "accept": [
+      { "outcome": "committed" },
+      { "label": "a character tied to the mill exists", "npcExists": "miller|mill|мельник|мельниц" },
+      { "label": "the accepted job is a recorded quest", "questExists": { "title": "flour|mill|sack|мук|мельн" } },
+      { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|mill|мельник|мельниц", "scripted": true },
+      { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн", "scripted": true }
+    ]
+  },
   "talk": {
     "note": "Fiction only: the miller is met and the offer is made; nothing durable is agreed yet.",
     "rounds": [

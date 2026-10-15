@@ -46,12 +46,23 @@ type StreamEvent = {
   };
 };
 
-function openAiInput(messages: DmMessage[], modelId: string): Item[] {
+function openAiInput(messages: DmMessage[], modelId: string, effortUpdate: string | null): Item[] {
+  let updated = false;
   return messages.flatMap((message): Item[] => {
     if (message.role === "user") return [{ role: "user", content: message.text }];
-    if (message.role === "tool_results")
-      return message.results.map((result) => ({ type: "function_call_output", call_id: result.callId,
+    if (message.role === "tool_results") {
+      const outputs: Item[] = message.results.map((result) => ({ type: "function_call_output", call_id: result.callId,
         output: result.isError ? `ERROR: ${result.output}` : result.output }));
+      // A continuation at another effort: the GPT-6 configuration_update item
+      // keeps the request-level effort (and the cached prefix) and changes the
+      // level from this point on. Placed once, before the first tool outputs,
+      // so its position is the same on every later request of the turn.
+      if (effortUpdate && !updated) {
+        updated = true;
+        return [{ type: "configuration_update", reasoning: { effort: effortUpdate } }, ...outputs];
+      }
+      return outputs;
+    }
     // Reasoning items (encrypted with store: false) go back with the tool outputs.
     if (message.native?.providerId === "openai" && message.native.modelId === modelId)
       return message.native.items as Item[];
@@ -65,19 +76,28 @@ function openAiInput(messages: DmMessage[], modelId: string): Item[] {
 
 /** The exact Responses API body for one request (exported for contract tests). */
 export function openAiRequestBody(modelId: string, request: DmModelRequest) {
-  const stable = request.system.filter((block) => block.cache).map((block) => block.text).join("\n\n");
+  // Each stable layer is its own developer message with an explicit cache
+  // breakpoint (at most three; the fourth write slot is the implicit breakpoint
+  // at the end of the latest message, which keeps continuations within a turn
+  // cached). Without the explicit ones the only breakpoint sat after the
+  // player's input, so the first request of every turn wrote the whole prefix
+  // and read nothing (stage 2 bench: 0 cached tokens on every first request).
+  const stable = request.system.filter((block) => block.cache).map((block) => block.text);
+  const merged = stable.length > 3 ? [...stable.slice(0, 2), stable.slice(2).join("\n\n")] : stable;
   const volatile = request.system.filter((block) => !block.cache).map((block) => block.text).join("\n\n");
+  const turnEffort = request.turnEffort ?? request.effort;
+  const effortUpdate = request.effort !== turnEffort ? modelReasoning(modelId, request.effort) : null;
   return {
     model: modelId,
     stream: true,
     store: false,
     service_tier: STANDARD_SERVICE_TIER,
-    reasoning: { effort: modelReasoning(modelId, request.effort) },
-    // Prompt caching is automatic: the stable instructions form the prefix.
-    instructions: stable,
+    reasoning: { effort: modelReasoning(modelId, turnEffort) },
+    ...(request.cacheKey ? { prompt_cache_key: request.cacheKey } : {}),
     input: [
+      ...merged.map((text) => ({ role: "developer", content: [{ type: "input_text", text, prompt_cache_breakpoint: { mode: "explicit" } }] })),
       ...(volatile ? [{ role: "developer", content: volatile }] : []),
-      ...openAiInput(request.messages, modelId),
+      ...openAiInput(request.messages, modelId, effortUpdate),
     ],
     ...(request.toolset && request.toolset.openai.length
       ? { tools: request.toolset.openai, tool_choice: "auto", parallel_tool_calls: true } : {}),

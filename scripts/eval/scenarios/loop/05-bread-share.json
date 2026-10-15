@@ -1,4 +1,23 @@
 {
+  "expect": {
+    "gift": [
+      { "outcome": "committed" },
+      { "label": "hero holds two loaves", "heroItem": { "name": "loaf|bread|хлеб|бухан", "eq": 2 } }
+    ],
+    "recruit": [
+      { "outcome": "committed" },
+      { "label": "Tamsin is a recorded companion", "npcExists": "tamsin|тамсин" }
+    ],
+    "eat": [
+      { "outcome": "committed" },
+      { "label": "eating removes exactly one loaf", "heroItemDelta": { "name": "loaf|bread|хлеб|бухан", "eq": -1 } }
+    ],
+    "share": [
+      { "outcome": "committed" },
+      { "label": "a loaf now belongs to the companion", "itemOwnedBy": { "item": "loaf|bread|хлеб|бухан", "owner": "tamsin|тамсин|companion" } },
+      { "label": "the loaf left the hero's inventory", "heroItemDelta": { "name": "loaf|bread|хлеб|бухан", "max": -1 } }
+    ]
+  },
   "gift": {
     "note": "A gift from the organiser: two loaves created for the hero.",
     "rounds": [

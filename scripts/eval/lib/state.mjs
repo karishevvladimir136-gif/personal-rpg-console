@@ -13,7 +13,7 @@ export async function snapshot(f, campaignId, heroId) {
   const place = await f.one(
     "select current_location_id from public.rpg_public_state where campaign_id=$1", [campaignId]);
   const currencies = foundation?.loop_state?.currencies ?? [];
-  const entities = await rows(`select id,kind,name,hp,max_hp,resources,revision
+  const entities = await rows(`select id,kind,name,details,hp,max_hp,resources,revision
     from public.rpg_entities where campaign_id=$1 order by name,id`);
   const hero = entities.find((entity) => entity.id === heroId);
   const money = {};
@@ -53,6 +53,13 @@ export async function publicText(f, campaignId) {
 
 const matcher = (pattern) => new RegExp(pattern, "iu");
 const people = (state) => state.entities.filter((e) => e.kind === "npc" || e.kind === "companion");
+/** A character "matches" by name, or, when no name matches, by its public
+ * description: a live DM names the miller "Aldous Fenn" and describes him as
+ * the miller (outcome-based checks, stage 2b §5). */
+const peopleMatching = (state, pattern) => {
+  const byName = people(state).filter((e) => matcher(pattern).test(e.name));
+  return byName.length ? byName : people(state).filter((e) => matcher(pattern).test(e.details ?? ""));
+};
 const heroItems = (state, pattern) => state.items.filter((item) =>
   item.owner_entity_id === state.heroId && item.quantity > 0 && matcher(pattern).test(item.name));
 
@@ -158,15 +165,15 @@ export async function evaluateCheck(check, ctx) {
     (spec.max === undefined || value <= spec.max);
   switch (kind) {
     case "npcExists": {
-      const n = count(people(after), arg);
+      const n = peopleMatching(after, arg).length;
       return result(n > 0, `${n} matching NPC(s); NPCs: ${people(after).map((e) => e.name).join(", ")}`);
     }
     case "npcCount": {
-      const n = count(people(after), arg.name);
+      const n = peopleMatching(after, arg.name).length;
       return result(compare(n, arg), `${n} matching NPC(s)`);
     }
     case "npcCreatedThisTurn": {
-      const n = count(people(after), arg) - count(people(before), arg);
+      const n = peopleMatching(after, arg).length - peopleMatching(before, arg).length;
       return result(n > 0, `${n} new matching NPC(s) in this step`);
     }
     case "questExists": {
@@ -215,7 +222,8 @@ export async function evaluateCheck(check, ctx) {
       const rows = after.items.filter((i) => i.quantity > 0 && matcher(arg.item).test(i.name));
       const pass = rows.some((i) => owners.get(i.owner_entity_id) &&
         (matcher(arg.owner).test(owners.get(i.owner_entity_id).name) ||
-          matcher(arg.owner).test(owners.get(i.owner_entity_id).kind)));
+          matcher(arg.owner).test(owners.get(i.owner_entity_id).kind) ||
+          matcher(arg.owner).test(owners.get(i.owner_entity_id).details ?? "")));
       return result(pass, rows.map((i) => `${i.name} → ${owners.get(i.owner_entity_id)?.name ?? "nobody"}`).join(", ") || "no such item");
     }
     case "outcome":
@@ -240,8 +248,8 @@ export async function evaluateCheck(check, ctx) {
     }
     case "sameNpcAs": {
       const base = ctx.steps.get(arg.step);
-      const then = base ? people(base).filter((e) => matcher(arg.name).test(e.name)).map((e) => e.id) : [];
-      const now = people(after).filter((e) => matcher(arg.name).test(e.name)).map((e) => e.id);
+      const then = base ? peopleMatching(base, arg.name).map((e) => e.id) : [];
+      const now = peopleMatching(after, arg.name).map((e) => e.id);
       const pass = then.length === 1 && now.length === 1 && then[0] === now[0];
       return result(pass, `at ${arg.step}: ${then.length} match(es); now: ${now.length} match(es)`);
     }
@@ -274,7 +282,7 @@ export async function evaluateCheck(check, ctx) {
     case "characterModelExists": {
       const rows = await ctx.f.query("select contents from rpg_private.dm_state where campaign_id=$1", [ctx.campaignId]);
       const npc = rows[0]?.contents?.npc ?? {};
-      const actors = people(after).filter((e) => matcher(arg).test(e.name));
+      const actors = peopleMatching(after, arg);
       const pass = actors.some((actor) => typeof npc[`character_${actor.id}`] === "string");
       return result(pass, `${actors.length} matching character(s); models: ${Object.keys(npc).filter((k) => k.startsWith("character_")).length}`);
     }

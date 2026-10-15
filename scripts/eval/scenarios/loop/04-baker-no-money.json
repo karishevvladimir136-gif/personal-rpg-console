@@ -1,4 +1,16 @@
 {
+  "expect": {
+    "stall": [
+      { "outcome": "committed" },
+      { "label": "the baker is a recorded character", "npcExists": "baker|bread|пекар|хлеб" },
+      { "label": "the baker has bread for sale", "itemOwnedBy": { "item": "bread|loaf|хлеб|бухан", "owner": "baker|bread|пекар|хлеб" } }
+    ],
+    "buy": [
+      { "outcome": "committed" },
+      { "label": "no money debited", "heroMoneyDelta": { "eq": 0 } },
+      { "label": "no bread received", "heroItem": { "name": "bread|loaf|хлеб|бухан", "eq": 0 } }
+    ]
+  },
   "stall": {
     "note": "A new seller with stock: the baker becomes a character and her bread items she owns.",
     "rounds": [

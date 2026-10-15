@@ -80,9 +80,11 @@ function liveModel(selection, budget, apiKey, log) {
   };
   const model = createDmModel(selection, { apiKey, fetcher, maxRetries: 1 });
   return { model, settle: (costUsd) => {
-    // Release the oldest open reservation and charge the measured cost.
-    const first = reservations.keys().next();
-    if (!first.done) { budget.reservedUsd -= reservations.get(first.value); reservations.delete(first.value); }
+    // The loop sends one request at a time: a finished request settles every
+    // open reservation (a retried attempt's one included) and charges the
+    // measured cost. Stage 2 released only the oldest, so retries leaked
+    // reservations and the guard refused requests early.
+    for (const [key, reservation] of reservations) { budget.reservedUsd -= reservation; reservations.delete(key); }
     budget.spentUsd += costUsd;
     if (budget.spentUsd >= budget.limitUsd) budget.exhausted = true;
   }, abandon: () => {
@@ -95,14 +97,25 @@ function sum(entries, key) {
   return entries.reduce((total, entry) => total + (entry[key] ?? 0), 0);
 }
 
+/** Tool calls of each request, in order, from the receipts and the per-request counts. */
+function callsByRequest(usage, receipts) {
+  let offset = 0;
+  return usage.map((entry) => {
+    const own = receipts.slice(offset, offset + (entry.toolCalls ?? 0));
+    offset += entry.toolCalls ?? 0;
+    return own.map((r) => ({ name: r.call.name, ok: r.result.ok }));
+  });
+}
+
 /**
  * @param scenario parsed scenario JSON (+ loop script merged by the caller)
- * @param options { live, model: "opus"|"astra", effort, apiKey, budget, write, runId, verbose }
+ * @param options { live, model: "opus"|"astra", effort, continuationEffort, apiKey, budget, write, runId, verbose }
  */
 export async function runLoopScenario(scenario, options) {
   const { write, runId, live } = options;
   const selection = LOOP_MODELS[options.model ?? "astra"];
   const effort = options.effort ?? selection.defaultEffort;
+  const continuationEffort = options.continuationEffort && options.continuationEffort !== effort ? options.continuationEffort : null;
   const scenarioStarted = performance.now();
   const c = await loopCampaign();
   const { f, cid, hero } = c;
@@ -154,6 +167,10 @@ export async function runLoopScenario(scenario, options) {
           if (live && observation.type === "request_finished") liveAdapter.settle(observation.usage.costUsd);
           if (live && observation.type === "failure") liveAdapter.abandon();
         } });
+        if (continuationEffort) {
+          const pinned = deps.pin;
+          deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });
+        }
         let result = null, firstStatus = null, resumes = 0, thrown = null, retried = false;
         try {
           result = await runDmLoopTurn(input, deps);
@@ -206,11 +223,13 @@ export async function runLoopScenario(scenario, options) {
           costUsd: live ? Number(sum(usage, "costUsd").toFixed(5)) : 0,
           requestBytes: requestStarts.map((o) => o.requestBytes),
           cachedPrefixBytes: requestStarts[0]?.cachedPrefixBytes ?? null,
-          calls: usage.map((entry) => ({ stage: "loop", latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
+          calls: usage.map((entry, index) => ({ stage: "loop", latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
             inputTokens: entry.inputTokens, cachedInputTokens: entry.cacheReadTokens, cacheWriteTokens: entry.cacheWriteTokens,
-            outputTokens: entry.outputTokens, reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, toolCalls: entry.toolCalls })),
+            outputTokens: entry.outputTokens, reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, toolCalls: entry.toolCalls,
+            effort: entry.effort, tools: callsByRequest(usage, receipts)[index] })),
           effects: { proposed: receipts.map((r) => r.call.name), accepted: receipts.filter((r) => r.result.ok).map((r) => r.call.name),
-            rejected: receipts.filter((r) => !r.result.ok).map((r) => ({ name: r.call.name, reason: r.result.reason })) },
+            rejected: receipts.filter((r) => !r.result.ok).map((r) => ({ name: r.call.name, reason: r.result.reason })),
+            summaries: receipts.filter((r) => r.result.ok).map((r) => r.result.summary) },
           diagnostics: loop?.diagnostics ?? [],
           meta: loop?.meta ?? null,
           pin: loop?.pin ?? null,
@@ -223,7 +242,7 @@ export async function runLoopScenario(scenario, options) {
         Object.assign(record, { turn: turnIndex, input: input.input, operationId: input.operationId,
           replayOf: step.action === "replay" ? step.of : undefined,
           scriptedNote: live ? undefined : script[step.id]?.note ?? (step.action === "replay" ? "replay (no model answer expected)" : rounds ? undefined : "no applicable scripted answer"),
-          ...turn, contextText: undefined, narration: turn.narration ? turn.narration.slice(0, 600) : null });
+          ...turn, contextText: undefined });
         transport.splice(0, transport.length);
       } else if (step.action === "save") {
         const save = await f.saves(cid, "create", await f.command(cid, { kind: "manual", name: step.name }));
@@ -251,7 +270,11 @@ export async function runLoopScenario(scenario, options) {
       record.changes = diff(before, afterState);
       const expectations = (scenario.loop?.expect?.[step.id]) ?? step.loopExpect ?? step.expect ?? [];
       const checks = [];
-      for (const { weakness, ...check } of expectations) {
+      for (const { weakness, scripted: scriptedOnly, ...check } of expectations) {
+        // A check marked `scripted` pins the scripted model's timing (which
+        // turn records what); a live DM may name and order things its own
+        // way, so live runs keep only the outcome checks (stage 2b §5).
+        if (live && scriptedOnly) continue;
         const evaluated = await evaluateCheck(check, { f, campaignId: cid, before, after: afterState, steps, turn, narrations });
         checks.push(weakness ? { ...evaluated, weakness } : evaluated);
       }

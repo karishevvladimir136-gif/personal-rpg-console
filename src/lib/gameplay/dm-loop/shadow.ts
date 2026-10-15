@@ -207,8 +207,34 @@ export class ShadowState {
     if (matches.length > 1)
       throw new ToolReject(`${what}: the name "${text}" matches several records.`,
         `Use one of the IDs: ${matches.map((m) => m.id).join(", ")}.`);
+    // One retry should be enough: the rejection names the closest existing
+    // records (shared words, or one name containing the other) with their IDs.
+    const close = this.closeNames(text, families);
     throw new ToolReject(`${what}: nothing named "${text}" exists yet and it is not a local key of this turn.`,
-      "Create the record first (upsert_character / upsert_place / item create) or use an existing ID.");
+      close.length ? `Did you mean ${close.map((row) => `${row.name} (${row.id})`).join(", ")}? Use that ID, or create a new record first (upsert_character / upsert_place / item create).`
+        : `Known ${families.join("/")}: ${this.knownNames(families).join(", ") || "none"}. Create the record first (upsert_character / upsert_place / item create) or use an existing ID.`);
+  }
+
+  private namesOf(families: ShadowRef["family"][]): { family: ShadowRef["family"]; id: string; name: string }[] {
+    return families.flatMap((family) => this.rowsOf(family).map((row) => {
+      const named = row as unknown as { name?: unknown; title?: unknown };
+      return { family, id: row.id, name: typeof named.name === "string" ? named.name : typeof named.title === "string" ? named.title : "" };
+    })).filter((row) => row.name);
+  }
+
+  /** Records whose name shares a word with the text or contains it (or vice versa). */
+  closeNames(text: string, families: ShadowRef["family"][]): { family: ShadowRef["family"]; id: string; name: string }[] {
+    const lower = text.toLocaleLowerCase();
+    const words = new Set(lower.split(/[^\p{L}\p{N}]+/u).filter((w) => w.length >= 3));
+    return this.namesOf(families).filter((row) => {
+      const name = row.name.toLocaleLowerCase();
+      return name.includes(lower) || lower.includes(name) ||
+        name.split(/[^\p{L}\p{N}]+/u).some((w) => w.length >= 3 && words.has(w));
+    }).slice(0, 6);
+  }
+
+  knownNames(families: ShadowRef["family"][]): string[] {
+    return this.namesOf(families).slice(0, 12).map((row) => `${row.name} (${row.id})`);
   }
 
   rowsOf(family: ShadowRef["family"]): { id: string; campaign_id: string }[] {

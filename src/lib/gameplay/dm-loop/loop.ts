@@ -41,7 +41,7 @@ export type DmLoopDependencies = {
   model: (pin: DmLoopPin) => DmModel;
   /** Resolve and pin the campaign's DM model for this operation (read-first:
    * a retry returns the first pin even if the campaign setting changed). */
-  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort">>;
+  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort">>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -52,10 +52,33 @@ export const dmLoopToolset = compileToolset(dmLoopTools);
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
 const NARRATE_NOW = "The player has not seen any narration yet. Write the narration of this turn now, as text, in the campaign language, based on the accepted tool results. No more tool calls are needed.";
 
-function joinText(previous: string, next: string): string {
+/** What goes between the text of one request and the next: nothing after a
+ * dash (a sentence interrupted by a roll continues), a paragraph break after a
+ * finished sentence, a space otherwise. The live stream emits the same. */
+export function textSeparator(previous: string, next: string): string {
+  if (!previous.trim() || !next.trim()) return "";
+  const end = previous.replace(/\s+$/, "").at(-1) ?? "";
+  if (/[—–-]/.test(end) || /^\s*[—–-]/.test(next)) return "";
+  if (/[.!?…»"”)\]*_]/.test(end) || /\n$/.test(previous) || /^\s*\n/.test(next)) return "\n\n";
+  return " ";
+}
+
+/** The text to append after `previous` for the next request's `next`: the
+ * separator plus `next` without its leading whitespace (and without a second
+ * dash when both sides carry one). */
+export function continuation(previous: string, next: string): string {
+  if (!next.trim()) return "";
+  if (!previous.trim()) return next;
+  const separator = textSeparator(previous, next);
+  let body = next.replace(/^\s+/, "");
+  if (separator === "" && /[—–-]$/.test(previous.replace(/\s+$/, "")) && /^[—–-]/.test(body)) body = body.replace(/^[—–-]\s*/, "");
+  return separator + body;
+}
+
+export function joinText(previous: string, next: string): string {
   if (!next.trim()) return previous;
   if (!previous.trim()) return next;
-  return `${previous.replace(/\s+$/, "")}\n\n${next.replace(/^\s+/, "")}`;
+  return `${previous.replace(/\s+$/, "")}${continuation(previous, next)}`;
 }
 
 function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
@@ -132,6 +155,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     if (!loop.pin) {
       const selected = await deps.pin(claim);
       loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: selected.effort,
+        ...(selected.continuationEffort && selected.continuationEffort !== selected.effort ? { continuationEffort: selected.continuationEffort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator" };
     }
     const pin = loop.pin;
@@ -212,8 +236,12 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       }
       const lastRequest = loop.requests === L.maxModelRequests - 1 || loop.receipts.length >= L.maxToolCalls;
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
+      // Requests after the first (continuations after tool results) may run at
+      // the pinned continuation effort (stage 2b §3).
+      const effort = loop.requests > 0 && pin.continuationEffort ? pin.continuationEffort : pin.effort;
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
-        toolset: dmLoopToolset, effort: pin.effort, maxOutputTokens: L.maxOutputTokens, operationId };
+        toolset: dmLoopToolset, effort, ...(effort !== pin.effort ? { turnEffort: pin.effort } : {}),
+        maxOutputTokens: L.maxOutputTokens, operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
         layers: context.system.map((block) => ({ bytes: new TextEncoder().encode(block.text).length,
@@ -228,12 +256,16 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         for await (const event of model.stream(request)) {
           if (event.type === "text_delta") {
             if (firstTextMs === null) firstTextMs = Math.round(now() - started);
+            // The live stream gets exactly what the saved narration will have
+            // between this request's text and the previous one (joinText).
+            const fresh = !roundText.trim();
             roundText += event.text;
-            live({ type: "text", text: event.text });
+            const piece = fresh ? continuation(loop.text, roundText) : event.text;
+            if (piece) live({ type: "text", text: piece });
           } else if (event.type === "tool_call") {
             toolCalls.push({ id: event.id, name: event.name, arguments: event.arguments });
           } else if (event.type === "usage") {
-            usage = { providerId: pin.providerId, modelId: pin.modelId, effort: pin.effort, ...event.usage,
+            usage = { providerId: pin.providerId, modelId: pin.modelId, effort, ...event.usage,
               costUsd: dmUsageCost(spec, event.usage), latencyMs: 0, firstTextMs, requestBytes, toolCalls: 0 };
           } else if (event.type === "stop") {
             stop = event;
@@ -248,7 +280,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         throw new DmError("provider", true);
       }
       requireRule(stop);
-      const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort: pin.effort,
+      const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort,
         inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: null, costUsd: 0,
         firstTextMs, requestBytes }), latencyMs: Math.round(now() - started), toolCalls: toolCalls.length, firstTextMs };
       loop.usage.push(entry);

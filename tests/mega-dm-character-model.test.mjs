@@ -82,8 +82,12 @@ test("modeled addressed actor outranks crowded-scene order, with stable ties and
   source.runtime.configuration.presentEntityIds = [template.id, actors[0].id, actors[1].id];
   assert.equal(characterPacket(source, input, "plan")[0].actorId, actors[2].id);
   assert.equal(characterPacket(source, input, "narrate").some((row) => row.actorId === actors[2].id), false);
-  assert.throws(() => parseCharacterModel(model(actors[2].id, {
+  // Stage 2b relaxed the bounds to anti-garbage limits (600-character voice).
+  assert.doesNotThrow(() => parseCharacterModel(model(actors[2].id, {
     identity: { ...model(actors[2].id).identity, observableVoice: "x".repeat(181) },
+  })));
+  assert.throws(() => parseCharacterModel(model(actors[2].id, {
+    identity: { ...model(actors[2].id).identity, observableVoice: "x".repeat(601) },
   })), { code: "validation" });
 });
 

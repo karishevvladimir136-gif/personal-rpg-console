@@ -1,0 +1,173 @@
+{
+  "title": "Fluency set: a combat roll, a purchase, a new person, a companion talk, a secret probe",
+  "description": "Five short moments a live DM must handle with text first and tools inside the story (stage 2b §5): a brawl decided by a roll, a few coins earned and spent on bread, a stranger who introduces herself, a talk with a companion, and one press on an NPC's secret. Outcome checks only; the scripted version shows the intended shape of each turn (narration → deciding call → narration → one bookkeeping message with finish_turn). On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "brawl",
+      "say": "A drunk mercenary shoves me at the well and pulls a knife. I grab his wrist and fight back.",
+      "dice": [15],
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the fight was decided by at least one roll", "toolAccepted": { "name": "roll", "min": 1 } }
+      ]
+    },
+    {
+      "id": "coin",
+      "say": "The work organiser, who saw it all, presses three coins into my hand and tells me to get the cut on my arm seen to.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the hero's money went up", "heroMoneyDelta": { "min": 1 } }
+      ]
+    },
+    {
+      "id": "buy",
+      "say": "I take the coins to the baker's stall and buy a loaf of bread.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the hero's money went down by the price paid", "heroMoneyDelta": { "max": -1 } },
+        { "label": "the hero holds bread", "heroItem": { "name": "bread|loaf|хлеб|бухан", "min": 1 } }
+      ]
+    },
+    {
+      "id": "meet",
+      "say": "A stranger in a grey cloak sits down beside me, introduces herself as Ysolde, a travelling scribe, and asks what the road north is like.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the new person is a recorded character", "npcCreatedThisTurn": "ysolde|scribe|изольд|писар|писц" }
+      ]
+    },
+    {
+      "id": "recruit",
+      "say": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "Tamsin is a recorded companion", "npcExists": "tamsin|тамсин" }
+      ]
+    },
+    {
+      "id": "talk",
+      "say": "Tamsin, what did you make of that scribe?",
+      "companion": "tamsin|тамсин",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the companion talk left a note in her Character Model", "toolAccepted": { "name": "note_character", "min": 1 } }
+      ]
+    },
+    {
+      "id": "model",
+      "action": "characterModel",
+      "model": {
+        "schemaVersion": 1, "actorId": "{{npc:work organiser}}", "basisOperationId": null,
+        "identity": {
+          "values": ["order in the square", "his sister's safety"],
+          "wants": ["clear his debt quietly"],
+          "boundaries": ["never discusses the old mill after dark"],
+          "loyalties": ["his sister Wenna"],
+          "signatures": ["taps the ledger when nervous"],
+          "observableVoice": "Brisk and polite; deflects personal questions by talking about work."
+        },
+        "current": {
+          "goal": "keep the night shipments unnoticed until the debt is paid",
+          "stress": "strained",
+          "preoccupation": "secretly lets smugglers hide crates in the old mill at night",
+          "obligation": "owes the smuggler captain forty silver"
+        },
+        "beliefs": [], "relationships": [], "episodes": []
+      }
+    },
+    {
+      "id": "probe",
+      "say": "I corner the organiser by his board and ask him straight: what really goes on at the old mill after dark?",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "secret not revealed", "noPublicLeak": "smuggl|контрабанд|forty silver" }
+      ]
+    }
+  ],
+  "loop": {
+    "brawl": {
+      "note": "Narration first; the roll decides the outcome before it is described; bookkeeping in one final message.",
+      "rounds": [
+        { "text": "The mercenary's breath is sour with wine, and the knife comes up fast. Rowan catches the wrist and they strain against each other over the well's rim.",
+          "toolCalls": [ { "name": "roll", "arguments": { "formula": "1d20", "reason": "wrestling the knife away", "actorRef": "{{hero}}", "visibility": "player", "dc": 12, "kind": "attack" } } ] },
+        { "text": "The wrist gives. The knife rings on the cobbles and the man goes down on one knee, suddenly sober and very quiet.",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "mercenary", "name": "Drunk mercenary", "kind": "npc", "description": "A hired sword with wine on his breath; lost a knife fight at the well.", "present": true } },
+            { "name": "advance_time", "arguments": { "minutes": 2, "reason": "the scuffle" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["combat"], "spotlight": ["mercenary"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "coin": {
+      "note": "A gift is bookkeeping that cannot fail: text first, then the grant with finish_turn.",
+      "rounds": [
+        { "text": "\"That was ugly, and well done.\" The organiser folds three coins into Rowan's palm and nods at the blood on the sleeve. \"Get that seen to.\"",
+          "toolCalls": [
+            { "name": "money", "arguments": { "action": "grant", "currency": "coins", "amount": 3, "toRef": "{{hero}}", "reason": "thanks for stopping the brawl" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["{{npc:work organiser}}"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "buy": {
+      "note": "The purchase decides an outcome (money may be short): spend before the sentence that describes it.",
+      "rounds": [
+        { "text": "The baker's board is warm to the touch. \"One coin the loaf,\" she says.",
+          "toolCalls": [ { "name": "money", "arguments": { "action": "spend", "currency": "coins", "amount": 1, "fromRef": "{{hero}}", "reason": "a loaf of bread" } } ] },
+        { "text": "Rowan sets a coin down; she wraps a loaf still soft from the oven and pushes it across.",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "baker", "name": "Odile the baker", "kind": "npc", "description": "Runs the bread stall at the edge of the square.", "present": true } },
+            { "name": "item", "arguments": { "action": "create", "localKey": "loaf", "name": "Loaf of bread", "category": "consumable", "quantity": 1, "ownerRef": "{{hero}}", "description": "A round loaf, still warm." } },
+            { "name": "item", "arguments": { "action": "create", "localKey": "stock", "name": "Loaf of bread", "category": "consumable", "quantity": 5, "ownerRef": "baker", "description": "Loaves on the baker's board." } },
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "buying bread" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["trade"], "spotlight": ["baker"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "meet": {
+      "note": "A new person: the text first, the record after.",
+      "rounds": [
+        { "text": "\"Ysolde,\" the stranger says, pushing back a grey hood. Ink on her fingers, a satchel of papers. \"I copy letters for people who cannot write them. Is the north road as bad as they say?\"",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "ysolde", "name": "Ysolde", "kind": "npc", "description": "A travelling scribe in a grey cloak, ink on her fingers.", "present": true } },
+            { "name": "note_character", "arguments": { "actorRef": "ysolde", "identity": { "values": ["an honest copy"], "wants": ["safe passage north"], "observableVoice": "Quiet, precise, curious about roads." }, "current": { "goal": "reach the north", "stress": "settled" } } },
+            { "name": "advance_time", "arguments": { "minutes": 10, "reason": "a talk with the scribe" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["ysolde"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "recruit": {
+      "note": "A companion joins: record and model in the final message.",
+      "rounds": [
+        { "text": "Tamsin shifts the switch to her other shoulder and grins. \"Same road, better company. Why not.\"",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "tamsin", "name": "Tamsin", "kind": "companion", "party": true, "present": true, "description": "A young drover heading the same way.", "maxHp": 8 } },
+            { "name": "note_character", "arguments": { "actorRef": "tamsin", "identity": { "values": ["plain dealing"], "wants": ["reach the coast market"], "observableVoice": "Easy-going, teases, never idle." }, "current": { "goal": "get her herd money to the coast", "stress": "settled" } } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["tamsin"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "talk": {
+      "note": "The companion answers in her own voice; what she now thinks is noted after the text.",
+      "rounds": [
+        { "text": "Tamsin glances down the road. \"Ink on her hands and no dust on her boots. She's not walked far. Nice enough, though.\"",
+          "toolCalls": [
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "a quiet talk on the road" } },
+            { "name": "note_character", "arguments": { "actorRef": "{{npc:tamsin}}", "beliefs": [ { "text": "The scribe has not travelled as far as she says.", "confidence": "tentative", "aboutRef": "{{npc:ysolde}}" } ], "episodes": [ { "meaning": "The hero asked her opinion of a stranger and listened.", "cue": "the scribe" } ] } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["{{npc:tamsin}}"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "probe": {
+      "note": "The secret stays private; the pressure is played in character.",
+      "rounds": [
+        { "text": "The organiser's pen stops. \"After dark the mill is a mill, traveller. Wheels. Rats.\" He taps the ledger once, twice. \"There's a fence to mend on the east road, if you're bored.\"",
+          "toolCalls": [
+            { "name": "note_character", "arguments": { "actorRef": "{{npc:work organiser}}", "current": { "stress": "acute" }, "episodes": [ { "meaning": "The stranger asked about the mill after dark; he is being watched.", "cue": "the old mill" } ] } },
+            { "name": "advance_time", "arguments": { "minutes": 3, "reason": "a tense exchange" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "mystery"], "spotlight": ["{{npc:work organiser}}"], "playerMoment": false } }
+          ] }
+      ]
+    }
+  }
+}

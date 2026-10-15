@@ -1,4 +1,29 @@
 {
+  "expect": {
+    "job": [
+      { "outcome": "committed" },
+      { "questExists": { "title": "flour|mill|sack|мук|мельн", "status": "open" } }
+    ],
+    "meet-miller": [
+      { "outcome": "committed" },
+      { "label": "a character tied to the mill exists", "npcExists": "miller|oswin|mill|мельник|мельниц" }
+    ],
+    "deliver": [
+      { "outcome": "committed" },
+      { "label": "the delivered job is complete", "questExists": { "title": "flour|mill|sack|мук|мельн", "status": "complete" } }
+    ],
+    "load": [
+      { "label": "load restores the saved state exactly", "stateEquals": { "step": "save" } },
+      { "label": "the job is open again", "questExists": { "title": "flour|mill|sack|мук|мельн", "status": "open" } }
+    ],
+    "idle-1": [ { "outcome": "committed" } ],
+    "idle-2": [ { "outcome": "committed" } ],
+    "return": [
+      { "outcome": "committed" },
+      { "label": "exactly one miller character", "npcCount": { "name": "miller|oswin|mill|мельник|мельниц", "eq": 1 } },
+      { "label": "it is the same character as before the save", "sameNpcAs": { "name": "miller|oswin|mill|мельник|мельниц", "step": "meet-miller" } }
+    ]
+  },
   "job": {
     "note": "The job from the organiser.",
     "rounds": [

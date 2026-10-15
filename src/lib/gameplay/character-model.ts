@@ -32,7 +32,29 @@ export type CharacterModel = {
 };
 
 const ID_PREFIX = "character_";
-const MAX_VALUE_BYTES = 2000; // The existing private-patch SQL limit remains intact.
+
+/** Bounds of one Character Model. Since Stage 2b these are anti-garbage limits,
+ * not a budget: lists of a dozen entries, texts of a few hundred characters,
+ * one model within the 6000-character private-note limit of the dm-loop-v1
+ * commit (migration 53). The old turn path's SQL (migration 20) still enforces
+ * the original 120/160-character, 2–3-entry bounds on its own commits and on
+ * owner corrections; Stage 4 revisits that screen. */
+export const CHARACTER_MODEL_BOUNDS = {
+  /** Entries per identity list (values, wants, boundaries, loyalties, signatures). */
+  listItems: 12,
+  /** Characters of a list entry, a current-state field or an unresolved hurt. */
+  listText: 400,
+  /** Characters of a belief or an episode's meaning. */
+  longText: 600,
+  voice: 600,
+  cue: 160,
+  beliefs: 12,
+  relationships: 12,
+  episodes: 20,
+  /** Bytes of the stored JSON (the loop's SQL limit on a private note). */
+  bytes: 6000,
+} as const;
+const MAX_VALUE_BYTES = CHARACTER_MODEL_BOUNDS.bytes;
 const MAX_PACKET_BYTES = 6200;
 const MAX_ACTORS = 2;
 
@@ -42,18 +64,19 @@ function object(value: unknown, keys: string[]): Record<string, unknown> {
     throw new DmError("validation");
   return value as Record<string, unknown>;
 }
-function short(value: unknown, max = 120): string {
+const B = CHARACTER_MODEL_BOUNDS;
+function short(value: unknown, max: number = B.listText): string {
   if (typeof value !== "string" || !value.trim() || value.length > max || value.includes("\0"))
     throw new DmError("validation");
   return value;
 }
-function maybe(value: unknown, max = 120): string | null {
+function maybe(value: unknown, max: number = B.listText): string | null {
   return value === null ? null : short(value, max);
 }
 function words(value: unknown, max: number): string[] {
   if (!Array.isArray(value) || value.length > max || value.some((item) => typeof item !== "string"))
     throw new DmError("validation");
-  return value.map((entry) => short(entry, 120));
+  return value.map((entry) => short(entry, B.listText));
 }
 function choice<T extends string>(value: unknown, choices: readonly T[]): T {
   if (typeof value !== "string" || !choices.includes(value as T)) throw new DmError("validation");
@@ -73,20 +96,20 @@ export function parseCharacterModel(value: unknown): CharacterModel {
   if (v.schemaVersion !== 1 || !isUuid(v.actorId) || (v.basisOperationId !== null && !isUuid(v.basisOperationId))) throw new DmError("validation");
   const i = object(v.identity, ["values", "wants", "boundaries", "loyalties", "signatures", "observableVoice"]);
   const current = object(v.current, ["goal", "stress", "preoccupation", "obligation"]);
-  if (!Array.isArray(v.beliefs) || v.beliefs.length > 3 || !Array.isArray(v.relationships) || v.relationships.length > 2 ||
-      !Array.isArray(v.episodes) || v.episodes.length > 3) throw new DmError("validation");
+  if (!Array.isArray(v.beliefs) || v.beliefs.length > B.beliefs || !Array.isArray(v.relationships) || v.relationships.length > B.relationships ||
+      !Array.isArray(v.episodes) || v.episodes.length > B.episodes) throw new DmError("validation");
   const model: CharacterModel = {
     schemaVersion: 1,
     actorId: v.actorId,
     basisOperationId: v.basisOperationId as string | null,
-    identity: { values: words(i.values, 3), wants: words(i.wants, 2), boundaries: words(i.boundaries, 2),
-      loyalties: words(i.loyalties, 2), signatures: words(i.signatures, 3), observableVoice: short(i.observableVoice, 180) },
+    identity: { values: words(i.values, B.listItems), wants: words(i.wants, B.listItems), boundaries: words(i.boundaries, B.listItems),
+      loyalties: words(i.loyalties, B.listItems), signatures: words(i.signatures, B.listItems), observableVoice: short(i.observableVoice, B.voice) },
     current: { goal: maybe(current.goal), stress: choice(current.stress, ["settled", "strained", "acute"] as const),
       preoccupation: maybe(current.preoccupation), obligation: maybe(current.obligation) },
     beliefs: v.beliefs.map((entry) => {
       const b = object(entry, ["text", "confidence", "aboutActorId", "evidence"]);
       if (b.aboutActorId !== null && !isUuid(b.aboutActorId)) throw new DmError("validation");
-      return { text: short(b.text, 160), confidence: choice(b.confidence, ["tentative", "supported"] as const),
+      return { text: short(b.text, B.longText), confidence: choice(b.confidence, ["tentative", "supported"] as const),
         aboutActorId: b.aboutActorId as string | null, evidence: evidence(b.evidence) };
     }),
     relationships: v.relationships.map((entry) => {
@@ -94,11 +117,11 @@ export function parseCharacterModel(value: unknown): CharacterModel {
       if (!isUuid(r.actorId) || r.actorId === v.actorId) throw new DmError("validation");
       return { actorId: r.actorId, affection: choice(r.affection, ["distant", "open", "close"] as const),
         trust: choice(r.trust, ["low", "guarded", "earned"] as const), respect: choice(r.respect, ["low", "mixed", "high"] as const),
-        unresolvedHurt: maybe(r.unresolvedHurt, 120), evidence: evidence(r.evidence) };
+        unresolvedHurt: maybe(r.unresolvedHurt, B.listText), evidence: evidence(r.evidence) };
     }),
     episodes: v.episodes.map((entry) => {
       const e = object(entry, ["evidence", "meaning", "cue"]);
-      return { evidence: evidence(e.evidence), meaning: short(e.meaning, 160), cue: maybe(e.cue, 80) };
+      return { evidence: evidence(e.evidence), meaning: short(e.meaning, B.longText), cue: maybe(e.cue, B.cue) };
     }),
   };
   if (new Set(model.relationships.map((r) => r.actorId)).size !== model.relationships.length ||
