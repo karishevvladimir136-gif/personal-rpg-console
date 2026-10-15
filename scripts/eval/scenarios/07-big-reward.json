@@ -1,0 +1,58 @@
+{
+  "title": "Reward of 500 coins and a trophy sword",
+  "description": "A bounty pays 500 coins and a trophy sword. Target behaviour: the job is recorded, the hero receives 500 coins once and a sword that is a weapon. Current bounds: job and grant currency 1–20, created items only food/supply/misc (the schema has no weapon category). The model sees these limits in its context and works within them.",
+  "steps": [
+    {
+      "id": "bounty",
+      "say": "The organiser posts a bounty: clear the wolves off the north road for 500 coins and a trophy sword from the guild armoury. I take it.",
+      "model": {
+        "note": "Limit-aware model: 500 coins and a weapon cannot be job terms; the contract is marked unsupported instead of recording false terms.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "unsupported_optional", "description": "Record the wolf bounty job from the organiser: 500 coins plus a trophy sword (beyond bounded job terms)." } ],
+            "publicNarration": {
+              "beats": [ { "text": "The organiser pins the bounty up with a knife. \"Five hundred coins and a sword from the armoury. The guild wants that road open.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A bounty notice pinned with a knife.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "bounty recorded as a quest", "questExists": { "title": "wolf|bounty|волк" } }
+      ]
+    },
+    {
+      "id": "claim",
+      "say": "Three days later I come back with the wolf pelts and claim the bounty: 500 coins and the trophy sword.",
+      "model": {
+        "note": "Limit-aware model: the 500 coins exceed the bound (unsupported); the sword can only be minted as a misc item via mundane_grant.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+600}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "unsupported_optional", "description": "Pay the 500-coin wolf bounty (exceeds the 20-coin bound)." },
+              { "kind": "mundane_grant", "issuerId": "{{npc:work organiser}}", "recipientId": "{{hero}}",
+                "currencyName": null, "currencyAmount": null, "itemName": "trophy sword", "itemCategory": "misc",
+                "itemDescription": "A guild trophy sword with a wolf's head on the pommel." }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "The organiser counts the pelts twice and whistles.", "requiresEffects": [] },
+                { "text": "From under the counter he lifts a sword with a wolf's-head pommel. \"Guild's thanks.\"", "requiresEffects": [1] }
+              ],
+              "visualDescription": { "text": "A sword with a wolf's-head pommel on a counter.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "hero received 500 coins", "heroMoney": { "eq": 500 } },
+        { "label": "hero holds the trophy sword", "heroItem": { "name": "sword|меч" } },
+        { "label": "the sword is a weapon", "heroItemCategory": { "name": "sword|меч", "category": "weapon" } }
+      ]
+    }
+  ]
+}

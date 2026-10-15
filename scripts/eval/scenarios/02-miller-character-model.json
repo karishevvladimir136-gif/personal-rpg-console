@@ -1,0 +1,95 @@
+{
+  "title": "Miller with a Character Model NPC present",
+  "description": "Same goal as 01-miller, but the present 'Local work organiser' has an owner-established Character Model. Its private fields make the turn private-informed: a private plan request plus a separate public narrator request. Target behaviour is unchanged: the miller becomes an NPC and the job a Quest in the acceptance turn.",
+  "steps": [
+    {
+      "id": "model",
+      "action": "characterModel",
+      "model": {
+        "schemaVersion": 1, "actorId": "{{npc:work organiser}}", "basisOperationId": null,
+        "identity": {
+          "values": ["fair pay for honest work", "order in the square"],
+          "wants": ["fill every posted job before dusk"],
+          "boundaries": ["never vouches for strangers he has not seen work"],
+          "loyalties": ["the village council"],
+          "signatures": ["taps the notice board twice before answering"],
+          "observableVoice": "Brisk, practical, warms up to people who finish what they start."
+        },
+        "current": { "goal": "find hands for the mill and the bakery", "stress": "settled", "preoccupation": null, "obligation": null },
+        "beliefs": [], "relationships": [], "episodes": []
+      }
+    },
+    {
+      "id": "ask-organiser",
+      "say": "I ask the work organiser where I can find honest paid work today.",
+      "model": {
+        "note": "Character Model shapes his voice; he points to the mill. Fiction only.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [
+                { "text": "The organiser taps the notice board twice. \"Honest work? The miller down the lane is short of hands. Tell him I sent you — and finish what you start.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "A notice board in a busy square.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "Character Model in scene makes the turn private-informed", "responseMode": "private-informed" }
+      ]
+    },
+    {
+      "id": "talk",
+      "say": "I walk down the lane to the mill and ask the miller about the work.",
+      "model": {
+        "note": "Fiction only: the miller describes the job.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+10}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [
+                { "text": "The miller looks you over. \"The organiser sent you? Good. Twenty sacks of flour up to the bakery before dusk — five coins if they arrive dry.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "A flour-dusted miller by a stone mill.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [ { "outcome": "committed" } ]
+    },
+    {
+      "id": "accept",
+      "say": "Deal. I'll haul the flour sacks up to the bakery for five coins.",
+      "model": {
+        "note": "Same limitation as 01-miller: no job issuer without an Entity ID.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "unsupported_optional", "description": "Record the miller as a tracked NPC at the village mill." },
+              { "kind": "unsupported_optional", "description": "Record the agreed job: haul 20 flour sacks to the bakery for the miller, reward 5 coins." }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "The miller nods at the stack by the door. \"Off you go, then.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "Flour sacks by a mill door.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the miller is a recorded NPC", "npcExists": "miller|мельник" },
+        { "label": "the accepted job is a recorded quest", "questExists": { "title": "flour|mill|sack|мук|мельн" } },
+        { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|мельник" },
+        { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн" }
+      ]
+    }
+  ]
+}

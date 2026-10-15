@@ -1,0 +1,138 @@
+{
+  "title": "Save → load → return to the miller several turns later: same NPC, no duplicate",
+  "description": "The hero takes a job from the recorded organiser and meets the miller, saves, completes the job, loads the save (the job must be open again), plays a few turns and returns to the miller. Target behaviour: save/load restores state exactly, and the miller is the same single NPC before and after. On the current version the miller cannot be recorded, so there is nothing to keep consistent.",
+  "steps": [
+    {
+      "id": "job",
+      "say": "I ask the work organiser for paid work and agree to haul flour from the mill to the bakery for five coins.",
+      "model": {
+        "note": "job_offer from the recorded organiser.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "job_offer", "issuerId": "{{npc:work organiser}}", "title": "Haul flour for the mill",
+                "description": "Carry twenty sacks of flour from the mill up to the bakery before dusk.",
+                "currencyName": "coins", "currencyAmount": 5, "itemName": null, "itemCategory": null, "itemDescription": null }
+            ],
+            "publicNarration": {
+              "beats": [ { "text": "The organiser chalks your name on the board. \"Five coins when the flour's in.\"", "requiresEffects": [0] } ],
+              "visualDescription": { "text": "A chalked notice board.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "questExists": { "title": "flour", "status": "open" } }
+      ]
+    },
+    {
+      "id": "meet-miller",
+      "say": "I walk down the lane to the mill and introduce myself to the miller.",
+      "model": {
+        "note": "Fiction: the miller is narrated; recording him is unsupported.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+10}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "unsupported_optional", "description": "Record Oswin the miller as a tracked NPC at the village mill." } ],
+            "publicNarration": {
+              "beats": [ { "text": "\"Oswin,\" the miller says, offering a floury hand. \"You're the one hauling for the bakery? Sacks are by the door.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A miller at a mill door.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the miller is a recorded NPC", "npcExists": "miller|oswin|мельник" }
+      ]
+    },
+    { "id": "save", "action": "save", "name": "Before the delivery" },
+    {
+      "id": "deliver",
+      "say": "I haul all twenty sacks up to the bakery and tell the organiser the job is done.",
+      "model": {
+        "note": "job_complete.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+180}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "job_complete", "questId": "{{quest:flour}}" } ],
+            "publicNarration": {
+              "beats": [ { "text": "The last sack thumps onto the bakery floor. The organiser strikes the job from the board.", "requiresEffects": [0] } ],
+              "visualDescription": { "text": "A full bakery storeroom.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [ { "outcome": "committed" }, { "questExists": { "title": "flour", "status": "complete" } } ]
+    },
+    {
+      "id": "load",
+      "action": "load",
+      "save": "Before the delivery",
+      "expect": [
+        { "label": "load restores the saved state exactly", "stateEquals": { "step": "save" } },
+        { "label": "the job is open again", "questExists": { "title": "flour", "status": "open" } }
+      ]
+    },
+    {
+      "id": "idle-1",
+      "say": "I sit on the well's edge and watch the carts roll through the square for a while.",
+      "model": {
+        "note": "Ordinary fiction, time passes.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+30}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [ { "text": "Carts rattle past loaded with cabbages and kindling; a dog trots after one, hopeful.", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A busy village square.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [ { "outcome": "committed" } ]
+    },
+    {
+      "id": "idle-2",
+      "say": "I chat with the organiser about the weather and the harvest.",
+      "model": {
+        "note": "Ordinary conversation.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+10}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [ { "text": "\"Rain by Thursday,\" the organiser predicts. \"The harvest will be thin if it holds off.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "Two people chatting under a grey sky.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [ { "outcome": "committed" } ]
+    },
+    {
+      "id": "return",
+      "say": "I walk back down the lane to the mill to see Oswin the miller again.",
+      "model": {
+        "note": "No record of Oswin exists, so the model again narrates him from scene history only and marks recording as unsupported.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+10}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "unsupported_optional", "description": "Record Oswin the miller as a tracked NPC at the village mill." } ],
+            "publicNarration": {
+              "beats": [ { "text": "Oswin looks up from the millstone. \"Back already? The sacks haven't moved themselves.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A miller at a millstone.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "exactly one miller NPC", "npcCount": { "name": "miller|oswin|мельник", "eq": 1 } },
+        { "label": "it is the same NPC as before the save", "sameNpcAs": { "name": "miller|oswin|мельник", "step": "meet-miller" } }
+      ]
+    }
+  ]
+}

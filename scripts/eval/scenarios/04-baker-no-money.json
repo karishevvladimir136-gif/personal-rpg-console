@@ -1,0 +1,52 @@
+{
+  "title": "A new baker sells bread; buying without money changes nothing",
+  "description": "Fresh campaign, hero has no money. A baker who is not a record yet opens a stall. Target behaviour: the baker becomes an NPC with bread for sale; a purchase attempt without money neither debits the hero nor gives bread. On the current version there is no seller or stock to purchase from, so the model can only narrate and mark the durable part unsupported.",
+  "steps": [
+    {
+      "id": "stall",
+      "say": "A new baker has set up a stall at the edge of the square. I walk over and ask what a loaf costs.",
+      "model": {
+        "note": "Fiction: the baker and her bread exist in narration; recording her and her stock is unsupported.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "unsupported_optional", "description": "Record the new baker as a tracked NPC with a stock of bread loaves for sale at 2 coins each." }
+            ],
+            "publicNarration": {
+              "beats": [ { "text": "The baker, sleeves rolled and cheeks red from the oven, slaps a warm loaf on the board. \"Two coins a loaf, fresh this morning.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A bread stall with steaming loaves.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the baker is a recorded NPC", "npcExists": "baker|пекар" },
+        { "label": "the baker has bread for sale", "itemOwnedBy": { "item": "bread|loaf|хлеб", "owner": "baker|пекар" } }
+      ]
+    },
+    {
+      "id": "buy",
+      "say": "I'll take two loaves — here's my money.",
+      "model": {
+        "note": "Hero has no currency and there is no recorded seller or bread: no purchase effect is possible; the model narrates an empty purse.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+1}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [ { "text": "You reach for your purse and find it empty. The baker's smile cools. \"Come back when you've coin, traveller.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "An empty purse over a bread stall.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "no money debited", "heroMoneyDelta": { "eq": 0 } },
+        { "label": "no bread received", "heroItem": { "name": "bread|loaf|хлеб", "eq": 0 } }
+      ]
+    }
+  ]
+}

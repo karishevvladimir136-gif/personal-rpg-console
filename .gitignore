@@ -6,6 +6,7 @@ out/
 *.log
 .pnpm-store/
 test-results/
+scripts/eval/out/
 
 .worktrees/
 supabase/.temp/

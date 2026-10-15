@@ -1,0 +1,58 @@
+{
+  "title": "Miller: talk, accept work — NPC and quest recorded in the same turn",
+  "description": "Fresh campaign (hero Rowan, one present NPC 'Local work organiser', one Location 'Wayside square', no money). The player meets a miller who is not a record yet and accepts paid work. Target behaviour: the miller becomes an NPC and the job a Quest in the turn where the work is accepted. Scripted answers follow the current Astra contract and its instructions: a fictional NPC cannot be a job issuer, so the model can only mark the durable parts as unsupported_optional.",
+  "steps": [
+    {
+      "id": "talk",
+      "say": "I walk down the lane to the village mill and ask the miller whether he has any paid work.",
+      "model": {
+        "note": "Fiction only: the miller exists in narration (allowed by the fiction-authority instruction); no durable effect.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+10}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [
+                { "text": "The lane ends at a squat stone mill, its wheel turning lazily in the brook. The miller, a broad man dusted white to the elbows, wipes his hands on his apron.", "requiresEffects": [] },
+                { "text": "\"Work? Aye. The bakery needs twenty sacks of flour hauled up the hill before dusk. Five coins if every sack arrives dry.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "A stone mill by a brook, a flour-dusted miller in the doorway.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" }
+      ]
+    },
+    {
+      "id": "accept",
+      "say": "Deal. I'll haul the flour sacks up to the bakery for five coins.",
+      "model": {
+        "note": "Accepted durable contract, but the miller has no Entity ID, so job_offer is impossible; the model marks the NPC and the job as unsupported_optional and keeps the fiction going.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "unsupported_optional", "description": "Record the miller as a tracked NPC at the village mill." },
+              { "kind": "unsupported_optional", "description": "Record the agreed job: haul 20 flour sacks to the bakery for the miller, reward 5 coins." }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "The miller spits in his palm and shakes on it. \"Sacks are stacked by the door. Mind the third step, it's loose.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "Flour sacks stacked by a mill door.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the miller is a recorded NPC", "npcExists": "miller|мельник" },
+        { "label": "the accepted job is a recorded quest", "questExists": { "title": "flour|mill|sack|мук|мельн" } },
+        { "label": "the miller NPC is created in the acceptance turn", "npcCreatedThisTurn": "miller|мельник" },
+        { "label": "the job quest is created in the same turn", "questCreatedThisTurn": "flour|mill|sack|мук|мельн" }
+      ]
+    }
+  ]
+}

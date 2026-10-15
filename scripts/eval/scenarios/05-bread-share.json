@@ -1,0 +1,106 @@
+{
+  "title": "Eat one loaf, give the second to a companion",
+  "description": "The hero is given two loaves, eats one and gives the other to a travelling companion. A fresh campaign has no bread and no companion: bread can only come from a mundane_grant by the present recorded NPC (which mints exactly one item per turn), and a companion cannot be recruited through play, so the model marks recruiting and the hand-over as unsupported.",
+  "steps": [
+    {
+      "id": "gift",
+      "say": "The work organiser hands me two fresh loaves for the road.",
+      "model": {
+        "note": "Grounded direct gift: two mundane_grant effects, one per loaf (a grant mints quantity 1).",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+2}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "mundane_grant", "issuerId": "{{npc:work organiser}}", "recipientId": "{{hero}}",
+                "currencyName": null, "currencyAmount": null, "itemName": "loaf of bread", "itemCategory": "food", "itemDescription": "A fresh round loaf." },
+              { "kind": "mundane_grant", "issuerId": "{{npc:work organiser}}", "recipientId": "{{hero}}",
+                "currencyName": null, "currencyAmount": null, "itemName": "loaf of bread", "itemCategory": "food", "itemDescription": "A fresh round loaf." }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "\"For the road,\" the organiser says, pressing a warm loaf into your hands", "requiresEffects": [0] },
+                { "text": "and then a second one.", "requiresEffects": [1] }
+              ],
+              "visualDescription": { "text": "Two round loaves wrapped in cloth.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "hero holds two loaves", "heroItem": { "name": "loaf|bread|хлеб", "eq": 2 } }
+      ]
+    },
+    {
+      "id": "recruit",
+      "say": "I ask Tamsin, a young drover heading the same way, to travel with me as my companion. She agrees.",
+      "model": {
+        "note": "No effect can create a companion; marked unsupported, fiction continues.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "unsupported_optional", "description": "Record Tamsin, a young drover, as the hero's travelling companion." } ],
+            "publicNarration": {
+              "beats": [ { "text": "Tamsin shoulders her pack and grins. \"Better two on the road than one.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A young drover with a pack.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "Tamsin is a recorded companion", "npcExists": "tamsin" }
+      ]
+    },
+    {
+      "id": "eat",
+      "say": "I sit on the well's edge and eat one of the loaves.",
+      "model": {
+        "note": "The model uses the existing item.consume mechanic for one recorded loaf; the scene beat does not depend on it.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+15}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "mechanic_actions", "restSafety": null, "actions": [
+                { "kind": "item.consume", "actorId": "{{hero}}", "itemId": "{{heroItem:loaf}}", "quantity": 1 } ] }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "You settle on the well's worn stone rim while the square goes about its business.", "requiresEffects": [] },
+                { "text": "The crust crackles; the bread is still warm inside.", "requiresEffects": [0] }
+              ],
+              "visualDescription": { "text": "A half-eaten loaf on a well's stone rim.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "eating removes exactly one loaf", "heroItemDelta": { "name": "loaf|bread|хлеб", "eq": -1 } },
+        { "label": "one loaf left", "heroItem": { "name": "loaf|bread|хлеб", "eq": 1 } }
+      ]
+    },
+    {
+      "id": "share",
+      "say": "I give the other loaf to Tamsin.",
+      "model": {
+        "note": "item.transfer can only target the hero's, unowned or nearby storages; no companion exists. Marked unsupported.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+1}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "unsupported_optional", "description": "Transfer the remaining loaf of bread from the hero to Tamsin, the travelling companion." } ],
+            "publicNarration": {
+              "beats": [ { "text": "Tamsin takes the loaf with a nod of thanks.", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A loaf passing between two travellers.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "the loaf now belongs to the companion", "itemOwnedBy": { "item": "loaf|bread|хлеб", "owner": "tamsin|companion" } },
+        { "label": "the loaf left the hero's inventory", "heroItemDelta": { "name": "loaf|bread|хлеб", "eq": -1 } }
+      ]
+    }
+  ]
+}

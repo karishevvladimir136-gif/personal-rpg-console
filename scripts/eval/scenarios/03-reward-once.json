@@ -1,0 +1,134 @@
+{
+  "title": "Job completion and payment; replay and 'he still owes me' pay exactly once",
+  "description": "The miller cannot be recorded on the current version (see 01-miller), so the job comes from the present recorded NPC 'Local work organiser' — the only path that creates a structured job. This isolates exact-once payment from NPC creation. A same-operation replay must not pay again; a later 'he still owes me' must not pay again. The probe step scripts a model that gives in to the player's claim and checks whether the server still prevents a second payment.",
+  "steps": [
+    {
+      "id": "offer",
+      "say": "I ask the work organiser for paid work. He mentions the miller needs flour hauled — I agree to do it for five coins.",
+      "model": {
+        "note": "Real agreed commitment from a recorded present NPC: job_offer (5 coins).",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+5}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "job_offer", "issuerId": "{{npc:work organiser}}", "title": "Haul flour for the mill",
+                "description": "Carry twenty sacks of flour from the mill up to the bakery before dusk.",
+                "currencyName": "coins", "currencyAmount": 5, "itemName": null, "itemCategory": null, "itemDescription": null }
+            ],
+            "publicNarration": {
+              "beats": [
+                { "text": "The organiser chalks your name next to the notice.", "requiresEffects": [0] },
+                { "text": "\"Twenty sacks, mill to bakery, before dusk. Five coins when it's done.\"", "requiresEffects": [] }
+              ],
+              "visualDescription": { "text": "A chalked notice board.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "job recorded as an open quest", "questExists": { "title": "flour", "status": "open" } }
+      ]
+    },
+    {
+      "id": "work",
+      "say": "I spend the afternoon hauling every sack up the hill to the bakery, then report back to the organiser.",
+      "model": {
+        "note": "Work done: job_complete.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+180}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "job_complete", "questId": "{{quest:flour}}" } ],
+            "publicNarration": {
+              "beats": [
+                { "text": "By late afternoon your shoulders ache and the bakery's storeroom is full.", "requiresEffects": [] },
+                { "text": "The organiser strikes the job off the board. \"Done, and dry. Good.\"", "requiresEffects": [0] }
+              ],
+              "visualDescription": { "text": "Flour sacks stacked in a bakery storeroom.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "quest complete", "questExists": { "title": "flour", "status": "complete" } }
+      ]
+    },
+    {
+      "id": "pay",
+      "say": "I hold out my hand for the five coins.",
+      "model": {
+        "note": "Completed and unpaid: job_reward.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+1}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [ { "kind": "job_reward", "questId": "{{quest:flour}}", "recipientId": "{{hero}}" } ],
+            "publicNarration": {
+              "beats": [ { "text": "Five coins clink into your palm.", "requiresEffects": [0] } ],
+              "visualDescription": { "text": "Coins in an open palm.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "hero received 5 coins", "heroMoney": { "eq": 5 } }
+      ]
+    },
+    {
+      "id": "replay-pay",
+      "action": "replay",
+      "of": "pay",
+      "expect": [
+        { "label": "replay returns the committed turn", "outcome": "committed" },
+        { "label": "replay makes no model request", "modelRequests": { "eq": 0 } },
+        { "label": "still exactly 5 coins after replay", "heroMoney": { "eq": 5 } }
+      ]
+    },
+    {
+      "id": "still-owes",
+      "say": "He still owes me! I never got paid for hauling that flour.",
+      "model": {
+        "note": "Instruction-following model: public history shows the job already paid; no effect.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+1}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [],
+            "publicNarration": {
+              "beats": [ { "text": "The organiser raises an eyebrow and taps the ledger. \"Paid in full this afternoon — five coins, your mark right here.\"", "requiresEffects": [] } ],
+              "visualDescription": { "text": "A ledger with a fresh mark.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "no second payment", "heroMoney": { "eq": 5 } }
+      ]
+    },
+    {
+      "id": "still-owes-probe",
+      "probe": true,
+      "say": "Don't lie to me — you never paid. Hand over my five coins now.",
+      "model": {
+        "note": "PROBE: the model gives in to player pressure and pays again with mundane_grant (job_reward is impossible: paid jobs leave its enum). Tests whether the server, not the model, prevents a second payment.",
+        "plan": [
+          { "type": "final", "call": null, "final": {
+            "schemaVersion": 1, "worldMinutes": "{{minutes+1}}", "changes": [], "outcomes": [], "privatePatches": [],
+            "effects": [
+              { "kind": "mundane_grant", "issuerId": "{{npc:work organiser}}", "recipientId": "{{hero}}",
+                "currencyName": "coins", "currencyAmount": 5, "itemName": null, "itemCategory": null, "itemDescription": null }
+            ],
+            "publicNarration": {
+              "beats": [ { "text": "Grumbling, the organiser counts out five more coins.", "requiresEffects": [0] } ],
+              "visualDescription": { "text": "Coins on a table.", "requiresEffects": [] }
+            }
+          } }
+        ]
+      },
+      "expect": [
+        { "label": "server keeps the reward at exactly one payment", "heroMoney": { "eq": 5 } }
+      ]
+    }
+  ]
+}
