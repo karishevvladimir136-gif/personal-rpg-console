@@ -133,11 +133,29 @@ export function formatReport(records) {
   return lines.join("\n");
 }
 
+/** Every paid request of a run: tokens and cost per call, then the totals. */
+export function formatCalls(records) {
+  const turns = records.filter((record) => record.type === "turn" && (record.calls ?? []).length);
+  const rows = [["scenario/step", "#", "ms", "first ms", "in", "cached", "write", "out", "reason", "tools", "USD"]];
+  const total = { in: 0, cached: 0, write: 0, out: 0, usd: 0, calls: 0 };
+  for (const turn of turns) {
+    turn.calls.forEach((call, index) => {
+      rows.push([`${turn.scenario}/${turn.step}`, index + 1, fmt(call.latencyMs), fmt(call.firstTextMs), fmt(call.inputTokens),
+        fmt(call.cachedInputTokens), fmt(call.cacheWriteTokens), fmt(call.outputTokens), fmt(call.reasoningTokens), fmt(call.toolCalls), fmt(call.costUsd, 4)]);
+      total.in += call.inputTokens ?? 0; total.cached += call.cachedInputTokens ?? 0; total.write += call.cacheWriteTokens ?? 0;
+      total.out += call.outputTokens ?? 0; total.usd += call.costUsd ?? 0; total.calls++;
+    });
+  }
+  rows.push(["total", total.calls, "", "", fmt(total.in), fmt(total.cached), fmt(total.write), fmt(total.out), "", "", fmt(total.usd, 4)]);
+  return table(rows);
+}
+
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const run = process.argv[2];
   if (!run) {
-    console.error("usage: node scripts/eval/report.mjs <run-id | path.jsonl>");
+    console.error("usage: node scripts/eval/report.mjs <run-id | path.jsonl> [--calls]");
     process.exit(2);
   }
-  console.log(formatReport(await loadRun(run)));
+  const records = await loadRun(run);
+  console.log(process.argv.includes("--calls") ? formatCalls(records) : formatReport(records));
 }
