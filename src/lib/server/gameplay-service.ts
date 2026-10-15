@@ -17,7 +17,7 @@ import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
 import { withAstraTurnPin } from "../production/dm-turn-pin";
 import { DM_LOOP_RUNTIME, runDmLoopTurn, resumeDmLoopTurn, type DmLoopDependencies } from "../gameplay/dm-loop/loop";
-import { dmLoopPinFromProfile } from "../production/dm-loop-pin";
+import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { publishLiveTurnEvent } from "./dm/live-turns";
 import { readDmSettings, type DmSettings } from "./dm-settings";
@@ -149,7 +149,7 @@ export async function readPlay(campaignId: string) {
     (await store.takeoverStatus?.(campaignId))?.active === true;
   if (dmSettings.runtime === DM_LOOP_RUNTIME) {
     const pending = await openingPending(owner.client, campaignId, timeline, settings.ruleset.id);
-    const choice = dmLoopPinFromProfile((await import("../production/dm-loop-pin")).dmLoopProfile(settings.runtimePolicy, dmSettings.dmTurn));
+    const choice = dmLoopPinFromProfile(dmLoopProfile(settings.runtimePolicy, dmSettings.dmTurn));
     const key = choice.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
     return { ...(pending ? { ...play, startupPending: true } : play), configured: !!key?.trim(), model: choice.modelId,
       rulesetId: settings.ruleset.id };
