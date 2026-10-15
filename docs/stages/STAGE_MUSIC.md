@@ -16,9 +16,11 @@ quiet scene with a companion. It changes smoothly and never gets in the way.
   Music never reveals a hidden fact: no ambush music because a private note says an ambush is coming.
 - **A soundtrack per world.** Once per world (and again when its style changes) generate a pack of instrumental,
   loop-friendly tracks in the world's musical style — a steampunk Lisbon is not a noir city — about 10–15 moods with
-  2–3 variants each. Playback afterwards costs nothing. Candidate models (check current docs and terms): Google Lyria
-  (per-track), ElevenLabs Music (per minute, instrumental flag), Stable Audio; Suno has no official API. Pick by
-  measured quality, loop seams and price; Google adds a SynthID watermark, which is fine for personal use.
+  2–3 variants each. Playback afterwards costs nothing. **The owner wants the best models, not the cheap ones: choose
+  by quality and loop seams only; price is not a criterion within the cap.** Candidates (check current docs and terms):
+  the newest Google Lyria, ElevenLabs Music, Stable Audio; Suno and Udio have no official API. Compare them on the same
+  mood list and let the owner hear the finalists; a different model per mood is fine if it sounds better. Google adds a
+  SynthID watermark, which is fine for personal use.
 - **Your own music.** Upload your own tracks (for example made in Suno) and tag their moods; they mix with the pack.
 - **Player.** Crossfades between moods with hysteresis (no switch on every turn), volume, mute, «музыка выкл», pin a
   track, skip. Music ducks under a video clip's own sound. Works on the phone; never autoplays before the first click,
@@ -28,7 +30,7 @@ quiet scene with a companion. It changes smoothly and never gets in the way.
 
 ## Checks
 
-Paid generation within **$15**, stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
+Paid generation within **$40**, stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
 «Мир Шва» and «Neon & Rain» soundtracks with their mood lists, and a 20-turn synthetic session log showing which mood
 played when and why. typecheck / lint / test / build pass; push `claude/stage-music` only, never `main`, never the owner's
 database. Report in English.
