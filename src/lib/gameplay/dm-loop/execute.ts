@@ -81,12 +81,23 @@ export function parseFormula(text: string): { count: number; sides: number; modi
   return { count, sides, modifier };
 }
 
+/** OpenAI strict schemas make every field required, so an omitted optional
+ * field arrives as null; it means the same as absent. */
+function withoutNulls(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(withoutNulls);
+  if (value && typeof value === "object")
+    return Object.fromEntries(Object.entries(value as Record<string, unknown>)
+      .filter(([, child]) => child !== null).map(([key, child]) => [key, withoutNulls(child)]));
+  return value;
+}
+
 function parseArgs(name: string, raw: JsonObject): Args {
   const tool = dmLoopTools.find((entry) => entry.name === name);
   reject(tool, `Unknown tool "${name}".`, `Available tools: ${dmLoopTools.map((t) => t.name).join(", ")}.`);
-  const problems = validateToolArguments(tool, raw);
+  const args = withoutNulls(raw) as JsonObject;
+  const problems = validateToolArguments(tool, args);
   reject(problems.length === 0, `Arguments of ${name} are invalid: ${problems.slice(0, 6).join("; ")}.`);
-  return raw;
+  return args;
 }
 
 function entityOf(shadow: ShadowState, value: unknown, what: string): Entity {

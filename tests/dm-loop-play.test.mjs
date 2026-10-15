@@ -375,3 +375,24 @@ test("a payment from the quest's issuer after completion settles the reward; a l
     assert.equal(state.entities.find((row) => row.id === c.npc).resources.currency_coins, 16);
   } finally { await c.f.db.close(); }
 });
+
+test("null optional arguments (OpenAI strict schemas) mean the same as absent ones", async () => {
+  const c = await loopCampaign();
+  try {
+    const played = await c.turn("I meet the miller.", [
+      { text: "A mill. ", toolCalls: [
+        { name: "upsert_place", arguments: { ref: null, localKey: "mill", name: "The mill", description: null, status: null } },
+        { name: "upsert_character", arguments: { ref: null, localKey: "miller", name: "Oswin", kind: "npc", description: null, present: null, party: null, hp: null, maxHp: null, stats: null, statblock: null } },
+        { name: "quest", arguments: { action: "create", questRef: null, localKey: "flour", title: "Haul flour", description: null, issuerRef: "miller", recipientRef: null, reward: { currency: "coins", amount: 5, items: null, note: null } } },
+        { name: "note_character", arguments: { actorRef: "miller", identity: { values: ["work"], wants: null, boundaries: null, loyalties: null, signatures: null, observableVoice: null }, current: { goal: null, stress: "settled", preoccupation: null, obligation: null }, beliefs: null, relationships: null, episodes: null } },
+      ] },
+      { text: "Recorded. " },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
+    assert.deepEqual(receipts.map((r) => r.result.ok), [true, true, true, true], JSON.stringify(receipts.map((r) => r.result)));
+    const state = await c.state();
+    assert.ok(state.locations.some((row) => row.name === "The mill"));
+    assert.ok(state.quests.some((row) => row.title === "Haul flour"));
+  } finally { await c.f.db.close(); }
+});
