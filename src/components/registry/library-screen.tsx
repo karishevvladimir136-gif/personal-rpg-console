@@ -12,6 +12,7 @@ import { loadCampaign } from "@/lib/persistence/client";
 import { dmTurnModels, loadDmSettings, saveDmSettings, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { characterViewModel } from "@/lib/character-view-model";
 import { currentPlace, currentSession, heroOf, sessionNumber } from "@/lib/ui/campaign-view";
+import { effortLabel } from "@/lib/ui/effort";
 import { NewCampaignForm } from "../bootstrap/new-campaign";
 import { useWorkspaceData } from "../persistence-context";
 import { dmModelLabel } from "./shell";
@@ -159,7 +160,7 @@ function FeaturedCard({ campaign, snapshot, settings, href, onSwitch, switching 
         <div className={r.row}>
           <span className={r.badgeGreen}>{c("идёт", "in progress")}</span>
           <RuntimeBadge settings={settings} />
-          {settings && <span className={r.pill}>{dmModelLabel(settings, true)}{effort ? ` · ${effort}` : ""}</span>}
+          {settings && <span className={r.pill}>{dmModelLabel(settings, true)}{effort ? ` · ${effortLabel(effort, c.language)}` : ""}</span>}
         </div>
         <div className={`${r.row} ${r.small} ${r.muted}`}>
           {session && <span>{number ? c(`Сессия ${number}`, `Session ${number}`) : ""}{number ? " · " : ""}«{session.title}»</span>}
@@ -298,7 +299,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
                 ))}
               </div>
               <div className={r.segmented} role="group" aria-label={c("Глубина", "Effort")}>
-                {entry.efforts.map((value) => <button key={value} type="button" className={r.segment} aria-pressed={effort === value} onClick={() => { setEffort(value); setSaved(false); }}>{value}</button>)}
+                {entry.efforts.map((value) => <button key={value} type="button" className={r.segment} aria-pressed={effort === value} onClick={() => { setEffort(value); setSaved(false); }}>{effortLabel(value, c.language)}</button>)}
               </div>
               <p className={r.note}>{c("Тон истории, правила бросков и книги правил настраиваются в настройках кампании; поменять можно в любой момент.", "Story tone, roll rules and rule books live in the campaign settings; change them any time.")}</p>
               <Later title={c("Что мне нравится в играх", "What I enjoy in games")}>{c("Записка «что нравится игроку» появится вместе с этапом 4.", "The “what the player enjoys” note arrives with stage 4.")}</Later>
@@ -324,7 +325,7 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
         <aside className={s.summary}>
           <span className={r.eyebrow}>{c("Сводка", "Summary")}</span>
           <div className={r.kv}>
-            <div><span>{c("Ведущий", "DM")}</span><span>{entry.label} · {effort}</span></div>
+            <div><span>{c("Ведущий", "DM")}</span><span>{entry.label} · {effortLabel(effort, c.language)}</span></div>
             <div><span>{c("Ход", "Turn")}</span><span>{c("новый", "new loop")}</span></div>
             <div><span>{c("Картинки", "Pictures")}</span><span>{c("стиль мира", "world style")}</span></div>
           </div>

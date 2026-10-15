@@ -48,6 +48,7 @@ import {
   sessionNumber,
   worldClock,
 } from "@/lib/ui/campaign-view";
+import { effortLabel } from "@/lib/ui/effort";
 import { useCopy, registry as r } from "./primitives";
 import { LiveImages } from "./live-images";
 import { VisualAutopilot } from "./visual-autopilot";
@@ -179,7 +180,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
             <span className={r.eyebrow}>{c("Ведущий", "Dungeon Master")}</span>
             <span className={s.dmName}>{dm ? model : "…"}</span>
             <span className={s.dmMeta}>
-              {[effort ? c(`глубина: ${effort}`, `effort: ${effort}`) : null,
+              {[effort ? c(`глубина: ${effortLabel(effort, lang)}`, `effort: ${effortLabel(effort, lang)}`) : null,
                 dm?.runtime === "astra-primary-v1" ? c("старый ход", "previous runtime") : null].filter(Boolean).join(" · ") || c("настройки кампании", "campaign settings")}
             </span>
           </Link>

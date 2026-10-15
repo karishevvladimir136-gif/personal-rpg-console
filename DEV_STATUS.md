@@ -1,7 +1,8 @@
 # Development status
 
 **Stage 5 — the new interface — built in parallel with stages 2b–4 (owner-approved exception).**
-Branch `claude/stage-5-ui` from `claude/stage-2-turn-loop`, worktree `../rpg-console-ui`. Not merged, not pushed.
+Branch `claude/stage-5-ui`, rebased onto the accepted `claude/stage-2b-speed`, worktree `../rpg-console-ui`; pushed to
+origin (not merged, nothing on `main`).
 Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_DATA_NEEDS.md`.
 
 - Registry look (leather, brass, parchment; Old Standard TT / Alegreya Sans / PT Mono) as tokens in
@@ -26,8 +27,11 @@ Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_
 - Checks on the final branch state: typecheck pass; lint pass (0 warnings); build pass; tests 2426 — 2399 pass,
   0 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). Two older game-screen tests were moved from the
   Phase-0 markup to the new layout with the same behaviors. No change in the stage 2b–4 paths.
-- Not done here: the final streaming wiring waits for the accepted 2b branch (2b has not touched the UI so far);
-  saving fal pictures and the data in `docs/UI_DATA_NEEDS.md` belong to stages 3–4.
+- Live streaming (after the 2b rebase): the game screen renders the streamed turn itself — the DM's text as it
+  arrives with a «ведущий пишет…» caret, the «Что изменилось за ход» chips (accepted changes only), and «Твой
+  момент» when the turn ends on a player moment; the chips stay for the turn just played. One stream per turn
+  (the composer passes its live view out). Saving fal pictures and the data in `docs/UI_DATA_NEEDS.md` belong to
+  stages 3–4.
 
 ---
 

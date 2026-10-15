@@ -37,6 +37,15 @@ client state now, and wire the final streaming at the end, after rebasing on the
   Fonts: Old Standard TT (display), Alegreya Sans (body), PT Mono (labels, numbers) — load with `next/font/google`.
   One dark theme. Minimum 44 px touch targets, visible focus, Russian first, English kept.
 
+## Universal by design
+
+The UI serves any world, any campaign and any ruleset. Sample content ("Мир Шва" and the rest of the design data)
+lives only in preview fixtures. Nothing ruleset-specific is hardcoded: ability scores, skills, resources, equipment
+slots, currency, item categories and rarity labels come from the campaign's ruleset/character data and the existing
+presentation helpers; a concept the ruleset lacks is simply not shown. Holdings are labelled by kind (transport, base,
+mount, camp). Prove it with a second preview campaign on a non-D&D ruleset, and grep non-preview code for sample names
+and D&D-specific labels before finishing.
+
 ## Screens
 
 | Board | Route / current code | What to build |
@@ -51,7 +60,7 @@ client state now, and wire the final streaming at the end, after rebasing on the
 | `Codex.dc.html` | **new** `codex` route | NPCs grouped by relationship (family, allies, murky, neutral, foes) with public notes, factions, search. Only player-known information. |
 | `Map.dc.html` | `map` · `atlas-map.tsx` | Restyle the existing atlas (levels, art background, pins from records, place illustration, set destination, pin placement, unplaced list). Add route line and goal/rumor statuses; "Наметить курс" inserts text into the composer. |
 | `Holdings.dc.html` | **new** `holdings` route, absorbs `home` / `camp` | Holdings from storages (camp always; transport, base, mount when present). Ship-style detail page: image, specs, features, hold grid, passengers. Nav label "Лагерь" when only camp exists, "Имущество" otherwise. |
-| `Settings.dc.html` | campaign `settings` · `campaign-settings.tsx`, `persistent-settings.tsx` | DM model + effort, narrator mode (two-stage: disabled, "позже"), roll mode, rule books as knowledge, campaign limits (read-only until stage 3), recent-turn stats if available, Images section (below), and all existing settings kept under "Ещё". |
+| `Settings.dc.html` | campaign `settings` · `campaign-settings.tsx`, `persistent-settings.tsx` | DM model + effort (levels come from the selected model's capabilities — e.g. low / medium / high / extra high / max — not a fixed set of four), narrator mode (two-stage: disabled, "позже"), roll mode, rule books as knowledge, campaign limits (read-only until stage 3), recent-turn stats if available, Images section (below), and all existing settings kept under "Ещё". |
 | — | adventures · `persistent-adventures.tsx`, `adventures/*` | Keep the existing flow (Короткое 1–2 ч / На вечер 3–5 ч / Мини-арка 8–15 ч / Без ограничений, same world and heroes, finish with owner feedback). Make it prominent: "Приключения" in the campaign nav, a "Новое приключение" action on the campaign card in `/campaigns`, and the active adventure (title, envelope, progress) shown in the game screen sidebar. Restyle only. |
 | — | main menu · `main-menu.tsx` | Keep it (Кампании, Общие настройки, Выход); restyle to match the library shell. |
 | — | world library, DM Craft, saves, timeline, world lab, DM chat, library, frame, sessions, gallery | Reskin with the shell and tokens only. No flow changes. |

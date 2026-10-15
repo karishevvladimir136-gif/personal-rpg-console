@@ -91,6 +91,8 @@ export function GameplayComposer({
   beforeInput,
   inputTools,
   followLatest = false,
+  onLiveView,
+  showLiveView = true,
 }: {
   play: PlaySnapshot;
   mode?: TurnMode;
@@ -107,6 +109,10 @@ export function GameplayComposer({
   beforeInput?: ReactNode;
   inputTools?: ReactNode;
   followLatest?: boolean;
+  /** Each update of the streamed turn in flight (Stage 5 renders it in the game screen). */
+  onLiveView?: (view: LiveTurnView) => void;
+  /** False when the caller renders the streamed turn itself. */
+  showLiveView?: boolean;
 }) {
   const { campaignId, data } = useCampaignData();
   const scope = useCampaignDraftScope();
@@ -124,10 +130,17 @@ export function GameplayComposer({
   // Provisional narration of the turn in flight (dm-loop-v1 streams it).
   const [live, setLive] = useState<LiveTurnView | null>(null);
   const stopLive = useRef<() => void>(() => {});
+  const liveListener = useRef(onLiveView);
+  useEffect(() => {
+    liveListener.current = onLiveView;
+  }, [onLiveView]);
   const follow = (operationId: string) => {
     stopLive.current();
     setLive(null);
-    stopLive.current = followLiveTurn(campaignId, operationId, (view) => setLive(view));
+    stopLive.current = followLiveTurn(campaignId, operationId, (view) => {
+      setLive(view);
+      liveListener.current?.(view);
+    });
   };
   useEffect(() => () => stopLive.current(), []);
   const key = journalKey(campaignId, mode, companionId, scope.timeline);
@@ -484,7 +497,7 @@ export function GameplayComposer({
           />
         </div>
       )}
-      {live && busy && (live.text || live.changes.length > 0) && (
+      {showLiveView && live && busy && (live.text || live.changes.length > 0) && (
         <div className="gameplay-live-turn" role="status" aria-live="polite">
           <span className="eyebrow">{t("DM is writing… (provisional until saved)")}</span>
           {live.text && <div className="prose">{live.text}</div>}

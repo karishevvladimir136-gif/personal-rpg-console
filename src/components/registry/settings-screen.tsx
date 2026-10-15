@@ -9,6 +9,7 @@ import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
 import { readJson } from "@/lib/persistence/client";
 import { FAL_IMAGE_MODELS, usd } from "@/lib/visual-frame/fal-image";
 import { workshopJobs, type AutopilotSettings } from "@/lib/ui/visual-autopilot";
+import { effortLabel } from "@/lib/ui/effort";
 import { useChrome, useDmSettings, type CampaignScreenId } from "./shell";
 import { useAutopilot } from "./visual-autopilot";
 import { Later, Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
@@ -97,7 +98,7 @@ export function RegistrySettings({ data, more, preview }: {
                 <div className={r.stack} style={{ gap: 6 }}>
                   <span className={r.eyebrow}>{c("Глубина размышлений", "Reasoning effort")}</span>
                   <Segmented label={c("Глубина", "Effort")} value={chosenEffort} disabled={saving}
-                    options={entry.efforts.map((value) => ({ value, label: value }))}
+                    options={entry.efforts.map((value) => ({ value, label: effortLabel(value, c.language) }))}
                     onChange={(value) => { setEffort(value); void save({ reasoning: value }); }} />
                 </div>
               )}

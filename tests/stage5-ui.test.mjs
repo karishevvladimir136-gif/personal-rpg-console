@@ -189,3 +189,35 @@ test("both preview samples build valid-looking public snapshots; the second has 
   assert.equal(hero.character_sheet.level, null);
   assert.ok(!Object.keys(hero.resources).some((key) => /spell|gold/.test(key)));
 });
+
+import { liveChanges, livePlayerMoment, liveTurnPhase } from "../src/lib/ui/live-turn-view.ts";
+import { effortLabel } from "../src/lib/ui/effort.ts";
+
+test("live stream view: accepted changes only, the player-moment signal, and the turn phase", () => {
+  const view = {
+    operationId: "op", text: "The rope holds.", status: "generating",
+    changes: [
+      { name: "money", ok: true, summary: "−12 credits · the ferryman" },
+      { name: "item", ok: false, summary: "Unknown item" },
+      { name: "finish_turn", ok: true, summary: "Your moment: describe how you do it" },
+    ],
+  };
+  assert.deepEqual(liveChanges(view).map((change) => change.summary), ["−12 credits · the ferryman"]);
+  assert.equal(livePlayerMoment(view), true);
+  assert.equal(livePlayerMoment({ ...view, changes: [{ name: "finish_turn", ok: true, summary: "Turn recorded" }] }), false);
+  assert.equal(liveTurnPhase(view, []), "streaming");
+  assert.equal(liveTurnPhase(view, [{ id: "op", status: "generating" }]), "streaming");
+  assert.equal(liveTurnPhase(view, [{ id: "op", status: "committed" }]), "saved");
+  assert.equal(liveTurnPhase(view, [{ id: "op", status: "failed" }]), "discarded");
+  assert.equal(liveTurnPhase({ ...view, status: "cancelled" }, []), "discarded");
+  // The banner relies on finish_turn's public receipt summary; if a later stage rewords it, this fails.
+  const execute = readFileSync(join(root, "src/lib/gameplay/dm-loop/execute.ts"), "utf8");
+  assert.ok(execute.includes('"Your moment: describe how you do it"'));
+});
+
+test("effort names follow the model's own levels", () => {
+  assert.equal(effortLabel("xhigh", "en"), "extra high");
+  assert.equal(effortLabel("xhigh", "ru"), "очень высокая");
+  assert.equal(effortLabel("max", "en"), "max");
+  assert.equal(effortLabel("turbo", "en"), "turbo", "an unknown level is shown as the model names it");
+});

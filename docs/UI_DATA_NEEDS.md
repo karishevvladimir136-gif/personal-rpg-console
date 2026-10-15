@@ -9,8 +9,8 @@ projections only (what the hero knows); private DM state stays private.
 
 | # | Data | Screen | Proposed shape |
 | --- | --- | --- | --- |
-| 1 | Accepted changes of a **committed** turn (the stream shows them live, then they vanish) | Game: «Что изменилось за ход» chips | `PublicTurn.changes: { tool: string; ok: true; summary: string }[]` — the public-safe receipt summaries already produced by the loop |
-| 2 | The `playerMoment` flag of `finish_turn` | Game: «Твой момент» banner | `PublicTurn.playerMoment: boolean` |
+| 1 | Accepted changes of a **committed** turn (the game screen shows the streamed ones and keeps them for the turn just played; after a reload they are gone) | Game: «Что изменилось за ход» chips | `PublicTurn.changes: { tool: string; ok: true; summary: string }[]` — the public-safe receipt summaries already produced by the loop |
+| 2 | The `playerMoment` flag of `finish_turn` (today read from the streamed receipt summary «Your moment…», so it shows only right after the turn streams) | Game: «Твой момент» banner | `PublicTurn.playerMoment: boolean` |
 | 3 | Open threads, debts and promises the hero knows | Game sidebar, Journal | `threads: { id; kind: "thread" \| "debt" \| "promise"; title; detail; status: "open" \| "closed"; sinceSessionId }[]` |
 | 4 | Main arc with steps | Journal | `arc: { title; summary; steps: { text; done: boolean }[] } \| null` |
 | 5 | Recent turn summary for the owner | Campaign settings: «Последние ходы» | `turnStats: { turns; medianFirstWordMs; medianTurnMs; avgCostUsd; rejectedCalls; cacheReadShare }` (last N turns) |

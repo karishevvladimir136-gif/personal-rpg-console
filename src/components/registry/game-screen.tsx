@@ -11,6 +11,7 @@ import { createAdventureTransport } from "@/lib/adventures/client";
 import { isUnresolved } from "@/lib/gameplay/client-state";
 import { activeAdventure, adventureElapsed, envelopeLabel } from "@/lib/ui/adventure-view";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
+import { liveChanges, livePlayerMoment, liveTurnPhase, type LivePhase } from "@/lib/ui/live-turn-view";
 import { characterViewModel } from "@/lib/character-view-model";
 import {
   currentPlace,
@@ -112,6 +113,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const [mediaOpen, setMediaOpen] = useState(false);
   const [asideOpen, setAsideOpen] = useState(preview?.asideOpen ?? false);
   const [nonce, setNonce] = useState(0);
+  // The streamed turn in flight, from the composer's own stream (one EventSource).
+  const [liveView, setLiveView] = useState<LiveTurnView | null>(null);
   const [inserted, setInserted] = useState("");
   const [resume, setResume] = useState(false);
   const [sceneEditor, setSceneEditor] = useState<Scene | "new" | null>(null);
@@ -142,7 +145,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const opening = mode === "game" && view.showOpening && (
     <article className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</article>
   );
-  const moment = preview?.playerMoment ? (
+  const live = preview ? preview.live ?? null : liveView;
+  const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
+  // A saved turn keeps its accepted changes on screen until the next turn starts.
+  const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
+  const liveBlock = live && phase !== "discarded" && liveIsLatest ? <LiveBlock view={live} phase={phase ?? "streaming"} /> : null;
+  const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live));
+  const moment = showMoment ? (
     <div className={g.moment} role="status">
       <Sparkles size={26} color="var(--brass-hi)" aria-hidden="true" />
       <div>
@@ -180,7 +189,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     </div>
   );
   const feed = preview ? (
-    <PreviewFeed data={data} play={preview.play} live={preview.live ?? null} opening={opening} moment={moment} tools={tools}
+    <PreviewFeed data={data} play={preview.play} liveBlock={liveBlock} opening={opening} moment={moment} tools={tools}
       inserted={inserted} heroName={hero?.name ?? null} mode={mode} />
   ) : (
     <>
@@ -203,8 +212,10 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             onSaved={runtime.afterMutation}
             followLatest
             historyIntro={opening}
-            beforeInput={moment}
+            beforeInput={<>{liveBlock}{moment}</>}
             inputTools={tools}
+            onLiveView={setLiveView}
+            showLiveView={false}
           />
         </>
       )}
@@ -374,8 +385,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
 }
 
 /** Synthetic preview of the feed: saved turns, the provisional turn and a composer that sends nothing. */
-function PreviewFeed({ data, play, live, opening, moment, tools, inserted, heroName, mode }: {
-  data: CampaignSnapshot; play: PlaySnapshot; live: LiveTurnView | null; opening: ReactNode; moment: ReactNode; tools: ReactNode;
+function PreviewFeed({ data, play, liveBlock, opening, moment, tools, inserted, heroName, mode }: {
+  data: CampaignSnapshot; play: PlaySnapshot; liveBlock: ReactNode; opening: ReactNode; moment: ReactNode; tools: ReactNode;
   inserted: string; heroName: string | null; mode: string;
 }) {
   const c = useCopy();
@@ -390,20 +401,7 @@ function PreviewFeed({ data, play, live, opening, moment, tools, inserted, heroN
           </div>
         ))}
       </div>
-      {live && (
-        <div className="gameplay-live-turn" role="status">
-          <span className="eyebrow">{c("ведущий пишет… (черновик до сохранения)", "the DM is writing… (provisional until saved)")}</span>
-          {live.text && <div className="prose">{live.text}</div>}
-          {live.changes.length > 0 && (
-            <>
-              <span className={r.eyebrow}>{c("Что изменилось за ход", "What changed this turn")}</span>
-              <ul className="gameplay-live-changes">
-                {live.changes.map((change, index) => <li key={index} className={change.ok ? "" : "muted"}>{change.summary}</li>)}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
+      {liveBlock}
       {moment}
       <form onSubmit={(event) => event.preventDefault()} aria-label={c("Ход игрока", "Your turn")}>
         <label className="field">
@@ -417,5 +415,30 @@ function PreviewFeed({ data, play, live, opening, moment, tools, inserted, heroN
         {tools}
       </form>
     </>
+  );
+}
+
+/** The streamed turn: provisional text while the DM writes, then the accepted changes of the saved turn. */
+function LiveBlock({ view, phase }: { view: LiveTurnView; phase: LivePhase }) {
+  const c = useCopy();
+  const changes = liveChanges(view);
+  if (phase === "saved" && !changes.length) return null;
+  return (
+    <div className="gameplay-live-turn" role="status" aria-live="polite">
+      {phase === "streaming" && (
+        <>
+          <span className="eyebrow">{c("ведущий пишет… (черновик до сохранения)", "the DM is writing… (provisional until saved)")}</span>
+          {view.text && <div className="prose">{view.text}<span className={g.caret} aria-hidden="true" /></div>}
+        </>
+      )}
+      {changes.length > 0 && (
+        <>
+          <span className={r.eyebrow}>{c("Что изменилось за ход", "What changed this turn")}</span>
+          <ul className="gameplay-live-changes">
+            {changes.map((change, index) => <li key={index}>{change.summary}</li>)}
+          </ul>
+        </>
+      )}
+    </div>
   );
 }
