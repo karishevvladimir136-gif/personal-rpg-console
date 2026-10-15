@@ -4,6 +4,7 @@ import type { RuntimeSource } from "../gameplay/server-contracts.ts";
 import type { MemoryStore, MemorySource, MemorySummary, RetrievalRequest } from "./server-contracts.ts";
 import { expandRetrievalRequest, retrieveMemory, selectCriticalSourceIds } from "./retrieval.ts";
 import { sameTimeline, refsOnTimeline, sourceOnTimeline } from "./timeline.ts";
+import { curateAstraContextSource } from "../gameplay/astra-privacy-context.ts";
 
 const bytes = (value: unknown) => new TextEncoder().encode(JSON.stringify(value)).length;
 
@@ -22,10 +23,10 @@ export async function withUnifiedMemory(source: RuntimeSource, input: TurnInput,
   catch (error) {
     if (error instanceof DmError && ["conflict", "validation", "configuration"].includes(error.code)) throw error;
     // An unavailable derived index cannot remove current state or Canon.
-    return { ...source, historyComplete: true, checkpoint: null, memory: { timeline, campaignId: cid,
+    return curateAstraContextSource({ ...source, historyComplete: true, checkpoint: null, memory: { timeline, campaignId: cid,
       generation: 0, stateRevision: source.runtime.revision, checkpoint: null,
       exactEvents: [], historical: [], privateHistorical: [], publicSummary: null,
-      privateSummary: null, complete: true } };
+      privateSummary: null, complete: true } }, input);
   }
   if (memory.campaignId !== cid || !sameTimeline(timeline, memory.timeline) ||
     memory.stateRevision !== source.runtime.revision)
@@ -89,16 +90,17 @@ export async function withUnifiedMemory(source: RuntimeSource, input: TurnInput,
   const checkpoint = point?.valid && point.campaignId === cid &&
     point.stateRevision === source.runtime.revision && sameTimeline(timeline, point.timeline) &&
     refsOnTimeline(timeline, point.sourceRefs) &&
+    point.sourceRefs.every((ref) => ref.visibility === "public") &&
     bytes({ resume: point.resume, sourceRefs: point.sourceRefs }) <= 12000 ? point : null;
   // runtime_source deliberately bounds old turn rows after64. The Memory
   // projection supplies authorized bounded continuity instead of requiring
   // the entire transcript; this is the same coverage seam as legacy Memory.
-  return { ...source, historyComplete: true, checkpoint: null, memory: { timeline, campaignId: cid,
+  return curateAstraContextSource({ ...source, historyComplete: true, checkpoint: null, memory: { timeline, campaignId: cid,
     generation: memory.generation, stateRevision: source.runtime.revision, checkpoint,
     exactEvents: [], historical: selectedRecent("public", publicSelection.sources),
-    privateHistorical: selectedRecent("private", privateSelection.sources),
+    privateHistorical: privateSelection.sources,
     requiredHistoricalSourceIds: publicSelection.required,
     requiredPrivateHistoricalSourceIds: privateSelection.required,
     publicSummary: summary(memory.publicSummary, "public"),
-    privateSummary: includePrivate ? summary(memory.privateSummary, "private") : null, complete: true } };
+    privateSummary: includePrivate ? summary(memory.privateSummary, "private") : null, complete: true } }, input);
 }

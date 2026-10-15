@@ -1,4 +1,6 @@
-# P0 runtime simplification — review candidate
+# P0 runtime simplification — original reviewed candidate
+
+**Final-gate follow-up:** The owner-reviewed `56d2e3b0b41602758d87fbbf46dc2fc267e8fb80` record below is preserved as history. The operation-specific private/public boundary, amended disposable Migration 51 and final live contract evidence are documented in [P0_RUNTIME_PRIVACY_LIVE_GATE.md](P0_RUNTIME_PRIVACY_LIVE_GATE.md). That follow-up supersedes the original unified-private authoring limitation and proposed benchmark below. Main and owner DB are not activated by either report.
 
 Base: `5fb142b7dad6406473e3d3ae77e49cc5b2d3320d`. Isolated branch: `codex/astra-simplified-play-runtime`. Owner database remains Migration **50**. This candidate is not activated, merged or deployed.
 

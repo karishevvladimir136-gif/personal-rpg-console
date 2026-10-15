@@ -93,15 +93,27 @@ export function projectMemory(
   )
     throw new DmError("context");
   const publicHistory = project(memory.historical, "public");
+  // Modern public checkpoints expose only the established public resume
+  // contract. Extra private snapshot/legacy extension fields never serialize.
+  const publicResume = point && source.astraResponseContract === "unified-v1"
+    ? Object.fromEntries(["sceneId", "locationId", "worldMinutes", "participantIds", "lastAction",
+        "lastOutcome", "situation", "expectedInput", "pendingOperationId", "pendingStatus"]
+      .filter((key) => Object.hasOwn(point.resume, key))
+      .map((key) => [key, point.resume[key as keyof typeof point.resume]]))
+    : point?.resume;
+  const privateCheckpoint = point && source.astraResponseContract === "unified-v1" &&
+    ((point as unknown as Record<string, unknown>).visibility === "private" ||
+      (point.resume as unknown as Record<string, unknown>).visibility === "private" ||
+      point.sourceRefs.some((ref) => ref.visibility === "private"));
   return {
     checkpoint:
-      point && !companion
+      point && !companion && !privateCheckpoint
         ? {
             stateRevision: point.stateRevision,
             settingsRevision: point.settingsRevision,
             guideVersionId: point.guideVersionId,
             publicWatermark: point.publicWatermark,
-            resume: point.resume,
+            resume: publicResume,
             sourceRefs: point.sourceRefs.filter(
               (ref) =>
                 ref.visibility === "public" &&

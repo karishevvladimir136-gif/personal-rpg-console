@@ -16,7 +16,7 @@ import { isDisplayedCheck, recordServerRoll } from "./dice.ts";
 import { publicSource } from "./turn-engine.ts";
 import { requireClaimTimeline, requireTurnTimeline } from "./timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "./turn-errors.ts";
-import { DmError } from "./dm-errors.ts";
+import { ContextCapacityError, DmError } from "./dm-errors.ts";
 import { withMemory } from "../memory/context.ts";
 import { validateCharacterPatches } from "./character-model.ts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts.ts";
@@ -27,6 +27,8 @@ import { planAstraSettlement,
   type AstraSettlementIntent, type AstraEffectIntent } from "./astra-settlement.ts";
 import { planAstraOrderedEffects } from "./astra-ordered-effects.ts";
 import { planAstraCompatibleEffects } from "./astra-compatible-effects.ts";
+import { astraContextHasPrivateEvidence, projectAstraPublicSource } from "./astra-privacy-context.ts";
+import { withUnifiedMemory } from "../memory/unified-context.ts";
 
 export const ASTRA_PRIMARY_RUNTIME = "astra-primary-v1" as const;
 export function selectAstraPrimaryRuntime(
@@ -104,8 +106,10 @@ function narrowContext(built: BuiltContext, instructions: string, extra?: JsonOb
   const input = JSON.stringify(extra ? { ...packet, astraPrimary: extra } : packet);
   // The accepted production budget remains the upper bound. The existing
   // builder already sized a larger packet and larger legacy schema.
-  requireRule(new TextEncoder().encode(input).length +
-    new TextEncoder().encode(instructions).length <= built.budget.inputCap);
+  const fits = new TextEncoder().encode(input).length +
+    new TextEncoder().encode(instructions).length <= built.budget.inputCap;
+  if (!fits && extra?.responseContract === "unified-v1") throw new DmError("context",true);
+  requireRule(fits);
   return { ...built, instructions, input };
 }
 
@@ -152,8 +156,9 @@ function assertNoPrivateDisclosure(source: RuntimeSource, input: TurnInput, publ
   const privateMemory = [ ...(source.memory?.privateHistorical ?? []),
     ...(source.memory?.exactEvents.filter((e)=>e.ref.visibility === "private") ?? []) ]
     .map((e)=>e.text);
-  // The unified response has a private authoring context. Public projection is
-  // still an allowlist; reject verbatim private values before any public commit.
+  // Modern private-informed planning receives selected private evidence. The
+  // strict public projection is the boundary; this literal guard is independent
+  // defense in depth before any public commit, not a replacement for projection.
   // This catches nested Character Models and generic private buckets as well
   // as ordinary facts. It is not a semantic/paraphrase secrecy guarantee.
   const nestedStrings = (value: unknown, into: Set<string>, depth = 0) => {
@@ -431,10 +436,14 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
   const { source, lease } = claim;
   // Durable begin owns this pin. A historical/missing pin remains two-stage
   // regardless of the current application or provider defaults.
-  const unified = claim.astraResponseContract === "unified-v1";
-  source.astraResponseContract = unified ? "unified-v1" : undefined;
+  const modern = claim.astraResponseContract === "unified-v1";
+  let responseMode = modern ? claim.astraResponseMode ?? null : null;
+  source.astraResponseContract = modern ? "unified-v1" : undefined;
+  source.astraResponseMode = responseMode ?? undefined;
   const input = claim.turn.input;
   const checkpoint = structuredClone(claim.turn.checkpoint);
+  let disclosureSource = source;
+  let selectedPrivateMemory = false;
   type Stage = Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]["stage"];
   let stage: Stage = "plan";
   let providerResponseReceived = false;
@@ -509,10 +518,30 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
     }
     if (!astra.finalProposal) {
       await recordStage("plan", "entered");
-      const { selected, context } = await preflightAstraPlanMemory(
+      const prepared = await preflightAstraPlanMemory(
         source, input, memory, summaries,
         (candidate, request, requiredOnly) => buildAstraPlanContext(candidate, request,
           { requiredOnly, caps }));
+      let { selected, context } = prepared;
+      if (modern) {
+        // Retain authorized retrieved evidence for the literal disclosure
+        // defense only; it is never part of the public narrator projection.
+        disclosureSource = { ...source, memory: selected.memory };
+        selectedPrivateMemory = true;
+      }
+      if (modern) {
+        requireRule(store.pinAstraResponseMode);
+        if (!responseMode) {
+          const proposed = astraContextHasPrivateEvidence(context)
+            ? "private-informed" : "public-unified";
+          responseMode = await store.pinAstraResponseMode(lease, proposed);
+        }
+        source.astraResponseMode = responseMode;
+        if (responseMode === "public-unified") selected = projectAstraPublicSource(selected,input);
+        selected.astraResponseContract = "unified-v1";
+        selected.astraResponseMode = responseMode;
+        context = buildAstraPlanContext(selected,input,{caps});
+      }
       // A turn may use all 32 receipt slots and still needs one final response.
       for (let step=astra.toolReceipts.length;step<=32;step++) {
         const priorReceipts = astra.toolReceipts.length;
@@ -529,7 +558,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
           await recordStage("final_validated", "entered");
           astra.finalProposal = validateFinal(selected,input,decision.final,astra.toolReceipts);
           if (decision.final.effects) {
-            const compatible = unified ? planAstraCompatibleEffects(selected, input,
+            const compatible = modern ? planAstraCompatibleEffects(selected, input,
               decision.final.effects, astra.finalProposal.resolution) : null;
             const effects = compatible ? compatible.plan :
               planAstraOrderedEffects(selected,input,decision.final.effects,
@@ -538,7 +567,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
               checkpoint.astraEffects = effects;
               checkpoint.astraSettlement = null;
             }
-            if (unified) {
+            if (modern && responseMode === "public-unified") {
               checkpoint.narration = unifiedNarration(decision.final.publicNarration,
                 decision.final.effects.length, compatible!.acceptedIndexes);
             }
@@ -548,13 +577,13 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
             const settlement = planAstraSettlement(selected,input,decision.final.settlement,
               astra.finalProposal.resolution.changes);
             if (settlement) checkpoint.astraSettlement = settlement;
-            if (unified) {
+            if (modern && responseMode === "public-unified") {
               requireRule(!decision.final.settlement);
               checkpoint.narration = unifiedNarration(decision.final.publicNarration, 0, []);
             }
           }
-          if (unified) {
-            assertNoPrivateDisclosure(selected,input,
+          if (modern && responseMode === "public-unified") {
+            assertNoPrivateDisclosure(disclosureSource,input,
               checkpoint.narration!.narration+"\n"+checkpoint.narration!.visualDescription,
               astra.toolReceipts);
             narrationParseSucceeded = true;
@@ -586,23 +615,41 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       requireRule(astra.finalProposal);
     }
     const final = astra.finalProposal!;
-    // A new-contract final must carry its public allowlisted narration in the
-    // same checkpoint. Never fall back to a dedicated narrator on recovery.
-    if (unified) requireRule(checkpoint.narration);
+    // A public-unified final carries narration in the same checkpoint. A
+    // private-informed operation keeps its separate public projection on resume.
+    if (modern && responseMode === "public-unified") requireRule(checkpoint.narration);
     if (!checkpoint.narration) {
       await recordStage("narration_context", "entered");
-      const safe = safePublicSource(source,input);
-      const selected = await withMemory(safe,input,memory,false,{model:"gpt-6-astra",stage:"narrate"});
+      if (modern && responseMode === "private-informed" && !selectedPrivateMemory) {
+        // A final-pinned retry skips private planning. Re-read the same scoped
+        // evidence without summaries/provider work for the independent guard.
+        const privateEvidence = await withUnifiedMemory(source,input,memory,true);
+        disclosureSource = { ...source, memory: privateEvidence.memory };
+      }
+      const safe = modern ? projectAstraPublicSource(source,input,{forNarration:true})
+        : safePublicSource(source,input);
+      const selected = modern ? projectAstraPublicSource(
+        await withUnifiedMemory(safe,input,memory,false),input,{forNarration:true})
+        : await withMemory(safe,input,memory,false,{model:"gpt-6-astra",stage:"narrate"});
       const narrationResolution = checkpoint.astraEffects?.schemaVersion === 2
         ? checkpoint.astraEffects.resolution : final.resolution;
-      const base = buildContext(selected,input,"narrate",{model:"gpt-6-astra",
-        resolution:narrationResolution,checks:checkpoint.checks});
+      let base: BuiltContext;
+      try {
+        base = buildContext(selected,input,"narrate",{model:"gpt-6-astra",
+          resolution:narrationResolution,checks:checkpoint.checks});
+      } catch (error) {
+        if (modern && error instanceof ContextCapacityError)
+          throw new ContextCapacityError(error.summaryMayHelp,true);
+        throw error;
+      }
       const effectsOutcome = effectsNarrationProjection(checkpoint.astraEffects ?? null);
       const settlementOutcome = settlementNarrationProjection(checkpoint.astraSettlement ?? null);
       const narrationInstructions = source.snapshot.campaign.language === "en"
         ? `${publicInstructions} ${naturalEnglishGuidance}` : publicInstructions;
+      const extra: JsonObject = effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : {};
       const context = narrowContext(base,narrationInstructions,
-        effectsOutcome ? {effectsOutcome} : settlementOutcome ? {settlementOutcome} : undefined);
+        modern ? {...extra,responseContract:"unified-v1",responseMode:"private-informed"} :
+          Object.keys(extra).length ? extra : undefined);
       await recordStage("narration_context", "completed");
       await recordStage("narration_provider", "entered");
       const priorReceipts = astra.toolReceipts.length;
@@ -627,7 +674,7 @@ async function astraExecute(claim: TurnClaim, deps: AstraDependencies,
       requireRule(typeof checkpoint.narration.narration === "string" &&
         checkpoint.narration.narration.trim().length > 0 &&
         checkpoint.narration.narration.length <= 6000);
-      assertNoPrivateDisclosure(source,input,
+      assertNoPrivateDisclosure(disclosureSource,input,
         checkpoint.narration.narration+"\n"+checkpoint.narration.visualDescription,
         astra.toolReceipts);
       await recordStage("narration_safety", "completed");

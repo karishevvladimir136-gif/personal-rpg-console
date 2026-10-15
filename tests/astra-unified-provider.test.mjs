@@ -72,6 +72,62 @@ test("missing contract pin keeps the old final contract, and unified cannot omit
   await assert.rejects(provider.next(f.context,f.input,[],[],f.caps,f.source),{code:"validation"});
 });
 
+test("private-informed modern planner omits public prose and still forbids model-authored outcomes",async()=>{
+  const f=setup(),bodies=[];
+  f.source.astraResponseMode="private-informed";
+  delete f.raw.final.publicNarration;
+  const provider=createAstraPrimaryProvider({apiKey:"synthetic-only",attemptObserver:()=>{},
+    planDiagnosticObserver:()=>{},fetcher:async(_url,init)=>{
+      bodies.push(JSON.parse(init.body));return response(f.raw);
+    }});
+  const result=await provider.next(f.context,f.input,[],[],f.caps,f.source);
+  assert.equal(result.output.type,"final");
+  assert.equal(Object.hasOwn(result.output.final,"publicNarration"),false);
+  const schema=bodies[0].text.format.schema.properties.final.anyOf[0];
+  assert.equal(schema.required.includes("publicNarration"),false);
+  assert.equal(schema.properties.outcomes.maxItems,0);
+  assert.equal(bodies[0].reasoning.effort,"high");
+  assert.equal(bodies[0].service_tier,"default");
+  f.raw.final.outcomes=[{kind:"reward",entityIds:[],itemIds:[],text:"An invented result."}];
+  await assert.rejects(provider.next(f.context,f.input,[],[],f.caps,f.source),
+    error=>error.code==="validation"&&error.retryable===false);
+  f.raw.final.outcomes=[];
+  f.raw.final.publicNarration={beats:[{text:"Private interpretation must not be bridged.",requiresEffects:[]}],
+    visualDescription:{text:"",requiresEffects:[]}};
+  await assert.rejects(provider.next(f.context,f.input,[],[],f.caps,f.source),
+    error=>error.code==="validation"&&error.retryable===false);
+  delete f.raw.final.publicNarration;
+  f.raw.final.privatePlanningText="Do not paraphrase this private planner text.";
+  await assert.rejects(provider.next(f.context,f.input,[],[],f.caps,f.source),
+    error=>error.code==="validation"&&error.retryable===false);
+});
+
+test("modern public-safe narrator remains Medium/default and format failures are manual retry only",async()=>{
+  for(const malformed of ["json","shape","clarification"]){
+    const f=setup(),bodies=[];
+    f.context.input=JSON.stringify({astraPrimary:{responseContract:"unified-v1",responseMode:"private-informed"}});
+    const raw={narration:"The miller considers your request.",visualDescription:"",clarification:null};
+    if(malformed==="shape")raw.hidden="PRIVATE_CANARY";
+    if(malformed==="clarification")raw.clarification="A legacy clarification field.";
+    const provider=createAstraPrimaryProvider({apiKey:"synthetic-only",attemptObserver:()=>{},
+      planDiagnosticObserver:()=>{},fetcher:async(_url,init)=>{
+        bodies.push(JSON.parse(init.body));
+        if(malformed!=="json")return response(raw);
+        const payload=await response(raw).json();
+        payload.output[0].content[0].text="{malformed";
+        return new Response(JSON.stringify(payload));
+      }});
+    await assert.rejects(provider.narrate(f.context,f.input),
+      error=>error.code==="validation"&&error.retryable===true);
+    assert.equal(bodies.length,1);
+    assert.equal(bodies[0].reasoning.effort,"medium");
+    assert.equal(bodies[0].service_tier,"default");
+    f.context.input="{}";
+    await assert.rejects(provider.narrate(f.context,f.input),
+      error=>error.code==="validation"&&error.retryable===false);
+  }
+});
+
 test("unified tool continuation hides private replay identities and raw check metadata",async()=>{
   const f=setup(),bodies=[],receiptId=randomUUID(),checkId=randomUUID();
   const actorId=f.caps.entityIds[0],targetId=f.caps.entityIds[1];

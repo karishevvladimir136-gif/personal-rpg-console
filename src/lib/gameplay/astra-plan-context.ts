@@ -24,6 +24,7 @@ const privateMechanicsInstruction = "Effects execute in their listed order again
 
 const planInstructions = `${privateInstructions} ${privatePurchaseInstruction} ${privateMechanicsInstruction} ${progressionInstruction}`;
 const unifiedNarrationInstructions = `Return publicNarration in the same final response. Leave base outcomes empty; the server adds accepted deterministic mechanics/effect outcomes, and ordinary fiction belongs in publicNarration. Its beats and visualDescription are public, never private planning. Each fragment has text and requiresEffects containing the original zero-based effect indexes whose successful settlement it asserts; use an empty dependency list for ordinary dialogue and fiction that does not claim durable changes. The server removes fragments depending on rejected effects. Do not expose private facts, private Character Model fields, hidden clocks, raw check IDs, hidden DCs or private dice. Do not claim an unvalidated durable outcome. Ordinary understandable actions can produce fiction without a mechanic or Quest. Preserve suspense, character voice, earned callbacks and player agency; describe each consequence once and compress repeated connective prose. Do not give a default choice menu.`;
+const privateInformedInstructions = `This is private-informed adjudication. Return only bounded durable intents, tools and authorized private patches. Leave base outcomes empty. Do not return publicNarration or player-facing prose: a separate request receives only the public scene, observable voices and server-validated public outcomes. Private facts, Character Models, clocks, private Memory and private interpretation never enter that public request.`;
 
 /** The actual provider input wraps the selected context on every tool step. */
 export function astraPlanProviderInput(contextInput: string,
@@ -76,6 +77,7 @@ function astraPlanProjection(source: RuntimeSource, input: TurnInput,
     ...progress.flatMap((row) => row.unlocks)])];
   const extra: JsonObject = {
     ...(source.astraResponseContract === "unified-v1" ? { responseContract: "unified-v1" } : {}),
+    ...(source.astraResponseMode ? { responseMode: source.astraResponseMode } : {}),
     capabilities: caps,
     toolPolicy: privateToolPolicy,
     settlementAuthority: settlementAuthoringCapabilities(source),
@@ -103,7 +105,8 @@ function astraPlanProjection(source: RuntimeSource, input: TurnInput,
     }
     const projectedInput = JSON.stringify({ ...packet, astraPrimary: extra });
     const instructions = source.astraResponseContract === "unified-v1"
-      ? `${planInstructions} ${unifiedNarrationInstructions}` : planInstructions;
+      ? `${planInstructions} ${source.astraResponseMode === "private-informed"
+          ? privateInformedInstructions : unifiedNarrationInstructions}` : planInstructions;
     const context = { instructions, budget };
     return { input: projectedInput, instructions,
       estimatedBytes: astraPlanRequestBytes(context,

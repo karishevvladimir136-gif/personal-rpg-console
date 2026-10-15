@@ -98,6 +98,8 @@ export type CurrentCheckpoint = {
 export type RuntimeSource = {
   /** Server-owned begin pin. Missing historical values retain two-stage play. */
   astraResponseContract?: "unified-v1";
+  /** Selected-context privacy boundary, privately pinned before provider work. */
+  astraResponseMode?: "public-unified" | "private-informed";
   /** Private claim-pinned mechanics definitions; World authoring stays frozen. */
   astraProgressionState?: import("../foundation-loop/contracts.ts").FoundationLoopState;
   astraProgressionBaseline?: string[];
@@ -252,6 +254,7 @@ export type TurnLease = {
 };
 export type TurnClaim = {
   astraResponseContract?: "unified-v1" | null;
+  astraResponseMode?: "public-unified" | "private-informed" | null;
   runtimeIdentity?: "legacy-v1" | "astra-primary-v1";
   lease: TurnLease;
   turn: StoredTurn;
@@ -281,6 +284,8 @@ export interface TurnStore {
     astraResponseContract?: "unified-v1"): Promise<PublicTurn>;
   astraResponseContract?(campaignId: string, operationId: string):
     Promise<"legacy-two-stage" | "unified-v1" | null>;
+  pinAstraResponseMode?(lease: TurnLease, mode: "public-unified" | "private-informed"):
+    Promise<"public-unified" | "private-informed">;
   takeoverStatus?(campaignId: string): Promise<{ active: boolean }>;
   runtimeIdentity?(campaignId: string, operationId: string): Promise<"legacy-v1" | "astra-primary-v1" | null>;
   recordAstraTool?(lease: TurnLease, position: number, call: AstraToolCall, result: JsonObject): Promise<AstraToolReceipt>;

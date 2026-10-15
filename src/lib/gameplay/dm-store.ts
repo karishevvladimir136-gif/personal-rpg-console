@@ -86,7 +86,10 @@ export function createRpcTurnStore(
       runtimeIdentity ? { ...input, serverRuntime: runtimeIdentity,
         ...(options && responseContract ? { serverAstraContract: responseContract } : {}) } : input),
     ...(options ? { astraResponseContract: (campaignId: string, operationId: string) =>
-      rpc<"legacy-two-stage" | "unified-v1" | null>(campaignId, "astra_contract", { operationId }) } : {}),
+      rpc<"legacy-two-stage" | "unified-v1" | null>(campaignId, "astra_contract", { operationId }),
+      pinAstraResponseMode: (lease: import("./server-contracts.ts").TurnLease,
+        mode: "public-unified" | "private-informed") =>
+        rpc<"public-unified" | "private-informed">(lease.campaignId, "astra_response_mode", { ...lease, mode }) } : {}),
     runtimeIdentity: (campaignId, operationId) =>
       rpc(campaignId, "astra_runtime", { operationId }),
     recordAstraTool: (lease, position, call, result) =>

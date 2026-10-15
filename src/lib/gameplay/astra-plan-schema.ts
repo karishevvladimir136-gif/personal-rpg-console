@@ -186,7 +186,7 @@ export function astraPlanResponseSchema(input: TurnInput, caps: AstraCapabilitie
     worldMinutes:{type:"integer"},changes:array(change),
     outcomes:{...array(outcome), ...(source.astraResponseContract === "unified-v1" ? {maxItems:0} : {})},
     privatePatches:array(privatePatch),effects,
-    ...(source.astraResponseContract === "unified-v1" ? {
+    ...(source.astraResponseContract === "unified-v1" && source.astraResponseMode !== "private-informed" ? {
       publicNarration: obj({
         beats: { ...array(obj({ text: { type: "string", minLength: 1, maxLength: 6000 },
           requiresEffects: { ...array({ type: "integer", minimum: 0, maximum: 5 }), maxItems: 6 } })),

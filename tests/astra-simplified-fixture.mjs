@@ -21,14 +21,17 @@ export const finalDecision = (source, text, extra = {}) => ({
     worldMinutes: source.runtime.worldMinutes,
     changes: [], outcomes: [], privatePatches: [],
     ...extra,
-    publicNarration: extra.publicNarration ?? publicNarration(text),
+    ...(source.astraResponseMode === "private-informed" ? {} : {
+      publicNarration: extra.publicNarration ?? publicNarration(text),
+    }),
   } },
 });
 
 /** Entirely disposable PGlite: no environment, network, owner or live providers. */
-export async function simplifiedFixture({ secondCampaign = false, responseContract = "unified-v1" } = {}) {
+export async function simplifiedFixture({ secondCampaign = false, responseContract = "unified-v1", publicSceneOnly = false,
+  openingAddendum = "", npcKind = "companion" } = {}) {
   const example = { ...examples.fantasy, name: "Ari", npc: "Nera",
-    narration: `Ari and Nera stand in the ordinary village square. ${oldPromise}` };
+    narration: `Ari and Nera stand in the ordinary village square. ${oldPromise}${openingAddendum ? ` ${openingAddendum}` : ""}` };
   const f = await setup(example, "en", 51);
   try {
     await f.create();
@@ -37,6 +40,10 @@ export async function simplifiedFixture({ secondCampaign = false, responseContra
       "select world from rpg_private.world_foundations where campaign_id=$1", [f.cid])).world;
     const hero = foundation.actors.find((actor) => actor.control === "player").entityId;
     const npc = foundation.actors.find((actor) => actor.control === "autonomous").entityId;
+    if (publicSceneOnly) {
+      const actor = foundation.actors.find((row) => row.entityId === npc);
+      actor.capabilities = []; actor.limitations = []; actor.knowledge = [];
+    }
     const home = (await f.one(
       "select current_location_id id from public.rpg_public_state where campaign_id=$1", [f.cid])).id;
     const mill = (await f.mutation("location.save", f.cid, {
@@ -51,7 +58,7 @@ export async function simplifiedFixture({ secondCampaign = false, responseContra
       [f.cid, JSON.stringify(foundation)]);
     const hand = JSON.stringify([{ id: "hand", label: "Main hand", accepts: ["weapon"] }]);
     await f.one("update public.rpg_entities set name='Ari',hp=10,max_hp=10,stats=stats||'{\"attack\":20,\"defense\":11,\"skill\":2}'::jsonb,resources='{\"focus\":40}'::jsonb,equipment_slots=$2::jsonb where id=$1", [hero, hand]);
-    await f.one("update public.rpg_entities set kind='companion',name='Nera',hp=100,max_hp=100,stats=stats||'{\"attack\":20,\"defense\":10}'::jsonb,equipment_slots=$2::jsonb where id=$1", [npc, hand]);
+    await f.one("update public.rpg_entities set kind=$3,name='Nera',hp=100,max_hp=100,stats=stats||'{\"attack\":20,\"defense\":10}'::jsonb,equipment_slots=$2::jsonb where id=$1", [npc, hand, npcKind]);
     await f.one("insert into rpg_private.dm_state(campaign_id,contents) values($1,$2::jsonb) on conflict(campaign_id) do update set contents=excluded.contents",
       [f.cid, JSON.stringify({ fact: { secret: privateCanary }, clock: { omen: 1 } })]);
     const pack = await f.one("select id from public.rpg_storages where campaign_id=$1 and entity_id=$2 and kind='player'", [f.cid, hero]);
@@ -61,7 +68,7 @@ export async function simplifiedFixture({ secondCampaign = false, responseContra
       storage_id: pack.id, equipped_entity_id: hero, equipped_slot: "hand",
     })).id;
     const npcPack = (await f.mutation("storage.save", f.cid, {
-      name: "Nera pack", kind: "companion", entity_id: npc,
+      name: "Nera pack", kind: npcKind === "npc" ? "merchant" : "companion", entity_id: npc,
     })).id;
     const npcWeapon = (await f.mutation("item.save", f.cid, {
       name: "Nera practice sword", category: "weapon", quantity: 1,
@@ -105,7 +112,7 @@ export async function simplifiedFixture({ secondCampaign = false, responseContra
     const rpc = async (args) => {
       try { return { data: await f.runtime(args.p_campaign_id, args.p_action,
         args.p_payload, args.p_timeline) }; }
-      catch (error) { errors.push({ action: args.p_action, message: error.message, where: error.where });
+      catch (error) { errors.push({ action: args.p_action, code: error.code, message: error.message, where: error.where });
         return { error: { message: error.message, code: error.code } }; }
     };
     const memoryRpc = async (args) => {

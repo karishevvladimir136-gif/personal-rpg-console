@@ -1,4 +1,20 @@
-# Development status — simplified Astra play runtime review candidate
+# Development status — simplified Astra privacy/live final gate
+
+**Milestone/status (2026-10-14):** Continue isolated `codex/astra-simplified-play-runtime` from reviewed `56d2e3b0b41602758d87fbbf46dc2fc267e8fb80`. The final gate replaces unified private authoring with operation-specific response routing. Not merged, activated or deployed. See `P0_RUNTIME_PRIVACY_LIVE_GATE.md`; the original P0 implementation/forensic records below remain history.
+
+**Privacy/call graph:** Actual selected evidence determines a private, immutable per-operation mode before provider/tools. No selected secrets → strict public projection → Astra High/default unified final/narration. Relevant private Memory/Character Models/facts/clocks/World evidence → Astra High/default private adjudication → strictly public-safe Astra Medium/default narration. Unrelated campaign secrets and empty/private-ID metadata do not force two stages; explicit public World events remain public. The narrator receives no private state/Memory/World packet/checkpoint/interpretation bridge. Allowed observable voices survive repeated projection. Retrieved private Memory participates in the independent literal guard, including final-pinned retry. Legacy operations retain their original contracts.
+
+**Migration 51 — disposable only:** Existing nullable response-contract begin pin gains one nullable private `astra_response_mode` column/action, live lease/revision/timeline checks and pin-before-tool/final/commit enforcement. Same mode replay is idempotent; a changed mode conflicts. Save/load preserves mode; immutable old manifests restore legacy/null. Wrapper/predecessor service-role permissions remain closed. Migrations 1–50 are unchanged; no Migration 52. Owner DB remains **50**.
+
+**Verification:** **202 distinct affected focused checks pass**, including final privacy selection **11/11**, populated Migration-51/ACL/recovery **4/4**, actual production-module 200-turn soak, pure Memory, runtime/dice/effects/retry/save compatibility and bounded live-harness tests. Fresh complete suite **2,362/2,363**, zero failures, one existing explicit-opt-in live disposable Supabase Auth/PostgREST skip; **503.820 seconds**, three test workers. TypeScript, repository ESLint with zero warnings and production webpack build pass. Paid smoke has not started. The first lint attempt found one unused test binding, now removed; migration tests and lint/build passed afterward without production behavior changes.
+
+**Soak/limits:** 200 commits, 300 fake primary requests, 100 receipts, 45 background fake summaries and zero foreground summaries; exact final HP 10/Focus 20/supplies 10/Nera HP 40/world minute 9,800/original Location/20 rests. Final full-run soak packets 40,710–62,243 bytes. The 64KB soft target, validated outer cap, compatible effects, fast-only transport retry and all hard state guards remain. No UI/media/new-mechanics work. One authorized disposable live smoke is bounded to four Astra High/default text requests and US $5; its independent conservative dispatch reserve is at most $4.0192. No quality retry is permitted.
+
+**Safety/limitation/next:** Main remains `5fb142b7dad6406473e3d3ae77e49cc5b2d3320d`; owner DB matches all 79 fingerprints, Iris revision 79/world minute 508, unchanged timeline and preserved failed mill operation. Owner app/environment remain untouched; only the credential-free isolated preview was stopped after tests. Private nonmechanical cognition is not bridged as untrusted prose: exact private choices without validated public consequences may not be reproduced by public narration. Authorized bounded live evidence and separate owner activation review remain required.
+
+---
+
+# Historical review candidate — simplified Astra play runtime at 56d2e3b
 
 **Milestone/status (2026-10-14):** Isolated `codex/astra-simplified-play-runtime` starts from exact production main `5fb142b7dad6406473e3d3ae77e49cc5b2d3320d`. The owner-authorized P0 runtime simplification is implemented and all offline gates pass. Ready for owner review; not merged, activated, deployed or live-quality accepted. See `P0_RUNTIME_SIMPLIFICATION.md` and the owner-safe `P0_LIVE_PLAYABILITY_FORENSIC.md`.
 

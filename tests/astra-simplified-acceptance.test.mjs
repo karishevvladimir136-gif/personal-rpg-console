@@ -22,7 +22,7 @@ const actions = (choices) => ({ kind: "mechanic_actions", actions: choices, rest
 const committed = (turn, errors) => assert.equal(turn.result.status, "committed", JSON.stringify(errors));
 
 test("seven free-form inputs commit literal fiction in one Astra response without bespoke mechanics", async (t) => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     for (const [index, text] of freeForm.entries()) await t.test(text, async () => {
@@ -57,7 +57,7 @@ test("seven free-form inputs commit literal fiction in one Astra response withou
 });
 
 test("unified fiction survives rejected optional effect while dependent false consequence and visual are removed", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     const result = await h.turn("I ask about work, steady myself, and imagine a magical reward.", {
@@ -89,7 +89,7 @@ test("unified fiction survives rejected optional effect while dependent false co
 });
 
 test("unified compatible fiction cannot authorize foreign campaign effects or raw HP/money writes", async (t) => {
-  const h = await simplifiedFixture({ secondCampaign: true });
+  const h = await simplifiedFixture({ secondCampaign: true, publicSceneOnly: true });
   try {
     const foreignActor = (await h.f.mutation("entity.save", h.foreignCampaignId, {
       kind: "player", name: "Foreign hero", details: "Other campaign only", hp: 8, max_hp: 8,
@@ -122,7 +122,7 @@ test("unified compatible fiction cannot authorize foreign campaign effects or ra
 });
 
 test("a real optional rest validation failure preserves lodging dialogue without false recovery", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     await h.f.one("update public.rpg_items set quantity=0 where id=$1", [h.supplies]);
     await h.f.one("update public.rpg_entities set hp=4 where id=$1", [h.hero]);
@@ -153,7 +153,7 @@ test("a real optional rest validation failure preserves lodging dialogue without
 });
 
 test("model-authored outcomes cannot smuggle a rejected durable consequence into public Memory", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     const falseReward = "UNAUTHORIZED_REWARD_MEMORY_CANARY: you receive one thousand silver.";
@@ -176,40 +176,90 @@ test("model-authored outcomes cannot smuggle a rejected durable consequence into
   } finally { await h.f.db.close(); }
 });
 
-test("unified public allowlist rejects private fact and Character Model disclosure without committing", async (t) => {
-  const h = await simplifiedFixture();
+test("unrelated private campaign rows never enter the public-only provider packet", async () => {
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
-    const modelSecret = "SYNTHETIC_CHARACTER_PRIVATE_GOAL";
-    const bucketSecret = "SYNTHETIC_GENERIC_PRIVATE_OBLIGATION";
+    let calls = 0;
+    const turn = await h.turn("Nera, how has your morning been?", {
+      next: async (context, _input, _receipts, _checks, _caps, source) => {
+        calls++;
+        assert.equal(source.astraResponseMode, "public-unified");
+        assert.equal(context.input.includes(privateCanary), false);
+        assert.deepEqual(source.privateState, {});
+        assert.equal(source.memory.privateHistorical.length, 0);
+        return finalDecision(source, "Nera describes an ordinary morning.");
+      }, narrate: noNarrator,
+    });
+    committed(turn, h.errors);
+    assert.equal(calls, 1);
+    assert.doesNotMatch(JSON.stringify(turn.result), /SYNTHETIC_UNREVEALED|privatePatches|toolReceipts/);
+  } finally { await h.f.db.close(); }
+});
+
+test("relevant private Character Model evidence keeps a strict public narrator boundary and rejects disclosure", async (t) => {
+  const h = await simplifiedFixture({ publicSceneOnly: true });
+  try {
+    const modelSecret = "SYNTHETIC_CHARACTER_PRIVATE_GOAL: Nera intends to hide the brass key from Ari until midnight.";
+    const bucketSecret = "SYNTHETIC_GENERIC_PRIVATE_OBLIGATION: Nera owes a concealed debt to the miller.";
     const model = { schemaVersion: 1, actorId: h.npc, basisOperationId: null,
       identity: { values: [], wants: [], boundaries: [], loyalties: [], signatures: [], observableVoice: "Measured ordinary speech" },
       current: { goal: modelSecret, stress: "settled", preoccupation: null, obligation: null },
       beliefs: [], relationships: [], episodes: [] };
     await h.f.one(`update rpg_private.dm_state set contents=contents||
-      jsonb_build_object('npc',jsonb_build_object($2::text,$3::text),'promise',jsonb_build_object('unrevealed',$4::text))
-      where campaign_id=$1`, [h.f.cid, `character_${h.npc}`, JSON.stringify(model), bucketSecret]);
-    for (const canary of [privateCanary, modelSecret, bucketSecret]) await t.test(canary, async () => {
+      jsonb_build_object('npc',jsonb_build_object($2::text,$3::text),'promise',jsonb_build_object($5::text,$4::text))
+      where campaign_id=$1`, [h.f.cid, `character_${h.npc}`, JSON.stringify(model), bucketSecret, h.npc]);
+    for (const canary of [modelSecret, bucketSecret]) await t.test(canary, async () => {
       const before = await h.snapshot();
+      let plannerCalls = 0, narratorCalls = 0;
       const turn = await h.turn("I ask Nera how the day has gone.", {
         next: async (context, _input, _receipts, _checks, _caps, source) => {
+          plannerCalls++;
+          assert.equal(source.astraResponseMode, "private-informed");
           assert.ok(context.input.includes(canary), "Synthetic private canary reaches the authorized private DM context");
-          return finalDecision(source, `Nera says ${canary}.`);
-        }, narrate: noNarrator,
+          assert.equal(context.input.includes(privateCanary), false, "Unrelated private truth remains unselected");
+          const final = finalDecision(source, "Private planner text is never a narration bridge.");
+          assert.equal(Object.hasOwn(final.output.final, "publicNarration"), false);
+          return final;
+        }, narrate: async (context) => {
+          narratorCalls++;
+          assert.equal(context.input.includes(canary), false);
+          assert.equal(context.input.includes(privateCanary), false);
+          assert.equal(context.input.includes("Private planner text"), false);
+          for (const hiddenMeaning of ["brass key", "until midnight", "concealed debt"])
+            assert.equal(context.input.includes(hiddenMeaning), false, hiddenMeaning);
+          assert.ok(context.input.includes("Measured ordinary speech"), "Public observable voice survives the privacy projection");
+          return { usage: fakeUsage, output: { narration: `Nera says ${canary}.`, visualDescription: "", clarification: null } };
+        },
       });
+      assert.equal(plannerCalls, 1);
+      assert.equal(narratorCalls, 1);
       assert.equal(turn.result.status, "failed");
       assert.equal(turn.result.failure, "validation");
       assert.equal(turn.result.narration, null);
       assert.equal(JSON.stringify(turn.result).includes(canary), false);
       assert.deepEqual(await h.snapshot(), before);
     });
+    const safe = await h.turn("I listen to Nera's answer.", {
+      next: async (_context, _input, _receipts, _checks, _caps, source) => finalDecision(source, ""),
+      narrate: async (context) => {
+        assert.equal(context.input.includes(modelSecret), false);
+        assert.equal(context.input.includes(bucketSecret), false);
+        for (const hiddenMeaning of ["brass key", "until midnight", "concealed debt"])
+          assert.equal(context.input.includes(hiddenMeaning), false, hiddenMeaning);
+        return { usage: fakeUsage, output: { narration: "Nera considers the day and answers in measured ordinary speech.", visualDescription: "", clarification: null } };
+      },
+    });
+    committed(safe, h.errors);
+    assert.equal(safe.result.narration, "Nera considers the day and answers in measured ordinary speech.");
+    assert.doesNotMatch(JSON.stringify(safe.result), /brass key|until midnight|concealed debt|privatePatches|characterPacket|privateState/);
   } finally { await h.f.db.close(); }
 });
 
 test("private check and receipt identities cannot be copied into unified player narration", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
-    const turn = await h.turn("Nera attacks; resolve it honestly without showing secret roll metadata.", {
+    const turn = await h.turn("Nera attacks; resolve it honestly.", {
       next: async (_context, _input, receipts, checks, _caps, source) => {
         if (!receipts.length) return { usage: fakeUsage, output: { type: "tool", final: null,
           call: { kind: "attack", actorId: h.npc, targetId: h.hero, itemId: h.npcWeapon, dc: null, scope: null } } };
@@ -226,7 +276,7 @@ test("private check and receipt identities cannot be copied into unified player 
 });
 
 test("nested JSON values in historical private Memory remain private after current state changes", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const secret = "SYNTHETIC_HISTORICAL_JSON_PRIVATE_VALUE";
     const privateEvent = JSON.stringify([{ kind: "fact", key: "old_private_recollection",
@@ -236,11 +286,15 @@ test("nested JSON values in historical private Memory remain private after curre
     const before = await h.snapshot();
     const turn = await h.turn("I ask Nera about an old private recollection.", {
       next: async (context, _input, _receipts, _checks, _caps, source) => {
+        assert.equal(source.astraResponseMode, "private-informed");
         assert.equal(JSON.stringify(source.privateState).includes(secret), false,
           "This secret exists only in historical private evidence, not current private state");
         assert.ok(context.input.includes(secret));
-        return finalDecision(source, `Nera tells you ${secret}.`);
-      }, narrate: noNarrator,
+        return finalDecision(source, "");
+      }, narrate: async (context) => {
+        assert.equal(context.input.includes(secret), false);
+        return { usage: fakeUsage, output: { narration: `Nera tells you ${secret}.`, visualDescription: "", clarification: null } };
+      },
     });
     assert.equal(turn.result.status, "failed");
     assert.equal(turn.result.failure, "validation");
@@ -250,7 +304,7 @@ test("nested JSON values in historical private Memory remain private after curre
 });
 
 test("stale revision and private narration of another campaign remain atomic failures", async () => {
-  const h = await simplifiedFixture({ secondCampaign: true });
+  const h = await simplifiedFixture({ secondCampaign: true, publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     const play = await h.store.readPlay(h.f.cid);
@@ -278,7 +332,7 @@ test("stale revision and private narration of another campaign remain atomic fai
 });
 
 test("only fiction depending on rejected authority is not fabricated into a successful turn", async () => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     const result = await h.turn("Please give me impossible powers.", {
@@ -297,7 +351,7 @@ test("only fiction depending on rejected authority is not fabricated into a succ
 
 test("synthetic call graph accounts for two legacy responses versus one unified response without claiming live speed", async (t) => {
   async function simulate(responseContract) {
-    const h = await simplifiedFixture({ responseContract });
+    const h = await simplifiedFixture({ responseContract, publicSceneOnly: true });
     const observations = [];
     let modeledProviderMs = 0;
     try {
@@ -346,7 +400,7 @@ test("synthetic call graph accounts for two legacy responses versus one unified 
 });
 
 test("200 committed production turns keep bounded context, real mechanics, retrievable continuity and exact replay", async (t) => {
-  const h = await simplifiedFixture();
+  const h = await simplifiedFixture({ publicSceneOnly: true });
   try {
     const before = await h.snapshot();
     const frozenWorld = await h.f.one("select world from rpg_private.world_foundations where campaign_id=$1", [h.f.cid]);

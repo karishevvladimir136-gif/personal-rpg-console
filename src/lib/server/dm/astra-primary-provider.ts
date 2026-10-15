@@ -22,7 +22,8 @@ function exactKeys(value: unknown, keys: string[]): value is Record<string,unkno
 }
 function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
   caps: AstraCapabilities, receipts: AstraToolReceipt[]): AstraDecision {
-  const unified = source.astraResponseContract === "unified-v1";
+  const modern = source.astraResponseContract === "unified-v1";
+  const unified = modern && source.astraResponseMode !== "private-informed";
   if (!exactKeys(raw,["type","call","final"])) planValidation("decision_root_shape");
   if (raw.type === "tool") {
     if (raw.final !== null || !exactKeys(raw.call,
@@ -35,7 +36,8 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     return { type:"tool",call:call as AstraToolCall,final:null };
   }
   if (raw.type !== "final" || raw.call !== null ||
-    !(unified ? exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects","publicNarration"]) :
+    !(unified ? exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects","publicNarration"]) : modern ?
+      exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects"]) :
       (exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","effects"]) ||
       exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches","settlement"]) ||
       exactKeys(raw.final,["schemaVersion","worldMinutes","changes","outcomes","privatePatches"]))))
@@ -45,7 +47,7 @@ function parseDecision(raw: unknown, source: RuntimeSource, input: TurnInput,
     value.changes.length > 12 || !Array.isArray(value.outcomes) ||
     value.outcomes.length > 12 || !Array.isArray(value.privatePatches) ||
     value.privatePatches.length > 6) planValidation("decision_final_limits");
-  if (unified && value.outcomes.length !== 0) planValidation("decision_final_limits");
+  if (modern && value.outcomes.length !== 0) planValidation("decision_final_limits");
   const changes: AstraPrivateFinal["changes"] = [];
   for (const entry of value.changes) {
     if (!exactKeys(entry,["family","id","expectedRevision","hp","resources",
@@ -253,8 +255,16 @@ export function createAstraPrimaryProvider(options: {
         throw error;
       }
     },
-    narrate: (context,input,observe) =>
-      createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
+    narrate: async (context,input,observe) => {
+      const marker = (() => {
+        try {
+          return (JSON.parse(context.input) as {astraPrimary?:{
+            responseContract?:unknown;responseMode?:unknown}}).astraPrimary;
+        }
+        catch { return null; }
+      })();
+      try {
+        return await createStructuredRequester({apiKey:options.apiKey,model:"gpt-6-astra",
         reasoning:"medium",fetcher:options.fetcher,includeUsageMetadata:true,
         observer:attemptObserver,planDiagnosticObserver:planDiagnosticObserver(input,"narrate"),
         diagnosticObserver:progress(input,"narrate",observe)})(context,"narrate",input.operationId,
@@ -264,6 +274,14 @@ export function createAstraPrimaryProvider(options: {
           catch { planValidation("narration_contract_invalid"); }
           if (parsed.clarification !== null) planValidation("narration_clarification_present");
           return { ...parsed, clarification:null };
-        },narrationSchema),
+        },narrationSchema);
+      } catch (error) {
+        if (marker?.responseContract === "unified-v1" && marker.responseMode === "private-informed" &&
+          ["output_json_invalid", "narration_contract_invalid", "narration_clarification_present"]
+            .includes(planValidationReason(error) ?? ""))
+          throw new DmError("validation",true);
+        throw error;
+      }
+    },
   };
 }

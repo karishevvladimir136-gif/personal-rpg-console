@@ -160,10 +160,13 @@ export function buildContext(
   } catch {
     throw new DmError("context");
   }
-  const budget = options.budget ?? modelBudget(options.model);
-  const inputBudget = modelInputLimit(budget);
-  const inputTarget = Math.min(inputBudget, options.targetInputBytes ?? inputBudget);
   const unified = source.astraResponseContract === "unified-v1";
+  const baseBudget = options.budget ?? modelBudget(options.model);
+  const budget = unified && !options.budget ? { ...baseBudget,
+    inputCap: baseBudget.contextLimit - baseBudget.outputReserve - baseBudget.safetyMargin,
+  } : baseBudget;
+  const inputBudget = modelInputLimit(budget);
+  const inputTarget = Math.min(inputBudget, options.targetInputBytes ?? (unified ? 64000 : inputBudget));
   if (
     budget.model !== options.model ||
     !Number.isSafeInteger(inputBudget) ||

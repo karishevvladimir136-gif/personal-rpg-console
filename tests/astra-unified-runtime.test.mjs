@@ -31,21 +31,24 @@ async function setup() {
     provider:{next:async(_context,_input,_receipts,_checks,_caps,source)=>{
       plans++;
       return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
-        changes:[],outcomes:[],privatePatches:[],effects:[],publicNarration:publicNarration()}}};
-    },narrate:async()=>{narrators++;assert.fail("unified turn must not call a dedicated narrator");}}};
+        changes:[],outcomes:[],privatePatches:[],effects:[],
+        ...(source.astraResponseMode==="private-informed"?{}:{publicNarration:publicNarration()})}}};
+    },narrate:async()=>{narrators++;return {usage,output:{
+      narration:"The miller considers your request.",visualDescription:"",clarification:null}};}}};
   const input=async(text="i go to mill and ask miller for job")=>{
     const play=await store.readPlay(f.cid);
     return {operationId:randomUUID(),campaignId:f.cid,timeline:play.timeline,
       expectedRevision:play.revision,mode:"game",input:text,
       companionId:null,listenerIds:[],mechanic:null};
   };
-  const row=id=>f.one("select status,failure,retryable,committed_revision,astra_response_contract,astra_ordered_effects,source,checkpoint from rpg_private.turns where id=$1",[id]);
+  const row=id=>f.one("select status,failure,retryable,committed_revision,astra_response_contract,astra_response_mode,astra_ordered_effects,source,checkpoint from rpg_private.turns where id=$1",[id]);
   return {f,hero,npc,store,deps,input,row,counts:()=>({plans,narrators})};
 }
 
-test("seven free-form actions use one unified response each, without bespoke handlers or foreground summaries",async()=>{
+test("seven free-form actions use selected-context privacy routing without bespoke handlers or foreground summaries",async()=>{
   const s=await setup();
   try {
+    let privateModes=0;
     for(const text of [
       "i go to mill and ask miller for job",
       "i insult the mayor's hat",
@@ -59,11 +62,12 @@ test("seven free-form actions use one unified response each, without bespoke han
       assert.equal((await runAstraTurn(input,s.deps)).status,"committed",text);
       const saved=await s.row(input.operationId);
       assert.equal(saved.astra_response_contract,"unified-v1");
-      assert.equal(saved.checkpoint.usage.length,1);
+      if(saved.astra_response_mode==="private-informed")privateModes++;
+      assert.equal(saved.checkpoint.usage.length,saved.astra_response_mode==="private-informed"?2:1);
       assert.ok(saved.checkpoint.astraPrimary.finalProposal);
       assert.equal(saved.checkpoint.narration.clarification,null);
     }
-    assert.deepEqual(s.counts(),{plans:7,narrators:0});
+    assert.deepEqual(s.counts(),{plans:7,narrators:privateModes});
   } finally {await s.f.db.close();}
 });
 
@@ -180,7 +184,7 @@ test("if every public beat requires rejected state, preserve input and fail tech
   } finally {await s.f.db.close();}
 });
 
-test("nested Character Model and generic private values never enter unified public narration",async()=>{
+test("nested Character Model and generic private values never enter adaptive public narration",async()=>{
   const s=await setup();
   try {
     const originalClaim=s.store.claim;
@@ -200,7 +204,12 @@ test("nested Character Model and generic private values never enter unified publ
       "WORLD_PRIVATE_CANARY_71937"]){
       s.deps.provider.next=async(_ctx,_input,_receipts,_checks,_caps,source)=>({usage,
         output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
-          changes:[],outcomes:[],privatePatches:[],effects:[],publicNarration:publicNarration(text)}}});
+          changes:[],outcomes:[],privatePatches:[],effects:[],
+          ...(source.astraResponseMode==="private-informed"?{}:{publicNarration:publicNarration(text)})}}});
+      s.deps.provider.narrate=async(context)=>{
+        assert.equal(context.input.includes(text),false);
+        return {usage,output:{narration:text,visualDescription:"",clarification:null}};
+      };
       const input=await s.input(),result=await runAstraTurn(input,s.deps);
       assert.equal(result.status,"failed");
       assert.equal(result.failure,"validation");
@@ -249,4 +258,235 @@ test("private-bucket overlap does not suppress an already-public character name"
     assert.equal(result.status,"committed");
     assert.ok(result.narration.includes(heroName));
   } finally {await s.f.db.close();}
+});
+
+test("unrelated campaign secrets do not force a private-informed turn or enter its public planner",async()=>{
+  const s=await setup();
+  try {
+    const claim=s.store.claim;
+    s.store.claim=async(...args)=>{
+      const current=await claim(...args);
+      if(current)current.source.privateState={fact:{remoteVolcano:"UNRELATED_VOLCANO_CANARY_8621"}};
+      return current;
+    };
+    s.deps.provider.next=async(context,_input,_receipts,_checks,_caps,source)=>{
+      assert.equal(source.astraResponseMode,"public-unified");
+      assert.equal(context.input.includes("UNRELATED_VOLCANO_CANARY_8621"),false);
+      assert.deepEqual(source.privateState,{});
+      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],effects:[],publicNarration:publicNarration()}}};
+    };
+    s.deps.provider.narrate=async()=>assert.fail("public-only turn should use one response");
+    const input=await s.input("I sit by the road and watch people pass.");
+    assert.equal((await runAstraTurn(input,s.deps)).status,"committed");
+    assert.equal((await s.row(input.operationId)).astra_response_mode,"public-unified");
+  } finally {await s.f.db.close();}
+});
+
+test("relevant private evidence pins a private planner and strict public-safe narrator before provider work",async()=>{
+  const s=await setup();
+  try {
+    const claim=s.store.claim,canary="RELEVANT_PRIVATE_CANARY_75218";
+    let originalSource,plans=0,narrators=0;
+    s.store.claim=async(...args)=>{
+      const current=await claim(...args);
+      if(current){
+        current.source.privateState={fact:{millerSecret:{actorId:s.npc,value:canary}}};
+        current.source.narrationBridge={privateIntent:canary};
+        originalSource=current.source;
+      }
+      return current;
+    };
+    s.deps.provider.next=async(context,input,_receipts,_checks,_caps,source)=>{
+      plans++;
+      assert.equal(source.astraResponseMode,"private-informed");
+      assert.ok(context.input.includes(canary));
+      assert.equal((await s.row(input.operationId)).astra_response_mode,"private-informed");
+      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],effects:[]}}};
+    };
+    s.deps.provider.narrate=async(context)=>{
+      narrators++;
+      assert.equal(context.input.includes(canary),false);
+      assert.equal(context.input.includes("millerSecret"),false);
+      const packet=JSON.parse(context.input);
+      assert.equal(packet.astraPrimary.responseMode,"private-informed");
+      assert.equal(packet.astraPrimary.responseContract,"unified-v1");
+      assert.equal(JSON.stringify(packet).includes("privateIntent"),false);
+      assert.equal(Object.hasOwn(packet.mandatory??{},"worldTakeover"),false);
+      assert.ok(originalSource.privateState.fact.millerSecret);
+      return {usage,output:{narration:"The miller hears you out, but keeps his own counsel.",
+        visualDescription:"",clarification:null}};
+    };
+    const npc=await s.f.one("select name from public.rpg_entities where id=$1",[s.npc]);
+    const input=await s.input(`I ask ${npc.name} what he knows.`);
+    assert.equal((await runAstraTurn(input,s.deps)).status,"committed");
+    assert.equal(plans,1);
+    assert.equal(narrators,1);
+    assert.equal((await s.row(input.operationId)).checkpoint.usage.length,2);
+  } finally {await s.f.db.close();}
+});
+
+test("a pinned private-informed mode survives retry even when later selection has no private evidence",async()=>{
+  const s=await setup();
+  try {
+    const claim=s.store.claim;
+    let inject=true,plans=0,narrators=0;
+    s.store.claim=async(...args)=>{
+      const current=await claim(...args);
+      if(current)current.source.privateState=inject
+        ? {fact:{scoped:{actorId:s.npc,value:"PINNED_RELEVANT_CANARY_81247"}}}:{};
+      return current;
+    };
+    s.deps.provider.next=async(_context,_input,_receipts,_checks,_caps,source)=>{
+      plans++;
+      assert.equal(source.astraResponseMode,"private-informed");
+      if(plans===1)throw new DmError("unavailable",true);
+      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],effects:[]}}};
+    };
+    s.deps.provider.narrate=async()=>{narrators++;return {usage,output:{
+      narration:"The miller nods.",visualDescription:"",clarification:null}};};
+    const npc=await s.f.one("select name from public.rpg_entities where id=$1",[s.npc]);
+    const input=await s.input(`I ask ${npc.name} about his work.`);
+    assert.equal((await runAstraTurn(input,s.deps)).status,"failed");
+    assert.equal((await s.row(input.operationId)).astra_response_mode,"private-informed");
+    inject=false;
+    assert.equal((await resumeAstraTurn({commandId:randomUUID(),campaignId:s.f.cid,
+      operationId:input.operationId,timeline:input.timeline,action:"retry",checkId:null},s.deps)).status,"committed");
+    assert.equal((await s.row(input.operationId)).astra_response_mode,"private-informed");
+    assert.equal(plans,2);
+    assert.equal(narrators,1);
+  } finally {await s.f.db.close();}
+});
+
+test("a pinned public-unified retry strips newly selected private evidence and never adds a narrator",async()=>{
+  const s=await setup();
+  try {
+    const claim=s.store.claim,canary="LATER_RELEVANT_PRIVATE_CANARY_98431";
+    let inject=false,plans=0;
+    s.store.claim=async(...args)=>{
+      const current=await claim(...args);
+      if(current)current.source.privateState=inject
+        ? {fact:{scoped:{actorId:s.npc,value:canary}}}:{};
+      return current;
+    };
+    s.deps.provider.next=async(context,_input,_receipts,_checks,_caps,source)=>{
+      plans++;
+      assert.equal(source.astraResponseMode,"public-unified");
+      assert.equal(context.input.includes(canary),false);
+      assert.deepEqual(source.privateState,{});
+      if(plans===1)throw new DmError("unavailable",true);
+      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],effects:[],publicNarration:publicNarration()}}};
+    };
+    s.deps.provider.narrate=async()=>assert.fail("pinned public-unified turn gained a narrator");
+    const input=await s.input("I sit by the road and watch people pass.");
+    assert.equal((await runAstraTurn(input,s.deps)).status,"failed");
+    assert.equal((await s.row(input.operationId)).astra_response_mode,"public-unified");
+    inject=true;
+    assert.equal((await resumeAstraTurn({commandId:randomUUID(),campaignId:s.f.cid,
+      operationId:input.operationId,timeline:input.timeline,action:"retry",checkId:null},s.deps)).status,"committed");
+    assert.equal((await s.row(input.operationId)).astra_response_mode,"public-unified");
+    assert.equal(plans,2);
+    assert.equal((await s.row(input.operationId)).checkpoint.usage.length,1);
+  } finally {await s.f.db.close();}
+});
+
+test("private-informed narration format retry reuses the pinned final and durable tool without planner replay",async()=>{
+  const s=await setup();
+  try {
+    const claim=s.store.claim;
+    let plans=0,narrators=0,rolls=0;
+    s.store.claim=async(...args)=>{
+      const current=await claim(...args);
+      if(current)current.source.privateState={fact:{scoped:{actorId:s.npc,
+        value:"FORMAT_RETRY_PRIVATE_CANARY_89471"}}};
+      return current;
+    };
+    s.deps.random=()=>{rolls++;return 18;};
+    s.deps.provider.next=async(_context,_input,receipts,_checks,_caps,source)=>{
+      plans++;
+      assert.equal(source.astraResponseMode,"private-informed");
+      if(!receipts.length)return {usage,output:{type:"tool",final:null,
+        call:{kind:"skill",actorId:s.hero,targetId:null,dc:10,itemId:null,scope:null}}};
+      return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+        changes:[],outcomes:[],privatePatches:[],effects:[]}}};
+    };
+    s.deps.provider.narrate=async(context)=>{
+      narrators++;
+      assert.equal(context.input.includes("FORMAT_RETRY_PRIVATE_CANARY_89471"),false);
+      if(narrators===1)throw new DmError("validation",true);
+      return {usage,output:{narration:"The miller hears your careful explanation.",
+        visualDescription:"",clarification:null}};
+    };
+    const npc=await s.f.one("select name from public.rpg_entities where id=$1",[s.npc]);
+    const input=await s.input(`I explain my offer carefully to ${npc.name}.`);
+    assert.equal((await runAstraTurn(input,s.deps)).status,"awaiting_confirmation");
+    const command={commandId:randomUUID(),campaignId:s.f.cid,operationId:input.operationId,
+      timeline:input.timeline,action:"continue",checkId:null};
+    assert.equal((await resumeAstraTurn(command,s.deps)).status,"failed");
+    const failed=await s.row(input.operationId);
+    assert.equal(failed.retryable,true);
+    assert.equal(failed.astra_response_mode,"private-informed");
+    assert.ok(failed.checkpoint.astraPrimary.finalProposal);
+    assert.equal(failed.checkpoint.astraPrimary.toolReceipts.length,1);
+    assert.equal(failed.checkpoint.narration,null);
+    assert.equal((await resumeAstraTurn({...command,commandId:randomUUID(),action:"retry"},s.deps)).status,"committed");
+    assert.equal(plans,2);
+    assert.equal(narrators,2);
+    assert.equal(rolls,1);
+    const committed=await s.row(input.operationId);
+    assert.equal(committed.checkpoint.astraPrimary.toolReceipts.length,1);
+    assert.equal(committed.checkpoint.usage.length,3);
+  } finally {await s.f.db.close();}
+});
+
+test("selected historical private Memory guards narration both initially and after a final-pinned retry",async()=>{
+  for(const retryFirst of [false,true]){
+    const s=await setup();
+    try {
+      const secret="HISTORICAL_PRIVATE_MEMORY_RETRY_CANARY_61972";
+      const privateEvent=JSON.stringify([{kind:"fact",key:"old_private_recollection",
+        operation:"set",value:secret,amount:null}]);
+      await s.f.one("select rpg_private.memory_index($1,'private_event',$2,'1',$3,'private')",
+        [s.f.cid,randomUUID(),privateEvent]);
+      let plans=0,narrators=0;
+      s.deps.provider.next=async(context,_input,_receipts,_checks,_caps,source)=>{
+        plans++;
+        assert.equal(source.astraResponseMode,"private-informed");
+        assert.ok(context.input.includes(secret));
+        assert.equal(JSON.stringify(source.privateState).includes(secret),false);
+        return {usage,output:{type:"final",call:null,final:{worldMinutes:source.runtime.worldMinutes,
+          changes:[],outcomes:[],privatePatches:[],effects:[]}}};
+      };
+      s.deps.provider.narrate=async(context)=>{
+        narrators++;
+        assert.equal(context.input.includes(secret),false);
+        if(retryFirst&&narrators===1)throw new DmError("validation",true);
+        return {usage,output:{narration:`The miller reveals ${secret}.`,
+          visualDescription:"",clarification:null}};
+      };
+      const npc=await s.f.one("select name from public.rpg_entities where id=$1",[s.npc]);
+      const input=await s.input(`I ask ${npc.name} about an old private recollection.`);
+      let result=await runAstraTurn(input,s.deps);
+      assert.equal(result.status,"failed");
+      if(retryFirst){
+        assert.equal(result.canRetry,true);
+        assert.ok((await s.row(input.operationId)).checkpoint.astraPrimary.finalProposal);
+        result=await resumeAstraTurn({commandId:randomUUID(),campaignId:s.f.cid,
+          operationId:input.operationId,timeline:input.timeline,action:"retry",checkId:null},s.deps);
+      }
+      assert.equal(result.status,"failed");
+      assert.equal(result.failure,"validation");
+      assert.equal(result.canRetry,false);
+      assert.equal(result.narration,null);
+      assert.equal(JSON.stringify(result).includes(secret),false);
+      assert.equal(plans,1);
+      assert.equal(narrators,retryFirst?2:1);
+      assert.equal((await s.row(input.operationId)).committed_revision,null);
+      assert.equal((await s.f.one("select count(*)::integer n from rpg_private.runtime_events where operation_id=$1",
+        [input.operationId])).n,0);
+    } finally {await s.f.db.close();}
+  }
 });
