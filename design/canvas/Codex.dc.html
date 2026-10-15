@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Кодекс</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible,input:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+input::placeholder{color:#8d7142}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="border: 1px solid rgba(207,168,96,0.55); background: linear-gradient(180deg, #3a2c1f, #271d15); border-radius: 6px; padding: 14px 18px 12px; display: grid; gap: 4px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.12), 0 6px 18px rgba(0,0,0,0.4)">
+    <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Мир Шва · люди и силы</span>
+    <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-weight: 700; font-size: 34px; line-height: 1.05; color: #cfa860; text-shadow: 0 1px 0 rgba(0,0,0,0.6)">Кодекс</h1>
+    <span style="color: #ab9a80; font-size: 14px">{{count}}</span>
+  </header>
+
+  <label style="display: block; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px">
+    <span style="display: block; font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142; margin: 0 0 8px">Поиск по кодексу</span>
+    <input type="search" value="{{q}}" onInput="{{setQ}}" placeholder="Имя, место, фракция" style="width: 100%; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.26); border-radius: 4px; padding: 10px 12px; color: #ece1cb; font: inherit; font-size: 15px">
+  </label>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+    <div style="flex: 1.4 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+        <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 4px">{{g.title}}</div>
+          <sc-for list="{{g.items}}" as="n" hint-placeholder-count="3">
+            <div style="{{n.rowStyle}}">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+                <b style="font-family: 'Old Standard TT', Georgia, serif; font-size: 17px">{{n.name}}</b>
+                <span style="{{n.badge}}">{{n.rel}}</span>
+              </div>
+              <p style="margin: 0; font-size: 14px; color: #ab9a80">{{n.who}}</p>
+              <sc-if value="{{n.hasNote}}" hint-placeholder-val="{{ true }}"><p style="margin: 0; font-size: 14px; color: #ece1cb; opacity: 0.85">{{n.note}}</p></sc-if>
+            </div>
+          </sc-for>
+        </section>
+      </sc-for>
+    </div>
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <sc-if value="{{hasFactions}}" hint-placeholder-val="{{ true }}">
+        <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 14px; box-shadow: inset 0 1px 0 rgba(255,230,180,0.05)">
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; margin: 0 0 4px">Фракции</div>
+          <sc-for list="{{factions}}" as="n" hint-placeholder-count="6">
+            <div style="{{n.rowStyle}}">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+                <b style="font-family: 'Old Standard TT', Georgia, serif; font-size: 17px">{{n.name}}</b>
+                <span style="{{n.badge}}">{{n.rel}}</span>
+              </div>
+              <p style="margin: 0; font-size: 14px; color: #ab9a80">{{n.who}}</p>
+            </div>
+          </sc-for>
+        </section>
+      </sc-if>
+      <sc-if value="{{empty}}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 0; color: #ab9a80">Никого не нашлось. Попробуй другое имя или место.</p>
+      </sc-if>
+      <span style="font-size: 13px; color: #8d7142">Кодекс пополняет ведущий: новый человек появляется после первой встречи, отношение меняется по ходу игры. Тайн здесь нет — только то, что знает герой.</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1300}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: "" };
+  }
+  renderVals() {
+    const DATA = {"npcs": [{"name": "Роза Хейл", "note": "Трубка, мат, «внучек».", "rel": "family", "who": "Бабушка. Легенда гудзонской контрабанды на пенсии, рыбная лавка на причалах."}, {"name": "Томас Хейл", "note": "Вернулся. Слышит АРИАДНУ без пропуска.", "rel": "family", "who": "Отец. Десять лет был Братом Ноль, пророком Тихого Голоса."}, {"name": "Мэг Рыжая", "note": "Вместе с рассвета в Лиссабоне.", "rel": "ally", "who": "Партнёр, стрелок."}, {"name": "АРИАДНА", "note": "Говорит через пропуск и кабели. Тихо, устало.", "rel": "ally", "who": "Довоенный ИИ, держит Шов."}, {"name": "Сарэт Ин'Ваэль", "note": "Приказал убить Артура — ты простил. Ушёл вниз к Мосту.", "rel": "ally", "who": "Последний из Конклава Семи, якорь Шва, хозяин серых."}, {"name": "Гронна Ржавый Клык", "note": "Честна в сделках. Загибает пальцы.", "rel": "ally", "who": "Вождь Гхара."}, {"name": "Ургаш", "note": "Любит ром, помнит Розу. Зовёт тебя «щенок».", "rel": "ally", "who": "Слепая хранительница печати Гхара."}, {"name": "Леди Эйлин Сол'Тарен", "note": "Увидела память Сарэта и перешла на твою сторону.", "rel": "ally", "who": "Бывший посол Чащи, изгнанница."}, {"name": "Таэль", "note": "Под клятвой лилии. Эйлин спасла его из огня в 41 году о.Ш.", "rel": "ally", "who": "Человек Эйлин."}, {"name": "Тиаго и Инеш Альвареш", "note": "Тиаго должен Розе с 62 года. Инеш взорвала мост и забрала груз поезда.", "rel": "ally", "who": "Контрабандисты Лиссабона."}, {"name": "Сестра Ветта", "note": "Говорит по-матерински.", "rel": "ally", "who": "Гномка, служка Церкви Тихого Голоса."}, {"name": "Агата Блум", "rel": "ally", "who": "Архивариус Коллегии."}, {"name": "Мариана", "rel": "ally", "who": "Лиссабон. Её прихожане охраняют Дом голосов."}, {"name": "Огден Фарр", "note": "Балагур, работал с дедом. Продавал сведения Эйлин — теперь на твоей стороне.", "rel": "murky", "who": "Гном, глава Коллегии Проводников."}, {"name": "Изольда Вэйл", "note": "В плену. Магическая клятва: не строить Искр, не вредить экипажу и Мосту.", "rel": "murky", "who": "Директриса Лиги, старшая сестра Корнелиуса."}, {"name": "Майор Рурк", "note": "Приказано подчиняться Хейлу.", "rel": "murky", "who": "Командир экспедиции Лиги под Женевой."}, {"name": "Сирин", "note": "Получила «отбой». Где она — неизвестно.", "rel": "murky", "who": "Эльфийка-отравительница."}, {"name": "Корнелиус Вэйл", "note": "Улыбается, как кот. Унижен на Совете, затаил обиду.", "rel": "foe", "who": "Магнат Паровой Лиги."}, {"name": "Оскар Финч", "note": "Ему обещали пост в Лиссабоне. Ушёл из-под наблюдения.", "rel": "foe", "who": "Коллектор Лиги. Котелок, трость-шпага."}], "factions": [{"name": "Клан Гхар", "rel": "ally", "status": "союз", "who": "Орки-правители Нуйорк-Гхара. Корпус «Бабки» — их."}, {"name": "Серые", "rel": "ally", "status": "союз", "who": "Люди Сарэта. Руны левитации «Бабки» — их работа."}, {"name": "Церковь Тихого Голоса", "rel": "ally", "status": "союз", "who": "Слышат АРИАДНУ. Общины в Бостоне, Лиссабоне, Марселе."}, {"name": "Коллегия Проводников", "rel": "ally", "status": "союз", "who": "Гильдия искателей, глава — Огден Фарр."}, {"name": "Дом Альвареш", "rel": "ally", "status": "партнёры", "who": "Контрабандисты Лиссабона."}, {"name": "Двор Терновника", "rel": "murky", "status": "раскол", "who": "Радикалы распались, Эйлин перешла к тебе."}, {"name": "Паровая Лига", "rel": "foe", "status": "раскол", "who": "Фабрика Искр взорвана, Директриса под клятвой. Корнелиус — нет."}]};
+    const COLOR = { family: "#cfa860", ally: "#64a998", murky: "#d99a3e", neutral: "#9b938a", foe: "#c9563f" };
+    const RELS = { family: "семья", ally: "союзник", murky: "мутный", foe: "враг", neutral: "нейтрал" };
+    const TITLES = { family: "Семья", ally: "Союзники", murky: "Мутные", neutral: "Нейтральные", foe: "Враги" };
+    const q = this.state.q.trim().toLowerCase();
+    const match = (n) => !q || (n.name + " " + n.who + " " + (n.note || "")).toLowerCase().includes(q);
+    const badge = (rel) => "font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px; padding: 2px 6px; white-space: nowrap; border: 1px solid currentColor; color: " + (COLOR[rel] || "#9b938a") + ";";
+    const row = (last) => "display: grid; gap: 2px; padding: 8px 0;" + (last ? "" : " border-bottom: 1px dotted rgba(207,168,96,0.26);");
+    const groups = ["family", "ally", "murky", "neutral", "foe"].map((r) => {
+      const list = DATA.npcs.filter((n) => n.rel === r && match(n));
+      return { title: TITLES[r], items: list.map((n, i) => ({ name: n.name, who: n.who, note: n.note || "", hasNote: !!n.note, rel: RELS[r], badge: badge(r), rowStyle: row(i === list.length - 1) })) };
+    }).filter((g) => g.items.length);
+    const fl = DATA.factions.filter(match);
+    const factions = fl.map((f, i) => ({ name: f.name, who: f.who, rel: f.status, badge: badge(f.rel), rowStyle: row(i === fl.length - 1) }));
+    return {
+      q: this.state.q,
+      setQ: (e) => this.setState({ q: (e && e.target && e.target.value) || "" }),
+      groups, factions, hasFactions: factions.length > 0, empty: !groups.length && !factions.length,
+      count: DATA.npcs.length + " человек · " + DATA.factions.length + " фракций"
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Игра — телефон</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+a{color:#cfa860}a:hover{color:#e7c47d}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; overflow: hidden; background: #16110d; color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; display: flex; flex-direction: column">
+  <header style="display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 14px 16px 10px; background: linear-gradient(180deg, #3a2c1f, #271d15); border-bottom: 1px solid rgba(207,168,96,0.55)">
+    <button type="button" aria-label="Меню" style="width: 44px; height: 44px; display: grid; place-items: center; background: transparent; color: #cfa860; border: none; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
+    <div style="display: flex; flex-direction: column; align-items: center; min-width: 0">
+      <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700; color: #cfa860; line-height: 1.1">Мир Шва</span>
+      <span style="font-size: 12px; color: #ab9a80">Нить · Рассвет над Тежу</span>
+    </div>
+    <span style="font-family: 'PT Mono', monospace; font-size: 11px; color: #16110d; background: linear-gradient(180deg, #e7c47d, #a98340); border-radius: 999px; padding: 3px 8px">Opus 5.5</span>
+  </header>
+
+  <div style="flex: 1; overflow: hidden; display: flex; flex-direction: column; gap: 12px; padding: 12px 16px">
+    <div style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(207,168,96,0.55); flex: none">
+      <img src="/_blob/3cafd2595df52c06714fd948bae33d78" alt="«Железная Бабка» над облаками" style="display: block; width: 100%; height: 150px; object-fit: cover">
+      <span style="position: absolute; left: 10px; bottom: 8px; font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700; color: #ece1cb; text-shadow: 0 1px 4px rgba(0,0,0,0.8)">Пещера дома Альвареш</span>
+    </div>
+
+    <p style="margin: 0; font-size: 16px; line-height: 1.55">Тинка висит вниз головой на кормовой балке: «Левый двигатель дышит, правый кашляет. До Женевы дотянем».</p>
+    <p style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-style: italic; font-size: 16px; line-height: 1.5; color: #e3cf9f">«Кто-нибудь обязательно будет стрелять, — Мэг гасит сигариллу. — Мы же туда летим».</p>
+
+    <div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; background: #1b1511">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#cfa860" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7zM12 2v20M3 7l9 6 9-6"></path></svg>
+      <div style="display: flex; flex-direction: column; min-width: 0">
+        <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">Проницательность</span>
+        <span style="font-family: 'PT Mono', monospace; font-size: 14px">d20 (17) + 3 = 20 · КС 15</span>
+      </div>
+      <span style="margin-left: auto; font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700; color: #64a998">Успех</span>
+    </div>
+
+    <p style="margin: 0; font-size: 16px; line-height: 1.55">Изольда стоит у трапа и смотрит не на тебя, а на сердечник Г-7 в твоей торбе<span style="display: inline-block; width: 8px; height: 16px; margin-left: 2px; vertical-align: -3px; background: #cfa860"></span></p>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 6px">
+      <span style="padding: 4px 10px; border-radius: 999px; font-size: 13px; background: #1b1511; border: 1px solid #c9563f">−12 зм</span>
+      <span style="padding: 4px 10px; border-radius: 999px; font-size: 13px; background: #1b1511; border: 1px solid #ae93d6">+ кристалл</span>
+      <span style="padding: 4px 10px; border-radius: 999px; font-size: 13px; background: #1b1511; border: 1px solid #8d7142">+40 мин</span>
+    </div>
+  </div>
+
+  <form aria-label="Ход игрока" style="display: flex; gap: 8px; padding: 10px 16px; border-top: 1px solid rgba(207,168,96,0.26); background: #1b1511">
+    <button type="button" aria-label="Кубы" style="width: 44px; height: 44px; flex: none; display: grid; place-items: center; background: #211913; color: #cfa860; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; cursor: pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7zM12 2v20M3 7l9 6 9-6"></path></svg>
+    </button>
+    <label for="m-turn" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Твой ход</label>
+    <input id="m-turn" type="text" placeholder="Что делает Джеймс?" style="flex: 1; min-width: 0; height: 44px; box-sizing: border-box; background: #120d0a; color: #ece1cb; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 0 12px; font-family: 'Alegreya Sans', sans-serif; font-size: 16px">
+    <button type="button" aria-label="Отправить ход" style="width: 44px; height: 44px; flex: none; display: grid; place-items: center; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; cursor: pointer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-3-7z"></path></svg>
+    </button>
+  </form>
+
+  <nav aria-label="Разделы" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); padding: 6px 4px 18px; background: #211913; border-top: 1px solid rgba(207,168,96,0.26)">
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; text-decoration: none; color: #f1dca8; font-size: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4c-6 0-12 4-14 12l-2 4 4-2c8-2 12-8 12-14zM6 16l6-6"></path></svg>Игра
+    </a>
+    <a href="Character.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; text-decoration: none; color: #ab9a80; font-size: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>Персонаж
+    </a>
+    <a href="Character.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; text-decoration: none; color: #ab9a80; font-size: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"></path></svg>Инвентарь
+    </a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; text-decoration: none; color: #ab9a80; font-size: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 10h5"></path></svg>Журнал
+    </a>
+    <a href="Main.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; min-height: 48px; justify-content: center; text-decoration: none; color: #ab9a80; font-size: 12px">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 20c0-3 3-5 6-5s6 2 6 5M17 11a2.5 2.5 0 1 0 0-5M17 15c2 .5 4 2 4 5"></path></svg>Партия
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

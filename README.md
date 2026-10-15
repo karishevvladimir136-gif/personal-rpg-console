@@ -6,3 +6,4 @@ Claude Code on the owner's PC. Never merged anywhere; read files from here with
 
 - `docs/REBUILD_PLAN.md` — current plan
 - `docs/stages/STAGE_N.md` — stage tasks
+- `design/canvas/*.dc.html` — approved UI screens (design canvas source); `design/registry-reference.html` — original style
