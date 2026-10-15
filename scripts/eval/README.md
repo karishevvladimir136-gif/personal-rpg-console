@@ -29,6 +29,16 @@ case could exceed `--budget-usd`.
   scripted answer must satisfy the strict JSON schema of the actual request,
   so it can only say what the live model could say. Timings are server-side
   only; token counts are byte estimates.
+- **`--runtime dm-loop-v1`** (Stage 2): the same scenarios on the new turn loop. A fresh
+  campaign without takeover; the model is a scripted `DmModel` (`--provider fake`) that replays
+  text deltas and tool calls, or the live adapters (`--provider live --model opus|astra
+  [--effort E]`, keys `ANTHROPIC_API_KEY` / `OPENAI_API_KEY`). Scripts for the old scenarios
+  live in `scenarios/loop/<name>.json` (`{ "<stepId>": { note, rounds: [{ text, toolCalls }] },
+  "expect": { "<stepId>": [checks] } }`); scenarios with `"runtime": "dm-loop-v1"` (09–11) carry
+  their `loop` scripts inline and are skipped by the old runtime. Extra checks: `rejectedCalls`,
+  `toolAccepted`, `contextIncludes`, `characterModelExists`, `leakLogged`, `diagnostic`, `retried`;
+  a step may set `companion` (a companion-mode turn) or `retryOnFailure`. The report adds the
+  Stage 2 medians (first word, turn, cost, cache read share, rejected and failed shares, leaks).
 - **live**: real `gpt-6-astra` requests. `--budget-usd` is required; before
   every request the worst case is reserved and a request that could exceed the
   budget is never sent. Probe steps and scripted answers are skipped.

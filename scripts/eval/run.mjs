@@ -7,7 +7,6 @@
 // --runtime dm-loop-v1 plays the same scenarios on the new loop with scripted
 // model events (fake) or the live DmModel adapters (live, both models).
 import { mkdir, readdir, readFile, appendFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
 import { providerKey } from "./lib/keys.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
