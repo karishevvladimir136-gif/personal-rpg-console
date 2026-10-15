@@ -119,6 +119,28 @@ test("Character Model bounds are generous: long lists and texts are kept; an ove
   } finally { await c.f.db.close(); }
 });
 
+test("a clock set to text is rejected as one call (SQL counts clocks as integers); numbers and advances work", async () => {
+  const c = await loopCampaign();
+  try {
+    const played = await c.turn("I ask about the mill.", [
+      { text: "He changes the subject.", toolCalls: [
+        { name: "note_world", arguments: { kind: "clock", key: "mill-suspicion", operation: "set", value: "2/4: Rowan asked about the mill after dark." } },
+        { name: "note_world", arguments: { kind: "clock", key: "mill-suspicion", operation: "set", value: "2" } },
+        { name: "note_world", arguments: { kind: "clock", key: "mill-suspicion", operation: "advance", amount: 1 } },
+        { name: "note_world", arguments: { kind: "fact", key: "mill-suspicion", operation: "set", value: "Clock 0–4: how alarmed Edric is about the mill." } },
+        { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false } },
+      ] },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const receipts = (await c.row(played.input.operationId)).checkpoint.dmLoop.receipts;
+    assert.equal(receipts[0].result.ok, false);
+    assert.match(receipts[0].result.reason, /A clock's value is a whole number/);
+    assert.deepEqual(receipts.slice(1).map((r) => r.result.ok), [true, true, true, true]);
+    assert.equal(receipts[2].result.value.value, 3);
+    assert.equal((await c.state()).dmState.clock["mill-suspicion"], 3);
+  } finally { await c.f.db.close(); }
+});
+
 test("a pinned continuation effort applies to every request after the first and survives a retry", async () => {
   const c = await loopCampaign();
   try {

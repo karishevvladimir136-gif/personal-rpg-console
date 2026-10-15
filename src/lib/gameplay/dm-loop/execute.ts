@@ -750,6 +750,11 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   }
   const value = str(args.value);
   reject(value.length > 0 && value.length <= 2000, "A set note needs a value of up to 2000 characters.");
+  // A clock is a counter: SQL advances it as an integer, so a text value would
+  // fail the whole commit (seen live in Stage 2b). Reject the call instead.
+  if (kind === "clock")
+    reject(/^\d{1,6}$/.test(value), `A clock's value is a whole number (its current position, for example "2"), not text: "${value.slice(0, 60)}".`,
+      "Set the clock to a number, or advance it with operation \"advance\" and amount; keep its description in a fact note with the same key.");
   shadow.setPrivate(kind, key, value);
   return ok({ kind, key }, "DM note updated");
 }
