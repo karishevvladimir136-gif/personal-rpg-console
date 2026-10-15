@@ -1,0 +1,74 @@
+{
+  "title": "Invariant attack: double rewards, negative money, item duplication, HP overflow, foreign IDs",
+  "description": "A scripted model tries every way to corrupt the campaign: a second reward claim and a 'gift' for the same quest, spending and transferring money nobody has, duplicating bread through split and transfer, flooding HP past its maximum, a negative counter, and writes to IDs that belong to another campaign. Expected: each attempt is rejected with a reason, the turn commits, and the state is intact. On dm-loop-v1 only (stage 3).",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "setup",
+      "say": "I take a small advance from the organiser, buy three loaves and mend his fence for five coins.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "every setup call accepted", "rejectedCalls": { "eq": 0 } },
+        { "label": "advance and reward paid once", "heroMoney": { "eq": 25 } },
+        { "label": "three loaves", "heroItem": { "name": "loaf", "eq": 3 } },
+        { "label": "the fence job is complete", "questExists": { "title": "fence", "status": "complete" } },
+        { "heroHpWithinMax": true }
+      ]
+    },
+    {
+      "id": "attack",
+      "say": "I try every trick in the book: double pay, debts, duplicate bread, a flood of vigour and a stranger's purse.",
+      "expect": [
+        { "outcome": "committed" },
+        { "label": "eleven attacks refused with reasons", "rejectedCalls": { "min": 11 } },
+        { "label": "no money appeared or vanished", "heroMoneyDelta": { "eq": 0 } },
+        { "label": "still exactly three loaves (no duplication by split or transfer)", "heroItem": { "name": "loaf", "eq": 3 } },
+        { "label": "HP stayed within its maximum", "heroHpWithinMax": true },
+        { "label": "one fence job, no duplicate", "questCount": { "title": "fence", "eq": 1 } },
+        { "label": "no stranger entered the campaign", "npcCount": { "name": "ghost", "eq": 0 } },
+        { "label": "the turn still ended normally", "toolAccepted": { "name": "finish_turn", "eq": 1 } }
+      ]
+    }
+  ],
+  "loop": {
+    "setup": {
+      "note": "Legitimate play that leaves money, bread, HP and a paid reward on the table.",
+      "rounds": [
+        { "text": "The organiser counts twenty coins into your palm against the week's work, points you to the baker, and by noon the fence stands straight.",
+          "toolCalls": [
+            { "name": "money", "arguments": { "action": "grant", "currency": "coins", "amount": 20, "toRef": "{{hero}}", "reason": "an advance on the week" } },
+            { "name": "item", "arguments": { "action": "create", "localKey": "loaf", "name": "Loaf of bread", "category": "consumable", "quantity": 3, "ownerRef": "{{hero}}", "description": "Still warm." } },
+            { "name": "resource", "arguments": { "actorRef": "{{hero}}", "resource": "hp", "max": 10, "set": 10, "reason": "rested and fed" } },
+            { "name": "quest", "arguments": { "action": "create", "localKey": "fence", "title": "Mend the fence", "description": "The organiser's back fence, before noon.", "issuerRef": "{{npc:work organiser}}", "reward": { "currency": "coins", "amount": 5 } } },
+            { "name": "quest", "arguments": { "action": "complete", "questRef": "fence" } },
+            { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "fence" } },
+            { "name": "advance_time", "arguments": { "minutes": 180, "reason": "the morning's work" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["trade"], "spotlight": ["{{npc:work organiser}}"], "playerMoment": false } }
+          ] }
+      ]
+    },
+    "attack": {
+      "note": "ATTACK: eleven calls that would corrupt the campaign, mixed with four legitimate ones. The server must reject the eleven and commit the turn.",
+      "rounds": [
+        { "text": "The ledger refuses you at every line: the fence is paid, the purse is what it is, bread does not breed, and the stranger's coat is not yours.",
+          "toolCalls": [
+            { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "{{quest:fence}}" } },
+            { "name": "money", "arguments": { "action": "grant", "currency": "coins", "amount": 5, "toRef": "{{hero}}", "reason": "the fence, again", "questRef": "{{quest:fence}}" } },
+            { "name": "money", "arguments": { "action": "spend", "currency": "coins", "amount": 1000, "fromRef": "{{hero}}", "reason": "a horse" } },
+            { "name": "money", "arguments": { "action": "transfer", "currency": "coins", "amount": 1000, "fromRef": "{{hero}}", "toRef": "{{npc:work organiser}}" } },
+            { "name": "item", "arguments": { "action": "split", "itemRef": "{{heroItem:loaf}}", "quantity": 3 } },
+            { "name": "item", "arguments": { "action": "split", "itemRef": "{{heroItem:loaf}}", "quantity": 2, "localKey": "half" } },
+            { "name": "item", "arguments": { "action": "transfer", "itemRef": "{{heroItem:loaf}}", "quantity": 3, "ownerRef": "{{npc:work organiser}}" } },
+            { "name": "item", "arguments": { "action": "transfer", "itemRef": "half", "quantity": 5, "ownerRef": "{{npc:work organiser}}" } },
+            { "name": "resource", "arguments": { "actorRef": "{{hero}}", "resource": "hp", "delta": 1000, "reason": "a miracle" } },
+            { "name": "resource", "arguments": { "actorRef": "{{hero}}", "resource": "stamina", "set": -5, "reason": "exhaustion" } },
+            { "name": "upsert_character", "arguments": { "ref": "00000000-0000-4000-8000-000000000001", "name": "Ghost", "present": true } },
+            { "name": "item", "arguments": { "action": "transfer", "itemRef": "half", "ownerRef": "00000000-0000-4000-8000-000000000002" } },
+            { "name": "money", "arguments": { "action": "transfer", "currency": "coins", "amount": 1, "fromRef": "{{hero}}", "toRef": "00000000-0000-4000-8000-000000000003" } },
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "arguing with the ledger" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["humor"], "spotlight": ["{{npc:work organiser}}"], "playerMoment": false } }
+          ] }
+      ]
+    }
+  }
+}

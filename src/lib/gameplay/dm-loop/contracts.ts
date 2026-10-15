@@ -7,6 +7,7 @@ import type { PrivatePatch, RecordChange, RecordedCheck } from "../server-contra
 import type { MechanicsConfiguration } from "../contracts.ts";
 import type { TimelineFence } from "../../saves/contracts.ts";
 import type { DmEffort, DmMessage, DmProviderId } from "../../server/dm/model/contracts.ts";
+import type { DmLoopTurnLimits } from "./limits.ts";
 
 export const DM_LOOP_RUNTIME = "dm-loop-v1" as const;
 export type DmLoopRuntimeId = typeof DM_LOOP_RUNTIME;
@@ -36,6 +37,17 @@ export type DmLoopPin = {
   runtime: DmLoopRuntimeId;
   /** One narrator sees secrets and Character Models. Two-stage is a later option. */
   privacy: "single-narrator";
+  /** The campaign's per-turn limits at the moment the turn started (stage 3).
+   * Validation reads them from here, never from the live settings; a retry
+   * keeps them. Absent on operations pinned before stage 3 (defaults apply). */
+  limits?: DmLoopTurnLimits;
+};
+
+/** What this turn has created so far, against the pinned per-turn limits. */
+export type DmLoopTurnCounters = {
+  moneyGranted: number;
+  itemsCreated: number;
+  charactersCreated: number;
 };
 
 export type DmLoopUsageEntry = {
@@ -61,7 +73,10 @@ export type DmLoopDiagnostic =
   | { kind: "request_cap_reached"; requests: number }
   | { kind: "model_refusal"; providerReason: string | null }
   | { kind: "max_tokens"; outputTokens: number }
-  | { kind: "empty_narration" };
+  | { kind: "empty_narration" }
+  /** The turn ended after a message of accepted bookkeeping that closed with
+   * time passing, without a finish_turn round of its own (stage 3 §4). */
+  | { kind: "implicit_finish"; calls: number };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";
@@ -85,6 +100,8 @@ export type DmLoopShadowDelta = {
   createdIds: string[];
   minutesAdvanced: number;
   finished: boolean;
+  /** Absent in deltas persisted before stage 3 (counted as zero). */
+  counters?: DmLoopTurnCounters;
 };
 
 export type DmLoopCheckpoint = {

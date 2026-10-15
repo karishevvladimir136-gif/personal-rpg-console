@@ -34,12 +34,11 @@
     "talk": {
       "note": "The companion answers in her own voice; the DM records what she now thinks.",
       "rounds": [
-        { "text": "Tamsin glances back at the square. \"Him? Keeps good books and bad hours. A man who counts carts that carefully is counting something else too.\"",
+        { "text": "Tamsin glances back at the square. \"Him? Keeps good books and bad hours. A man who counts carts that carefully is counting something else too.\" \"But I'd still take his coin,\" she adds.",
           "toolCalls": [
             { "name": "advance_time", "arguments": { "minutes": 5, "reason": "a quiet talk on the road" } },
             { "name": "note_character", "arguments": { "actorRef": "{{npc:tamsin}}", "beliefs": [ { "text": "The organiser hides something about the mill.", "confidence": "tentative", "aboutRef": "{{npc:work organiser}}" } ], "episodes": [ { "meaning": "The hero asked her honest opinion and listened.", "cue": "the organiser" } ] } }
-          ] },
-        { "text": "\"But I'd still take his coin,\" she adds." }
+          ] }
       ]
     }
   }

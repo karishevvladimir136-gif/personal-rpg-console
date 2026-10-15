@@ -146,7 +146,8 @@ test("a pinned continuation effort applies to every request after the first and 
   try {
     const pin = async () => ({ providerId: "openai", modelId: "gpt-6-astra", effort: "high", continuationEffort: "low" });
     const played = await c.turn("I knock on the mill door.", [
-      { text: "Knock, knock.", toolCalls: [{ name: "advance_time", arguments: { minutes: 1, reason: "knocking" } }] },
+      // (a note without time passing keeps the conversation open: the scripted crash on request 2 is reached)
+      { text: "Knock, knock.", toolCalls: [{ name: "note_world", arguments: { kind: "fact", key: "mill_door", operation: "set", value: "Knocked once." } }] },
       { text: "", failBefore: "transport" },
       { text: "No answer.", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["quiet"], spotlight: [], playerMoment: false } }] },
     ], { deps: { pin } });

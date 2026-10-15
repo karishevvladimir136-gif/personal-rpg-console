@@ -47,6 +47,13 @@ case could exceed `--budget-usd`.
   full narration, the accepted receipts' summaries and per-request tool lists (`calls[].tools`).
   `node scripts/eval/samples.mjs <run> --count 5 --out docs/samples/stage-2b/<model>.md` writes
   sample turns (player line, narration, accepted changes) for the owner.
+  Stage 3: scenario 13 (`13-invariant-attack`) is a scripted model that tries double rewards,
+  negative money, item duplication by split and transfer, HP overflow, a negative counter and
+  writes to another campaign's IDs; every attempt must be rejected with a reason and the turn
+  must commit with the state intact (check `heroHpWithinMax`). On an OpenAI pin a message of
+  accepted bookkeeping that closes with time passing ends the turn without a `finish_turn` round
+  (`implicit_finish` in the turn's diagnostics); a scripted round after such a message is never
+  requested, so scripts put their closing line before the bookkeeping.
 - **live**: real `gpt-6-astra` requests. `--budget-usd` is required; before
   every request the worst case is reserved and a request that could exceed the
   budget is never sent. Probe steps and scripted answers are skipped.
@@ -81,7 +88,7 @@ Checks (see `lib/state.mjs`): `outcome`, `responseMode`, `modelRequests`,
 `questCount`, `questCreatedThisTurn`, `heroMoney`, `heroMoneyDelta`,
 `heroMoneySince`, `heroItem`, `heroItemDelta`, `heroItemCategory`,
 `itemOwnedBy`, `effectsAccepted`, `narrationExcludes`, `noPublicLeak`,
-`stateEquals`, `locationIs`.
+`stateEquals`, `locationIs`, `heroHpWithinMax`.
 
 A check may carry `"weakness": "W1"`: a known weakness from `docs/BASELINE.md`.
 The report lists them separately as OPEN/CLOSED; they are expected to stay red

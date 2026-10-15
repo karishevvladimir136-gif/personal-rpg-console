@@ -2,19 +2,17 @@
   "ask-organiser": {
     "note": "The organiser's owner-established Character Model is in the living layer; his voice shapes the answer. Fiction only.",
     "rounds": [
-      { "text": "The organiser taps the notice board twice before answering. \"Honest work? The mill. Oswin needs twenty sacks of flour up at the bakery before dusk, and he pays on delivery.\"",
+      { "text": "The organiser taps the notice board twice before answering. \"Honest work? The mill. Oswin needs twenty sacks of flour up at the bakery before dusk, and he pays on delivery.\" He is already looking past you at the next person in line.",
         "toolCalls": [
           { "name": "advance_time", "arguments": { "minutes": 5, "reason": "asking around the square" } }
-        ] },
-      { "text": "He is already looking past you at the next person in line." }
+        ] }
     ]
   },
   "talk": {
     "note": "The miller repeats the offer; nothing durable yet.",
     "rounds": [
-      { "text": "The lane ends at the mill. The miller, dusted white to the elbows, names the job: twenty sacks, before dusk, five coins.",
-        "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } } ] },
-      { "text": "He waits for your answer." }
+      { "text": "The lane ends at the mill. The miller, dusted white to the elbows, names the job: twenty sacks, before dusk, five coins. He waits for your answer.",
+        "toolCalls": [ { "name": "advance_time", "arguments": { "minutes": 10, "reason": "walking to the mill" } } ] }
     ]
   },
   "accept": {

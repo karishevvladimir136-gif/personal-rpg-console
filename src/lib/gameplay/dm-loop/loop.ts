@@ -25,10 +25,10 @@ import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
 import { executeDmLoopTool } from "./execute.ts";
-import { dmLoopLimits as L } from "./limits.ts";
+import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
 import { dmLoopTools } from "./tools.ts";
-import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopObservation,
+import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "./contracts.ts";
 
 export { DM_LOOP_RUNTIME } from "./contracts.ts";
@@ -39,9 +39,10 @@ export type DmLoopDependencies = {
   summaries: SummaryProvider;
   /** The model adapter for the pinned selection. */
   model: (pin: DmLoopPin) => DmModel;
-  /** Resolve and pin the campaign's DM model for this operation (read-first:
-   * a retry returns the first pin even if the campaign setting changed). */
-  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort">>;
+  /** Resolve and pin the campaign's DM model — and, since stage 3, the
+   * campaign's per-turn limits — for this operation (read-first: a retry
+   * returns the first pin even if the campaign settings changed). */
+  pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort" | "limits">>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -50,6 +51,33 @@ export type DmLoopDependencies = {
 export const dmLoopToolset = compileToolset(dmLoopTools);
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
+
+/** Tools that only record what the narration already said (the instructions'
+ * "bookkeeping"); a call that decides an outcome is never among them. */
+const BOOKKEEPING_TOOLS = new Set(["upsert_character", "upsert_place", "advance_time", "move_party", "rest",
+  "note_character", "note_world", "holding"]);
+const TIME_TOOLS = new Set(["advance_time", "move_party", "rest"]);
+
+/** Stage 3 §4: GPT‑6 Astra at medium records its bookkeeping one call per
+ * request and then spends a request of its own on `finish_turn`. The
+ * instructions make time passing the last bookkeeping call, so a message of
+ * accepted bookkeeping that closes with time passing — written after the
+ * narration — is the turn's final message, and the loop folds the
+ * `finish_turn` round into it. Any rejected call, any deciding call (a roll,
+ * money, a transfer, a claim, combat) or a message without time keeps the
+ * conversation open. */
+export function foldsFinish(calls: DmToolCall[], receipts: DmLoopReceipt[]): boolean {
+  if (!calls.length || !calls.some((call) => TIME_TOOLS.has(call.name))) return false;
+  return calls.every((call) => {
+    const receipt = receipts.find((row) => row.call.id === call.id);
+    if (!receipt || !receipt.result.ok) return false;
+    if (BOOKKEEPING_TOOLS.has(call.name)) return true;
+    const action = receipt.call.arguments.action;
+    if (call.name === "item") return action === "create";
+    if (call.name === "quest") return action === "create" || action === "update" || action === "complete" || action === "fail";
+    return false;
+  });
+}
 const NARRATE_NOW = "The player has not seen any narration yet. Write the narration of this turn now, as text, in the campaign language, based on the accepted tool results. No more tool calls are needed.";
 
 /** What goes between the text of one request and the next: nothing after a
@@ -100,6 +128,17 @@ function renderedTranscript(loop: DmLoopCheckpoint, checks: RecordedCheck[]): Dm
       return receipt ? { callId: entry.callId, output: toolOutput(receipt, checks), isError: !receipt.result.ok } : entry;
     }) };
   });
+}
+
+/** Turn metadata for a folded finish: no scene kinds, the characters this
+ * turn introduced or updated in focus, no player moment. */
+function implicitMeta(receipts: DmLoopReceipt[]): DmLoopMeta {
+  const spotlight = receipts.flatMap((receipt) => {
+    if (!receipt.result.ok || receipt.call.name !== "upsert_character") return [];
+    const id = receipt.result.value.id;
+    return typeof id === "string" ? [id] : [];
+  });
+  return { sceneKinds: [], spotlight: [...new Set(spotlight)], playerMoment: false };
 }
 
 function parseArguments(call: DmToolCall): Record<string, unknown> {
@@ -156,9 +195,11 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       const selected = await deps.pin(claim);
       loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: selected.effort,
         ...(selected.continuationEffort && selected.continuationEffort !== selected.effort ? { continuationEffort: selected.continuationEffort } : {}),
-        runtime: DM_LOOP_RUNTIME, privacy: "single-narrator" };
+        runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) } };
     }
     const pin = loop.pin;
+    // Operations pinned before stage 3 carry no limits: the defaults apply to them.
+    const limits = pin.limits ?? DM_LOOP_DEFAULT_LIMITS;
     const spec = dmModelSpec(pin.providerId, pin.modelId);
     if (!spec) throw new DmError("configuration");
     const model = deps.model(pin);
@@ -189,7 +230,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         const executed = executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
-          narrationSceneId, toolCalls: loop.receipts.length });
+          narrationSceneId, toolCalls: loop.receipts.length, limits });
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {
@@ -199,7 +240,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
             source.snapshot.settings.values.difficulty.rerolls !== "disabled")) pause = true;
         }
         if (executed.meta) loop.meta = executed.meta;
-        if (loop.receipts.length === L.maxToolCalls) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
+        if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
         live({ type: "tool", name: call.name, ok: receipt.result.ok, summary: receipt.result.summary });
       }
@@ -221,6 +262,13 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
           shadow.finished = false;
           loop.transcript.push({ role: "user", text: NARRATE_NOW });
         }
+        // The OpenAI habit of a finish_turn round of its own is folded into the
+        // final bookkeeping message (stage 3 §4); Opus batches finish_turn itself.
+        if (!shadow.finished && !pause && pin.providerId === "openai" && loop.text.trim() && foldsFinish(last.toolCalls, loop.receipts)) {
+          shadow.finished = true;
+          loop.meta ??= implicitMeta(loop.receipts);
+          diagnostic({ kind: "implicit_finish", calls: last.toolCalls.length });
+        }
         await persist(pause ? "awaiting_confirmation" : "generating");
         if (pause) {
           live({ type: "status", status: "awaiting_confirmation" });
@@ -230,11 +278,12 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         continue;
       }
       if (shadow.finished) break;
-      if (loop.requests >= L.maxModelRequests) {
+      if (loop.requests >= limits.modelRequestsPerTurn) {
         diagnostic({ kind: "request_cap_reached", requests: loop.requests });
+        await persist("generating"); // (the commit keeps the checkpoint as last persisted)
         break;
       }
-      const lastRequest = loop.requests === L.maxModelRequests - 1 || loop.receipts.length >= L.maxToolCalls;
+      const lastRequest = loop.requests === limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn;
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
       // Requests after the first (continuations after tool results) may run at
       // the pinned continuation effort (stage 2b §3).

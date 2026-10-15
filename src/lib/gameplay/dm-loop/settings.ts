@@ -3,6 +3,7 @@
 import { validateModelSelection } from "../../model-runtime/registry.ts";
 import type { ModelSelection } from "../../production/contracts.ts";
 import { DM_LOOP_RUNTIME } from "./contracts.ts";
+import { effectiveDmLoopLimits, parseDmLoopLimits, type DmLoopTurnLimits } from "./limits.ts";
 
 export type DmRuntimeId = "astra-primary-v1" | typeof DM_LOOP_RUNTIME;
 export type DmSettings = {
@@ -10,9 +11,17 @@ export type DmSettings = {
   runtime: DmRuntimeId;
   /** The DM model for the turn; null means the Stage 1 "dm.turn" override or the default. */
   dmTurn: ModelSelection | null;
+  /** The per-turn limits in force for the next turn: the campaign's own or the defaults (stage 3). */
+  limits: DmLoopTurnLimits;
+  /** Whether the campaign stores its own limits (false: the defaults above). */
+  customLimits: boolean;
   revision: number;
 };
-export type DmSettingsSave = { expectedRevision: number; runtime: DmRuntimeId; dmTurn: ModelSelection | null };
+export type DmSettingsSave = {
+  expectedRevision: number; runtime: DmRuntimeId; dmTurn: ModelSelection | null;
+  /** Omitted: keep the stored limits. null: return to the defaults. An object: the campaign's own limits. */
+  limits?: DmLoopTurnLimits | null;
+};
 
 export type DmSettingsRpc = (args: {
   p_owner_id: string; p_campaign_id: string; p_action: "read" | "save"; p_payload: unknown;
@@ -36,19 +45,29 @@ export function parseDmSettings(value: unknown): DmSettings {
   if (v.dmTurn !== null && v.dmTurn !== undefined) {
     try { dmTurn = validateModelSelection(v.dmTurn, "dm.turn"); } catch { throw new DmSettingsError("unavailable"); }
   }
-  return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, revision: v.revision as number };
+  let limits: DmLoopTurnLimits;
+  try { limits = effectiveDmLoopLimits(v.limits); } catch { throw new DmSettingsError("unavailable"); }
+  return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
+    customLimits: v.limits !== null && v.limits !== undefined, revision: v.revision as number };
 }
 
 export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if (!value || typeof value !== "object") throw new DmSettingsError("validation");
   const v = value as Record<string, unknown>;
-  if (Object.keys(v).sort().join(",") !== "dmTurn,expectedRevision,runtime" || !Number.isSafeInteger(v.expectedRevision) ||
+  const keys = Object.keys(v).sort().join(",");
+  if ((keys !== "dmTurn,expectedRevision,runtime" && keys !== "dmTurn,expectedRevision,limits,runtime") ||
+    !Number.isSafeInteger(v.expectedRevision) ||
     (v.runtime !== "astra-primary-v1" && v.runtime !== DM_LOOP_RUNTIME)) throw new DmSettingsError("validation");
   let dmTurn: ModelSelection | null = null;
   if (v.dmTurn !== null) {
     try { dmTurn = validateModelSelection(v.dmTurn, "dm.turn"); } catch { throw new DmSettingsError("validation"); }
   }
-  return { expectedRevision: v.expectedRevision as number, runtime: v.runtime as DmRuntimeId, dmTurn };
+  const save: DmSettingsSave = { expectedRevision: v.expectedRevision as number, runtime: v.runtime as DmRuntimeId, dmTurn };
+  if ("limits" in v) {
+    if (v.limits === null) save.limits = null;
+    else { try { save.limits = parseDmLoopLimits(v.limits); } catch { throw new DmSettingsError("validation"); } }
+  }
+  return save;
 }
 
 function failure(message: string | undefined): DmSettingsError {

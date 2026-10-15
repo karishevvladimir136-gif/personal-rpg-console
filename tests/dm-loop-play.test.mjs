@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { resumeDmLoopTurn } from "../src/lib/gameplay/dm-loop/loop.ts";
-import { dmLoopLimits } from "../src/lib/gameplay/dm-loop/limits.ts";
+import { DM_LOOP_DEFAULT_LIMITS } from "../src/lib/gameplay/dm-loop/limits.ts";
 
 test("a rejected call returns a reason and the turn continues; money, items and the hero stay consistent", async () => {
   const c = await loopCampaign();
@@ -231,7 +231,7 @@ test("talking to a companion is an ordinary turn with an addressee; identity is 
 test("the per-turn tool cap tells the model to wrap up; the turn still commits with narration", async () => {
   const c = await loopCampaign();
   try {
-    const many = Array.from({ length: dmLoopLimits.maxToolCalls + 3 }, (_, index) =>
+    const many = Array.from({ length: DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn + 3 }, (_, index) =>
       ({ name: "advance_time", arguments: { minutes: 1, reason: `tick ${index}` } }));
     const played = await c.turn("I wait and count the hours.", [
       { text: "You wait. ", toolCalls: many },
@@ -241,12 +241,12 @@ test("the per-turn tool cap tells the model to wrap up; the turn still commits w
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const row = await c.row(played.input.operationId);
     const receipts = row.checkpoint.dmLoop.receipts;
-    assert.equal(receipts.filter((r) => r.result.ok).length, dmLoopLimits.maxToolCalls);
-    assert.ok(receipts.slice(dmLoopLimits.maxToolCalls).every((r) => !r.result.ok && /limit/.test(r.result.reason)));
+    assert.equal(receipts.filter((r) => r.result.ok).length, DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn);
+    assert.ok(receipts.slice(DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn).every((r) => !r.result.ok && /limit/.test(r.result.reason)));
     assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "tool_cap_reached"));
     const wrap = played.model.requests.at(-1).messages.filter((m) => m.role === "user").at(-1);
     assert.match(wrap.text, /tool budget/);
-    assert.equal((await c.state()).runtime.world_minutes, dmLoopLimits.maxToolCalls);
+    assert.equal((await c.state()).runtime.world_minutes, DM_LOOP_DEFAULT_LIMITS.toolCallsPerTurn);
     assert.match(row.narration, /Evening comes at last/);
   } finally { await c.f.db.close(); }
 });
@@ -304,7 +304,8 @@ test("travel: the party moves, local characters stay, time passes; a move withou
 test("DM settings: runtime and model are editable; a turn pins the model at its start", async () => {
   const c = await loopCampaign();
   try {
-    assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null, revision: 0 });
+    assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null,
+      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, revision: 0 });
     const saved = await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1",
       dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } });
     assert.equal(saved.revision, 1);

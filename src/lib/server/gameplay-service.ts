@@ -112,8 +112,13 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
   return {
     store, memory, summaries,
     model: (pin) => createDmModel(pin),
-    pin: async (claim) => dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId,
-      async () => (await settings()).dmTurn)),
+    pin: async (claim) => {
+      // The campaign's DM settings at the turn's start: the model and the
+      // per-turn limits are pinned together and stay with the operation.
+      const current = await settings();
+      return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.dmTurn)),
+        limits: current.limits };
+    },
     observe: logDmLoop,
   };
 }

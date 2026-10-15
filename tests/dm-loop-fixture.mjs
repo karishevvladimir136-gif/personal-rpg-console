@@ -1,5 +1,7 @@
 // A fresh campaign on disposable PGlite (World → character → opening) that
-// plays on dm-loop-v1 from its first scene, with a scripted DmModel.
+// plays on dm-loop-v1 from its first scene, with a scripted DmModel. Since
+// stage 3 the loop harness can also be attached to an existing campaign
+// (`attachLoop`), e.g. a taken-over Astra campaign that is switched over.
 import { randomUUID } from "node:crypto";
 import { setup } from "./universal-bootstrap-fixture.mjs";
 import { createRpcTurnStore } from "../src/lib/gameplay/dm-store.ts";
@@ -15,6 +17,11 @@ export async function loopCampaign(options = {}) {
   const f = await setup(undefined, options.language ?? "en", 99);
   await f.create();
   await f.startOpening();
+  return attachLoop(f);
+}
+
+/** The loop harness (stores, pin, scripted turns, state dumps) for the campaign `f` holds. */
+export async function attachLoop(f) {
   const foundation = await f.one("select world from rpg_private.world_foundations where campaign_id=$1", [f.cid]);
   const hero = foundation.world.actors.find((actor) => actor.control === "player").entityId;
   const npc = foundation.world.actors.find((actor) => actor.control === "autonomous")?.entityId ?? null;
@@ -64,9 +71,13 @@ export async function loopCampaign(options = {}) {
     return {
       store, memory: createRpcMemoryStore(f.owner, memoryRpc, timeline), summaries,
       model: () => model,
-      pin: async (claim) => dmLoopPinFromProfile(await pinDmLoopModel(profileRpc,
-        { ownerId: f.owner, campaignId: f.cid, operationId: claim.lease.operationId, timeline },
-        async () => ({ policy: null, dmTurn: (await settings.read()).dmTurn }))),
+      // The campaign's DM settings at the turn's start: model and per-turn limits pinned together.
+      pin: async (claim) => {
+        const current = await settings.read();
+        return { ...dmLoopPinFromProfile(await pinDmLoopModel(profileRpc,
+          { ownerId: f.owner, campaignId: f.cid, operationId: claim.lease.operationId, timeline },
+          async () => ({ policy: null, dmTurn: current.dmTurn }))), limits: current.limits };
+      },
       random,
       observe: (observation) => { observations.push(observation); if (observation.type === "live") live.push(observation.event); },
       ...extra,
@@ -102,12 +113,12 @@ export async function loopCampaign(options = {}) {
       timeline: previous.input.timeline, action, checkId: null }, d);
     return { ...previous, result, deps: d };
   };
-  const row = (operationId) => f.one(`select status,failure,retryable,runtime_identity,checkpoint,source,narration
+  const row = (operationId) => f.one(`select status,failure,retryable,runtime_identity,checkpoint,source,narration,committed_revision
     from rpg_private.turns where id=$1`, [operationId]);
   const state = async () => ({
     entities: await f.query("select id,kind,name,hp,max_hp,resources,conditions from public.rpg_entities where campaign_id=$1 order by name", [f.cid]),
     items: await f.query("select id,name,category,quantity,owner_entity_id,storage_id,equipped_slot,mechanics from public.rpg_items where campaign_id=$1 order by name", [f.cid]),
-    quests: await f.query("select id,title,status,description from public.rpg_quests where campaign_id=$1 order by title", [f.cid]),
+    quests: await f.query("select id,title,status,description,reward_operation_id from public.rpg_quests where campaign_id=$1 order by title", [f.cid]),
     locations: await f.query("select id,name,status from public.rpg_locations where campaign_id=$1 order by name", [f.cid]),
     storages: await f.query("select id,name,kind,entity_id from public.rpg_storages where campaign_id=$1 order by name", [f.cid]),
     scenes: await f.query("select id,role,body from public.rpg_scenes where campaign_id=$1 order by sequence", [f.cid]),
@@ -117,7 +128,25 @@ export async function loopCampaign(options = {}) {
     encounters: await f.query("select id,status,outcome from public.rpg_encounters where campaign_id=$1", [f.cid]),
     rests: await f.query("select id,kind,status,public_outcome from public.rpg_rest_records where campaign_id=$1", [f.cid]),
   });
+  /** Everything a save must carry, in a stable order, for exact before/after comparisons. */
+  const dump = async () => {
+    const one = async (sql) => (await f.query(sql, [f.cid])).map((r) => JSON.stringify(r));
+    return {
+      entities: await one("select id,kind,name,details,hp,max_hp,stats,resources,conditions,equipment_slots,revision from public.rpg_entities where campaign_id=$1 order by id"),
+      items: await one("select id,name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot,revision from public.rpg_items where campaign_id=$1 order by id"),
+      storages: await one("select id,name,kind,entity_id,revision from public.rpg_storages where campaign_id=$1 order by id"),
+      quests: await one("select id,title,description,status,reward_terms,reward_operation_id,revision from public.rpg_quests where campaign_id=$1 order by id"),
+      locations: await one("select id,name,description,status,revision from public.rpg_locations where campaign_id=$1 order by id"),
+      scenes: await one("select id,session_id,title,body,role from public.rpg_scenes where campaign_id=$1 order by sequence"),
+      publicState: await one("select summary,current_session_id,current_scene_id,current_location_id from public.rpg_public_state where campaign_id=$1"),
+      runtime: await one("select world_minutes,configuration from rpg_private.runtime_state where campaign_id=$1"),
+      dmState: await one("select contents from rpg_private.dm_state where campaign_id=$1"),
+      turns: await one("select id,status,runtime_identity,input,narration,checkpoint->'dmLoop'->'receipts' receipts from rpg_private.turns where campaign_id=$1 and status='committed' order by sequence"),
+      rests: await one("select id,kind,status,public_outcome from public.rpg_rest_records where campaign_id=$1 order by id"),
+      encounters: await one("select id,status,outcome from public.rpg_encounters where campaign_id=$1 order by id"),
+    };
+  };
   const forceDice = (values = []) => diceValues.splice(0, diceValues.length, ...values);
   return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings,
-    deps, input, turn, retry, row, state, random, forceDice };
+    deps, input, turn, retry, row, state, dump, random, forceDice };
 }

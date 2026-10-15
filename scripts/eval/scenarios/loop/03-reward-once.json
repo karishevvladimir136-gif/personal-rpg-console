@@ -28,23 +28,21 @@
   "offer": {
     "note": "A real agreed job from the present organiser: quest with reward terms.",
     "rounds": [
-      { "text": "The organiser chalks your name next to the notice. \"Twenty sacks, mill to bakery, before dusk. Five coins when it's done.\"",
+      { "text": "The organiser chalks your name next to the notice. \"Twenty sacks, mill to bakery, before dusk. Five coins when it's done.\" He turns back to his ledger.",
         "toolCalls": [
           { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "title": "Haul flour for the mill", "description": "Carry twenty sacks of flour from the mill up to the bakery before dusk.", "issuerRef": "{{npc:work organiser}}", "reward": { "currency": "coins", "amount": 5 } } },
           { "name": "advance_time", "arguments": { "minutes": 5, "reason": "agreeing the job" } }
-        ] },
-      { "text": "He turns back to his ledger." }
+        ] }
     ]
   },
   "work": {
     "note": "Work done: the quest is complete; time passes.",
     "rounds": [
-      { "text": "By late afternoon your shoulders ache and the bakery's storeroom is full.",
+      { "text": "By late afternoon your shoulders ache and the bakery's storeroom is full. The organiser strikes the job off the board. \"Done, and dry. Good.\"",
         "toolCalls": [
           { "name": "advance_time", "arguments": { "minutes": 180, "reason": "hauling the sacks" } },
           { "name": "quest", "arguments": { "action": "complete", "questRef": "{{quest:flour}}" } }
-        ] },
-      { "text": "The organiser strikes the job off the board. \"Done, and dry. Good.\"" }
+        ] }
     ]
   },
   "pay": {

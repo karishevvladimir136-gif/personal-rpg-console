@@ -11,7 +11,7 @@ import { basicProfile } from "../mechanics/profile.ts";
 import { settledItemTransfer } from "../../progression/settlement-core.ts";
 import { parseCharacterModel, type CharacterEvidence, type CharacterModel } from "../character-model.ts";
 import { validateToolArguments } from "../../server/dm/model/schema-compiler.ts";
-import { dmLoopLimits as L } from "./limits.ts";
+import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
 import { dmLoopTools, ITEM_CATEGORIES } from "./tools.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import type { DmLoopMeta, DmLoopReceiptResult, DmLoopToolCall } from "./contracts.ts";
@@ -25,6 +25,8 @@ export type ToolContext = {
   narrationSceneId: string;
   /** Calls already made this turn; past the cap every call is refused. */
   toolCalls: number;
+  /** The campaign's per-turn limits as pinned when the turn started (stage 3). */
+  limits: DmLoopTurnLimits;
 };
 
 type Args = Record<string, unknown>;
@@ -250,11 +252,15 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   }
   const name = str(args.name);
   reject(name.length > 0, "A new character needs a name.");
+  reject(shadow.counters.charactersCreated < ctx.limits.charactersPerTurn,
+    `This turn already introduced ${ctx.limits.charactersPerTurn} new characters, the campaign's limit per turn.`,
+    "Refer to existing records with ref, or introduce the rest in a later turn.");
   const kind = str(args.kind) === "companion" ? "companion" : "npc";
   const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
   const similar = shadow.similarEntities(name).filter((row) => row.kind !== "player");
   const id = shadow.newId(`entity:${key}`);
   reject(!shadow.entity(id), `The local key "${key}" already names a character in this turn.`);
+  shadow.counters.charactersCreated++;
   const maxHp = int(args.maxHp) ?? int(args.hp);
   const hp = int(args.hp) ?? maxHp;
   reject(maxHp === null || (hp !== null && hp >= 0 && hp <= maxHp), `HP ${hp} must stay within 0..${maxHp}.`);
@@ -299,27 +305,28 @@ function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
 }
 
 // --- time and travel -------------------------------------------------------
-function advanceMinutes(shadow: ShadowState, minutes: number, what: string) {
+function advanceMinutes(shadow: ShadowState, minutes: number, what: string, ctx: ToolContext) {
   reject(Number.isInteger(minutes) && minutes >= 0, `${what}: minutes must be a whole number.`);
-  reject(shadow.minutesAdvanced + minutes <= L.maxMinutesPerTurn,
-    `${what}: this turn would advance ${shadow.minutesAdvanced + minutes} minutes; one turn may advance at most ${L.maxMinutesPerTurn} (a week).`,
+  const limit = ctx.limits.minutesPerTurn;
+  reject(shadow.minutesAdvanced + minutes <= limit,
+    `${what}: this turn would advance ${shadow.minutesAdvanced + minutes} minutes; this campaign lets one turn advance at most ${limit}${limit === 7 * 24 * 60 ? " (a week)" : ""}.`,
     "Narrate the long stretch and let the next turn continue it.");
   shadow.source.runtime.worldMinutes += minutes;
   shadow.minutesAdvanced += minutes;
 }
-function advanceTime(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+function advanceTime(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const minutes = int(args.minutes) ?? 0;
-  advanceMinutes(shadow, minutes, "advance_time");
+  advanceMinutes(shadow, minutes, "advance_time", ctx);
   return ok({ minutes, worldMinutes: shadow.worldMinutes }, `${minutes} minutes pass (${str(args.reason)})`);
 }
-function moveParty(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const ref = shadow.resolve(args.placeRef, ["locations"], "placeRef");
   const place = shadow.location(ref.id)!;
   const minutes = int(args.minutes) ?? 0;
   reject(minutes > 0, "Travel takes time: minutes must be greater than 0.");
   const previous = shadow.snapshot.publicState.current_location_id;
   reject(previous !== place.id, `The party is already at ${place.name}.`, "Movement inside one place is narration, not a Location change.");
-  advanceMinutes(shadow, minutes, "move_party");
+  advanceMinutes(shadow, minutes, "move_party", ctx);
   shadow.apply({ family: "public_state", id: shadow.campaignId, expectedRevision: shadow.snapshot.publicState.revision,
     values: { current_location_id: place.id } });
   if (place.status !== "visited") shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values: { status: "visited" } });
@@ -346,10 +353,14 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     const category = str(args.category);
     reject((ITEM_CATEGORIES as readonly string[]).includes(category), `item create needs a category: ${ITEM_CATEGORIES.join(", ")}.`);
     const quantity = int(args.quantity) ?? 1;
+    reject(shadow.counters.itemsCreated < ctx.limits.itemsPerTurn,
+      `This turn already created ${ctx.limits.itemsPerTurn} items, the campaign's limit per turn.`,
+      "Describe the rest in the narration; record it in a later turn.");
     const destination = destinationOf(shadow, args.ownerRef ?? "camp", "ownerRef");
     const key = localKey(args.localKey) ?? `${name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-")}-${ctx.toolCalls}`.slice(0, 60);
     const id = shadow.newId(`item:${key}`);
     reject(!shadow.item(id), `The local key "${key}" already names an item in this turn.`);
+    shadow.counters.itemsCreated++;
     shadow.apply({ family: "items", id, expectedRevision: null, values: {
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
@@ -427,7 +438,15 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 }
 
 // --- money -----------------------------------------------------------------
-function moneyTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+/** Money that enters the world (a grant, a reward nobody pays) counts against the pinned per-turn limit. */
+function mintMoney(shadow: ShadowState, amount: number, ctx: ToolContext, what: string) {
+  const limit = ctx.limits.moneyPerTurn;
+  reject(shadow.counters.moneyGranted + amount <= limit,
+    `${what}: this turn has already created ${shadow.counters.moneyGranted} in money; the campaign allows ${limit} per turn.`,
+    "Let an existing character pay (transfer), reduce the sum, or spread it over several turns.");
+  shadow.counters.moneyGranted += amount;
+}
+function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
   const { label, key } = currencyKey(args.currency);
   const amount = int(args.amount);
@@ -466,6 +485,7 @@ function moneyTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
         "Do not pay it again; the character may remember it was settled.");
       reject(false, `Use quest claim_reward for the reward of "${quest.title}"; it pays the agreed terms exactly once.`);
     }
+    mintMoney(shadow, amount, ctx, "money grant");
     setResources(shadow, to, { ...to.resources, [key]: moneyOf(to, key) + amount });
     return ok({ currency: label, amount, to: to.name, balance: moneyOf(shadow.entity(to.id)!, key), reason }, `${to.name} receives ${fmt(amount)} (${reason})`);
   }
@@ -584,18 +604,24 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
   reject(!terms.paidOperationId, `The reward of "${quest.title}" was already paid.`, "Refuse a second payment in character.");
   const recipient = args.recipientRef !== undefined ? entityOf(shadow, args.recipientRef, "recipientRef") : shadow.hero();
   const paid: JsonObject = { quest: quest.title, recipient: recipient.name };
+  reject(shadow.counters.itemsCreated + terms.items.length <= ctx.limits.itemsPerTurn,
+    `The reward of "${quest.title}" would exceed the campaign's ${ctx.limits.itemsPerTurn} new items per turn.`,
+    "Pay it in a later turn.");
   if (terms.currency && terms.amount) {
     const { key } = currencyKey(terms.currency);
     const issuer = terms.issuerId ? shadow.entity(terms.issuerId) : null;
     if (issuer && moneyOf(issuer, key) >= terms.amount) {
       setResources(shadow, issuer, { ...issuer.resources, [key]: moneyOf(issuer, key) - terms.amount });
       paid.paidBy = issuer.name;
+    } else {
+      mintMoney(shadow, terms.amount, ctx, `the reward of "${quest.title}"`);
     }
     const now = shadow.entity(recipient.id)!;
     setResources(shadow, now, { ...now.resources, [key]: moneyOf(now, key) + terms.amount });
     paid.money = `${terms.amount} ${terms.currency}`;
   }
   const storage = shadow.storageFor(recipient).id;
+  shadow.counters.itemsCreated += terms.items.length;
   paid.items = terms.items.map((item, index) => {
     const id = shadow.newId(`reward:${quest.id}:${index}`);
     shadow.apply({ family: "items", id, expectedRevision: null, values: { name: item.name,
@@ -613,7 +639,7 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   const kind = str(args.kind) === "long" ? "long" : "short";
   const safe = !!args.safe;
   const minutes = int(args.minutes) ?? (kind === "long" ? basicProfile.longMinutes : basicProfile.shortMinutes);
-  advanceMinutes(shadow, minutes, "rest");
+  advanceMinutes(shadow, minutes, "rest", ctx);
   const participants = (args.participantRefs as unknown[] | undefined)?.map((ref) => entityOf(shadow, ref, "participantRefs"))
     ?? shadow.partyIds().map((id) => shadow.entity(id)!);
   const recoverySetting = shadow.snapshot.settings.values.difficulty.recovery;
@@ -844,8 +870,8 @@ export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta };
 
 /** Run one call. Shadow mutations of a rejected call are discarded. */
 export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx: ToolContext): ExecutedTool {
-  if (ctx.toolCalls >= L.maxToolCalls)
-    return { result: { ok: false, reason: `This turn reached its ${L.maxToolCalls}-call limit.`,
+  if (ctx.toolCalls >= ctx.limits.toolCallsPerTurn)
+    return { result: { ok: false, reason: `This turn reached its ${ctx.limits.toolCallsPerTurn}-call limit.`,
       hint: "Finish the narration now with what was already accepted.", summary: `${call.name}: limit reached` } };
   const candidate = shadow.clone();
   try {
@@ -856,12 +882,12 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "query_state": executed = { result: queryState(candidate, args) }; break;
       case "upsert_character": executed = { result: upsertCharacter(candidate, args, ctx) }; break;
       case "upsert_place": executed = { result: upsertPlace(candidate, args) }; break;
-      case "move_party": executed = { result: moveParty(candidate, args) }; break;
+      case "move_party": executed = { result: moveParty(candidate, args, ctx) }; break;
       case "item": executed = { result: itemTool(candidate, args, ctx) }; break;
-      case "money": executed = { result: moneyTool(candidate, args) }; break;
+      case "money": executed = { result: moneyTool(candidate, args, ctx) }; break;
       case "resource": executed = { result: resourceTool(candidate, args) }; break;
       case "quest": executed = { result: questTool(candidate, args, ctx) }; break;
-      case "advance_time": executed = { result: advanceTime(candidate, args) }; break;
+      case "advance_time": executed = { result: advanceTime(candidate, args, ctx) }; break;
       case "rest": executed = { result: restTool(candidate, args, ctx) }; break;
       case "note_character": executed = { result: noteCharacter(candidate, args, ctx) }; break;
       case "note_world": executed = { result: noteWorld(candidate, args) }; break;

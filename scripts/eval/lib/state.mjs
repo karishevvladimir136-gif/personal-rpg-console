@@ -296,6 +296,11 @@ export async function evaluateCheck(check, ctx) {
     }
     case "retried":
       return result(ctx.turn?.retried === arg, `retried ${ctx.turn?.retried ?? "n/a"}`);
+    case "heroHpWithinMax": {
+      const hero = after.entities.find((e) => e.id === after.heroId);
+      const within = !!hero && (hero.hp === null ? hero.max_hp === null : hero.hp >= 0 && hero.hp <= hero.max_hp);
+      return result(within === !!arg, `hero HP ${hero?.hp ?? "–"}/${hero?.max_hp ?? "–"}`);
+    }
     default:
       throw Error(`unknown check kind ${kind}`);
   }

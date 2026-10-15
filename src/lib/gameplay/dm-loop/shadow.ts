@@ -7,7 +7,7 @@ import type { PrivatePatch, RecordChange, RecordFamily, RuntimeSource } from "..
 import { applyAstraShadowChanges } from "../astra-ordered-effects.ts";
 import { stableGameplayId } from "../dice.ts";
 import { isUuid } from "../../persistence/validation.ts";
-import type { DmLoopShadowDelta } from "./contracts.ts";
+import type { DmLoopShadowDelta, DmLoopTurnCounters } from "./contracts.ts";
 
 /** A rejected tool call: the reason goes back to the model, the turn continues. */
 export class ToolReject extends Error {
@@ -40,6 +40,8 @@ export class ShadowState {
   readonly createdIds = new Set<string>();
   minutesAdvanced = 0;
   finished = false;
+  /** What this turn created so far, checked against the pinned per-turn limits. */
+  counters: DmLoopTurnCounters = { moneyGranted: 0, itemsCreated: 0, charactersCreated: 0 };
 
   constructor(source: RuntimeSource, operationId: string) {
     this.source = structuredClone(source);
@@ -59,6 +61,7 @@ export class ShadowState {
     shadow.source.runtime.configuration = structuredClone(delta.configuration);
     shadow.minutesAdvanced = delta.minutesAdvanced;
     shadow.finished = delta.finished;
+    if (delta.counters) shadow.counters = { ...delta.counters };
     return shadow;
   }
 
@@ -71,6 +74,7 @@ export class ShadowState {
     for (const id of this.createdIds) copy.createdIds.add(id);
     copy.minutesAdvanced = this.minutesAdvanced;
     copy.finished = this.finished;
+    copy.counters = { ...this.counters };
     return copy;
   }
 
@@ -88,6 +92,7 @@ export class ShadowState {
     for (const id of candidate.createdIds) this.createdIds.add(id);
     this.minutesAdvanced = candidate.minutesAdvanced;
     this.finished = candidate.finished;
+    this.counters = { ...candidate.counters };
   }
 
   changesInOrder(): RecordChange[] {
@@ -104,6 +109,7 @@ export class ShadowState {
       createdIds: [...this.createdIds],
       minutesAdvanced: this.minutesAdvanced,
       finished: this.finished,
+      counters: { ...this.counters },
     };
   }
 

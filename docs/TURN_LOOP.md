@@ -27,7 +27,8 @@ replays the recorded receipts (dice are never rolled twice) and continues the co
 ### Runtime selection
 
 `rpg_private.dm_settings` (one row per campaign; not part of timelines or world canon):
-`runtime` = `dm-loop-v1` | `astra-primary-v1`, `dm_turn` = optional model selection. New
+`runtime` = `dm-loop-v1` | `astra-primary-v1`, `dm_turn` = optional model selection, `limits` =
+optional per-turn limits (Stage 3, see §3). New
 campaigns (no row) play on `dm-loop-v1` from the first scene; every existing campaign got a
 row with `astra-primary-v1` in migration 53. The owner changes both in Campaign Settings →
 "DM runtime and model" (API `/api/campaigns/<id>/dm-settings`, RPC `rpg_dm_settings`), at
@@ -125,9 +126,38 @@ the Stage 2b bench (docs/SPEED.md).
 | `holding` | create / update / remove a transport, base or mount with its own storage | — |
 | `finish_turn` | scene kinds, characters in focus, `playerMoment` | ends the turn only after narration text exists; otherwise the model is asked to write it |
 
-Limits live in `limits.ts` (Stage 3 turns the campaign-level ones into settings): 10 model
-requests and 40 tool calls per turn (the model is told to wrap up, the turn never fails for
-this), money up to 1,000,000 per call, stacks up to 100,000, narration up to 12,000 characters.
+### Limits (Stage 3)
+
+Two kinds, both in `limits.ts`. **Hard ceilings** of one call never change: money up to
+1,000,000 per call, stacks up to 100,000, counters up to 1,000,000, narration up to 12,000
+characters, 8 checks per turn, two weeks of game time per turn (the SQL commit's bound).
+**Per-turn campaign limits** are campaign settings (`rpg_private.dm_settings.limits`, read and
+saved through the same `/api/campaigns/<id>/dm-settings` route and `rpg_dm_settings` RPC as the
+runtime and model; `null` means the defaults): money created per turn (grants and rewards the
+issuer cannot pay; transfers create none) 1,000,000, items created 50, new characters 20, game
+minutes 10,080 (a week), tool calls 40, model requests 10. Each has a ceiling the SQL validator
+(`rpg_private.dm_turn_limits_valid`) and `parseDmLoopLimits` share. When a turn starts, the
+limits are **pinned into the operation with the model** (`pin.limits` in the checkpoint): every
+call is validated against the pin, never against the live settings, so a change applies to the
+next turn and a retry keeps its pin. The shadow state counts what the turn has created
+(`counters` in the delta) and a call beyond a limit is rejected with the limit named; past the
+tool-call limit the model is told to wrap up, on the last allowed request it is asked to finish
+without tools — the turn never fails for a limit. The SQL commit re-checks the time and the
+new-character limits of the pin (`rpg_limit_exceeded`); the rest it trusts to the executor.
+
+### The folded `finish_turn` round (Stage 3 §4)
+
+GPT‑6 Astra at medium records its bookkeeping one call per request and then spends a request
+of its own on `finish_turn` (23 of 29 turns in the Stage 2b bench, 2.5–3 s each). The
+instructions now make time passing the last bookkeeping call of a turn, and on an OpenAI pin
+the loop treats a message of accepted bookkeeping that closes with `advance_time`,
+`move_party` or `rest` — written after the narration exists — as the turn's final message
+(`foldsFinish` in `loop.ts`): the turn ends there, with an `implicit_finish` diagnostic and
+metadata of its own (no scene kinds, the characters introduced or updated in focus, no player
+moment). Any rejected call, any deciding call (a roll, money, an item transfer or consumption, a
+claim, combat, `query_state`) or a message without time passing keeps the conversation open,
+so a model that records its bookkeeping in several single-call messages is never cut short
+before its time call. Opus batches `finish_turn` itself; Anthropic pins are never folded.
 
 ## 4. Receipts, shadow state, resume
 
@@ -172,10 +202,33 @@ through the generic applier `rpg_private.runtime_change` (storages through a sma
 since the applier has no storage family), writes the player and narration scenes with
 deterministic IDs (`wave4_id(op, 'scene:player' | 'scene:narration')`), updates public state,
 applies private patches to `dm_state`, records the event with receipts and turn metadata, and
-marks the turn committed, all in one transaction. Invariants in SQL that already protect the
-data: non-negative integer resources, HP within 0..max, item quantities 0..1,000,000, equipped
-items in an accepting slot. Stage 3 hardens balances, quantities and the one-reward-claim rule as
-SQL invariants and turns the limits into campaign settings.
+marks the turn committed, all in one transaction. Since Stage 3 (migration 54) the commit
+wrapper also re-checks the pinned time and new-character limits, records every reward claim on
+the quest row (`rpg_quests.reward_operation_id`, from the private `quest_reward_<id>` terms
+whose `paidOperationId` names this operation — a second claim fails with `rpg_reward_claimed`),
+and makes the per-turn autosave policy apply to loop turns as it does to the older runtimes.
+
+## 9. Record integrity in SQL (Stage 3)
+
+The database guards the invariants of the loop on its own, so no code path — a bug, a retry, a
+future tool, a direct write — can corrupt a campaign. Logic stays in TypeScript; SQL only
+applies and guards (`tests/record-integrity-sql.test.mjs` tries each of these directly in SQL
+and every attempt fails):
+
+| Invariant | How it is enforced |
+| --- | --- |
+| Item quantities ≥ 0 (and ≤ 1,000,000); an equipped item has stock | table CHECKs on `rpg_items` (phase 1) |
+| Money and every named counter ≥ 0 for every holder; a counter never above its stored `<name>_max` cap | CHECK `rpg_entities_resources_within_bounds` (migration 54; whatever a ruleset stores without a cap is respected) plus the applier's integer check |
+| HP within 0..`max_hp` | table CHECK on `rpg_entities` (phase 1) |
+| A quest reward is claimed at most once, including the "paid by a transfer from the issuer" settlement | `reward_operation_id` is set by the commit from the private terms and fails if already set (`rpg_reward_claimed`); the trigger `reward_claim_once` forbids moving or clearing it; an FK ties it to an operation of the same campaign (deferred, like every save-restored reference) |
+| Every record a commit touches belongs to the campaign and the timeline of the operation; revisions hold | `runtime_change` scopes every row by `campaign_id` and never adopts a foreign ID (`rpg_validation`); composite FKs `(campaign_id, …)` on items, storages and participants; `timeline_assert` on every write; a stale `expectedRevision` is `rpg_conflict` |
+| Operation IDs unique; a committed operation is never committed again, rewritten or deleted | primary key on `turns`; a second commit of a committed turn is `rpg_conflict`; the trigger `committed_turn_immutable` refuses status, input, narration or runtime changes and deletes of a committed turn (`rpg_immutable_history`) outside a save restore |
+| Per-turn limits of the pin | the commit re-checks minutes and new characters (`rpg_limit_exceeded`); the executor enforces all six per call |
+
+The two constraints that validate existing rows are added `NOT VALID` and validated in the
+migration; if the owner's database held a legacy row that violates one, the migration leaves it
+`NOT VALID` (new writes are still checked) and `docs/RELEASE_CHECKLIST.md` names the query to
+find and correct that row.
 
 ## 7. Secrets
 
