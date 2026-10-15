@@ -24,8 +24,9 @@ Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_
   picture per item type. Saving fal pictures needs the SQL provider update (UI_DATA_NEEDS #15).
 - Paid fal tests: 22 requests, 17 images kept, $0.56 counted of the $3 cap (`docs/screens/stage-5/fal-cost.json`).
 - Screenshots: `docs/screens/stage-5/` (48: desktop 1440 and phone 390, no horizontal overflow).
-- Checks on the final branch state: typecheck pass; lint pass (0 warnings); build pass; tests 2426 — 2399 pass,
-  0 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). Two older game-screen tests were moved from the
+- Checks on the final branch state (after the 2b rebase): typecheck pass; lint pass (0 warnings); build pass;
+  tests 2436 — 2409 pass, 0 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). One earlier run, made while
+  a second session ran its own suite, had two Astra smoke tests over the 30 s limit; both pass when run alone. Two older game-screen tests were moved from the
   Phase-0 markup to the new layout with the same behaviors. No change in the stage 2b–4 paths.
 - Live streaming (after the 2b rebase): the game screen renders the streamed turn itself — the DM's text as it
   arrives with a «ведущий пишет…» caret, the «Что изменилось за ход» chips (accepted changes only), and «Твой
