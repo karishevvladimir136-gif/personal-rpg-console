@@ -217,11 +217,6 @@ export async function submitTurn(campaignId: string, value: unknown) {
       input.mode === "companion");
   const rulesetId = newOrdinary
     ? (await readProductionSettings(campaignId)).ruleset.id : null;
-  const production = productionServices(
-    user.id,
-    campaignId,
-    requireTimeline(input),
-  );
   // The new runtime: a campaign set to dm-loop-v1 plays game and companion
   // turns on it from its first scene; an operation pinned to it always resumes on it.
   const dmSettings = newOrdinary || runtime === DM_LOOP_RUNTIME ? await readDmSettings(campaignId) : null;
@@ -229,8 +224,10 @@ export async function submitTurn(campaignId: string, value: unknown) {
     dmSettings?.runtime === DM_LOOP_RUNTIME)) {
     if (newOrdinary && rulesetId && await openingPending(client, campaignId, requireTimeline(input), rulesetId))
       throw new AstraStartupPendingError();
-    const deps = dmLoopDependencies(store, memory, production.summaries, production, async () => dmSettings ?? readDmSettings(campaignId));
-    return runLoopWithMaintenance(store, memory, production.summaries, requireTimeline(input), campaignId,
+    const loopProduction = productionServices(user.id, campaignId, requireTimeline(input));
+    const deps = dmLoopDependencies(store, memory, loopProduction.summaries, loopProduction,
+      async () => dmSettings ?? readDmSettings(campaignId));
+    return runLoopWithMaintenance(store, memory, loopProduction.summaries, requireTimeline(input), campaignId,
       () => runDmLoopTurn(input, deps));
   }
   const worldTakeover = rulesetId === "world-logic-v1"
@@ -239,6 +236,11 @@ export async function submitTurn(campaignId: string, value: unknown) {
     await campaignStartupPending(client, campaignId, requireTimeline(input),
       rulesetId, worldTakeover, optIn))
     throw new AstraStartupPendingError();
+  const production = productionServices(
+    user.id,
+    campaignId,
+    requireTimeline(input),
+  );
   const selected = selectAstraPrimaryRuntime(runtime, optIn, input.mode, rulesetId, worldTakeover);
   if (selected) return runWithAstraMemoryMaintenance(store, memory, production.summaries,
     requireTimeline(input), (observedStore) => runAstraTurn(input, {

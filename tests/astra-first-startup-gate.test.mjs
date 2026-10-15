@@ -100,11 +100,21 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
     },
     "../gameplay/startup-admission": { astraStartupPending, AstraStartupPendingError },
     "../production/dm-turn-pin": { withAstraTurnPin: (store) => store },
+    // Stage 2: the dm-loop-v1 path is routed by the campaign's DM settings; this
+    // fixture keeps the campaign on the Astra runtime so the old routing is tested.
+    "../gameplay/dm-loop/loop": { DM_LOOP_RUNTIME: "dm-loop-v1",
+      runDmLoopTurn: async () => { throw new Error("unexpected dm-loop turn"); },
+      resumeDmLoopTurn: async () => { throw new Error("unexpected dm-loop resume"); } },
+    "../production/dm-loop-pin": { dmLoopPinFromProfile: () => ({}), dmLoopProfile: () => ({}) },
+    "./dm/model": { createDmModel: () => ({}) },
+    "./dm/live-turns": { publishLiveTurnEvent: () => {} },
+    "./dm-settings": { readDmSettings: async () => ({ campaignId: "campaign", runtime: "astra-primary-v1", dmTurn: null, revision: 1 }) },
     "../gameplay/dm-errors": { DmError: class extends Error {} },
     "./memory/store": { createMemoryStore: () => ({}) },
     "../memory/lifecycle": {
       memoryAwareProvider: () => ({}),
       preflightMemory: async () => { calls.preflight++; },
+      maintainAstraMemoryAfterCommit: async () => {},
     },
     "../gameplay/request-validation": {
       validateTurnInput: (value) => value,
