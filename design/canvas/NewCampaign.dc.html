@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Новая кампания</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+textarea::placeholder,input::placeholder{color:#8d7142}
+@keyframes shimmer{0%{background-position:-300px 0}100%{background-position:300px 0}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px">
+
+  <header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap">
+    <div>
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Нулевая сессия</span>
+      <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 36px; font-weight: 700; color: #cfa860; line-height: 1.05">Новая кампания</h1>
+    </div>
+    <button type="button" style="min-height: 40px; padding: 0 14px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-size: 15px; cursor: pointer">Отмена</button>
+  </header>
+
+  <ol aria-label="Шаги" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+    <sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+      <li><button type="button" onClick="{{s.pick}}" aria-current="{{s.current}}" style="{{s.style}}">
+        <span style="{{s.numStyle}}">{{s.num}}</span>
+        <span style="display: flex; flex-direction: column; text-align: left; min-width: 0">
+          <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700">{{s.title}}</span>
+          <span style="font-size: 12.5px; color: #ab9a80">{{s.sub}}</span>
+        </span>
+      </button></li>
+    </sc-for>
+  </ol>
+
+  <div style="display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap">
+    <section style="flex: 1.6 1 620px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 14px">
+
+      <sc-if value="{{isWorld}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; color: #cfa860">Где будет история?</h2>
+          <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{worldOpts}}" as="w" hint-placeholder-count="3">
+              <button type="button" onClick="{{w.pick}}" style="{{w.style}}">
+                <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{w.kind}}</span>
+                <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{w.title}}</span>
+                <span style="font-size: 13.5px; color: #ab9a80">{{w.desc}}</span>
+              </button>
+            </sc-for>
+          </div>
+          <sc-if value="{{isOwnWorld}}" hint-placeholder-val="{{ false }}">
+            <textarea rows="5" placeholder="Пара абзацев о мире: что за эпоха, что сломано, кто правит, чего боятся люди. Остальное ведущий развернёт по ходу игры." style="width: 100%; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.3); border-radius: 6px; padding: 12px; color: #ece1cb; font: inherit; resize: vertical"></textarea>
+          </sc-if>
+          <sc-if value="{{isShov}}" hint-placeholder-val="{{ true }}">
+            <div style="border: 1px dashed rgba(207,168,96,0.4); border-radius: 6px; padding: 12px; display: grid; gap: 6px">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">Наследие мира</span>
+              <span style="font-size: 15px">У этого мира уже была кампания: «Кампания 1 · пешком». Что новая кампания унаследует?</span>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap">
+                <sc-for list="{{legacy}}" as="l" hint-placeholder-count="3">
+                  <button type="button" onClick="{{l.pick}}" style="{{l.style}}">{{l.label}}</button>
+                </sc-for>
+              </div>
+              <span style="font-size: 13px; color: #ab9a80">{{legacyHint}}</span>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isHero}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; color: #cfa860">Кто ты в этом мире?</h2>
+          <input type="text" value="Джеймс Хейл" style="min-height: 44px; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.3); border-radius: 6px; padding: 0 12px; color: #ece1cb; font-family: 'Old Standard TT', Georgia, serif; font-size: 20px">
+          <textarea rows="5" style="width: 100%; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.3); border-radius: 6px; padding: 12px; color: #ece1cb; font: inherit; resize: vertical">Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отцовские часы остановились на 3:17.</textarea>
+          <span style="font-size: 13.5px; color: #ab9a80">Своими словами: прошлое, умения, слабости, что при себе. Лист персонажа по правилам кампании ведущий соберёт сам — ты его проверишь.</span>
+          <div style="display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 14px; align-items: start; border-top: 1px dashed rgba(207,168,96,0.26); padding-top: 12px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <div role="img" aria-label="Портрет рисуется" style="aspect-ratio: 3 / 4; border-radius: 6px; border: 1.5px dashed #cfa860; background: linear-gradient(90deg, #1b1511 0, #3a2c1f 50%, #1b1511 100%); background-size: 600px 100%; animation: shimmer 2s linear infinite; display: grid; place-items: center; font-family: 'PT Mono', monospace; font-size: 11px; color: #e3cf9f">портрет рисуется…</div>
+              <button type="button" style="min-height: 32px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 5px; font-size: 13px; cursor: pointer">Свой портрет…</button>
+            </div>
+            <div style="background: linear-gradient(180deg, #eadcbd, #dccaa3); color: #2a1f16; border: 1px solid #b89a5c; border-radius: 8px; padding: 12px 14px; display: grid; gap: 6px">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c2e">Черновик листа · D&amp;D 5e (2024)</span>
+              <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">Чародей (дикая магия?) · 1 уровень · народный герой</span>
+              <span style="font-family: 'PT Mono', monospace; font-size: 13px">СИЛ 8 · ЛОВ 14 · ТЕЛ 15 · ИНТ 12 · МДР 10 · ХАР 15</span>
+              <span style="font-size: 14px">Владения: инструменты жестянщика, Убеждение, Анализ. Снаряжение: револьвер, набор наладчика, отцовские часы.</span>
+              <span style="font-size: 13px; color: #7a5c2e">Вопрос ведущего: «Магия в тебе — врождённая или из часов? От этого зависит подкласс».</span>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap"><button type="button" style="min-height: 34px; padding: 0 12px; background: #f4ead2; color: #2a1f16; border: 1px solid #8d6d38; border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 12px; cursor: pointer">Принять</button><button type="button" style="min-height: 34px; padding: 0 12px; background: #f4ead2; color: #2a1f16; border: 1px solid #8d6d38; border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 12px; cursor: pointer">Поправить словами…</button></div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isDm}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; color: #cfa860">Какой будет игра?</h2>
+          <sc-for list="{{dmRows}}" as="r" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: 15px">{{r.title}}</span>
+              <div style="display: flex; gap: 6px; flex-wrap: wrap">
+                <sc-for list="{{r.opts}}" as="o" hint-placeholder-count="3">
+                  <button type="button" onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <span style="font-size: 15px">Что мне нравится в играх <span style="color: #8d7142">— ведущий будет держать это в голове, ты можешь поправить в любой момент</span></span>
+            <textarea rows="3" style="width: 100%; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.3); border-radius: 6px; padding: 12px; color: #ece1cb; font: inherit; resize: vertical">Долгие разговоры со спутниками, переговоры, морально серые сделки. Бои — короткие и злые. Злодеи с понятными мотивами. Юмор к месту.</textarea>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isStart}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; color: #cfa860">С чего начнём?</h2>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+            <sc-for list="{{starts}}" as="w" hint-placeholder-count="2">
+              <button type="button" onClick="{{w.pick}}" style="{{w.style}}">
+                <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{w.title}}</span>
+                <span style="font-size: 13.5px; color: #ab9a80">{{w.desc}}</span>
+              </button>
+            </sc-for>
+          </div>
+          <input type="text" placeholder="Название кампании (можно потом)" value="Мир Шва · Кампания 2" style="min-height: 44px; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.3); border-radius: 6px; padding: 0 12px; color: #ece1cb; font: inherit">
+          <button type="button" style="min-height: 52px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 19px; font-weight: 700; cursor: pointer">Начать кампанию</button>
+          <span style="font-size: 13px; color: #8d7142">Ведущий напишет первую сцену сразу — по новому ходу, со своими инструментами. Обложка и портрет дорисуются в фоне.</span>
+        </div>
+      </sc-if>
+
+      <div style="display: flex; justify-content: space-between; border-top: 1px solid rgba(207,168,96,0.2); padding-top: 12px">
+        <button type="button" onClick="{{back}}" style="min-height: 42px; padding: 0 16px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-size: 15px; cursor: pointer">← Назад</button>
+        <button type="button" onClick="{{next}}" style="min-height: 42px; padding: 0 18px; background: #3a2c1f; color: #f1dca8; border: 1px solid #cfa860; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700; cursor: pointer">Дальше →</button>
+      </div>
+    </section>
+
+    <aside style="flex: 1 1 320px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Сводка</span>
+      <sc-for list="{{summary}}" as="k" hint-placeholder-count="6">
+        <div style="display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dotted rgba(207,168,96,0.26); padding: 4px 0; font-size: 14.5px"><span style="color: #ab9a80">{{k.k}}</span><span style="text-align: right">{{k.v}}</span></div>
+      </sc-for>
+      <span style="font-size: 13px; color: #8d7142; margin-top: 6px">Всё, кроме мира, можно поменять потом в настройках кампании.</span>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { step: 0, world: "shov", legacy: "legends", model: "opus", tone: "hope", rules: "dnd", rolls: "mixed", start: "dm" };
+  }
+  renderVals() {
+    const st = this.state;
+    const defs = [["Мир", "существующий или новый"], ["Герой", "своими словами"], ["Ведущий", "модель, тон, правила"], ["Начало", "первая сцена"]];
+    const steps = defs.map(([title, sub], i) => ({
+      title, sub, num: i < st.step ? "✓" : String(i + 1), current: i === st.step ? "step" : "false",
+      pick: () => this.setState({ step: i }),
+      style: "width: 100%; display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #ece1cb; " +
+        (i === st.step ? "background: #3a2c1f; border: 1px solid #cfa860;" : "background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26);"),
+      numStyle: "flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: 'PT Mono', monospace; font-size: 14px; " +
+        (i < st.step ? "background: #64a998; color: #16110d;" : i === st.step ? "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d;" : "background: #120d0a; color: #8d7142; border: 1px solid rgba(207,168,96,0.3);")
+    }));
+    const pickCard = (on) => "display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: #ece1cb; " +
+      (on ? "background: #3a2c1f; border: 1.5px solid #cfa860;" : "background: #1b1511; border: 1.5px solid rgba(207,168,96,0.2);");
+    const seg = (on) => "min-height: 38px; padding: 0 12px; border-radius: 5px; cursor: pointer; font-family: 'Alegreya Sans', sans-serif; font-size: 14.5px; " +
+      (on ? "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; font-weight: 700;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);");
+    const worldOpts = [["shov", "мир · 1 кампания", "Мир Шва", "Стимпанк поверх руин Старого мира."], ["own", "новый", "Свой мир", "Пара абзацев — остальное по ходу игры."], ["lib", "из библиотеки", "Из источников", "Книги и заметки с каноном."]].map(([id, kind, title, desc]) => ({
+      kind, title, desc, pick: () => this.setState({ world: id }), style: pickCard(st.world === id)
+    }));
+    const LEG = { legends: ["Герои прошлого — легенды и NPC", "Мир помнит всё, что изменила первая кампания: её герои живут дальше и могут встретиться."], world: ["Только изменения мира", "Последствия остаются, а прежних героев в истории нет."], fresh: ["С чистого листа", "Тот же мир, но как будто первой кампании не было."] };
+    const legacy = Object.keys(LEG).map((id) => ({ label: LEG[id][0], pick: () => this.setState({ legacy: id }), style: seg(st.legacy === id) }));
+    const row = (title, key, opts) => ({ title, opts: opts.map(([id, label]) => ({ label, pick: () => this.setState({ [key]: id }), style: seg(st[key] === id) })) });
+    const dmRows = [
+      row("Ведущий", "model", [["opus", "Claude Opus 5.5 · глубоко"], ["astra", "GPT-6 Astra · обычно"]]),
+      row("Тон истории", "tone", [["hope", "Надежда"], ["balanced", "Поровну света и тьмы"], ["bleak", "Мрачно"]]),
+      row("Правила", "rules", [["dnd", "D&D 5e (2024)"], ["pf", "Pathfinder 2e"], ["free", "Свободно, без системы"], ["own", "Свои…"]]),
+      row("Броски", "rolls", [["me", "Все кидаю я"], ["mixed", "Важные — я, остальное — ведущий"], ["dm", "Все — ведущий"]])
+    ];
+    const starts = [["dm", "Ведущий решает", "Сцена из мира и твоей истории — сюрприз."], ["me", "Я опишу, где начинаю", "Одна фраза: «рассвет, причалы, должок…»"]].map(([id, title, desc]) => ({
+      title, desc, pick: () => this.setState({ start: id }), style: pickCard(st.start === id)
+    }));
+    const L = { opus: "Opus 5.5 · глубоко", astra: "Astra · обычно" };
+    const T = { hope: "надежда", balanced: "поровну", bleak: "мрачно" };
+    const R = { dnd: "D&D 5e (2024)", pf: "Pathfinder 2e", free: "без системы", own: "свои" };
+    const W = { shov: "Мир Шва", own: "свой мир", lib: "из источников" };
+    const summary = [
+      { k: "Мир", v: W[st.world] }, { k: "Наследие", v: st.world === "shov" ? LEG[st.legacy][0] : "—" },
+      { k: "Герой", v: "Джеймс Хейл" }, { k: "Ведущий", v: L[st.model] }, { k: "Тон", v: T[st.tone] },
+      { k: "Правила", v: R[st.rules] }, { k: "Картинки", v: "fal · стиль мира" }
+    ];
+    return {
+      steps, worldOpts, legacy, legacyHint: LEG[st.legacy][1], dmRows, starts, summary,
+      isWorld: st.step === 0, isHero: st.step === 1, isDm: st.step === 2, isStart: st.step === 3,
+      isOwnWorld: st.world === "own", isShov: st.world === "shov",
+      back: () => this.setState({ step: Math.max(0, st.step - 1) }),
+      next: () => this.setState({ step: Math.min(3, st.step + 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+{
+  "base": "PREVIEW_URL",
+  "date": "2026-10-15T21:08:14.705Z",
+  "shots": [
+    {
+      "file": "menu-desktop.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "campaigns-desktop.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "new-campaign-desktop.jpg",
+      "url": "/preview/stage-5/new-campaign",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "new-campaign-dm-desktop.jpg",
+      "url": "/preview/stage-5/new-campaign?step=2",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-desktop.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-moment-dice-desktop.jpg",
+      "url": "/preview/stage-5/game?moment=1&dice=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-combat-desktop.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "character-desktop.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "inventory-desktop.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-desktop.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-talk-desktop.jpg",
+      "url": "/preview/stage-5/party?talk=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-combat-desktop.jpg",
+      "url": "/preview/stage-5/party?combat=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "journal-desktop.jpg",
+      "url": "/preview/stage-5/journal",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "codex-desktop.jpg",
+      "url": "/preview/stage-5/codex",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "map-desktop.jpg",
+      "url": "/preview/stage-5/map",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "holdings-desktop.jpg",
+      "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "settings-desktop.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "adventures-desktop.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-game-desktop.jpg",
+      "url": "/preview/stage-5/game?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-character-desktop.jpg",
+      "url": "/preview/stage-5/character?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-holdings-desktop.jpg",
+      "url": "/preview/stage-5/holdings?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-party-desktop.jpg",
+      "url": "/preview/stage-5/party?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-campaigns-desktop.jpg",
+      "url": "/preview/stage-5/campaigns?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-settings-desktop.jpg",
+      "url": "/preview/stage-5/settings?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "menu-phone.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "campaigns-phone.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "new-campaign-phone.jpg",
+      "url": "/preview/stage-5/new-campaign",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "new-campaign-dm-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?step=2",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-phone.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-moment-dice-phone.jpg",
+      "url": "/preview/stage-5/game?moment=1&dice=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "game-combat-phone.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "character-phone.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "inventory-phone.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-phone.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-talk-phone.jpg",
+      "url": "/preview/stage-5/party?talk=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "party-combat-phone.jpg",
+      "url": "/preview/stage-5/party?combat=1",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "journal-phone.jpg",
+      "url": "/preview/stage-5/journal",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "codex-phone.jpg",
+      "url": "/preview/stage-5/codex",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "map-phone.jpg",
+      "url": "/preview/stage-5/map",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "holdings-phone.jpg",
+      "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "settings-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "adventures-phone.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-game-phone.jpg",
+      "url": "/preview/stage-5/game?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-character-phone.jpg",
+      "url": "/preview/stage-5/character?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-holdings-phone.jpg",
+      "url": "/preview/stage-5/holdings?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-party-phone.jpg",
+      "url": "/preview/stage-5/party?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-campaigns-phone.jpg",
+      "url": "/preview/stage-5/campaigns?world=noir",
+      "horizontalOverflowPx": 0
+    },
+    {
+      "file": "noir-settings-phone.jpg",
+      "url": "/preview/stage-5/settings?world=noir",
+      "horizontalOverflowPx": 0
+    }
+  ]
+}

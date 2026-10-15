@@ -16,6 +16,7 @@ import { SubjectVisual } from "./visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon } from "./ui";
 import styles from "./atlas-map.module.css";
+import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 
 type ReviewPreset = {
   level?: AtlasLevel;
@@ -58,11 +59,16 @@ export function AtlasMap({
   reviewOnly = false,
   reviewPlacements = [],
   reviewPreset,
+  reviewArtworkUrl,
+  reviewDestinationId,
 }: {
   snapshot: CampaignSnapshot;
   reviewOnly?: boolean;
   reviewPlacements?: MapPlacement[];
   reviewPreset?: ReviewPreset;
+  /** Synthetic previews only: a sample background and a preset course. */
+  reviewArtworkUrl?: string;
+  reviewDestinationId?: string;
 }) {
   const { language, t } = useLanguage();
   const w = (en: string, ru: string) => (language === "ru" ? ru : en);
@@ -72,7 +78,8 @@ export function AtlasMap({
   const [selectedWorldId, setSelectedWorldId] = useState<string | null>(null);
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null);
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
-  const [destinationId, setDestinationId] = useState<string | null>(null);
+  const [destinationId, setDestinationId] = useState<string | null>(reviewOnly ? reviewDestinationId ?? null : null);
+  const [courseInserted, setCourseInserted] = useState(false);
   const [showArtwork, setShowArtwork] = useState(reviewPreset?.artwork !== "collapsed");
   const [editLocationId, setEditLocationId] = useState("");
   const [editLevel, setEditLevel] = useState<AtlasLevel>("world");
@@ -135,6 +142,16 @@ export function AtlasMap({
     ? view.currentAreaId
     : view.pins[0]?.location_id ?? currentId;
   const selected = knownLocation(snapshot, selectedLocationId ?? defaultId);
+  // "Plot a course": the destination is presentation; the journey text waits in the turn box.
+  const plotCourse = (location: Location) => {
+    setDestinationId(location.id);
+    setCourseInserted(!reviewOnly && appendToComposerDraft(draftStorage(), {
+      campaignId, mode: "game", companionId: null, timeline: snapshot.timeline,
+      text: w(`I travel to ${location.name}.`, `Я отправляюсь в ${location.name}.`),
+    }));
+  };
+  const routeFrom = view.pins.find((row) => row.location_id === currentId);
+  const routeTo = destinationId ? view.pins.find((row) => row.location_id === destinationId) : undefined;
   const selectedIllustration = selected && selectSubjectVisual(
     snapshot, { kind: "location", id: selected.id }, { acceptedOnly: true },
   );
@@ -281,7 +298,9 @@ export function AtlasMap({
                   height={1024}
                 />
               )}
-              {artworkVisible && previewArt && <div className={styles.previewArtwork} aria-hidden="true" />}
+              {artworkVisible && previewArt && (reviewArtworkUrl
+                ? <Image unoptimized className={styles.artBackground} src={reviewArtworkUrl} alt="" width={1024} height={576} />
+                : <div className={styles.previewArtwork} aria-hidden="true" />)}
               <div className={styles.atlasGrain} aria-hidden="true" />
               <span className={styles.artworkLabel}>
                 {artworkVisible
@@ -313,6 +332,11 @@ export function AtlasMap({
                 }}
               />
               <div className={styles.pinLayer}>
+                {routeFrom && routeTo && routeFrom.x !== null && routeFrom.y !== null && routeTo.x !== null && routeTo.y !== null && (
+                  <svg className={styles.route} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <line x1={routeFrom.x * 100} y1={routeFrom.y * 100} x2={routeTo.x * 100} y2={routeTo.y * 100} />
+                  </svg>
+                )}
                 {view.pins.map((row) => {
                   const location = knownLocation(snapshot, row.location_id);
                   if (!location || row.x === null || row.y === null) return null;
@@ -356,6 +380,7 @@ export function AtlasMap({
               <span><i className={styles.legendCurrent} />{t("Current location")}</span>
               <span><i className={styles.legendVisited} />{t("Visited")}</span>
               <span><i className={styles.legendKnown} />{t("Known")}</span>
+              {destinationId && <span><i className={styles.legendGoal} />{w("Goal", "Цель")}</span>}
               <span>{w("Pins are records; artwork is illustrative.", "Метки взяты из записей; фон — иллюстрация.")}</span>
             </div>
             {mapVisual.olderArtwork && artworkVisible && <p className={styles.artNote}>{w("Older map artwork · structured pins are current. Regenerate when you wish.", "Прежнее изображение карты · метки актуальны. При желании создайте новое.")}</p>}
@@ -380,8 +405,8 @@ export function AtlasMap({
                 {byId.get(selected.id)?.revision === 0 && <p className={styles.secondaryNote}>
                   {w("This place is shown approximately.", "Это место показано приблизительно.")}
                 </p>}
-                <Button primary disabled={selected.id === currentId} onClick={() => setDestinationId(selected.id)}>
-                  {t(selected.id === currentId ? "Current location" : destinationId === selected.id ? "Destination selected" : "Set destination")}
+                <Button primary disabled={selected.id === currentId} onClick={() => plotCourse(selected)}>
+                  {selected.id === currentId ? t("Current location") : destinationId === selected.id ? t("Destination selected") : w("Plot a course", "Наметить курс")}
                 </Button>
                 <AtlasDisclosure title={w("Location illustration & history", "Иллюстрация места и история")} open={reviewPreset?.detail}>
                   <p className={styles.secondaryNote}>{w("This illustration depicts this place. Atlas artwork depicts the wider map behind its pins. Neither image changes the place or travel rules.", "Иллюстрация показывает это место. Изображение атласа служит фоном карты за метками. Ни одно изображение не меняет место или правила путешествия.")}</p>
@@ -398,7 +423,9 @@ export function AtlasMap({
       {destination && (
         <div className={styles.destination} role="status">
           <strong>{w("Planned destination: ", "Выбранное направление: ")}{destination.name}</strong>
-          <p>{w("No travel has started. Describe your journey in Game:", "Путешествие ещё не началось. Опишите свой путь в Игре:")}</p>
+          <p>{courseInserted
+            ? w("No travel has started. This is already in your turn box — the DM decides the road, the time and who you meet:", "Путешествие ещё не началось. В поле хода уже вставлено — путь, время и встречи решает ведущий:")
+            : w("No travel has started. Describe your journey in Game:", "Путешествие ещё не началось. Опишите свой путь в Игре:")}</p>
           <p className={styles.journey}>{w(`I travel to ${destination.name}.`, `Я отправляюсь в ${destination.name}.`)}</p>
           {reviewOnly ? (
             <span className="button" aria-disabled="true">{t("Game")}</span>

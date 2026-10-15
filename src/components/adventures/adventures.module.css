@@ -389,3 +389,53 @@
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* Stage 5 · registry look. Flow and markup unchanged. */
+.panel,
+.currentAdventure {
+  border-color: var(--line-strong);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--leather-2), var(--leather));
+  color: var(--text);
+}
+.panel h2,
+.currentAdventure h2 {
+  font-family: var(--f-display);
+  font-weight: 700;
+  color: var(--brass);
+}
+.field input,
+.field select,
+.field textarea {
+  min-height: var(--touch);
+  border-color: var(--line);
+  background: #120d0a;
+  color: var(--text);
+}
+.actions button,
+.actions a,
+.currentAdventureContinue {
+  min-height: var(--touch);
+  border-color: var(--line);
+  border-radius: 6px;
+  background: var(--leather);
+  color: var(--text);
+  font-family: var(--f-body);
+}
+.actions .primary,
+.primary {
+  border-color: var(--brass-hi);
+  background: linear-gradient(180deg, var(--brass-hi), #a98340);
+  color: var(--ink);
+  font-family: var(--f-display);
+  font-weight: 700;
+}
+.notice {
+  border-left-color: var(--brass);
+  background: rgba(207, 168, 96, 0.06);
+}
+.currentAdventureHeading,
+.previewEyebrow {
+  font-family: var(--f-mono);
+  color: var(--brass-dim);
+}

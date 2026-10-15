@@ -440,47 +440,26 @@ test("Journal Quests contains recorded objectives while Adventure management liv
 
 for (const language of ["en", "ru"]) {
   test(`${language} ordinary Game puts the opening and composer before optional owner tools`, () => {
+    // Stage 5 layout: the story and the composer first; owner tools one click away under More.
     const state = sample(),
       before = structuredClone(state);
     const html = render("game", { ...state, language });
-    assert.ok(
-      html.indexOf("public meeting house is quiet") < html.indexOf("<textarea"),
-    );
+    const words = (ru, en) => (language === "ru" ? ru : en);
+    const input = html.indexOf("<textarea");
+    assert.ok(html.indexOf("public meeting house is quiet") < input);
     assert.ok(!html.includes(translate(language, "Session & continuity").replaceAll("&", "&amp;")));
-    assert.ok(
-      html.indexOf("<textarea") <
-        html.indexOf(
-          translate(language, "Advanced · records & corrections").replaceAll(
-            "&",
-            "&amp;",
-          ),
-        ),
-    );
-    assert.match(html, /<details class="secondary"><summary>/);
-    assert.ok(
-      html.includes(translate(language, "Edit public state and resume point")),
-    );
-    assert.ok(html.includes(translate(language, "Add transcript record")));
-    assert.match(html, /class="sceneHeading"/);
-    assert.doesNotMatch(html, /class="scene-art"/);
-    assert.doesNotMatch(html, /FRAME &amp; VIDEO · this scene/);
-    const tools = html.indexOf('class="composer-tools"');
-    assert.ok(tools > html.indexOf("<textarea"));
-    assert.ok(html.includes(translate(language, "OOC")));
-    assert.ok(html.includes(translate(language, "Take note")));
-    assert.ok(html.includes(translate(language, "What do I know?")));
-    assert.ok(html.indexOf(translate(language, "FRAME"), tools) > tools);
-    assert.ok(html.indexOf(translate(language, "VIDEO"), tools) > tools);
-    assert.match(html.slice(tools), /type="button" aria-controls="game-scene-media"/);
-    assert.doesNotMatch(html, /Scene image &amp; video|Изображение и видео этой сцены/);
-    assert.ok(
-      html.indexOf(translate(language, "Manual encounter controls")) >
-        html.indexOf(translate(language, "Advanced · records & corrections").replaceAll("&", "&amp;")),
-    );
+    const more = html.indexOf(words("Ещё · бой, отдых, сессия, записи и правки", "More · combat, rest, session, records and corrections"));
+    assert.ok(more > input);
+    assert.ok(html.indexOf(words("Кубы", "Dice"), input) > input);
+    assert.ok(html.indexOf(words("Вопрос ведущему", "Ask the DM"), input) > input);
+    assert.ok(html.indexOf(words("Кадр сцены", "Scene frame"), input) > input);
+    assert.ok(html.indexOf(words("Правка точки продолжения", "Edit the resume point")) > more);
+    assert.ok(html.indexOf(words("Добавить запись в стенограмму", "Add a transcript record")) > more);
+    assert.ok(html.indexOf(translate(language, "Manual encounter controls")) > more);
     assert.ok(html.includes("journal?tab=Notes&amp;compose=note"));
     assert.ok(html.includes("journal?tab=Evidence"));
+    assert.doesNotMatch(html, /Scene image &amp; video|Изображение и видео этой сцены/);
     assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
-    assert.ok(html.includes('href="#play-action"'));
     assert.equal(html.includes("SYNTHETIC_PRIVATE_MARKER"), false);
     assert.deepEqual(state, before);
   });
@@ -540,7 +519,8 @@ test("active encounter status remains readable while manual combat actions live 
     public_summary: "Encounter active.",
   });
   const html = render("game", state);
-  const advanced = html.indexOf("Advanced · records &amp; corrections");
+  // Stage 5: the encounter status sits in the story column; manual controls live under More.
+  const advanced = html.indexOf("More · combat, rest, session, records and corrections");
   assert.ok(advanced > 0);
   assert.match(html.slice(0, advanced), /Round 3/);
   assert.doesNotMatch(html.slice(0, advanced), /Start an encounter|Acting character|Confirm encounter action/);
@@ -605,7 +585,7 @@ test("OOC history does not repeat the Game opening", () => {
   assert.doesNotMatch(html, /<article class="opening">/);
   assert.ok(html.includes(translate("en", "Brief out-of-character remark")));
   assert.ok(html.includes(translate("en", "A question outside the story…")));
-  assert.match(html, /aria-pressed="true" class="selected"/);
+  assert.match(html, /aria-pressed="true"[^>]*>(?:(?!<\/button>).)*Ask the DM/s);
   assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
 });
 

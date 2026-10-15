@@ -4,6 +4,48 @@
 «дальше». Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_3.md`; design of the loop with the new
 sections on limits, the folded finish and SQL integrity: `docs/TURN_LOOP.md` §3, §6, §9; procedure for
 stage 6: `docs/RELEASE_CHECKLIST.md`; rules: `CLAUDE.md`.
+---
+
+**Stage 5 — the new interface — built in parallel with stages 2b–4 (owner-approved exception).**
+Branch `claude/stage-5-ui`, rebased onto the accepted `claude/stage-2b-speed`, worktree `../rpg-console-ui`; pushed to
+origin (not merged, nothing on `main`).
+Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_DATA_NEEDS.md`.
+
+- Registry look (leather, brass, parchment; Old Standard TT / Alegreya Sans / PT Mono) as tokens in
+  `src/app/registry.css`; older screens are re-skinned through the same tokens. New library and campaign shells
+  (left nav with dynamic «Лагерь»/«Имущество» and «Приключения», breadcrumb, model pill, phone tab bar + drawer).
+- New screens on real records, earlier editors kept under «Ещё»: Campaigns (continue card, «Ранее в…» from the
+  last closed session, old-runtime badge with «Перевести на новый ход»), New campaign (4 steps over the existing
+  bootstrap), Game (around the existing composer and stream; dice tray, addressee, sidebar with hero, goal,
+  adventure, party), Character/Inventory (paper doll from the record's slots, parchment item card), Party
+  (talk/council drawer = companion composer, disabled in combat), Journal, Codex (new), Map (route line, goal,
+  «Наметить курс» into the turn box), Holdings (new; camp always, transports/mounts from records), Settings
+  (DM model/effort/runtime live; images; all old settings under «Ещё»). Main menu and adventures restyled.
+- Universal: no ruleset vocabulary or sample content in app code (a test guards it); labels come from the
+  records and the existing presentation helpers. Two synthetic samples: `/preview/stage-5/<screen>` and
+  `?world=noir` (a narrative noir without classes, levels, ability scores, spells or gold).
+- Pictures: fal adapter (FLUX.2 pro $0.03 / flash $0.005 per 1 MP image), a visual autopilot that queues the
+  existing subject-visual jobs after a committed snapshot (toggles, daily cap, auto-accept only without a review
+  warning, never retries), «Перерисовать» everywhere, previous picture kept until a new one is accepted, one
+  picture per item type. Saving fal pictures needs the SQL provider update (UI_DATA_NEEDS #15).
+- Paid fal tests: 22 requests, 17 images kept, $0.56 counted of the $3 cap (`docs/screens/stage-5/fal-cost.json`).
+- Screenshots: `docs/screens/stage-5/` (48: desktop 1440 and phone 390, no horizontal overflow).
+- Checks on the final branch state (after the 2b rebase): typecheck pass; lint pass (0 warnings); build pass;
+  tests 2436 — 2409 pass, 0 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). One earlier run, made while
+  a second session ran its own suite, had two Astra smoke tests over the 30 s limit; both pass when run alone. Two older game-screen tests were moved from the
+  Phase-0 markup to the new layout with the same behaviors. No change in the stage 2b–4 paths.
+- Live streaming (after the 2b rebase): the game screen renders the streamed turn itself — the DM's text as it
+  arrives with a «ведущий пишет…» caret, the «Что изменилось за ход» chips (accepted changes only), and «Твой
+  момент» when the turn ends on a player moment; the chips stay for the turn just played. One stream per turn
+  (the composer passes its live view out). Saving fal pictures and the data in `docs/UI_DATA_NEEDS.md` belong to
+  stages 3–4.
+
+---
+
+**Current stage:** Stage 2b — speed and fluency of the new turn — done, including the live bench of both
+models; waiting for the owner's review and «дальше». Plan: `docs/REBUILD_PLAN.md`; task:
+`docs/stages/STAGE_2B.md`; results and the breakdown of where the time goes: `docs/SPEED.md`; design of the
+loop: `docs/TURN_LOOP.md`; rules: `CLAUDE.md`.
 
 **Branch:** `claude/stage-3-records` from `claude/stage-2b-speed`. Not merged, not pushed. The UI session
 works in parallel on `claude/stage-5-ui`; nothing under `src/components/**` or `src/app/**` was touched here.

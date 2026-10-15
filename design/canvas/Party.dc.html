@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Партия</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible,input:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+input::placeholder{color:#8d7142}
+@keyframes shimmer{0%{background-position:-200px 0}100%{background-position:200px 0}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 12px 16px">
+    <div style="display: flex; flex-direction: column">
+      <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Мир Шва · спутники и люди рядом</span>
+      <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 28px; font-weight: 700; color: #cfa860; line-height: 1.1">Партия</h1>
+    </div>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+        <button type="button" onClick="{{g.pick}}" style="{{g.style}}">{{g.label}}</button>
+      </sc-for>
+      <span style="width: 1px; height: 32px; background: rgba(207,168,96,0.26); margin: 0 6px"></span>
+      <button type="button" onClick="{{openCouncil}}" aria-disabled="{{combatAttr}}" style="{{councilStyle}}">Совет партии</button>
+      <button type="button" onClick="{{toggleCombat}}" style="min-height: 36px; padding: 0 12px; border-radius: 999px; cursor: pointer; background: #120d0a; border: 1px solid rgba(207,168,96,0.26); color: #ab9a80; font-family: 'PT Mono', monospace; font-size: 12px">Пример: {{sceneLabel}}</button>
+    </div>
+  </header>
+
+  <div style="display: flex; gap: 14px; align-items: flex-start">
+    <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <sc-if value="{{isParty}}" hint-placeholder-val="{{ true }}">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px">
+          <sc-for list="{{cards}}" as="c" hint-placeholder-count="5">
+            <article style="{{c.cardStyle}}">
+              <div style="position: relative; aspect-ratio: 4 / 5; background: #0e0a08">
+                <img src="{{c.img}}" alt="{{c.name}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%">
+                <span style="{{c.tagStyle}}">{{c.tag}}</span>
+                <button type="button" aria-label="Перерисовать портрет" style="position: absolute; right: 8px; top: 8px; width: 34px; height: 34px; display: grid; place-items: center; background: rgba(14,10,8,0.82); color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 5px; cursor: pointer">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"></path></svg>
+                </button>
+                <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 12px 10px; background: linear-gradient(180deg, rgba(14,10,8,0), rgba(14,10,8,0.95))">
+                  <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 21px; font-weight: 700; line-height: 1.1">{{c.name}}</div>
+                  <div style="font-size: 14px; color: #ab9a80">{{c.role}}</div>
+                </div>
+              </div>
+              <div style="padding: 12px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+                <div style="display: flex; align-items: center; gap: 8px">
+                  <span style="font-family: 'PT Mono', monospace; font-size: 11px; color: #8d7142; width: 22px">ХП</span>
+                  <div style="flex: 1; height: 10px; border-radius: 6px; background: #120d0a; border: 1px solid rgba(207,168,96,0.26); overflow: hidden"><div style="{{c.hpBar}}"></div></div>
+                  <span style="font-family: 'PT Mono', monospace; font-size: 13px">{{c.hp}}</span>
+                  <span style="font-family: 'PT Mono', monospace; font-size: 13px; color: #ab9a80">КД {{c.ac}}</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 5px">
+                  <sc-for list="{{c.chips}}" as="k" hint-placeholder-count="3">
+                    <span style="font-size: 12.5px; padding: 2px 8px; border-radius: 999px; background: #1b1511; border: 1px solid rgba(207,168,96,0.26); color: #d8ccb4">{{k}}</span>
+                  </sc-for>
+                </div>
+                <div style="border-top: 1px solid rgba(207,168,96,0.18); padding-top: 8px; display: flex; flex-direction: column; gap: 4px; flex: 1">
+                  <div style="display: flex; justify-content: space-between; align-items: center">
+                    <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">К тебе</span>
+                    <span style="{{c.moodStyle}}">{{c.mood}}</span>
+                  </div>
+                  <span style="font-size: 14px; color: #d8ccb4; font-style: italic">{{c.memory}}</span>
+                </div>
+                <button type="button" onClick="{{c.talk}}" aria-disabled="{{combatAttr}}" style="{{c.talkStyle}}">{{talkLabel}}</button>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{isList}}" hint-placeholder-val="{{ false }}">
+        <section style="background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 8px; display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 6px">
+          <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+            <div style="display: grid; grid-template-columns: 60px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 8px; border-radius: 6px; background: #1b1511; border: 1px solid rgba(207,168,96,0.14)">
+              <sc-if value="{{r.isDrawing}}" hint-placeholder-val="{{ false }}">
+                <div role="img" aria-label="Портрет рисуется" style="width: 60px; height: 60px; border-radius: 50%; box-sizing: border-box; border: 2px dashed #cfa860; background: linear-gradient(90deg, #1b1511 0, #3a2c1f 50%, #1b1511 100%); background-size: 200px 100%; animation: shimmer 1.6s linear infinite; display: grid; place-items: center; font-family: 'PT Mono', monospace; font-size: 9.5px; color: #e3cf9f">рисуется</div>
+              </sc-if>
+              <sc-if value="{{r.isBlank}}" hint-placeholder-val="{{ true }}">
+                <div style="width: 60px; height: 60px; border-radius: 50%; box-sizing: border-box; border: 2px solid rgba(207,168,96,0.26); background: #120d0a; display: grid; place-items: center; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; color: #8d7142">{{r.initial}}</div>
+              </sc-if>
+              <div style="min-width: 0; display: flex; flex-direction: column">
+                <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">{{r.name}}</span>
+                <span style="font-size: 14px; color: #ab9a80">{{r.role}}</span>
+              </div>
+              <div style="display: flex; gap: 6px">
+                <button type="button" onClick="{{r.talk}}" aria-disabled="{{r.talkDisabledAttr}}" style="{{r.talkStyle}}">{{r.action}}</button>
+              </div>
+            </div>
+          </sc-for>
+        </section>
+      </sc-if>
+
+      <footer style="display: flex; flex-wrap: wrap; gap: 18px; font-size: 13.5px; color: #8d7142">
+        <span>«К тебе» — только то, что герой мог заметить сам. Тайные мысли спутников видит один ведущий.</span>
+        <span>Поговорить можно в любой момент, кроме боя. Разговор — это сцена в мире: идёт время, а ведущий запоминает сказанное.</span>
+      </footer>
+    </div>
+
+    <sc-if value="{{talkOpen}}" hint-placeholder-val="{{ true }}">
+      <aside aria-label="Разговор" style="flex: 0 0 440px; align-self: stretch; display: flex; flex-direction: column; background: linear-gradient(180deg, #2b211a, #1b1511); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.45)">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: linear-gradient(180deg, #3a2c1f, #271d15); border-bottom: 1px solid rgba(207,168,96,0.26)">
+          <div style="display: flex">
+            <sc-for list="{{talk.avatars}}" as="a" hint-placeholder-count="1">
+              <img src="{{a}}" alt="" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; border: 2px solid #cfa860; margin-right: -10px; background: #0e0a08">
+            </sc-for>
+          </div>
+          <div style="flex: 1; min-width: 0; padding-left: 10px; display: flex; flex-direction: column">
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700">{{talk.title}}</span>
+            <span style="font-size: 13.5px; color: #ab9a80">{{talk.sub}}</span>
+          </div>
+          <button type="button" onClick="{{closeTalk}}" aria-label="Закрыть разговор" style="width: 36px; height: 36px; display: grid; place-items: center; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 5px; cursor: pointer; font-size: 18px">×</button>
+        </div>
+        <div style="padding: 8px 14px; font-size: 13px; color: #8d7142; border-bottom: 1px dashed rgba(207,168,96,0.2)">Пещера Альварешей · рассвет · разговор займёт около 10 минут</div>
+        <div style="flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; overflow: auto">
+          <sc-for list="{{talk.lines}}" as="m" hint-placeholder-count="4">
+            <div style="{{m.wrap}}">
+              <span style="{{m.whoStyle}}">{{m.who}}</span>
+              <div style="{{m.bubble}}">{{m.text}}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 6px; border-top: 1px solid rgba(207,168,96,0.18)">
+          <sc-for list="{{talk.prompts}}" as="p" hint-placeholder-count="4">
+            <button type="button" style="min-height: 34px; padding: 0 10px; border-radius: 999px; cursor: pointer; background: #211913; color: #d8ccb4; border: 1px solid rgba(207,168,96,0.26); font-family: 'Alegreya Sans', sans-serif; font-size: 13.5px">{{p}}</button>
+          </sc-for>
+        </div>
+        <div style="padding: 0 14px 14px; display: flex; gap: 8px">
+          <input type="text" placeholder="{{talk.placeholder}}" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; background: #120d0a; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 0 12px; color: #ece1cb; font: inherit; font-size: 15px">
+          <button type="button" style="min-height: 44px; padding: 0 16px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700; cursor: pointer">Сказать</button>
+        </div>
+      </aside>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { group: "party", talk: "meg", combat: false };
+  }
+  renderVals() {
+    const st = this.state;
+    const combat = st.combat;
+    const AV = {
+      meg: "/_blob/fd4bf335cac4365ea86781b7b243d16e", urzul: "/_blob/857c58ffbc3555862bbcb500a7fb6c4b",
+      wolf: "/_blob/09e2eba3d950fe15b2f2075915ac847c", zarga: "/_blob/564dcefc7972346914b9ab9a5a4e29d9",
+      irena: "/_blob/6f1f1225e910e0fff48f242dc5585b3d"
+    };
+    const seg = (on) => "min-height: 40px; padding: 0 14px; border-radius: 5px; cursor: pointer; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; " +
+      (on ? "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; font-weight: 700;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);");
+    const groups = [["party", "Отряд · 5"], ["aboard", "На борту · 9"], ["home", "Остались дома · 6"]].map(([id, label]) => ({
+      label, style: seg(st.group === id), pick: () => this.setState({ group: id })
+    }));
+    const hpBar = (cur, max) => {
+      const p = Math.round(cur / max * 100);
+      const col = p > 60 ? "#64a998" : p > 30 ? "#cfa860" : "#c0563a";
+      return "width: " + p + "%; height: 100%; background: linear-gradient(180deg, " + col + ", #2a1f16 140%);";
+    };
+    const M = { warm: ["доверяет", "#64a998"], firm: ["надёжный союзник", "#cfa860"], wary: ["присматривается", "#b8703f"], close: ["близко", "#ae93d6"] };
+    const talkBtn = (primary) => "min-height: 42px; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; font-weight: 700; " +
+      (combat ? "background: #1b1511; color: #6f5f4a; border: 1px dashed rgba(207,168,96,0.2); cursor: not-allowed;"
+        : primary ? "background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; cursor: pointer;"
+          : "background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); cursor: pointer;");
+    const c = (id, name, role, hp, max, ac, chips, mood, memory, active) => ({
+      name, role, img: AV[id], hp: hp + "/" + max, ac, chips, mood: M[mood][0], memory,
+      tag: active ? "в отряде" : "в резерве",
+      hpBar: hpBar(hp, max),
+      talk: () => { if (!combat) this.setState({ talk: id }); },
+      talkStyle: talkBtn(st.talk === id),
+      cardStyle: "background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid " + (st.talk === id ? "#cfa860" : active ? "rgba(207,168,96,0.45)" : "rgba(207,168,96,0.2)") + "; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column;" + (st.talk === id ? " box-shadow: 0 0 0 2px rgba(207,168,96,0.18);" : ""),
+      tagStyle: "position: absolute; left: 8px; top: 8px; font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; background: rgba(14,10,8,0.8); border: 1px solid " + (active ? "#cfa860" : "#9b938a") + "; color: " + (active ? "#cfa860" : "#9b938a") + ";",
+      moodStyle: "font-size: 13px; color: " + M[mood][1] + ";"
+    });
+    const cards = [
+      c("meg", "Мэг Рыжая", "стрелок · партнёр", 45, 45, 15, ["«Рог Клыка» +8", "2 атаки", "перо"], "close", "«Ты опять полез первым. В следующий раз — вместе».", true),
+      c("urzul", "Урзул Железный Бок", "танк · паровой доспех", 61, 68, 18, ["топор +7", "«Стена»", "паровой рывок"], "firm", "Гордится новым доспехом. Ждёт, когда пустишь его вперёд.", true),
+      c("wolf", "Вольф Кесслер", "танк · дезертир Лиги", 60, 60, 19, ["меч и щит", "паровой рывок"], "wary", "Молчит о Кассии. Заметил, что ты это заметил.", false),
+      c("zarga", "Зарга", "шаманка-целитель · Гхар", 40, 40, 14, ["ячейки 4/3/3", "дух-ворон"], "warm", "Духи «гудят» у пещеры. Просила не трогать воду.", true),
+      c("irena", "Ирэна", "серая · разведчица", 30, 42, 16, ["ледяной клинок", "скрытный удар 3d6"], "wary", "Ушла в дозор до рассвета. Вернулась не одна мыслями.", true)
+    ];
+    const me = (text) => ({ who: "Джеймс", text, me: true });
+    const they = (who, text) => ({ who, text, me: false });
+    const CONV = {
+      meg: { title: "Мэг Рыжая", sub: "близко · помнит ночь у Белой башни", lines: [
+        me("Как думаешь, Изольде можно верить?"),
+        they("Мэг", "Клятве — да. Ей — нет. Клятва держит руки, а не язык. Следи, с кем она заговорит в Женеве."),
+        me("А ты сама как? После башни."),
+        they("Мэг", "Щёлкает затвором, не глядя на тебя. «Нормально. Просто в следующий раз первой иду я. Договорились?»")
+      ], prompts: ["Как ты?", "Что думаешь о плане?", "Про Изольду", "Про две трети"] },
+      urzul: { title: "Урзул Железный Бок", sub: "надёжный союзник", lines: [
+        me("Как тебе доспех?"),
+        they("Урзул", "Тяжёлый. Хороший. Котёл шипит, когда злюсь. Тинка говорит — так и надо.")
+      ], prompts: ["Как ты?", "Что думаешь о плане?", "Про доспех"] },
+      wolf: { title: "Вольф Кесслер", sub: "присматривается · в резерве", lines: [
+        me("Что у тебя с Кассией?"),
+        they("Вольф", "Долгая пауза. «Старый долг. Не твой. Пока не твой.»")
+      ], prompts: ["Как ты?", "Про Лигу", "Про Кассию"] },
+      zarga: { title: "Зарга", sub: "доверяет", lines: [
+        me("Что говорят духи?"),
+        they("Зарга", "Что вода под пещерой помнит кровь. Не пей из неё. И Лирану не давай.")
+      ], prompts: ["Как ты?", "Что говорят духи?", "Про вино"] },
+      irena: { title: "Ирэна", sub: "присматривается", lines: [
+        me("Где ты была ночью?"),
+        they("Ирэна", "Смотрела, кто смотрит на нас. Двое. Один ушёл к Каркавелушу.")
+      ], prompts: ["Как ты?", "Кто эти двое?", "Про гасящие знаки"] },
+      council: { title: "Совет партии", sub: "все, кто рядом · каждый отвечает по-своему", lines: [
+        me("Летим в Женеву сразу или сначала заглянем в Дом голосов?"),
+        they("Мэг", "Сразу. Рурк ждать не будет, а двое его уже не вышли."),
+        they("Урзул", "Сразу. Драться лучше, чем ждать."),
+        they("Зарга", "Сначала Дом голосов. АРИАДНА слабеет, я это слышу."),
+        they("Ирэна", "Дом голосов. Там кто-то копается в кабеле — я видела следы."),
+        they("Вольф", "Решай ты. Я пойду, куда скажешь.")
+      ], prompts: ["Голосуем", "Что нас ждёт в Женеве?", "Кто против?"] }
+    };
+    const key = st.talk && CONV[st.talk] ? st.talk : null;
+    const conv = key ? CONV[key] : CONV.meg;
+    const lines = conv.lines.map((m) => ({
+      who: m.who, text: m.text,
+      wrap: "display: flex; flex-direction: column; gap: 2px; align-items: " + (m.me ? "flex-end" : "flex-start") + ";",
+      whoStyle: "font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: " + (m.me ? "#8d7142" : "#cfa860") + ";",
+      bubble: "max-width: 88%; padding: 8px 12px; border-radius: 8px; font-size: 15px; line-height: 1.45; " + (m.me
+        ? "background: #3a2c1f; border: 1px solid rgba(207,168,96,0.4); color: #ece1cb;"
+        : "background: #120d0a; border: 1px solid rgba(207,168,96,0.18); color: #e8dcc4; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px;")
+    }));
+    const avatars = key === "council" ? ["meg", "urzul", "zarga", "irena", "wolf"].map((k) => AV[k]) : [AV[key || "meg"]];
+    const r = (name, role, state, action, canTalk) => ({
+      name, role, initial: name.replace(/^(Кап\.|Отец|Доктор)\s+/, "")[0],
+      isDrawing: state === "drawing", isBlank: state !== "drawing", action,
+      talk: () => {}, talkDisabledAttr: (!canTalk || combat) ? "true" : "false",
+      talkStyle: "min-height: 36px; padding: 0 12px; border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 12px; " + (!canTalk || combat ? "background: #1b1511; color: #6f5f4a; border: 1px dashed rgba(207,168,96,0.2); cursor: not-allowed;" : "background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); cursor: pointer;")
+    });
+    const aboard = [
+      r("Лиран Ин'Ваэль", "второй маг · правнук Сарэта", "drawing", "Поговорить", true),
+      r("Отец Габриэль Стоун", "капеллан Света", "blank", "Поговорить", true),
+      r("Кап. Бьорн «Якорь»", "капитан-пилот · дварф", "blank", "Поговорить", true),
+      r("Тинка Шестерня", "механик · гномка", "blank", "Поговорить", true),
+      r("Пип Звездочёт", "штурман · полурослик", "blank", "Поговорить", true),
+      r("Кассия Пепел", "тяжёлый стрелок", "blank", "Поговорить", true),
+      r("Доктор Абигейл Квинн", "хирург · тифлинг", "blank", "Поговорить", true),
+      r("Хэнк Малони", "знает Лигу изнутри", "blank", "Поговорить", true),
+      r("Грук", "кок · орк", "blank", "Поговорить", true)
+    ];
+    const home = [
+      r("Томас Хейл", "отец · восстанавливается у Розы", "blank", "Написать", true),
+      r("Роза Хейл", "бабушка · лавка на причалах", "blank", "Написать", true),
+      r("Сарэт Ин'Ваэль", "якорь Шва · внизу у Моста", "blank", "Нет связи", false),
+      r("Гронна Ржавый Клык", "вождь Гхара", "blank", "Написать", true),
+      r("Огден Фарр", "глава Коллегии", "blank", "Написать", true),
+      r("Ургаш", "хранительница печати", "blank", "Написать", true)
+    ];
+    return {
+      groups, cards, combatAttr: combat ? "true" : "false",
+      isParty: st.group === "party", isList: st.group !== "party",
+      rows: st.group === "aboard" ? aboard : home,
+      talkOpen: !!key && !combat,
+      talkLabel: combat ? "В бою не до разговоров" : "Поговорить",
+      talk: { title: conv.title, sub: conv.sub, lines, prompts: conv.prompts, avatars, placeholder: key === "council" ? "Спросить всех…" : "Сказать " + conv.title.split(" ")[0] + "…" },
+      closeTalk: () => this.setState({ talk: null }),
+      openCouncil: () => { if (!combat) this.setState({ talk: "council" }); },
+      councilStyle: "min-height: 40px; padding: 0 14px; border-radius: 5px; font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; " + (combat ? "background: #1b1511; color: #6f5f4a; border: 1px dashed rgba(207,168,96,0.2); cursor: not-allowed;" : "background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); cursor: pointer;"),
+      toggleCombat: () => this.setState({ combat: !combat }),
+      sceneLabel: combat ? "идёт бой" : "спокойно"
+    };
+  }
+}
+</script>
+</body>
+</html>

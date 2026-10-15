@@ -14,6 +14,7 @@ import {
 } from "@/lib/saves/navigation";
 import { Icon } from "./ui";
 import { Shell } from "./shell";
+import { CampaignShell, LibraryShell } from "./registry/shell";
 
 const persistentNavigation = playerNavigation;
 
@@ -25,11 +26,23 @@ export function ApplicationFrame({ children }: { children: ReactNode }) {
     pathname === "/preview/live-ui"
   )
     return children;
+  // Stage 5 previews bring their own registry shells.
+  if (pathname.startsWith("/preview/stage-5")) return children;
   if (pathname.startsWith("/preview")) return <Shell>{children}</Shell>;
   if (/^\/campaigns\/[^/]+/.test(pathname)) return children;
-  return <PersistentShell>{children}</PersistentShell>;
+  if (pathname === "/login" || pathname === "/setup")
+    return <PersistentShell>{children}</PersistentShell>;
+  return <LibraryShell>{children}</LibraryShell>;
 }
-export function PersistentShell({
+/** Live campaign pages use the Stage 5 registry shell; the older synthetic
+ * reviews (reviewNavigation) keep the shell they were captured with. */
+export function PersistentShell(props: Parameters<typeof LegacyPersistentShell>[0]) {
+  const snapshot = useOptionalCampaignData();
+  if (!props.reviewNavigation && snapshot?.data?.campaign)
+    return <CampaignShell>{props.children}</CampaignShell>;
+  return <LegacyPersistentShell {...props} />;
+}
+function LegacyPersistentShell({
   children,
   reviewNavigation,
 }: {

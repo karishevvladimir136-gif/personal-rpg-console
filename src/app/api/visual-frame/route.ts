@@ -9,6 +9,7 @@ import {
   signedFrameDraft,
 } from "@/lib/server/media/server";
 import { readWriteRequest } from "@/lib/persistence/http-policy";
+import { imageProviderCapability } from "@/lib/server/media/fal-image-provider";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
 export const maxDuration = 240; // Image deadline + bounded foreground visual QA + storage/receipt overhead.
@@ -50,6 +51,8 @@ export async function GET(request: Request) {
       campaignId = url.searchParams.get("campaignId") ?? "";
     if (url.searchParams.get("action") === "capability")
       return publicJson(await mediaCapability(campaignId));
+    if (url.searchParams.get("action") === "image-providers")
+      return publicJson(await imageProviderCapability(campaignId));
     const signed =
       url.searchParams.get("action") === "draft"
         ? await signedFrameDraft(

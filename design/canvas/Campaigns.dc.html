@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Мои кампании</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+button:focus-visible,a:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; display: grid; grid-template-columns: 240px minmax(0, 1fr)">
+
+  <nav aria-label="Главное меню" style="border-right: 1px solid rgba(207,168,96,0.26); background: linear-gradient(180deg, #1d1611, #16110d); padding: 18px 12px; display: flex; flex-direction: column; gap: 6px">
+    <div style="padding: 4px 10px 14px; border-bottom: 1px solid rgba(207,168,96,0.2); margin-bottom: 8px">
+      <div style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">RPG Console</div>
+      <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700; color: #cfa860">Библиотека историй</div>
+    </div>
+    <sc-for list="{{nav}}" as="n" hint-placeholder-count="4">
+      <button type="button" style="{{n.style}}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{n.icon}}"></path></svg>
+        {{n.label}}
+      </button>
+    </sc-for>
+  </nav>
+
+  <main style="padding: 20px 24px; display: flex; flex-direction: column; gap: 18px; min-width: 0">
+    <header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap">
+      <div>
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Твои истории ждут</span>
+        <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 38px; font-weight: 700; color: #cfa860; line-height: 1.05">Мои кампании</h1>
+      </div>
+      <button type="button" style="min-height: 46px; padding: 0 18px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700; cursor: pointer">+ Новая кампания</button>
+    </header>
+
+    <article style="display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); border: 1px solid rgba(207,168,96,0.55); border-radius: 10px; overflow: hidden; background: linear-gradient(180deg, #2b211a, #1b1511); box-shadow: 0 10px 30px rgba(0,0,0,0.4)">
+      <div style="position: relative; min-height: 340px; background: #0e0a08">
+        <img src="/_blob/3cafd2595df52c06714fd948bae33d78" alt="Обложка кампании «Мир Шва»" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+        <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 60px 20px 16px; background: linear-gradient(180deg, rgba(14,10,8,0), rgba(14,10,8,0.92))">
+          <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #e3cf9f">Текущая история</span>
+          <div style="font-family: 'Old Standard TT', Georgia, serif; font-size: 34px; font-weight: 700; color: #f1dca8; line-height: 1.05">Мир Шва</div>
+          <div style="color: #d8ccb4">Кампания 2 · «Железная Бабка»</div>
+        </div>
+      </div>
+      <div style="padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; border: 1px solid #64a998; color: #64a998">идёт</span>
+          <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; border: 1px solid rgba(207,168,96,0.55); color: #cfa860">Opus 5.5 · глубоко</span>
+        </div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; color: #ab9a80">
+          <span>Глава 14 · «Пепел Тежу»</span><span>Лиссабон · рассвет</span><span>62 ч в игре</span>
+        </div>
+        <div style="background: linear-gradient(180deg, #eadcbd, #dccaa3); color: #2a1f16; border: 1px solid #b89a5c; border-radius: 8px; padding: 12px 14px; display: grid; gap: 4px">
+          <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c2e">Ранее в Мире Шва…</span>
+          <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 16px; line-height: 1.5">Фабрика Искр в Алкантаре взлетела на воздух, «Звезда Атлантики» догорела в Тежу. Директриса под клятвой, а Корнелиус — на свободе. На рассвете «Бабка» ждёт в пещере Альварешей. Курс — Женева.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px">
+          <img src="/_blob/63387743fbeba1b2a86ee3b73af6fa3b" alt="" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid #cfa860">
+          <div style="display: flex; flex-direction: column">
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 18px; font-weight: 700">Джеймс Хейл</span>
+            <span style="font-size: 13.5px; color: #ab9a80">чародей-наладчик · 6 уровень · отряд из 5</span>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: auto; flex-wrap: wrap">
+          <button type="button" style="min-height: 46px; padding: 0 20px; background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; border-radius: 6px; font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; font-weight: 700; cursor: pointer">Продолжить</button>
+          <button type="button" style="min-height: 46px; padding: 0 16px; background: #211913; color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 6px; font-size: 15px; cursor: pointer">Хроника</button>
+          <button type="button" style="min-height: 46px; padding: 0 16px; background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; font-size: 15px; cursor: pointer">Сейвы</button>
+        </div>
+      </div>
+    </article>
+
+    <section aria-label="Другие кампании" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+      <sc-for list="{{others}}" as="c" hint-placeholder-count="3">
+        <article style="{{c.cardStyle}}">
+          <sc-if value="{{c.isNew}}" hint-placeholder-val="{{ false }}">
+            <div style="display: grid; place-items: center; gap: 6px; text-align: center; padding: 26px 12px; color: #cfa860">
+              <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 40px; line-height: 1">+</span>
+              <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 19px; font-weight: 700">Новая кампания</span>
+              <span style="font-size: 13.5px; color: #ab9a80">мир, герой, ведущий — и первая сцена</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{c.isCampaign}}" hint-placeholder-val="{{ true }}">
+            <div style="padding: 14px; display: flex; flex-direction: column; gap: 6px">
+              <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline">
+                <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 21px; font-weight: 700">{{c.title}}</span>
+                <span style="{{c.badgeStyle}}">{{c.badge}}</span>
+              </div>
+              <span style="font-size: 14px; color: #ab9a80">{{c.meta}}</span>
+              <span style="font-size: 14px; color: #d8ccb4">{{c.note}}</span>
+              <div style="display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap">
+                <sc-for list="{{c.actions}}" as="a" hint-placeholder-count="2">
+                  <button type="button" style="{{a.style}}">{{a.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </article>
+      </sc-for>
+    </section>
+
+    <section aria-label="Миры" style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline">
+        <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; font-weight: 700; color: #cfa860">Миры</h2>
+        <span style="font-size: 14px; color: #ab9a80">У мира может быть много кампаний. Каждая следующая наследует то, что изменила прошлая.</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+        <sc-for list="{{worlds}}" as="w" hint-placeholder-count="3">
+          <article style="{{w.style}}">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{w.kind}}</span>
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 20px; font-weight: 700">{{w.title}}</span>
+            <span style="font-size: 14px; color: #d8ccb4">{{w.desc}}</span>
+            <span style="font-size: 13px; color: #8d7142">{{w.foot}}</span>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const I = {
+      book: "M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 10h5",
+      globe: "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18",
+      quill: "M20 4C12 4 6 10 5 19l2-2c2-1 5-1 7-3s2-4 2-6M5 19h6",
+      gear: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"
+    };
+    const nav = [["Кампании", "book", true], ["Миры", "globe"], ["Крафт ведущего", "quill"], ["Настройки", "gear"]].map(([label, icon, on]) => ({
+      label, icon: I[icon],
+      style: "display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 6px; cursor: pointer; text-align: left; font-family: 'Old Standard TT', Georgia, serif; font-size: 17px; " +
+        (on ? "background: linear-gradient(180deg, #4a3825, #33261b); color: #f1dca8; border: 1px solid #cfa860;" : "background: transparent; color: #ab9a80; border: 1px solid transparent;")
+    }));
+    const btn = (primary) => "min-height: 38px; padding: 0 12px; border-radius: 5px; cursor: pointer; font-size: 14px; " +
+      (primary ? "background: #3a2c1f; color: #f1dca8; border: 1px solid #cfa860;" : "background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);");
+    const badge = (c) => "font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; white-space: nowrap; border: 1px solid " + c + "; color: " + c + ";";
+    const card = (dashed) => "border-radius: 8px; min-height: 170px; display: flex; flex-direction: column; justify-content: center; " +
+      (dashed ? "border: 1.5px dashed rgba(207,168,96,0.45); background: rgba(207,168,96,0.03); cursor: pointer;" : "border: 1px solid rgba(207,168,96,0.26); background: linear-gradient(180deg, #2b211a, #211913);");
+    const others = [
+      { isCampaign: true, isNew: false, title: "Ирис", badge: "старый ход", badgeStyle: badge("#d99a3e"), meta: "свой мир · 23 сессии", note: "Играет на прежнем ходе Astra. Можно перевести на новый — история и сейвы сохранятся.", actions: [{ label: "Продолжить", style: btn(true) }, { label: "Перевести на новый ход", style: btn(false) }], cardStyle: card(false) },
+      { isCampaign: true, isNew: false, title: "Мир Шва · Кампания 1", badge: "завершена", badgeStyle: badge("#9b938a"), meta: "пешком по Подземке · 41 ч", note: "Финал: «Час Ноль». Её герои — теперь легенды второй кампании.", actions: [{ label: "Эпилог", style: btn(true) }, { label: "Хроника", style: btn(false) }], cardStyle: card(false) },
+      { isCampaign: false, isNew: true, cardStyle: card(true), actions: [] }
+    ];
+    const wcard = (accent) => "border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 4px; min-height: 130px; " +
+      (accent ? "border: 1.5px dashed rgba(207,168,96,0.45); background: rgba(207,168,96,0.03); cursor: pointer;" : "border: 1px solid rgba(207,168,96,0.26); background: linear-gradient(180deg, #2b211a, #211913);");
+    const worlds = [
+      { kind: "мир · 2 кампании", title: "Мир Шва", desc: "Стимпанк поверх руин Старого мира: Шов, эфирит, Паровая Лига и орочий Гхар.", foot: "Правила: D&D 5e (2024) + домашние · стиль картинок задан", style: wcard(false) },
+      { kind: "новый мир", title: "Свой мир своими словами", desc: "Пара абзацев о мире — ведущий развернёт остальное по ходу игры.", foot: "Быстро · можно дописать позже", style: wcard(true) },
+      { kind: "продвинуто", title: "Мир из источников", desc: "Книги, заметки, вики — с проверкой фактов и каноном.", foot: "Библиотека миров: источники, канон, версии", style: wcard(true) }
+    ];
+    return { nav, others, worlds };
+  }
+}
+</script>
+</body>
+</html>

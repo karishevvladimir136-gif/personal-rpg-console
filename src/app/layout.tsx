@@ -6,6 +6,8 @@ import { LanguageProvider } from "@/components/language-context";
 import "./globals.css";
 import "./gameplay.css";
 import "./saves.css";
+import "./registry.css";
+import { registryFontClasses } from "./fonts";
 export const metadata: Metadata = {
   title: "Personal RPG Console",
   description:
@@ -16,7 +18,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" data-scroll-behavior="smooth" className={registryFontClasses}>
       <body>
         <LanguageProvider>
           <PreviewProvider>

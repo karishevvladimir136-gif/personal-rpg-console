@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Персонаж и инвентарь</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&amp;family=Alegreya+Sans:wght@400;500;700&amp;family=PT+Mono&amp;display=swap">
+<style>
+body{margin:0;background:#16110d}
+a{color:#cfa860}a:hover{color:#e7c47d}
+button:focus-visible,a:focus-visible{outline:2px solid #cfa860;outline-offset:2px}
+@keyframes shimmer{0%{background-position:-160px 0}100%{background-position:160px 0}}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #16110d; background-image: radial-gradient(120% 50% at 50% -10%, rgba(207,168,96,0.10), transparent 60%); color: #ece1cb; font-family: 'Alegreya Sans', 'Segoe UI', sans-serif; font-size: 16px; line-height: 1.45; padding: 16px; display: flex; flex-direction: column; gap: 14px">
+
+  <header style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; background: linear-gradient(180deg, #3a2c1f, #271d15); border: 1px solid rgba(207,168,96,0.55); border-radius: 8px; padding: 10px 14px">
+    <nav aria-label="Разделы листа" style="display: flex; flex-wrap: wrap; gap: 6px">
+      <sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+        <button type="button" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+      </sc-for>
+    </nav>
+    <div role="group" aria-label="Персонаж" style="display: flex; gap: 6px; flex-wrap: wrap">
+      <sc-for list="{{members}}" as="m" hint-placeholder-count="6">
+        <button type="button" aria-label="{{m.name}}" style="{{m.style}}"><img src="{{m.avatar}}" alt="" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block"></button>
+      </sc-for>
+    </div>
+  </header>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start">
+
+    <section aria-label="Характеристики" style="flex: 1 1 280px; max-width: 340px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 2px">
+        <h1 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 34px; font-weight: 700; color: #ece1cb; line-height: 1.05">Джеймс Хейл</h1>
+        <span style="font-size: 15px; color: #ab9a80">Человек · Чародей 6 · красная драконья кровь</span>
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142; margin-top: 4px">Настройка 3 / 3</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; justify-content: space-between"><span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Хиты</span><span style="font-family: 'PT Mono', monospace; font-size: 17px">49 / 56</span></div>
+        <div role="meter" aria-label="Хиты" aria-valuemin="0" aria-valuemax="56" aria-valuenow="49" style="height: 14px; border-radius: 7px; background: #0f0b08; border: 1px solid rgba(207,168,96,0.55); overflow: hidden"><div style="width: 87%; height: 100%; background: #64a998"></div></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{vitals}}" as="v" hint-placeholder-count="4">
+          <div style="border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 6px 8px; background: #211913; display: flex; flex-direction: column">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #8d7142">{{v.k}}</span>
+            <span style="font-family: 'PT Mono', monospace; font-size: 17px">{{v.v}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{stats}}" as="s" hint-placeholder-count="6">
+          <div style="border: 1px solid rgba(207,168,96,0.26); border-radius: 6px; padding: 6px 4px; background: #211913; text-align: center; display: flex; flex-direction: column">
+            <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: #8d7142">{{s.k}}</span>
+            <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 24px; font-weight: 700; line-height: 1.1">{{s.mod}}</span>
+            <span style="font-family: 'PT Mono', monospace; font-size: 12px; color: #ab9a80">{{s.score}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Ресурсы</span>
+        <sc-for list="{{resources}}" as="r" hint-placeholder-count="5">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-bottom: 6px; border-bottom: 1px dashed rgba(207,168,96,0.2)">
+            <span style="font-size: 14px">{{r.name}}</span>
+            <span style="display: flex; gap: 4px">
+              <sc-for list="{{r.pips}}" as="p" hint-placeholder-count="4"><span style="{{p.style}}"></span></sc-for>
+            </span>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #8d7142">Навыки</span>
+        <sc-for list="{{skills}}" as="k" hint-placeholder-count="6">
+          <div style="display: flex; justify-content: space-between; font-size: 14px; border-bottom: 1px dotted rgba(207,168,96,0.2); padding: 2px 0"><span>{{k.name}}</span><span style="font-family: 'PT Mono', monospace; color: #cfa860">{{k.v}}</span></div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Снаряжение" style="flex: 2 1 460px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(150px, 230px) minmax(0, 1fr); gap: 10px; align-items: stretch">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{slotsLeft}}" as="s" hint-placeholder-count="5">
+          <button type="button" onClick="{{s.pick}}" style="{{s.style}}">
+            <span style="{{s.iconBox}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"></path></svg></span>
+            <span style="display: flex; flex-direction: column; min-width: 0; text-align: left">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{s.slot}}</span>
+              <span style="font-size: 14px; line-height: 1.2; color: #ece1cb">{{s.name}}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(207,168,96,0.55); min-height: 460px; background: #0e0a08">
+        <img src="/_blob/ccb8a1fb1fb24c1550b522a2568ab960" alt="Джеймс Хейл в полный рост" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%">
+        <button type="button" aria-label="Перерисовать портрет" style="position: absolute; right: 8px; top: 8px; min-height: 32px; padding: 0 10px; display: flex; align-items: center; gap: 6px; background: rgba(14,10,8,0.82); color: #e3cf9f; border: 1px solid rgba(207,168,96,0.55); border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 11.5px; cursor: pointer">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"></path></svg>
+          Перерисовать
+        </button>
+        <span style="position: absolute; left: 8px; top: 8px; font-family: 'PT Mono', monospace; font-size: 10.5px; color: #ab9a80; background: rgba(14,10,8,0.7); padding: 2px 6px; border-radius: 3px">версия 3 из 3</span>
+        <span style="position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 10px 10px; background: linear-gradient(180deg, rgba(14,10,8,0), rgba(14,10,8,0.9)); font-family: 'Old Standard TT', Georgia, serif; font-style: italic; font-size: 14px; color: #e3cf9f; text-align: center">«Не опаздывай»</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <sc-for list="{{slotsRight}}" as="s" hint-placeholder-count="5">
+          <button type="button" onClick="{{s.pick}}" style="{{s.style}}">
+            <span style="{{s.iconBox}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"></path></svg></span>
+            <span style="display: flex; flex-direction: column; min-width: 0; text-align: left">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{s.slot}}</span>
+              <span style="font-size: 14px; line-height: 1.2; color: #ece1cb">{{s.name}}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{slotsBottom}}" as="s" hint-placeholder-count="2">
+          <button type="button" onClick="{{s.pick}}" style="{{s.style}}">
+            <span style="{{s.iconBox}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.icon}}"></path></svg></span>
+            <span style="display: flex; flex-direction: column; min-width: 0; text-align: left">
+              <span style="font-family: 'PT Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #8d7142">{{s.slot}}</span>
+              <span style="font-size: 14px; line-height: 1.2; color: #ece1cb">{{s.name}}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Инвентарь" style="flex: 1.5 1 360px; min-width: 0; background: linear-gradient(180deg, #2b211a, #211913); border: 1px solid rgba(207,168,96,0.26); border-radius: 8px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap">
+        <h2 style="margin: 0; font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700; color: #cfa860">Торба и карманы</h2>
+        <span style="font-family: 'PT Mono', monospace; font-size: 15px; color: #cfa860">185 зм</span>
+      </div>
+      <div role="group" aria-label="Фильтр" style="display: flex; flex-wrap: wrap; gap: 6px">
+        <sc-for list="{{filters}}" as="f" hint-placeholder-count="5">
+          <button type="button" onClick="{{f.pick}}" style="{{f.style}}">{{f.label}}</button>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
+        <sc-for list="{{cells}}" as="c" hint-placeholder-count="24">
+          <button type="button" onClick="{{c.pick}}" aria-label="{{c.name}}" style="{{c.style}}">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>
+            <sc-if value="{{c.isNew}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: 3px; top: 2px; font-family: 'PT Mono', monospace; font-size: 9px; color: #16110d; background: #e7c47d; border-radius: 3px; padding: 0 3px">new</span></sc-if>
+            <sc-if value="{{c.hasQty}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; right: 3px; bottom: 2px; font-family: 'PT Mono', monospace; font-size: 11px; color: #ece1cb; background: rgba(0,0,0,0.65); border-radius: 3px; padding: 0 3px">{{c.qty}}</span></sc-if>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: #ab9a80">
+        <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #9b938a; border-radius: 2px; margin-right: 4px"></span>обычное</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #64a998; border-radius: 2px; margin-right: 4px"></span>реликт</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #ae93d6; border-radius: 2px; margin-right: 4px"></span>магическое</span>
+        <span><span style="display: inline-block; width: 10px; height: 10px; border: 1.5px solid #cfa860; border-radius: 2px; margin-right: 4px"></span>сюжетное</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; background: linear-gradient(180deg, #eadcbd, #dccaa3); color: #2a1f16; border: 1px solid #b89a5c; border-radius: 8px; padding: 14px 16px">
+        <div style="display: flex; flex-direction: column; gap: 6px">
+          <div role="img" aria-label="{{sel.artLabel}}" style="{{sel.art}}">
+            <sc-if value="{{sel.ready}}" hint-placeholder-val="{{ true }}"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{sel.icon}}"></path></svg></sc-if>
+            <sc-if value="{{sel.drawing}}" hint-placeholder-val="{{ false }}"><span style="font-family: 'PT Mono', monospace; font-size: 11px; color: #e3cf9f; text-align: center; line-height: 1.3">рисуется…<br>~15 с</span></sc-if>
+          </div>
+          <button type="button" style="min-height: 32px; padding: 0 6px; background: #f4ead2; color: #2a1f16; border: 1px solid #8d6d38; border-radius: 5px; font-family: 'PT Mono', monospace; font-size: 11.5px; cursor: pointer">{{sel.artAction}}</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+        <span style="font-family: 'PT Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c2e">{{sel.kind}}</span>
+        <span style="font-family: 'Old Standard TT', Georgia, serif; font-size: 22px; font-weight: 700; line-height: 1.15">{{sel.name}}</span>
+        <span style="font-size: 15px; line-height: 1.5">{{sel.desc}}</span>
+        <div style="display: flex; gap: 8px; margin-top: 4px; flex-wrap: wrap">
+          <button type="button" style="min-height: 40px; padding: 0 14px; background: #f4ead2; color: #2a1f16; border: 1px solid #8d6d38; border-radius: 6px; font-family: 'PT Mono', monospace; font-size: 13px; cursor: pointer">Использовать</button>
+          <button type="button" style="min-height: 40px; padding: 0 14px; background: #f4ead2; color: #2a1f16; border: 1px solid #8d6d38; border-radius: 6px; font-family: 'PT Mono', monospace; font-size: 13px; cursor: pointer">Передать…</button>
+        </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'char', filter: 'all', selected: 'hkey' };
+  }
+  renderVals() {
+    const R = { common: '#9b938a', relic: '#64a998', magic: '#ae93d6', story: '#cfa860' };
+    const RN = { common: 'обычное', relic: 'реликт Старого мира', magic: 'магическое', story: 'сюжетное' };
+    const I = {
+      goggles: 'M7.5 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM16.5 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM11 12h2M2 11h2M20 11h2',
+      scarf: 'M6 4h12v4H6zM8 8v12l3-2V8M14 8v8l3 2',
+      drop: 'M12 3c3 5 6 8 6 12a6 6 0 0 1-12 0c0-4 3-7 6-12z',
+      hide: 'M6 4c2 1 4 1 6 0 2 1 4 1 6 0l1 5-2 3 1 9H6l1-9-2-3z',
+      cloak: 'M8 3h8l3.5 18h-15zM12 3v6M9 3l3 4 3-4',
+      revolver: 'M3 9h13l2-2h3v4h-4l-1 2H9l-1 6H5l1-6H3z',
+      wand: 'M5 19L16 8M18 3v3M21 6h-3M19.8 4.2l-1.6 1.6',
+      ring: 'M12 20a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM9.5 9l2.5-5 2.5 5z',
+      gloves: 'M7 21v-9L5 8.5l1.5-1L9 10V4.5h2V10V3.5h2V10V4.5h2V12l2-2 1.2 1-3.2 5v5z',
+      bag: 'M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2M5 12h14',
+      boots: 'M7 3h6v10l6 3v4H5V3zM5 17h14',
+      bullet: 'M9 20V10a3 3 0 0 1 6 0v10zM9 14h6',
+      bomb: 'M11 20a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM15 9.5l2.5-2.5M19 4l1-1',
+      potion: 'M10 3h4M10.5 3v5L6.5 15a4 4 0 0 0 3.6 6h3.8a4 4 0 0 0 3.6-6l-4-7V3M7.5 15h9',
+      core: 'M6 7a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3zM9 4v16M15 4v16',
+      card: 'M3 6h18v12H3zM6 10h6M6 14h4M17 10h1',
+      book: 'M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21V5M8 7h7M8 10h5',
+      crystal: 'M12 2l5 6-5 14-5-14zM7 8h10',
+      tool: 'M14.5 4a4 4 0 0 0 5.5 5.5L10 19.5 6.5 21 8 17.5 18 7.5',
+      compass: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 6.5l2 5.5-2 5.5-2-5.5z',
+      watch: 'M12 20a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM12 13V9M12 13l3 2M10 3h4',
+      map: 'M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2zM9 4v14M15 6v14',
+      letter: 'M3 6h18v12H3zM3 6l9 7 9-7',
+      key: 'M7 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM10 12h11M17 12v3M20 12v2',
+      lantern: 'M9 3h6M7 5h10v3l-1 11H8L7 8zM12 10v5',
+      flask: 'M9 3h6v4l3 3v11H6V10l3-3zM6 13h12'
+    };
+    const tabsDef = [['char', 'Персонаж'], ['inv', 'Инвентарь'], ['spells', 'Гримуар'], ['quests', 'Задания'], ['codex', 'Кодекс'], ['holdings', 'Имущество']];
+    const tabs = tabsDef.map(([id, label]) => ({
+      label, pick: () => this.setState({ tab: id }),
+      style: 'min-height: 40px; padding: 0 14px; border-radius: 5px; cursor: pointer; font-family: \'Old Standard TT\', Georgia, serif; font-size: 16px; ' +
+        (this.state.tab === id ? 'background: linear-gradient(180deg, #e7c47d, #a98340); color: #16110d; border: 1px solid #e7c47d; font-weight: 700;' : 'background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);')
+    }));
+    const av = [
+      ['Джеймс', '/_blob/63387743fbeba1b2a86ee3b73af6fa3b', true], ['Мэг', '/_blob/fd4bf335cac4365ea86781b7b243d16e'],
+      ['Урзул', '/_blob/857c58ffbc3555862bbcb500a7fb6c4b'], ['Вольф', '/_blob/09e2eba3d950fe15b2f2075915ac847c'],
+      ['Зарга', '/_blob/564dcefc7972346914b9ab9a5a4e29d9'], ['Ирэна', '/_blob/6f1f1225e910e0fff48f242dc5585b3d']
+    ];
+    const members = av.map(([name, avatar, on]) => ({
+      name, avatar,
+      style: 'width: 44px; height: 44px; padding: 0; border-radius: 50%; cursor: pointer; background: #0e0a08; border: 2px solid ' + (on ? '#cfa860' : 'rgba(207,168,96,0.26)') + '; box-shadow: ' + (on ? '0 0 0 2px #16110d, 0 0 0 3px #8d7142' : 'none') + ';'
+    }));
+    const vitals = [{ k: 'КД', v: '17' }, { k: 'Скор.', v: '30' }, { k: 'Маст.', v: '+3' }, { k: 'КС', v: '15' }];
+    const stats = [['СИЛ', '8', '−1'], ['ЛОВ', '14', '+2'], ['ТЕЛ', '15', '+2'], ['ИНТ', '12', '+1'], ['МДР', '10', '+0'], ['ХАР', '18', '+4']].map(([k, score, mod]) => ({ k, score, mod }));
+    const pips = (max, left) => Array.from({ length: max }, (_, i) => ({
+      style: 'width: 14px; height: 14px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid ' + (i < left ? '#cfa860' : '#8d7142') + '; background: ' + (i < left ? 'radial-gradient(circle at 35% 35%, #f3d99e, #a17b38 70%)' : 'transparent') + ';'
+    }));
+    const resources = [
+      { name: 'Ячейки 1 круга', pips: pips(4, 3) }, { name: 'Ячейки 2 круга', pips: pips(3, 2) },
+      { name: 'Ячейки 3 круга', pips: pips(3, 3) }, { name: 'Очки чародейства', pips: pips(6, 4) },
+      { name: 'Искра АРИАДНЫ', pips: pips(1, 1) }
+    ];
+    const skills = [['Убеждение', '+7'], ['Обман', '+7'], ['Запугивание', '+7'], ['Анализ (механизмы)', '+7'], ['Ловкость рук', '+5'], ['Проницательность', '+3']].map(([name, v]) => ({ name, v }));
+    const items = [
+      { id: 'hkey', name: 'Ключ от Дома голосов', icon: 'key', r: 'story', cat: 'story', isNew: true, desc: 'Получен этой ночью от Инеш Альвареш. Открывает кабельный зал в Каркавелуше.' },
+      { id: 'core', name: 'Сердечник Г-7', icon: 'core', r: 'story', cat: 'story', desc: 'Сердце будущего Моста, «магнитная бутылка» «Гелиоса». Лежит на дне торбы, и Изольда о нём не забывает.' },
+      { id: 'pass', name: 'Пропуск «ГЕЛИОС»', icon: 'card', r: 'story', cat: 'story', desc: 'Д. Хейл, инженер-наладчик. Светодиод моргает морзянкой: через него говорит АРИАДНА.' },
+      { id: 'book', name: 'Книга Хейлов', icon: 'book', r: 'story', cat: 'story', desc: 'Твой гримуар: заполнено 5 страниц из 10.' },
+      { id: 'ammo', name: 'Эфиритовые патроны', icon: 'bullet', r: 'common', cat: 'use', qty: 84, desc: 'Патроны к «Аргументу».' },
+      { id: 'bomb', name: 'Бомба', icon: 'bomb', r: 'common', cat: 'use', qty: 6, desc: '3d6 огнём, спасбросок ЛОВ 13, радиус 5 футов.' },
+      { id: 'tinka', name: 'Эфиритовая бомба Тинки', icon: 'bomb', r: 'common', cat: 'use', qty: 4, desc: '4d6 огнём, спасбросок ЛОВ 14, радиус 10 футов.' },
+      { id: 'pot', name: 'Зелье лечения', icon: 'potion', r: 'magic', cat: 'use', qty: 4, desc: 'Восстанавливает 2d4+2 хита.' },
+      { id: 'gpot', name: 'Зелье большого лечения', icon: 'potion', r: 'magic', cat: 'use', qty: 1, desc: 'От Гронны. Восстанавливает 4d4+4 хита.' },
+      { id: 'cry', name: 'Кристалл чистого эфирита', icon: 'crystal', r: 'magic', cat: 'gear', desc: 'Из складки на −2 Узла-7. Топливо и проводник маны.' },
+      { id: 'kit', name: 'Набор наладчика Дэниэла', icon: 'tool', r: 'relic', cat: 'relic', desc: 'Довоенный. +2 к проверкам с инструментами жестянщика и к пониманию реликтов.' },
+      { id: 'comp', name: 'Компас Проводника', icon: 'compass', r: 'relic', cat: 'relic', desc: 'От Томаса. Стрелка указывает на ближайший реликт Старого мира.' },
+      { id: 'watch', name: 'Отцовские часы', icon: 'watch', r: 'relic', cat: 'relic', desc: 'Довоенные, механические. На крышке: «Т.Х. — не опаздывай». Засечка на 3:17.' },
+      { id: 'map', name: 'Карта Подземки', icon: 'map', r: 'common', cat: 'gear', desc: 'Отцовская, неполная.' },
+      { id: 'letter', name: 'Письмо Артура Томасу', icon: 'letter', r: 'story', cat: 'story', desc: '«Если карточка моргнёт — там внизу кто-то жив».' },
+      { id: 'pick', name: 'Отмычка «Таможня»', icon: 'key', r: 'magic', cat: 'gear', desc: 'От Розы. Преимущество на вскрытие механических замков.' },
+      { id: 'lamp', name: 'Эфиритовый фонарь', icon: 'lantern', r: 'common', cat: 'gear', desc: 'Свет на 60 футов, не гаснет в воде.' },
+      { id: 'flask', name: 'Бабушкина фляга', icon: 'flask', r: 'common', cat: 'use', desc: 'Ром Розы. Ургаш оценила бы.' },
+      { id: 'tools', name: 'Инструменты жестянщика', icon: 'tool', r: 'common', cat: 'gear', desc: 'Владение.' }
+    ];
+    const filtersDef = [['all', 'Всё'], ['use', 'Расходники'], ['gear', 'Снаряжение'], ['relic', 'Реликты'], ['story', 'Сюжет']];
+    const filters = filtersDef.map(([id, label]) => ({
+      label, pick: () => this.setState({ filter: id }),
+      style: 'min-height: 36px; padding: 0 12px; border-radius: 999px; cursor: pointer; font-family: \'Alegreya Sans\', sans-serif; font-size: 14px; ' +
+        (this.state.filter === id ? 'background: #3a2c1f; color: #f1dca8; border: 1px solid #cfa860;' : 'background: #211913; color: #ab9a80; border: 1px solid rgba(207,168,96,0.26);')
+    }));
+    const shown = items.filter((it) => this.state.filter === 'all' || it.cat === this.state.filter);
+    const cellStyle = (color, on) => 'position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 6px; background: radial-gradient(circle at 50% 40%, #2a2019, #130e0b 75%); color: ' + color + '; border: 1.5px solid ' + color + '; ' + (on ? 'box-shadow: 0 0 0 2px #16110d, 0 0 12px ' + color + ';' : '');
+    const cells = shown.map((it) => ({
+      name: it.name, icon: I[it.icon], qty: it.qty ?? '', hasQty: !!it.qty && it.qty > 1, isNew: !!it.isNew,
+      pick: () => this.setState({ selected: it.id }),
+      style: it.isNew
+        ? 'position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; padding: 0; cursor: pointer; border-radius: 6px; color: ' + R[it.r] + '; border: 1.5px dashed ' + R[it.r] + '; background: linear-gradient(90deg, #130e0b 0, #3a2c1f 50%, #130e0b 100%); background-size: 160px 100%; animation: shimmer 1.6s linear infinite; ' + (this.state.selected === it.id ? 'box-shadow: 0 0 0 2px #16110d, 0 0 12px ' + R[it.r] + ';' : '')
+        : cellStyle(R[it.r], this.state.selected === it.id)
+    }));
+    const empty = 24 - cells.length;
+    for (let i = 0; i < empty; i++) cells.push({ name: 'Пустая ячейка', icon: '', qty: '', hasQty: false, pick: () => {}, style: 'aspect-ratio: 1 / 1; padding: 0; border-radius: 6px; background: #120d0a; border: 1.5px dashed rgba(207,168,96,0.14); cursor: default;' });
+    const s = items.find((it) => it.id === this.state.selected) || items[0];
+    const slot = (slotName, name, icon, r, desc) => ({
+      slot: slotName, name, icon: I[icon],
+      pick: () => {},
+      style: 'display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 8px; align-items: center; min-height: 64px; padding: 8px; border-radius: 6px; cursor: pointer; background: #211913; border: 1px solid rgba(207,168,96,0.26); color: #ece1cb;',
+      iconBox: 'width: 38px; height: 38px; display: grid; place-items: center; border-radius: 5px; background: #120d0a; border: 1.5px solid ' + R[r] + '; color: ' + R[r] + ';'
+    });
+    return {
+      tabs, members, vitals, stats, resources, skills, filters, cells,
+      sel: {
+        name: s.name, kind: RN[s.r] + (s.qty ? ' · ' + s.qty + ' шт.' : ''), desc: s.desc, icon: I[s.icon],
+        ready: !s.isNew, drawing: !!s.isNew,
+        artLabel: s.isNew ? 'Картинка рисуется' : 'Картинка предмета: ' + s.name,
+        artAction: s.isNew ? 'Отменить' : 'Перерисовать',
+        art: 'width: 120px; height: 120px; border-radius: 6px; box-sizing: border-box; display: grid; place-items: center; color: ' + R[s.r] + '; ' + (s.isNew
+          ? 'border: 1.5px dashed #8d6d38; background: linear-gradient(90deg, #2a1f16 0, #5a4430 50%, #2a1f16 100%); background-size: 160px 100%; animation: shimmer 1.6s linear infinite;'
+          : 'border: 1px solid #8d6d38; background: radial-gradient(circle at 50% 38%, #4a3826, #160f0b 78%); box-shadow: inset 0 0 18px rgba(0,0,0,0.6);')
+      },
+      slotsLeft: [
+        slot('Голова', 'Гоглы для руин', 'goggles', 'common'), slot('Шея', 'Бабушкин красный шарф', 'scarf', 'story'),
+        slot('Талисман', 'Слеза Аэль-Тириона', 'drop', 'magic'), slot('Тело', 'Шкура варга', 'hide', 'magic'),
+        slot('Плащ', 'Плащ из промасленной кожи', 'cloak', 'common')
+      ],
+      slotsRight: [
+        slot('Осн. рука', '«Аргумент»', 'revolver', 'story'), slot('Вторая рука', 'Костяной жезл шамана', 'wand', 'magic'),
+        slot('Кольцо I', 'Серый перстень', 'ring', 'story'), slot('Кольцо II', 'Знак Гхара', 'ring', 'story'),
+        slot('Руки', 'Кожаные перчатки', 'gloves', 'common')
+      ],
+      slotsBottom: [slot('Пояс', 'Торба контрабандистки', 'bag', 'magic'), slot('Ноги', 'Армейские сапоги', 'boots', 'common')]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -491,6 +491,7 @@ async function mountedGame(snapshot, { play = null, mediaOpen = false } = {}) {
         Panel: "panel",
         Icon: "icon",
       },
+      "./registry/game-screen": { RegistryGame: "registry-game" },
       "./persistent-records": {
         RecordBoundary: "record-boundary",
         RecordHeading: "heading",
@@ -506,7 +507,7 @@ async function mountedGame(snapshot, { play = null, mediaOpen = false } = {}) {
     stateSlot = 0;
     const boundary = compiledModule.exports[name](props),
       child = boundary.props.children(snapshot);
-    return child.type(child.props);
+    return typeof child.type === "string" ? child : child.type(child.props);
   };
   const nodes = (tree) => {
     const found = [];
@@ -535,12 +536,12 @@ test("mounted ordinary Game chooses real FRAME while explicit synthetic transpor
       configuration: { controlledEntityIds: [], presentEntityIds: [] },
       turns: [], encounters: [] },
     ui = await mountedGame(f.snapshot, { play, mediaOpen: true }),
-    normal = ui.nodes(ui.render("PersistentGame", { reviewOnly: false }));
-  assert.equal(normal.filter((n) => n.type === "real-frame").length, 1);
-  assert.equal(
-    normal.some((n) => n.type === "injected-mock-frame"),
-    false,
-  );
+    normal = ui.render("PersistentGame", { reviewOnly: false });
+  // The ordinary Game is the Stage 5 screen; it opens the real FRAME controls, never the mock.
+  assert.equal(normal.type, "registry-game");
+  const registry = await readFile(new URL("src/components/registry/game-screen.tsx", root), "utf8");
+  assert.match(registry, /<CurrentSceneMediaFrame \/>/);
+  assert.doesNotMatch(registry, /CurrentSceneFrame\b/);
   const injected = { synthetic: true },
     synthetic = ui.nodes(
       ui.render("PersistentGame", {

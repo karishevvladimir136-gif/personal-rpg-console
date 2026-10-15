@@ -1,0 +1,192 @@
+{
+  "date": "2026-10-15T19:55:31.333Z",
+  "capUsd": "$3.000",
+  "totalUsd": "$0.560",
+  "images": [
+    {
+      "name": "cave",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 299613,
+      "seconds": 11,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "hero-portrait",
+      "model": "fal-ai/flux-2-pro",
+      "error": "validation",
+      "countedUsd": "$0.030"
+    },
+    {
+      "name": "hero-figure",
+      "model": "fal-ai/flux-2-pro",
+      "width": 576,
+      "height": 1024,
+      "bytes": 239050,
+      "seconds": 14.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "meg",
+      "model": "fal-ai/flux-2-pro",
+      "error": "validation",
+      "countedUsd": "$0.030"
+    },
+    {
+      "name": "urzul",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 475690,
+      "seconds": 12.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "wolf",
+      "model": "fal-ai/flux-2-pro",
+      "error": "validation",
+      "countedUsd": "$0.030"
+    },
+    {
+      "name": "zarga",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 475561,
+      "seconds": 13.6,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "airship",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 318550,
+      "seconds": 12.1,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "geneva",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 310705,
+      "seconds": 11.9,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "atlas",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 339355,
+      "seconds": 12.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "crystal",
+      "model": "fal-ai/flux-2/flash",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 920562,
+      "seconds": 3.7,
+      "priceUsd": "$0.005"
+    },
+    {
+      "name": "revolver",
+      "model": "fal-ai/flux-2/flash",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 896546,
+      "seconds": 3.8,
+      "priceUsd": "$0.005"
+    },
+    {
+      "name": "watch",
+      "model": "fal-ai/flux-2/flash",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 926103,
+      "seconds": 3.8,
+      "priceUsd": "$0.005"
+    },
+    {
+      "name": "wolf",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 485418,
+      "seconds": 12.5,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "hero-portrait",
+      "model": "fal-ai/flux-2-pro",
+      "error": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker.",
+      "countedUsd": "$0.030"
+    },
+    {
+      "name": "meg",
+      "model": "fal-ai/flux-2-pro",
+      "error": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker.",
+      "countedUsd": "$0.030"
+    },
+    {
+      "name": "hero-portrait",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 497525,
+      "seconds": 12.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "meg",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 469595,
+      "seconds": 16.7,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-dana",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 411019,
+      "seconds": 12.3,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-car",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 329263,
+      "seconds": 12.2,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-stack",
+      "model": "fal-ai/flux-2-pro",
+      "width": 1024,
+      "height": 576,
+      "bytes": 380381,
+      "seconds": 10.5,
+      "priceUsd": "$0.030"
+    },
+    {
+      "name": "noir-chip",
+      "model": "fal-ai/flux-2/flash",
+      "width": 1024,
+      "height": 1024,
+      "bytes": 860351,
+      "seconds": 4,
+      "priceUsd": "$0.005"
+    }
+  ]
+}
