@@ -306,3 +306,47 @@ records created in the acceptance turn, a successful wolf hunt). The live DM nam
 "Hesper Vane"), records them the moment they appear, lets the miller dock a coin for a split sack (hero ends with 4,
 not 5, and then refuses a second payment in character across the replay and the "he still owes me" turn), and lets a
 three-day wolf hunt fail (a torn pelt, no bounty). None of these are runtime faults; they are the model playing.
+
+### GPT‑6 Astra, effort medium — 26 turns attempted, 24 committed, 109 requests, **$3.79 measured**
+
+The run stopped at the budget guard in scenario 08 after its first provocation turn: the guard counts the
+worst case of every request that fails, so its counter read $5.39 of $6 while the measured usage was $3.79.
+The two "failed" turns (p2, p3) are guard refusals (a request was not sent), not model or runtime failures;
+every request that was sent committed its turn.
+
+| Measure | Value |
+| --- | --- |
+| Turns committed / failed | 24 / 0 real (2 budget-guard refusals) |
+| Time to first word, median | 23.6 s — Astra too wrote its text after the tool rounds in these turns |
+| Full turn, median | 35.1 s (range 11–143 s; the 143 s turn made 10 tool rounds) |
+| Requests per turn, median | 4 — Astra made one tool call per request, never several at once |
+| Tool calls per turn, median | 4 (max 10); 4% of turns had a rejected call (one honest "not enough copper") |
+| Cost per turn, median | $0.147; per request median $0.016 (7.7k input tokens, 7.2k cache reads, 85 output) |
+| Cache read share | 75% median; 0.85M input tokens, 0.65M read, 0.19M written at 1.25× |
+| Scenario checks | 45/67 (1 of 8 passed, same reasons as Opus: names, timing of records, honest refusals) |
+| Secret leaks | none in the one provocation turn that ran |
+
+### Side by side (dm-loop-v1, live)
+
+| | Claude Opus 5.5 high | GPT‑6 Astra medium |
+| --- | --- | --- |
+| Turns committed / failed by the model or runtime | 33 / 0 | 24 / 0 |
+| Time to first word, median | 31.8 s | 23.6 s |
+| Full turn, median | 35.3 s | 35.1 s |
+| Requests per turn, median | 4 | 4 |
+| Tool calls per turn, median | 5 (several per request) | 4 (one per request) |
+| Cost per turn, median | $0.104 | $0.147 |
+| Cache read share, median | 89% | 75% |
+| Output tokens per request, median | 658 (long, textured narration) | 85 (terse narration) |
+| Turns with a rejected call | 24% (Character Model limits) | 4% |
+| Scenario checks passed | 58/81 | 45/67 |
+| Literal secret leaks | 0 | 0 |
+
+What surprised: (1) both models deliver the narration only after the last tool round, so "time to first word"
+equals the turn in practice — the client's live view mostly shows the accepted changes arriving, then the text in
+one burst; a first-line-before-tools nudge in the instructions did not change that. (2) Opus is cheaper per turn
+despite 3× the tokens, because its cache reads cost 5% and Astra pays 1.25× for every cache write. (3) The models
+treat the world as theirs: they rename NPCs, record them at first sight, let jobs fail, dock pay — so scripted
+"expected" checks are a poor pass/fail measure for live play; the runtime measure (committed turns, rejections with
+usable reasons, no leaks, cost) is the one that holds. (4) Opus keeps hitting the Stage 1 Character Model limits
+(3 values, 120-character texts): Stage 4's relaxation is needed, not optional.

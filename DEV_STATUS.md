@@ -1,36 +1,51 @@
 # Development status
 
-**Current stage:** Stage 1 — two models — done, including the live probe of both models; waiting for the owner's
-review and «дальше». Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_1.md`; rules: `CLAUDE.md`.
+**Current stage:** Stage 2 — the new turn loop (`dm-loop-v1`) — done, including the live bench of both models;
+waiting for the owner's review and «дальше». Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_2.md`;
+design of the loop: `docs/TURN_LOOP.md`; rules: `CLAUDE.md`.
 
-**Branch:** `claude/stage-1-models` from `claude/stage-0-baseline`. Not merged, not pushed.
+**Branch:** `claude/stage-2-turn-loop` from `claude/stage-1-models`. Not merged, not pushed.
 
 **What exists now:**
-- `DmModel` (`src/lib/server/dm/model/`): one streaming call per request, Anthropic (`claude-opus-5-5`) and OpenAI
-  (`gpt-6-astra`) adapters on `fetch`, tool-schema compiler with provider limits, classified errors, retries only
-  before the first event. Facts: `docs/MODELS.md`.
-- One price table and cost-by-usage: `src/lib/model-runtime/dm-models.ts`.
-- Campaign choice: `runtimePolicy.taskOverrides["dm.turn"]` may be Claude Opus 5.5 or GPT-6 Astra (default Astra);
-  every other task stays OpenAI-only. Migration 52. An Astra turn pins the choice plus the models that actually
-  serve it; retries keep the pin. The old Astra turn is unchanged and still runs on Astra.
-- HTTP tests never reach the owner's app on :3000 (skipped without `PREVIEW_URL`).
-- Bench: three tracked known weaknesses W1–W3 (red by design); fake bench still 2 of 8.
+- `dm-loop-v1` (`src/lib/gameplay/dm-loop/`): the DM model (Opus 5.5 or Astra through `DmModel`) writes free
+  narration, streamed to the player, and changes state only through 16 validated tools. Every call is checked
+  against a shadow copy of the turn's state and gets a receipt (accepted + result, or rejected + a reason the
+  model can act on); the turn continues. Receipts are persisted at once; a crash resumes from the last
+  checkpoint without re-rolling dice. One atomic commit through the generic SQL applier (migration 53).
+- Campaign DM settings (`rpg_private.dm_settings`, RPC `rpg_dm_settings`, panel "DM runtime and model" in
+  Campaign Settings): runtime `dm-loop-v1` or `astra-primary-v1`, DM model and effort, editable at any time —
+  also after a takeover. New campaigns play on `dm-loop-v1` from the first scene; existing ones keep Astra.
+  The model is pinned per operation; retries keep the pin.
+- Four-layer request (how to DM / world / living / now) with cache breakpoints; the first three layers are
+  stable across turns (verified by per-layer hashes). Cache read share and request sizes are logged per request.
+- Live view: narration deltas and accepted changes stream to the game screen over server-sent events, marked
+  provisional until the turn is saved (`/api/campaigns/<id>/turns/<op>/stream`).
+- Secrets: one narrator sees Character Models and private notes; the literal privacy check only logs
+  suspected leaks to the turn diagnostics (W3 closed). A reward is paid exactly once; a plain payment from the
+  quest's issuer settles it (W1 closed). W2 (paraphrased leak) is a live-quality question.
+- Bench: `--runtime dm-loop-v1` with a scripted DmModel or the live adapters, scripts for scenarios 01–08 plus
+  09 (companion talk), 10 (tool cap), 11 (crash resume). The old Astra bench is untouched (still 2 of 8).
 
-**Checks on the final branch state:** typecheck pass; lint pass (0 warnings); build pass; tests 2401 — 2374 pass,
-0 fail, 27 skipped (26 HTTP tests without `PREVIEW_URL`, by design, + 1 existing opt-in), 480 s. Fake bench: 2 of 8,
-same checks as BASELINE, W1–W3 open.
+**Checks on the final branch state:** typecheck pass; lint pass (0 warnings); build pass; fake bench on
+`dm-loop-v1`: 11 of 11 scenarios, 96/96 checks, W1 and W3 closed, W2 open; old fake bench 2 of 8 (unchanged).
+Tests: 2415 — 2388 pass, 0 fail, 27 skipped (26 HTTP tests without PREVIEW_URL, by design, + 1 existing opt-in), 398 s.
 
-**Paid runs (2026-10-15):** model probe $0.5595 of $2 (Astra $0.3422; Opus $0.2173 after the key fix); old Astra
-turn on bench 01/03/08 $2.2854 of $3 (stopped by the budget guard); total $2.8449. Probe medians per turn: Opus
-medium 9.1 s / $0.018, Opus high 9.5 s / $0.018, Astra medium 8.5 s / $0.020, Astra high 12.4 s / $0.030.
-Numbers: `docs/MODELS.md` (probe), `docs/BASELINE.md` §8 (live baseline).
+**Paid runs (2026-10-15, cap $15):** Opus 5.5 high on scenarios 01–08: 33 turns, 137 requests, $3.8769; Astra
+medium: 26 turns (24 committed, 2 refused by the budget guard), 109 requests, $3.79 measured ($5.39 reserved).
+Smoke and stopped runs: $1.13. Total ≈ $8.8. Medians per turn: Opus 35.3 s / $0.104 / 89% cache reads /
+first word 31.8 s; Astra 35.1 s / $0.147 / 75% / first word 23.6 s. No turn failed by the model or the runtime;
+no literal secret leak. Numbers: `docs/BASELINE.md` §9.
 
-**Known issues:** after the Astra takeover a campaign's settings (including the DM model) cannot be changed —
-`rpg_world` accepts reads only (migration 39); the choice can be set before takeover. Live Astra failed 4 of 7 secret-scenario
-turns with non-retryable validation (literal privacy guard; see BASELINE §8). Cache writes make most Astra input
-cost 1.25×. Stale leftover edits from the old detached checkout are in `git stash` ("pre-stage-0: …").
+**Known issues / what Stage 3 must harden:** balances, quantities and the one-reward-claim rule are TypeScript
+rules today — SQL invariants in Stage 3 (the generic applier already keeps resources non-negative and HP in
+bounds). Both models write the narration after the last tool round, so the first word arrives with the whole
+text (23–32 s). Character Model limits from Stage 1 reject many of Opus's notes (Stage 4). Scripted scenario
+checks are a poor pass/fail measure for live play (models rename NPCs, record them at first sight, let jobs fail).
+Switching a taken-over campaign to `dm-loop-v1` is wired (the begin re-labels the Astra row) but untested on a
+real campaign — Stage 6 on a copy of the owner's database. Stale leftover edits from the old detached checkout
+are in `git stash` ("pre-stage-0: …").
 
-**Next step:** Stage 2 (new turn loop) after «дальше». Note for it: after a tool call Opus delivered its reply in one
-burst at the end of the request, so first-word time on such turns equals the whole turn (7–11 s).
+**Next step:** Stage 3 (atomic write with SQL invariants, campaign limits, compatibility of old turns and saves)
+after «дальше».
 
 The full pre-rebuild status history is in `docs/archive/DEV_STATUS_history.md`.
