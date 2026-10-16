@@ -103,10 +103,22 @@ The owner's notes from the first play are added below by the planner before laun
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
-- **Character page: the hero gets lost.** The full-length figure is small in a large empty panel («У этого персонажа
-  нет мест для снаряжения»). When the ruleset has no equipment slots, the figure fills the panel (tall, centred), with
-  the items around or under it. Labels mix languages (SKILL / АТАКА / DEFENSE); the six ability scores are flat 10s
-  from the stub profile.
+- **Character and inventory collapse on a non-5e ruleset (major).** The Stage 5 screens were tuned on the 5e sample
+  («Мир Шва»: slots around the figure, «185 Золото», filters Надето / Доспехи / Расходники…, skills with bonuses,
+  party portraits). On the sandbox campaign («World Logic» ruleset, narrative hero) almost all of it is gone:
+  - **no money anywhere** — the hero owes Marta forty coins and nobody can see what he has. A wallet always exists
+    (0 by default, the world's currency name), the wizard asks or derives the starting money, the DM records changes;
+  - **no paper doll** — «У этого персонажа нет мест для снаряжения». Universal default slots for every ruleset
+    (голова, шея, тело, рука, вторая рука, пояс, ноги, обувь, спина), and starting items equipped where they belong
+    (пистолет — в руке, нож — на поясе, шлем — в руках или на поясе, по описанию);
+  - **the backstory is not shown** — what the owner wrote in «Кто вы?» appears nowhere on the character page except a
+    one-line subtitle; add a «Предыстория» block (the original design had a Background tab);
+  - only «Всё / Вещи» as filters, no «Надето»; skills without any measure; the figure small in an empty panel — in the
+    design the figure is the centrepiece, large, with the slots around it (`design/02_character_inventory.png`);
+  - labels mix languages (SKILL / АТАКА / DEFENSE); the six ability scores are flat 10s from the stub profile.
+  Rule for the fix: the character and inventory screens are complete for ANY ruleset — figure, slots, wallet, items
+  with filters, backstory, traits, conditions — and show numbers only where the ruleset has them. Recapture both
+  screens on the narrative sandbox campaign as well as on the 5e sample.
 - **Journal does not show the obvious goal.** The opening is about a debt of forty coins to Marta and her job offer,
   yet the journal says «Цели пока нет», «Долгов и обещаний пока нет». The opening (or the first turn) records what the
   hero already knows: the debt as a `debt` to Marta, her job as an offered quest or thread, the goal «отдать долг».
