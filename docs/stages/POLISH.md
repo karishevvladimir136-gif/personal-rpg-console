@@ -68,7 +68,10 @@ The owner's notes from the first play are added below by the planner before laun
 - **New campaign wizard (hero step):** every single item asks for a quantity before creation («Укажите значение перед
   созданием») — default a singular item to 1; «долг в сорок монет трактирщице Марте» became an inventory resource
   instead of a debt in the journal (Stage 4 has the `debt` kind) with Marta as a person; the Astra-only notice («Для
-  новой кампании с ведущим Astra… Структурированный RPG») shows although the chosen DM is Opus.
+  новой кампании с ведущим Astra… Структурированный RPG») shows although the chosen DM is Opus; and «Создать персонажа
+  и кампанию» does nothing with a narrative sheet and no message — apparently the hero step (step 2) applies the Astra
+  rule because the DM is only chosen at step 3 and the app default is Astra. Choose the DM before the sheet is
+  validated (or validate against the DM chosen in the wizard), and a disabled create button always says why.
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
 
