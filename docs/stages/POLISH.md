@@ -109,6 +109,11 @@ The owner's notes from the first play are added below by the planner before laun
    the uncached tail is what slows the first word. Measure on a long synthetic campaign (100+ turns) before and after:
    first word, full turn, cost per turn, cache read share, and recall checks (facts from early sessions used
    correctly). Choose the budgets from the numbers; record them in `docs/runs/`.
+   Character Models (owner: «32 КБ можно расширить ещё»): storage is cheap, what matters is what reaches the turn.
+   Raise the stored cap to 64 KB per person; in the dossier, people **present in the scene** get their full model,
+   people mentioned or relevant get the core (wants, fears, attitude to the hero, speech profile, open debts and
+   promises), the rest a one-line entry. Report actual model sizes after session 1 first (`private.md` of the session
+   report) — the cap is not the bottleneck until a model nears it.
 
 ## The owner's notes from the first play
 
@@ -300,6 +305,8 @@ The owner's notes from the first play are added below by the planner before laun
 - **Anchors get an anatomy check before acceptance.** The hero's full-figure anchor has three hands, and «Принимать
   готовые сразу» accepted it. The vision check that gates auto-accept also checks anatomy (limbs, hands, faces) and
   sends a failing anchor to review instead.
+- **Owner after 37 turns:** people behaved «очень рационально и разумно» — bargained, held their ground, never
+  forgot debts; not one illogical act; the world and its people are good, the language is the thing to fix.
 - **Owner after 30 turns: «0 галлюцинаций и забываний»** — no invented facts, no forgotten debts, items, promises,
   signals or terms across one long session. Record it in `docs/runs/` as the session-1 baseline; the long-campaign
   checks (item 8) must keep it at 100+ turns and across sessions.
