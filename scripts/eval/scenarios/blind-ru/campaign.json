@@ -1,0 +1,28 @@
+{
+  "note": "The campaign every Russian blind scene starts from: the English bench fixture (tests/universal-bootstrap-fixture.mjs, examples.fantasy) with the same facts in Russian. The harness also uses its own campaign title, adventure title and the organiser's capability, so no English fixture text reaches the game master.",
+  "language": "ru",
+  "title": "Открытые дороги",
+  "world": {
+    "title": "Открытые дороги",
+    "premise": "Обычные фэнтезийные поселения и путники; заранее заданного скрытого сюжета нет."
+  },
+  "name": "Роуэн",
+  "description": "Безвестный странник. Мои умения — ориентирование в пути и внимательное наблюдение. Я не умею колдовать. При мне компас.",
+  "caps": [
+    "ориентирование в пути",
+    "внимательное наблюдение"
+  ],
+  "limits": [
+    "не умею колдовать"
+  ],
+  "item": "компас",
+  "adventureTitle": "Первое приключение",
+  "adventure": "Безвестный странник ищет обычную оплачиваемую работу. Выбор открыт; скрытого объяснения нет.",
+  "location": "Придорожная площадь",
+  "situation": "На доске объявлений вывешены предложения обычной оплачиваемой работы. Рядом местный распорядитель работ, с ним можно это обсудить.",
+  "npc": "Местный распорядитель работ",
+  "npcCapabilities": [
+    "обычный разговор на людях"
+  ],
+  "narration": "На придорожной площади у доски с объявлениями о работе стоит распорядитель работ. Можно расспросить его об объявлениях, осмотреться или уйти."
+}

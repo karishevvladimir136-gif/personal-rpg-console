@@ -54,6 +54,11 @@ case could exceed `--budget-usd`.
   accepted bookkeeping that closes with time passing ends the turn without a `finish_turn` round
   (`implicit_finish` in the turn's diagnostics); a scripted round after such a message is never
   requested, so scripts put their closing line before the bookkeeping.
+- **Blind samples** (`blind.mjs`, Stage 4 §10): six scenes × the model/effort variants, written without a hint
+  of the variant in the file name. `--lang ru` plays the Russian copies in `scenarios/blind-ru/` on the Russian
+  campaign fixture beside them (`campaign.json`, passed to `runLoopScenario` as `campaign`) and marks each sample's
+  key turn (`keyStep`); `--probe` plays only the first turn per scene and variant and prints any Latin-script words
+  in the narration and the DM's records (`lib/language.mjs`). Tests: `tests/eval-blind-ru.test.mjs`.
 - **live**: real `gpt-6-astra` requests. `--budget-usd` is required; before
   every request the worst case is reserved and a request that could exceed the
   budget is never sent. Probe steps and scripted answers are skipped.

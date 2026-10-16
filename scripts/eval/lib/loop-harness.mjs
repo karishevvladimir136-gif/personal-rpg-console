@@ -8,7 +8,9 @@ import { readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { loopCampaign } from "../../../tests/dm-loop-fixture.mjs";
+import { loopCampaign, attachLoop } from "../../../tests/dm-loop-fixture.mjs";
+import { setup } from "../../../tests/universal-bootstrap-fixture.mjs";
+import { prepareAdventureAttempt, versionAdventureAttempt } from "../../../src/lib/adventures/client.ts";
 import { runDmLoopTurn, resumeDmLoopTurn } from "../../../src/lib/gameplay/dm-loop/loop.ts";
 import { createScriptedDmModel } from "../../../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { dmLoopLimits } from "../../../src/lib/gameplay/dm-loop/limits.ts";
@@ -94,6 +96,26 @@ function liveModel(selection, budget, apiKey, log) {
   } };
 }
 
+/** A fresh loop campaign: the default English fixture, or a campaign fixture such as
+ * scenarios/blind-ru/campaign.json (same facts in another language). The fixture also
+ * names the campaign, the adventure and the organiser's capability, which the default
+ * fixture writes in English, so no English fixture text reaches the game master. */
+export async function freshCampaign(campaign) {
+  if (!campaign) return loopCampaign();
+  const f = await setup(campaign, campaign.language, 99);
+  f.input.title = campaign.title;
+  f.opening.actors[0].capabilities = campaign.npcCapabilities;
+  f.prepare = async () => {
+    const prepared = await f.adventures.perform(prepareAdventureAttempt(await f.read(),
+      { title: campaign.adventureTitle, premise: campaign.adventure, pacing: { kind: "evening", custom: null } }));
+    f.start = versionAdventureAttempt(prepared.snapshot, prepared.snapshot.adventures.find((a) => a.status === "prepared").id, "start");
+    return f.start;
+  };
+  await f.create();
+  await f.startOpening();
+  return attachLoop(f);
+}
+
 /** The hero and the companions (the loop counts controlled companions; the bench takes every companion). */
 function afterParty(state) {
   return state.entities.filter((row) => row.id === state.heroId || row.kind === "companion");
@@ -115,7 +137,8 @@ function callsByRequest(usage, receipts) {
 
 /**
  * @param scenario parsed scenario JSON (+ loop script merged by the caller)
- * @param options { live, model: "opus"|"astra", effort, continuationEffort, apiKey, budget, write, runId, verbose }
+ * @param options { live, model: "opus"|"astra", effort, continuationEffort, apiKey, budget, write, runId, verbose,
+ *   campaign (a campaign fixture; default: the English one), maxTurns (stop after this many player turns) }
  */
 export async function runLoopScenario(scenario, options) {
   const { write, runId, live } = options;
@@ -123,7 +146,7 @@ export async function runLoopScenario(scenario, options) {
   const effort = options.effort ?? selection.defaultEffort;
   const continuationEffort = options.continuationEffort && options.continuationEffort !== effort ? options.continuationEffort : null;
   const scenarioStarted = performance.now();
-  const c = await loopCampaign();
+  const c = await freshCampaign(options.campaign);
   const { f, cid, hero } = c;
   // Stage 4: the bench plays on the Stage 4 craft (the owner activates it in the DM Craft screen).
   await c.activateStage4Craft();
@@ -148,6 +171,7 @@ export async function runLoopScenario(scenario, options) {
     for (const step of scenario.steps) {
       if (live && step.probe) continue;
       if (live && options.budget.exhausted) { stopReason = "budget_reached"; break; }
+      if (options.maxTurns && turnIndex >= options.maxTurns) { stopReason = "max_turns"; break; }
       const before = await snapshot(f, cid, hero);
       const record = { type: step.say !== undefined || step.action === "replay" ? "turn" : "action",
         run: runId, scenario: scenario.name, step: step.id, probe: !!step.probe, runtime: "dm-loop-v1",

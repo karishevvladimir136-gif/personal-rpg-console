@@ -7,6 +7,8 @@ From Stage 4 on, no paid run is thrown away. Every live bench run, probe and bli
 | --- | --- | --- |
 | `<time>-loop-<model>-live-<scenarios>.jsonl` | `node scripts/eval/run.mjs --runtime dm-loop-v1 --provider live …` | the run header (model, effort, commit), one `turn` record per player turn (input, full narration, every tool receipt, diagnostics, the pinned depth, the four prompt-layer hashes and token counts, timings, tokens, cost), one `scenario` summary (checks, metrics, dossier budgets, leaks) and the `end` line (spend) |
 | `<time>-blind.jsonl` | `node scripts/eval/blind.mjs --budget-usd N` | the same records for every scene × variant of the blind comparison; the samples themselves are in `docs/samples/stage-4/blind/` |
+| `<time>-blind-ru.jsonl` | `node scripts/eval/blind.mjs --lang ru --budget-usd N` | the Russian blind comparison: the same records plus one `language` line per sample (is its key turn fully Russian: Latin-script words in the narration and in the DM's tool-call text); the samples are in `docs/samples/stage-4/blind-ru/` |
+| `<time>-blind-ru-probe.jsonl` | `node scripts/eval/blind.mjs --lang ru --probe --budget-usd N` | the language probe before the Russian run: the first turn of a scene per variant, no samples |
 | `probe-depth-<time>.jsonl` | `node scripts/eval/probe-depth.mjs` | one request per effort step: cache read/write tokens, first word, cost (Stage 4 §7: does an effort change keep the cache) |
 | `probe-<time>.jsonl` | `node scripts/eval/probe-models.mjs` | the per-effort speed probe (first word, turn time, cost, cache share) |
 
