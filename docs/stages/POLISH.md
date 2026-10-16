@@ -147,6 +147,10 @@ The owner's notes from the first play are added below by the planner before laun
   стенограмму», «Исправить запись истории», «Заметка владельца… Записано с редакцией настроек 2»). Split it: player
   actions as a few clear buttons with one plain line each; the editing tools move to a separate «Редактор кампании»
   (owner mode) with an explanation of what each does and when you would need it.
+- **Named things the player can look up.** The owner forgot what «Сельдь» was (Yan's sunk boat, from turn 2) and asked
+  in play «селдь, какая селдь?»; the DM answered in the fiction, which is right, but the player had nowhere to check.
+  Named ships, objects and places mentioned in a quest («Сельдь», «Ящик в смолёной парусине») get a codex entry the
+  moment the DM records them, and quest text links to them.
 - **The codex is only about people; make it about the whole world.** The DM records places (Понтонный рынок, Чёрный
   волнорез as a rumour), but the codex shows only people and factions. Owner: «кодекс — это про всё». Tabs: Люди ·
   Места · Фракции · Мир (история, обычаи, законы) · Технологии и магия · Существа · Слухи · Реликвии и предметы. Each
@@ -261,6 +265,13 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turns 21–22): money stays consistent across 20 turns (the 16 coins to Dunya, the crew's five each paid
+  later by the stranger, «Пятёрки экипажу от чужака» recorded as a promise); facts stay consistent with the quest text
+  (six fathoms on the seaward side); the pledged pistol comes back only when Dunya gives it; the DM handles the
+  player's confusion inside the fiction. Owner: «не думал, что с первого раза дойдём до 18-го хода без критических
+  багов… и проверки, и интересно», and the world is not D&D — a free ruleset played consistently.
+- Small word choice: «Дуня отваливает» is correct nautical Russian (отвалить от пристани) but reads as slang to a
+  general reader; prefer the plain word («отчаливает») unless a character speaks it.
 - Good, keep (turn 18): a short rest («перекемарю до дела») became a 300-minute short rest with HP 9 → 10, no roll;
   and the **off-screen plan fired** — «1 plan(s) due», «DM plan resolved»: while the hero slept, the man in the dry
   coat came to Marta's, heard Мирон's snore through the floor and offered the hero double pay. This is item 6 working
