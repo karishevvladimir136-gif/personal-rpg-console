@@ -1,26 +1,30 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-15T22:30:41.780Z",
+  "date": "2026-10-16T04:41:13.692Z",
   "shots": [
     {
       "file": "menu-desktop.jpg",
       "url": "/preview/stage-5/menu",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
     },
     {
       "file": "campaigns-desktop.jpg",
       "url": "/preview/stage-5/campaigns",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
     },
     {
       "file": "new-campaign-desktop.jpg",
       "url": "/preview/stage-5/new-campaign",
-      "horizontalOverflowPx": 0
-    },
-    {
-      "file": "adventures-desktop.jpg",
-      "url": "/preview/stage-5/adventures",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
     },
     {
       "file": "new-campaign-dm-desktop.jpg",
@@ -135,6 +139,14 @@
       "viewportWidth": 1440
     },
     {
+      "file": "adventures-desktop.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
       "file": "noir-game-desktop.jpg",
       "url": "/preview/stage-5/game?world=noir",
       "horizontalOverflowPx": 0,
@@ -185,22 +197,26 @@
     {
       "file": "menu-phone.jpg",
       "url": "/preview/stage-5/menu",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
     },
     {
       "file": "campaigns-phone.jpg",
       "url": "/preview/stage-5/campaigns",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
     },
     {
       "file": "new-campaign-phone.jpg",
       "url": "/preview/stage-5/new-campaign",
-      "horizontalOverflowPx": 0
-    },
-    {
-      "file": "adventures-phone.jpg",
-      "url": "/preview/stage-5/adventures",
-      "horizontalOverflowPx": 0
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
     },
     {
       "file": "new-campaign-dm-phone.jpg",
@@ -309,6 +325,14 @@
     {
       "file": "settings-phone.jpg",
       "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "adventures-phone.jpg",
+      "url": "/preview/stage-5/adventures",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 390,
