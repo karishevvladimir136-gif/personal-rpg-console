@@ -7,7 +7,7 @@ import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
-import { buildDmLoopContext, estimateTokens, memoryQueryFor, suspectedLiteralLeaks } from "../src/lib/gameplay/dm-loop/context.ts";
+import { estimateTokens, memoryQueryFor, suspectedLiteralLeaks } from "../src/lib/gameplay/dm-loop/context.ts";
 import { chooseDepth, effortForTension, parseDepthRange } from "../src/lib/gameplay/dm-loop/depth.ts";
 import { advanceLedger, EMPTY_LEDGER } from "../src/lib/gameplay/dm-loop/ledger.ts";
 import { advanceMetrics, EMPTY_METRICS, expectedSuccess, metricsReport } from "../src/lib/gameplay/dm-loop/metrics.ts";
