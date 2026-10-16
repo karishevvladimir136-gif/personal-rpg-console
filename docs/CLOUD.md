@@ -69,6 +69,10 @@ exit 0
    of tracked files to make it pass. If the `APP_*` variables are missing, the session was started in the wrong
    environment: say so at once (live runs need the `rpg-console` environment).
 
+Long background jobs: never sit on a waiter for more than about 15 minutes without looking at the job's own process
+and log. A chain that failed quietly leaves the waiter waiting forever; when that happens, resume from the last
+completed step and never repeat paid steps that already finished.
+
 Rules stay as in `CLAUDE.md`: work only on the task's `claude/*` branch, never `main`; paid calls only within the task's
 cap; report in English. If a push to an existing `claude/*` branch is refused, push to the session's own branch and say
 its name.
