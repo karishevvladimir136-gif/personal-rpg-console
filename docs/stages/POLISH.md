@@ -576,6 +576,7 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    Turn 32, a failed insight check narrated as a verdict on the hero's mind: «Объяснение складное, щели в нём ты не
    находишь. На барже такой приказ отдали бы и сами… Может, всё так и было. А может, и нет. Наверняка ты не скажешь.»
    It reads like the mechanic spoken aloud and decides what the hero thinks. A failed insight shows only the surface
-   the hero sees — the NPC is convincing — and leaves the judgment to the player: «Он говорит ровно, не запинаясь, и
-   смотрит прямо. Объяснение гладкое — как и его сухое пальто.» A success may add one telling detail (here the DM did
+   the hero sees — the NPC is convincing — and leaves the judgment to the player: «Он говорит спокойно, не сбивается и
+   смотрит тебе в глаза.» (The planner's first try, «объяснение гладкое — как и его сухое пальто», was rejected by the
+   owner: people do not compare an explanation to a coat. Plain beats clever; no decorative similes.) A success may add one telling detail (here the DM did
    it well: «patrol» is the first word he says faster than usual). Never write «ты не можешь сказать наверняка».
