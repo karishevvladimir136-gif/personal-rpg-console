@@ -37,10 +37,12 @@ export async function executeDmCraft(value: unknown): Promise<CraftOwnerView> {
   } catch {
     throw new PersistenceError("validation");
   }
+  // The RPC takes the action separately and rejects any extra payload field.
+  const { action, ...payload } = command;
   const { data, error } = await clientFor(user.id).rpc("rpg_dm_craft", {
     p_owner_id: user.id,
-    p_action: command.action,
-    p_payload: command,
+    p_action: action,
+    p_payload: payload,
   });
   if (error) throw databaseError(error);
   return data as CraftOwnerView;
