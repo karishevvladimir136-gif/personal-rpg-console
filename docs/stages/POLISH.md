@@ -233,6 +233,8 @@ The owner's notes from the first play are added below by the planner before laun
   test for both cases. Second occurrence, turn 27: the banner came after a **failed** roll (natural 1 vs 11) on a
   non-combat step, exactly where the player would write his next action anyway — the test must cover «failure → no
   banner». Third occurrence, turn 28, again after a failure (6 vs 12): the banner now shows on most turns with a roll.
+  Fourth, turn 35: no roll at all (the box is brought to the counter). Count it in the bench: «Твой момент» per 10
+  turns, and how many follow a successful decisive roll — target ≥ 90%.
 - **Lost is not used.** The knife slipped into the silt: «рэй uses нож (0 left)». Losing, dropping, breaking and
   pledging are their own outcomes in the item record and in the summary («Потерян: нож — ушёл в ил»), so the codex
   and later turns can say where a thing went.
@@ -597,3 +599,7 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    planner's rewrites twice); (3) a **bench check**: lines per NPC compared for distinctiveness (a vision-free text
    judge asks «could this line belong to another character?») and an aphorism counter. Report dialogue separately in
    the voice A/B.
+   Turn 35: a strong description (the back of the hand on the tin «как к лбу больного ребёнка», held longer than
+   needed) undercut by a cryptic line to himself — «— Холодный. — Разумеется.» — and «Разумеется» is the stranger's
+   fourth use of the same word in the session. A verbal tic is good once or twice; the speech profile should say how
+   often, and lines spoken «to oneself» need a reason the player can follow.
