@@ -274,6 +274,9 @@ The owner's notes from the first play are added below by the planner before laun
   turn's stored model messages: (a) **narration lost** — text the DM wrote after a tool result (same family as the
   silent continuation after a roll, item 1) did not reach the stream or the saved turn; or (b) **the DM created the
   person ahead of the story** (an off-screen plan) and the receipt chip **revealed a person the hero has not met**.
+  Evidence from the next turn points to (b): asked again, the DM introduced Мокей in full (сетевяз с крайнего
+  понтона, broken capstan, «говорит за неделю меньше, чем Сапог за минуту») — he had prepared the person a turn early
+  and the chip showed it. Still verify (a) from the stored messages.
   Fix both regardless: every text part of every model message in a turn reaches the player and the saved turn, in
   order; a test with a tool call between two text parts. A new person created this turn appears in the player's
   chips and codex only if the narration names them (or the hero has met them); otherwise the record stays private
