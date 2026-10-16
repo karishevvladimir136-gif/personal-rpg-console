@@ -72,6 +72,11 @@ The owner's notes from the first play are added below by the planner before laun
   и кампанию» does nothing with a narrative sheet and no message — apparently the hero step (step 2) applies the Astra
   rule because the DM is only chosen at step 3 and the app default is Astra. Choose the DM before the sheet is
   validated (or validate against the DM chosen in the wizard), and a disabled create button always says why.
+- **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
+  Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
+  although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
+  test, not for the release. Derive a proposal from the hero (the DM drafts it, the owner approves), Russian labels,
+  weapons picked from the starting items.
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
 
