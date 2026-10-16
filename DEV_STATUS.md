@@ -101,7 +101,7 @@ start and again before the final checks, Stage 5 fixes included). Pushed; nothin
   two real defects that the focused suites had not: a save made before Stage 4 failed to restore (the timeline restore
   merged NULLs into the new NOT NULL columns) — fixed by migration 56, which merges the Stage 4 defaults under older
   rows; and the Stage 4 server modules were missing from the startup-gate test's module stubs. Fake bench on the final
-  code: loop runtime 19 of 19 scenarios, 344 of 344 checks; old Astra runtime ASTRA_BENCH.
+  code: loop runtime 19 of 19 scenarios, 344 of 344 checks; old Astra runtime 2 of 8 scenarios, unchanged since Stage 2b (its scripted checks were written for the new loop).
 - **Known limits:** Astra folds `finish_turn` less often now but still sometimes ends a turn without it (then the
   server's implicit finish carries no tension or refusal hint); the plan mechanism is used reliably by Opus and
   less by Astra at medium; the fake sandbox DM covers turns, feedback and the digest but not the AI character
