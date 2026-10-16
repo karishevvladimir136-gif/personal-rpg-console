@@ -80,6 +80,32 @@ The same 10-turn synthetic scene in three styles (one of them the line-art prese
 screenshots in `docs/screens/stage-v/`, plus the noir sample in its own style. Measured: time from first word to frame,
 cost per frame and per turn, consistency scores with and without references.
 
+## 7. Fixes from the planner's review of the first pack (do before the final checks)
+
+1. **No drawn frame in the review screens.** `game-desktop`, `game-phone` and `game-moment-desktop` all show the empty
+   «кадр рисуется…» box; only the strip has a thumbnail. Find out whether the capture is too early or the current frame
+   does not load in the preview, fix it, and recapture so the main frame is a real picture (the moment screen shows the
+   key-moment frame).
+2. **One stage, not two pictures.** Today the place header (~300 px) and the frame box (~470 px) stack, so the story
+   starts around 1050 px on desktop and is cut by the tab bar on the phone. The live frame takes the header's place: the
+   place picture shows until the frame is ready, then the frame fades in; the place title, time and «Герой и партия»
+   stay over it. No empty box at all — with frames off or nothing drawn yet, the header stays as it is. «Перерисовать»,
+   «Скрыть», «Хроника» and the strip of earlier frames sit in one compact row under the stage. Check: at 1440×900 the
+   first story paragraph is visible without scrolling; at 390×844 the stage is at most about 40% of the screen height
+   and the story starts above the tab bar.
+3. **People without a portrait.** In the noir re-run Velvet has no anchor: t07 draws her as a woman, t08 as a man in a
+   leather jacket, and t07 adds a man nobody asked for. (a) A named person who appears in a frame without a portrait gets
+   a portrait anchor queued automatically (within the daily cap), so later frames have a reference. (b) Until then the
+   prompt gives that person's gender and visible looks taken from the public text (pronouns, described appearance);
+   never invent them. (c) An anchor's approved appearance text keeps visible traits — skin tone, hair, build, age range;
+   they are appearance, not nationality, and the softened re-submit keeps them too. In t10 Dana, with three references,
+   comes out light-skinned — check that (c) fixes it.
+4. **Prompt hygiene.** The people line uses «person 1/2» but the action still says «Dana stands…», «Velvet's smile…»:
+   write the action with the same labels or short descriptors so the model knows who is who. Fields are cut mid-word
+   («Private investigator i», «toward the o»): cut on a word boundary or raise the caps.
+5. Re-run the noir sample (10 turns) and the oil scene (20 turns) after these fixes, rescore, recapture every screen,
+   then the final checks and push. Report the before/after people scores and show t07, t08 and t10 again.
+
 ## Budget and checks
 
 Paid image and small-model calls within **$25**, stopped by a guard; report every call's cost. Images only from synthetic
