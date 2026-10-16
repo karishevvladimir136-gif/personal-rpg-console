@@ -47,7 +47,12 @@ The owner's notes from the first play are added below by the planner before laun
    «У меня пятнадцать, у Мокея «квиты»» reads like reciting record values; people refer to deals the way people do
    («мне ты и так должен, Мокей своё уже взял»); (iii) a closing menu «Так что выбор у тебя такой: … или …» — the
    owner's codex: options only when the player asks; end on the situation. Collect such pairs (calque → native) from
-   the owner's play into the voice examples; they are the best training signal we have.
+   the owner's play into the voice examples; they are the best training signal we have. Turn 16: a stiff line in a
+   note — «Равная — это от чего, умник? Твоя доля — мой же долг»; and weak humour — «Может, ты от моего имени ещё и
+   жениться пообещаешь?». Humour is a known weak spot of models: give 2–3 examples of dry, situational humour from the
+   owner's chat campaign and texts he likes (a joke grows out of the situation and the character, it is short and
+   never explained). Owner after 16 turns: the narration is «на две головы лучше» the blind samples and on par with
+   his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`.
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
@@ -213,6 +218,15 @@ The owner's notes from the first play are added below by the planner before laun
   says it plainly, with the reason: when the fiction or the player gives a fair reason for a bonus, apply it, and when
   you refuse one, say why in one short aside; (g) a bench check: a scenario where the player names his tools and his
   trade, expecting a non-zero bonus or advantage.
+- **A roll the player cannot read (turn 16).** The chips show «The DM rolls 1d20: 15» with no reason, no DC and no
+  card; the owner guessed it was a persuasion check. Rule: a check of the hero (persuasion, any skill) is a player
+  check with its card, reason, bonus and DC in words; a private DM roll (an NPC's reaction, a random event) never
+  appears in the player's chips at all. Test both.
+- **The «Кубы» button opens a hint panel nobody understands.** «Быстрые броски: Плавание / Вскрытие замков / Знание
+  старой техники / Своя формула — Кубы бросает сервер, ведущий решает, нужна ли проверка. Кнопка только подсказывает
+  текст хода.» Replace it with the registry's dice tray: a free roll the player makes himself (any dice, a reason
+  line, advantage/disadvantage), logged in the turn and visible to the DM, plus quick skill checks from the sheet
+  with their bonuses that send «Пробую: <навык>» as the action. One plain sentence of help, no system talk.
 - **A record mistake: removing ≠ using up.** The player «took off» the resin gloves; the DM recorded «рэй uses
   смоляные рукавицы (0 left)» and the gloves vanished from the inventory. Taking off, putting away and giving are not
   consumption; the doctrine and the tool description say so, and `item use` on a non-consumable asks for a reason.
