@@ -310,6 +310,9 @@ The owner's notes from the first play are added below by the planner before laun
   (HP 7 → 6), the box still won; and an off-screen plan turning into a twist at the climax: the stranger's boat comes
   without the agreed three knocks, Фрол on the bow with a hook — «Ящичек сюда подай, легче лезть будет». Also a
   balance note: after six failures at +0 the hero is at 6/10 HP; with sheet bonuses this attrition would be rarer.
+- Good, keep (turn 31): the note under the shirt got soaked on the dive and became «Размокший листок из Мартиных
+  счетов» — the hero's own writing ran into blue clouds, only Marta's and Мирон's lines survive, and the DM's note
+  says «почти не улика: ни имён, ни места не прочесть». A consequence of the fiction changed an item's meaning.
 - Good, keep (turn 27): **an item changed with the story** — the borrowed shirt became «Рубаха Яна Колоды без подола»:
   new name, a description of how and why (the hem cut on the bottom to wrap the leaking hose; Marta billed it to
   Yan's debt), a state note («мокрая, подола нет; полоса намотана на шланг помпы») and a redrawn picture. Make sure
@@ -566,3 +569,7 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    Patterns to teach: tense and rhythm of a living narrator (a mix of past and present is fine when deliberate);
    one clear action per clause; no stacked instrumental phrases («запястьем со шкотом»); gesture instead of quoted
    one-word lines («со словом «Нет»»).
+   Also: «— Ящик на кухне. На кухне я ничего не списываю.» — the idea is good (the debt is written off only at the
+   counter), the line is a rule recited, not speech (owner: «не говорят так люди»). Native: «— Он у меня на кухне
+   стоит, а не на стойке. Вот вынесешь — тогда и выпьем.» People hint at their rule through the situation; they do
+   not announce it as a policy. Planner's own miss: I praised that line; the owner's ear is the reference.
