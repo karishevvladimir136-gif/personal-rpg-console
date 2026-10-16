@@ -81,7 +81,7 @@ test("three dense probes prepare nine plan arms; B and C differ only by the real
     assert.deepEqual(doctrineInput.mandatory.characterPacket, []);
     assert.deepEqual(fullInput.mandatory.characterPacket, group[2].characterPacket);
     assert.equal(group[2].characterPacketDigest, digest(group[2].characterPacket));
-    assert.ok(group[2].characterPacket.length > 0 && group[2].characterPacket.length <= 2);
+    assert.ok(group[2].characterPacket.length > 0 && group[2].characterPacket.length <= 8); // Stage 4: eight actors, 48 KB
     fullInput.mandatory.characterPacket = [];
     assert.deepEqual(fullInput, doctrineInput);
     delete baselineInput.dmCraft;
@@ -149,7 +149,7 @@ test("new immutable Cognitive Craft snapshot matches the additive disposable SQL
   } finally { await f.db.close(); }
 });
 
-test("companion-only and two-actor packet limits remain testable context heuristics", () => {
+test("companion-only and packet-cap limits remain testable context heuristics", () => {
   const probe = { ordinal: 99, historyThrough: "lc48", place: "Lantern Room",
     present: companionSceneQualityArtifact.presentActors,
     playerInput: "Liora, how did Bram and Sava take Orin's apology?" };

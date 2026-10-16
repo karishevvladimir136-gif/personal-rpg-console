@@ -68,13 +68,15 @@ test("modeled addressed actor outranks crowded-scene order, with stable ties and
   ]));
   input.input = "Bram, what do you think?";
   const selected = characterPacket(source, input, "plan");
-  assert.equal(selected.length, 2);
+  // Stage 4 lifted the two-actor cap (eight actors, 48 KB): all three modelled
+  // companions travel, the addressed one first, ties stable.
+  assert.equal(selected.length, 3);
   assert.equal(selected[0].actorId, actors[2].id);
   const tieWinner = [actors[0].id, actors[1].id].sort()[0];
   assert.equal(selected[1].actorId, tieWinner);
   source.snapshot.entities.reverse();
   assert.deepEqual(characterPacket(source, input, "plan"), selected);
-  assert.ok(Buffer.byteLength(JSON.stringify(selected), "utf8") <= 6200);
+  assert.ok(Buffer.byteLength(JSON.stringify(selected), "utf8") <= 9300);
 
   source.runtime.configuration.controlledEntityIds.push(actors[2].id);
   assert.equal(characterPacket(source, input, "plan").some((row) => row.actorId === actors[2].id), false);

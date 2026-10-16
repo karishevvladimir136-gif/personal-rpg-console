@@ -1431,11 +1431,12 @@ for (const prefix of [24, 25, 26, 27, 28])
       assert.deepEqual(await c.store.commit(c.trade, c.plan), c.result);
       assert.deepEqual(await c.store.receipt(c.trade), c.result);
       const upgraded = await f.saves(w.cid, "campaign");
-      assert.deepEqual(upgraded.items, old.items);
+      // Stage 4 added item rarity (null for older rows); everything else stays exact.
+      assert.deepEqual(upgraded.items, old.items.map((item) => ({ ...item, rarity: null })));
       assert.ok(upgraded.entities.every((entity) => entity.character_sheet === null));
       assert.deepEqual(
         upgraded.entities,
-        old.entities.map((entity) => ({ ...entity, character_sheet: null })),
+        old.entities.map((entity) => ({ ...entity, character_sheet: null, public_profile: {} })),
       );
       assert.deepEqual(upgraded.documents, old.documents);
       assert.deepEqual(upgraded.assets, old.assets);
@@ -1483,11 +1484,11 @@ for (const prefix of [24, 25, 26, 27, 28])
         }),
       );
       const loaded = await f.saves(w.cid, "campaign");
-      assert.deepEqual(loaded.items, old.items);
+      assert.deepEqual(loaded.items, old.items.map((item) => ({ ...item, rarity: null })));
       assert.ok(loaded.entities.every((entity) => entity.character_sheet === null));
       assert.deepEqual(
         loaded.entities,
-        old.entities.map((entity) => ({ ...entity, character_sheet: null })),
+        old.entities.map((entity) => ({ ...entity, character_sheet: null, public_profile: {} })),
       );
       assert.equal(
         (

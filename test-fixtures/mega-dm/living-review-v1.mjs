@@ -84,7 +84,8 @@ export const companionSceneQualityArtifact = Object.freeze({
 
 export const crowdedSceneQualityArtifact = Object.freeze({
   fixtureDigest: LIVING_FIXTURE_DIGEST, probeId: "shared-joy-after-intensity",
-  currentPacketCap: 2, broaderRelevantPacketSet: "future separately reviewed comparison only",
+  currentPacketCap: 4, // Stage 4: up to eight modelled actors (48 KB); the crowded scene has four
+  broaderRelevantPacketSet: "future separately reviewed comparison only",
   futureQuestion: "Would more than two relevant modeled people improve group banter or emotional continuity enough to justify the context cost?",
   currentOutput: null, broaderContextOutput: null, ownerObservation: null,
 });

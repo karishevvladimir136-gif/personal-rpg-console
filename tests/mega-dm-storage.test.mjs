@@ -41,7 +41,9 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
   try {
     const view = await craft(f, "read");
     assert.equal(view.policyVersion, "mega-dm-v1-public-context-2");
-    assert.equal(view.versions.length, 12);
+    // 12 Mega DM versions plus the six Stage 4 versions (core doctrine v3 and five
+    // cards), seeded pending: no effective row until the owner activates them.
+    assert.equal(view.versions.length, 18);
     assert.equal(view.effective.length, 11);
     assert.ok(view.versions.every((v) => v.en.guidance && v.ru.guidance));
     await assert.rejects(craft(f, "read", {}, f.other), /rpg_forbidden/);

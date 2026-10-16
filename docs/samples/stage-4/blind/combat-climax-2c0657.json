@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "createdAt": "2026-10-16T01:17:25.188Z",
+  "commit": "ebef9fd",
+  "run": "20261016-011637-blind",
+  "variant": {
+    "id": "astra-medium",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "medium"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "outcome": "committed",
+      "narration": "The ford road narrows beyond the square, its wheel ruts running between a low bank and a bed of reeds. Water glints through gaps in the stems. Walking carefully keeps you off the loose gravel, though the reeds obscure much of the water’s edge.\n\nAhead, one rut disappears into the shallows. Beside it, a flattened strip of reeds bends out of sight behind the bank. You scan the verge before drawing closer.\n\nThe reeds shift in the breeze, each patch moving just after the next. From the road, you cannot distinguish anything moving independently among them. Nor can you see what flattened that strip.\n\nYou reach a dry patch just short of the ford without spotting anyone—but the bank still hides the near waterline. Beyond it comes a brief scrape, then a small splash. Whoever or whatever made it remains out of sight. The road back to the square is clear behind you.",
+      "firstWordMs": 2922,
+      "durationMs": 23782,
+      "requests": 4,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 44296,
+        "output": 567,
+        "cached": 32880,
+        "cacheWrite": 11404,
+        "reasoning": 69,
+        "estimated": false
+      },
+      "cacheReadShare": 0.742,
+      "costUsd": 0.2039,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "note_world",
+          "move_party"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "note_world",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure",
+          "Place recorded: Ford road",
+          "DM note updated",
+          "The party travels to Ford road (10 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "5d771a7563df"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "218b644e2499"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "c2",
+      "input": "If anyone is there, I don't wait for them: I draw and go straight for the biggest one.",
+      "outcome": "committed",
+      "narration": "You leave the dry patch and round the bank, reaching to draw a weapon—but you have none. Your compass is the only possession you carry.\n\nAt the water’s edge, the source of the noise comes into view: a half-submerged branch, caught against the bank. The current lifts its broken end, scrapes it over a stone, then drops it with a splash. There is no one here to strike.\n\nUp close, the flattened reeds look older than a fresh passage: several bent stems have browned along their creases. They lead to a muddy notch in the bank, empty apart from stranded leaves. Whatever passed through left no obvious sign of someone waiting here now.\n\nWater laps across the wheel ruts a few paces ahead. The road continues on the opposite bank; behind you, the way back to the square remains open.",
+      "firstWordMs": 1678,
+      "durationMs": 11159,
+      "requests": 2,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 23902,
+        "output": 327,
+        "cached": 21470,
+        "cacheWrite": 2426,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.898,
+      "costUsd": 0.06821,
+      "tools": {
+        "proposed": [
+          "note_world",
+          "advance_time"
+        ],
+        "accepted": [
+          "note_world",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "DM note updated",
+          "1 minutes pass (Rounding the bank and confronting the source of the sound.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 386,
+          "hash": "3161fb983a12"
+        },
+        {
+          "index": 3,
+          "tokens": 1661,
+          "hash": "62ad6c12c17a"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "c3",
+      "input": "I shout that the reeve's men are right behind me and give them one chance to run.",
+      "outcome": "committed",
+      "narration": "Your shout carries across the ford and into the reeds. “The reeve’s men” gets no answer: no startled voice, no retreating footsteps, no sudden movement along the bank.\n\nThe current lifts the trapped branch and knocks it against the stone again. From where you stand, the muddy notch is still empty, and the road behind you is clear. If anyone farther away heard the warning, they give no sign of it.\n\nFor a few moments, the loudest sound is water passing through the reeds.",
+      "firstWordMs": 1534,
+      "durationMs": 5289,
+      "requests": 1,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 12618,
+        "output": 143,
+        "cached": 9682,
+        "cacheWrite": 2933,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.767,
+      "costUsd": 0.05352,
+      "tools": {
+        "proposed": [
+          "advance_time"
+        ],
+        "accepted": [
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "1 minutes pass (Calling a warning across the ford and listening for a response.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 393,
+          "hash": "9b177aa6cc40"
+        },
+        {
+          "index": 3,
+          "tokens": 2502,
+          "hash": "e7737b7c0ad4"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.32563,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

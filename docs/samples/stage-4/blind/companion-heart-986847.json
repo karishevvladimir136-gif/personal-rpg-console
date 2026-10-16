@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Companion heart-to-heart",
+  "description": "A drover joins the party, then the player talks to her by the fire about what she wants and fears. Companion-mode turns after the first.",
+  "createdAt": "2026-10-16T01:19:51.317Z",
+  "commit": "9686625",
+  "run": "20261016-011739-blind",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "outcome": "committed",
+      "narration": "Tamsin is easy to pick out. She looks about eighteen, sleeves rolled to the elbow, and she's working two dozen grey-faced ewes around the water trough with a hazel stick and a low whistle. At each whistle a black-and-white dog slips along the flock's flank. When you ask, she looks you over the way a buyer looks over a ram: boots first, then your hands, then the compass at your belt.\n\n\"If by 'same way' you mean east over the moor road, then you mean Hollin Ford. Two days with this lot, if they don't sulk.\" She whistles once and the dog drops flat in the dust. \"Tamsin. You can walk with me. Company's no bad thing up on the tops.\"\n\nThen she counts her terms off on her fingers.\n\n\"You walk at the back and you mind the stragglers. You don't mind me. You carry your own food, because I've none to spare. And if Bran takes against you, you walk a mile behind and there's no hard feelings.\"\n\nFor now the dog just watches you with its chin on its paws.\n\n\"I'm off once they've drunk their fill. I won't wait past that.\" She tips her head toward the notice board, where the work organiser is pinning up a fresh sheet. \"It's market week at the Ford. They always want hands for penning and tallying. If it's work you're after, that's where it'll be. I can't pay you in anything but conversation.\"\n\nA ewe shoves another out of the trough. Tamsin is already moving to break it up.",
+      "firstWordMs": 42514,
+      "durationMs": 64110,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 18149,
+        "output": 5962,
+        "cached": 0,
+        "cacheWrite": 18145,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0,
+      "costUsd": 0.20998,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_character",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_character",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin recorded as a companion",
+          "Tamsin's character notes started",
+          "Place recorded: Hollin Ford",
+          "Local work organiser updated",
+          "DM plan updated",
+          "DM note updated",
+          "10 minutes pass (Talking with Tamsin at the trough while the flock drinks)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "f0a32933de5d"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "295572d00a7d"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h2",
+      "input": "Tamsin, why are you really on this road? You don't look like someone chasing herd money.",
+      "outcome": "committed",
+      "narration": "Tamsin doesn't answer straight off. She hooks the shoving ewe round the neck with the crook of her stick and steers it to the far end of the trough. Only then does she look back at you, boots first again, as if checking she got it right the first time.\n\n\"Herd money's exactly what I'm chasing.\" She wipes her palm on her breeches. \"What did you think it'd look like? Fat man on a cob with a purse on his belt?\"\n\nShe turns back to the flock and counts heads under her breath, her lips moving. *Twenty-two. Twenty-three. Twenty-four.*\n\n\"Most years Dad takes them over.\" She leaves a pause just long enough to notice. \"This year it's me. That's the whole of it, and it's more than I'd tell most folk at a trough.\" She doesn't say it sharply. She says it the way she'd remark on rain coming. \"And that's one of my terms, by the way. You don't mind me.\"\n\nWhile she talks, the dog gets up. Bran circles wide around the flock and comes in low. He sniffs your boots, then your empty hands, then the compass case. He sits down a yard off with his head tilted and doesn't settle either way.\n\nTamsin watches him do it, then looks at you properly for the first time.\n\n\"My turn, then. You've good boots, a compass and no pack. Not so much as a heel of bread on you.\" Half the ewes have already lifted their dripping muzzles from the water. \"So what road are *you* on?\"",
+      "firstWordMs": 19753,
+      "durationMs": 30878,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 23040,
+        "output": 2716,
+        "cached": 16684,
+        "cacheWrite": 6352,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.724,
+      "costUsd": 0.08943,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "5 minutes pass (Talking with Tamsin at the trough while the flock drinks)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 966,
+          "hash": "f8b24dada81a"
+        },
+        {
+          "index": 3,
+          "tokens": 2820,
+          "hash": "3bb3b3a39acd"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h3",
+      "input": "Tamsin, if it goes bad at the coast, what do you want me to do?",
+      "outcome": "committed",
+      "narration": "Tamsin's hand stops halfway to her stick.\n\n\"The coast.\" She says it flat, the way she'd repeat a price that was too high. \"There's no coast on this road. It's moor, then the Ford, then more moor on the far side. I've never seen the sea, and this road won't show it you.\"\n\nShe looks at you a moment longer, then snorts. It isn't unkind.\n\n\"That's twice I've asked what road you're on, and twice you've answered something else. I'll take that as an answer of a kind.\" She hooks a dawdling ewe away from the trough. \"If the coast's where you're bound, that's your business. I'm not going there, and I'll not promise you anything about it.\"\n\nShe counts on her fingers again. The list is shorter this time.\n\n\"What I want if it goes bad up on the tops, though, I'll tell you. If fog comes down, you stop where you are and you shout. You don't go looking for me. If something gets at the flock, you keep out of Bran's way and keep the stragglers bunched. And if you go lame, I'll send someone back from the Ford. I won't turn twenty-four ewes round for you.\" A beat. \"Wouldn't for anyone.\"\n\nMost of the ewes have lifted their heads from the water now. Bran is on his feet before anyone tells him. He's watching her, not you.\n\n\"Nearly time,\" she says, and moves to the head of the flock.",
+      "firstWordMs": 21105,
+      "durationMs": 32046,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 22849,
+        "output": 3167,
+        "cached": 16684,
+        "cacheWrite": 6161,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.73,
+      "costUsd": 0.0975,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "DM note updated",
+          "5 minutes pass (Talking at the trough while the last ewes drink)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1150,
+          "hash": "5c1a9fb5e3bf"
+        },
+        {
+          "index": 3,
+          "tokens": 2850,
+          "hash": "40fb728d3e4d"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.39691,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

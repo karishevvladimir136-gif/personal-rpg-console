@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Companion heart-to-heart",
+  "description": "A drover joins the party, then the player talks to her by the fire about what she wants and fears. Companion-mode turns after the first.",
+  "createdAt": "2026-10-16T01:46:38.891Z",
+  "commit": "9686625",
+  "run": "20261016-014551-blind",
+  "variant": {
+    "id": "astra-medium",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "medium"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "outcome": "committed",
+      "narration": "Tamsin shifts the strap of her travelling bag and glances along the road.\n\n“Company would be welcome,” she says. “Which way are you bound? I’m taking the east road as far as the cattle bridge.”\n\nShe is a young drover, with mud dried into the seams of her boots and a switch tucked beneath one arm. She stays beside the notice board for now, leaving room for a passer-by to reach it.\n\n“If that’s your road, we can walk together. I need to be at the bridge before the herd comes through, though. Can’t promise you a long detour.”\n\nThe work organiser looks up from straightening a curling notice but leaves the conversation to you.",
+      "firstWordMs": 1921,
+      "durationMs": 22765,
+      "requests": 5,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 55997,
+        "output": 730,
+        "cached": 44401,
+        "cacheWrite": 11581,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.793,
+      "costUsd": 0.22581,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin recorded as a character",
+          "Tamsin's character notes started",
+          "Place recorded: Cattle bridge",
+          "Local work organiser updated",
+          "1 minutes pass (Discussing shared travel with Tamsin beside the notice board.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "3938e3c88364"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "c7a8942e1752"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "h2",
+      "input": "Tamsin, why are you really on this road? You don't look like someone chasing herd money.",
+      "outcome": "committed",
+      "narration": "Tamsin glances down at her mud-seamed boots, then back at you.\n\n“What does someone chasing herd money look like?”\n\nThere’s a trace of amusement in the question, but she leaves it hanging for a moment.\n\n“I’m meeting cattle at the bridge because cattle need moving and I need paying. It’s work I know.” She adjusts the switch beneath her arm. “Not everyone on the road is running from something.”\n\nHer tone stays civil, though she no longer seems quite so easy about the conversation.\n\n“If there’s something you noticed, tell me what it was. Otherwise, I’d rather you asked than decided.”\n\nShe looks toward the east road again.\n\n“Are you coming as far as the bridge?”",
+      "firstWordMs": 2362,
+      "durationMs": 10949,
+      "requests": 2,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 25126,
+        "output": 351,
+        "cached": 22067,
+        "cacheWrite": 3053,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.878,
+      "costUsd": 0.07784,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "1 minutes pass (A brief exchange with Tamsin beside the notice board.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 650,
+          "hash": "fd3b91201888"
+        },
+        {
+          "index": 3,
+          "tokens": 1815,
+          "hash": "df7d6ccfaf85"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "h3",
+      "input": "Tamsin, if it goes bad at the coast, what do you want me to do?",
+      "outcome": "committed",
+      "narration": "Tamsin pauses, one hand still on her bag strap.\n\n“The coast? I’m going to the cattle bridge, Rowan. Have you got the wrong person?”\n\nShe looks at you more closely now, puzzled rather than offended.\n\n“If you mean what to do if there’s trouble on the road—don’t go rushing in after me. Get clear of the cattle, find somewhere solid to stand. I’d rather know where you are than have two people under their feet.”\n\nShe lowers her voice a little.\n\n“But if you’re talking about something particular at the coast, you’ll have to tell me what. I don’t know what you’re expecting.”",
+      "firstWordMs": 1521,
+      "durationMs": 8111,
+      "requests": 2,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 27697,
+        "output": 288,
+        "cached": 23387,
+        "cacheWrite": 4304,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.844,
+      "costUsd": 0.09165,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "1 minutes pass (Tamsin clarifies her destination and asks what Rowan means by trouble at the coast.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 732,
+          "hash": "5f9d917f398a"
+        },
+        {
+          "index": 3,
+          "tokens": 3000,
+          "hash": "c3bfbd60f33b"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.3953,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}
