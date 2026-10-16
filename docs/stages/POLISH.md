@@ -161,6 +161,22 @@ The owner's notes from the first play are added below by the planner before laun
   библия): keep it as the place for secondary screens, but each opens a page in the same look as the main ones, with
   one plain sentence of what it is for. «Визуальная библия» and «Галерея» overlap with the Stage V picture workshop —
   merge into one «Картинки» page.
+- **Rolls (turn 4, a fair d20 18 vs DC 13, server crypto RNG): working, but rough.** (a) The roll card after the
+  pause reads like a form: «рэй · Проверка навыка», «Посмотреть записанную проверку», «Запросить разрешённый
+  переброс», «Продолжить с этим результатом», «Другие действия». Show it as a moment in the story: the reason in words
+  («Оживить компрессор Гильдии»), the die and the number big, success/failure, DC when the hero could judge it; one
+  button «Дальше»; reroll only when a rule grants it. (b) The die animation: a real tumbling d20 (3D or a good 2D
+  spin) that lands on the face, with a natural 20 / natural 1 flourish, as in the owner's chat registry; respects
+  reduced motion. (c) The record modal's close button says «Близкий» — a machine translation of «Close» in
+  `src/lib/locales/ru.json`; sweep the Russian locale for other machine-translated strings. (d) The chip «рэй rolls
+  1d20: 18 vs 13 — success» in English (see the receipts item). (e) «Модификатор: 0» on a skill the hero has
+  («Знание старой техники») — the stub profile again; the modifier must come from the sheet.
+- **The frame strip does not open older frames.** Clicking a thumbnail under the frame shows nothing; it must open
+  that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
+  painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
+  («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep: the place header redrew itself when the hero moved (Понтонный рынок in the same style), the frame
+  shows the hero with his face from the portrait, the DM asked for a roll exactly where it made sense.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
