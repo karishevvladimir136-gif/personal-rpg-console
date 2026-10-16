@@ -42,3 +42,10 @@ Paid calls within **$40** (video is expensive), stopped by a guard; report every
 research-grade records of paid runs in `docs/runs/`. typecheck / lint / test / build pass; screenshots with the phone
 overflow check; a turn is never slower with video enabled. Push `claude/stage-video` only, never `main`, never the owner's
 database. Report in English: the catalog with numbers, how segments look, the spend, known limits.
+
+## Note from the first sandbox play (planner, 2026-10-16)
+
+The game screen still shows the legacy FRAME/video block under «Кадр сцены» («Примите FRAME текущей сцены, прежде чем
+создавать видео», «Создание видео недоступно. Нужны включённая серверная модель и лимит расходов»). Build «Оживить
+кадр» on the Stage V frames (the current live frame or any frame in the strip and the chronicle), with its own price
+and cap, and remove the legacy FRAME/video block from the player's screen (the polish stage hides it first).

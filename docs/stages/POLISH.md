@@ -100,6 +100,20 @@ The owner's notes from the first play are added below by the planner before laun
   «Перерисовать портрет» / «Создать портрет». One picture path for every button (the Stage V store on fal, in the
   campaign's style, priced, within the daily cap); no button that cannot work. A named person met in play (Marta)
   should get a portrait without a click (see §7 of STAGE_V).
+- **«Кадр сцены» opens the old FRAME panel and does not work (serious).** The button under the composer shows the
+  legacy FRAME block: «FRAME · проверить эту сцену», «Для изображений нужны включённая модель и лимит расходов. Запрос
+  на изображение не отправлен.», «Образцы внешности», «История FRAME и восстановление», and the legacy video block
+  («Примите FRAME текущей сцены…», «Создание видео недоступно…»). Same root as the two picture paths: «Кадр сцены»
+  must act on the Stage V frames panel (draw or redraw the current frame); the legacy FRAME and its video block leave
+  the player's screen (video comes back with the video stage, built on Stage V frames).
+- **«Скрыть» on the live frame does nothing.** It must hide the frame of this turn (and «Показать» bring it back),
+  as Stage V specified; add a test.
+- **«Ещё · бой, отдых, сессия, записи и правки» is an editor's toolbox on the player's screen.** The owner: «выдаёт
+  какой-то треш… может быть полезно, но я не понимаю, что это». It mixes player actions («Закончить сессию», «Лагерь и
+  отдых», «Что я знаю?», «Записать заметку») with editing tools («Правка точки продолжения», «Добавить запись в
+  стенограмму», «Исправить запись истории», «Заметка владельца… Записано с редакцией настроек 2»). Split it: player
+  actions as a few clear buttons with one plain line each; the editing tools move to a separate «Редактор кампании»
+  (owner mode) with an explanation of what each does and when you would need it.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
