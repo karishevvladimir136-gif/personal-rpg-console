@@ -60,7 +60,13 @@ The owner's notes from the first play are added below by the planner before laun
 
 ## The owner's notes from the first play
 
-(to be filled in)
+- **The seeded Stage 4 DM Craft versions cannot be activated.** In the sandbox the six never-approved versions (How to
+  run the game v3, Life off screen, The long campaign, A systemic world, Villains with motives…, A world that pushes
+  back) sit in «Version history»; «Restore this version» does nothing for them, and the screen offers no other way to
+  approve a pending version. Give pending versions a clear «Review and approve» action (with what changes), make
+  restore work or hide it where it cannot, and show an error when an action fails. Add a test.
+- The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
+  Russian texts of the doctrine and cards natively as part of item 7.
 
 ## Checks
 
