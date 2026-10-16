@@ -114,6 +114,13 @@ The owner's notes from the first play are added below by the planner before laun
   стенограмму», «Исправить запись истории», «Заметка владельца… Записано с редакцией настроек 2»). Split it: player
   actions as a few clear buttons with one plain line each; the editing tools move to a separate «Редактор кампании»
   (owner mode) with an explanation of what each does and when you would need it.
+- **The codex is only about people; make it about the whole world.** The DM records places (Понтонный рынок, Чёрный
+  волнорез as a rumour), but the codex shows only people and factions. Owner: «кодекс — это про всё». Tabs: Люди ·
+  Места · Фракции · Мир (история, обычаи, законы) · Технологии и магия · Существа · Слухи · Реликвии и предметы. Each
+  entry keeps what works today — what the hero knows, from whom («знает только по рассказу Марты»), when first met, a
+  pin for the DM. Places link to the map; rumoured places are marked as rumours. Lore the hero learns in play becomes
+  an entry: give the DM a public `lore` record (category, title, what is known, source) or extend an existing tool,
+  never exposing private notes; the world's own description seeds the «Мир» tab at the campaign start.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
