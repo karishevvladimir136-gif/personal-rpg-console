@@ -136,6 +136,40 @@ The owner's notes from the first play are added below by the planner before laun
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
 
+## Port from the owner's chat registry «Железная Бабка»
+
+The owner's chat campaign had a hand-built registry page (a claude.ai artifact the planner made; it reads from its own
+small database). The owner compares the app's screens with it. Bring into the app what it does better, on real
+records, for any ruleset (numbers only where the ruleset has them):
+
+- **Paper doll with 12 slots** in three groups: left — голова, шея, талисман, тело, плащ; right — основная рука, вторая
+  рука, кольцо I, кольцо II, руки (перчатки); bottom row — пояс, ноги. Each slot: an icon of the item coloured by
+  rarity, the slot label, the item name; an empty slot is dashed «пусто». Attuned items carry «✦» and a violet edge;
+  a counter «Настройка N/3» when the ruleset has attunement. Without a picture the centre shows a blueprint figure
+  (a line drawing with a scale mark), never an empty box.
+- **Hit points** as a gauge that turns amber at half and red at a quarter; owner correction buttons −10 −5 −1 +1 +5 +10
+  «Полные» (recorded as an owner correction, visible in the turn history).
+- **Resources** as pips the owner can tap, each with its recovery rule under the name («возвращается после долгого
+  отдыха», «короткий отдых: +2 очка»).
+- **Vitals** tiles (КД, скорость, мастерство, КС/атака) and **stats** with score and modifier; saves and skills in two
+  columns; **Особенности** with a one-line description each; **Досье** (backstory).
+- **Inventory grid** with rarity colours and a legend (обычное / реликт Старого мира / магическое / сюжетное),
+  quantity badges, categories (Всё, Расходники, Снаряжение, Реликты, Сюжет), money in the header, and a parchment
+  sheet on tap with the description and quantity.
+- **Dice tab:** a big result with natural 20 / natural 1 styling; normal / advantage / disadvantage; «Зачем бросок»
+  (a reason line); quick rolls per character built from the sheet (checks, attacks, saves with their bonuses; damage
+  and healing expressions); a free pool d4…d100 with a modifier; a roll log the DM sees («ДМ видит этот журнал»).
+- **Party tab:** the current objective on top; a card per member (portrait, name, role, AC badge, HP gauge, attack
+  line); the crew aboard and the people left at home as rosters with small portraits; switch the character sheet to any
+  member with name chips.
+- **Codex** grouped by relationship (семья, союзники, мутные, нейтральные, враги) with coloured tags; factions with
+  their status; search.
+- **Quests:** the main arc with steps (✓ / ○), side quests, open threads, debts and promises, done ones collapsed.
+- **Ship / holdings page:** picture, description, specs, armament, the hold as an inventory grid, passengers and
+  prisoners.
+- **Header plate** with the place, the time of day in words and the next destination («Лиссабон · рассвет после ночи
+  у Белой башни · дальше: Женева») instead of «День 1 · 00:00».
+
 ## Checks
 
 typecheck, lint, the full suite with `--test-concurrency=2`, build, fake bench, screenshots with the overflow check, a
