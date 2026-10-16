@@ -459,6 +459,11 @@ The owner's notes from the first play are added below by the planner before laun
   chips and codex only if the narration names them (or the hero has met them); otherwise the record stays private
   until the meeting. Also «Looked up money»: the DM had to query money because the context has no wallet (see the
   character-screen item); with a wallet in the dossier this lookup disappears.
+- **The sidebar hero card shows «Skill 0 · Атака 0 · Defense 10».** Mixed languages and meaningless stub numbers on
+  the most visible card. Show what describes this hero: his trade and two or three best skills in words («ныряльщик ·
+  механик · замки»), conditions when there are any (порезы, удушье), and numbers only when the ruleset has real ones —
+  in Russian (Навык / Атака / Защита). Same source as the roll bonuses: once the sheet has real values (see the rolls
+  item), the card and the rolls agree.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
