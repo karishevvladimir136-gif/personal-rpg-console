@@ -128,6 +128,30 @@ The owner's notes from the first play are added below by the planner before laun
   fiction: explanations behind a small «?», editing tools behind «Ещё», stats only for people the hero fights or leads.
 - **Broken-image fallback letters.** An initial letter shows at the top-left of an empty picture box and overlaps
   badges («К» over the scene header, «М» under «РЯДОМ» on Marta's card). Use a proper empty state.
+- **First real turn (Opus high), owner's notes.** The narration of the first turn is good living Russian (Marta
+  sits down, the stool creaks, the dockers argue about herring, Ян Колода and his sunk «Сельдь», «саженях в шести»),
+  so the weak text was the opening proposal, not the DM. The DM recorded the debt, a new person, a rumoured place and an
+  off-screen plan. What to fix around it:
+  - **The style differs between pictures.** The place header (Кабак Марты) and the hero are photo-like, the first
+    live frame of Marta is a bright comic. If the owner changed the style after the anchors were drawn, the old anchors
+    stay in the old style until «Перерисовать в новом стиле» is pressed — so at a style change ask right there
+    «Перерисовать опорные картинки в новом стиле? ≈ $X» (yes by default when the campaign has few anchors). If he did
+    not change it, find why the anchors and the frames used different styles.
+  - **«Что изменилось за ход» is in English and shows the DM's private work:** «Марта updated», «Ян Колода recorded
+    as a character», «Place recorded: Чёрный волнорез (a rumour)», «Debt recorded: …», «Марта's character notes
+    started», «DM note updated», «DM plan updated», «10 minutes pass (…)». Chips follow the campaign language and show
+    only what the hero would notice (новый человек, слух о месте, долг записан, прошло 10 минут); notes, plans and
+    character models never appear to the player.
+  - **No timers.** The owner dislikes the adventure pace badge «НА ВЕЧЕР · 3–5 Ч» with «0 ч 10 мин в мире» and the
+    ticking «День 1 · 00:10»: it reads as a countdown. Remove the badge and the minutes from the game screen; the
+    header says the time of day in words (утро, полдень, ночь), as the registry did.
+  - **«Открытые нити» is jargon.** The player sees «Цель» (here: отдать Марте сорок монет — the DM sets it when the
+    goal is obvious), «Долги и обещания», and «Зацепки» for open leads (Ян Колода, ящик у Чёрного волнореза). The
+    `thread` kind stays inside the records; the word «нити» does not reach the player.
+  - **Remove the «Приключение» card from the game sidebar** — it breaks immersion; adventure management lives in the
+    «Приключения» section of the left menu.
+  - The story sits in its own inner scroll box under a very large frame (nested scrolling, arrows, «К последнему
+    ходу»). One page scroll; see the one-stage layout in STAGE_V §7.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
