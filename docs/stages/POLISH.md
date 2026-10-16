@@ -573,3 +573,9 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    counter), the line is a rule recited, not speech (owner: «не говорят так люди»). Native: «— Он у меня на кухне
    стоит, а не на стойке. Вот вынесешь — тогда и выпьем.» People hint at their rule through the situation; they do
    not announce it as a policy. Planner's own miss: I praised that line; the owner's ear is the reference.
+   Turn 32, a failed insight check narrated as a verdict on the hero's mind: «Объяснение складное, щели в нём ты не
+   находишь. На барже такой приказ отдали бы и сами… Может, всё так и было. А может, и нет. Наверняка ты не скажешь.»
+   It reads like the mechanic spoken aloud and decides what the hero thinks. A failed insight shows only the surface
+   the hero sees — the NPC is convincing — and leaves the judgment to the player: «Он говорит ровно, не запинаясь, и
+   смотрит прямо. Объяснение гладкое — как и его сухое пальто.» A success may add one telling detail (here the DM did
+   it well: «patrol» is the first word he says faster than usual). Never write «ты не можешь сказать наверняка».
