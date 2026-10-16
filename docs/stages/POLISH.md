@@ -36,6 +36,10 @@ The owner's notes from the first play are added below by the planner before laun
    (only a deciding roll or payment may interrupt it; bookkeeping goes after); keep tool schemas in English. Check with
    the Russian blind scenes: current prompt vs the Russian voice layer, both on Opus high, four key turns each, and the
    planner builds a blind A/B page. Record the result in `docs/runs/` (it is a research finding).
+   Two tics the owner flagged in a good turn, to address in the voice text (as positive guidance, not a ban list):
+   echoing an NPC's simile back as the hero's own conclusion («Старик на лестнице, точно.» — also the DM deciding the
+   hero's thought), and theatrical staccato repetition («— Фланец, — говорит он наконец. — Три месяца. Фланец.»).
+   Let NPCs speak like people, once; let the hero's conclusions stay the player's.
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
@@ -271,6 +275,12 @@ The owner's notes from the first play are added below by the planner before laun
   weapons picked from the starting items.
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
+
+## Later, not in this stage (owner's backlog)
+
+- **Weight and carrying.** Item weight, carrying capacity from strength (or the ruleset's own rule), containers that
+  change it (a magic bag), and the DM using it when it matters. The owner: a convention is fine for now («мы не в
+  симулятор водолаза играем»); design it with the ruleset work, not here.
 
 ## Port from the owner's chat registry «Железная Бабка»
 
