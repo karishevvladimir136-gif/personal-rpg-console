@@ -57,7 +57,9 @@ The owner's notes from the first play are added below by the planner before laun
    («не умеет отказывать друзьям») in character: keep the idea — sheet traits colour how people treat the hero — but
    the owner finds the line «через чур в лоб»: it restates the sheet. Show a trait through what people do, or a hint
    («Ты ж у нас никому не отказываешь, — Марта уже тянется за монетой»), never by naming it; the player knows his
-   sheet. Same rule as for subtext: imply, don't announce. Turn 18:
+   sheet. Same rule as for subtext: imply, don't announce. Turn 23, a player-agency slip: «— За голову, — говоришь
+   ты.» — the DM wrote the hero's line and his conclusion. The narration may lay out what the hero sees and recalls;
+   the decision and the words stay the player's («Где искать — решай»). Turn 18:
    «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
    The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
 
@@ -374,7 +376,12 @@ The owner's notes from the first play are added below by the planner before laun
     turns «чуть медленнее обычного» (tense negotiations) and could not tell why: show one quiet mark in the collapsed
     turn line when the DM thought deeper («⚡ думал глубже · 28 с»), nothing more. Also report per turn in the sandbox
     log: effort, first word, full turn, model requests, cache read share — to separate deep thinking from extra tool
-    rounds or cache misses. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
+    rounds or cache misses. The owner feels turns slowing down slightly as the campaign grows (turn 23). Likely
+    cause to check first: layer 3 (the dossier: codex, journal, character models, plans, notebook) changes almost
+    every turn, so its cache breaks every turn and the uncached part grows with the campaign. Measure cache read share
+    per turn on the sandbox campaign; if it falls with the turn number, split layer 3 into a stable part (world,
+    people's core models, older journal) and a small «this session's changes» tail placed after the cache breakpoint,
+    and refresh the stable part only at session end or when a budget threshold is crossed. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
   - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
     opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
     above.)
