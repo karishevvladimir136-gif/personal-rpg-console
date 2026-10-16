@@ -146,6 +146,16 @@ The owner's notes from the first play are added below by the planner before laun
   вы дома» (with «Общий тайник кампании»), «Изменить / Исправить записи» («Перемещение и расчёт маршрута не
   подключены»), «Инструменты «что, если»». The player's map is the map, the place card on tap and «Наметить курс»;
   holdings go to «Лагерь/Имущество», editing and placement to the «Редактор кампании», «что, если» to the library.
+- **«Что, если» (Мастерская мира) — leave the feature, fix the entry.** It is the original repo's What-If / D2B lab
+  (a non-canon branch of the world from a saved moment), kept for the research track and a later stage; not part of
+  this polish beyond: (a) the «Ещё» menu items open it as a separate screen with its own wording — fine, but it must
+  not appear inside the map; (b) its start point reads «After Astra-primary takeover» — an internal label; show the
+  turn or save in words («после хода 3, Кабак Марты»); (c) say in one line what it costs and that the campaign is
+  untouched before the first paid call. A full review of the lab comes with its own stage.
+- **The «Ещё» menu** (Сессии, Сейвы, Хроника и линии времени, Мастерская мира, Чат с ведущим, Галерея, Визуальная
+  библия): keep it as the place for secondary screens, but each opens a page in the same look as the main ones, with
+  one plain sentence of what it is for. «Визуальная библия» and «Галерея» overlap with the Stage V picture workshop —
+  merge into one «Картинки» page.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
