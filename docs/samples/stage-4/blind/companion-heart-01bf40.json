@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Companion heart-to-heart",
+  "description": "A drover joins the party, then the player talks to her by the fire about what she wants and fears. Companion-mode turns after the first.",
+  "createdAt": "2026-10-16T01:08:25.443Z",
+  "commit": "a75210f",
+  "run": "20261016-010139-blind",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "outcome": "committed",
+      "narration": "The young drover shifts the coil of rope on her shoulder.\n\n“Company would suit me,” Tamsin says. “But I’m working along the way. If you’re after a brisk walk with no stops, I’ll disappoint you.”\n\nShe stands beside the notice board, leaving room for someone else to read it. One boot has a fresh repair across the toe; she tests that foot against the cobbles before looking back at you.\n\n“I’m going as far as the east pasture to collect two cattle. You’re welcome to walk with me that far.” She offers a hand. “Tamsin. What should I call you?”",
+      "firstWordMs": 2954,
+      "durationMs": 37982,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 34258,
+        "output": 1243,
+        "cached": 22217,
+        "cacheWrite": 12032,
+        "reasoning": 518,
+        "estimated": false
+      },
+      "cacheReadShare": 0.649,
+      "costUsd": 0.23486,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin recorded as a companion",
+          "Place recorded: East pasture",
+          "Tamsin's character notes started",
+          "2 minutes pass (Introductions and arranging to share the road with Tamsin.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "198fbfd5c714"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "a37c437ea7ba"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "h2",
+      "input": "Tamsin, why are you really on this road? You don't look like someone chasing herd money.",
+      "outcome": "committed",
+      "narration": "Tamsin lets her offered hand fall. She glances down at the repair across her boot, then back at you.\n\n“Don’t I? I’ll tell the cobbler. He charged me as though I was.”\n\nThere’s a hint of a smile, but she makes no move to leave the notice board.\n\n“I’m collecting two cattle. That’s the truth. A pair’s work, same as a whole herd—just worse pay.”\n\nShe shifts the rope to her other shoulder.\n\n“I’d like steadier work than picking up whatever’s going. But I’ve got this job today, and someone’s expecting me to do it.” Her tone stays conversational. “What makes you think there’s something else?”",
+      "firstWordMs": 2764,
+      "durationMs": 16094,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 12706,
+        "output": 686,
+        "cached": 9682,
+        "cacheWrite": 3021,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.762,
+      "costUsd": 0.08177,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin updated",
+          "Tamsin's character notes updated",
+          "1 minutes pass (A brief exchange beside the notice board about Tamsin's work and reasons for travelling.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 723,
+          "hash": "b29cd7901746"
+        },
+        {
+          "index": 3,
+          "tokens": 1924,
+          "hash": "1624eb97947f"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h3",
+      "input": "Tamsin, if it goes bad at the coast, what do you want me to do?",
+      "outcome": "committed",
+      "narration": "“The coast?” Tamsin looks puzzled. “I’m going to the east pasture. Have you got trouble waiting somewhere?”\n\nShe settles the rope more securely on her shoulder.\n\n“If you mean what I’d want if we got into trouble together—don’t make it worse trying to look brave. Give me a shout before you run, and I’ll do the same. If an animal gets loose, leave the catching to me unless I ask. Getting trampled isn’t a favour.”\n\nHer tone softens a little, though the puzzled look remains.\n\n“But I haven’t agreed to go to the coast with you. I don’t even know your name yet.” She pauses. “What do you think might go bad?”",
+      "firstWordMs": 2526,
+      "durationMs": 19048,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 25863,
+        "output": 822,
+        "cached": 22217,
+        "cacheWrite": 3640,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.859,
+      "costUsd": 0.10888,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin updated",
+          "Tamsin's character notes updated",
+          "1 minutes pass (Tamsin answers the question about trouble at the coast and asks what the stranger means.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 903,
+          "hash": "a4a03d2ac741"
+        },
+        {
+          "index": 3,
+          "tokens": 1715,
+          "hash": "fc242aec7d6d"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.42551,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

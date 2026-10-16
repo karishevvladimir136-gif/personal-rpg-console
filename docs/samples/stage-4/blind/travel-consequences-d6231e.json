@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "scene": "travel-consequences",
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:07:59.186Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "cheat",
+      "input": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "outcome": "committed",
+      "narration": "The organiser is a broad man with ink up to the second knuckle. He goes on pinning a fresh notice to the board, holding three more tacks in his teeth. When Rowan mentions dice he takes the tacks out and laughs through his nose.\n\n\"A game? Why not. Carters won't be in for an hour yet.\" He reaches under the trestle by the board and pulls out a leather cup, worn shiny at the lip, with three yellowed bone dice inside. He rattles it once. \"My cup and my bones, though. Twenty years of strangers at this board taught me that. A man who brings his own dice usually brings them for a reason.\" He says it pleasantly enough, but his eyes stay on Rowan's hands a beat longer than they need to.\n\nHe sets the cup down on the trestle between two stacks of notices and puts a single silver piece beside it. \"Stakes go on the board before the bones roll. That's how we do it here. What are you putting up?\"\n\nRowan's purse is empty, and he has no loaded die anywhere on him. All he carries is the compass, a cold weight in his coat. The organiser waits, thumb resting on his coin, still friendly but paying close attention now.",
+      "firstWordMs": 12675,
+      "durationMs": 30014,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 18190,
+        "output": 2707,
+        "cached": 16684,
+        "cacheWrite": 1502,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.917,
+      "costUsd": 0.065,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "item",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "item",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Wendel Marsh updated",
+          "Wendel Marsh gets leather dice cup with bone dice",
+          "Wendel Marsh's character notes started",
+          "DM note updated",
+          "5 minutes pass (Proposing dice while the organiser sorts the notices)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "602197bd7a68"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "a535b4c1c96a"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "travel",
+      "input": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "outcome": "committed",
+      "narration": "Rowan looks at the silver piece and the worn cup, then leaves both where they are. Wendel watches him go without a word. After a moment he picks up his coin, puts the tacks back between his teeth and turns back to the board, the way a man does who has seen plenty of strangers change their minds.\n\nThe road east is packed clay between hedges at first. By noon the hedges give way to open heath under a pale sky that doesn't promise much. It's a two-day walk with an empty purse, an empty belly and nothing in his coat but a compass. Rowan has to live off what the roadside offers and find somewhere to lie down that won't soak him through by morning.",
+      "firstWordMs": 9796,
+      "durationMs": 34248,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 44426,
+        "output": 2830,
+        "cached": 38297,
+        "cacheWrite": 6123,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.862,
+      "costUsd": 0.0949,
+      "tools": {
+        "proposed": [
+          "roll",
+          "resource",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "resource",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20+2: 4 vs 13 — failure",
+          "Rowan: exhaustion 0 → 2/5 (Two days on the road with no food and two cold, wet nights)",
+          "Place recorded: Marrow Ford",
+          "Wendel Marsh's character notes updated",
+          "DM note updated",
+          "The party travels to Marrow Ford (2880 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 658,
+          "hash": "7c0d15d5ee2c"
+        },
+        {
+          "index": 3,
+          "tokens": 2282,
+          "hash": "1708ae8812fb"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.1599,
+    "committed": 2,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

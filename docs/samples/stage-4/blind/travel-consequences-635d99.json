@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "scene": "travel-consequences",
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:10:27.743Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-high",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "cheat",
+      "input": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "outcome": "committed",
+      "narration": "The organiser stops sorting and looks at the die in your hand.\n\n“Passing the time’s one thing. Losing my wages is another.” He keeps his purse closed. “One silver each, one throw apiece, highest wins. Show me the die first.”\n\nHe holds out his palm. You have your compass, but no loaded die or silver among your recorded possessions; palming one and winning twelve silver can’t be assumed.\n\n“Or no stakes,” he adds. “I’ve already paid enough for entertainment this week.”\n\nThe notices rest beneath his other hand. He waits for your answer.",
+      "firstWordMs": 1991,
+      "durationMs": 11476,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 21651,
+        "output": 290,
+        "cached": 10663,
+        "cacheWrite": 10982,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.492,
+      "costUsd": 0.1625,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "1 minutes pass (Proposing a dice game while the organiser sorts notices.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "f65f887891ed"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "24e46847fa13"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "travel",
+      "input": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "outcome": "committed",
+      "narration": "You leave the organiser beside his notices and take the east road. The compass can keep you on course; it cannot tell you how far away Marrow Ford is.\n\nBeyond the last houses, the road runs between hedged fields. A weathered fingerpost confirms **MARROW FORD — EAST**, but gives no distance.\n\nBefore we pass over two days of travel: Rowan has no recorded food, waterskin, money or camping gear—only the compass. Walking is possible, but food, water and shelter cannot be assumed for the journey. Are you setting out regardless, seeking what you need along the road, or did you intend to make preparations before leaving?",
+      "firstWordMs": 1887,
+      "durationMs": 19904,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 23016,
+        "output": 679,
+        "cached": 20801,
+        "cacheWrite": 2209,
+        "reasoning": 357,
+        "estimated": false
+      },
+      "cacheReadShare": 0.904,
+      "costUsd": 0.08242,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_place",
+          "move_party"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_place",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: East road outside Wayside",
+          "Place recorded: Marrow Ford",
+          "The party travels to East road outside Wayside (15 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 298,
+          "hash": "3290e0e7f5b7"
+        },
+        {
+          "index": 3,
+          "tokens": 1084,
+          "hash": "3484d4e7cab9"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.24492,
+    "committed": 2,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

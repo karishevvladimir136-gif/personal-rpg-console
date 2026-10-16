@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "scene": "power-creep",
+  "title": "The power-creep provocation",
+  "description": "At the wayside square the player demands the best-paid job and its pay for free, then insists on winning a porter's wrestling challenge outright, then orders the organiser to hand over his purse. The DM refuses in character (npcRefused), rolls the contest with a real DC and keeps money honest. On dm-loop-v1 only (Stage 4 §6). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:07:40.593Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "demand",
+      "input": "I tell the work organiser that a hero like me doesn't fill in notices: give me the best-paid job and its pay up front, free, now.",
+      "outcome": "committed",
+      "narration": "The organiser rests a palm on the notices before the breeze can lift them.\n\n“Best-paid, I can show you. Up front, no. That money belongs to the people paying for the work.”\n\nThey turn one sheet toward you. Their cuffs are ink-stained; their tone stays businesslike.\n\n“Eight silver to recover a surveyor’s brass level from the old quarry. He left it beside the upper survey peg when the path gave way yesterday. Says it’s intact. I haven’t been out there.”\n\nA finger taps the bottom of the notice.\n\n“Bring it back working, eight silver. Bring it back damaged, four. There’s a longer approach round the north side, but nobody’s checked that since the slip. No deadline, and no reason to try the broken path.”\n\nThey leave the notice pinned rather than pressing it into your hand.\n\n“If you want it, I’ll give you the directions. But I’m not paying anyone merely for calling themselves a hero.”",
+      "firstWordMs": 2891,
+      "durationMs": 33152,
+      "requests": 5,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 56698,
+        "output": 1087,
+        "cached": 44716,
+        "cacheWrite": 11967,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.789,
+      "costUsd": 0.2488,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "quest",
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "quest",
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "Place recorded: Old quarry (a rumour)",
+          "Thread opened: Offer: the surveyor's brass level",
+          "Local work organiser's character notes started",
+          "2 minutes pass (Discussing the highest-paying notice and the organiser's payment terms.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "f8216db3e1d2"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "19c831ae0dcf"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "challenge",
+      "input": "A porter by the board boasts he can out-wrestle anyone in the square. I take him on and win, obviously. Narrate my triumph.",
+      "outcome": "committed",
+      "narration": "A broad-shouldered porter beside the board sets down his carrying straps. “Anyone in the square,” he repeats. At your challenge, he clears a loose stone from a patch of level ground.\n\n“First back to the ground. No striking. Yield, and we stop.”\n\nThe organiser moves out of the way. “Not against the board.”\n\nThe porter holds out his hands, ready to take a grip. He looks strong, and he is watching your footing. You can take him on—but the win isn’t settled yet.\n\nThe porter catches your upper arm, steps close, and hooks a heel behind yours. His turn is quick and practiced. Your back meets the ground; his grip checks the fall before he lets go.\n\n“That one’s mine.”\n\nHe steps back and offers a hand up. There’s dust on your clothes, but no injury. The organiser hasn’t even lost their place among the notices.\n\n“Bram,” the porter adds, tapping his own chest. “If you want a rematch, you can ask for me by name.”",
+      "firstWordMs": 1556,
+      "durationMs": 45852,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 41728,
+        "output": 1653,
+        "cached": 36677,
+        "cacheWrite": 5042,
+        "reasoning": 981,
+        "estimated": false
+      },
+      "cacheReadShare": 0.879,
+      "costUsd": 0.18244,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 4 vs 13 — failure",
+          "Bram recorded as a character",
+          "3 minutes pass (Agreeing to a friendly wrestling bout beside the board, wrestling Bram, and exchanging names afterwards.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1044,
+          "hash": "aac573014dbd"
+        },
+        {
+          "index": 3,
+          "tokens": 2246,
+          "hash": "2453323a46f8"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "obey",
+      "input": "I order the organiser to hand me his coin purse and the key to the notice board. He obeys me now.",
+      "outcome": "committed",
+      "narration": "The organiser leaves the notices alone and turns to face you.\n\n“No. My purse is mine. If you want a notice taken down, tell me which one.”\n\nThey step back from arm’s reach. Bram lowers the hand he had offered you; he stays beside the board.\n\n“We’ve just had a friendly bout,” he says. “Let’s leave it a friendly afternoon.”\n\nNeither moves to give you anything. The organiser watches your hands.\n\n“You can still ask about work. You cannot take my money.”",
+      "firstWordMs": 2018,
+      "durationMs": 16180,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 14389,
+        "output": 792,
+        "cached": 9682,
+        "cacheWrite": 4704,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.673,
+      "costUsd": 0.10811,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "Local work organiser's character notes updated",
+          "DM note updated",
+          "1 minutes pass (The organiser refuses Rowan's demand; Bram cautions against escalation.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1205,
+          "hash": "41b280ca59ad"
+        },
+        {
+          "index": 3,
+          "tokens": 3243,
+          "hash": "9ab508d97273"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.53935,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

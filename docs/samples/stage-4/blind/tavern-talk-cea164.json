@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 1,
+  "scene": "tavern-talk",
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "createdAt": "2026-10-16T01:06:52.045Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-medium",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "medium"
+  },
+  "turns": [
+    {
+      "step": "t1",
+      "input": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "outcome": "committed",
+      "narration": "The nearest inn is only a short walk from the square: a low, limewashed building with a copper kettle painted on its sign. Rain ticks against the windows; warm light spills beneath the door.\n\nInside, wet wool and woodsmoke mingle with the smell of onions cooking in butter. Your cloak sheds a small shower onto the entrance mat.\n\n“Mind the cat,” says the woman behind the counter. A ginger shape tucked beside the hearth opens one eye.\n\nThe innkeeper lifts the lid of a blackened pot.\n\n“Barley stew, leeks and smoked ham. Two coppers with bread. Hot cider’s another copper.” She sets the lid down and wipes her hand on her apron. “If you meant gossip, that’s free, but the stew’s more reliable.”\n\nShe nods toward the hearth, where an empty chair stands beside a rack of drying stockings.\n\n“Warm yourself first. Supper?”",
+      "firstWordMs": 1834,
+      "durationMs": 16724,
+      "requests": 3,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 32908,
+        "output": 471,
+        "cached": 21689,
+        "cacheWrite": 11210,
+        "reasoning": 32,
+        "estimated": false
+      },
+      "cacheReadShare": 0.659,
+      "costUsd": 0.18545,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_character",
+          "move_party"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_character",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: The Copper Kettle",
+          "Copper Kettle innkeeper recorded as a character",
+          "The party travels to The Copper Kettle (5 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "8f2a244a5ae3"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "229e20868752"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "t2",
+      "input": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "outcome": "committed",
+      "narration": "“Honest work? Yes. Dry work? Less of it.”\n\nThe innkeeper rests her hands on the counter.\n\n“The organiser at the square keeps the week’s jobs. With this rain, I’d ask whether the road crews need another pair of hands. Don’t let anyone send you out without settling the pay first.”\n\nShe glances toward a door behind the bar.\n\n“I’ve something smaller here. My cellar delivery got stacked in front of the shelves instead of on them. Crates to shift, bottles to check, floor to sweep. About an hour, if you’re careful. Four coppers, or two and that supper. Nothing with a broken seal gets opened.”\n\nThe cat stretches one paw toward the hearth.\n\n“You looking for tonight’s bread, or several days’ wages?”",
+      "firstWordMs": 1972,
+      "durationMs": 12145,
+      "requests": 1,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 11615,
+        "output": 554,
+        "cached": 9682,
+        "cacheWrite": 1930,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.834,
+      "costUsd": 0.06154,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "quest",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "quest",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Copper Kettle innkeeper updated",
+          "Quest taken: An hour in the Kettle cellar",
+          "2 minutes pass (Asking the innkeeper about honest local work.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 354,
+          "hash": "4073eba4b3db"
+        },
+        {
+          "index": 3,
+          "tokens": 1481,
+          "hash": "f1c7d692007e"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t3",
+      "input": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "outcome": "committed",
+      "narration": "The innkeeper pauses with her hand on the cellar door as you raise your cup.\n\nThe room quiets by degrees. Someone near the window turns to listen; the ginger cat does not.\n\nAt the punchline, a laugh breaks from the hearthside table. The innkeeper presses her lips together, fails to keep a straight face, and shakes her head.\n\n“I’ve dealt with goats,” she says. “That part I believe.”\n\n“Which part?” calls someone by the window.\n\n“The reeve being outwitted.”\n\nThat earns another chuckle. A chair scrapes a little farther from the hearth, leaving room for another person at the table.\n\nThe innkeeper turns back to you, still smiling. “Well, the cellar won’t applaud, but it does pay. Offer stands when you’re ready.”",
+      "firstWordMs": 1506,
+      "durationMs": 9044,
+      "requests": 1,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 12320,
+        "output": 315,
+        "cached": 9682,
+        "cacheWrite": 2635,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.786,
+      "costUsd": 0.0584,
+      "tools": {
+        "proposed": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "3 minutes pass (Rowan tells the room a joke about the reeve and the goat.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 546,
+          "hash": "05872bfd3d59"
+        },
+        {
+          "index": 3,
+          "tokens": 2015,
+          "hash": "e2b69648321e"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.30539,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

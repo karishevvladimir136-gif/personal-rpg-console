@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Companion heart-to-heart",
+  "description": "A drover joins the party, then the player talks to her by the fire about what she wants and fears. Companion-mode turns after the first.",
+  "createdAt": "2026-10-16T01:02:55.167Z",
+  "commit": "a75210f",
+  "run": "20261016-010139-blind",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.",
+      "outcome": "committed",
+      "narration": "Tamsin is crouched by the trough at the edge of the square, checking a bullock's hoof. She's maybe seventeen, wind-burned, with a hazel goad tucked under one arm and five more beasts standing in a patient, steaming line behind her. When you ask, she looks you over first: boots, pack, the brass glint of the compass at your belt.\n\n\"Harrowford,\" she says. \"Market's the day after tomorrow, and that's a day and a bit at their pace.\" She jerks her chin at the cattle. \"My brother usually walks the back of the line. He's laid up with a cracked rib, so...\" She shrugs. \"Yes. Company's welcome. The Fennick road's quiet, and I don't love quiet.\"\n\nShe stands and wipes her hands on her coat. \"Two things, though. You walk at the back, and if one of them makes for a ditch, you turn it. Don't chase it. And I'm not paying you. Da counts every coin these six bring in.\" There's a flicker of a grin. \"Share my fire and my bread, though. That I can do.\"\n\nBehind you the work organiser is pinning a fresh notice to the board. Tamsin follows your glance. \"If you're after work, Harrowford's got more of that than here. But I'm leaving within the hour. Herd won't wait.\"",
+      "firstWordMs": 12061,
+      "durationMs": 30222,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 18160,
+        "output": 2782,
+        "cached": 16684,
+        "cacheWrite": 1472,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.919,
+      "costUsd": 0.06635,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin recorded as a companion",
+          "Place recorded: Harrowford (a rumour)",
+          "Tamsin's character notes started",
+          "DM note updated",
+          "10 minutes pass (Talking with Tamsin by the trough)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "1add05c318fe"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "af9ffb94305c"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h2",
+      "input": "Tamsin, why are you really on this road? You don't look like someone chasing herd money.",
+      "outcome": "committed",
+      "narration": "Tamsin doesn't answer right away. She runs a palm down the near bullock's foreleg, lifts the hoof, picks a stone out of the cleft with her thumbnail and flicks it into the trough. Only then does she look at you, and she takes her time about it.\n\n\"Don't look like it,\" she repeats. \"What's herd money look like, then?\" The crooked grin shows up, but it doesn't reach her eyes. \"You read people the way you read that compass?\"\n\nShe lets the hoof down and slaps the beast's shoulder. It shifts its weight and goes back to steaming.\n\n\"It *is* the herd money. Da needs it before the hay's bought, and that's the truth of it.\" She takes the goad from under her arm and turns it in her hands. \"But you're half right. Jory does the selling, every year. Walks in, shakes hands, comes home with the purse. Da said wait till his rib's knit, sell next month.\" She shrugs, too casually. \"Next month the price drops and the hay goes up. So I said I'd take them. He said I'm seventeen. I said Jory was sixteen his first time.\"\n\nShe jerks her chin down the road, where it runs flat and empty between the hedges.\n\n\"So that's why. I get six bullocks to Harrowford whole and sell them for what they're worth, and nobody says *wait for your brother* again.\" She looks back at you, flat and even. \"Your turn, compass. Nobody walks the Fennick road for the view.\"",
+      "firstWordMs": 5926,
+      "durationMs": 21518,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 21994,
+        "output": 1851,
+        "cached": 16684,
+        "cacheWrite": 5306,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.759,
+      "costUsd": 0.0669,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "Tamsin updated",
+          "10 minutes pass (Talking with Tamsin while she checks the herd before setting off)",
+          "Your moment: describe how you do it"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 740,
+          "hash": "ce5fd2af85d3"
+        },
+        {
+          "index": 3,
+          "tokens": 2375,
+          "hash": "6d6e1bfcd838"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h3",
+      "input": "Tamsin, if it goes bad at the coast, what do you want me to do?",
+      "outcome": "committed",
+      "narration": "Tamsin's brows go up. She looks at you, then down the road, flat and empty between the hedges, then back at you.\n\n\"Coast?\" She says it the way you'd repeat a price you didn't believe. \"Road goes to Harrowford, compass. Harrowford's a river town. You'd want another four days west and a boat before you smelled salt.\" She tilts her head. \"Unless that's where *you're* going after. That your answer to my question? Because it's a poor one.\"\n\nShe waits a moment. You don't fill the silence, so she grunts and lets it go. For now.\n\n\"Fine. If it goes bad *between here and Harrowford*...\" She ticks it off on her fingers with the goad tucked under her arm. \"Beast goes lame, you tell me. Don't try to fix it yourself. One bolts, you turn the rest and let me fetch it. Somebody on the road wants what isn't theirs...\" She hesitates, and for half a breath she looks seventeen. \"You stand next to me and look bigger than you are. Most of them only want to know it's not easy.\"\n\nShe pulls her coat straight.\n\n\"What I *don't* want is you running off after something and leaving me five beasts and a gap at the back. You said you'd walk the line. You walk it.\" The crooked grin comes back, a little thinner than before. \"And sometime before the fire tonight, you tell me what's at this coast of yours. That's the bread's price.\"\n\nShe whistles low, and the lead bullock lifts its head.",
+      "firstWordMs": 4882,
+      "durationMs": 20233,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 23795,
+        "output": 1891,
+        "cached": 16684,
+        "cacheWrite": 7107,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.701,
+      "costUsd": 0.07671,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tamsin's character notes updated",
+          "DM note updated",
+          "5 minutes pass (Talking with Tamsin by the trough before setting off)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 962,
+          "hash": "7fb463819c8b"
+        },
+        {
+          "index": 3,
+          "tokens": 3394,
+          "hash": "816d4b5c933a"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.20996,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

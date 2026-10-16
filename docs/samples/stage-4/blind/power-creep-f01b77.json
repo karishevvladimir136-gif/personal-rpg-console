@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 1,
+  "scene": "power-creep",
+  "title": "The power-creep provocation",
+  "description": "At the wayside square the player demands the best-paid job and its pay for free, then insists on winning a porter's wrestling challenge outright, then orders the organiser to hand over his purse. The DM refuses in character (npcRefused), rolls the contest with a real DC and keeps money honest. On dm-loop-v1 only (Stage 4 §6). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:03:44.872Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "demand",
+      "input": "I tell the work organiser that a hero like me doesn't fill in notices: give me the best-paid job and its pay up front, free, now.",
+      "outcome": "committed",
+      "narration": "The organiser is a broad woman in a waxed coat with chalk dust worked into the creases of her knuckles. She finishes the line she is writing on her slate before she looks up. She looks at your boots first, then the compass, then your face.\n\n\"Hero,\" she repeats, as if she's weighing the word on a grocer's scale. \"Last hero who wanted paying before working had a very fine sword. He took three silver off me for the mill-race job. The mill-race is still blocked. I expect the sword's been sold.\"\n\nShe taps the board with the corner of her slate. \"Nobody here gets paid for standing around. Not me, not the carters, not you. There's one thing I can give you free: tell the stall by the trough that Ilse sent you and they'll give you a bowl of barley. That's the end of free.\"\n\nShe doesn't turn away a possible worker either. \"Best-paid notice is that one.\" It's a sheet held up by a bent nail, the ink smeared by rain. \"Dorran's salt wagons need a guide across the Greywater flats. The storm took the marker poles, and he's already lost a mule in the mud. Twelve silver, paid on the far side by Dorran himself. Nothing up front. He leaves at first light, guide or no guide.\"\n\nShe looks at the compass on your belt again, a little longer this time.\n\n\"So. Can you actually use that, or is it for show?\"",
+      "firstWordMs": 26258,
+      "durationMs": 43562,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 18164,
+        "output": 3856,
+        "cached": 16684,
+        "cacheWrite": 1476,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.919,
+      "costUsd": 0.08785,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Ilse Tanner updated",
+          "Dorran recorded as a character",
+          "Place recorded: Greywater flats (a rumour)",
+          "Ilse Tanner's character notes started",
+          "DM note updated",
+          "5 minutes pass (Talking with Ilse at the notice board)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "325d7fb7daec"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "e4db177501ad"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "challenge",
+      "input": "A porter by the board boasts he can out-wrestle anyone in the square. I take him on and win, obviously. Narrate my triumph.",
+      "outcome": "committed",
+      "narration": "A broad-backed porter is leaning on the board's post with a sack of salt over one shoulder like it weighs nothing, telling the lantern-lit square that nobody here could put him down. The carters loading for the dawn run have clearly heard this before. When you step up and take him on, a cheer goes up, half of it mocking. He drops the sack and grins. His teeth are worse than his grip is likely to be.\n\n\"Osk,\" he says, and offers a hand the size of a shovel blade. \"First to the dirt. No biting.\"\n\nIlse doesn't stop writing, but she turns so she can see.\n\nYou close with him.",
+      "firstWordMs": 12246,
+      "durationMs": 45492,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 45884,
+        "output": 3956,
+        "cached": 38941,
+        "cacheWrite": 6937,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.849,
+      "costUsd": 0.12162,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 4 vs 14 — failure",
+          "Osk recorded as a character",
+          "Osk's character notes started",
+          "Ilse Tanner's character notes updated",
+          "DM note updated",
+          "10 minutes pass (A wrestling bout with Osk the porter in the square)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 829,
+          "hash": "bb555367cb2a"
+        },
+        {
+          "index": 3,
+          "tokens": 2558,
+          "hash": "4282bd73ca88"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "obey",
+      "input": "I order the organiser to hand me his coin purse and the key to the notice board. He obeys me now.",
+      "outcome": "committed",
+      "narration": "Your shoulder still throbs where Osk put you in the packed dirt a few minutes ago, and the carters are still grinning about it over their tailboards. So when you turn on Ilse and order her to hand over her purse and the key to the board, the words don't carry far past the lantern light.\n\nShe finishes the line on her slate. Then she looks at you properly, the way she'd look at a cart with a cracked axle.\n\n\"It's a board,\" she says. \"It has nails. Nobody's ever needed a key for a nail.\" She tucks the slate under her arm. Her free hand doesn't go anywhere near her coat. \"And my purse is mine. I earned what's in it the slow way.\"\n\nBehind you, a sack of salt thumps down. Osk doesn't come any closer. He just stops loading, and so do the two carters nearest him.\n\n\"Ground's soft tonight, friend,\" he says, without much of a grin. \"Don't go looking for more of it.\"\n\n\"That's twice tonight you've asked for something for nothing,\" Ilse says, quite level. \"There won't be a third time. If there is, Osk walks you to the road and I chalk your face on the slate so the next square hears about you too.\"\n\nShe jerks her chin at the smeared notice on its bent nail. \"Dorran still leaves at first light. If you want his twelve silver, go and ask him yourself. I'm not putting my name to you.\"\n\nThen she goes back to her chalk. You notice the barley stall by the trough is still lit.",
+      "firstWordMs": 33930,
+      "durationMs": 55201,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 22753,
+        "output": 5543,
+        "cached": 16684,
+        "cacheWrite": 6065,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.733,
+      "costUsd": 0.14454,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "note_world",
+          "quest",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [
+          {
+            "name": "quest",
+            "reason": "Only a quest (kind quest) carries reward terms."
+          }
+        ],
+        "summaries": [
+          "Ilse Tanner updated",
+          "Osk updated",
+          "Ilse Tanner's character notes updated",
+          "Osk's character notes updated",
+          "DM note updated",
+          "DM plan updated",
+          "5 minutes pass (A tense exchange with Ilse at the notice board)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1392,
+          "hash": "84d118664703"
+        },
+        {
+          "index": 3,
+          "tokens": 2530,
+          "hash": "341d256a69c6"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.35401,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "scene": "tavern-talk",
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "createdAt": "2026-10-16T01:03:32.616Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "t1",
+      "input": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "outcome": "committed",
+      "narration": "The rain follows Rowan off the square and down two crooked lanes until a lit window shows through it. A tin sign creaks over a low stone doorway, painted with a candle hanging from a hook: **the Tallow Hook**.\n\nInside, the air is thick with peat smoke and wet wool. Three late drinkers sit near the hearth, where a grey dog lies so close to the coals it ought to be smoking. Behind the counter a broad woman in her fifties, sleeves pushed past the elbow, is wiping down the last of the mugs. She watches Rowan's cloak drip onto her floorboards.\n\n\"What's hot,\" she repeats, sounding drily amused. \"At this hour? The bottom of the pot. Barley and mutton, on since noon, thick enough to stand a spoon in. Three coppers a bowl, bread with it. Cider's warming by the fire for two more.\" She puts the mug down. \"Coin first after midnight. Nothing personal. The last fellow ate twice and left through the privy window.\"\n\nAt the hearth, an old man in a drover's coat goes back to whatever he was complaining about, loud enough to carry. \"I'm telling you, the cairns on the moor road are half washed down. Ewan won't find the ford in this. Nobody's getting peat till it dries.\"\n\nThe innkeeper's eyes go to the black window, just for a moment, then back to Rowan. \"Well? Bowl or no bowl?\"",
+      "firstWordMs": 20364,
+      "durationMs": 45666,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 18166,
+        "output": 4459,
+        "cached": 16684,
+        "cacheWrite": 1478,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.918,
+      "costUsd": 0.09992,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "item",
+          "item",
+          "note_character",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "item",
+          "item",
+          "note_character",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: The Tallow Hook",
+          "Place recorded: Moor road (a rumour)",
+          "Odile Brask recorded as a character",
+          "Old drover recorded as a character",
+          "Odile Brask gets Bowl of barley-and-mutton stew ×4",
+          "Odile Brask gets Mug of mulled cider ×6",
+          "Odile Brask's character notes started",
+          "DM note updated",
+          "DM plan updated",
+          "The party travels to The Tallow Hook (10 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "3400394a4bec"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "24bdf9d07308"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t2",
+      "input": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "outcome": "committed",
+      "narration": "The innkeeper is the nearest. She hears the question out without putting down her mug.\n\n\"Asking about work before you've answered about the bowl.\" Her eyes go to Rowan's hands, then to the boots. \"That usually tells me how the bowl goes.\" She sets the mug on the shelf and picks up another. \"The board on the square has what it has. Ditching, after this rain. Somebody's wall came down on Fenwick Lane. Pays in coppers and complaints.\"\n\n\"Honest work,\" the old drover snorts, twisting round in his chair by the hearth. \"There's a man sitting out on the moor in the pitch dark with a cartload of peat. That's honest. Go and fetch him.\"\n\n\"Hob.\" She says only his name, and says it flat.\n\n\"Ah, Odile, it's true and you know it.\"\n\nShe wipes the new mug for longer than it needs. \"Ewan Dray. He carts my peat down from the cuttings. Should've been in by dark.\" This time she doesn't look at the window, and that says almost as much. \"I'm not asking anyone to go up there tonight. The cairns are down, the ford's high, and I don't need two lost men. At first light I'll send the Corrie lads.\" She pauses. \"But if somebody walked in tomorrow with Ewan and the cart both, that's a silver, plus a bed and supper. Nothing personal. That's just what it's worth to me.\"\n\nHob mutters into his cup. \"What you need is someone who can find north with no stars out.\"\n\nBy the coals, the grey dog sighs in its sleep.",
+      "firstWordMs": 30029,
+      "durationMs": 46163,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 23113,
+        "output": 4364,
+        "cached": 16684,
+        "cacheWrite": 6425,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.722,
+      "costUsd": 0.12276,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "quest",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "quest",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Odile Brask updated",
+          "Old Hob updated",
+          "Ewan Dray recorded as a character",
+          "Quest taken: Ewan and the peat cart (reward: 1 silver, Plus a bed and supper at the Tallow Hook.)",
+          "Odile Brask's character notes updated",
+          "5 minutes pass (Talk at the counter about work)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 911,
+          "hash": "8b800c3cf57e"
+        },
+        {
+          "index": 3,
+          "tokens": 2904,
+          "hash": "dc129a8b626c"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t3",
+      "input": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "outcome": "committed",
+      "narration": "Rowan lifts a hand to the room as if there's a cup in it. There isn't. The only thing Rowan has bought at the Tallow Hook so far is floor space for a wet cloak.\n\nOdile notices. Her eyes go from the empty fingers to Rowan's face, and her mouth stays flat. \"Toasting with air. Bold.\" She keeps wiping the mug. \"Go on, then.\"\n\nThe three drinkers at the hearth turn in their chairs. Hob folds his arms over his coat as if he's heard every joke on the moor and paid for none of them. Rowan starts on the reeve and the goat.",
+      "firstWordMs": 14784,
+      "durationMs": 41596,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 55650,
+        "output": 3475,
+        "cached": 43715,
+        "cacheWrite": 11929,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.786,
+      "costUsd": 0.13791,
+      "tools": {
+        "proposed": [
+          "roll",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2",
+          "Odile Brask's character notes updated",
+          "DM note updated",
+          "10 minutes pass (A botched joke, and Hob telling it properly)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1459,
+          "hash": "a6fe501f1692"
+        },
+        {
+          "index": 3,
+          "tokens": 4637,
+          "hash": "300909837b78"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.36059,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

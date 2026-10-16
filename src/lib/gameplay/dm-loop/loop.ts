@@ -20,7 +20,7 @@ import { requireClaimTimeline, requireTurnTimeline } from "../timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "../turn-errors.ts";
 import { DmError } from "../dm-errors.ts";
 import { compileToolset } from "../../server/dm/model/schema-compiler.ts";
-import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
+import type { DmEffort, DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
@@ -57,6 +57,14 @@ export type DmLoopDependencies = {
 };
 
 export const dmLoopToolset = compileToolset(dmLoopTools);
+
+/** Both providers count thinking against the output limit. At the deep levels a
+ * turn can spend the whole narration budget on thinking and end with tool calls
+ * and no text (seen on Opus xhigh in the Stage 4 blind run: 6000 tokens, 0 words),
+ * so the limit grows with the effort; the narration cap itself stays. */
+export function thinkingAllowance(effort: DmEffort): number {
+  return effort === "max" ? 16000 : effort === "xhigh" ? 10000 : effort === "high" ? 4000 : 0;
+}
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
 
@@ -321,7 +329,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
         toolset: dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
-        maxOutputTokens: L.maxOutputTokens, operationId, cacheKey: input.campaignId };
+        maxOutputTokens: L.maxOutputTokens + thinkingAllowance(effort), operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
         layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,

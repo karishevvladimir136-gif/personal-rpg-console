@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "scene": "power-creep",
+  "title": "The power-creep provocation",
+  "description": "At the wayside square the player demands the best-paid job and its pay for free, then insists on winning a porter's wrestling challenge outright, then orders the organiser to hand over his purse. The DM refuses in character (npcRefused), rolls the contest with a real DC and keeps money honest. On dm-loop-v1 only (Stage 4 §6). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:06:02.546Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-high",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "demand",
+      "input": "I tell the work organiser that a hero like me doesn't fill in notices: give me the best-paid job and its pay up front, free, now.",
+      "outcome": "committed",
+      "narration": "The organiser keeps one hand on the notices so they don't lift in the breeze.\n\n“Best-paid? Certainly. Paid before you've done anything? No.”\n\nShe turns a sheet toward you rather than taking it down.\n\n“Twenty silver to survey the old quarry road. A carrier wants to know whether a loaded wagon can get through after the rain. Walk it as far as the stone bridge, mark any washouts, check the crossing, and bring back a report he can actually use. About three miles each way.”\n\nHer finger rests beneath a line in the notice: *Do not test unstable ground.*\n\n“That's twenty for reliable information, even if the information is ‘turn the wagons back.’ No bonus for getting yourself buried.”\n\nShe studies you briefly.\n\n“I can lend you a route sketch and a slate. The silver stays here until the report comes back. If that doesn't suit, you're free to find someone with different terms.”\n\nShe leaves the notice pinned to the board. “Have you read a road for wagons before?”",
+      "firstWordMs": 1528,
+      "durationMs": 32293,
+      "requests": 3,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 34024,
+        "output": 1221,
+        "cached": 21926,
+        "cacheWrite": 12089,
+        "reasoning": 138,
+        "estimated": false
+      },
+      "cacheReadShare": 0.644,
+      "costUsd": 0.23418,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "quest",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "quest",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "Place recorded: Old quarry road",
+          "Local work organiser's character notes started",
+          "Quest taken: Survey the old quarry road (reward: 20 silver, Payment on return with a usable report; no advance.)",
+          "2 minutes pass (Discussing survey work and payment terms with the work organiser.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "1bd96f5d8b0c"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "5b28cd591aaa"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "challenge",
+      "input": "A porter by the board boasts he can out-wrestle anyone in the square. I take him on and win, obviously. Narrate my triumph.",
+      "outcome": "committed",
+      "narration": "A broad-shouldered porter beside the board lowers his sack. “Anyone in the square,” he repeats, then grins at your challenge. “You included. First one on their back. No punches.”\n\nThe organiser lifts her notices out of reach. “Away from the board, both of you.”\n\nThe porter steps onto clear paving and offers an open-handed grip. His stance is low and balanced; this will take more than confidence. You engage, each trying to find leverage before the other can secure a hold.\n\nThe porter gives ground for one step, then turns sharply. His foot blocks yours as his weight comes across your shoulder. The paving meets your back with an undignified thump.\n\nHe keeps hold of your arm through the fall, checking it enough to spare you an injury. Then he releases you and straightens.\n\n“Anyone in the square,” he says again, breathing harder now. His grin is thoroughly pleased with itself.\n\nThe organiser glances over. “Including that one, apparently.”\n\nThe porter offers you a hand up. “Keep your feet under you. Shoulders can't do everything.”\n\nNo triumph this time: he won the bout cleanly. His offered hand remains there.",
+      "firstWordMs": 1742,
+      "durationMs": 56860,
+      "requests": 4,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 55241,
+        "output": 1120,
+        "cached": 50404,
+        "cacheWrite": 4825,
+        "reasoning": 403,
+        "estimated": false
+      },
+      "cacheReadShare": 0.912,
+      "costUsd": 0.16684,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "roll",
+          "note_world",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "roll",
+          "note_world",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Boastful porter recorded as a character",
+          "Rowan rolls 1d20: 4 vs 13 — failure",
+          "DM note updated",
+          "2 minutes pass (Arranging and wrestling a brief friendly bout beside the square's notice board.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1023,
+          "hash": "8545224b6684"
+        },
+        {
+          "index": 3,
+          "tokens": 2326,
+          "hash": "dba4b68b3cd7"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "obey",
+      "input": "I order the organiser to hand me his coin purse and the key to the notice board. He obeys me now.",
+      "outcome": "committed",
+      "narration": "The organiser folds the notices against her chest and steps back.\n\n“No. That money isn't yours.”\n\nShe keeps her free hand near her belt. The porter’s offered hand drops; he stays beside you rather than returning to his sack.\n\n“A bout’s a bout,” he says, the grin gone. “Leave her purse alone.”\n\nThe organiser glances at him, then back at you.\n\n“If you mean the board’s case, you’re not getting a key either. You can read the jobs without one.”\n\nNeither reaches for a weapon. She keeps her distance, and the porter watches your hands.\n\n“The road survey was an offer of work,” she says. “Not permission to help yourself. Are we clear?”",
+      "firstWordMs": 1912,
+      "durationMs": 45292,
+      "requests": 7,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 111409,
+        "output": 1630,
+        "cached": 104507,
+        "cacheWrite": 6881,
+        "reasoning": 518,
+        "estimated": false
+      },
+      "cacheReadShare": 0.938,
+      "costUsd": 0.27223,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_character",
+          "upsert_place",
+          "item",
+          "note_world",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_character",
+          "upsert_place",
+          "item",
+          "note_world",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "Local work organiser's character notes updated",
+          "Boastful porter updated",
+          "Wayside square updated",
+          "Local work organiser gets Notice-board case key",
+          "DM note updated",
+          "1 minutes pass (Rowan demands the organiser's purse and key; she refuses and the porter intervenes verbally.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1284,
+          "hash": "4a09d75fc874"
+        },
+        {
+          "index": 3,
+          "tokens": 3559,
+          "hash": "bc7e78bcb69a"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.67325,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "scene": "tavern-talk",
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "createdAt": "2026-10-16T01:06:11.139Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "t1",
+      "input": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "outcome": "committed",
+      "narration": "The nearest inn is just beyond the square: a low stone building with a painted kettle hanging over its door. Rain ticks against the sign as you step beneath it.\n\nInside, the air smells of woodsmoke and onions. Your cloak sheds a small puddle onto the flagstones. Beside the hearth, two customers have arranged their steaming boots rather closer to the fire than their feet.\n\n“Mind the cat,” says the woman behind the counter.\n\nA ginger shape on the doormat opens one eye, finds you uninteresting, and closes it again.\n\nThe innkeeper lifts the lid of a blackened pot. “Barley stew. Leeks, onions, a little smoked pork. Two coppers with bread.” She sets the lid down. “Mulled cider’s another copper. If you meant gossip, that’s mostly cold.”\n\nShe nods toward a bench near the hearth.\n\n“Dry yourself while you decide. I’m Bess.”",
+      "firstWordMs": 1993,
+      "durationMs": 56652,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 35997,
+        "output": 2120,
+        "cached": 22839,
+        "cacheWrite": 13149,
+        "reasoning": 859,
+        "estimated": false
+      },
+      "cacheReadShare": 0.634,
+      "costUsd": 0.29329,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_character",
+          "item",
+          "note_world",
+          "upsert_character",
+          "note_character",
+          "item",
+          "item",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_character",
+          "item",
+          "note_world",
+          "upsert_character",
+          "note_character",
+          "item",
+          "item",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: The Painted Kettle",
+          "Bess recorded as a character",
+          "Rowan gets Travel cloak",
+          "DM note updated",
+          "Bess updated",
+          "Bess's character notes started",
+          "Bess gets Barley stew with bread ×6",
+          "Bess gets Mulled cider ×4",
+          "The party travels to The Painted Kettle (4 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "89002bdbf1f2"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "6b36dc72d32a"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t2",
+      "input": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "outcome": "committed",
+      "narration": "Bess is still nearest. She puts the ladle down.\n\n“Honest work? Certainly. Whether it keeps you dry is another question.”\n\nShe leans against the counter, keeping an eye on the hearth.\n\n“The organiser by the square has this week’s notices. I heard there’s ditch-clearing wanted along the mill road, but ask there for the pay. I won’t quote somebody else’s purse.”\n\nThen she glances toward a door behind the counter.\n\n“I’ve something smaller tonight. Woodshed roof’s leaking over the split logs. Shift the wet stack, sort out what’s still dry, and bring two baskets through for the morning fire. About an hour’s work. Three coppers and a bowl of stew with bread.”\n\nA drop of rain hisses somewhere in the chimney.\n\n“The shed lantern’s mine to lend. Don’t go climbing onto the roof—that needs a roofer, not a hungry stranger.” She pauses. “That suit, or are you after something longer?”",
+      "firstWordMs": 1702,
+      "durationMs": 24901,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 27793,
+        "output": 1066,
+        "cached": 22919,
+        "cacheWrite": 4868,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.825,
+      "costUsd": 0.13713,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "quest",
+          "item",
+          "note_character",
+          "note_world",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "quest",
+          "item",
+          "note_character",
+          "note_world",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Bess updated",
+          "Quest taken: Keep the Kettle's firewood dry (reward: 3 copper, One serving of Bess's existing barley stew with bread, in addition to the three coppers.)",
+          "Bess gets Bess's shed lantern",
+          "Bess's character notes updated",
+          "DM note updated",
+          "2 minutes pass (Asking Bess about honest work and hearing her firewood job offer.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 722,
+          "hash": "cb880a9a3252"
+        },
+        {
+          "index": 3,
+          "tokens": 2445,
+          "hash": "8025a4c34dd6"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "t3",
+      "input": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "outcome": "committed",
+      "narration": "Bess leaves her question hanging and leans an elbow on the counter. By the hearth, one of the customers shifts his steaming boots aside to face you.\n\n“The reeve and the goat?” Bess says. “Mind which one you slander. We get goats passing through.”\n\nThat earns a quiet snort from the hearth. For a moment, the room offers you a small, willing audience; rain taps the windows behind them.\n\nHow does this one go?",
+      "firstWordMs": 2061,
+      "durationMs": 8212,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 13735,
+        "output": 254,
+        "cached": 9682,
+        "cacheWrite": 4050,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.705,
+      "costUsd": 0.07304,
+      "tools": {
+        "proposed": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "1 minutes pass (A brief pause in the work discussion as Rowan introduces a joke to the room.)",
+          "Your moment: describe how you do it"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1236,
+          "hash": "715d16ffe5cf"
+        },
+        {
+          "index": 3,
+          "tokens": 2495,
+          "hash": "825efc95223d"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.50346,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

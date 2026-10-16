@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 1,
+  "scene": "tavern-talk",
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "createdAt": "2026-10-16T01:04:38.520Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-high",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "t1",
+      "input": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "outcome": "committed",
+      "narration": "The nearest inn announces itself with a lit window and the smell of onions frying. It’s only a short walk from the square: a low building with **The Copper Kettle** painted above the door.\n\nRain patters from your cloak onto a flagstone already crowded with wet footprints. Behind the counter, a broad-shouldered woman lifts a pot lid, letting steam escape around her wrist.\n\n“Barley stew with beef and turnips. Two coppers, bread included. Mulled cider’s another copper.” She gestures toward a peg beside the hearth. “Hang that there if you like. Mind the left-hand stool—it tips.”\n\nThe common room is quiet: two carters sharing a bench, someone mending a stocking by the fire. A pair of boots steams beneath the mantel.\n\n“I’m Bess,” the innkeeper adds, setting the lid down. “Hungry enough for a bowl?”",
+      "firstWordMs": 3056,
+      "durationMs": 29993,
+      "requests": 4,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 44998,
+        "output": 1007,
+        "cached": 33160,
+        "cacheWrite": 11826,
+        "reasoning": 240,
+        "estimated": false
+      },
+      "cacheReadShare": 0.737,
+      "costUsd": 0.23146,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: The Copper Kettle",
+          "Bess recorded as a character",
+          "Bess's character notes started",
+          "DM note updated",
+          "The party travels to The Copper Kettle (5 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "ac6dd2c03aaf"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "f1fc6ea8a239"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "t2",
+      "input": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "outcome": "committed",
+      "narration": "Bess sets an empty bowl on the counter but leaves the ladle in the pot.\n\n“Honest work? Yes. Whether it pays enough is the usual argument.”\n\nShe wipes her hands on her apron. “The organiser by the square keeps the week’s notices. Carting, ditch work, that sort of thing. Ask what’s still open before you promise your back to anyone.”\n\nThen she glances toward the hearth.\n\n“I’ve something smaller, if you’d rather stay out of the rain. That stool needs a proper repair. One leg’s loose at the joint—not just short. I’ve wood glue and some offcuts, but no time to fuss with it during supper.”\n\nShe nudges it with her boot; the seat shifts against the leg.\n\n“Two coppers if you can make it sound. Same price as a bowl and bread, if you’d sooner eat. No pay for wedging a splinter under the foot; I’ve tried that.”\n\nShe looks back at you. “What sort of work do you know?”",
+      "firstWordMs": 2149,
+      "durationMs": 21164,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 26152,
+        "output": 904,
+        "cached": 22221,
+        "cacheWrite": 3925,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.85,
+      "costUsd": 0.11654,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "quest",
+          "note_character",
+          "note_world",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "quest",
+          "note_character",
+          "note_world",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Bess updated",
+          "Quest taken: A sound seat (reward: 2 coppers, Payment after Bess checks that the stool is sound.)",
+          "Bess's character notes updated",
+          "DM note updated",
+          "2 minutes pass (Asking Bess about honest work in the village.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 678,
+          "hash": "cab9c89b9b21"
+        },
+        {
+          "index": 3,
+          "tokens": 2006,
+          "hash": "088ce7bdb534"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "t3",
+      "input": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "outcome": "committed",
+      "narration": "Bess pauses with her hand on the ladle. One of the carters elbows the other.\n\n“If this is the goat that collected the toll,” he says, “I’ve heard it. Still better at sums than our reeve.”\n\n“Let it be told,” says the person mending a stocking. “You got three different endings mixed up last time.”\n\nThe carter settles back with exaggerated dignity. Bess shifts the troublesome stool away from anyone tempted to sit on it, then leans against the counter.\n\n“Well?” she says. “What did the reeve do?”\n\nYou have a small, willing audience—and a ladle held ready to resume work if the telling runs long. **What’s the punchline?**",
+      "firstWordMs": 1566,
+      "durationMs": 11786,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 14661,
+        "output": 445,
+        "cached": 9682,
+        "cacheWrite": 4976,
+        "reasoning": 138,
+        "estimated": false
+      },
+      "cacheReadShare": 0.66,
+      "costUsd": 0.09416,
+      "tools": {
+        "proposed": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "1 minutes pass (A brief pause in supper service as Rowan gets the room's attention with a joke.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1156,
+          "hash": "6fe7e0e20cc8"
+        },
+        {
+          "index": 3,
+          "tokens": 3446,
+          "hash": "63e5566ac20a"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.44216,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

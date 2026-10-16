@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "scene": "travel-consequences",
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:09:53.478Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "cheat",
+      "input": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "outcome": "committed",
+      "narration": "The organiser is a lean man with ink worked into the creases of his fingers. He's squaring a stack of curled notices against his ledger under the lantern on the board post. When Rowan suggests a game of dice to pass the wait, he keeps on squaring.\n\n\"Dice,\" he says. \"What's your stake?\"\n\nIt's a fair question, and it lands badly. Rowan's pockets hold the compass and nothing else. There's no silver to set against his, and no die at all, loaded or honest.\n\nThe organiser watches the search with the patience of a man who has seen it before. \"Ah. So the game is my twelve against your nothing.\" He licks a thumb, peels a notice free and pins it. \"Generous offer. I'll pass.\" Then, more evenly and not unkindly: \"Name's Tobin Ashe. Everyone I send off this board goes with my name behind them. When a fellow opens with dice before he's asked about the work, I make a note of it. In my head, you understand. Not in ink. Yet.\"\n\nHe taps three notices with the back of his pen.\n\n\"If you want silver off me, here's the honest way. First, the Harrow Fell drove road. The cairns are down and the drive comes through in a fortnight. Someone has to walk it and mark it again. That's four a day and board. Second, Coldwater mill is losing grain from a locked store. They want a night watcher at two a night, with a bonus if you can name the thief. Third, carry the post satchel to the three hill farms. One silver, back by dark.\"\n\nHis eyes go to the compass still in Rowan's hand. \"Does that thing work, or is it just for show?\"",
+      "firstWordMs": 38254,
+      "durationMs": 58485,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 18173,
+        "output": 5316,
+        "cached": 16684,
+        "cacheWrite": 1485,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.918,
+      "costUsd": 0.1171,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Tobin Ashe updated",
+          "Tobin Ashe's character notes started",
+          "Place recorded: Harrow Fell drove road (a rumour)",
+          "Place recorded: Coldwater mill (a rumour)",
+          "Place recorded: The three hill farms (a rumour)",
+          "DM note updated",
+          "5 minutes pass (Proposing dice, being turned down, hearing the notices)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "73ed5b231dd6"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "4a81ca1d08cf"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "travel",
+      "input": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "outcome": "committed",
+      "narration": "Rowan doesn't answer about the compass. He closes the lid, puts it away and turns toward the dark mouth of the east road.\n\nTobin watches him go and doesn't call after him. He says one thing to the notice he's pinning, loud enough to carry: \"Marrow Ford's two days that way. Nothing on that road for a man with no coin but sloes and the river.\" His pen scratches once in the ledger, or maybe it's only the paper settling. Then the lantern falls behind.\n\nThe road is a pale strip between hedges, rutted by carts, and Rowan walks it through what's left of the night. At dawn there's frost on the verges and the hedges run out. After that it's open country: rough grazing, a line of old milestones with the lettering worn off, and far off the glint of water. His stomach starts to complain before noon. A man with empty pockets has to make the land feed him: find water that's safe, find a bit of shelter, find whatever the hedges have left this late in the year.",
+      "firstWordMs": 18438,
+      "durationMs": 52880,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 75487,
+        "output": 4419,
+        "cached": 64582,
+        "cacheWrite": 10897,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.856,
+      "costUsd": 0.15581,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "resource",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "resource",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure",
+          "Place recorded: Marrow Ford",
+          "Rowan: exhaustion 0 → 2/6 (Two days on the road without food, bad ditch water, a cold night in the open)",
+          "Tobin Ashe's character notes updated",
+          "DM note updated",
+          "The party travels to Marrow Ford (2820 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 882,
+          "hash": "db7fad35a3e7"
+        },
+        {
+          "index": 3,
+          "tokens": 2877,
+          "hash": "401a4de5ef55"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.27291,
+    "committed": 2,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}
