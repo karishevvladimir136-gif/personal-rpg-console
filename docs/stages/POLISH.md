@@ -168,6 +168,18 @@ The owner's notes from the first play are added below by the planner before laun
   - **«Открытые нити» is jargon.** The player sees «Цель» (here: отдать Марте сорок монет — the DM sets it when the
     goal is obvious), «Долги и обещания», and «Зацепки» for open leads (Ян Колода, ящик у Чёрного волнореза). The
     `thread` kind stays inside the records; the word «нити» does not reach the player.
+  - **The goal panel ignores the quest the DM recorded.** After turn 2 the DM took «Ящик с «Сельди»» as a quest with
+    its reward (Marta forgives the forty coins and feeds him for a week), yet «Цель» still says «Цели пока нет». The
+    active quest (or the one the hero just took) is the goal unless the DM sets another.
+  - **Text sizes in the composer.** What the player types (and his own message in the story) is much smaller than
+    the narration; use the same reading size as the story text. «ведущий пишет… (черновик до сохранения)» is a
+    technical label — show a quiet «Ведущий пишет…» indicator instead.
+  - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
+    opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
+    above.)
+  - **Owner, after three turns:** «язык удивительно хороший, сильно лучше, чем в тест-образцах; скорость — просто
+    топ». Evidence for item 7: with the owner's own world text written in living Russian, Opus high writes living
+    Russian; the blind fixture's machine-translated world dragged the register down. Keep this in the research record.
   - **Remove the «Приключение» card from the game sidebar** — it breaks immersion; adventure management lives in the
     «Приключения» section of the left menu.
   - The story sits in its own inner scroll box under a very large frame (nested scrolling, arrows, «К последнему
