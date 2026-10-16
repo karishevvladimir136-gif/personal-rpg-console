@@ -108,7 +108,15 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
     "../production/dm-loop-pin": { dmLoopPinFromProfile: () => ({}), dmLoopProfile: () => ({}) },
     "./dm/model": { createDmModel: () => ({}) },
     "./dm/live-turns": { publishLiveTurnEvent: () => {} },
-    "./dm-settings": { readDmSettings: async () => ({ campaignId: "campaign", runtime: "astra-primary-v1", dmTurn: null, revision: 1 }) },
+    "./dm-settings": { readDmSettings: async () => ({ campaignId: "campaign", runtime: "astra-primary-v1", dmTurn: null, revision: 1 }),
+      markBoostUsed: async () => {} },
+    // Stage 4: the dossier, the session digest, the World Engine bridge and the
+    // loop's feedback provider are not reached on the Astra runtime path.
+    "./dossier": { dossierService: () => ({}) },
+    "./session-digest": { digestOnEntry: async () => {} },
+    "./world-bridge": { syncWorldFromDossier: async () => {} },
+    "../gameplay/dm-loop/feedback": { loopFeedbackProvider: () => ({}) },
+    "./public-campaign": { readPublicCampaign: async () => ({}) },
     "../gameplay/dm-errors": { DmError: class extends Error {} },
     "./memory/store": { createMemoryStore: () => ({}) },
     "../memory/lifecycle": {

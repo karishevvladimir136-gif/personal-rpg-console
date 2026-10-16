@@ -67,7 +67,7 @@ start and again before the final checks, Stage 5 fixes included). Pushed; nothin
   self-disclosures in the report; every live run writes its record to `docs/runs/` (`scripts/eval/run.mjs`,
   `blind.mjs`, the probes). Fake bench: 19 of 19 scenarios (16 + Mega DM campaign, living and cognitive probes),
   340 of 340 checks; the known weakness W2 (a paraphrased leak) stays open as before.
-- **Live bench, final runs** (`docs/runs/20261016-005052-*`): every turn committed, no literal leak on either model.
+- **Live bench, final runs** (`docs/runs/20261016-005052-*`): every turn committed; the literal leak check flagged one phrase in 13 turns, Opus's own three-word consequence title «The sunk wheel» about an event the hero had just watched — a false positive of the literal check, not a secret.
   Astra medium: 15 power creep 11/11 (refusals reach the metrics through `finish_turn` after a prompt line that
   makes it required), 16 job closed 12/12 (job closed, converted legacy reward paid, nothing paid twice), 14 grudge
   5/7 (the DM recorded the organiser's answer as a note, not as a due plan). Opus high: 15 11/11 (earlier run),
