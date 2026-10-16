@@ -292,6 +292,12 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- **A natural 20 must change the outcome visibly.** Turn 29: the hero rolled a natural 20 to dodge and call for help;
+  the narration resolved the scene through Dunya's own roll (she shoved the boat off with the gaff) and the hero's
+  shout stayed muffled in the helmet. Good drama, but the player's best roll of the session left no mark of its own.
+  Doctrine: a natural 20 gives the success plus a visible extra in the hero's favour (a seized oar, the enemy's hook
+  lost, a better position), and a natural 1 a cost — both tied to what the hero tried. The roll card says «Крит» /
+  «Провал на единице».
 - Good, keep (turn 28): a failure that costs the right things — the knife lost in the silt, the palm cut on mussels
   (HP 7 → 6), the box still won; and an off-screen plan turning into a twist at the climax: the stranger's boat comes
   without the agreed three knocks, Фрол on the bow with a hook — «Ящичек сюда подай, легче лезть будет». Also a
@@ -537,3 +543,6 @@ records, for any ruleset (numbers only where the ruleset has them):
 
 typecheck, lint, the full suite with `--test-concurrency=2`, build, fake bench, screenshots with the overflow check, a
 short live smoke on the changed paths within **$5**. Push `claude/polish` only, never `main`. Report in English.
+   Turn 29: descriptions excellent (the shout trapped in the helmet as «бу-бу-бу», the gaff in the forefoot, the
+   hook catching Мокей's net instead of the stern); dialogue still odd in places («Гильдейский, значит. Ну-ну. Сами
+   так сами»).
