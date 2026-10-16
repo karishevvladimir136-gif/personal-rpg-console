@@ -259,7 +259,10 @@ The owner's notes from the first play are added below by the planner before laun
 - **A roll the player cannot read (turn 16).** The chips show «The DM rolls 1d20: 15» with no reason, no DC and no
   card; the owner guessed it was a persuasion check. Rule: a check of the hero (persuasion, any skill) is a player
   check with its card, reason, bonus and DC in words; a private DM roll (an NPC's reaction, a random event) never
-  appears in the player's chips at all. Test both.
+  appears in the player's chips at all. Test both. Turn 33 shows why it matters: «Чужак в сухом пальто rolls
+  1d20+2: 14 vs 11 — success» appeared with no reason while the hero bluffed with an empty belt; the narration said
+  only that Фрол saw a hand under the coat. The chip tells the player that the stranger succeeded at something —
+  likely seeing through the bluff — which is exactly what the hero must not know. NPC rolls are private by default.
 - **«Проверка навыка» — which skill?** The card and the chip say only «Проверка навыка» / «рэй rolls 1d20: 6 vs 12 —
   failure». The title names the skill or the approach in the campaign's words («Скрытность: подслушать через щель»,
   «Убеждение: уговорить Мирона»), and the DM must always pass it (the `roll.reason` exists; make the card use it).
@@ -310,6 +313,9 @@ The owner's notes from the first play are added below by the planner before laun
   (HP 7 → 6), the box still won; and an off-screen plan turning into a twist at the climax: the stranger's boat comes
   without the agreed three knocks, Фрол on the bow with a hook — «Ящичек сюда подай, легче лезть будет». Also a
   balance note: after six failures at +0 the hero is at 6/10 HP; with sheet bonuses this attrition would be rarer.
+- Good, keep (turn 33): the player forgot the pistol was with Dunya and reached for it; the DM remembered («Пояс
+  пустой. Пистолет сейчас за поясом у Дуни на кухне, нож остался в иле») and turned it into a bluff that still works
+  on Фрол — the wide borrowed kaftan hides the empty belt.
 - Good, keep (turn 31): the note under the shirt got soaked on the dive and became «Размокший листок из Мартиных
   счетов» — the hero's own writing ran into blue clouds, only Marta's and Мирон's lines survive, and the DM's note
   says «почти не улика: ни имён, ни места не прочесть». A consequence of the fiction changed an item's meaning.
