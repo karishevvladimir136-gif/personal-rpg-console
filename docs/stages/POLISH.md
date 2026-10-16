@@ -22,6 +22,21 @@ The owner's notes from the first play are added below by the planner before laun
 5. **Astra sometimes ends a turn without `finish_turn`** (Stage 4 known limit): tension and refusal hints are lost on
    those turns.
 
+6. **The off-screen consequence never arrived.** In the Russian blind run's travel scene (cheat at dice, then two days
+   east) the owner saw no consequence in any of the four variants. Find out per variant where the chain broke: was a
+   plan recorded with a due time in the cheat turn, did the travel receipt list it as due, did the game master act on
+   it. Fix the break (the loop, the receipt hint or the doctrine) and prove it live on both models.
+7. **Russian voice.** The owner finds the app's Russian stiff and calqued, while the same Opus in his chat campaign
+   writes living Russian. Likely causes, to confirm with an A/B: the role and the procedure in layer 1 are English and
+   mostly about tools; the only Russian prose in the prompt are the three turn-shape examples, written in translated
+   style («проскальзывает внутрь, в запах муки»); narration is cut into pieces by mid-text tool calls; the prompt says
+   almost nothing about voice; the synthetic Russian fixture was machine-translated. Do: for a Russian campaign, write
+   the role's voice part natively in Russian (not translated), from the owner's codex `docs/owner/DM_CODEX_RU.md`
+   (the planner adds it); replace the turn-shape examples with natural Russian ones; keep the narration in one breath
+   (only a deciding roll or payment may interrupt it; bookkeeping goes after); keep tool schemas in English. Check with
+   the Russian blind scenes: current prompt vs the Russian voice layer, both on Opus high, four key turns each, and the
+   planner builds a blind A/B page. Record the result in `docs/runs/` (it is a research finding).
+
 ## The owner's notes from the first play
 
 (to be filled in)
