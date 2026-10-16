@@ -121,6 +121,10 @@ The owner's notes from the first play are added below by the planner before laun
   pin for the DM. Places link to the map; rumoured places are marked as rumours. Lore the hero learns in play becomes
   an entry: give the DM a public `lore` record (category, title, what is known, source) or extend an existing tool,
   never exposing private notes; the world's own description seeds the «Мир» tab at the campaign start.
+- **«Закреплено для ведущего» reads as an admin panel** in the codex and the journal. Keep the feature, change the
+  form: a small pin on any entry with a tooltip «Ведущий всегда будет это помнить»; a pinned entry shows the pin; the
+  list of pins and its explanation move to the campaign settings («Что ведущий помнит всегда»). No empty «Пока ничего
+  не закреплено…» panels on player screens.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
