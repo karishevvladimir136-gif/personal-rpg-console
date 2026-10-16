@@ -40,6 +40,35 @@ Task: `docs/stages/STAGE_5.md`; design: `design/`; data still missing: `docs/UI_
   (the composer passes its live view out). Saving fal pictures and the data in `docs/UI_DATA_NEEDS.md` belong to
   stages 3–4.
 
+**Stage 5 review fixes (`docs/stages/STAGE_5_FIXES.md`, cloud session, no paid calls):**
+- Roll card stacks on narrow phones (icon + label, then DC badge + result; checked at 360 and 390 px). Sheet tabs and
+  section links wrap on phones; slot labels and names wrap instead of clipping; the screenshot script now also fails a
+  phone shot when any element is drawn past the viewport's right edge or the captured image is wider than the viewport.
+- Display-label layer (`src/lib/ui/labels.ts`, `c.label()`): a label the record provides wins, then the shared catalog
+  (incl. numbered keys such as «Spell slots {n}»), then the raw phrase. Common record/ruleset keys were added to
+  `ru.json` («Класс доспеха», «Сложность заклинаний», «Ячейки заклинаний», «Очки чародейства», «Золото», «Экипаж»,
+  «Груз», «Инструменты», «Разное» …); the English «Neon & Rain» sample stays English. The hero card's stat line lost
+  its monospace font.
+- Item tiles without a picture show the short name with a category glyph; the plain box stays only for nameless items
+  (inventory and holdings). No per-record «появится позже» blocks any more: one short «позже» line per screen; the
+  Journal keeps a one-line placeholder in «Главная арка».
+- A portrait that fails to load falls back to the initial-letter avatar (`Art`); the player's message in the story uses
+  the hero's portrait through the screen's image resolver.
+- Map: pin labels avoid each other (below → above → hidden until hover/tap; the current place is always placed,
+  `src/lib/map/label-layout.ts`), the preview page no longer repeats the atlas title, the travel hint reads
+  «Отправляюсь. Цель — …».
+- New-campaign wizard and campaign settings take the selected model's own default effort from its capabilities
+  (`dmModelSpec`), «Game Master» replaces «Dungeon Master» in the English shell and settings, companion quick prompts
+  are gender-neutral.
+- fal: the 5 first-try `validation` failures were HTTP 422 «flagged by a content checker» on portrait prompts, the same
+  prompts passing on retry — recorded with the cause and what Stage 4's autopilot must do in `docs/UI_DATA_NEEDS.md`.
+- Screenshots re-captured for the affected screens (desktop 1440 and phone 390; every phone shot: 0 px overflow,
+  0 px clipped, image 390 px wide). Checks on the final state (cloud VM, Node 24): typecheck pass; lint pass; build pass; tests 2439 — 2409 pass,
+  3 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). The 3 failures are the environment, not the code:
+  two read git history that the cloud's shallow clone lacks (`mega-dm-bakeoff-completion`, `mega-dm-living-smoke`),
+  one expects the Windows CRLF checksum of migration 30 (`universal-bootstrap-sql`); they pass on the owner's checkout.
+  The suite needs `--test-concurrency=2` on the 4-vCPU VM (the default parallelism trips the 30 s per-test limits).
+
 ---
 
 **Current stage:** Stage 2b — speed and fluency of the new turn — done, including the live bench of both

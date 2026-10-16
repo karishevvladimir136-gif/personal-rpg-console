@@ -177,7 +177,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
             <div className={s.links}>{secondary.map((item) => link(item))}</div>
           </details>
           <Link className={s.dm} href={href("settings")}>
-            <span className={r.eyebrow}>{c("Ведущий", "Dungeon Master")}</span>
+            <span className={r.eyebrow}>{c("Ведущий", "Game Master")}</span>
             <span className={s.dmName}>{dm ? model : "…"}</span>
             <span className={s.dmMeta}>
               {[effort ? c(`глубина: ${effortLabel(effort, lang)}`, `effort: ${effortLabel(effort, lang)}`) : null,

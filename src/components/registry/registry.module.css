@@ -280,6 +280,16 @@
   text-transform: uppercase;
   color: var(--brass-dim);
 }
+.laterLine {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--muted);
+}
 
 /* HP tube and small bars. */
 .gauge {
@@ -427,6 +437,10 @@
 }
 .tabs::-webkit-scrollbar {
   display: none;
+}
+.tabsWrap {
+  flex-wrap: wrap;
+  overflow: visible;
 }
 .tab {
   flex: 0 0 auto;

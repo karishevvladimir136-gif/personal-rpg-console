@@ -142,7 +142,7 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
         )}
         {(stats.length > 0 || entity.conditions.length > 0) && (
           <div className={r.chips}>
-            {stats.map(([key, value]) => <span key={key} className={r.badge}>{c.t(statLabel(key))} {value}</span>)}
+            {stats.map(([key, value]) => <span key={key} className={r.badge}>{c.label(statLabel(key))} {value}</span>)}
             {entity.conditions.map((condition) => <span key={condition} className={r.badgeAmber}>{condition}</span>)}
           </div>
         )}
@@ -202,7 +202,8 @@ function PreviewTalk({ play, companionId }: { play: PlaySnapshot | null; compani
         {!turns.length && <p className={r.empty}>{c("Вы ещё не говорили.", "You haven't talked yet.")}</p>}
       </div>
       <div className={r.chips}>
-        {[c("Как ты?", "How are you?"), c("Что думаешь о плане?", "What do you think of the plan?"), c("Что ты заметил?", "What did you notice?")].map((prompt) => (
+        {/* Gender-neutral wording: the record carries no gender for its companions. */}
+        {[c("Как ты?", "How are you?"), c("Что думаешь о плане?", "What do you think of the plan?"), c("Что удалось заметить?", "What did you notice?")].map((prompt) => (
           <button key={prompt} type="button" className={r.chipButton} disabled>{prompt}</button>
         ))}
       </div>

@@ -416,3 +416,44 @@
   font-style: italic;
   color: var(--brass-hi);
 }
+
+/* Stage 5 · pin labels: outside the 44 px mark, below or above it; hidden labels
+   show on hover, focus or when the pin is selected. The current place is always placed. */
+.pin {
+  gap: 0;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  justify-content: center;
+}
+.pinLabel {
+  position: absolute;
+  top: calc(100% - 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 116px;
+  z-index: 1;
+}
+.labelAbove .pinLabel {
+  top: auto;
+  bottom: calc(100% - 10px);
+}
+.labelHidden .pinLabel {
+  visibility: hidden;
+}
+.pin:hover,
+.pin:focus-visible,
+.pin[aria-pressed="true"] {
+  z-index: 2;
+}
+.pin:hover .pinLabel,
+.pin:focus-visible .pinLabel,
+.pin[aria-pressed="true"] .pinLabel {
+  visibility: visible;
+}
+@media (max-width: 640px) {
+  .pinLabel {
+    max-width: 85px;
+  }
+}

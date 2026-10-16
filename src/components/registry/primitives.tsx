@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import { useLanguage } from "../language-context";
 import type { Rarity } from "@/lib/ui/rarity";
+import { displayLabel } from "@/lib/ui/labels";
 import s from "./registry.module.css";
 
 export { s as registry };
@@ -13,8 +14,10 @@ export function useCopy() {
   const { language, t } = useLanguage();
   const ru = language === "ru";
   // `t` translates labels produced by the shared presentation helpers (resourcePresentation,
-  // inventoryCategoryLabel, characterViewModel) through the shared catalog.
-  return Object.assign((russian: string, english: string) => (ru ? russian : english), { ru, language, t });
+  // inventoryCategoryLabel, characterViewModel) through the shared catalog; `label` is the
+  // display-label layer for keys that come from records and rulesets (src/lib/ui/labels.ts).
+  const label = (phrase: string, provided?: string | null) => displayLabel(phrase, t, provided);
+  return Object.assign((russian: string, english: string) => (ru ? russian : english), { ru, language, t, label });
 }
 export type Copy = ReturnType<typeof useCopy>;
 
@@ -52,6 +55,17 @@ export function Plate({ eyebrow, title, sub, aside, children }: {
       </div>
       {children}
     </header>
+  );
+}
+
+/** One short line per screen about what arrives later (docs/UI_DATA_NEEDS.md). */
+export function LaterLine({ children }: { children: ReactNode }) {
+  const c = useCopy();
+  return (
+    <p className={s.laterLine} role="note">
+      <span className={s.laterTag}>{c("позже", "later")}</span>
+      <span>{children}</span>
+    </p>
   );
 }
 
@@ -104,11 +118,13 @@ export function Pips({ left, max, label }: { left: number; max: number; label: s
   );
 }
 
-export function TabBar<T extends string>({ tabs, value, onChange, label }: {
+export function TabBar<T extends string>({ tabs, value, onChange, label, wrap }: {
   tabs: readonly { id: T; label: string; href?: string }[]; value: T; onChange?: (id: T) => void; label: string;
+  /** Wrap into several rows instead of scrolling sideways (phone sheets). */
+  wrap?: boolean;
 }) {
   return (
-    <div className={s.tabs} role="tablist" aria-label={label}>
+    <div className={wrap ? `${s.tabs} ${s.tabsWrap}` : s.tabs} role="tablist" aria-label={label}>
       {tabs.map((tab) => tab.href ? (
         <a key={tab.id} className={s.tab} href={tab.href} role="tab" aria-selected={tab.id === value}>{tab.label}</a>
       ) : (
@@ -187,10 +203,13 @@ export function Art({ subject, name, className = "", drawingLabel, fit = "cover"
 }) {
   const c = useCopy();
   const image = useSubjectImage(subject);
-  if (image.url)
+  // A picture that fails to load falls back to the initial-letter avatar, never to alt text
+  // (the failed URL is remembered, so a new picture is tried again).
+  const [broken, setBroken] = useState<string | null>(null);
+  if (image.url && broken !== image.url)
     // Accepted, short-lived authenticated URLs; next/image cannot proxy them.
     // eslint-disable-next-line @next/next/no-img-element
-    return <img className={className} src={image.url} alt={name} style={{ objectFit: fit, objectPosition: position }} />;
+    return <img className={className} src={image.url} alt={name} style={{ objectFit: fit, objectPosition: position }} onError={() => setBroken(image.url)} />;
   if (image.drawing)
     return <div className={`${s.drawing} ${className}`} role="img" aria-label={c(`${name}: рисуется`, `${name}: drawing`)}>{drawingLabel ?? c("рисуется…", "drawing…")}</div>;
   return <div className={`${s.blankArt} ${className}`} role="img" aria-label={name}>{initial(name)}</div>;

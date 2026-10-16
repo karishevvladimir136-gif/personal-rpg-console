@@ -142,7 +142,7 @@ function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
               {entity.hp !== null && <Gauge label={c("Состояние", "Condition")} value={entity.hp} max={entity.max_hp} />}
               {Object.keys(entity.stats).length > 0 && (
                 <div className={r.kv}>
-                  {Object.entries(entity.stats).map(([key, value]) => <div key={key}><span>{c.t(statLabel(key))}</span><span>{value}</span></div>)}
+                  {Object.entries(entity.stats).map(([key, value]) => <div key={key}><span>{c.label(statLabel(key))}</span><span>{value}</span></div>)}
                 </div>
               )}
               {entity.conditions.length > 0 && <div className={r.chips}>{entity.conditions.map((row) => <span key={row} className={r.badgeAmber}>{row}</span>)}</div>}

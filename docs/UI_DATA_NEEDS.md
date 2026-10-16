@@ -53,3 +53,31 @@ projections only (what the hero knows); private DM state stays private.
 | 20 | Tone, rules and roll mode chosen **before** the campaign exists | New campaign step 3 (today they are set after creation in settings) | bootstrap `creation.commit` accepts `{ dmTurn; emotionalTone; rulesSystem; interactiveDice }` |
 | 21 | Worlds: number of campaigns, rules label, whether a visual style is set | Campaigns → Worlds row | `PublicWorld.campaignCount; rulesLabel; hasVisualStyle` |
 | 22 | Two-stage narrator; campaign limits as settings | Settings (shown disabled / read-only) | Stage 3: limits in campaign settings; two-stage mode as a campaign option |
+
+## fal: portrait prompts refused by the content checker (for Stage 4's autopilot)
+
+Recorded during the Stage 5 fixes, no new paid calls. In the Stage 5 sample run (`docs/screens/stage-5/fal-cost.json`)
+5 of 22 requests failed on the first try with a `validation` error, all of them **portraits** on `fal-ai/flux-2-pro`
+(`hero-portrait` twice, `meg` twice, `wolf` once); the same prompts succeeded unchanged on a later try. The error body,
+logged once by the adapter (`src/lib/visual-frame/fal-image.ts`, no keys in it):
+
+```
+HTTP 422: The content could not be processed because it contained material flagged by a content checker.
+```
+
+Cause: fal runs a prompt-side content checker on FLUX.2 [pro] before generation. Our portrait prompts describe people
+(age, build, nationality, scars, weapons: «a wiry man in his thirties…», «a grizzled German engineer-soldier…»), and
+the adapter sends `safety_tolerance: "2"` (strict, the fal default is "2"; the scale is 1 strict … 6 permissive). The checker is
+not deterministic: identical prompts pass on a retry, so the refusal is a classifier verdict on an ordinary character
+description, not a real policy violation. Items, places, holdings and the atlas (no people) never tripped it.
+
+What Stage 4's autopilot must do (it already never retries in a loop; `planVisualAutopilot` skips attempted subjects):
+
+- Treat `validation` with a «content checker» body as **a refusal of this prompt**, not as a transport error: record the
+  subject as attempted for the day, do not re-queue it, and show «не вышло» with the reason in Settings → Картинки.
+- Before giving up, allow **one** re-submit of a softened prompt: keep the subject and style, drop age, nationality,
+  injuries and weapon words from the description (a presentation-side rewrite; the record is not changed). Budget it
+  as a second paid request.
+- Try `safety_tolerance: "4"` for portraits in the Stage 4 paid test (cap stated there) and keep whichever setting
+  passes the sample portraits; the field is only sent to `flux-2-pro`.
+- Nothing in the public error names the flagged words, so there is nothing more precise to log.

@@ -301,6 +301,13 @@
   background: linear-gradient(150deg, #473929, #1c2627);
   font: 22px Georgia, serif;
 }
+.gameplay-speaker-portrait img,
+.gameplay-speaker-portrait > [role="img"] {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
 .gameplay-owner-input:has(.gameplay-speaker-portrait) {
   display: flex;
   gap: 12px;
