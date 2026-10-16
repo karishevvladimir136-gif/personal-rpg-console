@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "createdAt": "2026-10-16T01:01:39.313Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-medium",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "medium"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "outcome": "failed",
+      "narration": null,
+      "firstWordMs": 2169,
+      "durationMs": 6934,
+      "requests": 1,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 10668,
+        "output": 177,
+        "cached": 0,
+        "cacheWrite": 10665,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0,
+      "costUsd": 0.14219,
+      "tools": {
+        "proposed": [
+          "roll"
+        ],
+        "accepted": [
+          "roll"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "b296a8977702"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "d4423c1c01de"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.14219,
+    "committed": 0,
+    "failed": 1,
+    "leaks": 0,
+    "stopReason": "budget_reached"
+  }
+}

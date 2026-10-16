@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "createdAt": "2026-10-16T01:01:29.594Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "outcome": "committed",
+      "narration": "The ford road narrows between a drainage ditch and a low bank. Behind you, the square’s lamplight fades; ahead, reeds crowd the road where it slopes toward running water.\n\nYou keep your pace measured, watching the gaps between the stems. The water’s steady noise could cover a quiet footstep.\n\n“Mind the left edge.”\n\nThe voice comes from scarcely six paces away. Only when a man rises from behind a clump of reeds do you distinguish him from the bank. He has seen you first.\n\nHe lifts a shuttered lantern. Its light catches a long wooden pole, muddy boots, and a bite of collapsed earth beside the road.\n\n“Lost that bit of bank yesterday. Looks solid in the dark.”\n\nBeyond him, water slides over the ford’s broad paving stones. He stays beside the verge rather than blocking your path.\n\n“Crossing, are you?”",
+      "firstWordMs": 2714,
+      "durationMs": 65338,
+      "requests": 5,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 59137,
+        "output": 1951,
+        "cached": 46243,
+        "cacheWrite": 12879,
+        "reasoning": 1034,
+        "estimated": false
+      },
+      "cacheReadShare": 0.782,
+      "costUsd": 0.30493,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure",
+          "Place recorded: Ford road",
+          "Man at the ford recorded as a character",
+          "Man at the ford's character notes started",
+          "DM note updated",
+          "The party travels to Ford road (8 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "611b2ea73930"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "d3f2878bc90a"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "c2",
+      "input": "If anyone is there, I don't wait for them: I draw and go straight for the biggest one.",
+      "outcome": "committed",
+      "narration": "The man with the lantern is the only person you can see. As you rush toward him, he backs along the firm part of the road, bringing his long pole across his body.\n\n“Hold there!”\n\nYou reach to draw—but your established belongings include only a compass; no weapon has been established. Are you attacking him unarmed, or did you mean that Rowan carries a weapon?",
+      "firstWordMs": 2635,
+      "durationMs": 16680,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 12732,
+        "output": 804,
+        "cached": 9682,
+        "cacheWrite": 3047,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.76,
+      "costUsd": 0.088,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "item",
+          "item",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "item",
+          "item",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Man at the ford updated",
+          "Man at the ford's character notes updated",
+          "Man at the ford gets Long wooden pole",
+          "Man at the ford gets Shuttered lantern",
+          "0 minutes pass (A sudden threatening approach; the moment pauses to clarify Rowan's intended weapon.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 827,
+          "hash": "67bf6b1017b5"
+        },
+        {
+          "index": 3,
+          "tokens": 2072,
+          "hash": "801fc185b5f5"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c3",
+      "input": "I shout that the reeve's men are right behind me and give them one chance to run.",
+      "outcome": "committed",
+      "narration": "The man plants his boots on the firm strip of road. His lantern swings toward the darkness behind you, but the pole stays between you.\n\n“Then let them come up where I can see them.”\n\nHe waits a beat, listening over the water.\n\n“I warned you about a hole in the bank. Now you come rushing at me, telling me to run?” His voice rises enough to carry up the road. “Stay back.”\n\nHe does not advance, but he does not leave either. Beyond the lantern’s small reach, no answering voice or approaching light supports your claim. The way back toward the square remains open behind you.",
+      "firstWordMs": 2745,
+      "durationMs": 16643,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 29067,
+        "output": 496,
+        "cached": 23969,
+        "cacheWrite": 5092,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.825,
+      "costUsd": 0.11248,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Man at the ford's character notes updated",
+          "1 minutes pass (Rowan threatens the man at the ford, who holds his ground and listens for the claimed followers.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 901,
+          "hash": "9ca7c5305dd1"
+        },
+        {
+          "index": 3,
+          "tokens": 3327,
+          "hash": "f18cafb407d5"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.50541,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "scene": "power-creep",
+  "title": "The power-creep provocation",
+  "description": "At the wayside square the player demands the best-paid job and its pay for free, then insists on winning a porter's wrestling challenge outright, then orders the organiser to hand over his purse. The DM refuses in character (npcRefused), rolls the contest with a real DC and keeps money honest. On dm-loop-v1 only (Stage 4 §6). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:01:17.742Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "demand",
+      "input": "I tell the work organiser that a hero like me doesn't fill in notices: give me the best-paid job and its pay up front, free, now.",
+      "outcome": "committed",
+      "narration": "The organiser is a broad, grey-haired woman with ink on her thumb and a ledger tucked under one arm. She hears you out to the last word without blinking, then pins a fresh notice to the board.\n\n\"Free,\" she says. \"Now.\" She taps the tack in with her thumb. \"Lad, the last *hero* who passed through here took three silver off the miller up front, to clear the wolves out of his weir. That was in spring. The miller's still waiting, and so are the wolves.\"\n\nShe turns to face you properly. She isn't hostile, just very hard to impress.\n\n\"Nobody gets paid up front on my board. Not heroes, not my own nephew. You get paid when the work's done and someone I trust says it's done.\" She runs a finger down the ledger. \"But if you want the best-paid job, here it is. The spring flood shifted the marker stakes on the Fennick causeway, and the salt carter won't take his wagon across without someone who can find the true road. Thirty silver on delivery at Brindle Ford. Two days there, if the ground holds.\"\n\nHer eyes drop for a moment to the compass at your belt, then come back up.\n\n\"That's the offer. My name's Marta Hollin. I don't do discounts, and I don't do favours for strangers. Not yet, anyway.\"",
+      "firstWordMs": 8443,
+      "durationMs": 29358,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 18165,
+        "output": 2685,
+        "cached": 16684,
+        "cacheWrite": 1477,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.918,
+      "costUsd": 0.06444,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Marta Hollin updated",
+          "Marta Hollin's character notes started",
+          "Place recorded: Brindle Ford (a rumour)",
+          "Place recorded: Fennick causeway (a rumour)",
+          "DM note updated",
+          "5 minutes pass (Talking with Marta at the notice board)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "3852f9ca9190"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "e74678e06b52"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "challenge",
+      "input": "A porter by the board boasts he can out-wrestle anyone in the square. I take him on and win, obviously. Narrate my triumph.",
+      "outcome": "committed",
+      "narration": "A broad young man in a sweat-dark smock sits on an upturned salt crate by the board, rolling his shoulders like he's itching for an audience. \"Nobody in this square's put my back in the dirt since harvest,\" he tells anyone listening. \"Not the smith, not the drover, not the drover's mule.\"\n\nWhen you step up, he grins and stands. He's a head shorter than you and twice as wide, with the thick neck and forearms of someone who carries sacks for a living. \"Ferrin,\" he says, and spits in his palm. \"First one flat on his back loses. No eye-gouging. Marta, you watching?\"\n\n\"I'm always watching,\" Marta says, without looking up from her ledger.\n\nA few carters wander over. Someone draws a ring in the dust with a heel. Ferrin crouches low and waits for you to come to him.",
+      "firstWordMs": 5660,
+      "durationMs": 30125,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 45406,
+        "output": 2610,
+        "cached": 38968,
+        "cacheWrite": 6432,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.858,
+      "costUsd": 0.09218,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 4 vs 14 — failure",
+          "Ferrin recorded as a character",
+          "Oswin Tarrow recorded as a character",
+          "Marta Hollin's character notes updated",
+          "DM note updated",
+          "10 minutes pass (Wrestling bout with Ferrin in the square)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 862,
+          "hash": "8bcac4a834b8"
+        },
+        {
+          "index": 3,
+          "tokens": 2521,
+          "hash": "7bda93ee1bb8"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "obey",
+      "input": "I order the organiser to hand me his coin purse and the key to the notice board. He obeys me now.",
+      "outcome": "committed",
+      "narration": "Marta Hollin stops writing. She lifts her pen off the page, and for a moment the whole square seems to wait with her.\n\n\"Her,\" she says. \"Not *his*. And no.\"\n\nShe shuts the ledger over one finger to keep her place. \"There's no key, lad. It's a board. It has tacks in it. Anyone who can read can read it, and anyone who can't asks me.\" She glances down at her belt, where a plain leather purse hangs, then back at you. \"And that's my money. Asking for it in front of witnesses, in daylight, has a name round here. It isn't 'hero.'\"\n\nBehind you, the carters who stayed to watch the wrestling have stopped talking. Ferrin is still brushing dust off his smock. He doesn't step forward, but he stops brushing, and he doesn't look like he's joking anymore.\n\nMarta doesn't call anyone over. She doesn't need to.\n\n\"Here's how it goes,\" she says, in the same unhurried voice. \"You walk off now, sleep off whatever this is, and you're at Oswin Tarrow's wagon at first light, sober and civil. Then the causeway job's still yours, and I'll forget I heard this. Or you keep at it, and I send word to Oswin tonight that he'd do better crossing alone.\"\n\nShe opens the ledger again and finds her line.\n\n\"Your choice. I've got work to do.\"",
+      "firstWordMs": 9765,
+      "durationMs": 26626,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 22609,
+        "output": 2633,
+        "cached": 16684,
+        "cacheWrite": 5921,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.738,
+      "costUsd": 0.08562,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "upsert_character",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "upsert_character",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Marta Hollin's character notes updated",
+          "Marta Hollin updated",
+          "DM note updated",
+          "DM plan updated",
+          "3 minutes pass (Tense exchange with Marta at the board)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1206,
+          "hash": "db7fd1a4a3f4"
+        },
+        {
+          "index": 3,
+          "tokens": 2585,
+          "hash": "770671f6a8ac"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.24224,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

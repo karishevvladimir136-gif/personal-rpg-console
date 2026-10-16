@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "createdAt": "2026-10-16T00:54:09.598Z",
+  "commit": "ba1390c",
+  "run": "20261016-005225-blind",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "outcome": "committed",
+      "narration": "The ford road drops out of the square between two hedges of hawthorn. Within a quarter mile the hard-packed ruts turn soft, and the air takes on the cold green smell of river water. The reeds rise on both sides, taller than a man, rattling whenever the wind finds them. Rowan slows down, keeps to the crown of the road, and watches the gaps between the stems instead of the stems themselves.",
+      "firstWordMs": 15618,
+      "durationMs": 45022,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 37621,
+        "output": 3798,
+        "cached": 34826,
+        "cacheWrite": 2789,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.926,
+      "costUsd": 0.09689,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure",
+          "Place recorded: Reed ford",
+          "Mags Tull recorded as a character",
+          "Odo Fenn recorded as a character",
+          "Mags Tull's character notes started",
+          "Odo Fenn's character notes started",
+          "DM note updated",
+          "The party travels to Reed ford (30 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "5ef309962c05"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "bfad42537eee"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c2",
+      "input": "If anyone is there, I don't wait for them: I draw and go straight for the biggest one.",
+      "outcome": "committed",
+      "narration": "The reeds part twenty yards ahead, and the ford opens up: a broad sheet of slow brown water over gravel. Right in the middle of it a cart sits tilted, one wheel sunk to the hub. Beside it a heavyset man in a soaked smock is up to his thighs in the river, shoving at the tailboard and swearing steadily at a grey ox that has planted its feet and is ignoring him.\n\nHe's the biggest one there. Rowan goes.\n\nHis hand drops to his belt for a blade and closes on nothing. All he has is the cold brass case of his compass. His feet are already moving, though. He comes off the crown of the road and into the shallows, and the river grabs at his shins and slows every step.\n\nThe carter turns at the splashing and his face goes slack. He throws up both muddy hands.\n\n\"Whoa! *Whoa* — friend, easy! There's nothing on this cart but cheese and butter, and half of it's going off!\" The ox bawls.\n\nBehind Rowan and to his left, the reeds rattle. A thin woman stands up out of them without a sound, as if she'd been crouching there all morning. Her shins are black with mud and she has a hooked reed-sickle in one hand. She holds it low and loose, blade down, and doesn't step any closer.\n\n\"That's Odo Fenn,\" she says, flat and unhurried. \"He's stuck, not dangerous. Been stuck since first light.\" Her eyes go over Rowan: his empty hand, his wet boots. \"You'd be the first to rob him and come away poorer. Who are you, then?\"\n\nOut in the ford, Odo hasn't lowered his hands. Rowan is knee-deep and about ten yards from the cart.",
+      "firstWordMs": 14567,
+      "durationMs": 27832,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 22385,
+        "output": 2497,
+        "cached": 16684,
+        "cacheWrite": 5697,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.745,
+      "costUsd": 0.08178,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Odo Fenn updated",
+          "Mags Tull updated",
+          "Odo Fenn's character notes updated",
+          "Mags Tull's character notes updated",
+          "2 minutes pass (Rowan charges into the ford shallows)",
+          "Your moment: describe how you do it"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1099,
+          "hash": "9d4f7efc3939"
+        },
+        {
+          "index": 3,
+          "tokens": 2203,
+          "hash": "9290746b344b"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c3",
+      "input": "I shout that the reeve's men are right behind me and give them one chance to run.",
+      "outcome": "committed",
+      "narration": "Rowan pulls up in the knee-deep water and fills his lungs. \"The reeve's men are right behind me! You get one chance. Run!\"\n\nHis voice carries over the water and a pair of ducks bursts out of the reeds downstream. Then the ford goes quiet except for the river.\n\nOdo Fenn looks at him. Then he looks down at his cart, sunk to the hub. Then at the ox, which has chosen this moment to relieve itself in the river.\n\n\"*Run?*\" His voice cracks. \"Friend, I've been trying to leave since first light! If the reeve's sending men, bless every one of them. They can put a shoulder to this wheel.\" He lowers his hands to chest height, but no further. \"And I've done nothing to the reeve, whatever she's told you.\"\n\nThe reed-cutter hasn't moved, except for one eyebrow.\n\n\"I've been sat in those reeds since dawn,\" she says. \"That road's soft. Four men in boots, I'd hear them squelch from the hawthorns.\" She shifts the sickle to her other hand, still blade-down, and steps out onto the gravel at the edge of the water. \"So that's no to *who are you*, and a poor lie besides.\" She doesn't seem angry. If anything, one corner of her mouth has moved.\n\nOdo has seen she isn't afraid, and he gets his nerve back. \"Look, whoever you are, you've got two arms. There's coin in it if this wheel comes out before the butter turns.\"\n\n\"There's always coin in it with Odo,\" the woman says to nobody in particular. \"Getting it *out* of him is the trick.\"\n\nThe ox bawls again. Both of them are watching Rowan.",
+      "firstWordMs": 13197,
+      "durationMs": 26356,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 22459,
+        "output": 2304,
+        "cached": 16684,
+        "cacheWrite": 5771,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.743,
+      "costUsd": 0.07829,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Mags Tull's character notes updated",
+          "Odo Fenn's character notes updated",
+          "2 minutes pass (Shouted bluff and the exchange at the ford)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1234,
+          "hash": "ae02a517d9f9"
+        },
+        {
+          "index": 3,
+          "tokens": 2426,
+          "hash": "10abacaf0dfb"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.25696,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

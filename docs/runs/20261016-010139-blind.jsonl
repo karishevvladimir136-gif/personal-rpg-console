@@ -1,0 +1,1 @@
+{"type":"run","run":"20261016-010139-blind","provider":"live","runtime":"dm-loop-v1","purpose":"blind comparison (Stage 4 §10)","scenes":["companion-heart"],"variants":["opus-high","opus-xhigh","astra-high","astra-xhigh","astra-medium"],"commit":"a75210f","node":"v24.22.0","startedAt":"2026-10-16T01:01:39.627Z","budgetUsd":2.3}

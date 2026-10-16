@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "scene": "tavern-talk",
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "createdAt": "2026-10-16T01:01:16.035Z",
+  "commit": "d5c2079",
+  "run": "20261016-005942-blind",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "t1",
+      "input": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "outcome": "committed",
+      "narration": "The notice board falls behind you, its papers curling in the wet. Rain comes down steady and cold, and the only warm light on the street spills from a low stone building with a lantern swinging over the door. The painted sign shows a ladle crossed with a key: **the Ladle & Key**.\n\nInside it smells of peat smoke, wet wool and something with onions in it. A handful of drinkers sit near the hearth. Two of them are drovers, still muddy to the knee. They glance at you and go back to their cups. You shake out your cloak by the door, and the rain spatters across the flagstones.\n\nBehind the bar a broad woman with her sleeves rolled to the elbow is wiping out a pot. She takes in your boots, your cloak and your empty hands, all in one look.\n\n\"Hot?\" She nods toward a black kettle-pot on a hook by the fire. \"Barley and mutton, last of it. Two coppers a bowl, bread included. Ale's one. Kitchen shuts when that pot's scraped, so don't think about it too long.\"\n\nShe sets down the pot. \"And if you mean hot as in *news*, the river's up over the causeway, and the ferryman won't cross in the dark. So half the road's sleeping in my common room tonight, and old Bramwell the carter is in the corner cursing it.\" She jerks her chin toward a grey-bearded man hunched over a cold pipe. \"Says he'll pay anyone who knows the high track round the marsh. Nobody here does.\"\n\nShe looks back at you, eyebrows raised. \"So. Stew?\"",
+      "firstWordMs": 9421,
+      "durationMs": 32242,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 18158,
+        "output": 3061,
+        "cached": 16684,
+        "cacheWrite": 1470,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.919,
+      "costUsd": 0.07192,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: The Ladle & Key",
+          "Innkeeper of the Ladle & Key recorded as a character",
+          "Bramwell recorded as a character",
+          "Innkeeper of the Ladle & Key's character notes started",
+          "Bramwell's character notes started",
+          "DM plan updated",
+          "The party travels to The Ladle & Key (10 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "cbf186785a49"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "01353a8b5f51"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t2",
+      "input": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "outcome": "committed",
+      "narration": "The innkeeper is nearest, and she doesn't stop wiping the pot while you ask. \"Honest work.\" She looks you over again, longer this time. \"This week the honest work is mostly mud. Once the water drops there'll be fence-mending and ditch-clearing from here to the mill. Brask the ferryman will want hands to drag his landing stage back out of the reeds, and he pays in silver if he's in a good mood. He hasn't been in a good mood since spring.\"\n\nOne of the drovers by the hearth snorts into his cup. \"Grazier up at Holloway lost a dozen ewes to the flood. He'll pay for anyone who finds them alive. Or dead, so he can stop wondering.\"\n\n\"That's next week's work, though.\" The innkeeper sets the pot down and folds her arms. \"Tonight's work is in that corner.\"\n\nThe old carter has heard every word. He takes the cold pipe out of his teeth and points the stem at the window, where rain is hissing down the glass.\n\n\"First light,\" Bramwell says to the whole room, loud and sour. \"I'm going at first light, guide or no guide. Damn this rain. Damn that river. Damn the high track and whoever forgot to put a road on it.\" He clamps the pipe back in his teeth. \"Cheese won't wait for the weather to apologise.\"\n\nThe innkeeper's eyes come back to you, and to your empty hands. \"And if you've no coin for stew, I've a woodpile out back that wants splitting and a pot that wants scrubbing. Same price.\"",
+      "firstWordMs": 6802,
+      "durationMs": 25693,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 22955,
+        "output": 2400,
+        "cached": 16684,
+        "cacheWrite": 6267,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.727,
+      "costUsd": 0.08269,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Innkeeper of the Ladle & Key updated",
+          "Bramwell updated",
+          "Brask the ferryman recorded as a character",
+          "Place recorded: Holloway (a rumour)",
+          "Innkeeper of the Ladle & Key's character notes updated",
+          "Bramwell's character notes updated",
+          "DM note updated",
+          "5 minutes pass (Asking around the common room about work)",
+          "Turn recorded"
+        ],
+        "hints": [
+          "Similar existing characters: Innkeeper of the Ladle & Key (7fcb4875-3cfb-5362-8ff5-845d21d3e8ba). If this is the same person, update that record with ref instead."
+        ],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 960,
+          "hash": "b9255b119e5c"
+        },
+        {
+          "index": 3,
+          "tokens": 2805,
+          "hash": "c8d887585224"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "t3",
+      "input": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "outcome": "committed",
+      "narration": "Your hands are empty, so it's the bare hand that goes up. The innkeeper notices at once. \"Toasting with air,\" she says to nobody in particular. \"That's the cheapest round I've seen all month.\"\n\nStill, a few heads turn. The drovers lean back on their bench, and even Bramwell shifts his pipe to the other side of his mouth. A stranger telling a joke about a reeve, in a room full of people the reeve probably fines, could go either way.",
+      "firstWordMs": 5499,
+      "durationMs": 26159,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 48098,
+        "output": 2343,
+        "cached": 40313,
+        "cacheWrite": 7779,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.838,
+      "costUsd": 0.09384,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 2 vs 12 — failure",
+          "Young drover recorded as a character",
+          "Bramwell's character notes updated",
+          "Innkeeper of the Ladle & Key's character notes updated",
+          "5 minutes pass (A botched joke and a drover's better version)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1245,
+          "hash": "5155301939ef"
+        },
+        {
+          "index": 3,
+          "tokens": 3249,
+          "hash": "d80601df0faf"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.24845,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

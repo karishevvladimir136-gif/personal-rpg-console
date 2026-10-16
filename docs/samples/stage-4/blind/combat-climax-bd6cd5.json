@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "createdAt": "2026-10-16T00:57:15.856Z",
+  "commit": "ba1390c",
+  "run": "20261016-005225-blind",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "outcome": "committed",
+      "narration": "The ford road leaves the square between two leaning fence posts and quickly turns to packed mud, rutted by cartwheels and pocked with hoofprints still holding water. Within a few hundred paces the hedges fall away and the reeds rise up on either side, taller than a man, rustling dry at the tops and green lower down. The air smells of silt and cold water. Ahead you can hear the river talking over stones.\n\nYou slow down and watch the reed beds instead of the road: the angles of the stalks, the places where they're bent, the gaps where something heavier than wind has pushed through.",
+      "firstWordMs": 20771,
+      "durationMs": 52413,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 38241,
+        "output": 4137,
+        "cached": 34820,
+        "cacheWrite": 3415,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.911,
+      "costUsd": 0.1068,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_place",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20+2: 4 vs 13 — failure",
+          "Place recorded: Ford road",
+          "Place recorded: The ford",
+          "DM note updated",
+          "DM note updated",
+          "The party travels to Ford road (15 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "ce38eb176875"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "2ae3cf949a78"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c2",
+      "input": "If anyone is there, I don't wait for them: I draw and go straight for the biggest one.",
+      "outcome": "committed",
+      "narration": "Nothing waits for you on the road ahead. The reeds stand still for twenty paces either way. Then you glance back the way you came, and the road shows you what the reeds didn't. A line of bare footprints crosses the ruts behind you, toes splayed and water still seeping into the heel marks. While you were watching the road ahead, someone stepped out of the left-hand bed and slipped into the right. It happened less than a minute ago.\n\nYou go after them. Your hand drops to your belt to draw and closes on the cold brass of the compass. Nothing else is there. You have no knife and no blade. You keep going anyway.\n\nThe gap is low and narrow, and the bent stalks point toward the sound of the water. The mud swallows your boots to the ankle. Ten paces in, the reeds open onto a small shelf of silt at the river's edge. A row of wicker eel traps is staked in the shallows. A man crouches over one of them: barefoot, trousers rolled to the knee, wiry as a fence rail, with a short hooked knife for cutting withy ties. Nobody else is here. That makes him the biggest one, and he isn't big.\n\nHe hears you a heartbeat late and starts up out of his crouch as you close the distance.",
+      "firstWordMs": 45797,
+      "durationMs": 82296,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 44724,
+        "output": 7630,
+        "cached": 36769,
+        "cacheWrite": 7949,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.822,
+      "costUsd": 0.19972,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "combat",
+          "combat",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "upsert_place",
+          "combat",
+          "combat",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 4 vs 13 — failure",
+          "Barefoot eel-trapper recorded as a character",
+          "Barefoot eel-trapper's character notes started",
+          "Place recorded: Eel-trap shelf",
+          "Combat begins: Rowan, Barefoot eel-trapper",
+          "Positions: Rowan: nearby, Barefoot eel-trapper: cover",
+          "DM note updated",
+          "DM plan updated",
+          "The party travels to Eel-trap shelf (2 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 525,
+          "hash": "bde11e8f81a9"
+        },
+        {
+          "index": 3,
+          "tokens": 1668,
+          "hash": "22af8a215887"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c3",
+      "input": "I shout that the reeve's men are right behind me and give them one chance to run.",
+      "outcome": "committed",
+      "narration": "Your next stride lands on the pale crust of the silt, and the crust gives way. Your boot sinks into black ooze up to the shin, your weight keeps going, and you pitch forward into the shallows. Cold water slaps your face. Something cracks under you: wicker. A whole trap folds flat beneath your hip, the withies snapping like kindling. The compass is in your fist, and your fist is underwater.\n\nThe man is already up and three steps back, knife held low, heels at the edge of the reeds. He doesn't come at you. His eyes flick to the gap you came through and the road beyond it.\n\nYou get your head out of the water and shout anyway: the reeve's men are right behind you, and this is his one chance to run.",
+      "firstWordMs": 28825,
+      "durationMs": 48541,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 52716,
+        "output": 4417,
+        "cached": 41534,
+        "cacheWrite": 11176,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.788,
+      "costUsd": 0.15255,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Rowan rolls 1d20: 5 vs 11 — failure",
+          "Eel-trap shelf updated",
+          "Barefoot eel-trapper updated",
+          "Barefoot eel-trapper's character notes updated",
+          "1 minutes pass (A fall into the shallows, a shout and a tense standoff)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 1443,
+          "hash": "4799fb67e368"
+        },
+        {
+          "index": 3,
+          "tokens": 3626,
+          "hash": "5acabc7b73ae"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.45907,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}
