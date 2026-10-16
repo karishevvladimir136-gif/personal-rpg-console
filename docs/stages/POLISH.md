@@ -224,6 +224,14 @@ The owner's notes from the first play are added below by the planner before laun
   card; the owner guessed it was a persuasion check. Rule: a check of the hero (persuasion, any skill) is a player
   check with its card, reason, bonus and DC in words; a private DM roll (an NPC's reaction, a random event) never
   appears in the player's chips at all. Test both.
+- **«Проверка навыка» — which skill?** The card and the chip say only «Проверка навыка» / «рэй rolls 1d20: 6 vs 12 —
+  failure». The title names the skill or the approach in the campaign's words («Скрытность: подслушать через щель»,
+  «Убеждение: уговорить Мирона»), and the DM must always pass it (the `roll.reason` exists; make the card use it).
+- **Items gained and lost must stand out.** The owner had forgotten the pistol was pledged to Dunya and saw it
+  missing; the DM handled it correctly («пистолет у Дуни под кормовой банкой, это залог»). Every turn summary — even
+  collapsed — leads with item and money movements in plain words: «Получено: записка на обороте счёта Яна»,
+  «Отдано: гарпунный пистолет → Дуне (залог)», «−1 монета Дуне». The inventory shows pledged or lent items greyed with
+  «у Дуни, залог» instead of silently removing them.
 - **The «Кубы» button opens a hint panel nobody understands.** «Быстрые броски: Плавание / Вскрытие замков / Знание
   старой техники / Своя формула — Кубы бросает сервер, ведущий решает, нужна ли проверка. Кнопка только подсказывает
   текст хода.» Replace it with the registry's dice tray: a free roll the player makes himself (any dice, a reason
@@ -389,6 +397,8 @@ The owner's notes from the first play are added below by the planner before laun
   change it (a magic bag), and the DM using it when it matters. The owner: a convention is fine for now («мы не в
   симулятор водолаза играем»); design it with the ruleset work, not here.
 
+- **Picture models: a separate parallel stage, `docs/stages/PICTURE_MODELS.md`** (blind bake-off, Seedream included).
+  The adapter of the winner is merged here afterwards.
 - **Stronger picture models to test (owner asks for «модель помощнее»).** Turn 18 drew the hero bare-chested although
   he had just put on Yan's shirt (clothing state and identity drift). Add to the experiment, through the same Stage V
   store and price/cap: Google's Nano Banana Pro / Nano Banana 2 on fal (`fal-ai/nano-banana-pro/edit`, up to ~10
