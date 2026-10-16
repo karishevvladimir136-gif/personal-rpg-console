@@ -137,6 +137,12 @@ The owner's notes from the first play are added below by the planner before laun
     stay in the old style until «Перерисовать в новом стиле» is pressed — so at a style change ask right there
     «Перерисовать опорные картинки в новом стиле? ≈ $X» (yes by default when the campaign has few anchors). If he did
     not change it, find why the anchors and the frames used different styles.
+    Found: the campaign started with a default world look «Cinematic noir» (photo-like, the owner likes it — the
+    hero, the tavern and the items were drawn in it), which is not a Stage V style version and not a preset. When
+    «Линейный рисунок» was picked, Stage V created «стиль мира · v1» and new frames followed it, while the anchors
+    stayed cinematic; the screen says «Версии стиля (1)», so the owner cannot tell that the style changed. Fix: the
+    starting look is a real version v1 with its text, shown like any other; picking another makes v2 and asks about
+    re-rendering; add a «Кинематографичный» preset with the default text.
   - **«Что изменилось за ход» is in English and shows the DM's private work:** «Марта updated», «Ян Колода recorded
     as a character», «Place recorded: Чёрный волнорез (a rumour)», «Debt recorded: …», «Марта's character notes
     started», «DM note updated», «DM plan updated», «10 minutes pass (…)». Chips follow the campaign language and show
