@@ -586,3 +586,14 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    смотрит тебе в глаза.» (The planner's first try, «объяснение гладкое — как и его сухое пальто», was rejected by the
    owner: people do not compare an explanation to a coat. Plain beats clever; no decorative similes.) A success may add one telling detail (here the DM did
    it well: «patrol» is the first word he says faster than usual). Never write «ты не можешь сказать наверняка».
+   **Dialogue is the weakest part (owner, after 34 turns: «диалоги по естественности проигрывают остальному тексту»).**
+   Example: «— Никого, хозяин. Хорошее слово. Только мокрое. Просушить бы.» Diagnosis from the session: every NPC
+   speaks in the same composed, aphoristic voice — the author's voice — with clever metaphors and staccato fragments;
+   real speech has filler, unfinished phrases, repetition, plain words, and differs by person. Fix in three parts:
+   (1) a **speech profile in each Character Model** — vocabulary and register, sentence length, verbal tics, what the
+   person never says (Мирон shouts and mishears, Дуня is curt and practical, Марта counts and grumbles, the stranger
+   is polite and precise, Фрол is sly and wheedling) — and the DM writes each line from it; (2) **dialogue examples**
+   in the voice layer taken from Russian prose the owner likes, not composed by the planner (the owner rejected the
+   planner's rewrites twice); (3) a **bench check**: lines per NPC compared for distinctiveness (a vision-free text
+   judge asks «could this line belong to another character?») and an aphorism counter. Report dialogue separately in
+   the voice A/B.
