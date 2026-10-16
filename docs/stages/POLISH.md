@@ -63,8 +63,10 @@ The owner's notes from the first play are added below by the planner before laun
 - **The seeded Stage 4 DM Craft versions cannot be activated.** In the sandbox the six never-approved versions (How to
   run the game v3, Life off screen, The long campaign, A systemic world, Villains with motives…, A world that pushes
   back) sit in «Version history»; «Restore this version» does nothing for them, and the screen offers no other way to
-  approve a pending version. Give pending versions a clear «Review and approve» action (with what changes), make
-  restore work or hide it where it cannot, and show an error when an action fails. Add a test.
+  approve a pending version. Root cause found by the owner's local session: the UI sent `action` inside the data
+  written to the database, and the RPC answered 422. Fix and a test that reproduces the 422 are on
+  `claude/fix-dm-craft-payload` (commit ae78e9b, from `claude/integration`): merge it first, run its test. Then give
+  pending versions a clear «Review and approve» action (with what changes) and show an error when an action fails.
 - **New campaign wizard (hero step):** every single item asks for a quantity before creation («Укажите значение перед
   созданием») — default a singular item to 1; «долг в сорок монет трактирщице Марте» became an inventory resource
   instead of a debt in the journal (Stage 4 has the `debt` kind) with Marta as a person; the Astra-only notice («Для
