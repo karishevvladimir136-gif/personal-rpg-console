@@ -94,6 +94,28 @@ The owner's notes from the first play are added below by the planner before laun
   ответа») instead of a situation; Marta got one good line («за напоминания я пока не беру») but no look or gesture of
   her own. Use the Russian voice layer (item 7) for the opening too. Approving it needs a checkbox and a button — one
   confirmation is enough. The hero's name is shown as typed («рэй»): offer the capitalised form in the wizard.
+- **Pictures: two paths, one of them off (serious).** Stage V pictures work (the hero's figure and the item icons
+  were drawn on fal), but every older picture button still goes through the legacy path and says «Создание
+  изображений локально не включено»: Map → place illustration and «Создать карту» (atlas), Party → a person's
+  «Перерисовать портрет» / «Создать портрет». One picture path for every button (the Stage V store on fal, in the
+  campaign's style, priced, within the daily cap); no button that cannot work. A named person met in play (Marta)
+  should get a portrait without a click (see §7 of STAGE_V).
+- **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
+  line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
+  Today the harpoon pistol card says only «на один выстрел».
+- **Character page: the hero gets lost.** The full-length figure is small in a large empty panel («У этого персонажа
+  нет мест для снаряжения»). When the ruleset has no equipment slots, the figure fills the panel (tall, centred), with
+  the items around or under it. Labels mix languages (SKILL / АТАКА / DEFENSE); the six ability scores are flat 10s
+  from the stub profile.
+- **Journal does not show the obvious goal.** The opening is about a debt of forty coins to Marta and her job offer,
+  yet the journal says «Цели пока нет», «Долгов и обещаний пока нет». The opening (or the first turn) records what the
+  hero already knows: the debt as a `debt` to Marta, her job as an offered quest or thread, the goal «отдать долг».
+- **Player screens show system text.** Owner: «вылезла админ панель». Explanations such as «"К тебе" — только то, что
+  герой мог заметить сам. Тайные мысли спутников видит один ведущий…», «Ещё · прежний экран и правка записей», combat
+  stats on a tavern keeper (Марта: ХИТЫ 8/8, SKILL 0, АТАКА 0) read like an admin panel. Keep player screens in the
+  fiction: explanations behind a small «?», editing tools behind «Ещё», stats only for people the hero fights or leads.
+- **Broken-image fallback letters.** An initial letter shows at the top-left of an empty picture box and overlaps
+  badges («К» over the scene header, «М» under «РЯДОМ» on Marta's card). Use a proper empty state.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
