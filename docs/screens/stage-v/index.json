@@ -1,0 +1,134 @@
+{
+  "base": "PREVIEW_URL",
+  "date": "2026-10-16T01:28:42.392Z",
+  "shots": [
+    {
+      "file": "game-desktop.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "game-moment-desktop.jpg",
+      "url": "/preview/stage-5/game?moment=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "chronicle-desktop.jpg",
+      "url": "/preview/stage-5/chronicle",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "settings-desktop.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "character-desktop.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "noir-game-desktop.jpg",
+      "url": "/preview/stage-5/game?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "noir-chronicle-desktop.jpg",
+      "url": "/preview/stage-5/chronicle?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "noir-settings-desktop.jpg",
+      "url": "/preview/stage-5/settings?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "game-phone.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "game-moment-phone.jpg",
+      "url": "/preview/stage-5/game?moment=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "chronicle-phone.jpg",
+      "url": "/preview/stage-5/chronicle",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "settings-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "character-phone.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "noir-game-phone.jpg",
+      "url": "/preview/stage-5/game?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "noir-chronicle-phone.jpg",
+      "url": "/preview/stage-5/chronicle?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "noir-settings-phone.jpg",
+      "url": "/preview/stage-5/settings?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    }
+  ]
+}

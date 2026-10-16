@@ -1,0 +1,983 @@
+{
+  "command": "frames",
+  "world": "shov",
+  "style": "oil",
+  "styleText": "Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.",
+  "model": "fal-ai/flux-2/klein/9b",
+  "anchorsModel": "klein9b",
+  "refs": true,
+  "dry": false,
+  "summary": {
+    "frames": 20,
+    "failed": 0,
+    "medianShotMs": 1829,
+    "medianFalMs": 2014,
+    "medianFrameMs": 3988,
+    "shotFromModel": 20,
+    "perFrameUsd": "$0.017",
+    "perTurnUsd": "$0.017"
+  },
+  "rows": [
+    {
+      "turn": 1,
+      "input": "Даю команду отдать швартовы. Взлетаем.",
+      "paragraph": "Мэг кладёт ладонь на штурвал и смотрит на тебя поверх очков: «Скажи это вслух, наладчик. Чтобы «Бабка» слышала». Ты говоришь. Тинка срубает последний швартов, канат с шипением уходит в воду, и старый дирижабль, кряхтя всеми заклёпками, отрывается от каменного пола пещеры.",
+      "shot": {
+        "who": [
+          "Мэг Рыжая",
+          "Тинка"
+        ],
+        "action": "Мэг кладёт ладонь на штурвал и смотрит поверх очков; Тинка срубает последний швартов, канат с шипением уходит в воду, и старый дирижабль отрывается от каменного пола.",
+        "where": "Пещера дома Альвареш, каменный пол у воды, старый дирижабль у причала",
+        "angle": "medium shot, с уровня палубы, снизу вверх на отрывающийся ди",
+        "mood": "напряжённый момент отрыва, шипение каната, скрип металла"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 525,
+        "outputTokens": 201
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1829,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "references": [
+        "place: Пещера дома Альвареш",
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая, Тинка.\nAction: Мэг кладёт ладонь на штурвал и смотрит поверх очков; Тинка срубает последний швартов, канат с шипением уходит в воду, и старый дирижабль отрывается от каменного пола.\nPlace: Пещера дома Альвареш, каменный пол у воды, старый дирижабль у причала.\nCamera: medium shot, с уровня палубы, снизу вверх на отрывающийся ди.\nMood and light: напряжённый момент отрыва, шипение каната, скрип металла.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: a reference image shows the place (Пещера дома Альвареш); reference portraits show Мэг Рыжая: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t01.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-6572-7311-832f-d6d70f60fafb",
+      "width": 1024,
+      "height": 576,
+      "bytes": 718088,
+      "falMs": 3612,
+      "frameMs": 5441,
+      "totalMs": 5557,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 2,
+      "input": "Оборачиваюсь к Изольде: она летит с нами или остаётся?",
+      "paragraph": "Изольда стоит у кормового поручня, вцепившись в него так, что костяшки побелели. «Я дала клятву, — говорит она, не глядя на тебя. — Клятва не предусматривает высоты». Внизу, в полутьме пещеры, Тиаго Альвареш поднимает фонарь в прощальном жесте — и записывает что-то в свою книжку.",
+      "shot": {
+        "who": [
+          "Изольда Вэйл",
+          "Тиаго Альвареш"
+        ],
+        "action": "Изольда стоит у кормового поручня, вцепившись в него так, что костяшки побелели; Тиаго внизу в полутьме поднимает фонарь в прощальном жесте и что-то записывает в книжку.",
+        "where": "Пещера дома Альвареш, кормовая часть судна, полутьма пещеры",
+        "angle": "medium shot, Изольда в переднем плане, Тиаго внизу в глубине",
+        "mood": "напряжённая, тревожная, с тёплым прощальным светом фонаря"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 519,
+        "outputTokens": 209
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1250,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Изольда Вэйл",
+        "Тиаго Альвареш"
+      ],
+      "references": [
+        "place: Пещера дома Альвареш"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Изольда Вэйл, Тиаго Альвареш.\nAction: Изольда стоит у кормового поручня, вцепившись в него так, что костяшки побелели; Тиаго внизу в полутьме поднимает фонарь в прощальном жесте и что-то записывает в книжку.\nPlace: Пещера дома Альвареш, кормовая часть судна, полутьма пещеры.\nCamera: medium shot, Изольда в переднем плане, Тиаго внизу в глубине.\nMood and light: напряжённая, тревожная, с тёплым прощальным светом фонаря.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: a reference image shows the place (Пещера дома Альвареш).\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t02.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-7851-7b32-a06c-23b7604d670a",
+      "width": 1024,
+      "height": 576,
+      "bytes": 628404,
+      "falMs": 1666,
+      "frameMs": 2916,
+      "totalMs": 2963,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 3,
+      "input": "Иду к Вольфу в машинное: как правый двигатель?",
+      "paragraph": "В машинном отделении пахнет горячим маслом и эфиритом. Вольф Кесслер стоит по локоть в правом двигателе, монокль запотел, на щеке чёрная полоса. «Кашляет, но тянет, — говорит он, не оборачиваясь. — До Пиренеев дотянем. Дальше — как Шов решит». Он протягивает тебе гаечный ключ: «Подержи. И не дыши на кристалл».",
+      "shot": {
+        "who": [
+          "Вольф Кесслер"
+        ],
+        "action": "Вольф Кесслер стоит по локоть в правом двигателе, протягивая гаечный ключ, с запотевшим моноклем и чёрной полосой на щеке.",
+        "where": "Машинное отделение летающего корабля в небе над Пиренеями, горячее масло и эфирит в воздухе.",
+        "angle": "medium shot, over the shoulder from the viewer's position be",
+        "mood": "Напряжённая, тёплая, немного тревожная; механическая работа "
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 543,
+        "outputTokens": 188
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1401,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Вольф Кесслер"
+      ],
+      "matchedEntities": [
+        "Вольф Кесслер"
+      ],
+      "references": [
+        "Вольф Кесслер"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Вольф Кесслер.\nAction: Вольф Кесслер стоит по локоть в правом двигателе, протягивая гаечный ключ, с запотевшим моноклем и чёрной полосой на щеке.\nPlace: Машинное отделение летающего корабля в небе над Пиренеями, горячее масло и эфирит в воздухе..\nCamera: medium shot, over the shoulder from the viewer's position be.\nMood and light: Напряжённая, тёплая, немного тревожная; механическая работа .\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Вольф Кесслер: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t03.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-8493-7183-8343-0487861a3037",
+      "width": 1024,
+      "height": 576,
+      "bytes": 740106,
+      "falMs": 1985,
+      "frameMs": 3386,
+      "totalMs": 3432,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 4,
+      "input": "Поднимаюсь на палубу к Зарге. Спрашиваю, что она слышит.",
+      "paragraph": "Зарга сидит на носу гондолы, свесив ноги в пустоту, и держит костяной амулет на ладони, как птицу. «Шов поёт, — говорит она. — Громче, чем вчера. Как будто кто-то дёргает струну с другой стороны». Ветер рвёт её косы; чалмы-обереги на поясе звенят. Она поворачивается к тебе, и в её янтарных глазах отражается фиолетовое зарево на востоке.",
+      "shot": {
+        "who": [
+          "Зарга"
+        ],
+        "action": "Зарга сидит на носу гондолы, свесив ноги в пустоту, и держит костяной амулет на ладони; ветер рвёт её косы, обереги на поясе звенят, она оборачивается к зрителю.",
+        "where": "Небо над Пиренеями, нос гондолы в воздухе",
+        "angle": "medium shot, low angle, слегка сзади и сбоку",
+        "mood": "тревожное, холодное; фиолетовое зарево на востоке"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 549,
+        "outputTokens": 172
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1159,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Зарга"
+      ],
+      "matchedEntities": [
+        "Зарга"
+      ],
+      "references": [
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Зарга.\nAction: Зарга сидит на носу гондолы, свесив ноги в пустоту, и держит костяной амулет на ладони; ветер рвёт её косы, обереги на поясе звенят, она оборачивается к зрителю.\nPlace: Небо над Пиренеями, нос гондолы в воздухе.\nCamera: medium shot, low angle, слегка сзади и сбоку.\nMood and light: тревожное, холодное; фиолетовое зарево на востоке.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Зарга: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t04.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-9115-7f61-aa3c-30bc17554469",
+      "width": 1024,
+      "height": 576,
+      "bytes": 671512,
+      "falMs": 1910,
+      "frameMs": 3069,
+      "totalMs": 3139,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 5,
+      "input": "Замечаю точку на горизонте. Беру подзорную трубу.",
+      "paragraph": "В подзорной трубе точка превращается в корабль: тёмный, узкий, с двумя винтами по бортам и флагом, которого ты не знаешь. Он идёт наперерез, и идёт быстро. Урзул уже стоит рядом — ты не слышал, как он подошёл, — и молча снимает с крюка длинную винтовку. Мэг гасит сигариллу о борт: «Я же говорила. Кто-нибудь обязательно будет».",
+      "shot": {
+        "who": [
+          "Урзул Железный Бок",
+          "Мэг Рыжая"
+        ],
+        "action": "Урзул молча снимает с крюка длинную винтовку, а Мэг гасит сигариллу о борт, глядя на приближающийся к ним тёмный узкий корабль с двумя винтами по бортам.",
+        "where": "Небо над Пиренеями, борт корабля, на котором стоят герои",
+        "angle": "medium shot",
+        "mood": "напряжённое ожидание, тревога, тихая решимость"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 546,
+        "outputTokens": 437
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 2454,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "references": [
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Урзул Железный Бок, Мэг Рыжая.\nAction: Урзул молча снимает с крюка длинную винтовку, а Мэг гасит сигариллу о борт, глядя на приближающийся к ним тёмный узкий корабль с двумя винтами по бортам.\nPlace: Небо над Пиренеями, борт корабля, на котором стоят герои.\nCamera: medium shot.\nMood and light: напряжённое ожидание, тревога, тихая решимость.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая, Урзул Железный Бок: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t05.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-a2cb-79f2-a9ba-364f4698db4e",
+      "width": 1024,
+      "height": 576,
+      "bytes": 654982,
+      "falMs": 3558,
+      "frameMs": 6012,
+      "totalMs": 6120,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 6,
+      "input": "Приказываю уходить вверх, в облака. Мэг, выжимай всё.",
+      "paragraph": "«Бабка» задирает нос, и палуба уходит из-под ног. Мэг держит штурвал обеими руками, Тинка где-то в такелаже орёт что-то про левый баллон, а ты хватаешься за поручень и видишь, как чужой корабль растёт снизу, серый и быстрый. Облака смыкаются над гондолой мокрым холодным молоком.",
+      "shot": {
+        "who": [
+          "Мэг Рыжая",
+          "Тинка"
+        ],
+        "action": "Корабль «Бабка» задирает нос, палуба уходит из-под ног; Мэг держит штурвал обеими руками, Тинка где-то в такелаже кричит про левый баллон, а снизу растёт серый быстрый чужой корабль, и облака смыкаются над гондолой.",
+        "where": "Небо над Пиренеями, палуба и гондола воздушного корабля «Бабка», облака",
+        "angle": "medium shot с низким ракурсом снизу, фигуры на накренившейся",
+        "mood": "тревожно, холодно, сыро, туман сжимается вокруг"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 519,
+        "outputTokens": 228
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 2179,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "references": [
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая, Тинка.\nAction: Корабль «Бабка» задирает нос, палуба уходит из-под ног; Мэг держит штурвал обеими руками, Тинка где-то в такелаже кричит про левый баллон, а снизу растёт серый быстрый чужой корабль, и облака смыкаются над гондолой.\nPlace: Небо над Пиренеями, палуба и гондола воздушного корабля «Бабка», облака.\nCamera: medium shot с низким ракурсом снизу, фигуры на накренившейся.\nMood and light: тревожно, холодно, сыро, туман сжимается вокруг.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t06.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-b928-7bb1-bff5-0ea2a3130690",
+      "width": 1024,
+      "height": 576,
+      "bytes": 559654,
+      "falMs": 1809,
+      "frameMs": 3988,
+      "totalMs": 4036,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 7,
+      "input": "Бегу на корму: что в нас попало?",
+      "paragraph": "На корме Урзул держит одной рукой разорванный канат, другой — Вольфа за ворот: инженера едва не унесло в пробоину. В обшивке гондолы дыра размером с бочку, и в ней свистит ветер. На палубе лежит гарпун с цепью — чужой корабль не стреляет, он тянет. Урзул смотрит на тебя: «Рубить?»",
+      "shot": {
+        "who": [
+          "Урзул Железный Бок",
+          "Вольф Кесслер"
+        ],
+        "action": "Урзул одной рукой держит разорванный канат, другой — Вольфа за ворот у пробоины в обшивке гондолы, куда свистит ветер; на палубе лежит гарпун с цепью.",
+        "where": "Корма гондолы воздушного корабля, небо над Пиренеями",
+        "angle": "medium shot, low angle from the deck",
+        "mood": "tense, rushing wind, sudden danger"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 522,
+        "outputTokens": 169
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1295,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "matchedEntities": [
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "references": [
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Урзул Железный Бок, Вольф Кесслер.\nAction: Урзул одной рукой держит разорванный канат, другой — Вольфа за ворот у пробоины в обшивке гондолы, куда свистит ветер; на палубе лежит гарпун с цепью.\nPlace: Корма гондолы воздушного корабля, небо над Пиренеями.\nCamera: medium shot, low angle from the deck.\nMood and light: tense, rushing wind, sudden danger.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Урзул Железный Бок, Вольф Кесслер: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t07.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-c5e4-75d1-a3ae-ba059bb7ff13",
+      "width": 1024,
+      "height": 576,
+      "bytes": 656892,
+      "falMs": 3611,
+      "frameMs": 4906,
+      "totalMs": 5018,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 8,
+      "input": "Кладу руку на цепь и бью в неё огненным снарядом — пусть лопнет.",
+      "paragraph": "Огонь вырывается из твоей ладони коротким злым языком, и звено цепи вспыхивает белым. Урзул бьёт по нему прикладом — раз, другой, — и цепь лопается с таким звоном, что у тебя закладывает уши. Гарпун улетает вниз, в облака, а «Бабка», освободившись, подпрыгивает вверх, как пробка.",
+      "shot": {
+        "who": [
+          "Урзул Железный Бок"
+        ],
+        "action": "Урзул бьёт прикладом по горящему звену цепи, и цепь лопается; гарпун уходит вниз в облака, а «Бабка» подпрыгивает вверх, освободившись.",
+        "where": "Небо над Пиренеями, над облаками",
+        "angle": "medium shot, low angle",
+        "mood": "резкий белый свет вспышки, напряжение, грохот и хаос"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 521,
+        "outputTokens": 153
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1228,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок"
+      ],
+      "matchedEntities": [
+        "Урзул Железный Бок"
+      ],
+      "references": [
+        "Урзул Железный Бок"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Урзул Железный Бок.\nAction: Урзул бьёт прикладом по горящему звену цепи, и цепь лопается; гарпун уходит вниз в облака, а «Бабка» подпрыгивает вверх, освободившись.\nPlace: Небо над Пиренеями, над облаками.\nCamera: medium shot, low angle.\nMood and light: резкий белый свет вспышки, напряжение, грохот и хаос.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Урзул Железный Бок: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t08.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-d8ea-7880-9e2e-c820f29aac89",
+      "width": 1024,
+      "height": 576,
+      "bytes": 653053,
+      "falMs": 1934,
+      "frameMs": 3162,
+      "totalMs": 3217,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 9,
+      "input": "Иду на камбуз. Нам всем нужно поесть и отдышаться.",
+      "paragraph": "Грук уже раздаёт сардины — прямо из банки, на ломтях чёрного хлеба, — и бормочет, что видел сон про три луны и одну дыру в небе. Тинка висит вниз головой под потолком камбуза и ест, не спускаясь. Пробоину Вольф заткнул брезентом и доской; в камбузе всё равно сквозит.",
+      "shot": {
+        "who": [
+          "Грук",
+          "Тинка",
+          "Вольф Кесслер"
+        ],
+        "action": "Грук раздаёт сардины прямо из банки на ломтях чёрного хлеба; Тинка висит вниз головой под потолком камбуза и ест; Вольф заткнул пробоину брезентом и доской.",
+        "where": "Камбуз на борту корабля в небе над Пиренеями; в стене дыра, заткнутая брезентом и доской, сквозит.",
+        "angle": "medium shot, low angle from the galley floor",
+        "mood": "тесно, сыро, сквозняк; тусклый будничный свет"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 516,
+        "outputTokens": 205
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1435,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Грук",
+        "Тинка"
+      ],
+      "matchedEntities": [
+        "Вольф Кесслер",
+        "Тинка",
+        "Грук"
+      ],
+      "references": [
+        "Вольф Кесслер"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Грук, Тинка, Вольф Кесслер.\nAction: Грук раздаёт сардины прямо из банки на ломтях чёрного хлеба; Тинка висит вниз головой под потолком камбуза и ест; Вольф заткнул пробоину брезентом и доской.\nPlace: Камбуз на борту корабля в небе над Пиренеями; в стене дыра, заткнутая брезентом и доской, сквозит..\nCamera: medium shot, low angle from the galley floor.\nMood and light: тесно, сыро, сквозняк; тусклый будничный свет.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Вольф Кесслер: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t09.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420e-e64d-7cf1-a1ac-3afbd1d138f6",
+      "width": 1024,
+      "height": 576,
+      "bytes": 642267,
+      "falMs": 1999,
+      "frameMs": 3434,
+      "totalMs": 3500,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 10,
+      "input": "Изольда выглядит плохо. Подхожу и предлагаю ей воды.",
+      "paragraph": "Изольда принимает кружку, не глядя, и держит её, не пьёт. «Я знаю, кто это был, — говорит она тихо. — Корабль. Это «Серая Вдова», Дом голосов. Они не за вами, наладчик. Они за сердечником». Впервые за полёт она смотрит тебе в глаза, и в них нет ни лжи, ни страха — только усталость.",
+      "shot": {
+        "who": [
+          "Изольда Вэйл"
+        ],
+        "action": "Изольда принимает кружку, не глядя, и держит её, не пьёт; тихо говорит, что знает, кто был на корабле, и смотрит прямо в глаза зрителю.",
+        "where": "Небо над Пиренеями",
+        "angle": "close-up, over the shoulder of the viewer",
+        "mood": "тихая усталость, без страха и лжи"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 524,
+        "outputTokens": 140
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1068,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Изольда Вэйл"
+      ],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Изольда Вэйл.\nAction: Изольда принимает кружку, не глядя, и держит её, не пьёт; тихо говорит, что знает, кто был на корабле, и смотрит прямо в глаза зрителю.\nPlace: Небо над Пиренеями.\nCamera: close-up, over the shoulder of the viewer.\nMood and light: тихая усталость, без страха и лжи.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t10.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b",
+      "requestId": "01a1420e-f224-74b3-b50d-0a428a72f7da",
+      "width": 1024,
+      "height": 576,
+      "bytes": 692115,
+      "falMs": 2639,
+      "frameMs": 3707,
+      "totalMs": 3709,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 11,
+      "input": "Поднимаюсь к Мэг. Рассказываю ей про Дом голосов.",
+      "paragraph": "Мэг слушает, не перебивая, и только крепче сжимает штурвал. «Значит, в Женеве нас ждут, — говорит она наконец. — Хорошо. Я не люблю сюрпризов». Она достаёт из-под сиденья карту и расстилает её на коленях: «Пойдём не через перевал, а вдоль Роны. Дольше на день, зато там нас никто не ждёт».",
+      "shot": {
+        "who": [
+          "Мэг Рыжая"
+        ],
+        "action": "Мэг, не перебивая, слушает и крепче сжимает штурвал, затем достаёт из-под сиденья карту и расстилает её на коленях.",
+        "where": "Небо над Пиренеями, кабина летательного аппарата",
+        "angle": "medium shot, over the shoulder from the co-pilot seat",
+        "mood": "напряжённое, решительное, с оттенком настороженности"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 530,
+        "outputTokens": 151
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1104,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая"
+      ],
+      "references": [
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая.\nAction: Мэг, не перебивая, слушает и крепче сжимает штурвал, затем достаёт из-под сиденья карту и расстилает её на коленях.\nPlace: Небо над Пиренеями, кабина летательного аппарата.\nCamera: medium shot, over the shoulder from the co-pilot seat.\nMood and light: напряжённое, решительное, с оттенком настороженности.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t11.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-012f-79e2-9ea4-7375f87d0c9f",
+      "width": 1024,
+      "height": 576,
+      "bytes": 681588,
+      "falMs": 2160,
+      "frameMs": 3264,
+      "totalMs": 3317,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 12,
+      "input": "Ночь. Выхожу на палубу — не спится.",
+      "paragraph": "Ночь над Роной холодная и ясная. На палубе Зарга и Вольф сидят спина к спине, укрывшись одним одеялом: шаманка смотрит на восток, где над горизонтом дрожит фиолетовое зарево, инженер — на свой блокнот при свете фонаря. «Шов растёт на два градуса в сутки, — говорит Вольф, не поднимая головы. — Если это Шов. Я записываю». Зарга молчит, но её амулет на ладони светится в такт зареву.",
+      "shot": {
+        "who": [
+          "Зарга",
+          "Вольф Кесслер"
+        ],
+        "action": "Зарга и Вольф сидят спина к спине под одним одеялом на палубе; она смотрит на восток, где дрожит фиолетовое зарево, он пишет в блокнот при свете фонаря, а её амулет светится в такт зареву.",
+        "where": "Палуба корабля над Роной, ночное небо, фонарь",
+        "angle": "medium shot, sitting figures seen from behind, lantern in th",
+        "mood": "холодная ясная ночь, тревожное фиолетовое свечение, напряжён"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 566,
+        "outputTokens": 458
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 2607,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Зарга",
+        "Вольф Кесслер"
+      ],
+      "matchedEntities": [
+        "Вольф Кесслер",
+        "Зарга"
+      ],
+      "references": [
+        "Вольф Кесслер",
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Зарга, Вольф Кесслер.\nAction: Зарга и Вольф сидят спина к спине под одним одеялом на палубе; она смотрит на восток, где дрожит фиолетовое зарево, он пишет в блокнот при свете фонаря, а её амулет светится в такт зареву.\nPlace: Палуба корабля над Роной, ночное небо, фонарь.\nCamera: medium shot, sitting figures seen from behind, lantern in th.\nMood and light: холодная ясная ночь, тревожное фиолетовое свечение, напряжён.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Вольф Кесслер, Зарга: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t12.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-1460-7950-b27b-40d6519f698a",
+      "width": 1024,
+      "height": 576,
+      "bytes": 612250,
+      "falMs": 3744,
+      "frameMs": 6351,
+      "totalMs": 6451,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 13,
+      "input": "Утро. Женева. Ищу, где сесть незаметно.",
+      "paragraph": "Женева открывается из-за холмов разом: озеро, шпили, паровые трамваи на мостах — и над всем этим, вместо неба, фиолетовая трещина, дрожащая, как струна. Мэг присвистывает. Тинка на мачте молча показывает пальцем на пустырь у старых доков, где между сараями хватит места для гондолы. «Там, — говорит Мэг. — И быстро, пока нас не увидели».",
+      "shot": {
+        "who": [
+          "Мэг Рыжая",
+          "Тинка"
+        ],
+        "action": "Мэг присвистывает, глядя на город; Тинка на мачте молча показывает пальцем на пустырь у старых доков, где между сараями хватит места для гондолы.",
+        "where": "Женева с холмов: озеро, шпили, паровые трамваи на мостах; над городом вместо неба фиолетовая трещина, дрожащая, как стру",
+        "angle": "wide shot from the hills, with Mэг and Тинка small in the fo",
+        "mood": "тревожное предчувствие, напряжение, спешка"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 532,
+        "outputTokens": 201
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1598,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "references": [
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая, Тинка.\nAction: Мэг присвистывает, глядя на город; Тинка на мачте молча показывает пальцем на пустырь у старых доков, где между сараями хватит места для гондолы.\nPlace: Женева с холмов: озеро, шпили, паровые трамваи на мостах; над городом вместо неба фиолетовая трещина, дрожащая, как стру.\nCamera: wide shot from the hills, with Mэг and Тинка small in the fo.\nMood and light: тревожное предчувствие, напряжение, спешка.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t13.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-29a7-75d0-b94b-946c48dfe320",
+      "width": 1024,
+      "height": 576,
+      "bytes": 697654,
+      "falMs": 2014,
+      "frameMs": 3612,
+      "totalMs": 3774,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 14,
+      "input": "Иду к лагерю Рурка один, как договаривались.",
+      "paragraph": "Лагерь Рурка — три палатки и часовой с винтовкой у края пустыря, над которым небо разорвано сильнее всего. Майор выходит навстречу сам: сухой, седой, в выгоревшем мундире, с перевязанной рукой. «Хейл, — говорит он без приветствия. — Двое моих не вернулись из складки. Я обещал их матерям. Вы привезли то, что обещали?»",
+      "shot": {
+        "who": [
+          "Майор Рурк",
+          "Джеймс Хейл"
+        ],
+        "action": "Майор Рурк, сухой и седой, в выгоревшем мундире с перевязанной рукой, выходит навстречу Хейлу и говорит ему, что двое его людей не вернулись из складки.",
+        "where": "Лагерь Рурка у края пустыря, три палатки, часовой с винтовкой, разорванное небо над пустырём; Женева",
+        "angle": "medium shot, Рурк в центре кадра лицом к Хейлу, часовой и па",
+        "mood": "напряжённое, тревожное, холодный свет под разорванным небом"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 527,
+        "outputTokens": 222
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1308,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "references": [
+        "Джеймс Хейл"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Майор Рурк, Джеймс Хейл.\nAction: Майор Рурк, сухой и седой, в выгоревшем мундире с перевязанной рукой, выходит навстречу Хейлу и говорит ему, что двое его людей не вернулись из складки.\nPlace: Лагерь Рурка у края пустыря, три палатки, часовой с винтовкой, разорванное небо над пустырём; Женева.\nCamera: medium shot, Рурк в центре кадра лицом к Хейлу, часовой и па.\nMood and light: напряжённое, тревожное, холодный свет под разорванным небом.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Джеймс Хейл: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t14.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-36f6-7c72-9bfe-85b93e622bb6",
+      "width": 1024,
+      "height": 576,
+      "bytes": 706091,
+      "falMs": 2418,
+      "frameMs": 3726,
+      "totalMs": 3807,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 15,
+      "input": "Показываю Рурку сердечник. Изольда стоит за мной.",
+      "paragraph": "Ты достаёшь из торбы сердечник Г-7, и он гудит в твоей ладони громче, чем когда-либо, — в такт разрыву над головой. Рурк не тянется к нему; он смотрит на Изольду. «Директриса, — говорит он. — Вы обещали, что Фабрика не взлетит». «Она и не взлетела, — отвечает Изольда ровно. — Она взорвалась». Между ними повисает тишина, в которой слышно только гул сердечника.",
+      "shot": {
+        "who": [
+          "Майор Рурк",
+          "Изольда Вэйл"
+        ],
+        "action": "Рурк, не глядя на сердечник, смотрит на Изольду Вэйл, которая ровно отвечает ему; между ними повисает тишина, слышен только гул сердечника Г-7.",
+        "where": "Женева, у Фабрики, под разрывом над головой",
+        "angle": "medium shot, two figures facing each other, the glowing core",
+        "mood": "tense, silent, ominous hum, aftermath of an explosion"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 551,
+        "outputTokens": 516
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3129,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Майор Рурк",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Изольда Вэйл",
+        "Майор Рурк"
+      ],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Майор Рурк, Изольда Вэйл.\nAction: Рурк, не глядя на сердечник, смотрит на Изольду Вэйл, которая ровно отвечает ему; между ними повисает тишина, слышен только гул сердечника Г-7.\nPlace: Женева, у Фабрики, под разрывом над головой.\nCamera: medium shot, two figures facing each other, the glowing core.\nMood and light: tense, silent, ominous hum, aftermath of an explosion.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t15.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b",
+      "requestId": "01a1420f-4c80-7cb0-a990-749b2aaff12a",
+      "width": 1024,
+      "height": 576,
+      "bytes": 724555,
+      "falMs": 1804,
+      "frameMs": 4933,
+      "totalMs": 4936,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 16,
+      "input": "Кричу своим занять позиции. Кто это?",
+      "paragraph": "Фургон останавливается, не доехав полсотни шагов, и из него выходят шестеро в серых плащах, без оружия на виду. Урзул уже стоит слева от тебя, винтовка у плеча; Мэг — справа, с револьвером Мэг, и её сигарилла торчит из угла рта, как жало. Передний из серых поднимает руки: «Дом голосов приветствует наладчика Хейла. Мы пришли купить».",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Урзул Железный Бок",
+          "Мэг Рыжая",
+          "передний из шестерых в серых плащах"
+        ],
+        "action": "Фургон останавливается в пятидесяти шагах; шестеро в серых плащах выходят без видимого оружия. Урзул стоит слева с винтовкой у плеча, Мэг справа с револьвером и сигариллой в углу рта. Передний поднимает руки.",
+        "where": "Женева, улица перед остановившимся фургоном",
+        "angle": "wide shot, low angle from behind Hale's shoulder",
+        "mood": "напряжённое ожидание, холодный свет, опасность"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 534,
+        "outputTokens": 503
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 2795,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Мэг Рыжая"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Джеймс Хейл, Урзул Железный Бок, Мэг Рыжая, передний из шестерых в серых плащах.\nAction: Фургон останавливается в пятидесяти шагах; шестеро в серых плащах выходят без видимого оружия. Урзул стоит слева с винтовкой у плеча, Мэг справа с револьвером и сигариллой в углу рта. Передний поднимает руки.\nPlace: Женева, улица перед остановившимся фургоном.\nCamera: wide shot, low angle from behind Hale's shoulder.\nMood and light: напряжённое ожидание, холодный свет, опасность.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Джеймс Хейл, Мэг Рыжая, Урзул Железный Бок: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t16.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-6035-7bd2-8683-17074779bf3a",
+      "width": 1024,
+      "height": 576,
+      "bytes": 611259,
+      "falMs": 3449,
+      "frameMs": 6244,
+      "totalMs": 6580,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 17,
+      "input": "Отвечаю: сердечник не продаётся. Пусть уезжают.",
+      "paragraph": "«Жаль», — говорит серый, и опускает руки. Это сигнал: из фургона выпрыгивают ещё четверо, уже с короткими карабинами, и пустырь взрывается криком, выстрелами и паром. Ты бросаешься за ящики, и первая пуля выбивает щепки у твоего уха.",
+      "shot": {
+        "who": [
+          "the grey man",
+          "four armed men with short carbines"
+        ],
+        "action": "The grey man lowers his hands as four more men leap from a van with short carbines; shots and steam fill the vacant lot, and the player dives behind crates as a bullet splinters wood beside his ear.",
+        "where": "A vacant lot in Geneva, with a van, crates and steam in the air",
+        "angle": "low angle from behind the crates, close on the splintering w",
+        "mood": "tense, chaotic, sudden violence"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 493,
+        "outputTokens": 531
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3268,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл"
+      ],
+      "matchedEntities": [],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: the grey man, four armed men with short carbines.\nAction: The grey man lowers his hands as four more men leap from a van with short carbines; shots and steam fill the vacant lot, and the player dives behind crates as a bullet splinters wood beside his ear.\nPlace: A vacant lot in Geneva, with a van, crates and steam in the air.\nCamera: low angle from behind the crates, close on the splintering w.\nMood and light: tense, chaotic, sudden violence.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t17.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b",
+      "requestId": "01a1420f-7a12-7451-a073-e8f4a7cf845e",
+      "width": 1024,
+      "height": 576,
+      "bytes": 797126,
+      "falMs": 2014,
+      "frameMs": 5282,
+      "totalMs": 5290,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 18,
+      "input": "Бросаю огненный шар в фургон — пусть им будет не на чем уехать.",
+      "paragraph": "Огненный шар срывается с твоих пальцев и бьёт в котёл фургона. Взрыв подбрасывает машину на дыбы; серые разлетаются, как кегли, и один из них катится по земле, сбивая пламя с плаща. Урзул идёт сквозь дым, не пригибаясь, и его железный бок звенит от пуль. Зарга за твоей спиной поёт, низко и страшно, и амулет в её руке горит фиолетовым.",
+      "shot": {
+        "who": [
+          "Urzul Ironflank",
+          "Zarga",
+          "grey figures"
+        ],
+        "action": "A fireball strikes the caravan's boiler and the vehicle rears up in an explosion. Grey figures scatter like bowling pins, one rolling on the ground to smother the flames on his cloak. Urzul walks through the smoke, upright, his iron side ri",
+        "where": "Geneva, at a van overturned by blast, in the smoke and street",
+        "angle": "wide shot, low angle on the rearing van",
+        "mood": "chaotic, fiery, eerie with violet glow"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 542,
+        "outputTokens": 517
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3140,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Зарга"
+      ],
+      "matchedEntities": [],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Urzul Ironflank, Zarga, grey figures.\nAction: A fireball strikes the caravan's boiler and the vehicle rears up in an explosion. Grey figures scatter like bowling pins, one rolling on the ground to smother the flames on his cloak. Urzul walks through the smoke, upright, his iron side ri\nPlace: Geneva, at a van overturned by blast, in the smoke and street.\nCamera: wide shot, low angle on the rearing van.\nMood and light: chaotic, fiery, eerie with violet glow.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t18.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b",
+      "requestId": "01a1420f-8e3f-7ec1-88e0-7b3fbe584aef",
+      "width": 1024,
+      "height": 576,
+      "bytes": 751935,
+      "falMs": 1905,
+      "frameMs": 5045,
+      "totalMs": 5054,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 19,
+      "input": "Рурк ранен. Бегу к нему, прикрываясь дымом.",
+      "paragraph": "Рурк сидит, привалившись к палатке, и зажимает бок; сквозь пальцы течёт тёмное. «Хейл, — хрипит он. — Складка. Они не покупать пришли — им нужно, чтобы сердечник был здесь, у разрыва. Не дайте им…» Он не договаривает: над пустырём раздаётся звук, как будто рвётся огромный парус, и свет становится фиолетовым.",
+      "shot": {
+        "who": [
+          "Майор Рурк",
+          "Джеймс Хейл"
+        ],
+        "action": "Рурк сидит, привалившись к палатке, и зажимает рану в боку; между пальцев течёт тёмная кровь. Он хрипит что-то Хейлу, не договаривая фразы, а над пустырём разрывается светящаяся складка, и свет становится фиолетовым.",
+        "where": "Женева, пустырь у палаток, под открытым небом",
+        "angle": "medium shot, low angle на Рурка, Хейл в кадре сбоку",
+        "mood": "тревожная, тёмная, резкий фиолетовый свет"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 530,
+        "outputTokens": 210
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1855,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "references": [
+        "Джеймс Хейл"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Майор Рурк, Джеймс Хейл.\nAction: Рурк сидит, привалившись к палатке, и зажимает рану в боку; между пальцев течёт тёмная кровь. Он хрипит что-то Хейлу, не договаривая фразы, а над пустырём разрывается светящаяся складка, и свет становится фиолетовым.\nPlace: Женева, пустырь у палаток, под открытым небом.\nCamera: medium shot, low angle на Рурка, Хейл в кадре сбоку.\nMood and light: тревожная, тёмная, резкий фиолетовый свет.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Джеймс Хейл: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t19.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-9d4f-7280-bb0d-6c0ba1122bf7",
+      "width": 1024,
+      "height": 576,
+      "bytes": 630087,
+      "falMs": 1798,
+      "frameMs": 3653,
+      "totalMs": 3710,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 20,
+      "input": "Поднимаю сердечник над головой и приказываю Шву замолчать.",
+      "paragraph": "Ты поднимаешь сердечник, и слова приходят сами — не твои, отцовские, из часов, остановившихся на 3:17. Гул обрывается. Трещина над Женевой замирает, дрожит — и медленно, со звуком, как тихий выдох, сходится на ладонь. Мэг опускает револьвер. Зарга падает на колени, Изольда закрывает лицо руками, а серые, побросав карабины, бегут к дымящемуся фургону.",
+      "shot": {
+        "who": [
+          "Мэг Рыжая",
+          "Зарга",
+          "Изольда Вэйл"
+        ],
+        "action": "Мэг lowers her revolver as Зарга falls to her knees and Изольда covers her face with her hands; the grey figures drop their carbines and run toward the smoking van while the rift above Geneva shrinks and closes.",
+        "where": "Geneva, under a rift in the sky above the city, beside a smoking van",
+        "angle": "wide shot, slightly low angle, showing the rift and the figu",
+        "mood": "exhausted relief after a silent collapse, quiet and uneasy"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 544,
+        "outputTokens": 600
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 4206,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Зарга",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Зарга",
+        "Изольда Вэйл"
+      ],
+      "references": [
+        "Мэг Рыжая",
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая, Зарга, Изольда Вэйл.\nAction: Мэг lowers her revolver as Зарга falls to her knees and Изольда covers her face with her hands; the grey figures drop their carbines and run toward the smoking van while the rift above Geneva shrinks and closes.\nPlace: Geneva, under a rift in the sky above the city, beside a smoking van.\nCamera: wide shot, slightly low angle, showing the rift and the figu.\nMood and light: exhausted relief after a silent collapse, quiet and uneasy.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая, Зарга: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-oil-klein9b-refs-t20.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a1420f-b5a8-7701-ab4a-b25570fd93f9",
+      "width": 1024,
+      "height": 576,
+      "bytes": 623755,
+      "falMs": 3602,
+      "frameMs": 7808,
+      "totalMs": 7911,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    }
+  ]
+}

@@ -27,6 +27,7 @@ import {
   type PublicPicture,
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, framePrompt, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
+import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
 import { createPictureRow, runPictureJob as runJob } from "../../visual-frame/picture-job";
@@ -73,6 +74,15 @@ function paragraphFor(trigger: PictureTrigger, text: string, finished: boolean) 
   }
   return firstParagraph(text, finished);
 }
+const nameMatches = (recordName: string, shotName: string) => shotEntityIds({ who: [shotName], action: "", where: "", angle: "", mood: "" }, [{ id: "x", name: recordName }]).length > 0;
+/** Public appearance of a record: its details plus the owner-approved visual reference text, if any. */
+function appearanceOf(snapshot: CampaignSnapshot, entityId: string) {
+  const entity = snapshot.entities.find((row) => row.id === entityId);
+  const reference = visualDocuments(snapshot).find(({ value }) => value.kind === "reference" && value.approval === "approved" &&
+    value.subject.kind === "entity" && value.subject.id === entityId)?.value;
+  const guidance = reference && reference.kind === "reference" ? [reference.appearance, reference.outfit].filter(Boolean).join(" ") : "";
+  return [guidance, entity?.details ?? ""].filter(Boolean).join(" ").slice(0, 400);
+}
 function shotContext(snapshot: CampaignSnapshot): ShotContext {
   const hero = snapshot.entities.find((row) => row.kind === "player") ?? null;
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
@@ -116,9 +126,13 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
   const people = entityIds.map((id) => snapshot.entities.find((row) => row.id === id)?.name ?? "").filter(Boolean);
   const style = activeStyle(board);
+  const appearance = Object.fromEntries(shot.who.map((name) => {
+    const entity = snapshot.entities.find((row) => nameMatches(row.name, name));
+    return [name, entity ? appearanceOf(snapshot, entity.id) : ""];
+  }));
   const prompt = framePrompt(shot, styleTextFor(board, snapshot.settings.values.visualStyle), {
     people, place: referenceIds.length && place && anchorFor(board, { kind: "location", id: place.id }, "location", snapshot.timeline).picture ? place.name : null, style: !!style?.hasReference,
-  });
+  }, appearance);
   const picture = await createPictureRow(ctx, {
     id: crypto.randomUUID(), kind: "frame", subjectKind: "turn", subjectId: operationId, composition: "frame", timeline: snapshot.timeline,
     tier, trigger, model, styleVersionId: style?.id ?? null,
@@ -156,7 +170,7 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
     if (!row) throw new PersistenceError("not_found");
     const worn = snapshot.items.filter((item) => item.equipped_entity_id === row.id && item.quantity > 0).map((item) => item.name).slice(0, 12);
     name = row.name;
-    description = [row.details, worn.length ? `Visible equipment: ${worn.join(", ")}.` : ""].filter(Boolean).join("\n");
+    description = [appearanceOf(snapshot, row.id), worn.length ? `Visible equipment: ${worn.join(", ")}.` : ""].filter(Boolean).join("\n");
     chosen = composition && ["portrait", "figure", "holding"].includes(composition) ? composition : compositionForEntity(row);
   } else if (subject.kind === "item") {
     const row = snapshot.items.find((item) => item.id === subject.id);
@@ -167,7 +181,9 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
     if (!row || !["known", "visited"].includes(row.status)) throw new PersistenceError("not_found");
     name = row.name; description = row.description; chosen = "location";
   }
-  const pickedTier: PictureTier = tier ?? (board.settings.quality === "quality" || chosen === "portrait" || chosen === "figure" ? "quality" : "fast");
+  // Owner's rule: best quality wherever it does not hurt the live feel — anchors are drawn on the
+  // quality tier unless the caller (a fast restyle) asks for the fast one.
+  const pickedTier: PictureTier = tier ?? "quality";
   const model = modelForTier(pickedTier);
   const style = activeStyle(board);
   const referenceIds = referencesForAnchor(board, subject, chosen, model, snapshot.timeline);
@@ -204,7 +220,7 @@ export async function restyleCampaign(campaignId: string, value: unknown, schedu
   const { plan, fastUsdMicros, qualityUsdMicros } = restylePlan(snapshot, board);
   if (value.dryRun === true) return { status: "estimate" as const, count: plan.length, fastUsdMicros, qualityUsdMicros, queued: [] as PublicPicture[] };
   const queued: PublicPicture[] = [];
-  const tier = (value.tier as PictureTier | undefined) ?? "fast";
+  const tier = (value.tier as PictureTier | undefined) ?? "quality";
   let remaining = capRemaining(board);
   for (const row of plan) {
     if (remaining <= 0) break;

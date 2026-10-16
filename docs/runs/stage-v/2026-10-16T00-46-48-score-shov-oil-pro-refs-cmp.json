@@ -1,0 +1,108 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-21-00-frames-shov-oil-pro-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2-pro",
+  "refs": true,
+  "summary": {
+    "scored": 5,
+    "meanPeople": 5.5,
+    "meanPlace": 2.4,
+    "meanStyle": 7.2
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 8,
+        "notes": "Frame's helmeted pilot resembles Meg's goggles and tan jacket, but lacks cigarette and braid. Cave, water and rock match well."
+      },
+      "usage": {
+        "inputTokens": 3280,
+        "outputTokens": 406
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":6,\"style\":8,\"notes\":\"Frame's helmeted pilot resembles Meg's goggles and tan jacket, but lacks cigarette and braid. Cave, water and rock match well.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 5,
+        "notes": "No character portraits given. Frame's cave matches reference, but it shows a ship deck and smoother rendering than the thick brushwork."
+      },
+      "usage": {
+        "inputTokens": 1905,
+        "outputTokens": 331
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":5,\"notes\":\"No character portraits given. Frame's cave matches reference, but it shows a ship deck and smoother rendering than the thick brushwork.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Same round gold glasses, slicked hair, and brown leather coat; the cheek smear is present, but the glasses aren't fogged."
+      },
+      "usage": {
+        "inputTokens": 2462,
+        "outputTokens": 331
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Same round gold glasses, slicked hair, and brown leather coat; the cheek smear is present, but the glasses aren't fogged.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Similar dark braided hair, red vest, beads and earrings; facial features and age look less alike."
+      },
+      "usage": {
+        "inputTokens": 2451,
+        "outputTokens": 344
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Similar dark braided hair, red vest, beads and earrings; facial features and age look less alike.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Only one man, similar long beard and hair; Meg missing. Frame shows a balcony and biplane, not a ship deck."
+      },
+      "usage": {
+        "inputTokens": 3898,
+        "outputTokens": 340
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Only one man, similar long beard and hair; Meg missing. Frame shows a balcony and biplane, not a ship deck.\"}"
+    }
+  ]
+}

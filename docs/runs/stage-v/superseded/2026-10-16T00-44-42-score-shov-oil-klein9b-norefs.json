@@ -1,0 +1,342 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-16-16-frames-shov-oil-klein9b-norefs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": false,
+  "summary": {
+    "scored": 17,
+    "meanPeople": 3.44,
+    "meanPlace": 0.71,
+    "meanStyle": 7.12
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 3,
+        "place": 6,
+        "style": 7,
+        "notes": "Meg lacks the reference's goggles, helmet, cigarette and braid; cave with water and dark rock matches; oil brushwork style is similar."
+      },
+      "usage": {
+        "inputTokens": 3286,
+        "outputTokens": 362
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":6,\"style\":7,\"notes\":\"Meg lacks the reference's goggles, helmet, cigarette and braid; cave with water and dark rock matches; oil brushwork style is similar.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 7,
+        "notes": "Frame shows a ship deck with rocky cave walls, but no water. Painterly, impasto style closely matches the reference."
+      },
+      "usage": {
+        "inputTokens": 1906,
+        "outputTokens": 324
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":7,\"notes\":\"Frame shows a ship deck with rocky cave walls, but no water. Painterly, impasto style closely matches the reference.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame man has a beard, goggles and messy hair, unlike the clean-shaven, round-spectacled portrait; brown coat is loosely similar."
+      },
+      "usage": {
+        "inputTokens": 2465,
+        "outputTokens": 383
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame man has a beard, goggles and messy hair, unlike the clean-shaven, round-spectacled portrait; brown coat is loosely similar.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 6,
+        "notes": "Long dark hair and beaded belt echo Zarga, but the face and brown leather outfit differ from the red-vest portrait."
+      },
+      "usage": {
+        "inputTokens": 2449,
+        "outputTokens": 394
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":6,\"notes\":\"Long dark hair and beaded belt echo Zarga, but the face and brown leather outfit differ from the red-vest portrait.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Woman has red hair and a cigarette, but no goggles, braid, or khaki outfit. Urzul is absent. Painterly oil style matches."
+      },
+      "usage": {
+        "inputTokens": 3873,
+        "outputTokens": 451
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Woman has red hair and a cigarette, but no goggles, braid, or khaki outfit. Urzul is absent. Painterly oil style matches.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame's woman has long wavy red hair and a white cap, unlike the reference's braided hair and goggles. Oil-painting style matches well."
+      },
+      "usage": {
+        "inputTokens": 2474,
+        "outputTokens": 445
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Frame's woman has long wavy red hair and a white cap, unlike the reference's braided hair and goggles. Oil-painting style matches well.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Urzul's long hair and beard roughly fit; Wolf's glasses and coat are missing, and the second figure is a wolf-man."
+      },
+      "usage": {
+        "inputTokens": 3882,
+        "outputTokens": 393
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Urzul's long hair and beard roughly fit; Wolf's glasses and coat are missing, and the second figure is a wolf-man.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame shows only hands and sleeves, no visible face or hair. Painterly oil style matches the portrait reference. No place reference image was given."
+      },
+      "usage": {
+        "inputTokens": 2478,
+        "outputTokens": 450
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Frame shows only hands and sleeves, no visible face or hair. Painterly oil style matches the portrait reference. No place reference image was given.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 1,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's man has cap and beard, no round glasses or bow tie; Wolf Kessler's features absent; a wolf appears instead."
+      },
+      "usage": {
+        "inputTokens": 2498,
+        "outputTokens": 371
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":1,\"place\":0,\"style\":7,\"notes\":\"Frame's man has cap and beard, no round glasses or bow tie; Wolf Kessler's features absent; a wolf appears instead.\"}"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Similar auburn hair and painterly oil style, but the frame shows loose hair, headphones and a leather jacket, not the braid, goggles and tan uniform."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 393
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Similar auburn hair and painterly oil style, but the frame shows loose hair, headphones and a leather jacket, not the braid, goggles and tan uniform.\"}"
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 6,
+        "notes": "Woman's long brown hair loosely resembles Zarga, but no jewelry or red vest. Wolf figure does not match Wolf Kessler's human features."
+      },
+      "usage": {
+        "inputTokens": 3885,
+        "outputTokens": 382
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":6,\"notes\":\"Woman's long brown hair loosely resembles Zarga, but no jewelry or red vest. Wolf figure does not match Wolf Kessler's human features.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Figures are seen from behind, faces hidden; auburn hair loosely matches, but no goggles, cigarette, or aviator outfit. Painterly style matches."
+      },
+      "usage": {
+        "inputTokens": 2482,
+        "outputTokens": 398
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Figures are seen from behind, faces hidden; auburn hair loosely matches, but no goggles, cigarette, or aviator outfit. Painterly style matches.\"}"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Bearded man resembles Hale's beard and hair, but his clothing and the uniformed second man differ. Both are painterly oils."
+      },
+      "usage": {
+        "inputTokens": 2473,
+        "outputTokens": 403
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Bearded man resembles Hale's beard and hair, but his clothing and the uniformed second man differ. Both are painterly oils.\"}"
+    },
+    {
+      "turn": 15,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Bearded figures and auburn hair loosely echo references, but Urzul lacks shoulder armor and Meg lacks goggles. Painterly oil style matches."
+      },
+      "usage": {
+        "inputTokens": 5298,
+        "outputTokens": 513
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Bearded figures and auburn hair loosely echo references, but Urzul lacks shoulder armor and Meg lacks goggles. Painterly oil style matches.\"}"
+    },
+    {
+      "turn": 17,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 6,
+        "notes": "Warrior lacks Urzul's long wavy hair and pauldrons; purple-robed singer loosely echoes Zarga's hair but not her clothing. Painterly style is similar."
+      },
+      "usage": {
+        "inputTokens": 3897,
+        "outputTokens": 491
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":6,\"notes\":\"Warrior lacks Urzul's long wavy hair and pauldrons; purple-robed singer loosely echoes Zarga's hair but not her clothing. Painterly style is similar.\"}"
+    },
+    {
+      "turn": 19,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Only one man visible; Hale absent. Coat and beard loosely echo the portrait. Painterly oil style matches. No place reference."
+      },
+      "usage": {
+        "inputTokens": 2481,
+        "outputTokens": 374
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Only one man visible; Hale absent. Coat and beard loosely echo the portrait. Painterly oil style matches. No place reference.\"}"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Meg's red hair and face loosely echo the reference, but the hairstyle and outfit differ; Zarga is not clearly recognizable."
+      },
+      "usage": {
+        "inputTokens": 3893,
+        "outputTokens": 451
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Meg's red hair and face loosely echo the reference, but the hairstyle and outfit differ; Zarga is not clearly recognizable.\"}"
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-19-25-frames-shov-oil-flash-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/flash",
+  "refs": true,
+  "summary": {
+    "scored": 5,
+    "meanPeople": 6,
+    "meanPlace": 2.2,
+    "meanStyle": 7.2
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 7,
+        "notes": "Meg's uniform, goggles and red hair match, but the frame adds round glasses. Tinka has no reference. Cave with water and ropes fits, but the stone floor and tunnel differ."
+      },
+      "usage": {
+        "inputTokens": 3276,
+        "outputTokens": 430
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":6,\"style\":7,\"notes\":\"Meg's uniform, goggles and red hair match, but the frame adds round glasses. Tinka has no reference. Cave with water and ropes fits, but the stone floor and tunnel differ.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 5,
+        "style": 6,
+        "notes": "Frame shows a cave with a ship railing, like the reference, but no water or boat. Both are dark painterly oils, though the frame is more detailed and realistic."
+      },
+      "usage": {
+        "inputTokens": 1907,
+        "outputTokens": 411
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":5,\"style\":6,\"notes\":\"Frame shows a cave with a ship railing, like the reference, but no water or boat. Both are dark painterly oils, though the frame is more detailed and realistic.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame man shares swept-back hair, round spectacles, brown coat and bow tie; the reference is a painted portrait, similar oil style."
+      },
+      "usage": {
+        "inputTokens": 2471,
+        "outputTokens": 280
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Frame man shares swept-back hair, round spectacles, brown coat and bow tie; the reference is a painted portrait, similar oil style.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Hair, earrings, beaded necklace and red vest match well. Setting is a ship with rigging, not a gondola; no place reference given."
+      },
+      "usage": {
+        "inputTokens": 2451,
+        "outputTokens": 325
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Hair, earrings, beaded necklace and red vest match well. Setting is a ship with rigging, not a gondola; no place reference given.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Urzul's long brown hair and beard partly match; Meg's hair is bright red curls, not the reference's auburn braid, and she lacks goggles."
+      },
+      "usage": {
+        "inputTokens": 3875,
+        "outputTokens": 508
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Urzul's long brown hair and beard partly match; Meg's hair is bright red curls, not the reference's auburn braid, and she lacks goggles.\"}"
+    }
+  ]
+}

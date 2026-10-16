@@ -1,0 +1,257 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-14-51-frames-shov-oil-klein9b-refs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 2,
+    "meanPeople": 6.5,
+    "meanPlace": 0,
+    "meanStyle": 8
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3278,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":6,\"style\":8,\"notes\":\"Meg's braid, goggles, and tan coat match her reference, but the frame drops her cigarette and adds Tinka, who has no reference; the rocky cave with water fits the Альвареш reference, and both share the same thick impasto"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 1886,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "The man has similar older features, swept dark hair, round glasses, and a brown leather coat, but the frame lacks the reference's bow tie, and the place category has no reference."
+      },
+      "usage": {
+        "inputTokens": 2462,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"The man has similar older features, swept dark hair, round glasses, and a brown leather coat, but the frame lacks the reference's bow tie, and the place category has no reference.\"}\n\n"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"The woman's long dark hair, red vest, and beaded belt echo the reference, but her face looks younger and less weathered, and the frame shows her seated in the cabin r"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3869,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2501,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"The steering woman in the frame has similar goggles, helm"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3866,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"The barbarian has similar long hair, beard and leather straps but lacks the reference's metal pauldron and greenish skin, and the glasses"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2447,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2493,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2437,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "The woman's long dark hair, red vest and blue jewelry echo Zarga, and the man's swept hair, glasses and brown leather coat echo Wolf Kessler, though the faces are not clearly the same people; the refe"
+      },
+      "usage": {
+        "inputTokens": 3866,
+        "outputTokens": 321
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"The woman's long dark hair, red vest and blue jewelry echo Zarga, and the man's swept hair, glasses and brown leather coat echo Wolf Kessler, though the faces are not clearly the same people; the references are portraits, so there is no place reference.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2482,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2486,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Both figures are in a painted oil style like the reference, but the frame's right-hand"
+    },
+    {
+      "turn": 15,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 5303,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": ""
+    },
+    {
+      "turn": 17,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 18,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 19,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2488,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":6,\""
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3867,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"The frame's painterly oil style matches the references, and the goggled pilot-like woman loosely resembles Мэг, but the kneeling figures don't clearly match Зарга's hair, red vest,"
+    }
+  ]
+}

@@ -4,8 +4,8 @@
 // row's result. Errors end in the row, never in a retry loop. No environment
 // access: the server passes the key, tests pass fakes.
 import { isUuid } from "../persistence/validation.ts";
-import { COMPOSITION_SIZE, generateFalImage, isContentRefusal, softenPrompt, type FalImageModelId, type FalReference } from "./fal-image.ts";
-import { parsePicture, type PictureComposition, type PictureSubjectKind, type PictureTier, type PictureTrigger, type PublicPicture } from "./pictures.ts";
+import { COMPOSITION_SIZE, FAST_FAL_IMAGE_MODEL, generateFalImage, isContentRefusal, softenPrompt, type FalImageModelId, type FalReference } from "./fal-image.ts";
+import { maxReferencesFor, parsePicture, type PictureComposition, type PictureSubjectKind, type PictureTier, type PictureTrigger, type PublicPicture } from "./pictures.ts";
 
 export type PictureRpcAction = "read" | "settings.save" | "style.save" | "style.activate" | "style.clear" | "picture.create" | "picture.update" | "picture.hide" | "picture.private" | "style.private";
 export type PictureJobContext = {
@@ -87,7 +87,7 @@ export async function runPictureJob(ctx: PictureJobContext, pictureId: string, o
     const size = COMPOSITION_SIZE[picture.composition];
     const base = { model, size, format: "jpeg" as const, references,
       ...(model === "fal-ai/flux-2-pro" && (picture.composition === "portrait" || picture.composition === "figure") ? { safetyTolerance: "4" as const } : {}) };
-    const call = (prompt: string) => generateFalImage(options.apiKey, { ...base, prompt }, { fetcher: options.fetcher, sleep: options.sleep });
+    const call = (prompt: string, overrides: Partial<typeof base> = {}) => generateFalImage(options.apiKey, { ...base, ...overrides, prompt }, { fetcher: options.fetcher, sleep: options.sleep });
     let result;
     try {
       result = await call(picture.prompt);
@@ -95,7 +95,15 @@ export async function runPictureJob(ctx: PictureJobContext, pictureId: string, o
       if (!isContentRefusal(error)) throw error;
       // The checker refused the prompt itself: one re-submit with a softened description, never a loop.
       log("picture_content_refusal", { campaignId: ctx.campaignId, pictureId, detail: (error as { detail?: string }).detail ?? null });
-      result = await call(softenPrompt(picture.prompt));
+      try {
+        result = await call(softenPrompt(picture.prompt));
+      } catch (second) {
+        // The [pro] checker refuses a fight's climax even softened (Stage V bench: 2 of 4 key moments);
+        // the fast model has no prompt checker, so the picture is drawn there instead of lost. Bounded: a third and last request.
+        if (!isContentRefusal(second) || model !== "fal-ai/flux-2-pro") throw second;
+        log("picture_fast_fallback", { campaignId: ctx.campaignId, pictureId, detail: (second as { detail?: string }).detail ?? null });
+        result = await call(picture.prompt, { model: FAST_FAL_IMAGE_MODEL, references: references.slice(0, maxReferencesFor(FAST_FAL_IMAGE_MODEL)), safetyTolerance: undefined });
+      }
     }
     costUsdMicros += result.priceUsdMicros;
     const storagePath = pictureStoragePath(ctx.campaignId, pictureId, result.contentType);
@@ -103,7 +111,7 @@ export async function runPictureJob(ctx: PictureJobContext, pictureId: string, o
     const ready = await updatePictureRow(ctx, {
       id: pictureId, status: "ready",
       output: { storagePath, contentType: result.contentType, width: result.width, height: result.height, bytes: result.bytes.byteLength, sha256: ctx.sha256(result.bytes) },
-      costUsdMicros, requestId: result.requestId, elapsedMs: Date.now() - started,
+      costUsdMicros, requestId: result.requestId, elapsedMs: Date.now() - started, model: result.model,
     });
     log("picture_ready", { campaignId: ctx.campaignId, pictureId, kind: picture.kind, model, endpoint: result.endpoint, references: references.length, ms: Date.now() - started, falMs: result.elapsedMs, costUsdMicros });
     return ready;

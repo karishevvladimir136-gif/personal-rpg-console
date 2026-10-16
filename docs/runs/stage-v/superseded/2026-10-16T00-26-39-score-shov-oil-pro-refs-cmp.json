@@ -1,0 +1,88 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-21-00-frames-shov-oil-pro-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2-pro",
+  "refs": true,
+  "summary": {
+    "scored": 1,
+    "meanPeople": 7,
+    "meanPlace": 0,
+    "meanStyle": 8
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3279,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":7,\"style\":8,\"notes\":\"The frame's helmet, goggles, and khaki jacket echo Meg's portrait, but her face, braid, and cigarette"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 1904,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "The frame's man has the same round gold-rimmed glasses, slicked-back hair and brown leather coat as the reference, and the painterly oil style matches, though his glasses are not fogged and the refere"
+      },
+      "usage": {
+        "inputTokens": 2461,
+        "outputTokens": 360
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"The frame's man has the same round gold-rimmed glasses, slicked-back hair and brown leather coat as the reference, and the painterly oil style matches, though his glasses are not fogged and the reference shows no setting to compare.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3897,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": ""
+    }
+  ]
+}

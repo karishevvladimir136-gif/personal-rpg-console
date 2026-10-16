@@ -1,0 +1,108 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-18-45-frames-shov-oil-klein4b-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/4b",
+  "refs": true,
+  "summary": {
+    "scored": 5,
+    "meanPeople": 5.5,
+    "meanPlace": 2.2,
+    "meanStyle": 7.4
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 5,
+        "style": 7,
+        "notes": "Meg's goggles, red hair and coat echo the portrait; Tinka's white headscarf matches. Cave and water fit, but the ship looks seafaring, not airship-like."
+      },
+      "usage": {
+        "inputTokens": 3279,
+        "outputTokens": 420
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":5,\"style\":7,\"notes\":\"Meg's goggles, red hair and coat echo the portrait; Tinka's white headscarf matches. Cave and water fit, but the ship looks seafaring, not airship-like.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 8,
+        "notes": "Woman's white headscarf, red bodice and cream skirt match Image 2; Tiago has no reference. Frame shows a cave and boat but no water."
+      },
+      "usage": {
+        "inputTokens": 1890,
+        "outputTokens": 309
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":6,\"style\":8,\"notes\":\"Woman's white headscarf, red bodice and cream skirt match Image 2; Tiago has no reference. Frame shows a cave and boat but no water.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Similar age, hair, and brown leather coat; glasses differ and no bow tie. Both are realistic oil paintings."
+      },
+      "usage": {
+        "inputTokens": 2458,
+        "outputTokens": 391
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Similar age, hair, and brown leather coat; glasses differ and no bow tie. Both are realistic oil paintings.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Hair, red vest, beads and turquoise earrings match; face looks younger and different. Oil-painting style matches."
+      },
+      "usage": {
+        "inputTokens": 2451,
+        "outputTokens": 364
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Hair, red vest, beads and turquoise earrings match; face looks younger and different. Oil-painting style matches.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Woman's loose bright ginger hair and man's goggled helmet only partly match references; Urzul lacks his green skin and armor."
+      },
+      "usage": {
+        "inputTokens": 3894,
+        "outputTokens": 454
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Woman's loose bright ginger hair and man's goggled helmet only partly match references; Urzul lacks his green skin and armor.\"}"
+    }
+  ]
+}

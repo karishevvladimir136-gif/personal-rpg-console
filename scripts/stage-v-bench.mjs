@@ -149,7 +149,6 @@ async function runFrames() {
   const [from, to] = (arg("--turns", `1-${scene.turns.length}`)).split("-").map(Number);
   const index = existsSync(indexFile(world, style, anchorsKey)) ? JSON.parse(readFileSync(indexFile(world, style, anchorsKey), "utf8")) : {};
   const anchorFor = (subjectId, composition) => index[`${subjectId}:${composition}`] ?? null;
-  const byName = (name) => snapshot.entities.find((row) => row.name === name) ?? null;
   const placeId = (key) => snapshot.locations.find((row) => row.name === scene.places[key])?.id ?? null;
   const rows = [];
   for (let n = from; n <= Math.min(to, scene.turns.length); n++) {
@@ -175,7 +174,8 @@ async function runFrames() {
       }
     }
     const people = entityIds.map((id) => snapshot.entities.find((row) => row.id === id)?.name).filter(Boolean);
-    const prompt = framePrompt(shot, preset.text, { people: refs ? people.filter((name) => referenceNames.includes(name)) : [], place: refs && referenceNames[0]?.startsWith("place") ? scene.places[turn.place] : null, style: false });
+    const appearance = Object.fromEntries(shot.who.map((name) => [name, snapshot.entities.find((row) => shotEntityIds({ who: [name], action: "", where: "", angle: "", mood: "" }, [row]).length)?.details ?? ""]));
+    const prompt = framePrompt(shot, preset.text, { people: refs ? people.filter((name) => referenceNames.includes(name)) : [], place: refs && referenceNames[0]?.startsWith("place") ? scene.places[turn.place] : null, style: false }, appearance);
     const input = { model, prompt, size: COMPOSITION_SIZE.frame, format: "jpeg", references };
     const started = Date.now();
     let outcome;
@@ -249,7 +249,11 @@ async function runScore() {
   const scored = scores.filter((row) => row.score);
   const mean = (key) => scored.length ? Number((scored.reduce((sum, row) => sum + row.score[key], 0) / scored.length).toFixed(2)) : null;
   const withPeople = scored.filter((row) => row.anchors.some((label) => label.startsWith("portrait")));
-  const summary = { scored: scored.length, meanPeople: withPeople.length ? Number((withPeople.reduce((sum, row) => sum + row.score.people, 0) / withPeople.length).toFixed(2)) : null, meanPlace: mean("place"), meanStyle: mean("style") };
+  // Means over the rows that had the reference in question (a frame without a place anchor says nothing about places).
+  const withPlace = scored.filter((row) => row.anchors.some((label) => label.startsWith("the place")));
+  const summary = { scored: scored.length, withPeople: withPeople.length, withPlace: withPlace.length,
+    meanPeople: withPeople.length ? Number((withPeople.reduce((sum, row) => sum + row.score.people, 0) / withPeople.length).toFixed(2)) : null,
+    meanPlace: withPlace.length ? Number((withPlace.reduce((sum, row) => sum + row.score.place, 0) / withPlace.length).toFixed(2)) : null, meanStyle: mean("style") };
   console.log(JSON.stringify(summary));
   saveRun(`score-${record.world}-${record.style}-${Object.entries(MODELS).find(([, id]) => id === record.model)[0]}-${record.refs ? "refs" : "norefs"}${file.includes("-cmp") ? "-cmp" : file.includes("-key") ? "-key" : ""}`, { command: "score", run: file, world: record.world, style: record.style, model: record.model, refs: record.refs, summary, scores });
 }

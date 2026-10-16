@@ -25,7 +25,7 @@ function fakeContext(rows, objects = {}) {
       if (action === "picture.update") {
         const r = row(payload.id);
         updates.push(payload);
-        Object.assign(r, { status: payload.status, costUsdMicros: payload.costUsdMicros ?? r.costUsdMicros, error: payload.error ?? null,
+        Object.assign(r, { status: payload.status, costUsdMicros: payload.costUsdMicros ?? r.costUsdMicros, error: payload.error ?? null, model: payload.model ?? r.model,
           ...(payload.output ? { storagePath: payload.output.storagePath, width: payload.output.width, height: payload.output.height, readyAt: new Date().toISOString() } : {}) });
         return { ...r };
       }
@@ -71,7 +71,7 @@ test("a queued picture becomes ready: references load in order, the edit endpoin
 
 test("a content refusal is re-submitted once with a softened prompt; a second refusal fails the row with the reason", async () => {
   const frame = picture({ model: "fal-ai/flux-2-pro", composition: "portrait", kind: "anchor", subjectKind: "entity" });
-  const { ctx, updates } = fakeContext({ [frame.id]: frame });
+  const { ctx } = fakeContext({ [frame.id]: frame });
   const prompts = [];
   const refusal = () => json({ detail: "The content could not be processed because it contained material flagged by a content checker." }, 422);
   let polls = 0;
@@ -92,16 +92,38 @@ test("a content refusal is re-submitted once with a softened prompt; a second re
   assert.equal(prompts.length, 2);
   assert.doesNotMatch(prompts[1], /thirties|revolver/);
   assert.equal(ready.costUsdMicros, 30_000);
+  // A second refusal on [pro] hands the picture to the fast model once (its queue has no prompt checker); a refusal there ends the row.
   const twice = picture({ model: "fal-ai/flux-2-pro", composition: "portrait", kind: "anchor", subjectKind: "entity" });
   const second = fakeContext({ [twice.id]: twice });
-  const failed = await runPictureJob(second.ctx, twice.id, { apiKey: "k", fetcher: async (url) => (url === "https://queue.fal.run/fal-ai/flux-2-pro" ? refusal() : json({})), sleep: async () => {} });
+  const submits = [];
+  let kleinPolls = 0;
+  const ladder = async (url) => {
+    if (url === "https://queue.fal.run/fal-ai/flux-2-pro") { submits.push("pro"); return refusal(); }
+    if (url === "https://queue.fal.run/fal-ai/flux-2/klein/9b") { submits.push("klein"); return json({ request_id: "req-klein123" }); }
+    if (String(url).endsWith("/status?logs=0")) return json({ status: kleinPolls++ ? "COMPLETED" : "IN_QUEUE" });
+    if (String(url).endsWith("/requests/req-klein123")) return json({ images: [{ url: "https://v3.fal.media/files/k.jpg", width: 1024, height: 1024 }] });
+    if (url === "https://v3.fal.media/files/k.jpg") return new Response(jpeg, { headers: { "Content-Type": "image/jpeg" } });
+    throw new Error("unexpected " + url);
+  };
+  const drawn = await runPictureJob(second.ctx, twice.id, { apiKey: "k", fetcher: ladder, sleep: async () => {} });
+  assert.equal(drawn.status, "ready");
+  assert.deepEqual(submits, ["pro", "pro", "klein"], "two pro attempts, then the fast model, nothing more");
+  assert.equal(second.updates.at(-1).model, "fal-ai/flux-2/klein/9b", "the row records the model that drew it");
+  assert.equal(drawn.costUsdMicros, 17_000);
+  const thrice = picture({ model: "fal-ai/flux-2-pro", composition: "portrait", kind: "anchor", subjectKind: "entity" });
+  const third = fakeContext({ [thrice.id]: thrice });
+  const failed = await runPictureJob(third.ctx, thrice.id, { apiKey: "k", fetcher: async () => refusal(), sleep: async () => {} });
   assert.equal(failed.status, "failed");
   assert.match(failed.error, /^validation: HTTP 422/);
-  assert.equal(second.updates.length, 2, "generating, then failed: no third attempt");
+  assert.equal(third.updates.length, 2, "generating, then failed: no fourth attempt");
   assert.equal(failed.costUsdMicros, 0);
+  const kleinOnly = picture({ model: "fal-ai/flux-2/klein/9b" });
+  const fourth = fakeContext({ [kleinOnly.id]: kleinOnly });
+  const kleinFailed = await runPictureJob(fourth.ctx, kleinOnly.id, { apiKey: "k", fetcher: async () => refusal(), sleep: async () => {} });
+  assert.equal(kleinFailed.status, "failed", "the fast model has no further fallback");
   const unconfigured = picture();
-  const third = fakeContext({ [unconfigured.id]: unconfigured });
-  assert.equal((await runPictureJob(third.ctx, unconfigured.id, { apiKey: "" })).error, "not_configured");
+  const fifth = fakeContext({ [unconfigured.id]: unconfigured });
+  assert.equal((await runPictureJob(fifth.ctx, unconfigured.id, { apiKey: "" })).error, "not_configured");
 });
 
 test("references: ready pictures and style references by id, missing ones skipped", async () => {

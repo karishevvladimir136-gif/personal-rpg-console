@@ -1,0 +1,177 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-18-27-frames-noir-noir-klein9b-refs.json",
+  "world": "noir",
+  "style": "noir",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 5,
+    "meanPeople": 5.67,
+    "meanPlace": 2.6,
+    "meanStyle": 8.6
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 8,
+        "place": 3,
+        "style": 9,
+        "notes": "The man in Image 1 closely matches Rook's helmet with sensors, stubble, and worn leather jacket, but the frame shows a corridor with a steel door and peephole rather than the rainy Kowloon Stack 9 str"
+      },
+      "usage": {
+        "inputTokens": 3262,
+        "outputTokens": 119
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":3,\"style\":9,\"notes\":\"The man in Image 1 closely matches Rook's helmet with sensors, stubble, and worn leather jacket, but the frame shows a corridor with a steel door and peephole rather than the rainy Kowloon Stack 9 street from the reference, and the described lift and chip-seller are absent.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Kowloon Stack 9"
+      ],
+      "score": {
+        "people": 0,
+        "place": 5,
+        "style": 8,
+        "notes": "Frame 1 shows the cramped unit interior with stairwell and rain in a gritty halftone comic style like the Kowloon reference, but the exterior building signage and Kowloon street character are absent, "
+      },
+      "usage": {
+        "inputTokens": 1867,
+        "outputTokens": 98
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":5,\"style\":8,\"notes\":\"Frame 1 shows the cramped unit interior with stairwell and rain in a gritty halftone comic style like the Kowloon reference, but the exterior building signage and Kowloon street character are absent, so the place match is only partial.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 4648,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":2,\"style\":9,\"notes\":\"Dana's face, short hair, and white shirt with leather jacket match closely, and Mara's dark hair and jacket are similar but less exact, while the interior monitoring room doesn't resemble the exterior"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3271,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":3,\"style\":8,\"notes\":\"The frame's woman has braids and a jacket, unlike Dana Okafor's short hair and leather coat, and the interior room doesn't show the Kowloon Stack 9 "
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "the place, Kowloon Stack 9"
+      ],
+      "score": {
+        "people": 0,
+        "place": 5,
+        "style": 9,
+        "notes": "No character portrait reference was provided, so people is 0; the frame's rainy high-rise backdrop with Chinese signs resembles Kowloon Stack 9 but the Stack 9 sign is not visible, and the inked halft"
+      },
+      "usage": {
+        "inputTokens": 1827,
+        "outputTokens": 364
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":5,\"style\":9,\"notes\":\"No character portrait reference was provided, so people is 0; the frame's rainy high-rise backdrop with Chinese signs resembles Kowloon Stack 9 but the Stack 9 sign is not visible, and the inked halftone comic style matches the reference closely.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Rook's flying figure wears a similar helmet and dark jacket, but at this small size the face and camera details don't match the portrait, and no place reference was given."
+      },
+      "usage": {
+        "inputTokens": 2449,
+        "outputTokens": 366
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Rook's flying figure wears a similar helmet and dark jacket, but at this small size the face and camera details don't match the portrait, and no place reference was given.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 9,
+        "notes": "The man at the door matches Dana's short hair, dark leather coat, and white shirt, but his face is mostly turned away, and Velvet has no reference portrait to compare against."
+      },
+      "usage": {
+        "inputTokens": 2434,
+        "outputTokens": 396
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":9,\"notes\":\"The man at the door matches Dana's short hair, dark leather coat, and white shirt, but his face is mostly turned away, and Velvet has no reference portrait to compare against.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Mara Vey"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2445,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":9,\"notes\":\"The doorway figure has dark hair"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3839,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"The man's short hair,"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Rook",
+        "portrait of Mara Vey"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3857,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Mara's dark h"
+    }
+  ]
+}

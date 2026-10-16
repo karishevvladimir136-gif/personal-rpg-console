@@ -43,7 +43,9 @@ export async function buildShot(apiKey: string, paragraph: string, context: Shot
   const request = shotRequest(paragraph, context);
   try {
     const { text, usage } = await messages(apiKey, {
-      model: SHOT_MODEL, max_tokens: 400, system: request.system, messages: [{ role: "user", content: request.user }],
+      // Low effort: no thinking before a 60-token JSON answer (at the default effort the model
+      // spent its whole output allowance thinking and the answer never arrived).
+      model: SHOT_MODEL, max_tokens: 600, output_config: { effort: "low" }, system: request.system, messages: [{ role: "user", content: request.user }],
     }, options.fetcher ?? fetch, options.timeoutMs ?? 20_000);
     const shot = parseShot(text);
     return { shot, source: shot ? "model" : "fallback", usage, costUsdMicros: shotCostUsdMicros(usage), elapsedMs: Date.now() - started, error: shot ? null : "unparsable" };
@@ -65,15 +67,20 @@ export async function scoreConsistency(apiKey: string, input: {
   content.push({ type: "text", text: [
     `The frame should show: who ${JSON.stringify(input.shot.who)}, action ${JSON.stringify(input.shot.action)}, place ${JSON.stringify(input.shot.where)}.`,
     "Rate the frame against the references from 0 (nothing alike) to 10 (clearly the same): people — do the characters in the frame look like the reference portraits (face, hair, clothes)? place — does the setting match the reference place? style — same art style as the references?",
-    "Reply with one JSON object only: {\"people\":n,\"place\":n,\"style\":n,\"notes\":\"one short sentence\"}. Use 0 for a category without a reference.",
+    "Reply with one JSON object only: {\"people\":n,\"place\":n,\"style\":n,\"notes\":\"at most twenty words\"}. Use 0 for a category without a reference.",
   ].join("\n") });
-  const { text, usage } = await messages(apiKey, { model: SHOT_MODEL, max_tokens: 200, messages: [{ role: "user", content }] }, options.fetcher ?? fetch, 60_000);
+  const { text, usage } = await messages(apiKey, { model: SHOT_MODEL, max_tokens: 800, output_config: { effort: "low" }, messages: [{ role: "user", content }] }, options.fetcher ?? fetch, 60_000);
   let score: ConsistencyScore | null = null;
   try {
     const start = text.indexOf("{"), end = text.lastIndexOf("}");
     const v = JSON.parse(text.slice(start, end + 1));
     const n = (x: unknown) => (typeof x === "number" && x >= 0 && x <= 10 ? x : 0);
     score = { people: n(v.people), place: n(v.place), style: n(v.style), notes: String(v.notes ?? "").slice(0, 200) };
-  } catch { /* unscored */ }
+  } catch {
+    // A reply cut off inside the notes still carries the three numbers.
+    const pick = (key: string) => { const m = new RegExp(`"${key}"\\s*:\\s*(\\d+)`).exec(text); return m ? Math.min(10, Number(m[1])) : null; };
+    const people = pick("people"), place = pick("place"), style = pick("style");
+    if (people !== null && place !== null && style !== null) score = { people, place, style, notes: (/"notes"\s*:\s*"([^"]*)/.exec(text)?.[1] ?? "").slice(0, 200) };
+  }
   return { score, usage, costUsdMicros: shotCostUsdMicros(usage), raw: text.slice(0, 400) };
 }

@@ -1,0 +1,160 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-17-45-frames-shov-watercolor-klein9b-refs.json",
+  "world": "shov",
+  "style": "watercolor",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 4,
+    "meanPeople": 6.25,
+    "meanPlace": 1.5,
+    "meanStyle": 8.25
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 8,
+        "notes": "Mег in Image 1 matches the reference's auburn hair, glasses and olive uniform with flag patch, but she lacks the headset and cigarette and the frame's Tinka is a different figure from the reference's "
+      },
+      "usage": {
+        "inputTokens": 3278,
+        "outputTokens": 163
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":6,\"style\":8,\"notes\":\"Mег in Image 1 matches the reference's auburn hair, glasses and olive uniform with flag patch, but she lacks the headset and cigarette and the frame's Tinka is a different figure from the reference's headscarf-wearing woman in a boat; the cave setting shares the pale rock walls and water of the reference, though the frame adds a stone pier and airship not i"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 1887,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":9,\"notes\":\"No character portraits were supplied, so people scores 0; the frame's cave with water and rocky arch resembles the reference cave, though it sh"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 9,
+        "notes": "The frame's man matches the reference's swept grey hair, mustache, round glasses and dark coat, but the reference has no place, so place scores 0, and the watercolor-ink style closely matches."
+      },
+      "usage": {
+        "inputTokens": 2466,
+        "outputTokens": 397
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":9,\"notes\":\"The frame's man matches the reference's swept grey hair, mustache, round glasses and dark coat, but the reference has no place, so place scores 0, and the watercolor-ink style closely matches.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 9,
+        "notes": "The woman matches Зарга's long brown hair, fur-trimmed coat and beaded jewelry, but she sits on a chairlift seat rather than a gondola nose and faces away from the viewer."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 383
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":9,\"notes\":\"The woman matches Зарга's long brown hair, fur-trimmed coat and beaded jewelry, but she sits on a chairlift seat rather than a gondola nose and faces away from the viewer.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3871,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":8,\"notes\":\"The waterc"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2494,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"The steering woman has au"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3875,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":9,\"notes\":\"The frame shows only one bearded, long-haired figure with partial resemblance to Urzul, and Wolf Kessler (spectacles, mustache, trench coat) is absent, while the watercolor-ink style"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "The frame's bearded warrior shares the reference's brown hair, beard, and riveted leather armor but has a different, more muscular face, and the place has no reference."
+      },
+      "usage": {
+        "inputTokens": 2476,
+        "outputTokens": 388
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"The frame's bearded warrior shares the reference's brown hair, beard, and riveted leather armor but has a different, more muscular face, and the place has no reference.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2497,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"The right-hand man shares"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    }
+  ]
+}

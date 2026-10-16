@@ -1,0 +1,202 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-18-27-frames-noir-noir-klein9b-refs.json",
+  "world": "noir",
+  "style": "noir",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 10,
+    "meanPeople": 5.25,
+    "meanPlace": 1.7,
+    "meanStyle": 8.4
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 8,
+        "place": 3,
+        "style": 9,
+        "notes": "Frame's man matches Rook's helmet, stubble, and leather jacket. Setting is a dim lift with a steel door, not the Kowloon street reference."
+      },
+      "usage": {
+        "inputTokens": 3263,
+        "outputTokens": 76
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":3,\"style\":9,\"notes\":\"Frame's man matches Rook's helmet, stubble, and leather jacket. Setting is a dim lift with a steel door, not the Kowloon street reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Kowloon Stack 9"
+      ],
+      "score": {
+        "people": 0,
+        "place": 3,
+        "style": 8,
+        "notes": "No people references given. Frame shows an interior unit, not Kowloon Stack 9's exterior streetscape; shares gritty halftone comic style and rainy mood."
+      },
+      "usage": {
+        "inputTokens": 1868,
+        "outputTokens": 78
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":3,\"style\":8,\"notes\":\"No people references given. Frame shows an interior unit, not Kowloon Stack 9's exterior streetscape; shares gritty halftone comic style and rainy mood.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 7,
+        "place": 3,
+        "style": 9,
+        "notes": "Dana's short hair and white shirt match well; Mara's hair fits but the cigarette and jacket differ. Interior room, not the street."
+      },
+      "usage": {
+        "inputTokens": 4649,
+        "outputTokens": 366
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":3,\"style\":9,\"notes\":\"Dana's short hair and white shirt match well; Mara's hair fits but the cigarette and jacket differ. Interior room, not the street.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 2,
+        "place": 3,
+        "style": 8,
+        "notes": "Frame's woman in tan jacket doesn't match Dana Okafor's male portrait. Interior room lacks Stack 9's street and neon signs. Ink-and-rain comic style matches."
+      },
+      "usage": {
+        "inputTokens": 3272,
+        "outputTokens": 412
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":3,\"style\":8,\"notes\":\"Frame's woman in tan jacket doesn't match Dana Okafor's male portrait. Interior room lacks Stack 9's street and neon signs. Ink-and-rain comic style matches.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "the place, Kowloon Stack 9"
+      ],
+      "score": {
+        "people": 0,
+        "place": 5,
+        "style": 8,
+        "notes": "No people reference given. Frame shows similar rainy high-rise with AC units, but lacks the Stack 9 signage; same halftone comic style."
+      },
+      "usage": {
+        "inputTokens": 1828,
+        "outputTokens": 368
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":5,\"style\":8,\"notes\":\"No people reference given. Frame shows similar rainy high-rise with AC units, but lacks the Stack 9 signage; same halftone comic style.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Rook's face isn't visible; the tiny flying figure has a similar grey helmet and dark jacket. No place reference given. Same inked, halftone comic style."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 458
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Rook's face isn't visible; the tiny flying figure has a similar grey helmet and dark jacket. No place reference given. Same inked, halftone comic style.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 9,
+        "notes": "Dana's short hair, dark coat and build roughly match, but his face is mostly turned away. Velvet has no reference. Ink-and-rain style matches closely."
+      },
+      "usage": {
+        "inputTokens": 2435,
+        "outputTokens": 447
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":9,\"notes\":\"Dana's short hair, dark coat and build roughly match, but his face is mostly turned away. Velvet has no reference. Ink-and-rain style matches closely.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Doorway woman has Mara's dark hair and strapped jacket, but her face differs slightly. Velvet is unseen; no smile visible."
+      },
+      "usage": {
+        "inputTokens": 2446,
+        "outputTokens": 424
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Doorway woman has Mara's dark hair and strapped jacket, but her face differs slightly. Velvet is unseen; no smile visible.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 9,
+        "notes": "Dana's short hair and dark coat roughly match; Mara's dark hair fits, but her outfit is a brown coat, not her black jacket."
+      },
+      "usage": {
+        "inputTokens": 3840,
+        "outputTokens": 406
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":9,\"notes\":\"Dana's short hair and dark coat roughly match; Mara's dark hair fits, but her outfit is a brown coat, not her black jacket.\"}"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Rook",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Mara's dark hair and jacket echo her portrait, but Rook isn't recognisable; the screen man doesn't match him."
+      },
+      "usage": {
+        "inputTokens": 3858,
+        "outputTokens": 437
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Mara's dark hair and jacket echo her portrait, but Rook isn't recognisable; the screen man doesn't match him.\"}"
+    }
+  ]
+}

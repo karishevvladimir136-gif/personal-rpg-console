@@ -1,0 +1,77 @@
+{
+  "7a7a7a7a-0000-4000-8000-000000000030:holding": {
+    "file": "noir-noir-klein9b-old-citro-n-ds-holding.jpg",
+    "composition": "holding",
+    "name": "Old Citroën DS"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000010:portrait": {
+    "file": "noir-noir-klein9b-dana-okafor-portrait.jpg",
+    "composition": "portrait",
+    "name": "Dana Okafor"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000010:figure": {
+    "file": "noir-noir-klein9b-dana-okafor-figure.jpg",
+    "composition": "figure",
+    "name": "Dana Okafor"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000011:portrait": {
+    "file": "noir-noir-klein9b-rook-portrait.jpg",
+    "composition": "portrait",
+    "name": "Rook"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000012:portrait": {
+    "file": "noir-noir-klein9b-mara-vey-portrait.jpg",
+    "composition": "portrait",
+    "name": "Mara Vey"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000050:location": {
+    "file": "noir-noir-klein9b-kowloon-stack-9-location.jpg",
+    "composition": "location",
+    "name": "Kowloon Stack 9"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000051:location": {
+    "file": "noir-noir-klein9b-harbor-district-location.jpg",
+    "composition": "location",
+    "name": "Harbor district"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000077:item": {
+    "file": "noir-noir-klein9b-surveillance-tapes-item.jpg",
+    "composition": "item",
+    "name": "Surveillance tapes"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000076:item": {
+    "file": "noir-noir-klein9b-cash-envelope-item.jpg",
+    "composition": "item",
+    "name": "Cash envelope"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000075:item": {
+    "file": "noir-noir-klein9b-lockpick-set-item.jpg",
+    "composition": "item",
+    "name": "Lockpick set"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000074:item": {
+    "file": "noir-noir-klein9b-stim-patch-item.jpg",
+    "composition": "item",
+    "name": "Stim patch"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000073:item": {
+    "file": "noir-noir-klein9b-trench-coat-item.jpg",
+    "composition": "item",
+    "name": "Trench coat"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000072:item": {
+    "file": "noir-noir-klein9b-neural-splice-item.jpg",
+    "composition": "item",
+    "name": "Neural splice"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000071:item": {
+    "file": "noir-noir-klein9b-snub-pistol-item.jpg",
+    "composition": "item",
+    "name": "Snub pistol"
+  },
+  "7a7a7a7a-0000-4000-8000-000000000070:item": {
+    "file": "noir-noir-klein9b-data-chip-lazarus-item.jpg",
+    "composition": "item",
+    "name": "Data chip “Lazarus”"
+  }
+}

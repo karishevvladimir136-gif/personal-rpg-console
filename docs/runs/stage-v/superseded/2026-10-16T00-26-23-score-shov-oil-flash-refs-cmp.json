@@ -1,0 +1,98 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-19-25-frames-shov-oil-flash-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/flash",
+  "refs": true,
+  "summary": {
+    "scored": 3,
+    "meanPeople": 6.5,
+    "meanPlace": 1.67,
+    "meanStyle": 7.33
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3275,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":5,\"style\":7,\"notes\":\"Meg's goggles, red hair and khaki jacket carry over, though the glasses and missing cigarette and braid differ; the cavern matches the reference's rock and water only loos"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 5,
+        "style": 7,
+        "notes": "Both are dark, textured oil-painting cave scenes, but the frame's wooden balcony, gate and stairs don't match the reference's open water cave with a boat."
+      },
+      "usage": {
+        "inputTokens": 1906,
+        "outputTokens": 351
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":5,\"style\":7,\"notes\":\"Both are dark, textured oil-painting cave scenes, but the frame's wooden balcony, gate and stairs don't match the reference's open water cave with a boat.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "The frame's man shares the reference's round glasses, swept-back hair, brown coat and black bow tie, and both are realistic oil paintings, though his face is a bit narrower."
+      },
+      "usage": {
+        "inputTokens": 2470,
+        "outputTokens": 317
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"The frame's man shares the reference's round glasses, swept-back hair, brown coat and black bow tie, and both are realistic oil paintings, though his face is a bit narrower.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "The frame's woman matches the reference's long wavy dark hair, beaded necklace, red vest, and charm belt, but her face looks younger and less weathered than the portrait."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 346
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"The frame's woman matches the reference's long wavy dark hair, beaded necklace, red vest, and charm belt, but her face looks younger and less weathered than the portrait.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3874,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"not"
+    }
+  ]
+}

@@ -213,9 +213,10 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
             <p className={r.note}>{c("Кадр рисуется по первому абзацу, пока ведущий ещё пишет; в «Твой момент» и на развязке боя — перерисовка лучшей моделью.", "A frame is drawn from the first paragraph while the DM is still writing; on «Your moment» and a fight's end a better model redraws it.")}</p>
           </div>
           <div>
-            <span className={r.eyebrow}>{c("Качество", "Quality")}</span>
-            <Segmented label={c("Качество", "Quality")} value={settings?.quality ?? "fast"} disabled={disabled} onChange={(value) => set({ quality: value })}
-              options={[{ value: "fast", label: c(`Быстро · ${framePrice("fast")} за кадр`, `Fast · ${framePrice("fast")} per frame`) }, { value: "quality", label: c(`Лучше · ${framePrice("quality")}`, `Better · ${framePrice("quality")}`) }]} />
+            <span className={r.eyebrow}>{c("Качество живых кадров", "Live frame quality")}</span>
+            <Segmented label={c("Качество живых кадров", "Live frame quality")} value={settings?.quality ?? "fast"} disabled={disabled} onChange={(value) => set({ quality: value })}
+              options={[{ value: "fast", label: c(`Быстро · ~4 с · ${framePrice("fast")}`, `Fast · ~4 s · ${framePrice("fast")}`) }, { value: "quality", label: c(`Лучше · ~16 с · ${framePrice("quality")}`, `Better · ~16 s · ${framePrice("quality")}`) }]} />
+            <p className={r.note}>{c("Анкеры (портреты, места, вещи) и перерисовка ключевых моментов всегда идут на лучшей модели.", "Anchors (portraits, places, things) and key-moment re-renders always use the better model.")}</p>
           </div>
           <div>
             <span className={r.eyebrow}>{c("Кто рисует анкеры", "Who draws the anchors")}</span>

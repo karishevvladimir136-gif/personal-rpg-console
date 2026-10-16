@@ -1,0 +1,185 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-17-01-frames-shov-line-art-klein9b-refs.json",
+  "world": "shov",
+  "style": "line-art",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "meanPeople": 6.38,
+    "meanPlace": 1.44,
+    "meanStyle": 8.11
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 8,
+        "place": 7,
+        "style": 9,
+        "notes": "Meg's goggles, headset, green jacket and red shoulder tabs match; Tinka's headscarf and blue dress match. Cave, water and rock walls fit the reference."
+      },
+      "usage": {
+        "inputTokens": 3280,
+        "outputTokens": 373
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":7,\"style\":9,\"notes\":\"Meg's goggles, headset, green jacket and red shoulder tabs match; Tinka's headscarf and blue dress match. Cave, water and rock walls fit the reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 9,
+        "notes": "No people references given. Cave walls and angular rock style match; reference water and boat are absent from the frame."
+      },
+      "usage": {
+        "inputTokens": 1904,
+        "outputTokens": 249
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":9,\"notes\":\"No people references given. Cave walls and angular rock style match; reference water and boat are absent from the frame.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 9,
+        "notes": "Glasses, grey slicked hair and dark suit resemble the reference, but the frame adds a moustache and shows no monocle."
+      },
+      "usage": {
+        "inputTokens": 2462,
+        "outputTokens": 371
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":9,\"notes\":\"Glasses, grey slicked hair and dark suit resemble the reference, but the frame adds a moustache and shows no monocle.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Headband, long hair, rust dress, beads and earrings match; face is looser. No place reference given; style is a close match."
+      },
+      "usage": {
+        "inputTokens": 2451,
+        "outputTokens": 356
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Headband, long hair, rust dress, beads and earrings match; face is looser. No place reference given; style is a close match.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 7,
+        "notes": "Figure is a human with brown beard, not green-skinned orc Urzul. Meg is absent; only a cigarillo stub appears. Bold comic line art matches."
+      },
+      "usage": {
+        "inputTokens": 3888,
+        "outputTokens": 512
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Figure is a human with brown beard, not green-skinned orc Urzul. Meg is absent; only a cigarillo stub appears. Bold comic line art matches.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 7,
+        "notes": "Meg matches the portrait: goggles, headset, cigarette, bob hair, olive uniform. Tinka has no reference. Frame is more sketchy than the clean portrait."
+      },
+      "usage": {
+        "inputTokens": 2475,
+        "outputTokens": 437
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":7,\"notes\":\"Meg matches the portrait: goggles, headset, cigarette, bob hair, olive uniform. Tinka has no reference. Frame is more sketchy than the clean portrait.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Urzul matches well (green skin, brown hair, beard, straps). Wolf is a furry wolf-man, not Kessler's suited, bespectacled look."
+      },
+      "usage": {
+        "inputTokens": 3881,
+        "outputTokens": 467
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Urzul matches well (green skin, brown hair, beard, straps). Wolf is a furry wolf-man, not Kessler's suited, bespectacled look.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame's green-skinned hero matches the portrait's face, beard, hair, and fur-trimmed leather straps. Same bold inked cartoon style. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 2464,
+        "outputTokens": 289
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":8,\"notes\":\"Frame's green-skinned hero matches the portrait's face, beard, hair, and fur-trimmed leather straps. Same bold inked cartoon style. No place reference given.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 8,
+        "notes": "Central man matches Wolf Kessler's grey slicked hair, round glasses, dark suit and tie; comic-ink style matches. No place reference."
+      },
+      "usage": {
+        "inputTokens": 2498,
+        "outputTokens": 423
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":8,\"notes\":\"Central man matches Wolf Kessler's grey slicked hair, round glasses, dark suit and tie; comic-ink style matches. No place reference.\"}"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-49-57-frames-shov-oil-klein9b-norefs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": false,
+  "summary": {
+    "scored": 18,
+    "withPeople": 18,
+    "withPlace": 2,
+    "meanPeople": 3.22,
+    "meanPlace": 5,
+    "meanStyle": 7.06
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 5,
+        "style": 7,
+        "notes": "Oil-painted cave by water matches loosely. Meg's helmet, cigarette and Hale's watch and revolver are missing; hair and beard only partly match."
+      },
+      "usage": {
+        "inputTokens": 4686,
+        "outputTokens": 479
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":5,\"style\":7,\"notes\":\"Oil-painted cave by water matches loosely. Meg's helmet, cigarette and Hale's watch and revolver are missing; hair and beard only partly match.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 5,
+        "style": 8,
+        "notes": "Oil impasto style matches well. Frame's lantern man has a beard but wears no brown coat or revolver watch. Cave lacks the reference's water and boat."
+      },
+      "usage": {
+        "inputTokens": 3299,
+        "outputTokens": 430
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":5,\"style\":8,\"notes\":\"Oil impasto style matches well. Frame's lantern man has a beard but wears no brown coat or revolver watch. Cave lacks the reference's water and boat.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Man loosely echoes Hale's dark coat and hair, but no beard. Wolf lacks Kessler's glasses and bow tie."
+      },
+      "usage": {
+        "inputTokens": 3870,
+        "outputTokens": 439
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Man loosely echoes Hale's dark coat and hair, but no beard. Wolf lacks Kessler's glasses and bow tie.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame woman has dark braids but lacks Zarga's red vest, jewelry, and facial features. James Hale is absent. Painterly style matches."
+      },
+      "usage": {
+        "inputTokens": 3844,
+        "outputTokens": 441
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame woman has dark braids but lacks Zarga's red vest, jewelry, and facial features. James Hale is absent. Painterly style matches.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 6,
+        "notes": "Hale and Meg loosely resemble references; Urzul is absent. Frame is a lighter, warmer painterly scene than the dark portraits."
+      },
+      "usage": {
+        "inputTokens": 5268,
+        "outputTokens": 457
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":6,\"notes\":\"Hale and Meg loosely resemble references; Urzul is absent. Frame is a lighter, warmer painterly scene than the dark portraits.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Man has beard and brown coat like James, but no tie or gun. Woman has auburn hair like Meg, but no goggles or cigarette."
+      },
+      "usage": {
+        "inputTokens": 3875,
+        "outputTokens": 473
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Man has beard and brown coat like James, but no tie or gun. Woman has auburn hair like Meg, but no goggles or cigarette.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 4,
+        "style": 7,
+        "notes": "Oil-painted style matches well. The man resembles James Hale only loosely. The wolf-man is not Wolf Kessler, and no Urzul-like figure appears. Setting is a wooden ship with mountains, not an airship g"
+      },
+      "usage": {
+        "inputTokens": 5288,
+        "outputTokens": 526
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":4,\"style\":7,\"notes\":\"Oil-painted style matches well. The man resembles James Hale only loosely. The wolf-man is not Wolf Kessler, and no Urzul-like figure appears. Setting is a wooden ship with mountains, not an airship gondola.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's figures loosely echo the references' hair and beards, but Urzul lacks green skin and James's coat. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 3853,
+        "outputTokens": 446
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame's figures loosely echo the references' hair and beards, but Urzul lacks green skin and James's coat. No place reference given.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Man lacks the reference's beard and watch-revolver; no Pyrenees reference; oil painterly style matches well."
+      },
+      "usage": {
+        "inputTokens": 2429,
+        "outputTokens": 473
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Man lacks the reference's beard and watch-revolver; no Pyrenees reference; oil painterly style matches well.\"}"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame's woman has long loose red hair and a light blouse; reference has a braid, goggles, and khaki jacket. Painterly oil style matches."
+      },
+      "usage": {
+        "inputTokens": 2425,
+        "outputTokens": 443
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame's woman has long loose red hair and a light blouse; reference has a braid, goggles, and khaki jacket. Painterly oil style matches.\"}"
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Woman's dark wavy hair loosely resembles Zarga, but no matching jewelry or red vest. Wolf is an anthropomorphic animal, not Wolf Kessler's human face or glasses."
+      },
+      "usage": {
+        "inputTokens": 3844,
+        "outputTokens": 352
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Woman's dark wavy hair loosely resembles Zarga, but no matching jewelry or red vest. Wolf is an anthropomorphic animal, not Wolf Kessler's human face or glasses.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Red-haired women resemble the reference loosely, but the frame lacks its goggles, cigarette, braid and khaki jacket. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 2489,
+        "outputTokens": 567
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Red-haired women resemble the reference loosely, but the frame lacks its goggles, cigarette, braid and khaki jacket. No place reference given.\"}"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 2,
+        "place": 8,
+        "style": 8,
+        "notes": "Hale's reference features brown hair, full beard and a brown coat; the frame's younger man has short dark hair and an olive uniform. Setting and oil-painting style match well."
+      },
+      "usage": {
+        "inputTokens": 2479,
+        "outputTokens": 735
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":8,\"style\":8,\"notes\":\"Hale's reference features brown hair, full beard and a brown coat; the frame's younger man has short dark hair and an olive uniform. Setting and oil-painting style match well.\"}"
+    },
+    {
+      "turn": 15,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Hero's dark wavy hair, beard, and brown leather coat loosely echo James Hale; Rurk and Isolde have no references. Both are painted in similar oil style."
+      },
+      "usage": {
+        "inputTokens": 2456,
+        "outputTokens": 368
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Hero's dark wavy hair, beard, and brown leather coat loosely echo James Hale; Rurk and Isolde have no references. Both are painted in similar oil style.\"}"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame lacks identifiable Hale, Urzul, Meg, Kessler; no faces visible, no goggles or watch-gun. Oil painting style matches."
+      },
+      "usage": {
+        "inputTokens": 6689,
+        "outputTokens": 402
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Frame lacks identifiable Hale, Urzul, Meg, Kessler; no faces visible, no goggles or watch-gun. Oil painting style matches.\"}"
+    },
+    {
+      "turn": 17,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's gray-clad man has short hair and a different beard than the portrait's wavy hair and full beard. Both are painterly oil works."
+      },
+      "usage": {
+        "inputTokens": 2449,
+        "outputTokens": 382
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame's gray-clad man has short hair and a different beard than the portrait's wavy hair and full beard. Both are painterly oil works.\"}"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 4,
+        "notes": "Central armored knight lacks Urzul's bare chest, long beard and hair; no clear Zarga or Hale resemblance; painterly but digital fantasy style."
+      },
+      "usage": {
+        "inputTokens": 5284,
+        "outputTokens": 436
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":4,\"notes\":\"Central armored knight lacks Urzul's bare chest, long beard and hair; no clear Zarga or Hale resemblance; painterly but digital fantasy style.\"}"
+    },
+    {
+      "turn": 19,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Oil style and dark palette match well. The man loosely resembles James; the red-haired kneeling woman loosely echoes Meg. Zarga is barely visible. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 5292,
+        "outputTokens": 577
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Oil style and dark palette match well. The man loosely resembles James; the red-haired kneeling woman loosely echoes Meg. Zarga is barely visible. No place reference given.\"}"
+    }
+  ]
+}

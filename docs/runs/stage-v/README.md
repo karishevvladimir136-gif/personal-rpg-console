@@ -17,6 +17,10 @@ never the owner's campaigns. The images themselves are in `public/preview/stage-
   (0 = nothing alike, 10 = the same) of each frame against the anchors it should match: `people` (faces, hair,
   clothes of the portraits), `place`, `style`; the mean per run.
 - `SUMMARY.md` — all records in one table (`scripts/stage-v-bench.mjs summary`).
+- `superseded/` — paid runs that a later run replaced (an early frames run whose shot model hit its output limit and
+  fell back to the deterministic shot; the first scoring pass whose parser lost cut-off replies; the frames and scores
+  made before the shot builder learned that second-person narration puts the hero in the frame). Kept because no paid
+  run is thrown away; their calls are in the ledger.
 
 Re-running: `node --conditions=react-server scripts/stage-v-bench.mjs <command> …` (the header of the script lists
 the commands and options). Keys come from `.env.local`; nothing here holds a key.
