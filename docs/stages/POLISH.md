@@ -218,6 +218,11 @@ The owner's notes from the first play are added below by the planner before laun
   - **The goal panel ignores the quest the DM recorded.** After turn 2 the DM took «Ящик с «Сельди»» as a quest with
     its reward (Marta forgives the forty coins and feeds him for a week), yet «Цель» still says «Цели пока нет». The
     active quest (or the one the hero just took) is the goal unless the DM sets another.
+  - Journal after turn 2 (good): the quest «Ящик с «Сельди»» with the deadline (two days, before the customs divers),
+    the patrol boat at night, Marta's yawl and rope, the reward; the debt «Сорок монет Марте» linked to the quest. To
+    fix there: «Reward:» is English inside Russian text and a double full stop «..»; the goal repeats the quest's text
+    word for word (show the goal as one line with a link); «Главная арка» and «Выполнено · 0» are empty boxes at the
+    start — hide empty sections.
   - **Text sizes in the composer.** What the player types (and his own message in the story) is much smaller than
     the narration; use the same reading size as the story text. «ведущий пишет… (черновик до сохранения)» is a
     technical label — show a quiet «Ведущий пишет…» indicator instead.
