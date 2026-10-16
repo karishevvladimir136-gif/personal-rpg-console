@@ -286,6 +286,12 @@ export async function runLoopScenario(scenario, options) {
           values ($1,$2,$3,$4,'open',1,$5::jsonb)`, [randomUUID(), cid, step.title, step.description ?? "", JSON.stringify({
           description: step.description ?? "", currencyName: step.currencyName ?? null, currencyAmount: step.currencyAmount ?? null,
           itemName: step.itemName ?? null, itemCategory: step.itemCategory ?? null, itemDescription: step.itemDescription ?? null, issuerId: issuer })]);
+        if (step.item) {
+          // The legacy quest's object already in the hero's pack (a found ledger), so the live DM has something real to hand over.
+          await f.query(`insert into public.rpg_items (id,campaign_id,name,category,quantity,description,mechanics,owner_entity_id,storage_id,equipped_entity_id,equipped_slot,revision)
+            values ($1,$2,$3,'misc',1,$4,'',$5,$6,null,null,1)`, [randomUUID(), cid, step.item, step.itemDescription ?? "", hero,
+            before.storages.find((row) => row.entity_id === hero && row.kind === "player")?.id ?? null]);
+        }
         record.action = `legacy quest "${step.title}"${step.issuer && !issuer ? " (issuer not found; none recorded)" : ""}`;
       } else if (step.action === "privateFact") {
         // A DM-private fact planted between turns (a fixture's private delta): the

@@ -45,32 +45,47 @@ layer 3's private parts for a second "narrator" request, and (2) after the tool 
 `execute()` would make that extra request with the accepted receipts as validated outcomes
 and use its text as the narration. Nothing in the tools, receipts or commit changes.
 
-## 2. Request layers (prepare for caching)
+## 2. Request layers — the campaign dossier (Stage 4)
 
 Four system blocks, most stable first, a cache breakpoint at each of the first three
-(Anthropic: explicit `cache_control` on blocks 1–3 plus the automatic top-level one;
-OpenAI since Stage 2b: blocks 1–3 are developer messages with an explicit
-`prompt_cache_breakpoint` each and the campaign ID as `prompt_cache_key`, block 4 is a plain
-developer message — OpenAI's implicit breakpoint sits after the latest message, so without
-the explicit ones the first request of every turn wrote the whole prefix and read nothing):
+(Anthropic: explicit `cache_control` on blocks 1–3 plus the automatic top-level one; OpenAI:
+blocks 1–3 are developer messages with an explicit `prompt_cache_breakpoint` each and the campaign
+ID as `prompt_cache_key`, block 4 is a plain developer message). Stage 4 turned the blocks into the
+**campaign dossier** (`src/lib/gameplay/dm-loop/context.ts`): every part has a token budget
+(`DOSSIER_BUDGETS`, estimate = ASCII/4 + other/2.4), is cut from the least important end when it
+overflows, and the cut is logged (`dossier_budget` diagnostic with the dropped parts; `request_started`
+carries tokens and budget per layer).
 
-1. **How to DM** — role and tool policy (narration first, tools inside the story, bookkeeping
-   in one final message with `finish_turn`), three examples of the turn's shape in the campaign
-   language, campaign language, DM Craft core doctrine, DM Style. Identical across turns and
-   campaigns with the same doctrine and style.
-2. **World** — campaign title, DM guide, Canon documents (≤ 60 KB), the historical World
-   Logic packet if the campaign had a takeover, roll mode and difficulty settings.
-3. **Living** — Character Models (all present/mentioned ones within 24 KB, no two-actor cap),
-   private DM notes (facts, clocks, factions, consequences), quest reward terms, memory digests.
-4. **Now** — DM Craft cards picked for this turn, recent/retrieved memory rows, the current
-   state with every ID the tools accept (characters, items, storages, places, quests,
-   encounters), the last 16 scenes and 8 exchanges. The player's input (with the companion
-   addressee, if any) is the first user message.
+1. **How to DM** (≤ 7 000 tokens) — the role («You are the game master…»: a sovereign world,
+   people with their own interests who may refuse, consequences that arrive, no power creep), the
+   order of work (narration first, deciding tools before the sentence they decide, bookkeeping in one
+   final message with `finish_turn`), three examples of the turn's shape in the campaign language, the
+   DM Craft **library** — the condensed core doctrine v3 and every active card (world resistance,
+   living world, long campaign, villains and theme, systemic world; versioned, the owner activates them
+   in the DM Craft screen) — and the DM Style. Identical across turns of every campaign with the same
+   craft and style.
+2. **World** (guide 6 000, canon 20 000, reference 6 000, historical packet 6 000) — campaign title,
+   DM guide, Canon documents, the World Logic packet of a takeover, roll mode and difficulty.
+3. **Living** (party 4 000, codex 12 000, factions 1 200, journal 4 000, pinned 800, secrets 3 500,
+   plans 1 500, notebook 1 500, likes 300, ledger 500, adventure 900, memory digests 4 000) — the
+   party in short with the companions' Character Models, the codex of people (important first, by
+   relationship distance, public profile and private model), factions, the journal (main arc with
+   steps, quests, threads, debts, promises, with their reward terms), the owner's **pinned facts**,
+   private DM notes (facts, clocks, consequences), the **off-screen plans** with their due times, the
+   DM **notebook** written by the session digest, the player-likes note, the **attention ledger**
+   (which companions and threads have been out of focus for how many sessions), the active
+   adventure's guidance (premise, pacing, review of the previous one) and the memory digests.
+4. **Now** (retrieved memory 6 000, scenes 7 000, exchanges 5 000) — the variety counter (scene kinds
+   of the last turns), memory rows retrieved for a **deterministic query** (`memoryQueryFor`: present
+   and named characters, the current and named places, open quests, the input's words — never the raw
+   input alone), the current state with every ID the tools accept, the last 16 scenes and 8 exchanges.
+   The player's input (with the companion addressee, if any) is the first user message.
 
-Per request the loop logs `requestBytes`, `cachedPrefixBytes`, per-layer size and hash, and
-after the response the usage with the cache read share (`dm_loop_request` events).
-The closed-world filters of the old path (`presentEntityIds`/`routeLocationIds` narrowing,
-dynamic ID enums) are gone: the model sees all IDs and may create records.
+Measured on the fake bench (88 turns of the Mega DM campaign and probes): layer 1 ≈ 3 900 tokens of
+7 000, unchanged in 100 % of turns; layer 2 unchanged in 100 %; layer 3 unchanged in ≈ 45 % of turns
+(it changes when the journal, codex, ledger or plans change); layer 4 changes every turn. No layer
+went over budget on the synthetic long campaign (max layer 3 ≈ 1 500, layer 4 ≈ 3 200 tokens on a
+fixture world without canon; a real campaign fills layers 2–3 up to their budgets).
 
 ## 3. Tools
 
@@ -235,8 +250,10 @@ find and correct that row.
 One narrator sees private notes and Character Models and is instructed not to reveal them.
 The literal check (`suspectedLiteralLeaks`) runs on the final narration and only logs
 `suspected_leak` diagnostics (never fails the turn; a stress value such as `strained` or a short
-name is not treated as a secret). Paraphrased leaks are a model-quality question, measured on
-the live bench (scenario 08's provocation turns).
+name is not treated as a secret). Since Stage 4 it distinguishes a **self-disclosure**: a present
+character's own model text inside that character's quoted speech is logged as `self_disclosure`,
+not as a leak (the character chose to say it). Paraphrased leaks are a model-quality question,
+measured on the live bench (scenario 08's provocation turns, Mega DM's private deltas).
 
 ## 8. Companions
 
@@ -244,3 +261,50 @@ the live bench (scenario 08's provocation turns).
 Character Model is in layer 3, the addressee is stated in the user message, game time passes,
 `note_character` records what the companion now thinks. Not allowed during an active encounter.
 "Party council" is the same mechanism with the other present companions as listeners (UI: Stage 5).
+
+## 10. Stage 4 — the game master's memory and judgement
+
+Everything below lives in the loop and the SQL of migration 55; the UI reads public projections only.
+
+- **Records** (`docs/UI_DATA_NEEDS.md` rows 1–13, 17–21): quests carry a `kind` (quest, thread, debt,
+  promise, arc — one open arc; only quests pay rewards) and `detail` (steps, goal places, counterpart,
+  since-session); entities a `public_profile` (relation group and note, important, attitude as the
+  hero could observe it, faction, home place, holding details) and the kind `faction`; places
+  `rumored` and quest links; items a rarity; storages a holding detail (base, features, armament,
+  passengers); campaigns play minutes, status, the player-likes note, the theme note and the pinned
+  facts. `runtime_public_turn` adds `changes`, `playerMoment`, `sceneKinds`, `spotlight`, `threads`,
+  `nextTension` and `stats` to a committed loop turn; `rpg_dossier` serves pins, likes, theme, status,
+  play time, the notebook and the digest.
+- **Stage 3 follow-ups**: signed counters (`<name>_min` floors; a resource may go negative only when
+  its floor allows), the open-job hint (an item transfer to a quest's issuer tells the DM «this may
+  complete the open job …; close it and claim the reward»), and the conversion of old-runtime reward
+  terms into the loop's `quest_reward_<id>` facts when a campaign is switched to `dm-loop-v1`.
+- **Living characters**: Character Models up to 32 000 characters (80 KB) with 40 episodes; the DM
+  folds old episodes into a summary (`note_character.foldEpisodes`); no two-actor cap. **Off-screen
+  plans** are `plan_*` facts with an actor, a due time, a consequence and a warning sign
+  (`note_world` with `dueInMinutes`); when time passes (advance_time, move_party, rest) the receipt
+  lists the plans that came due, the fold stays open so the DM can play them, and `planStatus` closes
+  them.
+- **Session digest**: «Закончить сессию» (and a session left open for 6 hours) runs a background
+  request on the campaign's model at high effort that writes the closed session's recap («Ранее в…»),
+  a chapter title, the DM notebook (private, shown to the owner only when the settings switch is on)
+  and new or updated plans, under the timeline fence, once per request ID.
+- **Attention ledger** (`ledger` fact): per session, which companions and open threads were in the
+  spotlight; the DM sees «Tamsin has not been in focus for 3 sessions». The **variety counter** in
+  layer 4 shows the scene kinds of the last turns. **Villains and theme**: the theme note from the
+  settings and the villains card in the library. The DM records what the player enjoys
+  (`finish_turn.playerLikes`) into the likes note the owner can edit.
+- **World resistance**: the stances in the role text, the cards, and the **metrics** fact
+  (`metrics.ts`): contested checks and their expected success, near misses, NPC refusals, fights
+  that were uncertain or won at no cost, HP lost per fight, the longest unearned-win streak. The
+  bench reports them per scenario and `scripts/eval/recompute.mjs` recomputes them from a record.
+- **Depth per scene** (§7): the campaign's effort range (settings: from … to), the server's signals
+  (an active encounter, dice, rising tension words, the DM's `nextTension` hint of the previous turn)
+  and hysteresis (`depth_state` fact) choose the turn's effort; «⚡ важный ход» takes the top of the
+  range once. Cache-safe switching: Opus 5.5 keeps the system and tools cache across top-level effort
+  changes (measured); on Astra the request-level effort is anchored at the campaign's configured
+  level (`pin.baseEffort`) and the chosen level travels as a `configuration_update` item after the
+  cached prefix (measured 100 % cache reads across changes; `docs/MODELS.md`).
+- **World Engine bridge**: after every committed loop turn the dossier (places, people, factions,
+  open quests) is pushed into the campaign's World Engine state, and the World Lab reads the same
+  records. **Chat and Teach DM** run on the loop through the campaign's model (`feedback.ts`).

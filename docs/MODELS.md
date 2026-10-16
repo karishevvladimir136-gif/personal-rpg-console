@@ -162,3 +162,29 @@ Sources: [effort](https://platform.claude.com/docs/en/build-with-claude/effort.m
 | Cache key / retention | TTL 5 min (refreshed) or `ttl: "1h"` | `prompt_cache_key` optional on GPT-5.6+ (routing is automatic; the key separates accounting); `prompt_cache_options.ttl` only `"30m"` |
 | Why Astra's first request of a turn read 0 cached tokens in Stage 2 | — | the only breakpoint was the implicit one after the player's input, so no earlier request shared that prefix; Stage 2b puts explicit breakpoints after each stable layer |
 | Interleaved text and tool calls | Text and `tool_use` blocks in one assistant message; the continuation after `tool_result` is a new assistant message (joined by the loop) | A `message` item followed by `function_call` items in one response; the reasoning guide recommends a `phase: "commentary"` preamble before tool calls |
+
+## Checked for Stage 4 (2026-10-16): does a change of effort keep the cache? (`scripts/eval/probe-depth.mjs`)
+
+Records: `docs/runs/probe-depth-20261016-004049.jsonl` (top-level effort), `docs/runs/probe-depth-20261016-004520.jsonl`
+(Astra anchored). One ~5 200-token stable prefix with the roll tool, one short player line per request, the effort
+sequence medium → medium → high → high → medium → xhigh; cache read tokens of the input tokens per request.
+
+| Step | Effort (after) | Opus 5.5, top-level `output_config.effort` | Astra, request-level `reasoning.effort` | Astra, request-level anchored at medium + `configuration_update` |
+| --- | --- | --- | --- | --- |
+| 1 | medium (–) | 0 / 8 173 (write 8 169) | 0 / 5 312 (write 5 309) | 5 309 / 5 312 (prefix already cached) |
+| 2 | medium (medium) | 8 169 / 8 173 | 5 309 / 5 312 | — |
+| 3 | high (medium) | **8 169 / 8 173** | **0 / 5 312** (write 5 309) | **5 309 / 5 312** |
+| 4 | high (high) | 8 169 / 8 173 | 5 309 / 5 312 | 5 309 / 5 312 |
+| 5 | medium (high) | 8 169 / 8 173 | 5 309 / 5 312 (the medium prefix was still cached) | 5 309 / 5 312 |
+| 6 | xhigh (medium) | 8 169 / 8 173 | not sent (budget) | 5 309 / 5 312 |
+
+- **Opus 5.5**: a top-level effort change between turns did **not** restart the system+tools cache (99.95 % reads at
+  every step). The loop therefore sends the chosen depth as the top-level effort.
+- **Astra**: the request-level effort is part of the cached prefix: a change wrote the whole prefix again (step 3,
+  $0.089 instead of $0.015). With the request-level value anchored and the step's effort sent as a
+  `configuration_update` item, every step read the cache. The loop pins the campaign's configured effort as
+  `baseEffort` and asks for the scene's depth through the update (`pin.baseEffort`, `docs/TURN_LOOP.md` §10).
+- First word at the same prefix: Opus 3.2–4.2 s at every level (xhigh: no text before the first tool call);
+  Astra 2.2–3.1 s at medium, 9.7–10.9 s at high without the anchor and 3.1–4.2 s at high with it (the anchored
+  high requests returned ≈ 200-token replies; the sample is three requests per cell, so take the speeds as
+  indicative only). Spend: $0.19 + $0.08.

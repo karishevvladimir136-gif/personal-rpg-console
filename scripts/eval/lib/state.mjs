@@ -321,6 +321,10 @@ export async function evaluateCheck(check, ctx) {
       return result(rows.length && rows.every((q) => q.status === arg.status),
         rows.length ? rows.map((q) => `${q.title}: ${q.status}`).join("; ") : "no matching quest");
     }
+    case "questsSettled": {
+      const settled = after.quests.filter((q) => q.reward_operation_id);
+      return result(compare(settled.length, arg), settled.length ? `settled: ${settled.map((q) => q.title).join("; ")}` : "no quest has a settled reward");
+    }
     case "rewardSettled": {
       const rows = after.quests.filter((q) => matcher(arg).test(q.title));
       return result(rows.length && rows.every((q) => q.reward_operation_id), rows.length ? rows.map((q) => `${q.title}: ${q.reward_operation_id ? "paid" : "unpaid"}`).join("; ") : "no matching quest");

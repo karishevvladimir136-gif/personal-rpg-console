@@ -1,6 +1,6 @@
 {
   "title": "A job closed: delivery hint, reward paid once, old terms converted",
-  "description": "A campaign switched from the previous runtime carries an open quest with old-style reward terms; the switch converts them. The hero takes a second job on the loop, delivers the goods (the receipt hints that the job may be complete), the DM closes it and pays the reward once; the converted legacy reward is paid through the same tool. On dm-loop-v1 only (Stage 4 §2 follow-ups).",
+  "description": "A campaign switched from the previous runtime carries an open quest with old-style reward terms (the carter's lost ledger, which the hero already carries); the switch converts them. The hero takes the best-paid job on the board, does it, and comes back with proof: the DM closes the job and pays its reward once, and pays the converted legacy reward when the ledger is handed over. On dm-loop-v1 only (Stage 4 §2 follow-ups).",
   "runtime": "dm-loop-v1",
   "steps": [
     {
@@ -22,7 +22,9 @@
       "description": "Bettany's ledger fell off the cart on the north road.",
       "currencyName": "coins",
       "currencyAmount": 3,
-      "issuer": "{{npc:bettany|carter|organiser}}"
+      "issuer": "{{npc:bettany|carter|organiser}}",
+      "item": "Bettany's ledger",
+      "itemDescription": "A carter's ledger found in a ditch on the north road; the board offers three coins for its return."
     },
     {
       "id": "away",
@@ -42,14 +44,16 @@
     },
     {
       "id": "take",
-      "say": "I take the flour job from the board: twenty sacks to the bakery for five coins. The organiser hands me the sacks against my mark.",
+      "say": "I take that job. Write me down for it and tell me exactly what counts as done.",
       "expect": [
         {
           "outcome": "committed"
         },
         {
-          "questExists": {
-            "title": "flour|sack"
+          "label": "a job is recorded",
+          "questCount": {
+            "title": ".",
+            "min": 2
           }
         },
         {
@@ -57,13 +61,23 @@
           "questKind": {
             "title": "flour|sack",
             "kind": "quest"
-          }
+          },
+          "scripted": true
+        }
+      ]
+    },
+    {
+      "id": "work",
+      "say": "I set out at once and do the job exactly as posted, carefully, without cutting corners.",
+      "expect": [
+        {
+          "outcome": "committed"
         }
       ]
     },
     {
       "id": "deliver",
-      "say": "I come back to the organiser with the bakery's receipt for all twenty sacks, and with the carter's lost ledger that I found in the ditch on the way.",
+      "say": "I come back to the organiser with the proof of the finished job and ask for the pay. I also hand him the carter's ledger from my pack: the board offers three coins for it.",
       "expect": [
         {
           "outcome": "committed"
@@ -78,11 +92,14 @@
           "questStatus": {
             "title": "flour|sack",
             "status": "complete"
-          }
+          },
+          "scripted": true
         },
         {
-          "label": "the flour reward is paid once",
-          "rewardSettled": "flour|sack"
+          "label": "a job was closed and its reward settled once",
+          "questsSettled": {
+            "min": 1
+          }
         },
         {
           "label": "the converted legacy reward is paid through the loop",
@@ -99,14 +116,14 @@
         {
           "label": "the hero was paid",
           "heroMoneyDelta": {
-            "min": 5
+            "min": 3
           }
         }
       ]
     },
     {
       "id": "again",
-      "say": "I ask the organiser to pay me again for the flour.",
+      "say": "I ask the organiser to pay me again for the same job.",
       "expect": [
         {
           "outcome": "committed"
@@ -198,18 +215,6 @@
                 "category": "gear",
                 "quantity": 20,
                 "ownerRef": "{{hero}}"
-              }
-            },
-            {
-              "name": "item",
-              "arguments": {
-                "action": "create",
-                "localKey": "ledger",
-                "name": "Bettany's ledger",
-                "category": "misc",
-                "quantity": 1,
-                "ownerRef": "{{hero}}",
-                "description": "Found in the ditch on the north road."
               }
             },
             {
@@ -347,6 +352,34 @@
                 "playerMoment": false,
                 "nextTension": "calm",
                 "npcRefused": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "work": {
+      "note": "The job is done off the board: time passes.",
+      "rounds": [
+        {
+          "text": "You haul the sacks up the hill and back, twenty times, every one dry.",
+          "toolCalls": [
+            {
+              "name": "advance_time",
+              "arguments": {
+                "minutes": 180,
+                "reason": "hauling the sacks"
+              }
+            },
+            {
+              "name": "finish_turn",
+              "arguments": {
+                "sceneKinds": [
+                  "exploration"
+                ],
+                "spotlight": [],
+                "playerMoment": false,
+                "nextTension": "calm"
               }
             }
           ]

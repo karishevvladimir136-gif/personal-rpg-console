@@ -1,5 +1,12 @@
 # UI data needs (Stage 5 → Stages 3–4)
 
+**Status after Stage 4 (2026-10-16):** rows 1–13 and 17–21 are served by the records of migration 55 and the
+public projections (`src/lib/ui/campaign-view.ts`, `runtime_public_turn`, `rpg_dossier`); the screens read them.
+Row 20 is served half-way: the new-campaign wizard applies the chosen DM model and effort right after creation and
+takes the «what I like» note; tone, rules and roll mode stay in the settings after creation. Rows 14–16 are
+pictures and were excluded from Stage 4 by its task (§8). Row 22: the per-turn limits are editable in the settings
+(Stage 4 §0); two-stage mode remains a later option.
+
 Stage 5 built the new interface on the public data that exists today. Where a board needs data the backend
 does not provide, the block is hidden or shown disabled with «появится позже» — nothing is faked and no backend
 was added. Each row: what data, which screen, a proposed public shape. All shapes are player-visible

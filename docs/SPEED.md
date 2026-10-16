@@ -254,3 +254,25 @@ on the fluency set when budget allows (~$1).
 What would close the Opus gap: a lower first-request effort (medium) to cut the ~8 s of thinking, and
 shorter bookkeeping (the six tool calls with their arguments are a third of the output). Both are
 measurable on the fluency set for about $1 and are a Stage 4 (prompt) question, not a loop question.
+
+## 6. Stage 4 (2026-10-16): the remaining effort levels and depth per scene
+
+`scripts/eval/probe-models.mjs --efforts low,xhigh --runs 2` on the Stage 1 probe (three Russian lines, the roll
+tool, ~3.7k-token prefix); record `docs/runs/probe-20261016-004049.jsonl`. Medians over 6 lines per cell; the Stage 1
+medium/high rows are in `docs/MODELS.md`.
+
+| Model / effort | First word | Whole turn | Requests | Cost per line | Cache read (run 2) |
+| --- | --- | --- | --- | --- | --- |
+| Opus 5.5 low | 8.9 s (1.6–2.1 s on the one-request lines; the 2-request lines put a roll first) | 9.0 s | 1–2 | $0.015 | 99 % |
+| Opus 5.5 xhigh | 10.9 s | 10.9 s | 1–2 | $0.021 | 94 % |
+| Astra low | 3.3 s | 7.9 s | 1–2 | $0.020 | 96 % |
+| Astra xhigh | 19.1 s | 23.2 s | 1–2 | $0.065 | 92 % |
+
+Spend $0.74 of the $3 cap. Reading: on Opus the level barely changes the first word on a one-request turn (the
+model thinks a few seconds at every level and then writes), on Astra the level is the first-word time (low 3 s,
+medium 2–3 s, high ~10 s, xhigh ~19 s) and the cost (×3 from medium to xhigh).
+
+**Depth per scene** uses this: a campaign sets a range (for example medium … high); calm turns run at the
+bottom, tense ones in the middle, a climax or an «important turn» at the top, with hysteresis so the level does
+not flap. On Astra the switch costs nothing in cache terms thanks to the anchored request-level effort
+(`docs/MODELS.md`, Stage 4 table); on Opus a top-level change kept the cache in the probe.
