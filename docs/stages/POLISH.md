@@ -226,6 +226,12 @@ The owner's notes from the first play are added below by the planner before laun
   - **Text sizes in the composer.** What the player types (and his own message in the story) is much smaller than
     the narration; use the same reading size as the story text. «ведущий пишет… (черновик до сохранения)» is a
     technical label — show a quiet «Ведущий пишет…» indicator instead.
+  - **The composer is too heavy.** (a) «Кому: Миру и ведущему» is a one-option selector when no companion is near:
+    hide it then; with companions present, the addressee comes from the text («Тамсин, …» or «@Тамсин») with a small
+    chip showing who will answer, not a permanent row. (b) «Кубы», «Вопрос ведущему», «Кадр сцены», «Важный ход» become
+    small icon buttons in one row inside the composer, next to «Отправить», each with a tooltip in plain words.
+    (c) «Важный ход» means nothing to the owner: label it «⚡ Подумать глубже» with the tooltip «Ведущий потратит больше
+    времени на этот ход — для решающих сцен». (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
   - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
     opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
     above.)
