@@ -52,7 +52,9 @@ The owner's notes from the first play are added below by the planner before laun
    жениться пообещаешь?». Humour is a known weak spot of models: give 2–3 examples of dry, situational humour from the
    owner's chat campaign and texts he likes (a joke grows out of the situation and the character, it is short and
    never explained). Owner after 16 turns: the narration is «на две головы лучше» the blind samples and on par with
-   his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`. Turn 18:
+   his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`. Turn 20: stage directions explaining the line again — «Это она говорит тебе, не ему.»; the good side of the same
+   turn — Marta answers «Отказывать ты не умеешь, так соглашаться за тебя буду я», using the hero's sheet weakness
+   («не умеет отказывать друзьям») in character: keep this; sheet traits should colour how people treat the hero. Turn 18:
    «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
    The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
 
@@ -353,8 +355,12 @@ The owner's notes from the first play are added below by the planner before laun
     campaign gets the range high…xhigh (Opus) and the button leaves the composer. Close the gap that the DM can only
     raise the depth for the NEXT turn: when the player's input itself opens a decisive moment (an attack, a jump, a
     confession, a bargain with stakes), a cheap pre-turn check on the input (rules first; a tiny model only if rules
-    are not enough, within ~300 ms) may raise this turn's depth inside the range. Show nothing in the UI; record the
-    chosen depth and its reason in the turn record for the research track. The depth range stays in campaign settings. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
+    are not enough, within ~300 ms) may raise this turn's depth inside the range. Record the chosen depth and its
+    reason in the turn record for the research track. The depth range stays in campaign settings. Owner noticed two
+    turns «чуть медленнее обычного» (tense negotiations) and could not tell why: show one quiet mark in the collapsed
+    turn line when the DM thought deeper («⚡ думал глубже · 28 с»), nothing more. Also report per turn in the sandbox
+    log: effort, first word, full turn, model requests, cache read share — to separate deep thinking from extra tool
+    rounds or cache misses. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
   - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
     opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
     above.)
