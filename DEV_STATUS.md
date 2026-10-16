@@ -23,7 +23,7 @@ start and again before the final checks, Stage 5 fixes included). Pushed; nothin
   turns, layer 3 in ≈ 45 %, layer 4 never (`docs/TURN_LOOP.md` §2).
 - **Records for the interface** (`docs/UI_DATA_NEEDS.md` rows 1–13, 17–21 closed; 14–16 are pictures, excluded by the
   task; 20 half: the wizard applies model, effort and the likes note after creation): migration
-  `202610160055_stage4_dossier.sql` adds quest kinds (quest, thread, debt, promise, arc) and details, public
+  `202610160055_stage4_dossier.sql` (and `…0056_stage4_restore_defaults.sql` for older saves) adds quest kinds (quest, thread, debt, promise, arc) and details, public
   profiles of characters (relation, important, attitude, faction, home), the `faction` kind, rumoured places with
   quest links, item rarity, holding details, campaign play time, status, likes, theme and pinned facts;
   `runtime_public_turn` adds changes, playerMoment, scene kinds, spotlight, threads, next tension and stats to a
@@ -84,9 +84,24 @@ start and again before the final checks, Stage 5 fixes included). Pushed; nothin
 - **Blind comparison** (`scripts/eval/blind.mjs`): six scenes (tavern talk, interrogation under secret pressure,
   combat climax, companion heart-to-heart, travel with consequences, power creep) × five variants (Opus high and
   xhigh, Astra high, xhigh and medium), the same inputs, 2–3 turns, written as JSON with full metadata to
-  `docs/samples/stage-4/blind/` under names that carry no hint of the variant. BLIND_RESULT
-- **Spend:** SPEND_RESULT
-- **Checks on the final state** (cloud VM, Node 24): typecheck pass; lint pass (0 warnings); build pass; CHECKS_RESULT
+  `docs/samples/stage-4/blind/` under names that carry no hint of the variant. **30 of 30 samples complete** (every turn
+  committed) after reruns of the variants the per-chain budget guard had cut short; the run found one loop defect — Opus
+  xhigh spent the whole 6 000-token output limit thinking on the companion scene and ended three turns with tool calls
+  and no text — fixed by growing the output limit with the effort (`thinkingAllowance`, `docs/MODELS.md`), and the
+  scene was replayed on the fixed code.
+- **Spend:** $21.38 of the $35 cap, all in `docs/runs/`: blind comparison $13.22 (cap $12; $1.22 taken from the
+  reserve for the reruns after the Opus xhigh fix and the budget-guard cuts), depth and speed probes $1.25 (cap $6),
+  living-world, power-creep and long-campaign live runs $6.92 (cap $12: the Stage 4 scenarios on both models three
+  times, the two partial first runs included, and the Mega DM long run). Tokens and cost per request are in the records
+  (`node scripts/eval/report.mjs docs/runs/<file> --calls`).
+- **Checks on the final state** (cloud VM, Node 24, `--test-concurrency=2`): typecheck pass; lint pass (0 warnings);
+  build pass; tests 2471 — 2443 pass, 1 fail, 27 skipped (HTTP tests without PREVIEW_URL, as before). The one failure
+  is the environment: `universal-bootstrap-sql` expects the Windows CRLF checksum of migration 30 (confirmed: the CRLF
+  form reproduces the expected digest); it passes on the owner's checkout. The first full run on the final code found
+  two real defects that the focused suites had not: a save made before Stage 4 failed to restore (the timeline restore
+  merged NULLs into the new NOT NULL columns) — fixed by migration 56, which merges the Stage 4 defaults under older
+  rows; and the Stage 4 server modules were missing from the startup-gate test's module stubs. Fake bench on the final
+  code: loop runtime 19 of 19 scenarios, 344 of 344 checks; old Astra runtime ASTRA_BENCH.
 - **Known limits:** Astra folds `finish_turn` less often now but still sometimes ends a turn without it (then the
   server's implicit finish carries no tension or refusal hint); the plan mechanism is used reliably by Opus and
   less by Astra at medium; the fake sandbox DM covers turns, feedback and the digest but not the AI character

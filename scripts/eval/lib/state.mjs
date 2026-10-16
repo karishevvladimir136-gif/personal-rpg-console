@@ -33,8 +33,11 @@ export async function snapshot(f, campaignId, heroId) {
       where campaign_id=$1 order by name,id`),
     items: await rows(`select id,name,category,quantity,owner_entity_id,storage_id,
       equipped_entity_id,equipped_slot from public.rpg_items where campaign_id=$1 order by name,id`),
-    quests: await rows(`select id,title,status,kind,reward_operation_id from public.rpg_quests
-      where campaign_id=$1 order by title,id`),
+    // The Stage 4 columns (kind, reward settlement) may be absent on a fixture
+    // that stops before migration 55 (the old-runtime bench): read the row as JSON.
+    quests: (await rows(`select to_jsonb(q) row from public.rpg_quests q
+      where campaign_id=$1 order by title,id`)).map(({ row }) =>
+      ({ id: row.id, title: row.title, status: row.status, kind: row.kind, reward_operation_id: row.reward_operation_id ?? null })),
     storages: await rows(`select id,name,kind,entity_id from public.rpg_storages
       where campaign_id=$1 order by id`),
     currencies: currencies.map((currency) => ({ label: currency.label, resourceKey: currency.resourceKey })),
