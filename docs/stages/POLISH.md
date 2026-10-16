@@ -608,3 +608,9 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    not a Russian idiom (a «wet word» to be «dried» with money) and kept it running, so each callback sounds
    translated. Rule for the voice layer: no invented idioms; a running image is allowed only when it rests on a real
    Russian expression; slang and argot come from the character's world, not from wordplay.
+   Turn 37 (owner's notes): aphorisms in speech again («Стоит дороже, чем кажется, и дешевле, чем неприятности,
+   которые от неё бывают»; «кто знает, тому потом задают вопросы»); word choice («подняли хозяйке ящик её постояльца»
+   — the hero raised it from the bottom but *brought* it to her); **ты/вы** — the stranger says «вы» to his own hired
+   man Фрол («Вы сегодня уже подсобили»), which reads like an English «you»: choose ты/вы by relationship, rank and
+   moment, keep it per pair of characters in the speech profile, and let it shift only for a reason; a stiff narrator
+   line («С кухни раздаётся громче всего, что было сегодня»).
