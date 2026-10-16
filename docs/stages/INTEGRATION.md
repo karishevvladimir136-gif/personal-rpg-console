@@ -25,6 +25,8 @@ Cloud session (`docs/CLOUD.md`, environment `rpg-console`). Goal: one branch the
    continue) and make sure `Start Sandbox.cmd` and `docs/SANDBOX.md` match the merged code.
 6b. **Only if the owner's launch message says so:** do the Stage V review fixes (`docs/stages/STAGE_V.md` §7) on the
    merged branch before steps 4–6, since the merged `game-screen.tsx` is the one to change.
-6c. Leave the six pending Stage 4 DM Craft versions pending — the owner activates them himself in the sandbox.
+6c. The paper doll on the character screen shows the hero's full-figure anchor when one exists (Stage V left this
+   one-line change in `character-screen.tsx`, outside its files); the portrait stays the fallback.
+6d. Leave the six pending Stage 4 DM Craft versions pending — the owner activates them himself in the sandbox.
 7. Push `claude/integration` only, never `main`. Report in English: conflicts and how they were resolved, the migration
    order, check results, the smoke numbers, anything the owner must know before playing.
