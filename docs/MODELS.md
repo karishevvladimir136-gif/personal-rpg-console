@@ -188,3 +188,10 @@ sequence medium → medium → high → high → medium → xhigh; cache read to
   Astra 2.2–3.1 s at medium, 9.7–10.9 s at high without the anchor and 3.1–4.2 s at high with it (the anchored
   high requests returned ≈ 200-token replies; the sample is three requests per cell, so take the speeds as
   indicative only). Spend: $0.19 + $0.08.
+
+**Output limit and thinking (Stage 4 blind run):** both providers count thinking against the output limit
+(`max_tokens` / `max_output_tokens`). On Opus 5.5 at xhigh, three companion-talk turns of the blind run spent all
+6 000 tokens before writing a word (tool calls only, `max_tokens` stop, empty narration → the turn failed as a
+provider error), while the same level on other scenes stayed inside. The loop now adds room for thinking to the
+narration cap by effort — +4 000 at high, +10 000 at xhigh, +16 000 at max (`thinkingAllowance` in
+`src/lib/gameplay/dm-loop/loop.ts`); the bench guard reserves the larger worst case accordingly.
