@@ -43,7 +43,7 @@ const keys = { anthropic: providerKey("ANTHROPIC_API_KEY"), openai: providerKey(
 if (!keys.fal) throw new Error("FAL_KEY is missing (frames)");
 for (const model of args.models) if (!keys[LOOP_MODELS[model].providerId]) throw new Error(`${LOOP_MODELS[model].key} is missing`);
 const commit = (() => { try { return execFileSync("git", ["rev-parse", "--short", "HEAD"], { cwd: root, encoding: "utf8" }).trim(); } catch { return null; } })();
-const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 15);
+const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 16);
 const runsDir = join(root, "docs", "runs");
 const imagesDir = args.out ?? join(root, "test-results", "live-frames-smoke", stamp);
 mkdirSync(runsDir, { recursive: true });

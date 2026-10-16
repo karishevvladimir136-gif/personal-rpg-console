@@ -1,0 +1,258 @@
+{
+  "type": "integration-live-frames-smoke",
+  "at": "2026-10-16T04:48:01.948Z",
+  "commit": "2a71571",
+  "capUsd": 5,
+  "spentUsd": 1.85492,
+  "style": "oil",
+  "frameModel": "fal-ai/flux-2/klein/9b",
+  "imagesDir": "test-results/live-frames-smoke/2026-10-16T04-4",
+  "models": [
+    {
+      "model": "opus",
+      "modelId": "anthropic/claude-opus-5-5",
+      "effort": "high",
+      "commit": "2a71571",
+      "turns": 6,
+      "committed": 6,
+      "firstWordMs": {
+        "median": 11050,
+        "max": 16498
+      },
+      "fullTurnMs": {
+        "median": 31770,
+        "max": 36296
+      },
+      "frames": {
+        "ready": 6,
+        "failed": [],
+        "frameMs": {
+          "median": 3490,
+          "max": 3594
+        },
+        "shotMs": 1348,
+        "falMs": 2080,
+        "shotSources": [
+          "model",
+          "model",
+          "model",
+          "model",
+          "model",
+          "model"
+        ]
+      },
+      "costUsd": {
+        "turns": 0.66247,
+        "frames": 0.102
+      },
+      "cacheReadShare": 0.77,
+      "leaks": [],
+      "rpcErrors": [],
+      "stopReason": null,
+      "totalMs": 214357,
+      "records": "docs/runs/2026-10-16T04-4-integration-live-frames-opus.jsonl"
+    },
+    {
+      "model": "astra",
+      "modelId": "openai/gpt-6-astra",
+      "effort": "medium",
+      "commit": "2a71571",
+      "turns": 6,
+      "committed": 6,
+      "firstWordMs": {
+        "median": 1973,
+        "max": 4377
+      },
+      "fullTurnMs": {
+        "median": 24345,
+        "max": 34611
+      },
+      "frames": {
+        "ready": 6,
+        "failed": [],
+        "frameMs": {
+          "median": 3036,
+          "max": 3499
+        },
+        "shotMs": 1025,
+        "falMs": 1997,
+        "shotSources": [
+          "model",
+          "model",
+          "model",
+          "model",
+          "model",
+          "model"
+        ]
+      },
+      "costUsd": {
+        "turns": 0.98706,
+        "frames": 0.102
+      },
+      "cacheReadShare": 0.858,
+      "leaks": [],
+      "rpcErrors": [],
+      "stopReason": null,
+      "totalMs": 153740,
+      "records": "docs/runs/2026-10-16T04-4-integration-live-frames-astra.jsonl"
+    }
+  ],
+  "ledger": [
+    {
+      "kind": "shot",
+      "note": "shot bd2e1728-ea1b-4953-b24e-5b066d537904",
+      "micros": 137,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame bd2e1728-ea1b-4953-b24e-5b066d537904",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 66e50bb8-0c69-4ab0-acc4-08bd40f37ea4",
+      "micros": 106,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 66e50bb8-0c69-4ab0-acc4-08bd40f37ea4",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot ab4478d6-dc82-4b6c-9cb4-95144036844f",
+      "micros": 97,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame ab4478d6-dc82-4b6c-9cb4-95144036844f",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot e0e233e3-868b-49f5-9bce-7ee2afb98ca4",
+      "micros": 145,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame e0e233e3-868b-49f5-9bce-7ee2afb98ca4",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 0f2c093a-0d7c-42a6-a4f0-5f1250291d56",
+      "micros": 139,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 0f2c093a-0d7c-42a6-a4f0-5f1250291d56",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 2314d400-d850-4b45-ad5a-c1c03b8aef9f",
+      "micros": 119,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 2314d400-d850-4b45-ad5a-c1c03b8aef9f",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "turns",
+      "note": "opus",
+      "micros": 662485,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 5b9ae4f7-4aef-45d2-a13c-15e3c4d26887",
+      "micros": 108,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 5b9ae4f7-4aef-45d2-a13c-15e3c4d26887",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 9eef7240-1c36-448c-89b8-07cecd8ebde9",
+      "micros": 103,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 9eef7240-1c36-448c-89b8-07cecd8ebde9",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 00b5dfd4-3382-4e10-b09c-cba0a4f4aaad",
+      "micros": 85,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 00b5dfd4-3382-4e10-b09c-cba0a4f4aaad",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 4a712a46-f302-49b6-bea3-ecfeae47d9d0",
+      "micros": 120,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 4a712a46-f302-49b6-bea3-ecfeae47d9d0",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot d8283dcc-445b-43b3-8217-299896a94036",
+      "micros": 113,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame d8283dcc-445b-43b3-8217-299896a94036",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "shot",
+      "note": "shot 86f3eccc-bf1f-4c86-8384-5c08a741b2dc",
+      "micros": 102,
+      "settled": true
+    },
+    {
+      "kind": "fal",
+      "note": "frame 86f3eccc-bf1f-4c86-8384-5c08a741b2dc",
+      "micros": 17000,
+      "settled": true
+    },
+    {
+      "kind": "turns",
+      "note": "astra",
+      "micros": 987059,
+      "settled": true
+    }
+  ]
+}

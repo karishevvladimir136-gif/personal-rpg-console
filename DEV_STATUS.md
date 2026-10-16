@@ -2,9 +2,65 @@
 
 **Current stage:** Integration — Stage 4 (the DM) and Stage V (pictures) merged into one playable branch
 `claude/integration` for the owner's first sandbox play (cloud session, `docs/stages/INTEGRATION.md`). Base
-`claude/stage-4-dm` (tip `c0f80c9`), merged `claude/stage-v-visuals` (squashed tip `3241ad1`). The integration
-record (conflicts, migration order, checks, smoke, sandbox proof) is in the «Integration» section below; the Stage 4
-and Stage V sections that follow are each stage's own closing status, kept unchanged.
+`claude/stage-4-dm` (tip `c0f80c9`), merged `claude/stage-v-visuals` (squashed tip `3241ad1`), one merge commit plus
+integration fixes on top. **Implementation and checks done; waiting for the owner's play in the sandbox and his
+review.** The Stage V review fixes (`docs/stages/STAGE_V.md` §7) were not done, as the launch message said. The Stage 4
+and Stage V sections below are each stage's own closing status, kept unchanged.
+
+**Integration in short (2026-10-16):**
+
+- **Merge and conflicts.** Two files conflicted. `DEV_STATUS.md`: every section kept (this intro, then Stage 4, Stage V,
+  Stage 3, Stage 5, 2b, 2). `settings-screen.tsx`: Stage 4's dossier state (likes note, theme, depth range, notebook,
+  last turns' numbers) kept, and the `useAutopilot()` line of the main component dropped because Stage V moved it into
+  its new `PicturesBlock`. `game-screen.tsx`, `docs/UI_DATA_NEEDS.md` and the two preview fixtures merged on their own;
+  a line-by-line check confirmed every line either stage added is in the merged files.
+- **Migrations** (`supabase/migrations`, name order): `202610150054_record_integrity` (Stage 3), `202610160054_stage_v_pictures`
+  (Stage V), `202610160055_stage4_dossier`, `202610160056_stage4_restore_defaults` (Stage 4) — 57 files, unique names, no
+  rename needed. The pictures migration applies and works without 55/56; 55/56 then apply on top. Migration 56's restore
+  defaults cover saves made before all four. Proven by the new `tests/integration-saves.test.mjs`: a fresh PGlite database,
+  and the Stage 3 synthetic switched campaign (taken-over Astra campaign on the first 53 migrations, the four applied on the
+  running database in name order, the old runtime still playing, the switch to the loop, loop turns with frames).
+- **Save and restore across both stages:** a save made before the four migrations, one made after 56 and one of a campaign
+  with frames each restore; a loaded save shows exactly its own turns' frames (frames of turns past the save stay in the
+  append-only picture store but hang on no turn). Stage 4's public turn carries `sceneKinds` and `playerMoment` on the
+  merged branch (asserted).
+- **Defect found and fixed:** loading a save opens a *new branch timeline*, and Stage V filtered anchors (portraits, places,
+  items, holdings) by timeline id — after any load every picture would have vanished from the screens and the autopilot
+  would have queued the whole anchor set again (paid). Anchors are campaign-scoped now (`anchorFor` and the reference
+  helpers in `src/lib/visual-frame/pictures.ts` take no timeline; the records on the active branch decide what is shown);
+  Stage V's unit test updated to the real load semantics. Frames were never affected (keyed by turn id).
+- **Paper doll (INTEGRATION 6c):** the character screen's figure shows the hero's full-figure anchor when one is ready;
+  the portrait stays the fallback (`character-screen.tsx`; `docs/UI_DATA_NEEDS.md` #14 updated).
+- **Wiring between the stages:** live frames are asked from the public turn's text (first paragraph) and the key-moment
+  re-render from the committed turn's `changes`; the chronicle takes its chapter titles and «Ранее в…» from the session
+  records Stage 4's digest writes (`title`, `recap`). Nothing in Stage V reads a Stage 4 field that does not exist.
+- **Checks on the final code:** typecheck pass; lint pass, zero warnings; build pass; full suite
+  `node --test --test-concurrency=2 tests/*.test.mjs` — see the line at the end of this section. Fake bench on the loop
+  runtime: 19 of 19 scenarios, 344 of 344 checks, W2 open as before. Every Stage 5 and Stage V screen recaptured on the
+  merged code (desktop 1440 and phone 390, both samples, the three width checks pass): `docs/screens/stage-5/`,
+  `docs/screens/stage-v/`.
+- **Live smoke** (`scripts/eval/live-frames-smoke.mjs`, records `docs/runs/2026-10-16T04-4-integration-live-frames-*`,
+  cap $5, spent **$1.85**): 6 turns per model on a fresh synthetic campaign with a live frame after every turn — the shot
+  by Haiku, the picture by `fal-ai/flux-2/klein/9b` in the «oil» preset through the real picture job and `rpg_pictures`.
+  Opus 5.5 high: 6/6 committed, first word median 11.1 s (max 16.5), full turn median 31.8 s (max 36.3), turns $0.66,
+  cache read share 0.77. Astra medium: 6/6 committed, first word median 2.0 s (max 4.4), full turn median 24.3 s
+  (max 34.6), turns $0.99, cache 0.86. Frames: 12/12 ready, median 3.0–3.5 s after the commit (shot ≈ 1.0–1.3 s, fal
+  ≈ 2.0 s), $0.017 each, $0.10 per model; no leak flagged, no RPC error. In the app the frame starts from the first
+  paragraph, so it lands while the text is still streaming (the smoke measures from the commit).
+- **Sandbox proof on the merged branch** (cloud VM, Docker, Supabase CLI through `npx`, `RPG_SANDBOX_IMAGE_REGISTRY=docker.io`):
+  start on `--fake` → world + campaign + three turns → stop → start → the same campaign continued (`scripts/sandbox-proof.mjs`
+  create/continue, both PASS). All 57 migrations applied in the sandbox database; the pictures API answers with the fal
+  key configured; the app log has no error. The first start hit a Docker Hub pull rate limit (429) once and reported
+  «the sandbox database did not start»; the second start went through — on the owner's laptop a plain retry is the
+  answer. `Start Sandbox.cmd` unchanged; `docs/SANDBOX.md` now names `FAL_KEY` for the pictures.
+- **Left as is:** the six Stage 4 DM Craft versions stay pending (the owner activates them in the DM Craft screen);
+  Stage V §7 (the empty «кадр рисуется…» box in the review screens, the two-picture stage, people without a portrait,
+  prompt hygiene) untouched.
+- **Known environment failure:** `universal-bootstrap-sql` expects the Windows CRLF checksum of migration 30 (fails on
+  the Linux VM, as in every cloud session).
+- **What to click:** `Start Sandbox.cmd` (with keys in `.env.local`, `FAL_KEY` included) or `Start Sandbox.cmd --fake`;
+  DM Craft → activate the Stage 4 versions; Settings → Картинки → «Живые кадры: на каждое действие» and a style; play.
+  Loading a save keeps the portraits now.
 
 ---
 
