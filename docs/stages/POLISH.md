@@ -146,6 +146,11 @@ The owner's notes from the first play are added below by the planner before laun
   вы дома» (with «Общий тайник кампании»), «Изменить / Исправить записи» («Перемещение и расчёт маршрута не
   подключены»), «Инструменты «что, если»». The player's map is the map, the place card on tap and «Наметить курс»;
   holdings go to «Лагерь/Имущество», editing and placement to the «Редактор кампании», «что, если» to the library.
+  (d) **Levels «Мир / Регион / Окрестности» are empty abstractions.** Every place sits at «Мир»; «Регион» and
+  «Окрестности» say «нет известных мест с метками» and send the player back to «Мир». Replace the fixed three levels by
+  the place hierarchy itself: breadcrumbs from the world down to where the hero is («Ржавое побережье › Скрипучая
+  Гавань › Кабак Марты»), each level showing its child places as markers; the map opens on the hero's parent place
+  (the town). A level with one known child shows that child, never an empty map with a redirect.
 - **«Что, если» (Мастерская мира) — leave the feature, fix the entry.** It is the original repo's What-If / D2B lab
   (a non-canon branch of the world from a saved moment), kept for the research track and a later stage; not part of
   this polish beyond: (a) the «Ещё» menu items open it as a separate screen with its own wording — fine, but it must
