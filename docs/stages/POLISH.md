@@ -74,6 +74,14 @@ The owner's notes from the first play are added below by the planner before laun
   и кампанию» does nothing with a narrative sheet and no message — apparently the hero step (step 2) applies the Astra
   rule because the DM is only chosen at step 3 and the app default is Astra. Choose the DM before the sheet is
   validated (or validate against the DM chosen in the wizard), and a disabled create button always says why.
+- **From the wizard into the first turn the flow breaks.** The wizard's step 4 («Я опишу, где начинаю» with a
+  phrase) leads to a game screen that says «Перед первым ходом закончи вступление приключения и настройку ведущего»
+  and then to the Adventures screen, which asks again «Во что вы хотите сыграть?» with an empty form: the phrase is not
+  carried over, so the owner enters the start twice and does not understand where he is. Carry the wizard's start into
+  the adventure draft (or let the wizard's choice create the first adventure) and land on the first turn. Also: the
+  campaign name fell back to the hero's name («Кампания · рэй») although the wizard has a name field; a stray «Новая
+  Кампания» floats in the Adventures header; the sidebar mixes languages («Skill 0 · Атака 0 · Defense 10»); the clock
+  starts at «День 1 · 00:00» whatever the opening scene says.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
