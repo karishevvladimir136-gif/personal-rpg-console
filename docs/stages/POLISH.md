@@ -41,7 +41,13 @@ The owner's notes from the first play are added below by the planner before laun
    hero's thought), and theatrical staccato repetition («— Фланец, — говорит он наконец. — Три месяца. Фланец.»).
    Let NPCs speak like people, once; let the hero's conclusions stay the player's. A third one (turn 12): explaining
    the subtext a line already carries — «— Помпа где. / Это не вопрос.»; the owner: «— Помпа.» says it all. Trust
-   the reader: no narrator gloss after a line that already works.
+   the reader: no narrator gloss after a line that already works. Turn 13 (otherwise «очень логично»): (i) a calque —
+   «Это уже не греблю ты у меня покупаешь, это голову» (English "it's not rowing you're buying, it's my neck"); a
+   Russian boatwoman says «Тут уже не за вёсла платишь — за мою шкуру»; (ii) the DM's ledger leaking into speech —
+   «У меня пятнадцать, у Мокея «квиты»» reads like reciting record values; people refer to deals the way people do
+   («мне ты и так должен, Мокей своё уже взял»); (iii) a closing menu «Так что выбор у тебя такой: … или …» — the
+   owner's codex: options only when the player asks; end on the situation. Collect such pairs (calque → native) from
+   the owner's play into the voice examples; they are the best training signal we have.
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
