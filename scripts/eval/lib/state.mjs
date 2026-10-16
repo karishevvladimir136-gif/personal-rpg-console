@@ -1,6 +1,8 @@
 // Read-only views of a disposable evaluation campaign: snapshots, diffs,
 // placeholder resolution for scripted fake responses, and scenario checks.
 
+import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/metrics.ts";
+
 const PUBLIC_TEXT_TABLES = ["rpg_scenes", "rpg_quests", "rpg_entities", "rpg_items",
   "rpg_locations", "rpg_memory_summaries"];
 
@@ -31,7 +33,7 @@ export async function snapshot(f, campaignId, heroId) {
       where campaign_id=$1 order by name,id`),
     items: await rows(`select id,name,category,quantity,owner_entity_id,storage_id,
       equipped_entity_id,equipped_slot from public.rpg_items where campaign_id=$1 order by name,id`),
-    quests: await rows(`select id,title,status from public.rpg_quests
+    quests: await rows(`select id,title,status,kind,reward_operation_id from public.rpg_quests
       where campaign_id=$1 order by title,id`),
     storages: await rows(`select id,name,kind,entity_id from public.rpg_storages
       where campaign_id=$1 order by id`),
@@ -147,6 +149,13 @@ export function resolvePlaceholders(value, state, campaignId) {
   };
   const result = visit(value);
   return unresolved ? null : result;
+}
+
+/** The campaign's private facts (DM-only; the bench reads them to check bookkeeping, never to show them). */
+export async function privateFacts(f, campaignId, bucket = "fact") {
+  const row = await f.one("select contents from rpg_private.dm_state where campaign_id=$1", [campaignId]);
+  const facts = row?.contents?.[bucket];
+  return facts && typeof facts === "object" && !Array.isArray(facts) ? facts : {};
 }
 
 /** Evaluate one scenario expectation. `ctx` holds before/after snapshots of the
@@ -300,6 +309,63 @@ export async function evaluateCheck(check, ctx) {
       const hero = after.entities.find((e) => e.id === after.heroId);
       const within = !!hero && (hero.hp === null ? hero.max_hp === null : hero.hp >= 0 && hero.hp <= hero.max_hp);
       return result(within === !!arg, `hero HP ${hero?.hp ?? "–"}/${hero?.max_hp ?? "–"}`);
+    }
+    // ---- Stage 4 checks (docs/stages/STAGE_4.md §2, §3, §6) ----
+    case "questKind": {
+      const rows = after.quests.filter((q) => matcher(arg.title).test(q.title));
+      return result(rows.length && rows.every((q) => (q.kind ?? "quest") === arg.kind),
+        rows.length ? rows.map((q) => `${q.title}: ${q.kind ?? "quest"}`).join("; ") : "no matching quest");
+    }
+    case "questStatus": {
+      const rows = after.quests.filter((q) => matcher(arg.title).test(q.title));
+      return result(rows.length && rows.every((q) => q.status === arg.status),
+        rows.length ? rows.map((q) => `${q.title}: ${q.status}`).join("; ") : "no matching quest");
+    }
+    case "rewardSettled": {
+      const rows = after.quests.filter((q) => matcher(arg).test(q.title));
+      return result(rows.length && rows.every((q) => q.reward_operation_id), rows.length ? rows.map((q) => `${q.title}: ${q.reward_operation_id ? "paid" : "unpaid"}`).join("; ") : "no matching quest");
+    }
+    case "privateFact": {
+      const facts = await privateFacts(ctx.f, ctx.campaignId, arg.bucket ?? "fact");
+      const hits = Object.entries(facts).filter(([key, value]) => matcher(arg.key).test(key) && (arg.value === undefined || matcher(arg.value).test(String(value))));
+      return result(hits.length > 0, hits.length ? `facts: ${hits.map(([key]) => key).join(", ")}` : `no private fact matches ${arg.key}; keys: ${Object.keys(facts).join(", ")}`);
+    }
+    case "rewardTermsConverted": {
+      const facts = await privateFacts(ctx.f, ctx.campaignId);
+      const rows = after.quests.filter((q) => matcher(arg).test(q.title));
+      const converted = rows.filter((q) => typeof facts[`quest_reward_${q.id}`] === "string");
+      return result(rows.length && converted.length === rows.length, rows.length ? `${converted.length}/${rows.length} quests carry loop reward terms` : "no matching quest");
+    }
+    case "receiptHint": {
+      const hints = ctx.turn?.effects?.hints ?? [];
+      const hits = hints.filter((hint) => matcher(arg).test(hint));
+      return result(hits.length > 0, hits.length ? hits.join(" | ").slice(0, 300) : `no receipt hint matches; hints: ${hints.join(" | ").slice(0, 200) || "none"}`);
+    }
+    case "duePlans":
+      return result(compare(ctx.turn?.effects?.duePlans ?? 0, arg), `${ctx.turn?.effects?.duePlans ?? 0} due plan(s) listed on time receipts`);
+    case "npcRefused":
+      return result(!!ctx.turn?.meta?.npcRefused === !!arg, `npcRefused ${ctx.turn?.meta?.npcRefused ?? "unset"}`);
+    case "metric": {
+      const report = metricsReport(parseMetrics({ fact: await privateFacts(ctx.f, ctx.campaignId) }));
+      const value = report[arg.field];
+      return result(value !== null && value !== undefined && compare(value, arg), `${arg.field} = ${value ?? "–"}`);
+    }
+    case "heroResourceMin": {
+      const hero = after.entities.find((e) => e.id === after.heroId);
+      const value = Number(hero?.resources?.[arg.resource] ?? NaN);
+      return result(Number.isFinite(value) && value >= arg.min, `${arg.resource} = ${Number.isFinite(value) ? value : "–"}`);
+    }
+    case "entityKind": {
+      const rows = after.entities.filter((e) => matcher(arg.name).test(e.name));
+      return result(rows.length && rows.every((e) => e.kind === arg.kind), rows.length ? rows.map((e) => `${e.name}: ${e.kind}`).join("; ") : "no matching entity");
+    }
+    case "narrationIncludes": {
+      const narration = ctx.turn?.narration ?? "";
+      return result(matcher(arg).test(narration), narration ? narration.slice(0, 160) : "no narration");
+    }
+    case "depthEffort": {
+      const effort = ctx.turn?.pin?.effort ?? null;
+      return result(effort === arg, `pinned effort ${effort ?? "–"} (tension ${ctx.turn?.pin?.depth?.tension ?? "–"})`);
     }
     default:
       throw Error(`unknown check kind ${kind}`);

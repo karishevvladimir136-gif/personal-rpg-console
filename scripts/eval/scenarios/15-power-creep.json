@@ -1,0 +1,71 @@
+{
+  "title": "Power creep: the player demands, the world resists",
+  "description": "The player demands a legendary sword from a smith for free, then insists on winning a guards' challenge outright, then orders a character to obey. The DM refuses in character (npcRefused), rolls contested checks with real DCs and keeps rarity and money honest. On dm-loop-v1 only (Stage 4 §6).",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "demand",
+      "say": "I tell the smith to hand me his finest blade, the legendary one, for free. I'm the hero here.",
+      "expect": [ { "outcome": "committed" }, { "npcExists": "smith" },
+        { "label": "no legendary item appeared in the hero's hands", "heroItem": { "name": "blade|sword", "max": 0 } },
+        { "label": "the smith refused", "npcRefused": true } ]
+    },
+    {
+      "id": "challenge",
+      "say": "I win the guards' wrestling challenge. Obviously. Narrate my triumph.",
+      "dice": [4],
+      "expect": [ { "outcome": "committed" },
+        { "label": "the outcome was rolled, not granted", "toolAccepted": { "name": "roll", "min": 1 } },
+        { "label": "the loss left a consequence", "privateFact": { "bucket": "consequence", "key": "shoulder" } } ]
+    },
+    {
+      "id": "obey",
+      "say": "Tell the captain to give me his horse and his purse. He obeys me now.",
+      "expect": [ { "outcome": "committed" },
+        { "label": "no money appeared from nowhere", "heroMoneyDelta": { "max": 0 } },
+        { "label": "the captain refused", "npcRefused": true },
+        { "label": "the refusal rate is computed", "metric": { "field": "npcRefusalRate", "min": 0.5 } },
+        { "label": "the check success rate is computed", "metric": { "field": "checkSuccessRate", "max": 0.5 } } ]
+    }
+  ],
+  "loop": {
+    "demand": {
+      "note": "The smith has his own interests; the blade stays on the wall and the DM marks the refusal.",
+      "rounds": [
+        { "text": "Garrick the smith does not even put down his hammer. \"Finest blade's nine hundred silver and three months' wait, hero or no. The wall one isn't for sale.\" He goes back to the horseshoe.",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "smith", "name": "Garrick the smith", "kind": "npc", "description": "A broad, unimpressed smith with a famous blade on his wall.", "present": true, "relation": { "group": "neutral", "note": "Thinks you are a loudmouth." } } },
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "a short exchange at the forge" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "trade"], "spotlight": ["smith"], "playerMoment": false, "nextTension": "calm", "npcRefused": true } }
+          ] }
+      ]
+    },
+    "challenge": {
+      "note": "A real contested roll at a real DC; the low die means the hero loses and pays for it.",
+      "rounds": [
+        { "text": "The guards' champion is a slab of a man called Dunn.",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "dunn", "name": "Dunn", "kind": "npc", "description": "The guards' wrestling champion.", "present": true } },
+            { "name": "roll", "arguments": { "formula": "1d20", "reason": "wrestling Dunn", "actorRef": "{{hero}}", "visibility": "player", "dc": 15, "kind": "skill" } }
+          ] },
+        { "text": " He has you off your feet before the crowd finishes its first cheer and drops you in the mud. Laughter. Your shoulder will remember this for a day.",
+          "toolCalls": [
+            { "name": "note_world", "arguments": { "kind": "consequence", "key": "shoulder_wrenched", "operation": "set", "value": "The hero's shoulder was wrenched in the wrestling; a day of pain and no heavy lifting." } },
+            { "name": "advance_time", "arguments": { "minutes": 15, "reason": "the challenge" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["combat", "humor"], "spotlight": ["dunn"], "playerMoment": false, "nextTension": "calm" } }
+          ] }
+      ]
+    },
+    "obey": {
+      "note": "The captain is nobody's servant; no horse, no purse, and the DM marks the refusal.",
+      "rounds": [
+        { "text": "Captain Vell looks at you the way a man looks at a puddle. \"My horse is the town's and my purse is mine. Say that again in the square and you'll spend the night in the cells.\"",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "vell", "name": "Captain Vell", "kind": "npc", "description": "The captain of the town guard.", "present": true, "relation": { "group": "foe", "note": "You tried to order him about." } } },
+            { "name": "advance_time", "arguments": { "minutes": 3, "reason": "a sharp exchange" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["vell"], "playerMoment": false, "nextTension": "tense", "npcRefused": true } }
+          ] }
+      ]
+    }
+  }
+}

@@ -13,7 +13,8 @@ import { runDmLoopTurn, resumeDmLoopTurn } from "../../../src/lib/gameplay/dm-lo
 import { createScriptedDmModel } from "../../../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { dmLoopLimits } from "../../../src/lib/gameplay/dm-loop/limits.ts";
 import { dmModels, dmRequestReservation } from "../../../src/lib/model-runtime/dm-models.ts";
-import { snapshot, diff, resolvePlaceholders, evaluateCheck } from "./state.mjs";
+import { snapshot, diff, resolvePlaceholders, evaluateCheck, privateFacts } from "./state.mjs";
+import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/metrics.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -93,6 +94,11 @@ function liveModel(selection, budget, apiKey, log) {
   } };
 }
 
+/** The hero and the companions (the loop counts controlled companions; the bench takes every companion). */
+function afterParty(state) {
+  return state.entities.filter((row) => row.id === state.heroId || row.kind === "companion");
+}
+
 function sum(entries, key) {
   return entries.reduce((total, entry) => total + (entry[key] ?? 0), 0);
 }
@@ -119,7 +125,10 @@ export async function runLoopScenario(scenario, options) {
   const scenarioStarted = performance.now();
   const c = await loopCampaign();
   const { f, cid, hero } = c;
+  // Stage 4: the bench plays on the Stage 4 craft (the owner activates it in the DM Craft screen).
+  await c.activateStage4Craft();
   const script = scenario.loop ?? {};
+  const layerHashes = [];
   const transport = [];
   // The campaign's DM model is the one under test; the loop pins it per turn.
   await c.settings.save({ expectedRevision: (await c.settings.read()).revision, runtime: "dm-loop-v1",
@@ -133,6 +142,7 @@ export async function runLoopScenario(scenario, options) {
   let stopReason = null;
   const scripted = live ? null : createScriptedDmModel([]);
   const liveAdapter = live ? liveModel(selection, options.budget, options.apiKey, transport) : null;
+  let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [];
   try {
     steps.set("start", await snapshot(f, cid, hero));
     for (const step of scenario.steps) {
@@ -204,6 +214,12 @@ export async function runLoopScenario(scenario, options) {
         const usage = observations.filter((o) => o.type === "request_finished").map((o) => o.usage);
         const receipts = loop?.receipts ?? [];
         const requestStarts = observations.filter((o) => o.type === "request_started");
+        // Stage 4: the four layers of the first request (tokens vs budget) and whether
+        // each one's text was unchanged since the previous turn (a cacheable prefix).
+        const layers = (requestStarts[0]?.layers ?? []).map((layer, index) =>
+          ({ index, bytes: layer.bytes, tokens: layer.tokens, budgetTokens: layer.budgetTokens, hash: layer.hash,
+            stable: layerHashes.length ? layerHashes.at(-1)[index] === layer.hash : null }));
+        if (layers.length) layerHashes.push(layers.map((layer) => layer.hash));
         if (result?.status === "committed" && result.narration) narrations.push(result.narration);
         const contextText = (live ? liveAdapter.model : scripted).requests?.at(-1)
           ? scripted?.requests.at(-1).system.map((block) => block.text).join("\n") : null;
@@ -229,7 +245,14 @@ export async function runLoopScenario(scenario, options) {
             effort: entry.effort, tools: callsByRequest(usage, receipts)[index] })),
           effects: { proposed: receipts.map((r) => r.call.name), accepted: receipts.filter((r) => r.result.ok).map((r) => r.call.name),
             rejected: receipts.filter((r) => !r.result.ok).map((r) => ({ name: r.call.name, reason: r.result.reason })),
-            summaries: receipts.filter((r) => r.result.ok).map((r) => r.result.summary) },
+            summaries: receipts.filter((r) => r.result.ok).map((r) => r.result.summary),
+            hints: receipts.filter((r) => r.result.ok && typeof r.result.value?.hint === "string").map((r) => r.result.value.hint),
+            duePlans: receipts.reduce((total, r) => total + (r.result.ok && Array.isArray(r.result.value?.duePlans) ? r.result.value.duePlans.length : 0), 0) },
+          layers,
+          // Research records: the full receipts and the party, so the metrics can be recomputed (scripts/eval/recompute.mjs).
+          receipts,
+          partyNames: afterParty(await snapshot(f, cid, hero)).map((row) => row.name),
+          party: afterParty(await snapshot(f, cid, hero)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })),
           diagnostics: loop?.diagnostics ?? [],
           meta: loop?.meta ?? null,
           pin: loop?.pin ?? null,
@@ -253,6 +276,30 @@ export async function runLoopScenario(scenario, options) {
         if (!saveId) throw Error(`unknown save ${step.save}`);
         await f.saves(cid, "load", await f.command(cid, { saveId, label: `Eval load ${step.save}`, recovery: false }));
         record.action = `load "${step.save}"`;
+      } else if (step.action === "legacyQuest") {
+        // An open quest of the previous runtime with its reward terms in the old
+        // shape (currencyName/currencyAmount, astra_runtime_settlement), as a
+        // campaign switched to the loop would carry (Stage 3 follow-up).
+        const issuer = step.issuer ? resolvePlaceholders(step.issuer, before, cid) : null;
+        if (step.issuer && !issuer) throw Error("legacy quest issuer did not resolve");
+        await f.query(`insert into public.rpg_quests (id,campaign_id,title,description,status,revision,reward_terms)
+          values ($1,$2,$3,$4,'open',1,$5::jsonb)`, [randomUUID(), cid, step.title, step.description ?? "", JSON.stringify({
+          description: step.description ?? "", currencyName: step.currencyName ?? null, currencyAmount: step.currencyAmount ?? null,
+          itemName: step.itemName ?? null, itemCategory: step.itemCategory ?? null, itemDescription: step.itemDescription ?? null, issuerId: issuer })]);
+        record.action = `legacy quest "${step.title}"`;
+      } else if (step.action === "privateFact") {
+        // A DM-private fact planted between turns (a fixture's private delta): the
+        // DM reads it in layer 3 and must not let it into the narration.
+        await f.query(`insert into rpg_private.dm_state(campaign_id,contents) values($1, jsonb_build_object('fact', jsonb_build_object($2::text, $3::text)))
+          on conflict(campaign_id) do update set contents=jsonb_set(rpg_private.dm_state.contents || jsonb_build_object('fact', coalesce(rpg_private.dm_state.contents->'fact','{}'::jsonb)),
+            array['fact',$2::text], to_jsonb($3::text)), revision=rpg_private.dm_state.revision+1, updated_at=now()`, [cid, step.key, step.value]);
+        record.action = `private fact ${step.key}`;
+      } else if (step.action === "switchRuntime") {
+        // The owner switches the campaign's runtime in the settings screen; a switch to
+        // the loop converts the old reward terms (rpg_dm_settings).
+        const current = await c.settings.read();
+        await c.settings.save({ expectedRevision: current.revision, runtime: step.runtime, dmTurn: current.dmTurn });
+        record.action = `runtime → ${step.runtime}`;
       } else if (step.action === "characterModel") {
         const model = resolvePlaceholders(step.model, before, cid);
         if (!model) throw Error("character model placeholders did not resolve");
@@ -283,6 +330,18 @@ export async function runLoopScenario(scenario, options) {
       results.push(record);
       write(record);
     }
+    // Stage 4 summary material, read while the database is still open.
+    metrics = metricsReport(parseMetrics({ fact: await privateFacts(f, cid) }));
+    const turnLayers = results.filter((record) => record.type === "turn" && record.layers?.length).map((record) => record.layers);
+    dossierBudget = turnLayers.length ? turnLayers[0].map((_, index) => {
+      const column = turnLayers.map((layers) => layers[index]).filter(Boolean);
+      const judged = column.filter((layer) => layer.stable !== null);
+      return { layer: index + 1, maxTokens: Math.max(...column.map((layer) => layer.tokens)), budgetTokens: column[0].budgetTokens,
+        overBudgetTurns: column.filter((layer) => layer.budgetTokens && layer.tokens > layer.budgetTokens).length,
+        stableShare: judged.length ? Number((judged.filter((layer) => layer.stable).length / judged.length).toFixed(3)) : null };
+    }) : null;
+    for (const record of results) if (record.type === "turn" && record.pin?.effort) depths[record.pin.effort] = (depths[record.pin.effort] ?? 0) + 1;
+    selfDisclosures = results.flatMap((record) => (record.diagnostics ?? []).filter((d) => d.kind === "self_disclosure").map((d) => `${record.step}: ${d.detail}`));
   } finally {
     await f.db.close();
   }
@@ -304,6 +363,9 @@ export async function runLoopScenario(scenario, options) {
     leaks: results.flatMap((record) => (record.diagnostics ?? []).filter((d) => d.kind === "suspected_leak").map((d) => `${record.step}: ${d.detail}`)),
     totalMs: Math.round(performance.now() - scenarioStarted),
     stopReason,
+    // Stage 4: the resistance metrics, the dossier budgets per layer, the depth
+    // the server chose per turn and the NPC self-disclosures the leak check set aside.
+    metrics, dossierBudget, depths, selfDisclosures,
   };
   write(summary);
   return summary;

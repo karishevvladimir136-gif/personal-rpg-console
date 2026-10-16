@@ -1,0 +1,84 @@
+{
+  "title": "A job closed: delivery hint, reward paid once, old terms converted",
+  "description": "A campaign switched from the previous runtime carries an open quest with old-style reward terms; the switch converts them. The hero takes a second job on the loop, delivers the goods (the receipt hints that the job may be complete), the DM closes it and pays the reward once; the converted legacy reward is paid through the same tool. On dm-loop-v1 only (Stage 4 §2 follow-ups).",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    { "id": "meet", "say": "I ask the carter by the gate whether anyone in town pays for honest work.",
+      "expect": [ { "outcome": "committed" }, { "npcExists": "carter|bettany" } ] },
+    { "id": "legacy", "action": "legacyQuest", "title": "Fetch the carter's lost ledger", "description": "Bettany's ledger fell off the cart on the north road.", "currencyName": "coins", "currencyAmount": 3, "issuer": "{{npc:bettany}}" },
+    { "id": "away", "action": "switchRuntime", "runtime": "astra-primary-v1" },
+    { "id": "back", "action": "switchRuntime", "runtime": "dm-loop-v1",
+      "expect": [ { "label": "the old reward terms are converted on the switch to the loop", "rewardTermsConverted": "ledger" } ] },
+    { "id": "take", "say": "I take the carter's other job: twenty sacks of flour to the bakery before dusk.",
+      "expect": [ { "outcome": "committed" }, { "questExists": { "title": "flour|sack" } }, { "label": "the job is a quest (not a thread)", "questKind": { "title": "flour|sack", "kind": "quest" } } ] },
+    { "id": "deliver", "say": "I hand the sacks over to Bettany and the ledger I found on the road.",
+      "expect": [ { "outcome": "committed" },
+        { "label": "the receipt hinted that the job may be complete", "receiptHint": "may complete the open job" },
+        { "label": "the flour job is closed", "questStatus": { "title": "flour|sack", "status": "complete" } },
+        { "label": "the flour reward is paid once", "rewardSettled": "flour|sack" },
+        { "label": "the converted legacy reward is paid through the loop", "rewardSettled": "ledger" },
+        { "label": "the hero received both rewards", "heroMoneyDelta": { "min": 8, "max": 8 } } ] },
+    { "id": "again", "say": "I ask Bettany to pay me again for the flour.",
+      "expect": [ { "outcome": "committed" },
+        { "label": "a second payment is rejected", "rejectedCalls": { "min": 1 } },
+        { "label": "no money appeared", "heroMoneyDelta": { "max": 0 } } ] }
+  ],
+  "loop": {
+    "meet": {
+      "note": "The carter becomes a character; no job yet.",
+      "rounds": [
+        { "text": "Bettany the carter leans on her wheel. \"Honest work, aye. Lost my ledger on the north road, and there's flour wanting hauling. Pick one or both.\"",
+          "toolCalls": [
+            { "name": "upsert_character", "arguments": { "localKey": "bettany", "name": "Bettany the carter", "kind": "npc", "description": "A carter who works the gate road; blunt, fair, overworked.", "present": true } },
+            { "name": "advance_time", "arguments": { "minutes": 5, "reason": "talk at the gate" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation"], "spotlight": ["bettany"], "playerMoment": false, "nextTension": "calm" } }
+          ] }
+      ]
+    },
+    "take": {
+      "note": "The second job is a quest with reward terms; the sacks exist in the hero's hands.",
+      "rounds": [
+        { "text": "\"Twenty sacks, five coins, every one dry.\" She spits in her palm.",
+          "toolCalls": [
+            { "name": "quest", "arguments": { "action": "create", "localKey": "flour", "kind": "quest", "title": "Haul the flour sacks", "description": "Twenty sacks of flour to the bakery before dusk.", "issuerRef": "Bettany the carter", "reward": { "currency": "coins", "amount": 5 } } },
+            { "name": "item", "arguments": { "action": "create", "localKey": "sacks", "name": "Sack of flour", "category": "gear", "quantity": 20, "ownerRef": "{{hero}}" } },
+            { "name": "item", "arguments": { "action": "create", "localKey": "ledger", "name": "Bettany's ledger", "category": "misc", "quantity": 1, "ownerRef": "{{hero}}", "description": "Found in the ditch on the north road." } },
+            { "name": "advance_time", "arguments": { "minutes": 10, "reason": "loading the sacks" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["trade"], "spotlight": ["bettany"], "playerMoment": false, "nextTension": "calm" } }
+          ] }
+      ]
+    },
+    "deliver": {
+      "note": "The transfer to the issuer carries the open-job hint; the DM closes both jobs and pays each reward exactly once through claim_reward.",
+      "rounds": [
+        { "text": "Bettany counts the sacks twice and turns the ledger over in her hands.",
+          "toolCalls": [
+            { "name": "item", "arguments": { "action": "transfer", "itemRef": "Sack of flour", "ownerRef": "Bettany the carter" } },
+            { "name": "item", "arguments": { "action": "transfer", "itemRef": "Bettany's ledger", "ownerRef": "Bettany the carter" } }
+          ] },
+        { "text": " \"Dry, every one. And my ledger, by the saints.\" She pays without haggling.",
+          "toolCalls": [
+            { "name": "quest", "arguments": { "action": "complete", "questRef": "Haul the flour sacks" } },
+            { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "Haul the flour sacks" } },
+            { "name": "quest", "arguments": { "action": "complete", "questRef": "Fetch the carter's lost ledger" } },
+            { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "Fetch the carter's lost ledger" } },
+            { "name": "advance_time", "arguments": { "minutes": 20, "reason": "unloading and settling up" } },
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["trade", "conversation"], "spotlight": ["bettany"], "playerMoment": false, "nextTension": "calm" } }
+          ] }
+      ]
+    },
+    "again": {
+      "note": "A second claim is rejected by the server; the DM plays the refusal.",
+      "rounds": [
+        { "text": "Bettany laughs. \"Paid is paid.\"",
+          "toolCalls": [
+            { "name": "quest", "arguments": { "action": "claim_reward", "questRef": "Haul the flour sacks" } }
+          ] },
+        { "text": " She climbs back onto her cart.",
+          "toolCalls": [
+            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "humor"], "spotlight": ["bettany"], "playerMoment": false, "nextTension": "calm", "npcRefused": true } }
+          ] }
+      ]
+    }
+  }
+}

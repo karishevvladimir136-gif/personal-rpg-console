@@ -6,7 +6,7 @@
 // --runtime astra-primary-v1 (default) is the Stage 0 path, unchanged.
 // --runtime dm-loop-v1 plays the same scenarios on the new loop with scripted
 // model events (fake) or the live DmModel adapters (live, both models).
-import { mkdir, readdir, readFile, appendFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, appendFile, copyFile } from "node:fs/promises";
 import { providerKey } from "./lib/keys.mjs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -57,6 +57,8 @@ async function scenarios(selection, runtime) {
   const files = (await readdir(folder)).filter((file) => file.endsWith(".json")).sort();
   const all = await Promise.all(files.map(async (file) =>
     ({ name: file.replace(/\.json$/, ""), ...JSON.parse(await readFile(join(folder, file), "utf8")) })));
+  // Stage 4: the Mega DM campaign and probes are generated from the frozen fixtures.
+  if (runtime === "dm-loop-v1") all.push(...(await import("./lib/mega-dm.mjs")).megaDmScenarios());
   // A scenario written for one runtime only says so; "all" picks the fitting ones.
   const fits = (scenario) => !scenario.runtime || scenario.runtime === runtime;
   if (selection === "all") return all.filter(fits);
@@ -161,3 +163,13 @@ write({ type: "end", run: runId, finishedAt: new Date().toISOString(), stopReaso
 await writeChain;
 console.log(`\n${formatReport(await loadRun(outFile))}`);
 console.log(`\nMetrics: ${outFile}`);
+if (args.provider === "live") {
+  // Research-grade records (docs/stages/STAGE_4.md): no paid run is thrown away.
+  // The committed copy holds the same records (scenario, model, effort, layer
+  // hashes, inputs, outputs, receipts, metrics, timings, tokens, cost);
+  // scripts/eval/recompute.mjs recomputes the metrics from it.
+  const runs = join(root, "docs", "runs");
+  await mkdir(runs, { recursive: true });
+  await copyFile(outFile, join(runs, `${runId}.jsonl`));
+  console.log(`Research record: docs/runs/${runId}.jsonl (commit it)`);
+}

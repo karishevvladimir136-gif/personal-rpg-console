@@ -105,6 +105,7 @@ export function formatReport(records) {
     const failures = fresh.filter((turn) => turn.outcome === "failed" || turn.outcome === "error")
       .map((turn) => `${turn.scenario}/${turn.step}: ${turn.errorCode ?? turn.outcome}${turn.failure?.length ? ` (${turn.failure.map((f) => f.message).join("; ")})` : ""}`);
     if (failures.length) { lines.push("  failed turns:"); for (const line of failures) lines.push(`    ${line}`); }
+    lines.push(...stage4Report(fresh, scenarios));
   }
   const weaknesses = scenarios.flatMap((scenario) => (scenario.weaknesses ?? []).map((weakness) =>
     ({ ...weakness, scenario: scenario.scenario })))
@@ -131,6 +132,56 @@ export function formatReport(records) {
   }
   if (end?.stopReason) lines.push(`\nStopped: ${end.stopReason}`);
   return lines.join("\n");
+}
+
+/** The Stage 4 block (docs/stages/STAGE_4.md): the dossier layers against their
+ * budgets and how often each stayed byte-identical between turns (the cacheable
+ * share), the depth the server chose, the resistance metrics and the NPC
+ * self-disclosures the leak check set aside. */
+export function stage4Report(turns, scenarios) {
+  const lines = [];
+  const withLayers = turns.filter((turn) => (turn.layers ?? []).length);
+  if (!withLayers.length && !scenarios.some((s) => s.metrics)) return lines;
+  lines.push("");
+  lines.push("Stage 4 · dossier layers (first request of each turn):");
+  if (withLayers.length) {
+    const count = Math.max(...withLayers.map((turn) => turn.layers.length));
+    const rows = [["layer", "median tokens", "max tokens", "budget", "over budget", "unchanged since last turn", "cache read share (turn)"]];
+    for (let index = 0; index < count; index++) {
+      const column = withLayers.map((turn) => turn.layers[index]).filter(Boolean);
+      const judged = column.filter((layer) => layer.stable !== null);
+      rows.push([index + 1, fmt(median(column.map((layer) => layer.tokens))), fmt(Math.max(...column.map((layer) => layer.tokens))),
+        fmt(column[0]?.budgetTokens), `${column.filter((layer) => layer.budgetTokens && layer.tokens > layer.budgetTokens).length} turns`,
+        judged.length ? `${fmt(judged.filter((layer) => layer.stable).length / judged.length * 100)}% of ${judged.length}` : "–",
+        index === 0 ? `${fmt((median(turns.map((turn) => turn.cacheReadShare)) ?? 0) * 100)}% median` : ""]);
+    }
+    lines.push(table(rows).split("\n").map((line) => `  ${line}`).join("\n"));
+    const costs = turns.filter((turn) => turn.costUsd);
+    if (costs.length) {
+      // Cost per layer: the input cost of a turn split by the layers' token shares, cached tokens at the provider's read discount.
+      const perLayer = withLayers[0].layers.map(() => 0);
+      for (const turn of costs) {
+        const total = turn.layers.reduce((sum, layer) => sum + layer.tokens, 0) || 1;
+        turn.layers.forEach((layer, index) => { perLayer[index] += turn.costUsd * layer.tokens / total; });
+      }
+      lines.push(`  cost share by layer (input tokens, approximate): ${perLayer.map((usd, index) => `L${index + 1} ${fmt(usd / costs.length, 4)} USD/turn`).join(", ")}`);
+    }
+  }
+  const depths = {};
+  for (const turn of turns) if (turn.pin?.effort) depths[turn.pin.effort] = (depths[turn.pin.effort] ?? 0) + 1;
+  if (Object.keys(depths).length) lines.push(`  depth chosen per turn: ${Object.entries(depths).map(([effort, n]) => `${effort} ${n}`).join(", ")}` +
+    `; «important turn» boosts ${turns.filter((turn) => turn.pin?.depth?.boosted).length}`);
+  for (const scenario of scenarios) {
+    if (!scenario.metrics) continue;
+    const m = scenario.metrics;
+    const pct = (value) => value === null || value === undefined ? "–" : `${fmt(value * 100)}%`;
+    lines.push(`  ${scenario.scenario} metrics: turns ${m.turns}; check success ${pct(m.checkSuccessRate)} (expected ${pct(m.checkSuccessExpected)}), near misses ${pct(m.nearMissRate)};` +
+      ` NPC refusals ${pct(m.npcRefusalRate)} of turns; longest unearned-win streak ${m.unearnedWinStreakLongest}; fights ${m.fights}` +
+      `${m.fights ? ` (uncertain ${pct(m.fightsUncertainShare)}, won at no cost ${m.fightsWonAtNoCost}, HP lost per fight ${m.hpLostPerFight})` : ""}`);
+  }
+  const disclosures = scenarios.flatMap((scenario) => scenario.selfDisclosures ?? []);
+  lines.push(`  NPC self-disclosures set aside by the leak check: ${disclosures.length}${disclosures.length ? ` — ${disclosures.join(" | ").slice(0, 400)}` : ""}`);
+  return lines;
 }
 
 /** Every paid request of a run: tokens and cost per call, then the totals. */
