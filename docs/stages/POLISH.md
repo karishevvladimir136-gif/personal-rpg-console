@@ -39,7 +39,9 @@ The owner's notes from the first play are added below by the planner before laun
    Two tics the owner flagged in a good turn, to address in the voice text (as positive guidance, not a ban list):
    echoing an NPC's simile back as the hero's own conclusion («Старик на лестнице, точно.» — also the DM deciding the
    hero's thought), and theatrical staccato repetition («— Фланец, — говорит он наконец. — Три месяца. Фланец.»).
-   Let NPCs speak like people, once; let the hero's conclusions stay the player's.
+   Let NPCs speak like people, once; let the hero's conclusions stay the player's. A third one (turn 12): explaining
+   the subtext a line already carries — «— Помпа где. / Это не вопрос.»; the owner: «— Помпа.» says it all. Trust
+   the reader: no narrator gloss after a line that already works.
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
@@ -198,6 +200,16 @@ The owner's notes from the first play are added below by the planner before laun
   очень трудная 16 · почти невозможная 19 — and an expert doing his trade in fair conditions gets «обычная» or no roll
   at all (the owner found 12 for a guild diver's dive too high); (d) the roll card shows the reason, the bonus and its
   source («ныряльщик +4»), advantage and why, and the DC in words. Test with a narrative-ruleset campaign.
+  More evidence (turn 12): the player wrote «используя инструменты и прошлый опыт починки в качестве бонуса», the DM
+  rolled 1d20+0 vs 13 again. The `roll` tool already accepts `formula` with a modifier and `advantage`, so this is
+  doctrine plus data: (e) add `bonuses: [{ source, value }]` to `roll` (tools +1/+2, a trained skill, help, prepared
+  gear) — the server adds them, caps the total by the ruleset, and the receipt lists each source; (f) the doctrine
+  says it plainly, with the reason: when the fiction or the player gives a fair reason for a bonus, apply it, and when
+  you refuse one, say why in one short aside; (g) a bench check: a scenario where the player names his tools and his
+  trade, expecting a non-zero bonus or advantage.
+- **A record mistake: removing ≠ using up.** The player «took off» the resin gloves; the DM recorded «рэй uses
+  смоляные рукавицы (0 left)» and the gloves vanished from the inventory. Taking off, putting away and giving are not
+  consumption; the doctrine and the tool description say so, and `item use` on a non-consumable asks for a reason.
 - **Healing.** The hero lost HP twice (9, then 8) and has no visible way back: rest (short/long by ruleset), first aid
   in the fiction (Мокей's resin, a bandage) as a DM-recorded heal, and the camp/rest action; the DM restores HP when
   the story gives a reason, and time passing with rest heals by the ruleset's rule. Show it in the receipts.
@@ -307,8 +319,12 @@ The owner's notes from the first play are added below by the planner before laun
     Russian; the blind fixture's machine-translated world dragged the register down. Keep this in the research record.
   - **Remove the «Приключение» card from the game sidebar** — it breaks immersion; adventure management lives in the
     «Приключения» section of the left menu.
-  - The story sits in its own inner scroll box under a very large frame (nested scrolling, arrows, «К последнему
-    ходу»). One page scroll; see the one-stage layout in STAGE_V §7.
+  - **The story is squeezed (owner, twice).** It sits in its own inner scroll box between the frame and the strip on
+    top and the composer below (nested scrolling, arrows, «К последнему ходу»), so only a few paragraphs fit. The
+    story is the main thing on the screen: one page scroll; the stage (place + live frame) at the top scrolls away
+    with the story and the strip of earlier frames moves into the chronicle or a small «Кадры» button; the composer
+    is compact (one or two lines, grows while typing) and sticks to the bottom; at 1440×900 at least 15 lines of
+    story are visible while the composer is open. See also the one-stage layout in STAGE_V §7.
 - **A record the story never mentions (turn 6, «Мокей recorded as a character»).** The player asked for a second,
   quiet oarsman; the narration answered about Dunya and the pistol and never named anyone, yet the chips show «Мокей
   recorded as a character» and «Мокей's character notes started». Two problems, find which one happened from the
