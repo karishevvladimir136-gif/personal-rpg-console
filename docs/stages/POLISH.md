@@ -216,7 +216,8 @@ The owner's notes from the first play are added below by the planner before laun
 - **A record mistake: removing ≠ using up.** The player «took off» the resin gloves; the DM recorded «рэй uses
   смоляные рукавицы (0 left)» and the gloves vanished from the inventory. Taking off, putting away and giving are not
   consumption; the doctrine and the tool description say so, and `item use` on a non-consumable asks for a reason.
-- **Healing.** The hero lost HP twice (9, then 8) and has no visible way back: rest (short/long by ruleset), first aid
+- **Healing.** Turn 14 showed the DM does heal when the story gives a reason — Dunya washed the cuts with spirit and
+  bandaged them (HP 8 → 9) and charged a coin, added to her debt (15 → 16). Keep that. Still missing: rest (short/long by ruleset), first aid
   in the fiction (Мокей's resin, a bandage) as a DM-recorded heal, and the camp/rest action; the DM restores HP when
   the story gives a reason, and time passing with rest heals by the ruleset's rule. Show it in the receipts.
 - **«Запросить разрешённый переброс» works**, but explain when a reroll is allowed (a rule, an inspiration-like
@@ -235,6 +236,12 @@ The owner's notes from the first play are added below by the planner before laun
   skins his knuckles (HP 10 → 9, shown everywhere: sidebar, sheet, receipt), and the scene now asks for a dive, the
   hero's own skill; the pistol given to Dunya as a pledge left the inventory; the debt «Пятнадцать монет Дуне» joined
   the journal.
+- **Owner's verdict after 14 turns** (record it in `docs/runs/` for the research track): «самое важное работает
+  весьма неплохо концептуально» — no Mary Sue, the world is realistic without being a misery simulator, rivals appear
+  on their own (the man in the dry coat now asks around for a boat to the breakwater), costs are honest (healing for a
+  coin, extra risk for extra pay), atmosphere holds, no invented words; the remaining issues are small speech slips
+  and the interface. Protect these in every later change: the bench should carry a «no Mary Sue» and «honest cost»
+  check on the loop scenarios.
 - Good, keep: the place header redrew itself when the hero moved (Понтонный рынок in the same style), the frame
   shows the hero with his face from the portrait, the DM asked for a roll exactly where it made sense.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
