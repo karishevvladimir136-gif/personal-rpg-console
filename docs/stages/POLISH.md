@@ -603,3 +603,8 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    needed) undercut by a cryptic line to himself — «— Холодный. — Разумеется.» — and «Разумеется» is the stranger's
    fourth use of the same word in the session. A verbal tic is good once or twice; the speech profile should say how
    often, and lines spoken «to oneself» need a reason the player can follow.
+   Turn 36: «— Сухо, хозяин. — На ночь хватит.» (owner: «явно перевод, не говорят так»). It is a callback to Фрол's
+   earlier invented image («никого — хорошее слово, только мокрое, просушить бы»): the DM coined a metaphor that is
+   not a Russian idiom (a «wet word» to be «dried» with money) and kept it running, so each callback sounds
+   translated. Rule for the voice layer: no invented idioms; a running image is allowed only when it rests on a real
+   Russian expression; slang and argot come from the character's world, not from wordplay.
