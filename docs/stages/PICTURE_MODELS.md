@@ -49,6 +49,33 @@ what they would need (domain, key) instead of working around it.
 6. Recommend per tier from the numbers and leave the choice to the owner: live frames (needs ≤ ~6 s), key frames and
    anchors (quality first).
 
+## The prompt layer (the shot → a model-specific prompt)
+
+Today the Haiku shot (who, action, where, angle, mood) is turned into one generic prompt for every model. Build a
+small, deterministic **prompt compiler** per model family from the vendors' own guidance, and test it in the same
+bake-off (each model with its compiled prompt vs the generic one):
+
+- **Natural sentences, not tag lists**; describe subject, action, setting, light, materials and mood as a brief to an
+  artist (Google's Nano Banana Pro rules; OpenAI's GPT Image prompting guide).
+- **References by number with a role each**, in a fixed order: «Image 1 — the hero's face and hair (keep exact);
+  Image 2 — the hero's full figure and build (keep exact); Image 3 — <person> (keep exact); Image 4 — the place (setting
+  only); Image 5 — the style (style only)». Seedream and Nano Banana refer to images by position; GPT Image by number
+  and purpose. Fewer, cleaner references beat many; subject references come first.
+- **Lock identity explicitly, then say what may change**: «Keep his face, facial features, skin tone, hair, age and
+  build exactly as in Image 1–2; only the pose, expression and camera angle change» — and repeat these constraints in
+  every frame, not only the first.
+- **Current visible state from the records**, written as constraints: clothing worn now (a borrowed grey linen shirt
+  without its hem, under a dark work jacket), wounds and bandages, items in hand, wet/dry, time of day and weather
+  from the world clock — never invented by the shot model.
+- **One of each named person** and how many people are in the frame («exactly three people in the boat»); anatomy
+  guard («two arms, two hands each»).
+- **No text** unless the scene needs it, and say it plainly.
+- **Edit, don't re-roll** for «Перерисовать» of a nearly-right frame: send the frame back with «change only X; keep
+  everything else» (supported by GPT Image and Nano Banana).
+
+Store the compiled prompt with the picture (never shown to the player). Report per model: people score with the
+generic vs the compiled prompt.
+
 ## Budget and checks
 
 Paid calls within **$20**, stopped by a guard; every call in a ledger. typecheck, lint, tests for the new adapters
