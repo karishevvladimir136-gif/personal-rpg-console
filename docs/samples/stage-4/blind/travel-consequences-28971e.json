@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "scene": "travel-consequences",
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:48:15.854Z",
+  "commit": "9686625",
+  "run": "20261016-014551-blind",
+  "variant": {
+    "id": "astra-medium",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "medium"
+  },
+  "turns": [
+    {
+      "step": "cheat",
+      "input": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "outcome": "committed",
+      "narration": "The organiser pauses with a notice half tucked beneath another.\n\n“Dice, perhaps. But not twelve silver. One silver a throw, and we both show our stake first.” He leaves the notices pinned beneath his hand. “Have you a die?”\nHe keeps his money put away, waiting for an answer.\n\nYour established possessions include a compass, but no loaded die; you can’t palm one without first obtaining it. The proposed cheat hasn’t happened, and no silver has changed hands. The organiser is willing to consider a small wager—not hand over twelve silver on your terms.",
+      "firstWordMs": 2114,
+      "durationMs": 11424,
+      "requests": 1,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 10669,
+        "output": 530,
+        "cached": 0,
+        "cacheWrite": 10666,
+        "reasoning": 169,
+        "estimated": false
+      },
+      "cacheReadShare": 0,
+      "costUsd": 0.15985,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "1 minutes pass (Proposing a dice game while the organiser sorts notices.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "cbc5e0e43827"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "4763d2575a25"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "travel",
+      "input": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "outcome": "committed",
+      "narration": "You leave the organiser beside his notices and take the road east. Beyond the last buildings, the road narrows between fields; your compass gives you a steady bearing whenever it bends.\n\nOn foot, the journey takes the two days you allow it. You spend a night beside the road and press on the following morning. No food or camping gear is recorded among your possessions, so this is rough travel rather than a provisioned expedition; the stop grants no restorative rest.\n\nBy the second evening, wagon ruts descend toward a broad, shallow river. Marrow Ford lies across it: low roofs, fenced gardens, and a road climbing the opposite bank. Water slides over a bed of pale stones, broken here and there by darker channels.\n\nAt the approach, a board carries a warning in weathered paint: **KEEP TO THE WHITE POSTS.** Those posts mark a crossing slightly downstream of the wagon ruts. The nearest leans, but the others stand above the water.\n\nYou reach the near bank with daylight still on the river. Before you lies the ford; beyond it, the settlement.",
+      "firstWordMs": 2130,
+      "durationMs": 14448,
+      "requests": 2,
+      "effort": "medium",
+      "tension": null,
+      "tokens": {
+        "input": 22675,
+        "output": 401,
+        "cached": 21106,
+        "cacheWrite": 1563,
+        "reasoning": 49,
+        "estimated": false
+      },
+      "cacheReadShare": 0.931,
+      "costUsd": 0.06075,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "move_party"
+        ],
+        "accepted": [
+          "upsert_place",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: Marrow Ford",
+          "The party travels to Marrow Ford (2880 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "cbc5e0e43827"
+        },
+        {
+          "index": 3,
+          "tokens": 1138,
+          "hash": "3ff53246f4f1"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.2206,
+    "committed": 2,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

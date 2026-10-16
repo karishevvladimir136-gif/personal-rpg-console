@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "scene": "travel-consequences",
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "createdAt": "2026-10-16T01:47:45.816Z",
+  "commit": "9686625",
+  "run": "20261016-014551-blind",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "cheat",
+      "input": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "outcome": "committed",
+      "narration": "The organiser squares the notices against the board and glances at your offered game.\n\n“Three silver a round. No more than two rounds—I’ve work to do.” He sets a small purse beside his ledger. “And we use my dice.”\n\nYou have your compass, but no loaded die among your possessions. His stake remains in the purse; twelve silver isn’t a prize he’s agreed to risk.\n\nHe takes two worn bone dice from his coat and waits. “Got three to put against mine?”",
+      "firstWordMs": 1764,
+      "durationMs": 41393,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 33980,
+        "output": 1666,
+        "cached": 22235,
+        "cacheWrite": 11736,
+        "reasoning": 747,
+        "estimated": false
+      },
+      "cacheReadShare": 0.654,
+      "costUsd": 0.25233,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "item",
+          "money",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "item",
+          "money",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Local work organiser updated",
+          "Local work organiser gets Worn bone dice ×2",
+          "Local work organiser receives 6 silver (Establish the organiser's personal gaming purse on his first detailed appearance; no wager has been played or paid.)",
+          "Local work organiser's character notes started",
+          "1 minutes pass (Proposing a dice game and discussing stakes with the organiser.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 288,
+          "hash": "56d598499d97"
+        },
+        {
+          "index": 3,
+          "tokens": 568,
+          "hash": "c3b7b42a7df3"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "travel",
+      "input": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "outcome": "committed",
+      "narration": "The organiser pockets his dice as you leave. Beyond the last houses, the east road narrows to two cart ruts, with grass between them. Your compass gives you a bearing toward Marrow Ford. At a walk, the journey will take two full days.\n\nOver the next two days, low hills give way to wet pasture. The road is well used: cart wheels have churned the soft stretches, and rough stone drains carry streams beneath the firmer ground. You find drinking water along the way, but you have no provisions to draw on.\n\nYou reach **Marrow Ford** hungry, with the second night well advanced.\n\nThe settlement occupies a low rise on the river’s western bank: a cluster of cottages, a wheelwright’s yard, and an inn with a lantern burning beneath its porch. Most windows are dark. From somewhere behind the cottages comes the steady clack of a loose shutter.\n\nBeyond the inn, the road descends into the river. Pale posts mark the ford, their reflections trembling in the current. The opposite bank is barely visible.\n\nThe inn’s sign shows a painted heron. Light still shines beneath its front door.",
+      "firstWordMs": 1422,
+      "durationMs": 67046,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 27490,
+        "output": 2586,
+        "cached": 22085,
+        "cacheWrite": 5399,
+        "reasoning": 1928,
+        "estimated": false
+      },
+      "cacheReadShare": 0.803,
+      "costUsd": 0.21893,
+      "tools": {
+        "proposed": [
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "accepted": [
+          "upsert_place",
+          "note_character",
+          "note_world",
+          "move_party"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Place recorded: Marrow Ford",
+          "Local work organiser's character notes updated",
+          "DM note updated",
+          "The party travels to Marrow Ford (2880 min)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 3928,
+          "hash": "01349f565941"
+        },
+        {
+          "index": 1,
+          "tokens": 75,
+          "hash": "baff0ca85238"
+        },
+        {
+          "index": 2,
+          "tokens": 684,
+          "hash": "6372d35b2156"
+        },
+        {
+          "index": 3,
+          "tokens": 1828,
+          "hash": "bca7c5390545"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.47126,
+    "committed": 2,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

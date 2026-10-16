@@ -1,0 +1,1 @@
+{"type":"run","run":"20261016-014011-blind","provider":"live","runtime":"dm-loop-v1","purpose":"blind comparison (Stage 4 §10)","scenes":["companion-heart","secret-pressure"],"variants":["astra-medium"],"commit":"9686625","node":"v24.22.0","startedAt":"2026-10-16T01:40:11.984Z","budgetUsd":2}
