@@ -134,6 +134,18 @@ The owner's notes from the first play are added below by the planner before laun
   form: a small pin on any entry with a tooltip «Ведущий всегда будет это помнить»; a pinned entry shows the pin; the
   list of pins and its explanation move to the campaign settings («Что ведущий помнит всегда»). No empty «Пока ничего
   не закреплено…» panels on player screens.
+- **Map: places are recorded but not shown where they belong.** Good: the DM's places reach the map's records
+  (Кабак Марты, Понтонный рынок, Чёрный волнорез). Not good: (a) they sit at the «Мир» level and only the tavern has a
+  marker; Понтонный рынок is in «Известные места без меток», Чёрный волнорез nowhere on the map. Places need a parent
+  and a rough position: the DM records the parent («Скрипучая Гавань») and a relation in words («на краю гавани», «у
+  понтонов»), the app lays the markers out by itself (deterministic layout around the parent, no manual placing), and
+  a rumoured place shows as a dashed marker «слух». The map opens at the level where the hero is (here the town), with
+  all its known places together. (b) «Создать карту» (atlas background) does not work — same legacy picture path;
+  draw it through the Stage V store in the campaign's style. (c) The page is full of editor sections: «Изображение
+  атласа для этого уровня», «Известные места без меток», «Открытые места», «Изменить размещение на карте», «Места, где
+  вы дома» (with «Общий тайник кампании»), «Изменить / Исправить записи» («Перемещение и расчёт маршрута не
+  подключены»), «Инструменты «что, если»». The player's map is the map, the place card on tap and «Наметить курс»;
+  holdings go to «Лагерь/Имущество», editing and placement to the «Редактор кампании», «что, если» to the library.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
