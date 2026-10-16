@@ -20,8 +20,12 @@ or its worktrees.
 4. pnpm install.
 5. Follow docs/SANDBOX.md to start the sandbox (the separate Supabase project and the app on its own port). Before
    starting, confirm that the sandbox ports and Docker project name differ from my real project's; if anything would
-   reuse my real project's volumes, stop and tell me.
+   reuse my real project's volumes, stop and tell me. If the first start fails on a Docker Hub rate limit (429) or says
+   the sandbox database did not start, simply retry once (pulled images are cached). If memory is tight, tell me which
+   apps to close; do not stop my real project's containers.
 6. Open the sandbox app in my browser and tell me in Russian: the address, how to stop and start the sandbox later
-   (the `Start Sandbox.cmd` shortcut), and that my real campaigns are untouched.
+   (the `Start Sandbox.cmd` shortcut), and that my real campaigns are untouched. Then walk me, one step at a time, to:
+   the DM Craft screen to activate the six pending Stage 4 versions; Settings → Картинки to turn on live frames
+   («на каждое действие») and pick a style; a new world and campaign with the DM on Opus 5.5, effort high.
 7. Report in English: what was installed, the branch and commit, the sandbox ports and project name, any problem.
 ```
