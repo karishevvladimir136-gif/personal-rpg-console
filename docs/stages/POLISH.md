@@ -81,7 +81,12 @@ The owner's notes from the first play are added below by the planner before laun
   the adventure draft (or let the wizard's choice create the first adventure) and land on the first turn. Also: the
   campaign name fell back to the hero's name («Кампания · рэй») although the wizard has a name field; a stray «Новая
   Кампания» floats in the Adventures header; the sidebar mixes languages («Skill 0 · Атака 0 · Defense 10»); the clock
-  starts at «День 1 · 00:00» whatever the opening scene says.
+  starts at «День 1 · 00:00» whatever the opening scene says. On the Adventures screen the prepared adventure shows
+  three overlapping paths at once — an «Начало приключения» box with «Подготовить предложение с ИИ», a dimmed
+  «Подготовить Приключение», and «Начать / Изменить / Оставить Приключение» — with no clear next step. Owner: «флоу
+  немного странный». Target: one path from the wizard to the first turn — wizard → one review screen (adventure +
+  opening proposal together, edit inline) → «Начать» → the game screen with the opening scene; every button that is
+  not the next step is hidden or secondary.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
