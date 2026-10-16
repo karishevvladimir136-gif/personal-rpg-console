@@ -280,13 +280,13 @@ export async function runLoopScenario(scenario, options) {
         // An open quest of the previous runtime with its reward terms in the old
         // shape (currencyName/currencyAmount, astra_runtime_settlement), as a
         // campaign switched to the loop would carry (Stage 3 follow-up).
+        // A live DM may have named the issuer its own way (or not recorded one yet): the quest then has no issuer.
         const issuer = step.issuer ? resolvePlaceholders(step.issuer, before, cid) : null;
-        if (step.issuer && !issuer) throw Error("legacy quest issuer did not resolve");
         await f.query(`insert into public.rpg_quests (id,campaign_id,title,description,status,revision,reward_terms)
           values ($1,$2,$3,$4,'open',1,$5::jsonb)`, [randomUUID(), cid, step.title, step.description ?? "", JSON.stringify({
           description: step.description ?? "", currencyName: step.currencyName ?? null, currencyAmount: step.currencyAmount ?? null,
           itemName: step.itemName ?? null, itemCategory: step.itemCategory ?? null, itemDescription: step.itemDescription ?? null, issuerId: issuer })]);
-        record.action = `legacy quest "${step.title}"`;
+        record.action = `legacy quest "${step.title}"${step.issuer && !issuer ? " (issuer not found; none recorded)" : ""}`;
       } else if (step.action === "privateFact") {
         // A DM-private fact planted between turns (a fixture's private delta): the
         // DM reads it in layer 3 and must not let it into the narration.

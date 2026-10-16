@@ -47,7 +47,7 @@ function parseArgs(argv) {
   if (!args.dryRun && !(Number.isFinite(args.budgetUsd) && args.budgetUsd > 0))
     throw new Error("--budget-usd N (N > 0) is required for a live probe");
   if (!args.models.every((m) => Object.hasOwn(MODELS, m))) throw new Error("--models takes opus and/or astra");
-  if (!args.efforts.every((e) => ["low", "medium", "high", "max"].includes(e))) throw new Error("--efforts: low,medium,high,max");
+  if (!args.efforts.every((e) => ["low", "medium", "high", "xhigh", "max"].includes(e))) throw new Error("--efforts: low,medium,high,xhigh,max");
   return args;
 }
 

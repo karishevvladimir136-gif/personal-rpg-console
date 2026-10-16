@@ -1,0 +1,34 @@
+{
+  "title": "Combat climax",
+  "description": "An ambush on the road turns into a fight at the ford: the player charges, takes a risk, then tries to end it. Real rolls, real cost.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "c1",
+      "say": "I take the ford road out of the square, moving carefully and watching the reeds for anyone waiting there.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "say": "If anyone is there, I don't wait for them: I draw and go straight for the biggest one.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "say": "I shout that the reeve's men are right behind me and give them one chance to run.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}

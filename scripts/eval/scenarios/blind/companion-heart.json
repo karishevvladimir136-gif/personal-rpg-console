@@ -1,0 +1,10 @@
+{
+  "title": "Companion heart-to-heart",
+  "description": "A drover joins the party, then the player talks to her by the fire about what she wants and fears. Companion-mode turns after the first.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    { "id": "h1", "say": "I ask Tamsin, a young drover heading the same way, to travel with me. She agrees.", "expect": [ { "outcome": "committed" } ] },
+    { "id": "h2", "say": "Tamsin, why are you really on this road? You don't look like someone chasing herd money.", "companion": "tamsin", "expect": [ { "outcome": "committed" } ] },
+    { "id": "h3", "say": "Tamsin, if it goes bad at the coast, what do you want me to do?", "companion": "tamsin", "expect": [ { "outcome": "committed" } ] }
+  ]
+}

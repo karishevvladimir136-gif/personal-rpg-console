@@ -1,0 +1,34 @@
+{
+  "title": "Tavern talk",
+  "description": "Three turns of ordinary talk in a tavern: a greeting, a question about work, a joke. No stakes; the texture of the game master's voice.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "t1",
+      "say": "I leave the square, find the nearest inn, shake the rain off my cloak and ask the innkeeper what's hot tonight.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "t2",
+      "say": "I ask whoever is nearest whether there's honest work in the village this week.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "t3",
+      "say": "I raise my cup and tell the room the one about the reeve and the goat.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}

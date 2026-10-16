@@ -34,6 +34,12 @@ export type DmLoopPin = {
   /** Effort of the requests after the first (continuations after tool results),
    * when it differs from `effort` (stage 2b §3). Absent: the same level throughout. */
   continuationEffort?: DmEffort;
+  /** The campaign's configured effort when depth per scene (stage 4 §7) chose
+   * another level for this turn. OpenAI keeps it as the request-level value
+   * (part of the cached prefix) and asks for `effort` through a
+   * configuration_update item, so a change of depth never restarts the cache;
+   * Anthropic sends the chosen level directly (measured cache-safe on Opus 5.5). */
+  baseEffort?: DmEffort;
   runtime: DmLoopRuntimeId;
   /** One narrator sees secrets and Character Models. Two-stage is a later option. */
   privacy: "single-narrator";

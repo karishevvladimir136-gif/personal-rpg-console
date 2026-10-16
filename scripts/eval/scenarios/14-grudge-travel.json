@@ -1,52 +1,201 @@
 {
   "title": "A grudge, then travel: the world moves off screen",
-  "description": "The hero cheats a reeve at dice. The DM records the reeve's plan off screen (a due time, a consequence, a warning). The party then travels for two days; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3).",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3).",
   "runtime": "dm-loop-v1",
   "steps": [
     {
       "id": "cheat",
-      "say": "I palm the loaded die and take Reeve Hollis for twelve silver at the table.",
-      "expect": [ { "outcome": "committed" }, { "npcExists": "hollis|reeve" },
-        { "label": "the reeve's plan is recorded off screen", "privateFact": { "key": "^plan_" } } ]
+      "say": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "npcExists": "organiser|hollis|reeve"
+        },
+        {
+          "label": "the organiser's plan is recorded off screen",
+          "privateFact": {
+            "key": "^plan_"
+          }
+        }
+      ]
     },
     {
       "id": "travel",
-      "say": "We leave at dawn and ride two days east to Marrow Ford.",
-      "expect": [ { "outcome": "committed" },
-        { "label": "the time receipt listed the due plan", "duePlans": { "min": 1 } },
-        { "label": "the party moved", "toolAccepted": { "name": "move_party", "min": 1 } },
-        { "label": "a consequence or thread of the grudge is recorded", "privateFact": { "key": "^plan_", "value": "done|bailiff|seized|notice" } },
-        { "label": "the metrics are computed", "metric": { "field": "turns", "min": 2 } } ]
+      "say": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the time receipt listed the due plan",
+          "duePlans": {
+            "min": 1
+          }
+        },
+        {
+          "label": "the party moved",
+          "toolAccepted": {
+            "name": "move_party",
+            "min": 1
+          },
+          "scripted": true
+        },
+        {
+          "label": "the grudge follows the hero to the ford",
+          "narrationIncludes": "organiser|dice|silver|notice|debt|bailiff|cheat|loaded|ford|Ford"
+        },
+        {
+          "label": "a consequence or thread of the grudge is recorded",
+          "privateFact": {
+            "key": "^plan_",
+            "value": "done|bailiff|seized|notice"
+          },
+          "scripted": true
+        },
+        {
+          "label": "the metrics are computed",
+          "metric": {
+            "field": "turns",
+            "min": 2
+          }
+        }
+      ]
     }
   ],
   "loop": {
     "cheat": {
       "note": "The reeve loses and does not forget: the DM notes his plan with a due time, a consequence and a warning sign.",
       "rounds": [
-        { "text": "Hollis counts the silver twice and pushes it across with a thin smile that never reaches his eyes. \"Luck like that,\" he says, \"gets remembered.\"",
+        {
+          "text": "The organiser counts the silver twice and pushes it across with a thin smile that never reaches his eyes. \"Luck like that,\" he says, \"gets remembered.\"",
           "toolCalls": [
-            { "name": "upsert_character", "arguments": { "localKey": "hollis", "name": "Reeve Hollis", "kind": "npc", "description": "The reeve of the market town; vain, patient, keeps grudges.", "present": true, "relation": { "group": "foe", "note": "You cheated him at dice." }, "important": true } },
-            { "name": "money", "arguments": { "action": "grant", "currency": "silver", "amount": 12, "toRef": "{{hero}}", "reason": "won at dice from the reeve" } },
-            { "name": "note_world", "arguments": { "kind": "fact", "key": "plan_hollis_revenge", "operation": "set", "actorRef": "hollis", "value": "Hollis sends two bailiffs after the hero with a forged debt notice.", "dueInMinutes": 1440, "consequence": "Bailiffs catch up with the hero on the road; the cart and the silver are seized under a forged notice.", "warning": "A rider overtakes the party and looks too long at the hero." } },
-            { "name": "advance_time", "arguments": { "minutes": 30, "reason": "the dice game" } },
-            { "name": "finish_turn", "arguments": { "sceneKinds": ["conversation", "humor"], "spotlight": ["hollis"], "playerMoment": false, "nextTension": "tense" } }
-          ] }
+            {
+              "name": "upsert_character",
+              "arguments": {
+                "ref": "{{npc:organiser}}",
+                "relation": {
+                  "group": "foe",
+                  "note": "You cheated him at dice."
+                },
+                "important": true
+              }
+            },
+            {
+              "name": "money",
+              "arguments": {
+                "action": "grant",
+                "currency": "silver",
+                "amount": 12,
+                "toRef": "{{hero}}",
+                "reason": "won at dice from the reeve"
+              }
+            },
+            {
+              "name": "note_world",
+              "arguments": {
+                "kind": "fact",
+                "key": "plan_organiser_revenge",
+                "operation": "set",
+                "actorRef": "{{npc:organiser}}",
+                "value": "The organiser sends two bailiffs after the hero with a forged debt notice.",
+                "dueInMinutes": 1440,
+                "consequence": "Bailiffs catch up with the hero on the road; the silver is seized under a forged notice.",
+                "warning": "A rider overtakes the party and looks too long at the hero."
+              }
+            },
+            {
+              "name": "advance_time",
+              "arguments": {
+                "minutes": 30,
+                "reason": "the dice game"
+              }
+            },
+            {
+              "name": "finish_turn",
+              "arguments": {
+                "sceneKinds": [
+                  "conversation",
+                  "humor"
+                ],
+                "spotlight": [
+                  "{{npc:organiser}}"
+                ],
+                "playerMoment": false,
+                "nextTension": "tense"
+              }
+            }
+          ]
+        }
       ]
     },
     "travel": {
       "note": "Two days pass; the time receipt names the due plan and the DM plays it out on the road, then marks the plan done.",
       "rounds": [
-        { "text": "The road east runs flat between flooded fields.",
+        {
+          "text": "The road east runs flat between flooded fields.",
           "toolCalls": [
-            { "name": "upsert_place", "arguments": { "localKey": "ford", "name": "Marrow Ford", "description": "A ferry crossing two days east of the market town.", "status": "known" } },
-            { "name": "move_party", "arguments": { "placeRef": "ford", "minutes": 2880 } }
-          ] },
-        { "text": " On the second evening a rider overtakes you and looks too long at your face. By the ford two bailiffs are waiting with a paper that bears the reeve's seal and a debt you never owed. They take the cart.",
+            {
+              "name": "upsert_place",
+              "arguments": {
+                "localKey": "ford",
+                "name": "Marrow Ford",
+                "description": "A ferry crossing two days east of the market town.",
+                "status": "known"
+              }
+            },
+            {
+              "name": "move_party",
+              "arguments": {
+                "placeRef": "ford",
+                "minutes": 2880
+              }
+            }
+          ]
+        },
+        {
+          "text": " On the second evening a rider overtakes you and looks too long at your face. By the ford two bailiffs are waiting with a paper that bears the organiser's seal and a debt you never owed. They take the silver.",
           "toolCalls": [
-            { "name": "note_world", "arguments": { "kind": "fact", "key": "plan_hollis_revenge", "operation": "set", "planStatus": "done", "value": "Done: the bailiffs seized the cart at Marrow Ford under a forged notice." } },
-            { "name": "quest", "arguments": { "action": "create", "localKey": "notice", "kind": "thread", "title": "The reeve's forged notice", "description": "Hollis had the cart seized at Marrow Ford under a debt notice with his seal." } },
-            { "name": "finish_turn", "arguments": { "sceneKinds": ["travel", "conversation"], "spotlight": ["hollis"], "playerMoment": false, "nextTension": "tense", "threadRefs": ["notice"] } }
-          ] }
+            {
+              "name": "note_world",
+              "arguments": {
+                "kind": "fact",
+                "key": "plan_organiser_revenge",
+                "operation": "set",
+                "planStatus": "done",
+                "value": "Done: the bailiffs seized the silver at Marrow Ford under a forged notice."
+              }
+            },
+            {
+              "name": "quest",
+              "arguments": {
+                "action": "create",
+                "localKey": "notice",
+                "kind": "thread",
+                "title": "The organiser's forged notice",
+                "description": "The work organiser had the silver seized at Marrow Ford under a debt notice with his seal."
+              }
+            },
+            {
+              "name": "finish_turn",
+              "arguments": {
+                "sceneKinds": [
+                  "travel",
+                  "conversation"
+                ],
+                "spotlight": [
+                  "{{npc:organiser}}"
+                ],
+                "playerMoment": false,
+                "nextTension": "tense",
+                "threadRefs": [
+                  "notice"
+                ]
+              }
+            }
+          ]
+        }
       ]
     }
   }

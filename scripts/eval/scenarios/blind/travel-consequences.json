@@ -1,0 +1,25 @@
+{
+  "title": "Travel with off-screen consequences",
+  "description": "At the wayside square the hero cheats the work organiser at dice. The DM records the organiser's plan off screen (a due time, a consequence, a warning). The hero then walks two days east; the time receipt lists the due plan and the DM plays the consequence after the travel. On dm-loop-v1 only (Stage 4 §2b, §3). Blind sample: the live game master plays it without scripts.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "cheat",
+      "say": "While the organiser sorts the notices I propose a game of dice to pass the wait, palm a loaded die and take twelve silver off him.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "travel",
+      "say": "I leave the square on foot and walk two days east along the road to Marrow Ford.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}

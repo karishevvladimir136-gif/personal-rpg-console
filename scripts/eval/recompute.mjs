@@ -15,7 +15,8 @@ console.log(formatReport(records));
 console.log("\nRecomputed from the receipts in this record:");
 for (const scenario of scenarios) {
   let metrics = structuredClone(EMPTY_METRICS);
-  for (const turn of turns.filter((row) => row.scenario === scenario.scenario && row.outcome === "committed")) {
+  // A replayed step returns the already committed turn (its receipts again); it is not a new turn.
+  for (const turn of turns.filter((row) => row.scenario === scenario.scenario && row.outcome === "committed" && !row.replayOf)) {
     // The record keeps receipts by outcome (accepted / rejected / summaries) and the
     // pinned party is not stored, so the recomputation uses the receipts it has.
     const receipts = (turn.receipts ?? []);

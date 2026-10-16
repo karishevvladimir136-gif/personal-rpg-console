@@ -213,6 +213,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       const depth = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
       loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: depth.effort,
         ...(selected.continuationEffort && selected.continuationEffort !== depth.effort ? { continuationEffort: selected.continuationEffort } : {}),
+        ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
         ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext } } : {}) };
       if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
@@ -315,8 +316,11 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       // Requests after the first (continuations after tool results) may run at
       // the pinned continuation effort (stage 2b §3).
       const effort = loop.requests > 0 && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
+      // campaign's configured level and the chosen one travels as an update item.
+      const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
-        toolset: dmLoopToolset, effort, ...(effort !== pin.effort ? { turnEffort: pin.effort } : {}),
+        toolset: dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
         maxOutputTokens: L.maxOutputTokens, operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,

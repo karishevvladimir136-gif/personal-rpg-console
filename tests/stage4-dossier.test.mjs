@@ -255,9 +255,14 @@ test("depth per scene: the pin picks a level inside the range with hysteresis; ย
       depth: { min: "medium", max: "xhigh" }, boostNext: true });
     const boosted = await c.turn("A quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "calm" })] }]);
     assert.equal(boosted.model.requests[0].effort, "xhigh", "the important turn runs at the top");
+    // Cache-safe switching (ยง7): on OpenAI the request-level effort stays the campaign's
+    // configured level; the chosen depth travels as the per-request value.
+    assert.equal(boosted.model.requests[0].turnEffort, "medium", "the configured level anchors the cached prefix");
+    assert.equal((await c.row(boosted.input.operationId)).checkpoint.dmLoop.pin.baseEffort, "medium");
     assert.equal((await c.settings.read()).boostNext, false, "the flag cleared after the turn");
     const calm = await c.turn("Another quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(calm.model.requests[0].effort, "medium");
+    assert.equal(calm.model.requests[0].turnEffort, undefined, "at the configured level nothing is anchored");
     const tense = await c.turn("The guard stops me.", [{ text: "Halt. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(tense.model.requests[0].effort, "high", "tense: the middle of the range");
     const row = await c.row(tense.input.operationId);

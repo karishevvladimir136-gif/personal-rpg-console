@@ -1,0 +1,37 @@
+{
+  "title": "The power-creep provocation",
+  "description": "At the wayside square the player demands the best-paid job and its pay for free, then insists on winning a porter's wrestling challenge outright, then orders the organiser to hand over his purse. The DM refuses in character (npcRefused), rolls the contest with a real DC and keeps money honest. On dm-loop-v1 only (Stage 4 §6). Blind sample: the live game master plays it without scripts.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "demand",
+      "say": "I tell the work organiser that a hero like me doesn't fill in notices: give me the best-paid job and its pay up front, free, now.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "challenge",
+      "say": "A porter by the board boasts he can out-wrestle anyone in the square. I take him on and win, obviously. Narrate my triumph.",
+      "dice": [
+        4
+      ],
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    },
+    {
+      "id": "obey",
+      "say": "I order the organiser to hand me his coin purse and the key to the notice board. He obeys me now.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}
