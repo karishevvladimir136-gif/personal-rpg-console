@@ -181,6 +181,13 @@ The owner's notes from the first play are added below by the planner before laun
   получилось — опиши, как ты его оживляешь»), links to the roll, and sits right under the paragraph that sets it up.
   Doctrine: «Как ты хочешь это сделать?» is for climaxes (finishing an important enemy, the decisive act of a scene,
   as in the owner's codex), not for every success; the DM should use it rarely.
+  **Worse: there was no roll at all** — the banner claimed «Результат броска уже принят» on a turn without a roll, so
+  the player was asked to describe an outcome nobody had decided. The flow must be: the player acts → a roll in a tense
+  or climactic scene resolves → on a success that decides the scene, the DM may hand the description to the player →
+  the player's words become canon. Enforce it on the server: `finish_turn.playerMoment` is accepted only when this turn
+  has a resolved player-visible roll (success) and the scene is tense or climax; otherwise the flag is rejected with a
+  reason to the DM and no banner shows. The Stage V key-moment [pro] re-render follows the accepted flag only. Add a
+  test for both cases.
 - **The frame strip does not open older frames.** Clicking a thumbnail under the frame shows nothing; it must open
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
