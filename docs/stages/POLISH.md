@@ -65,6 +65,10 @@ The owner's notes from the first play are added below by the planner before laun
   back) sit in «Version history»; «Restore this version» does nothing for them, and the screen offers no other way to
   approve a pending version. Give pending versions a clear «Review and approve» action (with what changes), make
   restore work or hide it where it cannot, and show an error when an action fails. Add a test.
+- **New campaign wizard (hero step):** every single item asks for a quantity before creation («Укажите значение перед
+  созданием») — default a singular item to 1; «долг в сорок монет трактирщице Марте» became an inventory resource
+  instead of a debt in the journal (Stage 4 has the `debt` kind) with Marta as a person; the Astra-only notice («Для
+  новой кампании с ведущим Astra… Структурированный RPG») shows although the chosen DM is Opus.
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
 
