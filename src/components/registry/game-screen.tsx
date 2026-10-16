@@ -32,6 +32,7 @@ import { CombatReadiness } from "../combat-readiness";
 import { SessionPendingCompanion } from "../session-memory";
 import { CurrentSceneMediaFrame } from "../visual-frame/current-scene-media-frame";
 import { CurrentSceneVideo } from "../visual-frame/current-scene-video";
+import { FramesPanel } from "./live-frames";
 import {
   createGameViewModel,
   GameSessionControls,
@@ -237,6 +238,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             </button>
           </div>
         </section>
+        {/* Stage V: the frame of the current turn, drawn while the DM writes; past frames stay with their turns. */}
+        <FramesPanel data={data} play={play} live={live} chronicleHref={chrome?.href?.("chronicle" as CampaignScreenId) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/chronicle`} />
         {talkTo && (
           <p className={r.note} role="status">
             {c(`Разговор с ${party.find((row) => row.entity.id === talkTo)?.entity.name ?? ""}: это сцена в мире — идёт время, а спутник запомнит сказанное.`,

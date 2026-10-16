@@ -4,6 +4,7 @@ import type { CampaignSnapshot, Entity, Item, Scene } from "../../persistence/co
 import type { PlaySnapshot, PublicTurn } from "../../gameplay/contracts.ts";
 import { createCampaignSettings } from "../../campaign-settings.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
+import { previewPictureBoard } from "./stage-v-pictures.ts";
 
 export const NOIR_CAMPAIGN_ID = "7a7a7a7a-0000-4000-8000-000000000001";
 const id = (n: number) => `7a7a7a7a-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -122,6 +123,18 @@ function play(options: { combat?: boolean } = {}): PlaySnapshot {
   } satisfies PlaySnapshot);
 }
 
+export const noirPictures = previewPictureBoard({
+  campaignId: NOIR_CAMPAIGN_ID, worldId: id(600), timeline: { timelineId: id(900), epoch: 1 }, at,
+  style: { id: id(700), scope: "campaign", preset: "noir", label: "Noir graphic novel", hasReference: false },
+  anchors: [
+    { id: id(710), subjectKind: "entity", subjectId: N.dana, composition: "portrait", image: "/preview/stage-5/noir-dana.jpg" },
+    { id: id(711), subjectKind: "entity", subjectId: N.car, composition: "holding", image: "/preview/stage-5/noir-car.jpg" },
+    { id: id(712), subjectKind: "location", subjectId: N.stack, composition: "location", image: "/preview/stage-5/noir-stack.jpg" },
+    { id: id(713), subjectKind: "item", subjectId: N.chip, composition: "item", image: "/preview/stage-5/noir-chip.jpg" },
+  ],
+  frames: [{ id: id(730), turnId: id(200), image: "/preview/stage-v/noir-frame-1.jpg", trigger: "live" }],
+});
+
 export const noirSample: PreviewSample = {
   key: "noir",
   language: "en",
@@ -155,6 +168,7 @@ export const noirSample: PreviewSample = {
   figure: null,
   atlas: null,
   talkTo: N.mara,
+  pictures: noirPictures,
   course: N.spire,
   placements: [[N.stack, 0.38, 0.62], [N.harbor, 0.18, 0.78], [N.spire, 0.7, 0.24]].map(([location, x, y]) => ({
     campaign_id: NOIR_CAMPAIGN_ID, location_id: location as string, level: "world" as const, parent_location_id: null, x: x as number, y: y as number, revision: 1, updated_at: at(0),

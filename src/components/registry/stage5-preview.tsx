@@ -23,6 +23,7 @@ import { RegistryCodex, RegistryJournal } from "./journal-codex";
 import { RegistryHoldings } from "./holdings-screen";
 import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns, RegistryNewCampaign } from "./library-screen";
+import { RegistryChronicle } from "./chronicle";
 import { Plate, useCopy } from "./primitives";
 
 const samples: Record<Stage5Variant["world"], PreviewSample> = { shov: shovSample, noir: noirSample };
@@ -69,7 +70,7 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   return (
     <RegistryChrome value={chrome}>
       <CampaignDataPreview snapshot={snapshot} refresh={refresh}>
-        <PreviewImages images={sample.images} drawing={sample.drawing}>
+        <PreviewImages images={{ ...sample.images, ...sample.pictures.images }} drawing={sample.drawing} board={sample.pictures.board}>
           <PreviewAutopilot>{content}</PreviewAutopilot>
         </PreviewImages>
       </CampaignDataPreview>
@@ -96,6 +97,8 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       return <RegistryJournal data={snapshot} />;
     case "codex":
       return <RegistryCodex data={snapshot} />;
+    case "chronicle":
+      return <RegistryChronicle data={snapshot} play={play} preview />;
     case "holdings":
       return <RegistryHoldings data={snapshot} initialId={variant.holding} />;
     case "settings":

@@ -14,6 +14,7 @@ import type {
 import type { PlaySnapshot, PublicTurn, VisibleCheck } from "../../gameplay/contracts.ts";
 import { createCampaignSettings } from "../../campaign-settings.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
+import { previewPictureBoard } from "./stage-v-pictures.ts";
 
 export const PREVIEW_CAMPAIGN_ID = "5e5e5e5e-0000-4000-8000-000000000001";
 const id = (n: number) => `5e5e5e5e-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -259,6 +260,29 @@ export const previewLibrary: Campaign[] = [
   { ...row(3), id: id(3), title: "Мир Шва · Кампания 1", subtitle: "Пешком по Подземке", language: "ru" },
 ];
 
+/** Stage V sample board: anchors on the sample art, one live frame per game turn, the world's style. */
+export const previewPictures = previewPictureBoard({
+  campaignId: PREVIEW_CAMPAIGN_ID, worldId: id(600), timeline: { timelineId: id(900), epoch: 1 }, at,
+  style: { id: id(700), scope: "world", preset: "oil", label: "Масляная живопись", hasReference: false },
+  anchors: [
+    { id: id(710), subjectKind: "entity", subjectId: I.hero, composition: "portrait", image: "/preview/stage-5/hero-portrait.jpg" },
+    { id: id(711), subjectKind: "entity", subjectId: I.hero, composition: "figure", image: "/preview/stage-5/hero-figure.jpg" },
+    { id: id(712), subjectKind: "entity", subjectId: I.meg, composition: "portrait", image: "/preview/stage-5/meg.jpg" },
+    { id: id(713), subjectKind: "entity", subjectId: I.urzul, composition: "portrait", image: "/preview/stage-5/urzul.jpg" },
+    { id: id(714), subjectKind: "entity", subjectId: I.wolf, composition: "portrait", image: "/preview/stage-5/wolf.jpg" },
+    { id: id(715), subjectKind: "entity", subjectId: I.zarga, composition: "portrait", image: "/preview/stage-5/zarga.jpg" },
+    { id: id(716), subjectKind: "entity", subjectId: I.airship, composition: "holding", image: "/preview/stage-5/airship.jpg" },
+    { id: id(717), subjectKind: "location", subjectId: I.cave, composition: "location", image: "/preview/stage-5/cave.jpg" },
+    { id: id(718), subjectKind: "location", subjectId: I.geneva, composition: "location", image: "/preview/stage-5/geneva.jpg" },
+    { id: id(719), subjectKind: "item", subjectId: I.crystal, composition: "item", image: "/preview/stage-5/crystal.jpg" },
+    { id: id(720), subjectKind: "item", subjectId: I.revolver, composition: "item", image: "/preview/stage-5/revolver.jpg" },
+    { id: id(721), subjectKind: "item", subjectId: I.watch, composition: "item", image: "/preview/stage-5/watch.jpg" },
+  ],
+  frames: [
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-frame-1.jpg", trigger: "live" },
+  ],
+});
+
 export const shovSample: PreviewSample = {
   key: "shov",
   language: "ru",
@@ -288,6 +312,7 @@ export const shovSample: PreviewSample = {
   figure: previewFigure,
   atlas: previewAtlas,
   talkTo: I.meg,
+  pictures: previewPictures,
   course: I.geneva,
   placements: [
     [I.lisbon, 0.3, 0.64], [I.cave, 0.27, 0.7], [I.alcantara, 0.34, 0.6], [I.tower, 0.29, 0.58], [I.geneva, 0.66, 0.36], [I.boston, 0.07, 0.3],

@@ -1,0 +1,30 @@
+{
+  "world": "noir",
+  "language": "en",
+  "campaign": "Neon & Rain · The Lazarus case",
+  "hero": "Dana Okafor",
+  "names": ["Rook", "Mara Vey", "Inspector Kwan", "Velvet"],
+  "places": { "stack": "Kowloon Stack 9", "harbor": "Flooded harbor" },
+  "turns": [
+    { "place": "stack", "who": ["Dana Okafor", "Rook"], "input": "I take the lift to level 40 and knock on the chip-seller's door.",
+      "narration": "The lift to level 40 smells of wet concrete and frying oil. Rook hums on your shoulder, counting floors out loud, badly. The chip-seller's door is a sheet of corrugated steel with a peephole cut at child height; behind it, a television argues with itself.\n\nNobody answers your knock. The television goes quiet." },
+    { "place": "stack", "who": ["Dana Okafor"], "input": "I pick the lock.",
+      "narration": "Two pins, a rake, a prayer. The lock gives with a click that sounds like a gunshot in the stairwell. Inside: a mattress, a hot plate, a wall of dead screens, and on the table a plate of noodles still steaming. Whoever lives here left in a hurry, and not through the door.\n\nThe window is open. Forty floors of rain fall past it." },
+    { "place": "stack", "who": ["Dana Okafor", "Mara Vey"], "input": "I call Mara and ask her to pull the building's camera feed.",
+      "narration": "Mara answers on the first ring, which means she was awake and bored. «Stack 9? Their cameras are older than my implants. Give me two minutes.» You hear her fingers on glass, then a low whistle. «Dana. Someone wiped the last hour. Clean. That's not a chip-seller; that's a professional.»\n\nOn the dead screens, a single green cursor blinks awake." },
+    { "place": "stack", "who": ["Dana Okafor", "Inspector Kwan"], "input": "I hear footsteps. I step into the shadow behind the door.",
+      "narration": "The footsteps stop. A flashlight beam crawls over the mattress, the hot plate, the noodles. «Okafor,» says Inspector Kwan from the doorway, not loudly, the way a man says a word he has said too many times. «I could have you for breaking and entering. I'd rather have you for coffee.» He lowers the light.\n\nBehind him, two uniforms wait in the corridor, hands near their holsters." },
+    { "place": "stack", "who": ["Dana Okafor", "Inspector Kwan"], "input": "I show Kwan the Lazarus chip and ask what he knows.",
+      "narration": "Kwan turns the chip over in his gloved fingers and the blue glow lights his face from below. «Three bodies this month had one of these in the palm. Three. The press calls it the Lazarus case because the chip keeps recording after the heart stops.» He hands it back. «You're the first one holding it who's still breathing.»\n\nOutside, the rain shifts to sleet." },
+    { "place": "harbor", "who": ["Dana Okafor", "Rook"], "input": "I drive down to the flooded harbor where the seller kept his boat.",
+      "narration": "The old Citroën hisses through ankle-deep water between shuttered warehouses, its hover kit coughing. The harbor is a drowned grid of jetties lit by one working neon sign that promises FISH in a language nobody here speaks anymore. Rook flies ahead, a small smear of green light over black water.\n\nA boat is tied at the last jetty. Its cabin light is on." },
+    { "place": "harbor", "who": ["Dana Okafor", "Velvet"], "input": "I board the boat.",
+      "narration": "Velvet is sitting in the cabin with her coat still buttoned and a cup of tea she hasn't touched. «Ms Okafor. You're late; the seller left an hour ago, with his skull.» She smiles with her mouth only. «The Syndicate paid you an advance. We'd like to know what it bought.»\n\nThe boat rocks. Someone else has stepped aboard." },
+    { "place": "harbor", "who": ["Dana Okafor", "Velvet", "Mara Vey"], "input": "I tell Velvet the chip is evidence now, and I'm keeping it.",
+      "narration": "Velvet's smile doesn't move, but something behind it does. «Evidence,» she repeats, as if tasting it. The cabin door opens and it isn't her muscle — it's Mara, soaked to the skin, a dead drone in each hand. «Your people were watching the jetty,» Mara says to Velvet. «They're not any more.»\n\nFor a moment nobody breathes." },
+    { "place": "harbor", "who": ["Dana Okafor", "Velvet"], "input": "I draw the snub pistol and tell Velvet to get off my boat.",
+      "narration": "The snub pistol comes out slow and stays low, the way you were taught. Velvet looks at it the way she'd look at a stain. «You'll owe us for the drones,» she says, rising, and steps past Mara into the sleet without hurrying. On the jetty she turns back once. «Lazarus didn't die, Dana. Ask the chip.»\n\nThe cabin light flickers and goes out." },
+    { "place": "harbor", "who": ["Dana Okafor", "Mara Vey", "Rook"], "input": "I plug the chip into Mara's deck and ask it the question.",
+      "narration": "Mara's deck wakes with a sound like a held breath. The chip's blue glow spreads across the screen, then resolves into a face: a man, drowned pale, eyes open, speaking without sound. Rook lands on the table and goes very still. Then the man on the screen turns his head and looks directly at you, and his lips shape a name — yours.\n\nThe recording is timestamped eleven minutes from now." }
+  ]
+}
