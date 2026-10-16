@@ -13,3 +13,8 @@ From Stage 4 on, no paid run is thrown away. Every live bench run, probe and bli
 `node scripts/eval/recompute.mjs docs/runs/<file>.jsonl` prints the run's report again and recomputes the resistance
 metrics from the receipts in the record; they must match the stored per-scenario metrics.
 `node scripts/eval/report.mjs docs/runs/<file>.jsonl [--calls]` prints the report or every paid call.
+
+Files ending in `.partial.jsonl` are runs that did not reach their `end` line: the first live run of the Stage 4
+scenarios on 2026-10-16 (the harness stopped on a scenario step that assumed a name the live DM had not used; the
+Opus run of the same scenarios was stopped by hand after the first scenario once the inputs were seen to assume
+things the fixture's opening scene does not contain). Their paid turns are kept here all the same.

@@ -1,5 +1,105 @@
 # Development status
 
+**Current stage:** Stage 4 — the DM: the campaign dossier, living characters, world resistance, depth per scene,
+the sandbox — implementation done on `claude/stage-4-dm`; waiting for the owner's review, his first play in the
+sandbox and the blind ratings. Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_4.md`; design of the loop
+with the Stage 4 sections: `docs/TURN_LOOP.md` §2, §7, §10; models and the effort-switch probe: `docs/MODELS.md`;
+speed: `docs/SPEED.md`; the sandbox: `docs/SANDBOX.md`; research records: `docs/runs/`; rules: `CLAUDE.md`.
+
+**Branch:** `claude/stage-4-dm` from `claude/stage-3-records`, with `origin/claude/stage-5-ui` merged twice (at the
+start and again before the final checks, Stage 5 fixes included). Pushed; nothing on `main`.
+
+**Stage 4 in short (2026-10-16):**
+- **The dossier** (`src/lib/gameplay/dm-loop/context.ts`): the four cached layers became the campaign dossier with a
+  token budget per part (`DOSSIER_BUDGETS`; cuts are logged), the role text says «game master» and states the
+  sovereign-world stances, layer 1 carries the DM Craft **library** (the condensed core doctrine v3 and the new cards:
+  world resistance, living world, long campaign, villains and theme, systemic world — migration 55 seeds them
+  **pending**; the owner activates them in the DM Craft screen, the bench activates them for its synthetic owner),
+  layer 3 holds the party with the companions' models, the codex by relationship, factions, the journal with the
+  arc, the owner's pinned facts, private notes, off-screen plans, the DM notebook, the player-likes note, the
+  attention ledger, the adventure's guidance and the memory digests; layer 4 the variety counter, memory rows for a
+  deterministic query (`memoryQueryFor`), the current state, scenes and exchanges. Measured on 88 fake turns of the
+  Mega DM campaign and probes and 19 live Astra turns: no part over budget; layers 1–2 byte-identical in 100 % of
+  turns, layer 3 in ≈ 45 %, layer 4 never (`docs/TURN_LOOP.md` §2).
+- **Records for the interface** (`docs/UI_DATA_NEEDS.md` rows 1–13, 17–21 closed; 14–16 are pictures, excluded by the
+  task; 20 half: the wizard applies model, effort and the likes note after creation): migration
+  `202610160055_stage4_dossier.sql` adds quest kinds (quest, thread, debt, promise, arc) and details, public
+  profiles of characters (relation, important, attitude, faction, home), the `faction` kind, rumoured places with
+  quest links, item rarity, holding details, campaign play time, status, likes, theme and pinned facts;
+  `runtime_public_turn` adds changes, playerMoment, scene kinds, spotlight, threads, next tension and stats to a
+  committed loop turn; `rpg_dossier` serves pins, likes, theme, status, play time, the notebook and the session
+  digest. 16 tools extended within the 20-tool cap (tool descriptions ≈ 5 900 → 7 700 estimated tokens on OpenAI,
+  5 600 → 7 300 on Anthropic). The screens read the records (journal arc and threads, codex groups and factions,
+  companion attitude, crew and home, holding details, pins everywhere, likes and theme in the settings, turn stats,
+  world counts, rumours on the map, ⚡ «важный ход» on the game screen, «Закончить сессию» with the digest).
+- **Stage 3 follow-ups:** signed counters (`<name>_min` floors), the open-job hint on a transfer to a quest's issuer,
+  and the conversion of old-runtime reward terms when a campaign is switched to `dm-loop-v1` (scenario 16: the
+  converted reward is paid through `claim_reward`, once).
+- **Living characters:** Character Models up to 32 000 characters with 40 episodes, folding of old episodes
+  (`foldEpisodes`), no two-actor cap, off-screen plans (`plan_*` facts with actor, due time, consequence and warning;
+  the time receipts list the plans that came due and the fold stays open so the DM plays them). **Session digest:**
+  «Закончить сессию» (and a session left open 6 h) runs a background request on the campaign's model at high effort
+  that writes «Ранее в…», a chapter title, the DM notebook (owner-visible behind a settings switch) and new plans.
+  **Attention ledger**, variety counter, villains card, theme note, player-likes note written by the DM.
+- **World resistance:** stances in the role, the cards, the metrics fact (contested checks vs expected success,
+  near misses, NPC refusals, fights uncertain or won at no cost, HP lost per fight, unearned-win streak) computed
+  by the server from the receipts; the bench reports them and `scripts/eval/recompute.mjs` recomputes them from a
+  record. The leak check now sets a present character's own quoted model text aside as a self-disclosure.
+- **Depth per scene:** an effort range in the settings; the server picks the level from its signals and the DM's
+  `nextTension` hint with hysteresis; ⚡ takes the top once. Cache-safe: Opus 5.5 kept 99.95 % cache reads across
+  top-level effort changes in the probe; Astra loses the cache on a request-level change, so the loop anchors the
+  request-level effort at the campaign's level (`pin.baseEffort`) and sends the scene's level as a
+  `configuration_update` — 100 % reads across changes in the anchored probe (`docs/MODELS.md`).
+- **Adventures, World Engine, Chat/Teach DM, Mega DM:** the active adventure's guidance is in the dossier; a committed
+  loop turn pushes places, people, factions and quests into the World Engine; Chat and Teach DM run on the loop
+  through the campaign's model; the 48-scene Mega DM campaign and the 20 + 13 + 8 probes are bench scenarios
+  generated from the frozen fixtures (`scripts/eval/lib/mega-dm.mjs`), with the fixture's private deltas planted
+  as private facts for the leak check.
+- **Sandbox** (`docs/SANDBOX.md`, `Start Sandbox.cmd`, `Stop Sandbox.cmd`, `scripts/sandbox-start.mjs`): a separate
+  local Supabase project (`personal-rpg-console-sandbox`, ports 44320–44327, own volumes) with every migration, one
+  sandbox owner, the app on port 3100 in trusted-local-owner mode, the AI keys from `.env.local` and never its
+  Supabase values; `--fake` plays on a built-in stand-in game master (no keys, nothing paid; never in production).
+  Proven in the cloud VM with `scripts/sandbox-proof.mjs`: start, a world and a starter campaign over HTTP, three
+  turns on the stand-in, stop, start again, one more turn on the same campaign. The Windows wrappers only locate
+  `node` and call the script; they could not be run here.
+- **Bench and research records:** new check kinds and three scenarios (14 grudge and travel, 15 power creep, 16 job
+  closed with converted terms), the Mega DM scenarios, layer budgets and stability, metrics, depth and
+  self-disclosures in the report; every live run writes its record to `docs/runs/` (`scripts/eval/run.mjs`,
+  `blind.mjs`, the probes). Fake bench: 19 of 19 scenarios (16 + Mega DM campaign, living and cognitive probes),
+  340 of 340 checks; the known weakness W2 (a paraphrased leak) stays open as before.
+- **Live bench, final runs** (`docs/runs/20261016-005052-*`): every turn committed, no literal leak on either model.
+  Astra medium: 15 power creep 11/11 (refusals reach the metrics through `finish_turn` after a prompt line that
+  makes it required), 16 job closed 12/12 (job closed, converted legacy reward paid, nothing paid twice), 14 grudge
+  5/7 (the DM recorded the organiser's answer as a note, not as a due plan). Opus high: 15 11/11 (earlier run),
+  14 6/7 (the plan was recorded in the travel turn, listed as due by the receipt and played out; the check at the
+  first step was too early and now follows the live timing), 16 9/12 (the DM turned the job into a two-day fen
+  haul and refused to skip to the payout — the world resisting, so the job was not closed within the scenario's
+  five turns). Both DMs resisted the first version of the scenarios, which assumed a dice table, a smith and guards
+  the opening scene does not have; the scenarios were rewritten to the fixture's opening and the early records
+  kept as `.partial.jsonl`. **Mega DM live** (Astra medium, $3 cap): 19 turns, 18 committed, the last stopped by
+  the budget guard; 0 leaks of the planted private deltas; median first word 2.5 s, turn 8.2 s, cache read 64 %,
+  $0.104 per turn; metrics computed (contested checks 0 % success vs 45 % expected over 18 turns). The DM asked
+  out of character twice for scenes the frozen script assumed but it had not played — a limit of replaying a
+  frozen campaign on a live DM, not of the loop.
+- **Blind comparison** (`scripts/eval/blind.mjs`): six scenes (tavern talk, interrogation under secret pressure,
+  combat climax, companion heart-to-heart, travel with consequences, power creep) × five variants (Opus high and
+  xhigh, Astra high, xhigh and medium), the same inputs, 2–3 turns, written as JSON with full metadata to
+  `docs/samples/stage-4/blind/` under names that carry no hint of the variant. BLIND_RESULT
+- **Spend:** SPEND_RESULT
+- **Checks on the final state** (cloud VM, Node 24): typecheck pass; lint pass (0 warnings); build pass; CHECKS_RESULT
+- **Known limits:** Astra folds `finish_turn` less often now but still sometimes ends a turn without it (then the
+  server's implicit finish carries no tension or refusal hint); the plan mechanism is used reliably by Opus and
+  less by Astra at medium; the fake sandbox DM covers turns, feedback and the digest but not the AI character
+  wizard (real keys needed for that); `tests/universal-bootstrap-sql` expects the Windows CRLF checksum of migration
+  30 and two Mega DM tests read git history the shallow clone lacks — environment, as in Stage 5.
+- **Recommended next step:** the owner starts the sandbox (`Start Sandbox.cmd --fake` without keys, or with his
+  keys in `.env.local`), activates the Stage 4 craft versions in the DM Craft screen, plays a few sessions and
+  rates the blind samples; defaults for new campaigns follow his ratings.
+
+---
+
+# Development status
+
 **Current stage:** Stage 3 — record integrity and campaign limits — done; waiting for the owner's review and
 «дальше». Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_3.md`; design of the loop with the new
 sections on limits, the folded finish and SQL integrity: `docs/TURN_LOOP.md` §3, §6, §9; procedure for
