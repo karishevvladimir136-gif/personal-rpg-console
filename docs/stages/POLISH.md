@@ -230,8 +230,14 @@ The owner's notes from the first play are added below by the planner before laun
     hide it then; with companions present, the addressee comes from the text («Тамсин, …» or «@Тамсин») with a small
     chip showing who will answer, not a permanent row. (b) «Кубы», «Вопрос ведущему», «Кадр сцены», «Важный ход» become
     small icon buttons in one row inside the composer, next to «Отправить», each with a tooltip in plain words.
-    (c) «Важный ход» means nothing to the owner: label it «⚡ Подумать глубже» with the tooltip «Ведущий потратит больше
-    времени на этот ход — для решающих сцен». (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
+    (c) **No «Важный ход» button — the DM decides the depth himself** (owner: «модель достаточно умная, пусть сама
+    решает, когда подумать глубже; кнопка ломает иммерсивность»). Stage 4 already lets the DM set the next turn's
+    depth through `finish_turn.nextTension` within the campaign's depth range; make that the default: every new
+    campaign gets the range high…xhigh (Opus) and the button leaves the composer. Close the gap that the DM can only
+    raise the depth for the NEXT turn: when the player's input itself opens a decisive moment (an attack, a jump, a
+    confession, a bargain with stakes), a cheap pre-turn check on the input (rules first; a tiny model only if rules
+    are not enough, within ~300 ms) may raise this turn's depth inside the range. Show nothing in the UI; record the
+    chosen depth and its reason in the turn record for the research track. The depth range stays in campaign settings. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
   - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
     opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
     above.)
