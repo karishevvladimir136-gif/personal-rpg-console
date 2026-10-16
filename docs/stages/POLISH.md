@@ -52,7 +52,9 @@ The owner's notes from the first play are added below by the planner before laun
    жениться пообещаешь?». Humour is a known weak spot of models: give 2–3 examples of dry, situational humour from the
    owner's chat campaign and texts he likes (a joke grows out of the situation and the character, it is short and
    never explained). Owner after 16 turns: the narration is «на две головы лучше» the blind samples and on par with
-   his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`.
+   his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`. Turn 18:
+   «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
+   The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
@@ -246,6 +248,10 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 18): a short rest («перекемарю до дела») became a 300-minute short rest with HP 9 → 10, no roll;
+  and the **off-screen plan fired** — «1 plan(s) due», «DM plan resolved»: while the hero slept, the man in the dry
+  coat came to Marta's, heard Мирон's snore through the floor and offered the hero double pay. This is item 6 working
+  in live play (the blind travel scene failed); compare the two to find what the blind scene lacked.
 - Good, keep (turn 8): a natural 1 played as «fail forward» — the gear slips through a gap into the water, the hero
   skins his knuckles (HP 10 → 9, shown everywhere: sidebar, sheet, receipt), and the scene now asks for a dive, the
   hero's own skill; the pistol given to Dunya as a pledge left the inventory; the debt «Пятнадцать монет Дуне» joined
@@ -315,7 +321,10 @@ The owner's notes from the first play are added below by the planner before laun
   - **«Открытые нити» is jargon.** The player sees «Цель» (here: отдать Марте сорок монет — the DM sets it when the
     goal is obvious), «Долги и обещания», and «Зацепки» for open leads (Ян Колода, ящик у Чёрного волнореза). The
     `thread` kind stays inside the records; the word «нити» does not reach the player.
-  - **The goal panel ignores the quest the DM recorded.** After turn 2 the DM took «Ящик с «Сельди»» as a quest with
+  - **During a turn two indicators and a stray «Другие действия».** «DM обдумывает ответ…», then a collapsible
+  «Другие действия» and «ведущий пишет… (черновик до сохранения)» all show at once. One quiet indicator «Ведущий
+  думает…» → the text streams; nothing else between the player's line and the story.
+- **The goal panel ignores the quest the DM recorded.** After turn 2 the DM took «Ящик с «Сельди»» as a quest with
     its reward (Marta forgives the forty coins and feeds him for a week), yet «Цель» still says «Цели пока нет». The
     active quest (or the one the hero just took) is the goal unless the DM sets another.
   - Journal after turn 2 (good): the quest «Ящик с «Сельди»» with the deadline (two days, before the customs divers),
@@ -380,6 +389,19 @@ The owner's notes from the first play are added below by the planner before laun
   change it (a magic bag), and the DM using it when it matters. The owner: a convention is fine for now («мы не в
   симулятор водолаза играем»); design it with the ruleset work, not here.
 
+- **Stronger picture models to test (owner asks for «модель помощнее»).** Turn 18 drew the hero bare-chested although
+  he had just put on Yan's shirt (clothing state and identity drift). Add to the experiment, through the same Stage V
+  store and price/cap: Google's Nano Banana Pro / Nano Banana 2 on fal (`fal-ai/nano-banana-pro/edit`, up to ~10
+  reference images, strong identity and clothing consistency per vendor and third-party comparisons; ~$0.08+ per 1K
+  image) and OpenAI GPT Image 2 (up to ~10 references, best when people handle machines or text). Check current
+  endpoints, limits and prices first. Owner's rule: quality decides, price only within the cap; frames may stay on
+  the fast model while anchors and key frames go to the winner. Clothing and visible state (wounds, bandages, a
+  shirt on or off) come from the hero's current items and the last turns, passed in the shot.
+- **Picking «OpenAI» for anchors breaks all pictures.** «Кто рисует анкеры → OpenAI» routes to the legacy
+  subject-visual path, which says «Рисование не настроено на сервере (нет ключа, модели или бюджета)», and frames stop
+  too. Remove the legacy choice; if OpenAI images are wanted, they become one more model in the Stage V store (GPT
+  Image 2), selected per tier, with the same key check and cap. A setting must never switch the app to a path that
+  cannot work; show why a choice is unavailable instead.
 - **Character consistency, a focused experiment (owner: «работает спорно; стиль держит хорошо — с этим ещё покурим»).**
   After 11 turns the style is stable across every frame, but the hero's face and age drift (younger and clean in one
   frame, older and gaunt in another), and scene facts drift too (rain on a frame whose turn says the sun is rising).
