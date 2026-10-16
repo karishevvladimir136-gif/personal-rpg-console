@@ -284,6 +284,10 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 27): **an item changed with the story** — the borrowed shirt became «Рубаха Яна Колоды без подола»:
+  new name, a description of how and why (the hem cut on the bottom to wrap the leaking hose; Marta billed it to
+  Yan's debt), a state note («мокрая, подола нет; полоса намотана на шланг помпы») and a redrawn picture. Make sure
+  the redraw happens only when the visible state changes, and the old picture stays as a version.
 - Good, keep (turn 26): after the interactive roll pause («Продолжить с этим результатом») the continuation came with
   full narration — item 1 did not reproduce here; the failure cost HP (10 → 8) and left a leaking patch; two
   off-screen plans resolved as the patrol boat passed overhead and moved on, heard through the water. Owner: «для
