@@ -17,7 +17,8 @@
           "label": "the organiser's answer is recorded as a plan off screen",
           "privateFact": {
             "key": "^plan_"
-          }
+          },
+          "scripted": true
         }
       ]
     },
@@ -32,6 +33,12 @@
           "label": "the time receipt listed the due plan",
           "duePlans": {
             "min": 1
+          }
+        },
+        {
+          "label": "a plan of the organiser exists by the time the travel ends",
+          "privateFact": {
+            "key": "^plan_"
           }
         },
         {
