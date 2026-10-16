@@ -3,6 +3,22 @@
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`), branch `claude/polish` from `origin/claude/integration`.
 The owner's notes from the first play are added below by the planner before launch.
 
+## Order of work (the list below is long; do it in this order, commit after each group)
+
+1. **Correctness of the turn:** every text part reaches the player (Мокей, the silent continuation after a roll);
+   private records and DM rolls never leak into player chips; removing an item is not using it up; «Твой момент» only
+   after a resolved roll; the DM Craft fix branch merged.
+2. **Rolls:** the skill named on the card, bonuses from the sheet and the situation, advantage, the DC ladder — four
+   times in one session the hero's own trade was rolled at +0 (a natural 1 on his core skill, the dive).
+3. **Pictures:** one picture path for every button, the OpenAI-anchors trap removed, «Кадр сцены» on Stage V,
+   «Скрыть», the strip lightbox. (Model choice comes from `PICTURE_MODELS.md`.)
+4. **Game screen layout:** one stage, one page scroll, compact composer, one «Ведущий думает…», collapsed Russian
+   turn summary leading with items and money, no timers, no adventure card, «Зацепки», goal from the taken quest.
+5. **Russian voice layer and the A/B** (item 7), plus the context budgets (item 8) and the layer-3 cache split.
+6. **Character and inventory for any ruleset** (doll, wallet, backstory, registry port), healing and rest.
+7. **Codex, map, journal** (whole-world codex, named things, map hierarchy, pins).
+8. **Wizard and the path to the first turn**, combat profile, «Ещё» split into player actions and an editor.
+
 ## Known before the play
 
 1. **A roll that is never narrated.** After an interactive dice roll the turn pauses; the game master's continuation
@@ -59,7 +75,8 @@ The owner's notes from the first play are added below by the planner before laun
    («Ты ж у нас никому не отказываешь, — Марта уже тянется за монетой»), never by naming it; the player knows his
    sheet. Same rule as for subtext: imply, don't announce. Turn 23, a player-agency slip: «— За голову, — говоришь
    ты.» — the DM wrote the hero's line and his conclusion. The narration may lay out what the hero sees and recalls;
-   the decision and the words stay the player's («Где искать — решай»). Turn 18:
+   the decision and the words stay the player's («Где искать — решай»). Humour, turn 24: «— Я теперь копна, — сипит
+   он оттуда. — Копна, не дыши» — the logic is right, the joke is flat; add to the humour examples. Turn 18:
    «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
    The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
 
@@ -286,7 +303,8 @@ The owner's notes from the first play are added below by the planner before laun
   весьма неплохо концептуально» — no Mary Sue, the world is realistic without being a misery simulator, rivals appear
   on their own (the man in the dry coat now asks around for a boat to the breakwater), costs are honest (healing for a
   coin, extra risk for extra pay), atmosphere holds, no invented words; the remaining issues are small speech slips
-  and the interface. Protect these in every later change: the bench should carry a «no Mary Sue» and «honest cost»
+  and the interface. After 24 turns the owner compared it with a commercial AI RPG he knows («AI Realms»): «уделывает
+  с головой — гораздо больше похоже на D&D-приключение, а не на симулятор спасения мира». Protect these in every later change: the bench should carry a «no Mary Sue» and «honest cost»
   check on the loop scenarios.
 - Good, keep: the place header redrew itself when the hero moved (Понтонный рынок in the same style), the frame
   shows the hero with his face from the portrait, the DM asked for a roll exactly where it made sense.
