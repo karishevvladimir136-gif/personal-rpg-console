@@ -35,7 +35,8 @@ and Stage V sections below are each stage's own closing status, kept unchanged.
   re-render from the committed turn's `changes`; the chronicle takes its chapter titles and «Ранее в…» from the session
   records Stage 4's digest writes (`title`, `recap`). Nothing in Stage V reads a Stage 4 field that does not exist.
 - **Checks on the final code:** typecheck pass; lint pass, zero warnings; build pass; full suite
-  `node --test --test-concurrency=2 tests/*.test.mjs` — see the line at the end of this section. Fake bench on the loop
+  `node --test --test-concurrency=2 tests/*.test.mjs`: 2489 tests — 2461 pass, 1 fail (the environment failure below),
+  27 skipped (HTTP tests without `PREVIEW_URL`, as before), 1480 s on the 4-vCPU VM. Fake bench on the loop
   runtime: 19 of 19 scenarios, 344 of 344 checks, W2 open as before. Every Stage 5 and Stage V screen recaptured on the
   merged code (desktop 1440 and phone 390, both samples, the three width checks pass): `docs/screens/stage-5/`,
   `docs/screens/stage-v/`.
