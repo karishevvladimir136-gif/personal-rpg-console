@@ -559,3 +559,10 @@ short live smoke on the changed paths within **$5**. Push `claude/polish` only, 
    Turn 29: descriptions excellent (the shout trapped in the helmet as «бу-бу-бу», the gaff in the forefoot, the
    hook catching Мокей's net instead of the stern); dialogue still odd in places («Гильдейский, значит. Ну-ну. Сами
    так сами»).
+   Turn 31, a reference pair for the voice examples (owner: «косноязычно слегка, диалоги неплохие, но надо
+   доточить»). As written: «Мокей на кухню не идёт… Кружку отдаёт обратно со словом «Нет», а хлеб берёт. Дуня пьёт
+   молча и стоя, потом вытирает рот запястьем со шкотом.» Native: «Мокей на кухню не пошёл — сел на пороге, спиной к
+   теплу, шланг на коленях. От кружки отмахнулся, хлеб взял. Дуня выпила стоя, молча, и утёрла рот рукавом.»
+   Patterns to teach: tense and rhythm of a living narrator (a mix of past and present is fine when deliberate);
+   one clear action per clause; no stacked instrumental phrases («запястьем со шкотом»); gesture instead of quoted
+   one-word lines («со словом «Нет»»).
