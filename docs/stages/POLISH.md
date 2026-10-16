@@ -188,6 +188,27 @@ The owner's notes from the first play are added below by the planner before laun
   has a resolved player-visible roll (success) and the scene is tense or climax; otherwise the flag is rejected with a
   reason to the DM and no banner shows. The Stage V key-moment [pro] re-render follows the accepted flag only. Add a
   test for both cases.
+- **Rolls ignore the hero's skills, situation and gear (major).** The dive (the hero's core skill, «ныряльщик
+  Гильдии», «хорошо плавает») was rolled 1d20+0 vs DC 12 with no advantage. On a narrative ruleset the sheet has no
+  numbers (stub profile), so every modifier is 0. Rules: (a) a skill or trait named on the sheet gives a bonus (the
+  ruleset's own value, or +2/+4/+6 by proficiency in words: умеет / хорошо / мастер) — the DM picks the matching
+  `modifierField` or passes the skill name, and the server resolves the bonus; (b) the DM grants advantage or
+  disadvantage from the fiction (prepared gear such as the resin gloves, help from Мокей on the line, clear water vs
+  silt) and says why in the roll reason; (c) difficulty follows a stated ladder — лёгкая 8 · обычная 10 · трудная 13 ·
+  очень трудная 16 · почти невозможная 19 — and an expert doing his trade in fair conditions gets «обычная» or no roll
+  at all (the owner found 12 for a guild diver's dive too high); (d) the roll card shows the reason, the bonus and its
+  source («ныряльщик +4»), advantage and why, and the DC in words. Test with a narrative-ruleset campaign.
+- **Healing.** The hero lost HP twice (9, then 8) and has no visible way back: rest (short/long by ruleset), first aid
+  in the fiction (Мокей's resin, a bandage) as a DM-recorded heal, and the camp/rest action; the DM restores HP when
+  the story gives a reason, and time passing with rest heals by the ruleset's rule. Show it in the receipts.
+- **«Запросить разрешённый переброс» works**, but explain when a reroll is allowed (a rule, an inspiration-like
+  resource) right on the card; never offer it when it is not.
+- Good, keep (turns 9–11): the player's improvised resin gloves became an item with a fitting description and a
+  drawback (sticky, no fine work, cut already); the gear from the silt is an item «Бронзовая шестерня ворота Мокея»
+  with a precise note; Мокей's first aid and «Должок Мокею» recorded as a promise.
+- **Item cards: a wrong word in the note.** «Чужая Мокею» on the gear: the DM meant «не родная для этого ворота»
+  (foreign-made), but in Russian it reads «it does not belong to Мокей». Add to the voice item: possessive and dative
+  ambiguity in short notes is a frequent model slip; short item notes are checked like narration.
 - **The frame strip does not open older frames.** Clicking a thumbnail under the frame shows nothing; it must open
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
@@ -201,6 +222,9 @@ The owner's notes from the first play are added below by the planner before laun
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
   line; a rare, unique or legendary thing gets a short story (where it came from, who held it, what it is known for).
   Today the harpoon pistol card says only «на один выстрел».
+- **Page width.** The character and inventory screens use about two thirds of a wide screen and leave the right
+  third empty (owner's screenshot at ~2000 px); the game screen fills it. Use the same content width on every campaign
+  screen, and let the doll and the grid grow with it.
 - **Character and inventory collapse on a non-5e ruleset (major).** The Stage 5 screens were tuned on the 5e sample
   («Мир Шва»: slots around the figure, «185 Золото», filters Надето / Доспехи / Расходники…, skills with bonuses,
   party portraits). On the sandbox campaign («World Logic» ruleset, narrative hero) almost all of it is gone:
