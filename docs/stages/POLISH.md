@@ -232,7 +232,10 @@ The owner's notes from the first play are added below by the planner before laun
   reason to the DM and no banner shows. The Stage V key-moment [pro] re-render follows the accepted flag only. Add a
   test for both cases. Second occurrence, turn 27: the banner came after a **failed** roll (natural 1 vs 11) on a
   non-combat step, exactly where the player would write his next action anyway — the test must cover «failure → no
-  banner».
+  banner». Third occurrence, turn 28, again after a failure (6 vs 12): the banner now shows on most turns with a roll.
+- **Lost is not used.** The knife slipped into the silt: «рэй uses нож (0 left)». Losing, dropping, breaking and
+  pledging are their own outcomes in the item record and in the summary («Потерян: нож — ушёл в ил»), so the codex
+  and later turns can say where a thing went.
 - **Item change shown as two events.** The shirt's change was recorded as «рэй uses рубаха Яна Колоды (0 left)» +
   «рэй gets рубаха Яна Колоды без подола». Keep the mechanism if it is simplest, but the player sees one line
   «Изменено: рубаха Яна → без подола», and the item keeps its picture versions and history.
@@ -289,6 +292,10 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 28): a failure that costs the right things — the knife lost in the silt, the palm cut on mussels
+  (HP 7 → 6), the box still won; and an off-screen plan turning into a twist at the climax: the stranger's boat comes
+  without the agreed three knocks, Фрол on the bow with a hook — «Ящичек сюда подай, легче лезть будет». Also a
+  balance note: after six failures at +0 the hero is at 6/10 HP; with sheet bonuses this attrition would be rarer.
 - Good, keep (turn 27): **an item changed with the story** — the borrowed shirt became «Рубаха Яна Колоды без подола»:
   new name, a description of how and why (the hem cut on the bottom to wrap the leaking hose; Marta billed it to
   Yan's debt), a state note («мокрая, подола нет; полоса намотана на шланг помпы») and a redrawn picture. Make sure
