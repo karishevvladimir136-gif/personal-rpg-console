@@ -9,7 +9,7 @@ The owner's notes from the first play are added below by the planner before laun
    private records and DM rolls never leak into player chips; removing an item is not using it up; «Твой момент» only
    after a resolved roll; the DM Craft fix branch merged.
 2. **Rolls:** the skill named on the card, bonuses from the sheet and the situation, advantage, the DC ladder — four
-   times in one session the hero's own trade was rolled at +0 (a natural 1 on his core skill, the dive).
+   times in one session the hero's own trade was rolled at +0 (two natural 1s on his core skill under water).
 3. **Pictures:** one picture path for every button, the OpenAI-anchors trap removed, «Кадр сцены» on Stage V,
    «Скрыть», the strip lightbox. (Model choice comes from `PICTURE_MODELS.md`.)
 4. **Game screen layout:** one stage, one page scroll, compact composer, one «Ведущий думает…», collapsed Russian
@@ -230,7 +230,12 @@ The owner's notes from the first play are added below by the planner before laun
   the player's words become canon. Enforce it on the server: `finish_turn.playerMoment` is accepted only when this turn
   has a resolved player-visible roll (success) and the scene is tense or climax; otherwise the flag is rejected with a
   reason to the DM and no banner shows. The Stage V key-moment [pro] re-render follows the accepted flag only. Add a
-  test for both cases.
+  test for both cases. Second occurrence, turn 27: the banner came after a **failed** roll (natural 1 vs 11) on a
+  non-combat step, exactly where the player would write his next action anyway — the test must cover «failure → no
+  banner».
+- **Item change shown as two events.** The shirt's change was recorded as «рэй uses рубаха Яна Колоды (0 left)» +
+  «рэй gets рубаха Яна Колоды без подола». Keep the mechanism if it is simplest, but the player sees one line
+  «Изменено: рубаха Яна → без подола», and the item keeps its picture versions and history.
 - **Rolls ignore the hero's skills, situation and gear (major).** The dive (the hero's core skill, «ныряльщик
   Гильдии», «хорошо плавает») was rolled 1d20+0 vs DC 12 with no advantage. On a narrative ruleset the sheet has no
   numbers (stub profile), so every modifier is 0. Rules: (a) a skill or trait named on the sheet gives a bonus (the
