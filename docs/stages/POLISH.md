@@ -268,6 +268,17 @@ The owner's notes from the first play are added below by the planner before laun
     «Приключения» section of the left menu.
   - The story sits in its own inner scroll box under a very large frame (nested scrolling, arrows, «К последнему
     ходу»). One page scroll; see the one-stage layout in STAGE_V §7.
+- **A record the story never mentions (turn 6, «Мокей recorded as a character»).** The player asked for a second,
+  quiet oarsman; the narration answered about Dunya and the pistol and never named anyone, yet the chips show «Мокей
+  recorded as a character» and «Мокей's character notes started». Two problems, find which one happened from the
+  turn's stored model messages: (a) **narration lost** — text the DM wrote after a tool result (same family as the
+  silent continuation after a roll, item 1) did not reach the stream or the saved turn; or (b) **the DM created the
+  person ahead of the story** (an off-screen plan) and the receipt chip **revealed a person the hero has not met**.
+  Fix both regardless: every text part of every model message in a turn reaches the player and the saved turn, in
+  order; a test with a tool call between two text parts. A new person created this turn appears in the player's
+  chips and codex only if the narration names them (or the hero has met them); otherwise the record stays private
+  until the meeting. Also «Looked up money»: the DM had to query money because the context has no wallet (see the
+  character-screen item); with a wallet in the dossier this lookup disappears.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
