@@ -337,6 +337,18 @@ The owner's notes from the first play are added below by the planner before laun
   change it (a magic bag), and the DM using it when it matters. The owner: a convention is fine for now («мы не в
   симулятор водолаза играем»); design it with the ruleset work, not here.
 
+- **Character consistency, a focused experiment (owner: «работает спорно; стиль держит хорошо — с этим ещё покурим»).**
+  After 11 turns the style is stable across every frame, but the hero's face and age drift (younger and clean in one
+  frame, older and gaunt in another), and scene facts drift too (rain on a frame whose turn says the sun is rising).
+  A short paid study, not a guess: (a) when the hero is in the shot, pass both his portrait and his full figure as
+  references and his appearance text (age, hair, stubble, build, clothes) from the approved anchor; (b) compare, on the
+  same 20-turn scene: [klein] 9B as now · [pro] for frames with named people · an identity-preserving path on fal
+  (check the current catalogue: Kontext / PuLID-type face reference, or a per-campaign LoRA of the hero trained from
+  his anchors); (c) a vision check of identity on every frame with a named person, and one automatic redraw below a
+  threshold (within the daily cap); (d) time of day and weather come from the world clock and the narration, not
+  invented by the shot model. Report people scores, latency and price per variant; the owner picks by looking at the
+  frames side by side.
+
 ## Port from the owner's chat registry «Железная Бабка»
 
 The owner's chat campaign had a hand-built registry page (a claude.ai artifact the planner made; it reads from its own
