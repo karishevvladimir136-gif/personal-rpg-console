@@ -11,3 +11,5 @@ scripts/eval/out/
 .worktrees/
 supabase/.temp/
 supabase/.branches/
+
+.sandbox/
