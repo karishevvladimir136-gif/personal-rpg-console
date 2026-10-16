@@ -292,6 +292,11 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- **Anchors get an anatomy check before acceptance.** The hero's full-figure anchor has three hands, and «Принимать
+  готовые сразу» accepted it. The vision check that gates auto-accept also checks anatomy (limbs, hands, faces) and
+  sends a failing anchor to review instead.
+- Good, keep (turn 30): long-range memory — Dunya: «Не стрелял. Значит, шестнадцать» (the pledge terms from turn 7:
+  sixteen coins if the pistol is used, otherwise as agreed); the owner had forgotten, the character had not.
 - **A natural 20 must change the outcome visibly.** Turn 29: the hero rolled a natural 20 to dodge and call for help;
   the narration resolved the scene through Dunya's own roll (she shoved the boat off with the gaff) and the hero's
   shout stayed muffled in the helmet. Good drama, but the player's best roll of the session left no mark of its own.

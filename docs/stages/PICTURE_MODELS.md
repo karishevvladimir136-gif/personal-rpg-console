@@ -39,7 +39,10 @@ what they would need (domain, key) instead of working around it.
 3. **Clothing and state.** Two of the shots specify state (bandaged hands; wearing a borrowed grey linen shirt under
    the jacket) — score whether the model keeps it.
 4. **Measure per model:** identity score against the anchors (vision model, as in Stage V), clothing/state kept (yes
-   or no), prompt adherence, no text or logos, latency (median), price per image, refusals. Three seeds per shot.
+   or no), **anatomy** (extra or missing limbs, hands, fingers — the current full-figure anchor of the owner's hero has
+   three hands), prompt adherence, no text or logos, latency (median), price per image, refusals. Three seeds per shot.
+   Also redraw the hero's full-figure anchor on each candidate: anchors are the references for every later frame, so an
+   anatomy error there spreads.
 5. **Blind page for the owner:** the planner builds it from `docs/samples/pictures/` — for each shot, all models side
    by side under letters, one click «лучший», names revealed at the end. Write the JSON in the same shape as the blind
    DM samples (shot, variants with file, model hidden in a sealed field).
