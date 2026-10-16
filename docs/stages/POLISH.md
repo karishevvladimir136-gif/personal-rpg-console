@@ -284,6 +284,11 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 26): after the interactive roll pause («Продолжить с этим результатом») the continuation came with
+  full narration — item 1 did not reproduce here; the failure cost HP (10 → 8) and left a leaking patch; two
+  off-screen plans resolved as the patrol boat passed overhead and moved on, heard through the water. Owner: «для
+  тестовой кампании так вообще супер». Word slip: the HP chip says «Угар» for air starvation in a diving helmet
+  (угар is carbon-monoxide poisoning from a stove); «удушье» or «нехватка воздуха».
 - Good, keep (turn 25): suspense built without a roll (the snagged hose, thinning air, the patrol lantern as a
   clock) and the agreed signal from two turns earlier used exactly («по уговору Мирон должен спросить „как ты?“»).
 - Good, keep (turns 21–22): money stays consistent across 20 turns (the 16 coins to Dunya, the crew's five each paid
