@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Кульминация боя",
+  "description": "Засада на дороге превращается в схватку у брода: игрок бросается в атаку, рискует, потом пытается закончить бой. Настоящие броски, настоящая цена.",
+  "createdAt": "2026-10-16T04:46:26.292Z",
+  "commit": "7b91e7d",
+  "run": "20261016-044101-blind-ru",
+  "language": "ru",
+  "keyStep": "c2",
+  "variant": {
+    "id": "opus-high",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "Ухожу с площади по дороге к броду. Иду осторожно, поглядываю на камыши — вдруг там кто-то засел.",
+      "outcome": "committed",
+      "narration": "Роуэн уходит с площади. Доска с объявлениями остаётся позади, вместе с тусклым фонарём над ней. Дорога к броду идёт под уклон, колеи в ней старые и твёрдые. Ночь лунная, видно далеко, но глазу не за что зацепиться. Справа над низиной встают камыши, выше человеческого роста, и шуршат на ветру. Лягушки замолкают, когда он подходит, и снова начинают за спиной.\n\nРоуэн идёт медленно и вслушивается: какой звук здесь обычный, а какой нет.",
+      "firstWordMs": 13413,
+      "durationMs": 43216,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 39654,
+        "output": 3930,
+        "cached": 19048,
+        "cacheWrite": 20600,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.48,
+      "costUsd": 0.18543,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Роуэн rolls 1d20+2: 4 vs 13 — failure",
+          "Place recorded: Брод",
+          "Возчик Михей recorded as a character",
+          "Тень в камышах recorded as a character",
+          "Возчик Михей's character notes started",
+          "DM plan updated",
+          "The party travels to Брод (35 min); 1 plan(s) due",
+          "Turn recorded"
+        ],
+        "hints": [
+          "1 off-screen plan came due while time passed (35 min). Advance them now in this turn: note_world (set the plan's next step or planStatus done/dropped), note_character for the people involved, and let the hero notice only what reaches them."
+        ],
+        "duePlans": 1
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 361,
+          "hash": "84966fc293bc"
+        },
+        {
+          "index": 3,
+          "tokens": 733,
+          "hash": "da6b515a5e8c"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c2",
+      "input": "Если там кто-то есть — не жду: выхватываю оружие и иду прямо на самого здорового.",
+      "outcome": "committed",
+      "narration": "Дорога выводит к реке. Луна ложится на воду широкой полосой, и в этой полосе чернеет телега, по ступицы в воде, посреди брода. Задок осел, левое колесо ушло в ил. Лошадь стоит понурая, бока у неё ходят. Рядом с телегой, по пояс в реке, плотный мужик упирается плечом в борт и ругается без злобы, ровно и однообразно, как молятся.\n\nРоуэн не сводит глаз с камышей. Они стоят справа сплошной стеной до самой воды и шуршат на ветру.",
+      "firstWordMs": 15588,
+      "durationMs": 35191,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 47137,
+        "output": 3090,
+        "cached": 40127,
+        "cacheWrite": 7004,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.851,
+      "costUsd": 0.10487,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_world",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "note_world",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [
+          {
+            "name": "upsert_character",
+            "reason": "Arguments of upsert_character are invalid: upsert_character.details: unknown field."
+          }
+        ],
+        "summaries": [
+          "Роуэн rolls 1d20: 4 vs 14 — failure",
+          "DM plan updated",
+          "Возчик Михей's character notes updated",
+          "5 minutes pass (Спуск к броду, осмотр камышей)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 1088,
+          "hash": "608dd1cbc865"
+        },
+        {
+          "index": 3,
+          "tokens": 2492,
+          "hash": "baf739cd8862"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c3",
+      "input": "Кричу, что люди старосты идут прямо за мной, и даю им один шанс убежать.",
+      "outcome": "committed",
+      "narration": "Роуэн останавливается у кромки воды, лицом к камышам, и кричит в них громко, чтобы было слышно и на том берегу:\n\n— Люди старосты идут за мной следом! Кто там сидит — даю один раз уйти по-хорошему. Второго не будет.\n\nМужик у телеги поднимает голову и перестаёт ругаться. Лягушки тоже замолкают. Над водой остаётся один шорох стеблей. Дорога за спиной Роуэна под луной видна далеко, и на ней пусто.",
+      "firstWordMs": 6703,
+      "durationMs": 31681,
+      "requests": 2,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 47944,
+        "output": 2701,
+        "cached": 40882,
+        "cacheWrite": 7056,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.853,
+      "costUsd": 0.0975,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Роуэн rolls 1d20: 5 vs 13 — failure",
+          "Возчик Михей updated",
+          "Возчик Михей's character notes updated",
+          "DM plan updated",
+          "2 minutes pass (Окрик в камыши и перепалка с возчиком)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 1142,
+          "hash": "c3025b6c75a9"
+        },
+        {
+          "index": 3,
+          "tokens": 3061,
+          "hash": "40cf1b190180"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.3878,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

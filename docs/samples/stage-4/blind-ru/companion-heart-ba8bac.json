@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Разговор по душам со спутницей",
+  "description": "К герою присоединяется погонщица, потом он у костра говорит с ней о том, чего она хочет и чего боится. Ходы после первого — в режиме спутника.",
+  "createdAt": "2026-10-16T04:50:15.757Z",
+  "commit": "7b91e7d",
+  "run": "20261016-044101-blind-ru",
+  "language": "ru",
+  "keyStep": "h2",
+  "variant": {
+    "id": "astra-high",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "Зову с собой Тамсин — молодую погонщицу, ей со мной по пути. Она соглашается.",
+      "outcome": "committed",
+      "narration": "На оклик оборачивается молодая погонщица. Тамсин придерживает сползающую с плеча сумку и подходит к доске объявлений.\n\n— Вместе веселее, — говорит она. — До развилки пойду с тобой. А там поглядим, кому куда.\n\nОна оглядывает прибитые листки, потом распорядителя рядом с ними.\n\n— Только если работу присматриваешь, узнай, на сколько времени. Мне бы здесь надолго не застрять.\n\nТамсин остаётся рядом, поправляя ремень сумки. Распорядитель отрывается от своих записей и выжидающе смотрит на вас обоих.",
+      "firstWordMs": 3420,
+      "durationMs": 26845,
+      "requests": 4,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 47667,
+        "output": 766,
+        "cached": 35354,
+        "cacheWrite": 12301,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.742,
+      "costUsd": 0.22754,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "upsert_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "upsert_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин recorded as a companion",
+          "Тамсин's character notes started",
+          "Местный распорядитель работ updated",
+          "2 minutes pass (Роуэн зовёт Тамсин; они договариваются пройти вместе до развилки.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 361,
+          "hash": "2893da156f0b"
+        },
+        {
+          "index": 3,
+          "tokens": 733,
+          "hash": "ff3b6557caae"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "h2",
+      "input": "Тамсин, а ты на самом деле зачем на этой дороге? На ту, кто гонится за деньгами за стадо, ты не похожа.",
+      "outcome": "committed",
+      "narration": "Тамсин опускает взгляд на свою сумку и усмехается.\n\n— А на кого похожа? Погонщице тоже случается идти без скотины.\n\nОна отступает чуть в сторону от доски, чтобы не говорить прямо перед распорядителем.\n\n— Работу ищу, тут ты не ошибся. Только не за любую плату. У развилки возчики останавливаются — с ними можно сговориться на следующий перегон. Мне лучше заранее узнать, сколько животных, сколько людей и кто решает, когда дать отдых. А не слушать потом: «Погоняй, к ночи должны быть».\n\nТамсин поправляет ремень и смотрит на тебя уже без усмешки.\n\n— Хочу выбирать, с кем идти. Пока могу себе позволить — выбираю. Никакой великой тайны.\n\nОна кивает на компас.\n\n— А ты? Держишь путь куда-то определённо или пока лишь бы дорога была?",
+      "firstWordMs": 2067,
+      "durationMs": 29456,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 12523,
+        "output": 1135,
+        "cached": 10306,
+        "cacheWrite": 2214,
+        "reasoning": 349,
+        "estimated": false
+      },
+      "cacheReadShare": 0.823,
+      "costUsd": 0.09476,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин updated",
+          "Place recorded: Развилка",
+          "Тамсин's character notes updated",
+          "2 minutes pass (Короткий разговор с Тамсин о работе и причинах путешествия.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 782,
+          "hash": "8095124f850d"
+        },
+        {
+          "index": 3,
+          "tokens": 1511,
+          "hash": "ddc8ea56cc96"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h3",
+      "input": "Тамсин, а если на побережье всё пойдёт плохо — чего ты тогда от меня ждёшь?",
+      "outcome": "committed",
+      "narration": "Тамсин чуть наклоняет голову.\n\n— На побережье? Ты туда собираешься? Я-то пока говорила только про развилку.\n\nОна произносит это спокойно, потом ненадолго задумывается.\n\n— Если всё же пойдём дальше вместе… Жду, что скажешь, когда дело станет хуже, а не будешь до последнего уверять, будто всё в порядке. Если денег мало — посчитаем. Если работы нет — поищем в другом месте. Только прежде чем за меня на что-нибудь соглашаться, спроси.\n\nТамсин перехватывает ремень сумки поудобнее.\n\n— В беде хотелось бы, чтоб не бросил. Я бы тоже просто так не ушла. Но обещать друг другу лезть в любую яму — глупость. Иногда надо помочь выбраться, а иногда — сказать: «Дальше я не пойду».\n\nОна смотрит на тебя внимательнее.\n\n— А что там может пойти плохо? Ты о чём-то конкретном знаешь или просто спрашиваешь?",
+      "firstWordMs": 2047,
+      "durationMs": 16471,
+      "requests": 1,
+      "effort": "high",
+      "tension": null,
+      "tokens": {
+        "input": 13401,
+        "output": 681,
+        "cached": 10306,
+        "cacheWrite": 3092,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.769,
+      "costUsd": 0.08304,
+      "tools": {
+        "proposed": [
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин's character notes updated",
+          "1 minutes pass (Короткий разговор с Тамсин об ожиданиях от попутчика.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 924,
+          "hash": "5f4561539967"
+        },
+        {
+          "index": 3,
+          "tokens": 2498,
+          "hash": "facebd453495"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.40534,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

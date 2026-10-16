@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "scene": "combat-climax",
+  "title": "Кульминация боя",
+  "description": "Засада на дороге превращается в схватку у брода: игрок бросается в атаку, рискует, потом пытается закончить бой. Настоящие броски, настоящая цена.",
+  "createdAt": "2026-10-16T04:48:59.356Z",
+  "commit": "7b91e7d",
+  "run": "20261016-044101-blind-ru",
+  "language": "ru",
+  "keyStep": "c2",
+  "variant": {
+    "id": "opus-xhigh",
+    "providerId": "anthropic",
+    "modelId": "claude-opus-5-5",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "c1",
+      "input": "Ухожу с площади по дороге к броду. Иду осторожно, поглядываю на камыши — вдруг там кто-то засел.",
+      "outcome": "committed",
+      "narration": "Роуэн оставляет площадь за спиной. Ночь лунная, но облака то и дело закрывают свет. Дорога спускается к реке, колеи в ней залиты водой и блестят. Чем ближе брод, тем выше камыши по обе стороны: сплошная тёмная стена в человеческий рост, над ней пахнет тиной. Впереди, у самой воды, качается жёлтая точка фонаря, и слышно, как кто-то тихо ругается и плещет водой.\n\nСлева в камышах шорох. Ветра нет, а стебли гнутся.",
+      "firstWordMs": 24172,
+      "durationMs": 52878,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 40489,
+        "output": 4551,
+        "cached": 36444,
+        "cacheWrite": 4039,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.9,
+      "costUsd": 0.11853,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Роуэн rolls 1d20+2: 4 vs 12 — failure",
+          "Place recorded: Брод",
+          "Дорота recorded as a character",
+          "Ян recorded as a character",
+          "Дорота's character notes started",
+          "DM note updated",
+          "The party travels to Брод (25 min)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 361,
+          "hash": "e23f2f0a3150"
+        },
+        {
+          "index": 3,
+          "tokens": 733,
+          "hash": "6604941603c9"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c2",
+      "input": "Если там кто-то есть — не жду: выхватываю оружие и иду прямо на самого здорового.",
+      "outcome": "committed",
+      "narration": "Роуэн не ждёт. Рука привычно идёт к поясу и хватает пустоту: оружия при нём нет, в кармане только компас. Он всё равно бросается влево, в стену камыша, туда, где гнулись стебли.\n\nКамыш встречает его мокрой шерстью: хлещет по лицу, путается в ногах, сапоги сразу уходят в ил по щиколотку. Совсем близко сухо щёлкает ремень, и что-то свистит в темноте.\n\nКамень срезает метёлку камыша у самого уха и с плеском уходит в воду где-то позади.\n\nЕщё два рывка, и Роуэн вываливается на крохотный пятачок примятого камыша у кромки воды. Здесь сидел только один, и он же самый здоровый: ростом Роуэну едва по грудь. Это мальчишка лет десяти в мужской куртке до колен, явно с чужого плеча. Он пятится в реку по колено, дрожащими пальцами вкладывает в пращу новый камень и кричит так, что срывается голос:\n\n— Ма-а-ам! Тут он! Разбойник!\n\nСо стороны брода слышен тяжёлый плеск: кто-то бежит по воде. Жёлтый фонарь мотается и рывками приближается. В его свете Роуэн успевает разглядеть крепкую женщину, мокрую до пояса, с подоткнутой выше колен юбкой. В другой руке у неё короткий топор. Держит она его не как хозяйка у поленницы, а как дровосек, который знает, куда бить.\n\n— Отойди от него! — голос громкий и ровный, без визга. — Отойди, не то голову раскрою!\n\nОна останавливается в пяти шагах, на краю примятого пятачка, и отрезает Роуэну путь к дороге. Мальчишка теперь стоит у Роуэна за плечом, в воде. Ремень пращи снова начинает свистеть, раскручиваясь.\n\nС пустыми руками Роуэн оказался между ребёнком с пращой и женщиной с топором.",
+      "firstWordMs": 34885,
+      "durationMs": 53348,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 48708,
+        "output": 5039,
+        "cached": 39991,
+        "cacheWrite": 8711,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.821,
+      "costUsd": 0.15236,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Ян rolls 1d20+2: 6 vs 13 — failure",
+          "Ян updated",
+          "Дорота updated",
+          "Дорота's character notes updated",
+          "DM note updated",
+          "1 minutes pass (Рывок через камыши и встреча у кромки воды)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 1067,
+          "hash": "d028c9756344"
+        },
+        {
+          "index": 3,
+          "tokens": 2391,
+          "hash": "f2a186b5d50d"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "c3",
+      "input": "Кричу, что люди старосты идут прямо за мной, и даю им один шанс убежать.",
+      "outcome": "committed",
+      "narration": "Роуэн набирает воздуха и кричит так, что эхо уходит за реку: люди старосты идут прямо за ним, и у этих двоих есть один-единственный шанс убежать.\n\nРемень пращи за его плечом сбивается с ритма. Женщина не двигается. Фонарь в её руке чуть приподнимается: она хочет разглядеть его лицо.",
+      "firstWordMs": 14579,
+      "durationMs": 43068,
+      "requests": 2,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 48799,
+        "output": 3738,
+        "cached": 40982,
+        "cacheWrite": 7811,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.84,
+      "costUsd": 0.12204,
+      "tools": {
+        "proposed": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "roll",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Роуэн rolls 1d20: 5 vs 13 — failure",
+          "Дорота updated",
+          "Дорота's character notes updated",
+          "DM note updated",
+          "1 minutes pass (Крик, тишина, ответ Дороты)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 1301,
+          "hash": "5635112119a1"
+        },
+        {
+          "index": 3,
+          "tokens": 3297,
+          "hash": "1ca41f444287"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.39293,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}

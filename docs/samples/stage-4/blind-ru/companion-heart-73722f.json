@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "scene": "companion-heart",
+  "title": "Разговор по душам со спутницей",
+  "description": "К герою присоединяется погонщица, потом он у костра говорит с ней о том, чего она хочет и чего боится. Ходы после первого — в режиме спутника.",
+  "createdAt": "2026-10-16T04:52:11.438Z",
+  "commit": "7b91e7d",
+  "run": "20261016-044101-blind-ru",
+  "language": "ru",
+  "keyStep": "h2",
+  "variant": {
+    "id": "astra-xhigh",
+    "providerId": "openai",
+    "modelId": "gpt-6-astra",
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "h1",
+      "input": "Зову с собой Тамсин — молодую погонщицу, ей со мной по пути. Она соглашается.",
+      "outcome": "committed",
+      "narration": "Тамсин придерживает ремень дорожной сумки и подходит к доске объявлений.\n\n— Вместе — так вместе. Я по восточной дороге, до Каменного брода. Если тебе туда же, буду рада компании.\n\nМолодая погонщица одета в короткую куртку с потёртыми локтями; на сапогах подсохла дорожная грязь. Она становится рядом, но сумку не снимает.\n\n— Только я ищу попутчика, а не нанимателя, — добавляет она без резкости. — Если возьмёшь здесь работу, сначала скажи какую. У меня своих денег в обрез, а день за чужой работой ждать не хочется.\n\nТамсин пробегает глазами листки на доске. Один из нижних углов загнулся и постукивает по дереву; она прижимает его ладонью.\n\n— Ты уже что-нибудь присмотрел?",
+      "firstWordMs": 3368,
+      "durationMs": 45908,
+      "requests": 3,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 37296,
+        "output": 1537,
+        "cached": 24152,
+        "cacheWrite": 13135,
+        "reasoning": 518,
+        "estimated": false
+      },
+      "cacheReadShare": 0.648,
+      "costUsd": 0.26528,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "advance_time"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "upsert_character",
+          "note_character",
+          "advance_time"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин recorded as a companion",
+          "Place recorded: Каменный брод (a rumour)",
+          "Местный распорядитель работ updated",
+          "Тамсин's character notes started",
+          "2 minutes pass (Роуэн приглашает Тамсин идти вместе; она соглашается и уточняет условия попутничества.)"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 361,
+          "hash": "612e47ed140f"
+        },
+        {
+          "index": 3,
+          "tokens": 733,
+          "hash": "41a4ed75a6d9"
+        }
+      ],
+      "diagnostics": [
+        {
+          "kind": "implicit_finish",
+          "calls": 1
+        }
+      ]
+    },
+    {
+      "step": "h2",
+      "input": "Тамсин, а ты на самом деле зачем на этой дороге? На ту, кто гонится за деньгами за стадо, ты не похожа.",
+      "outcome": "committed",
+      "narration": "Тамсин отпускает угол объявления. Бумага снова стучит по доске.\n\n— А на кого похожа? — спрашивает она с лёгкой усмешкой. — Погонщик без стада тоже бывает. Особенно когда стадо уже довёл, а обратно никто не нанял.\n\nОна поправляет ремень сумки, сползший на локоть.\n\n— Последний перегон закончился здесь. В Каменном броде скот сводят перед дальней дорогой; там есть кого спросить о работе. Вот туда и иду. Лучше прийти самой, чем сидеть здесь и надеяться, что кому-нибудь понадобится лишняя пара рук.\n\nУсмешка сходит, но голос остаётся спокойным.\n\n— Деньги мне нужны. Только я не за стадом гонюсь — я его веду. Это стадо иногда гонится куда не надо.\n\nОна чуть отступает от доски, оставляя место прохожему.\n\n— А ты зачем на восток? У тебя там дело или пока просто дорога?",
+      "firstWordMs": 2582,
+      "durationMs": 33374,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 13858,
+        "output": 1361,
+        "cached": 10306,
+        "cacheWrite": 3549,
+        "reasoning": 434,
+        "estimated": false
+      },
+      "cacheReadShare": 0.744,
+      "costUsd": 0.12275,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин updated",
+          "Каменный брод updated",
+          "Тамсин's character notes updated",
+          "2 minutes pass (Короткий разговор с Тамсин о её ремесле и причине пути в Каменный брод.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 942,
+          "hash": "aac5b04ef9bc"
+        },
+        {
+          "index": 3,
+          "tokens": 2621,
+          "hash": "a4b7fdabc6c1"
+        }
+      ],
+      "diagnostics": []
+    },
+    {
+      "step": "h3",
+      "input": "Тамсин, а если на побережье всё пойдёт плохо — чего ты тогда от меня ждёшь?",
+      "outcome": "committed",
+      "narration": "— На побережье? — Тамсин поворачивается к тебе. — Я пока только до Каменного брода собиралась. До моря-то ещё сговориться надо.\n\nОна ненадолго задумывается, глядя на край доски.\n\n— А если в дороге прижмёт… Жду, что скажешь, что случилось. Не будешь уверять, будто всё ладно, когда надо уходить. И дашь мне самой решить, на что я готова.\n\nОна снова смотрит на тебя.\n\n— Раню ногу — помоги добраться до людей, если сможешь. Сама бы тебя на обочине не оставила. Но лезть за меня на верную смерть не прошу. И от меня такого не жди.\n\nТамсин перехватывает сумку поудобнее.\n\n— А что там, на побережье? Ты просто наперёд спрашиваешь или уже знаешь что-то, чего я не знаю?",
+      "firstWordMs": 3181,
+      "durationMs": 32909,
+      "requests": 1,
+      "effort": "xhigh",
+      "tension": null,
+      "tokens": {
+        "input": 14809,
+        "output": 1387,
+        "cached": 10306,
+        "cacheWrite": 4500,
+        "reasoning": 478,
+        "estimated": false
+      },
+      "cacheReadShare": 0.696,
+      "costUsd": 0.13594,
+      "tools": {
+        "proposed": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "summaries": [
+          "Тамсин updated",
+          "Тамсин's character notes updated",
+          "2 minutes pass (Тамсин отвечает на вопрос о взаимной помощи и уточняет, что Роуэн имеет в виду под бедой на побережье.)",
+          "Turn recorded"
+        ],
+        "hints": [],
+        "duePlans": 0
+      },
+      "layers": [
+        {
+          "index": 0,
+          "tokens": 5008,
+          "hash": "e16ba59e674b"
+        },
+        {
+          "index": 1,
+          "tokens": 78,
+          "hash": "cb37feb48ff3"
+        },
+        {
+          "index": 2,
+          "tokens": 1122,
+          "hash": "d498852477fa"
+        },
+        {
+          "index": 3,
+          "tokens": 3614,
+          "hash": "432529c729d4"
+        }
+      ],
+      "diagnostics": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.52397,
+    "committed": 3,
+    "failed": 0,
+    "leaks": 0,
+    "stopReason": null
+  }
+}
