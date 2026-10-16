@@ -87,6 +87,13 @@ The owner's notes from the first play are added below by the planner before laun
   немного странный». Target: one path from the wizard to the first turn — wizard → one review screen (adventure +
   opening proposal together, edit inline) → «Начать» → the game screen with the opening scene; every button that is
   not the next step is hidden or secondary.
+- **The opening scene proposal.** Check which model writes it: the Adventures screen says it calls «настроенный ИИ»,
+  which in the sandbox is the app default (Astra), not the campaign's DM (Opus high). The opening must be written by
+  the campaign's DM in the campaign's voice. The first proposal was thin: it reused the world text verbatim («пахнет
+  смолой и жареной рыбой»), used semicolons the English way, and ended on a report line («предложение остаётся без
+  ответа») instead of a situation; Marta got one good line («за напоминания я пока не беру») but no look or gesture of
+  her own. Use the Russian voice layer (item 7) for the opening too. Approving it needs a checkbox and a button — one
+  confirmation is enough. The hero's name is shown as typed («рэй»): offer the capitalised form in the wizard.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
