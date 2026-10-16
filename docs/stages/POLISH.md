@@ -284,6 +284,8 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 25): suspense built without a roll (the snagged hose, thinning air, the patrol lantern as a
+  clock) and the agreed signal from two turns earlier used exactly («по уговору Мирон должен спросить „как ты?“»).
 - Good, keep (turns 21–22): money stays consistent across 20 turns (the 16 coins to Dunya, the crew's five each paid
   later by the stranger, «Пятёрки экипажу от чужака» recorded as a promise); facts stay consistent with the quest text
   (six fathoms on the seaward side); the pledged pistol comes back only when Dunya gives it; the DM handles the
@@ -399,7 +401,9 @@ The owner's notes from the first play are added below by the planner before laun
     every turn, so its cache breaks every turn and the uncached part grows with the campaign. Measure cache read share
     per turn on the sandbox campaign; if it falls with the turn number, split layer 3 into a stable part (world,
     people's core models, older journal) and a small «this session's changes» tail placed after the cache breakpoint,
-    and refresh the stable part only at session end or when a budget threshold is crossed. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
+    and refresh the stable part only at session end or when a budget threshold is crossed. Data point, turn 25: a
+    tense turn with no roll and little bookkeeping came fast — so time also follows interactive roll pauses and
+    tool rounds; the per-turn metrics above must show which. (d) «DM обдумывает ответ…» → «Ведущий думает…» (Russian, no «DM»).
   - **«Что изменилось за ход» collapsed by default.** One small line under the turn, «Изменения за ход · 6 ▸», that
     opens the chips on a tap; closed again on the next turn. (Plus the Russian wording and the hidden private items
     above.)
