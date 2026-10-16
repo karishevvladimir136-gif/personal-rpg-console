@@ -1,0 +1,87 @@
+.book {
+  display: grid;
+  gap: 18px;
+  max-width: 820px;
+  margin: 0 auto;
+  min-width: 0;
+}
+.chapter {
+  display: grid;
+  gap: 14px;
+  padding: 18px 20px 22px;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: var(--leather);
+}
+.chapterHead {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.chapterTitle {
+  font-family: var(--f-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--brass);
+  margin: 0;
+  line-height: 1.1;
+}
+.previously {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.turn {
+  display: grid;
+  gap: 10px;
+}
+.input {
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--brass-dim);
+  padding-left: 12px;
+  border-left: 2px solid var(--line);
+}
+.frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #0e0a08;
+}
+.frame > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.narration {
+  font-size: 16.5px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.narration::first-letter {
+  font-family: var(--f-display);
+  font-size: 1.6em;
+  color: var(--brass);
+}
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+@media (max-width: 760px) {
+  .chapter {
+    padding: 14px 12px 16px;
+  }
+  .chapterTitle {
+    font-size: 22px;
+  }
+  .narration {
+    font-size: 16px;
+  }
+}

@@ -10,7 +10,9 @@ import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "@/l
 import { itemRarity } from "@/lib/ui/rarity";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, partyOf, resourcesOf, statLabel } from "@/lib/ui/campaign-view";
+import { anchorFor } from "@/lib/visual-frame/pictures";
 import { GenerateVisual } from "../visual-frame/generate-visual";
+import { usePictures } from "./live-frames";
 import { useChrome, type CampaignScreenId } from "./shell";
 import {
   Art,
@@ -91,14 +93,14 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         </div>
         {entity.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={entity.hp} max={entity.max_hp} />}
         {model.derivedStats.length > 0 && (
-          <div className={r.stats}>
+          <div className={`${r.stats} ${s.stats}`}>
             {model.derivedStats.map(([key, value]) => (
               <div key={key} className={r.stat}><div className={r.statKey}>{c.label(statLabel(key))}</div><div className={r.statMain}>{value}</div></div>
             ))}
           </div>
         )}
         {model.attributes.length > 0 && (
-          <div className={r.stats}>
+          <div className={`${r.stats} ${s.stats}`}>
             {model.attributes.map(([label, value]) => (
               <div key={label} className={r.stat}><div className={r.statKey}>{c.t(label)}</div><div className={r.statMain}>{value}</div></div>
             ))}
@@ -248,10 +250,14 @@ function SlotButton({ label, item, pressed, onPick }: { label: string; item: Ite
 function Figure({ entity, figure, onRedraw }: { entity: Entity; figure: string | null; onRedraw: () => void }) {
   const c = useCopy();
   const image = useSubjectImage({ kind: "entity", id: entity.id });
+  // The doll shows the hero's full-figure anchor (Stage V) when one is ready; the portrait stays the fallback.
+  const pictures = usePictures();
+  const figureAnchor = pictures ? anchorFor(pictures.board, { kind: "entity", id: entity.id }, "figure").picture : null;
+  const fullFigure = figure ?? (figureAnchor && pictures ? pictures.urlFor(figureAnchor) : null);
   return (
     <div className={s.figure}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      {figure ? <img src={figure} alt={entity.name} style={{ objectFit: "cover", objectPosition: "center top" }} />
+      {fullFigure ? <img src={fullFigure} alt={entity.name} style={{ objectFit: "cover", objectPosition: "center top" }} />
         : <Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 20%" />}
       <div className={s.figureTools}>
         <button type="button" className={s.redraw} onClick={onRedraw} aria-label={c("Перерисовать портрет", "Redraw portrait")}>{c("Перерисовать", "Redraw")}</button>

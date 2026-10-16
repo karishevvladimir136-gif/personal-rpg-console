@@ -1,0 +1,93 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-18-45-frames-shov-oil-klein4b-refs-cmp.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/4b",
+  "refs": true,
+  "summary": {
+    "scored": 2,
+    "meanPeople": 6.5,
+    "meanPlace": 0,
+    "meanStyle": 7.5
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3278,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": ""
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 1889,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "The man's swept-back dark hair, brown leather coat and wire-rimmed glasses resemble the reference, though the glasses are not a monocle and the bow tie is missing."
+      },
+      "usage": {
+        "inputTokens": 2457,
+        "outputTokens": 322
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"The man's swept-back dark hair, brown leather coat and wire-rimmed glasses resemble the reference, though the glasses are not a monocle and the bow tie is missing.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "The frame's woman shares Зарга's long dark hair, red vest, beaded necklace and drop earrings, but her face looks younger and less weathered, and there is no place reference to compare against."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 363
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"The frame's woman shares Зарга's long dark hair, red vest, beaded necklace and drop earrings, but her face looks younger and less weathered, and there is no place reference to compare against.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3893,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Both characters share the key traits (long-haired bearded man with metal straps, auburn-haired woman in khaki with goggles-style gear and cigarette), but the frame's Mег has loose hair instead of a"
+    }
+  ]
+}

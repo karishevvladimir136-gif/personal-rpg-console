@@ -21,6 +21,7 @@ import {
   PartyRoute,
   SettingsRoute,
 } from "@/components/registry/routes";
+import { ChronicleRoute } from "@/components/registry/chronicle";
 
 export default async function Page({
   params,
@@ -66,6 +67,8 @@ export default async function Page({
       return <SettingsRoute />;
     case "journal":
       return <JournalRoute />;
+    case "chronicle":
+      return <ChronicleRoute />;
     case "sessions":
     case "map":
     case "gallery":

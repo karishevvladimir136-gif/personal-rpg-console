@@ -1,0 +1,6201 @@
+{
+  "capUsd": "$25.000",
+  "totalUsdMicros": 6503094,
+  "entries": [
+    {
+      "at": "2026-10-16T00:08:50.411Z",
+      "kind": "fal",
+      "note": "anchor железная-бабка-holding",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:08:52.638Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:08:54.652Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-figure",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:08:56.995Z",
+      "kind": "fal",
+      "note": "anchor мэг-рыжая-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:08:58.975Z",
+      "kind": "fal",
+      "note": "anchor урзул-железный-бок-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:00.729Z",
+      "kind": "fal",
+      "note": "anchor вольф-кесслер-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:02.896Z",
+      "kind": "fal",
+      "note": "anchor зарга-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:04.715Z",
+      "kind": "fal",
+      "note": "anchor ирэна-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:06.614Z",
+      "kind": "fal",
+      "note": "anchor лиссабон-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:08.554Z",
+      "kind": "fal",
+      "note": "anchor пещера-дома-альвареш-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:10.841Z",
+      "kind": "fal",
+      "note": "anchor алкантара-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:12.819Z",
+      "kind": "fal",
+      "note": "anchor белая-башня-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:14.660Z",
+      "kind": "fal",
+      "note": "anchor длинная-винтовка-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:16.405Z",
+      "kind": "fal",
+      "note": "anchor ящик-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:18.456Z",
+      "kind": "fal",
+      "note": "anchor бочка-воды-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:20.171Z",
+      "kind": "fal",
+      "note": "anchor запасной-винт-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:21.860Z",
+      "kind": "fal",
+      "note": "anchor палатка-на-четверых-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:23.741Z",
+      "kind": "fal",
+      "note": "anchor верёвка-15-м-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:26.070Z",
+      "kind": "fal",
+      "note": "anchor сухари-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:28.121Z",
+      "kind": "fal",
+      "note": "anchor латунные-очки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:29.928Z",
+      "kind": "fal",
+      "note": "anchor торба-контрабандистки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:31.930Z",
+      "kind": "fal",
+      "note": "anchor зелье-лечения-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:33.686Z",
+      "kind": "fal",
+      "note": "anchor армейские-сапоги-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:35.604Z",
+      "kind": "fal",
+      "note": "anchor кожаный-плащ-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:37.492Z",
+      "kind": "fal",
+      "note": "anchor набор-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:39.415Z",
+      "kind": "fal",
+      "note": "anchor кристалл-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:41.475Z",
+      "kind": "fal",
+      "note": "anchor сердечник-г-7-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:43.205Z",
+      "kind": "fal",
+      "note": "anchor отцовские-часы-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:45.016Z",
+      "kind": "fal",
+      "note": "anchor револьвер-аргумент-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:47.048Z",
+      "kind": "fal",
+      "note": "anchor железная-бабка-holding",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:48.960Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:50.663Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-figure",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:52.476Z",
+      "kind": "fal",
+      "note": "anchor мэг-рыжая-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:54.191Z",
+      "kind": "fal",
+      "note": "anchor урзул-железный-бок-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:55.842Z",
+      "kind": "fal",
+      "note": "anchor вольф-кесслер-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:57.483Z",
+      "kind": "fal",
+      "note": "anchor зарга-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:09:59.144Z",
+      "kind": "fal",
+      "note": "anchor ирэна-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:00.872Z",
+      "kind": "fal",
+      "note": "anchor лиссабон-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:02.649Z",
+      "kind": "fal",
+      "note": "anchor пещера-дома-альвареш-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:04.375Z",
+      "kind": "fal",
+      "note": "anchor алкантара-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:06.112Z",
+      "kind": "fal",
+      "note": "anchor белая-башня-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:07.844Z",
+      "kind": "fal",
+      "note": "anchor длинная-винтовка-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:09.457Z",
+      "kind": "fal",
+      "note": "anchor ящик-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:11.184Z",
+      "kind": "fal",
+      "note": "anchor бочка-воды-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:13.197Z",
+      "kind": "fal",
+      "note": "anchor запасной-винт-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:14.874Z",
+      "kind": "fal",
+      "note": "anchor палатка-на-четверых-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:16.638Z",
+      "kind": "fal",
+      "note": "anchor верёвка-15-м-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:18.262Z",
+      "kind": "fal",
+      "note": "anchor сухари-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:19.913Z",
+      "kind": "fal",
+      "note": "anchor латунные-очки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:21.854Z",
+      "kind": "fal",
+      "note": "anchor торба-контрабандистки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:23.585Z",
+      "kind": "fal",
+      "note": "anchor зелье-лечения-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:25.355Z",
+      "kind": "fal",
+      "note": "anchor армейские-сапоги-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:27.172Z",
+      "kind": "fal",
+      "note": "anchor кожаный-плащ-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:28.873Z",
+      "kind": "fal",
+      "note": "anchor набор-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:30.576Z",
+      "kind": "fal",
+      "note": "anchor кристалл-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:32.218Z",
+      "kind": "fal",
+      "note": "anchor сердечник-г-7-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:33.865Z",
+      "kind": "fal",
+      "note": "anchor отцовские-часы-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:35.513Z",
+      "kind": "fal",
+      "note": "anchor револьвер-аргумент-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:37.290Z",
+      "kind": "fal",
+      "note": "anchor железная-бабка-holding",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:39.446Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:41.302Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-figure",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:43.321Z",
+      "kind": "fal",
+      "note": "anchor мэг-рыжая-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:45.711Z",
+      "kind": "fal",
+      "note": "anchor урзул-железный-бок-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:48.092Z",
+      "kind": "fal",
+      "note": "anchor вольф-кесслер-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:50.386Z",
+      "kind": "fal",
+      "note": "anchor зарга-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:52.281Z",
+      "kind": "fal",
+      "note": "anchor ирэна-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:54.124Z",
+      "kind": "fal",
+      "note": "anchor лиссабон-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:56.044Z",
+      "kind": "fal",
+      "note": "anchor пещера-дома-альвареш-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:10:58.099Z",
+      "kind": "fal",
+      "note": "anchor алкантара-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:00.005Z",
+      "kind": "fal",
+      "note": "anchor белая-башня-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:01.821Z",
+      "kind": "fal",
+      "note": "anchor длинная-винтовка-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:03.750Z",
+      "kind": "fal",
+      "note": "anchor ящик-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:05.738Z",
+      "kind": "fal",
+      "note": "anchor бочка-воды-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:07.598Z",
+      "kind": "fal",
+      "note": "anchor запасной-винт-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:09.452Z",
+      "kind": "fal",
+      "note": "anchor палатка-на-четверых-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:11.576Z",
+      "kind": "fal",
+      "note": "anchor верёвка-15-м-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:13.461Z",
+      "kind": "fal",
+      "note": "anchor сухари-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:15.252Z",
+      "kind": "fal",
+      "note": "anchor латунные-очки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:17.289Z",
+      "kind": "fal",
+      "note": "anchor торба-контрабандистки-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:19.222Z",
+      "kind": "fal",
+      "note": "anchor зелье-лечения-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:21.473Z",
+      "kind": "fal",
+      "note": "anchor армейские-сапоги-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:23.572Z",
+      "kind": "fal",
+      "note": "anchor кожаный-плащ-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:25.957Z",
+      "kind": "fal",
+      "note": "anchor набор-наладчика-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:28.065Z",
+      "kind": "fal",
+      "note": "anchor кристалл-эфирита-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:29.907Z",
+      "kind": "fal",
+      "note": "anchor сердечник-г-7-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:31.768Z",
+      "kind": "fal",
+      "note": "anchor отцовские-часы-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:33.809Z",
+      "kind": "fal",
+      "note": "anchor револьвер-аргумент-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:35.809Z",
+      "kind": "fal",
+      "note": "anchor old-citro-n-ds-holding",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:37.745Z",
+      "kind": "fal",
+      "note": "anchor dana-okafor-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:39.594Z",
+      "kind": "fal",
+      "note": "anchor dana-okafor-figure",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:41.549Z",
+      "kind": "fal",
+      "note": "anchor rook-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:43.518Z",
+      "kind": "fal",
+      "note": "anchor mara-vey-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:46.309Z",
+      "kind": "fal",
+      "note": "anchor kowloon-stack-9-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:48.233Z",
+      "kind": "fal",
+      "note": "anchor harbor-district-location",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:50.429Z",
+      "kind": "fal",
+      "note": "anchor surveillance-tapes-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:52.298Z",
+      "kind": "fal",
+      "note": "anchor cash-envelope-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:54.609Z",
+      "kind": "fal",
+      "note": "anchor lockpick-set-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:56.363Z",
+      "kind": "fal",
+      "note": "anchor stim-patch-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:11:58.399Z",
+      "kind": "fal",
+      "note": "anchor trench-coat-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:00.186Z",
+      "kind": "fal",
+      "note": "anchor neural-splice-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:01.918Z",
+      "kind": "fal",
+      "note": "anchor snub-pistol-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:04.007Z",
+      "kind": "fal",
+      "note": "anchor data-chip-lazarus-item",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:06.160Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 253,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:08.872Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:12.801Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:15.206Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:17.803Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 238,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:20.463Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:22.452Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 255,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:24.966Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:26.910Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 255,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:29.539Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:33.418Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:36.113Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:38.253Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:40.851Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:44.490Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:47.245Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:49.262Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:51.590Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:53.825Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:56.286Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:58.220Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 131,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:12:59.274Z",
+      "kind": "fal",
+      "note": "frame t11 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:01.135Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 257,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:03.620Z",
+      "kind": "fal",
+      "note": "frame t12 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:07.502Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 253,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:09.799Z",
+      "kind": "fal",
+      "note": "frame t13 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:11.874Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 253,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:14.168Z",
+      "kind": "fal",
+      "note": "frame t14 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:16.279Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 255,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:18.900Z",
+      "kind": "fal",
+      "note": "frame t15 refs",
+      "usdMicros": 17000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:13:20.058Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 153,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:21.893Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:25.621Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:26.873Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:28.586Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:29.989Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:32.020Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 141,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:33.180Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:35.160Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 273,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:37.617Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:41.283Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 166,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:43.464Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:45.321Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:46.619Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:50.342Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 129,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:51.572Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:53.562Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 154,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:54.999Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:57.064Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 122,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:13:58.134Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:00.775Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 129,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:01.882Z",
+      "kind": "fal",
+      "note": "frame t11 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:04.095Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 286,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:06.706Z",
+      "kind": "fal",
+      "note": "frame t12 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:10.550Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 154,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:12.150Z",
+      "kind": "fal",
+      "note": "frame t13 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:14.326Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 164,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:15.635Z",
+      "kind": "fal",
+      "note": "frame t14 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:18.134Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 313,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:21.265Z",
+      "kind": "fal",
+      "note": "frame t15 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:23.072Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 305,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:25.870Z",
+      "kind": "fal",
+      "note": "frame t16 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:29.655Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 315,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:32.925Z",
+      "kind": "fal",
+      "note": "frame t17 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:34.947Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 313,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:38.088Z",
+      "kind": "fal",
+      "note": "frame t18 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:40.002Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:41.859Z",
+      "kind": "fal",
+      "note": "frame t19 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:43.715Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 354,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:47.926Z",
+      "kind": "fal",
+      "note": "frame t20 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:51.779Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:53.409Z",
+      "kind": "fal",
+      "note": "frame t1 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:55.334Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 168,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:56.686Z",
+      "kind": "fal",
+      "note": "frame t2 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:58.368Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 161,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:14:59.806Z",
+      "kind": "fal",
+      "note": "frame t3 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:01.519Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 147,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:02.766Z",
+      "kind": "fal",
+      "note": "frame t4 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:04.464Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 228,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:06.859Z",
+      "kind": "fal",
+      "note": "frame t5 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:08.585Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 297,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:11.596Z",
+      "kind": "fal",
+      "note": "frame t6 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:13.713Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 147,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:15.344Z",
+      "kind": "fal",
+      "note": "frame t7 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:17.262Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 336,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:20.724Z",
+      "kind": "fal",
+      "note": "frame t8 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:22.696Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 170,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:28.554Z",
+      "kind": "fal",
+      "note": "frame t9 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:30.445Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 125,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:31.605Z",
+      "kind": "fal",
+      "note": "frame t10 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:33.300Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 139,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:34.495Z",
+      "kind": "fal",
+      "note": "frame t11 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:36.531Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 289,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:39.336Z",
+      "kind": "fal",
+      "note": "frame t12 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:41.265Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:42.704Z",
+      "kind": "fal",
+      "note": "frame t13 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:44.625Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:45.891Z",
+      "kind": "fal",
+      "note": "frame t14 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:48.147Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 333,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:51.461Z",
+      "kind": "fal",
+      "note": "frame t15 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:53.597Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 168,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:55.037Z",
+      "kind": "fal",
+      "note": "frame t16 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:15:57.072Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 349,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:00.720Z",
+      "kind": "fal",
+      "note": "frame t17 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:02.527Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 353,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:06.267Z",
+      "kind": "fal",
+      "note": "frame t18 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:08.162Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:09.631Z",
+      "kind": "fal",
+      "note": "frame t19 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:11.283Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 289,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:14.449Z",
+      "kind": "fal",
+      "note": "frame t20 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:16.702Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 146,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:18.171Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:22.025Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 165,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:23.438Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:25.425Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 252,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:29.504Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:31.475Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 140,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:32.582Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:34.427Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 162,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:35.943Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:39.541Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 350,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:42.854Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:44.862Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 144,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:46.291Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:50.108Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 260,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:53.190Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:55.282Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 164,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:56.669Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:58.487Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 118,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:16:59.699Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:01.610Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 150,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:03.126Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:06.911Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:08.219Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:10.109Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:12.770Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:14.826Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:16.173Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:18.194Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 238,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:20.851Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:24.723Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:26.195Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:28.372Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 221,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:30.887Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:34.890Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:36.411Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:38.607Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 165,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:40.126Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:42.226Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:43.365Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:45.659Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 139,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:47.318Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:51.284Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 132,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:52.638Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:54.765Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 116,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:55.963Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:17:59.715Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 141,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:01.011Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:04.587Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 108,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:06.032Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:07.874Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 121,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:09.023Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:10.866Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 113,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:11.961Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:13.898Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 126,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:15.156Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:16.966Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 122,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:18.303Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:22.077Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 146,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:23.548Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:27.382Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:28.845Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 16000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:31.219Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:32.484Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 16000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:34.613Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 146,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:36.077Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 16000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:38.127Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:39.254Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 16000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:41.388Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 169,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:42.849Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 16000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:45.338Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 261,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:48.698Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 5000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:55.774Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 166,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:18:57.154Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 5000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:02.152Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:03.600Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 5000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:08.871Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:10.188Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 5000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:15.353Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 240,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:18.179Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 5000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:25.235Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 294,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:28.224Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:44.123Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 165,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:45.476Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:19:59.667Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 153,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:20:01.028Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:20:13.515Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 145,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:20:14.680Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:20:33.358Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 161,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:20:36.548Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:21:00.197Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 314,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:21:03.441Z",
+      "kind": "fal",
+      "note": "frame t17 refs",
+      "usdMicros": 30000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:21:12.621Z",
+      "kind": "fal",
+      "note": "frame t17 refs (softened)",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:21:35.402Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 346,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:21:38.653Z",
+      "kind": "fal",
+      "note": "frame t18 refs",
+      "usdMicros": 30000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:21:46.509Z",
+      "kind": "fal",
+      "note": "frame t18 refs (softened)",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:00.835Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 154,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:02.217Z",
+      "kind": "fal",
+      "note": "frame t19 refs",
+      "usdMicros": 30000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:22:14.505Z",
+      "kind": "fal",
+      "note": "frame t19 refs (softened)",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:26.777Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 354,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:30.387Z",
+      "kind": "fal",
+      "note": "frame t20 refs",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:46.430Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 528,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:50.613Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 389,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:54.638Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 446,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:22:57.407Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:00.431Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:03.915Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 450,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:06.801Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:10.148Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:13.237Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:15.783Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 444,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:18.658Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 547,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:21.412Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 448,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:25.011Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:27.912Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 730,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:30.955Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:33.563Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:36.452Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 529,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:39.196Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 326,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:41.110Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 446,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:43.965Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:47.099Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:52.653Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 447,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:55.835Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 588,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:23:59.054Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 448,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:02.950Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 405,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:05.575Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:08.305Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 588,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:11.149Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 448,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:13.901Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 447,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:16.659Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 730,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:19.712Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 590,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:22.702Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 448,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:25.744Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 589,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:31.135Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 516,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:34.385Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 334,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:36.628Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 446,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:39.836Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 433,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:42.487Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 589,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:45.251Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 447,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:48.312Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 584,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:51.203Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 401,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:53.466Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 450,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:57.330Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 409,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:24:59.040Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 389,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:01.843Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:05.186Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 437,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:07.787Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:10.571Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:13.237Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 588,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:16.154Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 442,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:19.221Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 450,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:23.030Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 386,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:24.397Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 236,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:25.981Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 665,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:29.375Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 527,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:32.744Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 365,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:35.536Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 428,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:38.228Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 441,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:41.678Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:44.874Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 584,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:48.105Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 586,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:51.934Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 528,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:55.175Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 389,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:25:58.791Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 407,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:01.913Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 427,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:04.510Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 589,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:08.015Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 528,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:11.417Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 366,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:14.031Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 406,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:17.391Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 418,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:19.918Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:23.385Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 528,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:26.592Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 390,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:29.263Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 426,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:32.677Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 445,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:26:35.991Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 590,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:41:17.360Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-portrait",
+      "usdMicros": 30000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:41:31.179Z",
+      "kind": "fal",
+      "note": "anchor джеймс-хейл-portrait (softened)",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:41:46.668Z",
+      "kind": "fal",
+      "note": "anchor мэг-рыжая-portrait",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:41:59.086Z",
+      "kind": "fal",
+      "note": "anchor урзул-железный-бок-portrait",
+      "usdMicros": 30000,
+      "settled": false
+    },
+    {
+      "at": "2026-10-16T00:42:08.214Z",
+      "kind": "fal",
+      "note": "anchor урзул-железный-бок-portrait (softened)",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:42:20.909Z",
+      "kind": "fal",
+      "note": "anchor вольф-кесслер-portrait",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:42:33.353Z",
+      "kind": "fal",
+      "note": "anchor зарга-portrait",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:42:44.704Z",
+      "kind": "fal",
+      "note": "anchor ирэна-portrait",
+      "usdMicros": 30000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:42:57.610Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 543,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:00.976Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 372,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:03.630Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 415,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:06.351Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 419,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:08.744Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 602,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:12.067Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 468,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:14.903Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 643,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:17.925Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 493,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:21.409Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 468,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:24.182Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 499,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:27.311Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 554,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:30.239Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 485,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:33.606Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 434,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:36.224Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 920,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:41.455Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 461,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:44.432Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 594,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:47.562Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 510,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:50.475Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 353,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:52.827Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 438,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:55.627Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 442,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:43:58.359Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 613,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:01.587Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 470,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:04.677Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 585,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:07.649Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 473,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:12.422Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 435,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:14.870Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 442,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:17.517Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 580,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:20.538Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 447,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:23.348Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:26.728Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 786,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:30.151Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 635,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:33.686Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 435,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:36.717Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 615,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:42.386Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 515,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:45.382Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 315,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:47.648Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 432,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:50.989Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 423,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:53.467Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 645,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:44:58.380Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 466,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:01.311Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 622,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:04.407Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 391,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:06.601Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 461,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:09.590Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 371,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:10.787Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 304,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:13.765Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 400,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:16.081Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 421,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:18.801Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 582,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:22.708Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 424,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:25.712Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 610,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:28.974Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 521,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:32.420Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 408,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:35.599Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 364,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:37.113Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 226,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:38.115Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 648,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:41.965Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 533,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:44.518Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 367,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:47.596Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 474,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:51.124Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 467,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:54.115Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 457,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:45:57.055Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 587,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:00.241Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 604,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:03.923Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 538,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:06.868Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 344,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:08.990Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 441,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:12.852Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 427,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:15.665Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 616,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:19.050Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 543,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:22.624Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 396,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:25.549Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 387,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:27.768Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 408,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:31.354Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 642,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:35.062Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 531,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:38.295Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 356,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:40.718Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 412,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:43.453Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 417,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:46.149Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 560,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:48.900Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 673,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:46:52.853Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 658,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:19.648Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 154,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:20.903Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:24.617Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 161,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:26.092Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:29.753Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 170,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:30.988Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:34.813Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 154,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:36.264Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:40.089Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:41.398Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:45.308Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:46.742Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:50.702Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 163,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:52.109Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:55.967Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 140,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:47:57.249Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:00.777Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 285,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:03.576Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:05.508Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 149,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:06.719Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:08.807Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 123,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:09.655Z",
+      "kind": "fal",
+      "note": "frame t11 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:11.719Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:13.055Z",
+      "kind": "fal",
+      "note": "frame t12 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:16.661Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 270,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:19.101Z",
+      "kind": "fal",
+      "note": "frame t13 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:20.979Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 258,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:23.386Z",
+      "kind": "fal",
+      "note": "frame t14 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:25.609Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 134,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:26.914Z",
+      "kind": "fal",
+      "note": "frame t15 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:28.931Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 164,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:30.532Z",
+      "kind": "fal",
+      "note": "frame t16 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:34.598Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:35.904Z",
+      "kind": "fal",
+      "note": "frame t17 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:37.862Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 167,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:39.229Z",
+      "kind": "fal",
+      "note": "frame t18 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:43.025Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 131,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:44.315Z",
+      "kind": "fal",
+      "note": "frame t19 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:46.039Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 159,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:47.878Z",
+      "kind": "fal",
+      "note": "frame t20 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:51.637Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:52.875Z",
+      "kind": "fal",
+      "note": "frame t1 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:54.810Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:56.335Z",
+      "kind": "fal",
+      "note": "frame t2 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:57.997Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 165,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:48:59.302Z",
+      "kind": "fal",
+      "note": "frame t3 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:00.945Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 149,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:02.922Z",
+      "kind": "fal",
+      "note": "frame t4 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:04.595Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:06.058Z",
+      "kind": "fal",
+      "note": "frame t5 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:07.687Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:09.113Z",
+      "kind": "fal",
+      "note": "frame t6 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:10.755Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:12.049Z",
+      "kind": "fal",
+      "note": "frame t7 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:13.913Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:15.260Z",
+      "kind": "fal",
+      "note": "frame t8 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:17.014Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:18.370Z",
+      "kind": "fal",
+      "note": "frame t9 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:19.997Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 133,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:21.178Z",
+      "kind": "fal",
+      "note": "frame t10 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:23.029Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 126,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:23.929Z",
+      "kind": "fal",
+      "note": "frame t11 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:25.595Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 144,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:26.948Z",
+      "kind": "fal",
+      "note": "frame t12 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:28.646Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 285,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:31.220Z",
+      "kind": "fal",
+      "note": "frame t13 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:33.090Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 145,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:34.249Z",
+      "kind": "fal",
+      "note": "frame t14 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:35.964Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:37.249Z",
+      "kind": "fal",
+      "note": "frame t15 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:39.167Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 169,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:40.797Z",
+      "kind": "fal",
+      "note": "frame t16 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:42.434Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 133,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:43.725Z",
+      "kind": "fal",
+      "note": "frame t17 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:45.461Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 172,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:46.901Z",
+      "kind": "fal",
+      "note": "frame t18 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:50.660Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:51.873Z",
+      "kind": "fal",
+      "note": "frame t19 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:53.765Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 175,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:55.487Z",
+      "kind": "fal",
+      "note": "frame t20 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:57.462Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 164,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:49:59.159Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:03.028Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 164,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:04.628Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:08.285Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 245,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:10.276Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:14.053Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 151,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:15.812Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:19.557Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 153,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:20.943Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:24.874Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 153,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:26.281Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:29.918Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:31.318Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:35.009Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:50:36.329Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:51:28.539Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 253,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:51:32.091Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:14.830Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 130,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:15.972Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:19.430Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:20.846Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:25.049Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 166,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:26.601Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:30.210Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:31.366Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:34.987Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 149,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:37.053Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:40.697Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:42.288Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:46.229Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:47.639Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:51.654Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 162,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:53.127Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:56.919Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 136,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:52:58.199Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:02.012Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 149,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:03.306Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:05.214Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 139,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:06.464Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:08.805Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 146,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:10.096Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:14.042Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 131,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:15.316Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:19.215Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 119,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:20.358Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:24.331Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 140,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:25.676Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:29.372Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 121,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:30.646Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:34.190Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 235,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:36.245Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:38.070Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 113,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:39.064Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:40.758Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 121,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:41.872Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:44.016Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 118,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:48.427Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:52.334Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 139,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:53.620Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:53:57.513Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 689,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:01.040Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 570,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:04.766Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 669,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:08.682Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 640,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:11.863Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 737,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:18.015Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 585,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:20.744Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 738,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:31.213Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 557,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:34.081Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 489,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:37.415Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 517,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:40.944Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 622,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:43.964Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 490,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:54.245Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 522,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:54:57.933Z",
+      "kind": "haiku",
+      "note": "score t15",
+      "usdMicros": 439,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:00.514Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 752,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:04.453Z",
+      "kind": "haiku",
+      "note": "score t17",
+      "usdMicros": 515,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:08.310Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 779,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:15.462Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 729,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:18.333Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 708,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:21.746Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 545,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:24.964Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 607,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:27.918Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 605,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:32.115Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 755,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:35.491Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 624,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:38.700Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 792,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:42.019Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 608,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:47.592Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 479,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:50.669Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 464,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:56.830Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 560,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:55:59.829Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 532,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:03.356Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 615,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:08.053Z",
+      "kind": "haiku",
+      "note": "score t15",
+      "usdMicros": 430,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:17.968Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 870,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:21.015Z",
+      "kind": "haiku",
+      "note": "score t17",
+      "usdMicros": 436,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:23.651Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 746,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:26.991Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 818,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:30.708Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 700,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:37.864Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 617,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:41.964Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 671,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:48.952Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 644,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:52.457Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 734,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:56.156Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 606,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:56:59.505Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 769,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:03.447Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 568,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:06.030Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 509,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:09.564Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 688,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:12.551Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 578,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:16.614Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 691,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:20.530Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 592,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:26.898Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 691,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:29.636Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 600,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:32.978Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 751,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:38.845Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 562,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:41.515Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 453,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:44.842Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 649,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:47.697Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 486,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:50.063Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 633,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:52.517Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 552,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:55.534Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 506,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:57:58.478Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 376,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:58:00.987Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 441,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:58:04.209Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 589,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T00:58:07.392Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 749,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:05:54.960Z",
+      "kind": "fal",
+      "note": "anchor dana-okafor-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:05:57.153Z",
+      "kind": "fal",
+      "note": "anchor dana-okafor-figure",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:05:59.143Z",
+      "kind": "fal",
+      "note": "anchor mara-vey-portrait",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:00.931Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 163,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:02.475Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:09.134Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 169,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:11.491Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:15.043Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:16.369Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:19.706Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:21.041Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:24.340Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 150,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:25.709Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:29.480Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:31.169Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:33.541Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 170,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:35.106Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:39.049Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 150,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:40.262Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:43.905Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 138,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:45.817Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:47.873Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 137,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:48.998Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:50.906Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 132,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:52.045Z",
+      "kind": "fal",
+      "note": "frame t11 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:54.431Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:06:55.787Z",
+      "kind": "fal",
+      "note": "frame t12 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:00.030Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:01.777Z",
+      "kind": "fal",
+      "note": "frame t13 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:03.884Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:05.247Z",
+      "kind": "fal",
+      "note": "frame t14 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:07.083Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 149,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:09.119Z",
+      "kind": "fal",
+      "note": "frame t15 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:11.188Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 178,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:12.838Z",
+      "kind": "fal",
+      "note": "frame t16 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:16.248Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 147,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:17.653Z",
+      "kind": "fal",
+      "note": "frame t17 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:19.749Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 191,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:21.485Z",
+      "kind": "fal",
+      "note": "frame t18 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:24.931Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:26.271Z",
+      "kind": "fal",
+      "note": "frame t19 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:28.204Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 177,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:29.837Z",
+      "kind": "fal",
+      "note": "frame t20 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:33.745Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:35.218Z",
+      "kind": "fal",
+      "note": "frame t1 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:37.257Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 166,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:38.903Z",
+      "kind": "fal",
+      "note": "frame t2 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:40.567Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 161,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:42.043Z",
+      "kind": "fal",
+      "note": "frame t3 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:43.908Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:45.359Z",
+      "kind": "fal",
+      "note": "frame t4 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:47.132Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 159,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:49.080Z",
+      "kind": "fal",
+      "note": "frame t5 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:50.883Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:52.191Z",
+      "kind": "fal",
+      "note": "frame t6 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:54.296Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 176,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:56.958Z",
+      "kind": "fal",
+      "note": "frame t7 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:07:58.951Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:00.354Z",
+      "kind": "fal",
+      "note": "frame t8 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:02.037Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 262,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:05.130Z",
+      "kind": "fal",
+      "note": "frame t9 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:06.988Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 141,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:08.004Z",
+      "kind": "fal",
+      "note": "frame t10 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:10.089Z",
+      "kind": "haiku",
+      "note": "shot t11",
+      "usdMicros": 237,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:12.280Z",
+      "kind": "fal",
+      "note": "frame t11 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:14.333Z",
+      "kind": "haiku",
+      "note": "shot t12",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:15.640Z",
+      "kind": "fal",
+      "note": "frame t12 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:17.652Z",
+      "kind": "haiku",
+      "note": "shot t13",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:19.045Z",
+      "kind": "fal",
+      "note": "frame t13 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:20.836Z",
+      "kind": "haiku",
+      "note": "shot t14",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:22.176Z",
+      "kind": "fal",
+      "note": "frame t14 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:24.194Z",
+      "kind": "haiku",
+      "note": "shot t15",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:29.417Z",
+      "kind": "fal",
+      "note": "frame t15 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:31.257Z",
+      "kind": "haiku",
+      "note": "shot t16",
+      "usdMicros": 176,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:33.008Z",
+      "kind": "fal",
+      "note": "frame t16 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:34.712Z",
+      "kind": "haiku",
+      "note": "shot t17",
+      "usdMicros": 152,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:36.701Z",
+      "kind": "fal",
+      "note": "frame t17 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:38.380Z",
+      "kind": "haiku",
+      "note": "shot t18",
+      "usdMicros": 179,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:40.178Z",
+      "kind": "fal",
+      "note": "frame t18 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:41.840Z",
+      "kind": "haiku",
+      "note": "shot t19",
+      "usdMicros": 144,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:43.267Z",
+      "kind": "fal",
+      "note": "frame t19 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:45.088Z",
+      "kind": "haiku",
+      "note": "shot t20",
+      "usdMicros": 161,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:46.520Z",
+      "kind": "fal",
+      "note": "frame t20 norefs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:48.431Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 153,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:50.049Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:53.843Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 167,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:55.500Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:57.439Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:08:58.686Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:02.304Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 158,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:03.687Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:07.072Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 151,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:08.493Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:12.015Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:13.354Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:16.788Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 178,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:18.371Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:21.504Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 136,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:22.695Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:26.144Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 328,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:32.768Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:34.565Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 136,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:35.688Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:37.691Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 157,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:39.145Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:42.560Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 160,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:44.334Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:47.725Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 174,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:49.182Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:52.711Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 171,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:54.293Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:57.765Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 148,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:09:59.084Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:02.507Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 156,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:03.955Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:07.427Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 167,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:08.816Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:12.453Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 155,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:13.762Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:17.380Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:18.795Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:20.632Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 132,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:21.743Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:23.673Z",
+      "kind": "haiku",
+      "note": "shot t1",
+      "usdMicros": 142,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:24.946Z",
+      "kind": "fal",
+      "note": "frame t1 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:28.707Z",
+      "kind": "haiku",
+      "note": "shot t2",
+      "usdMicros": 143,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:30.093Z",
+      "kind": "fal",
+      "note": "frame t2 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:33.580Z",
+      "kind": "haiku",
+      "note": "shot t3",
+      "usdMicros": 119,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:34.821Z",
+      "kind": "fal",
+      "note": "frame t3 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:38.525Z",
+      "kind": "haiku",
+      "note": "shot t4",
+      "usdMicros": 142,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:39.740Z",
+      "kind": "fal",
+      "note": "frame t4 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:43.410Z",
+      "kind": "haiku",
+      "note": "shot t5",
+      "usdMicros": 208,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:45.237Z",
+      "kind": "fal",
+      "note": "frame t5 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:48.968Z",
+      "kind": "haiku",
+      "note": "shot t6",
+      "usdMicros": 215,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:50.857Z",
+      "kind": "fal",
+      "note": "frame t6 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:52.847Z",
+      "kind": "haiku",
+      "note": "shot t7",
+      "usdMicros": 111,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:53.789Z",
+      "kind": "fal",
+      "note": "frame t7 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:55.909Z",
+      "kind": "haiku",
+      "note": "shot t8",
+      "usdMicros": 127,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:57.068Z",
+      "kind": "fal",
+      "note": "frame t8 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:10:59.687Z",
+      "kind": "haiku",
+      "note": "shot t9",
+      "usdMicros": 136,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:00.794Z",
+      "kind": "fal",
+      "note": "frame t9 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:04.722Z",
+      "kind": "haiku",
+      "note": "shot t10",
+      "usdMicros": 151,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:06.166Z",
+      "kind": "fal",
+      "note": "frame t10 refs",
+      "usdMicros": 17000,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:09.923Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 538,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:13.847Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 479,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:17.228Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 440,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:19.565Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 479,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:22.556Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 576,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:25.668Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 466,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:29.262Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 601,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:32.426Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 464,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:35.002Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 380,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:38.126Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 421,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:41.086Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 436,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:43.367Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 409,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:46.426Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 448,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:49.822Z",
+      "kind": "haiku",
+      "note": "score t15",
+      "usdMicros": 367,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:52.492Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 618,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:55.587Z",
+      "kind": "haiku",
+      "note": "score t17",
+      "usdMicros": 368,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:11:58.484Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 544,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:03.198Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 409,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:06.057Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 583,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:09.751Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 569,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:13.136Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 442,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:16.072Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 440,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:18.365Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 490,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:21.363Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 599,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:24.851Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 503,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:27.937Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 578,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:30.784Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 459,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:33.729Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 355,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:35.977Z",
+      "kind": "haiku",
+      "note": "score t11",
+      "usdMicros": 456,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:39.605Z",
+      "kind": "haiku",
+      "note": "score t12",
+      "usdMicros": 481,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:42.738Z",
+      "kind": "haiku",
+      "note": "score t13",
+      "usdMicros": 431,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:46.015Z",
+      "kind": "haiku",
+      "note": "score t14",
+      "usdMicros": 383,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:49.029Z",
+      "kind": "haiku",
+      "note": "score t15",
+      "usdMicros": 383,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:52.671Z",
+      "kind": "haiku",
+      "note": "score t16",
+      "usdMicros": 633,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:56.342Z",
+      "kind": "haiku",
+      "note": "score t17",
+      "usdMicros": 368,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:12:58.634Z",
+      "kind": "haiku",
+      "note": "score t18",
+      "usdMicros": 603,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:01.934Z",
+      "kind": "haiku",
+      "note": "score t19",
+      "usdMicros": 353,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:04.112Z",
+      "kind": "haiku",
+      "note": "score t20",
+      "usdMicros": 582,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:07.717Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 580,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:12.343Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 484,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:15.790Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 444,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:18.409Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 513,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:21.839Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 574,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:24.769Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 493,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:27.986Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 531,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:31.346Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 421,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:34.236Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 517,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:36.985Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 430,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:39.902Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 444,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:42.270Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 440,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:45.331Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 646,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:48.667Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 477,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:51.624Z",
+      "kind": "haiku",
+      "note": "score t7",
+      "usdMicros": 563,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:54.529Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 449,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:13:57.029Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 419,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:00.041Z",
+      "kind": "haiku",
+      "note": "score t1",
+      "usdMicros": 517,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:02.214Z",
+      "kind": "haiku",
+      "note": "score t2",
+      "usdMicros": 460,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:05.042Z",
+      "kind": "haiku",
+      "note": "score t3",
+      "usdMicros": 602,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:07.893Z",
+      "kind": "haiku",
+      "note": "score t4",
+      "usdMicros": 482,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:10.488Z",
+      "kind": "haiku",
+      "note": "score t5",
+      "usdMicros": 484,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:13.867Z",
+      "kind": "haiku",
+      "note": "score t6",
+      "usdMicros": 341,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:15.971Z",
+      "kind": "haiku",
+      "note": "score t8",
+      "usdMicros": 464,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:18.978Z",
+      "kind": "haiku",
+      "note": "score t9",
+      "usdMicros": 632,
+      "settled": true
+    },
+    {
+      "at": "2026-10-16T01:14:23.340Z",
+      "kind": "haiku",
+      "note": "score t10",
+      "usdMicros": 743,
+      "settled": true
+    }
+  ]
+}

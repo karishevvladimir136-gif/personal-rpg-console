@@ -11,8 +11,9 @@ play, break things and delete the sandbox afterwards.
 - Node.js installed (the normal start uses it too), and `pnpm install` done once in this checkout.
 - The Supabase command-line tool. The launcher uses, in this order: the copy in `test-results/supabase-cli/`,
   a `supabase` on your PATH, or downloads a pinned version through `npx` on first use.
-- Optional: `.env.local` with `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` to play on the real models. Without keys,
-  start with `--fake` and play on a stand-in game master that costs nothing.
+- Optional: `.env.local` with `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` to play on the real models, and `FAL_KEY` for
+  the pictures (live frames, portraits, places; Settings → Картинки). Without keys, start with `--fake` and play on a
+  stand-in game master that costs nothing; without `FAL_KEY` the game plays on and the picture panel says the key is missing.
 
 ## Start, stop, delete
 

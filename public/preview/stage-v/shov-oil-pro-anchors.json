@@ -1,0 +1,32 @@
+{
+  "5e5e5e5e-0000-4000-8000-000000000010:portrait": {
+    "file": "shov-oil-pro-джеймс-хейл-portrait.jpg",
+    "composition": "portrait",
+    "name": "Джеймс Хейл"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000011:portrait": {
+    "file": "shov-oil-pro-мэг-рыжая-portrait.jpg",
+    "composition": "portrait",
+    "name": "Мэг Рыжая"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000012:portrait": {
+    "file": "shov-oil-pro-урзул-железный-бок-portrait.jpg",
+    "composition": "portrait",
+    "name": "Урзул Железный Бок"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000013:portrait": {
+    "file": "shov-oil-pro-вольф-кесслер-portrait.jpg",
+    "composition": "portrait",
+    "name": "Вольф Кесслер"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000014:portrait": {
+    "file": "shov-oil-pro-зарга-portrait.jpg",
+    "composition": "portrait",
+    "name": "Зарга"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000015:portrait": {
+    "file": "shov-oil-pro-ирэна-portrait.jpg",
+    "composition": "portrait",
+    "name": "Ирэна"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T01-11-09-frames-noir-noir-klein9b-refs.json",
+  "world": "noir",
+  "style": "noir",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "withPeople": 9,
+    "withPlace": 5,
+    "meanPeople": 6.56,
+    "meanPlace": 4.4,
+    "meanStyle": 8.78
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 8,
+        "place": 2,
+        "style": 9,
+        "notes": "Woman and helmeted man match references well; lift interior lacks Kowloon Stack 9 street signage and architecture; same inked rain style."
+      },
+      "usage": {
+        "inputTokens": 3746,
+        "outputTokens": 285
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":2,\"style\":9,\"notes\":\"Woman and helmeted man match references well; lift interior lacks Kowloon Stack 9 street signage and architecture; same inked rain style.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 6,
+        "place": 4,
+        "style": 8,
+        "notes": "Hair, gold earring, and dark trench coat echo Dana, but skin tone and facial features differ. The room lacks the Kowloon street signage."
+      },
+      "usage": {
+        "inputTokens": 2928,
+        "outputTokens": 335
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":4,\"style\":8,\"notes\":\"Hair, gold earring, and dark trench coat echo Dana, but skin tone and facial features differ. The room lacks the Kowloon street signage.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 8,
+        "place": 7,
+        "style": 9,
+        "notes": "Dana's short hair, trench coat and glowing earring match; Mara's bald head, implants and yellow jacket match. Rainy street with Stack 9 signage."
+      },
+      "usage": {
+        "inputTokens": 4303,
+        "outputTokens": 343
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":7,\"style\":9,\"notes\":\"Dana's short hair, trench coat and glowing earring match; Mara's bald head, implants and yellow jacket match. Rainy street with Stack 9 signage.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 8,
+        "place": 3,
+        "style": 9,
+        "notes": "Dana matches the portrait's short hair, glowing earring, and trench coat. The frame is an interior, not the reference street scene."
+      },
+      "usage": {
+        "inputTokens": 2927,
+        "outputTokens": 379
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":3,\"style\":9,\"notes\":\"Dana matches the portrait's short hair, glowing earring, and trench coat. The frame is an interior, not the reference street scene.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 7,
+        "place": 6,
+        "style": 9,
+        "notes": "Dana matches her portrait: cropped hair, gold stud, wet trench. Building and '9' sign echo the reference, but the storefront is simplified."
+      },
+      "usage": {
+        "inputTokens": 2906,
+        "outputTokens": 386
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":6,\"style\":9,\"notes\":\"Dana matches her portrait: cropped hair, gold stud, wet trench. Building and '9' sign echo the reference, but the storefront is simplified.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 1,
+        "place": 0,
+        "style": 8,
+        "notes": "Rook isn't visible; only a car and drone. Gritty inked comic style matches the portrait's halftone rendering."
+      },
+      "usage": {
+        "inputTokens": 1852,
+        "outputTokens": 312
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":1,\"place\":0,\"style\":8,\"notes\":\"Rook isn't visible; only a car and drone. Gritty inked comic style matches the portrait's halftone rendering.\"}"
+    },
+    {
+      "turn": 7,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 9,
+        "notes": "Mara matches well: bald head, head discs, yellow raincoat. Velvet has no reference. No place reference image given. Same inked, rainy comic style."
+      },
+      "usage": {
+        "inputTokens": 2437,
+        "outputTokens": 440
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":9,\"notes\":\"Mara matches well: bald head, head discs, yellow raincoat. Velvet has no reference. No place reference image given. Same inked, rainy comic style.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 9,
+        "notes": "Dana matches: cropped hair, glowing earring, trench coat. Mara matches: bald head with implants, yellow raincoat. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 3846,
+        "outputTokens": 495
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":0,\"style\":9,\"notes\":\"Dana matches: cropped hair, glowing earring, trench coat. Mara matches: bald head with implants, yellow raincoat. No place reference given.\"}"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Rook",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 9,
+        "notes": "Mara's bald head, implants and yellow jacket match. Dana's hair is longer than her reference, and Rook appears as a small robot, not the helmeted man."
+      },
+      "usage": {
+        "inputTokens": 4678,
+        "outputTokens": 550
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":9,\"notes\":\"Mara's bald head, implants and yellow jacket match. Dana's hair is longer than her reference, and Rook appears as a small robot, not the helmeted man.\"}"
+    }
+  ]
+}

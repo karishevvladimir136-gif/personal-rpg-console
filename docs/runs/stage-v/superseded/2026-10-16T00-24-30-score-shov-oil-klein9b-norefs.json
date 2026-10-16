@@ -1,0 +1,267 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-16-16-frames-shov-oil-klein9b-norefs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": false,
+  "summary": {
+    "scored": 2,
+    "meanPeople": 1,
+    "meanPlace": 3,
+    "meanStyle": 8
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3285,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":6,\"style\":7,\"notes\":\"Meg has similar auburn hair and dark leather clothing but lacks the goggles helmet, braid and cigarette of her portrait, and the cave, water and dock match"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 8,
+        "notes": "No portrait references were given, so people score is 0; the frame's rocky cave with a ship deck partly matches the reference cave, and both share a dark impasto oil-painting style."
+      },
+      "usage": {
+        "inputTokens": 1905,
+        "outputTokens": 271
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":8,\"notes\":\"No portrait references were given, so people score is 0; the frame's rocky cave with a ship deck partly matches the reference cave, and both share a dark impasto oil-painting style.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2464,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"The frame's man has a full beard"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2448,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"The frame's woman has similar long dark-brown hair and beaded charms, but she looks younger and wears a le"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3872,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Urzul is absent from the frame, and the red-haired woman has long lo"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2473,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"The frame's pilot has similar red hair and a leather jacket, but lacks the reference's goggles, braid, cig"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3881,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"The frame's armored long-haired man loosely resembles Urzul's hair and beard, but Wolf Kessler's gl"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2477,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"The frame shows only hands and a leather-banded forearm, so Urzul's face, long hair, and beard are not visible; the painterly oil style matches the"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 1,
+        "place": 0,
+        "style": 8,
+        "notes": "The frame has no figure resembling Wolf Kessler (no round gold glasses, bow tie, or dark coat), and the only reference is a portrait, so there is no place reference; the painterly oil style closely ma"
+      },
+      "usage": {
+        "inputTokens": 2497,
+        "outputTokens": 310
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":1,\"place\":0,\"style\":8,\"notes\":\"The frame has no figure resembling Wolf Kessler (no round gold glasses, bow tie, or dark coat), and the only reference is a portrait, so there is no place reference; the painterly oil style closely matches.\"}"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2449,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\""
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3884,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"The woman"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2481,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":0,\"style\":8,\"notes\":\"The frame shows two women seen from behind with red hair, but without the reference's aviator helmet, goggles, braid, khaki jacket or cigarette, so Мэг is not recognizable; the painterly oil style closely matches"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2472,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":"
+    },
+    {
+      "turn": 15,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 5297,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": ""
+    },
+    {
+      "turn": 17,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3896,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"The frame's bearded warrior has short hair and full plate armor unlike Urzul's long hair and shoulder straps, the sorceress only loosely echoes Z"
+    },
+    {
+      "turn": 19,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2480,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": ""
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3892,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"The frame's red-haired gunwoman loosely echoes Meg's auburn look but lacks her goggles and cigarette, the"
+    }
+  ]
+}

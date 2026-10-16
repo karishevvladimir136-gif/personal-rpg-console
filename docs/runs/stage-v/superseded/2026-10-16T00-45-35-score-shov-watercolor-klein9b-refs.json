@@ -1,0 +1,185 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-17-45-frames-shov-watercolor-klein9b-refs.json",
+  "world": "shov",
+  "style": "watercolor",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "meanPeople": 5.38,
+    "meanPlace": 1.33,
+    "meanStyle": 8.22
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 8,
+        "notes": "Frame's Meg matches reference hair, glasses, and flag-patched uniform, but lacks the cigarette. Tinka's headscarf and dress match; cave and water resemble reference."
+      },
+      "usage": {
+        "inputTokens": 3279,
+        "outputTokens": 86
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":6,\"style\":8,\"notes\":\"Frame's Meg matches reference hair, glasses, and flag-patched uniform, but lacks the cigarette. Tinka's headscarf and dress match; cave and water resemble reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 9,
+        "notes": "No people references given. Frame shows a similar cave arch and water, but a ship deck instead of a boat."
+      },
+      "usage": {
+        "inputTokens": 1888,
+        "outputTokens": 230
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":9,\"notes\":\"No people references given. Frame shows a similar cave arch and water, but a ship deck instead of a boat.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 9,
+        "notes": "Frame man matches reference: round glasses, mustache, gray swept hair, dark coat. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 2467,
+        "outputTokens": 307
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":9,\"notes\":\"Frame man matches reference: round glasses, mustache, gray swept hair, dark coat. No place reference given.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 9,
+        "notes": "Hair, fur collar and beaded jewelry resemble the reference; face differs slightly. Setting is a chairlift bench, not a gondola nose."
+      },
+      "usage": {
+        "inputTokens": 2451,
+        "outputTokens": 352
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":9,\"notes\":\"Hair, fur collar and beaded jewelry resemble the reference; face differs slightly. Setting is a chairlift bench, not a gondola nose.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame shows one man, not both characters; his hair, beard and khaki look differ from Urzul's and Meg's portraits. Art style matches well."
+      },
+      "usage": {
+        "inputTokens": 3872,
+        "outputTokens": 390
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Frame shows one man, not both characters; his hair, beard and khaki look differ from Urzul's and Meg's portraits. Art style matches well.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Meg's auburn hair, headset and olive uniform match; face is simplified. No setting in reference. Watercolor ink style matches closely."
+      },
+      "usage": {
+        "inputTokens": 2495,
+        "outputTokens": 348
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Meg's auburn hair, headset and olive uniform match; face is simplified. No setting in reference. Watercolor ink style matches closely.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 9,
+        "notes": "Only one bearded, long-haired, rivet-armored man, resembling Urzul; Wolf's glasses, mustache and coat are missing."
+      },
+      "usage": {
+        "inputTokens": 3876,
+        "outputTokens": 444
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":9,\"notes\":\"Only one bearded, long-haired, rivet-armored man, resembling Urzul; Wolf's glasses, mustache and coat are missing.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Warrior's long brown hair, beard and rivet armor echo Urzul; face less angular, no pointed ear. Watercolor ink style matches."
+      },
+      "usage": {
+        "inputTokens": 2477,
+        "outputTokens": 546
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Warrior's long brown hair, beard and rivet armor echo Urzul; face less angular, no pointed ear. Watercolor ink style matches.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Right-hand man resembles Wolf's round glasses, swept grey hair, and coat; no place reference provided."
+      },
+      "usage": {
+        "inputTokens": 2498,
+        "outputTokens": 317
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Right-hand man resembles Wolf's round glasses, swept grey hair, and coat; no place reference provided.\"}"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    }
+  ]
+}

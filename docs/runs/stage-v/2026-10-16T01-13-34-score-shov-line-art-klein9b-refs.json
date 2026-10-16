@@ -1,0 +1,175 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T01-09-37-frames-shov-line-art-klein9b-refs.json",
+  "world": "shov",
+  "style": "line-art",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 8,
+    "withPeople": 8,
+    "withPlace": 2,
+    "meanPeople": 6,
+    "meanPlace": 6.5,
+    "meanStyle": 8.13
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 5,
+        "place": 6,
+        "style": 8,
+        "notes": "Hale and Meg match in hair, uniform and goggles, but Meg wears glasses and Tinka is unclear. Cave, water and rock style fit."
+      },
+      "usage": {
+        "inputTokens": 3178,
+        "outputTokens": 525
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":6,\"style\":8,\"notes\":\"Hale and Meg match in hair, uniform and goggles, but Meg wears glasses and Tinka is unclear. Cave, water and rock style fit.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 7,
+        "style": 9,
+        "notes": "Woman's white headscarf and green dress match; right man resembles Hale's hair, mustache, and grey shirt. Cave setting and lanterns fit."
+      },
+      "usage": {
+        "inputTokens": 2383,
+        "outputTokens": 491
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":7,\"style\":9,\"notes\":\"Woman's white headscarf and green dress match; right man resembles Hale's hair, mustache, and grey shirt. Cave setting and lanterns fit.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Kessler's gray slicked hair, round glasses, suit and cheek smear match; Hale's hair and stubble only loosely match."
+      },
+      "usage": {
+        "inputTokens": 2689,
+        "outputTokens": 351
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Kessler's gray slicked hair, round glasses, suit and cheek smear match; Hale's hair and stubble only loosely match.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Zarga's headband, beads, earrings and rust dress match well; the hero is partly hidden but his hair and stubble fit. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 2684,
+        "outputTokens": 490
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Zarga's headband, beads, earrings and rust dress match well; the hero is partly hidden but his hair and stubble fit. No place reference given.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Characters match references well in hair, beard, goggles, and uniform; the ship lacks side propellers and the mountains are generic."
+      },
+      "usage": {
+        "inputTokens": 3517,
+        "outputTokens": 444
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Characters match references well in hair, beard, goggles, and uniform; the ship lacks side propellers and the mountains are generic.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 9,
+        "notes": "Mag matches well (goggles, headset, cigarette, uniform). Hale is absent, and no one grabs a rail. Tinka has no reference."
+      },
+      "usage": {
+        "inputTokens": 2706,
+        "outputTokens": 444
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":9,\"notes\":\"Mag matches well (goggles, headset, cigarette, uniform). Hale is absent, and no one grabs a rail. Tinka has no reference.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Urzul matches well; James's hair and stubble fit, but his shirt is olive, not gray. Linework and palette closely match the comic-ink references."
+      },
+      "usage": {
+        "inputTokens": 2679,
+        "outputTokens": 527
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Urzul matches well; James's hair and stubble fit, but his shirt is olive, not gray. Linework and palette closely match the comic-ink references.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Man resembles Hale's swept hair and shirt; woman has no reference. No place reference given; backdrop is mountains and river."
+      },
+      "usage": {
+        "inputTokens": 1854,
+        "outputTokens": 472
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Man resembles Hale's swept hair and shirt; woman has no reference. No place reference given; backdrop is mountains and river.\"}"
+    }
+  ]
+}

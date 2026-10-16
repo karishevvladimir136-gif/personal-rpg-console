@@ -1,0 +1,201 @@
+{
+  "command": "frames",
+  "world": "shov",
+  "style": "oil",
+  "styleText": "Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.",
+  "model": "fal-ai/flux-2-pro",
+  "anchorsModel": "klein9b",
+  "refs": true,
+  "dry": false,
+  "summary": {
+    "frames": 2,
+    "failed": 2,
+    "medianShotMs": 3604,
+    "medianFalMs": 15763,
+    "medianFrameMs": 19367,
+    "shotFromModel": 1,
+    "perFrameUsd": "$0.030",
+    "perTurnUsd": "$0.030"
+  },
+  "rows": [
+    {
+      "turn": 17,
+      "input": "Отвечаю: сердечник не продаётся. Пусть уезжают.",
+      "paragraph": "«Жаль», — говорит серый, и опускает руки. Это сигнал: из фургона выпрыгивают ещё четверо, уже с короткими карабинами, и пустырь взрывается криком, выстрелами и паром. Ты бросаешься за ящики, и первая пуля выбивает щепки у твоего уха.",
+      "shot": {
+        "who": [
+          "the grey-clothed man (серый)",
+          "four armed men jumping from the van",
+          "the protagonist (unnamed, 'you')"
+        ],
+        "action": "The grey man lowers his hands as four more men leap from a van with short carbines; the wasteland erupts in shouting and gunfire through steam, and the protagonist dives behind wooden crates as a bullet splinters wood beside their ear.",
+        "where": "A wasteland lot in Geneva, with a van and wooden crates, filled with steam",
+        "angle": "medium shot, low angle from behind the crates",
+        "mood": "sudden, chaotic, tense; cold steam and gunfire"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 493,
+        "outputTokens": 529
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3236,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл"
+      ],
+      "matchedEntities": [],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: the grey-clothed man (серый), four armed men jumping from the van, the protagonist (unnamed, 'you').\nAction: The grey man lowers his hands as four more men leap from a van with short carbines; the wasteland erupts in shouting and gunfire through steam, and the protagonist dives behind wooden crates as a bullet splinters wood beside their ear.\nPlace: A wasteland lot in Geneva, with a van and wooden crates, filled with steam.\nCamera: medium shot, low angle from behind the crates.\nMood and light: sudden, chaotic, tense; cold steam and gunfire.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2-pro",
+      "file": "shov-oil-pro-refs-key-t17.jpg",
+      "error": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker.",
+      "softened": true
+    },
+    {
+      "turn": 18,
+      "input": "Бросаю огненный шар в фургон — пусть им будет не на чем уехать.",
+      "paragraph": "Огненный шар срывается с твоих пальцев и бьёт в котёл фургона. Взрыв подбрасывает машину на дыбы; серые разлетаются, как кегли, и один из них катится по земле, сбивая пламя с плаща. Урзул идёт сквозь дым, не пригибаясь, и его железный бок звенит от пуль. Зарга за твоей спиной поёт, низко и страшно, и амулет в её руке горит фиолетовым.",
+      "shot": {
+        "who": [
+          "Урзул Железный Бок",
+          "Зарга",
+          "серые фигуры"
+        ],
+        "action": "Огненный шар бьёт в котёл фургона, взрыв подбрасывает машину на дыбы, серые фигуры разлетаются, одна катится по земле, сбивая пламя с плаща. Урзул идёт сквозь дым, его железный бок звенит от пуль. Зарга поёт, амулет в её руке горит фиолетов",
+        "where": "Женева, улица у горящего фургона, в дыму",
+        "angle": "wide shot, low angle on the blast",
+        "mood": "хаос, огонь и дым, зловещее фиолетовое свечение"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 542,
+        "outputTokens": 584
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3243,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Зарга"
+      ],
+      "matchedEntities": [
+        "Урзул Железный Бок",
+        "Зарга"
+      ],
+      "references": [
+        "Урзул Железный Бок",
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Урзул Железный Бок, Зарга, серые фигуры.\nAction: Огненный шар бьёт в котёл фургона, взрыв подбрасывает машину на дыбы, серые фигуры разлетаются, одна катится по земле, сбивая пламя с плаща. Урзул идёт сквозь дым, его железный бок звенит от пуль. Зарга поёт, амулет в её руке горит фиолетов\nPlace: Женева, улица у горящего фургона, в дыму.\nCamera: wide shot, low angle on the blast.\nMood and light: хаос, огонь и дым, зловещее фиолетовое свечение.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Урзул Железный Бок, Зарга: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2-pro",
+      "file": "shov-oil-pro-refs-key-t18.jpg",
+      "endpoint": "fal-ai/flux-2-pro/edit",
+      "requestId": "01a14216-1882-7e02-9991-d08078aacc22",
+      "width": 1024,
+      "height": 576,
+      "bytes": 283163,
+      "falMs": 14221,
+      "frameMs": 17464,
+      "totalMs": 25423,
+      "priceUsd": "$0.030",
+      "turnUsd": "$0.030",
+      "softened": true
+    },
+    {
+      "turn": 19,
+      "input": "Рурк ранен. Бегу к нему, прикрываясь дымом.",
+      "paragraph": "Рурк сидит, привалившись к палатке, и зажимает бок; сквозь пальцы течёт тёмное. «Хейл, — хрипит он. — Складка. Они не покупать пришли — им нужно, чтобы сердечник был здесь, у разрыва. Не дайте им…» Он не договаривает: над пустырём раздаётся звук, как будто рвётся огромный парус, и свет становится фиолетовым.",
+      "shot": {
+        "who": [
+          "Майор Рурк",
+          "Джеймс Хейл"
+        ],
+        "action": "Рурк сидит, привалившись к палатке, и зажимает бок; сквозь пальцы течёт тёмное. Он хрипит что-то Хейлу и не договаривает; над пустырём раздаётся звук, как будто рвётся огромный парус, и свет становится фиолетовым.",
+        "where": "Женева, пустырь у палатки",
+        "angle": "medium shot, low angle on Rurk against the tent, sky tearing",
+        "mood": "tense, dread, violet light, ominous"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 530,
+        "outputTokens": 201
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1380,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Майор Рурк"
+      ],
+      "references": [
+        "Джеймс Хейл"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Майор Рурк, Джеймс Хейл.\nAction: Рурк сидит, привалившись к палатке, и зажимает бок; сквозь пальцы течёт тёмное. Он хрипит что-то Хейлу и не договаривает; над пустырём раздаётся звук, как будто рвётся огромный парус, и свет становится фиолетовым.\nPlace: Женева, пустырь у палатки.\nCamera: medium shot, low angle on Rurk against the tent, sky tearing.\nMood and light: tense, dread, violet light, ominous.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Джеймс Хейл: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2-pro",
+      "file": "shov-oil-pro-refs-key-t19.jpg",
+      "error": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker.",
+      "softened": true
+    },
+    {
+      "turn": 20,
+      "input": "Поднимаю сердечник над головой и приказываю Шву замолчать.",
+      "paragraph": "Ты поднимаешь сердечник, и слова приходят сами — не твои, отцовские, из часов, остановившихся на 3:17. Гул обрывается. Трещина над Женевой замирает, дрожит — и медленно, со звуком, как тихий выдох, сходится на ладонь. Мэг опускает револьвер. Зарга падает на колени, Изольда закрывает лицо руками, а серые, побросав карабины, бегут к дымящемуся фургону.",
+      "shot": {
+        "who": [
+          "Мэг Рыжая",
+          "Зарга",
+          "Изольда Вэйл"
+        ],
+        "action": "Ты поднимаешь сердечник, и слова приходят сами — не твои, отцовские, из часов, остановившихся на 3:17.",
+        "where": "Женева",
+        "angle": "medium shot",
+        "mood": ""
+      },
+      "shotSource": "fallback",
+      "shotUsage": {
+        "inputTokens": 544,
+        "outputTokens": 600
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 3604,
+      "shotError": "unparsable",
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Зарга",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Мэг Рыжая",
+        "Зарга",
+        "Изольда Вэйл"
+      ],
+      "references": [
+        "Мэг Рыжая",
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Мэг Рыжая, Зарга, Изольда Вэйл.\nAction: Ты поднимаешь сердечник, и слова приходят сами — не твои, отцовские, из часов, остановившихся на 3:17.\nPlace: Женева.\nCamera: medium shot.\nArt style: Painterly oil on canvas, visible brushwork, warm chiaroscuro light, rich pigment texture, classical composition.\nReferences: reference portraits show Мэг Рыжая, Зарга: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2-pro",
+      "file": "shov-oil-pro-refs-key-t20.jpg",
+      "endpoint": "fal-ai/flux-2-pro/edit",
+      "requestId": "01a14216-c40c-7530-a96f-ea18ed2fcd9b",
+      "width": 1024,
+      "height": 576,
+      "bytes": 220324,
+      "falMs": 15763,
+      "frameMs": 19367,
+      "totalMs": 19477,
+      "priceUsd": "$0.030",
+      "turnUsd": "$0.030",
+      "softened": false
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T01-08-48-frames-shov-oil-klein9b-norefs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": false,
+  "summary": {
+    "scored": 19,
+    "withPeople": 19,
+    "withPlace": 2,
+    "meanPeople": 3.16,
+    "meanPlace": 5,
+    "meanStyle": 7.16
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 6,
+        "style": 7,
+        "notes": "Hale's coat and beard partly match; Meg lacks goggles, braid, and cigarette. Cave and water fit reference; oil style matches."
+      },
+      "usage": {
+        "inputTokens": 3181,
+        "outputTokens": 502
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":6,\"style\":7,\"notes\":\"Hale's coat and beard partly match; Meg lacks goggles, braid, and cigarette. Cave and water fit reference; oil style matches.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 4,
+        "style": 8,
+        "notes": "Frame's lantern man and hero lack Hale's beard and revolver-watch look; the cave is stone-arched, not water-filled. Painterly, dark oil style matches."
+      },
+      "usage": {
+        "inputTokens": 2370,
+        "outputTokens": 410
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":4,\"style\":8,\"notes\":\"Frame's lantern man and hero lack Hale's beard and revolver-watch look; the cave is stone-arched, not water-filled. Painterly, dark oil style matches.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame's man has glasses but no beard; the wolf-headed figure isn't a human match. Oil-painting style closely matches."
+      },
+      "usage": {
+        "inputTokens": 2687,
+        "outputTokens": 343
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame's man has glasses but no beard; the wolf-headed figure isn't a human match. Oil-painting style closely matches.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 5,
+        "style": 7,
+        "notes": "Zarga's dark braids, earrings and beadwork roughly match, but James Hale is absent. Mountains fit, but it's a Viking longship, not a gondola."
+      },
+      "usage": {
+        "inputTokens": 2682,
+        "outputTokens": 443
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":5,\"style\":7,\"notes\":\"Zarga's dark braids, earrings and beadwork roughly match, but James Hale is absent. Mountains fit, but it's a Viking longship, not a gondola.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 6,
+        "notes": "Red-haired woman resembles Meg somewhat; spyglass man and bearded man don't match Hale or Urzul's hair and clothing well."
+      },
+      "usage": {
+        "inputTokens": 3516,
+        "outputTokens": 495
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":6,\"notes\":\"Red-haired woman resembles Meg somewhat; spyglass man and bearded man don't match Hale or Urzul's hair and clothing well.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's James lacks the beard and watch-gun; Mag lacks goggles, braid, and cigarette. Painterly style matches well."
+      },
+      "usage": {
+        "inputTokens": 2698,
+        "outputTokens": 466
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame's James lacks the beard and watch-gun; Mag lacks goggles, braid, and cigarette. Painterly style matches well.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Painterly oil style matches. Faces and clothing only loosely resemble the portraits; the big man lacks Urzul's long hair and armor, and the engineer lacks Kessler's glasses."
+      },
+      "usage": {
+        "inputTokens": 3544,
+        "outputTokens": 447
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Painterly oil style matches. Faces and clothing only loosely resemble the portraits; the big man lacks Urzul's long hair and armor, and the engineer lacks Kessler's glasses.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's man lacks Hale's beard and watch-gun; the orc is bald, unlike Urzul's long hair. Both are painterly oils."
+      },
+      "usage": {
+        "inputTokens": 2701,
+        "outputTokens": 377
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame's man lacks Hale's beard and watch-gun; the orc is bald, unlike Urzul's long hair. Both are painterly oils.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 2,
+        "place": 6,
+        "style": 8,
+        "notes": "Man lacks Hale's beard, hair, and brown coat; no Isolde reference. Snowy mountain sky fits Pyrenees. Both are painterly oils."
+      },
+      "usage": {
+        "inputTokens": 1853,
+        "outputTokens": 339
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":6,\"style\":8,\"notes\":\"Man lacks Hale's beard, hair, and brown coat; no Isolde reference. Snowy mountain sky fits Pyrenees. Both are painterly oils.\"}"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame shows a car cab with mountains, not sky over Pyrenees; no yoke; woman's hair differs from braided reference."
+      },
+      "usage": {
+        "inputTokens": 1836,
+        "outputTokens": 545
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Frame shows a car cab with mountains, not sky over Pyrenees; no yoke; woman's hair differs from braided reference.\"}"
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 6,
+        "notes": "Wolf has round glasses and brown coat but is an animal, not Kessler's human face; Zarga's long wavy hair and beads are absent."
+      },
+      "usage": {
+        "inputTokens": 2675,
+        "outputTokens": 427
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":6,\"notes\":\"Wolf has round glasses and brown coat but is an animal, not Kessler's human face; Zarga's long wavy hair and beads are absent.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 8,
+        "notes": "Driver is an older man in a cap, not the braided, goggled woman; the goblin figures don't match either reference. Oil-painting style matches closely."
+      },
+      "usage": {
+        "inputTokens": 1878,
+        "outputTokens": 487
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":0,\"style\":8,\"notes\":\"Driver is an older man in a cap, not the braided, goggled woman; the goblin figures don't match either reference. Oil-painting style matches closely.\"}"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 2,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame figures lack the reference's full beard, brown wavy hair, and coat; the painterly oil style matches closely."
+      },
+      "usage": {
+        "inputTokens": 1882,
+        "outputTokens": 389
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":2,\"place\":0,\"style\":7,\"notes\":\"Frame figures lack the reference's full beard, brown wavy hair, and coat; the painterly oil style matches closely.\"}"
+    },
+    {
+      "turn": 15,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 8,
+        "notes": "Center man has a similar trimmed beard and dark hair, but features and clothing differ from Hale's portrait; no place reference given."
+      },
+      "usage": {
+        "inputTokens": 1871,
+        "outputTokens": 392
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":8,\"notes\":\"Center man has a similar trimmed beard and dark hair, but features and clothing differ from Hale's portrait; no place reference given.\"}"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 6,
+        "notes": "Hero's brown coat and hat echo Hale; orc resembles Urzul's green skin and beard; redhead differs from Megan's braid and goggles."
+      },
+      "usage": {
+        "inputTokens": 3549,
+        "outputTokens": 557
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":6,\"notes\":\"Hero's brown coat and hat echo Hale; orc resembles Urzul's green skin and beard; redhead differs from Megan's braid and goggles.\"}"
+    },
+    {
+      "turn": 17,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame man has similar wavy brown hair but no beard and a gray coat; the reference portrait has a full beard and brown coat."
+      },
+      "usage": {
+        "inputTokens": 1884,
+        "outputTokens": 359
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame man has similar wavy brown hair but no beard and a gray coat; the reference portrait has a full beard and brown coat.\"}"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 4,
+        "style": 5,
+        "notes": "Gunman's coat and pistol echo Hale, but Urzul looks like a bald green orc, not long-haired and bare-chested. Zarga is absent. Setting is generic European, not clearly Geneva."
+      },
+      "usage": {
+        "inputTokens": 3532,
+        "outputTokens": 500
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":4,\"style\":5,\"notes\":\"Gunman's coat and pistol echo Hale, but Urzul looks like a bald green orc, not long-haired and bare-chested. Zarga is absent. Setting is generic European, not clearly Geneva.\"}"
+    },
+    {
+      "turn": 19,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's right man shares coat and dark hair with Hale, but lacks his beard. No place reference given. Both are painterly oils."
+      },
+      "usage": {
+        "inputTokens": 1878,
+        "outputTokens": 331
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":7,\"notes\":\"Frame's right man shares coat and dark hair with Hale, but lacks his beard. No place reference given. Both are painterly oils.\"}"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame's bearded man and kneeling woman only loosely resemble references; no clear red-haired Meg. Place has no reference image. Oil-painting style matches closely."
+      },
+      "usage": {
+        "inputTokens": 3527,
+        "outputTokens": 458
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame's bearded man and kneeling woman only loosely resemble references; no clear red-haired Meg. Place has no reference image. Oil-painting style matches closely.\"}"
+    }
+  ]
+}

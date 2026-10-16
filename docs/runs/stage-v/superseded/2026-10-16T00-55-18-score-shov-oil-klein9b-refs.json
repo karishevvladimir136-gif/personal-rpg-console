@@ -1,0 +1,368 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-48-51-frames-shov-oil-klein9b-refs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 18,
+    "withPeople": 18,
+    "withPlace": 2,
+    "meanPeople": 5.33,
+    "meanPlace": 6,
+    "meanStyle": 7.61
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 5,
+        "place": 8,
+        "style": 9,
+        "notes": "Cave, water and boat match the reference closely. Goggles and braid loosely fit Meg; Hale's pocket watch and revolver are missing."
+      },
+      "usage": {
+        "inputTokens": 4697,
+        "outputTokens": 438
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":8,\"style\":9,\"notes\":\"Cave, water and boat match the reference closely. Goggles and braid loosely fit Meg; Hale's pocket watch and revolver are missing.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 2,
+        "place": 4,
+        "style": 7,
+        "notes": "Hale's portrait isn't in frame; the lantern man only loosely resembles him. Rock cavern echoes the reference, but no water or boat."
+      },
+      "usage": {
+        "inputTokens": 3290,
+        "outputTokens": 481
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":4,\"style\":7,\"notes\":\"Hale's portrait isn't in frame; the lantern man only loosely resembles him. Rock cavern echoes the reference, but no water or boat.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 5,
+        "place": 7,
+        "style": 8,
+        "notes": "Older man has round glasses, not a monocle; no cheek streak; roles differ somewhat; engine room and oil-painting style match."
+      },
+      "usage": {
+        "inputTokens": 3880,
+        "outputTokens": 561
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":7,\"style\":8,\"notes\":\"Older man has round glasses, not a monocle; no cheek streak; roles differ somewhat; engine room and oil-painting style match.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Woman's red vest, beads, and earrings match Zarga; male figure loosely fits Hale; no setting reference provided."
+      },
+      "usage": {
+        "inputTokens": 3859,
+        "outputTokens": 508
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Woman's red vest, beads, and earrings match Zarga; male figure loosely fits Hale; no setting reference provided.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Hale and Meg resemble their portraits; Urzul is missing. No place reference was given. Oil style matches."
+      },
+      "usage": {
+        "inputTokens": 5278,
+        "outputTokens": 418
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Hale and Meg resemble their portraits; Urzul is missing. No place reference was given. Oil style matches.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "James's beard, hair and brown coat match; Mag's goggles, red hair and khaki jacket match, but no cigarette. Tinka has no reference."
+      },
+      "usage": {
+        "inputTokens": 3885,
+        "outputTokens": 392
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"James's beard, hair and brown coat match; Mag's goggles, red hair and khaki jacket match, but no cigarette. Tinka has no reference.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 6,
+        "notes": "Only the long-haired, bearded man loosely resembles Urzul. Hale and Kessler are absent. Wolf is not in references. Painterly oil style matches."
+      },
+      "usage": {
+        "inputTokens": 5297,
+        "outputTokens": 416
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":6,\"notes\":\"Only the long-haired, bearded man loosely resembles Urzul. Hale and Kessler are absent. Wolf is not in references. Painterly oil style matches.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 6,
+        "style": 7,
+        "notes": "Both characters match their references in hair, beards, brown coat and armor straps. Background mountains and clouds fit the Pyrenees setting loosely. Painterly style is close, though the faces are mo"
+      },
+      "usage": {
+        "inputTokens": 3849,
+        "outputTokens": 344
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":6,\"style\":7,\"notes\":\"Both characters match their references in hair, beards, brown coat and armor straps. Background mountains and clouds fit the Pyrenees setting loosely. Painterly style is close, though the faces are more stylized.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 5,
+        "place": 7,
+        "style": 8,
+        "notes": "Man matches the reference's beard, brown coat and hair somewhat; face differs. Mountain sky suits Pyrenees; oil style is close."
+      },
+      "usage": {
+        "inputTokens": 2447,
+        "outputTokens": 489
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":7,\"style\":8,\"notes\":\"Man matches the reference's beard, brown coat and hair somewhat; face differs. Mountain sky suits Pyrenees; oil style is close.\"}"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Auburn braid, goggles, leather jacket match; frame lacks cigarette and steering-wheel grip; map on knees, not from under seat."
+      },
+      "usage": {
+        "inputTokens": 2425,
+        "outputTokens": 548
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Auburn braid, goggles, leather jacket match; frame lacks cigarette and steering-wheel grip; map on knees, not from under seat.\"}"
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 7,
+        "notes": "Woman's hair, red vest and necklace match Zarga; man's round glasses and coat resemble Kessler, minus the bow tie."
+      },
+      "usage": {
+        "inputTokens": 3866,
+        "outputTokens": 471
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":7,\"notes\":\"Woman's hair, red vest and necklace match Zarga; man's round glasses and coat resemble Kessler, minus the bow tie.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Meg's goggles, helmet, cigarette, jacket and auburn hair match. Tinka has no reference. No place reference given; the scene shows a river, not a lake."
+      },
+      "usage": {
+        "inputTokens": 2456,
+        "outputTokens": 488
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Meg's goggles, helmet, cigarette, jacket and auburn hair match. Tinka has no reference. No place reference given; the scene shows a river, not a lake.\"}"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Left man's wavy hair, beard and brown coat resemble Hale; no revolver-watch; Rourke has no reference."
+      },
+      "usage": {
+        "inputTokens": 2472,
+        "outputTokens": 549
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Left man's wavy hair, beard and brown coat resemble Hale; no revolver-watch; Rourke has no reference.\"}"
+    },
+    {
+      "turn": 15,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Bearded man in brown coat resembles Hale's reference; no reference place given; Major Rurk absent."
+      },
+      "usage": {
+        "inputTokens": 2455,
+        "outputTokens": 386
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Bearded man in brown coat resembles Hale's reference; no reference place given; Major Rurk absent.\"}"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Hale and Meg resemble their references in hair, coats, and cigarette; Urzul is absent. Painterly style matches."
+      },
+      "usage": {
+        "inputTokens": 5282,
+        "outputTokens": 447
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Hale and Meg resemble their references in hair, coats, and cigarette; Urzul is absent. Painterly style matches.\"}"
+    },
+    {
+      "turn": 17,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Lead man shares brown wavy hair, beard, and brown coat with portrait; other faces differ; painterly style matches."
+      },
+      "usage": {
+        "inputTokens": 2478,
+        "outputTokens": 535
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Lead man shares brown wavy hair, beard, and brown coat with portrait; other faces differ; painterly style matches.\"}"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Urzul and Zarga resemble their portraits in hair, beard, armor, and vest; James Hale is seen from behind, so hard to verify."
+      },
+      "usage": {
+        "inputTokens": 5283,
+        "outputTokens": 501
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Urzul and Zarga resemble their portraits in hair, beard, armor, and vest; James Hale is seen from behind, so hard to verify.\"}"
+    },
+    {
+      "turn": 19,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame is oil-like and matches reference style. Hero's long hair and Mag's dress and goggles differ from references; no place reference."
+      },
+      "usage": {
+        "inputTokens": 5286,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame is oil-like and matches reference style. Hero's long hair and Mag's dress and goggles differ from references; no place reference.\"}"
+    }
+  ]
+}

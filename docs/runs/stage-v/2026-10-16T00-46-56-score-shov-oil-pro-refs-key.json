@@ -1,0 +1,54 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-22-46-frames-shov-oil-pro-refs-key.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2-pro",
+  "refs": true,
+  "summary": {
+    "scored": 2,
+    "meanPeople": 5.5,
+    "meanPlace": 0,
+    "meanStyle": 7.5
+  },
+  "scores": [
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 6,
+        "notes": "Frame's bearded mage and armored woman only loosely resemble references; Urzul's shirtless iron-shouldered look and Zarga's vest are missing."
+      },
+      "usage": {
+        "inputTokens": 3905,
+        "outputTokens": 564
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":6,\"notes\":\"Frame's bearded mage and armored woman only loosely resemble references; Urzul's shirtless iron-shouldered look and Zarga's vest are missing.\"}"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 9,
+        "notes": "Center and right women match references' goggles, braid, vest; left has no reference. Setting lacks Geneva cues."
+      },
+      "usage": {
+        "inputTokens": 3821,
+        "outputTokens": 551
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":0,\"style\":9,\"notes\":\"Center and right women match references' goggles, braid, vest; left has no reference. Setting lacks Geneva cues.\"}"
+    }
+  ]
+}

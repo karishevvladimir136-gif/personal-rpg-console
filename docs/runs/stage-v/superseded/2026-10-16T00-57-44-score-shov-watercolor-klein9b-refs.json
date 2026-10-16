@@ -1,0 +1,195 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-53-08-frames-shov-watercolor-klein9b-refs.json",
+  "world": "shov",
+  "style": "watercolor",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "withPeople": 9,
+    "withPlace": 2,
+    "meanPeople": 4.22,
+    "meanPlace": 6,
+    "meanStyle": 8.78
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 9,
+        "notes": "Meg and James resemble their portraits in hair, clothes, and build, but Meg wears glasses and James lacks gun and watch. Cave matches, but water is absent."
+      },
+      "usage": {
+        "inputTokens": 4693,
+        "outputTokens": 438
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":6,\"style\":9,\"notes\":\"Meg and James resemble their portraits in hair, clothes, and build, but Meg wears glasses and James lacks gun and watch. Cave matches, but water is absent.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 2,
+        "place": 6,
+        "style": 9,
+        "notes": "Hale isn't visible; the frame's man lacks his gray hair, beard, gun, and watch. Cave walls and water match loosely; style is the same watercolor ink."
+      },
+      "usage": {
+        "inputTokens": 3300,
+        "outputTokens": 495
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":6,\"style\":9,\"notes\":\"Hale isn't visible; the frame's man lacks his gray hair, beard, gun, and watch. Cave walls and water match loosely; style is the same watercolor ink.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 9,
+        "notes": "Style matches the ink-and-watercolor portraits. Older man has Kessler's grey hair and moustache but no glasses; roles and poses differ from the brief."
+      },
+      "usage": {
+        "inputTokens": 3851,
+        "outputTokens": 612
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":9,\"notes\":\"Style matches the ink-and-watercolor portraits. Older man has Kessler's grey hair and moustache but no glasses; roles and poses differ from the brief.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Zarga's long brown hair, fur trim and beads match; James Hale is absent. No place reference given."
+      },
+      "usage": {
+        "inputTokens": 3850,
+        "outputTokens": 413
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Zarga's long brown hair, fur trim and beads match; James Hale is absent. No place reference given.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 9,
+        "notes": "Hale-like man and red-haired Meg match; Urzul absent. Watercolor ink style closely matches references."
+      },
+      "usage": {
+        "inputTokens": 5271,
+        "outputTokens": 327
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":9,\"notes\":\"Hale-like man and red-haired Meg match; Urzul absent. Watercolor ink style closely matches references.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 3,
+        "place": 8,
+        "style": 9,
+        "notes": "Woman at wheel loosely resembles Mag's light hair, but lacks headset and cigarette. James Hale is not clearly identifiable; small figure is unclear."
+      },
+      "usage": {
+        "inputTokens": 3875,
+        "outputTokens": 425
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":8,\"style\":9,\"notes\":\"Woman at wheel loosely resembles Mag's light hair, but lacks headset and cigarette. James Hale is not clearly identifiable; small figure is unclear.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 2,
+        "place": 6,
+        "style": 8,
+        "notes": "Wolf figure is an anthropomorphic wolf, not Kessler; Urzul's ears, armor, and beard are missing; Hale is absent."
+      },
+      "usage": {
+        "inputTokens": 5299,
+        "outputTokens": 442
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":6,\"style\":8,\"notes\":\"Wolf figure is an anthropomorphic wolf, not Kessler; Urzul's ears, armor, and beard are missing; Hale is absent.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 6,
+        "place": 7,
+        "style": 9,
+        "notes": "Both characters echo the portraits in hair, beard, and build; James lacks the vest, watch, and revolver. Clouds and distant peaks suit the sky-over-Pyrenees setting."
+      },
+      "usage": {
+        "inputTokens": 3842,
+        "outputTokens": 356
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":7,\"style\":9,\"notes\":\"Both characters echo the portraits in hair, beard, and build; James lacks the vest, watch, and revolver. Clouds and distant peaks suit the sky-over-Pyrenees setting.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 9,
+        "notes": "Right man matches James Hale's swept grey hair, stubble, and brown vest. Left figure is back-turned, so Izolda's look isn't shown. No place reference image."
+      },
+      "usage": {
+        "inputTokens": 2439,
+        "outputTokens": 419
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":9,\"notes\":\"Right man matches James Hale's swept grey hair, stubble, and brown vest. Left figure is back-turned, so Izolda's look isn't shown. No place reference image.\"}"
+    }
+  ]
+}

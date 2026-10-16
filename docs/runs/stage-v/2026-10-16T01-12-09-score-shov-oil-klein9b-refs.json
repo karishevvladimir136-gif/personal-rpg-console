@@ -1,0 +1,382 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T01-07-33-frames-shov-oil-klein9b-refs.json",
+  "world": "shov",
+  "style": "oil",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 19,
+    "withPeople": 19,
+    "withPlace": 2,
+    "meanPeople": 5.68,
+    "meanPlace": 6,
+    "meanStyle": 7.16
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 6,
+        "notes": "Frame's bearded man and goggled woman echo the references; the elf Tinka has no reference. Cave water and stone match loosely."
+      },
+      "usage": {
+        "inputTokens": 3188,
+        "outputTokens": 439
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":6,\"style\":6,\"notes\":\"Frame's bearded man and goggled woman echo the references; the elf Tinka has no reference. Cave water and stone match loosely.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 6,
+        "style": 6,
+        "notes": "Bearded man resembles Hale's portrait; woman's white headscarf and red-gold dress match the boat reference. Cave and water fit, but the brushwork is smoother."
+      },
+      "usage": {
+        "inputTokens": 2373,
+        "outputTokens": 484
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":6,\"style\":6,\"notes\":\"Bearded man resembles Hale's portrait; woman's white headscarf and red-gold dress match the boat reference. Cave and water fit, but the brushwork is smoother.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Frame's older man has glasses and brown coat like Kessler, but adds a mustache; the younger man loosely matches Hale's brown hair and beard."
+      },
+      "usage": {
+        "inputTokens": 2690,
+        "outputTokens": 342
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Frame's older man has glasses and brown coat like Kessler, but adds a mustache; the younger man loosely matches Hale's brown hair and beard.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Zarga's hair, beads, and red vest match well; the man resembles Hale's beard and coat but lacks his watch and gun. No place reference."
+      },
+      "usage": {
+        "inputTokens": 2687,
+        "outputTokens": 421
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Zarga's hair, beads, and red vest match well; the man resembles Hale's beard and coat but lacks his watch and gun. No place reference.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Characters match well: braided redhead in aviator helmet, long-haired bearded giant, bearded man with brown hair. No place reference provided."
+      },
+      "usage": {
+        "inputTokens": 3513,
+        "outputTokens": 450
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Characters match well: braided redhead in aviator helmet, long-haired bearded giant, bearded man with brown hair. No place reference provided.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Woman matches Meg's red hair, braid, goggles, cigarette and jacket; James resembles the bearded portrait but lacks the watch and gun."
+      },
+      "usage": {
+        "inputTokens": 2706,
+        "outputTokens": 390
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Woman matches Meg's red hair, braid, goggles, cigarette and jacket; James resembles the bearded portrait but lacks the watch and gun.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Warrior's long hair and beard fit Urzul; bearded coated man resembles Hale, bespectacled man resembles Kessler, though sunglasses and poses differ."
+      },
+      "usage": {
+        "inputTokens": 3543,
+        "outputTokens": 493
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Warrior's long hair and beard fit Urzul; bearded coated man resembles Hale, bespectacled man resembles Kessler, though sunglasses and poses differ.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 7,
+        "style": 6,
+        "notes": "Left man's hair, beard, and coat resemble Hale; barbarian's long hair, beard, and straps match Urzul. Frame lacks pocket watch and has brighter, more digital lighting."
+      },
+      "usage": {
+        "inputTokens": 2682,
+        "outputTokens": 392
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":7,\"style\":6,\"notes\":\"Left man's hair, beard, and coat resemble Hale; barbarian's long hair, beard, and straps match Urzul. Frame lacks pocket watch and has brighter, more digital lighting.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame man resembles Hale's beard, hair, and brown coat; Isolde has no reference. Oil painting style matches."
+      },
+      "usage": {
+        "inputTokens": 1851,
+        "outputTokens": 390
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Frame man resembles Hale's beard, hair, and brown coat; Isolde has no reference. Oil painting style matches.\"}"
+    },
+    {
+      "turn": 11,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 8,
+        "notes": "Red-haired woman matches goggles, braid, and khaki jacket; the frame adds a man and omits the cigarette and steering-wheel close-up."
+      },
+      "usage": {
+        "inputTokens": 1848,
+        "outputTokens": 473
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":8,\"notes\":\"Red-haired woman matches goggles, braid, and khaki jacket; the frame adds a man and omits the cigarette and steering-wheel close-up.\"}"
+    },
+    {
+      "turn": 12,
+      "anchors": [
+        "portrait of Вольф Кесслер",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 6,
+        "notes": "Zarga's hair, red vest, beads and Wolf's round glasses, coat and bow tie match well; frame is more digital than the oil portraits."
+      },
+      "usage": {
+        "inputTokens": 2694,
+        "outputTokens": 333
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":6,\"notes\":\"Zarga's hair, red vest, beads and Wolf's round glasses, coat and bow tie match well; frame is more digital than the oil portraits.\"}"
+    },
+    {
+      "turn": 13,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Pilot resembles Meg's goggles, cigarette, and auburn hair; Tinka's figure is upside down and hard to match. Painterly style aligns."
+      },
+      "usage": {
+        "inputTokens": 1885,
+        "outputTokens": 440
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Pilot resembles Meg's goggles, cigarette, and auburn hair; Tinka's figure is upside down and hard to match. Painterly style aligns.\"}"
+    },
+    {
+      "turn": 14,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 8,
+        "notes": "Frame figures lack Hale's beard, brown coat, watch and revolver; style matches the dark oil-painting brushwork of the reference."
+      },
+      "usage": {
+        "inputTokens": 1881,
+        "outputTokens": 519
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":3,\"place\":0,\"style\":8,\"notes\":\"Frame figures lack Hale's beard, brown coat, watch and revolver; style matches the dark oil-painting brushwork of the reference.\"}"
+    },
+    {
+      "turn": 15,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "Foreground man resembles Hale's brown hair, beard and coat; other figures don't match. Painterly oil style is consistent. No place reference."
+      },
+      "usage": {
+        "inputTokens": 1868,
+        "outputTokens": 361
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"Foreground man resembles Hale's brown hair, beard and coat; other figures don't match. Painterly oil style is consistent. No place reference.\"}"
+    },
+    {
+      "turn": 16,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 3,
+        "place": 0,
+        "style": 6,
+        "notes": "Red-haired woman with cigarette resembles Meg somewhat. Hero seen from behind, not clearly Hale. Left gunman doesn't match Urzul. No place reference."
+      },
+      "usage": {
+        "inputTokens": 3538,
+        "outputTokens": 528
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":3,\"place\":0,\"style\":6,\"notes\":\"Red-haired woman with cigarette resembles Meg somewhat. Hero seen from behind, not clearly Hale. Left gunman doesn't match Urzul. No place reference.\"}"
+    },
+    {
+      "turn": 17,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Hero's brown hair, full beard, brown coat and dark tie resemble the portrait; other figures have no reference."
+      },
+      "usage": {
+        "inputTokens": 1877,
+        "outputTokens": 360
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Hero's brown hair, full beard, brown coat and dark tie resemble the portrait; other figures have no reference.\"}"
+    },
+    {
+      "turn": 18,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "Hale's coat and watch-pistol and Zarga's red vest and hair fit; Urzul is leaner and less rugged than his portrait."
+      },
+      "usage": {
+        "inputTokens": 3530,
+        "outputTokens": 381
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"Hale's coat and watch-pistol and Zarga's red vest and hair fit; Urzul is leaner and less rugged than his portrait.\"}"
+    },
+    {
+      "turn": 19,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Standing man has a similar beard, wavy dark hair and brown coat to Hale, but lacks the watch-revolver. No reference image for Rurk or Geneva."
+      },
+      "usage": {
+        "inputTokens": 1882,
+        "outputTokens": 442
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Standing man has a similar beard, wavy dark hair and brown coat to Hale, but lacks the watch-revolver. No reference image for Rurk or Geneva.\"}"
+    },
+    {
+      "turn": 20,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Man's beard, brown coat and goggled woman loosely echo references; no place reference image, and faces are only partly matched."
+      },
+      "usage": {
+        "inputTokens": 3534,
+        "outputTokens": 460
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Man's beard, brown coat and goggled woman loosely echo references; no place reference image, and faces are only partly matched.\"}"
+    }
+  ]
+}

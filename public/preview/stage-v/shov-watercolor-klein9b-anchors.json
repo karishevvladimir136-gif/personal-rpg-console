@@ -1,0 +1,147 @@
+{
+  "5e5e5e5e-0000-4000-8000-000000000030:holding": {
+    "file": "shov-watercolor-klein9b-железная-бабка-holding.jpg",
+    "composition": "holding",
+    "name": "«Железная Бабка»"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000010:portrait": {
+    "file": "shov-watercolor-klein9b-джеймс-хейл-portrait.jpg",
+    "composition": "portrait",
+    "name": "Джеймс Хейл"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000010:figure": {
+    "file": "shov-watercolor-klein9b-джеймс-хейл-figure.jpg",
+    "composition": "figure",
+    "name": "Джеймс Хейл"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000011:portrait": {
+    "file": "shov-watercolor-klein9b-мэг-рыжая-portrait.jpg",
+    "composition": "portrait",
+    "name": "Мэг Рыжая"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000012:portrait": {
+    "file": "shov-watercolor-klein9b-урзул-железный-бок-portrait.jpg",
+    "composition": "portrait",
+    "name": "Урзул Железный Бок"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000013:portrait": {
+    "file": "shov-watercolor-klein9b-вольф-кесслер-portrait.jpg",
+    "composition": "portrait",
+    "name": "Вольф Кесслер"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000014:portrait": {
+    "file": "shov-watercolor-klein9b-зарга-portrait.jpg",
+    "composition": "portrait",
+    "name": "Зарга"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000015:portrait": {
+    "file": "shov-watercolor-klein9b-ирэна-portrait.jpg",
+    "composition": "portrait",
+    "name": "Ирэна"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000050:location": {
+    "file": "shov-watercolor-klein9b-лиссабон-location.jpg",
+    "composition": "location",
+    "name": "Лиссабон"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000051:location": {
+    "file": "shov-watercolor-klein9b-пещера-дома-альвареш-location.jpg",
+    "composition": "location",
+    "name": "Пещера дома Альвареш"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000052:location": {
+    "file": "shov-watercolor-klein9b-алкантара-location.jpg",
+    "composition": "location",
+    "name": "Алкантара"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000053:location": {
+    "file": "shov-watercolor-klein9b-белая-башня-location.jpg",
+    "composition": "location",
+    "name": "Белая башня"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000086:item": {
+    "file": "shov-watercolor-klein9b-длинная-винтовка-item.jpg",
+    "composition": "item",
+    "name": "Длинная винтовка"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000085:item": {
+    "file": "shov-watercolor-klein9b-ящик-эфирита-item.jpg",
+    "composition": "item",
+    "name": "Ящик эфирита"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000084:item": {
+    "file": "shov-watercolor-klein9b-бочка-воды-item.jpg",
+    "composition": "item",
+    "name": "Бочка воды"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000083:item": {
+    "file": "shov-watercolor-klein9b-запасной-винт-item.jpg",
+    "composition": "item",
+    "name": "Запасной винт"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000082:item": {
+    "file": "shov-watercolor-klein9b-палатка-на-четверых-item.jpg",
+    "composition": "item",
+    "name": "Палатка на четверых"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000081:item": {
+    "file": "shov-watercolor-klein9b-верёвка-15-м-item.jpg",
+    "composition": "item",
+    "name": "Верёвка, 15 м"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000080:item": {
+    "file": "shov-watercolor-klein9b-сухари-item.jpg",
+    "composition": "item",
+    "name": "Сухари"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000079:item": {
+    "file": "shov-watercolor-klein9b-латунные-очки-item.jpg",
+    "composition": "item",
+    "name": "Латунные очки"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000078:item": {
+    "file": "shov-watercolor-klein9b-торба-контрабандистки-item.jpg",
+    "composition": "item",
+    "name": "Торба контрабандистки"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000077:item": {
+    "file": "shov-watercolor-klein9b-зелье-лечения-item.jpg",
+    "composition": "item",
+    "name": "Зелье лечения"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000076:item": {
+    "file": "shov-watercolor-klein9b-армейские-сапоги-item.jpg",
+    "composition": "item",
+    "name": "Армейские сапоги"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000075:item": {
+    "file": "shov-watercolor-klein9b-кожаный-плащ-наладчика-item.jpg",
+    "composition": "item",
+    "name": "Кожаный плащ наладчика"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000074:item": {
+    "file": "shov-watercolor-klein9b-набор-наладчика-item.jpg",
+    "composition": "item",
+    "name": "Набор наладчика"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000073:item": {
+    "file": "shov-watercolor-klein9b-кристалл-эфирита-item.jpg",
+    "composition": "item",
+    "name": "Кристалл эфирита"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000072:item": {
+    "file": "shov-watercolor-klein9b-сердечник-г-7-item.jpg",
+    "composition": "item",
+    "name": "Сердечник Г-7"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000071:item": {
+    "file": "shov-watercolor-klein9b-отцовские-часы-item.jpg",
+    "composition": "item",
+    "name": "Отцовские часы"
+  },
+  "5e5e5e5e-0000-4000-8000-000000000070:item": {
+    "file": "shov-watercolor-klein9b-револьвер-аргумент-item.jpg",
+    "composition": "item",
+    "name": "Револьвер «Аргумент»"
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T01-10-23-frames-shov-watercolor-klein9b-refs.json",
+  "world": "shov",
+  "style": "watercolor",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "withPeople": 9,
+    "withPlace": 2,
+    "meanPeople": 5.78,
+    "meanPlace": 5,
+    "meanStyle": 8.44
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 4,
+        "place": 7,
+        "style": 9,
+        "notes": "Meg matches her reference (auburn hair, headset, cigarette, uniform). Hale is missing from the frame; the goblin has no reference. Cave and water fit the place reference."
+      },
+      "usage": {
+        "inputTokens": 3175,
+        "outputTokens": 398
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":7,\"style\":9,\"notes\":\"Meg matches her reference (auburn hair, headset, cigarette, uniform). Hale is missing from the frame; the goblin has no reference. Cave and water fit the place reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 3,
+        "style": 9,
+        "notes": "Hale's silver swept hair and brown vest echo the portrait. Setting is a cave walkway with no water or ship stern."
+      },
+      "usage": {
+        "inputTokens": 2366,
+        "outputTokens": 386
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":3,\"style\":9,\"notes\":\"Hale's silver swept hair and brown vest echo the portrait. Setting is a cave walkway with no water or ship stern.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 8,
+        "notes": "Kessler matches well: round glasses, mustache, trench coat, smear. Hale's look is only loosely similar; no place reference."
+      },
+      "usage": {
+        "inputTokens": 2708,
+        "outputTokens": 346
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"Kessler matches well: round glasses, mustache, trench coat, smear. Hale's look is only loosely similar; no place reference.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Zarga's brown hair, fur vest and beads match; the hatted man is hidden and doesn't resemble Hale's grey hair and beard."
+      },
+      "usage": {
+        "inputTokens": 2706,
+        "outputTokens": 339
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Zarga's brown hair, fur vest and beads match; the hatted man is hidden and doesn't resemble Hale's grey hair and beard.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 7,
+        "notes": "Meg is missing from the frame; Hale and Urzul roughly match; no Pyrenees reference; watercolor style consistent."
+      },
+      "usage": {
+        "inputTokens": 3510,
+        "outputTokens": 589
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":0,\"style\":7,\"notes\":\"Meg is missing from the frame; Hale and Urzul roughly match; no Pyrenees reference; watercolor style consistent.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 9,
+        "notes": "Hale and Meg resemble their portraits in hair, vest, headset, and uniform. Tinka is absent or unclear. Grey plane instead of ship; no sharp tilt."
+      },
+      "usage": {
+        "inputTokens": 2696,
+        "outputTokens": 415
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":9,\"notes\":\"Hale and Meg resemble their portraits in hair, vest, headset, and uniform. Tinka is absent or unclear. Grey plane instead of ship; no sharp tilt.\"}"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 6,
+        "place": 3,
+        "style": 8,
+        "notes": "Armored bearded man and bespectacled mustached engineer resemble references; setting is a sailing deck, not an airship gondola."
+      },
+      "usage": {
+        "inputTokens": 3536,
+        "outputTokens": 419
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":3,\"style\":8,\"notes\":\"Armored bearded man and bespectacled mustached engineer resemble references; setting is a sailing deck, not an airship gondola.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Джеймс Хейл",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 7,
+        "place": 0,
+        "style": 9,
+        "notes": "Both figures match the portraits' hair, beards, vest and armor well. Style is the same watercolor-ink look. No place reference, so place is 0."
+      },
+      "usage": {
+        "inputTokens": 2703,
+        "outputTokens": 358
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":9,\"notes\":\"Both figures match the portraits' hair, beards, vest and armor well. Style is the same watercolor-ink look. No place reference, so place is 0.\"}"
+    },
+    {
+      "turn": 9,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Джеймс Хейл"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 9,
+        "notes": "Man's swept grey-blond hair, stubble, and brown vest match reference; Izolda has no reference; mountains, not sky."
+      },
+      "usage": {
+        "inputTokens": 1847,
+        "outputTokens": 469
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":9,\"notes\":\"Man's swept grey-blond hair, stubble, and brown vest match reference; Izolda has no reference; mountains, not sky.\"}"
+    }
+  ]
+}

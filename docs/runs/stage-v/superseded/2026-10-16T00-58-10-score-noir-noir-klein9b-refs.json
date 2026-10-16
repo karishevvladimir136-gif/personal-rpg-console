@@ -1,0 +1,194 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-53-57-frames-noir-noir-klein9b-refs.json",
+  "world": "noir",
+  "style": "noir",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 9,
+    "withPeople": 9,
+    "withPlace": 5,
+    "meanPeople": 4.89,
+    "meanPlace": 3.6,
+    "meanStyle": 8.56
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 4,
+        "place": 3,
+        "style": 8,
+        "notes": "Dana's short hair and jacket fit, but Rook appears as a bird, not the helmeted man. Interior lift differs from the street reference."
+      },
+      "usage": {
+        "inputTokens": 4668,
+        "outputTokens": 365
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":3,\"style\":8,\"notes\":\"Dana's short hair and jacket fit, but Rook appears as a bird, not the helmeted man. Interior lift differs from the street reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 6,
+        "place": 3,
+        "style": 9,
+        "notes": "Man resembles Okafor's face and short hair but wears a hooded jacket. Interior apartment, not the Kowloon street or stairwell."
+      },
+      "usage": {
+        "inputTokens": 3250,
+        "outputTokens": 321
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":3,\"style\":9,\"notes\":\"Man resembles Okafor's face and short hair but wears a hooded jacket. Interior apartment, not the Kowloon street or stairwell.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 8,
+        "place": 3,
+        "style": 9,
+        "notes": "Dana and Mara match their portraits in hair, jackets, and features. Setting is an interior with monitors, not the Kowloon Stack 9 street."
+      },
+      "usage": {
+        "inputTokens": 4636,
+        "outputTokens": 339
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":3,\"style\":9,\"notes\":\"Dana and Mara match their portraits in hair, jackets, and features. Setting is an interior with monitors, not the Kowloon Stack 9 street.\"}"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 5,
+        "place": 3,
+        "style": 9,
+        "notes": "Same inked comic style and rain. Figure's face and hair loosely resemble Dana, but he wears a suit, not a leather jacket. The interior lacks the Stack 9 street signage."
+      },
+      "usage": {
+        "inputTokens": 3267,
+        "outputTokens": 451
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":5,\"place\":3,\"style\":9,\"notes\":\"Same inked comic style and rain. Figure's face and hair loosely resemble Dana, but he wears a suit, not a leather jacket. The interior lacks the Stack 9 street signage.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "the place, Kowloon Stack 9",
+        "portrait of Dana Okafor"
+      ],
+      "score": {
+        "people": 2,
+        "place": 6,
+        "style": 7,
+        "notes": "Frame's Dana is a woman with long hair; reference shows a short-haired man. Kwan has no reference. Place is similar but lacks the Stack 9 sign."
+      },
+      "usage": {
+        "inputTokens": 3237,
+        "outputTokens": 365
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":6,\"style\":7,\"notes\":\"Frame's Dana is a woman with long hair; reference shows a short-haired man. Kwan has no reference. Place is similar but lacks the Stack 9 sign.\"}"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Rook"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 9,
+        "notes": "Frame's figure has a similar helmet but wears a green coat, not Rook's dark leather. Art style closely matches the portrait's inked, halftone, rainy look."
+      },
+      "usage": {
+        "inputTokens": 2443,
+        "outputTokens": 264
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":4,\"place\":0,\"style\":9,\"notes\":\"Frame's figure has a similar helmet but wears a green coat, not Rook's dark leather. Art style closely matches the portrait's inked, halftone, rainy look.\"}"
+    },
+    {
+      "turn": 7,
+      "skipped": "no anchors"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 5,
+        "place": 0,
+        "style": 8,
+        "notes": "Woman resembles Mara's dark hair and dark jacket, but the face differs. Creatures look like crustaceans, not drones. Smile lacks the described shift."
+      },
+      "usage": {
+        "inputTokens": 2444,
+        "outputTokens": 393
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":5,\"place\":0,\"style\":8,\"notes\":\"Woman resembles Mara's dark hair and dark jacket, but the face differs. Creatures look like crustaceans, not drones. Smile lacks the described shift.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 9,
+        "notes": "Man resembles Dana's reference in jacket, shirt, and build. Woman has similar dark hair and coat but a looser likeness to Mara. No Velvet reference or place reference provided."
+      },
+      "usage": {
+        "inputTokens": 3835,
+        "outputTokens": 410
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":6,\"place\":0,\"style\":9,\"notes\":\"Man resembles Dana's reference in jacket, shirt, and build. Woman has similar dark hair and coat but a looser likeness to Mara. No Velvet reference or place reference provided.\"}"
+    },
+    {
+      "turn": 10,
+      "anchors": [
+        "portrait of Dana Okafor",
+        "portrait of Rook",
+        "portrait of Mara Vey"
+      ],
+      "score": {
+        "people": 4,
+        "place": 8,
+        "style": 9,
+        "notes": "Dark-haired woman resembles Mara Vey; left man loosely fits Dana's jacket and shirt. Rook's helmet is absent, and the screen face doesn't match him."
+      },
+      "usage": {
+        "inputTokens": 5243,
+        "outputTokens": 450
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":8,\"style\":9,\"notes\":\"Dark-haired woman resembles Mara Vey; left man loosely fits Dana's jacket and shirt. Rook's helmet is absent, and the screen face doesn't match him.\"}"
+    }
+  ]
+}

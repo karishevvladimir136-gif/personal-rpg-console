@@ -1,0 +1,165 @@
+{
+  "command": "score",
+  "run": "docs/runs/stage-v/2026-10-16T00-17-01-frames-shov-line-art-klein9b-refs.json",
+  "world": "shov",
+  "style": "line-art",
+  "model": "fal-ai/flux-2/klein/9b",
+  "refs": true,
+  "summary": {
+    "scored": 5,
+    "meanPeople": 6.5,
+    "meanPlace": 2.4,
+    "meanStyle": 8
+  },
+  "scores": [
+    {
+      "turn": 1,
+      "anchors": [
+        "the place, Пещера дома Альвареш",
+        "portrait of Мэг Рыжая"
+      ],
+      "score": {
+        "people": 8,
+        "place": 6,
+        "style": 9,
+        "notes": "Meg's goggles, headset, cigarette and uniform match her portrait and Tinka's white headscarf and blue dress match image 2, but the frame's cave adds a stone quay and airship not in the reference."
+      },
+      "usage": {
+        "inputTokens": 3279,
+        "outputTokens": 377
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":8,\"place\":6,\"style\":9,\"notes\":\"Meg's goggles, headset, cigarette and uniform match her portrait and Tinka's white headscarf and blue dress match image 2, but the frame's cave adds a stone quay and airship not in the reference.\"}"
+    },
+    {
+      "turn": 2,
+      "anchors": [
+        "the place, Пещера дома Альвареш"
+      ],
+      "score": {
+        "people": 0,
+        "place": 6,
+        "style": 9,
+        "notes": "No character reference portraits were supplied, so people is 0; the frame shares the faceted-rock cave and cartoon style but drops the water and shows a ship's stern instead of a boat."
+      },
+      "usage": {
+        "inputTokens": 1903,
+        "outputTokens": 288
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":0,\"place\":6,\"style\":9,\"notes\":\"No character reference portraits were supplied, so people is 0; the frame shares the faceted-rock cave and cartoon style but drops the water and shows a ship's stern instead of a boat.\"}"
+    },
+    {
+      "turn": 3,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2461,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":8,\"notes\":\"The frame's man shares the reference's slicked grey hair, round gl"
+    },
+    {
+      "turn": 4,
+      "anchors": [
+        "portrait of Зарга"
+      ],
+      "score": {
+        "people": 6,
+        "place": 0,
+        "style": 7,
+        "notes": "The frame's woman shares the reference's patterned headband, long hair, rust tunic and beaded jewelry, but the face is less closely matched, and there is no place reference image."
+      },
+      "usage": {
+        "inputTokens": 2450,
+        "outputTokens": 375
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":6,\"place\":0,\"style\":7,\"notes\":\"The frame's woman shares the reference's patterned headband, long hair, rust tunic and beaded jewelry, but the face is less closely matched, and there is no place reference image.\"}"
+    },
+    {
+      "turn": 5,
+      "anchors": [
+        "portrait of Мэг Рыжая",
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 3887,
+        "outputTokens": 400
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":2,\"place\":4,\"style\":8,\"notes\":\"The frame shows one bearded, human-looking figure from behind"
+    },
+    {
+      "turn": 6,
+      "anchors": [
+        "portrait of Мэг Рыжая"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2474,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":4,\"style"
+    },
+    {
+      "turn": 7,
+      "anchors": [
+        "portrait of Урзул Железный Бок",
+        "portrait of Вольф Кесслер"
+      ],
+      "score": {
+        "people": 4,
+        "place": 0,
+        "style": 7,
+        "notes": "The orc Urzul matches the reference's green skin, brown hair, beard and leather straps, but the second character is a wolf-man instead of the bespectacled suited Wolf Kessler, and there is no place re"
+      },
+      "usage": {
+        "inputTokens": 3880,
+        "outputTokens": 391
+      },
+      "usd": "$0.001",
+      "raw": "{\"people\":4,\"place\":0,\"style\":7,\"notes\":\"The orc Urzul matches the reference's green skin, brown hair, beard and leather straps, but the second character is a wolf-man instead of the bespectacled suited Wolf Kessler, and there is no place reference.\"}"
+    },
+    {
+      "turn": 8,
+      "anchors": [
+        "portrait of Урзул Железный Бок"
+      ],
+      "score": {
+        "people": 8,
+        "place": 0,
+        "style": 8,
+        "notes": "The frame's green-skinned orc has the same swept brown hair, full beard, fur-trimmed leather vest and strap buckles as the portrait, while the frame's cloud-and-sky setting has no reference image to c"
+      },
+      "usage": {
+        "inputTokens": 2463,
+        "outputTokens": 309
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":8,\"place\":0,\"style\":8,\"notes\":\"The frame's green-skinned orc has the same swept brown hair, full beard, fur-trimmed leather vest and strap buckles as the portrait, while the frame's cloud-and-sky setting has no reference image to compare against.\"}"
+    },
+    {
+      "turn": 9,
+      "anchors": [
+        "portrait of Вольф Кесслер"
+      ],
+      "score": null,
+      "usage": {
+        "inputTokens": 2497,
+        "outputTokens": 400
+      },
+      "usd": "$0.000",
+      "raw": "{\"people\":7,\"place\":0,\"style\":6,\"notes\":\"The man in the suit matches Wolf Kessler's gray slicked hair, round"
+    },
+    {
+      "turn": 10,
+      "skipped": "no anchors"
+    }
+  ]
+}

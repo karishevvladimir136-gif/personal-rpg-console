@@ -1,5 +1,13 @@
 # Development status
 
+**Current stage:** Integration — Stage 4 (the DM) and Stage V (pictures) merged into one playable branch
+`claude/integration` for the owner's first sandbox play (cloud session, `docs/stages/INTEGRATION.md`). Base
+`claude/stage-4-dm` (tip `c0f80c9`), merged `claude/stage-v-visuals` (squashed tip `3241ad1`). The integration
+record (conflicts, migration order, checks, smoke, sandbox proof) is in the «Integration» section below; the Stage 4
+and Stage V sections that follow are each stage's own closing status, kept unchanged.
+
+---
+
 **Current stage:** Stage 4 — the DM: the campaign dossier, living characters, world resistance, depth per scene,
 the sandbox — implementation done on `claude/stage-4-dm`; waiting for the owner's review, his first play in the
 sandbox and the blind ratings. Plan: `docs/REBUILD_PLAN.md`; task: `docs/stages/STAGE_4.md`; design of the loop
@@ -110,6 +118,100 @@ start and again before the final checks, Stage 5 fixes included). Pushed; nothin
 - **Recommended next step:** the owner starts the sandbox (`Start Sandbox.cmd --fake` without keys, or with his
   keys in `.env.local`), activates the Stage 4 craft versions in the DM Craft screen, plays a few sessions and
   rates the blind samples; defaults for new campaigns follow his ratings.
+
+---
+
+**Stage V — pictures: styles, references, live frames, illustrated chronicle (cloud session, parallel with Stage 4).**
+Branch `claude/stage-v-visuals` from `claude/stage-5-ui` (after the Stage 5 fixes; that branch has not moved since).
+Task `docs/stages/STAGE_V.md`; paid-run records `docs/runs/stage-v/` (`SUMMARY.md` has every run in one table);
+review pack `docs/screens/stage-v/` and `public/preview/stage-v/`. Implementation complete and verified on the cloud VM;
+**waiting for the owner's review** (what to look at first is at the end of this section).
+
+- **§0 phone layout:** the character sheet's stat tiles no longer break Russian labels mid-word on a phone: three tiles
+  per row and hyphenation in the campaign language (`character.module.css`; the two tile class references in
+  `character-screen.tsx` point at the new rules). Checked on the 390 px screenshot.
+- **Pictures that persist (migration 54, additive):** `rpg_private.picture_styles` (append-only style versions per world
+  or campaign, optional reference image, one active per scope, roll-back), `rpg_private.pictures` (frames of turns and
+  anchors of people, places, items, holdings and the hero's full-length figure; versions, a timeline fence,
+  queued → generating → ready/failed, a hidden flag, never deleted), `rpg_private.picture_settings` (frames mode, live
+  frame quality, daily cap, the autopilot settings moved off the device: `UI_DATA_NEEDS` #16), one RPC `rpg_pictures`,
+  a UTC daily cap counted on every attempt (failed ones included), and a player projection that never carries the shot
+  or the prompt. The private bucket now accepts JPEG and WebP. fal pictures persist through this store with the fal
+  model IDs and list prices (#15); the earlier OpenAI `subject_visual` contract is unchanged and stays OpenAI-only
+  (see #15 for why). Full-figure composition beside the portrait: drawn as an anchor (#14; the paper doll still shows the
+  portrait, a one-line change in `character-screen.tsx` that this stage did not own).
+- **fal adapter:** FLUX.2 [klein] 4B/9B; the edit endpoint of every model with reference pictures (`image_urls` as data
+  URIs, within each model's limit); `acceleration`; `safety_tolerance` 4 for portraits on [pro]; one softened re-submit
+  after a content-checker refusal (age, nationality, injury and weapon words dropped), then one last request on the
+  fast model when [pro] refuses again; never a loop. Endpoint IDs and fields were confirmed against the queue's own
+  validation replies (fal's documentation site is outside the cloud VM's network); klein prices are list prices from
+  secondary sources, counted at the higher figure.
+- **Live frames:** while the narration streams, Claude Haiku 5.5 (effort low, ~1.5 s) turns the first paragraph into a
+  shot (who, action, where, angle, mood) — from the public live-turn registry only, never the DM's context, so no hidden
+  fact can reach a picture; second-person narration («ты…») puts the hero in the frame. FLUX.2 [klein] 9B draws it in
+  ~2 s with references (the style's image, the place's anchor, the portraits of the people in the shot). «Твой момент»
+  and a fight's start or end get a re-render on FLUX.2 [pro] once the turn is committed. The paid work runs after the
+  HTTP response (`after()`): **a turn never waits for a picture**, and the turn path itself is untouched. The game
+  screen has a frames panel (desktop and phone): the frame of the current turn with «Перерисовать» and
+  «Скрыть»/«Показать», the version counter, a strip of earlier frames bound to their turns; frames stay after a reload; a
+  loaded save shows its own turns' frames. The shot text is never shown.
+- **Styles:** five editable presets (line art, painterly oil, pixel art, noir graphic novel, watercolour) or custom
+  text, one reference image (upload), a world style with a campaign override, versions with «Вернуть», and
+  «Перерисовать анкеры в новом стиле» with the price per tier before you click. Old anchors stay until the new ones are
+  ready; past frames keep the style they were drawn in; the chronicle re-renders on request. The noir preset on the noir
+  sample looks noir (`docs/screens/stage-v/noir-*.jpg`).
+- **Owner's rule (quality by default where it does not hurt the live feel):** anchors and key-moment re-renders go to
+  the quality tier ([pro]); live frames go to the fastest model that keeps about 4 s ([klein] 9B), with the quality tier
+  one click away in Settings → Картинки («Качество живых кадров»).
+- **Illustrated chronicle** (`/campaigns/<id>/chronicle`, the «Хроника» button in the frames panel): sessions as
+  chapters, each with its recap (chapter titles and «Ранее в…» are read when Stage 4 adds them, never required), the
+  player's action, the frame, the story text; «Перерисовать в текущем стиле» for the whole book.
+- **Settings → Картинки:** frames mode (every action / key moments only / off), live frame quality with the price and the
+  time per frame, who draws the anchors (fal or the earlier OpenAI path), the autopilot toggles incl. the full-length
+  figure, the daily cap shared by frames and anchors, today's count and spend, the style block, the workshop with every
+  Stage V picture and its cost.
+
+**Numbers (paid runs, `docs/runs/stage-v/`; synthetic samples only).** Live frame latency after the first paragraph
+(medians, shot + picture): [klein] 9B **3.4 s without references and 4.6–4.9 s with them** (the reference pictures
+add about 1.5 s on fal's side and raise the people score from 3.2 to 5.7); [klein] 4B 3.5 s with references on a
+5-turn probe, [flash] 6.7 s, [pro] 18.7 s. In the app the first paragraph arrives a few seconds after the first word,
+so a frame shows while the text is still streaming; `FAST_FAL_IMAGE_MODEL` is the one switch if the owner prefers 4B. Price per frame: [klein] 9B $0.017 (4B $0.016, [flash] $0.005, [pro] $0.030); per turn
+with the shot $0.0172 (the shot is $0.0002). A full anchor re-render of «Мир Шва» (29 anchors: 6 portraits, the hero's
+figure, 1 transport, 4 places, 17 item types): **$0.49 fast / $0.87 quality**; the noir sample (15 anchors) $0.26 / $0.45.
+[pro] portraits at tolerance 4: 6 of 6 drawn, 2 of them after the softened re-submit (12.7 s median); [pro] key-moment
+re-renders of the four fight turns: 2 of 4 refused even softened — hence the fast-model fallback. No refusal at all on
+[klein] (113 anchors, about 200 frames; one frame of 200 failed on fal's side and was not retried). Consistency (the vision model's 0–10 score of a frame against the anchors it should
+match, 20-turn scene, oil style):
+
+| Run | Frames | Median frame (shot + picture) | Per frame | People 0–10 | Place 0–10 | Style 0–10 |
+| --- | --- | --- | --- | --- | --- | --- |
+| oil, [klein] 9B, references on | 20 | 4.6 s (1.5 + 3.3) | $0.017 | 5.68 (n=19) | 6.0 (n=2) | 7.16 |
+| oil, [klein] 9B, references off | 20 | 3.4 s (1.5 + 1.8) | $0.017 | 3.16 (n=19) | 5.0 (n=2) | 7.16 |
+| line art, [klein] 9B, references on (10 turns) | 9 | 4.8 s (1.4 + 3.4) | $0.017 | 6.0 (n=8) | 6.5 (n=2) | 8.12 |
+| watercolour, [klein] 9B, references on (10 turns) | 10 | 4.9 s (1.4 + 3.4) | $0.017 | 5.78 (n=9) | 5.0 (n=2) | 8.44 |
+| noir sample, noir preset, [klein] 9B, references on (10 turns) | 10 | 4.8 s (1.3 + 3.6) | $0.017 | 6.56 (n=9) | 4.4 (n=5) | 8.78 |
+| oil, [klein] 4B, references on (5 turns, earlier prompt) | 5 | 3.5 s (1.5 + 2.1) | $0.016 | 5.5 (n=4) | 5.5 (n=2) | 7.4 |
+| oil, [flash], references on (5 turns, earlier prompt) | 5 | 6.7 s (1.4 + 5.2) | $0.005 | 6.0 (n=4) | 5.5 (n=2) | 7.2 |
+| oil, [pro], references on (5 turns, earlier prompt) | 5 | 18.7 s (1.4 + 15.8) | $0.030 | 5.5 (n=4) | 6.0 (n=2) | 7.2 |
+
+Spend: **$6.50** (885 paid calls: 360 fal images at list price, 525 Haiku shots and scores) of the $25 cap (every call in `ledger.json`). Known limits: the vision score is a cheap automatic
+proxy, not a human judgement; references help people far more than places (a place anchor exists only for visited
+places); [pro] refuses violent climaxes often enough that the fast model draws them instead; the owner's own database was
+never touched (no live play here) — the first real play with frames on is the owner's check.
+
+**Checks on the final branch state:** typecheck pass; lint pass (0 warnings); build pass; tests 2455 — 2427 pass, 1 fail, 27 skipped
+(the HTTP tests without `PREVIEW_URL`, as before). The one failure is the environment, not the code: `universal-bootstrap-sql`
+expects the Windows CRLF checksum of migration 30 and passes on the owner's checkout (the two git-history tests pass here
+after `git fetch --unshallow`). Stage V's own tests: `tests/stage-v-fal.test.mjs`, `stage-v-pictures-sql.test.mjs`
+(migration 54 on PGlite), `stage-v-pictures.test.mjs`, `stage-v-engine.test.mjs`. Screenshots: 16 in
+`docs/screens/stage-v/` (desktop 1440 and phone 390; every phone shot 0 px overflow, 0 px clipped). Paid runs stopped
+by the bench's ledger guard, never reached the cap. Nothing touched the owner's database or `main`.
+
+**What the owner should look at first:** `docs/screens/stage-v/game-phone.jpg` and `game-desktop.jpg` (the frames
+panel), `chronicle-desktop.jpg`, `settings-desktop.jpg` (the picture block and the style versions), the frames of the
+three styles in `public/preview/stage-v/` (`shov-oil-…`, `shov-line-art-…`, `shov-watercolor-…`) and the noir sample
+(`noir-noir-…`). To try it live: Settings → Картинки → «Живые кадры: на каждое действие», play a turn; the frame should
+appear a few seconds after the first paragraph, while the text is still coming.
 
 ---
 

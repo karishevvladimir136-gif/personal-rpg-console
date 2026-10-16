@@ -1,0 +1,500 @@
+{
+  "command": "frames",
+  "world": "noir",
+  "style": "noir",
+  "styleText": "Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.",
+  "model": "fal-ai/flux-2/klein/9b",
+  "anchorsModel": "klein9b",
+  "refs": true,
+  "dry": false,
+  "summary": {
+    "frames": 10,
+    "failed": 0,
+    "medianShotMs": 1332,
+    "medianFalMs": 3451,
+    "medianFrameMs": 4744,
+    "shotFromModel": 10,
+    "perFrameUsd": "$0.017",
+    "perTurnUsd": "$0.017"
+  },
+  "rows": [
+    {
+      "turn": 1,
+      "input": "I take the lift to level 40 and knock on the chip-seller's door.",
+      "paragraph": "The lift to level 40 smells of wet concrete and frying oil. Rook hums on your shoulder, counting floors out loud, badly. The chip-seller's door is a sheet of corrugated steel with a peephole cut at child height; behind it, a television argues with itself.",
+      "shot": {
+        "who": [
+          "Rook"
+        ],
+        "action": "Rook hums on a shoulder while counting floors aloud in the lift; ahead, a corrugated steel door with a child-height peephole stands shut, a television audible behind it.",
+        "where": "Lift to level 40 in Kowloon Stack 9, smelling of wet concrete and frying oil; a chip-seller's steel door nearby.",
+        "angle": "medium shot, close on the steel door and peephole, the shoul",
+        "mood": "cramped, damp, faintly sour; uneasy and humming with low noi"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 427,
+        "outputTokens": 193
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1649,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Rook"
+      ],
+      "matchedEntities": [
+        "Rook"
+      ],
+      "references": [
+        "place: Kowloon Stack 9",
+        "Rook"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Rook.\nAction: Rook hums on a shoulder while counting floors aloud in the lift; ahead, a corrugated steel door with a child-height peephole stands shut, a television audible behind it.\nPlace: Lift to level 40 in Kowloon Stack 9, smelling of wet concrete and frying oil; a chip-seller's steel door nearby..\nCamera: medium shot, close on the steel door and peephole, the shoul.\nMood and light: cramped, damp, faintly sour; uneasy and humming with low noi.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: a reference image shows the place (Kowloon Stack 9); reference portraits show Rook: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t01.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-7288-71a1-961d-1a37b466ec17",
+      "width": 1024,
+      "height": 576,
+      "bytes": 736485,
+      "falMs": 3818,
+      "frameMs": 5467,
+      "totalMs": 5614,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 2,
+      "input": "I pick the lock.",
+      "paragraph": "Two pins, a rake, a prayer. The lock gives with a click that sounds like a gunshot in the stairwell. Inside: a mattress, a hot plate, a wall of dead screens, and on the table a plate of noodles still steaming. Whoever lives here left in a hurry, and not through the door.",
+      "shot": {
+        "who": [],
+        "action": "A lock gives way to a set of picks in a dim stairwell; inside a cramped room, a mattress lies on the floor, a hot plate sits beside a wall of dead screens, and a plate of noodles still steams on a table.",
+        "where": "Interior of a cramped unit in Kowloon Stack 9, with a stairwell visible at the open door",
+        "angle": "Medium shot from the doorway, looking into the room",
+        "mood": "Tense and sudden, dim light with an eerie sense of a hasty d"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 438,
+        "outputTokens": 176
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1350,
+      "shotError": null,
+      "who": [
+        "Dana Okafor"
+      ],
+      "matchedEntities": [],
+      "references": [
+        "place: Kowloon Stack 9"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nNo people in frame.\nAction: A lock gives way to a set of picks in a dim stairwell; inside a cramped room, a mattress lies on the floor, a hot plate sits beside a wall of dead screens, and a plate of noodles still steams on a table.\nPlace: Interior of a cramped unit in Kowloon Stack 9, with a stairwell visible at the open door.\nCamera: Medium shot from the doorway, looking into the room.\nMood and light: Tense and sudden, dim light with an eerie sense of a hasty d.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: a reference image shows the place (Kowloon Stack 9).\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t02.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-8693-7252-871c-e1409434cc36",
+      "width": 1024,
+      "height": 576,
+      "bytes": 706191,
+      "falMs": 2058,
+      "frameMs": 3408,
+      "totalMs": 3477,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 3,
+      "input": "I call Mara and ask her to pull the building's camera feed.",
+      "paragraph": "Mara answers on the first ring, which means she was awake and bored. «Stack 9? Their cameras are older than my implants. Give me two minutes.» You hear her fingers on glass, then a low whistle. «Dana. Someone wiped the last hour. Clean. That's not a chip-seller; that's a professional.»",
+      "shot": {
+        "who": [
+          "Mara Vey",
+          "Dana Okafor"
+        ],
+        "action": "Mara, on a call, taps quickly on glass and gives a low whistle while Dana listens, reacting to the news that someone wiped the last hour of footage.",
+        "where": "Kowloon Stack 9, a cramped monitoring space with old camera feeds on a glass display",
+        "angle": "over the shoulder",
+        "mood": "tense, focused, faintly wry"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 443,
+        "outputTokens": 143
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1194,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Mara Vey"
+      ],
+      "matchedEntities": [
+        "Dana Okafor",
+        "Mara Vey"
+      ],
+      "references": [
+        "place: Kowloon Stack 9",
+        "Dana Okafor",
+        "Mara Vey"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Mara Vey, Dana Okafor.\nAction: Mara, on a call, taps quickly on glass and gives a low whistle while Dana listens, reacting to the news that someone wiped the last hour of footage.\nPlace: Kowloon Stack 9, a cramped monitoring space with old camera feeds on a glass display.\nCamera: over the shoulder.\nMood and light: tense, focused, faintly wry.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: a reference image shows the place (Kowloon Stack 9); reference portraits show Dana Okafor, Mara Vey: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t03.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-9444-7ab2-99d6-e9deb9c70f76",
+      "width": 1024,
+      "height": 576,
+      "bytes": 729247,
+      "falMs": 3593,
+      "frameMs": 4787,
+      "totalMs": 4946,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 4,
+      "input": "I hear footsteps. I step into the shadow behind the door.",
+      "paragraph": "The footsteps stop. A flashlight beam crawls over the mattress, the hot plate, the noodles. «Okafor,» says Inspector Kwan from the doorway, not loudly, the way a man says a word he has said too many times. «I could have you for breaking and entering. I'd rather have you for coffee.» He lowers the light.",
+      "shot": {
+        "who": [
+          "Inspector Kwan",
+          "Dana Okafor"
+        ],
+        "action": "Inspector Kwan stands in the doorway holding a flashlight beam low over the mattress, hot plate and noodles, speaking to Dana Okafor, then lowers the light.",
+        "where": "Kowloon Stack 9, a cramped room with a mattress, a hot plate and noodles, seen from the doorway",
+        "angle": "medium shot from the doorway, slightly low, flashlight beam ",
+        "mood": "tense, wry, quiet; a weary standoff easing into an offer"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 448,
+        "outputTokens": 193
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1293,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Inspector Kwan"
+      ],
+      "matchedEntities": [
+        "Dana Okafor",
+        "Inspector Kwan"
+      ],
+      "references": [
+        "place: Kowloon Stack 9",
+        "Dana Okafor"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Inspector Kwan, Dana Okafor.\nAction: Inspector Kwan stands in the doorway holding a flashlight beam low over the mattress, hot plate and noodles, speaking to Dana Okafor, then lowers the light.\nPlace: Kowloon Stack 9, a cramped room with a mattress, a hot plate and noodles, seen from the doorway.\nCamera: medium shot from the doorway, slightly low, flashlight beam .\nMood and light: tense, wry, quiet; a weary standoff easing into an offer.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: a reference image shows the place (Kowloon Stack 9); reference portraits show Dana Okafor: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t04.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-a7bc-78e2-a2ce-e2225a765528",
+      "width": 1024,
+      "height": 576,
+      "bytes": 670917,
+      "falMs": 3451,
+      "frameMs": 4744,
+      "totalMs": 4869,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 5,
+      "input": "I show Kwan the Lazarus chip and ask what he knows.",
+      "paragraph": "Kwan turns the chip over in his gloved fingers and the blue glow lights his face from below. «Three bodies this month had one of these in the palm. Three. The press calls it the Lazarus case because the chip keeps recording after the heart stops.» He hands it back. «You're the first one holding it who's still breathing.»",
+      "shot": {
+        "who": [
+          "Inspector Kwan"
+        ],
+        "action": "Kwan turns a glowing blue chip over in his gloved fingers, its light shining up onto his face, then hands it back to the person in front of him.",
+        "where": "Kowloon Stack 9",
+        "angle": "medium close-up, low angle from below the chip's glow",
+        "mood": "tense, eerie blue light, cold suspicion"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 442,
+        "outputTokens": 127
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1442,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Inspector Kwan"
+      ],
+      "matchedEntities": [
+        "Inspector Kwan"
+      ],
+      "references": [
+        "place: Kowloon Stack 9"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Inspector Kwan.\nAction: Kwan turns a glowing blue chip over in his gloved fingers, its light shining up onto his face, then hands it back to the person in front of him.\nPlace: Kowloon Stack 9.\nCamera: medium close-up, low angle from below the chip's glow.\nMood and light: tense, eerie blue light, cold suspicion.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: a reference image shows the place (Kowloon Stack 9).\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t05.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-bade-7733-9b75-9252e72713d8",
+      "width": 1024,
+      "height": 576,
+      "bytes": 793521,
+      "falMs": 1781,
+      "frameMs": 3223,
+      "totalMs": 3283,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 6,
+      "input": "I drive down to the flooded harbor where the seller kept his boat.",
+      "paragraph": "The old Citroën hisses through ankle-deep water between shuttered warehouses, its hover kit coughing. The harbor is a drowned grid of jetties lit by one working neon sign that promises FISH in a language nobody here speaks anymore. Rook flies ahead, a small smear of green light over black water.",
+      "shot": {
+        "who": [
+          "Rook"
+        ],
+        "action": "The old Citroën hisses through ankle-deep water between shuttered warehouses, its hover kit coughing, while Rook flies ahead as a small smear of green light over black water.",
+        "where": "A flooded harbor: a drowned grid of jetties between shuttered warehouses, lit by one working neon FISH sign.",
+        "angle": "wide shot",
+        "mood": "Lonely, decayed, dim; a single neon glow against black water"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 436,
+        "outputTokens": 155
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1148,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Rook"
+      ],
+      "matchedEntities": [
+        "Rook"
+      ],
+      "references": [
+        "Rook"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Rook.\nAction: The old Citroën hisses through ankle-deep water between shuttered warehouses, its hover kit coughing, while Rook flies ahead as a small smear of green light over black water.\nPlace: A flooded harbor: a drowned grid of jetties between shuttered warehouses, lit by one working neon FISH sign..\nCamera: wide shot.\nMood and light: Lonely, decayed, dim; a single neon glow against black water.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: reference portraits show Rook: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t06.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-c69b-7a31-8f08-7da7f88eb504",
+      "width": 1024,
+      "height": 576,
+      "bytes": 782663,
+      "falMs": 1781,
+      "frameMs": 2929,
+      "totalMs": 2990,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 7,
+      "input": "I board the boat.",
+      "paragraph": "Velvet is sitting in the cabin with her coat still buttoned and a cup of tea she hasn't touched. «Ms Okafor. You're late; the seller left an hour ago, with his skull.» She smiles with her mouth only. «The Syndicate paid you an advance. We'd like to know what it bought.»",
+      "shot": {
+        "who": [
+          "Velvet",
+          "Dana Okafor"
+        ],
+        "action": "Velvet sits in the cabin with her buttoned coat and an untouched cup of tea, smiling thinly as she speaks to Dana Okafor, who has just arrived late.",
+        "where": "Cabin at the flooded harbor",
+        "angle": "medium shot, slightly low angle from the doorway",
+        "mood": "tense, cold, quietly menacing"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 439,
+        "outputTokens": 139
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1092,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Velvet"
+      ],
+      "matchedEntities": [
+        "Dana Okafor",
+        "Velvet"
+      ],
+      "references": [
+        "Dana Okafor"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Velvet, Dana Okafor.\nAction: Velvet sits in the cabin with her buttoned coat and an untouched cup of tea, smiling thinly as she speaks to Dana Okafor, who has just arrived late.\nPlace: Cabin at the flooded harbor.\nCamera: medium shot, slightly low angle from the doorway.\nMood and light: tense, cold, quietly menacing.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: reference portraits show Dana Okafor: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t07.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-d20c-75c0-8305-aba8ac7f3792",
+      "width": 1024,
+      "height": 576,
+      "bytes": 686813,
+      "falMs": 1882,
+      "frameMs": 2974,
+      "totalMs": 3029,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 8,
+      "input": "I tell Velvet the chip is evidence now, and I'm keeping it.",
+      "paragraph": "Velvet's smile doesn't move, but something behind it does. «Evidence,» she repeats, as if tasting it. The cabin door opens and it isn't her muscle — it's Mara, soaked to the skin, a dead drone in each hand. «Your people were watching the jetty,» Mara says to Velvet. «They're not any more.»",
+      "shot": {
+        "who": [
+          "Velvet",
+          "Mara Vey"
+        ],
+        "action": "Velvet keeps her smile fixed while Mara, soaked to the skin, steps through the cabin door holding a dead drone in each hand and tells her that her people on the jetty are no longer watching.",
+        "where": "Flooded harbor, at a cabin doorway above the water",
+        "angle": "medium shot, over the shoulder of Velvet toward Mara in the ",
+        "mood": "tense, cold, wet, menacing calm"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 447,
+        "outputTokens": 163
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1252,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Velvet",
+        "Mara Vey"
+      ],
+      "matchedEntities": [
+        "Mara Vey",
+        "Velvet"
+      ],
+      "references": [
+        "Mara Vey"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Velvet, Mara Vey.\nAction: Velvet keeps her smile fixed while Mara, soaked to the skin, steps through the cabin door holding a dead drone in each hand and tells her that her people on the jetty are no longer watching.\nPlace: Flooded harbor, at a cabin doorway above the water.\nCamera: medium shot, over the shoulder of Velvet toward Mara in the .\nMood and light: tense, cold, wet, menacing calm.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: reference portraits show Mara Vey: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t08.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-dea3-7160-869d-51101a0963cc",
+      "width": 1024,
+      "height": 576,
+      "bytes": 716630,
+      "falMs": 1744,
+      "frameMs": 2996,
+      "totalMs": 3062,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 9,
+      "input": "I draw the snub pistol and tell Velvet to get off my boat.",
+      "paragraph": "The snub pistol comes out slow and stays low, the way you were taught. Velvet looks at it the way she'd look at a stain. «You'll owe us for the drones,» she says, rising, and steps past Mara into the sleet without hurrying. On the jetty she turns back once. «Lazarus didn't die, Dana. Ask the chip.»",
+      "shot": {
+        "who": [
+          "Dana Okafor",
+          "Velvet",
+          "Mara Vey"
+        ],
+        "action": "Dana draws a snub pistol low and slow while Velvet rises and steps past Mara into the sleet, then Velvet turns back on the jetty to speak to Dana.",
+        "where": "Flooded harbor, wooden jetty in sleet",
+        "angle": "medium shot, over the shoulder of Dana toward Velvet",
+        "mood": "tense, cold, wet and wary"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 449,
+        "outputTokens": 154
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1332,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Velvet"
+      ],
+      "matchedEntities": [
+        "Dana Okafor",
+        "Mara Vey",
+        "Velvet"
+      ],
+      "references": [
+        "Dana Okafor",
+        "Mara Vey"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Dana Okafor, Velvet, Mara Vey.\nAction: Dana draws a snub pistol low and slow while Velvet rises and steps past Mara into the sleet, then Velvet turns back on the jetty to speak to Dana.\nPlace: Flooded harbor, wooden jetty in sleet.\nCamera: medium shot, over the shoulder of Dana toward Velvet.\nMood and light: tense, cold, wet and wary.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: reference portraits show Dana Okafor, Mara Vey: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t09.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-eb2b-79e2-b8db-6126e41c4f23",
+      "width": 1024,
+      "height": 576,
+      "bytes": 689594,
+      "falMs": 3665,
+      "frameMs": 4997,
+      "totalMs": 5105,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 10,
+      "input": "I plug the chip into Mara's deck and ask it the question.",
+      "paragraph": "Mara's deck wakes with a sound like a held breath. The chip's blue glow spreads across the screen, then resolves into a face: a man, drowned pale, eyes open, speaking without sound. Rook lands on the table and goes very still. Then the man on the screen turns his head and looks directly at you, and his lips shape a name — yours.",
+      "shot": {
+        "who": [
+          "Mara Vey",
+          "Rook",
+          "a drowned pale man on the screen"
+        ],
+        "action": "Mara's deck glows blue as a face resolves on its screen: a drowned, pale man with open eyes turns his head and looks out at the viewer, his lips shaping a silent name while Rook lands on the table and freezes.",
+        "where": "Flooded harbor, Mara's table beside a glowing deck",
+        "angle": "close-up on the screen with Mara and Rook in the foreground,",
+        "mood": "eerie, tense, cold blue glow with a held-breath stillness"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 446,
+        "outputTokens": 203
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1469,
+      "shotError": null,
+      "who": [
+        "Dana Okafor",
+        "Mara Vey",
+        "Rook"
+      ],
+      "matchedEntities": [
+        "Rook",
+        "Mara Vey"
+      ],
+      "references": [
+        "Rook",
+        "Mara Vey"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action, no text or lettering anywhere.\nWho: Mara Vey, Rook, a drowned pale man on the screen.\nAction: Mara's deck glows blue as a face resolves on its screen: a drowned, pale man with open eyes turns his head and looks out at the viewer, his lips shaping a silent name while Rook lands on the table and freezes.\nPlace: Flooded harbor, Mara's table beside a glowing deck.\nCamera: close-up on the screen with Mara and Rook in the foreground,.\nMood and light: eerie, tense, cold blue glow with a held-breath stillness.\nArt style: Noir graphic novel: high-contrast black ink, heavy shadows and rain, one cold accent colour, halftone texture, cinematic framing.\nReferences: reference portraits show Rook, Mara Vey: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "noir-noir-klein9b-refs-t10.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14212-ffaf-7c02-b610-cd7533a3e875",
+      "width": 1024,
+      "height": 576,
+      "bytes": 782606,
+      "falMs": 3533,
+      "frameMs": 5002,
+      "totalMs": 5110,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    }
+  ]
+}

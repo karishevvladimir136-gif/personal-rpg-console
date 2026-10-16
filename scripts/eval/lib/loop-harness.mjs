@@ -266,6 +266,8 @@ export async function runLoopScenario(scenario, options) {
           replayOf: step.action === "replay" ? step.of : undefined,
           scriptedNote: live ? undefined : script[step.id]?.note ?? (step.action === "replay" ? "replay (no model answer expected)" : rounds ? undefined : "no applicable scripted answer"),
           ...turn, contextText: undefined });
+        // Integration smoke: work that follows a turn (a live frame of its narration), recorded on the turn.
+        if (options.afterTurn) Object.assign(record, (await options.afterTurn({ c, f, cid, hero, input, result, turn, record })) ?? {});
         transport.splice(0, transport.length);
       } else if (step.action === "save") {
         const save = await f.saves(cid, "create", await f.command(cid, { kind: "manual", name: step.name }));

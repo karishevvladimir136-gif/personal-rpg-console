@@ -15,6 +15,7 @@ import type {
 import type { PlaySnapshot, PublicTurn, VisibleCheck } from "../../gameplay/contracts.ts";
 import { createCampaignSettings } from "../../campaign-settings.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
+import { previewPictureBoard } from "./stage-v-pictures.ts";
 
 export const PREVIEW_CAMPAIGN_ID = "5e5e5e5e-0000-4000-8000-000000000001";
 const id = (n: number) => `5e5e5e5e-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -260,13 +261,38 @@ export const previewLibrary: Campaign[] = [
   { ...row(3), id: id(3), title: "Мир Шва · Кампания 1", subtitle: "Пешком по Подземке", language: "ru" },
 ];
 
+/** Stage V sample board: anchors on the sample art, one live frame per game turn, the world's style. */
+export const previewPictures = previewPictureBoard({
+  campaignId: PREVIEW_CAMPAIGN_ID, worldId: id(600), timeline: { timelineId: id(900), epoch: 1 }, at,
+  style: { id: id(700), scope: "world", preset: "oil", label: "Масляная живопись", hasReference: false },
+  anchors: [
+    { id: id(710), subjectKind: "entity", subjectId: I.hero, composition: "portrait", image: "/preview/stage-v/shov-oil-klein9b-%D0%B4%D0%B6%D0%B5%D0%B9%D0%BC%D1%81-%D1%85%D0%B5%D0%B9%D0%BB-portrait.jpg" },
+    { id: id(711), subjectKind: "entity", subjectId: I.hero, composition: "figure", image: "/preview/stage-v/shov-oil-klein9b-%D0%B4%D0%B6%D0%B5%D0%B9%D0%BC%D1%81-%D1%85%D0%B5%D0%B9%D0%BB-figure.jpg" },
+    { id: id(712), subjectKind: "entity", subjectId: I.meg, composition: "portrait", image: "/preview/stage-v/shov-oil-klein9b-%D0%BC%D1%8D%D0%B3-%D1%80%D1%8B%D0%B6%D0%B0%D1%8F-portrait.jpg" },
+    { id: id(713), subjectKind: "entity", subjectId: I.urzul, composition: "portrait", image: "/preview/stage-v/shov-oil-klein9b-%D1%83%D1%80%D0%B7%D1%83%D0%BB-%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B%D0%B9-%D0%B1%D0%BE%D0%BA-portrait.jpg" },
+    { id: id(714), subjectKind: "entity", subjectId: I.wolf, composition: "portrait", image: "/preview/stage-v/shov-oil-klein9b-%D0%B2%D0%BE%D0%BB%D1%8C%D1%84-%D0%BA%D0%B5%D1%81%D1%81%D0%BB%D0%B5%D1%80-portrait.jpg" },
+    { id: id(715), subjectKind: "entity", subjectId: I.zarga, composition: "portrait", image: "/preview/stage-v/shov-oil-klein9b-%D0%B7%D0%B0%D1%80%D0%B3%D0%B0-portrait.jpg" },
+    { id: id(716), subjectKind: "entity", subjectId: I.airship, composition: "holding", image: "/preview/stage-v/shov-oil-klein9b-%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%BD%D0%B0%D1%8F-%D0%B1%D0%B0%D0%B1%D0%BA%D0%B0-holding.jpg" },
+    { id: id(717), subjectKind: "location", subjectId: I.cave, composition: "location", image: "/preview/stage-v/shov-oil-klein9b-%D0%BF%D0%B5%D1%89%D0%B5%D1%80%D0%B0-%D0%B4%D0%BE%D0%BC%D0%B0-%D0%B0%D0%BB%D1%8C%D0%B2%D0%B0%D1%80%D0%B5%D1%88-location.jpg" },
+    { id: id(718), subjectKind: "location", subjectId: I.geneva, composition: "location", image: "/preview/stage-5/geneva.jpg" },
+    { id: id(719), subjectKind: "item", subjectId: I.crystal, composition: "item", image: "/preview/stage-v/shov-oil-klein9b-%D0%BA%D1%80%D0%B8%D1%81%D1%82%D0%B0%D0%BB%D0%BB-%D1%8D%D1%84%D0%B8%D1%80%D0%B8%D1%82%D0%B0-item.jpg" },
+    { id: id(720), subjectKind: "item", subjectId: I.revolver, composition: "item", image: "/preview/stage-v/shov-oil-klein9b-%D1%80%D0%B5%D0%B2%D0%BE%D0%BB%D1%8C%D0%B2%D0%B5%D1%80-%D0%B0%D1%80%D0%B3%D1%83%D0%BC%D0%B5%D0%BD%D1%82-item.jpg" },
+    { id: id(721), subjectKind: "item", subjectId: I.watch, composition: "item", image: "/preview/stage-v/shov-oil-klein9b-%D0%BE%D1%82%D1%86%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B5-%D1%87%D0%B0%D1%81%D1%8B-item.jpg" },
+  ],
+  frames: [
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-klein9b-refs-t01.jpg", trigger: "live" },
+    // The streaming turn of the game preview: its frame is being drawn.
+    { id: id(731), turnId: id(202), image: "", trigger: "live", status: "generating" },
+  ],
+});
+
 export const shovSample: PreviewSample = {
   key: "shov",
   language: "ru",
   snapshot: previewSnapshot,
   play: previewPlay,
   live: (language) => ({
-    operationId: "preview",
+    operationId: id(202),
     status: "generating",
     text: "Изольда замечает твой взгляд и улыбается краем рта. «Ты слишком долго смотришь на мою руку, наладчик. Перстень я оставила в Белой башне — вместе с клятвой»",
     changes: [
@@ -289,6 +315,7 @@ export const shovSample: PreviewSample = {
   figure: previewFigure,
   atlas: previewAtlas,
   talkTo: I.meg,
+  pictures: previewPictures,
   course: I.geneva,
   placements: [
     [I.lisbon, 0.3, 0.64], [I.cave, 0.27, 0.7], [I.alcantara, 0.34, 0.6], [I.tower, 0.29, 0.58], [I.geneva, 0.66, 0.36], [I.boston, 0.07, 0.3],

@@ -1,0 +1,525 @@
+{
+  "command": "frames",
+  "world": "shov",
+  "style": "watercolor",
+  "styleText": "Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.",
+  "model": "fal-ai/flux-2/klein/9b",
+  "anchorsModel": "klein9b",
+  "refs": true,
+  "dry": false,
+  "summary": {
+    "frames": 10,
+    "failed": 0,
+    "medianShotMs": 1444,
+    "medianFalMs": 3448,
+    "medianFrameMs": 4905,
+    "shotFromModel": 10,
+    "perFrameUsd": "$0.017",
+    "perTurnUsd": "$0.017"
+  },
+  "rows": [
+    {
+      "turn": 1,
+      "input": "Даю команду отдать швартовы. Взлетаем.",
+      "paragraph": "Мэг кладёт ладонь на штурвал и смотрит на тебя поверх очков: «Скажи это вслух, наладчик. Чтобы «Бабка» слышала». Ты говоришь. Тинка срубает последний швартов, канат с шипением уходит в воду, и старый дирижабль, кряхтя всеми заклёпками, отрывается от каменного пола пещеры.",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Мэг Рыжая",
+          "Тинка"
+        ],
+        "action": "Meg, hand on the ship's helm, looks over her glasses at the hero; Tinka chops through the last mooring line as rope hisses into water and the old airship lifts off the cave floor.",
+        "where": "Пещера дома Альвареш, каменный пол, швартовы, старый дирижабль",
+        "angle": "medium shot, low angle from the cave floor looking up at the",
+        "mood": "tense, determined, creaking old machinery, release"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 647,
+        "outputTokens": 184
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1449,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "references": [
+        "place: Пещера дома Альвареш",
+        "Джеймс Хейл",
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (3): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Пилот «Бабки». Курит сигариллы, держит штурвал и половину долгов экипажа.; person 3: Механик-гоблинша. Висит вниз головой где угодно, лишь бы рядом был двигатель..\nAction: Meg, hand on the ship's helm, looks over her glasses at the hero; Tinka chops through the last mooring line as rope hisses into water and the old airship lifts off the cave floor.\nPlace: Пещера дома Альвареш, каменный пол, швартовы, старый дирижабль.\nCamera: medium shot, low angle from the cave floor looking up at the.\nMood and light: tense, determined, creaking old machinery, release.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: a reference image shows the place; reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t01.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14241-ed50-79c1-b3f2-10ba65b1a624",
+      "width": 1024,
+      "height": 576,
+      "bytes": 702300,
+      "falMs": 3385,
+      "frameMs": 4834,
+      "totalMs": 4864,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 2,
+      "input": "Оборачиваюсь к Изольде: она летит с нами или остаётся?",
+      "paragraph": "Изольда стоит у кормового поручня, вцепившись в него так, что костяшки побелели. «Я дала клятву, — говорит она, не глядя на тебя. — Клятва не предусматривает высоты». Внизу, в полутьме пещеры, Тиаго Альвареш поднимает фонарь в прощальном жесте — и записывает что-то в свою книжку.",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Изольда Вэйл",
+          "Тиаго Альвареш"
+        ],
+        "action": "A pale woman grips the stern railing with white knuckles, not looking at the hero; below in the dim cave, an older man raises a lantern in a farewell gesture while writing in a small notebook.",
+        "where": "Stern of a ship over the dim cave of the Альвареш house, lantern light below",
+        "angle": "over the shoulder shot from the hero toward the woman, cave ",
+        "mood": "tense, wry, dim lantern-lit melancholy"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 641,
+        "outputTokens": 191
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1770,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Изольда Вэйл",
+        "Тиаго Альвареш"
+      ],
+      "references": [
+        "place: Пещера дома Альвареш",
+        "Джеймс Хейл"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (3): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Директриса Фабрики Искр. Под клятвой, но смотрит на сердечник Г-7 слишком внимательно.; person 3: Глава дома Альвареш. Дал пещеру под «Бабку» — и записал это в долг..\nAction: A pale woman grips the stern railing with white knuckles, not looking at the hero; below in the dim cave, an older man raises a lantern in a farewell gesture while writing in a small notebook.\nPlace: Stern of a ship over the dim cave of the Альвареш house, lantern light below.\nCamera: over the shoulder shot from the hero toward the woman, cave .\nMood and light: tense, wry, dim lantern-lit melancholy.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: a reference image shows the place; a reference portrait shows the person in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t02.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-016b-7c50-8cea-0f83d1287709",
+      "width": 1024,
+      "height": 576,
+      "bytes": 578958,
+      "falMs": 3363,
+      "frameMs": 5133,
+      "totalMs": 5161,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 3,
+      "input": "Иду к Вольфу в машинное: как правый двигатель?",
+      "paragraph": "В машинном отделении пахнет горячим маслом и эфиритом. Вольф Кесслер стоит по локоть в правом двигателе, монокль запотел, на щеке чёрная полоса. «Кашляет, но тянет, — говорит он, не оборачиваясь. — До Пиренеев дотянем. Дальше — как Шов решит». Он протягивает тебе гаечный ключ: «Подержи. И не дыши на кристалл».",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Вольф Кесслер"
+        ],
+        "action": "Wolf Kessler, a man with a fogged monocle and a black smear on his cheek, stands elbow-deep in the right engine and holds out a wrench to James Hale, who is standing beside him.",
+        "where": "Engine room of an airship over the Pyrenees, smelling of hot oil and etherite, with the right engine and its crystal vis",
+        "angle": "Medium shot over the shoulder of James Hale, looking toward ",
+        "mood": "Tense, greasy, urgent; a faltering engine with hope of reach"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 665,
+        "outputTokens": 215
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1452,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Вольф Кесслер"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Вольф Кесслер"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Вольф Кесслер"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (2): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Инженер Паровой Лиги, бывший офицер. Монокль, привычка всё записывать..\nAction: Wolf Kessler, a man with a fogged monocle and a black smear on his cheek, stands elbow-deep in the right engine and holds out a wrench to James Hale, who is standing beside him.\nPlace: Engine room of an airship over the Pyrenees, smelling of hot oil and etherite, with the right engine and its crystal vis.\nCamera: Medium shot over the shoulder of James Hale, looking toward .\nMood and light: Tense, greasy, urgent; a faltering engine with hope of reach.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t03.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-1459-75f3-9de3-97329273da97",
+      "width": 1024,
+      "height": 576,
+      "bytes": 697021,
+      "falMs": 3509,
+      "frameMs": 4961,
+      "totalMs": 4981,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 4,
+      "input": "Поднимаюсь на палубу к Зарге. Спрашиваю, что она слышит.",
+      "paragraph": "Зарга сидит на носу гондолы, свесив ноги в пустоту, и держит костяной амулет на ладони, как птицу. «Шов поёт, — говорит она. — Громче, чем вчера. Как будто кто-то дёргает струну с другой стороны». Ветер рвёт её косы; чалмы-обереги на поясе звенят. Она поворачивается к тебе, и в её янтарных глазах отражается фиолетовое зарево на востоке.",
+      "shot": {
+        "who": [
+          "Зарга",
+          "Джеймс Хейл"
+        ],
+        "action": "Зарга sits on the bow of a gondola with her legs dangling over the void, holding a bone amulet on her palm like a bird; wind whips her braids, charm-talismans on her belt jingle, and she turns toward the hero.",
+        "where": "Небо над Пиренеями — open air above the gondola, mountain peaks far below, purple glow on the eastern horizon",
+        "angle": "medium shot from behind the hero's shoulder, slightly low an",
+        "mood": "tense, eerie, windswept; violet dusk glow and foreboding"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 671,
+        "outputTokens": 208
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1578,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Зарга"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Зарга"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Зарга"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (2): person 1: Шаманка Гхара. Слышит Шов и не любит, когда о нём шутят.; person 2: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц.\nAction: Зарга sits on the bow of a gondola with her legs dangling over the void, holding a bone amulet on her palm like a bird; wind whips her braids, charm-talismans on her belt jingle, and she turns toward the hero.\nPlace: Небо над Пиренеями — open air above the gondola, mountain peaks far below, purple glow on the eastern horizon.\nCamera: medium shot from behind the hero's shoulder, slightly low an.\nMood and light: tense, eerie, windswept; violet dusk glow and foreboding.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t04.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-2854-7bb2-b921-5f28d0f86b53",
+      "width": 1024,
+      "height": 576,
+      "bytes": 577188,
+      "falMs": 3448,
+      "frameMs": 5026,
+      "totalMs": 5050,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 5,
+      "input": "Замечаю точку на горизонте. Беру подзорную трубу.",
+      "paragraph": "В подзорной трубе точка превращается в корабль: тёмный, узкий, с двумя винтами по бортам и флагом, которого ты не знаешь. Он идёт наперерез, и идёт быстро. Урзул уже стоит рядом — ты не слышал, как он подошёл, — и молча снимает с крюка длинную винтовку. Мэг гасит сигариллу о борт: «Я же говорила. Кто-нибудь обязательно будет».",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Урзул Железный Бок",
+          "Мэг Рыжая"
+        ],
+        "action": "Hero looks through a brass spyglass as a dark narrow ship with two side propellers closes fast; Urzul, standing beside him, lifts a long rifle off a hook; Meg stubs out a cigarillo against the hull.",
+        "where": "Небо над Пиренеями",
+        "angle": "over the shoulder",
+        "mood": "tense, watchful, rising danger"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 668,
+        "outputTokens": 162
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1314,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Урзул Железный Бок"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (3): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Орк из Гхара; половина рёбер заменена клёпаным железом. Говорит мало, держит слово.; person 3: Пилот «Бабки». Курит сигариллы, держит штурвал и половину долгов экипажа..\nAction: Hero looks through a brass spyglass as a dark narrow ship with two side propellers closes fast; Urzul, standing beside him, lifts a long rifle off a hook; Meg stubs out a cigarillo against the hull.\nPlace: Небо над Пиренеями.\nCamera: over the shoulder.\nMood and light: tense, watchful, rising danger.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t05.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-3b12-70a3-ba79-a5017d54b35c",
+      "width": 1024,
+      "height": 576,
+      "bytes": 589911,
+      "falMs": 3397,
+      "frameMs": 4711,
+      "totalMs": 4737,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 6,
+      "input": "Приказываю уходить вверх, в облака. Мэг, выжимай всё.",
+      "paragraph": "«Бабка» задирает нос, и палуба уходит из-под ног. Мэг держит штурвал обеими руками, Тинка где-то в такелаже орёт что-то про левый баллон, а ты хватаешься за поручень и видишь, как чужой корабль растёт снизу, серый и быстрый. Облака смыкаются над гондолой мокрым холодным молоком.",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Мэг Рыжая",
+          "Тинка"
+        ],
+        "action": "The airship's nose tilts sharply upward and the deck drops away; a red-haired woman grips the wheel with both hands while a hero clutches a railing, watching a grey fast ship rise from below.",
+        "where": "Небо над Пиренеями; deck and gondola of an airship amid clouds",
+        "angle": "low angle, medium shot from the deck toward the rising grey ",
+        "mood": "tense, sudden danger, cold wet clouds closing in"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 641,
+        "outputTokens": 183
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1444,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Мэг Рыжая"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Мэг Рыжая",
+        "Тинка"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Мэг Рыжая"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (3): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Пилот «Бабки». Курит сигариллы, держит штурвал и половину долгов экипажа.; person 3: Механик-гоблинша. Висит вниз головой где угодно, лишь бы рядом был двигатель..\nAction: The airship's nose tilts sharply upward and the deck drops away; a red-haired woman grips the wheel with both hands while a hero clutches a railing, watching a grey fast ship rise from below.\nPlace: Небо над Пиренеями; deck and gondola of an airship amid clouds.\nCamera: low angle, medium shot from the deck toward the rising grey .\nMood and light: tense, sudden danger, cold wet clouds closing in.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t06.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-4e0f-7e10-bebc-a4025914ef23",
+      "width": 1024,
+      "height": 576,
+      "bytes": 621139,
+      "falMs": 3451,
+      "frameMs": 4895,
+      "totalMs": 4916,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 7,
+      "input": "Бегу на корму: что в нас попало?",
+      "paragraph": "На корме Урзул держит одной рукой разорванный канат, другой — Вольфа за ворот: инженера едва не унесло в пробоину. В обшивке гондолы дыра размером с бочку, и в ней свистит ветер. На палубе лежит гарпун с цепью — чужой корабль не стреляет, он тянет. Урзул смотрит на тебя: «Рубить?»",
+      "shot": {
+        "who": [
+          "Урзул Железный Бок",
+          "Вольф Кесслер",
+          "Джеймс Хейл"
+        ],
+        "action": "At the stern, a heavy armored man holds a torn rope in one hand and grips an engineer by the collar with the other, the engineer nearly pulled through a barrel-sized hole in the hull; a harpoon with chain lies on the deck.",
+        "where": "Небо над Пиренеями, stern of an airship gondola with a wind-torn hole in the hull",
+        "angle": "medium shot, over the shoulder of the hero facing the stern",
+        "mood": "tense, urgent, wind-whipped danger"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 644,
+        "outputTokens": 205
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1384,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок",
+        "Вольф Кесслер"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (3): person 1: Орк из Гхара; половина рёбер заменена клёпаным железом. Говорит мало, держит слово.; person 2: Инженер Паровой Лиги, бывший офицер. Монокль, привычка всё записывать.; person 3: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц.\nAction: At the stern, a heavy armored man holds a torn rope in one hand and grips an engineer by the collar with the other, the engineer nearly pulled through a barrel-sized hole in the hull; a harpoon with chain lies on the deck.\nPlace: Небо над Пиренеями, stern of an airship gondola with a wind-torn hole in the hull.\nCamera: medium shot, over the shoulder of the hero facing the stern.\nMood and light: tense, urgent, wind-whipped danger.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t07.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-6123-7623-9a52-6544131a2f49",
+      "width": 1024,
+      "height": 576,
+      "bytes": 692369,
+      "falMs": 3598,
+      "frameMs": 4982,
+      "totalMs": 5020,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 8,
+      "input": "Кладу руку на цепь и бью в неё огненным снарядом — пусть лопнет.",
+      "paragraph": "Огонь вырывается из твоей ладони коротким злым языком, и звено цепи вспыхивает белым. Урзул бьёт по нему прикладом — раз, другой, — и цепь лопается с таким звоном, что у тебя закладывает уши. Гарпун улетает вниз, в облака, а «Бабка», освободившись, подпрыгивает вверх, как пробка.",
+      "shot": {
+        "who": [
+          "Джеймс Хейл",
+          "Урзул Железный Бок"
+        ],
+        "action": "Fire bursts from the hero's palm in a short angry tongue, a chain link flares white; Urzul strikes it with a rifle butt twice until the chain snaps and the harpoon drops into the clouds.",
+        "where": "Небо над Пиренеями, open sky among clouds, chain and harpoon near an aircraft",
+        "angle": "medium shot, slightly low angle on the hero's raised hand",
+        "mood": "tense, sharp, explosive relief"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 643,
+        "outputTokens": 181
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1305,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок"
+      ],
+      "references": [
+        "Джеймс Хейл",
+        "Урзул Железный Бок"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (2): person 1: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц; person 2: Орк из Гхара; половина рёбер заменена клёпаным железом. Говорит мало, держит слово..\nAction: Fire bursts from the hero's palm in a short angry tongue, a chain link flares white; Urzul strikes it with a rifle butt twice until the chain snaps and the harpoon drops into the clouds.\nPlace: Небо над Пиренеями, open sky among clouds, chain and harpoon near an aircraft.\nCamera: medium shot, slightly low angle on the hero's raised hand.\nMood and light: tense, sharp, explosive relief.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: reference portraits show the people in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t08.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-745a-7721-9cbd-30a365f7a975",
+      "width": 1024,
+      "height": 576,
+      "bytes": 603197,
+      "falMs": 3600,
+      "frameMs": 4905,
+      "totalMs": 4923,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 9,
+      "input": "Иду на камбуз. Нам всем нужно поесть и отдышаться.",
+      "paragraph": "Грук уже раздаёт сардины — прямо из банки, на ломтях чёрного хлеба, — и бормочет, что видел сон про три луны и одну дыру в небе. Тинка висит вниз головой под потолком камбуза и ест, не спускаясь. Пробоину Вольф заткнул брезентом и доской; в камбузе всё равно сквозит.",
+      "shot": {
+        "who": [
+          "Грук",
+          "Тинка"
+        ],
+        "action": "Грук hands out sardines straight from the tin onto slices of black bread while muttering about a dream; Тинка hangs upside down from the galley ceiling, eating without coming down.",
+        "where": "Небо над Пиренеями — a cramped galley with a patched hole in the wall covered by canvas and a board, drafty air.",
+        "angle": "medium shot",
+        "mood": "gruff, comic, tense; cold draft from the breach"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 638,
+        "outputTokens": 159
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1411,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Грук",
+        "Тинка"
+      ],
+      "matchedEntities": [
+        "Тинка",
+        "Грук"
+      ],
+      "references": [],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (2): person 1: Кок экипажа. Сардины, ром и мрачные пророчества.; person 2: Механик-гоблинша. Висит вниз головой где угодно, лишь бы рядом был двигатель..\nAction: Грук hands out sardines straight from the tin onto slices of black bread while muttering about a dream; Тинка hangs upside down from the galley ceiling, eating without coming down.\nPlace: Небо над Пиренеями — a cramped galley with a patched hole in the wall covered by canvas and a board, drafty air.\nCamera: medium shot.\nMood and light: gruff, comic, tense; cold draft from the breach.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t09.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b",
+      "requestId": "01a14242-87ec-7c61-a313-3ecbf2daa97b",
+      "width": 1024,
+      "height": 576,
+      "bytes": 849385,
+      "falMs": 1827,
+      "frameMs": 3238,
+      "totalMs": 3248,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    },
+    {
+      "turn": 10,
+      "input": "Изольда выглядит плохо. Подхожу и предлагаю ей воды.",
+      "paragraph": "Изольда принимает кружку, не глядя, и держит её, не пьёт. «Я знаю, кто это был, — говорит она тихо. — Корабль. Это «Серая Вдова», Дом голосов. Они не за вами, наладчик. Они за сердечником». Впервые за полёт она смотрит тебе в глаза, и в них нет ни лжи, ни страха — только усталость.",
+      "shot": {
+        "who": [
+          "Изольда Вэйл",
+          "Джеймс Хейл"
+        ],
+        "action": "Izolda takes a mug without looking at it, holds it without drinking, and looks up directly into the hero's eyes with tired, unafraid expression.",
+        "where": "Небо над Пиренеями",
+        "angle": "close-up over the shoulder, Izolda facing the hero",
+        "mood": "tense, quiet, weary"
+      },
+      "shotSource": "model",
+      "shotUsage": {
+        "inputTokens": 646,
+        "outputTokens": 134
+      },
+      "shotUsd": "$0.000",
+      "shotMs": 1095,
+      "shotError": null,
+      "who": [
+        "Джеймс Хейл",
+        "Изольда Вэйл"
+      ],
+      "matchedEntities": [
+        "Джеймс Хейл",
+        "Изольда Вэйл"
+      ],
+      "references": [
+        "Джеймс Хейл"
+      ],
+      "prompt": "A cinematic story illustration of one moment, one clear focal action. No text, letters, names, captions or signs anywhere in the picture.\nPeople in frame (2): person 1: Директриса Фабрики Искр. Под клятвой, но смотрит на сердечник Г-7 слишком внимательно.; person 2: Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отц.\nAction: Izolda takes a mug without looking at it, holds it without drinking, and looks up directly into the hero's eyes with tired, unafraid expression.\nPlace: Небо над Пиренеями.\nCamera: close-up over the shoulder, Izolda facing the hero.\nMood and light: tense, quiet, weary.\nArt style: Loose watercolour with ink outlines, paper grain, soft bleeding washes, muted palette, light left white.\nReferences: a reference portrait shows the person in the frame: keep their faces, hair and clothes.\nNo text, letters, captions, watermarks, borders or UI elements in the image.",
+      "model": "fal-ai/flux-2/klein/9b",
+      "file": "shov-watercolor-klein9b-refs-t10.jpg",
+      "endpoint": "fal-ai/flux-2/klein/9b/edit",
+      "requestId": "01a14242-937d-7402-939b-873c86571a88",
+      "width": 1024,
+      "height": 576,
+      "bytes": 657353,
+      "falMs": 1745,
+      "frameMs": 2840,
+      "totalMs": 2851,
+      "priceUsd": "$0.017",
+      "turnUsd": "$0.017",
+      "softened": false
+    }
+  ]
+}

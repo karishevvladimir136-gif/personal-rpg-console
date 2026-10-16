@@ -5,6 +5,7 @@ import { DM_LOOP_DEFAULT_LIMITS } from "../../gameplay/dm-loop/limits.ts";
 import type { PlaySnapshot, PublicTurn } from "../../gameplay/contracts.ts";
 import { createCampaignSettings } from "../../campaign-settings.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
+import { previewPictureBoard } from "./stage-v-pictures.ts";
 
 export const NOIR_CAMPAIGN_ID = "7a7a7a7a-0000-4000-8000-000000000001";
 const id = (n: number) => `7a7a7a7a-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -26,7 +27,7 @@ const narrative = (role: string, skills: string[] = []) => ({
 const entities: Entity[] = [
   entity(10, {
     kind: "player", name: "Dana Okafor", hp: 7, max_hp: 10,
-    details: "Private investigator in the Stacks. Ex-cop, owes the wrong people, still answers the phone at 3 a.m.",
+    details: "A tired woman in her late thirties, close-cropped hair, a small glowing implant behind one ear, rain on the collar of a dark trench coat. Private investigator in the Stacks. Ex-cop, owes the wrong people, still answers the phone at 3 a.m.",
     stats: { edge: 2, nerve: 3, heat: 1 },
     resources: { resource_stress: 2, resource_stress_max: 6, resource_favors: 3, currency_credits: 1240 },
     conditions: ["Shaken"],
@@ -38,7 +39,7 @@ const entities: Entity[] = [
     character_sheet: { ...narrative("Private investigator", ["Interrogation", "Lockpicking", "Street contacts", "Reading a room"]), abilities: ["Nobody lies to Dana twice"], limitations: ["Owes the Syndicate"] },
   }),
   entity(11, { kind: "companion", name: "Rook", hp: 4, max_hp: 4, details: "A battered courier drone with a dry sense of humour.", character_sheet: narrative("Drone") }),
-  entity(12, { kind: "companion", name: "Mara Vey", hp: 6, max_hp: 8, details: "Netrunner. Pays her debts in favours, never in cash.", character_sheet: narrative("Netrunner") }),
+  entity(12, { kind: "companion", name: "Mara Vey", hp: 6, max_hp: 8, details: "A young woman with a shaved temple full of ports and a yellow raincoat. Netrunner. Pays her debts in favours, never in cash.", character_sheet: narrative("Netrunner") }),
   entity(20, { kind: "npc", name: "Inspector Kwan", details: "Homicide. Wants the Lazarus case closed, one way or the other." }),
   entity(21, { kind: "npc", name: "Velvet", details: "The Syndicate's fixer. Smiles with her mouth only." }),
   entity(30, { kind: "transport", name: "Old Citroën DS", hp: 3, max_hp: 5, details: "Dented, retrofitted with a hover kit. Smells of wet upholstery.", stats: { speed: 3 } }),
@@ -123,13 +124,28 @@ function play(options: { combat?: boolean } = {}): PlaySnapshot {
   } satisfies PlaySnapshot);
 }
 
+export const noirPictures = previewPictureBoard({
+  campaignId: NOIR_CAMPAIGN_ID, worldId: id(600), timeline: { timelineId: id(900), epoch: 1 }, at,
+  style: { id: id(700), scope: "campaign", preset: "noir", label: "Noir graphic novel", hasReference: false },
+  anchors: [
+    { id: id(710), subjectKind: "entity", subjectId: N.dana, composition: "portrait", image: "/preview/stage-v/noir-noir-klein9b-dana-okafor-portrait.jpg" },
+    { id: id(711), subjectKind: "entity", subjectId: N.car, composition: "holding", image: "/preview/stage-v/noir-noir-klein9b-old-citro-n-ds-holding.jpg" },
+    { id: id(712), subjectKind: "location", subjectId: N.stack, composition: "location", image: "/preview/stage-v/noir-noir-klein9b-kowloon-stack-9-location.jpg" },
+    { id: id(713), subjectKind: "item", subjectId: N.chip, composition: "item", image: "/preview/stage-v/noir-noir-klein9b-data-chip-lazarus-item.jpg" },
+  ],
+  frames: [
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/noir-noir-klein9b-refs-t01.jpg", trigger: "live" },
+    { id: id(731), turnId: id(202), image: "", trigger: "live", status: "generating" },
+  ],
+});
+
 export const noirSample: PreviewSample = {
   key: "noir",
   language: "en",
   snapshot,
   play,
   live: () => ({
-    operationId: "preview",
+    operationId: id(202),
     status: "generating",
     text: "Moth doesn't open the door. He talks through it, and his voice has the flat calm of a man with a shotgun.",
     changes: [
@@ -156,6 +172,7 @@ export const noirSample: PreviewSample = {
   figure: null,
   atlas: null,
   talkTo: N.mara,
+  pictures: noirPictures,
   course: N.spire,
   placements: [[N.stack, 0.38, 0.62], [N.harbor, 0.18, 0.78], [N.spire, 0.7, 0.24]].map(([location, x, y]) => ({
     campaign_id: NOIR_CAMPAIGN_ID, location_id: location as string, level: "world" as const, parent_location_id: null, x: x as number, y: y as number, revision: 1, updated_at: at(0),
