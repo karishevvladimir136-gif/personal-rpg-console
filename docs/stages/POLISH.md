@@ -295,6 +295,9 @@ The owner's notes from the first play are added below by the planner before laun
 - **Anchors get an anatomy check before acceptance.** The hero's full-figure anchor has three hands, and «Принимать
   готовые сразу» accepted it. The vision check that gates auto-accept also checks anatomy (limbs, hands, faces) and
   sends a failing anchor to review instead.
+- **Owner after 30 turns: «0 галлюцинаций и забываний»** — no invented facts, no forgotten debts, items, promises,
+  signals or terms across one long session. Record it in `docs/runs/` as the session-1 baseline; the long-campaign
+  checks (item 8) must keep it at 100+ turns and across sessions.
 - Good, keep (turn 30): long-range memory — Dunya: «Не стрелял. Значит, шестнадцать» (the pledge terms from turn 7:
   sixteen coins if the pistol is used, otherwise as agreed); the owner had forgotten, the character had not.
 - **A natural 20 must change the outcome visibly.** Turn 29: the hero rolled a natural 20 to dodge and call for help;
