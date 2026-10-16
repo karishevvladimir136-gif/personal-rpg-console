@@ -483,6 +483,14 @@ The owner's notes from the first play are added below by the planner before laun
   механик · замки»), conditions when there are any (порезы, удушье), and numbers only when the ruleset has real ones —
   in Russian (Навык / Атака / Защита). Same source as the roll bonuses: once the sheet has real values (see the rolls
   item), the card and the rolls agree.
+- **«Закончить сессию» shows the legacy save screen with a stale recap (major).** After 37 turns the owner pressed
+  it and got «Сессия сохранена · Ваше место в истории сохранено · Пересказ для игрока сохранён», a «Сохранённая
+  точка продолжения» table (Сцена: DM, Время: 1278 мин.) and a recap of the **opening** only («Утро. рэй должен
+  трактирщице Марте сорок монет… Предмет, место подъёма и условия оплаты пока не названы»), then «Ожидается ваш выбор
+  · Продолжить с сохранённого места». No chapter title, no «Ранее в…» of the session, no notebook. Find whether the
+  Stage 4 digest ran in the background and is simply not shown, or the button calls the legacy session-close; wire
+  the button to the Stage 4 digest, show its result (chapter title, «Ранее в…» of what actually happened, the open
+  threads) in the player's voice, and drop the legacy table and wording. Test on a campaign of 30+ turns.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
