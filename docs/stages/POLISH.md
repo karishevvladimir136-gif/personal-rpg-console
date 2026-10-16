@@ -192,6 +192,10 @@ The owner's notes from the first play are added below by the planner before laun
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
   («no lettering, no logos») to the frame prompt and drop the word «Guild» from object descriptions when possible.
+- Good, keep (turn 8): a natural 1 played as «fail forward» — the gear slips through a gap into the water, the hero
+  skins his knuckles (HP 10 → 9, shown everywhere: sidebar, sheet, receipt), and the scene now asks for a dive, the
+  hero's own skill; the pistol given to Dunya as a pledge left the inventory; the debt «Пятнадцать монет Дуне» joined
+  the journal.
 - Good, keep: the place header redrew itself when the hero moved (Понтонный рынок in the same style), the frame
   shows the hero with his face from the portrait, the DM asked for a roll exactly where it made sense.
 - **Item descriptions.** The DM writes them with some invention, scaled by rarity: an ordinary thing gets one good
