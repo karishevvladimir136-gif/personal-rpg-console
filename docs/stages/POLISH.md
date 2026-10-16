@@ -175,6 +175,12 @@ The owner's notes from the first play are added below by the planner before laun
   `src/lib/locales/ru.json`; sweep the Russian locale for other machine-translated strings. (d) The chip «рэй rolls
   1d20: 18 vs 13 — success» in English (see the receipts item). (e) «Модификатор: 0» on a skill the hero has
   («Знание старой техники») — the stub profile again; the modifier must come from the sheet.
+- **«Твой момент» appears without saying which moment.** The banner «Ведущий отдал тебе кульминацию: опиши, как ты это
+  делаешь. Результат броска уже принят — твои слова станут каноном» came on a quiet walk to Мокей's pontoon; the owner
+  could not tell what to describe or which roll. The banner names the moment and the result in words («Ворот Мокея ·
+  получилось — опиши, как ты его оживляешь»), links to the roll, and sits right under the paragraph that sets it up.
+  Doctrine: «Как ты хочешь это сделать?» is for climaxes (finishing an important enemy, the decisive act of a scene,
+  as in the owner's codex), not for every success; the DM should use it rarely.
 - **The frame strip does not open older frames.** Clicking a thumbnail under the frame shows nothing; it must open
   that frame large (a lightbox with the turn's first line, «←/→» through the frames, Esc to close). Also: a frame
   painted readable text on the machine («GUNEWGX GUILD») although prompts forbid text — add a short negative
