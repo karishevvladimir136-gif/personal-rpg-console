@@ -37,6 +37,27 @@ The owner's notes from the first play are added below by the planner before laun
    the Russian blind scenes: current prompt vs the Russian voice layer, both on Opus high, four key turns each, and the
    planner builds a blind A/B page. Record the result in `docs/runs/` (it is a research finding).
 
+   What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
+   - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
+     capable models (Is Translation All You Need?, NAACL 2025); LLM output in other languages carries an English
+     syntactic "accent" (Do LLMs Have an English Accent?, arXiv 2410.15956). → the voice part in native Russian.
+   - The prompt's own style leaks into the output; make the prompt look like the desired output (Anthropic prompting
+     best practices). → the voice section is itself written as good Russian prose, not a list.
+   - Examples are the most reliable lever: 3–5, relevant and diverse, in `<example>` tags (Anthropic). → 3–5 short
+     passages of different kinds (dialogue, action with a roll, quiet scene, montage of days, humour), from the owner's
+     own campaign and texts he provides; diverse so the model does not copy one pattern.
+   - Ban lists and «пиши естественно» barely work and can backfire (Antislop, ICLR 2026; a translationese study found
+     explicit naturalness instructions made GPT-4 worse). → describe the voice positively, with the reason behind each
+     rule; no long ban lists in the prompt.
+   - Recent context dominates the register (the roleplay community's "author's note" practice). → a short Russian
+     voice reminder (≤ 120 tokens) in the last, uncached layer next to the player's input, and the last two or three
+     turns of the campaign verbatim there, not only as a summary.
+   - A second polishing pass reduces translationese (43% → 25% for GPT-4 in that study), but it costs latency. → not for
+     live turns; allowed for the session digest, «Ранее в…» and the chronicle.
+   - Slop and calques are measurable. → add Russian naturalness metrics to the bench: Latin letters in visible text,
+     канцелярит markers («является», «представляет собой», «осуществляет», «данный», chains of participles), sentence
+     length variance, and over-represented phrases against a Russian human reference; report them in the A/B.
+
 ## The owner's notes from the first play
 
 (to be filled in)
