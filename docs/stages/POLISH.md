@@ -153,6 +153,11 @@ records, for any ruleset (numbers only where the ruleset has them):
   отдыха», «короткий отдых: +2 очка»).
 - **Vitals** tiles (КД, скорость, мастерство, КС/атака) and **stats** with score and modifier; saves and skills in two
   columns; **Особенности** with a one-line description each; **Досье** (backstory).
+- **The item card opens on tap and closes.** Today the parchment card under the grid is always open (the first item
+  is selected by default) and takes half the screen. As in the registry: tap an item → a card (bottom sheet on the
+  phone, a popover or small dialog on desktop) with the picture, tags («магическое · настроено»), what it does in one
+  line and its story; it closes on «Закрыть», a tap outside or Esc. Nothing is selected by default; the grid and the
+  doll get the space. Keep the item pictures as they are — the owner: «предметы генерит как боженька».
 - **Inventory grid** with rarity colours and a legend (обычное / реликт Старого мира / магическое / сюжетное),
   quantity badges, categories (Всё, Расходники, Снаряжение, Реликты, Сюжет), money in the header, and a parchment
   sheet on tap with the description and quantity.
