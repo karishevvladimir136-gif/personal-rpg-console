@@ -54,7 +54,10 @@ The owner's notes from the first play are added below by the planner before laun
    never explained). Owner after 16 turns: the narration is «на две головы лучше» the blind samples and on par with
    his chat campaign or slightly better; dialogue is the place that still wobbles. Record it in `docs/runs/`. Turn 20: stage directions explaining the line again — «Это она говорит тебе, не ему.»; the good side of the same
    turn — Marta answers «Отказывать ты не умеешь, так соглашаться за тебя буду я», using the hero's sheet weakness
-   («не умеет отказывать друзьям») in character: keep this; sheet traits should colour how people treat the hero. Turn 18:
+   («не умеет отказывать друзьям») in character: keep the idea — sheet traits colour how people treat the hero — but
+   the owner finds the line «через чур в лоб»: it restates the sheet. Show a trait through what people do, or a hint
+   («Ты ж у нас никому не отказываешь, — Марта уже тянется за монетой»), never by naming it; the player knows his
+   sheet. Same rule as for subtext: imply, don't announce. Turn 18:
    «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
    The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
 
