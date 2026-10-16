@@ -5,7 +5,7 @@ import type { PictureBoard, PublicPicture, PictureStyle } from "../../visual-fra
 import { STYLE_PRESETS } from "../../visual-frame/pictures.ts";
 
 type Anchor = { id: string; subjectKind: "entity" | "item" | "location"; subjectId: string; composition: PublicPicture["composition"]; image: string };
-type Frame = { id: string; turnId: string; image: string; trigger?: PublicPicture["trigger"]; tier?: PublicPicture["tier"]; version?: number };
+type Frame = { id: string; turnId: string; image: string; trigger?: PublicPicture["trigger"]; tier?: PublicPicture["tier"]; version?: number; status?: PublicPicture["status"] };
 
 export function previewPictureBoard(input: {
   campaignId: string; worldId: string; timeline: { timelineId: string; epoch: number }; at: (minute: number) => string;
@@ -26,7 +26,8 @@ export function previewPictureBoard(input: {
   const pictures: PublicPicture[] = [
     ...input.anchors.map((row, index) => picture(index + 1, { id: row.id, kind: "anchor", subjectKind: row.subjectKind, subjectId: row.subjectId, composition: row.composition })),
     ...input.frames.map((row, index) => picture(40 + index, { id: row.id, kind: "frame", subjectKind: "turn", subjectId: row.turnId, composition: "frame",
-      trigger: row.trigger ?? "live", tier: row.tier ?? "fast", version: row.version ?? 1, model: row.tier === "quality" ? "fal-ai/flux-2-pro" : "fal-ai/flux-2/klein/9b", costUsdMicros: row.tier === "quality" ? 30_000 : 17_000 })),
+      trigger: row.trigger ?? "live", tier: row.tier ?? "fast", version: row.version ?? 1, model: row.tier === "quality" ? "fal-ai/flux-2-pro" : "fal-ai/flux-2/klein/9b", costUsdMicros: row.tier === "quality" ? 30_000 : 17_000,
+      status: row.status ?? "ready", readyAt: row.status && row.status !== "ready" ? null : input.at(40 + index) })),
   ];
   const images: Record<string, string> = {};
   for (const row of input.anchors) images[row.id] = row.image;

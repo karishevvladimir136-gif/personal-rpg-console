@@ -32,9 +32,9 @@ projections only (what the hero knows); private DM state stays private.
 | --- | --- | --- | --- |
 | 12 | Bases as their own holding kind; features, armament, passengers of a holding | Holdings detail | Records of the planned `holding` tool exposed publicly: `holdings: { id; kind: "transport" \| "base" \| "mount"; entityId; storageId; placeId; features: { name; description }[]; passengers: string[] }[]` |
 | 13 | Item rarity or significance (the colour of a cell) | Inventory, holdings grid, legend | `Item.rarity?: "common" \| "relic" \| "magic" \| "story"` — the UI already renders it when present and shows nothing when absent |
-| 14 | A full-length figure separate from the portrait | Character paper doll | subject-visual composition `"figure"` for entities (today the doll shows the accepted portrait) |
-| 15 | **fal pictures persisted** | Subject visuals, autopilot, «Перерисовать» | SQL validators of `subject_visual` jobs (schema 5) and their asset provenance accept `provider = 'fal'`, the fal model IDs (`fal-ai/flux-2-pro`, `fal-ai/flux-2/flash`) and a fal reservation (≈ $0.03–0.05). TypeScript side is ready (`src/lib/visual-frame/fal-image.ts`, `src/lib/server/media/fal-image-provider.ts`). Until then the pipeline stays on OpenAI. |
-| 16 | Autopilot settings in the campaign (today: on this device) | Settings → Картинки | `CampaignSettings.visualAutopilot: { enabled; items; portraits; places; holdings; autoAccept; dailyCap; provider: "fal" \| "openai" }` (needs `settings_valid` to accept the key) |
+| 14 | A full-length figure separate from the portrait | Character paper doll | **Stage V:** the anchor set draws a `figure` composition of the hero beside the portrait (fal, with the portrait as a reference picture; Settings → Картинки → «Фигура героя в полный рост»). The paper doll still shows the portrait through the screen's image resolver; pointing it at the figure anchor is a one-line change in `character-screen.tsx` (resolver call with `composition: "figure"`), left to the owner of that screen. |
+| 15 | **fal pictures persisted** | Subject visuals, autopilot, «Перерисовать» | **Stage V (migration 54):** fal pictures persist in their own store, `rpg_private.pictures` + `rpg_private.picture_styles` through `public.rpg_pictures`, with versions, a timeline fence, the fal model IDs and the list price per picture; «Перерисовать» makes a new version and the old one stays until the new is ready. The earlier OpenAI `subject_visual` contract (schema 5, SQL validators of migration 40) is unchanged and still OpenAI-only: it was not extended to fal, because the Stage V store replaces that path for fal end to end (no OpenAI grounding review, fal's own safety checker). |
+| 16 | Autopilot settings in the campaign (today: on this device) | Settings → Картинки | **Stage V (migration 54):** `rpg_private.picture_settings` per campaign (`frames`, `quality`, `dailyCap`, `autopilot: { enabled; items; portraits; figures; places; holdings; autoAccept; provider }`), read and saved through `rpg_pictures` (`settings.save` with `expectedRevision`). The device ledger remains only for the OpenAI path's attempted subjects. |
 
 ## Campaigns and creation
 
@@ -74,3 +74,9 @@ What Stage 4's autopilot must do (it already never retries in a loop; `planVisua
 - Try `safety_tolerance: "4"` for portraits in the Stage 4 paid test (cap stated there) and keep whichever setting
   passes the sample portraits; the field is only sent to `flux-2-pro`.
 - Nothing in the public error names the flagged words, so there is nothing more precise to log.
+
+**Stage V outcome (2026-10-16):** the Stage V job (`src/lib/visual-frame/picture-job.ts`) treats a `validation` reply
+with a content-checker body as a refusal of this prompt, re-submits once with a softened description (age, nationality,
+injury and weapon words removed; `softenPrompt`), and otherwise records the row as failed with the reason — never a loop.
+Portraits on `fal-ai/flux-2-pro` are sent with `safety_tolerance: "4"`. The paid runs of this stage
+(`docs/runs/stage-v/`) rendered the whole anchor set of both samples on FLUX.2 [klein] 9B with no refusal at all.

@@ -132,7 +132,10 @@ export const noirPictures = previewPictureBoard({
     { id: id(712), subjectKind: "location", subjectId: N.stack, composition: "location", image: "/preview/stage-5/noir-stack.jpg" },
     { id: id(713), subjectKind: "item", subjectId: N.chip, composition: "item", image: "/preview/stage-5/noir-chip.jpg" },
   ],
-  frames: [{ id: id(730), turnId: id(200), image: "/preview/stage-v/noir-frame-1.jpg", trigger: "live" }],
+  frames: [
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/noir-noir-klein9b-refs-t01.jpg", trigger: "live" },
+    { id: id(731), turnId: id(202), image: "", trigger: "live", status: "generating" },
+  ],
 });
 
 export const noirSample: PreviewSample = {
@@ -141,7 +144,7 @@ export const noirSample: PreviewSample = {
   snapshot,
   play,
   live: () => ({
-    operationId: "preview",
+    operationId: id(202),
     status: "generating",
     text: "Moth doesn't open the door. He talks through it, and his voice has the flat calm of a man with a shotgun.",
     changes: [

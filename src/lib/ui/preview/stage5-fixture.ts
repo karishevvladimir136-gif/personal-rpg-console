@@ -279,7 +279,9 @@ export const previewPictures = previewPictureBoard({
     { id: id(721), subjectKind: "item", subjectId: I.watch, composition: "item", image: "/preview/stage-5/watch.jpg" },
   ],
   frames: [
-    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-frame-1.jpg", trigger: "live" },
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-klein9b-refs-t01.jpg", trigger: "live" },
+    // The streaming turn of the game preview: its frame is being drawn.
+    { id: id(731), turnId: id(202), image: "", trigger: "live", status: "generating" },
   ],
 });
 
@@ -289,7 +291,7 @@ export const shovSample: PreviewSample = {
   snapshot: previewSnapshot,
   play: previewPlay,
   live: (language) => ({
-    operationId: "preview",
+    operationId: id(202),
     status: "generating",
     text: "Изольда замечает твой взгляд и улыбается краем рта. «Ты слишком долго смотришь на мою руку, наладчик. Перстень я оставила в Белой башне — вместе с клятвой»",
     changes: [

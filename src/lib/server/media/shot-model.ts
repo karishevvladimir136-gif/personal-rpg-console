@@ -1,5 +1,5 @@
 import "server-only";
-import { parseShot, shotRequest, type Shot, type ShotContext } from "../../visual-frame/shot";
+import { parseShot, shotRequest, type Shot, type ShotContext } from "../../visual-frame/shot.ts";
 
 // The small fast model that turns one public paragraph into a shot, and the
 // vision scorer the Stage V bench uses to measure consistency. Both call the
