@@ -499,6 +499,17 @@ The owner's notes from the first play are added below by the planner before laun
 - The DM Craft screen is English in a Russian setup; the Russian wording of the cards is model-written. Rewrite the
   Russian texts of the doctrine and cards natively as part of item 7.
 
+9. **Pacing variety: no combat in a 37-turn session although the player asked for it.** The owner's likes note in
+   the wizard said «Бои короткие, опасные и с ценой», the adventure brief asked for «немного опасности под водой»,
+   and the world had armed rivals (Фрол with a hook, a stranger's boat at night) — yet tension came only from the
+   environment, bargaining and bluff; no fight, chase or ambush, and no hook to a larger mystery reached the player.
+   Owner: «DM даже жёстче, чем в кампании Шва… но там были бои, и где были — хорошие». Check with the session report
+   (private plans, scene kinds, attention ledger) why, then: the Stage 4 variety counter and attention ledger must
+   feed the doctrine — when the player's likes include combat and N scenes passed without one, let a fitting threat
+   escalate to violence (never forced, always from the fiction: Фрол's hook, a moray under the pontoon, a patrol
+   boarding); each session should open or advance one thread toward a larger mystery and end on a clear beat (a
+   chapter close, a reveal or a cliffhanger) rather than a quiet wind-down.
+
 ## Later, not in this stage (owner's backlog)
 
 - **Weight and carrying.** Item weight, carrying capacity from strength (or the ruleset's own rule), containers that
