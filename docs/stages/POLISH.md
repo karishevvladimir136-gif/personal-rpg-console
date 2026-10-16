@@ -58,6 +58,15 @@ The owner's notes from the first play are added below by the planner before laun
      канцелярит markers («является», «представляет собой», «осуществляет», «данный», chains of participles), sentence
      length variance, and over-represented phrases against a Russian human reference; report them in the A/B.
 
+8. **Use more of the context window (owner: «не будем ей мешать»).** Today the dossier is capped at about 97k tokens
+   a turn (`DOSSIER_BUDGETS`: layer 1 7k, layer 2 38k, layer 3 34k, layer 4 18k) plus about 7k of tool descriptions —
+   a fraction of what Opus can read. Raise the budgets where more text means better play: the recent scenes verbatim
+   (layer 4 scenes 7k → ~30k: also the strongest lever for the Russian voice, see item 7), the exchanges (5k → ~15k),
+   the codex (12k → ~30k), the canon (20k → ~40k). Keep the stable parts in the cached layers so the cost stays low;
+   the uncached tail is what slows the first word. Measure on a long synthetic campaign (100+ turns) before and after:
+   first word, full turn, cost per turn, cache read share, and recall checks (facts from early sessions used
+   correctly). Choose the budgets from the numbers; record them in `docs/runs/`.
+
 ## The owner's notes from the first play
 
 - **The seeded Stage 4 DM Craft versions cannot be activated.** In the sandbox the six never-approved versions (How to
