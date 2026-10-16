@@ -484,6 +484,8 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     reject((destination.entity?.id ?? null) !== item.owner_entity_id || destination.storageId !== item.storage_id,
       `${item.name} already belongs to ${destination.label}.`);
     const splitId = shadow.newId(`split:${item.id}:${ctx.toolCalls}`);
+    // The row object is updated in place by the applier: remember the giver first.
+    const giver = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
     const settled = settledItemTransfer(item, quantity, destination.entity?.id ?? (null as unknown as string), destination.storageId, splitId);
     for (const change of settled.changes) {
       if (change.id === splitId) change.values.owner_entity_id = destination.entity?.id ?? null;
@@ -491,8 +493,7 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
       shadow.apply(change);
     }
     if (settled.split && args.localKey !== undefined) shadow.bindLocalKey(str(args.localKey), { family: "items", id: splitId });
-    const owner = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
-    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label, ...openJobHint(shadow, owner, destination.entity) },
+    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label, ...openJobHint(shadow, giver, destination.entity) },
       `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label}`);
   }
   if (action === "consume") {

@@ -79,6 +79,9 @@ export function foldsFinish(calls: DmToolCall[], receipts: DmLoopReceipt[]): boo
   return calls.every((call) => {
     const receipt = receipts.find((row) => row.call.id === call.id);
     if (!receipt || !receipt.result.ok) return false;
+    // Stage 4 §3: a time receipt that lists off-screen plans now due keeps the
+    // conversation open, so the DM advances them in the same turn.
+    if (TIME_TOOLS.has(call.name) && Array.isArray((receipt.result.value as { duePlans?: unknown }).duePlans)) return false;
     if (BOOKKEEPING_TOOLS.has(call.name)) return true;
     const action = receipt.call.arguments.action;
     if (call.name === "item") return action === "create";

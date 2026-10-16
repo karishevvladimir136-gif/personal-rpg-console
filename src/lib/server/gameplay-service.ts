@@ -23,6 +23,7 @@ import { publishLiveTurnEvent } from "./dm/live-turns";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry } from "./session-digest";
+import { syncWorldFromDossier } from "./world-bridge";
 import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
 import { readPublicCampaign } from "./public-campaign";
 import { maintainAstraMemoryAfterCommit } from "../memory/lifecycle";
@@ -128,6 +129,13 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       const dossier = await dossierService(ownerId, campaignId);
       if (playerLikes) await dossier.likes(playerLikes);
       if (boostUsed) await markBoostUsed(campaignId);
+      // The World Engine mirror of the dossier's plans (a usable World Lab basis).
+      try {
+        const source = await dossier.source();
+        await syncWorldFromDossier(ownerId, campaignId, source.timeline, source);
+      } catch (error) {
+        console.info(JSON.stringify({ event: "world_bridge_skipped", campaignId, message: error instanceof Error ? error.message : String(error) }));
+      }
     },
     observe: logDmLoop,
   };

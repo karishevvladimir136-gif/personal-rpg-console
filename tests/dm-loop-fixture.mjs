@@ -54,6 +54,22 @@ export async function attachLoop(f) {
     read: () => readDmSettingsWith(dmSettingsRpc, f.owner, f.cid),
     save: (value) => saveDmSettingsWith(dmSettingsRpc, f.owner, f.cid, value),
   };
+  /** Stage 4 craft (migration 55 seeds it pending): activate the condensed doctrine
+   * and the new cards for this synthetic owner, as the real owner would in the DM Craft screen. */
+  const activateStage4Craft = async () => {
+    const craft = async (action, payload = {}) => (await f.one("select public.rpg_dm_craft($1,$2,$3::jsonb) result",
+      [f.owner, action, JSON.stringify(action === "read" ? payload : { requestId: randomUUID(), ...payload })])).result;
+    let view = await craft("read");
+    const keys = ["core-doctrine", "world-resistance", "living-world", "long-campaign", "villains-and-theme", "systemic-world"];
+    for (const key of keys) {
+      const versions = view.versions.filter((row) => row.key === key).sort((a, b) => b.version - a.version);
+      if (!versions.length) continue;
+      const effective = view.effective.find((row) => row.key === key);
+      if (effective?.activeVersionId === versions[0].id) continue;
+      view = await craft("activate", { expectedActivationRevision: effective?.activationRevision ?? 0, key, versionId: versions[0].id });
+    }
+    return view;
+  };
   /** rpg_dossier (stage 4): pins, likes, theme, status, play time, the notebook and the session digest. */
   const dossier = async (action, payload = {}, timeline = null) => (await f.one(
     "select public.rpg_dossier($1,$2,$3,$4::jsonb,$5::jsonb) result",
@@ -157,6 +173,6 @@ export async function attachLoop(f) {
     };
   };
   const forceDice = (values = []) => diceValues.splice(0, diceValues.length, ...values);
-  return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings, dossier,
+  return { f, cid: f.cid, owner: f.owner, hero, npc, errors, observations, live, rpc, profileRpc, dmSettingsRpc, settings, dossier, activateStage4Craft,
     deps, input, turn, retry, row, state, dump, random, forceDice };
 }
