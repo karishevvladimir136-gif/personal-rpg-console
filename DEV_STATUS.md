@@ -5,7 +5,7 @@ waiting for the owner's review and the next sandbox play.** Branch from `claude/
 `claude/fix-dm-craft-payload` merged first; ten groups in the spec's order, each with its own test file
 (`tests/polish-group1…10.test.mjs`) and a section in `docs/TURN_LOOP.md` (§11–§18); migrations 57–63 (additive). The
 owner report is `docs/runs/polish-report.md` («Needs the owner» lists the decisions left open); the resume notes
-`docs/runs/polish-progress.md`. Final checks: __DEV_CHECKS__. Paid: __DEV_SPEND__ of the $15 cap (`docs/runs/polish-*.jsonl`).
+`docs/runs/polish-progress.md`. Final checks: typecheck pass, lint pass (zero warnings), the full suite under Node 24 green (2546 tests, 2519 pass, 27 skipped), build pass, the loop fake bench green, 64 screenshots with zero overflow, a live smoke and two live Russian replays on Opus 5.5 high. Paid: $11.14 of the $15 cap (`docs/runs/polish-*.jsonl`).
 
 **Polish in short (2026-10-17):** every text part reaches the player and the chips speak the campaign language; money
 in the world's own currency and rewards that pay; items lost / modified / pledged / lent; «Закончить сессию» runs the

@@ -269,8 +269,13 @@ export async function evaluateCheck(check, ctx) {
       const part = hour < 5 ? "night" : hour < 11 ? "morning" : hour < 17 ? "day" : hour < 22 ? "evening" : "night";
       const words = { morning: /(^|[^\p{L}])(утр[ао]м?|поутру|this morning|in the morning)/u, day: /(^|[^\p{L}])(днём|в полдень|this afternoon|at noon|midday)/u,
         evening: /(^|[^\p{L}])(вечером|под вечер|this evening|in the evening)/u, night: /(^|[^\p{L}])(ночью|за полночь|tonight|at night|in the night)/u };
-      const found = Object.entries(words).filter(([, re]) => re.test(text)).map(([name]) => name);
-      const wrong = found.filter((name) => name !== part && !/(вчера|yesterday|last night|прошл|завтра|tomorrow)/u.test(text));
+      // A sentence that tells of another time («той ночью», «наутро», «вчера», «в январе») is not a
+      // claim about now; only sentences without such a marker count (polish final measurement).
+      const past = /(вчера|yesterday|last night|прошл|завтра|tomorrow|той( же)? ночью|в ту( же)? ночь|тем вечером|тем утром|наутро|тогда|когда-то|давно|назад|в январе|в феврале|в марте|в апреле|в мае|в июне|в июле|в августе|в сентябре|в октябре|в ноябре|в декабре|бывало|раньше|the night before|that night|that morning|that evening|back then|years ago|weeks ago|days ago)/u;
+      const sentences = text.split(/(?<=[.!?…])\s+|\n+/u).filter((row) => !past.test(row));
+      const present = sentences.join(" ");
+      const found = Object.entries(words).filter(([, re]) => re.test(present)).map(([name]) => name);
+      const wrong = found.filter((name) => name !== part);
       return result(wrong.length === 0, `clock ${part} (${String(hour).padStart(2, "0")}:00), narration mentions: ${found.join(", ") || "no time of day"}`);
     }
     case "narrationExcludes": {

@@ -96,3 +96,12 @@ test("the bench's timeWordsMatchClock check: «утром» on an evening clock 
   assert.equal((await run("В полдень солнце стоит над рейдом.", 13 * 60)).pass, true);
   assert.equal((await run("Ночью на рейде тихо.", 13 * 60)).pass, false);
 });
+
+test("timeWordsMatchClock: a sentence about another time («той ночью», «наутро») is not a claim about now", async () => {
+  const { evaluateCheck } = await import("../scripts/eval/lib/state.mjs");
+  const run = (narration, worldMinutes = 8 * 60) => evaluateCheck({ timeWordsMatchClock: true }, { before: { worldMinutes }, turn: { narration } });
+  assert.equal((await run("Мокей той же ночью лодку потерял. Наутро там уже буй стоял.")).pass, true, "past nights on a morning clock");
+  assert.equal((await run("Здесь кто-то не раз сидел ночью с фонарём.")).pass, false, "a habit told without a marker still counts: the DM should anchor it");
+  assert.equal((await run("Сейчас ночью тихо.")).pass, false, "a claim about now on a morning clock fails");
+  assert.equal((await run("Он той ночью на воде был. Сегодня утром ты видишь мачту.")).pass, true);
+});

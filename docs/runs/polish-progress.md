@@ -2,7 +2,7 @@
 
 Branch `claude/polish` from `origin/claude/integration` (4caf099) with `origin/claude/fix-dm-craft-payload` (ae78e9b)
 merged. Spec: `docs/stages/POLISH.md` («Scope of this run», «Order of work»). Environment `rpg-console`, session start as
-`docs/CLOUD.md`. Paid cap for the whole run: $15. Spent so far: **$0.00**.
+`docs/CLOUD.md`. Paid cap for the whole run: $15. Spent so far: **$11.14** (the final group's live runs; see the paid calls log).
 
 A restarted session: read this file, check `git log` of `claude/polish`, continue at the first group not marked done.
 Never repeat a paid step marked done below (its record is in `docs/runs/polish-*.jsonl`).
@@ -20,7 +20,7 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 | 8 — character and inventory | done | migration `202610170062_polish_character.sql` (a narrative hero gets humanoid slots); the wallet always exists in the world's currency (Cyrillic currencies are money), the universal paper doll for records without slots, the backstory block, zero stub numbers hidden, HP owner-correction buttons, Russian stat labels; `tests/polish-group8.test.mjs`. Rest heals by the ruleset through the loop's rest tool (unchanged); the player's rest action moves with the «Ещё» split (group 10). Page width to check on the final screenshots |
 | 9 — codex, map, journal | done | place hierarchy (`parentRef`, `whereabouts`) with the atlas laying markers out by itself and dashed rumours; the whole-world codex in tabs; the journal cleanup; the pinned list moved to the settings; the reward line localized; `tests/polish-group9.test.mjs`; `docs/TURN_LOOP.md` §17. Needs the owner: a `lore` record for the «Мир» tab (today: the canon documents); quest text linking named things |
 | 10 — wizard, first turn, combat profile, «Ещё» | done | any sheet creates and a grey button says why; a single item counts as one on the wizard's review; Russian combat labels and the hero's items as weapons; the name offered capitalised; the wizard's start prefills the first adventure and goes straight to the opening; the opening sets the clock (`startMinutes`, migration 63); «Ещё» split into player actions and «Редактор кампании»; `tests/polish-group10.test.mjs`; `docs/TURN_LOOP.md` §18. Needs the owner: the DM-drafted combat profile from the hero's text (today the draft proposes numbers only when it picks a structured sheet itself); the adventure form's two clicks («Проверить» → «Сохранить») |
-| final — checks, live smoke, screenshots, report | in progress | |
+| final — checks, live smoke, screenshots, report | done | Node 24 suite 2546/2519/27 skipped/0 fail; build; fake benches (the loop green, the legacy Astra bench fails identically on the baseline); 64 screenshots, zero overflow; live smoke + two Russian replays ($11.14); `docs/runs/polish-report.md`; DEV_STATUS top section. Two bugs caught by the measurement and fixed: the first settings save lost the depth range; a person mentioned by one word of their name lost their model voice |
 
 ## Baseline (integration + fix branch, before any polish change)
 
@@ -32,4 +32,9 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 
 ## Paid calls log
 
-(none yet)
+| When (UTC) | What | Record | Spent |
+| --- | --- | --- | --- |
+| 2026-10-17 03:49–04:09 | Russian replay 1, Opus 5.5 high, budget $8; the container restarted at turn 21 (paid turns kept, never repeated) | `docs/runs/polish-20261017-034922-loop-opus-live-ru-replay.partial.jsonl` | $5.08 |
+| 2026-10-17 04:10–04:15 | live smoke 03 + 17 + 18, Opus 5.5 high, budget $3 | `docs/runs/polish-20261017-041059-loop-opus-live-smoke-03+17+18.jsonl` | $0.82 |
+| 2026-10-17 04:15–04:36 | Russian replay 2 after the depth fix, Opus 5.5 high, budget $6 (stopped by the budget at turn 24) | `docs/runs/polish-20261017-041509-loop-opus-live-ru-replay.jsonl` | $5.25 |
+| | **Total** | | **$11.14 of $15** |

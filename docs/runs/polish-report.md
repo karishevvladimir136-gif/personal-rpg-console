@@ -13,7 +13,7 @@ climax, keeps a 1-hour cache on the stable prompt, measures the first word from 
 DM Craft cards for the owner to approve, one picture path, one page scroll with a compact composer, the mechanics for the
 Russian voice (off until the voice stage), a wallet and paper doll for any ruleset, a map that lays places out by itself,
 a whole-world codex, a wizard that creates any sheet and leads into the first turn, an opening that sets the clock, and
-«Ещё» split into the player's actions and the owner's editor. Final checks: __CHECKS__. Paid: __SPEND__ of the $15 cap.
+«Ещё» split into the player's actions and the owner's editor. Final checks: typecheck pass, lint pass with zero warnings, the full suite under Node 24 green (2546 tests, 2519 pass, 27 skipped, 0 fail), build pass, the fake bench green on the loop (21 scenarios; the one known weakness W2 stays open as designed), 64 screenshots with zero overflow or clipping, a live smoke (3 scenarios) and two live Russian replays (21 + 23 turns) on Opus 5.5 high. Paid: **$11.14** of the $15 cap.
 
 ## What changed, group by group, and how it is proved
 
@@ -80,15 +80,64 @@ stray «Новая Кампания» link is gone; the opening review reads the
 
 ## Final checks
 
-__FINAL_CHECKS__
+| Check | Result |
+| --- | --- |
+| `pnpm typecheck` | pass |
+| `pnpm lint` | pass, zero warnings |
+| Full suite, Node 24.22 (`node --test --test-concurrency=2`, run in chunks of eight files) | **2546 tests · 2519 pass · 27 skipped · 0 fail** (all 40 chunks exit 0) |
+| Full suite, Node 22 (the shell's default; the first run) | 2545 tests · 2514 pass · 27 skipped · 4 fail: three `d2a-composition` timing tests that are a Node 22 artifact (they pass under Node 24 and on the integration baseline under 24), and the media-frame expectation of the legacy frame, fixed in this run |
+| `pnpm build` | pass |
+| Fake bench, loop runtime (`--runtime dm-loop-v1 --scenario all`, 21 scenarios incl. the three Mega DM sets) | all scenarios pass after the one regression it caught (scenario 02: the organiser's model voice; see below); the W2 probe («paraphrased leak») stays open as the bench expects |
+| Fake bench, legacy Astra runtime (`--scenario all`) | 01, 02, 04, 05, 06, 07 fail — **identically on the integration baseline** (4caf099: 01-miller 2/6, 04-baker 4/6), so not this run's; the legacy runtime's scripted plans no longer match its fixture. Left as is (legacy, out of scope) |
+| Screenshots (`stage5-screenshots.mjs`, `stage-v-screenshots.mjs` against an isolated server on 3105 without `.env.local`) | 48 + 16 shots, desktop and phone, **zero horizontal overflow, zero clipping** (`docs/screens/stage-5/index.json`, `docs/screens/stage-v/index.json`) |
+| Live smoke, Opus 5.5 high (`03-reward-once`, `17-trade-bonus`, `18-heros-knowledge`) | 7 turns, $0.82; 14/17 checks. The three misses are the DM's judgment, not code: in 03 it broke the cart on a failed roll and refused to pay before delivery («the deal was five coins on delivery»); in 17 it gave the expert a hard DC 13 (bonuses +2 navigation, +2 glass applied); in 18 it put the hero's trade knowledge behind a failed observation roll. All three are material for the pending craft cards (`heros-knowledge`, the DC ladder) rather than fixes |
+| Live Russian replay, Opus 5.5 high (scenario `19-polish-ru-replay`, the harbour campaign of session 1 rebuilt as a fixture) | run 1: 21 turns, $5.08, cut by a container restart — **and it exposed a bug** (below); run 2 after the fix: 23 turns, $5.25 (stopped by its budget), 44/48 checks: the four misses are three time-word flags that were all sentences about another night («той же ночью», «наутро», now excluded by the check) and the budget stop |
+
+**What the measurement caught.** Every turn of replay 1 ran at `high`, climax or not. The depth rule was right; the
+settings were wrong: the wizard's DM step (and the bench) saved the first settings row without a depth, and a stored
+null means «fixed effort» (the owner's explicit «off»), so a new campaign never had the range. Fixed in
+`saveDmSettingsWith`: a fresh row gets the default high … xhigh (test in `tests/polish-group3.test.mjs`). Replay 2 shows
+the rule at work (table below). The second regression it caught: a person was «mentioned» only by their full name, so
+«the work organiser» dropped the organiser's model voice from the context (fake scenario 02); mentions now match any
+word of the name (test in `tests/polish-group7.test.mjs`).
 
 ## Before / after of items 12–14 (the live measurement)
 
-__MEASUREMENT__
+Session 1 (the owner's play, 41 turns, from `docs/stages/POLISH.md`) against replay 2 (23 live turns of a fresh Russian
+campaign on Opus 5.5 high, `docs/runs/polish-20261017-041509-loop-opus-live-ru-replay.jsonl`). The two are not the same
+story, so read the numbers as the shape, not a controlled A/B.
+
+| Item | Session 1 (before) | Replay 2 (after) |
+| --- | --- | --- |
+| 13 · share of xhigh turns | 23 of 41 (56%); «tense → xhigh» held 22 of 23 turns | **3 of 23 (13%)**: s16 (a decisive input), s18–s19 (the DM marked a climax at s17, a fight), back to high at s20; 20 turns at the base |
+| 14 · time to first word, median | 38.2 s (app, per request); 69.5 s at xhigh, 16.1 s at high | **20.8 s** from the player's send (p75 26.6 s, max 52.8 s on the six-request fight turn); the smoke's English turns: 12.8 s |
+| 12 · cache read share | — | median 60% of the prompt read from cache (turn 1: 92%, the stable blocks still cached from the smoke an hour earlier: the 1-hour cache works across turns and campaigns) |
+| 12 · cache writes as a share of the DM cost | 57% | **not improved: ≈ 50–76%** (the exact split between 5-minute and 1-hour writes is not in the record). Blocks 1–3 are written once and read afterwards (block 1 unchanged on 100% of turns, block 3 on 61%), but ~21 000 tokens are still written every turn: blocks 4–5 and the messages, because the request keeps the top-level breakpoint that caches the growing conversation, and block 5 («now»: the recent scenes verbatim, item 8's budget) is 13 000 tokens median. That is where the money goes now — see «Needs the owner» 13 |
+| cost per turn | — | $0.22 median (Opus 5.5 high); $0.12 on a one-request turn, $0.53 on the six-request fight turn |
+| 18 · time words against the clock | 4 mismatches | 0 real mismatches in 23 turns (3 flags, all sentences about another night; the check now skips such sentences) |
+| 9 · a fight | none in 37 turns | one: s17–s19, a chase at the breakwater that became a fight (combat tool 4 calls, 7 rolls across the three turns) |
+| 10 · money operations | 0 of 6 accepted | the debt recorded as a journal debt («Сорок монет Марте») on turn 1–2, quest rewards in монеты, 3 money/resource calls accepted, **0 tool calls rejected** in replay 2 (2 of 191 in replay 1, both `upsert_character` with a reason) |
+| 17 · «Твой момент» | 4, never after a decisive roll | 0 in 23 turns (10 rolls; none flagged as the hero's moment — the DM never set `playerMoment` even in the fight; a craft note for the owner) |
+| 7 · naturalness (measured, not acted on) | — | 6 343 words, Latin letters 0%, канцелярит 0 per 1 000 words, sentence-length variation 0.63; the repeated phrase to watch: «смотрит на тебя» ×12 in 23 turns |
+| leaks | 8 private rolls in chips | 0 private rolls in chips; one suspected literal from a Character Model voiced in dialogue («протирает очки», s06: a self-disclosure, not a leak) |
+
+The depth rule per turn in replay 2 (effort · first word · cost): s01–s15 high · 10–52 s · $0.10–0.31; **s16 xhigh**
+(11.6 s, $0.30); s17 high, the DM marks a climax; **s18 xhigh** (22.4 s, $0.33); **s19 xhigh** (52.8 s, $0.53, six
+requests, four rolls); s20–s23 high. Replay 1 (the same inputs, the bug still in): all 21 turns high, first word median
+23.2 s, $0.24 per turn — the base depth alone already halves session 1's first word; the rule adds the deep turns where
+the fight is.
 
 ## Money spent
 
-__MONEY__
+| Run | Record | Turns | Spent |
+| --- | --- | --- | --- |
+| Russian replay 1, Opus 5.5 high (cut by a container restart; paid turns kept) | `docs/runs/polish-20261017-034922-loop-opus-live-ru-replay.partial.jsonl` | 21 | $5.08 |
+| Live smoke 03 + 17 + 18, Opus 5.5 high | `docs/runs/polish-20261017-041059-loop-opus-live-smoke-03+17+18.jsonl` | 7 | $0.82 |
+| Russian replay 2, Opus 5.5 high (after the depth fix) | `docs/runs/polish-20261017-041509-loop-opus-live-ru-replay.jsonl` | 23 (+1 not sent) | $5.25 |
+| **Total** | | 51 | **$11.14 of the $15 cap** |
+
+No other paid call was made in the run (no fal, no OpenAI; the fake benches and the screenshots are free). Every paid
+request is in the records above with its tokens and cost; nothing was repeated after the restart.
 
 ## Pending DM Craft versions (for the owner to review and approve)
 
