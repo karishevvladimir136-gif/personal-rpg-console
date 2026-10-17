@@ -92,6 +92,19 @@ level bans (no access); a fine-tuned smaller model as the DM (loses Opus's reaso
 reserve: Opus decides and writes, a second pass rewrites dialogue only — test only if the voice layer is not enough,
 it costs latency and can change facts.
 
+## Why narration is rich and dialogue is weak (owner's observation, planner's reading)
+
+Narration is one voice, the narrator's, in the written register the model has read most of; sensory description
+translates across languages almost unchanged. Dialogue is the opposite on every count: (1) speaking **is answering**,
+and answering is exactly what assistant training shaped — complete sentences, every point covered, polite, explained,
+summed up — so the assistant habit fires in NPC lines and not in narration; (2) many voices instead of one, so the
+model falls back to its own composed, aphoristic voice for everyone; (3) the DM uses NPC lines to deliver game
+information (prices, options, risks), which turns speech into exposition; (4) spoken Russian lives on what does not
+translate — particles (же, ведь, -то, ну, вот, уж, небось, разве), word order by emphasis, ellipsis, idioms — so
+calques surface there first. Hypothesis to measure: particle rate and the share of incomplete sentences in NPC lines
+vs the owner's passages. Consequences: the bank is dialogue-heavy; game information moves into narration and cards
+where it can; speech profiles per person; a dialogue-only second pass stays in reserve (narration does not need it).
+
 ## The experiment: Russian first, English as the control (owner, 2026-10-16)
 
 The owner reads and talks in English daily (lives in San Francisco); Russian is his native language. Rule: build the
