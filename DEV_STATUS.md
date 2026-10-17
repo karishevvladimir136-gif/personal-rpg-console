@@ -1,5 +1,24 @@
 # Development status
 
+**Current stage:** Polish after the owner's first sandbox play (`docs/stages/POLISH.md`) — **done on `claude/polish`,
+waiting for the owner's review and the next sandbox play.** Branch from `claude/integration` with
+`claude/fix-dm-craft-payload` merged first; ten groups in the spec's order, each with its own test file
+(`tests/polish-group1…10.test.mjs`) and a section in `docs/TURN_LOOP.md` (§11–§18); migrations 57–63 (additive). The
+owner report is `docs/runs/polish-report.md` («Needs the owner» lists the decisions left open); the resume notes
+`docs/runs/polish-progress.md`. Final checks: __DEV_CHECKS__. Paid: __DEV_SPEND__ of the $15 cap (`docs/runs/polish-*.jsonl`).
+
+**Polish in short (2026-10-17):** every text part reaches the player and the chips speak the campaign language; money
+in the world's own currency and rewards that pay; items lost / modified / pledged / lent; «Закончить сессию» runs the
+digest with a title, «Ранее в…» and a stinger; rolls with the sheet's skill bonus, the fiction's bonuses and a
+difficulty in words; the depth rule (base unless a climax, at most two deep turns in a row); the prompt in five blocks
+with a 1-hour cache on the three stable ones; the first word measured from the player's send; six **pending** DM Craft
+cards; one picture path and a working «Скрыть»; one stage, one page scroll, a compact composer, the addressee from the
+text; speech profiles, budgets and the voice slots (off) for the voice stage; a wallet and paper doll for any ruleset,
+HP correction, the backstory; places with a parent laid out on the map by themselves, a whole-world codex; any sheet
+creates in the wizard, the wizard's start prefills the first adventure, the opening sets the clock; «Ещё» split into
+the player's actions and the owner's editor. The Integration, Stage 4 and Stage V sections below are each stage's own
+closing status, kept unchanged.
+
 **Current stage:** Integration — Stage 4 (the DM) and Stage V (pictures) merged into one playable branch
 `claude/integration` for the owner's first sandbox play (cloud session, `docs/stages/INTEGRATION.md`). Base
 `claude/stage-4-dm` (tip `c0f80c9`), merged `claude/stage-v-visuals` (squashed tip `3241ad1`), one merge commit plus
