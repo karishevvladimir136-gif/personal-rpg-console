@@ -12,7 +12,7 @@ import { CharacterEquipmentDoll, CharacterInventory } from "./phase0-character";
 import characterStyles from "./phase0-character.module.css";
 import styles from "./playtest-game-character.module.css";
 import { LiveDisclosure } from "./live-disclosure";
-import { GenerateVisual } from "./visual-frame/generate-visual";
+import { RedrawAnchor } from "./registry/redraw-anchor";
 import { SubjectVisual } from "./visual-frame/subject-visual";
 import { EquippedItemArt } from "./visual-frame/equipped-item-art";
 import { useGameplayRuntime } from "./gameplay-runtime";
@@ -919,8 +919,7 @@ export function ItemDetails({
         </Panel>
       )}
       <GameplayItemActions item={item} />
-      {data && <GenerateVisual subject={{ kind: "item", id: item.id }}
-        reviewOnly={reviewOnly} showArtwork={false} compactDetails />}
+      {data && <RedrawAnchor data={data} subject={{ kind: "item", id: item.id }} name={item.name} />}
       <details className={styles.itemAdvanced}>
         <summary>{t("Record details")}</summary>
         <dl className="stats-list">

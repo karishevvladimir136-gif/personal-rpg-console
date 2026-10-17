@@ -7,7 +7,7 @@ import { Home, PawPrint, Ship, Tent, X, type LucideIcon } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import { holdingsNavLabel, holdingsOf, statLabel, type HoldingKind, type HoldingView } from "@/lib/ui/campaign-view";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
-import { GenerateVisual } from "../visual-frame/generate-visual";
+import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome, type CampaignScreenId } from "./shell";
 import { ItemCard, ItemCell } from "./character-screen";
 import { Art, Gauge, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
@@ -77,7 +77,7 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
               <h2 className={r.h2}>{c("Перерисовать", "Redraw")}</h2>
               <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedraw(null)}><X size={20} aria-hidden="true" /></button>
             </div>
-            <GenerateVisual subject={redraw} reviewOnly={!!chrome?.href} compactDetails />
+            <RedrawAnchor data={data} subject={redraw} name={(redraw.kind === "entity" ? data.entities.find((row) => row.id === redraw.id)?.name : data.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
           </aside>
         </>
       )}

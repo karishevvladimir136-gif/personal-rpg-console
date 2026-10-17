@@ -385,10 +385,7 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
             <p className={r.note}>{c("Анкеры (портреты, места, вещи) и перерисовка ключевых моментов всегда идут на лучшей модели.", "Anchors (portraits, places, things) and key-moment re-renders always use the better model.")}</p>
           </div>
           <div>
-            <span className={r.eyebrow}>{c("Кто рисует анкеры", "Who draws the anchors")}</span>
-            <Segmented label={c("Поставщик картинок", "Image provider")} value={settings?.autopilot.provider ?? "fal"} disabled={disabled} onChange={(value) => setAuto({ provider: value })}
-              options={[{ value: "fal", label: "fal" }, { value: "openai", label: "OpenAI" }]} />
-            {(settings?.autopilot.provider ?? "fal") === "fal" && (
+            <span className={r.eyebrow}>{c("Модели картинок (fal)", "Picture models (fal)")}</span>
               <div className={r.stack} style={{ gap: 6, marginTop: 6 }}>
                 {FAL_IMAGE_MODELS.map((row) => (
                   <div key={row.id} className={s.model}>
@@ -397,7 +394,6 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
                   </div>
                 ))}
               </div>
-            )}
           </div>
           <Switch title={c("Рисовать само", "Draw automatically")} hint={c("После хода, в фоне. Ход никогда не ждёт картинку.", "After a turn, in the background. A turn never waits for a picture.")}
             checked={!!settings?.autopilot.enabled} disabled={disabled} onChange={(value) => setAuto({ enabled: value })} />

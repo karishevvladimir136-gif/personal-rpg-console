@@ -14,8 +14,8 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 | 2 — rolls | done | migration `202610170058_polish_rolls.sql`; `tests/polish-group2.test.mjs`; bench scenario 17; `docs/TURN_LOOP.md` §12. Left for group 6: the dice tray («Кубы») and «Пробую: <навык>» quick checks in the composer |
 | 3 — speed and cost | done | migration `202610170059_polish_speed.sql`; `tests/polish-group3.test.mjs`; `docs/TURN_LOOP.md` §13, `docs/SPEED.md` §7. Paid before/after measurement (30-turn Russian replay, cache share / cost per turn / first word) deferred to the final group — not started, $0 spent. Left for group 6: the quiet «думал глубже» mark on the turn |
 | 4 — DM craft doctrine (pending versions) | done | migration `202610170060_polish_craft.sql` (six pending cards, `dm_likes`); `tests/polish-group4.test.mjs`; scenario `18-heros-knowledge` (fake 4/4); `docs/TURN_LOOP.md` §14. Pending DM Craft versions to list in the report: heros-knowledge, danger-and-pacing, heros-moment, time-and-clock, open-questions-and-tics, records-match-the-fiction (all v1, never activated) |
-| 5 — pictures | next | do not edit the picture-models files (POLISH.md «The parallel session») |
-| 6 — game screen layout | pending | |
+| 5 — pictures | done | `redraw-anchor.tsx` (one Stage V path for every picture button), hide/lightbox/«Кадр сцены» in `live-frames.tsx` and `game-screen.tsx`, the OpenAI anchors choice removed; `tests/polish-group5.test.mjs`; `docs/stages/STAGE_V.md` §8. Picture-models files untouched. Needs the owner: the atlas artwork («Создать карту») has no Stage V composition and left the map screen |
+| 6 — game screen layout | next | |
 | 7 — voice mechanics + budgets | pending | |
 | 8 — character and inventory | pending | |
 | 9 — codex, map, journal | pending | |

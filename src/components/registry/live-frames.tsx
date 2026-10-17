@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { BookOpen, EyeOff, Eye, RefreshCw } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, EyeOff, Eye, RefreshCw, X } from "lucide-react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
@@ -103,20 +103,73 @@ function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | nul
   }, [live, play, pictures]);
 }
 
+/** The turn whose frame the panel shows: the streaming turn, else the latest game turn. */
+export function currentFrameTurnId(play: PlaySnapshot | null, live: LiveTurnView | null): string | null {
+  const latest = (play?.turns ?? []).filter((turn) => turn.mode === "game").at(-1) ?? null;
+  return live && (live.status === null || live.status === "generating") ? live.operationId : latest?.id ?? live?.operationId ?? null;
+}
+
+/** The first line of a turn, for the lightbox caption: the narration's first sentence, else the player's words. */
+export function frameCaption(turn: { input: string; narration: string | null }): string {
+  const text = (turn.narration?.trim() || turn.input).split(/\n/)[0].trim();
+  return text.length > 160 ? `${text.slice(0, 157).trimEnd()}…` : text;
+}
+
+type LightboxEntry = { turn: { id: string; input: string; narration: string | null }; picture: PublicPicture };
+
+/** Polish group 5: a frame opened large — the turn's first line, «←/→» through the frames, Esc to close. */
+function FrameLightbox({ entries, index, urlFor, onIndex, onClose }: {
+  entries: LightboxEntry[]; index: number; urlFor: (picture: PublicPicture) => string | null; onIndex: (index: number) => void; onClose: () => void;
+}) {
+  const c = useCopy();
+  const entry = entries[index];
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+      else if (event.key === "ArrowLeft" && index > 0) onIndex(index - 1);
+      else if (event.key === "ArrowRight" && index < entries.length - 1) onIndex(index + 1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index, entries.length, onIndex, onClose]);
+  if (!entry) return null;
+  const url = urlFor(entry.picture);
+  return (
+    <div className={f.lightbox} role="dialog" aria-modal="true" aria-label={c("Кадр крупно", "Frame, large")} data-testid="frame-lightbox">
+      <button type="button" className={f.lightboxScrim} aria-label={c("Закрыть", "Close")} onClick={onClose} />
+      <div className={f.lightboxBody}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {url && <img src={url} alt={c("Кадр хода", "Frame of the turn")} />}
+        <div className={f.lightboxBar}>
+          <button type="button" className={r.iconBtn} aria-label={c("Предыдущий кадр", "Previous frame")} disabled={index <= 0} onClick={() => onIndex(index - 1)}><ChevronLeft size={20} aria-hidden="true" /></button>
+          <span className={f.lightboxCaption}>
+            <span>{frameCaption(entry.turn)}</span>
+            <a href={`#saved-turn-${entry.turn.id}`} onClick={onClose}>{c("К ходу", "To the turn")}</a>
+          </span>
+          <span className={f.lightboxCount}>{index + 1} / {entries.length}</span>
+          <button type="button" className={r.iconBtn} aria-label={c("Следующий кадр", "Next frame")} disabled={index >= entries.length - 1} onClick={() => onIndex(index + 1)}><ChevronRight size={20} aria-hidden="true" /></button>
+          <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={onClose}><X size={20} aria-hidden="true" /></button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** The frames panel of the game screen: the frame of the current turn, its tools, earlier frames. */
 export function FramesPanel({ data, play, live, chronicleHref }: { data: CampaignSnapshot; play: PlaySnapshot | null; live: LiveTurnView | null; chronicleHref: string }) {
   const c = useCopy();
   const pictures = usePictures();
   useLiveFrameTrigger(live, play, pictures);
   const [pending, setPending] = useState(false);
+  const [open, setOpen] = useState<number | null>(null);
   if (!pictures) return null;
   const { board } = pictures;
   const gameTurns = (play?.turns ?? []).filter((turn) => turn.mode === "game");
   const latestTurn = gameTurns.at(-1) ?? null;
-  const currentId = live && (live.status === null || live.status === "generating") ? live.operationId : latestTurn?.id ?? live?.operationId ?? null;
+  const currentId = currentFrameTurnId(play, live);
   const current = currentId ? frameFor(board, currentId) : null;
   const versions = currentId ? framesOfTurn(board, currentId).filter((row) => row.status === "ready") : [];
-  const hiddenOnly = currentId ? framesOfTurn(board, currentId).filter((row) => row.status === "ready").every((row) => row.hidden) && versions.length > 0 : false;
+  const hiddenOnly = versions.length > 0 && versions.every((row) => row.hidden);
   const shown = current?.picture ?? null;
   const earlier = gameTurns.slice().reverse().filter((turn) => turn.id !== currentId)
     .map((turn) => ({ turn, picture: frameFor(board, turn.id).picture })).filter((row) => row.picture).slice(0, 8);
@@ -127,14 +180,29 @@ export function FramesPanel({ data, play, live, chronicleHref }: { data: Campaig
     setPending(true);
     try { await pictures.send(action, input); } catch { /* the board shows the state */ } finally { setPending(false); }
   };
+  // «Скрыть» hides the frame of this turn: every ready version of it; «Показать» brings the newest back.
+  const hideTurn = async () => {
+    if (pictures.preview || pending) return;
+    setPending(true);
+    try { for (const row of versions.filter((version) => !version.hidden)) await pictures.send("pictures.hide", { id: row.id, hidden: true }); }
+    catch { /* the board shows the state */ } finally { setPending(false); }
+  };
+  const currentTurn = currentId ? gameTurns.find((turn) => turn.id === currentId) ?? null : null;
+  const entries: LightboxEntry[] = [
+    ...(shown && currentTurn ? [{ turn: currentTurn, picture: shown }] : []),
+    ...earlier.map((row) => ({ turn: row.turn, picture: row.picture! })),
+  ];
+  const openEntry = (pictureId: string) => { const index = entries.findIndex((row) => row.picture.id === pictureId); if (index >= 0) setOpen(index); };
   const label = shown ? (shown.trigger === "key_moment" ? c("ключевой момент · лучшая модель", "key moment · better model") : shown.tier === "quality" ? c("качество", "quality") : c("живой кадр", "live frame")) : null;
   return (
-    <section className={f.panel} aria-label={c("Кадры", "Frames")}>
+    <section id="registry-frames" className={f.panel} aria-label={c("Кадры", "Frames")}>
       {shown && pictures.urlFor(shown) ? (
         <div className={f.frame}>
           {/* Short-lived authenticated URLs; next/image cannot proxy them. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={pictures.urlFor(shown)!} alt={c("Кадр этого хода", "Frame of this turn")} />
+          <button type="button" className={f.frameButton} aria-label={c("Открыть кадр крупно", "Open the frame large")} onClick={() => openEntry(shown.id)}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={pictures.urlFor(shown)!} alt={c("Кадр этого хода", "Frame of this turn")} />
+          </button>
           <div className={f.caption}>
             <span className={f.captionText}>{label}{versions.length > 1 ? ` · ${c(`версия ${versions.indexOf(shown) + 1} из ${versions.length}`, `version ${versions.indexOf(shown) + 1} of ${versions.length}`)}` : ""}</span>
             {current?.drawing && <span className={r.badgeAmber}>{c("рисуется новый…", "drawing a new one…")}</span>}
@@ -154,7 +222,7 @@ export function FramesPanel({ data, play, live, chronicleHref }: { data: Campaig
           </button>
         )}
         {shown && (
-          <button type="button" className={r.btnGhost} disabled={pending || pictures.preview} onClick={() => void act("pictures.hide", { id: shown.id, hidden: true })}>
+          <button type="button" className={r.btnGhost} disabled={pending || pictures.preview} onClick={() => void hideTurn()}>
             <EyeOff size={16} aria-hidden="true" />{c("Скрыть", "Hide")}
           </button>
         )}
@@ -168,12 +236,15 @@ export function FramesPanel({ data, play, live, chronicleHref }: { data: Campaig
       {earlier.length > 0 && (
         <div className={f.strip} role="list" aria-label={c("Кадры прошлых ходов", "Frames of earlier turns")}>
           {earlier.map(({ turn, picture }) => (
-            <a key={turn.id} role="listitem" className={f.thumb} href={`#saved-turn-${turn.id}`} title={turn.input.slice(0, 80)}>
+            <button key={turn.id} type="button" role="listitem" className={f.thumb} title={frameCaption(turn)} onClick={() => openEntry(picture!.id)}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={pictures.urlFor(picture!) ?? ""} alt={c("Кадр прошлого хода", "Frame of an earlier turn")} />
-            </a>
+            </button>
           ))}
         </div>
+      )}
+      {open !== null && entries[open] && (
+        <FrameLightbox entries={entries} index={open} urlFor={pictures.urlFor} onIndex={setOpen} onClose={() => setOpen(null)} />
       )}
       <span className={`${r.note} ${f.line}`} style={{ color: "var(--muted)" }}>
         {off ? c("Кадры выключены в настройках картинок.", "Frames are off in the picture settings.") : c("Ход никогда не ждёт кадр: картинка появляется, пока ведущий ещё пишет.", "A turn never waits for a frame: the picture appears while the DM is still writing.")}

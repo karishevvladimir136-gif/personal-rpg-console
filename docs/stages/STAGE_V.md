@@ -115,3 +115,25 @@ PGlite-backed test campaign; screenshots captured with the overflow check passin
 frames on. Commit in small steps, push `claude/stage-v-visuals` regularly; nothing to `main`, never the owner's database.
 Update `docs/UI_DATA_NEEDS.md` and add a Stage V section to `DEV_STATUS.md`. Report in English: what changed, the numbers,
 the spend, what the owner should look at first, known limits.
+
+## 8. Polish stage (2026-10-17): one picture path, «Скрыть», the lightbox, «Кадр сцены»
+
+Done on `claude/polish` (group 5 of `POLISH.md`; the picture models and the prompt compiler belong to the parallel
+`claude/picture-models` session and were not touched here):
+- **One picture path for every button.** The party's «Перерисовать портрет», the character screen's portrait and item
+  redraws, the holdings' redraw, the records page's item picture and the map's «Иллюстрация места» all draw through the
+  Stage V store (`src/components/registry/redraw-anchor.tsx` → `pictures.anchor`, trigger `manual`, the campaign's style,
+  the quality tier, priced, within the daily cap; the cap is explained instead of a dead button). The legacy
+  `GenerateVisual` / `GenerateMap` path left the player's screens; the atlas artwork («Создать карту») has no Stage V
+  composition yet and left the map screen with it (listed under «Needs the owner»).
+- **The «OpenAI draws the anchors» trap.** The setting is gone from the picture settings; a stored `provider: "openai"`
+  reads as fal. OpenAI images come back, if at all, as one more Stage V model selected per tier (the bake-off's call).
+- **«Кадр сцены»** under the composer draws or redraws the Stage V frame of the current turn and scrolls to the frames
+  panel; the legacy FRAME panel and the video block left the game screen (video returns with the video stage, built on
+  Stage V frames).
+- **«Скрыть»** hides every ready version of the turn's frame (`frameFor` never shows a hidden version); «Показать» brings
+  the newest back; the chronicle follows the same rule.
+- **The strip lightbox.** A thumbnail (or the frame itself) opens the frame large with the turn's first line, «←/→»
+  through the frames, Esc or the scrim to close, and a link to the saved turn.
+Not done here: the anatomy check on anchors before auto-accept (§7 of POLISH's findings, not in group 5's list); the
+negative «no lettering» prompt line (the prompt compiler's); the one-stage layout is group 6.

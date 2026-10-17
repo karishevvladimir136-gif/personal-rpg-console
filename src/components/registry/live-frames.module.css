@@ -95,3 +95,79 @@
     height: 54px;
   }
 }
+
+/* Polish group 5: the frame opened large. */
+.frameButton {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.frameButton > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+.lightboxScrim {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(10, 7, 5, 0.88);
+}
+.lightboxBody {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  width: min(1100px, 100%);
+  max-height: 100%;
+}
+.lightboxBody > img {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 96px);
+  object-fit: contain;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: #0e0a08;
+}
+.lightboxBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+}
+.lightboxCaption {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+}
+.lightboxCaption > span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.lightboxCaption > a {
+  color: var(--brass);
+  white-space: nowrap;
+}
+.lightboxCount {
+  white-space: nowrap;
+}

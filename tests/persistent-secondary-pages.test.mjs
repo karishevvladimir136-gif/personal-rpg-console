@@ -332,7 +332,8 @@ test("the first known current place renders on the atlas and enables map review 
   assert.match(html, new RegExp(`${current.name} · (Visited|Known) · Current location`));
   assert.match(html, /This place is shown approximately/);
   assert.match(html, /Location illustration &amp; history/);
-  assert.match(html, /Atlas artwork for this view/);
+  // Polish group 5: the legacy atlas artwork left the player's map; the place illustration draws through Stage V.
+  assert.doesNotMatch(html, /Atlas artwork for this view/);
   assert.equal(JSON.stringify(data), before);
 });
 

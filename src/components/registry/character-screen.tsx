@@ -11,7 +11,7 @@ import { itemRarity } from "@/lib/ui/rarity";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
 import { equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, partyOf, resourcesOf, statLabel } from "@/lib/ui/campaign-view";
 import { anchorFor } from "@/lib/visual-frame/pictures";
-import { GenerateVisual } from "../visual-frame/generate-visual";
+import { RedrawAnchor } from "./redraw-anchor";
 import { usePictures } from "./live-frames";
 import { useChrome, type CampaignScreenId } from "./shell";
 import {
@@ -220,7 +220,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
               <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedraw(null)}><X size={20} aria-hidden="true" /></button>
             </div>
             <p className={r.note}>{c("Старая картинка остаётся на месте, пока новая не готова и не принята. Прошлые версии сохраняются.", "The previous picture stays until the new one is ready and accepted. Earlier versions are kept.")}</p>
-            <GenerateVisual subject={redraw} reviewOnly={!!chrome?.href} compactDetails />
+            <RedrawAnchor data={data} subject={redraw} name={(redraw.kind === "entity" ? data.entities.find((row) => row.id === redraw.id)?.name : data.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
           </aside>
         </>
       )}

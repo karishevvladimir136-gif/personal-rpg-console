@@ -8,7 +8,7 @@ import { characterViewModel } from "@/lib/character-view-model";
 import { companionAttitude, currentPlace, holdingsOf, homeRosterOf, inCombat, partyOf, statLabel, worldClock } from "@/lib/ui/campaign-view";
 import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
-import { GenerateVisual } from "../visual-frame/generate-visual";
+import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome } from "./shell";
 import { Art, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
 import s from "./party.module.css";
@@ -106,7 +106,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
               <h2 className={r.h2}>{c("Перерисовать портрет", "Redraw portrait")}</h2>
               <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedraw(null)}><X size={20} aria-hidden="true" /></button>
             </div>
-            <GenerateVisual subject={{ kind: "entity", id: redraw }} reviewOnly={!!chrome?.href} compactDetails />
+            <RedrawAnchor data={data} subject={{ kind: "entity", id: redraw }} name={data.entities.find((row) => row.id === redraw)?.name ?? ""} />
           </aside>
         </>
       )}

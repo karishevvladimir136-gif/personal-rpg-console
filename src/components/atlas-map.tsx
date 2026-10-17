@@ -11,8 +11,7 @@ import { loadMapLayout, saveMapPlacement } from "@/lib/map/placement-client";
 import { placePinLabels, sameLayout, type LabelPlacement } from "@/lib/map/label-layout";
 import { selectMapVisual } from "@/lib/visual-frame/map-job";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
-import { GenerateMap } from "./visual-frame/generate-map";
-import { GenerateVisual } from "./visual-frame/generate-visual";
+import { RedrawAnchor } from "./registry/redraw-anchor";
 import { SubjectVisual } from "./visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon } from "./ui";
@@ -81,7 +80,7 @@ export function AtlasMap({
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
   const [destinationId, setDestinationId] = useState<string | null>(reviewOnly ? reviewDestinationId ?? null : null);
   const [courseInserted, setCourseInserted] = useState(false);
-  const [showArtwork, setShowArtwork] = useState(reviewPreset?.artwork !== "collapsed");
+  const [showArtwork] = useState(reviewPreset?.artwork !== "collapsed");
   const [editLocationId, setEditLocationId] = useState("");
   const [editLevel, setEditLevel] = useState<AtlasLevel>("world");
   const [editParentId, setEditParentId] = useState<string | null>(null);
@@ -442,7 +441,7 @@ export function AtlasMap({
                 </Button>
                 <AtlasDisclosure title={w("Location illustration & history", "Иллюстрация места и история")} open={reviewPreset?.detail}>
                   <p className={styles.secondaryNote}>{w("This illustration depicts this place. Atlas artwork depicts the wider map behind its pins. Neither image changes the place or travel rules.", "Иллюстрация показывает это место. Изображение атласа служит фоном карты за метками. Ни одно изображение не меняет место или правила путешествия.")}</p>
-                  <GenerateVisual snapshot={snapshot} subject={{ kind: "location", id: selected.id }} reviewOnly={reviewOnly} showArtwork={false} />
+                  <RedrawAnchor data={snapshot} subject={{ kind: "location", id: selected.id }} name={selected.name} />
                   <time dateTime={selected.updated_at}>{new Date(selected.updated_at).toLocaleDateString(language)}</time>
                 </AtlasDisclosure>
               </>
@@ -468,11 +467,6 @@ export function AtlasMap({
       )}
       {layoutError && <p role="alert" className={styles.secondaryNote}>{layoutError}</p>}
       <div className={styles.lowerPanels}>
-        <AtlasDisclosure title={w("Atlas artwork for this view", "Изображение атласа для этого уровня")}>
-          <p className={styles.secondaryNote}>{w("This optional image is the background for the selected map level, not an illustration of one location. Pins and names come from current public records, never from pixels.", "Это необязательное изображение служит фоном выбранного уровня карты, а не иллюстрацией одного места. Метки и названия берутся из открытых записей, а не из пикселей.")}</p>
-          {(acceptedArt || previewArt) && <Button onClick={() => setShowArtwork((value) => !value)}>{showArtwork ? w("Hide artwork", "Скрыть фон") : w("Show artwork", "Показать фон")}</Button>}
-          <GenerateMap snapshot={snapshot} placements={projection.placements} level={level} anchorId={view.anchorId} onPlacementsReady={setPlacements} reviewOnly={reviewOnly} />
-        </AtlasDisclosure>
         <AtlasDisclosure title={w(`Unplaced known locations (${projection.unplaced.length})`, `Известные места без меток (${projection.unplaced.length})`)} open={reviewPreset?.panel === "unplaced-open"}>
           <p className={styles.secondaryNote}>{w("These places are known in the story. Their position and hierarchy have not been recorded.", "Эти места известны по истории. Их положение и иерархия ещё не записаны.")}</p>
           <LocationList rows={projection.unplaced} selectedId={selected?.id} currentId={currentId} onSelect={selectLocation} />

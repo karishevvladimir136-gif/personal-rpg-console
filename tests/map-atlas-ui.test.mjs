@@ -83,8 +83,10 @@ test("location illustrations and atlas artwork remain distinct accepted-only pre
   assert.match(atlas, /selectSubjectVisual\([\s\S]*?acceptedOnly: true/);
   assert.match(atlas, /LOCATION ILLUSTRATION/);
   assert.match(atlas, /<SubjectVisual snapshot=\{snapshot\} subject=\{\{ kind: "location", id: selected\.id \}\} \/>/);
-  assert.match(atlas, /showArtwork=\{false\}/);
-  assert.match(atlas, /Atlas artwork for this view/);
+  // Polish group 5: the place illustration is drawn through the Stage V store; the legacy
+  // atlas artwork («Создать карту») left the player's map screen (no button that cannot work).
+  assert.match(atlas, /<RedrawAnchor data=\{snapshot\} subject=\{\{ kind: "location", id: selected\.id \}\}/);
+  assert.doesNotMatch(atlas, /Atlas artwork for this view|GenerateMap|GenerateVisual/);
   assert.match(atlas, /const level = chosenLevel \?\? atlasOpeningLevel\(projection\)/);
   assert.match(atlas, /View \$\{fallbackLevel\} instead/);
 });
@@ -169,7 +171,9 @@ test("edge coordinates remain stored at 0 or 1 while the painted 44px pin stays 
 test("map image preparation updates the atlas with the persisted placement basis", () => {
   const atlas = readFileSync(new URL("../src/components/atlas-map.tsx", import.meta.url), "utf8");
   const generator = readFileSync(new URL("../src/components/visual-frame/generate-map.tsx", import.meta.url), "utf8");
-  assert.match(atlas, /onPlacementsReady=\{setPlacements\}/);
+  // Polish group 5: the legacy map generator is no longer on the player's map screen; its
+  // placement basis stays with the component for the owner's legacy pages.
+  assert.doesNotMatch(atlas, /onPlacementsReady=\{setPlacements\}/);
   assert.match(generator, /onPlacementsReady\?\.\(layout\.placements\)/);
   assert.match(generator, /ensureCurrentMapPlacement\(/);
 });

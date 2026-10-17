@@ -32,9 +32,7 @@ import { GameplayCombat } from "../gameplay-combat";
 import { GameplayRest } from "../gameplay-actions";
 import { CombatReadiness } from "../combat-readiness";
 import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
-import { CurrentSceneMediaFrame } from "../visual-frame/current-scene-media-frame";
-import { CurrentSceneVideo } from "../visual-frame/current-scene-video";
-import { FramesPanel } from "./live-frames";
+import { currentFrameTurnId, FramesPanel, usePictures } from "./live-frames";
 import { SessionEnd } from "./session-end";
 import { useSessionMemory } from "../session-memory-runtime";
 import {
@@ -114,7 +112,6 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const setOoc = (next: boolean | ((value: boolean) => boolean)) =>
     setInputMode((current) => ((typeof next === "function" ? next(current === "ooc") : next) ? "ooc" : "game"));
   const [diceOpen, setDiceOpen] = useState(preview?.diceOpen ?? false);
-  const [mediaOpen, setMediaOpen] = useState(false);
   const [asideOpen, setAsideOpen] = useState(preview?.asideOpen ?? false);
   const [nonce, setNonce] = useState(0);
   // The streamed turn in flight, from the composer's own stream (one EventSource).
@@ -162,6 +159,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     <article className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</article>
   );
   const live = preview ? preview.live ?? null : liveView;
+  const pictures = usePictures();
+  const frameTurnId = currentFrameTurnId(play, live);
   const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
   // A saved turn keeps its accepted changes on screen until the next turn starts.
   const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
@@ -216,7 +215,13 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
         <button type="button" className={ooc ? r.btn : r.btnGhost} aria-pressed={ooc} onClick={() => setOoc((value) => !value)}>
           <HelpCircle size={18} aria-hidden="true" />{c("Вопрос ведущему", "Ask the DM")}
         </button>
-        <button type="button" className={mediaOpen ? r.btn : r.btnGhost} aria-pressed={mediaOpen} disabled={!!preview} onClick={() => setMediaOpen((open) => !open)}>
+        <button type="button" className={r.btnGhost} disabled={!!preview || !pictures || !frameTurnId || pictures.board.settings.frames === "off"}
+          title={c("Нарисовать или перерисовать кадр этой сцены", "Draw or redraw the frame of this scene")}
+          onClick={() => {
+            // Polish group 5: the button acts on the Stage V frames panel (draw or redraw the current frame).
+            if (pictures && frameTurnId) void pictures.send("pictures.frame", { operationId: frameTurnId, trigger: "redraw" }).catch(() => {});
+            document.getElementById("registry-frames")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}>
           <ImageIcon size={18} aria-hidden="true" />{c("Кадр сцены", "Scene frame")}
         </button>
         {(dmSettings?.depth || preview) && (
@@ -320,12 +325,6 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           {latestTurn && <a className={g.latest} href={`#saved-turn-${latestTurn.id}`}>{c("К последнему ходу", "Latest moment")}</a>}
           {feed}
         </article>
-        {mediaOpen && !preview && (
-          <section className={g.media} aria-label={c("Кадр и видео сцены", "Scene frame and video")}>
-            <CurrentSceneMediaFrame />
-            <CurrentSceneVideo />
-          </section>
-        )}
         {!preview && play && !play.startupPending && combat && (
           <section className={g.media} aria-label={c("Бой", "Combat")}>
             <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />

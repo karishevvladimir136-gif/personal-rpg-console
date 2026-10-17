@@ -107,7 +107,9 @@ export function parsePictureAutopilot(raw: unknown): PictureAutopilot {
   const flag = (key: keyof PictureAutopilot) => (typeof v[key] === "boolean" ? (v[key] as boolean) : defaultPictureAutopilot[key] as boolean);
   return {
     enabled: flag("enabled"), items: flag("items"), portraits: flag("portraits"), figures: flag("figures"), places: flag("places"),
-    holdings: flag("holdings"), autoAccept: flag("autoAccept"), provider: v.provider === "openai" ? "openai" : "fal",
+    // Polish group 5: the legacy «OpenAI draws the anchors» choice routed every picture to a path that
+    // cannot work; a stored "openai" reads as fal (OpenAI images come back as a Stage V model, per tier).
+    holdings: flag("holdings"), autoAccept: flag("autoAccept"), provider: "fal",
   };
 }
 export function parsePictureSettings(raw: unknown): PictureSettings {
@@ -216,7 +218,8 @@ export function anchorFor(board: Pick<PictureBoard, "pictures">, subject: Pictur
 export const framesOfTurn = (board: Pick<PictureBoard, "pictures">, turnId: string) => picturesOf(board, { kind: "turn", id: turnId }, "frame");
 export function frameFor(board: Pick<PictureBoard, "pictures">, turnId: string) {
   const rows = framesOfTurn(board, turnId);
-  const shown = rows.filter((row) => row.status === "ready").at(-1) ?? null;
+  // Polish group 5: «Скрыть» hides the frame of the turn — a hidden version is never the shown one.
+  const shown = rows.filter((row) => row.status === "ready" && !row.hidden).at(-1) ?? null;
   return { picture: shown, drawing: rows.some((row) => row.status === "queued" || row.status === "generating"), failed: rows.at(-1)?.status === "failed" };
 }
 export const pictureUrl = (campaignId: string, pictureId: string) =>
