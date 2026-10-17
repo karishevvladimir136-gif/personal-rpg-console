@@ -36,16 +36,26 @@ branches not yet played cannot be resumed without replaying the prefix (about $7
 | 2 — two-pass runtime + fake tests | done | `src/lib/gameplay/dm-loop/two-pass/`, `tests/dm-arch-two-pass.test.mjs` |
 | 3 — bake-off bench (fake dry run, live smoke of C on s01) | done | `scripts/eval/dm-arch/` |
 | 4 — paid: reference run A | done | 30/30 turns committed, 50 requests, **$7.77**; `docs/runs/dmarch-20261017-182146-reference-A.jsonl`; 30 states in `scripts/eval/out/dmarch-states/before-<step>.tar.gz` (git-ignored) |
-| 5 — paid: scene branches B, C, D | in progress | started 19:08 UTC, 24 pairs, budget $13; `docs/runs/dmarch-<time>-scenes.jsonl` (restart: rerun `scenes.mjs`, done pairs are skipped) |
-| 6 — paid: continuity runs C (D) | pending | |
-| 7 — paid: judge | pending | |
-| 8 — blind samples, report, flag commit, final checks | pending | |
+| 5 — paid: scene branches B, C, D | done | 24/24 pairs over three runs (two guard stops, each costing one paid request): `dmarch-20261017-190822-scenes.jsonl`, `…-193714-scenes.jsonl`, `…-194127-scenes.jsonl`; $14.20 |
+| 6 — paid: continuity runs C (D) | done | C 4 turns + 1 transport failure ($1.57), D 5 turns ($0.75) |
+| 7 — paid: judge | done | 63 turns, Sonnet 5.5 medium, $0.79: `dmarch-20261017-195450-judge.jsonl` |
+| 8 — blind samples, report, flag commit, final checks | done | 32 samples in `docs/samples/dm-arch/`; `docs/runs/dmarch-REPORT.md`; the flag in `gameplay-service.ts`; typecheck, lint (0 warnings), build pass; the touched tests 114 pass; full suite result below |
 
 ## Paid calls log
 
 | When (UTC) | What | Record | Spent |
 | --- | --- | --- | --- |
-| 2026-10-17 18:20 | live smoke: C (Fable writer + Opus bookkeeper) on s01, budget $1.50 — writer 25.5 s / $0.31, bookkeeper 50 s / 13 records / $0.20 | `docs/runs/dmarch-20261017-182013-scenes-smoke.jsonl` | $0.51 |
-| 2026-10-17 18:21–18:53 | reference run A, 30 turns, budget $9 | `docs/runs/dmarch-20261017-182146-reference-A.jsonl` | $7.77 |
-| 2026-10-17 19:08 | scene branches B, C, D × 8 scenes, budget $13 (running) | `docs/runs/dmarch-*-scenes.jsonl` | reserved $13.00 |
-| | **Total** | | **$8.28 spent, $13.00 reserved, of $30** (the live ledger is `docs/runs/dmarch-ledger.json`) |
+| 2026-10-17 18:20 | live smoke: C on s01 | `docs/runs/dmarch-20261017-182013-scenes-smoke.jsonl` | $0.51 |
+| 18:21–18:53 | reference run A, 30 turns (budget $9) | `docs/runs/dmarch-20261017-182146-reference-A.jsonl` | $7.77 |
+| 19:08–19:36 | scene branches B, C, D, 19 pairs, guard reached (budget $13) | `docs/runs/dmarch-20261017-190822-scenes.jsonl` | $10.53 |
+| 19:37–19:41 | scene branches, s18 ×3, guard stop on s28 (budget $4.5) | `docs/runs/dmarch-20261017-193714-scenes.jsonl` | $2.01 |
+| 19:41–19:46 | scene branches, s28 ×3 (budget $4) | `docs/runs/dmarch-20261017-194127-scenes.jsonl` | $1.65 |
+| 19:46–19:50 | continuity C, 5 turns, the fifth failed on transport (budget $3.2) | `docs/runs/dmarch-20261017-194606-continuity-C.jsonl` | $1.57 |
+| 19:50–19:54 | continuity D, 5 turns (budget $1.6) | `docs/runs/dmarch-20261017-195052-continuity-D.jsonl` | $0.75 |
+| 19:54–20:05 | judge, 63 turns (budget $3.5) | `docs/runs/dmarch-20261017-195450-judge.jsonl` | $0.79 |
+| | **Total** | `docs/runs/dmarch-ledger.json` | **$25.58 of $30** |
+
+## Full suite
+
+Pending at the time of the report: run in chunks of eight files under Node 24 (`node --test --test-concurrency=2`); the
+result is recorded here when it finishes.
