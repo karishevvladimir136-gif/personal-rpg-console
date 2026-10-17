@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t5",
+  "title": {
+    "ru": "Рвёт рубаху на полосы, мотает смоляные рукавицы",
+    "en": "He tears his shirt into strips and wraps resin gloves"
+  },
+  "description": "The man tears a linen shirt into strips and winds them around his resin-smeared hands, making rough gloves. Place: inside a net-maker's shed, nets and tar pots, in the daytime. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w). Art style: Cinematic noir.",
+  "narration": "Он уходит к сетям, а ты остаёшься у котелка один. Смола на руках стынет коркой, пальцы уже не разжать как следует. Ничего: работать всё равно придётся.\n\nТы стягиваешь рубаху, зубами и здоровой рукой рвёшь полотно на длинные полосы. Потом мотаешь их на обе кисти поверх смолы — туго, виток к витку, пока не выходит пара грубых рукавиц. Лицо в полутьме сосредоточенное, злое.\n\nСнаружи кто-то проходит мимо двери и останавливается послушать.",
+  "state": [],
+  "createdAt": "2026-10-17T18:48:04.892Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/8fef19bffc23.jpg",
+      "files": [
+        "img/8fef19bffc23.jpg",
+        "img/69f389f99d73.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "B",
+      "file": "img/3d8f1385cffd.jpg",
+      "files": [
+        "img/3d8f1385cffd.jpg"
+      ],
+      "refused": 1,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/b6679a5d7212.jpg",
+      "files": [
+        "img/b6679a5d7212.jpg",
+        "img/e3ba3b2a9c2a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "D",
+      "file": "img/e551c099c4a0.jpg",
+      "files": [
+        "img/e551c099c4a0.jpg",
+        "img/5a02b587728b.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    }
+  ]
+}

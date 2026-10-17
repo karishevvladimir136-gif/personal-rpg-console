@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "run": "pictures-brief-2026-10-17",
+  "commit": "3b249f4",
+  "question": {
+    "ru": "Какая картинка лучше показывает этот ход? Выбери лучшую и отметь те, что нравятся.",
+    "en": "Which picture shows this turn best? Pick the best and mark the ones you like."
+  },
+  "files": [
+    "t1-ecb04b.json",
+    "t2-ca04d4.json",
+    "t3-b4b7ba.json",
+    "t4-7bd41d.json",
+    "t5-18b45d.json",
+    "t6-227fe9.json",
+    "t7-32cd62.json",
+    "t8-f3e2fe.json"
+  ]
+}

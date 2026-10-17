@@ -1,0 +1,1941 @@
+{
+  "capUsd": 9,
+  "totalUsdMicros": 3089671,
+  "note": "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).",
+  "entries": [
+    {
+      "at": "2026-10-17T18:22:47.972Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t1",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 8826,
+      "settled": true,
+      "usage": {
+        "input": 1518,
+        "output": 579
+      }
+    },
+    {
+      "at": "2026-10-17T18:22:53.423Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t2",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9986,
+      "settled": true,
+      "usage": {
+        "input": 1873,
+        "output": 624
+      }
+    },
+    {
+      "at": "2026-10-17T18:22:59.218Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t3",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9008,
+      "settled": true,
+      "usage": {
+        "input": 1849,
+        "output": 531
+      }
+    },
+    {
+      "at": "2026-10-17T18:23:04.875Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t4",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10060,
+      "settled": true,
+      "usage": {
+        "input": 1820,
+        "output": 642
+      }
+    },
+    {
+      "at": "2026-10-17T18:23:10.108Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t5",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9338,
+      "settled": true,
+      "usage": {
+        "input": 1819,
+        "output": 570
+      }
+    },
+    {
+      "at": "2026-10-17T18:23:18.285Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t6",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9470,
+      "settled": true,
+      "usage": {
+        "input": 1900,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T18:23:23.153Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t7",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9876,
+      "settled": true,
+      "usage": {
+        "input": 1798,
+        "output": 628
+      }
+    },
+    {
+      "at": "2026-10-17T18:23:29.317Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t8",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10588,
+      "settled": true,
+      "usage": {
+        "input": 1874,
+        "output": 684
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:04.808Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t1",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 8618,
+      "settled": true,
+      "usage": {
+        "input": 1559,
+        "output": 550
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:09.909Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t2",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9818,
+      "settled": true,
+      "usage": {
+        "input": 1889,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:15.644Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t3",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 9342,
+      "settled": true,
+      "usage": {
+        "input": 1876,
+        "output": 559
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:22.327Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t4",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10094,
+      "settled": true,
+      "usage": {
+        "input": 1882,
+        "output": 633
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:27.680Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t5",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10358,
+      "settled": true,
+      "usage": {
+        "input": 1874,
+        "output": 661
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:33.560Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t6",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10132,
+      "settled": true,
+      "usage": {
+        "input": 1976,
+        "output": 618
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:39.293Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t7",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10162,
+      "settled": true,
+      "usage": {
+        "input": 1881,
+        "output": 640
+      }
+    },
+    {
+      "at": "2026-10-17T18:24:45.348Z",
+      "kind": "brief",
+      "model": "claude-sonnet-5-5",
+      "note": "brief t8",
+      "reservedUsdMicros": 42000,
+      "usdMicros": 10452,
+      "settled": true,
+      "usage": {
+        "input": 1931,
+        "output": 659
+      }
+    },
+    {
+      "at": "2026-10-17T18:25:25.779Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:25:25.830Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:25:42.460Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47766,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:25:57.108Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47766,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:26:00.861Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:26:17.346Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47961,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:26:33.991Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:26:41.133Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:26:50.892Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47881,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:27:08.674Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:27:12.918Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47961,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:27:27.226Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_fe81465ab9d54dffbc76183524a43a15. safety_violations=[viole"
+    },
+    {
+      "at": "2026-10-17T18:27:42.872Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:27:43.132Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:27:58.062Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_b3fee741d6ab45eca1f34d6c2330e2c3. safety_violations=[viole"
+    },
+    {
+      "at": "2026-10-17T18:28:15.397Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47881,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:28:16.669Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:28:34.551Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48016,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:28:46.730Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:28:50.318Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:shot:s1",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:29:04.184Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47971,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:29:16.929Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_39374d84ea8a4e869dd9e637850a4490. safety_violations=[viole"
+    },
+    {
+      "at": "2026-10-17T18:29:21.932Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:29:39.417Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48001,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:29:47.044Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:29:55.353Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:11.222Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47766,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:14.976Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48021,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:27.272Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:43.434Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47961,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:46.148Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:30:59.062Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:31:14.718Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47881,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:31:15.984Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48016,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:31:30.686Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:31:44.509Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:shot:s1",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:31:49.405Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_d0b2a064f1c54e848a5c5b82af695dee. safety_violations=[self-"
+    },
+    {
+      "at": "2026-10-17T18:32:05.915Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:32:10.062Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47971,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:32:24.001Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48021,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:32:41.288Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:shot:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:32:42.405Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:00.001Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48016,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:09.714Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:brief:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48001,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:14.994Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:shot:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:29.555Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47971,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:38.558Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:33:45.648Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:34:01.960Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48001,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:34:07.796Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47766,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:34:36.433Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:35:06.537Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47961,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:35:36.331Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:36:09.588Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47881,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:36:41.935Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:37:12.462Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_a63a1d300f7e43a7b3b0d3d6988237f0. safety_violations=[self-"
+    },
+    {
+      "at": "2026-10-17T18:37:41.930Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:38:10.390Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48021,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:38:40.881Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:39:11.406Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48016,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:39:40.132Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:shot:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:40:06.162Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47971,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:40:37.554Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:shot:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:41:08.045Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:brief:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 48001,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:14.894Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 768,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 582
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:18.832Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 768,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 581
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:22.155Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 823,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 691
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:26.600Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 774,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:30.140Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 810,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 675
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:34.356Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 883,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 812
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:39.583Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 730,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 515
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:42.795Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 769,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 592
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:46.169Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 818,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 692
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:50.777Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 811,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 669
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:55.134Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 748,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 552
+      }
+    },
+    {
+      "at": "2026-10-17T18:42:58.657Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 696,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 451
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:02.027Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 841,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 737
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:06.518Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 814,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 657
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:10.678Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 799,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 653
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:14.768Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 854,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 737
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:19.278Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 492,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 608
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:22.990Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 1043,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 1134
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:29.062Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 513,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 650
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:33.011Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 854,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 729
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:37.148Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 780,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 581
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:40.774Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 728,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 502
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:44.800Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 727,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 512
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:50.146Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 787,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 619
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:53.974Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 825,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 705
+      }
+    },
+    {
+      "at": "2026-10-17T18:43:58.214Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 780,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 619
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:02.433Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 816,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 687
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:06.824Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 772,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 598
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:10.610Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 837,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 702
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:14.928Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 822,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 699
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:18.987Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 613
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:22.939Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 899,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 846
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:29.637Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 522,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 668
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:33.567Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 708,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 474
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:36.770Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 500,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 625
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:40.486Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 653
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:44.503Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 599
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:48.270Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 841,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 703
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:52.494Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 801,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T18:44:56.738Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 506,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 636
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:00.547Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 770,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 562
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:04.116Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 562,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 749
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:08.411Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 804,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 629
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:12.304Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 608
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:16.294Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 731
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:20.476Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 798,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 641
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:24.525Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 609
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:28.558Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 734,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 524
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:32.035Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 761,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 577
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:35.660Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 747,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 548
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:39.094Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 776,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 599
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:42.746Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 730,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 519
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:46.059Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 844,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 747
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:50.416Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 763,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 554
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:53.887Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 900,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 828
+      }
+    },
+    {
+      "at": "2026-10-17T18:45:59.193Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 521,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 666
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:03.315Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 626,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 876
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:08.726Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 527
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:11.812Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 575
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:15.534Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t1",
+      "reservedUsdMicros": 65400,
+      "usdMicros": 25926,
+      "settled": true,
+      "usage": {
+        "input": 12433,
+        "output": 106
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:18.166Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t2",
+      "reservedUsdMicros": 65400,
+      "usdMicros": 26016,
+      "settled": true,
+      "usage": {
+        "input": 12433,
+        "output": 115
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:20.711Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t4",
+      "reservedUsdMicros": 51000,
+      "usdMicros": 14992,
+      "settled": true,
+      "usage": {
+        "input": 7001,
+        "output": 99
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:22.637Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t5",
+      "reservedUsdMicros": 61800,
+      "usdMicros": 23370,
+      "settled": true,
+      "usage": {
+        "input": 11075,
+        "output": 122
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:25.391Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t6",
+      "reservedUsdMicros": 65400,
+      "usdMicros": 25946,
+      "settled": true,
+      "usage": {
+        "input": 12433,
+        "output": 108
+      }
+    },
+    {
+      "at": "2026-10-17T18:46:27.783Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t8",
+      "reservedUsdMicros": 65400,
+      "usdMicros": 26026,
+      "settled": true,
+      "usage": {
+        "input": 12433,
+        "output": 116
+      }
+    }
+  ]
+}

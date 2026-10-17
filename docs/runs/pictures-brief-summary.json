@@ -1,0 +1,83 @@
+{
+  "run": "pictures-brief",
+  "at": "2026-10-17T18:48:05.072Z",
+  "table": [
+    {
+      "model": "GPT Image 2.5 Sunburst",
+      "prompt": "shot",
+      "frames": 16,
+      "refused": 0,
+      "failed": 0,
+      "medianS": 30.1,
+      "usdPerImage": "$0.045",
+      "adherence": 8.06,
+      "identitySideBySide": 7.42,
+      "identityPerPicture": 7.21,
+      "clothingKept": "4/4",
+      "peopleCountRight": "12/16",
+      "noText": "16/16",
+      "anatomyOk": "15/16"
+    },
+    {
+      "model": "GPT Image 2.5 Sunburst",
+      "prompt": "brief",
+      "frames": 14,
+      "refused": 2,
+      "failed": 0,
+      "medianS": 30.4,
+      "usdPerImage": "$0.048",
+      "adherence": 7.21,
+      "identitySideBySide": 5.9,
+      "identityPerPicture": 7.5,
+      "clothingKept": "3/4",
+      "peopleCountRight": "8/14",
+      "noText": "14/14",
+      "anatomyOk": "13/14"
+    },
+    {
+      "model": "GPT Image 2.5 Flare",
+      "prompt": "shot",
+      "frames": 16,
+      "refused": 0,
+      "failed": 0,
+      "medianS": 16.4,
+      "usdPerImage": "$0.045",
+      "adherence": 8.13,
+      "identitySideBySide": 7.25,
+      "identityPerPicture": 7.71,
+      "clothingKept": "4/4",
+      "peopleCountRight": "16/16",
+      "noText": "16/16",
+      "anatomyOk": "16/16"
+    },
+    {
+      "model": "GPT Image 2.5 Flare",
+      "prompt": "brief",
+      "frames": 13,
+      "refused": 3,
+      "failed": 0,
+      "medianS": 16,
+      "usdPerImage": "$0.048",
+      "adherence": 7.23,
+      "identitySideBySide": 5.89,
+      "identityPerPicture": 7.09,
+      "clothingKept": "4/4",
+      "peopleCountRight": "6/13",
+      "noText": "13/13",
+      "anatomyOk": "13/13"
+    }
+  ],
+  "briefs": {
+    "count": 8,
+    "words": {
+      "min": 158,
+      "median": 188,
+      "max": 205
+    },
+    "medianS": 5.7,
+    "usdPerBrief": "$0.010",
+    "firstSentenceBeats": 0
+  },
+  "spentUsd": "$3.090",
+  "capUsd": 9
+}

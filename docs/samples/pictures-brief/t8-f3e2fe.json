@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t8",
+  "title": {
+    "ru": "Сумерки: плоскодонка отходит от понтона, трое и ручная помпа",
+    "en": "Dusk: a narrow flat-bottomed boat pushes off a pontoon with three people and a hand pump"
+  },
+  "description": "A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. Place: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the old net-maker (a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands); the boatwoman (a wiry young woman in an oilskin coat, her hair under a scarf). State: both his hands are wrapped in linen strips smeared with dark resin. Art style: Cinematic noir.",
+  "narration": "К сумеркам туман ложится на воду, и фонари на дальних понтонах превращаются в мутные пятна. Воздух неподвижный, сырой.\n\nУзкая плоскодонка отходит от понтона. Дуня на корме отталкивается шестом, Мокей сидит посередине, сгорбившись над свёртком, а ты в носу, рядом с медной ручной помпой; обе твои кисти обмотаны льняными полосами в чёрной смоле. Вода чёрная, последний свет гаснет за крышами складов.\n\nНикто не говорит. Шест входит в воду без звука.",
+  "state": [
+    "both his hands are wrapped in linen strips smeared with dark resin"
+  ],
+  "createdAt": "2026-10-17T18:48:04.893Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/7f400fbaa84f.jpg",
+      "files": [
+        "img/7f400fbaa84f.jpg",
+        "img/d2692757d103.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/0d80936d962a.jpg",
+      "files": [
+        "img/0d80936d962a.jpg",
+        "img/72b87915c272.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "C",
+      "file": "img/6267ce1c1d90.jpg",
+      "files": [
+        "img/6267ce1c1d90.jpg",
+        "img/a1477f9956e1.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "D",
+      "file": "img/3cd83852c40c.jpg",
+      "files": [
+        "img/3cd83852c40c.jpg",
+        "img/71193d1912e0.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    }
+  ]
+}

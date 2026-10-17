@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t2",
+  "title": {
+    "ru": "На понтоне чинит ворот напильником",
+    "en": "He kneels on a pontoon, repairing a winch with a file"
+  },
+  "description": "The man kneels on a wet wooden pontoon and files the teeth of a seized bronze gear on a hand winch. Place: a floating pontoon market on a grey harbour, boats moored alongside, in the daytime; overcast, no rain. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w). Art style: Cinematic noir.",
+  "narration": "Понтонный рынок качается под ногами: доски мокрые, между ними видна зелёная вода. Лодки стоят борт к борту, кто-то торгует сельдью прямо из ящика, кто-то чинит парус.\n\nВорот на краю понтона заклинило намертво — бронзовая шестерня в зелёной коросте. Ты опускаешься на колено, прямо в сырость, зажимаешь шестерню между коленом и ладонью и ведёшь напильником по зубьям. Стружка сыплется в воду. Небо низкое, ровное, без солнца и без дождя.\n\nСтарик с соседней лодки смотрит, как ты работаешь, но не подходит. Через четверть часа барабан наконец проворачивается с хрустом.",
+  "state": [],
+  "createdAt": "2026-10-17T18:48:04.890Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/a6a7f913fadf.jpg",
+      "files": [
+        "img/a6a7f913fadf.jpg",
+        "img/1bb5343492c5.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "B",
+      "file": "img/ce6aff291c85.jpg",
+      "files": [
+        "img/ce6aff291c85.jpg",
+        "img/57df5b05ad5f.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/be182bb3e26c.jpg",
+      "files": [
+        "img/be182bb3e26c.jpg",
+        "img/d0251bbe6b3e.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "D",
+      "file": "img/072887404e0e.jpg",
+      "files": [
+        "img/072887404e0e.jpg",
+        "img/b6f02e787213.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    }
+  ]
+}

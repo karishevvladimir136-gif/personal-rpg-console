@@ -1,0 +1,2521 @@
+{
+  "rows": [
+    {
+      "key": "frame:gpt25f:t1:shot:s1",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: At the counter of a dockside tavern, a tavern keeper sets a clay mug of beer down in front of the man. The setting: a smoky dockside tavern, plank counter, oil lamps, barrels, in the morning; grey drizzle outside the windows. Light and mood: warm lamplight, quiet morning. Camera: medium shot across the counter.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:25:42.221Z",
+      "usd": "$0.048",
+      "usdMicros": 47531,
+      "file": "img/2d93c9dd9f40.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16388,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 9,
+          "text": false,
+          "notes": "Same dark swept hair, stubble and jacket. Dockside tavern, lamps, barrels, rainy windows and foamy mug all match. Woman's grey bun and apron fit the brief."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t1:shot:s1",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: At the counter of a dockside tavern, a tavern keeper sets a clay mug of beer down in front of the man. The setting: a smoky dockside tavern, plank counter, oil lamps, barrels, in the morning; grey drizzle outside the windows. Light and mood: warm lamplight, quiet morning. Camera: medium shot across the counter.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:25:57.055Z",
+      "usd": "$0.048",
+      "usdMicros": 47531,
+      "file": "img/88c4e16a7c2e.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31236,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 9,
+          "text": false,
+          "notes": "Matches the brief well: dockside tavern, plank counter, lamps, barrels, rain outside, clay mug of beer, and the tavern keeper. The man's face resembles the reference, though not identical."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t1:brief:s1",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium shot across the bar, slightly over the hero's shoulder from his left and a little low. Foreground: a worn wooden bar top with a clay mug of beer, foam sliding down its side. Middle: the hero sits on a high stool, in his dark canvas work jacket with the round patch on the left shoulder, stubbled face turned toward the woman, expression guarded and tired. Across the bar the broad-shouldered grey-haired tavern keeper, sleeves rolled up, dark apron, leans on both palms, eyes level and stern, mouth set. Behind her shelves hold bottles, a copper coffee pot and a piece of net with floats. Background: lamps still burning, grey drizzle on the windows, two dockworkers dim and small by a far barrel sharing bread. Early morning, drizzle outside. Warm lamplight against cold grey window light, smoky haze, cinematic noir palette of amber, brown and steel grey. Shallow depth of field, 40mm lens feel.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people near the bar, no text, no modern objects, no names.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:26:00.813Z",
+      "usd": "$0.048",
+      "usdMicros": 47766,
+      "file": "img/5c07f100d5e8.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 18351,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 4,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; both hands of the woman and the man's gripping hand look correct",
+          "adherence": 7,
+          "text": false,
+          "notes": "Noir dockside tavern with lamps, rain and counter matches. Keeper leans rather than serving the mug. Two extra background patrons beyond the expected two."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t2:shot:s1",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man kneels on a wet wooden pontoon and files the teeth of a seized bronze gear on a hand winch. The setting: a floating pontoon market on a grey harbour, boats moored alongside, in the daytime; overcast, no rain. Light and mood: flat overcast daylight, damp. Camera: low three-quarter angle.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:26:17.278Z",
+      "usd": "$0.047",
+      "usdMicros": 47336,
+      "file": "img/a6a7f913fadf.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16416,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same man with matching hair, stubble and face, kneeling on a wet pontoon filing a winch gear under overcast harbour light. Boats and fish crates fit the market setting."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t2:brief:s1",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a distant old man in the background. Medium-low shot from the hero's front-left at about knee height, 35mm lens feel. Foreground: wet dark planks with green water showing in the gaps, and a few bright metal shavings dropping into it. Middle: the hero kneels on one knee in the damp, in his dark canvas work jacket with the round patch on the left shoulder, dark trousers and heavy boots. He pins a bronze gear furred with green corrosion between his knee and palm and drags a file along its teeth. His face is stubbled and weathered, his brow furrowed, his eyes fixed on the work. Beside him on the pontoon edge stands a stuck winch drum. Background: boats moored side by side, a crate of herring, a mended sail, and a small old man on a neighbouring boat watching without approaching. Daytime under a low, even, sunless overcast sky with no rain. Palette of cold grey, wet brown wood, murky green and dull bronze, noir contrast, soft flat light. The scene is a new location, so nothing carries over from the tavern frame.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No text, no sunshine, no rain, no extra crowd in the foreground, no modern machinery.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:26:33.956Z",
+      "usd": "$0.048",
+      "usdMicros": 47961,
+      "file": "img/ce6aff291c85.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16607,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Kneeling man on wet pontoon filing a green-patinated gear by a winch; boats and grey overcast harbour match. Face is partly turned down but resembles the reference. Background man is an extra."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t1:brief:s1",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium shot across the bar, slightly over the hero's shoulder from his left and a little low. Foreground: a worn wooden bar top with a clay mug of beer, foam sliding down its side. Middle: the hero sits on a high stool, in his dark canvas work jacket with the round patch on the left shoulder, stubbled face turned toward the woman, expression guarded and tired. Across the bar the broad-shouldered grey-haired tavern keeper, sleeves rolled up, dark apron, leans on both palms, eyes level and stern, mouth set. Behind her shelves hold bottles, a copper coffee pot and a piece of net with floats. Background: lamps still burning, grey drizzle on the windows, two dockworkers dim and small by a far barrel sharing bread. Early morning, drizzle outside. Warm lamplight against cold grey window light, smoky haze, cinematic noir palette of amber, brown and steel grey. Shallow depth of field, 40mm lens feel.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people near the bar, no text, no modern objects, no names.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:26:41.091Z",
+      "usd": "$0.048",
+      "usdMicros": 47766,
+      "file": "img/91d1cde2182b.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 43981,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 4,
+          "anatomyOk": true,
+          "anatomyIssues": "None clearly visible. Both hands on the counter and the hand around the mug look plausible.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Strong noir tavern with lamps, plank counter, barrels and rain at the windows. Two main figures, plus faint background silhouettes. Mug is already on the counter rather than being set down."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t3:shot:s1",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. The setting: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. Light and mood: murky green gloom, dim shafts of light. Camera: wide underwater shot.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:26:50.837Z",
+      "usd": "$0.047",
+      "usdMicros": 47376,
+      "file": "img/184f2f0327f3.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16844,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Copper helmet, canvas suit, slimy beam, pontoon overhead, trailing air hose, green murky water, and cinematic lighting all match. Face is visible through the faceplate and resembles the reference."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t3:brief:s1",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame. Underwater medium shot from slightly below and in front of the hero, 28mm lens feel, murky and soft. Foreground: floating silt and a slimy beam furred with weed and barnacles. Middle: the hero hangs in the green gloom in a brass diving helmet with a small round porthole. He wears his dark canvas work jacket with the round cloth patch on the left shoulder. One thick gloved-bare hand slides along the beam and stops on a rusted chain, fingers curling around it. A hose rises from the back of the helmet toward the surface. His posture is cautious and tense, his head tilted down toward the dark. Background: below him, a huge motionless shape half buried in the silt, barely readable. Narrow shafts of pale daylight cut down between the pontoon planks through layered haze. Palette of murky green, black and cold dull brass, noir contrast, heavy atmosphere. Daytime above, unseen. This is a new underwater location, so nothing carries over from the pontoon frame except the hero's clothes.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No other people, no text, no fish, no visible face through the porthole, no clear view of the shape below.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:08.619Z",
+      "usd": "$0.048",
+      "usdMicros": 47881,
+      "file": "img/f8eccf12f77b.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 17722,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Brass helmet, slimy beam, trailing air hose, murky green water and daylight rays all match. Face is partly visible through the faceplate and resembles the reference."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t2:shot:s1",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man kneels on a wet wooden pontoon and files the teeth of a seized bronze gear on a hand winch. The setting: a floating pontoon market on a grey harbour, boats moored alongside, in the daytime; overcast, no rain. Light and mood: flat overcast daylight, damp. Camera: low three-quarter angle.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:12.877Z",
+      "usd": "$0.047",
+      "usdMicros": 47336,
+      "file": "img/072887404e0e.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31742,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same hair, stubble and weathered look, though the face is turned down. Wet pontoon, grey harbour, boats, brass gear and stalls match. The wet ground hints at rain the brief excluded."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t4:shot:s1",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. The setting: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. Light and mood: grey afternoon light through the open door. Camera: close medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:27.180Z",
+      "usd": "$0.047",
+      "usdMicros": 47491,
+      "file": "img/64d0f5188b6d.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 18499,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear anatomical errors; hands and arms appear plausibly placed on both figures.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Matches the net shed, hanging nets, bucket washing, resin bowl, and noir mood. Man's face is visible and resembles the reference, though the features read slightly differently."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t2:brief:s1",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a distant old man in the background. Medium-low shot from the hero's front-left at about knee height, 35mm lens feel. Foreground: wet dark planks with green water showing in the gaps, and a few bright metal shavings dropping into it. Middle: the hero kneels on one knee in the damp, in his dark canvas work jacket with the round patch on the left shoulder, dark trousers and heavy boots. He pins a bronze gear furred with green corrosion between his knee and palm and drags a file along its teeth. His face is stubbled and weathered, his brow furrowed, his eyes fixed on the work. Beside him on the pontoon edge stands a stuck winch drum. Background: boats moored side by side, a crate of herring, a mended sail, and a small old man on a neighbouring boat watching without approaching. Daytime under a low, even, sunless overcast sky with no rain. Palette of cold grey, wet brown wood, murky green and dull bronze, noir contrast, soft flat light. The scene is a new location, so nothing carries over from the tavern frame.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No text, no sunshine, no rain, no extra crowd in the foreground, no modern machinery.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:42.826Z",
+      "usd": "$0.048",
+      "usdMicros": 47961,
+      "file": "img/be182bb3e26c.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 29906,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 7,
+          "text": false,
+          "notes": "Kneeling filing scene on wet pontoon with moored boats and winch matches well. Background man adds a second person beyond the expected one."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t4:brief:s1",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium-close shot at chest height, slightly from the side, 35mm lens feel. Foreground: the hero's forearm, turned palm up, held in the old man's rope-scarred hands; a long cut runs from wrist almost to elbow, half washed, half covered with glistening dark pine tar. A wooden bucket of cold water stands at the edge of the frame. Middle: the lean old man with a short grey beard and knitted cap bends over the arm, silent and focused, two tarred fingers drawing along the wound. Opposite him the hero, in his dark canvas work jacket with the sleeve pushed up, the round patch on the left shoulder, jaw tight, teeth clenched, eyes on the arm. Background: inside a net-mender's shed, fishing nets hang from the beams like curtains, pots of tar and coils of rope stand along the wall. The only light is flat grey daylight from an open door at the side, with soft shadows. Palette of tar black, damp brown, hemp beige and cold grey, noir contrast. The scene is new, with no carryover from the underwater frame except the hero's jacket.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no modern bandages or medical gear, no diving helmet.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:43.131Z",
+      "usd": "$0.000",
+      "usdMicros": 0,
+      "error": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_fe81465ab9d54dffbc76183524a43a15. safety_violations=[viole",
+      "refusal": true
+    },
+    {
+      "key": "frame:gpt25f:t5:shot:s1",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man tears a linen shirt into strips and winds them around his resin-smeared hands, making rough gloves. The setting: inside a net-maker's shed, nets and tar pots, in the daytime. Light and mood: dim, tense. Camera: medium close-up on his hands and face.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:27:58.010Z",
+      "usd": "$0.047",
+      "usdMicros": 47286,
+      "file": "img/8fef19bffc23.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 14877,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 9,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same rugged man with swept-back dark hair and stubble. Net shed, tar pots, and linen strips on resin-smeared hands match the brief. Noir lighting fits the daytime window light."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t3:shot:s1",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. The setting: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. Light and mood: murky green gloom, dim shafts of light. Camera: wide underwater shot.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:28:15.334Z",
+      "usd": "$0.047",
+      "usdMicros": 47376,
+      "file": "img/5faa32d6d9d3.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 32460,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "Main diver's hands and arms look correct. The partly hidden figure in the background is ambiguous but shows no clear limb error.",
+          "adherence": 7,
+          "text": false,
+          "notes": "Copper helmet, canvas suit, slimy beam, trailing hose, green murky water, and weed all match. Daytime light and noir mood are present. A second diver appears, though one person was expected."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t5:brief:s1",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a second presence only as a silhouette. Medium shot slightly from the side at chest height, 35mm lens feel. Foreground: the hero's hands, crusted with cooling black tar, one hand wrapped to the wrist in tight coils of torn pale cloth, the other hand and his teeth gripping the end of a long strip. Middle: the hero sits hunched by a small iron pot, stripped of his undershirt and wearing the dark canvas work jacket with the round patch on the left shoulder. His wind-burned face is lit from below by the pot's dull glow, jaw hard, eyes fixed on his hands, angry and focused. The torn shirt lies in ragged strips on his knee. The earlier cut on his forearm is still visible, smeared with tar. Background: inside the net-mender's shed, nets hang from the beams, coils of rope along the wall, deep shadow. Through the open door at the side, grey daylight falls in, and a faint dark human shadow stretches across the floor, stopped just outside. Palette of tar black, damp brown, hemp beige and cold grey, high noir contrast, with the soft glow on his face. Continuity: same shed, same jacket, the old man is gone.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No second visible person, no text, no weapons, no clean unwrapped hands.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:28:16.667Z",
+      "usd": "$0.000",
+      "usdMicros": 0,
+      "error": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_b3fee741d6ab45eca1f34d6c2330e2c3. safety_violations=[viole",
+      "refusal": true
+    },
+    {
+      "key": "frame:gpt25f:t6:shot:s1",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: In a cramped room upstairs, a big red-nosed docker squints at a pencil note on a scrap of paper while the man stands waiting. The setting: a low attic room above a tavern, a small window, a cot, in the evening; rain on the small window. Light and mood: a single candle. Camera: medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket. Show exactly this, nothing more and nothing less. The docker: a big red-nosed man with a thick neck, a flat cap and a stained canvas coat. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:28:34.506Z",
+      "usd": "$0.048",
+      "usdMicros": 47641,
+      "file": "img/30fc1d19c39a.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 17835,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Attic with rain-streaked window, candle, cot, and noir lighting match. Standing man resembles the reference with swept-back hair and stubble. Grey shirt with torn hem visible under dark jacket."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t3:brief:s1",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame. Underwater medium shot from slightly below and in front of the hero, 28mm lens feel, murky and soft. Foreground: floating silt and a slimy beam furred with weed and barnacles. Middle: the hero hangs in the green gloom in a brass diving helmet with a small round porthole. He wears his dark canvas work jacket with the round cloth patch on the left shoulder. One thick gloved-bare hand slides along the beam and stops on a rusted chain, fingers curling around it. A hose rises from the back of the helmet toward the surface. His posture is cautious and tense, his head tilted down toward the dark. Background: below him, a huge motionless shape half buried in the silt, barely readable. Narrow shafts of pale daylight cut down between the pontoon planks through layered haze. Palette of murky green, black and cold dull brass, noir contrast, heavy atmosphere. Daytime above, unseen. This is a new underwater location, so nothing carries over from the pontoon frame except the hero's clothes.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No other people, no text, no fish, no visible face through the porthole, no clear view of the shape below.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:28:46.677Z",
+      "usd": "$0.048",
+      "usdMicros": 47881,
+      "file": "img/005094682f8b.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31275,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "None clearly visible; one arm and gloved hand grip the chain, and the other arm is partly hidden.",
+          "adherence": 6,
+          "text": false,
+          "notes": "Copper helmet, hose, murky green daylit water and noir mood match. The slimy beam is a barnacled chain, and the background reads more like kelp pilings than a pontoon."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t6:brief:s1",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame in a cramped attic room under the roof. Medium two-shot from near the door, slightly over the hero's shoulder, 35mm lens feel, eye level. Foreground: the hero stands at the door, partly in shadow, seen three-quarters from behind and the side. He wears the worn dark canvas work jacket with the round patch on the left shoulder, open over a borrowed grey linen shirt with a torn-off hem. His face is wind-burned and tense, still, waiting. Middle: a big red-nosed man with a thick neck sits on a narrow cot against the wall in a grease-stained canvas coat. He holds a scrap of paper with pencil writing and has just lifted his squinting eyes to the hero, his lips still parted. A single candle on a wooden crate beside the cot lights his red nose and the paper from below. Background: a low sloped ceiling, bare boards, one small window streaked with rain, evening blue-grey dark outside. Palette of warm candle amber against cold blue-grey, deep noir shadows, wet glass glints. Continuity: the hero is now in the borrowed shirt under the jacket, indoors, no tar shown.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no readable text on the note, no modern objects, no additional light sources besides the candle and the dim window.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:28:50.261Z",
+      "usd": "$0.048",
+      "usdMicros": 48016,
+      "file": "img/2b638f982f1c.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15708,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; the standing man's hands are hidden and both of the docker's hands look correct",
+          "adherence": 7,
+          "text": false,
+          "notes": "Attic, rain-streaked window, cot, candle and noir lighting all match. The docker lacks the flat cap, and the torn-hem shirt detail is unclear."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t7:shot:s1",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "A cinematic story illustration of one moment: Seen from above through narrow gaps between floorboards: a stranger in a dry dark coat stands at the tavern counter below, talking quietly to the tavern keeper. The setting: the tavern room below, seen through cracks in the upstairs floor, in the evening; rain outside. Light and mood: lamplight below, secretive. Camera: top-down view through floorboard gaps, dark boards in the foreground.\nExactly two people are in the frame, each of them once. The stranger: a lean man in a dry, well-cut dark coat and a hat. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [],
+      "at": "2026-10-17T18:29:04.141Z",
+      "usd": "$0.031",
+      "usdMicros": 30510,
+      "file": "img/14b47ae81362.jpg",
+      "endpoint": "/v1/images/generations",
+      "width": 1344,
+      "height": 768,
+      "ms": 13821,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 8,
+          "text": false,
+          "notes": "Two figures at a dark wooden counter, lantern-lit, rain at the window, seen from above through dark beams. Matches the noir brief well."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t4:shot:s1",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. The setting: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. Light and mood: grey afternoon light through the open door. Camera: close medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:29:16.878Z",
+      "usd": "$0.047",
+      "usdMicros": 47491,
+      "file": "img/f28fb1241045.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30146,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": false,
+          "anatomyIssues": "The hand at bottom centre, below the wounded forearm, is hard to trace and seems to blend into the knee; the old man's gripping hand is also somewhat ambiguous.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Strong match: the man resembles the reference and the old net-maker pours water on the wound and applies dark resin. Overcast daylight, nets and pontoons fit. Noir mood is good."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t7:brief:s1",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in the story: the hero in the foreground, two below. Extreme close, nearly top-down view through a finger-wide gap between rough floorboards. Foreground: the hero lies flat on the attic floor, only his wind-burned face with fine eye lines and dark stubble, one narrowed eye and part of his dark canvas jacket and borrowed grey shirt in blurred dark framing, motionless, tense. Through the gap, middle and below: the tavern hall lit by a warm lamp. A lean stranger in a dry, well-cut dark coat and hat stands at the bar edge, his palm covering a coin on the wood. Opposite him a broad-shouldered grey-haired woman in a dark apron, sleeves rolled up, holds a rag and slowly shakes her head. Details are small and partly cut off by the board edges. Dust hangs in the lamplight. Rain is implied by cold blue-grey in the attic. Palette: warm amber lamp below against cold dark blue shadow above, deep noir contrast. Shallow depth of field, focus on the lower scene, blurred boards in front. Continuity: same attic, evening, hero still in the borrowed shirt under the jacket.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no visible rain inside, no clear view of the stranger's face.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:29:21.894Z",
+      "usd": "$0.048",
+      "usdMicros": 47971,
+      "file": "img/0658aa0906d1.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 17708,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 6,
+          "text": false,
+          "notes": "Shows the cracked-floor view, lamplit tavern, hatted stranger at the counter and aproned keeper. An extra close-up man fills the foreground, and rain is not visible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t8:shot:s1",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. The setting: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. Light and mood: last light, mist on the water. Camera: wide shot.\nExactly three people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: both his hands are wrapped in linen strips smeared with dark resin. Show exactly this, nothing more and nothing less. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. The boatwoman: a wiry young woman in an oilskin coat, her hair under a scarf. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:29:39.377Z",
+      "usd": "$0.048",
+      "usdMicros": 47806,
+      "file": "img/0d80936d962a.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 17443,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear errors; the net-maker's hands blend into the net, but the count and limbs look correct.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Matches the brief well: three roles, brass pump, bandaged hands, pontoon, dusk mist and lanterns, noir mood. The bow man resembles the reference with a similar build, hair and stubble."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t4:brief:s1",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium-close shot at chest height, slightly from the side, 35mm lens feel. Foreground: the hero's forearm, turned palm up, held in the old man's rope-scarred hands; a long cut runs from wrist almost to elbow, half washed, half covered with glistening dark pine tar. A wooden bucket of cold water stands at the edge of the frame. Middle: the lean old man with a short grey beard and knitted cap bends over the arm, silent and focused, two tarred fingers drawing along the wound. Opposite him the hero, in his dark canvas work jacket with the sleeve pushed up, the round patch on the left shoulder, jaw tight, teeth clenched, eyes on the arm. Background: inside a net-mender's shed, fishing nets hang from the beams like curtains, pots of tar and coils of rope stand along the wall. The only light is flat grey daylight from an open door at the side, with soft shadows. Palette of tar black, damp brown, hemp beige and cold grey, noir contrast. The scene is new, with no carryover from the underwater frame except the hero's jacket.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no modern bandages or medical gear, no diving helmet.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:29:47.039Z",
+      "usd": "$0.000",
+      "usdMicros": 0,
+      "error": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_39374d84ea8a4e869dd9e637850a4490. safety_violations=[viole",
+      "refusal": true
+    },
+    {
+      "key": "frame:gpt25f:t8:brief:s1",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in a narrow flat-bottomed boat, seen from a low angle near the water, slightly ahead of the bow. Foreground: the hero sits in the bow beside a copper hand pump, both hands wrapped in linen strips smeared with black resin, resting on his knees. He wears his worn dark canvas work jacket with the round patch on the left shoulder. His wind-burned, stubbled face is turned toward the dark water ahead, grim and watchful. Middle: an old man with a short grey beard and knitted cap sits hunched over a bundle in the centre of the boat. Behind him at the stern, a wiry young woman in an oilskin coat, hair under a scarf, leans on a long pole. Background: the pontoon recedes, lamps on distant pontoons are muddy blurred glows in thick fog, with warehouse roofs as black silhouettes against the last fading light. Black still water, no ripples but the pole's wake. Dusk, humid and windless. Palette: cold blue-grey and black with faint dull amber lamp smudges and a glint of copper. Cinematic noir, 35mm lens, shallow depth of field, soft haze. Silent, tense mood.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no other boats, no bright colours, no sunlight.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:29:55.309Z",
+      "usd": "$0.048",
+      "usdMicros": 48001,
+      "file": "img/7f400fbaa84f.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15890,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Three figures in the right roles, bandaged hands, brass pump, dusk lanterns and mist, noir look. Pontoon is not clearly shown."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t1:shot:s2",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: At the counter of a dockside tavern, a tavern keeper sets a clay mug of beer down in front of the man. The setting: a smoky dockside tavern, plank counter, oil lamps, barrels, in the morning; grey drizzle outside the windows. Light and mood: warm lamplight, quiet morning. Camera: medium shot across the counter.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:11.162Z",
+      "usd": "$0.048",
+      "usdMicros": 47531,
+      "file": "img/850cc3d52210.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15809,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; both hands on the mug and the clasped hands on the counter look correct",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same dark swept hair, stubble and weathered look as the reference. Dockside tavern with lamps, plank counter, rainy windows and masts. Woman places the mug as described."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t5:shot:s1",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man tears a linen shirt into strips and winds them around his resin-smeared hands, making rough gloves. The setting: inside a net-maker's shed, nets and tar pots, in the daytime. Light and mood: dim, tense. Camera: medium close-up on his hands and face.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:14.931Z",
+      "usd": "$0.047",
+      "usdMicros": 47286,
+      "file": "img/b6679a5d7212.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 27886,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none clearly visible; both wrapped hands and forearms look plausible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same rugged man with swept dark hair and stubble, winding resin-stained linen strips on hands. Nets, tar bucket and daylight windows present; noir grade fits."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t1:brief:s2",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium shot across the bar, slightly over the hero's shoulder from his left and a little low. Foreground: a worn wooden bar top with a clay mug of beer, foam sliding down its side. Middle: the hero sits on a high stool, in his dark canvas work jacket with the round patch on the left shoulder, stubbled face turned toward the woman, expression guarded and tired. Across the bar the broad-shouldered grey-haired tavern keeper, sleeves rolled up, dark apron, leans on both palms, eyes level and stern, mouth set. Behind her shelves hold bottles, a copper coffee pot and a piece of net with floats. Background: lamps still burning, grey drizzle on the windows, two dockworkers dim and small by a far barrel sharing bread. Early morning, drizzle outside. Warm lamplight against cold grey window light, smoky haze, cinematic noir palette of amber, brown and steel grey. Shallow depth of field, 40mm lens feel.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people near the bar, no text, no modern objects, no names.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:27.214Z",
+      "usd": "$0.048",
+      "usdMicros": 47766,
+      "file": "img/417370229d56.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15989,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 4,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 7,
+          "text": false,
+          "notes": "Man's face is visible with similar hair, stubble and build. Tavern, counter, lamps, rain and noir light match. The keeper rests her hands rather than setting down the mug. Two background figures are present."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t2:shot:s2",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man kneels on a wet wooden pontoon and files the teeth of a seized bronze gear on a hand winch. The setting: a floating pontoon market on a grey harbour, boats moored alongside, in the daytime; overcast, no rain. Light and mood: flat overcast daylight, damp. Camera: low three-quarter angle.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:43.387Z",
+      "usd": "$0.047",
+      "usdMicros": 47336,
+      "file": "img/1bb5343492c5.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16113,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; two arms and hands are plausible, and the legs and boots look correct.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Kneeling man files a brass gear on a hand winch on a wet pontoon with moored boats and overcast grey light. Noir mood is present but moderate. The deck looks wet despite the no-rain brief."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t5:brief:s1",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a second presence only as a silhouette. Medium shot slightly from the side at chest height, 35mm lens feel. Foreground: the hero's hands, crusted with cooling black tar, one hand wrapped to the wrist in tight coils of torn pale cloth, the other hand and his teeth gripping the end of a long strip. Middle: the hero sits hunched by a small iron pot, stripped of his undershirt and wearing the dark canvas work jacket with the round patch on the left shoulder. His wind-burned face is lit from below by the pot's dull glow, jaw hard, eyes fixed on his hands, angry and focused. The torn shirt lies in ragged strips on his knee. The earlier cut on his forearm is still visible, smeared with tar. Background: inside the net-mender's shed, nets hang from the beams, coils of rope along the wall, deep shadow. Through the open door at the side, grey daylight falls in, and a faint dark human shadow stretches across the floor, stopped just outside. Palette of tar black, damp brown, hemp beige and cold grey, high noir contrast, with the soft glow on his face. Continuity: same shed, same jacket, the old man is gone.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No second visible person, no text, no weapons, no clean unwrapped hands.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:46.095Z",
+      "usd": "$0.048",
+      "usdMicros": 48021,
+      "file": "img/e551c099c4a0.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31117,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same rugged type with swept-back dark hair and stubble. Nets, tar cauldron, daylight door and noir lighting match. Tearing and wrapping linen is shown."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t2:brief:s2",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a distant old man in the background. Medium-low shot from the hero's front-left at about knee height, 35mm lens feel. Foreground: wet dark planks with green water showing in the gaps, and a few bright metal shavings dropping into it. Middle: the hero kneels on one knee in the damp, in his dark canvas work jacket with the round patch on the left shoulder, dark trousers and heavy boots. He pins a bronze gear furred with green corrosion between his knee and palm and drags a file along its teeth. His face is stubbled and weathered, his brow furrowed, his eyes fixed on the work. Beside him on the pontoon edge stands a stuck winch drum. Background: boats moored side by side, a crate of herring, a mended sail, and a small old man on a neighbouring boat watching without approaching. Daytime under a low, even, sunless overcast sky with no rain. Palette of cold grey, wet brown wood, murky green and dull bronze, noir contrast, soft flat light. The scene is a new location, so nothing carries over from the tavern frame.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No text, no sunshine, no rain, no extra crowd in the foreground, no modern machinery.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:30:59.006Z",
+      "usd": "$0.048",
+      "usdMicros": 47961,
+      "file": "img/57df5b05ad5f.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15570,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Kneeling man files a green-patinated gear on wet planks by a rusty winch, overcast harbour with boats. Second man visible far back on a boat."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t3:shot:s2",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. The setting: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. Light and mood: murky green gloom, dim shafts of light. Camera: wide underwater shot.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:31:14.682Z",
+      "usd": "$0.047",
+      "usdMicros": 47376,
+      "file": "img/f54f69f93a3e.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15618,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 8,
+          "text": false,
+          "notes": "Face visible through the helmet glass; hair, stubble and age look like the reference man. Green murky water, slimy beam, hanging weed and air hose all match. Lighting is moody but daytime-plausible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t6:shot:s1",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: In a cramped room upstairs, a big red-nosed docker squints at a pencil note on a scrap of paper while the man stands waiting. The setting: a low attic room above a tavern, a small window, a cot, in the evening; rain on the small window. Light and mood: a single candle. Camera: medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket. Show exactly this, nothing more and nothing less. The docker: a big red-nosed man with a thick neck, a flat cap and a stained canvas coat. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:31:15.944Z",
+      "usd": "$0.048",
+      "usdMicros": 47641,
+      "file": "img/652f2f6dfd75.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 29795,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 9,
+          "text": false,
+          "notes": "Attic with rain-streaked window, candle, cot, and noir lighting. Docker squints at a note while the dark-haired, stubbled man waits. Face resemblance is close but not exact."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t3:brief:s2",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame. Underwater medium shot from slightly below and in front of the hero, 28mm lens feel, murky and soft. Foreground: floating silt and a slimy beam furred with weed and barnacles. Middle: the hero hangs in the green gloom in a brass diving helmet with a small round porthole. He wears his dark canvas work jacket with the round cloth patch on the left shoulder. One thick gloved-bare hand slides along the beam and stops on a rusted chain, fingers curling around it. A hose rises from the back of the helmet toward the surface. His posture is cautious and tense, his head tilted down toward the dark. Background: below him, a huge motionless shape half buried in the silt, barely readable. Narrow shafts of pale daylight cut down between the pontoon planks through layered haze. Palette of murky green, black and cold dull brass, noir contrast, heavy atmosphere. Daytime above, unseen. This is a new underwater location, so nothing carries over from the pontoon frame except the hero's clothes.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No other people, no text, no fish, no visible face through the porthole, no clear view of the shape below.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:31:30.644Z",
+      "usd": "$0.048",
+      "usdMicros": 47881,
+      "file": "img/d334e25ef15f.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 15924,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 7,
+          "text": false,
+          "notes": "Diver in brass helmet grips a barnacled beam in murky green water with light shafts and wreck structures. Face is partly obscured by the helmet glass, so identity is moderate."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t6:brief:s1",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame in a cramped attic room under the roof. Medium two-shot from near the door, slightly over the hero's shoulder, 35mm lens feel, eye level. Foreground: the hero stands at the door, partly in shadow, seen three-quarters from behind and the side. He wears the worn dark canvas work jacket with the round patch on the left shoulder, open over a borrowed grey linen shirt with a torn-off hem. His face is wind-burned and tense, still, waiting. Middle: a big red-nosed man with a thick neck sits on a narrow cot against the wall in a grease-stained canvas coat. He holds a scrap of paper with pencil writing and has just lifted his squinting eyes to the hero, his lips still parted. A single candle on a wooden crate beside the cot lights his red nose and the paper from below. Background: a low sloped ceiling, bare boards, one small window streaked with rain, evening blue-grey dark outside. Palette of warm candle amber against cold blue-grey, deep noir shadows, wet glass glints. Continuity: the hero is now in the borrowed shirt under the jacket, indoors, no tar shown.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no readable text on the note, no modern objects, no additional light sources besides the candle and the dim window.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:31:44.458Z",
+      "usd": "$0.048",
+      "usdMicros": 48016,
+      "file": "img/6a952455ceda.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28472,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 7,
+          "text": false,
+          "notes": "Attic, rain, candle, cot and two men match. Docker lacks the flat cap, and his nose is only mildly red. Standing man's face is partly turned away."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t4:shot:s2",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. The setting: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. Light and mood: grey afternoon light through the open door. Camera: close medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:31:49.358Z",
+      "usd": "$0.047",
+      "usdMicros": 47491,
+      "file": "img/6f1269c9f15a.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 18671,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear errors; the arm-to-hand connections near the wrist are slightly ambiguous but plausible.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Net-maker washes the forearm cut with a cloth over a bucket, nets hang overhead, daylight through the doorway, resin on arm. Strong match."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t4:brief:s2",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium-close shot at chest height, slightly from the side, 35mm lens feel. Foreground: the hero's forearm, turned palm up, held in the old man's rope-scarred hands; a long cut runs from wrist almost to elbow, half washed, half covered with glistening dark pine tar. A wooden bucket of cold water stands at the edge of the frame. Middle: the lean old man with a short grey beard and knitted cap bends over the arm, silent and focused, two tarred fingers drawing along the wound. Opposite him the hero, in his dark canvas work jacket with the sleeve pushed up, the round patch on the left shoulder, jaw tight, teeth clenched, eyes on the arm. Background: inside a net-mender's shed, fishing nets hang from the beams like curtains, pots of tar and coils of rope stand along the wall. The only light is flat grey daylight from an open door at the side, with soft shadows. Palette of tar black, damp brown, hemp beige and cold grey, noir contrast. The scene is new, with no carryover from the underwater frame except the hero's jacket.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no modern bandages or medical gear, no diving helmet.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:32:05.912Z",
+      "usd": "$0.000",
+      "usdMicros": 0,
+      "error": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_d0b2a064f1c54e848a5c5b82af695dee. safety_violations=[self-",
+      "refusal": true
+    },
+    {
+      "key": "frame:gpt25s:t7:shot:s1",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "A cinematic story illustration of one moment: Seen from above through narrow gaps between floorboards: a stranger in a dry dark coat stands at the tavern counter below, talking quietly to the tavern keeper. The setting: the tavern room below, seen through cracks in the upstairs floor, in the evening; rain outside. Light and mood: lamplight below, secretive. Camera: top-down view through floorboard gaps, dark boards in the foreground.\nExactly two people are in the frame, each of them once. The stranger: a lean man in a dry, well-cut dark coat and a hat. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [],
+      "at": "2026-10-17T18:32:10.025Z",
+      "usd": "$0.031",
+      "usdMicros": 30510,
+      "file": "img/30f289e3c463.jpg",
+      "endpoint": "/v1/images/generations",
+      "width": 1344,
+      "height": 768,
+      "ms": 25515,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 8,
+          "text": false,
+          "notes": "Two people at a tavern counter seen from above through a frame, with a lit lantern and rain at the window. Matches the brief well; the stranger's coat is less well-cut than specified."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t5:shot:s2",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man tears a linen shirt into strips and winds them around his resin-smeared hands, making rough gloves. The setting: inside a net-maker's shed, nets and tar pots, in the daytime. Light and mood: dim, tense. Camera: medium close-up on his hands and face.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:32:23.945Z",
+      "usd": "$0.047",
+      "usdMicros": 47286,
+      "file": "img/69f389f99d73.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 18029,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 9,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; hands are wrapped and clasped but fingers and arms appear anatomically correct",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same weathered man with swept-back hair and stubble, tearing linen strips amid nets, tar barrel, and lantern in a dim noir shed. Daylight is faint."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t7:brief:s1",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in the story: the hero in the foreground, two below. Extreme close, nearly top-down view through a finger-wide gap between rough floorboards. Foreground: the hero lies flat on the attic floor, only his wind-burned face with fine eye lines and dark stubble, one narrowed eye and part of his dark canvas jacket and borrowed grey shirt in blurred dark framing, motionless, tense. Through the gap, middle and below: the tavern hall lit by a warm lamp. A lean stranger in a dry, well-cut dark coat and hat stands at the bar edge, his palm covering a coin on the wood. Opposite him a broad-shouldered grey-haired woman in a dark apron, sleeves rolled up, holds a rag and slowly shakes her head. Details are small and partly cut off by the board edges. Dust hangs in the lamplight. Rain is implied by cold blue-grey in the attic. Palette: warm amber lamp below against cold dark blue shadow above, deep noir contrast. Shallow depth of field, focus on the lower scene, blurred boards in front. Continuity: same attic, evening, hero still in the borrowed shirt under the jacket.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no visible rain inside, no clear view of the stranger's face.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:32:41.243Z",
+      "usd": "$0.048",
+      "usdMicros": 47971,
+      "file": "img/f76dda529c16.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31179,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 6,
+          "text": false,
+          "notes": "Extra foreground man peering through gap not in brief; tavern keeper and hatted stranger at counter match. Lantern and noir lighting present. Rain not clearly visible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t5:brief:s2",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a second presence only as a silhouette. Medium shot slightly from the side at chest height, 35mm lens feel. Foreground: the hero's hands, crusted with cooling black tar, one hand wrapped to the wrist in tight coils of torn pale cloth, the other hand and his teeth gripping the end of a long strip. Middle: the hero sits hunched by a small iron pot, stripped of his undershirt and wearing the dark canvas work jacket with the round patch on the left shoulder. His wind-burned face is lit from below by the pot's dull glow, jaw hard, eyes fixed on his hands, angry and focused. The torn shirt lies in ragged strips on his knee. The earlier cut on his forearm is still visible, smeared with tar. Background: inside the net-mender's shed, nets hang from the beams, coils of rope along the wall, deep shadow. Through the open door at the side, grey daylight falls in, and a faint dark human shadow stretches across the floor, stopped just outside. Palette of tar black, damp brown, hemp beige and cold grey, high noir contrast, with the soft glow on his face. Continuity: same shed, same jacket, the old man is gone.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No second visible person, no text, no weapons, no clean unwrapped hands.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:32:42.368Z",
+      "usd": "$0.048",
+      "usdMicros": 48021,
+      "file": "img/3d8f1385cffd.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 18363,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "None clearly visible; both hands and arms look anatomically plausible.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Net shed, tar pot, daylight and noir mood match. Hands are wrapped in strips. A dark silhouette stands in the doorway on the right."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t6:shot:s2",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: In a cramped room upstairs, a big red-nosed docker squints at a pencil note on a scrap of paper while the man stands waiting. The setting: a low attic room above a tavern, a small window, a cot, in the evening; rain on the small window. Light and mood: a single candle. Camera: medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket. Show exactly this, nothing more and nothing less. The docker: a big red-nosed man with a thick neck, a flat cap and a stained canvas coat. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:32:59.956Z",
+      "usd": "$0.048",
+      "usdMicros": 47641,
+      "file": "img/0eb49b26d681.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 17550,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "None visible; both people's hands and arms look anatomically correct.",
+          "adherence": 9,
+          "text": false,
+          "notes": "Matches the brief: attic room, rain on window, candle, cot, waiting man and red-nosed docker reading a note. Lighting is cinematic noir."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t8:shot:s1",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "shot",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. The setting: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. Light and mood: last light, mist on the water. Camera: wide shot.\nExactly three people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: both his hands are wrapped in linen strips smeared with dark resin. Show exactly this, nothing more and nothing less. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. The boatwoman: a wiry young woman in an oilskin coat, her hair under a scarf. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:33:09.657Z",
+      "usd": "$0.048",
+      "usdMicros": 47806,
+      "file": "img/3cd83852c40c.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28367,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear anatomy errors; hands and limbs appear plausible on all three figures.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Man in bow beside brass pump with both hands bandaged; old net-maker and headscarfed poler present. Dusk, mist, lanterns and pontoons match the brief well."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t6:brief:s2",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame in a cramped attic room under the roof. Medium two-shot from near the door, slightly over the hero's shoulder, 35mm lens feel, eye level. Foreground: the hero stands at the door, partly in shadow, seen three-quarters from behind and the side. He wears the worn dark canvas work jacket with the round patch on the left shoulder, open over a borrowed grey linen shirt with a torn-off hem. His face is wind-burned and tense, still, waiting. Middle: a big red-nosed man with a thick neck sits on a narrow cot against the wall in a grease-stained canvas coat. He holds a scrap of paper with pencil writing and has just lifted his squinting eyes to the hero, his lips still parted. A single candle on a wooden crate beside the cot lights his red nose and the paper from below. Background: a low sloped ceiling, bare boards, one small window streaked with rain, evening blue-grey dark outside. Palette of warm candle amber against cold blue-grey, deep noir shadows, wet glass glints. Continuity: the hero is now in the borrowed shirt under the jacket, indoors, no tar shown.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no readable text on the note, no modern objects, no additional light sources besides the candle and the dim window.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:33:14.929Z",
+      "usd": "$0.048",
+      "usdMicros": 48016,
+      "file": "img/be3e0bc3a047.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 14926,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 6,
+          "text": false,
+          "notes": "Attic, rain, candle and note are present. The docker lacks a flat cap and clear red nose. The hero's hair and face resemble the reference only loosely."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t7:shot:s2",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "A cinematic story illustration of one moment: Seen from above through narrow gaps between floorboards: a stranger in a dry dark coat stands at the tavern counter below, talking quietly to the tavern keeper. The setting: the tavern room below, seen through cracks in the upstairs floor, in the evening; rain outside. Light and mood: lamplight below, secretive. Camera: top-down view through floorboard gaps, dark boards in the foreground.\nExactly two people are in the frame, each of them once. The stranger: a lean man in a dry, well-cut dark coat and a hat. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [],
+      "at": "2026-10-17T18:33:29.516Z",
+      "usd": "$0.031",
+      "usdMicros": 30510,
+      "file": "img/67f6c0ba4cda.jpg",
+      "endpoint": "/v1/images/generations",
+      "width": 1344,
+      "height": 768,
+      "ms": 14520,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 8,
+          "text": false,
+          "notes": "Two people at the counter, seen through floorboard gaps in a dim tavern with a lantern and rain-streaked window. Noir lighting matches. Keeper's build is less broad than specified."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t8:brief:s1",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "brief",
+      "sampleIndex": 1,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in a narrow flat-bottomed boat, seen from a low angle near the water, slightly ahead of the bow. Foreground: the hero sits in the bow beside a copper hand pump, both hands wrapped in linen strips smeared with black resin, resting on his knees. He wears his worn dark canvas work jacket with the round patch on the left shoulder. His wind-burned, stubbled face is turned toward the dark water ahead, grim and watchful. Middle: an old man with a short grey beard and knitted cap sits hunched over a bundle in the centre of the boat. Behind him at the stern, a wiry young woman in an oilskin coat, hair under a scarf, leans on a long pole. Background: the pontoon recedes, lamps on distant pontoons are muddy blurred glows in thick fog, with warehouse roofs as black silhouettes against the last fading light. Black still water, no ripples but the pole's wake. Dusk, humid and windless. Palette: cold blue-grey and black with faint dull amber lamp smudges and a glint of copper. Cinematic noir, 35mm lens, shallow depth of field, soft haze. Silent, tense mood.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no other boats, no bright colours, no sunlight.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:33:38.510Z",
+      "usd": "$0.048",
+      "usdMicros": 48001,
+      "file": "img/6267ce1c1d90.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28794,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Matches the hero's face and bandaged hands. Three figures, brass pump, poling boatwoman, dusk lanterns and mist fit the brief. Boat reads as open water rather than leaving a pontoon."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t7:brief:s2",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in the story: the hero in the foreground, two below. Extreme close, nearly top-down view through a finger-wide gap between rough floorboards. Foreground: the hero lies flat on the attic floor, only his wind-burned face with fine eye lines and dark stubble, one narrowed eye and part of his dark canvas jacket and borrowed grey shirt in blurred dark framing, motionless, tense. Through the gap, middle and below: the tavern hall lit by a warm lamp. A lean stranger in a dry, well-cut dark coat and hat stands at the bar edge, his palm covering a coin on the wood. Opposite him a broad-shouldered grey-haired woman in a dark apron, sleeves rolled up, holds a rag and slowly shakes her head. Details are small and partly cut off by the board edges. Dust hangs in the lamplight. Rain is implied by cold blue-grey in the attic. Palette: warm amber lamp below against cold dark blue shadow above, deep noir contrast. Shallow depth of field, focus on the lower scene, blurred boards in front. Continuity: same attic, evening, hero still in the borrowed shirt under the jacket.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no visible rain inside, no clear view of the stranger's face.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:33:45.595Z",
+      "usd": "$0.048",
+      "usdMicros": 47971,
+      "file": "img/4f701192f05c.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16034,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 6,
+          "text": false,
+          "notes": "Three people visible, including an extra foreground face the brief did not call for. Noir lighting, lantern, and tavern counter match well. Rain outside is not visible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t8:shot:s2",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. The setting: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. Light and mood: last light, mist on the water. Camera: wide shot.\nExactly three people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: both his hands are wrapped in linen strips smeared with dark resin. Show exactly this, nothing more and nothing less. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. The boatwoman: a wiry young woman in an oilskin coat, her hair under a scarf. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:34:01.910Z",
+      "usd": "$0.048",
+      "usdMicros": 47806,
+      "file": "img/72b87915c272.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16258,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none clearly visible; hands on the pump handle and the pole look plausibly attached",
+          "adherence": 8,
+          "text": false,
+          "notes": "Matches the scene well: three figures, poling, net-mending, brass pump, dusk mist and lanterns. The bow man's wrapped hands and features resemble the reference."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t1:shot:s2",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: At the counter of a dockside tavern, a tavern keeper sets a clay mug of beer down in front of the man. The setting: a smoky dockside tavern, plank counter, oil lamps, barrels, in the morning; grey drizzle outside the windows. Light and mood: warm lamplight, quiet morning. Camera: medium shot across the counter.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:34:07.751Z",
+      "usd": "$0.048",
+      "usdMicros": 47531,
+      "file": "img/532177bd7a6d.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 29191,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 4,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear anatomy errors; background figures are partly hidden but look intact.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Man matches the reference's swept dark hair and stubble. Tavern, lamps, barrels, rain at windows, and beer mug all match. Lighting reads more dusk than morning."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25f:t8:brief:s2",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25f",
+      "modelId": "gpt-image-2.5-flare",
+      "label": "GPT Image 2.5 Flare",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in a narrow flat-bottomed boat, seen from a low angle near the water, slightly ahead of the bow. Foreground: the hero sits in the bow beside a copper hand pump, both hands wrapped in linen strips smeared with black resin, resting on his knees. He wears his worn dark canvas work jacket with the round patch on the left shoulder. His wind-burned, stubbled face is turned toward the dark water ahead, grim and watchful. Middle: an old man with a short grey beard and knitted cap sits hunched over a bundle in the centre of the boat. Behind him at the stern, a wiry young woman in an oilskin coat, hair under a scarf, leans on a long pole. Background: the pontoon recedes, lamps on distant pontoons are muddy blurred glows in thick fog, with warehouse roofs as black silhouettes against the last fading light. Black still water, no ripples but the pole's wake. Dusk, humid and windless. Palette: cold blue-grey and black with faint dull amber lamp smudges and a glint of copper. Cinematic noir, 35mm lens, shallow depth of field, soft haze. Silent, tense mood.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no other boats, no bright colours, no sunlight.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:34:18.181Z",
+      "usd": "$0.048",
+      "usdMicros": 48001,
+      "file": "img/d2692757d103.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 16219,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "None clearly visible; hands and poling grip look plausible.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Matches the scene well: three people, bow pump, poling stern, wrapped hands, misty harbour lanterns. Boat not clearly pushing off a pontoon."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t1:brief:s2",
+      "kind": "frame",
+      "shot": "t1",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium shot across the bar, slightly over the hero's shoulder from his left and a little low. Foreground: a worn wooden bar top with a clay mug of beer, foam sliding down its side. Middle: the hero sits on a high stool, in his dark canvas work jacket with the round patch on the left shoulder, stubbled face turned toward the woman, expression guarded and tired. Across the bar the broad-shouldered grey-haired tavern keeper, sleeves rolled up, dark apron, leans on both palms, eyes level and stern, mouth set. Behind her shelves hold bottles, a copper coffee pot and a piece of net with floats. Background: lamps still burning, grey drizzle on the windows, two dockworkers dim and small by a far barrel sharing bread. Early morning, drizzle outside. Warm lamplight against cold grey window light, smoky haze, cinematic noir palette of amber, brown and steel grey. Shallow depth of field, 40mm lens feel.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people near the bar, no text, no modern objects, no names.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:34:36.377Z",
+      "usd": "$0.048",
+      "usdMicros": 47766,
+      "file": "img/c5b49ca467b8.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28576,
+      "usage": {
+        "textInputTokens": 404,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 4,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear anatomical errors; hands holding the mug and resting on the counter look plausible.",
+          "adherence": 7,
+          "text": false,
+          "notes": "Rainy dockside tavern, lamps, barrels and cinematic noir mood match. The woman is leaning rather than setting the mug down, and the scene looks dim rather than morning."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t2:shot:s2",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man kneels on a wet wooden pontoon and files the teeth of a seized bronze gear on a hand winch. The setting: a floating pontoon market on a grey harbour, boats moored alongside, in the daytime; overcast, no rain. Light and mood: flat overcast daylight, damp. Camera: low three-quarter angle.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:35:06.493Z",
+      "usd": "$0.047",
+      "usdMicros": 47336,
+      "file": "img/b6f02e787213.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30057,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "None clearly visible; both hands and the file grip look anatomically correct.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Kneeling man files a winch gear on a wooden pontoon with boats and market stalls. Overcast harbour, noir mood. Surfaces look wet, slightly against 'no rain'."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t2:brief:s2",
+      "kind": "frame",
+      "shot": "t2",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a distant old man in the background. Medium-low shot from the hero's front-left at about knee height, 35mm lens feel. Foreground: wet dark planks with green water showing in the gaps, and a few bright metal shavings dropping into it. Middle: the hero kneels on one knee in the damp, in his dark canvas work jacket with the round patch on the left shoulder, dark trousers and heavy boots. He pins a bronze gear furred with green corrosion between his knee and palm and drags a file along its teeth. His face is stubbled and weathered, his brow furrowed, his eyes fixed on the work. Beside him on the pontoon edge stands a stuck winch drum. Background: boats moored side by side, a crate of herring, a mended sail, and a small old man on a neighbouring boat watching without approaching. Daytime under a low, even, sunless overcast sky with no rain. Palette of cold grey, wet brown wood, murky green and dull bronze, noir contrast, soft flat light. The scene is a new location, so nothing carries over from the tavern frame.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No text, no sunshine, no rain, no extra crowd in the foreground, no modern machinery.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:35:36.275Z",
+      "usd": "$0.048",
+      "usdMicros": 47961,
+      "file": "img/d0251bbe6b3e.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 29734,
+      "usage": {
+        "textInputTokens": 443,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "None visible. Both hands on the gear and file look correct, and the background man's hands are plausible.",
+          "adherence": 7,
+          "text": false,
+          "notes": "Kneeling filing on a wet pontoon, grey overcast light, moored boats and fish crates match. Gear is held in hand, not on the winch. A second background man appears, against the expected single person."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t3:shot:s2",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. The setting: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. Light and mood: murky green gloom, dim shafts of light. Camera: wide underwater shot.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:36:09.544Z",
+      "usd": "$0.047",
+      "usdMicros": 47376,
+      "file": "img/7d91fa66d5f3.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 33211,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 6,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Copper helmet, slimy beam, air hose, green murky water, pontoon, and daylight rays all match. Face is partly framed by the helmet and a similar type, not an exact match."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t3:brief:s2",
+      "kind": "frame",
+      "shot": "t3",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame. Underwater medium shot from slightly below and in front of the hero, 28mm lens feel, murky and soft. Foreground: floating silt and a slimy beam furred with weed and barnacles. Middle: the hero hangs in the green gloom in a brass diving helmet with a small round porthole. He wears his dark canvas work jacket with the round cloth patch on the left shoulder. One thick gloved-bare hand slides along the beam and stops on a rusted chain, fingers curling around it. A hose rises from the back of the helmet toward the surface. His posture is cautious and tense, his head tilted down toward the dark. Background: below him, a huge motionless shape half buried in the silt, barely readable. Narrow shafts of pale daylight cut down between the pontoon planks through layered haze. Palette of murky green, black and cold dull brass, noir contrast, heavy atmosphere. Daytime above, unseen. This is a new underwater location, so nothing carries over from the pontoon frame except the hero's clothes.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No other people, no text, no fish, no visible face through the porthole, no clear view of the shape below.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:36:41.890Z",
+      "usd": "$0.048",
+      "usdMicros": 47881,
+      "file": "img/7e0d77a94194.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 32299,
+      "usage": {
+        "textInputTokens": 427,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 7,
+          "text": false,
+          "notes": "Helmeted diver face hidden by the helmet port. Murky green water, daylight rays, weedy beam and air hose match. No clear pontoon overhead; suit reads more leather than canvas."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t4:shot:s2",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. The setting: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. Light and mood: grey afternoon light through the open door. Camera: close medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:37:12.414Z",
+      "usd": "$0.047",
+      "usdMicros": 47491,
+      "file": "img/0e1d26f2a704.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30477,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Two men in a daytime pontoon shed with hanging nets; the old man pours water over the hero's cut forearm. Dark resin and moody cinematic light fit. Hero resembles the reference."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t4:brief:s2",
+      "kind": "frame",
+      "shot": "t4",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame. Medium-close shot at chest height, slightly from the side, 35mm lens feel. Foreground: the hero's forearm, turned palm up, held in the old man's rope-scarred hands; a long cut runs from wrist almost to elbow, half washed, half covered with glistening dark pine tar. A wooden bucket of cold water stands at the edge of the frame. Middle: the lean old man with a short grey beard and knitted cap bends over the arm, silent and focused, two tarred fingers drawing along the wound. Opposite him the hero, in his dark canvas work jacket with the sleeve pushed up, the round patch on the left shoulder, jaw tight, teeth clenched, eyes on the arm. Background: inside a net-mender's shed, fishing nets hang from the beams like curtains, pots of tar and coils of rope stand along the wall. The only light is flat grey daylight from an open door at the side, with soft shadows. Palette of tar black, damp brown, hemp beige and cold grey, noir contrast. The scene is new, with no carryover from the underwater frame except the hero's jacket.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no modern bandages or medical gear, no diving helmet.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:37:41.924Z",
+      "usd": "$0.000",
+      "usdMicros": 0,
+      "error": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_a63a1d300f7e43a7b3b0d3d6988237f0. safety_violations=[self-",
+      "refusal": true
+    },
+    {
+      "key": "frame:gpt25s:t5:shot:s2",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: The man tears a linen shirt into strips and winds them around his resin-smeared hands, making rough gloves. The setting: inside a net-maker's shed, nets and tar pots, in the daytime. Light and mood: dim, tense. Camera: medium close-up on his hands and face.\nExactly one person is in the frame. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:38:10.347Z",
+      "usd": "$0.047",
+      "usdMicros": 47286,
+      "file": "img/e3ba3b2a9c2a.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28415,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": true,
+          "anatomyIssues": "None visible. Both arms, hands and fingers look correctly formed and attached.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Same rugged man with swept-back dark hair and stubble. Nets, tar pot and daylight shed match. He winds torn linen strips around resin-smeared hands. Noir mood."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t5:brief:s2",
+      "kind": "frame",
+      "shot": "t5",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. One person in frame, with a second presence only as a silhouette. Medium shot slightly from the side at chest height, 35mm lens feel. Foreground: the hero's hands, crusted with cooling black tar, one hand wrapped to the wrist in tight coils of torn pale cloth, the other hand and his teeth gripping the end of a long strip. Middle: the hero sits hunched by a small iron pot, stripped of his undershirt and wearing the dark canvas work jacket with the round patch on the left shoulder. His wind-burned face is lit from below by the pot's dull glow, jaw hard, eyes fixed on his hands, angry and focused. The torn shirt lies in ragged strips on his knee. The earlier cut on his forearm is still visible, smeared with tar. Background: inside the net-mender's shed, nets hang from the beams, coils of rope along the wall, deep shadow. Through the open door at the side, grey daylight falls in, and a faint dark human shadow stretches across the floor, stopped just outside. Palette of tar black, damp brown, hemp beige and cold grey, high noir contrast, with the soft glow on his face. Continuity: same shed, same jacket, the old man is gone.\nExactly one person is in the frame. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No second visible person, no text, no weapons, no clean unwrapped hands.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:38:40.842Z",
+      "usd": "$0.048",
+      "usdMicros": 48021,
+      "file": "img/5a02b587728b.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30450,
+      "usage": {
+        "textInputTokens": 455,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": null,
+          "people": 1,
+          "anatomyOk": false,
+          "anatomyIssues": "Fingers of the tar-covered hands are blobby and hard to count; some finger boundaries appear merged where the cloth wraps them.",
+          "adherence": 8,
+          "text": false,
+          "notes": "Shed with nets, tar pot, daylight from open door, linen strips on tar-smeared hands, and noir mood all match. Face is partly visible and resembles the reference."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t6:shot:s2",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: In a cramped room upstairs, a big red-nosed docker squints at a pencil note on a scrap of paper while the man stands waiting. The setting: a low attic room above a tavern, a small window, a cot, in the evening; rain on the small window. Light and mood: a single candle. Camera: medium shot.\nExactly two people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket. Show exactly this, nothing more and nothing less. The docker: a big red-nosed man with a thick neck, a flat cap and a stained canvas coat. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:39:11.365Z",
+      "usd": "$0.048",
+      "usdMicros": 47641,
+      "file": "img/383b8974e8ee.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30482,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "none",
+          "adherence": 8,
+          "text": false,
+          "notes": "Attic with rain-streaked window, candle, cot, and a docker reading a note while the hero waits. Hero's face and hair match the references well."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t6:brief:s2",
+      "kind": "frame",
+      "shot": "t6",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Two people in frame in a cramped attic room under the roof. Medium two-shot from near the door, slightly over the hero's shoulder, 35mm lens feel, eye level. Foreground: the hero stands at the door, partly in shadow, seen three-quarters from behind and the side. He wears the worn dark canvas work jacket with the round patch on the left shoulder, open over a borrowed grey linen shirt with a torn-off hem. His face is wind-burned and tense, still, waiting. Middle: a big red-nosed man with a thick neck sits on a narrow cot against the wall in a grease-stained canvas coat. He holds a scrap of paper with pencil writing and has just lifted his squinting eyes to the hero, his lips still parted. A single candle on a wooden crate beside the cot lights his red nose and the paper from below. Background: a low sloped ceiling, bare boards, one small window streaked with rain, evening blue-grey dark outside. Palette of warm candle amber against cold blue-grey, deep noir shadows, wet glass glints. Continuity: the hero is now in the borrowed shirt under the jacket, indoors, no tar shown.\nExactly two people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no readable text on the note, no modern objects, no additional light sources besides the candle and the dim window.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:39:40.093Z",
+      "usd": "$0.048",
+      "usdMicros": 48016,
+      "file": "img/f38e7c224e6e.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 28685,
+      "usage": {
+        "textInputTokens": 454,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": false,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "No clear anatomy errors; the left figure's lower arm and hand are partly hidden.",
+          "adherence": 7,
+          "text": false,
+          "notes": "Attic with candle, rain-streaked window, cot and two men fit well. The docker has no flat cap, and no grey linen shirt is visible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t7:shot:s2",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "A cinematic story illustration of one moment: Seen from above through narrow gaps between floorboards: a stranger in a dry dark coat stands at the tavern counter below, talking quietly to the tavern keeper. The setting: the tavern room below, seen through cracks in the upstairs floor, in the evening; rain outside. Light and mood: lamplight below, secretive. Camera: top-down view through floorboard gaps, dark boards in the foreground.\nExactly two people are in the frame, each of them once. The stranger: a lean man in a dry, well-cut dark coat and a hat. The tavern keeper: a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [],
+      "at": "2026-10-17T18:40:06.123Z",
+      "usd": "$0.031",
+      "usdMicros": 30510,
+      "file": "img/f580af193c10.jpg",
+      "endpoint": "/v1/images/generations",
+      "width": 1344,
+      "height": 768,
+      "ms": 25989,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 2,
+          "anatomyOk": true,
+          "anatomyIssues": "",
+          "adherence": 8,
+          "text": false,
+          "notes": "Stranger in hat and dark coat at the counter, keeper behind it, seen through foreground beam gaps. Warm lamps, rainy window, noir look. Matches well."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t7:brief:s2",
+      "kind": "frame",
+      "shot": "t7",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in the story: the hero in the foreground, two below. Extreme close, nearly top-down view through a finger-wide gap between rough floorboards. Foreground: the hero lies flat on the attic floor, only his wind-burned face with fine eye lines and dark stubble, one narrowed eye and part of his dark canvas jacket and borrowed grey shirt in blurred dark framing, motionless, tense. Through the gap, middle and below: the tavern hall lit by a warm lamp. A lean stranger in a dry, well-cut dark coat and hat stands at the bar edge, his palm covering a coin on the wood. Opposite him a broad-shouldered grey-haired woman in a dark apron, sleeves rolled up, holds a rag and slowly shakes her head. Details are small and partly cut off by the board edges. Dust hangs in the lamplight. Rain is implied by cold blue-grey in the attic. Palette: warm amber lamp below against cold dark blue shadow above, deep noir contrast. Shallow depth of field, focus on the lower scene, blurred boards in front. Continuity: same attic, evening, hero still in the borrowed shirt under the jacket.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no visible rain inside, no clear view of the stranger's face.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:40:37.503Z",
+      "usd": "$0.048",
+      "usdMicros": 47971,
+      "file": "img/98e891586bf5.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 31339,
+      "usage": {
+        "textInputTokens": 445,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": null,
+          "clothing": null,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 7,
+          "text": false,
+          "notes": "Matches the tavern-counter scene through floorboard gaps, with lamp light and dark noir tones. An extra man's face peers from above, so there are 3 people, not 2. Rain is not visible."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t8:shot:s2",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "shot",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the man's face and hair (keep exact). Image 2 — the man's full figure and build (keep exact; his clothes follow the text below).\nA cinematic story illustration of one moment: A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. The setting: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. Light and mood: last light, mist on the water. Camera: wide shot.\nExactly three people are in the frame, each of them once. The man (Images 1–2): a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots. Keep his face, facial features, skin tone, hair, age and build exactly as in Images 1–2; only his pose, expression and the camera angle change. Right now: both his hands are wrapped in linen strips smeared with dark resin. Show exactly this, nothing more and nothing less. The old net-maker: a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands. The boatwoman: a wiry young woman in an oilskin coat, her hair under a scarf. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:41:07.995Z",
+      "usd": "$0.048",
+      "usdMicros": 47806,
+      "file": "img/71193d1912e0.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30438,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 7,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible",
+          "adherence": 8,
+          "text": false,
+          "notes": "Three people in a narrow boat with a brass pump, wrapped hands, misty dusk harbour and lanterns. The bow man's face is small but resembles the reference type."
+        }
+      }
+    },
+    {
+      "key": "frame:gpt25s:t8:brief:s2",
+      "kind": "frame",
+      "shot": "t8",
+      "mode": "brief",
+      "sampleIndex": 2,
+      "model": "gpt25s",
+      "modelId": "gpt-image-2.5-sunburst",
+      "label": "GPT Image 2.5 Sunburst",
+      "size": "landscape_16_9_hd",
+      "prompt": "Reference images: Image 1 — the hero's face and hair (keep exact). Image 2 — the hero's full figure and build (keep exact; his clothes follow the brief).\nA cinematic story illustration of one moment. Three people in a narrow flat-bottomed boat, seen from a low angle near the water, slightly ahead of the bow. Foreground: the hero sits in the bow beside a copper hand pump, both hands wrapped in linen strips smeared with black resin, resting on his knees. He wears his worn dark canvas work jacket with the round patch on the left shoulder. His wind-burned, stubbled face is turned toward the dark water ahead, grim and watchful. Middle: an old man with a short grey beard and knitted cap sits hunched over a bundle in the centre of the boat. Behind him at the stern, a wiry young woman in an oilskin coat, hair under a scarf, leans on a long pole. Background: the pontoon recedes, lamps on distant pontoons are muddy blurred glows in thick fog, with warehouse roofs as black silhouettes against the last fading light. Black still water, no ripples but the pole's wake. Dusk, humid and windless. Palette: cold blue-grey and black with faint dull amber lamp smudges and a glint of copper. Cinematic noir, 35mm lens, shallow depth of field, soft haze. Silent, tense mood.\nExactly three people are in the frame, each of them once. The hero is the person in Images 1 and 2: keep his face, facial features, skin tone, hair, age and build exactly as there; only his pose, expression, clothes as the brief says and the camera angle change. Every person has two arms and two hands with five fingers each; no extra or missing limbs.\nDo not show: No extra people, no text, no other boats, no bright colours, no sunlight.\nNo text, letters, numbers, logos, signs or watermarks anywhere in the picture.\nArt style: Cinematic noir.",
+      "references": [
+        "face",
+        "figure"
+      ],
+      "at": "2026-10-17T18:41:38.838Z",
+      "usd": "$0.048",
+      "usdMicros": 48001,
+      "file": "img/a1477f9956e1.jpg",
+      "endpoint": "/v1/images/edits",
+      "width": 1344,
+      "height": 768,
+      "ms": 30790,
+      "usage": {
+        "textInputTokens": 451,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      },
+      "scores": {
+        "haiku": {
+          "identity": 8,
+          "clothing": true,
+          "people": 3,
+          "anatomyOk": true,
+          "anatomyIssues": "none visible; hands, arms and poses of all three figures look anatomically correct",
+          "adherence": 8,
+          "text": false,
+          "notes": "Man in bow with bandaged, resin-smeared hands beside brass pump; net-maker and poling boatwoman present; dusk mist and lanterns fit. Pontoon is weakly shown."
+        }
+      }
+    }
+  ]
+}

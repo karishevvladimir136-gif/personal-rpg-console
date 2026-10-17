@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t1",
+  "title": {
+    "ru": "Марта ставит кружку перед героем у стойки",
+    "en": "The tavern keeper sets a mug before him at the counter"
+  },
+  "description": "At the counter of a dockside tavern, a tavern keeper sets a clay mug of beer down in front of the man. Place: a smoky dockside tavern, plank counter, oil lamps, barrels, in the morning; grey drizzle outside the windows. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the tavern keeper (a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron). Art style: Cinematic noir.",
+  "narration": "Дверь за тобой хлопает, и шум гавани остаётся снаружи. В «Кружке» утро: лампы ещё горят, за окнами серая морось, у дальнего бочонка двое грузчиков делят хлеб. Пахнет мокрой шерстью и дымом.\n\nМарта за стойкой даже не поднимает головы — вытирает кружку, потом вторую. Только когда ты садишься на высокий табурет, она ставит перед тобой глиняную кружку пива, так что пена ползёт по стенке, и упирается ладонями в доску.\n\n— Сорок монет, Рэй, — говорит она негромко. — Я помню. И ты помни.\n\nЗа спиной у неё на полке — бутылки, медный кофейник, кусок сети с поплавками. Она ждёт, что ты скажешь.",
+  "state": [],
+  "createdAt": "2026-10-17T18:48:04.889Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/5c07f100d5e8.jpg",
+      "files": [
+        "img/5c07f100d5e8.jpg",
+        "img/417370229d56.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/91d1cde2182b.jpg",
+      "files": [
+        "img/91d1cde2182b.jpg",
+        "img/c5b49ca467b8.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/2d93c9dd9f40.jpg",
+      "files": [
+        "img/2d93c9dd9f40.jpg",
+        "img/850cc3d52210.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "D",
+      "file": "img/88c4e16a7c2e.jpg",
+      "files": [
+        "img/88c4e16a7c2e.jpg",
+        "img/532177bd7a6d.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    }
+  ]
+}

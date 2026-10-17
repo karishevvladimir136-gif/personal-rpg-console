@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t6",
+  "title": {
+    "ru": "Наверху красноносый докер читает записку карандашом",
+    "en": "Upstairs, a big red-nosed docker reads a pencil note"
+  },
+  "description": "In a cramped room upstairs, a big red-nosed docker squints at a pencil note on a scrap of paper while the man stands waiting. Place: a low attic room above a tavern, a small window, a cot, in the evening; rain on the small window. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the docker (a big red-nosed man with a thick neck, a flat cap and a stained canvas coat). State: he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket. Art style: Cinematic noir.",
+  "narration": "Лестница наверх скрипит на каждой ступеньке. Комната под крышей — низкая, с одним маленьким окном, по которому стекает дождь, и койкой у стены. Единственная свеча на ящике.\n\nФрол, красноносый, с толстой шеей, сидит на койке в своей замасленной куртке и, щурясь, читает карандашную записку на обрывке бумаги. Губы шевелятся. Ты стоишь у двери в серой льняной рубахе, которую тебе одолжила Марта — подол оторван, под курткой, — и ждёшь.\n\n— Это не его почерк, — говорит наконец Фрол и поднимает на тебя глаза.",
+  "state": [
+    "he wears a borrowed grey linen shirt with its hem torn off, under his worn dark work jacket"
+  ],
+  "createdAt": "2026-10-17T18:48:04.892Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/2b638f982f1c.jpg",
+      "files": [
+        "img/2b638f982f1c.jpg",
+        "img/be3e0bc3a047.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/30fc1d19c39a.jpg",
+      "files": [
+        "img/30fc1d19c39a.jpg",
+        "img/0eb49b26d681.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "C",
+      "file": "img/6a952455ceda.jpg",
+      "files": [
+        "img/6a952455ceda.jpg",
+        "img/f38e7c224e6e.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "D",
+      "file": "img/652f2f6dfd75.jpg",
+      "files": [
+        "img/652f2f6dfd75.jpg",
+        "img/383b8974e8ee.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    }
+  ]
+}

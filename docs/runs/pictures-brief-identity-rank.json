@@ -1,0 +1,150 @@
+{
+  "rows": [
+    {
+      "shot": "t1",
+      "ranks": {
+        "A": 7,
+        "B": 6,
+        "C": 7,
+        "D": 8,
+        "E": 6,
+        "F": 6,
+        "G": 8,
+        "H": 6
+      },
+      "keys": {
+        "A": "frame:gpt25s:t1:brief:s1",
+        "B": "frame:gpt25f:t1:shot:s2",
+        "C": "frame:gpt25f:t1:brief:s2",
+        "D": "frame:gpt25s:t1:brief:s2",
+        "E": "frame:gpt25s:t1:shot:s1",
+        "F": "frame:gpt25f:t1:shot:s1",
+        "G": "frame:gpt25f:t1:brief:s1",
+        "H": "frame:gpt25s:t1:shot:s2"
+      },
+      "notes": "All frames show a similar man with the same jacket and patch. D and G match the reference's face shape, stubble and hair best; B, E, F and H look slightly smoother and more generic.",
+      "error": null,
+      "usdMicros": 25926
+    },
+    {
+      "shot": "t2",
+      "ranks": {
+        "A": 8,
+        "B": 6,
+        "C": 7,
+        "D": 6,
+        "E": 7,
+        "F": 5,
+        "G": 6,
+        "H": 5
+      },
+      "keys": {
+        "A": "frame:gpt25s:t2:shot:s2",
+        "B": "frame:gpt25s:t2:shot:s1",
+        "C": "frame:gpt25f:t2:shot:s2",
+        "D": "frame:gpt25f:t2:brief:s2",
+        "E": "frame:gpt25f:t2:shot:s1",
+        "F": "frame:gpt25s:t2:brief:s1",
+        "G": "frame:gpt25f:t2:brief:s1",
+        "H": "frame:gpt25s:t2:brief:s2"
+      },
+      "notes": "A and C/E keep the reference's strong brow, nose and stubble. B, F and H look slightly softer or younger, with the face less defined. D and G are decent but angled down, so the face is partly obscured.",
+      "error": null,
+      "usdMicros": 26016
+    },
+    {
+      "shot": "t4",
+      "ranks": {
+        "A": 8,
+        "B": 8,
+        "C": 9,
+        "D": 7
+      },
+      "keys": {
+        "A": "frame:gpt25f:t4:shot:s1",
+        "B": "frame:gpt25s:t4:shot:s1",
+        "C": "frame:gpt25s:t4:shot:s2",
+        "D": "frame:gpt25f:t4:shot:s2"
+      },
+      "notes": "These are AI-generated characters, so I compared only visual consistency with the reference. C holds face shape, hair and stubble best. D looks slightly different in the jaw and the lighter hair texture. A and B are close matches.",
+      "error": null,
+      "usdMicros": 14992
+    },
+    {
+      "shot": "t5",
+      "ranks": {
+        "A": 8,
+        "B": 5,
+        "C": 9,
+        "D": 4,
+        "E": 3,
+        "F": 9,
+        "G": 8
+      },
+      "keys": {
+        "A": "frame:gpt25f:t5:shot:s2",
+        "B": "frame:gpt25s:t5:brief:s1",
+        "C": "frame:gpt25s:t5:shot:s1",
+        "D": "frame:gpt25s:t5:brief:s2",
+        "E": "frame:gpt25f:t5:brief:s2",
+        "F": "frame:gpt25f:t5:shot:s1",
+        "G": "frame:gpt25s:t5:shot:s2"
+      },
+      "notes": "Frames C, F, G, A closely match the reference's face, hair and stubble. B, D, E show a rougher, more distorted face, and the jaw and eyes drift. Nobody else appears in any frame, only a distant silhouette in some.",
+      "error": null,
+      "usdMicros": 23370
+    },
+    {
+      "shot": "t6",
+      "ranks": {
+        "A": 8,
+        "B": 4,
+        "C": 9,
+        "D": 8,
+        "E": 4,
+        "F": 5,
+        "G": 3,
+        "H": 9
+      },
+      "keys": {
+        "A": "frame:gpt25f:t6:shot:s1",
+        "B": "frame:gpt25f:t6:brief:s2",
+        "C": "frame:gpt25s:t6:shot:s1",
+        "D": "frame:gpt25f:t6:shot:s2",
+        "E": "frame:gpt25s:t6:brief:s2",
+        "F": "frame:gpt25s:t6:brief:s1",
+        "G": "frame:gpt25f:t6:brief:s1",
+        "H": "frame:gpt25s:t6:shot:s2"
+      },
+      "notes": "Frames C, H, A, D show the hero's face clearly with matching hair, stubble and features. B, E, F, G show him mostly in profile or from behind, so the match is weaker.",
+      "error": null,
+      "usdMicros": 25946
+    },
+    {
+      "shot": "t8",
+      "ranks": {
+        "A": 6,
+        "B": 8,
+        "C": 8,
+        "D": 7,
+        "E": 8,
+        "F": 6,
+        "G": 5,
+        "H": 8
+      },
+      "keys": {
+        "A": "frame:gpt25s:t8:shot:s2",
+        "B": "frame:gpt25f:t8:brief:s1",
+        "C": "frame:gpt25f:t8:brief:s2",
+        "D": "frame:gpt25f:t8:shot:s2",
+        "E": "frame:gpt25s:t8:brief:s2",
+        "F": "frame:gpt25f:t8:shot:s1",
+        "G": "frame:gpt25s:t8:shot:s1",
+        "H": "frame:gpt25s:t8:brief:s1"
+      },
+      "notes": "Rated on how closely each man resembles the reference's hair, stubble, brow and jaw. Close-up frames B, C, E and H match best. Wider frames A, F and G show less detail and look slightly different.",
+      "error": null,
+      "usdMicros": 26026
+    }
+  ]
+}

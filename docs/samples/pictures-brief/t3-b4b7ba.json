@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t3",
+  "title": {
+    "ru": "Под понтоном в медном шлеме, мутная вода",
+    "en": "Under a pontoon in a copper diving helmet, murky water"
+  },
+  "description": "The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. Place: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w). Art style: Cinematic noir.",
+  "narration": "Шлем защёлкивают сверху, и мир сужается до круглого иллюминатора. Медь холодит виски. Шланг тянется вверх, к помпе, и ты слышишь только собственное дыхание и далёкие удары поршня.\n\nПод понтоном темно и зелено. Муть висит слоями, свет пробивается узкими столбами между досками. Ты нащупываешь склизкую балку и ведёшь по ней рукой — водоросли, ракушки, холод, — пока пальцы не натыкаются на цепь.\n\nЧто-то большое и неподвижное лежит ниже, в иле. Пока ты не решаешься спуститься.",
+  "state": [],
+  "createdAt": "2026-10-17T18:48:04.891Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/5faa32d6d9d3.jpg",
+      "files": [
+        "img/5faa32d6d9d3.jpg",
+        "img/7d91fa66d5f3.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "B",
+      "file": "img/f8eccf12f77b.jpg",
+      "files": [
+        "img/f8eccf12f77b.jpg",
+        "img/d334e25ef15f.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/184f2f0327f3.jpg",
+      "files": [
+        "img/184f2f0327f3.jpg",
+        "img/f54f69f93a3e.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "D",
+      "file": "img/005094682f8b.jpg",
+      "files": [
+        "img/005094682f8b.jpg",
+        "img/7e0d77a94194.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJicmllZiJ9"
+    }
+  ]
+}

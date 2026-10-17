@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t4",
+  "title": {
+    "ru": "Молчаливый сетевяз промывает порез и мажет смолой",
+    "en": "A silent net-maker washes his cut forearm and smears resin on it"
+  },
+  "description": "A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. Place: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the old net-maker (a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands). Art style: Cinematic noir.",
+  "narration": "В сарае сетевяза пахнет смолой и сырой пенькой. Сети свисают с балок, как занавеси; у стены — котелки с дёгтем, мотки верёвки. Серый дневной свет идёт только из открытой двери.\n\nМокей молча берёт твою руку, разворачивает ладонью вверх и смотрит на порез — длинный, от запястья почти до локтя. Вода из ведра ледяная. Он промывает рану, потом двумя пальцами зачерпывает из горшка тёмную сосновую смолу и мажет её прямо по порезу. Жжёт так, что ты сжимаешь зубы.\n\n— Заживёт, — говорит он. Первое слово за всё утро.",
+  "state": [],
+  "createdAt": "2026-10-17T18:48:04.891Z",
+  "commit": "3b249f4",
+  "run": "pictures-brief-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "../pictures/img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "../pictures/img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "C",
+      "file": "img/f28fb1241045.jpg",
+      "files": [
+        "img/f28fb1241045.jpg",
+        "img/0e1d26f2a704.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    },
+    {
+      "letter": "D",
+      "file": "img/64d0f5188b6d.jpg",
+      "files": [
+        "img/64d0f5188b6d.jpg",
+        "img/6f1269c9f15a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJzaG90In0="
+    }
+  ]
+}

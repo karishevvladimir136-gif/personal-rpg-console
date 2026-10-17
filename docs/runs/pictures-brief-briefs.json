@@ -1,0 +1,222 @@
+{
+  "model": "claude-sonnet-5-5",
+  "rows": {
+    "t1": {
+      "shot": "t1",
+      "brief": {
+        "who": [
+          "Рэй",
+          "Марта"
+        ],
+        "beat": "Марта sets a clay mug of foaming beer in front of the hero at the bar and leans on her palms, reminding him of his debt of forty coins.",
+        "brief": "Two people in frame. Medium shot across the bar, slightly over the hero's shoulder from his left and a little low. Foreground: a worn wooden bar top with a clay mug of beer, foam sliding down its side. Middle: the hero sits on a high stool, in his dark canvas work jacket with the round patch on the left shoulder, stubbled face turned toward the woman, expression guarded and tired. Across the bar the broad-shouldered grey-haired tavern keeper, sleeves rolled up, dark apron, leans on both palms, eyes level and stern, mouth set. Behind her shelves hold bottles, a copper coffee pot and a piece of net with floats. Background: lamps still burning, grey drizzle on the windows, two dockworkers dim and small by a far barrel sharing bread. Early morning, drizzle outside. Warm lamplight against cold grey window light, smoky haze, cinematic noir palette of amber, brown and steel grey. Shallow depth of field, 40mm lens feel.",
+        "short": "Noir tavern, morning: a tavern keeper leans on the bar facing the hero on a stool, a foaming clay mug between them; lamps burning, grey drizzle at the windows, two dockworkers far behind.",
+        "avoid": "No extra people near the bar, no text, no modern objects, no names.",
+        "timeOfDay": "morning",
+        "weather": "grey drizzle",
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 158,
+      "ms": 5099,
+      "usage": {
+        "input": 1559,
+        "output": 550
+      },
+      "usdMicros": 8618,
+      "at": "2026-10-17T18:24:09.908Z",
+      "raw": null
+    },
+    "t2": {
+      "shot": "t2",
+      "brief": {
+        "who": [
+          "Рэй"
+        ],
+        "beat": "The hero kneels on the wet pontoon planks, gripping a corroded bronze gear against his knee and drawing a file across its teeth while shavings fall into the green water.",
+        "brief": "One person in frame, with a distant old man in the background. Medium-low shot from the hero's front-left at about knee height, 35mm lens feel. Foreground: wet dark planks with green water showing in the gaps, and a few bright metal shavings dropping into it. Middle: the hero kneels on one knee in the damp, in his dark canvas work jacket with the round patch on the left shoulder, dark trousers and heavy boots. He pins a bronze gear furred with green corrosion between his knee and palm and drags a file along its teeth. His face is stubbled and weathered, his brow furrowed, his eyes fixed on the work. Beside him on the pontoon edge stands a stuck winch drum. Background: boats moored side by side, a crate of herring, a mended sail, and a small old man on a neighbouring boat watching without approaching. Daytime under a low, even, sunless overcast sky with no rain. Palette of cold grey, wet brown wood, murky green and dull bronze, noir contrast, soft flat light. The scene is a new location, so nothing carries over from the tavern frame.",
+        "short": "A man in a dark work jacket kneels on a wet floating market pontoon, filing a corroded bronze gear pinned against his knee, shavings falling into green water. Moored boats and a distant old man behind. Flat grey overcast daylight, noir palette.",
+        "avoid": "No text, no sunshine, no rain, no extra crowd in the foreground, no modern machinery.",
+        "timeOfDay": "day",
+        "weather": "overcast, low even sky, no rain",
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 188,
+      "ms": 5735,
+      "usage": {
+        "input": 1889,
+        "output": 604
+      },
+      "usdMicros": 9818,
+      "at": "2026-10-17T18:24:15.644Z",
+      "raw": null
+    },
+    "t3": {
+      "shot": "t3",
+      "brief": {
+        "who": [
+          "Рэй"
+        ],
+        "beat": "Deep under the pontoon, the hero in a diving helmet follows a slimy beam with his hand until his fingers close on a chain, while a large still shape lies in the silt below.",
+        "brief": "One person in frame. Underwater medium shot from slightly below and in front of the hero, 28mm lens feel, murky and soft. Foreground: floating silt and a slimy beam furred with weed and barnacles. Middle: the hero hangs in the green gloom in a brass diving helmet with a small round porthole. He wears his dark canvas work jacket with the round cloth patch on the left shoulder. One thick gloved-bare hand slides along the beam and stops on a rusted chain, fingers curling around it. A hose rises from the back of the helmet toward the surface. His posture is cautious and tense, his head tilted down toward the dark. Background: below him, a huge motionless shape half buried in the silt, barely readable. Narrow shafts of pale daylight cut down between the pontoon planks through layered haze. Palette of murky green, black and cold dull brass, noir contrast, heavy atmosphere. Daytime above, unseen. This is a new underwater location, so nothing carries over from the pontoon frame except the hero's clothes.",
+        "short": "A diver in a brass helmet and dark work jacket feels along a slimy beam under a pontoon and grips a chain, a huge still shape lying in the silt below, pale light shafts through murky green water.",
+        "avoid": "No other people, no text, no fish, no visible face through the porthole, no clear view of the shape below.",
+        "timeOfDay": "day",
+        "weather": null,
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 173,
+      "ms": 6679,
+      "usage": {
+        "input": 1876,
+        "output": 559
+      },
+      "usdMicros": 9342,
+      "at": "2026-10-17T18:24:22.325Z",
+      "raw": null
+    },
+    "t4": {
+      "shot": "t4",
+      "brief": {
+        "who": [
+          "Рэй",
+          "Мокей"
+        ],
+        "beat": "The old net-mender smears dark pine tar with two fingers along the long cut on the hero's forearm while the hero clenches his teeth.",
+        "brief": "Two people in frame. Medium-close shot at chest height, slightly from the side, 35mm lens feel. Foreground: the hero's forearm, turned palm up, held in the old man's rope-scarred hands; a long cut runs from wrist almost to elbow, half washed, half covered with glistening dark pine tar. A wooden bucket of cold water stands at the edge of the frame. Middle: the lean old man with a short grey beard and knitted cap bends over the arm, silent and focused, two tarred fingers drawing along the wound. Opposite him the hero, in his dark canvas work jacket with the sleeve pushed up, the round patch on the left shoulder, jaw tight, teeth clenched, eyes on the arm. Background: inside a net-mender's shed, fishing nets hang from the beams like curtains, pots of tar and coils of rope stand along the wall. The only light is flat grey daylight from an open door at the side, with soft shadows. Palette of tar black, damp brown, hemp beige and cold grey, noir contrast. The scene is new, with no carryover from the underwater frame except the hero's jacket.",
+        "short": "In a dim net shed, an old grey-bearded man in a knitted cap smears black pine tar on a long cut along the hero's forearm; the hero clenches his teeth. Hanging nets, grey daylight from a door.",
+        "avoid": "No extra people, no text, no modern bandages or medical gear, no diving helmet.",
+        "timeOfDay": "day",
+        "weather": null,
+        "profileUpdates": [
+          {
+            "who": "Рэй",
+            "change": "has a long cut from wrist almost to elbow on his forearm, washed and smeared with dark pine tar"
+          }
+        ],
+        "edit": null
+      },
+      "words": 187,
+      "ms": 5352,
+      "usage": {
+        "input": 1882,
+        "output": 633
+      },
+      "usdMicros": 10094,
+      "at": "2026-10-17T18:24:27.679Z",
+      "raw": null
+    },
+    "t5": {
+      "shot": "t5",
+      "brief": {
+        "who": [
+          "Рэй"
+        ],
+        "beat": "The hero, alone by the cooling tar pot, winds a strip of torn shirt cloth tightly around his tarred hand while a shadow stops outside the door.",
+        "brief": "One person in frame, with a second presence only as a silhouette. Medium shot slightly from the side at chest height, 35mm lens feel. Foreground: the hero's hands, crusted with cooling black tar, one hand wrapped to the wrist in tight coils of torn pale cloth, the other hand and his teeth gripping the end of a long strip. Middle: the hero sits hunched by a small iron pot, stripped of his undershirt and wearing the dark canvas work jacket with the round patch on the left shoulder. His wind-burned face is lit from below by the pot's dull glow, jaw hard, eyes fixed on his hands, angry and focused. The torn shirt lies in ragged strips on his knee. The earlier cut on his forearm is still visible, smeared with tar. Background: inside the net-mender's shed, nets hang from the beams, coils of rope along the wall, deep shadow. Through the open door at the side, grey daylight falls in, and a faint dark human shadow stretches across the floor, stopped just outside. Palette of tar black, damp brown, hemp beige and cold grey, high noir contrast, with the soft glow on his face. Continuity: same shed, same jacket, the old man is gone.",
+        "short": "A grim, hunched man alone in a net shed winds torn cloth around his tar-crusted hands, gripping the end with his teeth, while a shadow lingers at the door. Noir, dim light, nets in the background.",
+        "avoid": "No second visible person, no text, no weapons, no clean unwrapped hands.",
+        "timeOfDay": "day",
+        "weather": null,
+        "profileUpdates": [
+          {
+            "who": "Рэй",
+            "change": "has torn off his undershirt and wrapped both tarred hands in tight cloth strips like crude mittens"
+          }
+        ],
+        "edit": null
+      },
+      "words": 205,
+      "ms": 5877,
+      "usage": {
+        "input": 1874,
+        "output": 661
+      },
+      "usdMicros": 10358,
+      "at": "2026-10-17T18:24:33.559Z",
+      "raw": null
+    },
+    "t6": {
+      "shot": "t6",
+      "brief": {
+        "who": [
+          "Рэй",
+          "Фрол"
+        ],
+        "beat": "Frol looks up from the pencil note he has been reading by candlelight and tells the hero it is not the man's handwriting, while the hero waits by the door.",
+        "brief": "Two people in frame in a cramped attic room under the roof. Medium two-shot from near the door, slightly over the hero's shoulder, 35mm lens feel, eye level. Foreground: the hero stands at the door, partly in shadow, seen three-quarters from behind and the side. He wears the worn dark canvas work jacket with the round patch on the left shoulder, open over a borrowed grey linen shirt with a torn-off hem. His face is wind-burned and tense, still, waiting. Middle: a big red-nosed man with a thick neck sits on a narrow cot against the wall in a grease-stained canvas coat. He holds a scrap of paper with pencil writing and has just lifted his squinting eyes to the hero, his lips still parted. A single candle on a wooden crate beside the cot lights his red nose and the paper from below. Background: a low sloped ceiling, bare boards, one small window streaked with rain, evening blue-grey dark outside. Palette of warm candle amber against cold blue-grey, deep noir shadows, wet glass glints. Continuity: the hero is now in the borrowed shirt under the jacket, indoors, no tar shown.",
+        "short": "In a low attic room by candlelight, a red-nosed man on a cot looks up from a pencil note to speak to the hero, who stands waiting at the door in a dark work jacket over a grey linen shirt. Rain streaks the small window.",
+        "avoid": "No extra people, no readable text on the note, no modern objects, no additional light sources besides the candle and the dim window.",
+        "timeOfDay": "evening",
+        "weather": "rain",
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 191,
+      "ms": 5732,
+      "usage": {
+        "input": 1976,
+        "output": 618
+      },
+      "usdMicros": 10132,
+      "at": "2026-10-17T18:24:39.292Z",
+      "raw": null
+    },
+    "t7": {
+      "shot": "t7",
+      "brief": {
+        "who": [
+          "Рэй",
+          "Марта",
+          "Незнакомец"
+        ],
+        "beat": "Lying still on the attic floor, the hero looks down through a finger-wide gap between the boards at the stranger in the dark coat covering a coin with his palm on the bar while Marta slowly shakes her head.",
+        "brief": "Three people in the story: the hero in the foreground, two below. Extreme close, nearly top-down view through a finger-wide gap between rough floorboards. Foreground: the hero lies flat on the attic floor, only his wind-burned face with fine eye lines and dark stubble, one narrowed eye and part of his dark canvas jacket and borrowed grey shirt in blurred dark framing, motionless, tense. Through the gap, middle and below: the tavern hall lit by a warm lamp. A lean stranger in a dry, well-cut dark coat and hat stands at the bar edge, his palm covering a coin on the wood. Opposite him a broad-shouldered grey-haired woman in a dark apron, sleeves rolled up, holds a rag and slowly shakes her head. Details are small and partly cut off by the board edges. Dust hangs in the lamplight. Rain is implied by cold blue-grey in the attic. Palette: warm amber lamp below against cold dark blue shadow above, deep noir contrast. Shallow depth of field, focus on the lower scene, blurred boards in front. Continuity: same attic, evening, hero still in the borrowed shirt under the jacket.",
+        "short": "Through a gap in attic floorboards, a hero's watching eye frames the lamplit tavern below: a stranger in a dark coat and hat covers a coin on the bar while a grey-haired woman in an apron shakes her head.",
+        "avoid": "No extra people, no text, no visible rain inside, no clear view of the stranger's face.",
+        "timeOfDay": "evening",
+        "weather": "rain",
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 188,
+      "ms": 6054,
+      "usage": {
+        "input": 1881,
+        "output": 640
+      },
+      "usdMicros": 10162,
+      "at": "2026-10-17T18:24:45.347Z",
+      "raw": null
+    },
+    "t8": {
+      "shot": "t8",
+      "brief": {
+        "who": [
+          "Рэй",
+          "Дуня",
+          "Мокей"
+        ],
+        "beat": "The narrow flat-bottomed boat slips away from the pontoon into dusk fog, the hero in the bow beside a copper hand pump, his resin-smeared bandaged hands resting on his knees, while Dunya poles from the stern.",
+        "brief": "Three people in a narrow flat-bottomed boat, seen from a low angle near the water, slightly ahead of the bow. Foreground: the hero sits in the bow beside a copper hand pump, both hands wrapped in linen strips smeared with black resin, resting on his knees. He wears his worn dark canvas work jacket with the round patch on the left shoulder. His wind-burned, stubbled face is turned toward the dark water ahead, grim and watchful. Middle: an old man with a short grey beard and knitted cap sits hunched over a bundle in the centre of the boat. Behind him at the stern, a wiry young woman in an oilskin coat, hair under a scarf, leans on a long pole. Background: the pontoon recedes, lamps on distant pontoons are muddy blurred glows in thick fog, with warehouse roofs as black silhouettes against the last fading light. Black still water, no ripples but the pole's wake. Dusk, humid and windless. Palette: cold blue-grey and black with faint dull amber lamp smudges and a glint of copper. Cinematic noir, 35mm lens, shallow depth of field, soft haze. Silent, tense mood.",
+        "short": "At dusk a narrow boat leaves a pontoon in fog: the hero in the bow beside a copper pump, resin-wrapped hands on his knees, an old man hunched over a bundle, a young woman poling at the stern, blurred lamps behind.",
+        "avoid": "No extra people, no text, no other boats, no bright colours, no sunlight.",
+        "timeOfDay": "dusk",
+        "weather": "fog, still and damp air",
+        "profileUpdates": [],
+        "edit": null
+      },
+      "words": 189,
+      "ms": 5845,
+      "usage": {
+        "input": 1931,
+        "output": 659
+      },
+      "usdMicros": 10452,
+      "at": "2026-10-17T18:24:51.193Z",
+      "raw": null
+    }
+  }
+}
