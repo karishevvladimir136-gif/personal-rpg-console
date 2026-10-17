@@ -166,6 +166,13 @@ async function openingPending(client: OwnerClient, campaignId: string, timeline:
     (sheet.mode === "structured_rpg" || sheet.mode === "narrative"))) return false;
   return !(await readAstraFirstOpeningStatus(campaignId, timeline));
 }
+/** Polish 2: the world clock without side effects (no digest, no settings read) — for the picture
+ * path, which only needs the time of day of the snapshot it draws from. */
+export async function readWorldClock(campaignId: string): Promise<{ worldMinutes: number | null }> {
+  const { store } = await authorizedStore(campaignId);
+  const play = await store.readPlay(campaignId);
+  return { worldMinutes: Number.isFinite(play.worldMinutes) ? play.worldMinutes : null };
+}
 export async function readPlay(campaignId: string) {
   const { store, owner, timeline } = await authorizedStore(campaignId);
   const play = await store.readPlay(campaignId);

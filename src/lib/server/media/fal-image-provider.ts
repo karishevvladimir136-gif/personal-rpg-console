@@ -14,6 +14,8 @@ export async function imageProviderCapability(campaignId: string) {
       // can be stored once stages 3/4 add the provider there (docs/UI_DATA_NEEDS.md).
       persistence: false,
     },
+    // Polish 2: GPT Image 2.5 draws the anchors and frames by default; the key's presence only.
+    openai: { configured: Boolean(process.env.OPENAI_API_KEY) },
   };
 }
 

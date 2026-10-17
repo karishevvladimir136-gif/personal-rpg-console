@@ -22,7 +22,7 @@ const picture = (n, over = {}) => ({
 });
 const style = (n, over = {}) => ({ id: uuid(n), scope: "campaign", scopeId: cid, version: 1, preset: "line-art", label: "Line art", styleText: STYLE_PRESETS[0].text, hasReference: false, active: true, createdAt: at(n), ...over });
 const board = (pictures = [], styles = [], settings = {}) => parsePictureBoard({
-  campaignId: cid, worldId: null, settings: { frames: "every", quality: "fast", dailyCap: 10, autopilot: { enabled: true, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal" }, revision: 1, ...settings },
+  campaignId: cid, worldId: null, settings: { frames: "every", quality: "fast", dailyCap: 10, autopilot: { enabled: true, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal" }, models: {}, revision: 1, ...settings },
   today: { count: pictures.length, costUsdMicros: 0 }, styles, pictures,
 });
 
@@ -76,7 +76,10 @@ test("anchor set, autopilot plan and restyle plan follow the records, the cap an
   const restyle = restylePlan(snapshot, withStyle);
   assert.ok(restyle.plan.some((row) => row.subject.id === transport.id), "an anchor in the old style is re-rendered");
   assert.equal(restyle.fastUsdMicros, restyle.plan.reduce((sum, row) => sum + pictureCostUsdMicros("fast", row.composition), 0));
-  assert.ok(restyle.qualityUsdMicros > restyle.fastUsdMicros);
+  // Polish 2: both default tiers are GPT Image 2.5 at the same price; a fal fast model makes the fast estimate cheaper.
+  assert.equal(restyle.qualityUsdMicros, restyle.fastUsdMicros);
+  const klein = restylePlan(snapshot, board([picture(2, { subjectId: transport.id, composition: "holding" })], [style(50)], { models: { fast: "fal-ai/flux-2/klein/9b" } }));
+  assert.ok(klein.qualityUsdMicros > klein.fastUsdMicros);
   const done = board([picture(2, { subjectId: transport.id, composition: "holding", styleVersionId: uuid(50) })], [style(50)], { autopilot: { ...empty.settings.autopilot, enabled: false } });
   assert.equal(restylePlan(snapshot, done).plan.length, 0, "nothing left once every anchor has the new style");
   assert.equal(capRemaining(board([picture(1), picture(2, { version: 2 })], [], { dailyCap: 2 })), 0);

@@ -13,13 +13,14 @@
 // reports its own usage, so the price of a picture is exact, not estimated.
 import { FalImageError, sniffImage, type FalReference } from "./fal-image.ts";
 
+// medianSeconds: the bake-off's median from submit to the downloaded picture (one megapixel).
 export const OPENAI_IMAGE_MODELS = [
-  { id: "gpt-image-2", label: "GPT Image 2", maxReferences: 6, tier: "quality",
-    note: { ru: "OpenAI; люди с механизмами, точные детали", en: "OpenAI; people handling machines, precise detail" } },
-  { id: "gpt-image-2.5-sunburst", label: "GPT Image 2.5 Sunburst", maxReferences: 6, tier: "quality",
-    note: { ru: "OpenAI; точное редактирование", en: "OpenAI; precise editing" } },
-  { id: "gpt-image-2.5-flare", label: "GPT Image 2.5 Flare", maxReferences: 6, tier: "fast",
-    note: { ru: "OpenAI; быстрая версия 2.5", en: "OpenAI; the fast 2.5" } },
+  { id: "gpt-image-2", label: "GPT Image 2", maxReferences: 6, tier: "quality", medianSeconds: 69,
+    note: { ru: "OpenAI; то же качество, что 2.5, втрое дороже и вчетверо дольше", en: "OpenAI; the quality of 2.5 at three times the price and four times the wait" } },
+  { id: "gpt-image-2.5-sunburst", label: "GPT Image 2.5 Sunburst", maxReferences: 6, tier: "quality", medianSeconds: 27,
+    note: { ru: "OpenAI; лучшее сходство и точность по слепому выбору владельца — анкеры, ключевые кадры, перерисовки", en: "OpenAI; best likeness and adherence in the owner's blind picks — anchors, key frames, redraws" } },
+  { id: "gpt-image-2.5-flare", label: "GPT Image 2.5 Flare", maxReferences: 6, tier: "fast", medianSeconds: 16,
+    note: { ru: "OpenAI; быстрая 2.5, то же сходство — живые кадры", en: "OpenAI; the fast 2.5 with the same likeness — live frames" } },
 ] as const;
 export type OpenAIImageModelId = (typeof OPENAI_IMAGE_MODELS)[number]["id"];
 export const openAIImageModel = (id: string) => OPENAI_IMAGE_MODELS.find((model) => model.id === id) ?? null;
@@ -143,6 +144,18 @@ export async function generateOpenAIImage(apiKey: string, input: OpenAIImageInpu
   const usage = { textInputTokens, imageInputTokens: details ? imageInputTokens : count(body.usage?.input_tokens), outputTokens: count(body.usage?.output_tokens) };
   return { bytes, contentType, width: input.width, height: input.height, model: input.model, endpoint: request.url.replace("https://api.openai.com", ""),
     usage, priceUsdMicros: openAIImageCostUsdMicros(usage), elapsedMs: Date.now() - started };
+}
+
+/** The typical price of one picture, from the bake-off's measured usage (2026-10-17, one
+ * megapixel, high quality: about 1,000 output tokens on 2.5 and 4,000 on GPT Image 2; about
+ * 2,000 text tokens of prompt; about 1,000 image tokens per reference): what a price label
+ * shows before the request. The row itself is settled to the exact usage afterwards. */
+export function openAIImageTypicalUsdMicros(input: { model: string; width: number; height: number; quality: "low" | "medium" | "high"; references?: number }) {
+  const pixels = Math.max(1, input.width * input.height) / (1024 * 1024);
+  const perMegapixel = input.model === "gpt-image-2" ? 4_000 : 1_000;
+  const quality = input.quality === "high" ? 1 : input.quality === "medium" ? 0.5 : 0.25;
+  const outputTokens = Math.ceil(pixels * perMegapixel * quality);
+  return openAIImageCostUsdMicros({ textInputTokens: 2_000, imageInputTokens: (input.references ?? 0) * 1_000, outputTokens });
 }
 
 /** What a budget guard reserves before a request, above the usage measured in the bake-off

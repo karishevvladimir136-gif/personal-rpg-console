@@ -11,12 +11,14 @@ import { isUuid } from "../persistence/validation.ts";
 import { itemTypeKey } from "../ui/rarity.ts";
 import {
   COMPOSITION_SIZE,
+  FAL_IMAGE_MODELS,
   FAL_SIZES,
-  FAST_FAL_IMAGE_MODEL,
   falImagePriceUsdMicros,
   falModel,
   type FalImageModelId,
+  type FalSizePreset,
 } from "./fal-image.ts";
+import { OPENAI_IMAGE_MODELS, openAIImageModel, openAIImageTypicalUsdMicros, type OpenAIImageModelId } from "./openai-image.ts";
 
 export type PictureKind = "frame" | "anchor";
 export type PictureSubjectKind = "turn" | "entity" | "item" | "location";
@@ -76,6 +78,8 @@ export type PictureSettings = {
   quality: PictureTier;
   dailyCap: number;
   autopilot: PictureAutopilot;
+  /** Polish 2: the owner's model per tier (picture settings); an absent tier means the default. */
+  models: Partial<Record<PictureTier, PictureModelId>>;
   revision: number;
 };
 export type PictureBoard = {
@@ -90,7 +94,38 @@ export type PictureBoard = {
 export const defaultPictureAutopilot: PictureAutopilot = {
   enabled: false, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal",
 };
-export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, revision: 0 };
+export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, revision: 0 };
+
+// Polish 2: the catalogue of picture models of both providers, one entry per model, and the
+// defaults per tier from the owner's blind picks (2026-10-17, docs/stages/POLISH_2.md §2):
+// GPT Image 2.5 Sunburst for anchors, key frames and redraws (the quality tier), GPT Image 2.5
+// Flare for live frames (the fast tier). Every other model stays in the catalogue, off by
+// default; the owner switches a tier in the picture settings.
+export type PictureModelId = FalImageModelId | OpenAIImageModelId;
+export type PictureModel = {
+  id: PictureModelId; provider: "fal" | "openai"; label: string; tier: PictureTier; maxReferences: number;
+  /** The bake-off's median seconds per picture (null where it was not measured). */
+  medianSeconds: number | null;
+  note: { ru: string; en: string };
+};
+const FAL_MEDIAN_SECONDS: Partial<Record<FalImageModelId, number>> = {
+  "fal-ai/flux-2-pro": 17, "fal-ai/flux-2/klein/9b": 3.3, "fal-ai/nano-banana-pro": 22, "fal-ai/nano-banana-2": 11,
+  "bytedance/seedream/v5/pro/text-to-image": 88, "blackforestlabs/flux-3/text-to-image": 29, "fal-ai/qwen-image-3/text-to-image": 114, "xai/grok-imagine-image": 11,
+};
+export const PICTURE_MODELS: PictureModel[] = [
+  ...OPENAI_IMAGE_MODELS.map((row) => ({ id: row.id, provider: "openai" as const, label: row.label, tier: row.tier, maxReferences: row.maxReferences, medianSeconds: row.medianSeconds, note: row.note })),
+  ...FAL_IMAGE_MODELS.map((row) => ({ id: row.id, provider: "fal" as const, label: row.label, tier: row.tier, maxReferences: row.maxReferences, medianSeconds: FAL_MEDIAN_SECONDS[row.id] ?? null, note: row.note })),
+];
+export const pictureModel = (id: string) => PICTURE_MODELS.find((row) => row.id === id) ?? null;
+export const isPictureModelId = (id: unknown): id is PictureModelId => typeof id === "string" && pictureModel(id) !== null;
+export const isOpenAIPictureModel = (id: string) => openAIImageModel(id) !== null;
+export const DEFAULT_TIER_MODELS: Record<PictureTier, PictureModelId> = { fast: "gpt-image-2.5-flare", quality: "gpt-image-2.5-sunburst" };
+export function parsePictureModels(raw: unknown): PictureSettings["models"] {
+  const v = isRecord(raw) ? raw : {};
+  const models: PictureSettings["models"] = {};
+  for (const tier of ["fast", "quality"] as const) if (isPictureModelId(v[tier])) models[tier] = v[tier];
+  return models;
+}
 
 const KINDS: PictureKind[] = ["frame", "anchor"];
 const SUBJECT_KINDS: PictureSubjectKind[] = ["turn", "entity", "item", "location"];
@@ -120,6 +155,7 @@ export function parsePictureSettings(raw: unknown): PictureSettings {
     quality: oneOf(TIERS, v.quality) ? v.quality : "fast",
     dailyCap: Number.isSafeInteger(cap) && cap >= 0 && cap <= 500 ? cap : 60,
     autopilot: parsePictureAutopilot(v.autopilot),
+    models: parsePictureModels(v.models),
     revision: Number.isSafeInteger(v.revision) ? (v.revision as number) : 0,
   };
 }
@@ -188,12 +224,25 @@ export function styleVersions(board: Pick<PictureBoard, "styles">, scope: "world
   return board.styles.filter((row) => row.scope === scope).sort((a, b) => b.version - a.version);
 }
 
-export const modelForTier = (tier: PictureTier): FalImageModelId => (tier === "quality" ? "fal-ai/flux-2-pro" : FAST_FAL_IMAGE_MODEL);
-export function pictureCostUsdMicros(tier: PictureTier, composition: PictureComposition, model: FalImageModelId = modelForTier(tier)) {
-  const [width, height] = FAL_SIZES[COMPOSITION_SIZE[composition]];
-  return falImagePriceUsdMicros(model, width, height);
+/** The model of a tier: the owner's choice in the picture settings, else the default of the blind picks. */
+export const modelForTier = (tier: PictureTier, settings?: Pick<PictureSettings, "models"> | null): PictureModelId => settings?.models?.[tier] ?? DEFAULT_TIER_MODELS[tier];
+/** The size a model draws a composition at: fal keeps the Stage V presets; GPT Image draws frames, figures
+ * and places at the bake-off's near-megapixel sizes (its price is per token, so the small presets save
+ * little, and the proof was measured at these). Every OpenAI size is a multiple of 16 of at least 512. */
+export function pictureSizeFor(model: string, composition: PictureComposition): FalSizePreset {
+  const preset = COMPOSITION_SIZE[composition];
+  if (!isOpenAIPictureModel(model)) return preset;
+  return preset === "landscape_16_9" ? "landscape_16_9_hd" : preset === "portrait_16_9" ? "portrait_16_9_hd" : preset;
 }
-export const maxReferencesFor = (model: FalImageModelId) => falModel(model)?.maxReferences ?? 4;
+/** The expected price of one picture for the label before the request: fal at its list price, OpenAI
+ * at the bake-off's typical usage (the row is settled to the exact usage afterwards). */
+export function pictureCostUsdMicros(tier: PictureTier, composition: PictureComposition, model: string = modelForTier(tier), references = 0) {
+  const [width, height] = FAL_SIZES[pictureSizeFor(model, composition)];
+  if (isOpenAIPictureModel(model)) return openAIImageTypicalUsdMicros({ model, width, height, quality: "high", references });
+  if (!falModel(model)) return 0;
+  return falImagePriceUsdMicros(model as FalImageModelId, width, height, references);
+}
+export const maxReferencesFor = (model: string) => pictureModel(model)?.maxReferences ?? 4;
 export const capRemaining = (board: Pick<PictureBoard, "settings" | "today">) => Math.max(0, board.settings.dailyCap - board.today.count);
 
 const byVersion = (a: PublicPicture, b: PublicPicture) => a.version - b.version || a.createdAt.localeCompare(b.createdAt);
@@ -308,13 +357,13 @@ export function restylePlan(snapshot: CampaignSnapshot, board: PictureBoard) {
     const hasNew = rows.some((row) => row.styleVersionId === style && row.status !== "failed");
     return !hasNew && (hasOld || board.settings.autopilot.enabled);
   });
-  const cost = (tier: PictureTier) => plan.reduce((sum, row) => sum + pictureCostUsdMicros(tier, row.composition), 0);
+  const cost = (tier: PictureTier) => plan.reduce((sum, row) => sum + pictureCostUsdMicros(tier, row.composition, modelForTier(tier, board.settings)), 0);
   return { plan, fastUsdMicros: cost("fast"), qualityUsdMicros: cost("quality") };
 }
 
 /** Reference pictures for a shot, in priority order: the style's reference image, the place's
  * anchor, then the portraits of the people in the shot, up to the model's limit. */
-export function referencesForShot(board: PictureBoard, input: { entityIds: string[]; locationId: string | null; model: FalImageModelId }) {
+export function referencesForShot(board: PictureBoard, input: { entityIds: string[]; locationId: string | null; model: string }) {
   const ids: string[] = [];
   const style = activeStyle(board);
   if (style?.hasReference) ids.push(style.id);
@@ -329,7 +378,7 @@ export function referencesForShot(board: PictureBoard, input: { entityIds: strin
   return [...new Set(ids)].slice(0, maxReferencesFor(input.model));
 }
 /** References for an anchor: the style image and, for a figure, the portrait of the same person. */
-export function referencesForAnchor(board: PictureBoard, subject: PictureSubject, composition: PictureComposition, model: FalImageModelId) {
+export function referencesForAnchor(board: PictureBoard, subject: PictureSubject, composition: PictureComposition, model: string) {
   const ids: string[] = [];
   const style = activeStyle(board);
   if (style?.hasReference) ids.push(style.id);

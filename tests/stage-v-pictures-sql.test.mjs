@@ -27,6 +27,20 @@ test("migration 54: settings, styles with versions and roll-back, campaign overr
     assert.equal(saved.frames, "key");
     await fails(call(f, w.cid, "settings.save", { expectedRevision: 1, frames: "sometimes", quality: "fast", dailyCap: 10, autopilot: read.settings.autopilot }), "rpg_validation");
     await fails(call(f, w.cid, "settings.save", { expectedRevision: 1, frames: "every", quality: "fast", dailyCap: 10, autopilot: { ...read.settings.autopilot, extra: true } }), "rpg_validation");
+    // Polish 2 (migration 64): the owner's model per tier travels with the settings; absent means the default.
+    assert.deepEqual(saved.models, {}, "no choice yet");
+    const picked = await call(f, w.cid, "settings.save", { expectedRevision: 1, frames: "key", quality: "quality", dailyCap: 10, autopilot: read.settings.autopilot, models: { fast: "fal-ai/flux-2/klein/9b" } });
+    assert.deepEqual(picked.models, { fast: "fal-ai/flux-2/klein/9b" });
+    assert.equal(picked.revision, 2);
+    await fails(call(f, w.cid, "settings.save", { expectedRevision: 2, frames: "key", quality: "quality", dailyCap: 10, autopilot: read.settings.autopilot, models: { slow: "x" } }), "rpg_validation");
+    await fails(call(f, w.cid, "settings.save", { expectedRevision: 2, frames: "key", quality: "quality", dailyCap: 10, autopilot: read.settings.autopilot, models: { fast: 7 } }), "rpg_validation");
+    const cleared = await call(f, w.cid, "settings.save", { expectedRevision: 2, frames: "key", quality: "quality", dailyCap: 10, autopilot: read.settings.autopilot, models: {} });
+    assert.deepEqual(cleared.models, {});
+    // A GPT Image model is stored with its provider; the model ID itself is free text for the catalogue in TypeScript.
+    const gpt = await call(f, w.cid, "picture.create", { id: randomUUID(), kind: "anchor", subjectKind: "entity", subjectId: w.hero, composition: "portrait", timeline: await f.fence(w.cid),
+      tier: "quality", trigger: "redraw", model: "gpt-image-2.5-sunburst", styleVersionId: null, shot: null, prompt: "A portrait.", referenceIds: [] });
+    assert.equal(gpt.model, "gpt-image-2.5-sunburst");
+    assert.equal((await f.one("select provider from rpg_private.pictures where id=$1", [gpt.id])).provider, "openai");
     // Styles: no world bound, so a world-scoped style is refused; campaign styles get versions.
     await fails(call(f, w.cid, "style.save", { id: randomUUID(), scope: "world", preset: "noir", label: "Noir", styleText: "x", reference: null, activate: true }), "rpg_conflict");
     const v1 = await call(f, w.cid, "style.save", { id: randomUUID(), scope: "campaign", preset: "line-art", label: "Line art", styleText: "Clean ink lines, limited palette.", reference: null, activate: true });

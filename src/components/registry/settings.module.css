@@ -44,6 +44,22 @@
   align-items: center;
   gap: 10px;
 }
+.pick {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+}
+.pick select {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #1b1511;
+  color: inherit;
+  font: inherit;
+  font-size: 14.5px;
+}
 .samples {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

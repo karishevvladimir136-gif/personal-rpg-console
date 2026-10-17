@@ -1,6 +1,6 @@
 import "server-only";
 import { readCampaign } from "../repository";
-import { readTurn } from "../gameplay-service";
+import { readTurn, readWorldClock } from "../gameplay-service";
 import { subscribeLiveTurn } from "../dm/live-turns";
 import { PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
@@ -28,7 +28,7 @@ import {
   type PublicPicture,
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
-import { compileRecordsFrame } from "../../visual-frame/prompt-compiler";
+import { compileAnchorPrompt, compileRecordsFrame, promptFamily, type BriefReference } from "../../visual-frame/prompt-compiler";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
@@ -121,8 +121,10 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const context = shotContext(snapshot);
   const built = await buildShot(process.env.ANTHROPIC_API_KEY ?? "", paragraph, context);
   const shot: Shot = built.shot ?? fallbackShot(paragraph, context);
-  const tier: PictureTier = trigger === "key_moment" ? "quality" : board.settings.quality;
-  const model = modelForTier(tier);
+  // Polish 2 (the owner's blind picks): live and committed frames on the live tier the owner chose
+  // (Flare by default); key moments and «Перерисовать» on the quality tier (Sunburst by default).
+  const tier: PictureTier = trigger === "key_moment" || trigger === "redraw" ? "quality" : board.settings.quality;
+  const model = modelForTier(tier, board.settings);
   const entityIds = shotEntityIds(shot, snapshot.entities);
   const referenceIds = referencesForShot(board, { entityIds, locationId: snapshot.publicState.current_location_id, model });
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
@@ -132,8 +134,11 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const placeAnchor = place ? anchorFor(board, { kind: "location", id: place.id }, "location").picture : null;
   const heroId = snapshot.entities.find((row) => row.kind === "player" && entityIds.includes(row.id))?.id ?? null;
   const heroFigure = heroId ? anchorFor(board, { kind: "entity", id: heroId }, "figure").picture : null;
+  // The world clock through a side-effect-free read (readPlay can start a digest); a failure leaves the time out.
+  const clock = await readWorldClock(campaignId).catch(() => ({ worldMinutes: null }));
   const compiled = compileRecordsFrame({
     modelId: model, shot, style: styleTextFor(board, snapshot.settings.values.visualStyle), items: snapshot.items, maxReferences: maxReferencesFor(model),
+    worldMinutes: clock.worldMinutes,
     people: shot.who.map((name) => {
       const entity = snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
       return { name, entity, appearance: entity ? appearanceOf(snapshot, entity.id) : "" };
@@ -177,6 +182,7 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   if (!snapshot.timeline) throw new PersistenceError("conflict");
   if (!capRemaining(board)) return null;
   let name = "", description = "", chosen: PictureComposition;
+  let person: { entity: CampaignSnapshot["entities"][number]; carried: string[] } | null = null;
   if (subject.kind === "entity") {
     const row = snapshot.entities.find((entity) => entity.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
@@ -184,6 +190,7 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
     name = row.name;
     description = [appearanceOf(snapshot, row.id), worn.length ? `Visible equipment: ${worn.join(", ")}.` : ""].filter(Boolean).join("\n");
     chosen = composition && ["portrait", "figure", "holding"].includes(composition) ? composition : compositionForEntity(row);
+    person = { entity: row, carried: worn };
   } else if (subject.kind === "item") {
     const row = snapshot.items.find((item) => item.id === subject.id);
     if (!row) throw new PersistenceError("not_found");
@@ -196,11 +203,21 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   // Owner's rule: best quality wherever it does not hurt the live feel — anchors are drawn on the
   // quality tier unless the caller (a fast restyle) asks for the fast one.
   const pickedTier: PictureTier = tier ?? "quality";
-  const model = modelForTier(pickedTier);
+  const model = modelForTier(pickedTier, board.settings);
   const style = activeStyle(board);
   const referenceIds = referencesForAnchor(board, subject, chosen, model);
-  const prompt = falSubjectPrompt({ composition: chosen, name, description, style: styleTextFor(board, snapshot.settings.values.visualStyle) }) +
-    (referenceIds.length ? `\nReferences: ${style?.hasReference ? "the first reference image sets the art style" : ""}${chosen === "figure" && referenceIds.length > (style?.hasReference ? 1 : 0) ? "; a reference portrait shows this person's face: keep it" : ""}.` : "");
+  const styleText = styleTextFor(board, snapshot.settings.values.visualStyle);
+  // Polish 2: a person's portrait or figure goes through the prompt compiler (the model's dialect, the
+  // face reference by role, the anatomy guard) with the carried items as a separate constraint.
+  const prompt = person && (chosen === "portrait" || chosen === "figure")
+    ? compileAnchorPrompt({
+        person: { key: person.entity.id, label: person.entity.kind === "player" ? "the hero" : "this character", pronoun: "they", appearance: appearanceOf(snapshot, person.entity.id) || "as described in the records",
+          state: person.entity.conditions.filter(Boolean).slice(0, 4).map((condition) => `visible condition: ${condition}`) },
+        composition: chosen, carried: person.carried, style: styleText,
+        references: referenceIds.map((id): BriefReference => (id === style?.id ? { role: "style" } : { role: "face", person: person!.entity.id })),
+      }, promptFamily(model))
+    : falSubjectPrompt({ composition: chosen, name, description, style: styleText }) +
+      (referenceIds.length ? `\nReferences: ${style?.hasReference ? "the first reference image sets the art style" : ""}${chosen === "figure" && referenceIds.length > (style?.hasReference ? 1 : 0) ? "; a reference portrait shows this person's face: keep it" : ""}.` : "");
   const picture = await createPictureRow(ctx, {
     id: crypto.randomUUID(), kind: "anchor", subjectKind: subject.kind, subjectId: subject.id, composition: chosen, timeline: snapshot.timeline,
     tier: pickedTier, trigger, model, styleVersionId: style?.id ?? null, shot: null, prompt, referenceIds,
@@ -247,7 +264,7 @@ export async function restyleCampaign(campaignId: string, value: unknown, schedu
   return { status: "queued" as const, count: plan.length, fastUsdMicros, qualityUsdMicros, queued };
 }
 
-/** The paid work of one picture, with the server's fal key. */
+/** The paid work of one picture, with the server's keys (fal for fal models, OpenAI for GPT Image). */
 export function runPictureJob(ctx: PicturesContext, pictureId: string, options: { extraCostUsdMicros?: number } = {}) {
-  return runJob(ctx, pictureId, { apiKey: process.env.FAL_KEY ?? "", extraCostUsdMicros: options.extraCostUsdMicros });
+  return runJob(ctx, pictureId, { apiKey: process.env.FAL_KEY ?? "", openAIApiKey: process.env.OPENAI_API_KEY ?? "", extraCostUsdMicros: options.extraCostUsdMicros });
 }

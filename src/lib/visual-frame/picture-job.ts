@@ -1,11 +1,13 @@
 // The paid work of one Stage V picture, over an injected context (rows through
-// the rpg_pictures RPC, pixels through the private bucket): references, one fal
-// request, at most one softened re-submit after a content refusal, storage, the
-// row's result. Errors end in the row, never in a retry loop. No environment
-// access: the server passes the key, tests pass fakes.
+// the rpg_pictures RPC, pixels through the private bucket): references, one
+// request to the model's provider (fal's queue or OpenAI's images API, polish 2),
+// at most one softened re-submit after a content refusal and one bounded fallback
+// model, storage, the row's result. Errors end in the row, never in a retry loop.
+// No environment access: the server passes the keys, tests pass fakes.
 import { isUuid } from "../persistence/validation.ts";
-import { COMPOSITION_SIZE, FAST_FAL_IMAGE_MODEL, generateFalImage, isContentRefusal, softenPrompt, type FalImageModelId, type FalReference } from "./fal-image.ts";
-import { maxReferencesFor, parsePicture, type PictureComposition, type PictureSubjectKind, type PictureTier, type PictureTrigger, type PublicPicture } from "./pictures.ts";
+import { FAL_SIZES, FAST_FAL_IMAGE_MODEL, generateFalImage, isContentRefusal, softenPrompt, type FalImageModelId, type FalReference } from "./fal-image.ts";
+import { generateOpenAIImage, type OpenAIImageModelId } from "./openai-image.ts";
+import { isOpenAIPictureModel, maxReferencesFor, parsePicture, pictureSizeFor, type PictureComposition, type PictureSubjectKind, type PictureTier, type PictureTrigger, type PublicPicture } from "./pictures.ts";
 
 export type PictureRpcAction = "read" | "settings.save" | "style.save" | "style.activate" | "style.clear" | "picture.create" | "picture.update" | "picture.hide" | "picture.private" | "style.private";
 export type PictureJobContext = {
@@ -74,7 +76,46 @@ export async function loadReferences(ctx: PictureJobContext, ids: string[]): Pro
   return references;
 }
 
-export async function runPictureJob(ctx: PictureJobContext, pictureId: string, options: { apiKey: string; extraCostUsdMicros?: number; fetcher?: typeof fetch; sleep?: (ms: number) => Promise<void> }) {
+export type PictureJobOptions = {
+  /** The server's fal key (fal models). */
+  apiKey: string;
+  /** The server's OpenAI key (GPT Image models); the same presence check as fal's: empty means «not configured». */
+  openAIApiKey?: string;
+  extraCostUsdMicros?: number;
+  fetcher?: typeof fetch;
+  sleep?: (ms: number) => Promise<void>;
+};
+type Drawn = { bytes: Uint8Array; contentType: "image/png" | "image/jpeg" | "image/webp"; width: number; height: number; model: string; endpoint: string; requestId: string | null; priceUsdMicros: number; elapsedMs: number };
+
+/** One request to whichever provider serves the model: fal's queue or OpenAI's images API. The
+ * price comes back with the picture (fal at its list price, OpenAI from the reply's usage), so the
+ * ledger and the daily cap see both the same way. */
+async function draw(model: string, prompt: string, composition: PictureComposition, references: FalReference[], options: PictureJobOptions): Promise<Drawn> {
+  const size = pictureSizeFor(model, composition);
+  if (isOpenAIPictureModel(model)) {
+    const [width, height] = FAL_SIZES[size];
+    const result = await generateOpenAIImage(options.openAIApiKey ?? "", {
+      model: model as OpenAIImageModelId, prompt, width, height, quality: "high", format: "jpeg", references: references.slice(0, maxReferencesFor(model)),
+      // The app draws fights and wounds: the permissive moderation level the API offers; a block is still a refusal.
+      moderation: "low",
+    }, { fetcher: options.fetcher });
+    return { ...result, requestId: null };
+  }
+  const result = await generateFalImage(options.apiKey, {
+    model: model as FalImageModelId, prompt, size, format: "jpeg", references: references.slice(0, maxReferencesFor(model)),
+    ...(model === "fal-ai/flux-2-pro" && (composition === "portrait" || composition === "figure") ? { safetyTolerance: "4" as const } : {}),
+  }, { fetcher: options.fetcher, sleep: options.sleep });
+  return result;
+}
+
+/** The ladder after a content refusal: one softened re-submit on the same model, then — bounded, a third
+ * and last request — another model without that checker: FLUX.2 [pro] hands the picture to the fast
+ * [klein] (Stage V bench), GPT Image 2.5 Flare to Sunburst (polish 2: Flare refused the cut-forearm shot
+ * twice in three, Sunburst never). Nothing else retries. */
+export const refusalFallbackModel = (model: string): string | null =>
+  model === "fal-ai/flux-2-pro" ? FAST_FAL_IMAGE_MODEL : model === "gpt-image-2.5-flare" ? "gpt-image-2.5-sunburst" : null;
+
+export async function runPictureJob(ctx: PictureJobContext, pictureId: string, options: PictureJobOptions) {
   const started = Date.now();
   const log = ctx.log ?? (() => {});
   const picture = await privatePicture(ctx, pictureId);
@@ -83,26 +124,22 @@ export async function runPictureJob(ctx: PictureJobContext, pictureId: string, o
   let costUsdMicros = options.extraCostUsdMicros ?? 0;
   try {
     const references: FalReference[] = picture.referenceIds.length ? await loadReferences(ctx, picture.referenceIds) : [];
-    const model = picture.model as FalImageModelId;
-    const size = COMPOSITION_SIZE[picture.composition];
-    const base = { model, size, format: "jpeg" as const, references,
-      ...(model === "fal-ai/flux-2-pro" && (picture.composition === "portrait" || picture.composition === "figure") ? { safetyTolerance: "4" as const } : {}) };
-    const call = (prompt: string, overrides: Partial<typeof base> = {}) => generateFalImage(options.apiKey, { ...base, ...overrides, prompt }, { fetcher: options.fetcher, sleep: options.sleep });
-    let result;
+    const model = picture.model;
+    const call = (prompt: string, drawWith = model) => draw(drawWith, prompt, picture.composition, references, options);
+    let result: Drawn;
     try {
       result = await call(picture.prompt);
     } catch (error) {
       if (!isContentRefusal(error)) throw error;
       // The checker refused the prompt itself: one re-submit with a softened description, never a loop.
-      log("picture_content_refusal", { campaignId: ctx.campaignId, pictureId, detail: (error as { detail?: string }).detail ?? null });
+      log("picture_content_refusal", { campaignId: ctx.campaignId, pictureId, model, detail: (error as { detail?: string }).detail ?? null });
       try {
         result = await call(softenPrompt(picture.prompt));
       } catch (second) {
-        // The [pro] checker refuses a fight's climax even softened (Stage V bench: 2 of 4 key moments);
-        // the fast model has no prompt checker, so the picture is drawn there instead of lost. Bounded: a third and last request.
-        if (!isContentRefusal(second) || model !== "fal-ai/flux-2-pro") throw second;
-        log("picture_fast_fallback", { campaignId: ctx.campaignId, pictureId, detail: (second as { detail?: string }).detail ?? null });
-        result = await call(picture.prompt, { model: FAST_FAL_IMAGE_MODEL, references: references.slice(0, maxReferencesFor(FAST_FAL_IMAGE_MODEL)), safetyTolerance: undefined });
+        const fallback = refusalFallbackModel(model);
+        if (!isContentRefusal(second) || !fallback) throw second;
+        log("picture_fast_fallback", { campaignId: ctx.campaignId, pictureId, model, fallback, detail: (second as { detail?: string }).detail ?? null });
+        result = await call(picture.prompt, fallback);
       }
     }
     costUsdMicros += result.priceUsdMicros;
@@ -111,9 +148,9 @@ export async function runPictureJob(ctx: PictureJobContext, pictureId: string, o
     const ready = await updatePictureRow(ctx, {
       id: pictureId, status: "ready",
       output: { storagePath, contentType: result.contentType, width: result.width, height: result.height, bytes: result.bytes.byteLength, sha256: ctx.sha256(result.bytes) },
-      costUsdMicros, requestId: result.requestId, elapsedMs: Date.now() - started, model: result.model,
+      costUsdMicros, ...(result.requestId ? { requestId: result.requestId } : {}), elapsedMs: Date.now() - started, model: result.model,
     });
-    log("picture_ready", { campaignId: ctx.campaignId, pictureId, kind: picture.kind, model, endpoint: result.endpoint, references: references.length, ms: Date.now() - started, falMs: result.elapsedMs, costUsdMicros });
+    log("picture_ready", { campaignId: ctx.campaignId, pictureId, kind: picture.kind, model: result.model, endpoint: result.endpoint, references: references.length, ms: Date.now() - started, providerMs: result.elapsedMs, costUsdMicros });
     return ready;
   } catch (error) {
     const code = (error as { code?: string })?.code ?? "failed";

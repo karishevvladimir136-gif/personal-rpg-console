@@ -137,3 +137,31 @@ Done on `claude/polish` (group 5 of `POLISH.md`; the picture models and the prom
   through the frames, Esc or the scrim to close, and a link to the saved turn.
 Not done here: the anatomy check on anchors before auto-accept (§7 of POLISH's findings, not in group 5's list); the
 negative «no lettering» prompt line (the prompt compiler's); the one-stage layout is group 6.
+
+## 9. Polish 2 (2026-10-17): GPT Image 2.5 by the owner's blind picks
+
+Done on `claude/polish-2` (`docs/stages/POLISH_2.md` §2), after `claude/picture-models` was merged:
+- **The model per tier.** `modelForTier(tier, settings)` in `src/lib/visual-frame/pictures.ts`: the quality tier
+  (anchors, key frames, «Перерисовать») draws on **GPT Image 2.5 Sunburst**, the fast tier (live and committed frames)
+  on **GPT Image 2.5 Flare** — the owner's blind picks. The picture settings carry `models: {fast?, quality?}`
+  (migration `202610170064_polish2_picture_models.sql`, additive); the settings screen offers the whole catalogue of both
+  providers per tier (`PICTURE_MODELS`: label, the bake-off's median seconds, the price label), so FLUX and the others
+  stay available, off by default. A picture row records its provider from the model ID (`openai` for `gpt-image…`).
+- **The OpenAI path of the picture job** (`src/lib/visual-frame/picture-job.ts`): a GPT Image model goes to
+  `generateOpenAIImage` with the server's `OPENAI_API_KEY` (the same presence check as fal's: empty ends the row as
+  `not_configured`, nothing is sent), `quality: high`, `moderation: low`, references as an edit, the price from the
+  reply's usage into the same ledger and daily cap. Sizes: GPT Image draws frames at 1344×768, figures at 768×1344,
+  portraits and items at 1024×1024 (the bake-off's sizes; its price is per token); fal keeps the Stage V presets.
+- **The refusal ladder.** A moderation block is a content refusal: one softened re-submit on the same model, then —
+  the third and last request — Flare hands the picture to Sunburst (the bake-off: Flare refused the cut-forearm shot
+  twice in three, Sunburst never); FLUX.2 [pro] still hands to [klein]; Sunburst and the fast models have no fallback.
+- **The full-figure anchor prompt** (`compileAnchorPrompt`, `carried`): a person's portrait and figure go through the
+  prompt compiler; the carried items are their own constraint («worn on the body, slung or hung from the belt, not
+  held in the hands»), the pose says «both hands empty» — never «pistol in hand, helmet in hands» inside the pose, the
+  likely trigger of the three-handed anchor. Items, places and holdings keep the subject prompt.
+- **The world clock** reaches the frame prompt through `readWorldClock` (`gameplay-service.ts`): the store's play read
+  alone, no digest, no settings read; the compiler writes the time of day («at dusk»). Weather is not a record; the
+  shot director (§10, part 3) reads it from the narration.
+Proof: `tests/polish2-pictures.test.mjs` (tier defaults and the owner's choice, sizes and price labels, the OpenAI path
+with the key check and the exact price, the ladder on both providers, the figure prompt, the clock), the SQL test of
+migration 54 extended for 64, the Stage V and polish group 5 suites updated.

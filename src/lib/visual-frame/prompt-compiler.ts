@@ -172,13 +172,22 @@ export function compileFramePrompt(brief: FrameBrief, family: PromptFamily): str
 /** An anchor of one person (portrait or full figure), drawn with the same rules: the face reference
  * by role, the identity lock, the anatomy guard (the anchor is the reference of every later frame, so
  * an extra hand here spreads), no lettering. */
-export function compileAnchorPrompt(input: { person: BriefPerson; composition: "portrait" | "figure"; references: BriefReference[]; style: string }, family: PromptFamily): string {
+export function compileAnchorPrompt(input: {
+  person: BriefPerson; composition: "portrait" | "figure"; references: BriefReference[]; style: string;
+  /** Polish 2: the items the records say this person carries, as their own constraint — never «pistol in
+   * hand, helmet in hands» inside the pose (the likely trigger of the owner's three-handed anchor). */
+  carried?: string[];
+}, family: PromptFamily): string {
   const { person } = input;
   const flux = family === "flux";
   const own = possessive(person.pronoun);
   const framing = input.composition === "figure"
-    ? `A full-body character illustration of ${person.label}, standing in a relaxed pose, the whole figure visible from head to boots, arms down at ${own} sides, on a plain dark backdrop.`
+    ? `A full-body character illustration of ${person.label}, standing in a relaxed pose, the whole figure visible from head to boots, arms down at ${own} sides, both hands empty, on a plain dark backdrop.`
     : `A head-and-shoulders character portrait of ${person.label}, three-quarter view, expressive face, plain dark background.`;
+  const carried = (input.carried ?? []).map(clean).filter(Boolean).slice(0, 8);
+  const gear = carried.length
+    ? `${capital(own)} gear, worn on the body, slung or hung from the belt and straps, not held in the hands: ${listing(carried)}.`
+    : "";
   const refs = input.references.map((row, index) => {
     const { what, rule } = roleText(row, person);
     return family === "gpt-image" ? `Image ${index + 1} — ${what} (${rule}).` : `${capital(refName([index], family))} shows ${what} (${rule}).`;
@@ -190,7 +199,7 @@ export function compileAnchorPrompt(input: { person: BriefPerson; composition: "
     : (flux ? "Exactly one person." : "Exactly one person; no extra faces.");
   const text = flux ? "Clothing and backdrop are plain and unmarked." : "No text, letters, numbers, logos or watermarks anywhere in the picture.";
   const style = input.style.trim() ? sentence(`Art style: ${input.style.trim().slice(0, 800)}`) : "";
-  const body = [framing, sentence(`${capital(person.label)}: ${clean(person.appearance)}`), (person.state ?? []).length ? `Right now: ${(person.state ?? []).map(clean).join("; ")}.` : "", lock, anatomy];
+  const body = [framing, sentence(`${capital(person.label)}: ${clean(person.appearance)}`), (person.state ?? []).length ? `Right now: ${(person.state ?? []).map(clean).join("; ")}.` : "", gear, lock, anatomy];
   const refBlock = refs.length ? (family === "gpt-image" ? `Reference images: ${refs.join(" ")}` : refs.join(" ")) : "";
   return (family === "gpt-image" || family === "seedream" ? [refBlock, ...body, text, style] : [...body, refBlock, flux ? style : text, flux ? text : style])
     .filter(Boolean).join("\n").slice(0, 8000);

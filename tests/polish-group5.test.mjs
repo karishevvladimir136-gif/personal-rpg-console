@@ -74,5 +74,9 @@ test("the legacy «OpenAI draws the anchors» choice is gone: a stored setting r
   const settings = src("src/components/registry/settings-screen.tsx");
   assert.doesNotMatch(settings, /value: "openai", label: "OpenAI"/);
   assert.doesNotMatch(settings, /Кто рисует анкеры/);
-  assert.match(settings, /Модели картинок \(fal\)/);
+  // Polish 2: the catalogue of both providers with a model per tier, GPT Image 2.5 by default.
+  assert.match(settings, /Модели картинок/);
+  assert.match(settings, /data-testid=\{`picture-model-\$\{tier\}`\}/);
+  assert.match(settings, /PICTURE_MODELS\.map/);
+  assert.match(settings, /DEFAULT_TIER_MODELS/);
 });

@@ -12,10 +12,10 @@ import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from
 import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmTurnModels, saveDmSettings, type DmLoopTurnLimits, type DmSettings } from "@/lib/gameplay/dm-settings-client";
 import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
 import { readJson } from "@/lib/persistence/client";
-import { FAL_IMAGE_MODELS, usd } from "@/lib/visual-frame/fal-image";
+import { usd } from "@/lib/visual-frame/fal-image";
 import { workshopJobs } from "@/lib/ui/visual-autopilot";
 import { readImageAsDataUrl } from "@/lib/ui/pictures-client";
-import { activeStyle, pictureCostUsdMicros, STYLE_PRESETS, stylePreset, styleTextFor, styleVersions, type PictureAutopilot, type PictureSettings, type PublicPicture } from "@/lib/visual-frame/pictures";
+import { activeStyle, DEFAULT_TIER_MODELS, modelForTier, PICTURE_MODELS, pictureCostUsdMicros, pictureModel, STYLE_PRESETS, stylePreset, styleTextFor, styleVersions, type PictureAutopilot, type PictureSettings, type PictureTier, type PublicPicture } from "@/lib/visual-frame/pictures";
 import { usePictures } from "./live-frames";
 import { effortLabel } from "@/lib/ui/effort";
 import { useChrome, useDmSettings, type CampaignScreenId } from "./shell";
@@ -23,7 +23,7 @@ import { useAutopilot } from "./visual-autopilot";
 import { Panel, Plate, registry as r, Segmented, Switch, useCopy, useSubjectImage, type SubjectRef } from "./primitives";
 import s from "./settings.module.css";
 
-type ProviderInfo = { fal: { configured: boolean; persistence: boolean } } | null;
+type ProviderInfo = { fal: { configured: boolean; persistence: boolean }; openai?: { configured: boolean } } | null;
 
 export function RegistrySettings({ data, more, preview }: {
   data: CampaignSnapshot;
@@ -389,7 +389,14 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
   const set = (patch: Partial<PictureSettings>) => autopilot && void autopilot.save(patch);
   const setAuto = (patch: Partial<PictureAutopilot>) => autopilot && void autopilot.save({ autopilot: { ...autopilot.settings.autopilot, ...patch } });
   const disabled = !autopilot || autopilot.saving || autopilot.status === "loading";
-  const framePrice = (tier: "fast" | "quality") => usd(pictureCostUsdMicros(tier, "frame"));
+  // Polish 2: the model of each tier is the owner's choice (the blind picks' defaults until then).
+  const tierModel = (tier: PictureTier) => modelForTier(tier, settings);
+  const framePrice = (tier: PictureTier) => usd(pictureCostUsdMicros(tier, "frame", tierModel(tier)));
+  const seconds = (id: string) => { const m = pictureModel(id)?.medianSeconds; return m === null || m === undefined ? "?" : m < 10 ? m.toFixed(1).replace(/\.0$/, "") : String(Math.round(m)); };
+  const tierLabel = (tier: PictureTier) => `${pictureModel(tierModel(tier))?.label ?? tierModel(tier)} · ~${seconds(tierModel(tier))} ${c("с", "s")} · ${framePrice(tier)}`;
+  const pickModel = (tier: PictureTier, id: string) => set({ models: { ...(settings?.models ?? {}), [tier]: id } });
+  const providerBadge = (name: string, configured: boolean | undefined) =>
+    configured ? <span key={name} className={r.badgeGreen}>{name} · {c("ключ есть", "key set")}</span> : <span key={name} className={r.badgeIron}>{name} · {c("нет ключа", "no key")}</span>;
   const statusLabel = (status: string) => ({
     queued: c("в очереди", "queued"), generating: c("рисуется", "drawing"), ready: c("готово", "done"), failed: c("не вышло", "failed"),
     draft: c("ждёт решения", "awaiting decision"), completed: c("готово", "done"), cancelled: c("отменено", "cancelled"), uncertain: c("неясно, проверь", "uncertain"), discarded: c("отклонено", "discarded"),
@@ -403,7 +410,7 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
   const cap = settings?.dailyCap ?? 60;
   return (
     <>
-      <Panel eyebrow={c("Картинки", "Pictures")} action={providers?.fal.configured ? <span className={r.badgeGreen}>fal · {c("ключ есть", "key set")}</span> : <span className={r.badgeIron}>fal · {c("нет ключа", "no key")}</span>}>
+      <Panel eyebrow={c("Картинки", "Pictures")} action={<span className={r.row} style={{ gap: 6 }}>{providerBadge("OpenAI", providers?.openai?.configured)}{providerBadge("fal", providers?.fal.configured)}</span>}>
         <div className={r.stack}>
           <div>
             <span className={r.eyebrow}>{c("Живые кадры", "Live frames")}</span>
@@ -414,19 +421,22 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
           <div>
             <span className={r.eyebrow}>{c("Качество живых кадров", "Live frame quality")}</span>
             <Segmented label={c("Качество живых кадров", "Live frame quality")} value={settings?.quality ?? "fast"} disabled={disabled} onChange={(value) => set({ quality: value })}
-              options={[{ value: "fast", label: c(`Быстро · ~4 с · ${framePrice("fast")}`, `Fast · ~4 s · ${framePrice("fast")}`) }, { value: "quality", label: c(`Лучше · ~16 с · ${framePrice("quality")}`, `Better · ~16 s · ${framePrice("quality")}`) }]} />
-            <p className={r.note}>{c("Анкеры (портреты, места, вещи) и перерисовка ключевых моментов всегда идут на лучшей модели.", "Anchors (portraits, places, things) and key-moment re-renders always use the better model.")}</p>
+              options={[{ value: "fast", label: c(`Быстро · ${tierLabel("fast")}`, `Fast · ${tierLabel("fast")}`) }, { value: "quality", label: c(`Лучше · ${tierLabel("quality")}`, `Better · ${tierLabel("quality")}`) }]} />
+            <p className={r.note}>{c("Анкеры (портреты, места, вещи), перерисовки и ключевые моменты всегда идут на модели «лучше».", "Anchors (portraits, places, things), redraws and key moments always use the «better» model.")}</p>
           </div>
           <div>
-            <span className={r.eyebrow}>{c("Модели картинок (fal)", "Picture models (fal)")}</span>
-              <div className={r.stack} style={{ gap: 6, marginTop: 6 }}>
-                {FAL_IMAGE_MODELS.map((row) => (
-                  <div key={row.id} className={s.model}>
-                    <b>{row.label}</b><span className={r.num}>{usd(row.firstMegapixelUsdMicros)} / {c("картинка 1 Мп", "1 MP image")}</span>
-                    <span className={r.note}>{c(row.note.ru, row.note.en)}</span>
-                  </div>
-                ))}
-              </div>
+            <span className={r.eyebrow}>{c("Модели картинок", "Picture models")}</span>
+            <p className={r.note}>{c("По твоему слепому выбору (17.10.2026): анкеры, ключевые кадры и перерисовки — GPT Image 2.5 Sunburst; живые кадры — GPT Image 2.5 Flare, а если она отказала, Sunburst. Остальные модели остаются в каталоге — можно переключить любой из двух уровней.", "By your blind picks (2026-10-17): anchors, key frames and redraws on GPT Image 2.5 Sunburst; live frames on GPT Image 2.5 Flare, Sunburst when it refuses. The other models stay in the catalogue — either tier can be switched.")}</p>
+            {([["quality", c("Лучше: анкеры, ключевые кадры, перерисовки", "Better: anchors, key frames, redraws")], ["fast", c("Быстро: живые кадры", "Fast: live frames")]] as [PictureTier, string][]).map(([tier, label]) => (
+              <label key={tier} className={s.pick}>
+                <span className={r.small}>{label}{tierModel(tier) === DEFAULT_TIER_MODELS[tier] ? "" : ` · ${c("своя", "custom")}`}</span>
+                <select value={tierModel(tier)} disabled={disabled} aria-label={label} data-testid={`picture-model-${tier}`} onChange={(event) => pickModel(tier, event.target.value)}>
+                  {PICTURE_MODELS.map((row) => (
+                    <option key={row.id} value={row.id}>{row.label} · ~{seconds(row.id)} {c("с", "s")} · {usd(pictureCostUsdMicros(tier, "frame", row.id))} · {c(row.note.ru, row.note.en)}</option>
+                  ))}
+                </select>
+              </label>
+            ))}
           </div>
           <Switch title={c("Рисовать само", "Draw automatically")} hint={c("После хода, в фоне. Ход никогда не ждёт картинку.", "After a turn, in the background. A turn never waits for a picture.")}
             checked={!!settings?.autopilot.enabled} disabled={disabled} onChange={(value) => setAuto({ enabled: value })} />
