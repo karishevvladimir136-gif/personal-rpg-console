@@ -1,0 +1,80 @@
+{
+  "title": "The hero names his trade and his tools: the roll carries a bonus",
+  "description": "A narrative-sheet hero whose sheet says he knows navigation and careful observation. He asks to read an old map with his navigation and a borrowed glass, names both. The DM must roll his check with a bonus from the sheet (skill) or the fiction (bonuses with sources) or advantage — never 1d20+0 — and give a fair difficulty (normal or easier for an expert at his own trade). Polish group 2 (g). On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "map",
+      "say": "I take the organiser's old survey map to the window, use my navigation training and the borrowed reading glass, and try to work out where the ford on it really is. My navigation and the glass should count.",
+      "dice": [
+        11
+      ],
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the hero's check carries a bonus from the sheet or the fiction, or advantage",
+          "heroRollBonus": true
+        },
+        {
+          "label": "an expert at his trade gets a fair difficulty (normal or easier)",
+          "heroRollDc": {
+            "max": 10
+          }
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "map": {
+      "note": "The scripted DM applies the sheet skill and a bonus for the glass; a live DM must do the same on its own.",
+      "rounds": [
+        {
+          "text": "The paper is foxed and the ink has run, but the survey marks are the Guild's own.",
+          "toolCalls": [
+            {
+              "name": "roll",
+              "arguments": {
+                "formula": "1d20",
+                "reason": "Navigation: reading the old survey map",
+                "actorRef": "{{hero}}",
+                "visibility": "player",
+                "difficulty": "normal",
+                "skill": "navigation",
+                "bonuses": [
+                  {
+                    "source": "the reading glass",
+                    "value": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "text": " The ford sits a mile below where the road meets the river — the surveyor drew the bend wrong, not the ford.",
+          "toolCalls": [
+            {
+              "name": "advance_time",
+              "arguments": {
+                "minutes": 15,
+                "reason": "reading the map"
+              }
+            },
+            {
+              "name": "finish_turn",
+              "arguments": {
+                "sceneKinds": [
+                  "exploration"
+                ],
+                "spotlight": [],
+                "playerMoment": false
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

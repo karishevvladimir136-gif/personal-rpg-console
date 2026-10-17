@@ -216,11 +216,71 @@ function ownerName(shadow: ShadowState, item: Item): string {
 const localKey = (value: unknown) => (value === undefined ? null : str(value));
 
 // --- roll ------------------------------------------------------------------
+export const DIFFICULTY_LADDER = { easy: 8, normal: 10, hard: 13, very_hard: 16, nearly_impossible: 19 } as const;
+export type DifficultyWord = keyof typeof DIFFICULTY_LADDER;
+/** The sum of the fiction's bonuses never exceeds this (polish group 2 (e)). */
+export const FICTION_BONUS_CAP = 6;
+
+const normalizeSkill = (text: string) => text.toLocaleLowerCase().replace(/[«»"'“”]/g, "").replace(/\s+/g, " ").trim();
+/** A word stem for matching a skill against a sheet line (Russian endings vary). */
+function skillStems(text: string): string[] {
+  return normalizeSkill(text).split(/[^\p{L}\p{N}]+/u).filter((word) => word.length >= 3)
+    .map((word) => (word.length >= 7 ? word.slice(0, -3) : word.length >= 5 ? word.slice(0, -2) : word.length === 4 ? word.slice(0, -1) : word));
+}
+function mentions(line: string, skill: string): boolean {
+  const lower = normalizeSkill(line);
+  const stems = skillStems(skill);
+  if (!stems.length) return false;
+  // Every stem of the skill appears at a word start in the line, or the line's own words appear in the skill.
+  const lineHas = (stem: string) => new RegExp(`(^|[^\\p{L}])${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "u").test(lower);
+  if (stems.every(lineHas)) return true;
+  const lineStems = skillStems(line);
+  return lineStems.length > 0 && lineStems.every((stem) => new RegExp(`(^|[^\\p{L}])${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`, "u").test(normalizeSkill(skill)));
+}
+/** +2 for a skill the sheet names, +4 for one it calls good, +6 for mastery — in the sheet's own words. */
+export function proficiencyValue(text: string): number {
+  const lower = text.toLocaleLowerCase();
+  if (/мастер|master|expert|виртуоз|легендарн|legendary/.test(lower)) return 6;
+  if (/хорош|опытн|skilled|experienced|proficient|\bgood\b|\bwell\b|умел|искусн|отличн/.test(lower)) return 4;
+  return 2;
+}
+/** The bonus a skill named on the sheet gives: a numeric stat of that name, a
+ * sheet line with a number («Плавание +2»), or the sheet's words (умеет / хорошо /
+ * мастер → +2 / +4 / +6); the trade in the background counts as named. */
+export function sheetBonus(actor: Entity, skill: string): { value: number; source: string } | null {
+  const wanted = normalizeSkill(skill);
+  if (!wanted) return null;
+  for (const [key, value] of Object.entries(actor.stats)) {
+    if (!Number.isInteger(value) || key === "level") continue;
+    if (normalizeSkill(key) === wanted || normalizeSkill(key).replaceAll("_", " ") === wanted) return { value, source: `${skill} ${value >= 0 ? "+" : ""}${value}` };
+  }
+  const sheet = actor.character_sheet;
+  const lines = [...(sheet?.skills ?? []), ...(sheet?.abilities ?? [])];
+  for (const line of lines) {
+    if (!mentions(line, skill)) continue;
+    const numbered = /^(.*?)\s*([+−-])\s*(\d+)\s*$/u.exec(line.trim());
+    if (numbered) {
+      const value = (numbered[2] === "+" ? 1 : -1) * Number(numbered[3]);
+      return { value, source: `${numbered[1].trim() || skill} ${value >= 0 ? "+" : ""}${value}` };
+    }
+    const value = proficiencyValue(line);
+    return { value, source: `${line.trim().slice(0, 60)} +${value}` };
+  }
+  const prose = [sheet?.role ?? "", sheet?.background ?? "", actor.details].join("\n");
+  if (mentions(prose, skill)) {
+    // The trade or trait is named in the background: at least a named skill.
+    const value = proficiencyValue(prose.split("\n").find((line) => mentions(line, skill)) ?? "");
+    return { value, source: `${skill.trim().slice(0, 60)} +${value}` };
+  }
+  return null;
+}
+
 function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const formula = parseFormula(str(args.formula));
   const actorText = str(args.actorRef);
   const actor = actorText.toLowerCase() === "dm" ? null : entityOf(shadow, actorText, "actorRef");
   let modifier = formula.modifier;
+  const sources: string[] = [];
   let modifierSource: string | null = null;
   if (args.modifierField !== undefined) {
     reject(actor, "A sheet modifier needs an actor (actorRef is \"dm\").");
@@ -228,33 +288,79 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const value = actor.stats[field];
     reject(typeof value === "number" && Number.isInteger(value),
       `${actor.name} has no sheet stat "${field}".`,
-      Object.keys(actor.stats).length ? `Known stats: ${Object.keys(actor.stats).join(", ")}.` : "The sheet has no numeric stats; roll without modifierField.");
+      Object.keys(actor.stats).length ? `Known stats: ${Object.keys(actor.stats).join(", ")}.` : "The sheet has no numeric stats; pass skill (the skill or trade as the sheet names it) instead.");
     modifier += value;
     modifierSource = `${field} ${value >= 0 ? "+" : ""}${value}`;
+    sources.push(modifierSource);
+  }
+  if (args.skill !== undefined) {
+    reject(actor, "A sheet skill needs an actor (actorRef is \"dm\").");
+    const skill = str(args.skill);
+    const bonus = sheetBonus(actor, skill);
+    const known = [...(actor.character_sheet?.skills ?? []), ...Object.keys(actor.stats).filter((key) => key !== "level")];
+    reject(bonus, `${actor.name}'s sheet names no skill or trade like "${skill}".`,
+      `${known.length ? `The sheet names: ${known.slice(0, 12).join("; ")}. ` : ""}Use the sheet's own words, or roll without skill and give the fiction's bonuses with their sources.`);
+    modifier += bonus.value;
+    modifierSource = modifierSource ? `${modifierSource}, ${bonus.source}` : bonus.source;
+    sources.push(bonus.source);
+  }
+  // The fiction's bonuses (tools, help, prepared gear, position), capped as a sum.
+  const bonuses: { source: string; value: number }[] = [];
+  let clipped = false;
+  if (Array.isArray(args.bonuses) && args.bonuses.length) {
+    let sum = 0;
+    for (const entry of args.bonuses as { source: unknown; value: unknown }[]) {
+      const value = int(entry.value) ?? 0;
+      const source = str(entry.source);
+      reject(source.length > 0 && value >= -FICTION_BONUS_CAP && value <= FICTION_BONUS_CAP, `Each bonus needs a source and a value between -${FICTION_BONUS_CAP} and +${FICTION_BONUS_CAP}.`);
+      bonuses.push({ source, value });
+      sum += value;
+    }
+    const capped = Math.max(-FICTION_BONUS_CAP, Math.min(FICTION_BONUS_CAP, sum));
+    clipped = capped !== sum;
+    modifier += capped;
+    sources.push(...bonuses.map((b) => `${b.source} ${b.value >= 0 ? "+" : ""}${b.value}`));
   }
   reject(modifier >= -100 && modifier <= 100, "The total modifier must stay between -100 and +100.");
   const advantage = (str(args.advantage) || "normal") as RecordedCheck["advantage"];
   reject(advantage === "normal" || formula.count === 1, "Advantage and disadvantage apply to a single die only.");
+  const advantageReason = args.advantageReason !== undefined ? str(args.advantageReason) || null : null;
   const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
-  // A player-visible roll belongs to the player's own characters; NPC rolls stay private.
-  const visibility: "player" | "private" = args.visibility === "player" && actor && controlled.has(actor.id) ? "player" : "private";
-  const dc = int(args.dc);
+  // A check of the hero or a companion is the player's; an NPC's or the world's roll stays private (polish group 2).
+  const visibility: "player" | "private" = actor && controlled.has(actor.id) ? "player" : "private";
+  const difficulty = args.difficulty !== undefined ? str(args.difficulty) as DifficultyWord : null;
+  reject(difficulty === null || difficulty in DIFFICULTY_LADDER, `difficulty: ${Object.keys(DIFFICULTY_LADDER).join(", ")}.`);
+  const dc = int(args.dc) ?? (difficulty ? DIFFICULTY_LADDER[difficulty] : null);
   const kindText = str(args.kind) || "skill";
-  const isCheck = formula.count === 1 && formula.sides === 20 && dc !== null && actor !== null;
+  // A recorded check (the Check DTO, the roll card, the interactive pause) is the
+  // player's; an NPC's d20 against a difficulty resolves as a plain private roll
+  // (a person created in this very message is not in the database yet).
+  const isCheck = formula.count === 1 && formula.sides === 20 && dc !== null && actor !== null && visibility === "player";
+  const reason = str(args.reason);
+  const sourceText = sources.join(", ") || null;
+  const bonusLine = (die: number) => ({
+    ...(die === 20 ? { hint: "A natural 20: the hero's moment. Narrate the success first and in full, plus a visible extra in their favour tied to what they tried; companions support, never take the beat." } : {}),
+    ...(die === 1 ? { hint: "A natural 1: a cost tied to what they tried (a lost tool, a worse position, noise), never a lecture." } : {}),
+    ...(clipped ? { note: `The fiction's bonuses are capped at ±${FICTION_BONUS_CAP} in total.` } : {}),
+  });
   if (isCheck) {
     reject(ctx.checks.length < L.maxChecksPerTurn, `This turn already made ${L.maxChecksPerTurn} checks.`,
       "Narrate the remaining outcomes without a new check.");
     const kind: RecordedCheck["kind"] = kindText === "attack" ? "attack" : kindText === "save" ? "save" : "skill";
-    const check = recordServerRoll(ctx.input.operationId, {
+    const proposal = {
       index: ctx.checks.length, actorId: actor.id, targetId: null, kind, stat: kind,
-      dc, dcPublic: false, visibility, important: true, uncertainty: "meaningful", advantage,
-    }, modifier, 1, ctx.random);
-    const value: JsonObject = { formula: str(args.formula), reason: str(args.reason), actor: actor.name, visibility,
-      dice: [...check.dice], kept: check.kept, modifier, modifierSource, total: check.total, dc, success: check.success, checkId: check.id };
-    const natural = check.kept === 20 ? "crit" : check.kept === 1 ? "fumble" : null;
+      dc, dcPublic: true, visibility, important: true, uncertainty: "meaningful" as const, advantage,
+      reason, bonuses, advantageReason, difficulty, natural: null as RecordedCheck["natural"],
+    };
+    const rolled = recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random);
+    const natural: RecordedCheck["natural"] = rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null;
+    const check: RecordedCheck = { ...rolled, natural };
+    const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
+      dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
+      difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept) };
     const player = visibility === "player"
-      ? chip.roll(ctx.language, actor.name, actor.kind === "player", str(args.reason), check.total, dc, ctx.showDc, check.success, natural) : null;
-    return ok(value, `${actor.name} rolls ${str(args.formula)}${modifierSource ? ` (${modifierSource})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}`, check, player);
+      ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
+    return ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}`, check, player);
   }
   const count = advantage === "normal" ? formula.count : 2;
   const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
@@ -262,11 +368,12 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const kept = advantage === "normal" ? dice.reduce((sum, die) => sum + die, 0)
     : advantage === "advantage" ? Math.max(...dice) : Math.min(...dice);
   const total = kept + modifier;
-  const value: JsonObject = { formula: str(args.formula), reason: str(args.reason), actor: actor?.name ?? "DM", visibility,
-    dice, kept, modifier, modifierSource, total, dc, success: dc === null ? null : total >= dc };
+  const natural = formula.count === 1 && formula.sides === 20 ? (kept === 20 ? "crit" : kept === 1 ? "fumble" : null) : null;
+  const value: JsonObject = { formula: str(args.formula), reason, actor: actor?.name ?? "DM", visibility,
+    dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success: dc === null ? null : total >= dc, natural, ...bonusLine(natural ? kept : 0) };
   const player = visibility === "player" && actor
-    ? chip.roll(ctx.language, actor.name, actor.kind === "player", str(args.reason), total, dc, ctx.showDc, dc === null ? null : total >= dc, null) : null;
-  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}: ${total}${dc !== null ? ` vs ${dc} — ${total >= dc ? "success" : "failure"}` : ""}`, null, player);
+    ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, dc === null ? null : total >= dc, natural) : null;
+  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${total >= dc ? "success" : "failure"}` : ""}`, null, player);
 }
 
 // --- query_state -----------------------------------------------------------

@@ -886,14 +886,14 @@ test("committed narration clears processing copy and interactive dice remain vis
     checks: [check], canCancel: true,
   })];
   const awaiting = render("game", state);
-  assert.match(awaiting, /View recorded check/);
-  assert.match(awaiting, /Continue with this result/);
+  assert.match(awaiting, /Roll the die/);
+  assert.match(awaiting, /Onward/);
   assert.match(awaiting, /Request an allowed reroll/);
   assert.doesNotMatch(awaiting, /DM is thinking…|Review the recorded result/);
   state.play.turns = [turn(state.data, { checks: [check] })];
   const committed = render("game", state);
   assert.match(committed, /A few crates need carrying/);
-  assert.match(committed, /View recorded check/);
+  assert.match(committed, /Roll the die/);
   assert.doesNotMatch(committed, /DM is thinking…|Try again|Action saved|Saved to this campaign/);
 });
 test("a failed session read expands continuity rather than hiding the recovery controls", () => {

@@ -345,3 +345,23 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
 - **Small ones:** a world-level plan (`note_world` with `actorRef: "world"`, item 21); the campaign's play time counts real minutes
   per committed turn (1–30, `afterCommit.playMinutes`); the DM Craft screen lists pending versions with «Review and approve»
   and «What changes» (the version's provenance); «Close» → «Закрыть» in the Russian locale.
+
+## 12. Polish stage — group 2: rolls
+
+- **The roll tool** (`src/lib/gameplay/dm-loop/tools.ts`, non-strict on Anthropic since it passed the 24 optional parameters):
+  `skill` names the skill, trade or trait as the sheet does and the server resolves the bonus (`sheetBonus`: a numeric stat of
+  that name, a sheet line with a number such as «Плавание +2», or +2 / +4 / +6 for named / good / master in the sheet's own words,
+  the role and background included); `bonuses [{source, value}]` are the fiction's (tools, help, gear, position), summed and
+  capped at ±6 (`FICTION_BONUS_CAP`), each source shown; `difficulty` is the ladder in words (easy 8, normal 10, hard 13,
+  very_hard 16, nearly_impossible 19); `advantageReason` says why. A d20 check of a controlled character is always the
+  player's (card, pause, reroll); an NPC's or the world's d20 resolves as a private plain roll and never becomes a Check.
+  A natural 20 or 1 is flagged (`natural`) and the receipt carries the hero's-moment hint for the DM.
+- **The check row** (`CheckProposal`, migration 58) carries `reason`, `bonuses`, `advantageReason`, `difficulty`, `natural`;
+  every strict field list of a recorded check (phase-2 checks/reroll, the loop's dm_tool receipt) accepts them; the public
+  turn's checks carry them to the card; a reroll keeps them.
+- **The card** (`src/components/gameplay-dice.tsx`): the reason as the title, the die and the total big, «Получилось / Не вышло /
+  Крит! / Провал на единице», the bonuses with their sources, two dice and why on advantage, the difficulty in words (the number
+  only when the campaign shows DCs), one button «Дальше»; the reroll button only when the campaign's rule grants it, with the
+  rule named. The die tumbles (2D, faces cycling from a fixed sequence, never a random source) and respects reduced motion.
+- **The bench** records every accepted roll (`effects.rolls`); checks `heroRollBonus` and `heroRollDc`; scenario `17-trade-bonus`
+  plays the player naming his trade and his tools (fake: 3/3).

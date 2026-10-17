@@ -35,6 +35,14 @@ export type CheckProposal = {
   important: boolean;
   uncertainty: "meaningful" | "trivial" | "impossible" | "unchanged";
   advantage: "normal" | "advantage" | "disadvantage";
+  /** Polish group 2 (the roll card as a moment in the story): the DM's reason
+   * in the campaign language, where each bonus came from, why advantage was
+   * granted, the difficulty in words, a natural 20 or 1. Absent on older checks. */
+  reason?: string;
+  bonuses?: { source: string; value: number }[];
+  advantageReason?: string | null;
+  difficulty?: "easy" | "normal" | "hard" | "very_hard" | "nearly_impossible" | null;
+  natural?: "crit" | "fumble" | null;
 };
 export type RecordedCheck = CheckProposal & {
   id: string;

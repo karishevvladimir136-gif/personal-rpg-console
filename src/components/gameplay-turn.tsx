@@ -299,12 +299,15 @@ export function GameplayTurn({
         <div key={check.id}>
           <GameplayCheck check={check} />
           {turn.status === "awaiting_confirmation" && check.canReroll && (
-            <Button
-              disabled={busy}
-              onClick={() => onCommand("reroll", check.id)}
-            >
-              {t("Request an allowed reroll")}
-            </Button>
+            <div className="moment-reroll">
+              <Button
+                disabled={busy}
+                onClick={() => onCommand("reroll", check.id)}
+              >
+                {t("Request an allowed reroll")}
+              </Button>
+              <span className="muted">{t("The campaign's rules grant a reroll here; the new die replaces this one.")}</span>
+            </div>
           )}
         </div>
       ))}
@@ -322,7 +325,7 @@ export function GameplayTurn({
       <div className="button-group">
         {turn.status === "awaiting_confirmation" && (
           <Button primary disabled={busy} onClick={() => onCommand("continue")}>
-            {t("Continue with this result")}
+            {t("Onward")}
           </Button>
         )}
         {turn.canRetry && (

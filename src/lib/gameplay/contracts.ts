@@ -144,6 +144,13 @@ export type VisibleCheck = {
   interactive: boolean;
   canReroll: boolean;
   rollNumber: number;
+  /** Polish group 2: the moment in words (the DM's reason), the bonuses and their
+   * sources, why advantage was granted, the difficulty in words, a natural 20 or 1. */
+  reason?: string | null;
+  bonuses?: { source: string; value: number }[];
+  advantageReason?: string | null;
+  difficulty?: "easy" | "normal" | "hard" | "very_hard" | "nearly_impossible" | null;
+  natural?: "crit" | "fumble" | null;
 };
 export type GuidanceProposal = {
   teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;

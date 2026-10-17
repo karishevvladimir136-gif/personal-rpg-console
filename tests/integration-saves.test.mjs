@@ -19,6 +19,7 @@ const NEW_MIGRATIONS = [
   "202610160055_stage4_dossier.sql",
   "202610160056_stage4_restore_defaults.sql",
   "202610170057_polish_records.sql",
+  "202610170058_polish_rolls.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

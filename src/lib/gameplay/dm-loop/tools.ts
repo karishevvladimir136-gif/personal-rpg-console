@@ -31,15 +31,22 @@ const sheetField = (description: string): DmSchema => ({ type: "string", minLeng
 export const dmLoopTools: readonly DmToolDefinition[] = [
   {
     name: "roll",
-    description: "Roll dice on the server with a receipt. Any formula such as 1d20+5, 2d6, 1d100, 3d8-1. A single d20 with a DC is a check: the player sees it when the campaign's roll mode shows it, and an important player check may pause for interactive dice. Give the modifier source as a sheet field (stats) when it comes from the character sheet; the receipt shows it.",
+    // Polish group 2 added skill, difficulty, bonuses and advantageReason: past
+    // Anthropic's 24 optional strict parameters, so the roll is non-strict there.
+    strict: { anthropic: false },
+    description: "Roll dice on the server with a receipt. Any formula such as 1d20+5, 2d6, 1d100, 3d8-1. A single d20 with a difficulty is a check. A check of the hero or a companion is always the player's: it shows on their roll card with the reason, the bonuses and their sources, advantage and why, and the difficulty in words; an NPC's or the world's roll stays private. The sheet gives bonuses: pass skill (the skill, trade or trait as the sheet names it — the server reads its number, or +2 / +4 / +6 for named / good / master in the sheet's words) or modifierField (a numeric stat). The fiction gives bonuses too: bonuses [{source, value}] for tools, help, prepared gear, a clear position (the server caps their sum at ±6 and shows each source). Difficulty by the ladder: easy 8, normal 10, hard 13, very_hard 16, nearly_impossible 19 — an expert at their own trade in fair conditions gets normal or no roll at all. A natural 20 is the hero's moment: the success plus a visible extra in their favour; a natural 1 costs something, tied to what they tried.",
     parameters: object({
       formula: str("Dice formula like 1d20+3, 2d6, 1d100. Up to 20 dice of up to 1000 sides, optional +/- modifier.", 32),
-      reason: str("Why this roll happens, in the campaign language, shown to the player with the result.", L.maxShortText),
+      reason: str("The moment in words, in the campaign language: the skill or approach and what is at stake (for example «Скрытность: подслушать через щель»). Shown on the player's roll card.", L.maxShortText),
       actorRef: ref("Who rolls. Use \"dm\" for a roll that belongs to nobody."),
-      visibility: { type: "string", enum: ["player", "private"], description: "player: the player may see the roll; private: the DM keeps it." },
-      dc: opt({ type: "integer", minimum: 1, maximum: 40, description: "Difficulty the total must reach (d20 checks only)." }),
-      modifierField: opt(sheetField("Name of the actor's sheet stat added to the roll (for example skill, attack, stealth). Shown in the receipt.")),
+      visibility: { type: "string", enum: ["player", "private"], description: "player: the player may see the roll; private: the DM keeps it. A check of a party member is shown regardless; an NPC's roll is private regardless." },
+      dc: opt({ type: "integer", minimum: 1, maximum: 40, description: "Difficulty the total must reach (d20 checks only); prefer difficulty in words." }),
+      difficulty: opt({ type: "string", enum: ["easy", "normal", "hard", "very_hard", "nearly_impossible"], description: "Difficulty in words (8 / 10 / 13 / 16 / 19); shown to the player in words. Use it instead of dc." }),
+      skill: opt(str("The skill, trade or trait as the character's sheet names it (for example «ныряльщик», «Знание старой техники»); the server resolves the bonus from the sheet and shows its source.", 80)),
+      modifierField: opt(sheetField("Name of the actor's numeric sheet stat added to the roll (for example skill, attack, stealth). Shown in the receipt.")),
+      bonuses: opt({ type: "array", maxItems: 4, items: object({ source: str("Where the bonus comes from, in the campaign language (инструменты, помощь Мокея, смоляные рукавицы).", 80), value: { type: "integer", minimum: -6, maximum: 6 } }), description: "Bonuses and penalties from the fiction; each with its source, shown on the card." }),
       advantage: opt({ type: "string", enum: ["normal", "advantage", "disadvantage"], description: "Roll two single dice and keep the higher (advantage) or lower (disadvantage)." }),
+      advantageReason: opt(str("Why advantage or disadvantage, in the campaign language (shown on the card).", 160)),
       kind: opt({ type: "string", enum: ["skill", "attack", "save", "other"], description: "What kind of check this is; default skill." }),
     }),
   },

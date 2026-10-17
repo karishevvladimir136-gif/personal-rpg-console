@@ -337,3 +337,136 @@
   font-size: 0.92em;
   color: var(--muted);
 }
+
+/* Polish group 2: the roll card as a moment in the story. */
+.moment-card {
+  border: 1px solid #a386564d;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #b9954c0e, transparent 60%), #141a1d;
+  padding: 14px 16px;
+  display: grid;
+  gap: 10px;
+}
+.moment-card.failure {
+  border-color: #856e614d;
+}
+.moment-card.crit {
+  border-color: #e0b765;
+  box-shadow: 0 0 22px #c4994040;
+}
+.moment-card.fumble {
+  border-color: #8c5a5a;
+}
+.moment-head {
+  display: grid;
+  gap: 2px;
+}
+.moment-title {
+  margin: 0;
+  font: 22px/1.25 Georgia, serif;
+  color: #ebddc5;
+  overflow-wrap: anywhere;
+}
+.moment-body {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+.moment-die {
+  width: 120px;
+  margin: 0;
+}
+.moment-die.is-rolling {
+  animation: moment-die-tumble 1.15s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+.moment-d20.is-crit path:first-child {
+  stroke: #f1cf7a;
+  filter: drop-shadow(0 0 14px #e8c06a);
+}
+.moment-d20.is-fumble path:first-child {
+  stroke: #a56b6b;
+}
+.moment-card.fumble .moment-die {
+  animation: moment-die-shake 0.5s ease-out;
+}
+.moment-side {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.moment-verdict {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.moment-word {
+  font: 26px/1.1 Georgia, serif;
+  color: #dec695;
+}
+.moment-verdict.failure .moment-word {
+  color: #b7a7a2;
+}
+.moment-total {
+  font: 40px/1 Georgia, serif;
+  color: #eddfc3;
+}
+.moment-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 13px;
+  color: #c0bbaa;
+}
+.moment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.moment-hint {
+  margin: 0;
+  font-size: 14px;
+}
+.moment-replay {
+  justify-self: start;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-size: 12px;
+}
+.moment-reroll {
+  display: grid;
+  gap: 4px;
+  margin: 6px 0 10px;
+  font-size: 12px;
+}
+@keyframes moment-die-tumble {
+  0% { transform: rotate3d(1, 1, 0, 0deg) scale(0.9); }
+  35% { transform: rotate3d(1, 0.6, 0, 200deg) scale(1.06); }
+  70% { transform: rotate3d(0.4, 1, 0, 330deg) scale(0.98); }
+  100% { transform: rotate3d(1, 1, 0, 360deg) scale(1); }
+}
+@keyframes moment-die-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px) rotate(-3deg); }
+  75% { transform: translateX(5px) rotate(3deg); }
+}
+@media (max-width: 760px) {
+  .moment-body {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 12px;
+  }
+  .moment-die {
+    width: 96px;
+  }
+  .moment-total {
+    font-size: 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .moment-die.is-rolling,
+  .moment-card.fumble .moment-die {
+    animation: none;
+  }
+}

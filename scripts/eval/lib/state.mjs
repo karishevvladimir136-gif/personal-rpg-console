@@ -350,6 +350,17 @@ export async function evaluateCheck(check, ctx) {
     }
     case "duePlans":
       return result(compare(ctx.turn?.effects?.duePlans ?? 0, arg), `${ctx.turn?.effects?.duePlans ?? 0} due plan(s) listed on time receipts`);
+    // Polish group 2: the hero's rolls carry a sheet or fiction bonus, or advantage, when the player named a fair reason.
+    case "heroRollBonus": {
+      const rolls = (ctx.turn?.effects?.rolls ?? []).filter((r) => r.visibility === "player");
+      const earned = rolls.filter((r) => (r.modifier ?? 0) > 0 || r.advantage === "advantage");
+      const pass = arg === false ? rolls.length > 0 && earned.length === 0 : rolls.length > 0 && earned.length === rolls.length;
+      return result(pass, rolls.length ? rolls.map((r) => `${r.reason ?? "?"}: ${r.modifier >= 0 ? "+" : ""}${r.modifier}${r.modifierSource ? ` (${r.modifierSource})` : ""}${r.advantage !== "normal" ? ` ${r.advantage}` : ""}`).join("; ") : "no player roll this turn");
+    }
+    case "heroRollDc": {
+      const rolls = (ctx.turn?.effects?.rolls ?? []).filter((r) => r.visibility === "player" && r.dc !== null);
+      return result(rolls.length > 0 && rolls.every((r) => compare(r.dc, arg)), rolls.length ? rolls.map((r) => `${r.reason ?? "?"}: DC ${r.dc}${r.difficulty ? ` (${r.difficulty})` : ""}`).join("; ") : "no player check this turn");
+    }
     case "npcRefused":
       return result(!!ctx.turn?.meta?.npcRefused === !!arg, `npcRefused ${ctx.turn?.meta?.npcRefused ?? "unset"}`);
     case "metric": {

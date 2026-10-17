@@ -247,7 +247,12 @@ export async function runLoopScenario(scenario, options) {
             rejected: receipts.filter((r) => !r.result.ok).map((r) => ({ name: r.call.name, reason: r.result.reason })),
             summaries: receipts.filter((r) => r.result.ok).map((r) => r.result.summary),
             hints: receipts.filter((r) => r.result.ok && typeof r.result.value?.hint === "string").map((r) => r.result.value.hint),
-            duePlans: receipts.reduce((total, r) => total + (r.result.ok && Array.isArray(r.result.value?.duePlans) ? r.result.value.duePlans.length : 0), 0) },
+            duePlans: receipts.reduce((total, r) => total + (r.result.ok && Array.isArray(r.result.value?.duePlans) ? r.result.value.duePlans.length : 0), 0),
+            // Polish group 2: every accepted roll with its modifier, bonuses and advantage (the bench checks that a named trade earns a bonus).
+            rolls: receipts.filter((r) => r.result.ok && r.call.name === "roll").map((r) => ({ actor: r.result.value.actor, reason: r.result.value.reason,
+              modifier: r.result.value.modifier, modifierSource: r.result.value.modifierSource ?? null, bonuses: r.result.value.bonuses ?? [],
+              advantage: r.result.value.advantage ?? r.call.arguments.advantage ?? "normal", dc: r.result.value.dc ?? null, difficulty: r.result.value.difficulty ?? null,
+              natural: r.result.value.natural ?? null, visibility: r.result.value.visibility })) },
           layers,
           // Research records: the full receipts and the party, so the metrics can be recomputed (scripts/eval/recompute.mjs).
           receipts,

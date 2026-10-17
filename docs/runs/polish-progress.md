@@ -11,7 +11,8 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 | --- | --- | --- |
 | 0 — session start, merge, baseline | done | fix-branch test `tests/dm-craft-server-payload.test.mjs` passes; baseline typecheck pass, lint pass (0 warnings); the baseline suite run overlapped with the first group-1 edits (see below) |
 | 1 — correctness of the turn and the records | done | migration `202610170057_polish_records.sql`; `tests/polish-group1.test.mjs` (11 tests); `docs/TURN_LOOP.md` §11. Not done here: the roll card wording and bonuses (group 2), the chip collapse and layout (group 6), pledged items greyed on the inventory (group 8) |
-| 2 — rolls | next | |
+| 2 — rolls | done | migration `202610170058_polish_rolls.sql`; `tests/polish-group2.test.mjs`; bench scenario 17; `docs/TURN_LOOP.md` §12. Left for group 6: the dice tray («Кубы») and «Пробую: <навык>» quick checks in the composer |
+| 3 — speed and cost | next | |
 | 2 — rolls | pending | |
 | 3 — speed and cost | pending | paid: cache/depth measurement (30-turn Russian replay) — not started |
 | 4 — DM craft doctrine (pending versions) | pending | |

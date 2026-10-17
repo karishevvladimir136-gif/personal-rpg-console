@@ -100,6 +100,11 @@ export function visibleChecks(
         interactive: settings.interactiveDice,
         canReroll: canReroll && settings.difficulty.rerolls !== "disabled",
         rollNumber: check.rollNumber,
+        ...(check.reason !== undefined ? { reason: check.reason } : {}),
+        ...(check.bonuses !== undefined ? { bonuses: check.bonuses } : {}),
+        ...(check.advantageReason !== undefined ? { advantageReason: check.advantageReason } : {}),
+        ...(check.difficulty !== undefined ? { difficulty: check.difficulty } : {}),
+        ...(check.natural !== undefined ? { natural: check.natural } : {}),
       };
     });
 }
