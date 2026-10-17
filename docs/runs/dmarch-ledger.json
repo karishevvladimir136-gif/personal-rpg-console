@@ -56,8 +56,20 @@
       "what": "continuity run C (5 turns)",
       "startedAt": "2026-10-17T19:46:06.070Z",
       "reservedUsd": 3.2,
-      "spentUsd": 0,
-      "settled": false
+      "spentUsd": 1.5681,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:50:52.263Z",
+      "record": "docs/runs/dmarch-20261017-194606-continuity-C.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-195052-continuity-D",
+      "what": "continuity run D (5 turns)",
+      "startedAt": "2026-10-17T19:50:52.652Z",
+      "reservedUsd": 1.6,
+      "spentUsd": 0.7496,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:54:35.400Z",
+      "record": "docs/runs/dmarch-20261017-195052-continuity-D.jsonl"
     }
   ]
 }
