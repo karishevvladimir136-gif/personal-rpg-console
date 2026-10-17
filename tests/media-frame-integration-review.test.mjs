@@ -540,8 +540,9 @@ test("mounted ordinary Game chooses real FRAME while explicit synthetic transpor
   // The ordinary Game is the Stage 5 screen; it opens the real FRAME controls, never the mock.
   assert.equal(normal.type, "registry-game");
   const registry = await readFile(new URL("src/components/registry/game-screen.tsx", root), "utf8");
-  assert.match(registry, /<CurrentSceneMediaFrame \/>/);
-  assert.doesNotMatch(registry, /CurrentSceneFrame\b/);
+  // Polish group 5: the legacy media frame left the game screen; the Stage V frames panel is the one picture path.
+  assert.doesNotMatch(registry, /CurrentSceneMediaFrame|CurrentSceneFrame\b/);
+  assert.match(registry, /<FramesPanel\b/);
   const injected = { synthetic: true },
     synthetic = ui.nodes(
       ui.render("PersistentGame", {

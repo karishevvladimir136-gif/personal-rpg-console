@@ -160,3 +160,20 @@ test("the opening proposal is written by the campaign's own DM when that DM is a
   assert.match(bootstrap, /command\.action === "opening\.propose"[\s\S]*readDmSettings\(cid\)/);
   assert.match(bootstrap, /globalDefault: dmTurn\?\.providerId === "openai" \? dmTurn : applicationModelSelection\(process\.env\)/);
 });
+
+test("a person is «mentioned» by any word of their name: the core with the voice when named, one line otherwise", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const first = await c.turn("Иду к маяку.", [{ text: "Маяк молчит. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "keeper", name: "Старый смотритель", kind: "npc", present: false } },
+      { name: "note_character", arguments: { actorRef: "keeper", identity: { values: ["тишина"], wants: ["чтобы его не трогали"], boundaries: [], loyalties: [], signatures: [], observableVoice: "Хрипло, с паузами." },
+        current: { goal: "ждать смену", stress: "settled" } } },
+      { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
+    assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
+    const named = await c.turn("Спрашиваю смотрителя о лодке.", [{ text: "Тихо. ", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
+    assert.match(named.model.requests[0].system[3].text, /Старый смотритель \([^)]+\) — core: [^\n]*"voice":"Хрипло, с паузами\."/, "«смотрителя» names «Старый смотритель»: the core with the voice");
+    const unnamed = await c.turn("Молчу.", [{ text: "Тихо. ", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
+    assert.match(unnamed.model.requests[0].system[3].text, /Старый смотритель \([^)]+\): ждать смену/, "not named, not in the scene: one line");
+    assert.doesNotMatch(unnamed.model.requests[0].system[3].text, /Хрипло, с паузами/);
+  } finally { await c.f.db.close(); }
+});
