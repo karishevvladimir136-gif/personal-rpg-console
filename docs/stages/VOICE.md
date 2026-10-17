@@ -125,6 +125,13 @@ if not — switch the campaign to English, which is not a failure.
   ([2026-07](https://dev.to/synthorai/which-llm-is-cheapest-for-your-language-tokenizer-costs-measured-1k5m)); a news
   report claims ~3× for Russian on Opus 5 ([2026-10](https://www1.ru/en/news/2026/10/05/440386-ssa-berut-s-rossiian-bolse-za-russkii-iazyk-claude-tratit-pocti-v-4-raza-bolse-tokenov.html)),
   unverified. The first-word wait is thinking and does not depend on the language; streaming and output cost do.
+- **Two diagnostic variants** (owner, 2026-10-16, after comparing with AI Realm, whose English sounds rich with simple
+  prompts): (a) **Fable 5.1 as the DM** on the same scenes with the same voice layer — on the human-vote creative
+  writing board Claude Fable 5 is #1 and Claude Opus 5 is #1 on EQ-Bench Creative Writing v3, Qwen3.8-max is 16th
+  ([2026-08](https://www.digitalapplied.com/blog/which-ai-model-writes-best-leaderboards-disagree)); (b) **prose
+  without the machinery**: the same scene with no tools in the prompt and no bookkeeping, narration only — to measure
+  how much the tool-heavy procedure itself costs the prose (the first English blind run also sounded «strange»). If (b)
+  is clearly better, consider writing the scene in one pass and doing the bookkeeping in a second pass from the text.
 - **Banks:** Russian 30–40 passages, English 20–30, by kind: about 40% dialogue (bargaining, subtext, everyday talk),
   action, quiet scenes, humour, a few montage/transition pieces; 150–400 words each; 3–6 authors per language; plus the
   owner's before/after pairs. Variants per arm: rules only · 5 passages · the whole bank — to see where the curve stops.
