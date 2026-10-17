@@ -1,6 +1,6 @@
 // Evaluation bench for the DM turn path.
 //   node scripts/eval/run.mjs --scenario <name|all|a,b> [--runtime astra-primary-v1|dm-loop-v1]
-//        [--provider fake|live] [--model opus|astra] [--effort low|medium|high|xhigh|max] [--budget-usd N] [--verbose]
+//        [--provider fake|live] [--model opus|astra] [--effort low|medium|high|xhigh|max] [--budget-usd N] [--max-steps N] [--verbose]
 // Every scenario starts from a freshly created campaign on a disposable PGlite
 // database. Metrics go to scripts/eval/out/<run>.jsonl (git-ignored).
 // --runtime astra-primary-v1 (default) is the Stage 0 path, unchanged.
@@ -34,6 +34,7 @@ function parseArgs(argv) {
     else if (flag === "--model") args.model = value();
     else if (flag === "--effort") args.effort = value();
     else if (flag === "--continuation-effort") args.continuationEffort = value();
+    else if (flag === "--max-steps") args.maxSteps = Number(value());
     else if (flag === "--verbose") args.verbose = true;
     else throw Error(`unknown argument ${flag}`);
   }
@@ -125,7 +126,7 @@ if (args.runtime === "dm-loop-v1") {
     }
     process.stdout.write(`▶ ${scenario.name} — ${scenario.title}\n`);
     const summary = await runLoopScenario({ ...scenario, loop: scenario.loop ?? script ?? {} }, { live: args.provider === "live",
-      model: args.model, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose });
+      model: args.model, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
     process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
       `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
       `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +

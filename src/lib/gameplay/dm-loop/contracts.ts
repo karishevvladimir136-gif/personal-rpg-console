@@ -73,6 +73,8 @@ export type DmLoopUsageEntry = {
   outputTokens: number;
   cacheReadTokens: number;
   cacheWriteTokens: number;
+  /** Polish 2 §4: the part of the cache writes at the one-hour rate (Anthropic reports it). */
+  cacheWrite1hTokens?: number;
   reasoningTokens: number | null;
   costUsd: number;
   latencyMs: number;

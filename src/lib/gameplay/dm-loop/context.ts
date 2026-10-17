@@ -1,6 +1,8 @@
 // The four-layer request of dm-loop-v1 (plan §10 «весь крафт в кэш», §12 the
 // campaign dossier, §11 pinned facts; stage task §1), from the most stable to
-// the most volatile, a cache breakpoint at each boundary:
+// the most volatile, a cache breakpoint at each boundary (polish 2 §4: the
+// conversation's history sits between the world and the living dossier as
+// append-only blocks, so a turn writes only its own rows):
 //   1. how to run the game — role, tool policy, the whole approved DM Craft
 //      library (doctrine and every active card), DM Style;
 //   2. the world — campaign, theme, DM guide, Canon, rules as knowledge
@@ -21,7 +23,6 @@ import type { Entity, PublicProfile, Quest } from "../../persistence/contracts.t
 import { pinnedCraftForStage } from "../dm-craft-context.ts";
 import { parseCharacterModel, type CharacterModel } from "../character-model.ts";
 import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
-import { dmLoopLimits as L } from "./limits.ts";
 import { DM_LOOP_TOOL_NAMES } from "./tools.ts";
 import { allPlans } from "./plans.ts";
 import { voiceLayer, voiceReminder } from "./voice.ts";
@@ -432,12 +433,15 @@ function sessionRecaps(source: RuntimeSource): Budgeted {
   return withinBudget(entries, DOSSIER_BUDGETS.layer3.memory, "Previous sessions («Ранее в…», newest first; what the player knows):");
 }
 
-/** Recent and retrieved memory rows change with every turn and input: volatile layer. */
-function memoryRecent(source: RuntimeSource): Budgeted {
+/** Retrieved memory rows change with every turn and input: volatile layer. Polish 2 §4: a public row
+ * that the history window already quotes verbatim is left out (the recent scenes travel once, cached). */
+function memoryRecent(source: RuntimeSource, inWindow: Set<string> = new Set()): Budgeted {
   const memory = source.memory;
   if (!memory) return { text: "", dropped: [], used: 0 };
   const parts: string[] = [];
-  if (memory.historical.length) parts.push(`Recent and retrieved memory (public, quoted):\n${memory.historical.map(memoryLine).join("\n")}`);
+  const fold = (text: string) => text.replace(/\s+/g, " ").trim();
+  const historical = memory.historical.filter((row) => !inWindow.has(fold(row.text)));
+  if (historical.length) parts.push(`Retrieved memory (public, quoted; the recent scenes are above):\n${historical.map(memoryLine).join("\n")}`);
   if (memory.privateHistorical.length) parts.push(`Recent and retrieved private memory (DM-only):\n${memory.privateHistorical.map(memoryLine).join("\n")}`);
   if (memory.checkpoint) parts.push(`Resume point: ${json(memory.checkpoint.resume)}`);
   const text = parts.join("\n\n");
@@ -454,6 +458,30 @@ function varietyCounter(source: RuntimeSource, input: TurnInput): string {
   const missing = all.filter((kind) => !seen.has(kind));
   const streak = (() => { let n = 0; const last = recent.at(-1)?.[0]; for (let i = recent.length - 1; i >= 0 && last && recent[i].includes(last); i--) n++; return { kind: last, n }; })();
   return `Variety counter (a hint, not a quota): last scenes ${recent.map((kinds) => kinds.join("+")).join(", ")}${streak.n >= 3 ? `; ${streak.n} ${streak.kind} scenes in a row — consider another kind` : ""}${missing.length ? `; not seen lately: ${missing.join(", ")}` : ""}.`;
+}
+
+/** Polish 2 §4: the conversation so far — the public scene rows (the player's lines, the narration,
+ * the notes; the opening included) as append-only blocks, oldest first, within item 8's budget for
+ * the scenes and the exchanges. A block's text never changes once written (a committed turn is
+ * history), so the cache finds the prefix up to the previous turn at the block boundaries and each
+ * turn writes only its own rows. When the window is full, the oldest rows leave in buckets of
+ * HISTORY_BUCKET, not one per turn: one rewrite every eight turns or so, instead of every turn. */
+export const HISTORY_BUDGET = DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges;
+export const HISTORY_BUCKET = 16;
+export function conversationHistory(source: RuntimeSource): { blocks: string[]; dropped: string[]; used: number; rows: number; bodies: string[] } {
+  const rows = source.snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
+  const bodies = source.snapshot.scenes.map((row) => row.body.replace(/\s+/g, " ").trim());
+  const costs = rows.map((text) => estimateTokens(text) + 2);
+  let start = rows.length, used = 0;
+  while (start > 0 && used + costs[start - 1] <= HISTORY_BUDGET) { start--; used += costs[start]; }
+  if (start > 0) {
+    start = Math.min(rows.length, Math.ceil(start / HISTORY_BUCKET) * HISTORY_BUCKET);
+    used = costs.slice(start).reduce((sum, cost) => sum + cost, 0);
+  }
+  const kept = rows.slice(start);
+  if (!kept.length) return { blocks: [], dropped: start > 0 ? ["older scenes before the window"] : [], used: 0, rows: 0, bodies: [] };
+  const blocks = kept.map((text, index) => (index === 0 ? `Recent scenes and exchanges (oldest first; the conversation so far, public):\n${text}` : text));
+  return { blocks, dropped: start > 0 ? ["older scenes before the window"] : [], used, rows: kept.length, bodies: bodies.slice(start) };
 }
 
 function currentState(source: RuntimeSource, input: TurnInput): { text: string; dropped: string[] } {
@@ -482,24 +510,10 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
     timeOfDay: `${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")} (check every «morning / evening / since…» against this clock)`, currentPlace: place ? { id: place.id, name: place.name } : null,
     characters: entities, factions: factionRows, items, storages, places: locations, openJournal: quests, activeEncounters: encounters,
     openRests: runtime.restRecords.filter((row) => row.status === "planned").map((row) => ({ id: row.id, kind: row.kind })) };
-  const dropped: string[] = [];
-  const scenesAll = snapshot.scenes.slice(-L.context.recentScenes).map((row) => `[${row.role}] ${row.body}`);
-  let scenes = scenesAll.join("\n");
-  if (estimateTokens(scenes) > DOSSIER_BUDGETS.layer4.scenes) { scenes = clipTokens(scenes, DOSSIER_BUDGETS.layer4.scenes); dropped.push("oldest recent scenes"); }
-  const exchangesAll = runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== input.operationId &&
-    ["game", "companion", "mechanic"].includes(turn.mode)).slice(-L.context.recentExchanges)
-    .map((turn) => `Player${turn.companionId ? ` (to ${snapshot.entities.find((e) => e.id === turn.companionId)?.name ?? "companion"})` : ""}: ${turn.input}\nDM: ${turn.narration ?? ""}`);
-  // Polish group 7: the last turns verbatim — the budget drops the oldest exchanges whole, never the newest.
-  const keptExchanges: string[] = [];
-  let exchangeTokens = 0;
-  for (const exchange of [...exchangesAll].reverse()) {
-    const cost = estimateTokens(exchange) + 2;
-    if (keptExchanges.length && exchangeTokens + cost > DOSSIER_BUDGETS.layer4.exchanges) { dropped.push("oldest recent exchanges"); break; }
-    keptExchanges.unshift(exchange);
-    exchangeTokens += cost;
-  }
-  const exchanges = keptExchanges.join("\n\n");
-  return { text: `Current state (before this turn; IDs are the references tools accept):\n${json(state)}\n\nRecent scenes (oldest first):\n${scenes || "(the campaign is just beginning)"}\n\nRecent exchanges:\n${exchanges || "(none yet)"}`, dropped };
+  // Polish 2 §4: the recent scenes and exchanges left this volatile block for the append-only history
+  // (conversationHistory); «now» keeps only what changes — the state, the counters, the reminder.
+  void input;
+  return { text: `Current state (before this turn; IDs are the references tools accept):\n${json(state)}${snapshot.scenes.length ? "" : "\n\nThe campaign is just beginning: no scenes yet."}`, dropped: [] };
 }
 
 function rollMode(source: RuntimeSource): string {
@@ -602,15 +616,22 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
     DOSSIER_BUDGETS.layer3.pinned + DOSSIER_BUDGETS.layer3.notebook + DOSSIER_BUDGETS.layer3.adventure + DOSSIER_BUDGETS.layer3.memory;
   const tailBudget = DOSSIER_BUDGETS.layer3.models + DOSSIER_BUDGETS.layer3.journal + DOSSIER_BUDGETS.layer3.secrets + DOSSIER_BUDGETS.layer3.plans +
     DOSSIER_BUDGETS.layer3.likes + DOSSIER_BUDGETS.layer3.ledger;
+
+  // Layer 6 (polish 2 §4): the conversation so far as append-only blocks, between the world and the
+  // living dossier — a new turn only appends a block, so the cached prefix up to the previous turn
+  // survives; the living dossier after it is small and rewritten each turn at the 5-minute rate,
+  // where before it would have forced the whole history to be rewritten whenever a person was met.
+  const history = conversationHistory(source);
+  for (const [index, block] of history.blocks.entries())
+    layers.push({ layer: 6, budgetTokens: HISTORY_BUDGET, usedTokens: estimateTokens(block), dropped: index === 0 ? history.dropped : [] });
   layers.push({ layer: 3, budgetTokens: stableBudget, usedTokens: estimateTokens(living), dropped: stableParts.flatMap((part) => part.dropped) });
   layers.push({ layer: 4, budgetTokens: tailBudget, usedTokens: estimateTokens(tail), dropped: tailParts.flatMap((part) => part.dropped) });
 
-  // Layer 5: now.
-  const retrieved = memoryRecent(source);
+  // Layer 5: now — only what changes with the turn.
+  const retrieved = memoryRecent(source, new Set(history.bodies));
   const state = currentState(source, input);
   const now = [varietyCounter(source, input), retrieved.text, state.text, voiceReminder(language)].filter(Boolean).join("\n\n");
-  layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory + DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges,
-    usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
+  layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory, usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
 
   const addressee = input.mode === "companion" && input.companionId
     ? `The player speaks to ${snapshot.entities.find((e) => e.id === input.companionId)?.name ?? "a companion"} (${input.companionId})${input.listenerIds.length ? `; also listening: ${input.listenerIds.map((id) => snapshot.entities.find((e) => e.id === id)?.name ?? id).join(", ")}` : ""}. The companion answers in their own voice from what they know.`
@@ -619,11 +640,14 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
   const system: DmSystemBlock[] = [
     { text: howToDm, cache: true, ttl: "1h" },
     { text: world, cache: true, ttl: "1h" },
-    { text: living, cache: true, ttl: "1h" },
+    ...history.blocks.map((text, index) => ({ text, cache: true, ttl: "1h" as const, breakpoint: index === history.blocks.length - 1 })),
+    // The living dossier follows the history: rewritten each turn (the prefix before it grew), so the
+    // cheaper 5-minute write; its reads serve the turn's continuations, the chat and the digest.
+    { text: living, cache: true, ttl: "5m" },
     { text: tail, cache: false },
     { text: now, cache: false },
   ];
-  const cachedPrefixBytes = bytes(howToDm) + bytes(world) + bytes(living);
+  const cachedPrefixBytes = bytes(howToDm) + bytes(world) + history.blocks.reduce((sum, text) => sum + bytes(text), 0) + bytes(living);
   return { system, user, cachedPrefixBytes, totalBytes: cachedPrefixBytes + bytes(tail) + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
 }
 

@@ -84,7 +84,7 @@ test("a decisive player input and a due off-screen plan take the top of the rang
   } finally { await c.f.db.close(); }
 });
 
-test("the prompt is ordered by volatility: three stable layers cached for an hour, the session's tail and «now» after the breakpoint", async () => {
+test("the prompt is ordered by volatility: how to DM, the world, the conversation's history, the living dossier, then the session's tail and «now» uncached", async () => {
   const c = await loopCampaign({ language: "ru" });
   try {
     const played = await c.turn("Говорю с Дуней.", [{ text: "Дуня слушает. ", toolCalls: [
@@ -96,27 +96,35 @@ test("the prompt is ordered by volatility: three stable layers cached for an hou
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     const again = await c.turn("Спрашиваю Дуню о лодке.", [{ text: "— Лодка? ", toolCalls: [finish()] }]);
     const system = again.model.requests[0].system;
-    assert.equal(system.length, 5);
-    assert.deepEqual(system.map((block) => block.cache), [true, true, true, false, false]);
-    assert.deepEqual(system.slice(0, 3).map((block) => block.ttl), ["1h", "1h", "1h"]);
-    const stable = system[2].text, tail = system[3].text;
+    // Polish 2 §4: the history sits between the world and the living dossier as cached blocks (one
+    // breakpoint on the last); the living dossier is cached at the 5-minute rate; the tail and «now» are not.
+    assert.deepEqual(system.slice(0, 2).map((block) => [block.cache, block.ttl]), [[true, "1h"], [true, "1h"]]);
+    assert.deepEqual(system.slice(-3).map((block) => [block.cache, block.ttl ?? null]), [[true, "5m"], [false, null], [false, null]]);
+    const history = system.slice(2, -3);
+    assert.ok(history.length >= 2, "the first turn's player line and narration are history blocks");
+    assert.ok(history.every((block) => block.cache && block.ttl === "1h"));
+    assert.deepEqual(history.map((block) => block.breakpoint), [...history.slice(0, -1).map(() => false), true]);
+    const stable = system.at(-3).text, tail = system.at(-2).text;
     assert.match(stable, /Codex of people[\s\S]*Дуня/);
     assert.doesNotMatch(stable, /вернуть лодку|Коротко, по делу/, "no Character Model in the stable block");
     assert.match(tail, /Character Models[\s\S]*Дуня[\s\S]*in the scene[\s\S]*вернуть лодку/);
     assert.match(tail, /Journal, open now[\s\S]*Шестнадцать монет Дуне/);
     assert.match(tail, /Off-screen plans[\s\S]*plan_stranger/);
     assert.doesNotMatch(stable, /Шестнадцать монет Дуне|plan_stranger/);
-    // The layer report counts five layers; the first three are identical across the two turns.
+    // The first two layers are identical across the two turns; the layer report has one row per block.
     const first = played.model.requests[0].system, second = again.model.requests[0].system;
     assert.equal(first[0].text, second[0].text);
     assert.equal(first[1].text, second[1].text);
     const started = c.observations.filter((o) => o.type === "request_started").at(-1);
-    assert.equal(started.layers.length, 5);
-    assert.equal(started.layers[3].tokens > 0, true);
-    // The Anthropic body asks for the one-hour cache on the stable blocks only.
+    assert.equal(started.layers.length, system.length);
+    assert.equal(started.layers.at(-2).tokens > 0, true);
+    // The Anthropic body: four breakpoints at most — how to DM, the world, the last history block, the living dossier — and no top-level one.
     const body = anthropicRequestBody("claude-opus-5-5", { system, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100 });
-    assert.deepEqual(body.system.map((block) => block.cache_control ?? null), [
-      { type: "ephemeral", ttl: "1h" }, { type: "ephemeral", ttl: "1h" }, { type: "ephemeral", ttl: "1h" }, null, null]);
+    const marks = body.system.map((block) => block.cache_control ?? null);
+    assert.deepEqual(marks.slice(0, 2), [{ type: "ephemeral", ttl: "1h" }, { type: "ephemeral", ttl: "1h" }]);
+    assert.deepEqual(marks.slice(-3), [{ type: "ephemeral" }, null, null]);
+    assert.deepEqual(marks.slice(2, -3).filter(Boolean), [{ type: "ephemeral", ttl: "1h" }], "one breakpoint on the last history block");
+    assert.equal("cache_control" in body, false, "no top-level breakpoint: nothing after the living dossier is written");
     // The legacy memory summaries are no longer the dossier's memory: no digest block, the session recaps instead.
     assert.doesNotMatch(stable, /Campaign memory digest/);
   } finally { await c.f.db.close(); }

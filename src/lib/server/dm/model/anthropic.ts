@@ -67,15 +67,19 @@ function anthropicMessages(messages: DmMessage[], modelId: string) {
 
 /** The exact Messages API body for one request (exported for contract tests). */
 export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
-  // One explicit breakpoint per cached layer (the turn loop sends up to three:
-  // how to DM, world, living) plus the automatic top-level one for the growing
-  // conversation: four breakpoints at most, the provider's limit.
-  const cached = request.system.flatMap((block, index) => (block.cache ? [index] : [])).slice(-3);
+  // Polish 2 §4: four explicit breakpoints at most (the provider's limit) — how to
+  // DM, the world, the last block of the conversation's history, the living
+  // dossier — and no top-level breakpoint: the polish run showed that the
+  // automatic one at the end of the messages wrote the session tail, the «now»
+  // block and the turn's own messages (about 21,000 tokens) every turn at the
+  // write rate for a continuation that mostly never came (cache writes 50–76% of
+  // the DM's cost). Everything after the last breakpoint is now paid once at the
+  // plain input rate; the history's earlier blocks are found at their boundaries.
+  const cached = request.system.flatMap((block, index) => (block.cache && block.breakpoint !== false ? [index] : [])).slice(-4);
   return {
     model: modelId,
     max_tokens: request.maxOutputTokens,
     stream: true,
-    cache_control: { type: "ephemeral" },
     // Polish item 12: the stable layers ask for a one-hour cache (a write costs
     // 2× instead of 1.25×, but a player's pause past five minutes no longer
     // rewrites them); longer lifetimes must come first, which the layer order gives.

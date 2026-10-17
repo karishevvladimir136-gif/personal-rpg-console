@@ -61,7 +61,7 @@ test("the likes note in two parts: the DM's observations never overwrite the pla
     assert.equal(view.playerLikes, campaign.player_likes);
     assert.equal(view.dmLikes, campaign.dm_likes);
     const next = await c.turn("Беру верёвку.", [{ text: "Верёвка твоя. ", toolCalls: [finish()] }]);
-    const tail = next.model.requests[0].system[3].text;
+    const tail = next.model.requests[0].system.at(-2).text;
     const own = tail.indexOf("What the player asked for, in their own words");
     const observed = tail.indexOf("Your observations of what the player enjoys");
     assert.ok(own >= 0 && observed > own, "the dossier shows both, the player's words first");
@@ -81,7 +81,7 @@ test("the state names the part of the day in the campaign language and asks the 
       { name: "advance_time", arguments: { minutes: 17 * 60 + 5, reason: "waiting for the evening" } }, finish()] }]);
     assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
     const second = await c.turn("Смотрю на часы.", [{ text: "Вечер. ", toolCalls: [finish()] }]);
-    const now = second.model.requests[0].system[4].text;
+    const now = second.model.requests[0].system.at(-1).text;
     assert.match(now, /"timeOfDay":"вечер \(check every/);
     assert.match(now, /"worldDay":"day 1 17:05"/);
   } finally { await c.f.db.close(); }

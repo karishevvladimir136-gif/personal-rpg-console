@@ -11,7 +11,11 @@ export type { DmEffort, DmProviderId, DmUsage } from "../../../model-runtime/dm-
 /** A system layer; `cache` marks a breakpoint, `ttl` the cache lifetime of that
  * block (polish item 12: the stable layers keep a one-hour cache so a player's
  * pause does not rewrite them; the provider decides what it can honour). */
-export type DmSystemBlock = { text: string; cache: boolean; ttl?: "5m" | "1h" };
+/** One system block. `cache` marks a stable block (the OpenAI adapter joins them as the cached prefix);
+ * on Anthropic a cached block carries a breakpoint unless `breakpoint` is false — polish 2 §4: the
+ * conversation's history is many cached blocks with one breakpoint on the last, so the prefix up to
+ * the previous turn is found at the earlier block boundaries and only the new turn is written. */
+export type DmSystemBlock = { text: string; cache: boolean; ttl?: "5m" | "1h"; breakpoint?: boolean };
 
 export type DmToolCall = { id: string; name: string; arguments: string };
 

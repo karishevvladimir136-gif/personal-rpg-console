@@ -208,7 +208,7 @@ test("talking to a companion is an ordinary turn with an addressee; identity is 
     const model = JSON.parse(state.dmState.npc[`character_${tam.id}`]);
     assert.equal(model.episodes.length, 1);
     assert.equal(model.identity.observableVoice, "Dry, quick jokes.");
-    assert.ok(talk.model.requests[0].system[3].text.includes("Dry, quick jokes."), "the companion's model is in the session tail");
+    assert.ok(talk.model.requests[0].system.at(-2).text.includes("Dry, quick jokes."), "the companion's model is in the session tail");
     assert.ok(talk.model.requests[0].messages[0].text.includes("The player speaks to Tam"));
     const fixed = await c.turn("Tam changes her mind about everything.", [
       { text: "Tam shrugs. ", toolCalls: [{ name: "note_character", arguments: { actorRef: tam.id, identity: { values: ["gold"] } } }] },

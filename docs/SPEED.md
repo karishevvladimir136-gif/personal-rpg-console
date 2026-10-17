@@ -287,3 +287,13 @@ off-screen plan, a decisive player input) takes the top, at most twice in a row;
 the three stable blocks on a 1-hour cache and the session tail uncached; the first word is measured from the player's send
 to the first narration character. The before/after numbers on the long Russian replay are recorded in the final group of
 the polish run (`docs/runs/polish-*.jsonl`), inside the run's paid cap.
+
+## 8. Polish 2 (2026-10-17): the history as an append-only cached block
+
+The polish run's replay (§7) left cache writes at 50–76% of the DM's cost: every turn wrote the session tail, the «now»
+block with the recent scenes and exchanges, and the turn's own messages — about 21 000 tokens — under the automatic
+top-level breakpoint. Polish 2 moves the scenes and exchanges into append-only history blocks between the world and the
+living dossier (one block per scene row, one breakpoint on the last, a bucketed window), caches the living dossier after
+them at the 5-minute rate, and drops the top-level breakpoint: a turn writes its own two rows and the living dossier and
+pays the rest once at the plain rate (`docs/TURN_LOOP.md` §19). The before/after numbers on the 20-turn Russian replay
+are in `docs/runs/polish2-report.md`.

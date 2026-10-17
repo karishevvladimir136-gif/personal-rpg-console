@@ -163,7 +163,8 @@ test("Anthropic: continuation replays the native turn unchanged and returns all 
     { type: "text", text: "STABLE DM PREFIX", cache_control: { type: "ephemeral" } },
     { type: "text", text: "Scene: the mill." },
   ]);
-  assert.deepEqual(body.cache_control, { type: "ephemeral" });
+  // Polish 2 §4: no top-level breakpoint — the explicit ones carry the cache; nothing after the last is written.
+  assert.equal("cache_control" in body, false);
   assert.equal(body.tools[0].strict, true);
   // A turn recorded by another model is rebuilt from neutral fields.
   const foreign = anthropicRequestBody("claude-opus-5-5", request({ messages: [

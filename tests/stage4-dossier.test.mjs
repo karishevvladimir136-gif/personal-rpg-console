@@ -105,7 +105,7 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     // The pins and notes reach the dossier layer of the next turn, and the public snapshot.
     const played = await c.turn("I look at the mill.", [{ text: "The wheel turns. ", toolCalls: [finish()] }]);
     // Polish item 12: the dossier is a stable block (pins) and the session's tail (likes).
-    const living = `${played.model.requests[0].system[2].text}\n${played.model.requests[0].system[3].text}`;
+    const living = `${played.model.requests[0].system.at(-3).text}\n${played.model.requests[0].system.at(-2).text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
     assert.match(living, /What the player asked for, in their own words[^\n]*Slow investigations/);
     assert.match(played.model.requests[0].system[1].text, /Theme question: What does loyalty cost\?/);
@@ -182,7 +182,7 @@ test("off-screen plans: the receipt of time passing lists plans that came due; t
       ] },
     ]);
     assert.equal(second.result.status, "committed", JSON.stringify(c.errors));
-    const plansLayer = second.model.requests[0].system[3].text;
+    const plansLayer = second.model.requests[0].system.at(-2).text;
     assert.match(plansLayer, /Off-screen plans[\s\S]*plan_reeve_revenge[\s\S]*"due":"day 3/);
     const timeReceipt = (await c.row(second.input.operationId)).checkpoint.dmLoop.receipts[0];
     assert.equal(timeReceipt.result.value.duePlans.length, 1);
@@ -377,7 +377,7 @@ test("Chat with DM on a loop campaign: the campaign's model answers and may prop
     const request = scripted.requests[0];
     assert.equal(request.toolset, null);
     assert.doesNotMatch(request.system.map((b) => b.text).join("\n"), /stolen ledger/, "the feedback source carries no private state");
-    assert.match(request.system[4].text, /out-of-game question/);
+    assert.match(request.system.at(-1).text, /out-of-game question/);
   } finally { await c.f.db.close(); }
 });
 

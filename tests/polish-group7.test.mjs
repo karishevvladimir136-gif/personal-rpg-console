@@ -63,7 +63,7 @@ test("note_character records the speech profile (names resolve to IDs), keeps it
     assert.equal(kept.speech.register, "Грубо, по-рыбацки.", "an update without speech keeps the profile");
     assert.equal(kept.current.stress, "strained");
     const third = await c.turn("Молчу.", [{ text: "Тихо. ", toolCalls: [finish()] }]);
-    const tail = third.model.requests[0].system[3].text;
+    const tail = third.model.requests[0].system.at(-2).text;
     assert.match(tail, /"speech":\{"register":"Грубо, по-рыбацки\."/);
     assert.match(tail, /"address":\[\{"to":"[^"]+","form":"ты"\}\]/);
     assert.match(tail, /sounded in the last scenes: «сплёвывает за борт» ×2/);
@@ -76,7 +76,8 @@ test("the budgets of item 8 and the last turns verbatim", () => {
   assert.equal(DOSSIER_BUDGETS.layer3.codex, 30000);
   assert.equal(DOSSIER_BUDGETS.layer4.scenes, 30000);
   assert.equal(DOSSIER_BUDGETS.layer4.exchanges, 15000);
-  assert.match(src("src/lib/gameplay/dm-loop/context.ts"), /for \(const exchange of \[\.\.\.exchangesAll\]\.reverse\(\)\)/, "the budget drops the oldest exchanges, never the newest");
+  // Polish 2 §4: the scenes and exchanges are the append-only history; its budget keeps the newest rows and drops the oldest in buckets.
+  assert.match(src("src/lib/gameplay/dm-loop/context.ts"), /while \(start > 0 && used \+ costs\[start - 1\] <= HISTORY_BUDGET\)/, "the budget drops the oldest rows, never the newest");
 });
 
 test("the voice slot and the reminder are empty (off); the samples are quoted only when the switch is on", () => {
@@ -171,9 +172,9 @@ test("a person is «mentioned» by any word of their name: the core with the voi
       { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
     assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
     const named = await c.turn("Спрашиваю смотрителя о лодке.", [{ text: "Тихо. ", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
-    assert.match(named.model.requests[0].system[3].text, /Старый смотритель \([^)]+\) — core: [^\n]*"voice":"Хрипло, с паузами\."/, "«смотрителя» names «Старый смотритель»: the core with the voice");
+    assert.match(named.model.requests[0].system.at(-2).text, /Старый смотритель \([^)]+\) — core: [^\n]*"voice":"Хрипло, с паузами\."/, "«смотрителя» names «Старый смотритель»: the core with the voice");
     const unnamed = await c.turn("Молчу.", [{ text: "Тихо. ", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false } }] }]);
-    assert.match(unnamed.model.requests[0].system[3].text, /Старый смотритель \([^)]+\): ждать смену/, "not named, not in the scene: one line");
-    assert.doesNotMatch(unnamed.model.requests[0].system[3].text, /Хрипло, с паузами/);
+    assert.match(unnamed.model.requests[0].system.at(-2).text, /Старый смотритель \([^)]+\): ждать смену/, "not named, not in the scene: one line");
+    assert.doesNotMatch(unnamed.model.requests[0].system.at(-2).text, /Хрипло, с паузами/);
   } finally { await c.f.db.close(); }
 });

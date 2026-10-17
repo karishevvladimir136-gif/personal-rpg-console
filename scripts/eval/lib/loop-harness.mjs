@@ -146,7 +146,7 @@ export async function runLoopScenario(scenario, options) {
   let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [], naturalness = null;
   try {
     steps.set("start", await snapshot(f, cid, hero));
-    for (const step of scenario.steps) {
+    for (const step of (options.maxSteps ? scenario.steps.slice(0, options.maxSteps) : scenario.steps)) {
       if (live && step.probe) continue;
       if (live && options.budget.exhausted) { stopReason = "budget_reached"; break; }
       const before = await snapshot(f, cid, hero);
@@ -235,13 +235,13 @@ export async function runLoopScenario(scenario, options) {
           firstWordMs: firstWordAt === null ? null : Math.round(firstWordAt - started),
           modelRequests: { total: usage.length, plan: 0, narrate: 0, other: usage.length },
           tokens: { input: sum(usage, "inputTokens"), output: sum(usage, "outputTokens"), cached: sum(usage, "cacheReadTokens"),
-            cacheWrite: sum(usage, "cacheWriteTokens"), reasoning: sum(usage, "reasoningTokens"), estimated: !live },
+            cacheWrite: sum(usage, "cacheWriteTokens"), cacheWrite1h: sum(usage, "cacheWrite1hTokens"), reasoning: sum(usage, "reasoningTokens"), estimated: !live },
           cacheReadShare: sum(usage, "inputTokens") ? Number((sum(usage, "cacheReadTokens") / sum(usage, "inputTokens")).toFixed(3)) : null,
           costUsd: live ? Number(sum(usage, "costUsd").toFixed(5)) : 0,
           requestBytes: requestStarts.map((o) => o.requestBytes),
           cachedPrefixBytes: requestStarts[0]?.cachedPrefixBytes ?? null,
           calls: usage.map((entry, index) => ({ stage: "loop", latencyMs: entry.latencyMs, firstTextMs: entry.firstTextMs,
-            inputTokens: entry.inputTokens, cachedInputTokens: entry.cacheReadTokens, cacheWriteTokens: entry.cacheWriteTokens,
+            inputTokens: entry.inputTokens, cachedInputTokens: entry.cacheReadTokens, cacheWriteTokens: entry.cacheWriteTokens, cacheWrite1hTokens: entry.cacheWrite1hTokens ?? null,
             outputTokens: entry.outputTokens, reasoningTokens: entry.reasoningTokens, costUsd: entry.costUsd, toolCalls: entry.toolCalls,
             effort: entry.effort, tools: callsByRequest(usage, receipts)[index] })),
           effects: { proposed: receipts.map((r) => r.call.name), accepted: receipts.filter((r) => r.result.ok).map((r) => r.call.name),

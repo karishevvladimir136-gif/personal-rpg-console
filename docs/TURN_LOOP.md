@@ -515,3 +515,34 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
 - **«Ещё» is two blocks.** The player's actions («Закончить сессию», «Лагерь и отдых», «Записать заметку», «Что я
   знаю?») stand in one row with one plain line; the editing tools live under «Редактор кампании · для владельца»,
   each with a line saying when it is useful.
+
+## 19. Polish 2 — part 4: the conversation as an append-only cached block
+
+The polish run measured cache writes at 50–76% of the DM's cost: about 21 000 tokens written every turn — the session
+tail, the «now» block (13 000 tokens median: the recent scenes and exchanges verbatim) and the turn's own messages —
+because the request kept the automatic top-level breakpoint at the end of the messages, which wrote everything before
+it at the write rate for a continuation that mostly never came. Polish 2 (`docs/stages/POLISH_2.md` §4) keeps the
+budget and stops paying for it:
+
+- **The history** (`conversationHistory` in `src/lib/gameplay/dm-loop/context.ts`): the public scene rows — the
+  player's lines, the narration, the notes, the opening — as one system block per row, oldest first, between the world
+  and the living dossier. A committed turn is history, so a block's text never changes; a new turn appends its two
+  rows. Every history block is marked cached for an hour, with the breakpoint on the last one only
+  (`DmSystemBlock.breakpoint`): the provider finds the prefix up to the previous turn at the earlier block boundaries
+  and writes only the new rows. The window is item 8's budget (`HISTORY_BUDGET` = the scenes' 30 000 + the exchanges'
+  15 000 tokens); when it is full the oldest rows leave in buckets of `HISTORY_BUCKET` (16 rows, about eight turns), so
+  the window's start moves — and the history is rewritten — once in about eight turns, not every turn.
+- **The living dossier follows the history** at the 5-minute rate: its prefix grows every turn, so it is rewritten every
+  turn whatever its order; after the history it costs its own size at 1.25×, where before it a change in it (a person
+  met, a quest closed — 12 of 24 turns in the replay) would have forced the whole history to be rewritten.
+- **«Now» keeps only what changes**: the variety counter, the retrieved memory rows the window does not already quote,
+  the current state with IDs, the voice reminder. The session tail and «now» sit after the last breakpoint and are not
+  cached; the turn's messages are not cached either (no top-level `cache_control`): a continuation within a turn re-reads
+  the history and the dossier from the cache and pays the tail, «now» and its own messages once at the plain rate.
+- **The Anthropic body** (`anthropicRequestBody`): four explicit breakpoints — how to DM (1h), the world (1h), the last
+  history block (1h), the living dossier (5m) — and nothing else. The OpenAI body is unchanged in meaning: the cached
+  blocks (history included, in order) form the developer prefix.
+- **The record**: the loop's usage entries and the bench's turn rows carry `cacheWrite1hTokens` next to `cacheWriteTokens`,
+  so a replay shows the split between the two write rates; the layer report has one row per block (layer 6 = history).
+- Tests: `tests/polish2-cache.test.mjs` (byte-identical earlier blocks across turns, the breakpoint on the last, «now»
+  without scenes, the four breakpoints and no top-level one, the bucketed window), `tests/polish-group3.test.mjs` updated.
