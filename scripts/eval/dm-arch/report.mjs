@@ -64,7 +64,7 @@ function rows(turns, judgements, label) {
     xhigh: committed.filter((t) => t.pin?.effort === "xhigh").length,
     ledgerMissing: committed.filter((t) => t.ledger && !t.ledger.found).length,
     unfinished: committed.filter((t) => (t.twoPass ?? []).some((e) => e.event === "bookkeeper_finished" && !e.finished)).length,
-    naturalness: { latin: nat("latinShare"), kancelyarit: nat("kancelyaritPer1000"), variation: nat("sentenceLengthVariation") },
+    naturalness: { latin: nat("latinShare"), kancelyarit: nat("kancelyaritPerThousand"), variation: nat("sentenceLengthVariation") },
   };
 }
 

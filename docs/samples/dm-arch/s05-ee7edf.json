@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "scene": "s05",
+  "title": "Scene s05",
+  "description": "Harbour replay, turn s05: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s05",
+  "createdAt": "2026-10-17T19:46:21.444Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "C",
+    "label": "Fable 5.1 writer + Opus 5.5 bookkeeper",
+    "runtime": "two-pass",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": "anthropic/claude-opus-5-5@high",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s05",
+      "input": "Торгуюсь за цену погружения: прошу больше, ссылаясь на то, что умею читать течения.",
+      "outcome": "committed",
+      "narration": "Писарь даже не дослушивает до конца. Перо он опускает на подставку, аккуратно, чтобы не капнуло.\n\n— Цены за погружение для вас нет. Никакой. — Он говорит это без злости, как читает. — Списанных под воду не пускаем. Это не мастер Брага решает, это устав. Хоть вы течения читаете, хоть по дну пешком ходите. Помпа четыре монеты. Торговаться тут не о чем, ставка подённая, одна на всех.\n\nОн постукивает пальцем по закрытой книге.\n\n— Хотите, чтобы вас заново в водолазы вписали, идите к мастеру. А мастер вас видеть не желает. Вы слышали.\n\nУ сходней один из курильщиков, рыжий, с обожжённой щекой, усмехается и роняет товарищу, не особо понижая голос:\n\n— Течения он читает. У нас Брага три дня сам читает, всё дочитать не может. Крутит там у мачты, на отливе особенно.\n\nВторой толкает его локтем, и рыжий замолкает, отворачивается к воде.\n\nПисарь делает вид, что ничего не слышал. Снова берёт перо и держит его над пустой строкой.\n\n— Так вписывать на помпу или нет? С полудня. Мне до полудня ещё двоих найти надо.",
+      "firstWordMs": 12201,
+      "textDoneMs": 25273,
+      "durationMs": 43856,
+      "requests": 2,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 51889,
+        "output": 3494,
+        "cached": 23626,
+        "cacheWrite": 28255,
+        "cacheWrite1h": 2726,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.455,
+      "costUsd": 0.37737,
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.37737,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

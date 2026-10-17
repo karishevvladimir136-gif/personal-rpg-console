@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "scene": "s18",
+  "title": "Scene s18",
+  "description": "Harbour replay, turn s18: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s18",
+  "createdAt": "2026-10-17T19:46:21.452Z",
+  "run": "dmarch-20261017-193714-scenes",
+  "record": "docs/runs/dmarch-20261017-193714-scenes.jsonl",
+  "variant": {
+    "id": "B",
+    "label": "Fable 5.1, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s18",
+      "input": "Если догоняют — отбиваюсь: гарпунный пистолет на самого опасного, нож наготове.",
+      "outcome": "committed",
+      "narration": "Ты выскакиваешь на сходни боком, спиной к воде, рука уже на ремне: гарпунный пистолет наполовину из чехла, нож под другой ладонью. Разворачиваешься к причалу.\n\nЗа спиной у тебя никого нет.\n\nПонтоны пустые до самого кабака. На них стоит Марта с ведром помоев, которые собиралась выплеснуть в гавань, и смотрит на твой пистолет, потом на тебя.\n\n— Ты это в меня? — спрашивает она. — За тридцать девять монет? Дороговато берёшь.\n\nОна выливает ведро, не торопясь, и уходит в дом. На пороге оборачивается:\n\n— Спрячь. У меня и так одно окно заколочено.\n\nМокей тем временем захлёстывает чалку за кнехт и даже не поднимает глаз. Только когда ты убираешь пистолет обратно, он говорит в сторону, куда-то в сеть:\n\n— Кого догоняли-то. Чаек?\n\nНо гавань не совсем пустая. Через воду, от гильдейской баржи, отходит баркас. Один гребец, на носу широкая фигура с обожжённым ухом. Гребут не торопясь, в лад, и правят не к волнолому и не к гильдейскому причалу, а сюда, к сходням у «Сухого Якоря». Клим стоит, расставив ноги, руки пустые, и смотрит прямо на тебя через воду. Расстояния им на пару минут.\n\nВ рубку тебе было велено прийти самому. Похоже, мастер ждать не стал.",
+      "firstWordMs": 27256,
+      "textDoneMs": 62219,
+      "durationMs": 62219,
+      "requests": 2,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 103276,
+        "output": 3963,
+        "cached": 75289,
+        "cacheWrite": 27979,
+        "cacheWrite1h": 0,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.729,
+      "costUsd": 0.56679,
+      "tools": {
+        "accepted": [
+          "note_world",
+          "note_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "finish_asked"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.56679,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

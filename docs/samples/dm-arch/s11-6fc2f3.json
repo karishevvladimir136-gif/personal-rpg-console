@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "scene": "s11",
+  "title": "Scene s11",
+  "description": "Harbour replay, turn s11: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s11",
+  "createdAt": "2026-10-17T19:46:21.447Z",
+  "run": "dmarch-20261017-182146-reference-A",
+  "record": "docs/runs/dmarch-20261017-182146-reference-A.jsonl",
+  "variant": {
+    "id": "A",
+    "label": "Opus 5.5, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": null,
+    "effort": "xhigh"
+  },
+  "turns": [
+    {
+      "step": "s11",
+      "input": "Вечером иду в кабак Марты. Отдаю ей часть долга из полученных денег и спрашиваю, кто ещё интересовался этой работой.",
+      "outcome": "committed",
+      "narration": "Клим ответа не ждёт. Он снимает незавинченную крышку, двумя пальцами вытаскивает манжету и поворачивает её к солнцу. Надрез находит сразу: он тоже не первый год стоит на помпах. Лицо у него каменеет.\n\nОн молча показывает манжету Савве. Тот смотрит долго.\n\n— Свежий, — говорит Савва.\n\n— Свежий, — соглашается Клим. Из ящика под станиной он достаёт запасную манжету, ставит её и сам заворачивает крышку до упора. Резаную прячет за пазуху. Потом смотрит на тебя, и насмешки в его взгляде больше нет.\n\n— Мастеру сейчас не до того, вода уходит. А вечером сам ему расскажешь. Как нашёл и почему молчал.\n\nСавва надевает шлем, Сыч заворачивает барашки на воротнике, и Савва по трапу уходит в зелёную воду. Шланг ложится через борт, на мешковину.",
+      "firstWordMs": 157494,
+      "textDoneMs": 225694,
+      "durationMs": 225694,
+      "requests": 4,
+      "effort": "xhigh",
+      "tension": "climax",
+      "tokens": {
+        "input": 231904,
+        "output": 20739,
+        "cached": 194048,
+        "cacheWrite": 37846,
+        "cacheWrite1h": 0,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.837,
+      "costUsd": 0.64286,
+      "tools": {
+        "accepted": [
+          "roll",
+          "money",
+          "money",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "quest",
+          "quest",
+          "note_character",
+          "note_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_world",
+          "move_party",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "+4 монеты (Расчёт за смену на гильдейской помпе)",
+          "−3 монеты → Марта",
+          "Новое место: Кабак «Сухой Якорь»",
+          "Журнал: «Сорок монет Марте» обновлено",
+          "Журнал: «Затонувший «Кулик»» обновлено",
+          "Переход: Кабак «Сухой Якорь» (9 часов 30 минут)"
+        ],
+        "rolls": [
+          {
+            "actor": "Савва",
+            "reason": "Савва стропит и поднимает заклиненный ящик; баржу не переставили, трос идёт с потягом",
+            "modifier": 4,
+            "bonuses": [],
+            "advantage": "normal",
+            "dc": 13,
+            "difficulty": "hard",
+            "natural": null,
+            "visibility": "private"
+          }
+        ]
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "xhigh",
+          "reason": "DM hint: climax",
+          "tension": "climax"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.64286,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "scene": "s05",
+  "title": "Scene s05",
+  "description": "Harbour replay, turn s05: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s05",
+  "createdAt": "2026-10-17T19:46:21.443Z",
+  "run": "dmarch-20261017-182146-reference-A",
+  "record": "docs/runs/dmarch-20261017-182146-reference-A.jsonl",
+  "variant": {
+    "id": "A",
+    "label": "Opus 5.5, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s05",
+      "input": "Торгуюсь за цену погружения: прошу больше, ссылаясь на то, что умею читать течения.",
+      "outcome": "committed",
+      "narration": "Писарь слушает тебя, не поднимая пера. Курильщики у сходней придвигаются поближе, чтобы ничего не пропустить.\n\n— Погружения, — повторяет он, будто пробует слово на вкус. — Вы, верно, не расслышали. Под воду списанных не пускаем. Тут не о цене речь.\n\nТы не отступаешь: течения у волнолома ты знаешь, а это нужно не только тому, кто внизу, но и тому, кто держит шланг наверху.",
+      "firstWordMs": 9141,
+      "textDoneMs": 43774,
+      "durationMs": 43774,
+      "requests": 3,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 114060,
+        "output": 3940,
+        "cached": 96034,
+        "cacheWrite": 18016,
+        "cacheWrite1h": 1363,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.842,
+      "costUsd": 0.19222,
+      "tools": {
+        "accepted": [
+          "roll",
+          "note_world",
+          "note_world",
+          "note_character",
+          "advance_time",
+          "finish_turn",
+          "upsert_character",
+          "finish_turn"
+        ],
+        "rejected": [
+          {
+            "name": "upsert_character",
+            "reason": "Мастер Брага is not a faction record."
+          }
+        ],
+        "player": [
+          "Торг с писарем: выбить больше, чем четыре монеты за помпу, на том, что знаешь течения: 8 — не вышло",
+          "Прошло: 5 минут"
+        ],
+        "rolls": [
+          {
+            "actor": "Рэй",
+            "reason": "Торг с писарем: выбить больше, чем четыре монеты за помпу, на том, что знаешь течения",
+            "modifier": 6,
+            "bonuses": [],
+            "advantage": "normal",
+            "dc": 13,
+            "difficulty": "hard",
+            "natural": null,
+            "visibility": "player"
+          }
+        ]
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "outcome_asked"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.19222,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}
