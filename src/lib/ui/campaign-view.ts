@@ -110,12 +110,51 @@ export function inventoryOf(data: CampaignSnapshot, entityId: string): Item[] {
 }
 
 export type SlotView = { id: string; label: string; item: Item | null };
+/** The universal paper doll (polish group 8, the registry port): twelve slots for any ruleset — left
+ * голова, шея, талисман, тело, плащ; right основная рука, вторая рука, кольцо I, кольцо II, руки; bottom
+ * пояс, ноги. Records created before the polish stage, or with no slots, show it; the loop's equip
+ * tool uses the record's own slots, so the migration gives every hero these as records too. */
+export function universalSlots(language: Lang): { id: string; label: string; accepts: string[] }[] {
+  const ru = language === "ru";
+  return [
+    { id: "head", label: ru ? "Голова" : "Head", accepts: ["armor", "clothing"] },
+    { id: "neck", label: ru ? "Шея" : "Neck", accepts: ["accessory", "jewelry", "gear"] },
+    { id: "talisman", label: ru ? "Талисман" : "Talisman", accepts: ["accessory", "jewelry", "misc"] },
+    { id: "body", label: ru ? "Тело" : "Body", accepts: ["armor", "clothing"] },
+    { id: "cloak", label: ru ? "Плащ" : "Cloak", accepts: ["clothing", "armor"] },
+    { id: "hand", label: ru ? "Основная рука" : "Main hand", accepts: ["weapon", "tool"] },
+    { id: "offhand", label: ru ? "Вторая рука" : "Off hand", accepts: ["weapon", "shield", "tool"] },
+    { id: "ring1", label: ru ? "Кольцо I" : "Ring I", accepts: ["jewelry", "accessory"] },
+    { id: "ring2", label: ru ? "Кольцо II" : "Ring II", accepts: ["jewelry", "accessory"] },
+    { id: "gloves", label: ru ? "Руки" : "Hands", accepts: ["clothing", "armor", "gear"] },
+    { id: "belt", label: ru ? "Пояс" : "Belt", accepts: ["gear", "clothing", "consumable", "weapon", "tool"] },
+    { id: "legs", label: ru ? "Ноги" : "Legs", accepts: ["armor", "clothing"] },
+  ];
+}
 export function equipmentOf(data: CampaignSnapshot, entity: Entity): SlotView[] {
-  return entity.equipment_slots.map((slot) => ({
+  const slots = entity.equipment_slots.length ? entity.equipment_slots : universalSlots(data.campaign.language === "ru" ? "ru" : "en");
+  return slots.map((slot) => ({
     id: slot.id,
     label: slot.label,
     item: data.items.find((item) => item.equipped_entity_id === entity.id && item.equipped_slot === slot.id && item.quantity > 0) ?? null,
   }));
+}
+
+/** The campaign's currency as the world named it: the first currency on any record, else the
+ * language's plain word. A wallet always exists (polish group 8): 0 when nothing was recorded. */
+export function campaignCurrency(data: Pick<CampaignSnapshot, "entities" | "campaign">): { key: string; label: string } {
+  for (const row of data.entities) {
+    const key = Object.keys(row.resources).find((name) => name.startsWith("currency_"));
+    if (key) return { key, label: resourcePresentation(key).label };
+  }
+  const label = data.campaign.language === "ru" ? "монеты" : "coins";
+  return { key: `currency_${label}`, label: resourcePresentation(`currency_${label}`).label };
+}
+export function walletOf(data: Pick<CampaignSnapshot, "entities" | "campaign">, entity: Pick<Entity, "resources">): MoneyView[] {
+  const { money } = resourcesOf(entity);
+  if (money.length) return money;
+  const currency = campaignCurrency(data);
+  return [{ key: currency.key, label: currency.label, value: 0 }];
 }
 
 export type PartyMember = { entity: Entity; present: boolean };

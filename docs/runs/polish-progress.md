@@ -17,8 +17,8 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 | 5 — pictures | done | `redraw-anchor.tsx` (one Stage V path for every picture button), hide/lightbox/«Кадр сцены» in `live-frames.tsx` and `game-screen.tsx`, the OpenAI anchors choice removed; `tests/polish-group5.test.mjs`; `docs/stages/STAGE_V.md` §8. Picture-models files untouched. Needs the owner: the atlas artwork («Создать карту») has no Stage V composition and left the map screen |
 | 6 — game screen layout | done | one stage (the frame takes the header), one page scroll, sticky compact composer with icon tools, the addressee read from the text, one «Ведущий думает…», changes folded and led by items/money with the «⚡ думал глубже» mark, no timers (clock in words), no adventure card, «Зацепки» / «Долги и обещания», goal from the taken quest or the arc, hero line in words; `tests/polish-group6.test.mjs`. Screenshots and the 15-lines check come in the final group |
 | 7 — voice mechanics + budgets | done | migration `202610170061_polish_voice.sql`; speech profile + tic counter, budgets of item 8, voice slots (off), «Образцы голоса» (off), finish_turn nudge, naturalness metrics, opening by the campaign's DM when OpenAI; `tests/polish-group7.test.mjs`; `docs/TURN_LOOP.md` §16. Not done: an Opus-written opening (OpenAI-only bootstrap contract) — in the report |
-| 8 — character and inventory | next | |
-| 9 — codex, map, journal | pending | |
+| 8 — character and inventory | done | migration `202610170062_polish_character.sql` (a narrative hero gets humanoid slots); the wallet always exists in the world's currency (Cyrillic currencies are money), the universal paper doll for records without slots, the backstory block, zero stub numbers hidden, HP owner-correction buttons, Russian stat labels; `tests/polish-group8.test.mjs`. Rest heals by the ruleset through the loop's rest tool (unchanged); the player's rest action moves with the «Ещё» split (group 10). Page width to check on the final screenshots |
+| 9 — codex, map, journal | next | |
 | 10 — wizard and first turn | pending | |
 | final — checks, live smoke, screenshots, report | pending | |
 

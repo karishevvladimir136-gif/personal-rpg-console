@@ -9,7 +9,9 @@ import { characterViewModel } from "@/lib/character-view-model";
 import { EQUIPPED_FILTER, inventoryCategoryLabel, inventoryItemLabel } from "@/lib/live-inventory-view";
 import { itemRarity } from "@/lib/ui/rarity";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
-import { equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, partyOf, resourcesOf, statLabel } from "@/lib/ui/campaign-view";
+import { equipmentOf, heroOf, holdingsNavLabel, holdingsOf, inventoryOf, partyOf, resourcesOf, statLabel, walletOf } from "@/lib/ui/campaign-view";
+import { createMutationAttempt } from "@/lib/persistence/client";
+import { useOptionalCampaignData } from "../persistence-context";
 import { anchorFor } from "@/lib/visual-frame/pictures";
 import { RedrawAnchor } from "./redraw-anchor";
 import { usePictures } from "./live-frames";
@@ -54,7 +56,9 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
   const entity = members.find((row) => row.id === selectedId) ?? members[0] ?? null;
   if (!entity) return <Panel><p className={r.empty}>{c("В кампании пока нет героя.", "This campaign has no hero yet.")}</p></Panel>;
   const model = characterViewModel(data, entity);
-  const { resources, money } = resourcesOf(entity);
+  const { resources } = resourcesOf(entity);
+  // Polish group 8: a wallet always exists (0 by default, the world's currency name).
+  const money = walletOf(data, entity);
   const slots = equipmentOf(data, entity);
   const half = Math.min(5, Math.ceil(slots.length / 2));
   const left = slots.slice(0, half), right = slots.slice(half, half * 2), bottom = slots.slice(half * 2);
@@ -92,9 +96,10 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           </div>
         </div>
         {entity.hp !== null && <Gauge label={c("Хиты", "Hit points")} value={entity.hp} max={entity.max_hp} />}
-        {model.derivedStats.length > 0 && (
+        {entity.hp !== null && !chrome?.href && <HpCorrection data={data} entity={entity} />}
+        {model.derivedStats.some(([, value]) => value !== 0) && (
           <div className={`${r.stats} ${s.stats}`}>
-            {model.derivedStats.map(([key, value]) => (
+            {model.derivedStats.filter(([, value]) => value !== 0).map(([key, value]) => (
               <div key={key} className={r.stat}><div className={r.statKey}>{c.label(statLabel(key))}</div><div className={r.statMain}>{value}</div></div>
             ))}
           </div>
@@ -108,7 +113,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         )}
         {(resources.length > 0 || money.length > 0) && (
           <div>
-            <span className={r.eyebrow}>{c("Ресурсы", "Resources")}</span>
+            <span className={r.eyebrow}>{c("Кошелёк и ресурсы", "Wallet and resources")}</span>
             {resources.map((resource) => (
               <div key={resource.key} className={r.resRow}>
                 <span>{c.label(resource.label)}</span>
@@ -151,9 +156,15 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
         <div className={s.slots}>{right.map(slot)}</div>
         {bottom.length > 0 && <div className={s.dollBottom}>{bottom.map(slot)}</div>}
       </div>
-      {!slots.length && <p className={r.note}>{c("У этого персонажа нет мест для снаряжения.", "This character has no equipment slots.")}</p>}
+      {!entity.equipment_slots.length && <p className={r.note}>{c("Универсальные слоты: ведущий надевает вещи туда, куда они просятся по описанию.", "Universal slots: the DM equips things where their description puts them.")}</p>}
     </Panel>
   );
+  // Polish group 8: the backstory the owner wrote in «Кто вы?» has its own block.
+  const backstory = entity.details.trim() ? (
+    <Panel label={c("Предыстория", "Backstory")}>
+      <p className="prose" style={{ whiteSpace: "pre-wrap", margin: 0 }}>{entity.details}</p>
+    </Panel>
+  ) : null;
   const inventory = (
     <Panel label={c("Инвентарь", "Inventory")} title={c("Вещи при себе", "Carried")} action={money.length ? <span className={r.num} style={{ color: "var(--brass)" }}>{money.map((row) => `${row.value} ${c.label(row.label)}`).join(" · ")}</span> : undefined}>
       <div className={r.stack}>
@@ -208,7 +219,7 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           </div>
         )}
       </div>
-      {tab === "char" && <div className={s.grid}>{stats}<div className={s.stackCol}>{doll}{inventory}</div></div>}
+      {tab === "char" && <div className={s.grid}>{stats}<div className={s.stackCol}>{doll}{backstory}{inventory}</div></div>}
       {tab === "inv" && <div className={s.gridInventory}>{doll}{inventory}</div>}
       {tab === "spells" && <div className={s.gridInventory}>{spells}{stats}</div>}
       {redraw && (
@@ -230,6 +241,41 @@ export function RegistryCharacter({ data, play = null, initialTab = "char", prev
           {legacy}
         </details>
       )}
+    </div>
+  );
+}
+
+/** Owner correction of hit points (the registry port): −10 −5 −1 +1 +5 +10 «Полные», recorded as an
+ * owner correction of the record, visible in the history like any correction. */
+function HpCorrection({ data, entity }: { data: CampaignSnapshot; entity: Entity }) {
+  const c = useCopy();
+  const context = useOptionalCampaignData();
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
+  if (!context || entity.hp === null) return null;
+  const set = async (next: number) => {
+    const hp = Math.max(0, entity.max_hp !== null ? Math.min(entity.max_hp, next) : next);
+    if (hp === entity.hp || busy) return;
+    setBusy(true);
+    setError("");
+    try {
+      const { id, campaign_id: _campaignId, revision: _revision, character_sheet: _sheet, ...fields } = entity;
+      void _campaignId; void _revision; void _sheet;
+      await context.mutate(createMutationAttempt(null, { operation: "entity.save", campaignId: data.campaign.id, expectedRevision: entity.revision,
+        timeline: data.timeline, correctionScope: "timeline", payload: { ...fields, id, hp } }));
+      await context.refresh();
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : c("Не удалось записать поправку.", "The correction could not be saved."));
+    } finally { setBusy(false); }
+  };
+  const steps = [-10, -5, -1, 1, 5, 10];
+  return (
+    <div className={r.row} role="group" aria-label={c("Поправить хиты", "Correct hit points")}>
+      {steps.map((step) => (
+        <button key={step} type="button" className={r.btnGhost} disabled={busy} onClick={() => void set(entity.hp! + step)}>{step > 0 ? `+${step}` : step}</button>
+      ))}
+      {entity.max_hp !== null && <button type="button" className={r.btnGhost} disabled={busy || entity.hp === entity.max_hp} onClick={() => void set(entity.max_hp!)}>{c("Полные", "Full")}</button>}
+      {error && <span className={r.error} role="alert">{error}</span>}
     </div>
   );
 }

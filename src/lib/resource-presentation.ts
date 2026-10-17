@@ -5,9 +5,10 @@ export function resourcePresentation(
 ): { kind: "money" | "resource"; label: string } {
   const defined = currencies.find((currency) => currency.resourceKey === key);
   if (defined) return { kind: "money", label: readableLabel(defined.label) };
-  const currency = /^currency_([a-z][a-z0-9]*(?:_[a-z0-9]+)*)$/i.exec(key);
+  // Polish group 8: the currency is the world's own word in the campaign language (any script).
+  const currency = /^currency_([\p{L}][\p{L}\p{N}]*(?:_[\p{L}\p{N}]+)*)$/iu.exec(key);
   if (currency) return { kind: "money", label: safePublicResourceLabel(currency[1]) };
-  const resource = /^resource_([a-z][a-z0-9]*(?:_[a-z0-9]+)*)$/i.exec(key);
+  const resource = /^resource_([\p{L}][\p{L}\p{N}]*(?:_[\p{L}\p{N}]+)*)$/iu.exec(key);
   if (resource) return { kind: "resource", label: safePublicResourceLabel(resource[1]) };
   return {
     kind: "resource",

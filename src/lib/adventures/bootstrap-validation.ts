@@ -219,8 +219,7 @@ export function parseCreationProposal(
     // A new sheet may suggest ordinary presentation labels from the public
     // premise. They do not become World Actor capabilities or check bonuses.
     ensure((proposal.sheet.mode === "structured_rpg") === (proposal.mechanics !== null));
-    if (proposal.equipmentProfile === "standard_humanoid")
-      ensure(proposal.sheet.mode === "structured_rpg");
+    // Polish group 8: a narrative hero gets the humanoid slots too (universal doll for any ruleset).
     if (proposal.equipmentProfile === "none")
       ensure(proposal.mechanics?.weaponName === null || proposal.mechanics === null);
     if (proposal.mechanics?.weaponName !== null && proposal.mechanics !== null)
@@ -351,8 +350,7 @@ export function parseCreationReview(
       ensure(result.equipmentProfile !== undefined);
     if (result.sheet)
       ensure((result.sheet.mode === "structured_rpg") === (result.mechanics !== undefined));
-    if (result.equipmentProfile === "standard_humanoid")
-      ensure(result.sheet?.mode === "structured_rpg");
+    // Polish group 8: standard_humanoid is allowed with a narrative sheet as well.
     if (result.equipmentProfile === "none")
       ensure(result.mechanics?.weaponName === null || result.mechanics === undefined);
     resolved(proposal.questions, result.answers);

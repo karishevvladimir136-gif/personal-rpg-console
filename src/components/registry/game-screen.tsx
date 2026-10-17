@@ -22,6 +22,7 @@ import {
   partyOf,
   questsOf,
   resourcesOf,
+  walletOf,
   detectAddressee,
   orderChanges,
 } from "@/lib/ui/campaign-view";
@@ -143,7 +144,9 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
       setNonce((value) => value + 1);
   };
   const rolls = quickRolls(hero);
-  const { resources, money } = hero ? resourcesOf(hero) : { resources: [], money: [] };
+  const resources = hero ? resourcesOf(hero).resources : [];
+  // Polish group 8: the wallet always shows (0 by default, the world's currency name).
+  const money = hero ? walletOf(data, hero) : [];
   const opening = mode === "game" && view.showOpening && (
     <article className={g.opening}>{view.story || c("История готова начаться. Здесь появится первая сцена.", "Your story is ready to begin. The opening scene will appear here.")}</article>
   );
