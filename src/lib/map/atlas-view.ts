@@ -72,22 +72,52 @@ export function presentationAtlasPlacements(
     row.campaign_id === snapshot.campaign.id &&
     row.id === snapshot.publicState.current_location_id &&
     (row.status === "known" || row.status === "visited"));
-  if (!current || visible.some((row) =>
-    row.location_id === current.id && row.x !== null && row.y !== null))
-    return visible;
+  // Polish group 9: places with a parent are laid out first, so a current place under a parent
+  // opens the map at its own level; only a current place nobody placed gets the provisional world spot.
+  const rows = [...visible, ...derivedPlacements(snapshot, visible)];
+  if (!current || rows.some((row) => row.location_id === current.id && row.x !== null && row.y !== null)) return rows;
   return [
-    ...visible.filter((row) => row.location_id !== current.id),
-    {
-      campaign_id: snapshot.campaign.id,
-      location_id: current.id,
-      level: "world",
-      parent_location_id: null,
-      x: 0.5,
-      y: 0.5,
-      revision: 0,
-      updated_at: current.updated_at,
-    },
+    ...rows.filter((row) => row.location_id !== current.id),
+    { campaign_id: snapshot.campaign.id, location_id: current.id, level: "world" as const, parent_location_id: null, x: 0.5, y: 0.5, revision: 0, updated_at: current.updated_at },
   ];
+}
+
+/** A small deterministic number from a name, for a marker's position (never a random source). */
+function nameHash(value: string): number {
+  let hash = 2166136261;
+  for (const char of value) hash = Math.imul(hash ^ char.codePointAt(0)!, 16777619) >>> 0;
+  return hash;
+}
+
+/** Polish group 9: places the DM recorded with a parent («Понтонный рынок» in «Скрипучая Гавань»)
+ * get a marker without manual placing — a deterministic spot around the parent: a region under a
+ * world, a local place under a region, a sibling beside a local parent. Rumoured places are laid
+ * out the same way (the map shows them dashed). Derived rows carry revision 0, like the provisional
+ * current place, and are never sent to the layout save. Several passes let a chain resolve. */
+export function derivedPlacements(snapshot: CampaignSnapshot, placed: readonly MapPlacement[]): MapPlacement[] {
+  const byId = new Map(placed.filter((row) => row.x !== null && row.y !== null).map((row) => [row.location_id, row]));
+  const out: MapPlacement[] = [];
+  const candidates = snapshot.locations.filter((row) => row.campaign_id === snapshot.campaign.id && row.detail?.parentId && !byId.has(row.id)
+    && (row.status === "known" || row.status === "visited" || row.status === "rumored"));
+  for (let pass = 0; pass < 3; pass++) {
+    for (const row of candidates) {
+      if (byId.has(row.id)) continue;
+      const parent = byId.get(row.detail!.parentId!);
+      if (!parent) continue;
+      const level = parent.level === "world" ? "region" : "local";
+      const parentId = parent.level === "local" ? parent.parent_location_id : parent.location_id;
+      const hash = nameHash(row.name);
+      const angle = ((hash % 360) * Math.PI) / 180;
+      const spread = parent.level === "local" ? 0.09 + ((hash >>> 8) % 5) * 0.015 : 0.18 + ((hash >>> 8) % 7) * 0.025;
+      const centre = parent.level === "local" ? { x: parent.x!, y: parent.y! } : { x: 0.5, y: 0.5 };
+      const clamp = (value: number) => Math.min(0.94, Math.max(0.06, value));
+      const derived: MapPlacement = { campaign_id: snapshot.campaign.id, location_id: row.id, level, parent_location_id: parentId,
+        x: Number(clamp(centre.x + Math.cos(angle) * spread).toFixed(3)), y: Number(clamp(centre.y + Math.sin(angle) * spread).toFixed(3)), revision: 0, updated_at: row.updated_at };
+      byId.set(row.id, derived);
+      out.push(derived);
+    }
+  }
+  return out;
 }
 
 export type AtlasProjection = {
@@ -101,12 +131,14 @@ export function projectAtlas(
   snapshot: CampaignSnapshot,
   placements: readonly MapPlacement[],
 ): AtlasProjection {
+  const visible = presentationAtlasPlacements(snapshot, placements);
+  const derived = new Set(visible.filter((row) => row.revision === 0).map((row) => row.location_id));
+  // Known and visited places, plus rumoured ones the DM placed under a parent (shown dashed).
   const locations = snapshot.locations.filter(
     (row) =>
       row.campaign_id === snapshot.campaign.id &&
-      (row.status === "known" || row.status === "visited"),
+      (row.status === "known" || row.status === "visited" || (row.status === "rumored" && derived.has(row.id))),
   );
-  const visible = presentationAtlasPlacements(snapshot, placements);
   const byId = new Map(visible.map((row) => [row.location_id, row]));
   const current = byId.get(snapshot.publicState.current_location_id ?? "");
   const region = current?.level === "region"

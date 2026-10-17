@@ -164,8 +164,9 @@ export type Location = ScopedRow & {
   name: string;
   description: string;
   status: "known" | "visited" | "rumored";
-  /** Stage 4 (#10): quests whose goal is here. */
-  detail?: { questIds?: string[] };
+  /** Stage 4 (#10): quests whose goal is here. Polish group 9: the parent place the DM named and
+   * where this place sits in words («на краю гавани»); the map lays the marker out by itself. */
+  detail?: { questIds?: string[]; parentId?: string; whereabouts?: string };
 };
 export type Asset = ScopedRow & {
   title: string;

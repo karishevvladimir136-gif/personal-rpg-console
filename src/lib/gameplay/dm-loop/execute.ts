@@ -516,6 +516,8 @@ function upsertPlace(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
       reject(place.status !== "visited" || args.status === "visited", `${place.name} was visited; it cannot become merely ${String(args.status)}.`);
       values.status = str(args.status);
     }
+    const where = placeWhereabouts(shadow, args, place.id);
+    if (where) values.detail = { ...(place.detail ?? {}), ...where } as unknown as JsonObject;
     if (Object.keys(values).length) shadow.apply({ family: "locations", id: place.id, expectedRevision: place.revision, values });
     if (Array.isArray(args.questRefs)) linkPlaceToQuests(shadow, place.id, args.questRefs);
     return ok({ id: place.id, name: (values.name as string) ?? place.name }, `${(values.name as string) ?? place.name} updated`);
@@ -525,12 +527,25 @@ function upsertPlace(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
   const key = localKey(args.localKey) ?? name.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").slice(0, 60);
   const id = shadow.newId(`location:${key}`);
   reject(!shadow.location(id), `The local key "${key}" already names a place in this turn.`);
+  const where = placeWhereabouts(shadow, args, id);
   shadow.apply({ family: "locations", id, expectedRevision: null, values: {
-    name, description: str(args.description), status: str(args.status) || "known" } });
+    name, description: str(args.description), status: str(args.status) || "known", ...(where ? { detail: where as unknown as JsonObject } : {}) } });
   shadow.bindLocalKey(key, { family: "locations", id });
   if (Array.isArray(args.questRefs)) linkPlaceToQuests(shadow, id, args.questRefs);
   return ok({ id, localKey: key, name, status: str(args.status) || "known" }, `Place recorded: ${name}${str(args.status) === "rumored" ? " (a rumour)" : ""}`,
     null, chip.place(ctx.language, name, str(args.status) === "rumored"));
+}
+
+/** Polish group 9: the parent place and the whereabouts in words, for the map's own layout. */
+function placeWhereabouts(shadow: ShadowState, args: Args, selfId: string): { parentId?: string; whereabouts?: string } | null {
+  const out: { parentId?: string; whereabouts?: string } = {};
+  if (args.parentRef !== undefined) {
+    const parent = shadow.resolve(args.parentRef, ["locations"], "parentRef");
+    reject(parent.id !== selfId, "A place cannot lie in itself.");
+    out.parentId = parent.id;
+  }
+  if (args.whereabouts !== undefined && str(args.whereabouts)) out.whereabouts = str(args.whereabouts);
+  return Object.keys(out).length ? out : null;
 }
 
 // --- time and travel -------------------------------------------------------
@@ -974,7 +989,8 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     const session = shadow.snapshot.publicState.current_session_id ?? null;
     const detail = { ...(detailPatch(undefined, kind) ?? {}), sinceSessionId: session };
     shadow.apply({ family: "quests", id, expectedRevision: null, values: { title, kind,
-      description: `${str(args.description)}${reward ? `\nReward: ${reward}.` : ""}`.trim() || title, status: "open",
+      // Polish group 9: the reward line in the campaign language, one full stop.
+      description: `${str(args.description)}${reward ? `\n${ctx.language === "ru" ? "Награда" : "Reward"}: ${reward.replace(/\.+$/, "")}.` : ""}`.trim() || title, status: "open",
       detail: detail as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "quests", id });
     for (const placeId of detail.locationIds ?? []) {

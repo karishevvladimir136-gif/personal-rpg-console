@@ -5,7 +5,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { DossierView, NotebookView } from "@/lib/gameplay/dossier/contracts";
-import { turnStatsOf } from "@/lib/ui/campaign-view";
+import { pinnedOf, turnStatsOf } from "@/lib/ui/campaign-view";
+import { PinnedList } from "./pins";
 import { EFFORT_ORDER } from "@/lib/gameplay/dm-loop/depth";
 import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from "@/lib/campaign-settings";
 import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmTurnModels, saveDmSettings, type DmLoopTurnLimits, type DmSettings } from "@/lib/gameplay/dm-settings-client";
@@ -269,6 +270,10 @@ export function RegistrySettings({ data, more, preview }: {
                   placeholder={c("Например: что стоит верность, когда никто не смотрит?", "For example: what does loyalty cost when nobody is watching?")}
                   onChange={(event) => setThemeDraft(event.target.value)} />
                 {themeDraft !== null && <div className={r.row}><button type="button" className={r.btnMain} onClick={() => void saveNote("theme", themeDraft)}>{c("Сохранить", "Save")}</button><button type="button" className={r.btnGhost} onClick={() => setThemeDraft(null)}>{c("Отмена", "Cancel")}</button></div>}
+                <span className={r.eyebrow}>{c("Что ведущий помнит всегда", "What the DM always remembers")}</span>
+                <p className={r.note} style={{ margin: 0 }}>{c("Факты, закреплённые булавкой в журнале, кодексе или сцене: они всегда перед ведущим.", "Facts pinned in the journal, the codex or a scene: they are always in front of the DM.")}</p>
+                <PinnedList campaignId={data.campaign.id} pinned={pinnedOf(data)} />
+
                 <span className={r.eyebrow}>{c("Образцы голоса", "Voice samples")}</span>
                 <p className={r.note} style={{ margin: 0 }}>{c("Отрывки прозы, которую ты любишь: ведущий будет учиться у их интонации, когда этап голоса включит образцы. Хранятся только в базе, приватно; в репозиторий, логи и примеры не попадают.", "Passages of prose you like: the DM learns their tone once the voice stage turns the samples on. Stored only in the database, privately; never in the repository, logs or fixtures.")}</p>
                 <Segmented label={c("Чьи образцы", "Which samples")} value={voiceScope} disabled={!!chrome?.href}

@@ -31,8 +31,10 @@ export function PinButton({ campaignId, pinned, text, source, compact }: {
     } catch { /* the next click retries */ } finally { setBusy(false); }
   };
   const label = existing ? c("Открепить", "Unpin") : c("Закрепить для ведущего", "Pin for the DM");
+  // Polish group 9: a small pin with a plain tooltip, not an admin panel.
+  const title = existing ? c("Закреплено: ведущий всегда будет это помнить", "Pinned: the DM will always remember this") : c("Ведущий всегда будет это помнить", "The DM will always remember this");
   return (
-    <button type="button" className={compact ? r.iconBtn : r.btnGhost} aria-pressed={!!existing} aria-label={label} title={label}
+    <button type="button" className={compact ? r.iconBtn : r.btnGhost} aria-pressed={!!existing} aria-label={label} title={title}
       disabled={busy || !!chrome?.href} onClick={() => void toggle()}>
       {existing ? <PinOff size={16} aria-hidden="true" /> : <Pin size={16} aria-hidden="true" />}
       {!compact && <span>{existing ? c("Закреплено", "Pinned") : c("Закрепить", "Pin")}</span>}

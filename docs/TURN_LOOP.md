@@ -479,3 +479,16 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
 - **The opening** is written by the campaign's own DM when that DM is an OpenAI model (`opening.propose` resolves its
   profile from the campaign's `dmTurn`). The bootstrap contract (its SQL and validators) pins OpenAI models only, so an
   Anthropic-written opening is a bounded follow-up listed in the report.
+
+## 17. Polish stage — group 9: places with a parent, the reward line
+
+- **`upsert_place` takes `parentRef` and `whereabouts`** («Понтонный рынок» in «Скрипучая Гавань», «у понтонов»),
+  stored in `rpg_locations.detail` (`parentId`, `whereabouts`; a place cannot lie in itself). The atlas lays such a
+  place out by itself (`derivedPlacements`: a region under a world, a local place under a region, a sibling beside a
+  local parent; a deterministic spot from the name, never saved as a placement), a rumoured place shows as a dashed
+  marker «слух», and the map opens at the level where the hero is.
+- **The quest's reward line** is in the campaign language («Награда: 40 монеты.») with one full stop.
+- The codex is tabs for the whole world (people, places, named things and vessels, factions, the world's canon); the
+  journal hides empty sections and links the goal to its quest; the pinned list lives in the campaign settings («Что
+  ведущий помнит всегда») and a pin on any entry says «Ведущий всегда будет это помнить». No new tool for lore: the
+  world's canon documents seed the «Мир» tab (a `lore` record is listed under «Needs the owner»).

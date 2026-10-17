@@ -92,6 +92,8 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       description: opt(str("Description.", L.maxLongText)),
       status: opt({ type: "string", enum: ["rumored", "known", "visited"] }),
       questRefs: opt({ type: "array", maxItems: 8, items: ref("A quest whose goal lies here.") }),
+      parentRef: opt(ref("The place this one lies in (a town for a tavern, a region for a town); the map lays it out by itself.")),
+      whereabouts: opt(str("Where it sits, in words («на краю гавани», «у понтонов»).", L.maxShortText)),
     }),
   },
   {

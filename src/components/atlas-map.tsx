@@ -46,11 +46,12 @@ function AtlasDisclosure({
 }
 
 function knownLocation(snapshot: CampaignSnapshot, id: string | null | undefined) {
+  // Polish group 9: a rumoured place the DM placed under a parent shows as a dashed marker.
   return snapshot.locations.find(
     (row) =>
       row.id === id &&
       row.campaign_id === snapshot.campaign.id &&
-      (row.status === "known" || row.status === "visited"),
+      (row.status === "known" || row.status === "visited" || row.status === "rumored"),
   );
 }
 
@@ -375,13 +376,13 @@ export function AtlasMap({
                   const labelPlacement = labelLayout[location.id] ?? "below";
                   return (
                     <button
-                      className={[styles.pin, location.status === "visited" ? styles.visitedPin : styles.knownPin, isCurrent ? styles.currentPin : "", isCurrentArea ? styles.currentAreaPin : "", isSelected ? styles.selectedPin : "", isDestination ? styles.destinationPin : "", labelPlacement === "above" ? styles.labelAbove : labelPlacement === "hidden" ? styles.labelHidden : ""].filter(Boolean).join(" ")}
+                      className={[styles.pin, location.status === "visited" ? styles.visitedPin : location.status === "rumored" ? styles.rumoredPin : styles.knownPin, isCurrent ? styles.currentPin : "", isCurrentArea ? styles.currentAreaPin : "", isSelected ? styles.selectedPin : "", isDestination ? styles.destinationPin : "", labelPlacement === "above" ? styles.labelAbove : labelPlacement === "hidden" ? styles.labelHidden : ""].filter(Boolean).join(" ")}
                       key={location.id}
                       type="button"
                       data-pin={location.id}
                       data-pin-status={location.status}
                       style={atlasPinStyle(row.x, row.y)}
-                      aria-label={`${location.name} · ${t(location.status === "visited" ? "Visited" : "Known")}${isCurrent ? ` · ${t("Current location")}` : isCurrentArea ? ` · ${w("Current area", "Текущая область")}` : ""}${isDestination ? ` · ${t("Destination selected")}` : ""}`}
+                      aria-label={`${location.name} · ${location.status === "rumored" ? w("Rumour", "Слух") : t(location.status === "visited" ? "Visited" : "Known")}${isCurrent ? ` · ${t("Current location")}` : isCurrentArea ? ` · ${w("Current area", "Текущая область")}` : ""}${isDestination ? ` · ${t("Destination selected")}` : ""}`}
                       aria-pressed={isSelected}
                       onClick={() => selectLocation(location.id)}
                     >
@@ -428,7 +429,8 @@ export function AtlasMap({
                 <span className="eyebrow">{w("PLACE RECORD", "ЗАПИСЬ О МЕСТЕ")}</span>
                 <h2>{selected.name}</h2>
                 <div className={styles.badges}>
-                  <Badge green={selected.status === "visited"}>{t(selected.status === "visited" ? "Visited" : "Known")}</Badge>
+                  <Badge green={selected.status === "visited"}>{selected.status === "rumored" ? w("Rumour", "Слух") : t(selected.status === "visited" ? "Visited" : "Known")}</Badge>
+                  {selected.detail?.whereabouts && <span className={styles.secondaryNote}>{selected.detail.whereabouts}</span>}
                   {selected.id === currentId && <Badge green>{t("Current location")}</Badge>}
                   {selected.id === destinationId && <Badge>{t("Destination selected")}</Badge>}
                 </div>
