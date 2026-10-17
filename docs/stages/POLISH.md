@@ -5,19 +5,31 @@ The owner's notes from the first play are added below by the planner before laun
 
 ## Order of work (the list below is long; do it in this order, commit after each group)
 
-1. **Correctness of the turn:** every text part reaches the player (Мокей, the silent continuation after a roll);
-   private records and DM rolls never leak into player chips; removing an item is not using it up; «Твой момент» only
-   after a resolved roll; the DM Craft fix branch merged.
-2. **Rolls:** the skill named on the card, bonuses from the sheet and the situation, advantage, the DC ladder — four
-   times in one session the hero's own trade was rolled at +0 (two natural 1s on his core skill under water).
-3. **Pictures:** one picture path for every button, the OpenAI-anchors trap removed, «Кадр сцены» on Stage V,
+1. **Correctness of the turn and the records:** every text part reaches the player, with paragraph breaks (Мокей, the
+   silent continuation after a roll, the turn-28 join); private records, DM rolls and DM bookkeeping never reach the
+   player's chips, and chips speak the campaign language; **money in the world's own currency and quest rewards that
+   pay** (item 10, critical); item operations that match the fiction (item 20); **«Закончить сессию» closes the
+   session, runs the digest and shows it with a «Тем временем…» stinger** (item 11); «Твой момент» only after a
+   resolved roll; the rejected calls and the play-time counter (item 21); the DM Craft fix branch merged.
+2. **Rolls:** the skill named on the card, bonuses from the sheet (skills get numbers from the hero's background) and
+   the situation, advantage, the DC ladder — all 13 hero checks of session 1 were rolled at +0 and 4 succeeded,
+   including his own trade; a natural 20 or a decisive success is the hero's moment (item 17).
+3. **Speed and cost:** the depth rule that stuck at xhigh (item 13), the prompt order and the 1-hour cache (item 12,
+   includes the layer-3 split), the first-word metric (item 14), the legacy memory summaries (item 22).
+4. **The DM's craft from session 1:** the likes note in two parts (item 15), the hero's own knowledge and three clues
+   per mystery (item 16), pacing and combat (item 9), time words against the clock (item 18), open questions and
+   verbal tics (item 23).
+5. **Pictures:** one picture path for every button, the OpenAI-anchors trap removed, «Кадр сцены» on Stage V,
    «Скрыть», the strip lightbox. (Model choice comes from `PICTURE_MODELS.md`.)
-4. **Game screen layout:** one stage, one page scroll, compact composer, one «Ведущий думает…», collapsed Russian
+6. **Game screen layout:** one stage, one page scroll, compact composer, one «Ведущий думает…», collapsed Russian
    turn summary leading with items and money, no timers, no adventure card, «Зацепки», goal from the taken quest.
-5. **Russian voice layer and the A/B** (item 7), plus the context budgets (item 8) and the layer-3 cache split.
-6. **Character and inventory for any ruleset** (doll, wallet, backstory, registry port), healing and rest.
-7. **Codex, map, journal** (whole-world codex, named things, map hierarchy, pins).
-8. **Wizard and the path to the first turn**, combat profile, «Ещё» split into player actions and an editor.
+7. **Russian voice layer and the A/B** (items 7 and 24), plus the context budgets (item 8). Late on purpose: the owner
+   is collecting dialogue passages from Russian prose he likes for the voice examples; if they are not in the repo or
+   handed over by then, ask him before writing the examples — do not compose them yourself.
+8. **Character and inventory for any ruleset** (doll, wallet, backstory, registry port), healing and rest.
+9. **Codex, map, journal** (whole-world codex, named things, map hierarchy, pins).
+10. **Wizard and the path to the first turn**, combat profile, start time from the opening scene, «Ещё» split into
+    player actions and an editor.
 
 ## Known before the play
 
@@ -79,6 +91,53 @@ The owner's notes from the first play are added below by the planner before laun
    он оттуда. — Копна, не дыши» — the logic is right, the joke is flat; add to the humour examples. Turn 18:
    «работа по его ремеслу» (stilted; a man says «есть для него работа — водолазная» or «работа по его части»).
    The hero's name keeps appearing lowercase («рэя») because the wizard stored it as typed — fix with the wizard item.
+   Turn 29: descriptions excellent (the shout trapped in the helmet as «бу-бу-бу», the gaff in the forefoot, the
+   hook catching Мокей's net instead of the stern); dialogue still odd in places («Гильдейский, значит. Ну-ну. Сами
+   так сами»).
+   Turn 31, a reference pair for the voice examples (owner: «косноязычно слегка, диалоги неплохие, но надо
+   доточить»). As written: «Мокей на кухню не идёт… Кружку отдаёт обратно со словом «Нет», а хлеб берёт. Дуня пьёт
+   молча и стоя, потом вытирает рот запястьем со шкотом.» Native: «Мокей на кухню не пошёл — сел на пороге, спиной к
+   теплу, шланг на коленях. От кружки отмахнулся, хлеб взял. Дуня выпила стоя, молча, и утёрла рот рукавом.»
+   Patterns to teach: tense and rhythm of a living narrator (a mix of past and present is fine when deliberate);
+   one clear action per clause; no stacked instrumental phrases («запястьем со шкотом»); gesture instead of quoted
+   one-word lines («со словом «Нет»»).
+   Also: «— Ящик на кухне. На кухне я ничего не списываю.» — the idea is good (the debt is written off only at the
+   counter), the line is a rule recited, not speech (owner: «не говорят так люди»). Native: «— Он у меня на кухне
+   стоит, а не на стойке. Вот вынесешь — тогда и выпьем.» People hint at their rule through the situation; they do
+   not announce it as a policy. Planner's own miss: I praised that line; the owner's ear is the reference.
+   Turn 32, a failed insight check narrated as a verdict on the hero's mind: «Объяснение складное, щели в нём ты не
+   находишь. На барже такой приказ отдали бы и сами… Может, всё так и было. А может, и нет. Наверняка ты не скажешь.»
+   It reads like the mechanic spoken aloud and decides what the hero thinks. A failed insight shows only the surface
+   the hero sees — the NPC is convincing — and leaves the judgment to the player: «Он говорит спокойно, не сбивается и
+   смотрит тебе в глаза.» (The planner's first try, «объяснение гладкое — как и его сухое пальто», was rejected by the
+   owner: people do not compare an explanation to a coat. Plain beats clever; no decorative similes.) A success may add one telling detail (here the DM did
+   it well: «patrol» is the first word he says faster than usual). Never write «ты не можешь сказать наверняка».
+   **Dialogue is the weakest part (owner, after 34 turns: «диалоги по естественности проигрывают остальному тексту»).**
+   Example: «— Никого, хозяин. Хорошее слово. Только мокрое. Просушить бы.» Diagnosis from the session: every NPC
+   speaks in the same composed, aphoristic voice — the author's voice — with clever metaphors and staccato fragments;
+   real speech has filler, unfinished phrases, repetition, plain words, and differs by person. Fix in three parts:
+   (1) a **speech profile in each Character Model** — vocabulary and register, sentence length, verbal tics, what the
+   person never says (Мирон shouts and mishears, Дуня is curt and practical, Марта counts and grumbles, the stranger
+   is polite and precise, Фрол is sly and wheedling) — and the DM writes each line from it; (2) **dialogue examples**
+   in the voice layer taken from Russian prose the owner likes, not composed by the planner (the owner rejected the
+   planner's rewrites twice); (3) a **bench check**: lines per NPC compared for distinctiveness (a vision-free text
+   judge asks «could this line belong to another character?») and an aphorism counter. Report dialogue separately in
+   the voice A/B.
+   Turn 35: a strong description (the back of the hand on the tin «как к лбу больного ребёнка», held longer than
+   needed) undercut by a cryptic line to himself — «— Холодный. — Разумеется.» — and «Разумеется» is the stranger's
+   fourth use of the same word in the session. A verbal tic is good once or twice; the speech profile should say how
+   often, and lines spoken «to oneself» need a reason the player can follow.
+   Turn 36: «— Сухо, хозяин. — На ночь хватит.» (owner: «явно перевод, не говорят так»). It is a callback to Фрол's
+   earlier invented image («никого — хорошее слово, только мокрое, просушить бы»): the DM coined a metaphor that is
+   not a Russian idiom (a «wet word» to be «dried» with money) and kept it running, so each callback sounds
+   translated. Rule for the voice layer: no invented idioms; a running image is allowed only when it rests on a real
+   Russian expression; slang and argot come from the character's world, not from wordplay.
+   Turn 37 (owner's notes): aphorisms in speech again («Стоит дороже, чем кажется, и дешевле, чем неприятности,
+   которые от неё бывают»; «кто знает, тому потом задают вопросы»); word choice («подняли хозяйке ящик её постояльца»
+   — the hero raised it from the bottom but *brought* it to her); **ты/вы** — the stranger says «вы» to his own hired
+   man Фрол («Вы сегодня уже подсобили»), which reads like an English «you»: choose ты/вы by relationship, rank and
+   moment, keep it per pair of characters in the speech profile, and let it shift only for a reason; a stiff narrator
+   line («С кухни раздаётся громче всего, что было сегодня»).
 
    What the literature and practice say, and how it shapes the work (planner's research, 2026-10-15):
    - Prompting in the target language gives more natural output on language- and culture-sensitive generation for
@@ -498,6 +557,7 @@ The owner's notes from the first play are added below by the planner before laun
   Stage 4 digest ran in the background and is simply not shown, or the button calls the legacy session-close; wire
   the button to the Stage 4 digest, show its result (chapter title, «Ранее в…» of what actually happened, the open
   threads) in the player's voice, and drop the legacy table and wording. Test on a campaign of 30+ turns.
+  Cause found by the session report, and the closing stinger: item 11.
 - **The structured combat profile in the wizard is a stub:** English labels in a Russian UI (HP, Attack modifier,
   Defense, Skill modifier), flat defaults (HP 10, 0, 10, 0) not derived from the hero's description, and «Без оружия»
   although the hero carries a knife and a harpoon pistol (weapons are not offered from his own items). Owner: fine for a
@@ -516,6 +576,165 @@ The owner's notes from the first play are added below by the planner before laun
    escalate to violence (never forced, always from the fiction: Фрол's hook, a moray under the pontoon, a patrol
    boarding); each session should open or advance one thread toward a larger mystery and end on a clear beat (a
    chapter close, a reveal or a cliffhanger) rather than a quiet wind-down.
+   **Causes found by the session report (2026-10-16):**
+   (a) **The DM's likes note lost combat and mysteries.** Turn 4's note read «…короткие опасные бои, тайны и улики…».
+   The DM rewrites the note whole and it is capped at 400 characters; at turn 28 a 440-character rewrite was rejected,
+   the shortened one dropped «короткие опасные бои», and turn 32 dropped «тайны и улики». By the end the note
+   described what had happened (careful preparation, drinks with the crew), not what the player asked for. Fix in
+   item 15.
+   (b) **Nobody in the world wanted violence.** The stranger is «сам не боец»; his private order to Фрол was to take
+   the box «без драки, под видом помощи»; the patrol is the law and is avoided. Every opponent was a calculating
+   trader, and rational people do not fight when they can pay. Doctrine: build the cast so that someone's rational
+   interest is to take by force — a rival crew, guild agents quietly hunting the stolen piece, smugglers who would
+   rather rob than pay, something in the water — tied to the campaign's secrets, and let their plans exist as
+   off-screen plans with warnings like any other.
+   (c) **The one clash played as someone else's scene.** Turn 34 (oar, gaff, hook) — finish_turn even tagged it
+   `combat` — was settled in one roll per side; Дуня took the decisive beat and the hero's only natural 20 («увернуться
+   от весла и вытолкнуть ящик») barely appears in the text. Whether a short clash uses the combat tool is the DM's
+   choice, but it must play as a fight: the player acts at least twice, the opponent acts with intent, there is a
+   cost, and a hero's success is narrated first (item 17).
+   (d) **Shape:** 41 turns, 4 h 34 min, one game day — turns 1–26 preparation, 27–34 the dive, 35–41 the payoff.
+   Scene kinds: conversation 31, humour 16, trade 12, exploration 12, mystery 9, quiet 8, travel 3, combat 1. The
+   preparation was enjoyed (the compressor and the winch are among the strongest moments), but about two and a half
+   hours of play passed without danger from an opponent. The variety counter counts real-time minutes, not only
+   scenes, since the last danger from an opponent, and the doctrine may compress preparation into a montage once the
+   player's plan is clear.
+   (e) The mystery existed and its clues reached the player, but the key to them did not — item 16. The clear end
+   comes from the digest's closing stinger — item 11.
+
+## Session 1 mission report — findings (planner's reading, 2026-10-16)
+
+Source: the read-only mission report of the owner's first sandbox session (`docs/SESSION_REPORT_PROMPT.md`): 41 turns,
+Opus 5.5 high…xhigh, Russian, ≈$19.6 (DM $14.56, pictures $1.52, legacy memory summaries ≈$3.50). The files live on
+the owner's laptop in `C:\dev\rpg-exports\session-1\` (outside the repo; `private.md` is PRIVATE). The numbers below
+come from them. What the report confirmed: 13 of 17 facts the DM relied on match the records exactly (debts, the
+pistol pledge, the shirts, the note, the signals, the hose length), the money arithmetic in the story is right to the
+coin, and all four mismatches are time-of-day words (item 18). Owner's verdict, for the research record: better than
+expected for a test, no crashes, no hallucinations or forgotten facts, people rational and alive, honest rolls, a
+DM «даже жёстче, чем в кампании Шва»; «уделывает AI Realms… больше похоже на D&D-приключение»; missing: combat, a
+thread toward a larger mystery, a clear finale; dialogue less natural than narration. The report's strongest turns:
+4, 10–14, 20–21, 23, 35–36.
+
+10. **Money never worked: the currency had to be an English word (critical).** Every money operation was rejected
+    with `Currency "монеты" must be lowercase words (coins, silver pieces, credits)`: 94 to the hero, 31 and 1 to
+    Marta, two quest rewards of 94; `claim_reward` was rejected too («is open; complete it before paying the reward»)
+    although `complete` was in the same message. By the records the hero has 0, by the story 94, and the DM quietly
+    moved the money into private notes. Fix: the currency is the world's own word in the campaign language — any
+    script, trimmed, case-insensitive; inflected forms of one currency are one currency (монета / монеты / монет);
+    one canonical name per campaign, set by the wizard or the first money call; never reject over language. The
+    Russian turn-shape example uses the world's word, not «coins». `complete` and `claim_reward` in one message work
+    in either order. A rejected money or item call is retried with a fix, never moved into notes (doctrine line).
+    Tests: Russian names and inflections, mixed case, a reward claimed in the completing message, and a replay of
+    turn 41's call list.
+11. **«Закончить сессию» runs the legacy close; the Stage 4 digest exits silently.** Exact cause: the button calls
+    `src/lib/server/memory/service.ts → mutateMemory("end") → createMemoryStore().end()`, which sets
+    `rpg_private.memory_boundaries.state = 'ended'` and leaves `rpg_sessions.status = 'open'` (the legacy SQL closes a
+    session only on «Продолжить»: `supabase/migrations/202609180005_phase3_memory.sql:385`,
+    `202609180007_phase3_explicit_retry.sql:54`). `scheduleDigest(…, "end") → digestClosedSession`
+    (`src/lib/server/session-digest.ts`) then returns on `session.status !== "closed"` with no log line. The
+    stale-after-6-hours path calls the same `end()`. Fix: ending a session closes it in the same transaction and then
+    runs the digest, on both paths; every early return logs `session_digest_skipped` with its reason; the player sees
+    the digest's progress and result (chapter title, «Ранее в…» of what happened, open threads) and a retry on
+    failure. Add a **closing stinger «Тем временем…»**: 3–6 sentences the digest writes from an open off-screen plan
+    whose warning the hero has not seen yet — one beat elsewhere that points at what is coming, without revealing
+    secrets or deciding outcomes (session 1 had four candidates: customs divers finding the torn-open locker on
+    «Сельдь», the patrol's report about a boat without a net, Фрол selling his silence in the morning, the stranger's
+    next job through Сапожок). The next session may open from it. Owner on session 1's end: «финал размытый» — the hook
+    existed off-screen and never reached him.
+12. **Cache writes are 57% of the DM's cost.** $8.31 of $14.56 went to cache writes, $5.90 to output, $0.36 to cache
+    reads. Two causes: (a) the 5-minute TTL — after a player pause longer than about five minutes even the unchanged
+    first block (17,386 tokens) is written again (17 of 40 turns); (b) on a turn's first request only that first block
+    is ever read back — the remaining 20–55k tokens are written fresh every turn, so something placed before or inside
+    the history changes every turn. Fix: (1) order the prompt by volatility — static doctrine and tools → the
+    campaign-stable world and people's core → the conversation history as an append-only block with a breakpoint at
+    the last completed turn → the volatile per-turn dossier (state, receipts, plans due, the voice reminder) and the
+    player's input last; nothing that changes per turn (timestamps, counters, re-sorted lists) above the history;
+    (2) the 1-hour TTL (`cache_control: { type: "ephemeral", ttl: "1h" }`) on the stable blocks — a write costs more
+    (2× base input instead of 1.25×) but a session with pauses rewrites far less; (3) measure before and after on the
+    long synthetic Russian campaign: cache read share of every first request, cost per turn, first word; record in
+    `docs/runs/`. Not a saving on the model: same model, same text, less waste. Item 8's bigger budgets depend on it.
+13. **The depth rule sticks at xhigh.** «tense → xhigh» held for 22 of the last 23 turns because the DM marks nearly
+    every turn of a heist tense. Median first word: xhigh 69.5 s, high 16.1 s (max 115.7 s, turn 24). Every first
+    reply is thinking → text → tools, so the wait is the thinking (first word vs first-request output tokens r = 0.92).
+    Quality did not follow depth: the strongest turns include high ones (4, 10–14), the weakest (34, the lost natural
+    20) was xhigh, and in the Russian blind test high won two of six scenes, combat among them. Fix: high is the base;
+    xhigh for `climax`, for a turn where a due off-screen plan meets the hero, or when the player's input opens a
+    decisive moment (the pre-turn check in the composer item); `tense` alone does not raise the depth; at most two
+    xhigh turns in a row unless the DM marks climax again; record depth and reason per turn. The campaign's depth range
+    stays the owner's control.
+14. **The app's first-word metric is wrong.** It takes the minimum over a turn's requests and measures each from the
+    start of its own request: turn 26 shows 6.7 s where 87.2 s passed (app median 19.5 s vs real 38.2 s). Measure from
+    the player's send to the first visible narration character, whatever request it came from; use it in the per-turn
+    log and the quiet «думал глубже» mark. Also record the cost of world, hero and opening-scene generation — the
+    report could not count it.
+15. **The likes note in two parts.** (a) **The player's own words** — from the wizard and the owner's edits on the
+    dossier screen; the DM never rewrites them. (b) **The DM's observations** — the rolling note from `finish_turn`,
+    cap raised from 400 to about 1,200 characters (what the dossier already shows); an over-long note is clipped with
+    a notice to the DM instead of rejecting the whole `finish_turn`. The dossier shows both, the player's words first.
+    See item 9 (a) for what went wrong.
+16. **The hero's own knowledge was kept from the player, so the mystery never landed.** Off-screen the DM had a real
+    mystery: the box holds a regenerator valve stolen from a Guild store, the Guild is hunting it quietly, the buyer
+    pays in holed foreign silver and collects «old things». The clues reached the player — the holed silver (turns 4,
+    24, 37); turn 25: «Ты такое уже слышал на гильдейской барже, от стариков: „Греется — держи от себя“. Только
+    говорили они это не про ящики.»; turn 40: the back of the hand on the tin «как к лбу больного ребёнка»; turn 41:
+    the box carried at arm's length «как котелок с кипятком», «доверитель собирает старые вещи». But the key stayed
+    with the DM: the hero is a former Guild diver and knows what the old men said that about; the player does not. A
+    clue only the DM can read is not a clue. Doctrine: what the hero knows from his trade, past and origin, the player
+    learns when it matters — plainly in the narration, or through a knowledge check when it is uncertain; the hero's
+    own knowledge is never a secret kept from the player. And the three-clue rule: every conclusion the story wants
+    reachable has at least three clues of different kinds, at least one direct; the DM notes privately which clues of
+    each mystery the player has seen, and the digest's notebook names the next clue to offer. Proof: a fixture of the
+    turn-25 situation where the player asks «про что это старики говорили?» — the DM answers with the hero's knowledge.
+17. **A natural 20 or a decisive success is the hero's moment.** Turn 34: the hero's only natural 20 was swallowed by a
+    companion's private roll. The hero's success is narrated first and in full; companions support and never take
+    the decisive beat from a hero's success; a natural 20 gives more than was asked (an extra effect) and may be
+    handed to the player as «Твой момент» (which today appeared 4 times, never after a successful decisive roll).
+18. **Time words against the clock.** The clock started at 00:00 while the opening scene was morning (turns 1–3);
+    turn 36 «сидит с шести» (he came at 17:05), turn 37 «на утреннем месте» (it was evening), turn 41 «утром вы
+    спрашивали» (asked at about 17:30). Fix: the wizard and first turn set the start time from the opening scene; the
+    dossier shows the current game time with the part of day in words («день 1, 21:08, вечер») and the game time of
+    key recent events and notes, so «утром / вечером» can be checked; the bench gains a time-word consistency check.
+19. **The measured scope of the chip leaks (group 1).** 8 private rolls shown with results and DCs (turns 11, 20,
+    31 ×2, 33, 34, 35, 38); 298 of 304 chips contain English («gets», «goes to», «uses (0 left)», «minutes pass»,
+    «Journal updated», «Place recorded (a rumour)», «The party travels to»); 150 lines of DM bookkeeping («X's
+    character notes updated / started», «DM note updated», «DM plan updated / resolved») and «1 plan(s) due» in time
+    chips reveal when off-screen things move; 5 of 7 storages are named «Possessions of …». Private rolls and DM
+    bookkeeping never reach the player; chip text comes from templates in the campaign language; storages are named
+    in it («Вещи Марты»).
+20. **Records that match the fiction.** «Used» was recorded for things lost, taken off, cut or soaked (the knife sank,
+    the tar gloves came off, a shirt was cut, the note got soaked); duplicates (three shirt records, one at quantity 0;
+    «записка» at 0 plus «размокший листок»); a coin recorded as an item instead of money; a two-day pump rental
+    recorded as ownership; the pistol pledge recorded as three transfers with no «залог» mark; never recorded: Мирон's
+    coat on the hero (turns 36–38), the scrap of Мокей's net torn off by the hook (34). Add item operations `lose`,
+    `modify` (keeps the item's identity, new description) and `lend / pledge` (the owner keeps title, the holder has
+    it, with a return condition) next to `use`; the doctrine maps each fiction to the right operation.
+21. **Rejected calls and dead counters.** `note_world` rejected twice for a plan without an actor — the ref «the
+    world» is not accepted (turns 28, 29): accept a world-level plan. `finish_turn` rejected for playerLikes over 400
+    characters (turn 28): item 15. The campaign's `play_minutes` stayed 0 for the whole session: count play time and
+    show it on the dossier.
+22. **The legacy memory still runs every turn.** 43 public and 41 private summaries by GPT-6 Astra (84 calls, about
+    218k input and 26k output tokens, ≈$3.50). Find out whether anything still reads them after Stage 4 (dossier,
+    digest, «Ранее в…», chronicle). If nothing does, stop queuing them; if something does, move that reader to the
+    Stage 4 dossier first. One memory, not two.
+23. **Small ones.** Turn 28: text parts glued without a paragraph break, so the speaker is unclear («…не больше.—
+    Выстрелишь или утопишь…») — join parts with a paragraph break. An NPC's direct question left unanswered (Дуня, turn
+    28: «на фонарь какой знак?») — the dossier keeps open questions asked by or of the hero until answered. Verbal tics
+    overused: «сплёвывает за борт» ×10 (almost every appearance of Дуня), Марта's «Запишу» ×9, the stranger's
+    «Разумеется» ×5, «с мористой стороны» ×5 — the speech profile gives each tic a frequency (once a scene at most) and
+    the dossier counts recent uses per person so the DM can vary.
+24. **Dialogue: the planner's reading of the whole transcript (adds to item 7).** The narration shows; the dialogue
+    explains. Four patterns beyond the owner's notes: (a) **the assistant shape** — an NPC answers every point of the
+    player's message, in order and in full (turn 16: three questions to Дуня, three complete answers with numbers);
+    people answer what matters to them, skip, deflect or ask back; (b) **the DM's analysis in an NPC's mouth** —
+    options, risks and prices in paragraphs; let information come out in pieces over the exchange and through action;
+    (c) **as-you-know exposition** — «Гильдия работает на портового смотрителя, рэй, ты это лучше меня знаешь» (turn
+    1): an NPC tells the hero what he knows for the player's sake; such facts belong to the narration or the codex;
+    (d) **crafted quips** («воздушным змеем, только наоборот») — the owner's ear rejects them. Write these as positive
+    guidance with examples from the prose the owner chooses, not as a ban list; measure them in the voice A/B (share of
+    NPC replies that answer every point of the player's message; exposition lines per scene).
+
+The next real check of all of this is the owner's next sandbox session followed by the same mission report (see
+Checks).
 
 ## Later, not in this stage (owner's backlog)
 
@@ -592,51 +811,12 @@ records, for any ruleset (numbers only where the ruleset has them):
 ## Checks
 
 typecheck, lint, the full suite with `--test-concurrency=2`, build, fake bench, screenshots with the overflow check, a
-short live smoke on the changed paths within **$5**. Push `claude/polish` only, never `main`. Report in English.
-   Turn 29: descriptions excellent (the shout trapped in the helmet as «бу-бу-бу», the gaff in the forefoot, the
-   hook catching Мокей's net instead of the stern); dialogue still odd in places («Гильдейский, значит. Ну-ну. Сами
-   так сами»).
-   Turn 31, a reference pair for the voice examples (owner: «косноязычно слегка, диалоги неплохие, но надо
-   доточить»). As written: «Мокей на кухню не идёт… Кружку отдаёт обратно со словом «Нет», а хлеб берёт. Дуня пьёт
-   молча и стоя, потом вытирает рот запястьем со шкотом.» Native: «Мокей на кухню не пошёл — сел на пороге, спиной к
-   теплу, шланг на коленях. От кружки отмахнулся, хлеб взял. Дуня выпила стоя, молча, и утёрла рот рукавом.»
-   Patterns to teach: tense and rhythm of a living narrator (a mix of past and present is fine when deliberate);
-   one clear action per clause; no stacked instrumental phrases («запястьем со шкотом»); gesture instead of quoted
-   one-word lines («со словом «Нет»»).
-   Also: «— Ящик на кухне. На кухне я ничего не списываю.» — the idea is good (the debt is written off only at the
-   counter), the line is a rule recited, not speech (owner: «не говорят так люди»). Native: «— Он у меня на кухне
-   стоит, а не на стойке. Вот вынесешь — тогда и выпьем.» People hint at their rule through the situation; they do
-   not announce it as a policy. Planner's own miss: I praised that line; the owner's ear is the reference.
-   Turn 32, a failed insight check narrated as a verdict on the hero's mind: «Объяснение складное, щели в нём ты не
-   находишь. На барже такой приказ отдали бы и сами… Может, всё так и было. А может, и нет. Наверняка ты не скажешь.»
-   It reads like the mechanic spoken aloud and decides what the hero thinks. A failed insight shows only the surface
-   the hero sees — the NPC is convincing — and leaves the judgment to the player: «Он говорит спокойно, не сбивается и
-   смотрит тебе в глаза.» (The planner's first try, «объяснение гладкое — как и его сухое пальто», was rejected by the
-   owner: people do not compare an explanation to a coat. Plain beats clever; no decorative similes.) A success may add one telling detail (here the DM did
-   it well: «patrol» is the first word he says faster than usual). Never write «ты не можешь сказать наверняка».
-   **Dialogue is the weakest part (owner, after 34 turns: «диалоги по естественности проигрывают остальному тексту»).**
-   Example: «— Никого, хозяин. Хорошее слово. Только мокрое. Просушить бы.» Diagnosis from the session: every NPC
-   speaks in the same composed, aphoristic voice — the author's voice — with clever metaphors and staccato fragments;
-   real speech has filler, unfinished phrases, repetition, plain words, and differs by person. Fix in three parts:
-   (1) a **speech profile in each Character Model** — vocabulary and register, sentence length, verbal tics, what the
-   person never says (Мирон shouts and mishears, Дуня is curt and practical, Марта counts and grumbles, the stranger
-   is polite and precise, Фрол is sly and wheedling) — and the DM writes each line from it; (2) **dialogue examples**
-   in the voice layer taken from Russian prose the owner likes, not composed by the planner (the owner rejected the
-   planner's rewrites twice); (3) a **bench check**: lines per NPC compared for distinctiveness (a vision-free text
-   judge asks «could this line belong to another character?») and an aphorism counter. Report dialogue separately in
-   the voice A/B.
-   Turn 35: a strong description (the back of the hand on the tin «как к лбу больного ребёнка», held longer than
-   needed) undercut by a cryptic line to himself — «— Холодный. — Разумеется.» — and «Разумеется» is the stranger's
-   fourth use of the same word in the session. A verbal tic is good once or twice; the speech profile should say how
-   often, and lines spoken «to oneself» need a reason the player can follow.
-   Turn 36: «— Сухо, хозяин. — На ночь хватит.» (owner: «явно перевод, не говорят так»). It is a callback to Фрол's
-   earlier invented image («никого — хорошее слово, только мокрое, просушить бы»): the DM coined a metaphor that is
-   not a Russian idiom (a «wet word» to be «dried» with money) and kept it running, so each callback sounds
-   translated. Rule for the voice layer: no invented idioms; a running image is allowed only when it rests on a real
-   Russian expression; slang and argot come from the character's world, not from wordplay.
-   Turn 37 (owner's notes): aphorisms in speech again («Стоит дороже, чем кажется, и дешевле, чем неприятности,
-   которые от неё бывают»; «кто знает, тому потом задают вопросы»); word choice («подняли хозяйке ящик её постояльца»
-   — the hero raised it from the bottom but *brought* it to her); **ты/вы** — the stranger says «вы» to his own hired
-   man Фрол («Вы сегодня уже подсобили»), which reads like an English «you»: choose ты/вы by relationship, rank and
-   moment, keep it per pair of characters in the speech profile, and let it shift only for a reason; a stiff narrator
-   line («С кухни раздаётся громче всего, что было сегодня»).
+short live smoke on the changed paths plus the cache and depth measurement of items 12–13 (a 30-turn Russian
+replay is enough) within **$15**. Push `claude/polish` only, never `main`. Report in English.
+
+After the stage, the owner plays a new sandbox session and the local session runs `docs/SESSION_REPORT_PROMPT.md` on
+it (into `C:\dev\rpg-exports\session-2\`). Compare with session 1 (41 turns): money operations accepted (was 0 of 6), private rolls in chips (was 8), chips
+with English (was 298 of 304), hero rolls with a sheet modifier (was 0 of 13), «Твой момент» after a successful
+decisive roll (was 0 of 4), share of xhigh turns (was 23 of 41) and first-word median (was 38.2 s), cache writes as a
+share of the DM cost (was 57%), the digest with title, «Ранее в…» and stinger present (was absent), time-word
+mismatches (was 4), and whether a fight and a clue the player could read happened.
