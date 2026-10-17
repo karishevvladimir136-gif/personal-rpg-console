@@ -154,3 +154,14 @@ process and restored by hand from the printed costs (marked `restored`).
 - Not reachable: MAI-Image (Microsoft Foundry: a `<resource>.services.ai.azure.com` host and an Azure key), Reve 2.1
   (fal's queue: `Application "2.1" not found`; Reve's own `api.reve.com` and a key), Nano Banana 2.1 (not callable).
   Qwen-Image «3.0 Pro» has no separate fal path; fal's Qwen-Image 3 was tested.
+
+## Checks (final code, cloud VM)
+
+`pnpm typecheck` passes; `pnpm lint` passes with no warnings; `pnpm build` passes. Full suite
+(`node --test --test-concurrency=2 tests/*.test.mjs`): 2,499 tests, 2,471 pass, 27 skipped, 1 fail — «Migration 30 is
+byte-identical…» (`tests/universal-bootstrap-sql.test.mjs`), a hash of an SQL migration file that fails the same way on
+the untouched base branch in this environment (an environment difference, not a picture change). New tests
+(`tests/picture-models.test.mjs`, 10): request shapes of every new model, prices, the OpenAI adapter's multipart edit and
+cost from usage, refusals told apart from transport trouble, the key only in the Authorization header and never in an
+error or a log line, and the prompt compiler (reference roles and order, state, clock, people count, anatomy guard,
+lettering, no names, FLUX without negatives, the anchor and edit prompts, the records path the app uses).
