@@ -80,8 +80,9 @@ export async function performBootstrap(command: BootstrapCommand) {
             )) as import("../production/contracts.ts").FoundationSnapshot
           ).executionPolicy
         : null;
-      // Polish group 7: the opening is written by the campaign's own DM when that DM is an
-      // OpenAI model (the bootstrap contract pins OpenAI models only); otherwise the app default.
+      // Polish 2 §5 (after polish group 7): the opening is written by the campaign's own DM,
+      // whichever provider serves it — the DM's choice outranks the policy's primary here; the
+      // app default only when the campaign has no DM choice yet.
       let dmTurn: import("../production/contracts.ts").ModelSelection | null = null;
       if (cid && command.action === "opening.propose") {
         try { dmTurn = (await readDmSettings(cid)).dmTurn; } catch { dmTurn = null; }
@@ -89,8 +90,8 @@ export async function performBootstrap(command: BootstrapCommand) {
       return resolveExecutionProfile({
         task: "world.compose",
         profileId: randomUUID(),
-        campaignPolicy: policy,
-        globalDefault: dmTurn?.providerId === "openai" ? dmTurn : applicationModelSelection(process.env),
+        campaignPolicy: dmTurn ? null : policy,
+        globalDefault: dmTurn ?? applicationModelSelection(process.env),
       });
     },
   ).perform(command);

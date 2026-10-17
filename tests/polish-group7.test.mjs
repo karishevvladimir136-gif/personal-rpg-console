@@ -156,10 +156,10 @@ test("the naturalness metrics: Latin letters, канцелярит, sentence-len
   assert.ok(report.kancelyaritPerThousand > 0);
 });
 
-test("the opening proposal is written by the campaign's own DM when that DM is an OpenAI model", () => {
+test("the opening proposal is written by the campaign's own DM (polish 2 §5: whichever provider serves it)", () => {
   const bootstrap = src("src/lib/server/adventure-bootstrap.ts");
   assert.match(bootstrap, /command\.action === "opening\.propose"[\s\S]*readDmSettings\(cid\)/);
-  assert.match(bootstrap, /globalDefault: dmTurn\?\.providerId === "openai" \? dmTurn : applicationModelSelection\(process\.env\)/);
+  assert.match(bootstrap, /globalDefault: dmTurn \?\? applicationModelSelection\(process\.env\)/);
 });
 
 test("a person is «mentioned» by any word of their name: the core with the voice when named, one line otherwise", async () => {

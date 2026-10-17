@@ -546,3 +546,28 @@ budget and stops paying for it:
   so a replay shows the split between the two write rates; the layer report has one row per block (layer 6 = history).
 - Tests: `tests/polish2-cache.test.mjs` (byte-identical earlier blocks across turns, the breakpoint on the last, «now»
   without scenes, the four breakpoints and no top-level one, the bucketed window), `tests/polish-group3.test.mjs` updated.
+
+## 20. Polish 2 — part 5: the opening written by the campaign's DM
+
+Polish group 7 let the campaign's DM write the opening proposal only when that DM was an OpenAI model: the bootstrap
+contract (the SQL ticket's `lab_execution_profile`, the registry's `validateModelSelection`) pinned OpenAI for
+`world.compose`. Polish 2 (`docs/stages/POLISH_2.md` §5) opens the contract for the DM's own model:
+
+- **The registry** admits the Anthropic DM model for `world.compose` (`validateModelSelection` with that task takes
+  the `dm.turn` model set — Claude Opus 5.5 — and its efforts); every other task stays OpenAI-only. Migration 66
+  patches `rpg_private.lab_execution_profile` the same way: an Anthropic profile on `world.compose` is checked by
+  `dm_turn_model_selection`, an OpenAI one by `wave2_model_selection` as before; the profile DTO's version tag and the
+  usage check (the reply's model must be the ticket's) are unchanged.
+- **The bootstrap server** (`adventure-bootstrap.ts`) resolves `opening.propose` from the campaign's `dmTurn` choice
+  first — it outranks the policy's primary; the app default applies only when the campaign has no DM choice —
+  and `executionProviderOptions` hands the provider the key of the profile's provider.
+- **The provider** (`adventure-bootstrap-provider.ts`): on an Anthropic profile the same instructions, input and
+  schema go to the Messages API through `requestAnthropicStructured` (`src/lib/server/dm/anthropic-structured.ts`:
+  `output_config.format` as a JSON schema with the bounds and counts the grammar does not take removed — the
+  bootstrap validator enforces them afterwards — the profile's effort, no tools, no retry; a refusal or a cut-off
+  reply fails the proposal, never a fallback to another model); the reply's own model id is the usage model, so the
+  SQL contract keeps closing. The instructions now say the texts are written in the campaign language given in the
+  context and that the narration ends on the situation the hero faces now, never on a summary.
+- The Russian voice layer applies to the opening once the voice stage turns it on (it is the DM's own prose now).
+- Tests: `tests/polish2-opening.test.mjs` (the registry, the schema conversion, the requester, the provider, migration
+  66 and the creation → opening flow on the Anthropic profile).

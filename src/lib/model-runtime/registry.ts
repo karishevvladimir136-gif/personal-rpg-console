@@ -49,11 +49,12 @@ function task(value: unknown): value is RuntimeTask {
   return typeof value === "string" && Object.hasOwn(runtimeTasks, value);
 }
 
-// Only the "dm.turn" task may name another provider. Without a task (the
-// campaign primary and every other task) the selection stays OpenAI-only, so an
+// Only the "dm.turn" task may name another provider — and, since polish 2 §5,
+// "world.compose" when the selection is the DM's own Anthropic model (the
+// campaign's DM writes the opening). Every other task stays OpenAI-only, so an
 // Anthropic choice can never reach an OpenAI-only adapter.
 export function validateModelSelection(value: unknown, forTask?: RuntimeTask): ModelSelection {
-  if (forTask === "dm.turn") {
+  if (forTask === "dm.turn" || (forTask === "world.compose" && record(value) && value.providerId === "anthropic")) {
     if (!record(value) || !keys(value, ["providerId", "modelId", "reasoning"]) ||
       typeof value.providerId !== "string" || typeof value.modelId !== "string")
       return fail();
