@@ -1,0 +1,1 @@
+{"type":"run","run":"dmarch-20261017-195052-continuity-D","purpose":"DM architecture bake-off: continuity run","variant":"D","label":"Opus 5.5 writer + Sonnet 5.5 bookkeeper","provider":"live","scenario":"19-polish-ru-replay","steps":["s01","s02","s03","s04","s05"],"commit":"4a7e0df","node":"v24.22.0","startedAt":"2026-10-17T19:50:52.655Z","budgetUsd":1.6}
