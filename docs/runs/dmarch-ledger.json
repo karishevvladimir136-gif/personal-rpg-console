@@ -40,6 +40,14 @@
       "settled": true,
       "finishedAt": "2026-10-17T19:40:54.839Z",
       "record": "docs/runs/dmarch-20261017-193714-scenes.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-194127-scenes",
+      "what": "scene branches BCD × 1 scenes (3 pairs)",
+      "startedAt": "2026-10-17T19:41:27.498Z",
+      "reservedUsd": 4,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }

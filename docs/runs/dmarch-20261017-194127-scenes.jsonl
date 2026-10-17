@@ -1,0 +1,1 @@
+{"type":"run","run":"dmarch-20261017-194127-scenes","purpose":"DM architecture bake-off: scene branches from the reference states","provider":"live","scenario":"19-polish-ru-replay","scenes":["s28"],"variants":["B","C","D"],"skipped":[],"commit":"4ce3967","node":"v24.22.0","startedAt":"2026-10-17T19:41:27.500Z","budgetUsd":4}
