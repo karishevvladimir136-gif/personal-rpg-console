@@ -254,6 +254,8 @@ export async function playTurn(c, scenario, step, variantSpec, options) {
     selfDisclosures: (loop?.diagnostics ?? []).filter((d) => d.kind === "self_disclosure").map((d) => d.detail),
     naturalness: narration ? naturalnessOf([narration], [{ input: input.input, narration }]) : null,
     budgetReached: transport.some((t) => t.event === "budget_reached"),
+    // The HTTP statuses and latencies of this turn's requests (a failed turn's cause is visible here).
+    transport: transport.map((t) => ({ ...t })),
     rpcErrors: c.errors.splice(0).map((error) => `${error.action}: ${error.code ?? ""} ${error.message}`).slice(0, 10),
   };
   const checks = [];
