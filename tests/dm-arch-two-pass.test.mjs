@@ -7,7 +7,7 @@ import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { runTwoPassTurn, resumeTwoPassTurn, splitLedger, createLedgerGate, writerSystem, bookkeeperSystem,
-  BOOKKEEPER_MARKER } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
+  BOOKKEEPER_MARKER, twoPassFlag } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { buildDmLoopContext } from "../src/lib/gameplay/dm-loop/context.ts";
 import { joinText } from "../src/lib/gameplay/dm-loop/loop.ts";
 
@@ -178,4 +178,14 @@ test("a bookkeeper that answers with text only is asked once for the records; a 
     assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "finish_asked"));
     assert.equal(row.checkpoint.dmLoop.meta.sceneKinds[0], "quiet");
   } finally { await c.f.db.close(); }
+});
+
+test("the server flag: off by default, the bookkeeper named with an effort, an optional writer override", () => {
+  assert.equal(twoPassFlag({}), null);
+  assert.equal(twoPassFlag({ DM_TWO_PASS: "off" }), null);
+  assert.equal(twoPassFlag({ DM_TWO_PASS: "nonsense" }), null);
+  assert.deepEqual(twoPassFlag({ DM_TWO_PASS: "anthropic/claude-opus-5-5@medium" }),
+    { bookkeeper: { providerId: "anthropic", modelId: "claude-opus-5-5", effort: "medium" }, writer: null });
+  assert.deepEqual(twoPassFlag({ DM_TWO_PASS: "anthropic/claude-sonnet-5-5", DM_TWO_PASS_WRITER: "anthropic/claude-fable-5-1@xhigh" }),
+    { bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", effort: "high" }, writer: { providerId: "anthropic", modelId: "claude-fable-5-1", effort: "xhigh" } });
 });
