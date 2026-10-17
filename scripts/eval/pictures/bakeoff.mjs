@@ -8,6 +8,7 @@
 //   pick     --portrait f --figure f   fix the two anchors every candidate gets
 //   frames   --models all|a,b --mode compiled|generic [--shots t1,t2] [--seeds 1-3]
 //   redraw   --models all|a,b          each model redraws the full-figure anchor from the portrait
+//   legacy   --model m [--n 3]          control: the app's current figure prompt on one model
 //   score    [--judge haiku|sonnet] [--models …] [--kinds frame,figure] [--limit n]
 //   rank     [--judge sonnet|haiku] [--samples 1,2] [--shots …]   comparative identity per shot
 //   blind | summary | status          (no paid call)
@@ -20,7 +21,7 @@ import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "no
 import { join } from "node:path";
 import { compileAnchorPrompt, compileFramePrompt, orderReferences, promptFamily } from "../../../src/lib/visual-frame/prompt-compiler.ts";
 import { framePrompt } from "../../../src/lib/visual-frame/shot.ts";
-import { falModel } from "../../../src/lib/visual-frame/fal-image.ts";
+import { falModel, falSubjectPrompt } from "../../../src/lib/visual-frame/fal-image.ts";
 import { openAIImageModel } from "../../../src/lib/visual-frame/openai-image.ts";
 import { BudgetError, CAP_USD, MODELS, SEED_VALUES, SIZES, anchorsDir, draw, judgeFrame, ledger, mean, median, putRow, rankIdentity, readImage, results, rowOf, runsDir, samplesDir, saveImage, usd } from "./lib.mjs";
 import { GENERIC_SHOTS, PEOPLE, SHOTS, STYLE } from "./scene.mjs";
@@ -28,7 +29,7 @@ import { GENERIC_SHOTS, PEOPLE, SHOTS, STYLE } from "./scene.mjs";
 const args = process.argv.slice(2);
 const command = args[0];
 const arg = (name, fallback) => { const i = args.indexOf(name); return i >= 0 ? args[i + 1] : fallback; };
-const modelKeys = (value) => (!value || value === "all" ? Object.keys(MODELS) : value.split(",")).map((key) => { if (!MODELS[key]) throw new Error(`unknown model ${key}`); return key; });
+const modelKeys = (value) => (!value || value === "all" ? Object.keys(MODELS).filter((key) => !MODELS[key].extra) : value.split(",")).map((key) => { if (!MODELS[key]) throw new Error(`unknown model ${key}`); return key; });
 const hero = PEOPLE.hero;
 const anchorsFile = join(anchorsDir, "hero.json");
 const anchors = () => { if (!existsSync(anchorsFile)) throw new Error("no anchors yet: run portrait, figure and pick first"); return JSON.parse(readFileSync(anchorsFile, "utf8")); };
@@ -129,7 +130,7 @@ async function redraw() {
 
 async function score() {
   const judgeKey = arg("--judge", "haiku");
-  const kinds = (arg("--kinds", "frame,figure,anchor-figure")).split(",");
+  const kinds = (arg("--kinds", "frame,figure,anchor-figure,legacy-figure")).split(",");
   const models = modelKeys(arg("--models"));
   const limit = Number(arg("--limit", 100_000));
   const todo = results.rows.filter((row) => row.file && kinds.includes(row.kind) && models.includes(row.model) && !row.scores?.[judgeKey]).slice(0, limit);
@@ -159,6 +160,16 @@ async function score() {
       console.log(`${row.key}: ${s ? `id ${s.identity} cloth ${s.clothing} people ${s.people} anat ${s.anatomyOk ? "ok" : "BAD " + s.anatomyIssues} adh ${s.adherence} text ${s.text}` : result.error}`);
     }
   }));
+}
+
+/** Control: the app's current full-figure anchor prompt (falSubjectPrompt, as queueAnchor builds it, the
+ * hero's name included) on one model, to compare with the compiled anchor prompt and its anatomy guard. */
+async function legacyFigure() {
+  const modelKey = arg("--model", "flux2-pro"), n = Number(arg("--n", 3));
+  const a = anchors();
+  const prompt = falSubjectPrompt({ composition: "figure", name: hero.key, description: hero.appearance, style: STYLE }) + "\nReferences: a reference portrait shows this person's face: keep it.";
+  for (let i = 1; i <= n; i++)
+    await paint(`legacy-figure:${modelKey}:s${i}`, modelKey, { prompt, size: SIZES.figure, seed: SEED_VALUES[i - 1], references: [readImage(a.portrait)], refRoles: ["face"] }, { kind: "legacy-figure", sampleIndex: i });
 }
 
 /** Comparative identity: per shot and sample, every model's frame side by side against the portrait. */
@@ -274,7 +285,7 @@ function status() {
     pictures: results.rows.filter((row) => row.file).length, refused: results.rows.filter((row) => row.refusal).length, failed: results.rows.filter((row) => row.error && !row.refusal).length }, null, 2));
 }
 
-const commands = { portrait, figure, pick, frames, redraw, score, rank, blind, summary, status };
+const commands = { portrait, figure, pick, frames, redraw, legacy: legacyFigure, score, rank, blind, summary, status };
 if (!commands[command]) { console.log("usage: see the header of scripts/eval/pictures/bakeoff.mjs"); process.exit(1); }
 await commands[command]();
 if (stopped) console.log(`stopped: ${stopped}`);

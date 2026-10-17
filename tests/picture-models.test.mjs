@@ -41,6 +41,11 @@ test("catalogue: the new fal models keep one queue owner per model and their own
   assert.throws(() => falRequestBody({ ...base, model: "bytedance/seedream/v5/pro/text-to-image", format: "webp" }), (e) => e.code === "validation");
   assert.throws(() => falRequestBody({ ...base, model: "fal-ai/nano-banana-2", acceleration: "high" }), (e) => e.code === "validation");
 
+  const grok = falRequestBody({ ...base, model: "xai/grok-imagine-image", references: [ref] });
+  assert.deepEqual(Object.keys(grok).sort(), ["aspect_ratio", "enable_safety_checker", "image_urls", "num_images", "output_format", "prompt", "resolution"]);
+  assert.equal(falEndpoint({ model: "xai/grok-imagine-image", references: [ref] }), "xai/grok-imagine-image/edit");
+  assert.equal(promptFamily("xai/grok-imagine-image"), "grok");
+
   // The FLUX.2 request is unchanged; the new near-megapixel size goes as explicit dimensions.
   assert.deepEqual(falRequestBody({ ...base, model: "fal-ai/flux-2/klein/9b" }).image_size, { width: 1344, height: 768 });
 });

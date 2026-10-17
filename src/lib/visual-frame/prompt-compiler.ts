@@ -8,8 +8,8 @@
 //   mood, as a brief to an artist (Google's Nano Banana Pro rules; OpenAI's GPT
 //   Image guide; BFL: FLUX.2 reads prose);
 // - references with one role each, subject references first, fewer and cleaner;
-//   GPT Image by number and purpose («Image 1 — …»), Nano Banana, Seedream, Qwen
-//   and FLUX by position («the first image …»);
+//   GPT Image by number and purpose («Image 1 — …»), Nano Banana, Seedream, Qwen,
+//   Grok and FLUX by position («the first image …»);
 // - lock identity explicitly, then say what may change, in every frame;
 // - the current visible state (clothes worn now, wounds and bandages, items in
 //   hand, wet or dry) and the time of day and weather come from the records and
@@ -20,13 +20,14 @@
 // - «Перерисовать» of a nearly-right frame is an edit: «change only X; keep everything else».
 import type { Shot } from "./shot.ts";
 
-export type PromptFamily = "gpt-image" | "nano-banana" | "seedream" | "flux" | "qwen";
+export type PromptFamily = "gpt-image" | "nano-banana" | "seedream" | "flux" | "qwen" | "grok";
 /** The prompt dialect of a model ID from the fal or OpenAI catalogue. */
 export function promptFamily(modelId: string): PromptFamily {
   if (/^gpt-image|gpt-image/.test(modelId)) return "gpt-image";
   if (/nano-banana|gemini/.test(modelId)) return "nano-banana";
   if (/seedream/.test(modelId)) return "seedream";
   if (/qwen/.test(modelId)) return "qwen";
+  if (/grok/.test(modelId)) return "grok";
   return "flux";
 }
 
@@ -162,7 +163,7 @@ export function compileFramePrompt(brief: FrameBrief, family: PromptFamily): str
     case "flux": parts = [scene, peopleLines.join(" "), referenceBlock, style, text]; break;
     // Seedream: concise; references by position up front.
     case "seedream": parts = [referenceBlock, scene, peopleLines.join(" "), style, text]; break;
-    // Nano Banana and Qwen: the scene as a brief, then the references and the fixed/variable split.
+    // Nano Banana, Qwen and Grok: the scene as a brief, then the references and the fixed/variable split.
     default: parts = [scene, referenceBlock, peopleLines.join(" "), text, style];
   }
   return parts.filter(Boolean).join("\n").slice(0, 8000);

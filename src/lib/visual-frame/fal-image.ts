@@ -22,7 +22,9 @@
 // aspect_ratio + resolution), Seedream 5.0 Pro (`bytedance/seedream/v5/pro/
 // text-to-image|edit`: image_size, no seed), FLUX 3 (`blackforestlabs/flux-3/
 // text-to-image|edit-image`: aspect_ratio + resolution, no seed) and Qwen-Image 3
-// (`fal-ai/qwen-image-3/text-to-image|edit`; fal has no separate «Pro» path).
+// (`fal-ai/qwen-image-3/text-to-image|edit`; fal has no separate «Pro» path), and
+// Grok Imagine (`xai/grok-imagine-image[/edit]`: aspect_ratio + resolution 1k|2k, no seed;
+// no confirmed fal price, counted at $0.04).
 // Their prices come from fal's pricing page as quoted by search results (the page
 // itself is outside the VM's network list): Nano Banana Pro $0.15 per image up to
 // 2K; Seedream 5.0 Pro $0.0675 per image up to 1536² plus $0.0045 per reference
@@ -32,7 +34,7 @@
 // confirmed; the app's price leaves them out as before, the bake-off guard counts
 // each reference as one extra megapixel.
 
-export type FalModelFamily = "flux2" | "flux3" | "nano-banana" | "seedream" | "qwen";
+export type FalModelFamily = "flux2" | "flux3" | "nano-banana" | "seedream" | "qwen" | "grok";
 export const FAL_IMAGE_MODELS = [
   {
     id: "fal-ai/flux-2-pro",
@@ -152,6 +154,19 @@ export const FAL_IMAGE_MODELS = [
     tier: "fast",
     note: { ru: "Alibaba; недорого", en: "Alibaba; inexpensive" },
   },
+  {
+    id: "xai/grok-imagine-image",
+    label: "Grok Imagine",
+    family: "grok",
+    pricing: "image",
+    firstMegapixelUsdMicros: 40_000,
+    extraMegapixelUsdMicros: 0,
+    formats: ["jpeg", "png", "webp"],
+    editEndpoint: "xai/grok-imagine-image/edit",
+    maxReferences: 3,
+    tier: "fast",
+    note: { ru: "xAI; через fal", en: "xAI; served by fal" },
+  },
 ] as const;
 export type FalImageModelId = (typeof FAL_IMAGE_MODELS)[number]["id"];
 export const DEFAULT_FAL_IMAGE_MODEL: FalImageModelId = "fal-ai/flux-2-pro";
@@ -263,7 +278,7 @@ export function falRequestBody(input: FalImageInput) {
     references.length > model.maxReferences ||
     references.reduce((sum, reference) => sum + reference.bytes.byteLength, 0) > MAX_REFERENCE_BYTES ||
     (input.acceleration !== undefined && (model.family !== "flux2" || input.model === "fal-ai/flux-2-pro" || !["none", "regular", "high"].includes(input.acceleration))) ||
-    (input.safetyTolerance !== undefined && ((model.family === "flux2" && input.model !== "fal-ai/flux-2-pro") || model.family === "seedream" || model.family === "qwen" ||
+    (input.safetyTolerance !== undefined && ((model.family === "flux2" && input.model !== "fal-ai/flux-2-pro") || model.family === "seedream" || model.family === "qwen" || model.family === "grok" ||
       !["1", "2", "3", "4", "5"].includes(input.safetyTolerance))))
     throw new FalImageError("validation");
   const [width, height] = FAL_SIZES[input.size];
@@ -276,6 +291,8 @@ export function falRequestBody(input: FalImageInput) {
         prompt: input.prompt, aspect_ratio: falAspectRatio(input.size), resolution: "1K", output_format: input.format, num_images: 1, limit_generations: true,
         ...(input.safetyTolerance ? { safety_tolerance: input.safetyTolerance } : {}), ...seed, ...imageUrls,
       };
+    case "grok":
+      return { prompt: input.prompt, aspect_ratio: falAspectRatio(input.size), resolution: "1k", output_format: input.format, num_images: 1, enable_safety_checker: true, ...imageUrls };
     case "flux3":
       return {
         prompt: input.prompt, aspect_ratio: falAspectRatio(input.size), resolution: "1k", output_format: input.format,

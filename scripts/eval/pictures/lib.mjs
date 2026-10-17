@@ -29,6 +29,7 @@ export const MODELS = {
   "flux2-pro": { provider: "fal", id: "fal-ai/flux-2-pro", label: "FLUX.2 [pro]", seeds: true },
   "klein9b": { provider: "fal", id: "fal-ai/flux-2/klein/9b", label: "FLUX.2 [klein] 9B", seeds: true },
   "qwen3": { provider: "fal", id: "fal-ai/qwen-image-3/text-to-image", label: "Qwen-Image 3", seeds: true },
+  "grok": { provider: "fal", id: "xai/grok-imagine-image", label: "Grok Imagine", seeds: false, extra: true },
   "gpt2": { provider: "openai", id: "gpt-image-2", label: "GPT Image 2", quality: "high" },
   "gpt25s": { provider: "openai", id: "gpt-image-2.5-sunburst", label: "GPT Image 2.5 Sunburst", quality: "high" },
   "gpt25f": { provider: "openai", id: "gpt-image-2.5-flare", label: "GPT Image 2.5 Flare", quality: "high" },
