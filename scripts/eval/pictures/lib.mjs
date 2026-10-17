@@ -153,7 +153,7 @@ export async function judgeFrame(judgeKey, { frame, refs, description, expectedP
     "people: how many people are visible (count everyone, also in the background).",
     "anatomy: look at every person and every hand. List each anatomy error: an extra or missing arm, hand or finger, a hand with no arm, merged or duplicated bodies, an extra face, a twisted or broken limb. ok is true only when there is none.",
     "adherence (0–10): how well Image 1 shows what it should (action, place, time and light, the right people and objects).",
-    "text: true if there is any readable or pseudo text, letters, numbers, a logo or a watermark anywhere.",
+    "text: true if there is any readable or pseudo text, letters, numbers, a logo or a watermark anywhere — except handwriting on a paper note that the scene itself shows being read.",
     "Reply with one JSON object only: {\"identity\":n|null,\"clothing\":true|false|null,\"people\":n,\"anatomy\":{\"ok\":true|false,\"issues\":\"...\"},\"adherence\":n,\"text\":true|false,\"notes\":\"at most 25 words\"}",
   ].filter(Boolean).join("\n") });
   const entry = reserve("vision", judge.id, judgeReserve(judge, 1 + refs.length), `judge ${kind}`);
