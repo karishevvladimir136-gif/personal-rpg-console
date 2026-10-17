@@ -145,12 +145,12 @@ export async function generateOpenAIImage(apiKey: string, input: OpenAIImageInpu
     usage, priceUsdMicros: openAIImageCostUsdMicros(usage), elapsedMs: Date.now() - started };
 }
 
-/** The upper bound a budget guard reserves before a request: the output of the largest
- * high-quality picture of this size plus generous reference and prompt tokens. Settled to the
- * exact usage afterwards. */
+/** What a budget guard reserves before a request, above the usage measured in the bake-off
+ * (2026-10-17, one megapixel, high quality: GPT Image 2 about 4,000 output tokens, 2.5 about
+ * 1,000; about 1,000 input tokens per reference). Settled to the exact usage afterwards. */
 export function openAIImageReserveUsdMicros(input: Pick<OpenAIImageInput, "width" | "height" | "quality" | "references">) {
   const pixels = input.width * input.height;
-  const outputPerMegapixel = input.quality === "high" ? 9_000 : input.quality === "medium" ? 2_500 : 700;
+  const outputPerMegapixel = input.quality === "high" ? 5_000 : input.quality === "medium" ? 1_500 : 500;
   const outputTokens = Math.ceil((pixels / (1024 * 1024)) * outputPerMegapixel);
-  return openAIImageCostUsdMicros({ textInputTokens: 3_000, imageInputTokens: (input.references?.length ?? 0) * 6_000, outputTokens });
+  return openAIImageCostUsdMicros({ textInputTokens: 3_000, imageInputTokens: (input.references?.length ?? 0) * 2_000, outputTokens });
 }

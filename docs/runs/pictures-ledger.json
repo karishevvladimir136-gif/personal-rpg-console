@@ -1,0 +1,181 @@
+{
+  "capUsd": 20,
+  "totalUsdMicros": 1076902,
+  "note": "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).",
+  "entries": [
+    {
+      "at": "2026-10-17T00:51:33.624Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "anchor-portrait:nb-pro:1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14757-b939-71d2-b2ad-1a315bc7ac25"
+    },
+    {
+      "at": "2026-10-17T00:51:33.673Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-portrait:gpt25s:1",
+      "reservedUsdMicros": 285000,
+      "usdMicros": 53395,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 143,
+        "imageInputTokens": 0,
+        "outputTokens": 1756
+      }
+    },
+    {
+      "at": "2026-10-17T00:51:33.675Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "anchor-portrait:seedream5:1",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a14757-b93e-7052-9c64-1b2307e1df7c"
+    },
+    {
+      "at": "2026-10-17T00:52:30.791Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-figure:gpt25s:9549de:1",
+      "reservedUsdMicros": 328800,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:52:52.278Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-figure:gpt25s:9549de:2",
+      "reservedUsdMicros": 328800,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.821Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14759-77c9-7140-aadf-196b95a92217"
+    },
+    {
+      "at": "2026-10-17T00:53:27.885Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14759-77dc-75c2-9c59-a20e619f00df"
+    },
+    {
+      "at": "2026-10-17T00:53:27.909Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14759-77c4-7cf2-9158-8c24cfcbe7be"
+    },
+    {
+      "at": "2026-10-17T00:53:27.924Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14759-77cc-71e0-8593-ad4b9b381152"
+    },
+    {
+      "at": "2026-10-17T00:53:27.937Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14759-77cf-74d1-a1ae-c415da13b075"
+    },
+    {
+      "at": "2026-10-17T00:53:27.954Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14759-77d0-76b3-961f-10e7511f8ed2"
+    },
+    {
+      "at": "2026-10-17T00:53:27.968Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14759-77d0-7e23-8b3d-b9713116a7aa"
+    },
+    {
+      "at": "2026-10-17T00:53:27.983Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 138141,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 359,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.987Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.989Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    }
+  ]
+}

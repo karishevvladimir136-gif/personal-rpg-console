@@ -236,7 +236,7 @@ function summary() {
   const table = aggregate();
   writeFileSync(join(runsDir, "pictures-summary.json"), JSON.stringify({ generatedAt: new Date().toISOString(), ledgerUsd: usd(ledger.totalUsdMicros), capUsd: CAP_USD, table }, null, 2) + "\n");
   const lines = [
-    "| Model | Frames | Refused | Median s | $/image | Identity (compiled) | Identity generic → compiled (same 4 shots) | Clothing kept | Anatomy ok | People count right | Adherence | No text | Figure redraw anatomy |",
+    "| Model | Frames | Refused | Median s | $/image | Identity (compiled) | Identity generic → compiled (same shots) | Clothing kept | Anatomy ok | People count right | Adherence | No text | Figure redraw anatomy |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ...table.map((r) => `| ${r.label} | ${r.frames} | ${r.refused} | ${r.medianMs !== null ? (r.medianMs / 1000).toFixed(1) : ""} | ${r.perImageUsd} | ${r.identity ?? ""} | ${r.identityGeneric ?? ""} → ${r.identityCompiledSameShots ?? ""} | ${r.clothingKept ?? ""} (generic ${r.clothingKeptGeneric ?? "—"}) | ${r.anatomyOk ?? ""} | ${r.peopleRight ?? ""} | ${r.adherence ?? ""} (generic ${r.adherenceGeneric ?? "—"}) | ${r.textFree ?? ""} | ${r.figureAnatomyOk === null ? "" : r.figureAnatomyOk ? "ok" : `bad: ${r.figureIssues}`} |`),
   ];

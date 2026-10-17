@@ -74,5 +74,6 @@ export const SHOTS = [
   },
 ];
 
-/** The shots that compare the compiled prompt with today's generic one: the four with people besides the hero. */
-export const GENERIC_SHOTS = ["t1", "t4", "t6", "t8"];
+/** The shots that compare the compiled prompt with today's generic one (two, to stay within the cap):
+ * two people with the hero's references, one of them with a clothing state from the records. */
+export const GENERIC_SHOTS = ["t1", "t6"];
