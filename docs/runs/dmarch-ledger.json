@@ -70,6 +70,14 @@
       "settled": true,
       "finishedAt": "2026-10-17T19:54:35.400Z",
       "record": "docs/runs/dmarch-20261017-195052-continuity-D.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-195450-judge",
+      "what": "records judge (63 turns, claude-sonnet-5-5 medium)",
+      "startedAt": "2026-10-17T19:54:50.385Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }
