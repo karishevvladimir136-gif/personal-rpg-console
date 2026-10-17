@@ -12,6 +12,15 @@ this run»).
 - 3–5 anecdotes he finds funny: they calibrate the kind of humour (dry, absurd, dark, wordplay), not material to reuse.
 - His voice pairs from the first play (POLISH item 7) and his DM codex (`docs/owner/DM_CODEX_RU.md`).
 
+**Humour calibration (from the owner's five anecdotes, 2026-10-16; the jokes themselves stay out of git).** Black
+humour, deadpan, one line. The shared mechanism: an innocent everyday phrase that the punchline re-reads literally and
+darkly; or a character's absurdly wrong inference; the second voice drops a dry remark and nobody explains it. Death,
+danger and stupidity are fair material. For the DM: dark humour about death, debt, drowning and risk is allowed and
+belongs to this kind of world — say so explicitly, since aligned models drift away from it; the form is a short dry
+line that turns someone's words or the situation over, with no narrator reaction or gloss after it; not invented
+similes, not sound-based puns. A line of this kind from session 1: Дуня, when Фрол's hook tears off a scrap of Мокей's
+net — «Улов. Бери, даром.»
+
 ## What research and practice say (planner's second pass, 2026-10-16)
 
 Confirmed from the first pass (POLISH item 7): examples are the strongest lever (Anthropic: 3–5, relevant, diverse);
@@ -71,8 +80,17 @@ New:
    measurably more sycophantic ([ACL 2026](https://preview.aclanthology.org/ingest-acl/2026.acl-long.1421/)). Our DM is
    already tough; the voice work must not soften people — NPCs keep their own wants and the right to refuse.
 
+9. **Many examples in context, not fine-tuning.** Opus cannot be fine-tuned (the only public Claude fine-tuning found
+   is the old Claude 3 Haiku on [Amazon Bedrock](https://claude.com/blog/fine-tune-claude-3-haiku)). But examples in
+   the prompt scale: with hundreds to thousands of shots, quality kept rising on many tasks and came close to
+   fine-tuning on translation ([Many-Shot In-Context Learning, NeurIPS 2024](https://arxiv.org/html/2404.11018v2));
+   gains are not always monotonic (some tasks peaked at ~50 shots), and the order of examples matters. With caching a
+   large bank of passages is cheap. Risk: copying phrases from the examples — measure verbatim n-gram overlap.
+
 Not taken: fillers and disfluencies from voice-assistant guides (prose turns them into the court reporter); sampler-
-level bans (no access).
+level bans (no access); a fine-tuned smaller model as the DM (loses Opus's reasoning, memory and tool use). Kept in
+reserve: Opus decides and writes, a second pass rewrites dialogue only — test only if the voice layer is not enough,
+it costs latency and can change facts.
 
 ## Plan
 
@@ -86,7 +104,9 @@ level bans (no access).
 4. Speech profiles: register, sentence length, a habit set (ending or gesture, 3–4 trade images, never-says list),
    ты/вы per person, comic stance, tic frequency.
 5. A second polishing pass only where latency does not matter: digest, «Ранее в…», chronicle.
-6. Blind A/B on the owner's key scenes from session 1 (current prompt vs the voice layer vs the voice layer with his
-   examples), dialogue judged separately; metrics: Latin letters, канцелярит and calque markers, humanizer patterns,
+6. Blind A/B on the owner's key scenes from session 1 (current prompt · the voice layer · the voice layer with 3–5 of
+   his passages · the voice layer with all of them, many-shot), dialogue and humour judged separately; run locally on
+   the owner's laptop, where session 1 and the keys are and the passages never leave his machine; scenes: turns 1, 16,
+   20–21, 23, 24, 34, 37–38, 41; metrics: Latin letters, канцелярит and calque markers, humanizer patterns,
    share of ≤ 5-word paragraphs, metaphor density, repeated phrases per character, share of «tennis» replies. The
    owner picks; the planner builds the page. Record in `docs/runs/`.
