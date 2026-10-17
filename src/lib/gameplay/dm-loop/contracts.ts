@@ -103,7 +103,9 @@ export type DmLoopDiagnostic =
   | { kind: "self_disclosure"; detail: string }
   /** Polish item 1: the model ended on a player-visible roll with no text after
    * it; the loop asked once for the narration of the outcome. */
-  | { kind: "outcome_asked" };
+  | { kind: "outcome_asked" }
+  /** Polish group 7 (item 5): the model stopped after narration without finish_turn and was asked once. */
+  | { kind: "finish_asked" };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";

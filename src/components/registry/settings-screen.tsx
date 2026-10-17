@@ -49,11 +49,16 @@ export function RegistrySettings({ data, more, preview }: {
   const [likesDraft, setLikesDraft] = useState<string | null>(null);
   const [themeDraft, setThemeDraft] = useState<string | null>(null);
   const [notebook, setNotebook] = useState<NotebookView | null>(null);
+  // Polish group 7: «Образцы голоса» — the owner's passages (private), per campaign with an account default.
+  const [voice, setVoice] = useState<{ campaign: string; account: string } | null>(null);
+  const [voiceScope, setVoiceScope] = useState<"campaign" | "account">("campaign");
+  const [voiceDraft, setVoiceDraft] = useState<string | null>(null);
   const [play, setPlay] = useState<PlaySnapshot | null>(null);
   useEffect(() => {
     if (preview) return;
     const id = encodeURIComponent(data.campaign.id);
     readJson<DossierView>(`/api/campaigns/${id}/dossier`).then(setDossier, () => setDossier(null));
+    readJson<{ campaign: string; account: string }>(`/api/campaigns/${id}/dossier?view=voice`).then(setVoice, () => setVoice(null));
     readJson<PlaySnapshot>(`/api/campaigns/${id}/play`).then(setPlay, () => setPlay(null));
   }, [data.campaign.id, preview]);
   const notebookVisible = !preview && !!current?.notebookVisible;
@@ -264,6 +269,29 @@ export function RegistrySettings({ data, more, preview }: {
                   placeholder={c("Например: что стоит верность, когда никто не смотрит?", "For example: what does loyalty cost when nobody is watching?")}
                   onChange={(event) => setThemeDraft(event.target.value)} />
                 {themeDraft !== null && <div className={r.row}><button type="button" className={r.btnMain} onClick={() => void saveNote("theme", themeDraft)}>{c("Сохранить", "Save")}</button><button type="button" className={r.btnGhost} onClick={() => setThemeDraft(null)}>{c("Отмена", "Cancel")}</button></div>}
+                <span className={r.eyebrow}>{c("Образцы голоса", "Voice samples")}</span>
+                <p className={r.note} style={{ margin: 0 }}>{c("Отрывки прозы, которую ты любишь: ведущий будет учиться у их интонации, когда этап голоса включит образцы. Хранятся только в базе, приватно; в репозиторий, логи и примеры не попадают.", "Passages of prose you like: the DM learns their tone once the voice stage turns the samples on. Stored only in the database, privately; never in the repository, logs or fixtures.")}</p>
+                <Segmented label={c("Чьи образцы", "Which samples")} value={voiceScope} disabled={!!chrome?.href}
+                  options={[{ value: "campaign", label: c("Этой кампании", "This campaign") }, { value: "account", label: c("По умолчанию для всех", "Default for all campaigns") }]}
+                  onChange={(value) => { setVoiceScope(value); setVoiceDraft(null); }} />
+                <textarea className={s.note} rows={6} maxLength={40000} disabled={!!chrome?.href || !voice} aria-label={c("Образцы голоса", "Voice samples")}
+                  value={voiceDraft ?? voice?.[voiceScope] ?? ""} placeholder={c("Вставь один-два абзаца; пустая строка разделяет отрывки.", "Paste a paragraph or two; a blank line separates passages.")}
+                  onChange={(event) => setVoiceDraft(event.target.value)} />
+                {voiceDraft !== null && (
+                  <div className={r.row}>
+                    <button type="button" className={r.btnMain} onClick={() => void (async () => {
+                      try {
+                        const next = await readJson<{ campaign: string; account: string }>(`/api/campaigns/${encodeURIComponent(data.campaign.id)}/dossier`, { method: "POST",
+                          headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "voice_save", scope: voiceScope, samples: voiceDraft }) });
+                        setVoice(next); setVoiceDraft(null);
+                      } catch { /* the draft stays for another try */ }
+                    })()}>{c("Сохранить", "Save")}</button>
+                    <button type="button" className={r.btnGhost} onClick={() => setVoiceDraft(null)}>{c("Отмена", "Cancel")}</button>
+                  </div>
+                )}
+                <Switch title={c("Использовать образцы голоса", "Use the voice samples")} hint={c("Включит этап голоса, когда слой голоса будет написан; пока выключено и ничего не меняет.", "The voice stage turns this on once the voice layer is written; off until then and changes nothing.")}
+                  checked={!!current?.voiceExamples} disabled onChange={() => {}} />
+
                 <Switch title={c("Заглянуть в блокнот мастера", "Peek into the DM's notebook")} hint={c("Показывает заметки подготовки между сессиями. По умолчанию выключено.", "Shows the prep notes between sessions. Off by default.")}
                   checked={!!current?.notebookVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ notebookVisible: value })} />
                 {current?.notebookVisible && (

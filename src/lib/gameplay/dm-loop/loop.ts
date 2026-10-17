@@ -182,6 +182,9 @@ export function narrationNames(narration: string, name: string): boolean {
 }
 
 const PENDING_OUTCOME = "The player saw the roll but not what came of it. Narrate the outcome of that roll now, as text, in the campaign language, within the accepted result. Then finish the turn.";
+/** Item 5: a model that stops after the narration without finish_turn loses the scene kinds, the
+ * tension and the refusal hint; it is asked once for the closing bookkeeping. */
+const FINISH_NOW = "The narration is complete but the turn is not closed. Send the final bookkeeping message now: the records the narration needs (people, places, items, notes, time) and finish_turn with sceneKinds, spotlight, nextTension and, when someone refused the hero, npcRefused. No more narration text.";
 
 function parseArguments(call: DmToolCall): Record<string, unknown> {
   try {
@@ -449,6 +452,15 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
           diagnostic({ kind: "outcome_asked" });
           loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+          await persist("generating");
+          continue;
+        }
+        // Only a turn that made no tool call at all (the whole answer was text) is asked; a turn
+        // with bookkeeping keeps its implicit close (spotlight from the receipts), as before.
+        if (!shadow.finished && !loop.receipts.length && loop.text.trim() && stop.reason !== "max_tokens" && loop.requests < limits.modelRequestsPerTurn &&
+          !loop.diagnostics.some((row) => row.kind === "finish_asked")) {
+          diagnostic({ kind: "finish_asked" });
+          loop.transcript.push({ role: "user", text: FINISH_NOW });
           await persist("generating");
           continue;
         }

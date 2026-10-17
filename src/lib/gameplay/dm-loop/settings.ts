@@ -22,6 +22,8 @@ export type DmSettings = {
   notebookVisible: boolean;
   /** Stage 4 §7: «⚡ важный ход» — the next turn takes the top of the range, then the flag clears. */
   boostNext: boolean;
+  /** Polish group 7: the voice layer may quote the owner's «Образцы голоса»; off until the voice stage. */
+  voiceExamples: boolean;
   revision: number;
 };
 export type DmSettingsSave = {
@@ -32,6 +34,7 @@ export type DmSettingsSave = {
   depth?: DepthRange | null;
   notebookVisible?: boolean;
   boostNext?: boolean;
+  voiceExamples?: boolean;
 };
 
 export type DmSettingsRpc = (args: {
@@ -64,14 +67,14 @@ export function parseDmSettings(value: unknown): DmSettings {
   if (v.depth !== null && v.depth !== undefined && !depth) throw new DmSettingsError("unavailable");
   return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
     customLimits: v.limits !== null && v.limits !== undefined, depth,
-    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, revision: v.revision as number };
+    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true, revision: v.revision as number };
 }
 
 export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if (!value || typeof value !== "object") throw new DmSettingsError("validation");
   const v = value as Record<string, unknown>;
   const keys = Object.keys(v);
-  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext"]);
+  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples"]);
   if (!["dmTurn", "expectedRevision", "runtime"].every((key) => keys.includes(key)) || keys.some((key) => !allowed.has(key)) ||
     !Number.isSafeInteger(v.expectedRevision) ||
     (v.runtime !== "astra-primary-v1" && v.runtime !== DM_LOOP_RUNTIME)) throw new DmSettingsError("validation");
@@ -90,6 +93,7 @@ export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   }
   if ("notebookVisible" in v) { if (typeof v.notebookVisible !== "boolean") throw new DmSettingsError("validation"); save.notebookVisible = v.notebookVisible; }
   if ("boostNext" in v) { if (typeof v.boostNext !== "boolean") throw new DmSettingsError("validation"); save.boostNext = v.boostNext; }
+  if ("voiceExamples" in v) { if (typeof v.voiceExamples !== "boolean") throw new DmSettingsError("validation"); save.voiceExamples = v.voiceExamples; }
   return save;
 }
 

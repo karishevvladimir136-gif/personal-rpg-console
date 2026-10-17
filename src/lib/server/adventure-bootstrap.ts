@@ -11,6 +11,7 @@ import { applicationModelSelection } from "../model-runtime/defaults.ts";
 import { executionProviderOptions } from "./model-runtime/profiles.ts";
 import type { BootstrapCommand } from "../adventures/bootstrap-contracts.ts";
 import { astraFirstCreationReviewReady } from "../adventures/astra-startup-review.ts";
+import { readDmSettings } from "./dm-settings";
 export async function performBootstrap(command: BootstrapCommand) {
   const campaignId =
     command.action === "creation.propose" ||
@@ -79,11 +80,17 @@ export async function performBootstrap(command: BootstrapCommand) {
             )) as import("../production/contracts.ts").FoundationSnapshot
           ).executionPolicy
         : null;
+      // Polish group 7: the opening is written by the campaign's own DM when that DM is an
+      // OpenAI model (the bootstrap contract pins OpenAI models only); otherwise the app default.
+      let dmTurn: import("../production/contracts.ts").ModelSelection | null = null;
+      if (cid && command.action === "opening.propose") {
+        try { dmTurn = (await readDmSettings(cid)).dmTurn; } catch { dmTurn = null; }
+      }
       return resolveExecutionProfile({
         task: "world.compose",
         profileId: randomUUID(),
         campaignPolicy: policy,
-        globalDefault: applicationModelSelection(process.env),
+        globalDefault: dmTurn?.providerId === "openai" ? dmTurn : applicationModelSelection(process.env),
       });
     },
   ).perform(command);

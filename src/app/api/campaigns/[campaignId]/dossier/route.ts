@@ -1,4 +1,4 @@
-import { readDossier, readNotebook, updateDossier } from "@/lib/server/dossier";
+import { readDossier, readNotebook, readVoiceSamples, saveVoiceSamples, updateDossier } from "@/lib/server/dossier";
 import { authorizeCampaign } from "@/lib/server/campaign-authorization";
 import { readDigestStatus, retryDigest } from "@/lib/server/session-digest";
 import { readWriteRequest } from "@/lib/persistence/http-policy";
@@ -12,6 +12,8 @@ export async function GET(request: Request, context: Context) {
     const { campaignId } = await context.params;
     const params = new URL(request.url).searchParams;
     if (params.get("view") === "notebook") return publicJson(await readNotebook(campaignId));
+    // Polish group 7: the owner's voice samples (private; never logged).
+    if (params.get("view") === "voice") return publicJson(await readVoiceSamples(campaignId));
     if (params.get("view") === "digest") {
       await authorizeCampaign(campaignId);
       const sessionId = params.get("session") ?? "";
@@ -26,6 +28,7 @@ export async function POST(request: Request, context: Context) {
   try {
     const { campaignId } = await context.params;
     const body = await readWriteRequest(request) as Record<string, unknown>;
+    if (body && body.action === "voice_save") return publicJson(await saveVoiceSamples(campaignId, body));
     if (body && body.action === "digest" && typeof body.sessionId === "string")
       return publicJson({ campaignId, sessionId: body.sessionId, status: await retryDigest(campaignId, body.sessionId) });
     return publicJson(await updateDossier(campaignId, body));

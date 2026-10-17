@@ -41,7 +41,11 @@ export function createScriptedDmModel(initial: ScriptedRound[] = [],
   const requests: DmModelRequest[] = [];
   async function* stream(request: DmModelRequest): AsyncGenerator<DmModelEvent> {
     requests.push(request);
-    const round = rounds.shift();
+    // Polish group 7 (item 5): a script that ended without finish_turn answers the loop's
+    // one closing nudge the way a live model would — with finish_turn and nothing else.
+    const last = request.messages.at(-1);
+    const round = rounds.shift() ?? (last?.role === "user" && /not closed/.test(last.text)
+      ? { text: "", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["other"], spotlight: [], playerMoment: false } }] } : undefined);
     if (!round) throw new DmModelError("provider_rejected", "the script has no answer left for this request");
     if (round.failBefore === "transport") throw new DmModelError("retryable_transport", "scripted connection loss");
     if (round.failBefore === "rejected") throw new DmModelError("provider_rejected", "scripted rejection");

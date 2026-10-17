@@ -43,7 +43,7 @@ function parse(value: unknown): DmSettings {
   try { limits = effectiveDmLoopLimits(v.limits); } catch { throw new GameplayClientError(); }
   return { campaignId: v.campaignId, runtime: v.runtime, dmTurn, limits, customLimits: !!v.customLimits,
     depth: v.depth === null || v.depth === undefined ? null : parseDepthRange(v.depth),
-    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, revision: v.revision as number };
+    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true, revision: v.revision as number };
 }
 
 async function request(url: string, body?: unknown): Promise<DmSettings> {

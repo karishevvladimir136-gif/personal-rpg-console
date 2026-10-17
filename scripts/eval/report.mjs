@@ -179,6 +179,13 @@ export function stage4Report(turns, scenarios) {
       ` NPC refusals ${pct(m.npcRefusalRate)} of turns; longest unearned-win streak ${m.unearnedWinStreakLongest}; fights ${m.fights}` +
       `${m.fights ? ` (uncertain ${pct(m.fightsUncertainShare)}, won at no cost ${m.fightsWonAtNoCost}, HP lost per fight ${m.hpLostPerFight})` : ""}`);
   }
+  for (const scenario of scenarios) {
+    const n = scenario.naturalness;
+    if (!n) continue;
+    lines.push(`  ${scenario.scenario} naturalness: ${n.words} words; Latin letters ${fmt(n.latinShare * 100)}%; канцелярит ${fmt(n.kancelyaritPerThousand)}/1k words;` +
+      ` sentence-length variation ${n.sentenceLengthVariation === null ? "–" : fmt(n.sentenceLengthVariation)}; answers every point ${n.answersEveryPoint === null ? "–" : `${fmt(n.answersEveryPoint * 100)}%`}` +
+      `${n.repeatedPhrases.length ? `; repeated: ${n.repeatedPhrases.slice(0, 4).map((row) => `«${row.phrase}» ×${row.turns}`).join(", ")}` : ""}`);
+  }
   const disclosures = scenarios.flatMap((scenario) => scenario.selfDisclosures ?? []);
   lines.push(`  NPC self-disclosures set aside by the leak check: ${disclosures.length}${disclosures.length ? ` — ${disclosures.join(" | ").slice(0, 400)}` : ""}`);
   return lines;

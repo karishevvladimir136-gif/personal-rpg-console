@@ -24,6 +24,7 @@ import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
 import { dmLoopLimits as L } from "./limits.ts";
 import { DM_LOOP_TOOL_NAMES } from "./tools.ts";
 import { allPlans } from "./plans.ts";
+import { voiceLayer, voiceReminder } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
@@ -50,14 +51,17 @@ const clipChars = (text: string, max: number) => (text.length <= max ? text : `$
 
 /** Token budgets of the layers and of the dossier's parts (stage task §1). */
 export const DOSSIER_BUDGETS = {
-  layer1: 7000,
-  layer2: { guide: 6000, canon: 20000, reference: 6000, packet: 6000 },
+  // Polish group 7: the role, the twelve approved cards and the voice slot fit in the cached layer.
+  layer1: 12000,
+  // Polish item 8: more of the window where more text means better play — the canon, the codex,
+  // the recent scenes verbatim and the exchanges; the stable parts stay cached.
+  layer2: { guide: 6000, canon: 40000, reference: 6000, packet: 6000 },
   // Polish item 12: layer 3 is two blocks — the stable part (cached for an hour)
   // and the session's tail after the breakpoint (Character Models by presence,
   // the open journal, secrets, plans, likes, the ledger), which changes most turns.
-  layer3: { party: 4000, codex: 12000, factions: 1200, journal: 4000, pinned: 800, secrets: 3500, plans: 1500,
+  layer3: { party: 4000, codex: 30000, factions: 1200, journal: 4000, pinned: 800, secrets: 3500, plans: 1500,
     notebook: 1500, likes: 300, ledger: 500, adventure: 900, memory: 4000, models: 16000 },
-  layer4: { memory: 6000, scenes: 7000, exchanges: 5000 },
+  layer4: { memory: 6000, scenes: 30000, exchanges: 15000 },
 } as const;
 
 export type DossierLayerReport = { layer: number; budgetTokens: number; usedTokens: number; dropped: string[] };
@@ -74,6 +78,7 @@ How this game works:
 - The world is sovereign. Intent does not dictate outcome; NPCs may refuse; failure is canon; luck is not free; plans meet resistance proportional to the stakes; partial success is a normal outcome; enemies learn and change tactics; power costs resources and resources run out; there are threats stronger than the hero and they are not scaled down.
 - Life off screen: when notable time passes (advance_time, move_party, rest), the receipt lists the plans that came due; advance them in the same turn through note_world and note_character, consistently with each person's model, and let the hero notice only what reaches them. The world moves for game time only, never for the player's real absence.
 - Companions and party: a companion is a character with party membership; a talk addressed to a companion is an ordinary turn where that companion answers in their own voice from what they know. Game time passes in such talks too.
+- Speech: every line of a person comes from their speech profile (note_character speech: register, sentence length, tics with a frequency, what they never say, ты/вы towards each person); people differ, speak once and plainly, with filler and unfinished phrases where they would; a tic sounds at most once a scene (the dossier counts recent uses); ты/вы is per pair and shifts only for a reason. No aphorisms in every mouth, no invented idioms, no running image that rests on nothing. A question about the sheet, the rules or the app is answered in a short out-of-fiction aside or a clarifying question, never in the story voice. Nothing the player sees carries Latin shorthand (HP, NPC, DC, XP): the campaign's own words in notes and narration alike.
 - Order of work — tell the story first, act inside it. Begin every turn with narration text at once, the way a live DM speaks before touching the dice: the player must read your first sentence within seconds, never after the tools. Call a tool at the moment the story needs it, in the middle of the text, and continue the same narration after its result. A call that DECIDES an outcome (roll; money spend or transfer, an item transfer or a claim_reward that may be refused) comes BEFORE the sentence that describes that outcome: describe the attempt → roll → describe the result. Pure BOOKKEEPING that cannot change what you have already said (recording the people and places you described with upsert_character and upsert_place, the items they hold, quest and journal records, advance_time, move_party, rest, note_character, note_world) comes AFTER the narration, all together in ONE final message that ends with finish_turn. Independent calls always travel together in one message, never one per round. A record a call needs may be created in the same message just before it (local keys resolve in order). One retry after a rejection is normal; rejected bookkeeping is simply fixed in the same final message.
 - finish_turn ends the turn. Call it in that final bookkeeping message, after the narration is complete: scene kinds, who and which threads were in focus, playerMoment when you hand the decisive description to the player ("How do you want to do this?"), nextTension (calm, tense or climax) for the depth of the next turn, and playerLikes when you learned what the player enjoys. Never call it before the text exists. If someone refused, bargained down or walked away from the hero this turn (npcRefused), or the next turn will be tense or a climax, finish_turn must be in that message: it is the only way the server learns it. Time passes last: advance_time (or move_party, or rest) is the final bookkeeping call of the turn and travels in the same message as finish_turn — a bookkeeping message that closes with time passing is the end of the turn.
 - The player's list of changes is written by the server from your accepted calls, in the campaign language; your private notes, plans, Character Models and private rolls never reach it. A person you record ahead of the story (upsert_character) stays out of the player's chips and codex until your narration names them or they are present — so prepare people freely. A rejected money or item call is retried with the fix the reason names, in the same turn; it is never replaced by a private note (the records must match the story to the coin).
@@ -145,7 +150,8 @@ const profileOf = (entity: Entity): PublicProfile => (entity.public_profile && t
 function modelText(snapshot: RuntimeSource["snapshot"], model: CharacterModel): string {
   const { schemaVersion: _v, basisOperationId: _b, actorId: _a, ...body } = model;
   void _v; void _b; void _a;
-  return json({ ...body, relationships: body.relationships.map((r) => ({ ...r, actorId: snapshot.entities.find((e) => e.id === r.actorId)?.name ?? r.actorId })) });
+  return json({ ...body, relationships: body.relationships.map((r) => ({ ...r, actorId: snapshot.entities.find((e) => e.id === r.actorId)?.name ?? r.actorId })),
+    ...(body.speech ? { speech: speechText(snapshot, body.speech) } : {}) });
 }
 function partyInShort(source: RuntimeSource): Budgeted {
   const { snapshot, runtime } = source;
@@ -191,7 +197,31 @@ function modelCore(source: RuntimeSource, model: CharacterModel): string {
   const debts = snapshot.quests.filter((q) => q.status === "open" && (q.kind === "debt" || q.kind === "promise") && q.detail?.counterpartId === model.actorId).map((q) => q.title);
   return json({ wants: model.identity.wants, boundaries: model.identity.boundaries, current: model.current,
     toParty: model.relationships.filter((r) => partyIds.has(r.actorId)).map((r) => ({ who: name(r.actorId), affection: r.affection, trust: r.trust, respect: r.respect, ...(r.unresolvedHurt ? { hurt: r.unresolvedHurt } : {}) })),
-    voice: model.identity.observableVoice, signatures: model.identity.signatures, ...(debts.length ? { openDebtsAndPromises: debts } : {}) });
+    voice: model.identity.observableVoice, signatures: model.identity.signatures, ...(model.speech ? { speech: speechText(snapshot, model.speech) } : {}),
+    ...(debts.length ? { openDebtsAndPromises: debts } : {}) });
+}
+
+/** The speech profile with names in place of IDs (polish group 7). */
+function speechText(snapshot: RuntimeSource["snapshot"], speech: NonNullable<CharacterModel["speech"]>) {
+  return { ...speech, address: speech.address.map((a) => ({ to: snapshot.entities.find((e) => e.id === a.actorId)?.name ?? a.actorId, form: a.form })) };
+}
+
+/** How often each tic and signature of a person sounded in the recent narration
+ * (polish item 23): the DM varies them from the counts, a tic once a scene at most. */
+export function recentSignatureUses(scenes: { role: string; body: string }[], model: CharacterModel, recent = 12): Record<string, number> {
+  const text = scenes.filter((row) => row.role === "narration").slice(-recent).map((row) => row.body.toLocaleLowerCase()).join("\n");
+  const phrases = [...(model.speech?.tics.map((t) => t.phrase) ?? []), ...model.identity.signatures];
+  const counts: Record<string, number> = {};
+  for (const phrase of phrases) {
+    const stem = phrase.toLocaleLowerCase().replace(/[«»"'.,!?…()]/g, "").trim();
+    if (stem.length < 3) continue;
+    // A phrase's stem: its first words cut by two letters each, so declined forms still count.
+    const escape = (word: string) => word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = stem.split(/\s+/).slice(0, 3).map((word) => escape(word.length > 5 ? word.slice(0, -2) : word)).join("\\S*\\s+");
+    const n = (text.match(new RegExp(pattern, "gu")) ?? []).length;
+    if (n > 0) counts[phrase] = n;
+  }
+  return counts;
 }
 
 /** The session tail's Character Models (polish item 8): people present in the
@@ -212,8 +242,10 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
     return { row, model, tier, rank: tier === "present" ? 0 : tier === "relevant" ? 1 : 2 };
   }).filter((entry): entry is NonNullable<typeof entry> => entry !== null)
     .sort((a, b) => a.rank - b.rank || a.row.name.localeCompare(b.row.name));
+  const signatureLine = (model: CharacterModel) => { const uses = recentSignatureUses(snapshot.scenes, model); return Object.keys(uses).length
+    ? ` — sounded in the last scenes: ${Object.entries(uses).map(([phrase, n]) => `«${phrase}» ×${n}`).join(", ")} (vary; a tic once a scene at most)` : ""; };
   const entries = rows.map(({ row, model, tier }) => tier === "present"
-    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}` }
+    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}${signatureLine(model)}` }
     : tier === "relevant" ? { label: row.name, text: `- ${row.name} (${row.id}) — core: ${modelCore(source, model)}` }
       : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` });
   const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
@@ -455,8 +487,16 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const exchangesAll = runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== input.operationId &&
     ["game", "companion", "mechanic"].includes(turn.mode)).slice(-L.context.recentExchanges)
     .map((turn) => `Player${turn.companionId ? ` (to ${snapshot.entities.find((e) => e.id === turn.companionId)?.name ?? "companion"})` : ""}: ${turn.input}\nDM: ${turn.narration ?? ""}`);
-  let exchanges = exchangesAll.join("\n\n");
-  if (estimateTokens(exchanges) > DOSSIER_BUDGETS.layer4.exchanges) { exchanges = clipTokens(exchanges, DOSSIER_BUDGETS.layer4.exchanges); dropped.push("oldest recent exchanges"); }
+  // Polish group 7: the last turns verbatim — the budget drops the oldest exchanges whole, never the newest.
+  const keptExchanges: string[] = [];
+  let exchangeTokens = 0;
+  for (const exchange of [...exchangesAll].reverse()) {
+    const cost = estimateTokens(exchange) + 2;
+    if (keptExchanges.length && exchangeTokens + cost > DOSSIER_BUDGETS.layer4.exchanges) { dropped.push("oldest recent exchanges"); break; }
+    keptExchanges.unshift(exchange);
+    exchangeTokens += cost;
+  }
+  const exchanges = keptExchanges.join("\n\n");
   return { text: `Current state (before this turn; IDs are the references tools accept):\n${json(state)}\n\nRecent scenes (oldest first):\n${scenes || "(the campaign is just beginning)"}\n\nRecent exchanges:\n${exchanges || "(none yet)"}`, dropped };
 }
 
@@ -508,7 +548,10 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
   try { craft = pinnedCraftForStage(source, input, "plan"); } catch { craft = null; }
   // Layer 1: the whole approved library, by key order, while the budget lasts.
   const library = (craft?.library ?? []).map((card) => ({ label: card.title, text: `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}` }));
-  const fixed = [ROLE, turnShape(language),
+  // Polish group 7: the voice part of layer 1 (empty until the voice stage fills it) and the
+  // owner's «Образцы голоса» when the campaign's switch allows them — cached with the role.
+  const voice = voiceLayer(language, source.voiceSamples, !!source.voiceExamplesOn);
+  const fixed = [ROLE, turnShape(language), voice,
     `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
     craft?.doctrine ? `DM Craft — how to run (the owner's approved doctrine):\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null)].filter(Boolean).join("\n\n");
@@ -563,7 +606,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
   // Layer 5: now.
   const retrieved = memoryRecent(source);
   const state = currentState(source, input);
-  const now = [varietyCounter(source, input), retrieved.text, state.text].filter(Boolean).join("\n\n");
+  const now = [varietyCounter(source, input), retrieved.text, state.text, voiceReminder(language)].filter(Boolean).join("\n\n");
   layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory + DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges,
     usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
 

@@ -160,6 +160,10 @@ export type RuntimeSource = {
   // Pinned owner-advisory Adventure and actual Party Power; never a state patch.
   adventureContext?: JsonObject;
   memory?: ContextMemory;
+  /** Polish group 7: «Образцы голоса» — the owner's passages (private; the campaign's, else the
+   * account default) and the campaign's switch that lets the voice layer quote them. */
+  voiceSamples?: string | null;
+  voiceExamplesOn?: boolean;
   ownerId: string;
   snapshot: CampaignSnapshot;
   runtime: PlaySnapshot;

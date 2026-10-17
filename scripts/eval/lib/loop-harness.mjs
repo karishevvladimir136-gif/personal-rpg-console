@@ -15,6 +15,7 @@ import { dmLoopLimits } from "../../../src/lib/gameplay/dm-loop/limits.ts";
 import { dmModels, dmRequestReservation } from "../../../src/lib/model-runtime/dm-models.ts";
 import { snapshot, diff, resolvePlaceholders, evaluateCheck, privateFacts } from "./state.mjs";
 import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/metrics.ts";
+import { naturalness as naturalnessOf } from "./naturalness.mjs";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -142,7 +143,7 @@ export async function runLoopScenario(scenario, options) {
   let stopReason = null;
   const scripted = live ? null : createScriptedDmModel([]);
   const liveAdapter = live ? liveModel(selection, options.budget, options.apiKey, transport) : null;
-  let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [];
+  let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [], naturalness = null;
   try {
     steps.set("start", await snapshot(f, cid, hero));
     for (const step of scenario.steps) {
@@ -355,6 +356,9 @@ export async function runLoopScenario(scenario, options) {
     }) : null;
     for (const record of results) if (record.type === "turn" && record.pin?.effort) depths[record.pin.effort] = (depths[record.pin.effort] ?? 0) + 1;
     selfDisclosures = results.flatMap((record) => (record.diagnostics ?? []).filter((d) => d.kind === "self_disclosure").map((d) => `${record.step}: ${d.detail}`));
+    // Polish group 7: the Russian naturalness metrics over the run's narrations (measured, not acted on).
+    const played = results.filter((record) => record.type === "turn" && typeof record.narration === "string" && record.narration);
+    naturalness = played.length ? naturalnessOf(played.map((record) => record.narration), played.map((record) => ({ input: record.input ?? "", narration: record.narration }))) : null;
   } finally {
     await f.db.close();
   }
@@ -378,7 +382,7 @@ export async function runLoopScenario(scenario, options) {
     stopReason,
     // Stage 4: the resistance metrics, the dossier budgets per layer, the depth
     // the server chose per turn and the NPC self-disclosures the leak check set aside.
-    metrics, dossierBudget, depths, selfDisclosures,
+    metrics, dossierBudget, depths, selfDisclosures, naturalness,
   };
   write(summary);
   return summary;

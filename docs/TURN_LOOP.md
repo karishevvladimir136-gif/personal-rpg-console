@@ -445,3 +445,37 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
   changes are folded («Изменения за ход · N»), ordered items → money → counters → journal → people and places → time,
   with the «⚡ думал глубже · N с» mark when the saved turn ran above the depth range's base. «Другие действия» (abandon)
   returns only after 45 s of thinking. The header clock says the time of day in words; the «Важный ход» button is gone.
+
+## 16. Polish stage — group 7: the mechanics for the Russian voice, and the budgets
+
+- **The speech profile** (`CharacterModel.speech`, migration 61): register, sentence length, verbal tics each with a
+  frequency (rare / sometimes / often), what the person never says, and ты/вы towards each person. `note_character
+  speech` replaces the stored profile; an update without it keeps it; a model without one gets a hint in the receipt.
+  The session tail shows the profile with names in place of IDs, and for every person in the scene **the tic counter**:
+  how often each tic and signature sounded in the last twelve narrations (`recentSignatureUses`, stems compare), with
+  the rule «vary; a tic once a scene at most». The role text says every line comes from the profile, ты/вы is per
+  pair, no aphorisms in every mouth, no invented idioms, sheet questions in an out-of-fiction aside, no Latin shorthand
+  in anything the player sees.
+- **The budgets** (item 8): canon 20k → 40k, codex 12k → 30k, recent scenes 7k → 30k, exchanges 5k → 15k; the recent
+  exchanges are kept verbatim from the newest backwards (the budget drops the oldest whole). A Character Model may
+  hold 64 000 characters (160 000 bytes). Measured before/after in the final group's paid run.
+- **The voice slots** (`src/lib/gameplay/dm-loop/voice.ts`, *off*): the voice part of layer 1 (`VOICE_LAYER_RU`) and the
+  reminder next to the player's input (`VOICE_REMINDER_RU`) are empty strings the voice stage fills; empty, they
+  change nothing.
+- **«Образцы голоса»** (*off*): the owner's passages live in `rpg_private.voice_samples` (per campaign, with an account
+  default), written and read through `rpg_dossier voice_save` / `voice_read` (`/api/campaigns/<id>/dossier?view=voice`,
+  `POST {action: "voice_save", scope, samples}`) and edited on the settings screen. The turn's source carries them
+  (`voiceSamples`, the campaign's else the account default) and the campaign's switch `dm_settings.voice_examples`;
+  only with the switch on does the voice layer quote them as `<example>` blocks (at most five passages, 12 000
+  characters). The switch is off and disabled on the settings screen until the voice stage. The samples never reach
+  the public snapshot, the logs or the fixtures.
+- **finish_turn** (item 5): a model that stops after the narration without `finish_turn` is asked once for the closing
+  bookkeeping (`FINISH_NOW`, diagnostic `finish_asked`), so the scene kinds, the next tension and the refusal hint are
+  recorded.
+- **The naturalness metrics** (`scripts/eval/lib/naturalness.mjs`, measured, not acted on): Latin letters in visible
+  text, канцелярит markers per 1 000 words (participle chains included), sentence-length variation, three-word phrases
+  repeated across turns, and the share of multi-question inputs whose reply answers every point (the «assistant
+  shape»). Every bench run reports them per scenario; a scenario may bound one with the `naturalness` check.
+- **The opening** is written by the campaign's own DM when that DM is an OpenAI model (`opening.propose` resolves its
+  profile from the campaign's `dmTurn`). The bootstrap contract (its SQL and validators) pins OpenAI models only, so an
+  Anthropic-written opening is a bounded follow-up listed in the report.

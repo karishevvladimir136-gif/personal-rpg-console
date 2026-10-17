@@ -248,6 +248,13 @@ export async function evaluateCheck(check, ctx) {
       const n = (ctx.turn?.effects.accepted ?? []).filter((k) => !arg.kind || k === arg.kind).length;
       return result(compare(n, arg), `accepted: ${(ctx.turn?.effects.accepted ?? []).join(", ") || "none"}`);
     }
+    case "naturalness": {
+      // Polish group 7: a naturalness measure of this turn's narration against a bound ({field, max|min}).
+      const { naturalness } = await import("./naturalness.mjs");
+      const report = naturalness([ctx.turn?.narration ?? ""], [{ input: ctx.turn?.input ?? "", narration: ctx.turn?.narration ?? "" }]);
+      const value = report[arg.field];
+      return result(value !== null && value !== undefined && compare(value, arg), `${arg.field} = ${value === null || value === undefined ? "–" : typeof value === "number" ? value.toFixed(3) : JSON.stringify(value)}`);
+    }
     case "narrationIncludes": {
       const text = ctx.turn?.narration ?? "";
       return result(matcher(arg).test(text), text ? `narration ${text.length} chars` : "no narration");

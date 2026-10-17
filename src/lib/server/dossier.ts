@@ -41,6 +41,25 @@ export async function updateDossier(campaignId: string, value: unknown): Promise
   return parseDossier(await call(user.id, campaignId, action, { requestId: randomUUID(), ...payload }));
 }
 
+/** «Образцы голоса» (polish group 7): the owner's passages, private — the campaign's and the account default. */
+export type VoiceSamplesView = { campaignId: string; campaign: string; account: string };
+function parseVoice(value: unknown): VoiceSamplesView {
+  if (!value || typeof value !== "object") throw new PersistenceError("unavailable");
+  const v = value as Record<string, unknown>;
+  if (typeof v.campaignId !== "string") throw new PersistenceError("unavailable");
+  return { campaignId: v.campaignId, campaign: typeof v.campaign === "string" ? v.campaign : "", account: typeof v.account === "string" ? v.account : "" };
+}
+export async function readVoiceSamples(campaignId: string): Promise<VoiceSamplesView> {
+  const { user } = await authorizeCampaign(campaignId);
+  return parseVoice(await call(user.id, campaignId, "voice_read", {}));
+}
+export async function saveVoiceSamples(campaignId: string, value: unknown): Promise<VoiceSamplesView> {
+  const { user } = await authorizeCampaign(campaignId);
+  const v = value && typeof value === "object" ? value as Record<string, unknown> : {};
+  if ((v.scope !== "campaign" && v.scope !== "account") || typeof v.samples !== "string" || v.samples.length > 40_000) throw new PersistenceError("validation");
+  return parseVoice(await call(user.id, campaignId, "voice_save", { requestId: randomUUID(), scope: v.scope, samples: v.samples }));
+}
+
 /** The DM prep notebook, only when the campaign's «заглянуть в блокнот мастера» option is on. */
 export async function readNotebook(campaignId: string): Promise<NotebookView | null> {
   const { user } = await authorizeCampaign(campaignId);

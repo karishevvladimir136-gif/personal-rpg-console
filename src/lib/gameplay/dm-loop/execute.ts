@@ -1338,8 +1338,17 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
     : kept;
   reject(episodes.length <= L.characterModel.episodes, `${actor.name} has ${episodes.length} episodes; the list holds ${L.characterModel.episodes}.`,
     "Fold the oldest into one summary with foldEpisodes { keep, summary } and append the new ones.");
+  // Polish group 7: the speech profile replaces the stored one when given, else stays.
+  const speech = args.speech !== undefined
+    ? (() => { const s = args.speech as { register: unknown; sentenceLength: unknown; tics: { phrase: unknown; frequency: unknown }[]; neverSays: unknown[]; address: { actorRef: unknown; form: unknown }[] };
+        return { register: str(s.register), sentenceLength: str(s.sentenceLength) as "short" | "mixed" | "long",
+          tics: (s.tics ?? []).map((t) => ({ phrase: str(t.phrase), frequency: str(t.frequency) as "rare" | "sometimes" | "often" })),
+          neverSays: (s.neverSays ?? []).map((line) => str(line)).filter(Boolean),
+          address: (s.address ?? []).map((a) => { const other = entityOf(shadow, a.actorRef, "speech.address.actorRef");
+            reject(other.id !== actor.id, `${actor.name} does not address themselves.`); return { actorId: other.id, form: str(a.form) as "ты" | "вы" }; }) }; })()
+    : existing?.speech ?? null;
   const model: CharacterModel = { schemaVersion: 1, actorId: actor.id, basisOperationId: ctx.input.operationId,
-    identity, current, beliefs, relationships, episodes };
+    identity, current, beliefs, relationships, episodes, speech };
   let parsed: CharacterModel;
   try { parsed = parseCharacterModel(JSON.parse(JSON.stringify(model))); }
   catch {
@@ -1358,7 +1367,8 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
   }
   reject(new Set(parsed.relationships.map((r) => r.actorId)).size === parsed.relationships.length, "One relationship per character.");
   shadow.setPrivate("npc", `character_${actor.id}`, JSON.stringify(parsed));
-  return ok({ actor: actor.name, established: !existing, stress: parsed.current.stress }, `${actor.name}'s character notes ${existing ? "updated" : "started"}`);
+  return ok({ actor: actor.name, established: !existing, stress: parsed.current.stress, ...(parsed.speech ? {} : { hint: `${actor.name} has no speech profile yet: add speech (register, sentence length, tics with frequency, never says, ты/вы) so every line is theirs.` }) },
+    `${actor.name}'s character notes ${existing ? "updated" : "started"}`);
 }
 
 // --- finish ----------------------------------------------------------------

@@ -267,8 +267,8 @@ test("a harmless private detail never fails the turn; a literal secret is logged
       { text: "\"Only my sister Wenna,\" he says, and his voice sounds strained. " },
     ]);
     assert.equal(harmless.result.status, "committed");
-    // (the depth diagnostic is the default range at work, not a leak)
-    assert.deepEqual((await c.row(harmless.input.operationId)).checkpoint.dmLoop.diagnostics.filter((d) => d.kind !== "depth"), []);
+    // (the depth diagnostic is the default range at work, not a leak; a text-only answer is asked once for finish_turn — polish group 7)
+    assert.deepEqual((await c.row(harmless.input.operationId)).checkpoint.dmLoop.diagnostics.filter((d) => d.kind !== "depth" && d.kind !== "finish_asked"), []);
     const leak = await c.turn("Tell me everything.", [
       { text: "He breaks: he secretly lets smugglers hide crates in the old mill at night." },
     ]);
@@ -306,7 +306,7 @@ test("DM settings: runtime and model are editable; a turn pins the model at its 
   const c = await loopCampaign();
   try {
     assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null,
-      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, revision: 0 });
+      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false, revision: 0 });
     const saved = await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1",
       dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } });
     assert.equal(saved.revision, 1);

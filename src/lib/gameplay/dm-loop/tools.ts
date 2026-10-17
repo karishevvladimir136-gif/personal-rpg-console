@@ -213,6 +213,13 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       beliefs: opt({ type: "array", maxItems: L.characterModel.beliefs, items: object({ text: str("What they believe.", L.characterModel.longText), confidence: { type: "string", enum: ["tentative", "supported"] }, aboutRef: opt(ref("Who it is about.")) }) }),
       relationships: opt({ type: "array", maxItems: L.characterModel.relationships, items: object({ actorRef: ref("The other person."), affection: { type: "string", enum: ["distant", "open", "close"] }, trust: { type: "string", enum: ["low", "guarded", "earned"] }, respect: { type: "string", enum: ["low", "mixed", "high"] }, unresolvedHurt: opt(str("An unresolved hurt.", L.characterModel.listText)) }) }),
       episodes: opt({ type: "array", maxItems: L.characterModel.episodes, items: object({ meaning: str("What this episode meant to them.", L.characterModel.longText), cue: opt(str("What brings it back.", L.characterModel.cue)) }) }),
+      speech: opt({ ...object({
+        register: str("Vocabulary and register in a line.", L.characterModel.voice),
+        sentenceLength: { type: "string", enum: ["short", "mixed", "long"] },
+        tics: { type: "array", maxItems: L.characterModel.speechItems, items: object({ phrase: str("A verbal tic or gesture.", L.characterModel.listText), frequency: { type: "string", enum: ["rare", "sometimes", "often"] } }) },
+        neverSays: { type: "array", maxItems: L.characterModel.speechItems, items: str("What they never say.", L.characterModel.listText) },
+        address: { type: "array", maxItems: L.characterModel.speechItems, items: object({ actorRef: { type: "string", minLength: 1, maxLength: 200 }, form: { type: "string", enum: ["ты", "вы"] } }) },
+      }), description: "How the person talks (replaces the stored profile); every line of theirs comes from it. Tic frequency: rare once a session, sometimes once a scene, often never twice in one exchange." }),
       foldEpisodes: opt({ ...object({ keep: { type: "integer", minimum: 1, maximum: L.characterModel.episodes, description: "How many of the newest stored episodes to keep." }, summary: str("One episode that stands for the older ones.", L.characterModel.longText) }),
         description: "When the episode list is full: fold the stored older episodes into one summary episode, then append the new ones from episodes." }),
     }),

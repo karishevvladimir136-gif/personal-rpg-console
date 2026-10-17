@@ -7,6 +7,15 @@ import { isUuid } from "../persistence/validation.ts";
 // A compact, server-private value in dm_state.contents.npc.character_<actor UUID>.
 // This is interpretation and fictional state, never Canon or positive knowledge.
 export type CharacterEvidence = Pick<MemorySourceRef, "kind" | "id" | "version" | "part" | "visibility">;
+/** How the person talks (polish group 7): register and vocabulary, sentence length, verbal tics with how
+ * often each may sound, what they never say, and ты/вы towards each person. The DM keeps it up to date. */
+export type SpeechProfile = {
+  register: string;
+  sentenceLength: "short" | "mixed" | "long";
+  tics: { phrase: string; frequency: "rare" | "sometimes" | "often" }[];
+  neverSays: string[];
+  address: { actorId: string; form: "ты" | "вы" }[];
+};
 export type CharacterModel = {
   schemaVersion: 1;
   actorId: string;
@@ -29,6 +38,8 @@ export type CharacterModel = {
   beliefs: { text: string; confidence: "tentative" | "supported"; aboutActorId: string | null; evidence: CharacterEvidence }[];
   relationships: { actorId: string; affection: "distant" | "open" | "close"; trust: "low" | "guarded" | "earned"; respect: "low" | "mixed" | "high"; unresolvedHurt: string | null; evidence: CharacterEvidence }[];
   episodes: { evidence: CharacterEvidence; meaning: string; cue: string | null }[];
+  /** Absent on models stored before the polish stage; null until the DM writes it. */
+  speech?: SpeechProfile | null;
 };
 
 const ID_PREFIX = "character_";
@@ -51,12 +62,14 @@ export const CHARACTER_MODEL_BOUNDS = {
   beliefs: 12,
   relationships: 12,
   episodes: 40,
-  /** Characters of the stored JSON (Stage 4: text limits are measured in
-   * characters; migration 55 lets a Character Model note hold 80 000 bytes,
-   * which this many characters never exceed in UTF-8). */
-  chars: 32_000,
+  /** Characters of the stored JSON (polish item 8: 64 000; migration 61 lets a
+   * Character Model note hold 160 000 bytes, which this many characters never
+   * exceed in UTF-8). */
+  chars: 64_000,
   /** Kept for callers that still size the model in bytes (the SQL bound). */
-  bytes: 80_000,
+  bytes: 160_000,
+  /** The speech profile: tics, «never says» lines and ты/вы pairs. */
+  speechItems: 12,
 } as const;
 const MAX_VALUE_CHARS = CHARACTER_MODEL_BOUNDS.chars;
 const MAX_PACKET_BYTES = 48_000;
@@ -96,8 +109,21 @@ function evidence(value: unknown): CharacterEvidence {
     visibility: choice(v.visibility, ["public", "private"] as const) };
 }
 
+export function parseSpeechProfile(value: unknown): SpeechProfile {
+  const s = object(value, ["register", "sentenceLength", "tics", "neverSays", "address"]);
+  if (!Array.isArray(s.tics) || s.tics.length > B.speechItems || !Array.isArray(s.address) || s.address.length > B.speechItems) throw new DmError("validation");
+  const address = s.address.map((entry) => { const a = object(entry, ["actorId", "form"]); if (!isUuid(a.actorId)) throw new DmError("validation");
+    return { actorId: a.actorId, form: choice(a.form, ["ты", "вы"] as const) }; });
+  if (new Set(address.map((a) => a.actorId)).size !== address.length) throw new DmError("validation");
+  return { register: short(s.register, B.voice), sentenceLength: choice(s.sentenceLength, ["short", "mixed", "long"] as const),
+    tics: s.tics.map((entry) => { const t = object(entry, ["phrase", "frequency"]); return { phrase: short(t.phrase, B.listText), frequency: choice(t.frequency, ["rare", "sometimes", "often"] as const) }; }),
+    neverSays: words(s.neverSays, B.speechItems), address };
+}
+
 export function parseCharacterModel(value: unknown): CharacterModel {
-  const v = object(value, ["schemaVersion", "actorId", "basisOperationId", "identity", "current", "beliefs", "relationships", "episodes"]);
+  const keys = ["schemaVersion", "actorId", "basisOperationId", "identity", "current", "beliefs", "relationships", "episodes"];
+  const hasSpeech = !!value && typeof value === "object" && Object.hasOwn(value, "speech");
+  const v = object(value, hasSpeech ? [...keys, "speech"] : keys);
   if (v.schemaVersion !== 1 || !isUuid(v.actorId) || (v.basisOperationId !== null && !isUuid(v.basisOperationId))) throw new DmError("validation");
   const i = object(v.identity, ["values", "wants", "boundaries", "loyalties", "signatures", "observableVoice"]);
   const current = object(v.current, ["goal", "stress", "preoccupation", "obligation"]);
@@ -128,7 +154,9 @@ export function parseCharacterModel(value: unknown): CharacterModel {
       const e = object(entry, ["evidence", "meaning", "cue"]);
       return { evidence: evidence(e.evidence), meaning: short(e.meaning, B.longText), cue: maybe(e.cue, B.cue) };
     }),
+    ...(hasSpeech ? { speech: v.speech === null ? null : parseSpeechProfile(v.speech) } : {}),
   };
+  if (model.speech?.address.some((a) => a.actorId === model.actorId)) throw new DmError("validation");
   if (new Set(model.relationships.map((r) => r.actorId)).size !== model.relationships.length ||
       JSON.stringify(model).length > MAX_VALUE_CHARS) throw new DmError("validation");
   return model;

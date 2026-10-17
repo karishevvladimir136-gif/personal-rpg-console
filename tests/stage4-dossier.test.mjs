@@ -320,7 +320,7 @@ test("layer 1 carries the whole active craft library; layers stay stable across 
     assert.doesNotMatch(layer1, /Dungeon Master/);
     assert.match(layer1, /DM Craft library[\s\S]*Life off screen[\s\S]*The long campaign[\s\S]*A world that pushes back/);
     assert.match(layer1, /How to run the game/);
-    assert.ok(estimateTokens(layer1) <= 7000, `layer 1 within budget: ${estimateTokens(layer1)}`);
+    assert.ok(estimateTokens(layer1) <= 12000, `layer 1 within budget: ${estimateTokens(layer1)}`);
     const second = await c.turn("I ask the organiser about work.", [{ text: "Work. ", toolCalls: [finish()] }]);
     const hashes = (played) => played.deps && null;
     void hashes;
@@ -329,7 +329,7 @@ test("layer 1 carries the whole active craft library; layers stay stable across 
     const source = (await c.deps(createScriptedDmModel([]))).store;
     void source;
     const started = c.observations.filter((o) => o.type === "request_started");
-    assert.ok(started.at(-1).layers[0].tokens > 0 && started.at(-1).layers[0].budgetTokens === 7000);
+    assert.ok(started.at(-1).layers[0].tokens > 0 && started.at(-1).layers[0].budgetTokens === 12000);
     const snapshot = await c.f.saves(c.cid, "campaign");
     const organiser = snapshot.entities.find((row) => row.name === "Work organiser");
     const query = memoryQueryFor({ snapshot, runtime: { configuration: { presentEntityIds: [organiser.id] }, worldMinutes: 0 }, privateState: {} },
@@ -448,7 +448,8 @@ test("the World Engine bridge projects plans into threads; the state validates; 
 test("tool descriptions stay compact: sixteen tools, their descriptions under 6k tokens per provider", () => {
   const openai = JSON.stringify(dmLoopToolset.openai), anthropic = JSON.stringify(dmLoopToolset.anthropic);
   assert.equal(dmLoopToolset.openai.length, 16);
-  // Stage 2b shipped about 5.6k (OpenAI) / 5.1k (Anthropic) estimated tokens; Stage 4 adds the dossier fields.
-  assert.ok(estimateTokens(openai) < 9000, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 9000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // Stage 2b shipped about 5.6k (OpenAI) / 5.1k (Anthropic) estimated tokens; Stage 4 adds the dossier fields;
+  // the polish stage adds the roll's bonuses and the speech profile (the schema sits in the cached prefix).
+  assert.ok(estimateTokens(openai) < 9500, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 9500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });
