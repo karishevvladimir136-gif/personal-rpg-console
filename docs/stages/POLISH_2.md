@@ -93,6 +93,18 @@ Russian voice layer applies to it once the voice stage turns it on.
 - The first adventure goes straight into the opening review — no «Проверить» → «Сохранить» clicks.
 - Quest texts link the named things they mention to their codex entries («Сельдь»).
 - «Визуальная библия» and «Галерея» merge into one «Картинки» page.
+- **The drawn atlas comes back** («Создать карту»): its own composition in the picture workshop on GPT Image 2.5
+  Sunburst — a map of the current level in the campaign's style, places drawn where the layout puts them, no text on
+  the picture (the place names stay as the app's own labels over it).
+- A public `lore` record for the codex's «Мир» tab (category, title, what the hero knows, source), so lore learned in
+  play becomes an entry; never exposing private notes.
+- The «Что, если» entry: the start point in words («после хода 3, Кабак Марты») and the cost line before the first paid
+  call.
+- Backfill the hero's equipment slots for existing records.
+
+Parallel session: `claude/dm-arch` (`docs/stages/DM_ARCH.md`) adds new files only under
+`src/lib/gameplay/dm-loop/two-pass/**`, `scripts/eval/dm-arch/**`, `docs/samples/dm-arch/` and `docs/runs/dmarch-*`;
+do not edit those here.
 
 ## Checks
 
