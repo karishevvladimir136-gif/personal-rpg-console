@@ -35,6 +35,35 @@ export const dmModels = {
     defaultReasoning: "medium",
     price: { input: 4, output: 20, cacheRead: 0.2, cacheWrite: 5, cacheWrite1h: 8 },
   },
+  // DM architecture bake-off (docs/stages/DM_ARCH.md): the two experimental
+  // models of the writer + bookkeeper split. Registered here so the adapters
+  // and the loop accept them; the settings screen's list
+  // (src/lib/gameplay/dm-settings-client.ts) and the SQL assert of the DM
+  // settings (migration 52) do not offer them, so the default runtime never
+  // selects them. Prices (USD per 1M, Standard tier) checked 2026-10-17
+  // against the Claude API reference: Fable 5.1 input $10, output $50, cache
+  // read $0.25, cache write $12.50 (5 min) / $20 (1 h); Sonnet 5.5 input $2,
+  // output $10, cache read $0.20, cache write $2.50 / $4.
+  "anthropic/claude-fable-5-1": {
+    providerId: "anthropic",
+    modelId: "claude-fable-5-1",
+    label: "Claude Fable 5.1",
+    contextLimit: 1_000_000,
+    maxOutputTokens: 128_000,
+    reasoning: ["low", "medium", "high", "xhigh", "max"],
+    defaultReasoning: "high",
+    price: { input: 10, output: 50, cacheRead: 0.25, cacheWrite: 12.5, cacheWrite1h: 20 },
+  },
+  "anthropic/claude-sonnet-5-5": {
+    providerId: "anthropic",
+    modelId: "claude-sonnet-5-5",
+    label: "Claude Sonnet 5.5",
+    contextLimit: 1_000_000,
+    maxOutputTokens: 128_000,
+    reasoning: ["low", "medium", "high", "xhigh", "max"],
+    defaultReasoning: "high",
+    price: { input: 2, output: 10, cacheRead: 0.2, cacheWrite: 2.5, cacheWrite1h: 4 },
+  },
   "openai/gpt-6-astra": {
     providerId: "openai",
     modelId: "gpt-6-astra",
