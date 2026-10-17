@@ -1,5 +1,6 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { startMinutesFromText } from "../../lib/adventures/wizard-text";
 import type {
   BootstrapTransport,
   OpeningReview,
@@ -36,6 +37,14 @@ export function OpeningBootstrap({
     c = bootstrapText(language);
   const draft = w.draft?.kind === "opening" ? w.draft : null,
     review = w.review as OpeningReview | null;
+  // Polish group 10: the scene's clock, read from the proposal's words once per draft; the
+  // owner's correction is kept per draft and sent next to the review.
+  const readMinutes = useMemo(
+    () => (draft ? startMinutesFromText(`${draft.proposal.narration ?? ""}\n${draft.proposal.situation ?? ""}`) : null),
+    [draft],
+  );
+  const [chosen, setChosen] = useState<{ draftId: string; minutes: number | null } | null>(null);
+  const startMinutes = draft && chosen?.draftId === draft.draftId ? chosen.minutes : readMinutes;
   const dirty = !!start || !!w.pending || !!draft;
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => () => onDirty(false), [onDirty]);
@@ -77,6 +86,7 @@ export function OpeningBootstrap({
                     campaignId,
                     draftId: draft.draftId,
                     review: corrected,
+                    startMinutes,
                   },
                 },
                 onStarted,
@@ -89,6 +99,8 @@ export function OpeningBootstrap({
               onChange={w.setReview}
               language={language}
               questions={draft.proposal.questions}
+              startMinutes={startMinutes}
+              onStartMinutes={(minutes) => setChosen({ draftId: draft.draftId, minutes })}
             />
           </fieldset>
           <div className={styles.actions}>

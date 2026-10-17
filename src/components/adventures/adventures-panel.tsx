@@ -1,5 +1,7 @@
 "use client";
 import Link from "next/link";
+import { parseWizardStart, wizardAdventureSetup, wizardStartKey } from "../../lib/adventures/wizard-text";
+import type { AdventureSetup } from "../../lib/adventures/contracts";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CampaignSnapshot } from "../../lib/persistence/contracts";
 import type {
@@ -32,7 +34,7 @@ import type {
 } from "../../lib/adventures/bootstrap-contracts";
 
 type Draft =
-  | { kind: "prepare"; basis: AdventureCatalog }
+  | { kind: "prepare"; basis: AdventureCatalog; initial?: AdventureSetup }
   | {
       kind: "edit" | "end" | "review" | "abandon";
       basis: AdventureCatalog;
@@ -88,6 +90,16 @@ export function AdventuresPanel({
     [worldDirty, setWorldDirty] = useState(false);
   const [openingStart, setOpeningStart] = useState<StartCommand | null>(null),
     [openingDirty, setOpeningDirty] = useState(false);
+  // Polish group 10: the wizard's start arrives through sessionStorage; the first adventure's
+  // form opens prefilled and, once prepared, goes straight to the opening.
+  const [handoff, setHandoff] = useState<ReturnType<typeof parseWizardStart>>(null),
+    autoStart = useRef(false);
+  useEffect(() => {
+    if (!persistPending) return;
+    Promise.resolve().then(() => {
+      try { setHandoff(parseWizardStart(sessionStorage.getItem(wizardStartKey(campaignId)))); } catch { /* no storage, no prefill */ }
+    });
+  }, [campaignId, persistPending]);
   const [worlds, setWorlds] = useState<WorldCatalog | null>(
       initialWorlds ?? null,
     ),
@@ -140,6 +152,16 @@ export function AdventuresPanel({
   useEffect(() => {
     onDirty(formDirty || worldDirty || openingDirty || pending !== null);
   }, [formDirty, worldDirty, openingDirty, pending, onDirty]);
+  useEffect(() => {
+    if (!handoff || !catalog || loading || draft || !catalog.canChange || !catalog.worldBinding || catalog.adventures.length) return;
+    queueMicrotask(() => {
+      if (!mounted.current) return;
+      autoStart.current = true;
+      setDraft({ kind: "prepare", basis: catalog, initial: wizardAdventureSetup(handoff, language) });
+      setHandoff(null);
+      try { sessionStorage.removeItem(wizardStartKey(campaignId)); } catch { /* already used */ }
+    });
+  }, [handoff, catalog, loading, draft, language, campaignId, mounted]);
   useEffect(() => () => onDirty(false), [onDirty]);
   const wrongTimeline = !catalog || !sameTimeline(catalog.timeline, timeline);
   const frozen = !ready || loading || busy || pending !== null || wrongTimeline;
@@ -147,6 +169,10 @@ export function AdventuresPanel({
     !!draft && (!catalog || !sameAdventureBasis(draft.basis, catalog));
   const canWrite =
     !!catalog?.canChange && !frozen && !worldBusy && !openingDirty;
+  // The one next step: a prepared adventure waits for «Start»; nothing else competes with it.
+  const nextToStart = catalog?.activeAdventureId === null
+    ? catalog.adventures.find((row) => row.status === "prepared") ?? null
+    : null;
   const send = async (command: AdventureCommand) => {
     if (lock.current || !ready) return;
     lock.current = true;
@@ -162,6 +188,16 @@ export function AdventuresPanel({
       setDraft(null);
       setFormDirty(false);
       setWorldDirty(false);
+      if (attempt.action === "prepare" && autoStart.current) {
+        autoStart.current = false;
+        const prepared = result.snapshot.adventures.find((row) => row.status === "prepared");
+        if (prepared && result.snapshot.requiresOpening) {
+          try {
+            const command = versionAdventureAttempt(result.snapshot, prepared.id, "start");
+            if (command.action === "start") setOpeningStart(command);
+          } catch { /* the Start button is one click away */ }
+        }
+      }
       // A campaign refresh is a read after confirmed success, never a second write.
       try {
         await onSaved();
@@ -215,7 +251,6 @@ export function AdventuresPanel({
           <h1>{c.title}</h1>
           <p className={styles.intro}>{c.intro}</p>
         </div>
-        <Link href={reviewLinks?.newHero ?? "/campaigns"}>{c.newCampaign}</Link>
       </div>
       <p>
         {c.existing} · {snapshot.campaign.title}
@@ -329,13 +364,13 @@ export function AdventuresPanel({
                   }
                   language={language}
                   initial={
-                    draft.kind === "edit"
-                      ? {
+                    draft.kind === "prepare"
+                      ? draft.initial
+                      : {
                           title: draft.adventure.title,
                           premise: draft.adventure.premise,
                           pacing: draft.adventure.pacing,
                         }
-                      : undefined
                   }
                   disabled={!canWrite || staleDraft}
                   onDirty={setFormDirty}
@@ -394,7 +429,7 @@ export function AdventuresPanel({
               )}
             </div>
           )}
-          {!draft && (
+          {!draft && !openingStart && !nextToStart && (
             <div className={styles.actions}>
               <button
                 className={styles.primary}
@@ -409,10 +444,17 @@ export function AdventuresPanel({
               </button>
             </div>
           )}
-          {!catalog.adventures.length && (
+          {!catalog.adventures.length && !draft && (
             <p className={styles.intro}>{c.firstAdventureHelp}</p>
           )}
-          {catalog.adventures.map((a) => (
+          {nextToStart && !openingStart && !draft && (
+            <p className={styles.intro}>
+              {language === "ru"
+                ? "Следующий шаг — «Начать»: ведущий предложит вступление, ты его проверишь."
+                : "Next step: “Start” — the DM proposes the opening and you review it."}
+            </p>
+          )}
+          {!openingStart && catalog.adventures.map((a) => (
             <article className={styles.card} key={a.id}>
               <span className={styles.badge}>
                 {status(a)} · v{a.version}

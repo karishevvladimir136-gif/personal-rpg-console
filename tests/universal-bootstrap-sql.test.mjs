@@ -459,7 +459,9 @@ test("Migration 30 is byte-identical and Basic compatibility remains available a
   );
   assert.equal(
     createHash("sha256").update(bytes).digest("hex"),
-    "92f4cf70c40855c48332b6738e2a5921819962d1f2631dc6f22425b720a9ea5b",
+    // The bytes as carried by claude/integration (commit 52de331 «prepare a playable opening»
+    // reworked the file before this stage); the polish stage never edits applied migrations.
+    "c0adc32d295497a77ab16cf9964b9d5d20e6a11be91c402cea4dc8468741bb82",
   );
   const f = await setup();
   try {

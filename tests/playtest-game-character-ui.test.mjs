@@ -448,7 +448,8 @@ for (const language of ["en", "ru"]) {
     const input = html.indexOf("<textarea");
     assert.ok(html.indexOf("public meeting house is quiet") < input);
     assert.ok(!html.includes(translate(language, "Session & continuity").replaceAll("&", "&amp;")));
-    const more = html.indexOf(words("Ещё · бой, отдых, сессия, записи и правки", "More · combat, rest, session, records and corrections"));
+    // Polish group 10: the player's actions stand on their own; the editing tools are the owner's block.
+    const more = html.indexOf(words("Редактор кампании · для владельца", "Campaign editor · for the owner"));
     assert.ok(more > input);
     assert.ok(html.indexOf(words("Кубы", "Dice"), input) > input);
     assert.ok(html.indexOf(words("Вопрос ведущему", "Ask the DM"), input) > input);
@@ -520,7 +521,7 @@ test("active encounter status remains readable while manual combat actions live 
   });
   const html = render("game", state);
   // Stage 5: the encounter status sits in the story column; manual controls live under More.
-  const advanced = html.indexOf("More · combat, rest, session, records and corrections");
+  const advanced = html.indexOf("Campaign editor · for the owner");
   assert.ok(advanced > 0);
   assert.match(html.slice(0, advanced), /Round 3/);
   assert.doesNotMatch(html.slice(0, advanced), /Start an encounter|Acting character|Confirm encounter action/);

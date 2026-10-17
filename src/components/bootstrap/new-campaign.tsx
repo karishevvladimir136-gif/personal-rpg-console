@@ -11,7 +11,7 @@ import type {
 } from "../../lib/adventures/bootstrap-contracts";
 import { parseCreationReview } from "../../lib/adventures/bootstrap-validation";
 import { creationReviewForCommit } from "../../lib/adventures/bootstrap-review";
-import { astraFirstCreationReviewReady } from "../../lib/adventures/astra-startup-review";
+import { capitalizedName, creationBlockedReason } from "../../lib/adventures/wizard-text";
 import {
   createAdventureTransport,
   restoreWorldAttempt,
@@ -130,15 +130,18 @@ function UniversalCampaign({
         limitations: normalizeLines(review.limitations),
       }, draft.proposal.questions)
     : null;
-  let canCreate = false;
-  try {
-    if (draft && corrected) {
+  // Polish group 10: any sheet creates — narrative or structured; the DM is the new loop,
+  // not Astra, so no combat profile is demanded here. A grey button always says why.
+  let canCreate = false, blocked: string | null = null;
+  if (draft && corrected) {
+    try {
       parseCreationReview(corrected, draft.proposal);
-      canCreate = astraFirstCreationReviewReady(corrected);
+      canCreate = true;
+    } catch {
+      blocked = creationBlockedReason(corrected, draft.proposal.questions, language);
     }
-  } catch {
-    /* Clarifications and recorded balances must be resolved. */
   }
+  const properName = name.trim() ? capitalizedName(name) : "";
   return (
     <section className={styles.panel}>
       <h2>{language === "ru" ? "Новая кампания" : "New Campaign"}</h2>
@@ -195,11 +198,14 @@ function UniversalCampaign({
                 />
               </fieldset>
               {draft.proposal.schemaVersion === 2 && corrected?.sheet?.mode === "narrative" && (
-                <p className={styles.notice} role="status">
+                <p className={styles.muted} role="status">
                   {language === "ru"
-                    ? "Для новой кампании с ведущим Astra откройте «Исправить лист персонажа», выберите «Структурированный RPG» и утвердите боевой профиль перед созданием."
-                    : "For a new Astra campaign, open Correct character sheet, choose Structured RPG, and approve the combat profile before creating it."}
+                    ? "Лист повествовательный: без боевых чисел. Ведущий решает проверки по описанию героя; боевой профиль можно утвердить позже в «Исправить лист персонажа»."
+                    : "A narrative sheet: no combat numbers. The DM resolves checks from the hero's description; a combat profile can be approved later under “Correct character sheet”."}
                 </p>
+              )}
+              {!canCreate && blocked && (
+                <p className={styles.notice} role="status">{blocked}</p>
               )}
               <div className={styles.actions}>
                 <button
@@ -276,6 +282,14 @@ function UniversalCampaign({
                       onChange={(e) => setName(e.target.value)}
                     />
                   </label>
+                  {properName && properName !== name.trim() && (
+                    <p className={styles.muted}>
+                      <button type="button" onClick={() => setName(properName)}>
+                        {language === "ru" ? `Писать как имя: ${properName}` : `Write it as a name: ${properName}`}
+                      </button>{" "}
+                      {language === "ru" ? "— так ведущий будет звать героя в тексте." : "— that is how the DM will write the hero's name."}
+                    </p>
+                  )}
                   <label className={styles.field}>
                     {c.who}
                     <textarea

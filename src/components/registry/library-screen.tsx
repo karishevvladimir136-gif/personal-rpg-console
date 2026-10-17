@@ -15,6 +15,7 @@ import { characterViewModel } from "@/lib/character-view-model";
 import { currentPlace, currentSession, heroOf, sessionNumber } from "@/lib/ui/campaign-view";
 import { effortLabel } from "@/lib/ui/effort";
 import { NewCampaignForm } from "../bootstrap/new-campaign";
+import { wizardStartKey, type WizardStart } from "@/lib/adventures/wizard-text";
 import { useWorkspaceData } from "../persistence-context";
 import { dmModelLabel } from "./shell";
 import { Art, Panel, Plate, registry as r, useCopy } from "./primitives";
@@ -250,6 +251,13 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
   // The effort starts at the selected model's own default (the same one the server resolves).
   const [effort, setEffort] = useState(() => defaultEffort(dmTurnModels[0]));
   const [likes, setLikes] = useState("");
+  // Polish group 10: the start is a real choice; the phrase travels to the adventures screen.
+  const [startChoice, setStartChoice] = useState<WizardStart["choice"]>("dm");
+  const [startPhrase, setStartPhrase] = useState("");
+  const handoff = () => {
+    if (!createdId) return;
+    try { sessionStorage.setItem(wizardStartKey(createdId), JSON.stringify({ choice: startChoice, phrase: startPhrase.trim() })); } catch { /* the form is prefilled only when storage works */ }
+  };
   const [saved, setSaved] = useState(false);
   const [dirty, setDirty] = useState(false);
   useEffect(() => {
@@ -338,11 +346,16 @@ export function RegistryNewCampaign({ worlds, onClose, onCreated, preview = fals
             <div className={r.stack}>
               <h2 className={r.h2}>{c("С чего начнём?", "Where do we begin?")}</h2>
               <div className={r.choices}>
-                <div className={r.choice} aria-pressed="true"><span className={r.choiceTitle}>{c("Ведущий решает", "The DM decides")}</span><span className={r.muted}>{c("Сцена из мира и твоей истории — сюрприз.", "A scene from the world and your story — a surprise.")}</span></div>
-                <div className={r.choice}><span className={r.choiceTitle}>{c("Я опишу, где начинаю", "I describe where I start")}</span><span className={r.muted}>{c("Одна фраза — остальное ведущий.", "One sentence — the DM does the rest.")}</span></div>
+                <button type="button" className={r.choice} aria-pressed={startChoice === "dm"} onClick={() => setStartChoice("dm")}><span className={r.choiceTitle}>{c("Ведущий решает", "The DM decides")}</span><span className={r.muted}>{c("Сцена из мира и твоей истории — сюрприз.", "A scene from the world and your story — a surprise.")}</span></button>
+                <button type="button" className={r.choice} aria-pressed={startChoice === "mine"} onClick={() => setStartChoice("mine")}><span className={r.choiceTitle}>{c("Я опишу, где начинаю", "I describe where I start")}</span><span className={r.muted}>{c("Одна фраза — остальное ведущий.", "One sentence — the DM does the rest.")}</span></button>
               </div>
-              <p className={r.note}>{c("Первая сцена готовится на экране приключений: там выбирается начало, длина приключения и проверяется вступление.", "The first scene is prepared on the adventures screen: choose the start and length, and review the opening.")}</p>
-              {createdId ? <Link className={r.btnMain} href={`/campaigns/${encodeURIComponent(createdId)}/adventures`}>{c("Начать кампанию", "Start the campaign")}</Link>
+              {startChoice === "mine" && (
+                <textarea rows={3} maxLength={2000} value={startPhrase} onChange={(event) => setStartPhrase(event.target.value)}
+                  aria-label={c("Где начинается история", "Where the story begins")}
+                  placeholder={c("Например: «Утро на причале Скрипучей Гавани; я должен Марте сорок монет и жду её».", "For example: “Morning on the Creaking Harbour pier; I owe Marta forty coins and I am waiting for her.”")} />
+              )}
+              <p className={r.note}>{c("Дальше один экран: твоё начало уже вписано, ведущий предложит вступление, ты проверишь его и нажмёшь «Начать» — первая сцена откроется в игре.", "One screen next: your start is already filled in, the DM proposes the opening, you review it and press “Start” — the first scene opens in the game.")}</p>
+              {createdId ? <Link className={r.btnMain} href={`/campaigns/${encodeURIComponent(createdId)}/adventures`} onClick={handoff}>{c("Начать кампанию", "Start the campaign")}</Link>
                 : <button type="button" className={r.btnMain} disabled>{c("Начать кампанию", "Start the campaign")}</button>}
             </div>
           )}

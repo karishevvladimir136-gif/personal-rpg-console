@@ -177,13 +177,17 @@ test("Create remains disabled after a narrative-to-structured switch until comba
     execute: noCall, resetProposal: noCall, setReview: noCall };
   const props = { language: "en", onDirty: noCall, onCreated: noCall, onCancel: noCall,
     initialWorlds: f.worlds, transport: { worlds: noCall }, persistPending: false };
+  // Polish group 10: a narrative sheet creates (the DM is the new loop, not Astra); a structured
+  // sheet without an approved profile stays grey and the button says why.
   const narrativePage = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review }).NewCampaignForm, props);
-  assert.match(narrativePage, /choose Structured RPG, and approve the combat profile/i);
-  assert.match(narrativePage, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+  assert.doesNotMatch(narrativePage, /choose Structured RPG, and approve the combat profile/i);
+  assert.match(narrativePage, /A narrative sheet: no combat numbers/);
+  assert.doesNotMatch(narrativePage, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
   assert.match(narrativePage, /option value="structured_rpg"/);
   const structured = m.changeCharacterSheetMode(review, "structured_rpg");
   const blocked = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review: structured }).NewCampaignForm, props);
   assert.match(blocked, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);
+  assert.match(blocked, /Approve the combat profile under/);
   const approved = m.setCreationCombatApproval(structured, true);
   const ready = render(ui("components/bootstrap/new-campaign.tsx", { ...state, review: approved }).NewCampaignForm, props);
   assert.doesNotMatch(ready, /<button[^>]*disabled=""[^>]*>Create protagonist and campaign<\/button>/);

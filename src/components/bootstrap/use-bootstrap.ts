@@ -13,12 +13,12 @@ import {
   restoreBootstrapCommand,
 } from "../../lib/adventures/bootstrap-client";
 import {
-  initialCreationReview,
   initialOpeningReview,
   parseCreationReview,
   parseOpeningReview,
 } from "../../lib/adventures/bootstrap-validation";
 import { usePending } from "../adventures/use-pending";
+import { wizardCreationReview } from "../../lib/adventures/wizard-text";
 export function useBootstrap(
   key: string,
   persist: boolean,
@@ -58,7 +58,7 @@ export function useBootstrap(
           } catch {
             setReview(
               d.kind === "creation"
-                ? initialCreationReview(d.input, d.proposal)
+                ? wizardCreationReview(d.input, d.proposal)
                 : initialOpeningReview(d.proposal),
             );
           }
@@ -105,7 +105,7 @@ export function useBootstrap(
         setDraft(next);
         setReview(
           next.kind === "creation"
-            ? initialCreationReview(next.input, next.proposal)
+            ? wizardCreationReview(next.input, next.proposal)
             : initialOpeningReview(next.proposal),
         );
         remember(null);

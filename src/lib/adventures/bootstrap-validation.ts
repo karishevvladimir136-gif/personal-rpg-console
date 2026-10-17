@@ -494,11 +494,12 @@ export function parseBootstrapCommand(value: unknown): BootstrapCommand {
     ensure(input.action === "start");
     return { action, input };
   }
+  const withStart = action === "opening.commit" && v.input && typeof v.input === "object" && Object.hasOwn(v.input, "startMinutes");
   const i = object(
     v.input,
     action === "creation.commit"
       ? ["requestId", "draftId", "review"]
-      : ["requestId", "campaignId", "draftId", "review"],
+      : ["requestId", "campaignId", "draftId", "review", ...(withStart ? ["startMinutes"] : [])],
   );
   const base = { requestId: uuid(i.requestId), draftId: uuid(i.draftId) };
   return action === "creation.commit"
@@ -509,6 +510,8 @@ export function parseBootstrapCommand(value: unknown): BootstrapCommand {
           ...base,
           campaignId: uuid(i.campaignId),
           review: parseOpeningReview(i.review),
+          // Polish group 10: the opening's clock, 0..1439 or null (keep the recorded 00:00).
+          ...(withStart ? { startMinutes: nullable(i.startMinutes, (n) => integer(n, 0, 1439)) } : {}),
         },
       };
 }

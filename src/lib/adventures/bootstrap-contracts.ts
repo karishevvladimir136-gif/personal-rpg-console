@@ -124,6 +124,9 @@ export type BootstrapCommand =
         campaignId: string;
         draftId: string;
         review: OpeningReview;
+        /** Polish group 10: the clock of the opening scene (minutes after midnight), read from
+         * the narration and corrected by the owner; the first turn starts there, not at 00:00. */
+        startMinutes?: number | null;
       };
     };
 export type BootstrapUsage = {

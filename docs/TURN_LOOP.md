@@ -492,3 +492,26 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
   journal hides empty sections and links the goal to its quest; the pinned list lives in the campaign settings («Что
   ведущий помнит всегда») and a pin on any entry says «Ведущий всегда будет это помнить». No new tool for lore: the
   world's canon documents seed the «Мир» tab (a `lore` record is listed under «Needs the owner»).
+
+## 18. Polish stage — group 10: the path to the first turn, and the opening's clock
+
+- **Any sheet creates.** The wizard no longer demands a structured sheet with an approved combat profile (that was
+  the Astra-first rule; the DM is the new loop). A narrative hero creates at once; a structured sheet still needs
+  its profile approved, and a grey «Создать персонажа и кампанию» always says why (`creationBlockedReason`). A
+  possession the draft could not count is one item on the wizard's review (`wizardCreationReview`); the server's
+  baseline (`initialCreationReview`) stays null, so a commit still needs an explicit number. The combat profile
+  speaks Russian; the weapons list now shows the hero's own items (it filtered on a counted quantity). The hero's
+  name is offered capitalised («Писать как имя: Рэй»), never forced.
+- **One path from the wizard to the first turn.** The last wizard step is a real choice («Ведущий решает» / «Я опишу,
+  где начинаю» with a phrase); «Начать кампанию» hands it to the adventures screen through `sessionStorage`
+  (`wizardStartKey`), where the first adventure's form opens prefilled and, once prepared, goes straight to the
+  opening proposal. A prepared adventure shows one next step («Начать»); the stray «Новая Кампания» link is gone.
+- **The opening sets the clock** (item 18). The opening review reads the scene's time from its words
+  (`startMinutesFromText`: «утро» 8:00, «к семи вечера» 19:00, «в 17:30»), offers it as «Время начала сцены» and
+  sends it as `startMinutes` next to the review. Migration 63 wraps `rpg_bootstrap`: it strips the key (older
+  contract checks stay exact) and sets `runtime_state.world_minutes` once — only while the clock is at 00:00 and no
+  game turn exists — before delegating, so the adventure's start and the opening event carry the same minute and
+  the first turn's «now» block says «утро», not «ночь». A replay changes nothing.
+- **«Ещё» is two blocks.** The player's actions («Закончить сессию», «Лагерь и отдых», «Записать заметку», «Что я
+  знаю?») stand in one row with one plain line; the editing tools live under «Редактор кампании · для владельца»,
+  each with a line saying when it is useful.

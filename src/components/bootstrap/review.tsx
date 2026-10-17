@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { startTimeChoices } from "../../lib/adventures/wizard-text";
 import type {
   BootstrapQuestion,
   CharacterSheetV1,
@@ -314,7 +315,9 @@ function MechanicsEditor({
     <div className={styles.form}>
       {(["hp", "attack", "defense", "skill"] as const).map((field) => (
         <label className={styles.field} key={field}>
-          {field === "hp" ? "HP" : field === "attack" ? "Attack modifier" : field === "defense" ? "Defense" : "Skill modifier"}
+          {language === "ru"
+            ? (field === "hp" ? "Хиты" : field === "attack" ? "Атака (модификатор)" : field === "defense" ? "Защита" : "Навык (модификатор)")
+            : (field === "hp" ? "HP" : field === "attack" ? "Attack modifier" : field === "defense" ? "Defense" : "Skill modifier")}
           <input
             type="number"
             min={field === "hp" || field === "defense" ? 1 : -20}
@@ -477,7 +480,7 @@ export function CharacterReview({
           {value.mechanics && (
             <div className={styles.sheetMechanics}>
               <strong>{language === "ru" ? "Боевые значения" : "Combat values"}</strong>
-              <span>HP {value.mechanics.hp} · Attack {value.mechanics.attack >= 0 ? "+" : ""}{value.mechanics.attack} · Defense {value.mechanics.defense} · Skill {value.mechanics.skill >= 0 ? "+" : ""}{value.mechanics.skill}</span>
+              <span>{language === "ru" ? "Хиты" : "HP"} {value.mechanics.hp} · {language === "ru" ? "Атака" : "Attack"} {value.mechanics.attack >= 0 ? "+" : ""}{value.mechanics.attack} · {language === "ru" ? "Защита" : "Defense"} {value.mechanics.defense} · {language === "ru" ? "Навык" : "Skill"} {value.mechanics.skill >= 0 ? "+" : ""}{value.mechanics.skill}</span>
               {value.mechanics.weaponName && <span>{value.mechanics.weaponName} · {language === "ru" ? "урон" : "damage"} {value.mechanics.weaponDamage}</span>}
             </div>
           )}
@@ -629,13 +632,20 @@ export function OpeningReviewFields({
   onChange,
   language,
   questions,
+  startMinutes = null,
+  onStartMinutes,
 }: {
   value: OpeningReview;
   onChange: (v: OpeningReview) => void;
   language: "en" | "ru";
   questions: BootstrapQuestion[];
+  /** Polish group 10: the clock of the opening scene, read from its words; the owner corrects it. */
+  startMinutes?: number | null;
+  onStartMinutes?: (minutes: number | null) => void;
 }) {
   const c = bootstrapText(language);
+  const timeChoices = startTimeChoices(language);
+  const clock = (minutes: number) => `${Math.floor(minutes / 60)}:${String(minutes % 60).padStart(2, "0")}`;
   const needsDetails = !value.location.name?.trim() ||
     !value.location.description?.trim() ||
     !value.situation?.trim() ||
@@ -809,6 +819,19 @@ export function OpeningReviewFields({
         onChange={(answers) => onChange({ ...value, answers })}
         language={language}
       />
+      {onStartMinutes && (
+        <label className={styles.field}>
+          {language === "ru" ? "Время начала сцены" : "Time the scene starts"}
+          <select value={startMinutes ?? ""} onChange={(event) => onStartMinutes(event.target.value === "" ? null : Number(event.target.value))}>
+            <option value="">{language === "ru" ? "Не задано · часы пойдут с полуночи" : "Not set · the clock starts at midnight"}</option>
+            {startMinutes !== null && !timeChoices.some((row) => row.minutes === startMinutes) && (
+              <option value={startMinutes}>{language === "ru" ? `Как в тексте · ${clock(startMinutes)}` : `As written · ${clock(startMinutes)}`}</option>
+            )}
+            {timeChoices.map((row) => <option key={row.minutes} value={row.minutes}>{row.label}</option>)}
+          </select>
+          <small className={styles.muted}>{language === "ru" ? "Прочитано из вступления; поправь, если сцена начинается в другой час." : "Read from the opening; correct it if the scene starts at another hour."}</small>
+        </label>
+      )}
       <label className={styles.checks}>
         <span>
           <input

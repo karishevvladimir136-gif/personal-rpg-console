@@ -323,36 +323,75 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           </section>
         )}
         {!preview && play && !play.startupPending && (
+          <section className={g.playerActions} aria-label={c("Действия игрока", "Player actions")}>
+            <div className={r.row}>
+              {loopRuntime && <SessionEnd sessionId={session?.id ?? null} compact />}
+              <Link className={r.btnGhost} href={href("camp")}>{c("Лагерь и отдых", "Camp and rest")}</Link>
+              <Link className={r.btnGhost} href={`${href("journal")}?tab=Notes&compose=note`}>{c("Записать заметку", "Take note")}</Link>
+              <Link className={r.btnGhost} href={`${href("journal")}?tab=Evidence`}>{c("Что я знаю?", "What do I know?")}</Link>
+            </div>
+            <span className={r.note}>{c(
+              "«Закончить сессию» — ведущий подведёт итог главы и покажет, что тем временем случилось. «Лагерь» — отдых и лечение. «Заметка» — твоя запись в журнал. «Что я знаю?» — улики и факты, которые герой уже узнал.",
+              "“End the session” — the DM sums up the chapter and shows what happened meanwhile. “Camp” — rest and healing. “Note” — your own journal entry. “What do I know?” — the clues and facts the hero has learned.")}</span>
+          </section>
+        )}
+        {!preview && play && !play.startupPending && (
           <details className={g.more} open={combat || play.turns.some((turn) => turn.mode === "mechanic" && isUnresolved(turn)) || undefined}>
-            <summary>{c("Ещё · бой, отдых, сессия, записи и правки", "More · combat, rest, session, records and corrections")}</summary>
+            <summary>{c("Редактор кампании · для владельца", "Campaign editor · for the owner")}</summary>
             <div className={r.stack}>
-              {play.rulesetId === "world-logic-v1" && <CombatReadiness campaignId={data.campaign.id} runtimeRevision={play.revision} onSaved={runtime.afterMutation} />}
+              <span className={r.note}>{c("Инструменты правки записей. В обычной игре они не нужны: ведущий ведёт всё сам. Каждый подписан — когда он может пригодиться.", "Tools for correcting the records. Ordinary play does not need them: the DM keeps everything. Each one says when it may be useful.")}</span>
+              {play.rulesetId === "world-logic-v1" && (
+                <div className={r.stack}>
+                  <span className={`${r.small} ${r.muted}`}>{c("Боевая готовность: утвердить боевые числа героя, если их не было при создании.", "Combat readiness: approve the hero's combat numbers if creation had none.")}</span>
+                  <CombatReadiness campaignId={data.campaign.id} runtimeRevision={play.revision} onSaved={runtime.afterMutation} />
+                </div>
+              )}
               {!combat && (play.turns.some((turn) => turn.mode === "mechanic") || play.rulesetId !== "world-logic-v1") && (
-                <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
+                <div className={r.stack}>
+                  <span className={`${r.small} ${r.muted}`}>{c("Бой по правилам: ручной учёт, если ведущий ошибся в раунде.", "Combat by the rules: manual bookkeeping when the DM got a round wrong.")}</span>
+                  <GameplayCombat play={play} onSaved={runtime.afterMutation} manualControls={false} />
+                </div>
               )}
               {play.turns.some((turn) => turn.mode === "mechanic") && (
-                <GameplayComposer play={play} mode="mechanic" onSaved={runtime.afterMutation} historyOnly />
+                <div className={r.stack}>
+                  <span className={`${r.small} ${r.muted}`}>{c("Механические ходы: история прямых команд правилам.", "Mechanic turns: the history of direct rule commands.")}</span>
+                  <GameplayComposer play={play} mode="mechanic" onSaved={runtime.afterMutation} historyOnly />
+                </div>
               )}
-              {play.rulesetId !== "world-logic-v1" && <GameplayRest play={play} onSaved={runtime.afterMutation} />}
-              <GameSessionControls sessionId={session?.id ?? null} />
-              {loopRuntime ? <SessionEnd sessionId={session?.id ?? null} /> : (
+              {play.rulesetId !== "world-logic-v1" && (
+                <div className={r.stack}>
+                  <span className={`${r.small} ${r.muted}`}>{c("Отдых по правилам: прямое восстановление, если лагерь не подошёл.", "Rest by the rules: a direct recovery when the camp did not fit.")}</span>
+                  <GameplayRest play={play} onSaved={runtime.afterMutation} />
+                </div>
+              )}
+              <div className={r.stack}>
+                <span className={`${r.small} ${r.muted}`}>{c("Сессия как запись: открыть или закрыть её вручную, если итог не нужен.", "The session as a record: open or close it by hand when no digest is wanted.")}</span>
+                <GameSessionControls sessionId={session?.id ?? null} />
+              </div>
+              {!loopRuntime && (
                 <details className={r.stack}>
-                  <summary>{c("Закончить сессию", "End the session")}</summary>
+                  <summary>{c("Закончить сессию (прежний ход)", "End the session (previous runtime)")}</summary>
                   <SessionMemoryPanel sessionId={session?.id ?? null} />
                 </details>
               )}
-              <div className={r.row}>
-                <button type="button" className={r.btnGhost} onClick={() => setResume(true)}>{c("Правка точки продолжения", "Edit the resume point")}</button>
-                {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}
-                <Link className={r.btnGhost} href={href("sessions")}>{c("Сессии", "Sessions")}</Link>
-                <Link className={r.btnGhost} href={href("camp")}>{c("Лагерь и отдых", "Camp and rest")}</Link>
-                <Link className={r.btnGhost} href={`${href("journal")}?tab=Notes&compose=note`}>{c("Записать заметку", "Take note")}</Link>
-                <Link className={r.btnGhost} href={`${href("journal")}?tab=Evidence`}>{c("Что я знаю?", "What do I know?")}</Link>
+              <div className={r.stack}>
+                <span className={`${r.small} ${r.muted}`}>{c("Правка записей: точка продолжения — откуда ведущий продолжит; запись в стенограмму — сцена, которую ты добавляешь сам; «Сессии» — список всех сессий.", "Record corrections: the resume point — where the DM continues from; a transcript record — a scene you add yourself; “Sessions” — the list of all sessions.")}</span>
+                <div className={r.row}>
+                  <button type="button" className={r.btnGhost} onClick={() => setResume(true)}>{c("Правка точки продолжения", "Edit the resume point")}</button>
+                  {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}
+                  <Link className={r.btnGhost} href={href("sessions")}>{c("Сессии", "Sessions")}</Link>
+                </div>
               </div>
-              {session && <Transcript data={data} session={session} onEdit={setSceneEditor} />}
+              {session && (
+                <div className={r.stack}>
+                  <span className={`${r.small} ${r.muted}`}>{c("Стенограмма: записи этой сессии; каждую можно исправить, историю ходов это не меняет.", "Transcript: this session's records; each can be corrected without changing the turn history.")}</span>
+                  <Transcript data={data} session={session} onEdit={setSceneEditor} />
+                </div>
+              )}
               {(play.rulesetId !== "world-logic-v1" || play.configuration) && (
                 <details>
                   <summary>{c.t("Manual encounter controls")}</summary>
+                  <span className={`${r.small} ${r.muted}`}>{c("Ручное управление столкновением: начать или закончить бой без ведущего.", "Manual encounter controls: start or end a fight without the DM.")}</span>
                   <GameplayCombat play={play} onSaved={runtime.afterMutation} />
                 </details>
               )}
