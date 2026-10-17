@@ -92,6 +92,30 @@ level bans (no access); a fine-tuned smaller model as the DM (loses Opus's reaso
 reserve: Opus decides and writes, a second pass rewrites dialogue only — test only if the voice layer is not enough,
 it costs latency and can change facts.
 
+## The experiment: Russian first, English as the control (owner, 2026-10-16)
+
+The owner reads and talks in English daily (lives in San Francisco); Russian is his native language. Rule: build the
+Russian voice with the best methods; if it reaches «ideal» in the blind test and in a real session — keep Russian;
+if not — switch the campaign to English, which is not a failure.
+
+- **Two arms, same method:** a native voice layer, speech profiles, a passage bank (many-shot) and the owner's
+  before/after pairs — once in Russian, once in English (an English voice layer written natively, not translated).
+- **Same scenes** (turns 1, 16, 20–21, 23, 24, 34, 37–38, 41), Opus high. Russian variants are blind-compared with the
+  current prompt; the English arm cannot be blind against Russian, so every scene in both languages also gets an
+  absolute owner rating (1–5, «люди говорят как люди») and the owner says which language he would rather play in.
+- **«Ideal» for Russian:** the new voice wins most scenes against the current prompt, dialogue is rated 4–5 in at least
+  6 of 8 scenes, and the next real session keeps it.
+- **Measured per language:** tokens per turn (narration and context), streaming time after the first word, cost per
+  turn, slop and calque metrics. First step, free: count tokens with Anthropic's token-counting endpoint on ten
+  narration paragraphs from session 1 and their English translations. Context: on Claude's current tokenizer an
+  independent count found German 2.1×, Hindi 2.4×, French ~1.26× the English tokens
+  ([2026-07](https://dev.to/synthorai/which-llm-is-cheapest-for-your-language-tokenizer-costs-measured-1k5m)); a news
+  report claims ~3× for Russian on Opus 5 ([2026-10](https://www1.ru/en/news/2026/10/05/440386-ssa-berut-s-rossiian-bolse-za-russkii-iazyk-claude-tratit-pocti-v-4-raza-bolse-tokenov.html)),
+  unverified. The first-word wait is thinking and does not depend on the language; streaming and output cost do.
+- **Banks:** Russian 30–40 passages, English 20–30, by kind: about 40% dialogue (bargaining, subtext, everyday talk),
+  action, quiet scenes, humour, a few montage/transition pieces; 150–400 words each; 3–6 authors per language; plus the
+  owner's before/after pairs. Variants per arm: rules only · 5 passages · the whole bank — to see where the curve stops.
+
 ## Plan
 
 1. The voice part of layer 1 for Russian campaigns, written natively as good Russian prose (not translated, not a
