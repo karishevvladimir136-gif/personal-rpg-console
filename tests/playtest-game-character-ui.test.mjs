@@ -585,7 +585,8 @@ test("OOC history does not repeat the Game opening", () => {
   assert.doesNotMatch(html, /<article class="opening">/);
   assert.ok(html.includes(translate("en", "Brief out-of-character remark")));
   assert.ok(html.includes(translate("en", "A question outside the story…")));
-  assert.match(html, /aria-pressed="true"[^>]*>(?:(?!<\/button>).)*Ask the DM/s);
+  // Polish group 6: the tools are icon buttons with their words in aria-label and title.
+  assert.match(html, /aria-pressed="true"[^>]*aria-label="Ask the DM"/);
   assert.doesNotMatch(html, /class="tabs" aria-label="Input mode"/);
 });
 
@@ -815,7 +816,9 @@ test("successful DM narration is prominent without redundant committed status or
   const narrationAt = story.indexOf("A few crates need carrying");
   assert.ok(openingAt >= 0 && openingAt < actionAt && actionAt < narrationAt);
   assert.equal(story.match(/The public meeting house is quiet/g)?.length, 1);
-  assert.match(html, /href="#saved-turn-/);
+  // Polish group 6: one page scroll — no «К последнему ходу» link; the saved turn keeps its anchor.
+  assert.match(html, /id="saved-turn-/);
+  assert.doesNotMatch(html, /Latest moment|К последнему ходу/);
 });
 test("failure recovery offers one clear action in the primary feed", () => {
   const state = sample();
@@ -857,7 +860,7 @@ test("Game processing and provider interruption use restrained copy", () => {
   assert.doesNotMatch(failed, /The DM could not respond|Retry same submission|Check saved turn|Resume this turn/);
   assert.ok(failed.indexOf("More options") < failed.indexOf("Abandon this action"));
   assert.equal(translate("ru", "The DM connection was interrupted. Try again."), "Связь с DM прервалась. Попробуйте снова.");
-  assert.equal(translate("ru", "DM is thinking…"), "DM обдумывает ответ…");
+  assert.equal(translate("ru", "DM is thinking…"), "Ведущий думает…");
 });
 test("composer hides only a connection error already shown by the failed turn", () => {
   const state = sample();

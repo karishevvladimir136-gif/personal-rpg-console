@@ -171,3 +171,20 @@
 .lightboxCount {
   white-space: nowrap;
 }
+
+/* Polish group 6: the strip of earlier frames folds away under the stage. */
+.earlier > summary {
+  cursor: pointer;
+  font-size: 13.5px;
+  color: var(--muted);
+  list-style: none;
+}
+.earlier > summary::before {
+  content: "▸ ";
+}
+.earlier[open] > summary::before {
+  content: "▾ ";
+}
+.earlier > .strip {
+  margin-top: 8px;
+}

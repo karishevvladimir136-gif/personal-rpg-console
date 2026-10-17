@@ -134,24 +134,6 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
-.tools {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-.addressee {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  color: var(--muted);
-}
-.composerShell {
-  display: grid;
-  gap: 10px;
-}
 .heroHead {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
@@ -214,13 +196,10 @@
 
 /* The existing turn feed and composer, in the registry look. */
 .game :global(.gameplay-turns) {
+  /* Polish group 6: one page scroll — the story is never its own scroll box. */
   display: flex;
   flex-direction: column;
   gap: 18px;
-  max-height: min(68vh, 900px);
-  overflow-y: auto;
-  padding-right: 4px;
-  scrollbar-color: var(--brass-dim) transparent;
 }
 .game :global(.session-saved-turn) {
   display: grid;
@@ -494,9 +473,6 @@
   .feed {
     padding: 14px;
   }
-  .game :global(.gameplay-turns) {
-    max-height: none;
-  }
   .game :global(.gameplay-narration .prose),
   .game :global(.gameplay-live-turn .prose),
   .opening {
@@ -593,4 +569,63 @@
   padding: 0;
   display: grid;
   gap: 4px;
+}
+
+/* Polish group 6: the compact composer sticks to the bottom; the tools are icons next to «Отправить». */
+.game :global(.gameplay-channel form) {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin-top: 12px;
+  padding: 10px 0 8px;
+  background: linear-gradient(180deg, rgba(27, 21, 17, 0), var(--leather) 18%);
+}
+.game :global(.gameplay-channel textarea) {
+  min-height: 58px;
+  max-height: 320px;
+  resize: none;
+  font-size: 17px;
+  line-height: 1.5;
+}
+.game :global(.gameplay-owner-input .prose) {
+  font-size: 17px;
+  line-height: 1.55;
+}
+.game :global(.gameplay-send-row) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.toolsRow {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+.addressee {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+.changes {
+  margin-top: 6px;
+}
+.changes > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.changes > summary::before {
+  content: "▸";
+}
+.changes[open] > summary::before {
+  content: "▾";
 }

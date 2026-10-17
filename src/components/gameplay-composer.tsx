@@ -93,6 +93,8 @@ export function GameplayComposer({
   followLatest = false,
   onLiveView,
   showLiveView = true,
+  onDraftText,
+  resolveSend,
 }: {
   play: PlaySnapshot;
   mode?: TurnMode;
@@ -111,6 +113,11 @@ export function GameplayComposer({
   followLatest?: boolean;
   /** Each update of the streamed turn in flight (Stage 5 renders it in the game screen). */
   onLiveView?: (view: LiveTurnView) => void;
+  /** Polish group 6: the screen follows the draft (the addressee chip reads it). */
+  onDraftText?: (text: string) => void;
+  /** Polish group 6: the addressee named in the text decides the turn's mode at send time;
+   * the draft stays one draft whatever the text names. */
+  resolveSend?: (text: string) => { mode: "game" | "companion"; companionId: string | null } | null;
   /** False when the caller renders the streamed turn itself. */
   showLiveView?: boolean;
 }) {
@@ -144,11 +151,14 @@ export function GameplayComposer({
   };
   useEffect(() => () => stopLive.current(), []);
   const key = journalKey(campaignId, mode, companionId, scope.timeline);
+  const draftListener = useRef(onDraftText);
+  useEffect(() => { draftListener.current = onDraftText; }, [onDraftText]);
   const write = (next: DraftJournal) => {
     next = { ...next, timeline: next.timeline ?? scope.timeline };
     current.current = next;
     setJournal(next);
     setStored(saveJournal(localStorageForDraft(), key, next));
+    draftListener.current?.(next.text);
   };
   useEffect(() => {
     let live = true;
@@ -168,6 +178,7 @@ export function GameplayComposer({
       current.current = next;
       setJournal(next);
       setReady(true);
+      draftListener.current?.(next.text);
     });
     return () => {
       live = false;
@@ -187,8 +198,12 @@ export function GameplayComposer({
       historyRef.current.scrollTop = initial.scrollTop;
   }, [initialHistoryPosition]);
   useEffect(() => {
-    if (followLatest && following.current && historyRef.current)
-      historyRef.current.scrollTop = historyRef.current.scrollHeight;
+    const history = historyRef.current;
+    if (!followLatest || !following.current || !history) return;
+    // One page scroll (polish group 6): when the story is not its own scroll box, the newest turn is
+    // brought into view on the page instead.
+    if (history.scrollHeight > history.clientHeight + 1) history.scrollTop = history.scrollHeight;
+    else (history.lastElementChild as HTMLElement | null)?.scrollIntoView?.({ block: "end" });
   }, [followLatest, latest?.id, latest?.updated_at]);
   const unresolved = turns.find(isUnresolved);
   const knownAttempt =
@@ -273,18 +288,19 @@ export function GameplayComposer({
         return;
       }
       if (!previous && (!current.current.text.trim() || unresolved)) return;
+      const target = (mode === "game" || mode === "companion") && resolveSend?.(current.current.text) || { mode, companionId };
       const attempt = prepareAttempt(previous, {
         timeline: play.timeline,
         campaignId,
         expectedRevision: play.revision,
-        mode,
+        mode: target.mode,
         input: current.current.text,
-        companionId,
-        listenerIds: mode === "companion" ? listeners : [],
+        companionId: target.companionId,
+        listenerIds: target.mode === "companion" ? listeners : [],
         mechanic,
       });
       write({ ...current.current, attempt });
-      if (mode === "game" || mode === "companion") follow(attempt.operationId);
+      if (target.mode === "game" || target.mode === "companion") follow(attempt.operationId);
       try {
         await accept(await sendTurn(attempt));
       } catch (cause) {
@@ -543,7 +559,7 @@ export function GameplayComposer({
               )}
             </span>
             <textarea
-              rows={mode === "feedback" ? 5 : 4}
+              rows={mode === "feedback" ? 5 : 2}
               value={journal.text}
               maxLength={actionMaxCharacters}
               disabled={!ready || busy || !!journal.attempt}
@@ -557,6 +573,12 @@ export function GameplayComposer({
                     ? "A question outside the story…"
                   : "What do you do next?",
               )}
+              onInput={(event) => {
+                // Compact composer (polish group 6): two lines that grow with the text.
+                const area = event.currentTarget;
+                area.style.height = "auto";
+                area.style.height = `${Math.min(area.scrollHeight, 320)}px`;
+              }}
             />
           </label>
           {mode === "companion" && (
@@ -599,7 +621,7 @@ export function GameplayComposer({
           {shouldShowComposerError(error, knownAttempt) && (
             <p role="alert">{t(error)}</p>
           )}
-          <div className="button-group">
+          <div className="button-group gameplay-send-row">
             {!activeKnownAttempt && (
               <Button
                 primary
@@ -626,6 +648,7 @@ export function GameplayComposer({
                 )}
               </Button>
             )}
+            {inputTools}
           </div>
           {journal.attempt && timelineBlocked && !knownAttempt && (
             <details>
@@ -658,7 +681,6 @@ export function GameplayComposer({
               </Button>
             </details>
           )}
-          {inputTools}
         </form>
       )}
     </div>

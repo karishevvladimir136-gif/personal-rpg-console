@@ -432,3 +432,16 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
 - Not built here: the speech profiles with per-tic frequencies and the dossier's count of recent signature uses (group 7);
   the Russian rewrite of the cards' texts (the voice stage; the cards' Russian here is the agent's draft for the owner's
   review).
+
+## 15. Polish stage — group 6: the game screen (what touches the turn)
+
+- **The addressee comes from the text.** The composer is one draft in game mode; «@Тамсин …», «Тамсин, …» or «Тамсин: …»
+  at the start of the input names a present companion (`detectAddressee`, stems compare), a small chip says who will
+  answer, and `resolveSend` turns the input into a companion turn at send time. A talk with a companion is a scene in the
+  world, so the game channel shows companion turns in the story (`belongsToChannel`).
+- **One stage.** The Stage V frame of the current turn takes the place of the place picture once it is ready; the frames
+  panel keeps the tools and a folded strip; the story is one page scroll with the compact composer stuck to the bottom.
+- **One quiet indicator.** The turn's own «Ведущий думает…» line until the first word, then the text streams; the turn's
+  changes are folded («Изменения за ход · N»), ordered items → money → counters → journal → people and places → time,
+  with the «⚡ думал глубже · N с» mark when the saved turn ran above the depth range's base. «Другие действия» (abandon)
+  returns only after 45 s of thinking. The header clock says the time of day in words; the «Важный ход» button is gone.

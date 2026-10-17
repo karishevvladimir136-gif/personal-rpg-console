@@ -67,7 +67,9 @@ test("party presence follows the public play configuration; codex lists only pla
 });
 
 test("world clock", () => {
-  assert.equal(worldClock(4 * 1440 + 400, "ru"), "День 5 · 06:40");
+  // Polish group 6: the time of day in words, never a ticking clock.
+  assert.equal(worldClock(4 * 1440 + 400, "ru"), "День 5 · утро");
+  assert.equal(worldClock(21 * 60 + 8, "en"), "Day 1 · evening");
   assert.equal(worldClock(null, "en"), null);
 });
 

@@ -171,6 +171,9 @@ export function belongsToChannel(
   mode: TurnMode,
   companionId: string | null,
 ) {
+  // Polish group 6: a talk with a companion is a scene in the world, so the game channel
+  // shows it in the story; the companion channel (the party screen) keeps its own view.
+  if (mode === "game") return turn.mode === "game" || turn.mode === "companion";
   return (
     turn.mode === mode &&
     (mode !== "companion" || turn.companionId === companionId)

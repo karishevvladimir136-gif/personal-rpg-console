@@ -40,12 +40,36 @@ export function sessionNumber(data: CampaignSnapshot, sessionId: string | null |
 }
 
 /** "Day 5 · 06:40" from the campaign's world clock (minutes since the start). */
+/** The time of day in words (polish group 6: no ticking clock on the player's screen). */
+export function timeOfDayWord(minutes: number, lang: Lang) {
+  const hour = Math.floor((((minutes % 1440) + 1440) % 1440) / 60);
+  const key = hour < 5 ? "night" : hour < 11 ? "morning" : hour < 14 ? "midday" : hour < 17 ? "afternoon" : hour < 22 ? "evening" : "night";
+  const ru = { night: "ночь", morning: "утро", midday: "полдень", afternoon: "день", evening: "вечер" }[key];
+  return pick(lang, ru, key);
+}
 export function worldClock(minutes: number | null | undefined, lang: Lang) {
   if (minutes === null || minutes === undefined || !Number.isFinite(minutes) || minutes < 0) return null;
   const day = Math.floor(minutes / 1440) + 1;
-  const rest = Math.floor(minutes % 1440);
-  const time = `${String(Math.floor(rest / 60)).padStart(2, "0")}:${String(rest % 60).padStart(2, "0")}`;
-  return `${pick(lang, "День", "Day")} ${day} · ${time}`;
+  return `${pick(lang, "День", "Day")} ${day} · ${timeOfDayWord(minutes, lang)}`;
+}
+
+/** The addressee named at the start of the player's text — «@Тамсин», «Тамсин, …», «Тамсин: …» —
+ * among the people present; stems compare, so an inflected name still matches (polish group 6). */
+export function detectAddressee<T extends Pick<Entity, "id" | "name">>(text: string, present: T[]): T | null {
+  const match = /^\s*(@?)([\p{L}][\p{L}'’-]{1,40})\s*([,:!—–-]?)/u.exec(text);
+  if (!match || (!match[1] && !match[3])) return null;
+  const stem = (value: string) => { const word = value.toLocaleLowerCase().replace(/[^\p{L}]/gu, ""); return word.slice(0, Math.max(3, word.length - 2)); };
+  const typed = stem(match[2]);
+  if (typed.length < 3) return null;
+  return present.find((row) => { const name = stem(row.name.split(/\s+/)[0] ?? ""); return name.length >= 3 && (name.startsWith(typed) || typed.startsWith(name)); }) ?? null;
+}
+
+/** The order of the turn's chips (polish group 6): what the hero holds first — items and money — then
+ * wounds and counters, the journal, people and places, travel, rest and time last. */
+const CHANGE_RANK: Record<string, number> = { item: 0, money: 1, resource: 2, quest: 3, holding: 5, upsert_character: 4, note_character: 4, upsert_place: 5, move_party: 6, rest: 7, combat: 8, advance_time: 9 };
+export function orderChanges<T extends { name?: string; tool?: string }>(changes: T[]): T[] {
+  const rank = (change: T) => CHANGE_RANK[change.name ?? change.tool ?? ""] ?? 5;
+  return changes.map((change, index) => ({ change, index })).sort((a, b) => rank(a.change) - rank(b.change) || a.index - b.index).map((row) => row.change);
 }
 
 export function heroOf(data: CampaignSnapshot, play?: PlaySnapshot | null): Entity | null {
@@ -154,7 +178,9 @@ export function questsOf(data: CampaignSnapshot) {
   const byDate = (a: Quest, b: Quest) => b.updated_at.localeCompare(a.updated_at) || a.title.localeCompare(b.title);
   const active = data.quests.filter((row) => row.status === "open" && questKind(row) === "quest").sort(byDate);
   const done = data.quests.filter((row) => row.status === "complete" && questKind(row) === "quest").sort(byDate);
-  return { active, done, goal: active[0] ?? null };
+  // Polish group 6: the goal is the quest the hero took (the newest open one), else the open main arc.
+  const arc = data.quests.filter((row) => row.status === "open" && questKind(row) === "arc").sort(byDate)[0] ?? null;
+  return { active, done, goal: active[0] ?? arc ?? null };
 }
 
 export type JournalEntry = { quest: Quest; kind: "thread" | "debt" | "promise"; counterpart: Entity | null; sinceSession: number | null };

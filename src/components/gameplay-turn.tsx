@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
@@ -260,6 +260,15 @@ export function GameplayTurn({
         : undefined
       : undefined;
   const thinking = turn.status === "pending" || turn.status === "generating";
+  // Polish group 6: one quiet indicator while the DM thinks; the cancel options come back
+  // only when a turn has been thinking for a long while (or is no longer thinking).
+  const [stuckTurn, setStuckTurn] = useState<string | null>(null);
+  useEffect(() => {
+    if (!thinking) return;
+    const timer = window.setTimeout(() => setStuckTurn(turn.id), 45_000);
+    return () => window.clearTimeout(timer);
+  }, [thinking, turn.id]);
+  const optionsVisible = turn.canCancel && (!thinking || stuckTurn === turn.id);
   const interrupted =
     turn.status === "failed" &&
     turn.canRetry &&
@@ -334,7 +343,7 @@ export function GameplayTurn({
           </Button>
         )}
       </div>
-      {turn.canCancel && (
+      {optionsVisible && (
         <details className="gameplay-turn-options">
           <summary>{t("More options")}</summary>
           <Button disabled={busy} onClick={() => onCommand("cancel")}>

@@ -187,6 +187,13 @@
 .iconBtn:hover:not(:disabled) {
   border-color: var(--brass);
 }
+/* Polish group 6: an icon tool that is switched on (the dice tray, a question to the DM). */
+.iconBtnOn {
+  composes: iconBtn;
+  background: var(--brass-dim);
+  color: var(--ink);
+  border-color: var(--brass);
+}
 
 /* Chips, pills and badges. */
 .chips {

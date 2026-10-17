@@ -156,7 +156,11 @@ function FrameLightbox({ entries, index, urlFor, onIndex, onClose }: {
 }
 
 /** The frames panel of the game screen: the frame of the current turn, its tools, earlier frames. */
-export function FramesPanel({ data, play, live, chronicleHref }: { data: CampaignSnapshot; play: PlaySnapshot | null; live: LiveTurnView | null; chronicleHref: string }) {
+export function FramesPanel({ data, play, live, chronicleHref, stage = false }: {
+  data: CampaignSnapshot; play: PlaySnapshot | null; live: LiveTurnView | null; chronicleHref: string;
+  /** Polish group 6: the stage above shows the frame itself; the panel keeps the tools and the folded strip. */
+  stage?: boolean;
+}) {
   const c = useCopy();
   const pictures = usePictures();
   useLiveFrameTrigger(live, play, pictures);
@@ -196,7 +200,7 @@ export function FramesPanel({ data, play, live, chronicleHref }: { data: Campaig
   const label = shown ? (shown.trigger === "key_moment" ? c("ключевой момент · лучшая модель", "key moment · better model") : shown.tier === "quality" ? c("качество", "quality") : c("живой кадр", "live frame")) : null;
   return (
     <section id="registry-frames" className={f.panel} aria-label={c("Кадры", "Frames")}>
-      {shown && pictures.urlFor(shown) ? (
+      {stage && shown ? null : shown && pictures.urlFor(shown) ? (
         <div className={f.frame}>
           {/* Short-lived authenticated URLs; next/image cannot proxy them. */}
           <button type="button" className={f.frameButton} aria-label={c("Открыть кадр крупно", "Open the frame large")} onClick={() => openEntry(shown.id)}>
@@ -234,14 +238,17 @@ export function FramesPanel({ data, play, live, chronicleHref }: { data: Campaig
         <Link className={r.btnGhost} href={chronicleHref}><BookOpen size={16} aria-hidden="true" />{c("Хроника", "Chronicle")}</Link>
       </div>
       {earlier.length > 0 && (
-        <div className={f.strip} role="list" aria-label={c("Кадры прошлых ходов", "Frames of earlier turns")}>
-          {earlier.map(({ turn, picture }) => (
-            <button key={turn.id} type="button" role="listitem" className={f.thumb} title={frameCaption(turn)} onClick={() => openEntry(picture!.id)}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={pictures.urlFor(picture!) ?? ""} alt={c("Кадр прошлого хода", "Frame of an earlier turn")} />
-            </button>
-          ))}
-        </div>
+        <details className={f.earlier}>
+          <summary>{c(`Кадры прошлых ходов · ${earlier.length}`, `Frames of earlier turns · ${earlier.length}`)}</summary>
+          <div className={f.strip} role="list" aria-label={c("Кадры прошлых ходов", "Frames of earlier turns")}>
+            {earlier.map(({ turn, picture }) => (
+              <button key={turn.id} type="button" role="listitem" className={f.thumb} title={frameCaption(turn)} onClick={() => openEntry(picture!.id)}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={pictures.urlFor(picture!) ?? ""} alt={c("Кадр прошлого хода", "Frame of an earlier turn")} />
+              </button>
+            ))}
+          </div>
+        </details>
       )}
       {open !== null && entries[open] && (
         <FrameLightbox entries={entries} index={open} urlFor={pictures.urlFor} onIndex={setOpen} onClose={() => setOpen(null)} />
