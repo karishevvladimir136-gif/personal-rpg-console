@@ -1,0 +1,23 @@
+{
+  "capUsd": 30,
+  "entries": [
+    {
+      "run": "dmarch-20261017-182013-scenes-smoke",
+      "what": "scene branches C × 1 scenes (1 pairs)",
+      "startedAt": "2026-10-17T18:20:13.261Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.5123,
+      "settled": true,
+      "finishedAt": "2026-10-17T18:21:30.496Z",
+      "record": "docs/runs/dmarch-20261017-182013-scenes-smoke.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-182146-reference-A",
+      "what": "reference run A (19-polish-ru-replay)",
+      "startedAt": "2026-10-17T18:21:46.454Z",
+      "reservedUsd": 9,
+      "spentUsd": 0,
+      "settled": false
+    }
+  ]
+}

@@ -32,10 +32,10 @@ branches not yet played cannot be resumed without replaying the prefix (about $7
 | Step | State | Notes |
 | --- | --- | --- |
 | 0 — session start, branch, baseline | done | Node 24.22, `.env.local` written from `APP_*`, `pnpm install`; the three model IDs answer `count_tokens` (free) |
-| 1 — registry: Fable 5.1 and Sonnet 5.5 specs | in progress | `src/lib/model-runtime/dm-models.ts` only; UI list and SQL asserts untouched |
-| 2 — two-pass runtime + fake tests | pending | `src/lib/gameplay/dm-loop/two-pass/`, `tests/dm-arch-two-pass.test.mjs` |
-| 3 — bake-off bench (fake dry run) | pending | `scripts/eval/dm-arch/` |
-| 4 — paid: reference run A | pending | |
+| 1 — registry: Fable 5.1 and Sonnet 5.5 specs | done | `src/lib/model-runtime/dm-models.ts` only; UI list and SQL asserts untouched |
+| 2 — two-pass runtime + fake tests | done | `src/lib/gameplay/dm-loop/two-pass/`, `tests/dm-arch-two-pass.test.mjs` |
+| 3 — bake-off bench (fake dry run, live smoke of C on s01) | done | `scripts/eval/dm-arch/` |
+| 4 — paid: reference run A | in progress | started 18:21 UTC, budget $9, `docs/runs/dmarch-20261017-182146-reference-A.jsonl`, states in `scripts/eval/out/dmarch-states/before-<step>.tar.gz` |
 | 5 — paid: scene branches B, C, D | pending | |
 | 6 — paid: continuity runs C (D) | pending | |
 | 7 — paid: judge | pending | |
@@ -45,4 +45,6 @@ branches not yet played cannot be resumed without replaying the prefix (about $7
 
 | When (UTC) | What | Record | Spent |
 | --- | --- | --- | --- |
-| | **Total** | | **$0.00 of $30** |
+| 2026-10-17 18:20 | live smoke: C (Fable writer + Opus bookkeeper) on s01, budget $1.50 — writer 25.5 s / $0.31, bookkeeper 50 s / 13 records / $0.20 | `docs/runs/dmarch-20261017-182013-scenes-smoke.jsonl` | $0.51 |
+| 2026-10-17 18:21 | reference run A, 30 turns, budget $9 (running) | `docs/runs/dmarch-20261017-182146-reference-A.jsonl` | reserved $9.00 |
+| | **Total** | | **$0.51 spent, $9.00 reserved, of $30** (the live ledger is `docs/runs/dmarch-ledger.json`) |
