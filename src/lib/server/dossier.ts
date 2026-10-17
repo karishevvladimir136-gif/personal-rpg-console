@@ -57,7 +57,7 @@ export async function dossierService(ownerId: string, campaignId: string) {
     notebook: () => call(ownerId, campaignId, "notebook", {}).then(parseNotebook),
     /** The same source a turn claims (private state included); server-only. */
     source: () => call(ownerId, campaignId, "source", {}) as Promise<RuntimeSource & { timeline: TimelineFence }>,
-    digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string }, timeline: unknown) =>
+    digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string; stinger?: string }, timeline: unknown) =>
       call(ownerId, campaignId, "digest", { requestId: randomUUID(), ...payload }, timeline),
   };
 }

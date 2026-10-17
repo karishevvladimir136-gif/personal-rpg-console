@@ -17,7 +17,11 @@ export type DmLoopToolCall = { id: string; name: string; arguments: JsonObject }
 /** What the model gets back. `summary` is a short public line for the player's
  * list of accepted changes; it never carries private facts. */
 export type DmLoopReceiptResult =
-  | { ok: true; value: JsonObject; summary: string; check: RecordedCheck | null }
+  | { ok: true; value: JsonObject; summary: string; check: RecordedCheck | null;
+      /** The player's line in the campaign language (polish item 19); null when
+       * the hero would not notice (private rolls, DM notes, lookups). Absent on
+       * receipts recorded before the polish stage. */
+      player?: string | null }
   | { ok: false; reason: string; hint: string | null; summary: string };
 
 export type DmLoopReceipt = {
@@ -91,7 +95,10 @@ export type DmLoopDiagnostic =
   /** Stage 4: the depth chosen for this turn inside the campaign's range. */
   | { kind: "depth"; effort: DmEffort; tension: DmLoopTension; reason: string }
   /** Stage 4: an NPC revealed their own information in character (not a DM leak). */
-  | { kind: "self_disclosure"; detail: string };
+  | { kind: "self_disclosure"; detail: string }
+  /** Polish item 1: the model ended on a player-visible roll with no text after
+   * it; the loop asked once for the narration of the outcome. */
+  | { kind: "outcome_asked" };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";
@@ -101,8 +108,15 @@ export type DmLoopMeta = {
   sceneKinds: DmLoopSceneKind[];
   /** Entity IDs whose story this turn touched (attention accounting, plan §10.4). */
   spotlight: string[];
-  /** "How do you want to do this?" — the next player input narrates the decisive moment. */
+  /** "How do you want to do this?" — the next player input narrates the decisive moment.
+   * Accepted by the server only after a successful player-visible check in a
+   * tense or climactic scene (polish, «Твой момент»). */
   playerMoment: boolean;
+  /** The moment in words for the banner («Ворот Мокея»): the accepted roll's reason. */
+  playerMomentReason?: string | null;
+  /** People the hero met this turn who were recorded ahead of the story: their
+   * chip lines (the receipt that created them stayed silent). */
+  met?: { id: string; name: string; player: string }[];
   /** The DM's hint about the next turn's tension (depth per scene, plan §8б). Absent before Stage 4. */
   nextTension?: DmLoopTension | null;
   /** Quest/thread/debt/promise IDs this turn touched (attention ledger). */
@@ -148,7 +162,11 @@ export type DmLoopCheckpoint = {
 /** Public-safe live events streamed to the player while the turn runs. */
 export type DmLoopLiveEvent =
   | { type: "text"; text: string }
-  | { type: "tool"; name: string; ok: boolean; summary: string }
+  /** An accepted call the hero would notice: `summary` is the player's line in
+   * the campaign language; `action` the tool's action when it has one. */
+  | { type: "tool"; name: string; ok: boolean; summary: string; action?: string }
+  /** finish_turn handed the decisive description to the player (server-checked). */
+  | { type: "moment"; reason: string | null }
   | { type: "status"; status: "generating" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" };
 
 /** Diagnostics the loop reports to the server log / bench (never to the player). */

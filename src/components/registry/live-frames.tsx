@@ -99,7 +99,7 @@ function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | nul
       if (streaming && firstParagraph(live.text, false)) ask("live");
       else if (committed && !framesOfTurn(pictures.board, operationId).length) ask("committed");
     }
-    if (committed && isKeyMoment(live.changes)) ask("key_moment");
+    if (committed && isKeyMoment(live.changes, !!live.moment)) ask("key_moment");
   }, [live, play, pictures]);
 }
 

@@ -18,6 +18,7 @@ const NEW_MIGRATIONS = [
   "202610160054_stage_v_pictures.sql",
   "202610160055_stage4_dossier.sql",
   "202610160056_stage4_restore_defaults.sql",
+  "202610170057_polish_records.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);
@@ -29,17 +30,22 @@ async function drawFrame(f, cid, turnId) {
     timeline: fence, tier: "fast", trigger: "live", model: "fal-ai/flux-2/klein/9b", styleVersionId: null, shot: { who: [], where: "here" }, prompt: "A frame.", referenceIds: [] });
   return pictures(f, cid, "picture.update", { id: created.id, status: "ready", output: readyOutput(cid, created.id), costUsdMicros: 17000, requestId: "req", elapsedMs: 900 });
 }
-const loopRound = (index, playerMoment = false) => [{ text: `Loop narration ${index}: the square, the organiser, a word. `, toolCalls: [
+// Polish: a player moment is accepted only after a successful player-visible roll in a tense scene,
+// so the moment turn rolls first (the test forces a 20) and marks the next turn a climax.
+const loopRound = (index, playerMoment = false, hero = null) => [
+  ...(playerMoment ? [{ text: `Loop narration ${index}: the organiser lunges. `, toolCalls: [
+    { name: "roll", arguments: { formula: "1d20", reason: "catch the organiser's wrist", actorRef: hero, visibility: "player", dc: 8 } } ] }] : []),
+  { text: `Loop narration ${index}: the square, the organiser, a word. `, toolCalls: [
   { name: "note_world", arguments: { kind: "fact", key: `loop_${index}`, operation: "set", value: `Fact ${index}.` } },
   { name: "advance_time", arguments: { minutes: 10, reason: "talk" } },
-  { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment } },
+  { name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment, ...(playerMoment ? { nextTension: "climax" } : {}) } },
 ] }];
 
 test("the Stage 3, Stage V and Stage 4 migrations have unique names in the expected order; the pictures migration applies and works without 55 and 56", async () => {
   // The first 55 files end with the pictures migration: Stage 4's 55 and 56 are not applied.
   const f = await fixture(55);
   try {
-    assert.deepEqual(f.files.slice(-4), NEW_MIGRATIONS, "name order of the new migrations");
+    assert.deepEqual(f.files.slice(-NEW_MIGRATIONS.length), NEW_MIGRATIONS, "name order of the new migrations");
     assert.equal(new Set(f.files).size, f.files.length, "migration names are unique");
     assert.equal(f.files.indexOf("202610160054_stage_v_pictures.sql"), 54);
     const applied = (await f.query("select proname from pg_proc where proname in ('rpg_pictures','rpg_dossier','timeline_row_defaults')")).map((row) => row.proname).sort();
@@ -88,7 +94,7 @@ test("the Stage 3 switched campaign takes all four migrations in name order; a s
     await loop.settings.save({ expectedRevision: settings.revision, runtime: "dm-loop-v1", dmTurn: null });
     const loopOps = [];
     for (let index = 1; index <= 2; index++) {
-      const played = await loop.turn(`Loop turn ${index}.`, loopRound(index, index === 2));
+      const played = await loop.turn(`Loop turn ${index}.`, loopRound(index, index === 2, loop.hero), index === 2 ? { dice: [20] } : {});
       assert.equal(played.result.status, "committed", `loop turn ${index}: ${JSON.stringify(loop.errors)}`);
       loopOps.push(played.input.operationId);
     }

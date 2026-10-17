@@ -125,7 +125,9 @@ export function framePrompt(shot: Shot, styleText: string, references: { people:
 
 /** Key moments get a better re-render once the turn is committed: the DM handed the player the
  * climax, or an accepted combat call opened or closed a fight. */
-export function isKeyMoment(changes: { name: string; ok: boolean; summary: string }[]) {
-  return changes.some((change) => change.ok && change.name === "finish_turn" && /^your moment\b/i.test(change.summary)) ||
-    changes.some((change) => change.ok && change.name === "combat" && /\b(begin|start|open|end|over|victor|defeat|finish|conclud)/i.test(change.summary));
+export function isKeyMoment(changes: { name: string; ok: boolean; summary: string; action?: string }[], moment = false) {
+  return moment || changes.some((change) => change.ok && change.name === "finish_turn" && /^your moment\b/i.test(change.summary)) ||
+    // Polish: a combat chip in the campaign language reaches the player only for a start or an end.
+    changes.some((change) => change.ok && change.name === "combat" && (change.action === "start" || change.action === "end" || /^Бой\b/.test(change.summary) ||
+      /\b(begin|start|open|end|over|victor|defeat|finish|conclud)/i.test(change.summary)));
 }

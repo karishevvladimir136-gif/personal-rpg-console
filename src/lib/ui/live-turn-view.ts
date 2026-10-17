@@ -11,10 +11,10 @@ export function liveChanges(view: LiveTurnView) {
   return view.changes.filter((change) => change.ok && change.name !== "finish_turn");
 }
 
-/** finish_turn's receipt summary is the only public signal of a player moment
- * today (docs/UI_DATA_NEEDS.md #2 asks for a PublicTurn flag). */
+/** The server-checked moment event of the stream (polish); the receipt
+ * summary of older streams is still understood. */
 export function livePlayerMoment(view: LiveTurnView) {
-  return view.changes.some((change) => change.name === "finish_turn" && change.ok && /^your moment\b/i.test(change.summary));
+  return !!view.moment || view.changes.some((change) => change.name === "finish_turn" && change.ok && /^your moment\b/i.test(change.summary));
 }
 
 export function liveTurnPhase(view: LiveTurnView, turns: Pick<PublicTurn, "id" | "status">[]): LivePhase {

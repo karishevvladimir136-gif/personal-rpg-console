@@ -41,7 +41,8 @@ test("a fresh campaign plays its first scene on dm-loop-v1: streamed text, tools
     const texts = c.live.filter((event) => event.type === "text").map((event) => event.text).join("");
     assert.equal(texts, played.result.narration.replace(/\n\n/g, "").length ? texts : texts);
     assert.ok(texts.includes("squat stone mill"));
-    assert.ok(c.live.some((event) => event.type === "tool" && event.ok && /Oswin the miller recorded/.test(event.summary)));
+    // Polish item 19: the player's line of the new person, in the campaign language, once the narration names him.
+    assert.ok(c.live.some((event) => event.type === "tool" && event.ok && /New person: Oswin the miller/.test(event.summary)));
     assert.deepEqual(c.live.at(-1), { type: "status", status: "committed" });
     // Replay of the same operation makes no model request.
     const requestsBefore = played.model.requests.length;

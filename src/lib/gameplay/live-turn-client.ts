@@ -6,15 +6,19 @@ import type { DmLoopLiveEvent } from "./dm-loop/contracts.ts";
 export type LiveTurnView = {
   operationId: string;
   text: string;
-  changes: { name: string; ok: boolean; summary: string }[];
+  /** The player's lines (campaign language) of the accepted calls the hero would notice. */
+  changes: { name: string; ok: boolean; summary: string; action?: string }[];
+  /** finish_turn handed the decisive description to the player (server-checked, polish). */
+  moment?: { reason: string | null } | null;
   status: "generating" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" | null;
 };
 
-export const emptyLiveTurn = (operationId: string): LiveTurnView => ({ operationId, text: "", changes: [], status: null });
+export const emptyLiveTurn = (operationId: string): LiveTurnView => ({ operationId, text: "", changes: [], moment: null, status: null });
 
 export function applyLiveEvent(view: LiveTurnView, event: DmLoopLiveEvent): LiveTurnView {
   if (event.type === "text") return { ...view, text: view.text + event.text };
-  if (event.type === "tool") return { ...view, changes: [...view.changes, { name: event.name, ok: event.ok, summary: event.summary }] };
+  if (event.type === "tool") return { ...view, changes: [...view.changes, { name: event.name, ok: event.ok, summary: event.summary, ...(event.action ? { action: event.action } : {}) }] };
+  if (event.type === "moment") return { ...view, moment: { reason: event.reason } };
   return { ...view, status: event.status };
 }
 

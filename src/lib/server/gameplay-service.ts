@@ -125,10 +125,12 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.dmTurn)),
         limits: current.limits, depth: current.depth, boostNext: current.boostNext };
     },
-    afterCommit: async ({ playerLikes, boostUsed }) => {
+    afterCommit: async ({ playerLikes, boostUsed, playMinutes }) => {
       const dossier = await dossierService(ownerId, campaignId);
       if (playerLikes) await dossier.likes(playerLikes);
       if (boostUsed) await markBoostUsed(campaignId);
+      // Polish item 21: the campaign's play time counts real minutes of play.
+      if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});
       // The World Engine mirror of the dossier's plans (a usable World Lab basis).
       try {
         const source = await dossier.source();

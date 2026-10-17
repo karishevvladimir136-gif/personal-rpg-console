@@ -184,8 +184,10 @@ export type PublicTurn = {
   canCancel: boolean;
   /** Committed dm-loop-v1 turns (Stage 4, UI_DATA_NEEDS #1, #2): the public
    * receipt summaries, the player moment and the scene kinds of the finish. */
-  changes?: { tool: string; ok: true; summary: string }[];
+  changes?: { tool: string; ok: true; summary: string; action?: string }[];
   playerMoment?: boolean;
+  /** Polish: the accepted roll's reason the moment rests on («Ворот Мокея»). */
+  playerMomentReason?: string | null;
   sceneKinds?: string[];
   spotlight?: string[];
   threads?: string[];

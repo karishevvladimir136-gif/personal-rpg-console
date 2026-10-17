@@ -97,10 +97,10 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "item",
-    description: "Items: create (new item for an owner, or into the camp), transfer (to another character or the camp), consume (use up a quantity of any consumable: food, potion, torch...), equip, unequip, split (part of a stack into a new stack). Categories: weapon, armor, gear, tool, consumable, misc. Properties are free text (damage, effects, quality).",
+    description: "Items: create (new item for an owner, or into the camp), transfer (ownership moves to another character or the camp; a pledged or lent item transferred back to its owner is returned), consume (use UP a quantity: food, a potion, a torch, ammunition — never for taking off, putting away or giving), equip, unequip (taking off or putting away; the item stays), lose (the item is gone: dropped in the water, broken, stolen — say how in reason; the record remembers where it went), modify (the same item changes with the story: a new name, description or properties, its identity and history kept — a shirt cut at the hem, a note soaked), pledge / lend (the owner keeps title, the holder has it; ownerRef names the holder, condition the terms of return), split (part of a stack into a new stack). Categories: weapon, armor, gear, tool, consumable, misc. Properties are free text (damage, effects, quality).",
     strict: { anthropic: false },
     parameters: object({
-      action: { type: "string", enum: ["create", "transfer", "consume", "equip", "unequip", "split"] },
+      action: { type: "string", enum: ["create", "transfer", "consume", "equip", "unequip", "split", "lose", "modify", "pledge", "lend"] },
       itemRef: opt(ref("The item (all actions but create).")),
       localKey: opt({ type: "string", minLength: 1, maxLength: 60, pattern: "^[a-z0-9_-]+$", description: "Your key for a created or split stack." }),
       name: opt(str("Item name (create).", L.maxName)),
@@ -111,14 +111,16 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       quantity: opt({ type: "integer", minimum: 1, maximum: L.maxItemQuantity, description: "Create: stack size (default 1). Transfer/consume/split: how many (default all / 1 / required)." }),
       ownerRef: opt(ref("Create: the owner; transfer: the recipient. Use \"camp\" for the shared camp stock.")),
       slot: opt({ type: "string", minLength: 1, maxLength: 80, description: "Equip: slot id (head, body, hand, offhand, belt, legs, boots, neck); default the first free slot that accepts the category." }),
+      reason: opt(str("lose: what happened to it, in the campaign language (shown to the player); consume of a non-consumable: why it is used up; modify: what changed and why.", L.maxShortText)),
+      condition: opt(str("pledge / lend: the terms of return in the campaign language (for example «вернёт за 16 монет»).", L.maxShortText)),
     }),
   },
   {
     name: "money",
-    description: "Money as named currencies (lowercase words, e.g. coins, silver, credits). transfer moves between two characters (balances never go negative), grant creates money for a recipient with a reason (a paid job, loot, a gift), spend destroys money (a purchase from the world, a fee). For a quest reward use quest claim_reward instead; a grant that pays a quest must name questRef and is refused once that reward was paid.",
+    description: "Money as named currencies: the world's own word in the campaign language, in any script (монеты, талеры, coins, silver pieces); inflected forms of one word are one currency and the campaign keeps one canonical name. transfer moves between two characters (balances never go negative), grant creates money for a recipient with a reason (a paid job, loot, a gift), spend destroys money (a purchase from the world, a fee). For a quest reward use quest claim_reward instead (it also completes the quest); a grant that pays a quest must name questRef and is refused once that reward was paid. A rejected money call is retried with the fix the reason names, never replaced by a note.",
     parameters: object({
       action: { type: "string", enum: ["transfer", "grant", "spend"] },
-      currency: str("Currency name, lowercase words.", 32),
+      currency: str("Currency name in the campaign language (the world's own word).", 32),
       amount: { type: "integer", minimum: 1, maximum: L.maxMoneyPerCall },
       fromRef: opt(ref("Payer (transfer, spend).")),
       toRef: opt(ref("Recipient (transfer, grant).")),
@@ -140,7 +142,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "quest",
-    description: "The journal: quests and jobs, open threads, debts, promises and the main arc share this record (kind). create (title, description, reward terms, issuer, kind, steps for the arc), update (also the arc's steps, done flags, places), complete, fail, claim_reward (pays the agreed reward exactly once, to the recipient, default the hero). Reward terms are kept by the server; a second claim is refused. A debt or promise names its counterpart.",
+    description: "The journal: quests and jobs, open threads, debts, promises and the main arc share this record (kind). create (title, description, reward terms, issuer, kind, steps for the arc), update (also the arc's steps, done flags, places), complete, fail, claim_reward (pays the agreed reward exactly once, to the recipient, default the hero; an open quest is completed by it, so complete and claim_reward may travel in one message in either order). Reward terms are kept by the server; a second claim is refused. A debt or promise names its counterpart.",
     strict: { anthropic: false },
     parameters: object({
       action: { type: "string", enum: ["create", "update", "complete", "fail", "claim_reward"] },
@@ -155,7 +157,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       locationRefs: opt({ type: "array", maxItems: 8, items: ref("A place tied to this goal.") }),
       recipientRef: opt(ref("Who receives the reward (claim_reward; default the hero).")),
       reward: opt(object({
-        currency: opt(str("Currency name.", 32)),
+        currency: opt(str("Currency name (the world's own word).", 32)),
         amount: opt({ type: "integer", minimum: 1, maximum: L.maxMoneyPerCall }),
         items: opt({ type: "array", maxItems: 10, items: object({ name: str("Item name.", L.maxName), category: { type: "string", enum: [...ITEM_CATEGORIES] }, quantity: { type: "integer", minimum: 1, maximum: L.maxItemQuantity }, properties: opt(str("Properties as text.", L.maxLongText)) }) }),
         note: opt(str("Other promised reward in words (a favor, information).", L.maxShortText)),
@@ -218,7 +220,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       operation: { type: "string", enum: ["set", "advance"] },
       value: opt(str("The note (set); for a plan: the goal and the steps in a few lines.", 2000)),
       amount: opt({ type: "integer", minimum: 0, maximum: 100, description: "Clock advance (advance)." }),
-      actorRef: opt(ref("Plan: who pursues it (a character or faction).")),
+      actorRef: opt({ type: "string", minLength: 1, maxLength: 200, description: "Plan: who pursues it (a character or faction reference: an ID, a local key or an exact name), or \"world\" for a plan that belongs to nobody in particular (weather, the tide, the law)." }),
       dueInMinutes: opt({ type: "integer", minimum: 0, maximum: 525600, description: "Plan: game minutes from now until the next step lands." }),
       consequence: opt(str("Plan: what happens when it lands and nobody interferes.", L.maxShortText)),
       warning: opt(str("Plan: the fair warning the hero may notice before it lands (empty: none).", L.maxShortText)),
@@ -254,7 +256,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
   },
   {
     name: "finish_turn",
-    description: "Call once when the narration is complete: what kinds of scene this turn was, which characters and threads were in focus, whether you hand the decisive moment to the player (playerMoment: the turn ends with an invitation and the player's next input describes the moment within the already accepted result), how tense the next turn will be (nextTension: calm, tense or climax — the depth of thinking follows it), and, when you learned something new about what the player enjoys, a short playerLikes note.",
+    description: "Call once when the narration is complete: what kinds of scene this turn was, which characters and threads were in focus, whether you hand the decisive moment to the player (playerMoment: only after a SUCCESSFUL player-visible roll that decides a tense or climactic scene — finishing an important enemy, the decisive act of a scene; the turn ends with an invitation and the player's next input describes the moment within the already accepted result; the server refuses the flag on any other turn), how tense the next turn will be (nextTension: calm, tense or climax — the depth of thinking follows it), and, when you learned something new about what the player enjoys, a short playerLikes note.",
     parameters: object({
       sceneKinds: { type: "array", minItems: 1, maxItems: 4, items: { type: "string", enum: [...SCENE_KINDS] } },
       spotlight: { type: "array", maxItems: 12, items: ref("A character in focus.") },

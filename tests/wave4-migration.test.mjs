@@ -105,7 +105,7 @@ for (const prefix of [9, 10, 11, 12]) {
       assert.deepEqual(restored.state.currencies, []);
       assert.deepEqual(restored.state.preparations, []);
       // Stage 4 added item rarity (null for older rows); everything else stays exact.
-      assert.deepEqual(restored.snapshot.items, before.items.map((item) => ({ ...item, rarity: null })));
+      assert.deepEqual(restored.snapshot.items, before.items.map((item) => ({ ...item, rarity: null, detail: {} })));
       assert.ok(restored.snapshot.entities.every((entity) => entity.character_sheet === null));
       assert.deepEqual(
         restored.snapshot.entities,

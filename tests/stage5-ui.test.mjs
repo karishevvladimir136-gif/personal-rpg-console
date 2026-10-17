@@ -210,9 +210,10 @@ test("live stream view: accepted changes only, the player-moment signal, and the
   assert.equal(liveTurnPhase(view, [{ id: "op", status: "committed" }]), "saved");
   assert.equal(liveTurnPhase(view, [{ id: "op", status: "failed" }]), "discarded");
   assert.equal(liveTurnPhase({ ...view, status: "cancelled" }, []), "discarded");
-  // The banner relies on finish_turn's public receipt summary; if a later stage rewords it, this fails.
-  const execute = readFileSync(join(root, "src/lib/gameplay/dm-loop/execute.ts"), "utf8");
-  assert.ok(execute.includes('"Your moment: describe how you do it"'));
+  // Polish: the banner relies on the server-checked moment event of the stream and the public flag.
+  const loop = readFileSync(join(root, "src/lib/gameplay/dm-loop/loop.ts"), "utf8");
+  assert.ok(loop.includes('live({ type: "moment"'));
+  assert.equal(livePlayerMoment({ ...view, changes: [], moment: { reason: "увернуться от весла" } }), true);
 });
 
 test("effort names follow the model's own levels", () => {

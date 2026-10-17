@@ -1432,7 +1432,7 @@ for (const prefix of [24, 25, 26, 27, 28])
       assert.deepEqual(await c.store.receipt(c.trade), c.result);
       const upgraded = await f.saves(w.cid, "campaign");
       // Stage 4 added item rarity (null for older rows); everything else stays exact.
-      assert.deepEqual(upgraded.items, old.items.map((item) => ({ ...item, rarity: null })));
+      assert.deepEqual(upgraded.items, old.items.map((item) => ({ ...item, rarity: null, detail: {} })));
       assert.ok(upgraded.entities.every((entity) => entity.character_sheet === null));
       assert.deepEqual(
         upgraded.entities,
@@ -1484,7 +1484,7 @@ for (const prefix of [24, 25, 26, 27, 28])
         }),
       );
       const loaded = await f.saves(w.cid, "campaign");
-      assert.deepEqual(loaded.items, old.items.map((item) => ({ ...item, rarity: null })));
+      assert.deepEqual(loaded.items, old.items.map((item) => ({ ...item, rarity: null, detail: {} })));
       assert.ok(loaded.entities.every((entity) => entity.character_sheet === null));
       assert.deepEqual(
         loaded.entities,

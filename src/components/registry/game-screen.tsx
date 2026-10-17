@@ -35,6 +35,8 @@ import { SessionMemoryPanel, SessionPendingCompanion } from "../session-memory";
 import { CurrentSceneMediaFrame } from "../visual-frame/current-scene-media-frame";
 import { CurrentSceneVideo } from "../visual-frame/current-scene-video";
 import { FramesPanel } from "./live-frames";
+import { SessionEnd } from "./session-end";
+import { useSessionMemory } from "../session-memory-runtime";
 import {
   createGameViewModel,
   GameSessionControls,
@@ -163,23 +165,35 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   const phase: LivePhase | null = live ? liveTurnPhase(live, play?.turns ?? []) : null;
   // A saved turn keeps its accepted changes on screen until the next turn starts.
   const liveIsLatest = !!live && (phase === "streaming" || latestTurn?.id === live.operationId);
-  // After a reload the committed turn carries its own changes (UI_DATA_NEEDS #1).
-  const savedView: LiveTurnView | null = !live && latestTurn?.status === "committed" && latestTurn.changes?.length
-    ? { operationId: latestTurn.id, text: "", changes: latestTurn.changes.map((change) => ({ name: change.tool, ok: true, summary: change.summary })), status: "committed" }
+  // The committed turn's record is the truth of what changed (polish item 19):
+  // once saved, its chips replace the provisional ones of the stream.
+  const savedView: LiveTurnView | null = latestTurn?.status === "committed" && latestTurn.changes?.length
+    ? { operationId: latestTurn.id, text: "", changes: latestTurn.changes.map((change) => ({ name: change.tool, ok: true, summary: change.summary, ...(change.action ? { action: change.action } : {}) })), status: "committed" }
     : null;
-  const liveBlock = live && phase !== "discarded" && liveIsLatest ? <LiveBlock view={live} phase={phase ?? "streaming"} />
-    : savedView ? <LiveBlock view={savedView} phase="saved" /> : null;
+  const liveBlock = live && phase === "streaming" && liveIsLatest ? <LiveBlock view={live} phase="streaming" />
+    : live && phase === "saved" && liveIsLatest && (!savedView || savedView.operationId !== live.operationId) ? <LiveBlock view={live} phase="saved" />
+    : savedView && (!live || phase === "saved" || !liveIsLatest) ? <LiveBlock view={savedView} phase="saved" /> : null;
   const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live)) ||
-    (!live && latestTurn?.status === "committed" && latestTurn.playerMoment === true);
+    (latestTurn?.status === "committed" && latestTurn.playerMoment === true);
+  // The moment is named (polish): the accepted roll's reason, from the record or the stream.
+  const momentReason = latestTurn?.status === "committed" && latestTurn.playerMoment ? latestTurn.playerMomentReason ?? null : live?.moment?.reason ?? null;
   const moment = showMoment ? (
     <div className={g.moment} role="status">
       <Sparkles size={26} color="var(--brass-hi)" aria-hidden="true" />
       <div>
         <div className={g.momentTitle}>{c("Твой момент", "Your moment")}</div>
-        <span className={r.small}>{c("Ведущий отдал тебе кульминацию: опиши, как ты это делаешь. Результат броска уже принят — твои слова станут каноном.", "The DM hands you the climax: describe how you do it. The roll stands; your words become canon.")}</span>
+        <span className={r.small}>{momentReason
+          ? c(`${momentReason} · получилось — опиши, как ты это делаешь. Результат броска уже принят, твои слова станут каноном.`, `${momentReason} · success — describe how you do it. The roll stands; your words become canon.`)
+          : c("Ведущий отдал тебе кульминацию: опиши, как ты это делаешь. Результат броска уже принят — твои слова станут каноном.", "The DM hands you the climax: describe how you do it. The roll stands; your words become canon.")}</span>
       </div>
     </div>
   ) : null;
+  const loopRuntime = !dmSettings || dmSettings.runtime === "dm-loop-v1";
+  // An ended session (polish item 11): the digest takes the composer's place until the next session opens.
+  const memory = useSessionMemory();
+  const boundary = memory.snapshot?.currentBoundary;
+  const sessionClosed = !preview && loopRuntime && !!session && (session.status === "closed" ||
+    (boundary?.sessionId === session.id && boundary.state !== "continued"));
   const tools = (
     <div className={g.composerShell}>
       <div className={g.addressee} role="group" aria-label={c("Кому ты говоришь", "Who you address")}>
@@ -227,7 +241,19 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           <Link className={r.btn} href={href("adventures")}>{c("Проверить вступление", "Review Adventure opening")}</Link>
         </div>
       )}
-      {play && !play.startupPending && (
+      {play && !play.startupPending && sessionClosed && (
+        <>
+          <div className="gameplay-turns" role="log" aria-label={c("Сохранённые ходы", "Saved turns")}>
+            {play.turns.filter((turn) => turn.mode === "game").slice(-3).map((turn) => (
+              <div key={turn.id} className="session-saved-turn">
+                <GameplayTurn turn={turn} busy onCommand={() => {}} onSaved={async () => {}} />
+              </div>
+            ))}
+          </div>
+          <SessionEnd sessionId={session?.id ?? null} />
+        </>
+      )}
+      {play && !play.startupPending && !sessionClosed && (
         <>
           <SessionPendingCompanion play={play} onSaved={runtime.afterMutation} />
           <GameplayComposer
@@ -318,11 +344,12 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
               )}
               {play.rulesetId !== "world-logic-v1" && <GameplayRest play={play} onSaved={runtime.afterMutation} />}
               <GameSessionControls sessionId={session?.id ?? null} />
-              <details className={r.stack}>
-                <summary>{c("Закончить сессию · ведущий подведёт итог и подготовится к следующей", "End the session · the DM sums it up and prepares the next one")}</summary>
-                <p className={r.note}>{c("Закрытая сессия получает название главы и «Ранее в…» голосом ведущего; его блокнот подготовки пишется в фоне, игра не ждёт.", "A closed session gets a chapter title and “Previously in…” in the DM's voice; the prep notebook is written in the background, play never waits.")}</p>
-                <SessionMemoryPanel sessionId={session?.id ?? null} />
-              </details>
+              {loopRuntime ? <SessionEnd sessionId={session?.id ?? null} /> : (
+                <details className={r.stack}>
+                  <summary>{c("Закончить сессию", "End the session")}</summary>
+                  <SessionMemoryPanel sessionId={session?.id ?? null} />
+                </details>
+              )}
               <div className={r.row}>
                 <button type="button" className={r.btnGhost} onClick={() => setResume(true)}>{c("Правка точки продолжения", "Edit the resume point")}</button>
                 {session && <button type="button" className={r.btnGhost} onClick={() => setSceneEditor("new")}>{c("Добавить запись в стенограмму", "Add a transcript record")}</button>}

@@ -182,12 +182,13 @@ export function codexOf(data: CampaignSnapshot, query: string, lang: Lang): Code
   const needle = query.trim().toLocaleLowerCase();
   const match = (row: Entity) => !needle || `${row.name}\n${row.details}\n${profileOf(row).relation?.note ?? ""}`.toLocaleLowerCase().includes(needle);
   const byName = (a: Entity, b: Entity) => Number(!!profileOf(b).important) - Number(!!profileOf(a).important) || a.name.localeCompare(b.name);
-  const npcs = data.entities.filter((row) => row.kind === "npc" && match(row));
+  // A person the DM recorded ahead of the story stays out until the hero meets them (polish).
+  const npcs = data.entities.filter((row) => row.kind === "npc" && !profileOf(row).unmet && match(row));
   const group = (id: CodexGroup["id"], title: string, filter: (row: Entity) => boolean): CodexGroup =>
     ({ id, title, entries: npcs.filter(filter).sort(byName) });
   const relation = (row: Entity) => profileOf(row).relation?.group ?? null;
   const groups: CodexGroup[] = [
-    { id: "allies", title: pick(lang, "Спутники", "Companions"), entries: data.entities.filter((row) => row.kind === "companion" && match(row)).sort(byName) },
+    { id: "allies", title: pick(lang, "Спутники", "Companions"), entries: data.entities.filter((row) => row.kind === "companion" && !profileOf(row).unmet && match(row)).sort(byName) },
     group("family", pick(lang, "Семья и свои", "Family"), (row) => relation(row) === "family"),
     group("ally", pick(lang, "Союзники", "Allies"), (row) => relation(row) === "ally"),
     group("murky", pick(lang, "Мутные", "Murky"), (row) => relation(row) === "murky"),

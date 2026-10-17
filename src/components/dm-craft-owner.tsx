@@ -112,6 +112,18 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
       );
       return version ? [version] : [];
     }) ?? [];
+  // Polish: versions written for the owner (a stage's seeds, a proposed card)
+  // that nobody approved yet — newer than the approved one of their key.
+  const pendingVersions =
+    view?.versions.filter((version) => {
+      const active = view.versions.find(
+        (item) => item.id === effective(version.key)?.activeVersionId,
+      );
+      return (
+        active?.id !== version.id &&
+        (!active || version.version > active.version)
+      );
+    }).sort((a, b) => a.key.localeCompare(b.key) || b.version - a.version) ?? [];
   return (
     <>
       <div className="page-heading">
@@ -143,6 +155,48 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
               "Changes guide new turns. Existing turns keep the approved version they began with.",
             )}
           </p>
+          {pendingVersions.length > 0 && (
+            <Panel className="dm-craft-pending" title={t("Pending versions")}>
+              <p className="muted">
+                {t(
+                  "These versions were written for you and wait for your approval. Approving one makes it the version the DM plays by.",
+                )}
+              </p>
+              <div className="dm-craft-history">
+                {pendingVersions.map((version) => (
+                  <details key={version.id}>
+                    <summary>
+                      {versionText(version, language).title} ·{" "}
+                      {t("Version {number}", { number: version.version })}
+                    </summary>
+                    <p className="muted">
+                      <strong>{t("What changes:")}</strong> {version.provenance}
+                    </p>
+                    <p>{versionText(version, language).guidance}</p>
+                    <p className="muted">
+                      <strong>{t("Avoid:")}</strong>{" "}
+                      {versionText(version, language).avoid}
+                    </p>
+                    <Button
+                      primary
+                      disabled={busy || !!previewView}
+                      onClick={() =>
+                        void run({
+                          action: "activate",
+                          key: version.key,
+                          versionId: version.id,
+                          expectedActivationRevision:
+                            effective(version.key)?.activationRevision ?? 0,
+                        } as Omit<CraftCommand, "requestId">)
+                      }
+                    >
+                      {t("Review and approve")}
+                    </Button>
+                  </details>
+                ))}
+              </div>
+            </Panel>
+          )}
           <div className="dm-craft-section-title">
             <h2>{t("Approved doctrine and cards")}</h2>
             <Button onClick={startCard} disabled={busy || !!previewView}>

@@ -9,6 +9,10 @@ export type ScriptedToolCall = { name: string; arguments: JsonObject };
 export type ScriptedRound = {
   text?: string;
   toolCalls?: ScriptedToolCall[];
+  /** Polish: an ordered message of text parts and tool calls (text → call → text),
+   * the shape a live model produces when it calls a tool mid-narration. When set,
+   * `text` and `toolCalls` are ignored. */
+  parts?: ({ text: string } | { toolCall: ScriptedToolCall })[];
   stop?: DmStopReason;
   /** Throw before any event (a dropped connection): the turn fails retryable. */
   failBefore?: "transport" | "rejected";
@@ -41,11 +45,25 @@ export function createScriptedDmModel(initial: ScriptedRound[] = [],
     if (!round) throw new DmModelError("provider_rejected", "the script has no answer left for this request");
     if (round.failBefore === "transport") throw new DmModelError("retryable_transport", "scripted connection loss");
     if (round.failBefore === "rejected") throw new DmModelError("provider_rejected", "scripted rejection");
-    const text = round.text ?? "";
-    for (let at = 0; at < text.length; at += chunk) yield { type: "text_delta", text: text.slice(at, at + chunk) };
-    if (round.failAfterText) throw new DmModelError("retryable_transport", "scripted stream break after text");
-    const toolCalls = (round.toolCalls ?? []).map((call) => ({ id: `call_${++calls}`, name: call.name, arguments: JSON.stringify(call.arguments) }));
-    for (const call of toolCalls) yield { type: "tool_call", ...call };
+    const text = round.parts ? round.parts.flatMap((part) => ("text" in part ? [part.text] : [])).join("") : round.text ?? "";
+    const toolCalls: { id: string; name: string; arguments: string }[] = [];
+    if (round.parts) {
+      for (const part of round.parts) {
+        if ("text" in part) { for (let at = 0; at < part.text.length; at += chunk) yield { type: "text_delta", text: part.text.slice(at, at + chunk) }; }
+        else {
+          const call = { id: `call_${++calls}`, name: part.toolCall.name, arguments: JSON.stringify(part.toolCall.arguments) };
+          toolCalls.push(call);
+          yield { type: "tool_call", ...call };
+        }
+      }
+    } else {
+      for (let at = 0; at < text.length; at += chunk) yield { type: "text_delta", text: text.slice(at, at + chunk) };
+      if (round.failAfterText) throw new DmModelError("retryable_transport", "scripted stream break after text");
+      for (const call of (round.toolCalls ?? []).map((call) => ({ id: `call_${++calls}`, name: call.name, arguments: JSON.stringify(call.arguments) }))) {
+        toolCalls.push(call);
+        yield { type: "tool_call", ...call };
+      }
+    }
     const inputTokens = Math.ceil(bytes(request.system) / 4 + bytes(request.messages) / 4);
     const outputTokens = Math.ceil((text.length + bytes(toolCalls)) / 4);
     yield { type: "usage", usage: { inputTokens, outputTokens, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: 0, ...round.usage } };

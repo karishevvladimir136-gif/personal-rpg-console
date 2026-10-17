@@ -11,7 +11,7 @@
 // dice are never rolled twice. Only lease/fence/revision violations and broken
 // transport fail the turn; a rejected tool call just returns its reason.
 import { createHash, randomInt } from "node:crypto";
-import type { PublicTurn, ResumeInput, TurnInput } from "../contracts.ts";
+import type { JsonObject as JsonObjectValue, PublicTurn, ResumeInput, TurnInput } from "../contracts.ts";
 import type { RecordedCheck, RuntimeSource, TurnClaim, TurnStore } from "../server-contracts.ts";
 import type { MemoryStore, SummaryProvider } from "../../memory/server-contracts.ts";
 import { withUnifiedMemory } from "../../memory/unified-context.ts";
@@ -28,6 +28,8 @@ import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool } from "./execute.ts";
+import { chip } from "./receipt-text.ts";
+import type { PublicProfile } from "../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
 import { dmLoopTools } from "./tools.ts";
@@ -50,7 +52,9 @@ export type DmLoopDependencies = {
     { depth?: DepthRange | null; boostNext?: boolean }>;
   /** Stage 4 hooks after a commit (never block or fail the turn): the DM's
    * player-likes note, the used «important turn» flag. */
-  afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean }) => Promise<void>;
+  afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean;
+    /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
+    playMinutes: number }) => Promise<void>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -105,7 +109,10 @@ const NARRATE_NOW = "The player has not seen any narration yet. Write the narrat
 export function textSeparator(previous: string, next: string): string {
   if (!previous.trim() || !next.trim()) return "";
   const end = previous.replace(/\s+$/, "").at(-1) ?? "";
-  if (/[—–-]/.test(end) || /^\s*[—–-]/.test(next)) return "";
+  // A sentence interrupted by a roll («…тянет ставню —» → «— и петля скрипит») continues on the same line.
+  if (/[—–-]/.test(end)) return "";
+  // A finished sentence followed by a line of dialogue («…не больше.» → «— Выстрелишь…»)
+  // is a new paragraph: the speaker must be clear (polish item 23, turn 28).
   if (/[.!?…»"”)\]*_]/.test(end) || /\n$/.test(previous) || /^\s*\n/.test(next)) return "\n\n";
   return " ";
 }
@@ -157,8 +164,24 @@ function implicitMeta(receipts: DmLoopReceipt[]): DmLoopMeta {
     const id = receipt.result.value.id;
     return typeof id === "string" ? [id] : [];
   });
-  return { sceneKinds: [], spotlight: [...new Set(spotlight)], playerMoment: false };
+  return { sceneKinds: [], spotlight: [...new Set(spotlight)], playerMoment: false, playerMomentReason: null };
 }
+
+/** Does the narration name this person? Russian names decline, so the match is
+ * on a stem at a word start («Мокей» matches «Мокея», «Марта» matches «Марте»). */
+export function narrationNames(narration: string, name: string): boolean {
+  const words = name.split(/[^\p{L}\p{N}]+/u).filter((word) => word.length >= 2);
+  if (!words.length) return false;
+  const lower = narration.toLocaleLowerCase();
+  return words.some((word) => {
+    const w = word.toLocaleLowerCase();
+    const stem = w.length >= 6 ? w.slice(0, -2) : w.length >= 4 ? w.slice(0, -1) : w;
+    const escaped = stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`(^|[^\\p{L}])${escaped}`, "u").test(lower);
+  });
+}
+
+const PENDING_OUTCOME = "The player saw the roll but not what came of it. Narrate the outcome of that roll now, as text, in the campaign language, within the accepted result. Then finish the turn.";
 
 function parseArguments(call: DmToolCall): Record<string, unknown> {
   try {
@@ -244,6 +267,20 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     const narrationSceneId = stableGameplayId(operationId, "scene:narration");
     const shadow = ShadowState.restore(source, operationId, loop.shadow);
     const context = buildDmLoopContext(informed, input);
+    const language: "ru" | "en" = source.snapshot.settings.values.language === "ru" ? "ru" : "en";
+    const lastHint = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId)?.nextTension ?? null;
+    const turnTension = pin.depth?.tension ?? tensionSignals(source, input, lastHint).tension;
+    const showDc = !!(source.snapshot.settings.values as { showDc?: boolean }).showDc;
+    // Polish item 1: a displayed check whose outcome the model has not narrated
+    // yet — on a resume, read from the transcript (text after the roll's results?).
+    const outcomeAsked = () => loop.diagnostics.some((row) => row.kind === "outcome_asked");
+    let outcomePending = (() => {
+      const displayed = new Set(loop.receipts.filter((r) => r.result.ok && r.result.check && isDisplayedCheck(source, r.result.check)).map((r) => r.call.id));
+      if (!displayed.size) return false;
+      let last = -1;
+      loop.transcript.forEach((message, index) => { if (message.role === "tool_results" && message.results.some((r) => displayed.has(r.callId))) last = index; });
+      return last >= 0 && !loop.transcript.slice(last + 1).some((message) => message.role === "assistant" && message.text.trim());
+    })();
     if (loop.transcript.length === 0) {
       loop.transcript.push({ role: "user", text: context.user });
       for (const layer of context.layers)
@@ -266,7 +303,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
         const executed = executeDmLoopTool(shadow, toolCall, { input, checks: checkpoint.checks, random,
-          narrationSceneId, toolCalls: loop.receipts.length, limits });
+          narrationSceneId, toolCalls: loop.receipts.length, limits, language, tension: turnTension, receipts: loop.receipts, showDc });
         const receipt = await recordDmTool(lease, loop.receipts.length, toolCall, executed.result);
         loop.receipts.push(receipt);
         if (executed.result.ok && executed.result.check) {
@@ -274,11 +311,15 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
           const check = executed.result.check;
           if (isDisplayedCheck(source, check) && (source.snapshot.settings.values.interactiveDice ||
             source.snapshot.settings.values.difficulty.rerolls !== "disabled")) pause = true;
+          if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if (executed.meta) loop.meta = executed.meta;
         if (loop.receipts.length === limits.toolCallsPerTurn) diagnostic({ kind: "tool_cap_reached", calls: loop.receipts.length });
         observe({ type: "tool_receipt", operationId, receipt });
-        live({ type: "tool", name: call.name, ok: receipt.result.ok, summary: receipt.result.summary });
+        // The player's stream carries only what the hero would notice, in the campaign language.
+        if (receipt.result.ok && receipt.result.player)
+          live({ type: "tool", name: call.name, ok: true, summary: receipt.result.player, ...(typeof toolCall.arguments.action === "string" ? { action: toolCall.arguments.action } : {}) });
+        if (call.name === "finish_turn" && executed.meta?.playerMoment) live({ type: "moment", reason: executed.meta.playerMomentReason ?? null });
       }
       return pause;
     };
@@ -297,6 +338,11 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         if (shadow.finished && !loop.text.trim()) {
           shadow.finished = false;
           loop.transcript.push({ role: "user", text: NARRATE_NOW });
+        } else if (shadow.finished && outcomePending && !outcomeAsked()) {
+          // Polish item 1: the turn ended on a roll with no narration after it; ask once for the outcome.
+          shadow.finished = false;
+          diagnostic({ kind: "outcome_asked" });
+          loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
         }
         // The OpenAI habit of a finish_turn round of its own is folded into the
         // final bookkeeping message (stage 3 §4); Opus batches finish_turn itself.
@@ -338,6 +384,10 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       const started = now();
       let firstTextMs: number | null = null;
       let roundText = "";
+      // A text part that follows a tool call inside the same message is joined
+      // like the text of a new request: a paragraph break after a finished
+      // sentence, nothing after an interrupted one (polish, item 23 and the Мокей turn).
+      let partStart = true;
       const toolCalls: DmToolCall[] = [];
       let usage: DmLoopUsageEntry | null = null;
       let stop: Extract<Awaited<ReturnType<DmModel["stream"]>> extends AsyncIterable<infer E> ? E : never, { type: "stop" }> | null = null;
@@ -345,13 +395,23 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         for await (const event of model.stream(request)) {
           if (event.type === "text_delta") {
             if (firstTextMs === null) firstTextMs = Math.round(now() - started);
+            if (event.text.trim()) outcomePending = false;
             // The live stream gets exactly what the saved narration will have
             // between this request's text and the previous one (joinText).
-            const fresh = !roundText.trim();
-            roundText += event.text;
-            const piece = fresh ? continuation(loop.text, roundText) : event.text;
-            if (piece) live({ type: "text", text: piece });
+            if (partStart && roundText.trim()) {
+              const piece = continuation(roundText, event.text);
+              roundText += piece;
+              if (piece.trim()) partStart = false;
+              if (piece) live({ type: "text", text: piece });
+            } else {
+              const fresh = !roundText.trim();
+              roundText += event.text;
+              const piece = fresh ? continuation(loop.text, roundText) : event.text;
+              if (piece.trim()) partStart = false;
+              if (piece) live({ type: "text", text: piece });
+            }
           } else if (event.type === "tool_call") {
+            partStart = true;
             toolCalls.push({ id: event.id, name: event.name, arguments: event.arguments });
           } else if (event.type === "usage") {
             usage = { providerId: pin.providerId, modelId: pin.modelId, effort, ...event.usage,
@@ -380,7 +440,15 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       await persist("generating");
       if (stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: stop.providerReason }); break; }
       if (stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: entry.outputTokens });
-      if (!toolCalls.length) break;
+      if (!toolCalls.length) {
+        if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
+          diagnostic({ kind: "outcome_asked" });
+          loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+          await persist("generating");
+          continue;
+        }
+        break;
+      }
     }
     let narration = loop.text.trim();
     if (!narration) {
@@ -405,7 +473,38 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })));
     shadow.setPrivate("fact", "metrics", serializeMetrics(metrics.metrics));
     if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort }));
-    if (loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure")) await persist("generating");
+    // Polish (the Мокей turn): a person recorded ahead of the story stays out of
+    // the player's chips and codex until the narration names them or they are
+    // present; people met this turn get their chip now.
+    // (The receipts are already persisted and the commit compares them, so the
+    // people's chips travel in the turn's meta, never in a receipt.)
+    const present = new Set(shadow.runtime.configuration?.presentEntityIds ?? []);
+    const met: NonNullable<DmLoopMeta["met"]> = [];
+    const createdIds = new Set(loop.receipts.flatMap((receipt) =>
+      receipt.result.ok && receipt.call.name === "upsert_character" && receipt.result.value.created === true ? [String(receipt.result.value.id)] : []));
+    for (const entity of shadow.snapshot.entities) {
+      if (entity.campaign_id !== shadow.campaignId || entity.kind === "faction" || entity.kind === "player") continue;
+      const created = createdIds.has(entity.id);
+      if (!created && !entity.public_profile?.unmet) continue;
+      const known = present.has(entity.id) || controlledIds.has(entity.id) || narrationNames(narration, entity.name);
+      if (known) {
+        if (entity.public_profile?.unmet) {
+          const { unmet: _unmet, ...rest } = entity.public_profile;
+          void _unmet;
+          shadow.apply({ family: "entities", id: entity.id, expectedRevision: entity.revision, values: { public_profile: rest as unknown as JsonObjectValue } });
+        }
+        met.push({ id: entity.id, name: entity.name, player: chip.person(language, entity.kind, entity.name) });
+      } else if (created) {
+        const profile: PublicProfile = { ...(entity.public_profile ?? {}), unmet: true };
+        shadow.apply({ family: "entities", id: entity.id, expectedRevision: entity.revision, values: { public_profile: profile as unknown as JsonObjectValue } });
+      }
+    }
+    if (met.length) {
+      loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), met };
+      for (const person of met) live({ type: "tool", name: "meet", ok: true, summary: person.player });
+    }
+    // The commit keeps the checkpoint as last persisted: the leak diagnostics and the people met must be in it.
+    if (met.length || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure")) await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",
       resolution: { changes: shadow.orderedChanges(), worldMinutes: shadow.worldMinutes,
@@ -415,7 +514,12 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     });
     live({ type: "status", status: result.status === "committed" ? "committed" : "failed" });
     if (result.status === "committed" && deps.afterCommit) {
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted }); }
+      // Real minutes this turn stands for: since the previous committed turn, at most 30 (a pause is not play).
+      const previous = source.runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== operationId)
+        .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
+      const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
+      const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

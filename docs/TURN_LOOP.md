@@ -308,3 +308,40 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
 - **World Engine bridge**: after every committed loop turn the dossier (places, people, factions,
   open quests) is pushed into the campaign's World Engine state, and the World Lab reads the same
   records. **Chat and Teach DM** run on the loop through the campaign's model (`feedback.ts`).
+
+## 11. Polish stage — group 1: the turn and the records (`docs/stages/POLISH.md`)
+
+- **Every text part reaches the player, in order.** A text part that follows a tool call inside one model message is
+  joined like the text of a new request (`continuation`): a paragraph break after a finished sentence, nothing after a
+  sentence interrupted by a roll. A dialogue dash after a finished sentence («…не больше.» → «— Выстрелишь…») now starts
+  a paragraph (item 23, turn 28). When the model ends on a player-visible roll with no text after it, the loop asks once
+  for the narration of the outcome (`PENDING_OUTCOME`, diagnostic `outcome_asked`) and never closes the turn silently (item 1).
+- **The player's chips** (`receipt.result.player`, `src/lib/gameplay/dm-loop/receipt-text.ts`): the server writes one line
+  per accepted call the hero would notice, in the campaign language («Получено: нож», «−2 монеты (хлеб)», «Слух о месте:
+  Чёрный волнорез», «Прошло: 10 минут»); `summary` stays the English line for the model, the bench and the logs. Private
+  rolls, DM notes and plans, Character Models and lookups have no player line and never reach the stream or the public turn
+  (`runtime_public_turn`, migration 57). Storages are named in the campaign language («Вещи Марты»).
+- **A person recorded ahead of the story** (`upsert_character` whose name the narration does not use and who is not present)
+  gets `public_profile.unmet`: the codex and the party screen hide them, the dossier marks them for the DM, and the chip
+  «Новый человек: …» comes with the turn that names them (`meta.met`, the `meet` chips of the public turn).
+- **Money** (item 10): the currency is the world's own word in any script; inflected forms of one word are one currency
+  (`sameCurrency`) and the campaign keeps the first name recorded (`currencyKey`); `claim_reward` on an open quest completes
+  it, so `complete` and `claim_reward` travel in one message in either order.
+- **Items** (item 20): `lose` (quantity 0, `detail.status = "lost"`, the reason kept), `modify` (same record, new name or
+  description, history), `pledge` / `lend` (the owner keeps `owner_entity_id`, the holder's storage has it, `detail.status`,
+  `holderId`, `condition`; a transfer back to the owner returns it), `consume` of a non-consumable needs a reason; `unequip` is
+  «снято». `rpg_items.detail` (migration 57) holds status, holder, condition and a short history.
+- **«Твой момент»**: `finish_turn.playerMoment` is accepted only when the turn holds a successful player-visible check of a
+  controlled character and the scene is tense or a climax (the turn's tension signal, the DM's `nextTension` hint or an
+  active encounter); otherwise the flag is refused with a reason in the receipt (`playerMomentRefused`) and no banner shows.
+  The accepted roll's reason travels as `playerMomentReason` (public turn) and the `moment` live event; the banner names it.
+- **Session end** (item 11): «Закончить сессию» writes the memory boundary atomically and the digest now runs on that ended
+  session at once (the row itself closes on «Продолжить», as the legacy invariants require: END never changes the runtime
+  revision and an unfinished action survives it); `rpg_dossier digest` accepts an ended or a closed session (migration 57); the digest
+  logs every early return (`session_digest_skipped`), writes the closing stinger «Тем временем…» (`rpg_sessions.stinger`) and
+  keeps a status the game screen polls (`/api/campaigns/<id>/dossier?view=digest&session=<id>`; `POST {action: "digest"}`
+  retries). `src/components/registry/session-end.tsx` shows the chapter title, «Ранее в…», the open leads and the stinger, then
+  «Начать следующую сессию».
+- **Small ones:** a world-level plan (`note_world` with `actorRef: "world"`, item 21); the campaign's play time counts real minutes
+  per committed turn (1–30, `afterCommit.playMinutes`); the DM Craft screen lists pending versions with «Review and approve»
+  and «What changes» (the version's provenance); «Close» → «Закрыть» in the Russian locale.

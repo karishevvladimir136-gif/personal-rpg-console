@@ -7,6 +7,7 @@ import type { PrivatePatch, RecordChange, RecordFamily, RuntimeSource } from "..
 import { applyAstraShadowChanges } from "../astra-ordered-effects.ts";
 import { stableGameplayId } from "../dice.ts";
 import { isUuid } from "../../persistence/validation.ts";
+import { possessionsLabel } from "./receipt-text.ts";
 import type { DmLoopShadowDelta, DmLoopTurnCounters } from "./contracts.ts";
 
 /** A rejected tool call: the reason goes back to the model, the turn continues. */
@@ -266,8 +267,9 @@ export class ShadowState {
     const kind: Storage["kind"] = entity.kind === "player" ? "player" : entity.kind === "companion" ? "companion"
       : entity.kind === "npc" ? "merchant" : "transport";
     const id = this.newId(`storage:${entity.id}`);
+    // Named in the campaign language (polish item 19): «Вещи Марты», not «Possessions of Марта».
     this.apply({ family: "storages", id, expectedRevision: null,
-      values: { name: `Possessions of ${entity.name}`.slice(0, 160), kind, entity_id: entity.id } });
+      values: { name: possessionsLabel(this.snapshot.settings.values.language === "ru" ? "ru" : "en", entity.name).slice(0, 160), kind, entity_id: entity.id } });
     return this.storage(id)!;
   }
 
@@ -277,7 +279,7 @@ export class ShadowState {
       row.kind === "camp").sort((a, b) => a.id.localeCompare(b.id))[0];
     if (existing) return existing;
     const id = this.newId("storage:camp");
-    this.apply({ family: "storages", id, expectedRevision: null, values: { name: "Camp", kind: "camp", entity_id: null } });
+    this.apply({ family: "storages", id, expectedRevision: null, values: { name: this.snapshot.settings.values.language === "ru" ? "Лагерь" : "Camp", kind: "camp", entity_id: null } });
     return this.storage(id)!;
   }
 

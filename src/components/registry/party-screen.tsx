@@ -29,7 +29,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
   const [redraw, setRedraw] = useState<string | null>(null);
   const party = partyOf(data, play);
   const present = new Set(play?.configuration?.presentEntityIds ?? []);
-  const nearby = data.entities.filter((row) => row.kind === "npc" && present.has(row.id));
+  const nearby = data.entities.filter((row) => row.kind === "npc" && present.has(row.id) && !row.public_profile?.unmet);
   const combat = inCombat(play);
   const lists: Record<Group, Entity[]> = {
     party: party.filter((row) => row.present).map((row) => row.entity),

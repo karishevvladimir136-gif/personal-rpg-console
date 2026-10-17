@@ -4,7 +4,7 @@
 // A rejected call returns a reason the model can act on; the turn continues.
 import { randomInt } from "node:crypto";
 import type { JsonObject, TurnInput } from "../contracts.ts";
-import type { Entity, EquipmentSlot, Item, PublicProfile, Quest, QuestDetail } from "../../persistence/contracts.ts";
+import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail } from "../../persistence/contracts.ts";
 import type { RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
 import { recordServerRoll, stableGameplayId } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
@@ -15,7 +15,8 @@ import { dmLoopLimits as L, type DmLoopTurnLimits } from "./limits.ts";
 import { dmLoopTools, ITEM_CATEGORIES, ITEM_RARITIES, QUEST_KINDS, RELATION_GROUPS, TENSION_CLASSES } from "./tools.ts";
 import { duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from "./plans.ts";
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
-import type { DmLoopMeta, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
+import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
+import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -28,14 +29,23 @@ export type ToolContext = {
   toolCalls: number;
   /** The campaign's per-turn limits as pinned when the turn started (stage 3). */
   limits: DmLoopTurnLimits;
+  /** Polish: the campaign language for the player's chip lines. */
+  language: ChipLanguage;
+  /** Polish: the server's reading of this turn's tension (the player moment needs tense or climax). */
+  tension: DmLoopTension;
+  /** Receipts of this turn so far (finish_turn finds the roll a moment rests on). */
+  receipts: DmLoopReceipt[];
+  /** Whether DCs may be shown to the player (campaign setting). */
+  showDc: boolean;
 };
+
 
 type Args = Record<string, unknown>;
 const str = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 const int = (value: unknown) => (typeof value === "number" && Number.isInteger(value) ? value : null);
 
-function ok(value: JsonObject, summary: string, check: RecordedCheck | null = null): DmLoopReceiptResult {
-  return { ok: true, value, summary, check };
+function ok(value: JsonObject, summary: string, check: RecordedCheck | null = null, player: string | null = null): DmLoopReceiptResult {
+  return { ok: true, value, summary, check, player };
 }
 
 export function humanoidSlots(language: string): EquipmentSlot[] {
@@ -52,12 +62,46 @@ export function humanoidSlots(language: string): EquipmentSlot[] {
   ];
 }
 
-const currencyName = /^[a-z]+(?: [a-z]+)*$/;
-export function currencyKey(name: unknown): { label: string; key: string } {
-  const label = str(name).toLowerCase().replace(/\s+/g, " ");
-  reject(label.length >= 1 && label.length <= 32 && currencyName.test(label),
-    `Currency "${str(name)}" must be lowercase words (coins, silver pieces, credits).`);
-  return { label, key: `currency_${label.replaceAll(" ", "_")}` };
+// Polish item 10: the currency is the world's own word in the campaign language,
+// any script, trimmed, case-insensitive; inflected forms of one word (монета /
+// монеты / монет, coin / coins) are one currency; the campaign keeps one
+// canonical name — the first one recorded — and never rejects over language.
+const currencyName = /^[\p{L}\p{M}]+(?:[ -][\p{L}\p{M}]+)*$/u;
+export function normalizeCurrency(name: unknown): string {
+  return str(name).toLocaleLowerCase().replace(/[«»"'“”]/g, "").replace(/\s+/g, " ").trim();
+}
+function sameWord(a: string, b: string): boolean {
+  if (a === b) return true;
+  let common = 0;
+  while (common < a.length && common < b.length && a[common] === b[common]) common++;
+  const restA = a.length - common, restB = b.length - common;
+  // монета / монеты / монетами; coin / coins; silver piece / silver pieces — but not соль / солид.
+  if (common >= 4) return restA <= 3 && restB <= 3;
+  return common >= 3 && Math.min(restA, restB) === 0 && Math.max(restA, restB) <= 2;
+}
+/** Two currency names that are forms of the same word (word by word). */
+export function sameCurrency(a: string, b: string): boolean {
+  const left = normalizeCurrency(a).split(" "), right = normalizeCurrency(b).split(" ");
+  return left.length === right.length && left.every((word, index) => sameWord(word, right[index]));
+}
+export function currencyKeyFor(label: string): string {
+  return `currency_${label.replaceAll(" ", "_")}`;
+}
+/** The campaign's currencies already on any record (canonical labels). */
+export function knownCurrencies(shadow: ShadowState): string[] {
+  const labels = new Set<string>();
+  for (const entity of shadow.snapshot.entities) {
+    if (entity.campaign_id !== shadow.campaignId) continue;
+    for (const key of Object.keys(entity.resources)) if (key.startsWith("currency_")) labels.add(key.slice("currency_".length).replaceAll("_", " "));
+  }
+  return [...labels];
+}
+export function currencyKey(shadow: ShadowState, name: unknown): { label: string; key: string } {
+  const given = normalizeCurrency(name);
+  reject(given.length >= 1 && given.length <= 32 && currencyName.test(given),
+    `Currency "${str(name)}" must be a word or two in the campaign language (монеты, талеры, coins, silver pieces).`);
+  const label = knownCurrencies(shadow).find((known) => sameCurrency(known, given)) ?? given;
+  return { label, key: currencyKeyFor(label) };
 }
 export function moneyOf(entity: Entity, key: string): number {
   return Number(entity.resources[key] ?? 0);
@@ -207,7 +251,10 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     }, modifier, 1, ctx.random);
     const value: JsonObject = { formula: str(args.formula), reason: str(args.reason), actor: actor.name, visibility,
       dice: [...check.dice], kept: check.kept, modifier, modifierSource, total: check.total, dc, success: check.success, checkId: check.id };
-    return ok(value, `${actor.name} rolls ${str(args.formula)}${modifierSource ? ` (${modifierSource})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}`, check);
+    const natural = check.kept === 20 ? "crit" : check.kept === 1 ? "fumble" : null;
+    const player = visibility === "player"
+      ? chip.roll(ctx.language, actor.name, actor.kind === "player", str(args.reason), check.total, dc, ctx.showDc, check.success, natural) : null;
+    return ok(value, `${actor.name} rolls ${str(args.formula)}${modifierSource ? ` (${modifierSource})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}`, check, player);
   }
   const count = advantage === "normal" ? formula.count : 2;
   const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
@@ -217,7 +264,9 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   const total = kept + modifier;
   const value: JsonObject = { formula: str(args.formula), reason: str(args.reason), actor: actor?.name ?? "DM", visibility,
     dice, kept, modifier, modifierSource, total, dc, success: dc === null ? null : total >= dc };
-  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}: ${total}${dc !== null ? ` vs ${dc} — ${total >= dc ? "success" : "failure"}` : ""}`);
+  const player = visibility === "player" && actor
+    ? chip.roll(ctx.language, actor.name, actor.kind === "player", str(args.reason), total, dc, ctx.showDc, dc === null ? null : total >= dc, null) : null;
+  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}: ${total}${dc !== null ? ` vs ${dc} — ${total >= dc ? "success" : "failure"}` : ""}`, null, player);
 }
 
 // --- query_state -----------------------------------------------------------
@@ -287,8 +336,9 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     }
     if (Object.keys(values).length) shadow.apply(entityChange(shadow, entity, values));
     if (args.statblock !== undefined) shadow.setPrivate("npc", `statblock_${entity.id}`, str(args.statblock));
+    const wasInParty = config.controlledEntityIds.includes(entity.id);
     const present = args.present === undefined ? shadow.isPresent(entity.id) : !!args.present;
-    const party = args.party === undefined ? config.controlledEntityIds.includes(entity.id) : !!args.party;
+    const party = args.party === undefined ? wasInParty : !!args.party;
     const kind = (values.kind as string | undefined) ?? entity.kind;
     reject(!party || kind === "companion", "Only a companion can join the party.");
     reject(!present || kind !== "faction", "A faction is never present in a scene; its people are.");
@@ -297,7 +347,7 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
     if (party) config.presentEntityIds = [...new Set([...config.presentEntityIds, entity.id])];
     shadow.setConfiguration(config);
     return ok({ id: entity.id, name: (values.name as string) ?? entity.name, kind, present, party },
-      `${(values.name as string) ?? entity.name} updated`);
+      `${(values.name as string) ?? entity.name} updated`, null, party && !wasInParty ? chip.companionJoins(ctx.language, (values.name as string) ?? entity.name) : null);
   }
   const name = str(args.name);
   reject(name.length > 0, "A new character needs a name.");
@@ -327,10 +377,12 @@ function upsertCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmL
   if (present || party) config.presentEntityIds = [...new Set([...config.presentEntityIds, id])];
   if (party) config.controlledEntityIds = [...new Set([...config.controlledEntityIds, id])];
   shadow.setConfiguration(config);
-  void ctx;
-  const value: JsonObject = { id, localKey: key, name, kind, present, party,
+  const value: JsonObject = { id, localKey: key, name, kind, present, party, created: true,
     ...(similar.length ? { hint: `Similar existing characters: ${similar.map((row) => `${row.name} (${row.id})`).join(", ")}. If this is the same person, update that record with ref instead.` } : {}) };
-  return ok(value, `${name} recorded as ${kind === "companion" ? "a companion" : kind === "faction" ? "a faction" : "a character"}`);
+  // A faction the hero learned of shows at once; a person shows in the chips
+  // only once the narration names them or they are present (the loop decides at commit).
+  const player = kind === "faction" ? chip.person(ctx.language, "faction", name) : null;
+  return ok(value, `${name} recorded as ${kind === "companion" ? "a companion" : kind === "faction" ? "a faction" : "a character"}`, null, player);
 }
 
 // --- upsert_place ----------------------------------------------------------
@@ -346,7 +398,7 @@ function linkPlaceToQuests(shadow: ShadowState, placeId: string, questRefs: unkn
     shadow.apply({ family: "quests", id: current.id, expectedRevision: current.revision, values: { detail: questDetail as unknown as JsonObject } });
   }
 }
-function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+function upsertPlace(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   if (args.ref !== undefined) {
     const ref = shadow.resolve(args.ref, ["locations"], "ref");
     const place = shadow.location(ref.id)!;
@@ -370,7 +422,8 @@ function upsertPlace(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     name, description: str(args.description), status: str(args.status) || "known" } });
   shadow.bindLocalKey(key, { family: "locations", id });
   if (Array.isArray(args.questRefs)) linkPlaceToQuests(shadow, id, args.questRefs);
-  return ok({ id, localKey: key, name, status: str(args.status) || "known" }, `Place recorded: ${name}${str(args.status) === "rumored" ? " (a rumour)" : ""}`);
+  return ok({ id, localKey: key, name, status: str(args.status) || "known" }, `Place recorded: ${name}${str(args.status) === "rumored" ? " (a rumour)" : ""}`,
+    null, chip.place(ctx.language, name, str(args.status) === "rumored"));
 }
 
 // --- time and travel -------------------------------------------------------
@@ -397,7 +450,8 @@ function advanceTime(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopR
   const before = shadow.worldMinutes;
   advanceMinutes(shadow, minutes, "advance_time", ctx);
   const due = dueAfterTime(shadow, before);
-  return ok({ minutes, worldMinutes: shadow.worldMinutes, ...due }, `${minutes} minutes pass (${str(args.reason)})${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
+  return ok({ minutes, worldMinutes: shadow.worldMinutes, ...due }, `${minutes} minutes pass (${str(args.reason)})${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`,
+    null, chip.time(ctx.language, minutes));
 }
 function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const ref = shadow.resolve(args.placeRef, ["locations"], "placeRef");
@@ -418,7 +472,8 @@ function moveParty(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
   config.nearbyStorageIds = [];
   shadow.setConfiguration(config);
   const due = dueAfterTime(shadow, before);
-  return ok({ placeId: place.id, name: place.name, minutes, worldMinutes: shadow.worldMinutes, ...due }, `The party travels to ${place.name} (${minutes} min)${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
+  return ok({ placeId: place.id, name: place.name, minutes, worldMinutes: shadow.worldMinutes, ...due }, `The party travels to ${place.name} (${minutes} min)${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`,
+    null, chip.travel(ctx.language, place.name, minutes));
 }
 
 // --- items -----------------------------------------------------------------
@@ -444,8 +499,18 @@ function openJobHint(shadow: ShadowState, from: Entity | null, to: Entity | null
   return { openQuests: matches.map((quest) => ({ id: quest.id, title: quest.title })),
     hint: `This may complete the open job "${matches[0].title}" (${matches[0].id}). If it does, close it in this turn: quest complete, then quest claim_reward for the agreed reward (a plain payment from the issuer after completion settles it too).` };
 }
+function itemDetail(item: Item): ItemDetail {
+  const detail = item.detail;
+  return detail && typeof detail === "object" && !Array.isArray(detail) ? structuredClone(detail) : {};
+}
+function withHistory(detail: ItemDetail, at: number, event: string, note: string): ItemDetail {
+  const history = [...(detail.history ?? []), { at, event, note: note.slice(0, 200) }].slice(-20);
+  return { ...detail, history };
+}
+const isHero = (entity: Entity | null | undefined) => !!entity && entity.kind === "player";
 function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
+  const l = ctx.language;
   if (action === "create") {
     const name = str(args.name);
     reject(name.length > 0, "item create needs a name.");
@@ -465,24 +530,37 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     shadow.apply({ family: "items", id, expectedRevision: null, values: {
       name, category, quantity, description: str(args.description), mechanics: str(args.properties),
       owner_entity_id: destination.entity?.id ?? null, storage_id: destination.storageId,
-      equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}) } });
+      equipped_entity_id: null, equipped_slot: null, ...(rarity ? { rarity } : {}),
+      detail: withHistory({}, shadow.worldMinutes, "created", str(args.description)) as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "items", id });
-    return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`);
+    return ok({ id, localKey: key, name, category, quantity, owner: destination.label, ...(rarity ? { rarity } : {}) }, `${destination.label} gets ${name}${quantity > 1 ? ` ×${quantity}` : ""}`,
+      null, chip.itemGained(l, destination.label, isHero(destination.entity), name, quantity, destination.entity === null));
   }
   let item = itemOf(shadow, args.itemRef, "itemRef");
-  if (args.rarity !== undefined) {
+  if (args.rarity !== undefined && action !== "modify") {
     const rarity = str(args.rarity);
     reject((ITEM_RARITIES as readonly string[]).includes(rarity), `rarity: ${ITEM_RARITIES.join(", ")}.`);
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { rarity } });
     item = shadow.item(item.id)!;
   }
+  const owner = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
+  const holderName = (detail: ItemDetail) => (detail.holderId ? shadow.entity(detail.holderId)?.name ?? "someone" : null);
   if (action === "transfer") {
     const destination = destinationOf(shadow, args.ownerRef, "ownerRef");
     const quantity = int(args.quantity) ?? item.quantity;
     reject(quantity >= 1 && quantity <= item.quantity, `${ownerName(shadow, item)} has ${item.quantity} × ${item.name}, not ${quantity}.`);
     reject(item.equipped_entity_id === null, `${item.name} is equipped by ${ownerName(shadow, item)}.`, "Unequip it first (item unequip).");
-    reject((destination.entity?.id ?? null) !== item.owner_entity_id || destination.storageId !== item.storage_id,
+    const detail = itemDetail(item);
+    const returned = (detail.status === "pledged" || detail.status === "lent") && destination.entity?.id === item.owner_entity_id;
+    reject(returned || (destination.entity?.id ?? null) !== item.owner_entity_id || destination.storageId !== item.storage_id,
       `${item.name} already belongs to ${destination.label}.`);
+    if (returned) {
+      // The pledged or lent thing comes back to its owner: title never moved.
+      shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: destination.storageId,
+        detail: withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "returned", holderName(detail) ?? "") as unknown as JsonObject } });
+      return ok({ itemId: item.id, name: item.name, returned: true, to: destination.label }, `${item.name} returns to ${destination.label}`,
+        null, chip.itemReturned(l, item.name, destination.label, isHero(destination.entity)));
+    }
     const splitId = shadow.newId(`split:${item.id}:${ctx.toolCalls}`);
     // The row object is updated in place by the applier: remember the giver first.
     const giver = item.owner_entity_id ? shadow.entity(item.owner_entity_id) ?? null : null;
@@ -490,23 +568,94 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     for (const change of settled.changes) {
       if (change.id === splitId) change.values.owner_entity_id = destination.entity?.id ?? null;
       else if (change.values.owner_entity_id === undefined && item.quantity === quantity) change.values.owner_entity_id = destination.entity?.id ?? null;
+      // A moved thing is no longer pledged or lent by its former owner.
+      if (detail.status && change.id === item.id) change.values.detail = withHistory({ ...detail, status: undefined, holderId: undefined, condition: undefined }, shadow.worldMinutes, "transferred", destination.label) as unknown as JsonObject;
       shadow.apply(change);
     }
     if (settled.split && args.localKey !== undefined) shadow.bindLocalKey(str(args.localKey), { family: "items", id: splitId });
-    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label, ...openJobHint(shadow, giver, destination.entity) },
-      `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label}`);
+    const hint = openJobHint(shadow, giver, destination.entity);
+    return ok({ itemId: settled.transferredItemId, name: item.name, quantity, to: destination.label, ...hint },
+      `${item.name}${quantity > 1 ? ` ×${quantity}` : ""} goes to ${destination.label}`,
+      null, chip.itemGiven(l, item.name, quantity, giver?.name ?? (l === "ru" ? "лагерь" : "the camp"), isHero(giver), destination.label, isHero(destination.entity), !!hint.openQuests));
   }
   if (action === "consume") {
     const quantity = int(args.quantity) ?? 1;
     reject(quantity >= 1 && quantity <= item.quantity, `Only ${item.quantity} × ${item.name} left; cannot consume ${quantity}.`);
+    // Taking off, putting away, giving or dropping a thing is not consumption.
+    reject(item.category === "consumable" || str(args.reason).length > 0,
+      `${item.name} is a ${item.category}, not a consumable: consume means used up (eaten, burnt, spent).`,
+      "To take it off use unequip; to give it use transfer; if it is gone use lose with a reason; if it changed use modify. If it really is used up, say why in reason.");
     const remaining = item.quantity - quantity;
     const values: JsonObject = { quantity: remaining };
     if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
+    values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "consumed", str(args.reason)) as unknown as JsonObject;
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
-    return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)`);
+    return ok({ itemId: item.id, name: item.name, consumed: quantity, remaining }, `${ownerName(shadow, item)} uses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${remaining} left)`,
+      null, chip.itemUsed(l, ownerName(shadow, item), isHero(owner), item.name, quantity, remaining));
+  }
+  if (action === "lose") {
+    const reason = str(args.reason);
+    reject(reason.length > 0, "lose needs a reason: what happened to the thing (dropped in the silt, broken, stolen).");
+    reject(item.quantity > 0, `${item.name} is already gone.`);
+    const quantity = int(args.quantity) ?? item.quantity;
+    reject(quantity >= 1 && quantity <= item.quantity, `${ownerName(shadow, item)} has ${item.quantity} × ${item.name}, not ${quantity}.`);
+    const remaining = item.quantity - quantity;
+    const detail = itemDetail(item);
+    const values: JsonObject = { quantity: remaining,
+      detail: withHistory({ ...detail, ...(remaining === 0 ? { status: "lost", note: reason, holderId: undefined, condition: undefined } : {}) }, shadow.worldMinutes, "lost", reason) as unknown as JsonObject };
+    if (remaining === 0 && item.equipped_entity_id) { values.equipped_entity_id = null; values.equipped_slot = null; }
+    shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
+    return ok({ itemId: item.id, name: item.name, lost: quantity, remaining, reason }, `${ownerName(shadow, item)} loses ${item.name}${quantity > 1 ? ` ×${quantity}` : ""} (${reason})`,
+      null, chip.itemLost(l, ownerName(shadow, item), isHero(owner), item.name, reason));
+  }
+  if (action === "modify") {
+    reject(item.quantity > 0, `${item.name} is gone; a lost thing cannot change.`);
+    const values: JsonObject = {};
+    if (args.name !== undefined) values.name = str(args.name);
+    if (args.description !== undefined) values.description = str(args.description);
+    if (args.properties !== undefined) values.mechanics = str(args.properties);
+    if (args.rarity !== undefined) {
+      const rarity = str(args.rarity);
+      reject((ITEM_RARITIES as readonly string[]).includes(rarity), `rarity: ${ITEM_RARITIES.join(", ")}.`);
+      values.rarity = rarity;
+    }
+    if (args.category !== undefined) {
+      const category = str(args.category);
+      reject((ITEM_CATEGORIES as readonly string[]).includes(category), `category: ${ITEM_CATEGORIES.join(", ")}.`);
+      values.category = category;
+      if (item.equipped_entity_id) {
+        const wearer = shadow.entity(item.equipped_entity_id);
+        const fits = wearer?.equipment_slots.some((slot) => slot.id === item.equipped_slot && slot.accepts.includes(category));
+        if (!fits) { values.equipped_entity_id = null; values.equipped_slot = null; }
+      }
+    }
+    reject(Object.keys(values).length > 0, "modify needs a new name, description, properties, category or rarity.");
+    const note = str(args.reason);
+    // The applier updates the row in place: remember the old name first.
+    const previousName = item.name;
+    const name = (values.name as string | undefined) ?? previousName;
+    values.detail = withHistory(itemDetail(item), shadow.worldMinutes, "modified", `${previousName}${name !== previousName ? ` → ${name}` : ""}${note ? ` — ${note}` : ""}`) as unknown as JsonObject;
+    shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values });
+    return ok({ itemId: item.id, name, previousName, changed: Object.keys(values).filter((k) => k !== "detail") }, `${previousName} changed${name !== previousName ? ` → ${name}` : ""}${note ? ` (${note})` : ""}`,
+      null, chip.itemModified(l, previousName, name, note));
+  }
+  if (action === "pledge" || action === "lend") {
+    reject(item.owner_entity_id, `${item.name} belongs to nobody; only an owned thing can be pledged or lent.`);
+    const holder = entityOf(shadow, args.ownerRef, "ownerRef");
+    reject(holder.id !== item.owner_entity_id, `${item.name} already belongs to ${holder.name}.`);
+    reject(item.equipped_entity_id === null, `${item.name} is equipped by ${ownerName(shadow, item)}.`, "Unequip it first (item unequip).");
+    reject(item.quantity > 0, `${item.name} is gone.`);
+    const condition = str(args.condition);
+    const detail: ItemDetail = { ...itemDetail(item), status: action === "pledge" ? "pledged" : "lent", holderId: holder.id, condition };
+    shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { storage_id: shadow.storageFor(holder).id,
+      detail: withHistory(detail, shadow.worldMinutes, action === "pledge" ? "pledged" : "lent", `${holder.name}${condition ? ` — ${condition}` : ""}`) as unknown as JsonObject } });
+    return ok({ itemId: item.id, name: item.name, owner: ownerName(shadow, item), holder: holder.name, status: detail.status ?? null, condition: condition || null },
+      `${item.name} ${action === "pledge" ? "pledged" : "lent"} to ${holder.name}${condition ? ` (${condition})` : ""}; ${ownerName(shadow, item)} keeps the title`,
+      null, chip.itemPledged(l, action === "pledge" ? "pledge" : "loan", item.name, holder.name, condition));
   }
   if (action === "equip") {
     reject(item.owner_entity_id, `${item.name} lies in ${ownerName(shadow, item)}; only an owned item can be equipped.`);
+    reject(!itemDetail(item).status, `${item.name} is ${itemDetail(item).status} (with ${holderName(itemDetail(item)) ?? "someone"}); it must come back first.`);
     let owner = shadow.entity(item.owner_entity_id)!;
     reject(item.quantity > 0, `${item.name} is used up.`);
     if (!owner.equipment_slots.length && ["player", "companion", "npc"].includes(owner.kind)) {
@@ -526,12 +675,13 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision,
       values: { equipped_entity_id: owner.id, equipped_slot: slot.id, storage_id: shadow.storageFor(owner).id } });
     return ok({ itemId: item.id, name: item.name, owner: owner.name, slot: slot.id, unequipped: occupant?.name ?? null },
-      `${owner.name} equips ${item.name} (${slot.label})`);
+      `${owner.name} equips ${item.name} (${slot.label})`, null, chip.itemEquipped(l, owner.name, isHero(owner), item.name, slot.label));
   }
   if (action === "unequip") {
     reject(item.equipped_entity_id, `${item.name} is not equipped.`);
     shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { equipped_entity_id: null, equipped_slot: null } });
-    return ok({ itemId: item.id, name: item.name }, `${ownerName(shadow, item)} puts away ${item.name}`);
+    return ok({ itemId: item.id, name: item.name }, `${ownerName(shadow, item)} takes off ${item.name} (it stays in the inventory)`,
+      null, chip.itemUnequipped(l, ownerName(shadow, item), isHero(owner), item.name));
   }
   reject(action === "split", `Unknown item action "${action}".`);
   const quantity = int(args.quantity);
@@ -541,9 +691,9 @@ function itemTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
   shadow.apply({ family: "items", id: item.id, expectedRevision: item.revision, values: { quantity: item.quantity - quantity } });
   shadow.apply({ family: "items", id, expectedRevision: null, values: { name: item.name, category: item.category, quantity,
     description: item.description, mechanics: item.mechanics, owner_entity_id: item.owner_entity_id, storage_id: item.storage_id,
-    equipped_entity_id: null, equipped_slot: null } });
+    equipped_entity_id: null, equipped_slot: null, detail: {} } });
   shadow.bindLocalKey(key, { family: "items", id });
-  return ok({ itemId: id, localKey: key, name: item.name, quantity }, `${item.name} split: ${quantity} set aside`);
+  return ok({ itemId: id, localKey: key, name: item.name, quantity }, `${item.name} split: ${quantity} set aside`, null, chip.itemSplit(l, item.name, quantity));
 }
 
 // --- money -----------------------------------------------------------------
@@ -557,10 +707,11 @@ function mintMoney(shadow: ShadowState, amount: number, ctx: ToolContext, what: 
 }
 function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
-  const { label, key } = currencyKey(args.currency);
+  const { label, key } = currencyKey(shadow, args.currency);
   const amount = int(args.amount);
   reject(amount !== null && amount >= 1 && amount <= L.maxMoneyPerCall, `amount must be between 1 and ${L.maxMoneyPerCall}.`);
   const fmt = (n: number) => `${n} ${label}`;
+  const sum = currencyAmount(ctx.language, amount, label);
   if (action === "transfer") {
     const from = entityOf(shadow, args.fromRef, "fromRef");
     const to = entityOf(shadow, args.toRef, "toRef");
@@ -581,7 +732,8 @@ function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     }
     return ok({ currency: label, amount, from: from.name, to: to.name, fromBalance: have - amount, toBalance: moneyOf(toNow, key),
       ...(settled ? { settlesQuest: settled.title, note: `This payment counts as the reward of "${settled.title}"; it will not be paid again.` } : openJobHint(shadow, from, to)) },
-      `${from.name} pays ${to.name} ${fmt(amount)}${settled ? ` (reward for "${settled.title}")` : ""}`);
+      `${from.name} pays ${to.name} ${fmt(amount)}${settled ? ` (reward for "${settled.title}")` : ""}`,
+      null, chip.moneyPaid(ctx.language, sum, from.name, isHero(from), to.name, isHero(to), settled ? settled.title : null));
   }
   if (action === "grant") {
     const to = entityOf(shadow, args.toRef, "toRef");
@@ -596,18 +748,20 @@ function moneyTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     }
     mintMoney(shadow, amount, ctx, "money grant");
     setResources(shadow, to, { ...to.resources, [key]: moneyOf(to, key) + amount });
-    return ok({ currency: label, amount, to: to.name, balance: moneyOf(shadow.entity(to.id)!, key), reason }, `${to.name} receives ${fmt(amount)} (${reason})`);
+    return ok({ currency: label, amount, to: to.name, balance: moneyOf(shadow.entity(to.id)!, key), reason }, `${to.name} receives ${fmt(amount)} (${reason})`,
+      null, chip.moneyReceived(ctx.language, sum, to.name, isHero(to), reason));
   }
   reject(action === "spend", `Unknown money action "${action}".`);
   const from = entityOf(shadow, args.fromRef, "fromRef");
   const have = moneyOf(from, key);
   reject(have >= amount, `Not enough ${label}: ${from.name} has ${have}, this costs ${amount}.`);
   setResources(shadow, from, { ...from.resources, [key]: have - amount });
-  return ok({ currency: label, amount, from: from.name, balance: have - amount, reason: str(args.reason) }, `${from.name} spends ${fmt(amount)}${args.reason ? ` (${str(args.reason)})` : ""}`);
+  return ok({ currency: label, amount, from: from.name, balance: have - amount, reason: str(args.reason) }, `${from.name} spends ${fmt(amount)}${args.reason ? ` (${str(args.reason)})` : ""}`,
+    null, chip.moneySpent(ctx.language, sum, from.name, isHero(from), str(args.reason)));
 }
 
 // --- resource --------------------------------------------------------------
-function resourceTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+function resourceTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const actor = entityOf(shadow, args.actorRef, "actorRef");
   const name = str(args.resource).toLowerCase();
   const delta = int(args.delta), set = int(args.set), max = int(args.max);
@@ -620,8 +774,11 @@ function resourceTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     let next = set ?? current + (delta ?? 0);
     next = Math.max(0, Math.min(maxHp, next));
     shadow.apply(entityChange(shadow, actor, { hp: next, max_hp: maxHp }));
+    const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+    // The hero's and the party's hit points are the player's business; an NPC's stay with the DM.
+    const player = controlled.has(actor.id) && (current !== next || max !== null) ? chip.hp(ctx.language, actor.name, isHero(actor), current, next, maxHp, reason) : null;
     return ok({ actor: actor.name, resource: "hp", before: current, after: next, max: maxHp, reason },
-      `${actor.name}: HP ${current} → ${next}/${maxHp} (${reason})`);
+      `${actor.name}: HP ${current} → ${next}/${maxHp} (${reason})`, null, player);
   }
   reject(/^[a-z][a-z0-9_ -]{0,59}$/.test(name), "Counter names are lowercase words or identifiers.");
   const key = name.replace(/[\s-]+/g, "_");
@@ -635,8 +792,11 @@ function resourceTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   if (cap !== null) { next = Math.min(next, cap); resources[`${key}_max`] = cap; }
   resources[key] = next;
   setResources(shadow, actor, resources);
+  const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+  const player = controlled.has(actor.id) && !name.startsWith("currency_") && !name.endsWith("_min") && !name.endsWith("_max")
+    ? chip.counter(ctx.language, actor.name, isHero(actor), name, current, next, cap, reason) : null;
   return ok({ actor: actor.name, resource: name, before: current, after: next, max: cap, reason },
-    `${actor.name}: ${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`);
+    `${actor.name}: ${name} ${current} → ${next}${cap !== null ? `/${cap}` : ""} (${reason})`, null, player);
 }
 
 // --- quests ----------------------------------------------------------------
@@ -654,13 +814,12 @@ function parseReward(shadow: ShadowState, value: unknown, issuerId: string | nul
   const terms: RewardTerms = { currency: null, amount: null, items: [], note: raw.note === undefined ? null : str(raw.note), issuerId, paidOperationId: null };
   if (raw.currency !== undefined || raw.amount !== undefined) {
     reject(raw.currency !== undefined && raw.amount !== undefined, "A money reward needs both currency and amount.");
-    terms.currency = currencyKey(raw.currency).label;
+    terms.currency = currencyKey(shadow, raw.currency).label;
     terms.amount = int(raw.amount);
   }
   for (const item of (raw.items as { name: unknown; category: unknown; quantity: unknown; properties?: unknown }[] | undefined) ?? [])
     terms.items.push({ name: str(item.name), category: str(item.category), quantity: int(item.quantity) ?? 1, properties: str(item.properties ?? "") });
   if (terms.currency === null && !terms.items.length && !terms.note) return null;
-  void shadow;
   return terms;
 }
 function rewardText(terms: RewardTerms | null): string {
@@ -719,7 +878,7 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     if (terms) shadow.setPrivate("fact", `quest_reward_${id}`, JSON.stringify(terms));
     const noun = kind === "quest" ? "Quest taken" : kind === "thread" ? "Thread opened" : kind === "debt" ? "Debt recorded" : kind === "promise" ? "Promise recorded" : "Main arc set";
     return ok({ id, localKey: key, title, kind, status: "open", reward: reward || null, issuer: issuer?.name ?? null },
-      `${noun}: ${title}${reward ? ` (reward: ${reward})` : ""}`);
+      `${noun}: ${title}${reward ? ` (reward: ${reward})` : ""}`, null, chip.questCreated(ctx.language, kind, title, reward || null));
   }
   const quest = questOf(shadow, args.questRef, "questRef");
   if (action === "update") {
@@ -748,29 +907,39 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
       if (terms) shadow.setPrivate("fact", `quest_reward_${quest.id}`, JSON.stringify(terms));
     }
     if (Object.keys(values).length) shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values });
-    return ok({ id: quest.id, title: (values.title as string) ?? quest.title }, `${(quest.kind ?? "quest") === "quest" ? "Quest" : "Journal"} updated: ${(values.title as string) ?? quest.title}`);
+    return ok({ id: quest.id, title: (values.title as string) ?? quest.title }, `${(quest.kind ?? "quest") === "quest" ? "Quest" : "Journal"} updated: ${(values.title as string) ?? quest.title}`,
+      null, Object.keys(values).length ? chip.questUpdated(ctx.language, quest.kind ?? "quest", (values.title as string) ?? quest.title) : null);
   }
   if (action === "complete" || action === "fail") {
+    // complete after claim_reward in the same message: the claim already closed it (item 10).
+    const closedThisTurn = quest.status === "complete" && action === "complete" && shadow.changesInOrder().some((change) => change.family === "quests" && change.id === quest.id && change.values.status === "complete");
+    if (closedThisTurn) return ok({ id: quest.id, title: quest.title, status: "complete", alreadyClosed: true }, `Quest already completed this turn: ${quest.title}`);
     reject(quest.status === "open", `"${quest.title}" is already ${quest.status}.`);
     const status = action === "complete" ? "complete" : "archived";
     shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values: { status,
       ...(action === "fail" ? { description: `${quest.description}\nFailed.` } : {}) } });
     const noun = (quest.kind ?? "quest") === "quest" ? "Quest" : quest.kind === "arc" ? "Main arc" : quest.kind === "thread" ? "Thread" : quest.kind === "debt" ? "Debt" : "Promise";
-    return ok({ id: quest.id, title: quest.title, status }, `${noun} ${action === "complete" ? (quest.kind === "debt" || quest.kind === "promise" ? "settled" : quest.kind === "thread" ? "closed" : "completed") : "failed"}: ${quest.title}`);
+    return ok({ id: quest.id, title: quest.title, status }, `${noun} ${action === "complete" ? (quest.kind === "debt" || quest.kind === "promise" ? "settled" : quest.kind === "thread" ? "closed" : "completed") : "failed"}: ${quest.title}`,
+      null, chip.questClosed(ctx.language, quest.kind ?? "quest", quest.title, action === "fail"));
   }
   reject(action === "claim_reward", `Unknown quest action "${action}".`);
   reject((quest.kind ?? "quest") === "quest", `"${quest.title}" is a ${quest.kind}; only a quest pays a reward.`);
-  reject(quest.status === "complete", `"${quest.title}" is ${quest.status}; complete it before paying the reward.`);
+  reject(quest.status === "open" || quest.status === "complete", `"${quest.title}" is ${quest.status}; it pays no reward.`);
   const terms = rewardTerms(shadow, quest);
   reject(terms, `"${quest.title}" has no recorded reward terms.`, "If a reward was agreed in play, add it with quest update first.");
   reject(!terms.paidOperationId, `The reward of "${quest.title}" was already paid.`, "Refuse a second payment in character.");
   const recipient = args.recipientRef !== undefined ? entityOf(shadow, args.recipientRef, "recipientRef") : shadow.hero();
   const paid: JsonObject = { quest: quest.title, recipient: recipient.name };
+  // Paying the reward of an open quest completes it (complete and claim_reward in one message, either order).
+  if (quest.status === "open") {
+    shadow.apply({ family: "quests", id: quest.id, expectedRevision: quest.revision, values: { status: "complete" } });
+    paid.completed = true;
+  }
   reject(shadow.counters.itemsCreated + terms.items.length <= ctx.limits.itemsPerTurn,
     `The reward of "${quest.title}" would exceed the campaign's ${ctx.limits.itemsPerTurn} new items per turn.`,
     "Pay it in a later turn.");
   if (terms.currency && terms.amount) {
-    const { key } = currencyKey(terms.currency);
+    const { key } = currencyKey(shadow, terms.currency);
     const issuer = terms.issuerId ? shadow.entity(terms.issuerId) : null;
     if (issuer && moneyOf(issuer, key) >= terms.amount) {
       setResources(shadow, issuer, { ...issuer.resources, [key]: moneyOf(issuer, key) - terms.amount });
@@ -789,11 +958,14 @@ function questTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRec
     shadow.apply({ family: "items", id, expectedRevision: null, values: { name: item.name,
       category: (ITEM_CATEGORIES as readonly string[]).includes(item.category) ? item.category : "misc",
       quantity: item.quantity, description: `Reward for: ${quest.title}.`, mechanics: item.properties,
-      owner_entity_id: recipient.id, storage_id: storage, equipped_entity_id: null, equipped_slot: null } });
+      owner_entity_id: recipient.id, storage_id: storage, equipped_entity_id: null, equipped_slot: null, detail: {} } });
     return { id, name: item.name, quantity: item.quantity };
   });
   shadow.setPrivate("fact", `quest_reward_${quest.id}`, JSON.stringify({ ...terms, paidOperationId: ctx.input.operationId }));
-  return ok(paid, `${recipient.name} receives the reward for "${quest.title}": ${rewardText(terms)}`);
+  const rewardForPlayer = [terms.currency && terms.amount ? currencyAmount(ctx.language, terms.amount, terms.currency) : null,
+    ...terms.items.map((item) => `${item.name}${item.quantity > 1 ? ` ×${item.quantity}` : ""}`), terms.note].filter(Boolean).join(", ");
+  return ok(paid, `${recipient.name} receives the reward for "${quest.title}": ${rewardText(terms)}${paid.completed ? " (quest completed)" : ""}`,
+    null, chip.rewardPaid(ctx.language, recipient.name, isHero(recipient), quest.title, rewardForPlayer));
 }
 
 // --- rest ------------------------------------------------------------------
@@ -828,8 +1000,10 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
     settings_revision: shadow.snapshot.settings.revision,
     public_outcome: { participants: participants.map((p) => p.name), recovered, consumed, minutes } } });
   const due = dueAfterTime(shadow, before);
+  const heroId = shadow.hero().id;
   return ok({ kind, safe, minutes, recovered, consumed, ...due },
-    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`);
+    `${kind === "long" ? "Long" : "Short"} rest (${minutes} min)${recovered.length ? `: ${recovered.map((r) => `${r.name} ${r.before}→${r.after}`).join(", ")}` : safe ? "" : ", no recovery"}${due.duePlans ? `; ${(due.duePlans as unknown[]).length} plan(s) due` : ""}`,
+    null, chip.rest(ctx.language, kind, minutes, recovered.map((r) => ({ name: String(r.name), before: Number(r.before), after: Number(r.after), hero: participants.find((p) => p.name === r.name)?.id === heroId })), safe));
 }
 
 // --- combat ----------------------------------------------------------------
@@ -852,7 +1026,8 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     const config = shadow.configuration();
     config.presentEntityIds = [...new Set([...config.presentEntityIds, ...participants.map((p) => p.id)])];
     shadow.setConfiguration(config);
-    return ok({ encounterId: id, participants: participants.map((p) => p.name) }, `Combat begins: ${participants.map((p) => p.name).join(", ")}`);
+    return ok({ encounterId: id, participants: participants.map((p) => p.name) }, `Combat begins: ${participants.map((p) => p.name).join(", ")}`,
+      null, chip.combatStart(ctx.language, participants.map((p) => p.name)));
   }
   reject(active, "No encounter is active.", "Start one with combat start.");
   if (action === "position") {
@@ -872,7 +1047,7 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
   reject(outcome.length > 0, "combat end needs an outcome.");
   shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { status: "ended", outcome,
     ...(args.summary !== undefined ? { public_summary: str(args.summary) } : {}) } });
-  return ok({ encounterId: active.id, outcome }, `Combat ends: ${outcome}`);
+  return ok({ encounterId: active.id, outcome }, `Combat ends: ${outcome}`, null, chip.combatEnd(ctx.language, outcome));
 }
 
 // --- holdings --------------------------------------------------------------
@@ -886,7 +1061,7 @@ function holdingDetails(shadow: ShadowState, args: Args, current: HoldingDetails
     passengers: args.passengerRefs !== undefined ? [...new Set((args.passengerRefs as unknown[]).map((ref) => entityOf(shadow, ref, "passengerRefs").id))] : current.passengers,
   };
 }
-function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
+function holdingTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const action = str(args.action);
   if (action === "create") {
     const name = str(args.name);
@@ -902,7 +1077,7 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
         detail: { holding: { kind: "base", description: str(args.description), ...holding } } as unknown as JsonObject } });
       shadow.bindLocalKey(key, { family: "storages", id });
       shadow.setPrivate("fact", `holding_${id}`, JSON.stringify({ kind, name, description: str(args.description) }));
-      return ok({ id, localKey: key, kind, name }, `New base: ${name}`);
+      return ok({ id, localKey: key, kind, name }, `New base: ${name}`, null, chip.holding(ctx.language, kind, name, false));
     }
     const id = shadow.newId(`entity:${key}`);
     reject(!shadow.entity(id), `The local key "${key}" is taken.`);
@@ -910,7 +1085,7 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
       hp: null, max_hp: null, stats: {}, resources: {}, conditions: [], equipment_slots: [], public_profile: { holding } as unknown as JsonObject } });
     shadow.bindLocalKey(key, { family: "entities", id });
     shadow.storageFor(shadow.entity(id)!);
-    return ok({ id, localKey: key, kind, name }, `New ${kind}: ${name}`);
+    return ok({ id, localKey: key, kind, name }, `New ${kind}: ${name}`, null, chip.holding(ctx.language, kind, name, false));
   }
   const ref = shadow.resolve(args.holdingRef, ["entities", "storages"], "holdingRef");
   if (ref.family === "storages") {
@@ -927,7 +1102,7 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
       return ok({ id: storage.id, name: str(args.name) || storage.name }, `${str(args.name) || storage.name} updated`);
     }
     shadow.setPrivate("fact", `holding_${storage.id}`, JSON.stringify({ removed: true }));
-    return ok({ id: storage.id, removed: true }, `${storage.name} is no longer the party's`);
+    return ok({ id: storage.id, removed: true }, `${storage.name} is no longer the party's`, null, chip.holding(ctx.language, "base", storage.name, true));
   }
   const entity = shadow.entity(ref.id)!;
   reject(entity.kind === "transport" || entity.kind === "mount", `${entity.name} is a ${entity.kind}, not a holding.`);
@@ -944,7 +1119,7 @@ function holdingTool(shadow: ShadowState, args: Args): DmLoopReceiptResult {
   }
   reject(action === "remove", `Unknown holding action "${action}".`);
   shadow.apply(entityChange(shadow, entity, { conditions: [...new Set([...entity.conditions, "lost"])] }));
-  return ok({ id: entity.id, removed: true }, `${entity.name} is lost to the party`);
+  return ok({ id: entity.id, removed: true }, `${entity.name} is lost to the party`, null, chip.holding(ctx.language, entity.kind, entity.name, true));
 }
 
 // --- notes -----------------------------------------------------------------
@@ -968,7 +1143,9 @@ function noteWorld(shadow: ShadowState, args: Args): DmLoopReceiptResult {
     reject(["open", "done", "dropped"].includes(status), "planStatus: open, done or dropped.");
     const goal = args.value !== undefined ? str(args.value) : existing?.goal ?? "";
     reject(goal.length > 0 && goal.length <= 2000, "A plan needs its goal and steps as value (up to 2000 characters).");
-    const actorId = args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef").id : existing?.actorId ?? null;
+    // Item 21: a plan that belongs to nobody (weather, the tide, the law) names "world".
+    const worldActor = args.actorRef !== undefined && /^(the )?(world|мир|никто|nobody)$/i.test(str(args.actorRef));
+    const actorId = worldActor ? null : args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef").id : existing?.actorId ?? null;
     const due = args.dueInMinutes !== undefined ? shadow.worldMinutes + (int(args.dueInMinutes) ?? 0)
       : existing && (args.planStatus === undefined || status === "open") && existing.status === "open" ? existing.dueWorldMinutes : shadow.worldMinutes;
     reject(status !== "open" || args.dueInMinutes !== undefined || (existing !== null && existing.status === "open"),
@@ -1078,7 +1255,24 @@ function noteCharacter(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoo
 }
 
 // --- finish ----------------------------------------------------------------
-function finishTurn(shadow: ShadowState, args: Args): { result: DmLoopReceiptResult; meta: DmLoopMeta } {
+/** «Твой момент» (polish): accepted only when this turn holds a resolved,
+ * successful player-visible check of a controlled character and the scene is
+ * tense or a climax (the server's tension, the DM's own hint for the next turn
+ * or an active encounter). Returns the moment's reason or why it was refused. */
+export function playerMomentGate(shadow: ShadowState, ctx: ToolContext, nextTension: DmLoopTension | null): { accepted: boolean; reason: string } {
+  const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+  const checks = ctx.checks.filter((check) => check.visibility === "player" && controlled.has(check.actorId));
+  if (!checks.length) return { accepted: false, reason: "no player-visible roll was resolved this turn" };
+  const won = [...checks].reverse().find((check) => check.success);
+  if (!won) return { accepted: false, reason: "the hero's roll failed; a failure is never handed over as a moment" };
+  const tense = ctx.tension !== "calm" || (nextTension !== null && nextTension !== "calm") || shadow.runtime.encounters.some((row) => row.status === "active");
+  if (!tense) return { accepted: false, reason: "the scene is calm; a moment belongs to a tense or climactic scene" };
+  const receipt = ctx.receipts.find((row) => row.result.ok && row.call.name === "roll" && row.result.value.checkId === won.id);
+  const reason = receipt && receipt.result.ok ? str(receipt.result.value.reason) : "";
+  return { accepted: true, reason: reason || (ctx.language === "ru" ? "решающий бросок" : "the decisive roll") };
+}
+
+function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result: DmLoopReceiptResult; meta: DmLoopMeta } {
   const spotlight = ((args.spotlight as unknown[]) ?? []).flatMap((ref) => {
     try { return [shadow.resolve(ref, ["entities"], "spotlight").id]; } catch { return []; }
   });
@@ -1086,11 +1280,15 @@ function finishTurn(shadow: ShadowState, args: Args): { result: DmLoopReceiptRes
     try { return [shadow.resolve(ref, ["quests"], "threadRefs").id]; } catch { return []; }
   });
   const tension = args.nextTension !== undefined && (TENSION_CLASSES as readonly string[]).includes(str(args.nextTension)) ? str(args.nextTension) as DmLoopTension : null;
+  const gate = args.playerMoment ? playerMomentGate(shadow, ctx, tension) : null;
+  const moment = !!gate?.accepted;
   const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)],
-    playerMoment: !!args.playerMoment, nextTension: tension, threads: [...new Set(threads)],
+    playerMoment: moment, playerMomentReason: moment ? gate!.reason : null, nextTension: tension, threads: [...new Set(threads)],
     playerLikes: args.playerLikes !== undefined ? str(args.playerLikes) || null : null, npcRefused: !!args.npcRefused };
   shadow.finished = true;
-  return { result: ok({ recorded: true, playerMoment: meta.playerMoment }, meta.playerMoment ? "Your moment: describe how you do it" : "Turn recorded"), meta };
+  const value: JsonObject = { recorded: true, playerMoment: moment,
+    ...(gate && !gate.accepted ? { playerMomentRefused: `playerMoment was not accepted: ${gate.reason}. The turn is recorded without it; the player simply writes the next action.` } : {}) };
+  return { result: ok(value, moment ? `Your moment: ${gate!.reason}` : gate ? `Turn recorded (player moment refused: ${gate.reason})` : "Turn recorded"), meta };
 }
 
 export type ExecutedTool = { result: DmLoopReceiptResult; meta?: DmLoopMeta };
@@ -1108,19 +1306,19 @@ export function executeDmLoopTool(shadow: ShadowState, call: DmLoopToolCall, ctx
       case "roll": executed = { result: roll(candidate, args, ctx) }; break;
       case "query_state": executed = { result: queryState(candidate, args) }; break;
       case "upsert_character": executed = { result: upsertCharacter(candidate, args, ctx) }; break;
-      case "upsert_place": executed = { result: upsertPlace(candidate, args) }; break;
+      case "upsert_place": executed = { result: upsertPlace(candidate, args, ctx) }; break;
       case "move_party": executed = { result: moveParty(candidate, args, ctx) }; break;
       case "item": executed = { result: itemTool(candidate, args, ctx) }; break;
       case "money": executed = { result: moneyTool(candidate, args, ctx) }; break;
-      case "resource": executed = { result: resourceTool(candidate, args) }; break;
+      case "resource": executed = { result: resourceTool(candidate, args, ctx) }; break;
       case "quest": executed = { result: questTool(candidate, args, ctx) }; break;
       case "advance_time": executed = { result: advanceTime(candidate, args, ctx) }; break;
       case "rest": executed = { result: restTool(candidate, args, ctx) }; break;
       case "note_character": executed = { result: noteCharacter(candidate, args, ctx) }; break;
       case "note_world": executed = { result: noteWorld(candidate, args) }; break;
       case "combat": executed = { result: combatTool(candidate, args, ctx) }; break;
-      case "holding": executed = { result: holdingTool(candidate, args) }; break;
-      case "finish_turn": executed = finishTurn(candidate, args); break;
+      case "holding": executed = { result: holdingTool(candidate, args, ctx) }; break;
+      case "finish_turn": executed = finishTurn(candidate, args, ctx); break;
       default: throw new ToolReject(`Unknown tool "${call.name}".`);
     }
     shadow.adopt(candidate);

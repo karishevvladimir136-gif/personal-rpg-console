@@ -33,6 +33,9 @@ export type PublicProfile = {
   homePlaceId?: string;
   /** Holding details of a transport, base or mount. */
   holding?: { features: { name: string; description: string }[]; armament: string; passengers: string[] };
+  /** Polish: recorded by the DM ahead of the story; the hero has not met them yet,
+   * so the player's screens keep them out until the narration names them. */
+  unmet?: boolean;
 };
 export type Preferences = Revision & {
   language: Language;
@@ -102,11 +105,23 @@ export type Item = ScopedRow & {
   equipped_slot: string | null;
   /** Stage 4 (#13): significance of the item, when the DM set it. */
   rarity?: "common" | "relic" | "magic" | "story" | null;
+  /** Polish item 20: where a thing went and what happened to it — pledged or
+   * lent (the owner keeps title, the holder has it), lost, and its history. */
+  detail?: ItemDetail;
+};
+export type ItemDetail = {
+  status?: "pledged" | "lent" | "lost";
+  holderId?: string;
+  condition?: string;
+  note?: string;
+  history?: { at: number; event: string; note: string }[];
 };
 export type Session = ScopedRow & {
   title: string;
   status: "open" | "closed";
   recap: string;
+  /** Polish item 11: the closing stinger «Тем временем…» the digest wrote (empty until then). */
+  stinger?: string;
 };
 export type Scene = ScopedRow & {
   sequence: number;

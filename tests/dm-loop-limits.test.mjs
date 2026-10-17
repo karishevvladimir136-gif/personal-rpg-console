@@ -150,7 +150,9 @@ test("Astra's finish_turn round is folded into the final bookkeeping message; Op
     assert.equal(row.checkpoint.dmLoop.requests, 1, "no finish_turn round");
     assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "implicit_finish" && d.calls === 3));
     const miller = (await c.state()).entities.find((row) => row.name === "Oswin the miller");
-    assert.deepEqual(row.checkpoint.dmLoop.meta, { sceneKinds: [], spotlight: [miller.id], playerMoment: false });
+    // Polish: the implicit meta carries the moment's reason (none) and the people the hero met this turn.
+    assert.deepEqual(row.checkpoint.dmLoop.meta, { sceneKinds: [], spotlight: [miller.id], playerMoment: false, playerMomentReason: null,
+      met: [{ id: miller.id, name: "Oswin the miller", player: "New person: Oswin the miller" }] });
     assert.equal(folded.model.rounds.length, 1, "the scripted finish_turn round was never requested");
     // A bookkeeping message without time keeps the conversation open; a round with a deciding call too.
     const open = await c.turn("I buy a loaf.", [

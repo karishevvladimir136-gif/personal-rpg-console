@@ -58,7 +58,7 @@ async function turnText(campaignId: string, operationId: string): Promise<{ text
   const unsubscribe = subscribeLiveTurn(operationId, (event) => {
     if (event.type === "text") text += event.text;
     else if (event.type === "tool") changes.push({ name: event.name, ok: event.ok, summary: event.summary });
-    else if (event.status !== "generating") finished = true;
+    else if (event.type === "status" && event.status !== "generating") finished = true;
   });
   unsubscribe();
   if (!text.trim()) {

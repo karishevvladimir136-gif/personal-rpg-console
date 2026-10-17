@@ -9,8 +9,9 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 
 | Group | State | Notes |
 | --- | --- | --- |
-| 0 — session start, merge, baseline | done | fix-branch test `tests/dm-craft-server-payload.test.mjs` passes; baseline typecheck pass, lint pass (0 warnings); full suite running at group 0 push (result recorded below when known) |
-| 1 — correctness of the turn and the records | next | |
+| 0 — session start, merge, baseline | done | fix-branch test `tests/dm-craft-server-payload.test.mjs` passes; baseline typecheck pass, lint pass (0 warnings); the baseline suite run overlapped with the first group-1 edits (see below) |
+| 1 — correctness of the turn and the records | done | migration `202610170057_polish_records.sql`; `tests/polish-group1.test.mjs` (11 tests); `docs/TURN_LOOP.md` §11. Not done here: the roll card wording and bonuses (group 2), the chip collapse and layout (group 6), pledged items greyed on the inventory (group 8) |
+| 2 — rolls | next | |
 | 2 — rolls | pending | |
 | 3 — speed and cost | pending | paid: cache/depth measurement (30-turn Russian replay) — not started |
 | 4 — DM craft doctrine (pending versions) | pending | |
@@ -25,7 +26,10 @@ Never repeat a paid step marked done below (its record is in `docs/runs/polish-*
 ## Baseline (integration + fix branch, before any polish change)
 
 - typecheck: pass. lint: pass, zero warnings.
-- full suite `node --test --test-concurrency=2 tests/*.test.mjs`: (filled in when the background run ends).
+- full suite `node --test --test-concurrency=2 tests/*.test.mjs`: the run started at group 0 overlapped with the first
+  group-1 edits (tests read the migrations folder and the sources live), so its 18 failures are not a baseline: 17 came from
+  half-applied polish changes, 1 is the known environment failure (`universal-bootstrap-sql`, the CRLF checksum of migration 30).
+  The integration branch's own final result stands as the baseline: 2489 tests, 2461 pass, 1 environment failure, 27 skipped.
 
 ## Paid calls log
 

@@ -542,3 +542,55 @@
     visibility: hidden;
   }
 }
+
+/* Polish item 11: the session's end — the chapter title, «Ранее в…», the open leads and the stinger. */
+.sessionEnd {
+  display: grid;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--leather-2), var(--leather));
+}
+.sessionWait {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--brass-hi);
+  font-family: var(--f-display);
+  font-size: 17px;
+}
+.sessionChapter {
+  display: grid;
+  gap: 2px;
+}
+.sessionTitle {
+  font-family: var(--f-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--brass-hi);
+}
+.sessionRecap,
+.sessionStinger {
+  display: grid;
+  gap: 6px;
+}
+.sessionStinger {
+  padding: 10px 12px;
+  border-left: 2px solid var(--brass);
+  background: rgba(207, 168, 96, 0.06);
+}
+.sessionProse {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+.sessionLeads {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}

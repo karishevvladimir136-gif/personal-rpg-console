@@ -19,6 +19,8 @@ export type SessionDigest = {
   notebook: string;
   plans: { key: string; value: string }[];
   playerLikes: string | null;
+  /** Polish item 11: the closing stinger «Тем временем…» — one beat elsewhere, from an open plan. */
+  stinger: string;
 };
 
 export type DigestSession = { id: string; title: string; scenes: { role: string; body: string }[]; startWorldMinutes: number | null; endWorldMinutes: number };
@@ -29,9 +31,10 @@ const DIGEST_INSTRUCTIONS = `Between sessions. The session below has just ended.
   "title": "a chapter title for this session in the campaign language (2–6 words)",
   "notebook": "your private prep notebook for the next session, in the campaign language, up to 1500 characters: (1) what engaged the player this session; (2) two or three situations ready to offer next time — situations, not plot, no rails; (3) seeds planted earlier that are ripe now; (4) companions, threads, debts or promises that have not sounded for a while and deserve a scene",
   "plans": [ { "key": "plan_<existing or new key>", "actorId": "<entity ID or null>", "goal": "the plan and its next steps in a few lines", "dueWorldMinutes": <absolute game minute of the next step>, "consequence": "what lands if nobody interferes", "warning": "the fair warning the hero may notice, or empty", "status": "open|done|dropped" } ],
-  "playerLikes": "a refreshed one-paragraph note on what the player enjoys, or null to keep the current note"
+  "playerLikes": "a refreshed one-paragraph note on what the player enjoys, or null to keep the current note",
+  "stinger": "«Meanwhile…»: 3–6 sentences in the campaign language, a closing beat the player reads after the session — one scene elsewhere, built from an open off-screen plan whose warning the hero has not seen yet; it points at what is coming without revealing a secret, naming a hidden fact or deciding an outcome; written as story, no headings; empty string when no open plan fits"
 }
-Rules: advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap or title.`;
+Rules: advance the off-screen plans only for the game time that passed in this session (from its first to its last scene); the player's real-world absence moves nothing. Keep each person consistent with their Character Model. Plans you do not change may be omitted. Never put a secret into recap, title or stinger. End the session on a clear beat: the recap says where things stand, the stinger shows the world moving.`;
 
 export function buildDigestRequest(source: RuntimeSource, session: DigestSession, effort: DmEffort): { system: DmSystemBlock[]; messages: DmMessage[]; effort: DmEffort; tokens: number } {
   // The same cached layers a turn uses (how to run, the world, the dossier); the
@@ -80,7 +83,8 @@ export function parseDigest(text: string, source: RuntimeSource, nowMinutes: num
       consequence: str(p.consequence, 400) || previous?.consequence || "", warning: str(p.warning, 400) || previous?.warning || "", status };
     plans.push({ key, value: serializePlan(plan) });
   }
-  return { recap, title, notebook, plans, playerLikes: typeof value.playerLikes === "string" && value.playerLikes.trim() ? value.playerLikes.trim().slice(0, 2000) : null };
+  return { recap, title, notebook, plans, playerLikes: typeof value.playerLikes === "string" && value.playerLikes.trim() ? value.playerLikes.trim().slice(0, 2000) : null,
+    stinger: str(value.stinger, 2000) };
 }
 
 /** Runs the digest request on the model and returns the parsed digest with the usage. */

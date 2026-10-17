@@ -316,7 +316,7 @@
   "Trust is something you build along the road.": "Доверие обретают в пути.",
   "Human · Warlock · Level 3": "Человек · Колдун · Уровень 3",
   "A private detective, 32. Still asking questions.": "Частный детектив, 32 года. Всё ещё задаёт вопросы.",
-  "Close": "Близкий",
+  "Close": "Закрыть",
   "A familiar presence in an unfamiliar world. He recognized something about the letter’s seal.": "Знакомое лицо в незнакомом мире. Что-то в печати на письме показалось ему знакомым.",
   "Goran": "Горан",
   "Friendly": "Дружелюбный",
@@ -1925,5 +1925,10 @@
   "Misc": "Разное",
   "Miscellaneous": "Разное",
   "Treasure": "Сокровища",
-  "Trinket": "Безделушки"
+  "Trinket": "Безделушки",
+  "Pending versions": "Версии на одобрение",
+  "Review and approve": "Посмотреть и одобрить",
+  "What changes:": "Что меняется:",
+  "These versions were written for you and wait for your approval. Approving one makes it the version the DM plays by.": "Эти версии написаны для вас и ждут одобрения. Одобренная версия становится той, по которой играет ведущий.",
+  "Nothing is waiting for approval.": "На одобрение ничего не ждёт."
 }
