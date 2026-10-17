@@ -16,6 +16,16 @@
       "what": "reference run A (19-polish-ru-replay)",
       "startedAt": "2026-10-17T18:21:46.454Z",
       "reservedUsd": 9,
+      "spentUsd": 7.765,
+      "settled": true,
+      "finishedAt": "2026-10-17T18:53:33.913Z",
+      "record": "docs/runs/dmarch-20261017-182146-reference-A.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-190822-scenes",
+      "what": "scene branches BCD × 8 scenes (24 pairs)",
+      "startedAt": "2026-10-17T19:08:22.063Z",
+      "reservedUsd": 13,
       "spentUsd": 0,
       "settled": false
     }
