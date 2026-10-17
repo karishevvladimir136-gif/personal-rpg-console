@@ -1,5 +1,28 @@
 # Development status
 
+**Current stage:** Polish 2 (`docs/stages/POLISH_2.md`) — **done on `claude/polish-2`, waiting for the owner's review,
+the blind page verdict and the session 2 sandbox play.** Branch from `claude/polish` with `claude/picture-models` merged
+first; six parts in the spec's order, each with its own test file (`tests/polish2-pictures`, `-director`, `-cache`,
+`-opening`, `-followups`; 27 tests) and its section in the docs (`docs/stages/STAGE_V.md` §9–§10, `docs/TURN_LOOP.md`
+§19–§21, `docs/SPEED.md` §8); migrations 64–67 (additive). The owner report is `docs/runs/polish2-report.md` («Needs the
+owner» lists the decisions left open); the resume notes `docs/runs/polish2-progress.md`. Final checks: typecheck pass,
+lint pass (zero warnings), build pass, the full suite on the merge commit green (2557 tests, 2530 pass, 27 skipped), the
+full suite on the final code FINAL_SUITE_RESULT, the loop fake bench green (21 scenarios), 48 + 16 screenshots with zero
+overflow, a 20-turn live Russian replay on Opus 5.5 high and a 59-frame picture proof. Paid: $3.09 of the $10 picture cap,
+$3.99 of the $15 turn-loop cap.
+
+**Polish 2 in short (2026-10-17):** the pictures draw on GPT Image 2.5 by the owner's blind picks (Sunburst for anchors,
+key frames and redraws; Flare for live frames, Sunburst as the fallback) with a model per tier in the settings and the
+OpenAI path in the picture job; a shot director writes a visual brief from the whole turn (Claude Sonnet 5.5) with
+editable visual profiles of people and places and a commented «Перерисовать» (the proof's judges prefer today's shot on
+their own yardstick, so the director ships behind a switch, on, and the owner's blind page decides); the conversation's
+history is an append-only cached block (cache writes 46–74% → 8% of the DM's cost, 19 700 → 2 550 tokens a turn, the run
+$4.25 → $3.99); the opening is written by the campaign's DM whichever provider serves it; the small follow-ups — the
+DM-drafted combat profile, the one-click first adventure, quest links to the codex, one «Картинки» page, the drawn atlas,
+the «Что, если» wording, the slot backfill. Not done: the wizard's debt as a journal debt, the `lore` record (reasons in
+the report). The Polish, Integration, Stage 4 and Stage V sections below are each stage's own closing status, kept
+unchanged.
+
 **Current stage:** Polish after the owner's first sandbox play (`docs/stages/POLISH.md`) — **done on `claude/polish`,
 waiting for the owner's review and the next sandbox play.** Branch from `claude/integration` with
 `claude/fix-dm-craft-payload` merged first; ten groups in the spec's order, each with its own test file
