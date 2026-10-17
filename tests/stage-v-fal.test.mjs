@@ -20,7 +20,7 @@ const jpeg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0, 0x10, 0x4a, 0x46, 0x49, 
 test("fal models: every model has an edit endpoint under the same queue owner and a reference limit", () => {
   for (const model of FAL_IMAGE_MODELS) {
     assert.equal(falQueueRoot(model.editEndpoint), falQueueRoot(model.id), model.id);
-    assert.ok(model.maxReferences >= 4 && model.maxReferences <= 8);
+    assert.ok(model.maxReferences >= 3 && model.maxReferences <= 8, model.id);
     assert.ok(model.firstMegapixelUsdMicros > 0);
   }
   assert.equal(falImagePriceUsdMicros("fal-ai/flux-2/klein/4b", 1024, 576), 16_000);

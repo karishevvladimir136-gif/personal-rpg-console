@@ -1,0 +1,6877 @@
+{
+  "capUsd": 20,
+  "totalUsdMicros": 19450008,
+  "note": "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).",
+  "entries": [
+    {
+      "at": "2026-10-17T00:51:33.624Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "anchor-portrait:nb-pro:1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14757-b939-71d2-b2ad-1a315bc7ac25"
+    },
+    {
+      "at": "2026-10-17T00:51:33.673Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-portrait:gpt25s:1",
+      "reservedUsdMicros": 285000,
+      "usdMicros": 53395,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 143,
+        "imageInputTokens": 0,
+        "outputTokens": 1756
+      }
+    },
+    {
+      "at": "2026-10-17T00:51:33.675Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "anchor-portrait:seedream5:1",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a14757-b93e-7052-9c64-1b2307e1df7c"
+    },
+    {
+      "at": "2026-10-17T00:52:30.791Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-figure:gpt25s:9549de:1",
+      "reservedUsdMicros": 328800,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:52:52.278Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "anchor-figure:gpt25s:9549de:2",
+      "reservedUsdMicros": 328800,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.821Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14759-77c9-7140-aadf-196b95a92217"
+    },
+    {
+      "at": "2026-10-17T00:53:27.885Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14759-77dc-75c2-9c59-a20e619f00df"
+    },
+    {
+      "at": "2026-10-17T00:53:27.909Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14759-77c4-7cf2-9158-8c24cfcbe7be"
+    },
+    {
+      "at": "2026-10-17T00:53:27.924Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14759-77cc-71e0-8593-ad4b9b381152"
+    },
+    {
+      "at": "2026-10-17T00:53:27.937Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14759-77cf-74d1-a1ae-c415da13b075"
+    },
+    {
+      "at": "2026-10-17T00:53:27.954Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14759-77d0-76b3-961f-10e7511f8ed2"
+    },
+    {
+      "at": "2026-10-17T00:53:27.968Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14759-77d0-7e23-8b3d-b9713116a7aa"
+    },
+    {
+      "at": "2026-10-17T00:53:27.983Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 138141,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 359,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.987Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:53:27.989Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s1",
+      "reservedUsdMicros": 376800,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:56:33.735Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475c-4e05-7d43-83ec-bc3f44918968"
+    },
+    {
+      "at": "2026-10-17T00:56:33.784Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475c-4e3f-7e52-a43f-3755f8ee3bb1"
+    },
+    {
+      "at": "2026-10-17T00:56:33.816Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475c-4e10-7e30-8b1d-6a33fb8d9e3e"
+    },
+    {
+      "at": "2026-10-17T00:56:33.829Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475c-4e0f-72b2-8364-96d46488f203"
+    },
+    {
+      "at": "2026-10-17T00:56:33.843Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475c-4e14-7d70-8bd8-fc1be81f9320"
+    },
+    {
+      "at": "2026-10-17T00:56:33.858Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-4e0e-7351-bfa9-2e4172d72f31"
+    },
+    {
+      "at": "2026-10-17T00:56:33.874Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1475c-4e13-7341-9e20-d962eab6ef7b"
+    },
+    {
+      "at": "2026-10-17T00:56:33.888Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t1:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138031,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 337,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T00:56:33.892Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:56:33.896Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:56:37.595Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t2:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-5c5c-7ed3-ae72-c76f3f65f930"
+    },
+    {
+      "at": "2026-10-17T00:56:40.964Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t3:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-6970-7582-aa88-64dfe99d4365"
+    },
+    {
+      "at": "2026-10-17T00:56:43.305Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t2:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475c-729b-7ca3-a961-74b96382df05"
+    },
+    {
+      "at": "2026-10-17T00:56:44.240Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t4:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-763b-7441-aacb-ee8257c6a59f"
+    },
+    {
+      "at": "2026-10-17T00:56:47.530Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t5:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-831d-7a41-8caa-ad14fd527d9d"
+    },
+    {
+      "at": "2026-10-17T00:56:49.328Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t2:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475c-8a1d-7941-a515-d9eadfb9446d"
+    },
+    {
+      "at": "2026-10-17T00:56:50.459Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:56:50.865Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t7:compiled:s1",
+      "reservedUsdMicros": 19000,
+      "usdMicros": 17000,
+      "settled": true,
+      "requestId": "01a1475c-900f-7e50-89a7-2cd7f9b4e31f"
+    },
+    {
+      "at": "2026-10-17T00:56:52.357Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t2:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475c-95f7-7751-bdea-1c4880c5f46d"
+    },
+    {
+      "at": "2026-10-17T00:56:52.559Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t3:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475c-96c0-75c2-9ae3-0ce3f0e899ce"
+    },
+    {
+      "at": "2026-10-17T00:56:53.061Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t8:compiled:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1475c-98b1-7152-b1a9-5be7bbc38515"
+    },
+    {
+      "at": "2026-10-17T00:56:58.438Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t2:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475c-adb4-7c52-b084-06353a8f2b72"
+    },
+    {
+      "at": "2026-10-17T00:57:01.264Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:04.028Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t4:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475c-c387-7b32-854c-832907cacecd"
+    },
+    {
+      "at": "2026-10-17T00:57:06.560Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:08.324Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t3:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475c-d452-73e1-9484-cff1c58859e8"
+    },
+    {
+      "at": "2026-10-17T00:57:12.654Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t3:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475c-e541-70a0-8e29-264ad3d715b5"
+    },
+    {
+      "at": "2026-10-17T00:57:16.711Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t5:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475c-f518-7a22-b8d9-5b8f625f6cb4"
+    },
+    {
+      "at": "2026-10-17T00:57:22.034Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_6a973f3799474b06946031ccb652123c. safety_violations=[viole"
+    },
+    {
+      "at": "2026-10-17T00:57:25.155Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t4:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475d-1612-79d2-998e-5b6d46839550"
+    },
+    {
+      "at": "2026-10-17T00:57:27.491Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t7:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475d-1f20-7270-9507-31293c176b1d"
+    },
+    {
+      "at": "2026-10-17T00:57:30.277Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:32.907Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t4:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475d-345a-7953-a3a7-ec6f4a9f0133"
+    },
+    {
+      "at": "2026-10-17T00:57:38.982Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:40.167Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t2:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137836,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 298,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:41.221Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t3:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475d-54d5-7cb1-828c-35553d82f2dc"
+    },
+    {
+      "at": "2026-10-17T00:57:41.780Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t8:compiled:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1475d-5706-7dc2-8774-3d8b364aeb66"
+    },
+    {
+      "at": "2026-10-17T00:57:43.112Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t5:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475d-5c37-71d2-995e-edbf8ffac33b"
+    },
+    {
+      "at": "2026-10-17T00:57:53.213Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t5:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475d-83b0-7f70-b2ff-dce80e7e4325"
+    },
+    {
+      "at": "2026-10-17T00:57:54.945Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:compiled:s1",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:57:59.046Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t7:compiled:s1",
+      "reservedUsdMicros": 45000,
+      "usdMicros": 30000,
+      "settled": true,
+      "requestId": "01a1475d-9a68-7210-b19a-c9f7b94f470c"
+    },
+    {
+      "at": "2026-10-17T00:57:59.296Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t2:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475d-9b6e-7883-a05f-6e50213d2a60"
+    },
+    {
+      "at": "2026-10-17T00:57:59.885Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:58:09.578Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:58:11.618Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t8:compiled:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1475d-cb9b-7f62-8b19-0cefc3d8171e"
+    },
+    {
+      "at": "2026-10-17T00:58:16.338Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t7:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475d-ddee-7311-9342-ee4af5d9ad28"
+    },
+    {
+      "at": "2026-10-17T00:58:18.312Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t4:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475d-e5b7-7d00-864d-12b19b17a012"
+    },
+    {
+      "at": "2026-10-17T00:58:27.121Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:58:39.340Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t8:compiled:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1475e-37dd-7f52-82ac-cc38b68a89f9"
+    },
+    {
+      "at": "2026-10-17T00:58:50.645Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t3:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137876,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 306,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T00:58:54.733Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:compiled:s1",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:58:59.674Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t5:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475e-874e-7363-aaba-829b68200ec6"
+    },
+    {
+      "at": "2026-10-17T00:59:16.860Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T00:59:33.301Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t3:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475f-0ab0-7e51-930b-69adfc0e8e69"
+    },
+    {
+      "at": "2026-10-17T00:59:33.373Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t7:compiled:s1",
+      "reservedUsdMicros": 48000,
+      "usdMicros": 24000,
+      "settled": true,
+      "requestId": "01a1475f-0ae6-7890-a0a3-6a30fffdf242"
+    },
+    {
+      "at": "2026-10-17T01:00:01.071Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t8:compiled:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1475f-7721-7660-a3c0-a41e22fc2298"
+    },
+    {
+      "at": "2026-10-17T01:00:02.646Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t4:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137991,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 329,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:00:27.210Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t2:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1475f-dd39-7123-bd67-ab3cd9e2f0aa"
+    },
+    {
+      "at": "2026-10-17T01:01:01.249Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t4:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14760-6234-7d33-a285-853a0c08b8f3"
+    },
+    {
+      "at": "2026-10-17T01:01:11.160Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t5:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137786,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 288,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:01:32.779Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t3:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14760-dd63-71e3-ad1d-38570d7cc02a"
+    },
+    {
+      "at": "2026-10-17T01:02:29.939Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t7:compiled:s1",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 121110,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:02:47.213Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t4:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14762-0020-7361-90cf-61f7b87c4747"
+    },
+    {
+      "at": "2026-10-17T01:02:59.353Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t5:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14762-2f8b-7681-8a27-9a875a0d89c5"
+    },
+    {
+      "at": "2026-10-17T01:03:28.389Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t7:compiled:s1",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a14762-a0e6-7602-98a0-c22a3ca90d06"
+    },
+    {
+      "at": "2026-10-17T01:03:37.929Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t8:compiled:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138306,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 392,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:04:30.818Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t8:compiled:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14763-94d8-7251-841d-009566acf2c4"
+    },
+    {
+      "at": "2026-10-17T01:04:41.405Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t5:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14763-be36-7e41-b846-2a868fe77cff"
+    },
+    {
+      "at": "2026-10-17T01:06:54.308Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t7:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14765-c54a-7c31-bd2e-070cd2c1dc35"
+    },
+    {
+      "at": "2026-10-17T01:09:12.429Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t8:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14767-e0ee-7b92-998c-f9e1bd4b92dc"
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 900,
+      "usdMicros": 900,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 900,
+      "usdMicros": 900,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T00:59:00.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge calibration on t6 smoke frames (restored: a second process overwrote these entries)",
+      "reservedUsdMicros": 800,
+      "usdMicros": 800,
+      "settled": true,
+      "restored": true
+    },
+    {
+      "at": "2026-10-17T01:11:24.556Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "figure:nb-pro:redraw:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14769-e61c-7880-9165-4227c3d879ef"
+    },
+    {
+      "at": "2026-10-17T01:11:24.628Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "figure:nb2:redraw:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14769-e61c-7090-aac2-b394b0341a10"
+    },
+    {
+      "at": "2026-10-17T01:11:24.669Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "figure:seedream5:redraw:s1",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a14769-e61d-7c71-93cb-7f8efbeb4840"
+    },
+    {
+      "at": "2026-10-17T01:11:24.683Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "figure:flux3:redraw:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 48000,
+      "settled": true,
+      "requestId": "01a14769-e627-7883-a987-e7d84aa82cd1"
+    },
+    {
+      "at": "2026-10-17T01:11:24.710Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "figure:flux2-pro:redraw:s1",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a14769-e653-7562-a318-1fe7ccd11a92"
+    },
+    {
+      "at": "2026-10-17T01:11:24.723Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "figure:klein9b:redraw:s1",
+      "reservedUsdMicros": 21000,
+      "usdMicros": 19000,
+      "settled": true,
+      "requestId": "01a14769-e652-7ec3-a336-d9a3d5b78b3a"
+    },
+    {
+      "at": "2026-10-17T01:11:24.741Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "figure:qwen3:redraw:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14769-e650-7251-819a-2332206cd142"
+    },
+    {
+      "at": "2026-10-17T01:11:24.761Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "figure:gpt2:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 129342,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 212,
+        "imageInputTokens": 1024,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:11:24.767Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "figure:gpt25s:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:11:24.771Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "figure:gpt25f:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.081Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:generic:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1476c-7ffb-7863-9077-50f1becabedf"
+    },
+    {
+      "at": "2026-10-17T01:14:15.129Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:generic:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1476c-8000-70d0-98fe-22f74ad69a32"
+    },
+    {
+      "at": "2026-10-17T01:14:15.148Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:generic:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-7fff-7162-8886-14e61341eb4e"
+    },
+    {
+      "at": "2026-10-17T01:14:15.162Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:generic:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-7ff3-7282-b6d4-47bb39cfc296"
+    },
+    {
+      "at": "2026-10-17T01:14:15.177Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:generic:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1476c-8000-7b93-a727-0f775a25e9d2"
+    },
+    {
+      "at": "2026-10-17T01:14:15.193Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:generic:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1476c-8005-7511-b8a3-793cb00e37af"
+    },
+    {
+      "at": "2026-10-17T01:14:15.211Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:generic:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1476c-8005-72f2-94ef-d527f329e6cb"
+    },
+    {
+      "at": "2026-10-17T01:14:15.232Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137476,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 226,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.237Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46976,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 246,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.240Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46976,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 246,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:18.817Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:generic:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1476c-8dca-7d31-97be-45e6132ade0d"
+    },
+    {
+      "at": "2026-10-17T01:14:25.027Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:generic:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1476c-a606-7172-b0a7-2231ceeae1da"
+    },
+    {
+      "at": "2026-10-17T01:14:30.589Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46931,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 237,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:35.652Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:generic:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1476c-cf93-7cf3-9390-e6e745e179bf"
+    },
+    {
+      "at": "2026-10-17T01:14:36.833Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:generic:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1476c-d425-77b2-b3fb-a111ba9a8904"
+    },
+    {
+      "at": "2026-10-17T01:14:41.852Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46931,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 237,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:42.929Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:generic:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-ebf8-7b91-9657-c5fea1d05ba3"
+    },
+    {
+      "at": "2026-10-17T01:15:22.054Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137431,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 217,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:15:57.073Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:generic:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476e-0d95-7ac1-abe6-b0034f02299d"
+    },
+    {
+      "at": "2026-10-17T01:16:54.515Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:generic:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "timeout",
+      "detail": null
+    },
+    {
+      "at": "2026-10-17T01:21:55.708Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14773-884a-73e3-a46f-bc25f609a561"
+    },
+    {
+      "at": "2026-10-17T01:21:55.832Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-884c-76a0-a01d-c3a02a353ca2"
+    },
+    {
+      "at": "2026-10-17T01:21:55.862Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-884a-73e3-9895-1807a53b79eb"
+    },
+    {
+      "at": "2026-10-17T01:21:55.885Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-884a-7562-b15a-26a8fef559a2"
+    },
+    {
+      "at": "2026-10-17T01:21:55.975Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14773-884c-7fb2-baf0-192ba97aa682"
+    },
+    {
+      "at": "2026-10-17T01:21:56.025Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-884b-7aa3-9558-ea9994916d73"
+    },
+    {
+      "at": "2026-10-17T01:21:56.050Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14773-8855-7d10-8f34-c7b6102319d1"
+    },
+    {
+      "at": "2026-10-17T01:21:56.067Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138031,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 337,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:56.071Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:56.074Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:59.741Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t2:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-9650-79c3-8420-36f36fea1e9e"
+    },
+    {
+      "at": "2026-10-17T01:22:03.283Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t3:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-a41a-7280-8907-0931e045c877"
+    },
+    {
+      "at": "2026-10-17T01:22:06.614Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t4:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-b12c-79d2-8c81-2a3ccb2118c2"
+    },
+    {
+      "at": "2026-10-17T01:22:07.078Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t2:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-b30a-7e60-b346-037151ae42c2"
+    },
+    {
+      "at": "2026-10-17T01:22:09.979Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t5:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-be49-7fa3-a5bc-164a39a1d02d"
+    },
+    {
+      "at": "2026-10-17T01:22:11.856Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:13.765Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t2:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14773-cd0d-7df0-a2b6-79d794bb2c38"
+    },
+    {
+      "at": "2026-10-17T01:22:13.838Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-cd5a-7f11-81d1-31c9516f0267"
+    },
+    {
+      "at": "2026-10-17T01:22:16.559Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t3:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-d801-7251-a687-43f78d90a750"
+    },
+    {
+      "at": "2026-10-17T01:22:17.140Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t7:compiled:s2",
+      "reservedUsdMicros": 19000,
+      "usdMicros": 17000,
+      "settled": true,
+      "requestId": "01a14773-da29-7140-87f4-80c623413f69"
+    },
+    {
+      "at": "2026-10-17T01:22:17.525Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t2:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14773-dbc4-7823-adc7-1f105f40285e"
+    },
+    {
+      "at": "2026-10-17T01:22:18.971Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t8:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-e161-7ac3-8a4c-fc1a2bb4d869"
+    },
+    {
+      "at": "2026-10-17T01:22:23.453Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:25.134Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t2:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-f978-7c83-8a12-7d2eaa10b90a"
+    },
+    {
+      "at": "2026-10-17T01:22:27.385Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t4:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-0243-71b0-9702-9c6442f89e7a"
+    },
+    {
+      "at": "2026-10-17T01:22:27.656Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:30.692Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t3:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-0f2e-7a71-bce0-3893a8b06097"
+    },
+    {
+      "at": "2026-10-17T01:22:38.541Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t5:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-2ddd-7661-ae66-b7692416cd80"
+    },
+    {
+      "at": "2026-10-17T01:22:39.276Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t3:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-30b3-7b70-a533-c99df6dd0e2d"
+    },
+    {
+      "at": "2026-10-17T01:22:43.722Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:47.967Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t4:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 75000,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker."
+    },
+    {
+      "at": "2026-10-17T01:22:49.801Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-59d7-7dd0-b82c-b4d2f3300278"
+    },
+    {
+      "at": "2026-10-17T01:22:52.916Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t3:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-6605-7c13-91ce-7b657e443e5d"
+    },
+    {
+      "at": "2026-10-17T01:22:53.098Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:00.773Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:00.970Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t7:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-855f-7431-b87e-f20b26a505aa"
+    },
+    {
+      "at": "2026-10-17T01:23:02.351Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t4:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-8adc-7f00-8b55-0d8147fe0dee"
+    },
+    {
+      "at": "2026-10-17T01:23:03.163Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t5:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-8e06-7dd0-b85c-d04bde191e72"
+    },
+    {
+      "at": "2026-10-17T01:23:04.111Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137836,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 298,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:13.467Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t8:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-b645-7731-8c1f-0e6d7d1b151a"
+    },
+    {
+      "at": "2026-10-17T01:23:15.420Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:22.118Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-d80d-7111-949d-e1fba7320cb0"
+    },
+    {
+      "at": "2026-10-17T01:23:22.185Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:22.291Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t4:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-d8b7-7a01-a78b-ec194c16eb4b"
+    },
+    {
+      "at": "2026-10-17T01:23:25.336Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t5:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-e4a1-7023-bf95-af9de9a1a6a6"
+    },
+    {
+      "at": "2026-10-17T01:23:27.251Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t2:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-ec24-7130-8120-890c3199d2b9"
+    },
+    {
+      "at": "2026-10-17T01:23:31.585Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:39.241Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t7:compiled:s2",
+      "reservedUsdMicros": 45000,
+      "usdMicros": 30000,
+      "settled": true,
+      "requestId": "01a14775-1ade-78c0-bfac-1e4edc4d5ecc"
+    },
+    {
+      "at": "2026-10-17T01:23:46.154Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:48.203Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:49.926Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t5:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14775-44b0-7282-979d-f2a80a8f1f6f"
+    },
+    {
+      "at": "2026-10-17T01:23:50.323Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t8:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14775-4642-7c63-8ffc-b4f3159c38cd"
+    },
+    {
+      "at": "2026-10-17T01:23:52.911Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-505e-70b1-995a-8d08cf6f87f6"
+    },
+    {
+      "at": "2026-10-17T01:24:04.067Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t2:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14775-7bf1-7921-a7a2-e627b1e7521b"
+    },
+    {
+      "at": "2026-10-17T01:24:14.464Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t7:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-a47b-7ba3-8765-2e0fb6710e5e"
+    },
+    {
+      "at": "2026-10-17T01:24:15.365Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137876,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 306,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:15.695Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:17.362Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14775-afdd-7d42-a985-11b6a1b70abf"
+    },
+    {
+      "at": "2026-10-17T01:24:36.236Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t8:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-f995-7d02-8879-996421714374"
+    },
+    {
+      "at": "2026-10-17T01:24:42.075Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:55.558Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t7:compiled:s2",
+      "reservedUsdMicros": 48000,
+      "usdMicros": 24000,
+      "settled": true,
+      "requestId": "01a14776-44fd-7f60-8f57-c22a2ac51a53"
+    },
+    {
+      "at": "2026-10-17T01:25:07.562Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:25:09.168Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t3:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14776-7a3c-7832-b21b-5eae95a54c8d"
+    },
+    {
+      "at": "2026-10-17T01:25:09.462Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t3:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14776-7b6b-7131-81e7-29c0933e19ba"
+    },
+    {
+      "at": "2026-10-17T01:25:26.206Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t8:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14776-bccd-7262-9b40-f1ea99ec9f73"
+    },
+    {
+      "at": "2026-10-17T01:25:29.459Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137991,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 329,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:25:47.448Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t4:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14777-0fc4-71f1-938f-d52b22da365c"
+    },
+    {
+      "at": "2026-10-17T01:26:31.777Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t4:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14777-bcec-7122-92f9-be4b7c1d6a91"
+    },
+    {
+      "at": "2026-10-17T01:26:39.073Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137786,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 288,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:27:14.112Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t5:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14778-624b-76d3-8c4c-2a094d366838"
+    },
+    {
+      "at": "2026-10-17T01:27:50.842Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138141,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 359,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:28:38.144Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t5:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "timeout",
+      "detail": null
+    },
+    {
+      "at": "2026-10-17T01:28:42.063Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14779-b9de-7870-b2ae-21b77e86c827"
+    },
+    {
+      "at": "2026-10-17T01:28:56.390Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 121110,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:30:01.254Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138306,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 392,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:30:34.492Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t7:compiled:s2",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a1477b-70f8-7a40-a4d7-f81e638069d5"
+    },
+    {
+      "at": "2026-10-17T01:31:41.530Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t8:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1477c-76f0-78b0-aa36-6b34d746f626"
+    },
+    {
+      "at": "2026-10-17T01:33:39.066Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1477e-421d-7a81-ae1b-aba1017ce664"
+    },
+    {
+      "at": "2026-10-17T01:37:38.830Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t7:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14781-ea92-78b0-9adb-c432b1b90ae9"
+    },
+    {
+      "at": "2026-10-17T01:38:49.208Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t8:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14782-fdb4-78e1-b488-b14fd4a1f8a7"
+    },
+    {
+      "at": "2026-10-17T01:40:38.380Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14784-a8ee-7343-b0a1-571323f1ae9b"
+    },
+    {
+      "at": "2026-10-17T01:40:38.431Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14784-a8f8-7270-bed0-183e0632988b"
+    },
+    {
+      "at": "2026-10-17T01:40:38.449Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14784-a8f7-7072-9614-05ebe453613c"
+    },
+    {
+      "at": "2026-10-17T01:40:38.475Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14784-a8fd-7bb0-a5b2-a9a88e7a17bb"
+    },
+    {
+      "at": "2026-10-17T01:40:38.525Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14784-a8f5-77e2-9f45-2ffe17c01145"
+    },
+    {
+      "at": "2026-10-17T01:40:38.540Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-a8eb-7d42-9779-50021c2baba1"
+    },
+    {
+      "at": "2026-10-17T01:40:38.556Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14784-a8f9-7c91-9d6d-a3fab410fe32"
+    },
+    {
+      "at": "2026-10-17T01:40:38.569Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:38.573Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:42.254Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t2:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-b72d-7c32-9ea7-5dab31e790b1"
+    },
+    {
+      "at": "2026-10-17T01:40:45.761Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t3:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-c4d5-72f3-b3ae-2780d8cd7200"
+    },
+    {
+      "at": "2026-10-17T01:40:49.091Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t4:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-d1d5-7a03-9958-c8f01b9305e9"
+    },
+    {
+      "at": "2026-10-17T01:40:49.425Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t2:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14784-d327-7983-9729-0bd316c90521"
+    },
+    {
+      "at": "2026-10-17T01:40:52.422Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t5:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-dee0-7910-898f-ae7cd5befcd3"
+    },
+    {
+      "at": "2026-10-17T01:40:54.693Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:55.801Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t2:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14784-ec10-7dd2-bf62-03f8bc2b35dc"
+    },
+    {
+      "at": "2026-10-17T01:40:55.955Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-ecac-7d32-aa9f-279371893285"
+    },
+    {
+      "at": "2026-10-17T01:40:59.244Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t7:compiled:s3",
+      "reservedUsdMicros": 19000,
+      "usdMicros": 17000,
+      "settled": true,
+      "requestId": "01a14784-f972-7ce2-b891-505a7915704c"
+    },
+    {
+      "at": "2026-10-17T01:41:00.129Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t2:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14784-fcf8-7e71-85e2-513b7040dfe1"
+    },
+    {
+      "at": "2026-10-17T01:41:01.026Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t8:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14785-0078-79a3-a07d-3b3552736c98"
+    },
+    {
+      "at": "2026-10-17T01:41:01.736Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t3:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-0340-7191-b020-c49b86752917"
+    },
+    {
+      "at": "2026-10-17T01:41:06.864Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:09.282Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t2:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14785-20bd-76b3-8a7d-979789e6570d"
+    },
+    {
+      "at": "2026-10-17T01:41:10.869Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:11.305Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t4:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-289d-7db0-af84-5d8897a5ec3f"
+    },
+    {
+      "at": "2026-10-17T01:41:13.408Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t3:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-30d8-7381-b5b0-6619502597d9"
+    },
+    {
+      "at": "2026-10-17T01:41:23.238Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t3:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14785-573d-76d3-b393-94d6f51954dc"
+    },
+    {
+      "at": "2026-10-17T01:41:23.570Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t5:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-5892-71d0-91b3-016cd2765632"
+    },
+    {
+      "at": "2026-10-17T01:41:28.619Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_dc348378529343efb42c58e64b37d09e. safety_violations=[self-"
+    },
+    {
+      "at": "2026-10-17T01:41:30.525Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t4:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-73b2-7223-a96e-17696c447189"
+    },
+    {
+      "at": "2026-10-17T01:41:36.750Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:37.101Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t3:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14785-8d66-7c41-a0e4-036966ee1163"
+    },
+    {
+      "at": "2026-10-17T01:41:37.592Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-8f51-7c12-b571-ef408d179dc0"
+    },
+    {
+      "at": "2026-10-17T01:41:46.483Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t4:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14785-b209-79d0-bf13-0cde04136638"
+    },
+    {
+      "at": "2026-10-17T01:41:47.299Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:48.627Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t7:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-ba59-7941-a048-08f5f40341da"
+    },
+    {
+      "at": "2026-10-17T01:41:49.510Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t5:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-bddc-7db1-bae2-bf3dba81fab0"
+    },
+    {
+      "at": "2026-10-17T01:41:59.582Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t8:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-e545-7020-b67c-09f29ec5c873"
+    },
+    {
+      "at": "2026-10-17T01:42:03.717Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:05.912Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:08.197Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14786-06dd-7982-8e63-6cf31c7b7c04"
+    },
+    {
+      "at": "2026-10-17T01:42:09.156Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t4:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-0a9f-7ce2-ad6b-0599bea4d70b"
+    },
+    {
+      "at": "2026-10-17T01:42:12.571Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t5:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-17f5-7592-8cab-43c8f96536fd"
+    },
+    {
+      "at": "2026-10-17T01:42:12.851Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t2:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-190c-78f1-a885-d46f5ea9e96d"
+    },
+    {
+      "at": "2026-10-17T01:42:19.693Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:compiled:s3",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:25.674Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t7:compiled:s3",
+      "reservedUsdMicros": 45000,
+      "usdMicros": 30000,
+      "settled": true,
+      "requestId": "01a14786-4b11-7e93-b6da-6004ace13771"
+    },
+    {
+      "at": "2026-10-17T01:42:33.885Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:34.481Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-6d87-7c62-b350-bb345fb8a39e"
+    },
+    {
+      "at": "2026-10-17T01:42:34.637Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:38.050Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t8:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14786-7b7d-7f90-a594-029d04b7bd85"
+    },
+    {
+      "at": "2026-10-17T01:42:40.235Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t5:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-8405-7322-9768-0f0adcffe431"
+    },
+    {
+      "at": "2026-10-17T01:42:55.923Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t7:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-c13c-7cd2-89f5-04b7e4d2491b"
+    },
+    {
+      "at": "2026-10-17T01:43:02.288Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:43:08.075Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-f0c5-76b3-b457-b7666ca0a6b7"
+    },
+    {
+      "at": "2026-10-17T01:43:16.071Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t8:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14787-0fff-7713-9b92-6aeb323e17c5"
+    },
+    {
+      "at": "2026-10-17T01:43:27.571Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:compiled:s3",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:43:37.376Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t7:compiled:s3",
+      "reservedUsdMicros": 48000,
+      "usdMicros": 24000,
+      "settled": true,
+      "requestId": "01a14787-6328-7c80-ba7f-7f166c7adffc"
+    },
+    {
+      "at": "2026-10-17T01:43:39.434Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t3:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14787-6b45-7141-83d2-e0d215919604"
+    },
+    {
+      "at": "2026-10-17T01:43:52.377Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:44:02.058Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t8:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14787-c3a2-78e3-9cb9-d0d17d85eadf"
+    },
+    {
+      "at": "2026-10-17T01:44:24.433Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t2:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14788-1b11-7f30-a714-6adbdec84592"
+    },
+    {
+      "at": "2026-10-17T01:44:55.589Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t4:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14788-94ca-78d1-bf28-4aabbeb407d4"
+    },
+    {
+      "at": "2026-10-17T01:46:00.410Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t3:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14789-91f6-7ab3-92ca-cc08d2d69482"
+    },
+    {
+      "at": "2026-10-17T01:46:26.749Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t5:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14789-f8e3-7381-9906-c63016a57ac0"
+    },
+    {
+      "at": "2026-10-17T01:47:51.988Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1478b-45dd-71c2-87b5-f2b2297bc622"
+    },
+    {
+      "at": "2026-10-17T01:49:20.183Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t7:compiled:s3",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a1478c-9e43-7d81-b3d0-aa77b3ffee94"
+    },
+    {
+      "at": "2026-10-17T01:49:24.994Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t4:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1478c-b146-7e13-8366-00d686f6092f"
+    },
+    {
+      "at": "2026-10-17T01:50:21.232Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t8:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1478d-8cd0-7940-bceb-50aaf9156ad3"
+    },
+    {
+      "at": "2026-10-17T01:52:26.972Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t5:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1478f-77fc-7d90-a3b4-153ae92603fa"
+    },
+    {
+      "at": "2026-10-17T01:56:58.117Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14793-9b37-76b1-b242-9efb8f518885"
+    },
+    {
+      "at": "2026-10-17T01:58:58.397Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t7:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14795-70f3-7181-a499-70f7fbb69221"
+    },
+    {
+      "at": "2026-10-17T02:00:40.365Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t8:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14796-ff5f-7ce2-a1ad-ca29bdf4bd2a"
+    },
+    {
+      "at": "2026-10-17T02:02:34.322Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 649,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 620
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.360Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 588,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 498
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.368Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 910,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 848
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.378Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 890,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 797
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:37.743Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 802,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 632
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:38.190Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:39.646Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:39.748Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 643
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:41.697Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 798,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 620
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:41.763Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 750,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 529
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:43.721Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 847,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 718
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:43.890Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 610
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:44.933Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 635
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:46.216Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 889,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 834
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:47.861Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 898,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 829
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:48.213Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 701,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 457
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:48.746Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 696
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:51.014Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 679
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:51.336Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 822,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 689
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:52.951Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 786,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:53.619Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 628
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:55.207Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 994,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 1032
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:55.897Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 620,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 865
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:56.770Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 823,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 668
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:57.446Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 947,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 934
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:00.643Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 752,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 550
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:00.778Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 763,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 569
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:01.587Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 618
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:02.965Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 799,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 654
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:03.974Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 812,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 669
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:05.186Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 1023,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 1082
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:05.603Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:07.685Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 684,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 422
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:08.410Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 964,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 975
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:08.890Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 645
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:10.516Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 752,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 547
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:11.978Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 801,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 648
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:12.832Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 756,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 562
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:13.828Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 596,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 805
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:14.344Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 853,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 754
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:15.882Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 940,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 917
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:16.537Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 772,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 554
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:18.650Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 696,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 451
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:19.016Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 749,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 556
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:19.720Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 594
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:21.459Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 739,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 533
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:21.747Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 524,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 673
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:22.335Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 517,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 658
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:23.690Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 741,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 530
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:24.737Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 829,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 707
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.180Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 870,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 762
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.714Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 641
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.836Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 951,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 923
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:29.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 661,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 935
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:31.108Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 579
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:31.122Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 697,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 452
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:32.304Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:34.110Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 658
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:34.801Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 486,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 597
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:35.258Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 697
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:36.030Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 754,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:38.323Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 761,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 544
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:38.570Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 504,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:39.727Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 733,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:39.914Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 936,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 918
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:41.717Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 816,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 648
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:42.369Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:43.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 851,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 749
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.451Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 637
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.470Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 799,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 657
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.970Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 728,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 510
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:48.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 893,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 829
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.146Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 745,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 543
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.281Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 546,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 716
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.819Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 493,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 605
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:52.510Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 849,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 745
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.079Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 815,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.321Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 833,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 682
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.395Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 874,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 806
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.367Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 535,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 695
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.690Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 869,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 760
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 654,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 629
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:58.411Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 643,
+      "settled": true,
+      "usage": {
+        "input": 3446,
+        "output": 596
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.565Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 650,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 622
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.808Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 616,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 553
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.846Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 662,
+      "settled": true,
+      "usage": {
+        "input": 3446,
+        "output": 634
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:02.808Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 627,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 575
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:04.880Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 582,
+      "settled": true,
+      "usage": {
+        "input": 3418,
+        "output": 480
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:05.104Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 646,
+      "settled": true,
+      "usage": {
+        "input": 3418,
+        "output": 609
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:05.180Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 578,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 478
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.061Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.722Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 858,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 762
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.928Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 897,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 823
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:08.501Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 647
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:10.384Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 848,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 741
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:12.511Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 788
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:12.969Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 651
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:13.830Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 622
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:14.843Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 815,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 676
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:16.909Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 883,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 806
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:16.925Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:17.602Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 774,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:18.913Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 825,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 667
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:20.701Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 866,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 761
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:20.718Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 840,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 703
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:21.741Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:22.864Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 546
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:24.872Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 617
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:24.951Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 821,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 688
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:25.558Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 780,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 584
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:26.099Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 903,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 852
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:28.960Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 829,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 713
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:29.076Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 827,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 708
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:29.204Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:30.957Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 851,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 750
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:32.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:33.408Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 943,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 931
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:33.569Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 741,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 541
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:35.733Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 857,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 759
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:36.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 782
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:37.130Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:39.525Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 525,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 675
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:40.591Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 900,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 822
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:40.615Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 838,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 721
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:41.490Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 545
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:43.425Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 548
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:44.647Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 760,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:45.106Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 890,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 835
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:45.953Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 836,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 709
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:46.774Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:48.262Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 534
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.677Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 699,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 453
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.755Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 761,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 570
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.960Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 819,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 687
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:51.844Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 638
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:54.065Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 917,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 882
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:54.399Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:55.527Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 668,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 378
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:56.333Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:57.715Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 692,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 997
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:58.412Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 691,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 441
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:59.684Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 696,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 450
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:59.961Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:01.432Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 826,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 701
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:02.666Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 580
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:03.534Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:03.568Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 749
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:05.686Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 754,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 537
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:06.552Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 840,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 708
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:06.766Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 500,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 625
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:07.998Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 721,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 490
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:09.314Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 593
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:10.630Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 596,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 816
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:10.928Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 769,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 586
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:11.368Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 776,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 574
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:13.066Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 823,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 691
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:14.522Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 869,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 760
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:15.011Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 801,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 619
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:15.633Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 579
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:17.413Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 486
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:18.701Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 690,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 433
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:18.795Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 523,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 659
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:19.659Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 767,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 563
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:20.796Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 837,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 697
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:21.493Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 830,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 671
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:22.954Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 490,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:23.566Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 833,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 716
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:25.140Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 670
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:25.407Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 492,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 602
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:26.804Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 711,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 476
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:28.544Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 844,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 710
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.042Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 644,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 336
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.181Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 865,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 747
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.532Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 694,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 443
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:31.340Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 945,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 937
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:32.267Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 803,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 649
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:33.344Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 646
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:35.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 832,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 712
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:36.889Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 689,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 430
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:37.144Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 738
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:37.251Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 468,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:39.606Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 578
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:39.785Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 670
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:41.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 555,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 729
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:42.284Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 842,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 700
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:43.434Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 811,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 650
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:43.852Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 479,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 582
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:45.276Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 906,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 834
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:46.500Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 808,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 661
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:47.208Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 857,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 769
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:47.456Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 630
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:50.290Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 623
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:50.564Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 636
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:52.184Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 729,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 504
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:52.370Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 765,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:53.664Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 487
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:54.991Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 852,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 733
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:55.784Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 596
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:56.295Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 525,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 675
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:57.197Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 842,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 728
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:59.416Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 883,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 787
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:59.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 748,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:00.134Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 931,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 902
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:01.718Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 536
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:03.123Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 767,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 577
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:04.195Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 843,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 742
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:05.531Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 827,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 698
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:05.884Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 958,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 953
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:06.779Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 746,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 546
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:08.540Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 543
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:09.746Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 809,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 674
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:10.429Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 640
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:11.873Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:12.737Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 522
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:14.015Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 846,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 710
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:14.700Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 936,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 919
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:15.874Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 860
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:16.308Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 724,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 507
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:18.822Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 531
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:19.456Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 736,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 530
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:20.515Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 718,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 485
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:21.235Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 920,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 850
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:22.175Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 908,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 852
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:23.237Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 884,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 807
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:23.927Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:26.390Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 835,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 698
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:27.759Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 503,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:27.978Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 598
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:28.002Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 920,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 888
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:31.720Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 537,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 699
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:31.824Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 895,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 833
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:32.342Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 816,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 653
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:34.866Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 776
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:35.730Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 770,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 557
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:36.268Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 730,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 518
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:36.698Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 480
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.349Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 484,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 581
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.439Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 782,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 593
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.631Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 806,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 635
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.902Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 947,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 905
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:42.967Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 806,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 662
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:43.043Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 502,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 629
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:43.644Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 536,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 690
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:46.398Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 872,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 766
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:46.555Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 811,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 668
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:47.056Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 800,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 616
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:47.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 643
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:50.594Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 689
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:50.643Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 805,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:51.216Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 540
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:51.795Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 555
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:54.465Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 639
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.210Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 504,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.842Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 727
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 814,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 676
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:58.017Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 825,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 709
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:59.311Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 776,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 580
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:00.136Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 528,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 680
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:00.425Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:59.193Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s1",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479d-b1e5-7e10-be6c-d7ce67b446cb"
+    },
+    {
+      "at": "2026-10-17T02:08:13.503Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s2",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479d-e96d-7741-bdb8-24c248d3b8f1"
+    },
+    {
+      "at": "2026-10-17T02:08:26.742Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s3",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479e-1d23-7d03-9407-c3a5436ae401"
+    },
+    {
+      "at": "2026-10-17T02:08:41.077Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t1:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-5571-7f92-b127-8f054bc3ef2e"
+    },
+    {
+      "at": "2026-10-17T02:08:50.872Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t2:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-7b6c-72f2-b4c6-fd0dccb7962b"
+    },
+    {
+      "at": "2026-10-17T02:09:04.940Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t3:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-b264-7f61-a1aa-ff41505f3604"
+    },
+    {
+      "at": "2026-10-17T02:09:16.184Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t4:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-de4e-7302-8372-8801d0c2d6ad"
+    },
+    {
+      "at": "2026-10-17T02:09:31.991Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t5:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-1c0e-7e63-bfee-39bfdba7b09c"
+    },
+    {
+      "at": "2026-10-17T02:09:44.646Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t6:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-4d82-78a2-b18b-1e619d3ee5c5"
+    },
+    {
+      "at": "2026-10-17T02:09:55.609Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t7:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-783d-7fe1-878b-afda37dd164b"
+    },
+    {
+      "at": "2026-10-17T02:10:05.379Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t8:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-9e79-7831-9d44-4ec938f1af8d"
+    },
+    {
+      "at": "2026-10-17T02:10:21.246Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "figure:grok:redraw:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-dca8-7d10-9d45-73982d275236"
+    },
+    {
+      "at": "2026-10-17T02:10:35.009Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.049Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 664,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 650
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.055Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 642,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 606
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.061Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 782,
+      "settled": true,
+      "usage": {
+        "input": 4626,
+        "output": 638
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.664Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4575,
+        "output": 617
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.751Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 773,
+      "settled": true,
+      "usage": {
+        "input": 4581,
+        "output": 630
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.973Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4612,
+        "output": 654
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:39.383Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 756,
+      "settled": true,
+      "usage": {
+        "input": 4559,
+        "output": 600
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:42.637Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 779,
+      "settled": true,
+      "usage": {
+        "input": 4708,
+        "output": 616
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.031Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 540,
+      "settled": true,
+      "usage": {
+        "input": 1730,
+        "output": 733
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.054Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4743,
+        "output": 614
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.081Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 598,
+      "settled": true,
+      "usage": {
+        "input": 3242,
+        "output": 547
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:53.469Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t1 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34254,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 120
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:55.604Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t2 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34394,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 134
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:58.578Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t4 s1",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 32058,
+      "settled": true,
+      "usage": {
+        "input": 15169,
+        "output": 172
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:00.797Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t5 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34334,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 128
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:03.041Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t6 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34234,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 118
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:05.181Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t8 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34264,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 121
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:14.154Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t1 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31784,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 115
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:16.263Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t2 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31864,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 123
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:18.342Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t4 s2",
+      "reservedUsdMicros": 69000,
+      "usdMicros": 29068,
+      "settled": true,
+      "usage": {
+        "input": 13959,
+        "output": 115
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:21.392Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t5 s2",
+      "reservedUsdMicros": 69000,
+      "usdMicros": 29018,
+      "settled": true,
+      "usage": {
+        "input": 13959,
+        "output": 110
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:23.333Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t6 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31844,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 121
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:25.416Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t8 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31844,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 121
+      }
+    }
+  ]
+}

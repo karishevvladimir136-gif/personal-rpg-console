@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t3",
+  "title": {
+    "ru": "Под понтоном в медном шлеме, мутная вода",
+    "en": "Under a pontoon in a copper diving helmet, murky water"
+  },
+  "description": "The man, in a copper diving helmet and a canvas diving suit, gropes along a slimy beam under a floating pontoon, an air hose trailing up behind him. Place: murky green harbour water under a pontoon, silt and hanging weed, in the daytime. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w). Art style: Cinematic noir.",
+  "state": [],
+  "createdAt": "2026-10-17T02:12:10.958Z",
+  "commit": "df90ac1",
+  "run": "pictures-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/5360797f3205.jpg",
+      "files": [
+        "img/5360797f3205.jpg",
+        "img/20c38eca3eca.jpg",
+        "img/d2638ff235ae.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iMiIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtMiIsImxhYmVsIjoiTmFubyBCYW5hbmEgMiIsInByb3ZpZGVyIjoiZmFsIiwicHJvbXB0IjoiY29tcGlsZWQifQ=="
+    },
+    {
+      "letter": "B",
+      "file": "img/4634659bb4d1.jpg",
+      "files": [
+        "img/4634659bb4d1.jpg",
+        "img/f8fff2487606.jpg",
+        "img/bef7668525d9.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgyLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvZmx1eC0yLXBybyIsImxhYmVsIjoiRkxVWC4yIFtwcm9dIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/d9cb66bb837c.jpg",
+      "files": [
+        "img/d9cb66bb837c.jpg",
+        "img/cd9723f0bb84.jpg",
+        "img/1fb2d695c55b.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtcHJvIiwibGFiZWwiOiJOYW5vIEJhbmFuYSBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "D",
+      "file": "img/12f9d213482e.jpg",
+      "files": [
+        "img/12f9d213482e.jpg",
+        "img/b59013c8843f.jpg",
+        "img/2749e3ee5d4b.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImtsZWluOWIiLCJtb2RlbElkIjoiZmFsLWFpL2ZsdXgtMi9rbGVpbi85YiIsImxhYmVsIjoiRkxVWC4yIFtrbGVpbl0gOUIiLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "E",
+      "file": "img/6614af7d4a12.jpg",
+      "files": [
+        "img/6614af7d4a12.jpg",
+        "img/36b3021b4023.jpg",
+        "img/e5838255e02a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "F",
+      "file": "img/d123976c0a18.jpg",
+      "files": [
+        "img/d123976c0a18.jpg",
+        "img/a6f6bc33774c.jpg",
+        "img/1dba6467d828.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InNlZWRyZWFtNSIsIm1vZGVsSWQiOiJieXRlZGFuY2Uvc2VlZHJlYW0vdjUvcHJvL3RleHQtdG8taW1hZ2UiLCJsYWJlbCI6IlNlZWRyZWFtIDUuMCBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "G",
+      "file": "img/70e50cb6c0bb.jpg",
+      "files": [
+        "img/70e50cb6c0bb.jpg",
+        "img/9b2921fdc263.jpg",
+        "img/596ed5316e92.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "H",
+      "file": "img/aa0635b0cdf3.jpg",
+      "files": [
+        "img/aa0635b0cdf3.jpg",
+        "img/742c541f4c4b.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDIiLCJtb2RlbElkIjoiZ3B0LWltYWdlLTIiLCJsYWJlbCI6IkdQVCBJbWFnZSAyIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "I",
+      "file": "img/cce04c2bd2cf.jpg",
+      "files": [
+        "img/cce04c2bd2cf.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Imdyb2siLCJtb2RlbElkIjoieGFpL2dyb2staW1hZ2luZS1pbWFnZSIsImxhYmVsIjoiR3JvayBJbWFnaW5lIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "J",
+      "file": "img/aefdf52f3aff.jpg",
+      "files": [
+        "img/aefdf52f3aff.jpg",
+        "img/5e1a514f0e5d.jpg",
+        "img/37aaf9987fab.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgzIiwibW9kZWxJZCI6ImJsYWNrZm9yZXN0bGFicy9mbHV4LTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiRkxVWCAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "K",
+      "file": "img/92dead612c22.jpg",
+      "files": [
+        "img/92dead612c22.jpg",
+        "img/8fca41c3201b.jpg",
+        "img/9a7dc3bbc785.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InF3ZW4zIiwibW9kZWxJZCI6ImZhbC1haS9xd2VuLWltYWdlLTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiUXdlbi1JbWFnZSAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    }
+  ]
+}

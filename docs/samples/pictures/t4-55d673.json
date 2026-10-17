@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t4",
+  "title": {
+    "ru": "Молчаливый сетевяз промывает порез и мажет смолой",
+    "en": "A silent net-maker washes his cut forearm and smears resin on it"
+  },
+  "description": "A silent old net-maker washes a fresh cut on the man's forearm with water from a bucket and smears dark pine resin over it. Place: a net-maker's shed on the pontoons, nets hanging from the rafters, in the daytime. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the old net-maker (a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands). Art style: Cinematic noir.",
+  "state": [],
+  "createdAt": "2026-10-17T02:12:10.959Z",
+  "commit": "df90ac1",
+  "run": "pictures-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/ebec2e32f585.jpg",
+      "files": [
+        "img/ebec2e32f585.jpg",
+        "img/0e352bb1ee10.jpg",
+        "img/62426f0b347f.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImtsZWluOWIiLCJtb2RlbElkIjoiZmFsLWFpL2ZsdXgtMi9rbGVpbi85YiIsImxhYmVsIjoiRkxVWC4yIFtrbGVpbl0gOUIiLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "B",
+      "file": "img/913ab8539080.jpg",
+      "files": [
+        "img/913ab8539080.jpg",
+        "img/7dab022aee1e.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDIiLCJtb2RlbElkIjoiZ3B0LWltYWdlLTIiLCJsYWJlbCI6IkdQVCBJbWFnZSAyIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/faaea16b97eb.jpg",
+      "files": [
+        "img/faaea16b97eb.jpg",
+        "img/bae75112ed1b.jpg",
+        "img/94cc67d2bec2.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iMiIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtMiIsImxhYmVsIjoiTmFubyBCYW5hbmEgMiIsInByb3ZpZGVyIjoiZmFsIiwicHJvbXB0IjoiY29tcGlsZWQifQ=="
+    },
+    {
+      "letter": "D",
+      "file": "img/b8467a42071e.jpg",
+      "files": [
+        "img/b8467a42071e.jpg",
+        "img/95830640b2fa.jpg",
+        "img/78765e8c3ecc.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgzIiwibW9kZWxJZCI6ImJsYWNrZm9yZXN0bGFicy9mbHV4LTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiRkxVWCAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "E",
+      "file": "img/0156b8543f75.jpg",
+      "files": [
+        "img/0156b8543f75.jpg",
+        "img/467819a0fa1e.jpg"
+      ],
+      "refused": 1,
+      "sealed": "eyJtb2RlbCI6ImZsdXgyLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvZmx1eC0yLXBybyIsImxhYmVsIjoiRkxVWC4yIFtwcm9dIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "F",
+      "file": "img/5c4d3ac7b5a0.jpg",
+      "files": [
+        "img/5c4d3ac7b5a0.jpg",
+        "img/3a275653a329.jpg",
+        "img/50ade6f81b89.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InNlZWRyZWFtNSIsIm1vZGVsSWQiOiJieXRlZGFuY2Uvc2VlZHJlYW0vdjUvcHJvL3RleHQtdG8taW1hZ2UiLCJsYWJlbCI6IlNlZWRyZWFtIDUuMCBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "G",
+      "file": "img/a1857acf63fa.jpg",
+      "files": [
+        "img/a1857acf63fa.jpg"
+      ],
+      "refused": 2,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "H",
+      "file": "img/00618e85ca25.jpg",
+      "files": [
+        "img/00618e85ca25.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Imdyb2siLCJtb2RlbElkIjoieGFpL2dyb2staW1hZ2luZS1pbWFnZSIsImxhYmVsIjoiR3JvayBJbWFnaW5lIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "I",
+      "file": "img/75baeec9b6eb.jpg",
+      "files": [
+        "img/75baeec9b6eb.jpg",
+        "img/e9ad358ca9f6.jpg",
+        "img/a803fb2f277f.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InF3ZW4zIiwibW9kZWxJZCI6ImZhbC1haS9xd2VuLWltYWdlLTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiUXdlbi1JbWFnZSAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "J",
+      "file": "img/3fd88a2b50cc.jpg",
+      "files": [
+        "img/3fd88a2b50cc.jpg",
+        "img/af51b6b6488b.jpg",
+        "img/a48caaa3ef62.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtcHJvIiwibGFiZWwiOiJOYW5vIEJhbmFuYSBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "K",
+      "file": "img/9513f51fb565.jpg",
+      "files": [
+        "img/9513f51fb565.jpg",
+        "img/aa46ee775cae.jpg",
+        "img/bf583b111398.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    }
+  ]
+}

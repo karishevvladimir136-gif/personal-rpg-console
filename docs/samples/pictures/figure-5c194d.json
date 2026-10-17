@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "figure",
+  "title": {
+    "ru": "Опорная фигура героя в полный рост (перерисовка по портрету)",
+    "en": "The hero's full-figure anchor, redrawn from the portrait"
+  },
+  "description": "Full figure of the hero from the portrait: a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, wind-burned face with fine lines around the eyes, broad shoulders and thick forearms; a worn dark canvas work jacket with a plain round cloth patch on the left shoulder, a dark undershirt, dark work trousers, heavy boots.",
+  "state": [],
+  "createdAt": "2026-10-17T02:12:10.962Z",
+  "commit": "df90ac1",
+  "run": "pictures-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "img/2223ab432146.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/a46fcd9f8c92.jpg",
+      "files": [
+        "img/a46fcd9f8c92.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6Imdyb2siLCJtb2RlbElkIjoieGFpL2dyb2staW1hZ2luZS1pbWFnZSIsImxhYmVsIjoiR3JvayBJbWFnaW5lIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/0c26ccb9b5b0.jpg",
+      "files": [
+        "img/0c26ccb9b5b0.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImdwdDIiLCJtb2RlbElkIjoiZ3B0LWltYWdlLTIiLCJsYWJlbCI6IkdQVCBJbWFnZSAyIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/6b7578343072.jpg",
+      "files": [
+        "img/6b7578343072.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImtsZWluOWIiLCJtb2RlbElkIjoiZmFsLWFpL2ZsdXgtMi9rbGVpbi85YiIsImxhYmVsIjoiRkxVWC4yIFtrbGVpbl0gOUIiLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "D",
+      "file": "img/a0c53917c690.jpg",
+      "files": [
+        "img/a0c53917c690.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImZsdXgyLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvZmx1eC0yLXBybyIsImxhYmVsIjoiRkxVWC4yIFtwcm9dIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "E",
+      "file": "img/81e0bcb71c2a.jpg",
+      "files": [
+        "img/81e0bcb71c2a.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6InF3ZW4zIiwibW9kZWxJZCI6ImZhbC1haS9xd2VuLWltYWdlLTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiUXdlbi1JbWFnZSAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "F",
+      "file": "img/0bd2b3e77f0c.jpg",
+      "files": [
+        "img/0bd2b3e77f0c.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6Im5iMiIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtMiIsImxhYmVsIjoiTmFubyBCYW5hbmEgMiIsInByb3ZpZGVyIjoiZmFsIiwicHJvbXB0IjoiY29tcGlsZWQifQ=="
+    },
+    {
+      "letter": "G",
+      "file": "img/698e7c31b5bd.jpg",
+      "files": [
+        "img/698e7c31b5bd.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "H",
+      "file": "img/d746d3dff7cb.jpg",
+      "files": [
+        "img/d746d3dff7cb.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "I",
+      "file": "img/339ab1e80973.jpg",
+      "files": [
+        "img/339ab1e80973.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6InNlZWRyZWFtNSIsIm1vZGVsSWQiOiJieXRlZGFuY2Uvc2VlZHJlYW0vdjUvcHJvL3RleHQtdG8taW1hZ2UiLCJsYWJlbCI6IlNlZWRyZWFtIDUuMCBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "J",
+      "file": "img/3e5bfbb7ee1f.jpg",
+      "files": [
+        "img/3e5bfbb7ee1f.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6Im5iLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtcHJvIiwibGFiZWwiOiJOYW5vIEJhbmFuYSBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "K",
+      "file": "img/83de5c5c7933.jpg",
+      "files": [
+        "img/83de5c5c7933.jpg"
+      ],
+      "sealed": "eyJtb2RlbCI6ImZsdXgzIiwibW9kZWxJZCI6ImJsYWNrZm9yZXN0bGFicy9mbHV4LTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiRkxVWCAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    }
+  ]
+}
