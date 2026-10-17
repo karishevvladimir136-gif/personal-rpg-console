@@ -5,15 +5,16 @@ these files; the owner never opens them. Records of the paid run: `docs/runs/pic
 
 - `index.json` — the list of sample files.
 - `t1-<hash>.json` … `t8-<hash>.json` — one file per shot of the owner's first session; `figure-<hash>.json` — the
-  hero's full-figure anchor redrawn by each model from the same portrait.
+  hero's full-figure anchor redrawn by each model from the same portrait. Eleven variants per file (ten models and
+  Grok Imagine); where a model refused the first sample, `file` is its first drawn one.
 - Each file: `shot`, `title` (`ru`, `en`), `description` (what the picture should show, English), `state` (the
   visible state from the records the picture must keep, if any), `references` (the anchor pictures every model
   received, with their role), and `variants`: one per model, under a letter. The letters are shuffled per shot, so a
   letter does not follow a model from one shot to the next.
 - A variant: `letter`, `file` (the first sample — show this one side by side), `files` (all samples of that model
-  for the shot, three where the budget allowed; GPT Image 2 has two), `refused` (samples the provider refused), and
-  `sealed` — the model, hidden: base64 of a JSON object `{model, modelId, label, provider, prompt}`. Decode it only to
-  reveal the names at the end of the page.
+  for the shot: three; GPT Image 2 has two and Grok Imagine, a late extra, one), `refused` (samples the provider
+  refused), and `sealed` — the model, hidden: base64 of a JSON object `{model, modelId, label, provider, prompt}`.
+  Decode it only to reveal the names at the end of the page.
 - `img/` — the pictures (random names; nothing in a file name says which model drew it). `anchors/hero.json` names
   the hero's portrait and full figure that every model received as references.
 

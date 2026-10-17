@@ -1,6 +1,6 @@
 {
   "capUsd": 20,
-  "totalUsdMicros": 18358360,
+  "totalUsdMicros": 19450008,
   "note": "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).",
   "entries": [
     {
@@ -3073,6 +3073,3805 @@
       "usdMicros": 40000,
       "settled": true,
       "requestId": "01a14796-ff5f-7ce2-a1ad-ca29bdf4bd2a"
+    },
+    {
+      "at": "2026-10-17T02:02:34.322Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 649,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 620
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.360Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 588,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 498
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.368Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 910,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 848
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:34.378Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 890,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 797
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:37.743Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 802,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 632
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:38.190Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:39.646Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:39.748Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 643
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:41.697Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 798,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 620
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:41.763Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 750,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 529
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:43.721Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 847,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 718
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:43.890Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 610
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:44.933Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 635
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:46.216Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 889,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 834
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:47.861Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 898,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 829
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:48.213Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 701,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 457
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:48.746Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 696
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:51.014Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 679
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:51.336Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 822,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 689
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:52.951Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 786,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:53.619Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 628
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:55.207Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 994,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 1032
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:55.897Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 620,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 865
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:56.770Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 823,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 668
+      }
+    },
+    {
+      "at": "2026-10-17T02:02:57.446Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 947,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 934
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:00.643Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 752,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 550
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:00.778Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 763,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 569
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:01.587Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 618
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:02.965Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 799,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 654
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:03.974Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 812,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 669
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:05.186Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 1023,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 1082
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:05.603Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:07.685Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 684,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 422
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:08.410Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 964,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 975
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:08.890Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 645
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:10.516Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 752,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 547
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:11.978Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 801,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 648
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:12.832Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 756,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 562
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:13.828Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 596,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 805
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:14.344Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 853,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 754
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:15.882Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 940,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 917
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:16.537Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 772,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 554
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:18.650Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 696,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 451
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:19.016Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 749,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 556
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:19.720Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 594
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:21.459Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 739,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 533
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:21.747Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 524,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 673
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:22.335Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 517,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 658
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:23.690Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 741,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 530
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:24.737Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 829,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 707
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.180Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 870,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 762
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.714Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 641
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:26.836Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 951,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 923
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:29.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 661,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 935
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:31.108Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 579
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:31.122Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 697,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 452
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:32.304Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:34.110Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 658
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:34.801Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 486,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 597
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:35.258Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 697
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:36.030Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 754,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:38.323Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 761,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 544
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:38.570Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 504,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:39.727Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 733,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:39.914Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 936,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 918
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:41.717Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 816,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 648
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:42.369Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:43.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 851,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 749
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.451Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 637
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.470Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 799,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 657
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:45.970Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 728,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 510
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:48.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 893,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 829
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.146Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 745,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 543
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.281Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 546,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 716
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:49.819Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 493,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 605
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:52.510Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 849,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 745
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.079Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 815,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.321Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 833,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 682
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:53.395Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 874,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 806
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.367Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 535,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 695
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.690Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 869,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 760
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:57.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 654,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 629
+      }
+    },
+    {
+      "at": "2026-10-17T02:03:58.411Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 643,
+      "settled": true,
+      "usage": {
+        "input": 3446,
+        "output": 596
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.565Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 650,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 622
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.808Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 616,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 553
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:01.846Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 662,
+      "settled": true,
+      "usage": {
+        "input": 3446,
+        "output": 634
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:02.808Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 627,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 575
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:04.880Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 582,
+      "settled": true,
+      "usage": {
+        "input": 3418,
+        "output": 480
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:05.104Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 646,
+      "settled": true,
+      "usage": {
+        "input": 3418,
+        "output": 609
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:05.180Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 578,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 478
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.061Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.722Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 858,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 762
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:07.928Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 897,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 823
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:08.501Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 647
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:10.384Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 848,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 741
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:12.511Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 788
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:12.969Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 651
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:13.830Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 622
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:14.843Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 815,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 676
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:16.909Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 883,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 806
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:16.925Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:17.602Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 774,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:18.913Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 825,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 667
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:20.701Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 866,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 761
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:20.718Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 840,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 703
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:21.741Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:22.864Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 546
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:24.872Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 617
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:24.951Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 821,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 688
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:25.558Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 780,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 584
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:26.099Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 903,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 852
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:28.960Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 829,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 713
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:29.076Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 827,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 708
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:29.204Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:30.957Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 851,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 750
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:32.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:33.408Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 943,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 931
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:33.569Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 741,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 541
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:35.733Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 857,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 759
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:36.093Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 782
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:37.130Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:39.525Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 525,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 675
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:40.591Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 900,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 822
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:40.615Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 838,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 721
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:41.490Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 545
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:43.425Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 548
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:44.647Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 760,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:45.106Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 890,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 835
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:45.953Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 836,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 709
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:46.774Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 615
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:48.262Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 534
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.677Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 699,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 453
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.755Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 761,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 570
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:50.960Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 819,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 687
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:51.844Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 791,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 638
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:54.065Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 917,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 882
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:54.399Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:55.527Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 668,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 378
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:56.333Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 521
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:57.715Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 692,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 997
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:58.412Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 691,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 441
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:59.684Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 696,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 450
+      }
+    },
+    {
+      "at": "2026-10-17T02:04:59.961Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:01.432Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 826,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 701
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:02.666Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 785,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 580
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:03.534Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 753,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:03.568Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 749
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:05.686Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 754,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 537
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:06.552Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 840,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 708
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:06.766Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 500,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 625
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:07.998Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 721,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 490
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:09.314Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 593
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:10.630Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 596,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 816
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:10.928Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 769,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 586
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:11.368Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 776,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 574
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:13.066Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 823,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 691
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:14.522Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 869,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 760
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:15.011Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 801,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 619
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:15.633Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 762,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 579
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:17.413Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 486
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:18.701Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 690,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 433
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:18.795Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 523,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 659
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:19.659Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 767,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 563
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:20.796Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 837,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 697
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:21.493Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 830,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 671
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:22.954Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 490,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 604
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:23.566Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 833,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 716
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:25.140Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 807,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 670
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:25.407Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 492,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 602
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:26.804Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 711,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 476
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:28.544Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 844,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 710
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.042Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 644,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 336
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.181Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 865,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 747
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:29.532Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 694,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 443
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:31.340Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 945,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 937
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:32.267Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 803,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 649
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:33.344Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 646
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:35.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 832,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 712
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:36.889Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 689,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 430
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:37.144Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 738
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:37.251Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 468,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 560
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:39.606Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 777,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 578
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:39.785Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 824,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 670
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:41.000Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 555,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 729
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:42.284Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 842,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 700
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:43.434Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 811,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 650
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:43.852Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 479,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 582
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:45.276Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 906,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 834
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:46.500Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 808,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 661
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:47.208Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 857,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 769
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:47.456Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 630
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:50.290Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 623
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:50.564Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 794,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 636
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:52.184Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 729,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 504
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:52.370Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 765,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 576
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:53.664Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 487
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:54.991Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 852,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 733
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:55.784Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4830,
+        "output": 596
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:56.295Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 525,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 675
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:57.197Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 842,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 728
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:59.416Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 883,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 787
+      }
+    },
+    {
+      "at": "2026-10-17T02:05:59.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 748,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 542
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:00.134Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 931,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 902
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:01.718Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 536
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:03.123Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 767,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 577
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:04.195Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 843,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 742
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:05.531Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 827,
+      "settled": true,
+      "usage": {
+        "input": 4779,
+        "output": 698
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:05.884Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 958,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 953
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:06.779Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 746,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 546
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:08.540Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 543
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:09.746Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 809,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 674
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:10.429Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 640
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:11.873Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:12.737Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 740,
+      "settled": true,
+      "usage": {
+        "input": 4785,
+        "output": 522
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:14.015Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 846,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 710
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:14.700Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 936,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 919
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:15.874Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 860
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:16.308Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 724,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 507
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:18.822Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 738,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 531
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:19.456Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 736,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 530
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:20.515Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 718,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 485
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:21.235Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 920,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 850
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:22.175Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 908,
+      "settled": true,
+      "usage": {
+        "input": 4816,
+        "output": 852
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:23.237Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 884,
+      "settled": true,
+      "usage": {
+        "input": 4802,
+        "output": 807
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:23.927Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:26.390Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 835,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 698
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:27.759Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 503,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 631
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:27.978Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 775,
+      "settled": true,
+      "usage": {
+        "input": 4763,
+        "output": 598
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:28.002Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 920,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 888
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:31.720Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 537,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 699
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:31.824Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 895,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 833
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:32.342Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 816,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 653
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:34.866Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 877,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 776
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:35.730Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 770,
+      "settled": true,
+      "usage": {
+        "input": 4912,
+        "output": 557
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:36.268Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 730,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 518
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:36.698Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 714,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 480
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.349Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 484,
+      "settled": true,
+      "usage": {
+        "input": 1934,
+        "output": 581
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.439Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 782,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 593
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.631Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 806,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 635
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:39.902Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 947,
+      "settled": true,
+      "usage": {
+        "input": 4947,
+        "output": 905
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:42.967Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 806,
+      "settled": true,
+      "usage": {
+        "input": 4751,
+        "output": 662
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:43.043Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 502,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 629
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:43.644Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 536,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 690
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:46.398Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 872,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 766
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:46.555Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 811,
+      "settled": true,
+      "usage": {
+        "input": 4774,
+        "output": 668
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:47.056Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 800,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 616
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:47.711Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 797,
+      "settled": true,
+      "usage": {
+        "input": 4757,
+        "output": 643
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:50.594Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 817,
+      "settled": true,
+      "usage": {
+        "input": 4723,
+        "output": 689
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:50.643Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 805,
+      "settled": true,
+      "usage": {
+        "input": 4788,
+        "output": 652
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:51.216Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 744,
+      "settled": true,
+      "usage": {
+        "input": 4735,
+        "output": 540
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:51.795Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4884,
+        "output": 555
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:54.465Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 792,
+      "settled": true,
+      "usage": {
+        "input": 4729,
+        "output": 639
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.210Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 504,
+      "settled": true,
+      "usage": {
+        "input": 1906,
+        "output": 627
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.842Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 855,
+      "settled": true,
+      "usage": {
+        "input": 4919,
+        "output": 727
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:55.905Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 814,
+      "settled": true,
+      "usage": {
+        "input": 4760,
+        "output": 676
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:58.017Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 825,
+      "settled": true,
+      "usage": {
+        "input": 4707,
+        "output": 709
+      }
+    },
+    {
+      "at": "2026-10-17T02:06:59.311Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 776,
+      "settled": true,
+      "usage": {
+        "input": 4856,
+        "output": 580
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:00.136Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 528,
+      "settled": true,
+      "usage": {
+        "input": 1878,
+        "output": 680
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:00.425Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 795,
+      "settled": true,
+      "usage": {
+        "input": 4891,
+        "output": 612
+      }
+    },
+    {
+      "at": "2026-10-17T02:07:59.193Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s1",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479d-b1e5-7e10-be6c-d7ce67b446cb"
+    },
+    {
+      "at": "2026-10-17T02:08:13.503Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s2",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479d-e96d-7741-bdb8-24c248d3b8f1"
+    },
+    {
+      "at": "2026-10-17T02:08:26.742Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "legacy-figure:flux2-pro:s3",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a1479e-1d23-7d03-9407-c3a5436ae401"
+    },
+    {
+      "at": "2026-10-17T02:08:41.077Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t1:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-5571-7f92-b127-8f054bc3ef2e"
+    },
+    {
+      "at": "2026-10-17T02:08:50.872Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t2:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-7b6c-72f2-b4c6-fd0dccb7962b"
+    },
+    {
+      "at": "2026-10-17T02:09:04.940Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t3:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-b264-7f61-a1aa-ff41505f3604"
+    },
+    {
+      "at": "2026-10-17T02:09:16.184Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t4:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479e-de4e-7302-8372-8801d0c2d6ad"
+    },
+    {
+      "at": "2026-10-17T02:09:31.991Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t5:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-1c0e-7e63-bfee-39bfdba7b09c"
+    },
+    {
+      "at": "2026-10-17T02:09:44.646Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t6:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-4d82-78a2-b18b-1e619d3ee5c5"
+    },
+    {
+      "at": "2026-10-17T02:09:55.609Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t7:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-783d-7fe1-878b-afda37dd164b"
+    },
+    {
+      "at": "2026-10-17T02:10:05.379Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "frame:grok:t8:compiled:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-9e79-7831-9d44-4ec938f1af8d"
+    },
+    {
+      "at": "2026-10-17T02:10:21.246Z",
+      "kind": "fal",
+      "model": "xai/grok-imagine-image",
+      "note": "figure:grok:redraw:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1479f-dca8-7d10-9d45-73982d275236"
+    },
+    {
+      "at": "2026-10-17T02:10:35.009Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 623,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 567
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.049Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 664,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 650
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.055Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 642,
+      "settled": true,
+      "usage": {
+        "input": 3390,
+        "output": 606
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:35.061Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 782,
+      "settled": true,
+      "usage": {
+        "input": 4626,
+        "output": 638
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.664Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 766,
+      "settled": true,
+      "usage": {
+        "input": 4575,
+        "output": 617
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.751Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 773,
+      "settled": true,
+      "usage": {
+        "input": 4581,
+        "output": 630
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:38.973Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 788,
+      "settled": true,
+      "usage": {
+        "input": 4612,
+        "output": 654
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:39.383Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 756,
+      "settled": true,
+      "usage": {
+        "input": 4559,
+        "output": 600
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:42.637Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 779,
+      "settled": true,
+      "usage": {
+        "input": 4708,
+        "output": 616
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.031Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 1830,
+      "usdMicros": 540,
+      "settled": true,
+      "usage": {
+        "input": 1730,
+        "output": 733
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.054Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge frame",
+      "reservedUsdMicros": 2190,
+      "usdMicros": 781,
+      "settled": true,
+      "usage": {
+        "input": 4743,
+        "output": 614
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:43.081Z",
+      "kind": "vision",
+      "model": "claude-haiku-5-5",
+      "note": "judge figure",
+      "reservedUsdMicros": 2010,
+      "usdMicros": 598,
+      "settled": true,
+      "usage": {
+        "input": 3242,
+        "output": 547
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:53.469Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t1 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34254,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 120
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:55.604Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t2 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34394,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 134
+      }
+    },
+    {
+      "at": "2026-10-17T02:10:58.578Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t4 s1",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 32058,
+      "settled": true,
+      "usage": {
+        "input": 15169,
+        "output": 172
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:00.797Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t5 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34334,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 128
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:03.041Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t6 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34234,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 118
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:05.181Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t8 s1",
+      "reservedUsdMicros": 76200,
+      "usdMicros": 34264,
+      "settled": true,
+      "usage": {
+        "input": 16527,
+        "output": 121
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:14.154Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t1 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31784,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 115
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:16.263Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t2 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31864,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 123
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:18.342Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t4 s2",
+      "reservedUsdMicros": 69000,
+      "usdMicros": 29068,
+      "settled": true,
+      "usage": {
+        "input": 13959,
+        "output": 115
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:21.392Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t5 s2",
+      "reservedUsdMicros": 69000,
+      "usdMicros": 29018,
+      "settled": true,
+      "usage": {
+        "input": 13959,
+        "output": 110
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:23.333Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t6 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31844,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 121
+      }
+    },
+    {
+      "at": "2026-10-17T02:11:25.416Z",
+      "kind": "vision",
+      "model": "claude-sonnet-5-5",
+      "note": "rank t8 s2",
+      "reservedUsdMicros": 72600,
+      "usdMicros": 31844,
+      "settled": true,
+      "usage": {
+        "input": 15317,
+        "output": 121
+      }
     }
   ]
 }

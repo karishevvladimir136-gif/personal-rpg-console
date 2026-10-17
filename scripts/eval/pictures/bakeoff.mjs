@@ -234,6 +234,8 @@ function blind() {
 
 function aggregate() {
   const table = [];
+  const rankFile = join(runsDir, "pictures-identity-rank.json");
+  const ranking = existsSync(rankFile) ? JSON.parse(readFileSync(rankFile, "utf8")).rows.filter((row) => row.ranks) : [];
   for (const modelKey of Object.keys(MODELS)) {
     const rows = results.rows.filter((row) => row.model === modelKey);
     if (!rows.length) continue;
@@ -243,16 +245,21 @@ function aggregate() {
     const sc = scored(compiled), sg = scored(generic);
     // The same shots for both prompts: the generic shots, sample 1.
     const pairedCompiled = scored(compiled.filter((row) => GENERIC_SHOTS.includes(row.shot) && row.sampleIndex === 1));
-    const clothing = sc.filter((s) => s.clothing !== null);
-    const clothingGeneric = sg.filter((s) => s.clothing !== null);
+    // Clothing and state: only the two shots that carry a state from the records (t6, t8).
+    const stateShots = SHOTS.filter((shot) => shot.check?.clothing).map((shot) => shot.id);
+    const stateScores = (list) => list.filter((row) => stateShots.includes(row.shot)).map((row) => row.scores?.haiku).filter((s) => s && !s.error && s.clothing !== null);
+    const clothing = stateScores(compiled);
+    const clothingGeneric = stateScores(generic);
     const people = (list) => list.filter((row) => row.scores?.haiku && !row.scores.haiku.error).map((row) => row.scores.haiku.people === SHOTS.find((s) => s.id === row.shot).people.length);
     const figure = rowOf(`figure:${modelKey}:redraw:s1`)?.scores?.haiku;
     const drawn = rows.filter((row) => row.file && row.kind === "frame");
+    const ms = drawn.filter((row) => row.mode === "compiled").map((row) => row.ms);
     table.push({
       model: modelKey, label: MODELS[modelKey].label, provider: MODELS[modelKey].provider,
       frames: drawn.length, refused: rows.filter((row) => row.refusal).length, failed: rows.filter((row) => row.error && !row.refusal).length,
-      medianMs: median(drawn.filter((row) => row.mode === "compiled").map((row) => row.ms)),
+      medianMs: median(ms), maxMs: ms.length ? Math.max(...ms) : null, under6s: ms.length ? `${ms.filter((v) => v <= 6_000).length}/${ms.length}` : null,
       perImageUsd: usd(Math.round(drawn.reduce((sum, row) => sum + row.usdMicros, 0) / Math.max(1, drawn.length))),
+      identityRank: mean(ranking.map((row) => row.ranks[modelKey])), identityRankN: ranking.filter((row) => typeof row.ranks[modelKey] === "number").length,
       identity: mean(sc.map((s) => s.identity)), identityGeneric: mean(sg.map((s) => s.identity)), identityCompiledSameShots: mean(pairedCompiled.map((s) => s.identity)),
       clothingKept: clothing.length ? `${clothing.filter((s) => s.clothing).length}/${clothing.length}` : null,
       clothingKeptGeneric: clothingGeneric.length ? `${clothingGeneric.filter((s) => s.clothing).length}/${clothingGeneric.length}` : null,
@@ -267,13 +274,27 @@ function aggregate() {
   }
   return table;
 }
+/** Generic vs compiled over every model at once, on the same shots and the first sample. */
+function pooled() {
+  const pick = (mode) => results.rows.filter((row) => row.kind === "frame" && row.mode === mode && GENERIC_SHOTS.includes(row.shot) && row.sampleIndex === 1 && !MODELS[row.model].extra)
+    .map((row) => ({ shot: row.shot, s: row.scores?.haiku })).filter((row) => row.s && !row.s.error);
+  const stat = (list) => ({
+    pictures: list.length, identity: mean(list.map((r) => r.s.identity)), adherence: mean(list.map((r) => r.s.adherence)),
+    stateKept: (() => { const st = list.filter((r) => r.shot === "t6" && r.s.clothing !== null); return `${st.filter((r) => r.s.clothing).length}/${st.length}`; })(),
+    anatomyOk: `${list.filter((r) => r.s.anatomyOk).length}/${list.length}`, textFree: `${list.filter((r) => !r.s.text).length}/${list.length}`,
+    peopleRight: `${list.filter((r) => r.s.people === SHOTS.find((x) => x.id === r.shot).people.length).length}/${list.length}`,
+  });
+  return { shots: GENERIC_SHOTS, sample: 1, generic: stat(pick("generic")), compiled: stat(pick("compiled")) };
+}
 function summary() {
   const table = aggregate();
-  writeFileSync(join(runsDir, "pictures-summary.json"), JSON.stringify({ generatedAt: new Date().toISOString(), ledgerUsd: usd(ledger.totalUsdMicros), capUsd: CAP_USD, table }, null, 2) + "\n");
+  const both = pooled();
+  writeFileSync(join(runsDir, "pictures-summary.json"), JSON.stringify({ generatedAt: new Date().toISOString(), ledgerUsd: usd(ledger.totalUsdMicros), capUsd: CAP_USD, table, genericVsCompiled: both }, null, 2) + "\n");
+  console.log(JSON.stringify(both));
   const lines = [
-    "| Model | Frames | Refused | Median s | $/image | Identity (compiled) | Identity generic → compiled (same shots) | Clothing kept | Anatomy ok | People count right | Adherence | No text | Figure redraw anatomy |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...table.map((r) => `| ${r.label} | ${r.frames} | ${r.refused} | ${r.medianMs !== null ? (r.medianMs / 1000).toFixed(1) : ""} | ${r.perImageUsd} | ${r.identity ?? ""} | ${r.identityGeneric ?? ""} → ${r.identityCompiledSameShots ?? ""} | ${r.clothingKept ?? ""} (generic ${r.clothingKeptGeneric ?? "—"}) | ${r.anatomyOk ?? ""} | ${r.peopleRight ?? ""} | ${r.adherence ?? ""} (generic ${r.adherenceGeneric ?? "—"}) | ${r.textFree ?? ""} | ${r.figureAnatomyOk === null ? "" : r.figureAnatomyOk ? "ok" : `bad: ${r.figureIssues}`} |`),
+    "| Model | Frames | Refused | Median s (≤6 s) | $/image | Identity, side by side (Sonnet) | Identity (compiled) | Identity generic → compiled (same shots) | Clothing kept | Anatomy ok | People count right | Adherence | No text | Figure redraw anatomy |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...table.map((r) => `| ${r.label} | ${r.frames} | ${r.refused} | ${r.medianMs !== null ? (r.medianMs / 1000).toFixed(1) : ""} (${r.under6s}) | ${r.perImageUsd} | ${r.identityRank ?? ""} (${r.identityRankN}) | ${r.identity ?? ""} | ${r.identityGeneric ?? ""} → ${r.identityCompiledSameShots ?? ""} | ${r.clothingKept ?? ""} (generic ${r.clothingKeptGeneric ?? "—"}) | ${r.anatomyOk ?? ""} | ${r.peopleRight ?? ""} | ${r.adherence ?? ""} (generic ${r.adherenceGeneric ?? "—"}) | ${r.textFree ?? ""} | ${r.figureAnatomyOk === null ? "" : r.figureAnatomyOk ? "ok" : `bad: ${r.figureIssues}`} |`),
   ];
   console.log(lines.join("\n"));
   console.log(`ledger: ${usd(ledger.totalUsdMicros)} of $${CAP_USD}`);

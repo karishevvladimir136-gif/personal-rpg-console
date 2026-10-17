@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t8",
+  "title": {
+    "ru": "Сумерки: плоскодонка отходит от понтона, трое и ручная помпа",
+    "en": "Dusk: a narrow flat-bottomed boat pushes off a pontoon with three people and a hand pump"
+  },
+  "description": "A narrow flat-bottomed boat pushes off from a pontoon with three people aboard: a boatwoman poling at the stern, the old net-maker in the middle, and the man in the bow beside a brass hand pump. Place: harbour pontoons, dark water, distant lanterns, at dusk; still air, mist. People: the man (a man of about 35–40, a former harbour diver: dark hair swept back from the forehead, short dark stubble, a weathered, w); the old net-maker (a lean, silent old man with a short grey beard, a knitted cap and rope-scarred hands); the boatwoman (a wiry young woman in an oilskin coat, her hair under a scarf). State: both his hands are wrapped in linen strips smeared with dark resin. Art style: Cinematic noir.",
+  "state": [
+    "both his hands are wrapped in linen strips smeared with dark resin"
+  ],
+  "createdAt": "2026-10-17T02:12:10.962Z",
+  "commit": "df90ac1",
+  "run": "pictures-2026-10-17",
+  "references": [
+    {
+      "role": "face",
+      "file": "img/2223ab432146.jpg"
+    },
+    {
+      "role": "figure",
+      "file": "img/def16282a699.jpg"
+    }
+  ],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/494de02d06c1.jpg",
+      "files": [
+        "img/494de02d06c1.jpg",
+        "img/da367ce4e50b.jpg",
+        "img/baf3be6790b8.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InF3ZW4zIiwibW9kZWxJZCI6ImZhbC1haS9xd2VuLWltYWdlLTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiUXdlbi1JbWFnZSAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/06543f27671f.jpg",
+      "files": [
+        "img/06543f27671f.jpg",
+        "img/cd66cb6221e0.jpg",
+        "img/0d9fe92bc08f.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgzIiwibW9kZWxJZCI6ImJsYWNrZm9yZXN0bGFicy9mbHV4LTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiRkxVWCAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/6c98bbd7721b.jpg",
+      "files": [
+        "img/6c98bbd7721b.jpg",
+        "img/72a2b14f0480.jpg",
+        "img/bca2217432e3.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgyLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvZmx1eC0yLXBybyIsImxhYmVsIjoiRkxVWC4yIFtwcm9dIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "D",
+      "file": "img/46fcc8e906d0.jpg",
+      "files": [
+        "img/46fcc8e906d0.jpg",
+        "img/330018d44008.jpg",
+        "img/ef100017f456.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImtsZWluOWIiLCJtb2RlbElkIjoiZmFsLWFpL2ZsdXgtMi9rbGVpbi85YiIsImxhYmVsIjoiRkxVWC4yIFtrbGVpbl0gOUIiLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "E",
+      "file": "img/f82061728b15.jpg",
+      "files": [
+        "img/f82061728b15.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Imdyb2siLCJtb2RlbElkIjoieGFpL2dyb2staW1hZ2luZS1pbWFnZSIsImxhYmVsIjoiR3JvayBJbWFnaW5lIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "F",
+      "file": "img/06b796099105.jpg",
+      "files": [
+        "img/06b796099105.jpg",
+        "img/a365aceff891.jpg",
+        "img/af71590d3b57.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iMiIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtMiIsImxhYmVsIjoiTmFubyBCYW5hbmEgMiIsInByb3ZpZGVyIjoiZmFsIiwicHJvbXB0IjoiY29tcGlsZWQifQ=="
+    },
+    {
+      "letter": "G",
+      "file": "img/3904bdeca797.jpg",
+      "files": [
+        "img/3904bdeca797.jpg",
+        "img/9a22e4a5b676.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDIiLCJtb2RlbElkIjoiZ3B0LWltYWdlLTIiLCJsYWJlbCI6IkdQVCBJbWFnZSAyIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "H",
+      "file": "img/32451a1ba8b5.jpg",
+      "files": [
+        "img/32451a1ba8b5.jpg",
+        "img/932803384036.jpg",
+        "img/2302f57a7691.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InNlZWRyZWFtNSIsIm1vZGVsSWQiOiJieXRlZGFuY2Uvc2VlZHJlYW0vdjUvcHJvL3RleHQtdG8taW1hZ2UiLCJsYWJlbCI6IlNlZWRyZWFtIDUuMCBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "I",
+      "file": "img/af1ddff5d3f2.jpg",
+      "files": [
+        "img/af1ddff5d3f2.jpg",
+        "img/402590eb5275.jpg",
+        "img/fd744b31f32a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "J",
+      "file": "img/6403a443aec8.jpg",
+      "files": [
+        "img/6403a443aec8.jpg",
+        "img/44f09492ffe2.jpg",
+        "img/508dee9b9769.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtcHJvIiwibGFiZWwiOiJOYW5vIEJhbmFuYSBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "K",
+      "file": "img/adccddccfa40.jpg",
+      "files": [
+        "img/adccddccfa40.jpg",
+        "img/a7a24bea53a5.jpg",
+        "img/fe06a55cff5a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    }
+  ]
+}

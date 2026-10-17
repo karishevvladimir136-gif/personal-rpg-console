@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "kind": "picture-blind",
+  "shot": "t7",
+  "title": {
+    "ru": "Незнакомец в сухом пальто у стойки — сквозь щели в полу",
+    "en": "A stranger in a dry coat at the counter, seen through floorboard gaps"
+  },
+  "description": "Seen from above through narrow gaps between floorboards: a stranger in a dry dark coat stands at the tavern counter below, talking quietly to the tavern keeper. Place: the tavern room below, seen through cracks in the upstairs floor, in the evening; rain outside. People: the stranger (a lean man in a dry, well-cut dark coat and a hat); the tavern keeper (a broad-shouldered woman in her fifties, grey hair tied back, sleeves rolled up, a dark apron). Art style: Cinematic noir.",
+  "state": [],
+  "createdAt": "2026-10-17T02:12:10.961Z",
+  "commit": "df90ac1",
+  "run": "pictures-2026-10-17",
+  "references": [],
+  "variants": [
+    {
+      "letter": "A",
+      "file": "img/0d96fcd2a6b8.jpg",
+      "files": [
+        "img/0d96fcd2a6b8.jpg",
+        "img/15165bec9799.jpg",
+        "img/736404d828bd.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InF3ZW4zIiwibW9kZWxJZCI6ImZhbC1haS9xd2VuLWltYWdlLTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiUXdlbi1JbWFnZSAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "B",
+      "file": "img/1438cdc6fe04.jpg",
+      "files": [
+        "img/1438cdc6fe04.jpg",
+        "img/c408d3f9dc44.jpg",
+        "img/8df7be460f77.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgzIiwibW9kZWxJZCI6ImJsYWNrZm9yZXN0bGFicy9mbHV4LTMvdGV4dC10by1pbWFnZSIsImxhYmVsIjoiRkxVWCAzIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "C",
+      "file": "img/ac0348f296dc.jpg",
+      "files": [
+        "img/ac0348f296dc.jpg",
+        "img/1b1d4d3183e2.jpg",
+        "img/84e98f2fe1aa.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImtsZWluOWIiLCJtb2RlbElkIjoiZmFsLWFpL2ZsdXgtMi9rbGVpbi85YiIsImxhYmVsIjoiRkxVWC4yIFtrbGVpbl0gOUIiLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "D",
+      "file": "img/5453883b67de.jpg",
+      "files": [
+        "img/5453883b67de.jpg",
+        "img/51d07ef2508d.jpg",
+        "img/d7420e4b2f14.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtcHJvIiwibGFiZWwiOiJOYW5vIEJhbmFuYSBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "E",
+      "file": "img/cf955f62a33f.jpg",
+      "files": [
+        "img/cf955f62a33f.jpg",
+        "img/642e305938d5.jpg",
+        "img/0bf51c3f663a.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Im5iMiIsIm1vZGVsSWQiOiJmYWwtYWkvbmFuby1iYW5hbmEtMiIsImxhYmVsIjoiTmFubyBCYW5hbmEgMiIsInByb3ZpZGVyIjoiZmFsIiwicHJvbXB0IjoiY29tcGlsZWQifQ=="
+    },
+    {
+      "letter": "F",
+      "file": "img/254cea4e6777.jpg",
+      "files": [
+        "img/254cea4e6777.jpg",
+        "img/9ac4eb99df9d.jpg",
+        "img/59b13326e9be.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1cyIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LXN1bmJ1cnN0IiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IFN1bmJ1cnN0IiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "G",
+      "file": "img/1919faab0b42.jpg",
+      "files": [
+        "img/1919faab0b42.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6Imdyb2siLCJtb2RlbElkIjoieGFpL2dyb2staW1hZ2luZS1pbWFnZSIsImxhYmVsIjoiR3JvayBJbWFnaW5lIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "H",
+      "file": "img/9458b0c655af.jpg",
+      "files": [
+        "img/9458b0c655af.jpg",
+        "img/47c153baf71c.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDIiLCJtb2RlbElkIjoiZ3B0LWltYWdlLTIiLCJsYWJlbCI6IkdQVCBJbWFnZSAyIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "I",
+      "file": "img/5b6402ef4bd5.jpg",
+      "files": [
+        "img/5b6402ef4bd5.jpg",
+        "img/2dbc3cd1bbb3.jpg",
+        "img/deec13895309.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6InNlZWRyZWFtNSIsIm1vZGVsSWQiOiJieXRlZGFuY2Uvc2VlZHJlYW0vdjUvcHJvL3RleHQtdG8taW1hZ2UiLCJsYWJlbCI6IlNlZWRyZWFtIDUuMCBQcm8iLCJwcm92aWRlciI6ImZhbCIsInByb21wdCI6ImNvbXBpbGVkIn0="
+    },
+    {
+      "letter": "J",
+      "file": "img/cf0b09ac59f8.jpg",
+      "files": [
+        "img/cf0b09ac59f8.jpg",
+        "img/22385f8d9614.jpg",
+        "img/bc3d4765b863.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImdwdDI1ZiIsIm1vZGVsSWQiOiJncHQtaW1hZ2UtMi41LWZsYXJlIiwibGFiZWwiOiJHUFQgSW1hZ2UgMi41IEZsYXJlIiwicHJvdmlkZXIiOiJvcGVuYWkiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    },
+    {
+      "letter": "K",
+      "file": "img/2e6417d025fe.jpg",
+      "files": [
+        "img/2e6417d025fe.jpg",
+        "img/696bef6431eb.jpg",
+        "img/26fd87fe0b27.jpg"
+      ],
+      "refused": 0,
+      "sealed": "eyJtb2RlbCI6ImZsdXgyLXBybyIsIm1vZGVsSWQiOiJmYWwtYWkvZmx1eC0yLXBybyIsImxhYmVsIjoiRkxVWC4yIFtwcm9dIiwicHJvdmlkZXIiOiJmYWwiLCJwcm9tcHQiOiJjb21waWxlZCJ9"
+    }
+  ]
+}
