@@ -161,7 +161,7 @@ records above with its usage and cost.
 | `pnpm lint` | pass, zero warnings |
 | `pnpm build` | pass |
 | Full suite on the merge commit (part 1, clean worktree, Node 24, `--test-concurrency=2`) | 2557 tests · 2530 pass · 27 skipped · 0 fail |
-| Full suite on the final code (Node 24, `--test-concurrency=2`) | FINAL_SUITE_RESULT |
+| Full suite on the final code (Node 24, `--test-concurrency=2`) | 2581 tests · 2553 pass · 27 skipped · 1 fail — `tests/integration-saves.test.mjs` pinned the list of migration names and did not know 64–67; the list was extended (test-only change) and the file reran green (2 / 2), so on the final code every test passes |
 | Fake bench, loop runtime (`--runtime dm-loop-v1 --scenario all`, 21 scenarios) | all pass (the known weakness W2 of scenario 08 stays open as the bench expects) |
 | Screenshots (`stage5-screenshots.mjs`, `stage-v-screenshots.mjs` on an isolated server on 3105 without `.env.local`) | 48 + 16 shots, desktop and phone, zero horizontal overflow, zero clipping (`docs/screens/stage-5/index.json`, `docs/screens/stage-v/index.json`) |
 | Live replay (part 4) | 20 turns, 37/40 checks (above) |

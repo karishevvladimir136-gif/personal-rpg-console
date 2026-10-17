@@ -7,7 +7,7 @@ first; six parts in the spec's order, each with its own test file (`tests/polish
 §19–§21, `docs/SPEED.md` §8); migrations 64–67 (additive). The owner report is `docs/runs/polish2-report.md` («Needs the
 owner» lists the decisions left open); the resume notes `docs/runs/polish2-progress.md`. Final checks: typecheck pass,
 lint pass (zero warnings), build pass, the full suite on the merge commit green (2557 tests, 2530 pass, 27 skipped), the
-full suite on the final code FINAL_SUITE_RESULT, the loop fake bench green (21 scenarios), 48 + 16 screenshots with zero
+full suite on the final code 2581 tests, 2553 pass, 27 skipped, 1 fail (a test pinning the migration file list; the list was extended and the file reran green, no application change), the loop fake bench green (21 scenarios), 48 + 16 screenshots with zero
 overflow, a 20-turn live Russian replay on Opus 5.5 high and a 59-frame picture proof. Paid: $3.09 of the $10 picture cap,
 $3.99 of the $15 turn-loop cap.
 

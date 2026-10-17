@@ -18,7 +18,7 @@ The parallel session `claude/dm-arch` owns `src/lib/gameplay/dm-loop/two-pass/**
 | 4 — cache: append-only history | done | code (3b249f4); fake bench green (21 scenarios); the 20-turn live replay on Opus 5.5 high: **$3.99**, writes 8% of the cost (`docs/runs/polish2-20261017-184438-loop-opus-live-ru-replay.jsonl`); numbers in the report |
 | 5 — opening by the campaign's DM | done | migration 66, the registry, `anthropic-structured.ts`, the provider branch; `tests/polish2-opening.test.mjs` (5). No paid call |
 | 6 — small follow-ups | done (two left for the owner) | migration 67; combat draft, direct first adventure, quest links, «Картинки» page, the atlas, «Что, если» wording, slot backfill, the director switch; `tests/polish2-followups.test.mjs` (4). Not done: the wizard's debt as a journal debt; the `lore` record |
-| final — checks, report | in progress | typecheck, lint (0 warnings), build, fake bench, 48 + 16 screenshots (zero overflow) done; the full suite on the final code running; `docs/runs/polish2-report.md` and `DEV_STATUS.md` written (the suite line to fill) |
+| final — checks, report | done | typecheck, lint (0 warnings), build, fake bench, 48 + 16 screenshots (zero overflow); the full suite on the final code: 2581 tests, 2553 pass, 27 skipped, 1 fail (`integration-saves` pinned the migration list — extended, reran green, test-only); `docs/runs/polish2-report.md` and `DEV_STATUS.md` final |
 
 ## Paid calls log
 
