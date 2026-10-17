@@ -215,7 +215,7 @@ ledger never let the bake-off cross the cap. No other paid call was made (no Ope
 | `pnpm lint` | pass, zero warnings |
 | `tests/dm-arch-two-pass.test.mjs` (the split on the real turn path with scripted models, the gate, the flag) | 6 / 6 |
 | The tests that read the changed shared files (14 files: adapters, model choice, loop, limits, play, speed, polish 1–3, stage 4 dossier, stage 5 UI, the startup gate) | 114 pass, 0 fail (after the stub line) |
-| Full suite under Node 24 | see `docs/runs/dmarch-progress.md` (run in chunks after this report) |
+| Full suite under Node 24 (40 chunks of eight files) | 2553 tests · 2524 pass · 27 skipped · 2 fail on the shallow clone (Mega DM fixture tests reading git history; both pass after `git fetch --unshallow`, 13/13) — 0 real failures |
 | `pnpm build` | pass |
 | Dry run of the bench chain (reference, scenes, continuity, judge on stand-in models) | pass, nothing paid |
 

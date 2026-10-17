@@ -57,5 +57,6 @@ branches not yet played cannot be resumed without replaying the prefix (about $7
 
 ## Full suite
 
-Pending at the time of the report: run in chunks of eight files under Node 24 (`node --test --test-concurrency=2`); the
-result is recorded here when it finishes.
+Node 24.22, `node --test --test-concurrency=2` in 40 chunks of eight files: **2553 tests · 2524 pass · 27 skipped ·
+2 fail** on the shallow clone — both in the Mega DM fixture tests that run `git diff` across old commits (the known
+environment case of `docs/CLOUD.md`); after `git fetch --unshallow` the two files pass (13/13). So: **0 real failures**.
