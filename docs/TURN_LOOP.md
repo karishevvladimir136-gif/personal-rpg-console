@@ -571,3 +571,38 @@ contract (the SQL ticket's `lab_execution_profile`, the registry's `validateMode
 - The Russian voice layer applies to the opening once the voice stage turns it on (it is the DM's own prose now).
 - Tests: `tests/polish2-opening.test.mjs` (the registry, the schema conversion, the requester, the provider, migration
   66 and the creation → opening flow on the Anthropic profile).
+
+## 21. Polish 2 — part 6: the small follow-ups from the polish report
+
+Done on `claude/polish-2` (`docs/stages/POLISH_2.md` §6; migration 67 `202610170067_polish2_followups.sql`):
+- **A combat profile drafted by the DM on demand** (`src/lib/gameplay/combat-draft.ts`, `src/lib/server/combat-draft.ts`):
+  the combat-readiness review has «Пусть ведущий предложит по описанию героя» — Claude Sonnet 5.5 reads the hero's
+  description, sheet and possessions and proposes HP, attack, defense, skill and a weapon from the approved possessions
+  within the console-basic ranges, with one sentence why; the numbers land in the editable fields and nothing is saved
+  until the owner approves (the same confirm as before). About a cent per draft.
+- **The first adventure goes straight into the opening review**: a prefilled first adventure (the wizard's phrase)
+  saves on the first click («Сохранить») and the opening proposal follows; «Проверить» → «Сохранить» stays for an
+  adventure typed by hand (`SetupForm`'s `direct`).
+- **Quest texts link the named things they mention** («Сельдь», «Марте», «Кабак Марты») to their codex entries
+  (`src/lib/ui/link-names.ts`: by name stems, once each, longest name first; the codex opens the matching tab for the
+  link's hash). Unmet people and rumoured places are not linked.
+- **«Визуальная библия» and «Галерея» are one «Картинки» page** (`src/components/registry/pictures-screen.tsx`): the
+  people, places, things and vessels with their anchors (pick one to redraw it or edit its visual profile), the frames of
+  the turns, the style and picture settings one click away; the earlier two screens stay under «Ещё». The old addresses
+  (`/gallery`, `/frame`) open the new page.
+- **The drawn atlas comes back** («Создать карту» on the map): a Stage V picture with the `atlas` composition of the
+  level's area (the level's anchor place, or the current place on a flat map), drawn on the quality model (Sunburst by
+  default) in the campaign's style from the layout's own positions (north is up: «the tavern in the north-west…»), with
+  no text on the picture — the names stay the app's labels over it. It shows as the map's background; redraws keep
+  the versions.
+- **The «Что, если» entry**: the start point in words («Точка старта: после хода 3 · …») and the cost line before the
+  paid button.
+- **The hero's equipment slots are backfilled** for existing records: a player with no slots gets the standard humanoid
+  set in the campaign's language (migration 67).
+- **The shot director's switch** (`director` in the picture settings, on by default): the owner can draw from the
+  one-clause shot alone; the proof's numbers (`docs/runs/polish2-report.md`) are the reason it exists.
+
+Not done here (for the owner, with the reasons, in the report): the wizard's debt («должен сорок монет Марте») as a
+journal debt to a person — it needs the wizard's creation contract (the schema, the review and the SQL commit) to carry
+debts and create the creditor; the DM records the debt on the first turn today; and the public `lore` record for the
+codex's «Мир» tab — a new record family (table, tool, projection, codex tab) outside the follow-ups' size.

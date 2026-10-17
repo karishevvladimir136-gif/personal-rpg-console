@@ -65,7 +65,9 @@ test("one picture path for every button: the portrait, figure, item, holding and
   const redraw = src("src/components/registry/redraw-anchor.tsx");
   assert.match(redraw, /pictures\.send\("pictures\.anchor", \{ subject, trigger: "manual"/);
   assert.match(redraw, /result\?\.status === "cap"/, "the daily cap is explained, never a dead button");
-  assert.doesNotMatch(src("src/components/atlas-map.tsx"), /Atlas artwork for this view|Создать карту/, "the legacy atlas artwork («Создать карту») leaves the map screen");
+  // Polish 2 §6: «Создать карту» is back as a Stage V «atlas» picture through the same store; the legacy artwork path stays gone.
+  assert.doesNotMatch(src("src/components/atlas-map.tsx"), /Atlas artwork for this view/, "the legacy atlas artwork path leaves the map screen");
+  assert.match(src("src/components/atlas-map.tsx"), /pictures\.send\("pictures\.anchor", \{ subject: \{ kind: "location", id: atlasSubjectId \}, composition: "atlas", trigger: "manual" \}\)/);
 });
 
 test("the legacy «OpenAI draws the anchors» choice is gone: a stored setting reads as fal and the settings screen no longer offers it", () => {

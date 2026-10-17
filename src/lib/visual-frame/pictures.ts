@@ -22,7 +22,7 @@ import { OPENAI_IMAGE_MODELS, openAIImageModel, openAIImageTypicalUsdMicros, typ
 
 export type PictureKind = "frame" | "anchor";
 export type PictureSubjectKind = "turn" | "entity" | "item" | "location";
-export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding";
+export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding" | "atlas";
 export type PictureTier = "fast" | "quality";
 export type PictureTrigger = "live" | "committed" | "key_moment" | "redraw" | "autopilot" | "restyle" | "manual";
 export type PictureStatus = "queued" | "generating" | "ready" | "failed";
@@ -80,6 +80,8 @@ export type PictureSettings = {
   autopilot: PictureAutopilot;
   /** Polish 2: the owner's model per tier (picture settings); an absent tier means the default. */
   models: Partial<Record<PictureTier, PictureModelId>>;
+  /** Polish 2 §3: the shot director writes a visual brief from the whole turn (off: the one-clause shot alone). */
+  director: boolean;
   revision: number;
 };
 /** Polish 2 §3: the visual profile of a named person or place — a full look, drafted once by the
@@ -108,7 +110,7 @@ export type PictureBoard = {
 export const defaultPictureAutopilot: PictureAutopilot = {
   enabled: false, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal",
 };
-export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, revision: 0 };
+export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, director: true, revision: 0 };
 
 // Polish 2: the catalogue of picture models of both providers, one entry per model, and the
 // defaults per tier from the owner's blind picks (2026-10-17, docs/stages/POLISH_2.md §2):
@@ -143,7 +145,7 @@ export function parsePictureModels(raw: unknown): PictureSettings["models"] {
 
 const KINDS: PictureKind[] = ["frame", "anchor"];
 const SUBJECT_KINDS: PictureSubjectKind[] = ["turn", "entity", "item", "location"];
-export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding"];
+export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding", "atlas"];
 const TIERS: PictureTier[] = ["fast", "quality"];
 const TRIGGERS: PictureTrigger[] = ["live", "committed", "key_moment", "redraw", "autopilot", "restyle", "manual"];
 const STATUSES: PictureStatus[] = ["queued", "generating", "ready", "failed"];
@@ -170,6 +172,7 @@ export function parsePictureSettings(raw: unknown): PictureSettings {
     dailyCap: Number.isSafeInteger(cap) && cap >= 0 && cap <= 500 ? cap : 60,
     autopilot: parsePictureAutopilot(v.autopilot),
     models: parsePictureModels(v.models),
+    director: typeof v.director === "boolean" ? v.director : true,
     revision: Number.isSafeInteger(v.revision) ? (v.revision as number) : 0,
   };
 }

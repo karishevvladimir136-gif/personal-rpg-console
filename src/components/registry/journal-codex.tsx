@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
@@ -10,6 +10,22 @@ import { useChrome, type CampaignScreenId } from "./shell";
 import { Art, Panel, Plate, registry as r, TabBar, useCopy, type Copy } from "./primitives";
 import { PinButton } from "./pins";
 import s from "./journal-codex.module.css";
+import { codexAnchor, linkNames, type NamedThing } from "@/lib/ui/link-names";
+
+/** Polish 2 §6: the named things a quest text mentions link to their codex entries («Сельдь»). */
+function namedThingsOf(data: CampaignSnapshot): NamedThing[] {
+  return [
+    ...data.entities.filter((row) => ["npc", "companion", "transport", "mount", "faction"].includes(row.kind) && !profileOf(row).unmet).map((row) => ({ kind: "entity" as const, id: row.id, name: row.name })),
+    ...data.locations.filter((row) => row.status !== "rumored").map((row) => ({ kind: "location" as const, id: row.id, name: row.name })),
+    ...data.items.filter((row) => row.quantity > 0 && itemRarity(row) && itemRarity(row) !== "common").map((row) => ({ kind: "item" as const, id: row.id, name: row.name })),
+  ];
+}
+function LinkedText({ text, data, href }: { text: string; data: CampaignSnapshot; href: string }) {
+  const segments = linkNames(text, namedThingsOf(data));
+  return <>{segments.map((segment, index) => segment.link
+    ? <Link key={index} href={`${href}#${codexAnchor(segment.link)}`} className={s.codexLink} data-testid="codex-link">{segment.text}</Link>
+    : <span key={index}>{segment.text}</span>)}</>;
+}
 
 function entryLine(entry: JournalEntry, c: Copy) {
   const who = entry.counterpart ? entry.counterpart.name : null;
@@ -19,6 +35,8 @@ function entryLine(entry: JournalEntry, c: Copy) {
 
 export function RegistryJournal({ data }: { data: CampaignSnapshot }) {
   const c = useCopy();
+  const chrome = useChrome();
+  const codexHref = chrome?.href?.("codex") ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/codex`;
   const [doneOpen, setDoneOpen] = useState(false);
   const { active, done, goal } = questsOf(data);
   const journal = journalOf(data);
@@ -72,7 +90,7 @@ export function RegistryJournal({ data }: { data: CampaignSnapshot }) {
                       <span className={r.questTitle}>{quest.title}</span>
                       <PinButton campaignId={data.campaign.id} pinned={pinned} text={`${quest.title}: ${quest.description}`.slice(0, 300)} source={{ kind: "quest", id: quest.id }} compact />
                     </div>
-                    {quest.description && <p>{quest.description}</p>}
+                    {quest.description && <p><LinkedText text={quest.description} data={data} href={codexHref} /></p>}
                     {(quest.detail?.locationIds?.length ?? 0) > 0 && (
                       <span className={`${r.small} ${r.muted}`}>{c("Цель:", "Goal:")} {quest.detail!.locationIds!.map((id) => data.locations.find((row) => row.id === id)?.name).filter(Boolean).join(", ")}</span>
                     )}
@@ -138,7 +156,7 @@ function CodexEntry({ data, entity, c }: { data: CampaignSnapshot; entity: Entit
   const home = profile.homePlaceId ? data.locations.find((row) => row.id === profile.homePlaceId) : null;
   const pinned = pinnedOf(data);
   return (
-    <div className={s.entry}>
+    <div className={s.entry} id={codexAnchor({ kind: "entity", id: entity.id })}>
       <span className={r.avatarSmall}><Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 25%" /></span>
       <div>
         <div className={r.row} style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -159,6 +177,14 @@ export function RegistryCodex({ data }: { data: CampaignSnapshot }) {
   const chrome = useChrome();
   const [query, setQuery] = useState("");
   const [tab, setTab] = useState<CodexTab>("people");
+  // A link from the journal («#codex-location-…») opens the matching tab and scrolls to the entry.
+  useEffect(() => {
+    const match = /^#codex-(entity|location|item)-/.exec(window.location.hash);
+    if (!match) return;
+    const wanted: CodexTab = match[1] === "location" ? "places" : match[1] === "item" ? "things" : "people";
+    const timer = setTimeout(() => { setTab(wanted); setTimeout(() => document.getElementById(window.location.hash.slice(1))?.scrollIntoView({ block: "center" }), 50); }, 0);
+    return () => clearTimeout(timer);
+  }, []);
   const groups = codexOf(data, query, c.language);
   const factions = factionsOf(data);
   const needle = query.trim().toLocaleLowerCase();
@@ -212,7 +238,7 @@ export function RegistryCodex({ data }: { data: CampaignSnapshot }) {
               {places.map(({ location, current, rumored, goal }) => {
                 const parent = location.detail?.parentId ? data.locations.find((row) => row.id === location.detail?.parentId) : null;
                 return (
-                  <div key={location.id} className={s.entry}>
+                  <div key={location.id} className={s.entry} id={codexAnchor({ kind: "location", id: location.id })}>
                     <span className={r.avatarSmall}><Art subject={{ kind: "location", id: location.id }} name={location.name} /></span>
                     <div>
                       <div className={r.row} style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
@@ -249,7 +275,7 @@ export function RegistryCodex({ data }: { data: CampaignSnapshot }) {
               {things.map((item) => {
                 const owner = item.owner_entity_id ? data.entities.find((row) => row.id === item.owner_entity_id) : null;
                 return (
-                  <div key={item.id} className={s.entry}>
+                  <div key={item.id} className={s.entry} id={codexAnchor({ kind: "item", id: item.id })}>
                     <span className={r.avatarSmall}><Art subject={{ kind: "item", id: item.id }} name={item.name} /></span>
                     <div>
                       <div className={r.row} style={{ justifyContent: "space-between", alignItems: "flex-start" }}>

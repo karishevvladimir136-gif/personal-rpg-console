@@ -57,7 +57,7 @@ import s from "./shell.module.css";
 export type CampaignScreenId =
   | "game" | "character" | "inventory" | "party" | "journal" | "codex" | "map" | "holdings"
   | "adventures" | "library" | "settings" | "sessions" | "saves" | "timeline" | "world"
-  | "dm-chat" | "gallery" | "frame" | "home" | "camp";
+  | "dm-chat" | "gallery" | "frame" | "pictures" | "home" | "camp";
 
 type Chrome = {
   /** Synthetic previews route inside /preview and never fetch. */
@@ -141,8 +141,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
     { id: "timeline", label: c("Хроника и линии времени", "Timeline"), icon: History },
     { id: "world", label: c("Мастерская мира", "World Lab"), icon: FlaskConical },
     { id: "dm-chat", label: c("Чат с ведущим", "Chat with DM"), icon: MessageSquare },
-    { id: "gallery", label: c("Галерея", "Gallery"), icon: ImageIcon },
-    { id: "frame", label: c("Визуальная библия", "Visual Bible"), icon: Feather },
+    { id: "pictures", label: c("Картинки", "Pictures"), icon: ImageIcon },
   ];
   const all = [...primary, ...secondary];
   const active = all.find((item) => item.id === current) ?? (current === "home" || current === "camp" ? primary.find((item) => item.id === "holdings") : undefined);

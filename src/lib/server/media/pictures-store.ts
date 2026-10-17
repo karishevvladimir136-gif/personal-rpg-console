@@ -78,7 +78,7 @@ export async function savePictureSettings(campaignId: string, value: unknown) {
   if (!isRecord(value) || !Number.isSafeInteger(value.expectedRevision)) throw new PersistenceError("validation");
   const next = parsePictureSettings(value);
   const ctx = await picturesContext(campaignId);
-  return parsePictureSettings(await ctx.rpc("settings.save", { expectedRevision: value.expectedRevision, frames: next.frames, quality: next.quality, dailyCap: next.dailyCap, autopilot: next.autopilot, models: next.models }));
+  return parsePictureSettings(await ctx.rpc("settings.save", { expectedRevision: value.expectedRevision, frames: next.frames, quality: next.quality, dailyCap: next.dailyCap, autopilot: next.autopilot, models: next.models, director: next.director }));
 }
 
 /** A style version: preset or custom text, an optional reference image (a data URL from the

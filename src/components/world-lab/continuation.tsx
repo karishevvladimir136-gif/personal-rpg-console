@@ -422,7 +422,7 @@ function ContinuationSession({
         <article className={styles.inspection}>
           <h3>{c.recorded}</h3>
           <p className={styles.basis}>
-            {inspection.source.label} · #{inspection.checkpoint.ordinal + 1} ·{" "}
+            {c.startPoint} {inspection.checkpoint.ordinal + 1} · {inspection.source.label} ·{" "}
             {labWorldTime(inspection.checkpoint.worldMinutes, language)}
           </p>
           <p>{inspection.checkpoint.summary}</p>
@@ -585,6 +585,9 @@ function ContinuationSession({
                     </label>
                   </div>
                 </details>
+                <p className={styles.muted} id={costId}>
+                  {c.cost}
+                </p>
                 <button
                   className={styles.primary}
                   type="submit"
@@ -597,9 +600,6 @@ function ContinuationSession({
                   {c.interpret}
                   <ArrowRight size={15} aria-hidden="true" />
                 </button>
-                <p className={styles.muted} id={costId}>
-                  {c.cost}
-                </p>
               </fieldset>
             </form>
           )}

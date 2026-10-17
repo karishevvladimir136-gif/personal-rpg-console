@@ -169,7 +169,7 @@ test("the wiring: the frames panel sends the owner's comment with the redraw; th
   assert.match(redraw, /pictures\.profile\.draft/);
   assert.match(redraw, /data-testid="visual-profile-look"/);
   const service = src("src/lib/server/media/pictures-service.ts");
-  assert.match(service, /const directed = await directFrame\(ctx, picture\.id/, "the brief is written after the response, before the paid picture");
+  assert.match(service, /await directFrame\(ctx, picture\.id/, "the brief is written after the response, before the paid picture");
   assert.match(service, /wholeNarration\(ctx\.campaignId, operationId, trigger === "live" \? NARRATION_WAIT_MS : 0\)/, "a live frame waits for the whole narration");
   assert.match(service, /compileEditPrompt\(brief\.edit!, promptFamily\(input\.model\)\)/, "a redraw with a comment is an edit of the previous frame");
   assert.match(service, /referenceIds = edit \? \[previousOfTurn!\.id\]/);

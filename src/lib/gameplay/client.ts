@@ -85,3 +85,6 @@ export const loadCombatReadiness = (campaignId: string) =>
   request<CombatReadinessProposal>(`${base(campaignId)}/combat-readiness`);
 export const confirmCombatReadiness = (campaignId: string, input: CombatReadinessConfirmation) =>
   request<{ campaignId: string; requestId: string; ready: true }>(`${base(campaignId)}/combat-readiness`, input);
+/** Polish 2 §6: the combat profile drafted by the DM's model from the hero's text (a proposal; the owner approves). */
+export const draftCombatReadiness = (campaignId: string) =>
+  request<{ status: "drafted"; draft: { hp: number; attack: number; defense: number; skill: number; weaponIndex: number | null; weaponDamage: number | null; why: string } } | { status: "not_configured" | "failed"; error?: string }>(`${base(campaignId)}/combat-readiness`, { action: "draft" });

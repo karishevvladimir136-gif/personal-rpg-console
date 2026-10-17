@@ -12,6 +12,9 @@ import { placePinLabels, sameLayout, type LabelPlacement } from "@/lib/map/label
 import { selectMapVisual } from "@/lib/visual-frame/map-job";
 import { selectSubjectVisual } from "@/lib/visual-frame/subject-visual";
 import { RedrawAnchor } from "./registry/redraw-anchor";
+import { usePictures } from "./registry/live-frames";
+import { anchorFor, capRemaining, pictureCostUsdMicros } from "@/lib/visual-frame/pictures";
+import { usd } from "@/lib/visual-frame/fal-image";
 import { SubjectVisual } from "./visual-frame/subject-visual";
 import { useLanguage } from "./language-context";
 import { Badge, Button, Icon } from "./ui";
@@ -76,6 +79,9 @@ export function AtlasMap({
   const [chosenLevel, setChosenLevel] = useState<AtlasLevel | null>(reviewPreset?.level ?? null);
   const [placements, setPlacements] = useState<MapPlacement[]>(reviewOnly ? reviewPlacements : []);
   const [layoutError, setLayoutError] = useState("");
+  const pictures = usePictures();
+  const [atlasBusy, setAtlasBusy] = useState(false);
+  const [atlasNote, setAtlasNote] = useState("");
   const [selectedWorldId, setSelectedWorldId] = useState<string | null>(null);
   const [selectedRegionId, setSelectedRegionId] = useState<string | null>(null);
   const [selectedLocationId, setSelectedLocationId] = useState<string | null>(null);
@@ -292,6 +298,21 @@ export function AtlasMap({
     }
   }
 
+  // Polish 2 §6: the drawn atlas comes back — a Stage V «atlas» picture of this level's area (the level's
+  // anchor place, or the current place when the map is flat), drawn by the quality model in the campaign's
+  // style, laid out as the pins are; the names stay the app's own labels over it.
+  const atlasSubjectId = view.anchorId ?? currentId ?? view.pins[0]?.location_id ?? null;
+  const atlasPicture = pictures && atlasSubjectId ? anchorFor(pictures.board, { kind: "location", id: atlasSubjectId }, "atlas") : null;
+  const atlasUrl = atlasPicture?.picture && pictures ? pictures.urlFor(atlasPicture.picture) : null;
+  const drawAtlas = async () => {
+    if (!pictures || pictures.preview || !atlasSubjectId || atlasBusy) return;
+    setAtlasBusy(true);
+    try {
+      const result = await pictures.send("pictures.anchor", { subject: { kind: "location", id: atlasSubjectId }, composition: "atlas", trigger: "manual" }) as { status?: string } | null;
+      setAtlasNote(result?.status === "cap" ? w("The daily picture limit is spent; raise it in the settings.", "Дневной лимит картинок исчерпан; поднять его можно в настройках.") : "");
+    } catch { setAtlasNote(w("The request could not be sent; try again.", "Не удалось отправить запрос; попробуй ещё раз.")); }
+    finally { setAtlasBusy(false); }
+  };
   return (
     <>
       <section className={styles.atlasPanel} aria-label={w("Campaign atlas", "Атлас кампании")}>
@@ -299,6 +320,14 @@ export function AtlasMap({
           <div>
             <span className="eyebrow">{w("ATLAS OF KNOWN PLACES", "АТЛАС ЗНАКОМЫХ МЕСТ")}</span>
             <h2>{level === "world" ? w("The known world", "Известный мир") : anchor?.name ?? w("Choose an area", "Выберите область")}</h2>
+            {pictures && !reviewOnly && atlasSubjectId && (
+              <p className={styles.secondaryNote} style={{ margin: "4px 0 0" }}>
+                <Button disabled={pictures.preview || atlasBusy || !!atlasPicture?.drawing || capRemaining(pictures.board) === 0} onClick={() => void drawAtlas()}>
+                  {atlasPicture?.drawing ? w("Drawing the map…", "Карта рисуется…") : atlasUrl ? w("Redraw the map", "Перерисовать карту") : w("Draw a map", "Создать карту")} · {usd(pictureCostUsdMicros("quality", "atlas"))}
+                </Button>
+                {atlasNote && <span role="status"> {atlasNote}</span>}
+              </p>
+            )}
           </div>
           <div className={styles.levelTabs} aria-label={w("Map level", "Уровень карты")}>
             {(["world", "region", "local"] as const).map((option) => (
@@ -330,9 +359,14 @@ export function AtlasMap({
               {artworkVisible && previewArt && (reviewArtworkUrl
                 ? <Image unoptimized className={styles.artBackground} src={reviewArtworkUrl} alt="" width={1024} height={576} />
                 : <div className={styles.previewArtwork} aria-hidden="true" />)}
+              {atlasUrl && !artworkVisible && (
+                // Short-lived authenticated URLs; next/image cannot proxy them.
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className={styles.artBackground} src={atlasUrl} alt="" />
+              )}
               <div className={styles.atlasGrain} aria-hidden="true" />
               <span className={styles.artworkLabel}>
-                {artworkVisible
+                {atlasUrl && !artworkVisible ? w("DRAWN ATLAS · illustrative background", "РИСОВАННЫЙ АТЛАС · условный фон") : artworkVisible
                   ? w("ATLAS ARTWORK · illustrative background", "ИЗОБРАЖЕНИЕ АТЛАСА · условный фон")
                   : w("KNOWN PLACES · current public records", "ИЗВЕСТНЫЕ МЕСТА · открытые записи")}
               </span>

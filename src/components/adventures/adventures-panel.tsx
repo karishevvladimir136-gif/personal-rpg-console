@@ -373,6 +373,7 @@ export function AdventuresPanel({
                         }
                   }
                   disabled={!canWrite || staleDraft}
+                  direct={draft.kind === "prepare" && !!draft.initial}
                   onDirty={setFormDirty}
                   onCancel={cancelDraft}
                   onSave={(setup) =>

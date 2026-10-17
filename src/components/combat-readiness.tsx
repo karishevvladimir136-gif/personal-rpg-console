@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { CombatReadinessConfirmation, CombatReadinessPerson, CombatReadinessProposal } from "@/lib/gameplay/combat-readiness";
 import { combatReadinessNeeded, genericNpcBaseline, missingPlayerDefaults, suggestedWeaponIndex } from "@/lib/gameplay/combat-readiness";
-import { confirmCombatReadiness, gameplayErrorMessage, loadCombatReadiness } from "@/lib/gameplay/client";
+import { confirmCombatReadiness, draftCombatReadiness, gameplayErrorMessage, loadCombatReadiness } from "@/lib/gameplay/client";
 import { useLanguage } from "./language-context";
 import { Button } from "./ui";
 
@@ -24,6 +24,9 @@ export function CombatReadiness({ campaignId, runtimeRevision, onSaved }: { camp
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const [saved, setSaved] = useState(false);
+  // Polish 2 §6: the DM's model drafts the numbers from the hero's text; the owner edits and approves.
+  const [drafting, setDrafting] = useState(false);
+  const [draftNote, setDraftNote] = useState("");
   const attempt = useRef<CombatReadinessConfirmation | null>(null);
   const guard = useRef(false);
   useEffect(() => {
@@ -93,6 +96,24 @@ export function CombatReadiness({ campaignId, runtimeRevision, onSaved }: { camp
         }
       }}>
         <p className="muted">{t("Review these starter combat values. They are house defaults, not facts inferred from the story. Nothing is saved until you approve.")}</p>
+        <p>
+          <Button type="button" disabled={busy || drafting} onClick={async () => {
+            setDrafting(true);
+            setDraftNote("");
+            try {
+              const result = await draftCombatReadiness(campaignId);
+              if (result.status === "drafted") {
+                setPlayer({ hp: result.draft.hp, attack: result.draft.attack, defense: result.draft.defense, skill: result.draft.skill });
+                setWeaponIndex(result.draft.weaponIndex);
+                if (result.draft.weaponDamage !== null) setDamage(result.draft.weaponDamage);
+                attempt.current = null;
+                setDraftNote(result.draft.why);
+              } else setDraftNote(result.status === "not_configured" ? t("No model key on the server.") : t("The model proposed nothing; try again."));
+            } catch (cause) { setDraftNote(gameplayErrorMessage(cause)); }
+            finally { setDrafting(false); }
+          }}>{t(drafting ? "The DM is thinking…" : "Let the DM propose from the hero's text")}</Button>
+          {draftNote && <span className="muted" role="status"> {draftNote}</span>}
+        </p>
         <fieldset disabled={busy} className="persistence-fields">
           <strong>{proposal.hero.name}</strong>
           {stats.map((stat) => <label key={stat}>

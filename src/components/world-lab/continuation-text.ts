@@ -19,6 +19,7 @@ export function continuationText(language: "en" | "ru") {
     reasoning: "Reasoning effort",
     interpret: "Interpret child What If",
     cost: "Interpret sends one request to the selected model and may incur provider charges. Inspection and approval make no simulation request.",
+    startPoint: "Starting point: after turn",
     sourceHelp:
       "The child keeps this exact starting point and remains NON-CANON. Review and approval prepare it; Start simulation is a separate action.",
     blocked:
@@ -63,6 +64,7 @@ export function continuationText(language: "en" | "ru") {
     reasoning: "Уровень рассуждения",
     interpret: "Интерпретировать дочернее «Что если»",
     cost: "Интерпретация отправляет один запрос выбранной модели и может оплачиваться провайдеру. Осмотр и одобрение не запускают симуляцию.",
+    startPoint: "Точка старта: после хода",
     sourceHelp:
       "Дочерний эксперимент сохраняет эту точную отправную точку и остаётся НЕ КАНОН. Проверка и одобрение подготавливают его; запуск симуляции — отдельное действие.",
     blocked:

@@ -79,3 +79,10 @@
   color: var(--brass-dim);
   text-decoration: line-through;
 }
+
+/* Polish 2 §6: a named thing in a quest text links to its codex entry */
+.codexLink {
+  color: var(--brass);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}

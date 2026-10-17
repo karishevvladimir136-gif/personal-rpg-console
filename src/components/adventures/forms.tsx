@@ -28,6 +28,7 @@ export function SetupForm({
   onSave,
   onCancel,
   onDirty,
+  direct = false,
 }: {
   language: "en" | "ru";
   initial?: AdventureSetup;
@@ -35,6 +36,8 @@ export function SetupForm({
   onSave: (setup: AdventureSetup) => void;
   onCancel: () => void;
   onDirty: (dirty: boolean) => void;
+  /** Polish 2 §6: a prefilled first adventure saves on the first click and goes straight to the opening review. */
+  direct?: boolean;
 }) {
   const c = adventureText(language);
   const [title, setTitle] = useState(initial?.title ?? ""),
@@ -64,7 +67,7 @@ export function SetupForm({
       onSubmit={(event) => {
         event.preventDefault();
         if (!disabled) {
-          if (reviewing) onSave(setup);
+          if (reviewing || direct) onSave(setup);
           else setReviewing(true);
         }
       }}
@@ -142,7 +145,7 @@ export function SetupForm({
             (kind === "custom" && !custom.trim())
           }
         >
-          {reviewing ? c.saveAdventure : c.reviewAdventure}
+          {reviewing || direct ? c.saveAdventure : c.reviewAdventure}
         </button>
         {reviewing && (
           <button

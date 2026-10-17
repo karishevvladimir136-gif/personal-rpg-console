@@ -12,6 +12,8 @@ import { RegistryCodex, RegistryJournal } from "./journal-codex";
 import { RegistryHoldings } from "./holdings-screen";
 import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns } from "./library-screen";
+import { RegistryPictures } from "./pictures-screen";
+import { PersistentMediaVisualFrame } from "../persistent-visual-frame";
 import { useCopy, registry as r } from "./primitives";
 
 /** The earlier screen of a section, one click away under the new one. */
@@ -68,6 +70,15 @@ export function JournalRoute() {
 
 export function CodexRoute() {
   return <RecordBoundary>{(data) => <RegistryCodex data={data} />}</RecordBoundary>;
+}
+
+/** Polish 2 §6: one «Картинки» page in place of «Галерея» and «Визуальная библия». */
+export function PicturesRoute() {
+  return (
+    <RecordBoundary>
+      {(data) => <RegistryPictures data={data} legacy={<><PersistentSecondaryPage screen="gallery" /><PersistentMediaVisualFrame /></>} />}
+    </RecordBoundary>
+  );
 }
 
 export function HoldingsRoute() {

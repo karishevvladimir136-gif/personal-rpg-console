@@ -438,6 +438,8 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
               </label>
             ))}
           </div>
+          <Switch title={c("Режиссёр кадра", "Shot director")} hint={c("Модель читает весь ход и пишет подробное описание кадра (люди, место, свет, камера); выкл — кадр по одной строке из первого абзаца. Около цента и 5 секунд на кадр.", "A model reads the whole turn and writes a detailed brief for the frame (people, place, light, camera); off — the one-line shot from the first paragraph. About a cent and five seconds per frame.")}
+            checked={settings?.director ?? true} disabled={disabled} onChange={(value) => set({ director: value })} />
           <Switch title={c("Рисовать само", "Draw automatically")} hint={c("После хода, в фоне. Ход никогда не ждёт картинку.", "After a turn, in the background. A turn never waits for a picture.")}
             checked={!!settings?.autopilot.enabled} disabled={disabled} onChange={(value) => setAuto({ enabled: value })} />
           <Switch title={c("Новые предметы", "New items")} hint={c("Одна картинка на вид предмета", "One picture per item type")} checked={!!settings?.autopilot.items} disabled={disabled || !settings?.autopilot.enabled} onChange={(value) => setAuto({ items: value })} />

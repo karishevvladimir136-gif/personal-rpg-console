@@ -9,7 +9,6 @@ import { PersistentSaves } from "@/components/persistent-saves";
 import { PersistentWorldLab } from "@/components/persistent-world-lab";
 import { PersistentTimelineExplorer } from "@/components/persistent-timeline-explorer";
 import { PersistentPlacesBelonging } from "@/components/persistent-places-belonging";
-import { PersistentMediaVisualFrame } from "@/components/persistent-visual-frame";
 import { PersistentAdventures } from "@/components/persistent-adventures";
 import { PersistentAdventureLoot } from "@/components/persistent-adventure-loot";
 import { PersistentSecondaryPage } from "@/components/persistent-secondary-pages";
@@ -19,6 +18,7 @@ import {
   HoldingsRoute,
   JournalRoute,
   PartyRoute,
+  PicturesRoute,
   SettingsRoute,
 } from "@/components/registry/routes";
 import { ChronicleRoute } from "@/components/registry/chronicle";
@@ -30,8 +30,11 @@ export default async function Page({
 }) {
   const { screen } = await params;
   switch (screen) {
+    // Polish 2 §6: the gallery and the visual bible are one «Картинки» page; the old addresses still open it.
+    case "pictures":
     case "frame":
-      return <PersistentMediaVisualFrame />;
+    case "gallery":
+      return <PicturesRoute />;
     case "adventures":
       return (
         <>
@@ -71,7 +74,6 @@ export default async function Page({
       return <ChronicleRoute />;
     case "sessions":
     case "map":
-    case "gallery":
       return <PersistentSecondaryPage screen={screen} />;
     case "camp":
       return <PersistentSupporting screen={screen} />;

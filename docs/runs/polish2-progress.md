@@ -14,10 +14,10 @@ The parallel session `claude/dm-arch` owns `src/lib/gameplay/dm-loop/two-pass/**
 | --- | --- | --- |
 | 1 — merge, baseline | done | merge commit da4e1c7, clean (the two sides changed different hunks of `pictures-service.ts`); typecheck pass; lint pass, zero warnings. The first full-suite run read the part-2 edits live and was stopped; the clean run on a worktree pinned to da4e1c7: **2557 tests, 2530 pass, 27 skipped, 0 fail** (1849 s) |
 | 2 — GPT Image 2.5 in the app | done | migration 64 (`models` per tier, provider `openai`); `modelForTier(tier, settings)` with the blind-pick defaults; the OpenAI path in `picture-job.ts` with the Flare → Sunburst ladder; anchors through `compileAnchorPrompt` with `carried`; `readWorldClock`; the settings screen picks a model per tier; `tests/polish2-pictures.test.mjs` (7); `docs/stages/STAGE_V.md` §9. No paid call |
-| 3 — shot director | in progress | code committed (5290d86): `brief.ts`, `brief-model.ts`, migration 65, `directFrame` in the service, profiles on the cards, the redraw comment; `tests/polish2-director.test.mjs` (6). Paid: briefs ×2 runs ($0.156, the second after the prompt was tightened); the 64 proof frames running (`docs/runs/pictures-brief-*`) |
-| 4 — cache: append-only history | in progress | code written (history blocks between the world and the living dossier, four breakpoints, no top-level one); tests being updated; the 20-turn live replay not yet run |
-| 5 — opening by the campaign's DM | not started | |
-| 6 — small follow-ups | not started | |
+| 3 — shot director | done | code (5290d86) + the director switch (part 6); proof done: 8 briefs, 59 frames drawn + 5 refused, Haiku + Sonnet judges, blind page `docs/samples/pictures-brief/`; records `docs/runs/pictures-brief-*.json`; **$3.09** of the $10 picture cap. Numbers in the report |
+| 4 — cache: append-only history | in progress | code committed (3b249f4); fake bench green (21 scenarios); the 20-turn live replay on Opus 5.5 high running (`scripts/eval/out/…ru-replay.jsonl`, copied to `docs/runs/polish2-…` when done) |
+| 5 — opening by the campaign's DM | done | migration 66, the registry, `anthropic-structured.ts`, the provider branch; `tests/polish2-opening.test.mjs` (5). No paid call |
+| 6 — small follow-ups | done (two left for the owner) | migration 67; combat draft, direct first adventure, quest links, «Картинки» page, the atlas, «Что, если» wording, slot backfill, the director switch; `tests/polish2-followups.test.mjs` (4). Not done: the wizard's debt as a journal debt; the `lore` record |
 | final — checks, report | not started | |
 
 ## Paid calls log

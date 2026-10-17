@@ -1,6 +1,8 @@
 import "server-only";
 import { readCampaign } from "../repository";
 import { readTurn, readWorldClock } from "../gameplay-service";
+import { readMapLayout } from "../map-layout";
+import { atlasLevelView, atlasOpeningLevel, projectAtlas, type AtlasLevel } from "../../map/atlas-view";
 import { liveTurnFinished, subscribeLiveTurn } from "../dm/live-turns";
 import { PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
@@ -203,7 +205,7 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   // The shot director runs after the response: the brief from the whole turn (waiting for the narration
   // to end on a live frame), then the paid picture. The shot above is the fallback.
   schedule(async () => {
-    const directed = await directFrame(ctx, picture.id, { operationId, trigger, shot, model, comment }).catch((error) => {
+    const directed = !board.settings.director ? { costUsdMicros: 0 } : await directFrame(ctx, picture.id, { operationId, trigger, shot, model, comment }).catch((error) => {
       log("picture_brief_failed", { campaignId, pictureId: picture.id, message: String((error as Error)?.message ?? error).slice(0, 200) });
       return { costUsdMicros: 0 };
     });
@@ -378,7 +380,7 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   } else {
     const row = snapshot.locations.find((location) => location.id === subject.id);
     if (!row || !["known", "visited"].includes(row.status)) throw new PersistenceError("not_found");
-    name = row.name; description = row.description; chosen = "location";
+    name = row.name; description = row.description; chosen = composition === "atlas" ? "atlas" : "location";
   }
   // Owner's rule: best quality wherever it does not hurt the live feel — anchors are drawn on the
   // quality tier unless the caller (a fast restyle) asks for the fast one.
@@ -390,7 +392,9 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   // Polish 2: a person's portrait or figure goes through the prompt compiler (the model's dialect, the
   // face reference by role, the anatomy guard) with the carried items as a separate constraint; the
   // look comes from the visual profile when the owner has one.
-  const prompt = person && (chosen === "portrait" || chosen === "figure")
+  const prompt = chosen === "atlas"
+    ? await atlasPrompt(ctx.campaignId, snapshot, subject.id, styleText, model)
+    : person && (chosen === "portrait" || chosen === "figure")
     ? compileAnchorPrompt({
         person: { key: person.entity.id, label: person.entity.kind === "player" ? "the hero" : "this character", pronoun: "they", appearance: lookOf(board, snapshot, person.entity.id) || "as described in the records",
           state: person.entity.conditions.filter(Boolean).slice(0, 4).map((condition) => `visible condition: ${condition}`) },
@@ -405,6 +409,35 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   });
   log("picture_anchor_queued", { campaignId: ctx.campaignId, pictureId: picture.id, subject: subject.kind, composition: chosen, trigger, tier: pickedTier, model, references: referenceIds.length });
   return picture;
+}
+
+/** Polish 2 §6: the drawn atlas — a map of the level that holds this place, in the campaign's style, the
+ * places drawn where the layout puts them, no text on the picture (the app's own labels go over it). */
+async function atlasPrompt(campaignId: string, snapshot: CampaignSnapshot, subjectId: string, style: string, model: string) {
+  const layout = await readMapLayout(campaignId);
+  const projection = projectAtlas(snapshot, layout.placements);
+  const placement = projection.placements.find((row) => row.location_id === subjectId);
+  const level: AtlasLevel = placement?.level === "world" ? "region" : placement?.level === "region" ? "local" : atlasOpeningLevel(projection);
+  const view = atlasLevelView(projection, level, placement?.level === "world" ? subjectId : null, placement?.level === "region" ? subjectId : null);
+  const subject = snapshot.locations.find((row) => row.id === subjectId);
+  const named = (id: string) => snapshot.locations.find((row) => row.id === id);
+  const where = (x: number, y: number) => {
+    const ns = y < 0.33 ? "north" : y > 0.66 ? "south" : "";
+    const ew = x < 0.33 ? "west" : x > 0.66 ? "east" : "";
+    return ns && ew ? `in the ${ns}-${ew}` : ns ? `in the ${ns}` : ew ? `in the ${ew}` : "near the centre";
+  };
+  const pins = view.pins.map((pin) => ({ pin, location: named(pin.location_id) })).filter((row) => row.location && row.location.id !== subjectId);
+  const places = pins.map(({ pin, location }) => `${location!.name} ${where(pin.x!, pin.y!)}${location!.description ? `: ${location!.description.replace(/\s+/g, " ").slice(0, 140)}` : ""}`);
+  const family = promptFamily(model);
+  const text = family === "flux" ? "Every surface is plain: no lettering, no labels, no compass letters, no legend." : "No text, letters, numbers, labels, a legend, a compass rose with letters or any writing anywhere on the map.";
+  return [
+    `A hand-drawn illustrated map of ${subject?.name ?? "the area"}, seen from above at a slight angle, as an atlas page of a story: terrain, water, streets and buildings as small drawn landmarks, aged paper and ink.`,
+    subject?.description ? `The area: ${subject.description.replace(/\s+/g, " ").slice(0, 300)}` : "",
+    places.length ? `Draw these places as landmarks where they are said to be (north is up): ${places.join("; ")}.` : "No separate landmarks are known yet: draw the area itself.",
+    "Leave room between the landmarks; the names will be written over the picture by the app, so no written names on the map itself.",
+    text,
+    style.trim() ? `Art style: ${style.trim().slice(0, 800)}` : "Art style: an ink and watercolour atlas page.",
+  ].filter(Boolean).join("\n").slice(0, 8000);
 }
 
 /** One autopilot step after a committed snapshot: the next anchor the plan names, if any. */
