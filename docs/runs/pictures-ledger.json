@@ -1,6 +1,6 @@
 {
   "capUsd": 20,
-  "totalUsdMicros": 5995719,
+  "totalUsdMicros": 18358360,
   "note": "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).",
   "entries": [
     {
@@ -1057,6 +1057,2022 @@
       "usdMicros": 800,
       "settled": true,
       "restored": true
+    },
+    {
+      "at": "2026-10-17T01:11:24.556Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "figure:nb-pro:redraw:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14769-e61c-7880-9165-4227c3d879ef"
+    },
+    {
+      "at": "2026-10-17T01:11:24.628Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "figure:nb2:redraw:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14769-e61c-7090-aac2-b394b0341a10"
+    },
+    {
+      "at": "2026-10-17T01:11:24.669Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "figure:seedream5:redraw:s1",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a14769-e61d-7c71-93cb-7f8efbeb4840"
+    },
+    {
+      "at": "2026-10-17T01:11:24.683Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "figure:flux3:redraw:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 48000,
+      "settled": true,
+      "requestId": "01a14769-e627-7883-a987-e7d84aa82cd1"
+    },
+    {
+      "at": "2026-10-17T01:11:24.710Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "figure:flux2-pro:redraw:s1",
+      "reservedUsdMicros": 60000,
+      "usdMicros": 45000,
+      "settled": true,
+      "requestId": "01a14769-e653-7562-a318-1fe7ccd11a92"
+    },
+    {
+      "at": "2026-10-17T01:11:24.723Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "figure:klein9b:redraw:s1",
+      "reservedUsdMicros": 21000,
+      "usdMicros": 19000,
+      "settled": true,
+      "requestId": "01a14769-e652-7ec3-a336-d9a3d5b78b3a"
+    },
+    {
+      "at": "2026-10-17T01:11:24.741Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "figure:qwen3:redraw:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14769-e650-7251-819a-2332206cd142"
+    },
+    {
+      "at": "2026-10-17T01:11:24.761Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "figure:gpt2:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 129342,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 212,
+        "imageInputTokens": 1024,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:11:24.767Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "figure:gpt25s:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:11:24.771Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "figure:gpt25f:redraw:s1",
+      "reservedUsdMicros": 178660,
+      "usdMicros": 38792,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 222,
+        "imageInputTokens": 1024,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.081Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:generic:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1476c-7ffb-7863-9077-50f1becabedf"
+    },
+    {
+      "at": "2026-10-17T01:14:15.129Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:generic:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1476c-8000-70d0-98fe-22f74ad69a32"
+    },
+    {
+      "at": "2026-10-17T01:14:15.148Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:generic:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-7fff-7162-8886-14e61341eb4e"
+    },
+    {
+      "at": "2026-10-17T01:14:15.162Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:generic:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-7ff3-7282-b6d4-47bb39cfc296"
+    },
+    {
+      "at": "2026-10-17T01:14:15.177Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:generic:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1476c-8000-7b93-a727-0f775a25e9d2"
+    },
+    {
+      "at": "2026-10-17T01:14:15.193Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:generic:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1476c-8005-7511-b8a3-793cb00e37af"
+    },
+    {
+      "at": "2026-10-17T01:14:15.211Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:generic:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1476c-8005-72f2-94ef-d527f329e6cb"
+    },
+    {
+      "at": "2026-10-17T01:14:15.232Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137476,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 226,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.237Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46976,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 246,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:15.240Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46976,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 246,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:18.817Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:generic:s1",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a1476c-8dca-7d31-97be-45e6132ade0d"
+    },
+    {
+      "at": "2026-10-17T01:14:25.027Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:generic:s1",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a1476c-a606-7172-b0a7-2231ceeae1da"
+    },
+    {
+      "at": "2026-10-17T01:14:30.589Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46931,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 237,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:35.652Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:generic:s1",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a1476c-cf93-7cf3-9390-e6e745e179bf"
+    },
+    {
+      "at": "2026-10-17T01:14:36.833Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:generic:s1",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a1476c-d425-77b2-b3fb-a111ba9a8904"
+    },
+    {
+      "at": "2026-10-17T01:14:41.852Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 46931,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 237,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:14:42.929Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:generic:s1",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476c-ebf8-7b91-9657-c5fea1d05ba3"
+    },
+    {
+      "at": "2026-10-17T01:15:22.054Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:generic:s1",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137431,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 217,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:15:57.073Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:generic:s1",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1476e-0d95-7ac1-abe6-b0034f02299d"
+    },
+    {
+      "at": "2026-10-17T01:16:54.515Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:generic:s1",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "timeout",
+      "detail": null
+    },
+    {
+      "at": "2026-10-17T01:21:55.708Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14773-884a-73e3-a46f-bc25f609a561"
+    },
+    {
+      "at": "2026-10-17T01:21:55.832Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-884c-76a0-a01d-c3a02a353ca2"
+    },
+    {
+      "at": "2026-10-17T01:21:55.862Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-884a-73e3-9895-1807a53b79eb"
+    },
+    {
+      "at": "2026-10-17T01:21:55.885Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-884a-7562-b15a-26a8fef559a2"
+    },
+    {
+      "at": "2026-10-17T01:21:55.975Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14773-884c-7fb2-baf0-192ba97aa682"
+    },
+    {
+      "at": "2026-10-17T01:21:56.025Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-884b-7aa3-9558-ea9994916d73"
+    },
+    {
+      "at": "2026-10-17T01:21:56.050Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14773-8855-7d10-8f34-c7b6102319d1"
+    },
+    {
+      "at": "2026-10-17T01:21:56.067Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138031,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 337,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:56.071Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:56.074Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:21:59.741Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t2:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-9650-79c3-8420-36f36fea1e9e"
+    },
+    {
+      "at": "2026-10-17T01:22:03.283Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t3:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-a41a-7280-8907-0931e045c877"
+    },
+    {
+      "at": "2026-10-17T01:22:06.614Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t4:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-b12c-79d2-8c81-2a3ccb2118c2"
+    },
+    {
+      "at": "2026-10-17T01:22:07.078Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t2:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-b30a-7e60-b346-037151ae42c2"
+    },
+    {
+      "at": "2026-10-17T01:22:09.979Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t5:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-be49-7fa3-a5bc-164a39a1d02d"
+    },
+    {
+      "at": "2026-10-17T01:22:11.856Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:13.765Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t2:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14773-cd0d-7df0-a2b6-79d794bb2c38"
+    },
+    {
+      "at": "2026-10-17T01:22:13.838Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-cd5a-7f11-81d1-31c9516f0267"
+    },
+    {
+      "at": "2026-10-17T01:22:16.559Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t3:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14773-d801-7251-a687-43f78d90a750"
+    },
+    {
+      "at": "2026-10-17T01:22:17.140Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t7:compiled:s2",
+      "reservedUsdMicros": 19000,
+      "usdMicros": 17000,
+      "settled": true,
+      "requestId": "01a14773-da29-7140-87f4-80c623413f69"
+    },
+    {
+      "at": "2026-10-17T01:22:17.525Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t2:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14773-dbc4-7823-adc7-1f105f40285e"
+    },
+    {
+      "at": "2026-10-17T01:22:18.971Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t8:compiled:s2",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14773-e161-7ac3-8a4c-fc1a2bb4d869"
+    },
+    {
+      "at": "2026-10-17T01:22:23.453Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:25.134Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t2:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14773-f978-7c83-8a12-7d2eaa10b90a"
+    },
+    {
+      "at": "2026-10-17T01:22:27.385Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t4:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-0243-71b0-9702-9c6442f89e7a"
+    },
+    {
+      "at": "2026-10-17T01:22:27.656Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:30.692Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t3:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-0f2e-7a71-bce0-3893a8b06097"
+    },
+    {
+      "at": "2026-10-17T01:22:38.541Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t5:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-2ddd-7661-ae66-b7692416cd80"
+    },
+    {
+      "at": "2026-10-17T01:22:39.276Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t3:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-30b3-7b70-a533-c99df6dd0e2d"
+    },
+    {
+      "at": "2026-10-17T01:22:43.722Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:22:47.967Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t4:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 75000,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 422: The content could not be processed because it contained material flagged by a content checker."
+    },
+    {
+      "at": "2026-10-17T01:22:49.801Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-59d7-7dd0-b82c-b4d2f3300278"
+    },
+    {
+      "at": "2026-10-17T01:22:52.916Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t3:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-6605-7c13-91ce-7b657e443e5d"
+    },
+    {
+      "at": "2026-10-17T01:22:53.098Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:00.773Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:00.970Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t7:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-855f-7431-b87e-f20b26a505aa"
+    },
+    {
+      "at": "2026-10-17T01:23:02.351Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t4:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-8adc-7f00-8b55-0d8147fe0dee"
+    },
+    {
+      "at": "2026-10-17T01:23:03.163Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t5:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-8e06-7dd0-b85c-d04bde191e72"
+    },
+    {
+      "at": "2026-10-17T01:23:04.111Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t2:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137836,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 298,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:13.467Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t8:compiled:s2",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14774-b645-7731-8c1f-0e6d7d1b151a"
+    },
+    {
+      "at": "2026-10-17T01:23:15.420Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:22.118Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14774-d80d-7111-949d-e1fba7320cb0"
+    },
+    {
+      "at": "2026-10-17T01:23:22.185Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:22.291Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t4:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-d8b7-7a01-a78b-ec194c16eb4b"
+    },
+    {
+      "at": "2026-10-17T01:23:25.336Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t5:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14774-e4a1-7023-bf95-af9de9a1a6a6"
+    },
+    {
+      "at": "2026-10-17T01:23:27.251Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t2:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14774-ec24-7130-8120-890c3199d2b9"
+    },
+    {
+      "at": "2026-10-17T01:23:31.585Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:39.241Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t7:compiled:s2",
+      "reservedUsdMicros": 45000,
+      "usdMicros": 30000,
+      "settled": true,
+      "requestId": "01a14775-1ade-78c0-bfac-1e4edc4d5ecc"
+    },
+    {
+      "at": "2026-10-17T01:23:46.154Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:48.203Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:23:49.926Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t5:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14775-44b0-7282-979d-f2a80a8f1f6f"
+    },
+    {
+      "at": "2026-10-17T01:23:50.323Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t8:compiled:s2",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14775-4642-7c63-8ffc-b4f3159c38cd"
+    },
+    {
+      "at": "2026-10-17T01:23:52.911Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-505e-70b1-995a-8d08cf6f87f6"
+    },
+    {
+      "at": "2026-10-17T01:24:04.067Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t2:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14775-7bf1-7921-a7a2-e627b1e7521b"
+    },
+    {
+      "at": "2026-10-17T01:24:14.464Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t7:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-a47b-7ba3-8765-2e0fb6710e5e"
+    },
+    {
+      "at": "2026-10-17T01:24:15.365Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t3:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137876,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 306,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:15.695Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:17.362Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14775-afdd-7d42-a985-11b6a1b70abf"
+    },
+    {
+      "at": "2026-10-17T01:24:36.236Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t8:compiled:s2",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14775-f995-7d02-8879-996421714374"
+    },
+    {
+      "at": "2026-10-17T01:24:42.075Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:24:55.558Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t7:compiled:s2",
+      "reservedUsdMicros": 48000,
+      "usdMicros": 24000,
+      "settled": true,
+      "requestId": "01a14776-44fd-7f60-8f57-c22a2ac51a53"
+    },
+    {
+      "at": "2026-10-17T01:25:07.562Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:25:09.168Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t3:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14776-7a3c-7832-b21b-5eae95a54c8d"
+    },
+    {
+      "at": "2026-10-17T01:25:09.462Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t3:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14776-7b6b-7131-81e7-29c0933e19ba"
+    },
+    {
+      "at": "2026-10-17T01:25:26.206Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t8:compiled:s2",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14776-bccd-7262-9b40-f1ea99ec9f73"
+    },
+    {
+      "at": "2026-10-17T01:25:29.459Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t4:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137991,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 329,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:25:47.448Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t4:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14777-0fc4-71f1-938f-d52b22da365c"
+    },
+    {
+      "at": "2026-10-17T01:26:31.777Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t4:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14777-bcec-7122-92f9-be4b7c1d6a91"
+    },
+    {
+      "at": "2026-10-17T01:26:39.073Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t5:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 137786,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 288,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:27:14.112Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t5:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14778-624b-76d3-8c4c-2a094d366838"
+    },
+    {
+      "at": "2026-10-17T01:27:50.842Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t6:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138141,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 359,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:28:38.144Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t5:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "timeout",
+      "detail": null
+    },
+    {
+      "at": "2026-10-17T01:28:42.063Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14779-b9de-7870-b2ae-21b77e86c827"
+    },
+    {
+      "at": "2026-10-17T01:28:56.390Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t7:compiled:s2",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 121110,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:30:01.254Z",
+      "kind": "openai",
+      "model": "gpt-image-2",
+      "note": "frame:gpt2:t8:compiled:s2",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 138306,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 392,
+        "imageInputTokens": 2032,
+        "outputTokens": 4003
+      }
+    },
+    {
+      "at": "2026-10-17T01:30:34.492Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t7:compiled:s2",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a1477b-70f8-7a40-a4d7-f81e638069d5"
+    },
+    {
+      "at": "2026-10-17T01:31:41.530Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t8:compiled:s2",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1477c-76f0-78b0-aa36-6b34d746f626"
+    },
+    {
+      "at": "2026-10-17T01:33:39.066Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1477e-421d-7a81-ae1b-aba1017ce664"
+    },
+    {
+      "at": "2026-10-17T01:37:38.830Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t7:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14781-ea92-78b0-9adb-c432b1b90ae9"
+    },
+    {
+      "at": "2026-10-17T01:38:49.208Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t8:compiled:s2",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14782-fdb4-78e1-b488-b14fd4a1f8a7"
+    },
+    {
+      "at": "2026-10-17T01:40:38.380Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t1:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14784-a8ee-7343-b0a1-571323f1ae9b"
+    },
+    {
+      "at": "2026-10-17T01:40:38.431Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t1:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14784-a8f8-7270-bed0-183e0632988b"
+    },
+    {
+      "at": "2026-10-17T01:40:38.449Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t1:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14784-a8f7-7072-9614-05ebe453613c"
+    },
+    {
+      "at": "2026-10-17T01:40:38.475Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t1:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14784-a8fd-7bb0-a5b2-a9a88e7a17bb"
+    },
+    {
+      "at": "2026-10-17T01:40:38.525Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t1:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14784-a8f5-77e2-9f45-2ffe17c01145"
+    },
+    {
+      "at": "2026-10-17T01:40:38.540Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t1:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-a8eb-7d42-9779-50021c2baba1"
+    },
+    {
+      "at": "2026-10-17T01:40:38.556Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t1:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14784-a8f9-7c91-9d6d-a3fab410fe32"
+    },
+    {
+      "at": "2026-10-17T01:40:38.569Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t1:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:38.573Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t1:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47531,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 357,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:42.254Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t2:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-b72d-7c32-9ea7-5dab31e790b1"
+    },
+    {
+      "at": "2026-10-17T01:40:45.761Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t3:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-c4d5-72f3-b3ae-2780d8cd7200"
+    },
+    {
+      "at": "2026-10-17T01:40:49.091Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t4:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-d1d5-7a03-9958-c8f01b9305e9"
+    },
+    {
+      "at": "2026-10-17T01:40:49.425Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t2:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14784-d327-7983-9729-0bd316c90521"
+    },
+    {
+      "at": "2026-10-17T01:40:52.422Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t5:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-dee0-7910-898f-ae7cd5befcd3"
+    },
+    {
+      "at": "2026-10-17T01:40:54.693Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t2:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:40:55.801Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t2:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14784-ec10-7dd2-bf62-03f8bc2b35dc"
+    },
+    {
+      "at": "2026-10-17T01:40:55.955Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t6:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14784-ecac-7d32-aa9f-279371893285"
+    },
+    {
+      "at": "2026-10-17T01:40:59.244Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t7:compiled:s3",
+      "reservedUsdMicros": 19000,
+      "usdMicros": 17000,
+      "settled": true,
+      "requestId": "01a14784-f972-7ce2-b891-505a7915704c"
+    },
+    {
+      "at": "2026-10-17T01:41:00.129Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t2:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14784-fcf8-7e71-85e2-513b7040dfe1"
+    },
+    {
+      "at": "2026-10-17T01:41:01.026Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2/klein/9b",
+      "note": "frame:klein9b:t8:compiled:s3",
+      "reservedUsdMicros": 23000,
+      "usdMicros": 21000,
+      "settled": true,
+      "requestId": "01a14785-0078-79a3-a07d-3b3552736c98"
+    },
+    {
+      "at": "2026-10-17T01:41:01.736Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t3:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-0340-7191-b020-c49b86752917"
+    },
+    {
+      "at": "2026-10-17T01:41:06.864Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t2:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47336,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 318,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:09.282Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t2:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14785-20bd-76b3-8a7d-979789e6570d"
+    },
+    {
+      "at": "2026-10-17T01:41:10.869Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t3:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:11.305Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t4:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-289d-7db0-af84-5d8897a5ec3f"
+    },
+    {
+      "at": "2026-10-17T01:41:13.408Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t3:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-30d8-7381-b5b0-6619502597d9"
+    },
+    {
+      "at": "2026-10-17T01:41:23.238Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t3:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14785-573d-76d3-b393-94d6f51954dc"
+    },
+    {
+      "at": "2026-10-17T01:41:23.570Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t5:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-5892-71d0-91b3-016cd2765632"
+    },
+    {
+      "at": "2026-10-17T01:41:28.619Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t4:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "validation",
+      "detail": "HTTP 400: moderation_blocked: Your request was rejected by the safety system. If you believe this is an error, contact us at help.openai.com and include the request ID req_dc348378529343efb42c58e64b37d09e. safety_violations=[self-"
+    },
+    {
+      "at": "2026-10-17T01:41:30.525Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t4:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-73b2-7223-a96e-17696c447189"
+    },
+    {
+      "at": "2026-10-17T01:41:36.750Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t3:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47376,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 326,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:37.101Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t3:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14785-8d66-7c41-a0e4-036966ee1163"
+    },
+    {
+      "at": "2026-10-17T01:41:37.592Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t6:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-8f51-7c12-b571-ef408d179dc0"
+    },
+    {
+      "at": "2026-10-17T01:41:46.483Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t4:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14785-b209-79d0-bf13-0cde04136638"
+    },
+    {
+      "at": "2026-10-17T01:41:47.299Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t5:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:41:48.627Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t7:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-ba59-7941-a048-08f5f40341da"
+    },
+    {
+      "at": "2026-10-17T01:41:49.510Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t5:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14785-bddc-7db1-bae2-bf3dba81fab0"
+    },
+    {
+      "at": "2026-10-17T01:41:59.582Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-2",
+      "note": "frame:nb2:t8:compiled:s3",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "requestId": "01a14785-e545-7020-b67c-09f29ec5c873"
+    },
+    {
+      "at": "2026-10-17T01:42:03.717Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t6:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:05.912Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t4:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47491,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 349,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:08.197Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t6:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14786-06dd-7982-8e63-6cf31c7b7c04"
+    },
+    {
+      "at": "2026-10-17T01:42:09.156Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t4:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-0a9f-7ce2-ad6b-0599bea4d70b"
+    },
+    {
+      "at": "2026-10-17T01:42:12.571Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t5:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-17f5-7592-8cab-43c8f96536fd"
+    },
+    {
+      "at": "2026-10-17T01:42:12.851Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t2:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-190c-78f1-a885-d46f5ea9e96d"
+    },
+    {
+      "at": "2026-10-17T01:42:19.693Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t7:compiled:s3",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:25.674Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t7:compiled:s3",
+      "reservedUsdMicros": 45000,
+      "usdMicros": 30000,
+      "settled": true,
+      "requestId": "01a14786-4b11-7e93-b6da-6004ace13771"
+    },
+    {
+      "at": "2026-10-17T01:42:33.885Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-flare",
+      "note": "frame:gpt25f:t8:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:34.481Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t6:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-6d87-7c62-b350-bb345fb8a39e"
+    },
+    {
+      "at": "2026-10-17T01:42:34.637Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t5:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47286,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 308,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:42:38.050Z",
+      "kind": "fal",
+      "model": "fal-ai/flux-2-pro",
+      "note": "frame:flux2-pro:t8:compiled:s3",
+      "reservedUsdMicros": 75000,
+      "usdMicros": 60000,
+      "settled": true,
+      "requestId": "01a14786-7b7d-7f90-a594-029d04b7bd85"
+    },
+    {
+      "at": "2026-10-17T01:42:40.235Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t5:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-8405-7322-9768-0f0adcffe431"
+    },
+    {
+      "at": "2026-10-17T01:42:55.923Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t7:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14786-c13c-7cd2-89f5-04b7e4d2491b"
+    },
+    {
+      "at": "2026-10-17T01:43:02.288Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t6:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47641,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 379,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:43:08.075Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t6:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14786-f0c5-76b3-b457-b7666ca0a6b7"
+    },
+    {
+      "at": "2026-10-17T01:43:16.071Z",
+      "kind": "fal",
+      "model": "fal-ai/nano-banana-pro",
+      "note": "frame:nb-pro:t8:compiled:s3",
+      "reservedUsdMicros": 150000,
+      "usdMicros": 150000,
+      "settled": true,
+      "requestId": "01a14787-0fff-7713-9b92-6aeb323e17c5"
+    },
+    {
+      "at": "2026-10-17T01:43:27.571Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t7:compiled:s3",
+      "reservedUsdMicros": 162660,
+      "usdMicros": 30510,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 204,
+        "imageInputTokens": 0,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:43:37.376Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t7:compiled:s3",
+      "reservedUsdMicros": 48000,
+      "usdMicros": 24000,
+      "settled": true,
+      "requestId": "01a14787-6328-7c80-ba7f-7f166c7adffc"
+    },
+    {
+      "at": "2026-10-17T01:43:39.434Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t3:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14787-6b45-7141-83d2-e0d215919604"
+    },
+    {
+      "at": "2026-10-17T01:43:52.377Z",
+      "kind": "openai",
+      "model": "gpt-image-2.5-sunburst",
+      "note": "frame:gpt25s:t8:compiled:s3",
+      "reservedUsdMicros": 194660,
+      "usdMicros": 47806,
+      "settled": true,
+      "usage": {
+        "textInputTokens": 412,
+        "imageInputTokens": 2032,
+        "outputTokens": 983
+      }
+    },
+    {
+      "at": "2026-10-17T01:44:02.058Z",
+      "kind": "fal",
+      "model": "blackforestlabs/flux-3/text-to-image",
+      "note": "frame:flux3:t8:compiled:s3",
+      "reservedUsdMicros": 96000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14787-c3a2-78e3-9cb9-d0d17d85eadf"
+    },
+    {
+      "at": "2026-10-17T01:44:24.433Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t2:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14788-1b11-7f30-a714-6adbdec84592"
+    },
+    {
+      "at": "2026-10-17T01:44:55.589Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t4:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14788-94ca-78d1-bf28-4aabbeb407d4"
+    },
+    {
+      "at": "2026-10-17T01:46:00.410Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t3:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14789-91f6-7ab3-92ca-cc08d2d69482"
+    },
+    {
+      "at": "2026-10-17T01:46:26.749Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t5:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a14789-f8e3-7381-9906-c63016a57ac0"
+    },
+    {
+      "at": "2026-10-17T01:47:51.988Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t6:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1478b-45dd-71c2-87b5-f2b2297bc622"
+    },
+    {
+      "at": "2026-10-17T01:49:20.183Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t7:compiled:s3",
+      "reservedUsdMicros": 67500,
+      "usdMicros": 67500,
+      "settled": true,
+      "requestId": "01a1478c-9e43-7d81-b3d0-aa77b3ffee94"
+    },
+    {
+      "at": "2026-10-17T01:49:24.994Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t4:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1478c-b146-7e13-8366-00d686f6092f"
+    },
+    {
+      "at": "2026-10-17T01:50:21.232Z",
+      "kind": "fal",
+      "model": "bytedance/seedream/v5/pro/text-to-image",
+      "note": "frame:seedream5:t8:compiled:s3",
+      "reservedUsdMicros": 72000,
+      "usdMicros": 72000,
+      "settled": true,
+      "requestId": "01a1478d-8cd0-7940-bceb-50aaf9156ad3"
+    },
+    {
+      "at": "2026-10-17T01:52:26.972Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t5:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a1478f-77fc-7d90-a3b4-153ae92603fa"
+    },
+    {
+      "at": "2026-10-17T01:56:58.117Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t6:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14793-9b37-76b1-b242-9efb8f518885"
+    },
+    {
+      "at": "2026-10-17T01:58:58.397Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t7:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14795-70f3-7181-a499-70f7fbb69221"
+    },
+    {
+      "at": "2026-10-17T02:00:40.365Z",
+      "kind": "fal",
+      "model": "fal-ai/qwen-image-3/text-to-image",
+      "note": "frame:qwen3:t8:compiled:s3",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "requestId": "01a14796-ff5f-7ce2-a1ad-ca29bdf4bd2a"
     }
   ]
 }
