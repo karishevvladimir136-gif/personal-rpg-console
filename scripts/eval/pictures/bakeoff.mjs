@@ -9,6 +9,7 @@
 //   frames   --models all|a,b --mode compiled|generic [--shots t1,t2] [--seeds 1-3]
 //   redraw   --models all|a,b          each model redraws the full-figure anchor from the portrait
 //   score    [--judge haiku|sonnet] [--models …] [--kinds frame,figure] [--limit n]
+//   rank     [--judge sonnet|haiku] [--samples 1,2] [--shots …]   comparative identity per shot
 //   blind | summary | status          (no paid call)
 // Every paid call goes through the guard in lib.mjs: reserved before it is sent,
 // settled afterwards, stopped at the cap (PICTURES_CAP_USD, default 20). Finished
@@ -21,7 +22,7 @@ import { compileAnchorPrompt, compileFramePrompt, orderReferences, promptFamily 
 import { framePrompt } from "../../../src/lib/visual-frame/shot.ts";
 import { falModel } from "../../../src/lib/visual-frame/fal-image.ts";
 import { openAIImageModel } from "../../../src/lib/visual-frame/openai-image.ts";
-import { BudgetError, CAP_USD, MODELS, SEED_VALUES, SIZES, anchorsDir, draw, judgeFrame, ledger, mean, median, putRow, readImage, results, rowOf, runsDir, samplesDir, saveImage, usd } from "./lib.mjs";
+import { BudgetError, CAP_USD, MODELS, SEED_VALUES, SIZES, anchorsDir, draw, judgeFrame, ledger, mean, median, putRow, rankIdentity, readImage, results, rowOf, runsDir, samplesDir, saveImage, usd } from "./lib.mjs";
 import { GENERIC_SHOTS, PEOPLE, SHOTS, STYLE } from "./scene.mjs";
 
 const args = process.argv.slice(2);
@@ -160,6 +161,29 @@ async function score() {
   }));
 }
 
+/** Comparative identity: per shot and sample, every model's frame side by side against the portrait. */
+async function rank() {
+  const judgeKey = arg("--judge", "sonnet");
+  const samples = arg("--samples", "1").split(",").map(Number);
+  const shotIds = arg("--shots") ? arg("--shots").split(",") : SHOTS.filter((s) => s.people.includes("hero") && s.id !== "t3").map((s) => s.id);
+  const a = anchors();
+  const file = join(runsDir, "pictures-identity-rank.json");
+  const record = existsSync(file) ? JSON.parse(readFileSync(file, "utf8")) : { judge: null, rows: [] };
+  for (const sample of samples) for (const id of shotIds) {
+    if (record.rows.some((row) => row.shot === id && row.sample === sample && row.judge === judgeKey && row.ranks)) continue;
+    const rows = results.rows.filter((row) => row.kind === "frame" && row.mode === "compiled" && row.shot === id && row.sampleIndex === sample && row.file);
+    const order = [...rows].sort((x, y) => createHash("sha1").update(`${id}${sample}${x.model}`).digest("hex").localeCompare(createHash("sha1").update(`${id}${sample}${y.model}`).digest("hex")));
+    const frames = order.map((row, i) => ({ letter: String.fromCharCode(65 + i), model: row.model, ...readImage(row.file) }));
+    let out;
+    try { out = await rankIdentity(judgeKey, { portrait: readImage(a.portrait), frames, note: `${id} s${sample}` }); }
+    catch (error) { if (error instanceof BudgetError) { stopped = error.message; break; } throw error; }
+    const ranks = out.ranks ? Object.fromEntries(frames.map((f) => [f.model, out.ranks[f.letter]])) : null;
+    record.rows.push({ shot: id, sample, judge: judgeKey, ranks, letters: Object.fromEntries(frames.map((f) => [f.letter, f.model])), notes: out.notes ?? null, error: out.error ?? null, usdMicros: out.usdMicros ?? 0 });
+    writeFileSync(file, JSON.stringify(record, null, 2) + "\n");
+    console.log(`${id} s${sample}: ${ranks ? Object.entries(ranks).map(([m, n]) => `${m} ${n}`).join(", ") : out.error}`);
+  }
+}
+
 // ---- no paid calls below ---------------------------------------------------------------
 function blind() {
   const commit = execSync("git rev-parse --short HEAD", { cwd: samplesDir }).toString().trim();
@@ -250,7 +274,7 @@ function status() {
     pictures: results.rows.filter((row) => row.file).length, refused: results.rows.filter((row) => row.refusal).length, failed: results.rows.filter((row) => row.error && !row.refusal).length }, null, 2));
 }
 
-const commands = { portrait, figure, pick, frames, redraw, score, blind, summary, status };
+const commands = { portrait, figure, pick, frames, redraw, score, rank, blind, summary, status };
 if (!commands[command]) { console.log("usage: see the header of scripts/eval/pictures/bakeoff.mjs"); process.exit(1); }
 await commands[command]();
 if (stopped) console.log(`stopped: ${stopped}`);

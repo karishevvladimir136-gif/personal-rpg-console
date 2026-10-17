@@ -192,3 +192,43 @@ export async function judgeFrame(judgeKey, { frame, refs, description, expectedP
 
 export const median = (list) => { const sorted = list.filter((v) => typeof v === "number").sort((a, b) => a - b); return sorted.length ? sorted[Math.floor((sorted.length - 1) / 2)] : null; };
 export const mean = (list) => { const values = list.filter((v) => typeof v === "number"); return values.length ? Number((values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)) : null; };
+
+/** One call per shot: the hero's portrait and every model's frame under a letter (order shuffled by
+ * the caller); the judge rates each frame's likeness against the others, using the whole range. */
+export async function rankIdentity(judgeKey, { portrait, frames, note }) {
+  const judge = JUDGES[judgeKey];
+  const apiKey = providerKey("ANTHROPIC_API_KEY");
+  if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
+  const content = [{ type: "text", text: "REFERENCE: the portrait of the man (the hero)." }, image(portrait)];
+  for (const frame of frames) content.push({ type: "text", text: `Frame ${frame.letter}:` }, image(frame));
+  content.push({ type: "text", text: [
+    "Each frame should show the man from the REFERENCE portrait among other people.",
+    "For every frame, rate how clearly the man in it is the same person as in the REFERENCE: face shape, eyes, nose, jaw, hair, stubble, apparent age, build. Compare the frames with each other and use the whole range: 10 for an unmistakable match, 0 when he is clearly someone else or missing. Ignore style, colour and pose.",
+    `Reply with one JSON object only, every letter once: {${frames.map((f) => `"${f.letter}":n`).join(",")},"notes":"at most 30 words"}`,
+  ].join("\n") });
+  const entry = reserve("vision", judge.id, judgeReserve(judge, 1 + frames.length), `rank ${note}`);
+  let response, value;
+  try {
+    response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "x-api-key": apiKey, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+      body: JSON.stringify({ model: judge.id, max_tokens: 6_000, output_config: { effort: "medium" }, messages: [{ role: "user", content }] }),
+      signal: AbortSignal.timeout(180_000),
+    });
+    value = await response.json().catch(() => null);
+  } catch (error) {
+    settle(entry, 0, { outcome: "transport" });
+    return { ranks: null, error: String(error?.name ?? "transport") };
+  }
+  const usage = { input: value?.usage?.input_tokens ?? 0, output: value?.usage?.output_tokens ?? 0 };
+  const cost = Math.round(usage.input * judge.input + usage.output * judge.output);
+  settle(entry, cost, { usage });
+  if (!response.ok) return { ranks: null, error: `HTTP ${response.status}`, usdMicros: cost };
+  const text = (value?.content ?? []).filter((block) => block.type === "text").map((block) => block.text).join("\n");
+  try {
+    const parsed = JSON.parse(text.slice(text.indexOf("{"), text.lastIndexOf("}") + 1));
+    return { ranks: Object.fromEntries(frames.map((f) => [f.letter, typeof parsed[f.letter] === "number" ? parsed[f.letter] : null])), notes: String(parsed.notes ?? "").slice(0, 300), usdMicros: cost };
+  } catch {
+    return { ranks: null, error: "unparsable", raw: text.slice(0, 300), usdMicros: cost };
+  }
+}
