@@ -130,3 +130,16 @@ test("a one-hour cache write is priced at its own rate", () => {
   const fiveMinute = (10000 * spec.price.cacheRead + 20000 * spec.price.cacheWrite + 1000 * spec.price.output) / 1_000_000;
   assert.ok(Math.abs(dmUsageCost(spec, { ...usage, cacheWrite1hTokens: 0 }) - fiveMinute) < 1e-9);
 });
+
+test("the first save of a new campaign stores the default depth range when it names none (the wizard's DM step)", async () => {
+  const { saveDmSettingsWith } = await import("../src/lib/gameplay/dm-loop/settings.ts");
+  const calls = [];
+  const rpc = async (args) => { calls.push(args.p_payload); return { data: { campaignId: "c", runtime: "dm-loop-v1", dmTurn: null, limits: null, depth: args.p_payload.depth ?? null, notebookVisible: false, boostNext: false, voiceExamples: false, revision: 1 } }; };
+  const fresh = await saveDmSettingsWith(rpc, "o", "c", { expectedRevision: 0, runtime: "dm-loop-v1", dmTurn: null });
+  assert.deepEqual(calls[0].depth, DEFAULT_DEPTH_RANGE, "a fresh row gets high … xhigh");
+  assert.deepEqual(fresh.depth, DEFAULT_DEPTH_RANGE);
+  await saveDmSettingsWith(rpc, "o", "c", { expectedRevision: 1, runtime: "dm-loop-v1", dmTurn: null });
+  assert.equal("depth" in calls[1], false, "a later save without depth keeps whatever is stored");
+  await saveDmSettingsWith(rpc, "o", "c", { expectedRevision: 0, runtime: "dm-loop-v1", dmTurn: null, depth: null });
+  assert.equal(calls[2].depth, null, "an explicit «off» on a fresh row is kept");
+});

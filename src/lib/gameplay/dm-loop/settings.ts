@@ -117,6 +117,10 @@ export async function markBoostUsedWith(rpc: DmSettingsRpc, ownerId: string, cam
 
 export async function saveDmSettingsWith(rpc: DmSettingsRpc, ownerId: string, campaignId: string, value: unknown): Promise<DmSettings> {
   const input = parseDmSettingsSave(value);
+  // Polish item 13 (found by the final measurement): the first save of a new campaign (the
+  // wizard's DM step, the bench) names no depth; a stored null would read as the owner's
+  // «fixed effort» and the depth rule would never run. A fresh row gets the default range.
+  if (!("depth" in input) && input.expectedRevision === 0) input.depth = { ...DEFAULT_DEPTH_RANGE };
   const response = await rpc({ p_owner_id: ownerId, p_campaign_id: campaignId, p_action: "save", p_payload: input });
   if (response.error) throw failure(response.error.message);
   return parseDmSettings(response.data);
