@@ -3,6 +3,53 @@
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`), branch `claude/polish` from `origin/claude/integration`.
 The owner's notes from the first play are added below by the planner before launch.
 
+## Scope of this run (the owner approved the whole list on 2026-10-16)
+
+The owner read a Russian summary of this file, item by item, and approved all of it. This run does **everything that
+needs no owner input**, unattended, in the order of work below. Do not stop to ask: when an item needs the owner's
+taste or a decision, do its mechanical part, leave the rest, and list it under «Needs the owner» in the report.
+
+**Out of scope here** — they come later, from a separate voice stage built on passages the owner chooses, and from the
+picture bake-off running in parallel:
+- the Russian voice prose itself and its examples: the native voice part of item 7, the turn-shape examples rewritten
+  in Russian, dialogue and humour examples, item 24's dialogue patterns as written guidance, the wording rules for
+  short item notes, the Russian rewrite of the DM Craft texts, and the voice A/B;
+- the choice of picture models, and the wording of picture prompts: the bake-off's prompt compiler owns «no lettering»,
+  references by role, identity locks, visible state from the records, time of day and weather from the world clock.
+
+**In scope from group 7** — the mechanics the voice stage will need, built now; the parts marked *off* change nothing
+until the voice stage fills them:
+- a slot for a Russian voice part of layer 1, and a short voice reminder in the last uncached layer next to the
+  player's input (*off*: empty by default, no behaviour change while empty);
+- the last two or three turns verbatim in the last layer (on);
+- an owner field «Образцы голоса» (per campaign, with an account default): passages of prose the owner likes, stored
+  in the database, private, never in the repo, logs or fixtures, fed to the voice layer as examples only when the
+  voice stage enables them (*off*). The repo is public: other people's texts never go into git;
+- a speech profile in every Character Model (register, sentence length, verbal tics with a frequency, ты/вы towards
+  each person) that the DM keeps up to date; the tic counter of item 23;
+- the context budgets and Character Models of item 8, the opening written by the campaign's own DM (not the app
+  default), the sweep of Latin letters out of player-visible text, Astra's out-of-fiction asides and missing
+  `finish_turn` (items 4–5);
+- the Russian naturalness metrics on the bench (Latin letters, канцелярит markers, sentence-length variance, repeated
+  phrases, the share of NPC replies that answer every point of the player's message) — measured, not yet acted on.
+
+**Doctrine** (groups 2 and 4: the hero's own knowledge, three clues per mystery, combat and pacing, a natural 20 as the
+hero's moment, never deciding for the hero, time words, open questions, rejected bookkeeping retried): write it in
+English like the rest of the procedure. Where Stage 4 keeps doctrine in DM Craft cards, add or revise cards as **new
+pending versions**, each with one line «what changes»; the owner approves them in the app (the DM Craft fix, the first
+of the owner's notes, makes that possible). Never approve them yourself; list them in the report.
+
+**The parallel session** `claude/picture-models` owns `src/lib/visual-frame/fal-image.ts` (the model catalogue), new
+provider adapter files, its prompt compiler file, `scripts/eval/pictures/**` and `docs/samples/pictures/`. Do not edit
+those here. If a polish change truly needs the catalogue, make it a minimal separate commit and say so in the report.
+Name your files in `docs/runs/` with a `polish-` prefix.
+
+**Running long and unattended:** commit and push `claude/polish` after each group (and after any large step inside
+one); keep `docs/runs/polish-progress.md` current (group, item, state, next step) so a restarted session resumes from
+it and never repeats paid steps that already finished. Live paid calls: **$15** for the whole run. The final report,
+in English: per group what changed and how it was proved; tests; screenshots; the before/after numbers of items 12–14;
+money spent; the pending DM Craft versions; «Needs the owner».
+
 ## Order of work (the list below is long; do it in this order, commit after each group)
 
 1. **Correctness of the turn and the records:** every text part reaches the player, with paragraph breaks (Мокей, the
@@ -23,9 +70,9 @@ The owner's notes from the first play are added below by the planner before laun
    «Скрыть», the strip lightbox. (Model choice comes from `PICTURE_MODELS.md`.)
 6. **Game screen layout:** one stage, one page scroll, compact composer, one «Ведущий думает…», collapsed Russian
    turn summary leading with items and money, no timers, no adventure card, «Зацепки», goal from the taken quest.
-7. **Russian voice layer and the A/B** (items 7 and 24), plus the context budgets (item 8). Late on purpose: the owner
-   is collecting dialogue passages from Russian prose he likes for the voice examples; if they are not in the repo or
-   handed over by then, ask him before writing the examples — do not compose them yourself.
+7. **The mechanics for the Russian voice** (see «Scope of this run»: slots *off*, recent turns verbatim, «Образцы
+   голоса», speech profiles, metrics) plus the context budgets (item 8). The voice prose, its examples and the A/B
+   (items 7 and 24) are a later voice stage on passages the owner chooses — do not compose them here.
 8. **Character and inventory for any ruleset** (doll, wallet, backstory, registry port), healing and rest.
 9. **Codex, map, journal** (whole-world codex, named things, map hierarchy, pins).
 10. **Wizard and the path to the first turn**, combat profile, start time from the opening scene, «Ещё» split into

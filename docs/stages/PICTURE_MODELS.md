@@ -2,8 +2,10 @@
 
 Cloud session (`docs/CLOUD.md`, environment `rpg-console`), branch `claude/picture-models` from
 `origin/claude/integration`. Runs in parallel with the polish stage: it owns only the picture adapters
-(`src/lib/**/fal*`, a new adapter file per provider), `scripts/eval/pictures/**`, `docs/samples/pictures/` and
-`docs/runs/`. No change to the game screen, the DM loop or the picture store schema; a new model is a new entry in the
+(`src/lib/**/fal*`, a new adapter file per provider), the prompt compiler (a new file, e.g.
+`src/lib/visual-frame/prompt-compiler.ts`; wire it in with the smallest possible change to the existing shot code),
+`scripts/eval/pictures/**`, `docs/samples/pictures/` and `docs/runs/` files prefixed `pictures-`. The polish session
+changes the picture buttons, the legacy paths and the review screens at the same time — do not touch those. No change to the game screen, the DM loop or the picture store schema; a new model is a new entry in the
 existing Stage V model catalogue.
 
 ## Why
