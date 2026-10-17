@@ -36,8 +36,10 @@
       "what": "scene branches BCD × 8 scenes (6 pairs)",
       "startedAt": "2026-10-17T19:37:14.092Z",
       "reservedUsd": 4.5,
-      "spentUsd": 0,
-      "settled": false
+      "spentUsd": 2.0115,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:40:54.839Z",
+      "record": "docs/runs/dmarch-20261017-193714-scenes.jsonl"
     }
   ]
 }
