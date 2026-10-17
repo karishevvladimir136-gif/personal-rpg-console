@@ -785,6 +785,16 @@ Checks).
 
 ## Later, not in this stage (owner's backlog)
 
+- **Fast decision gates with a «System One» model (owner, 2026-10-17).** TypeSafe's Jev (San Francisco, announced
+  2026-09-15) returns only typed decisions — a choice from a list, a score on a scale, a calibrated probability — in
+  about 70–500 ms, $0.042 per million input tokens, output free, via OpenRouter's Decisions API or TypeSafe's console;
+  benchmarks so far are the vendor's own, accuracy is below LLMs on reasoning, Russian support unverified. Candidate
+  gates in this app: the pre-turn depth check (is this input a decisive moment?), the addressee when companions are
+  near, «is this turn worth a new frame / does the hero's look change?», routing a picture straight to Sunburst when
+  Flare is likely to refuse, the music stage's mood pick, «nothing changed — skip the bookkeeper» in the writer +
+  bookkeeper split. Before using it: label ~100 turns from session 1 and compare Jev with Claude Haiku 5.5 and today's
+  rules on accuracy and latency.
+
 - **Weight and carrying.** Item weight, carrying capacity from strength (or the ruleset's own rule), containers that
   change it (a magic bag), and the DM using it when it matters. The owner: a convention is fine for now («мы не в
   симулятор водолаза играем»); design it with the ruleset work, not here.
