@@ -165,3 +165,43 @@ Done on `claude/polish-2` (`docs/stages/POLISH_2.md` §2), after `claude/picture
 Proof: `tests/polish2-pictures.test.mjs` (tier defaults and the owner's choice, sizes and price labels, the OpenAI path
 with the key check and the exact price, the ladder on both providers, the figure prompt, the clock), the SQL test of
 migration 54 extended for 64, the Stage V and polish group 5 suites updated.
+
+## 10. Polish 2 (2026-10-17): the shot director — a visual brief instead of the one-clause shot
+
+Done on `claude/polish-2` (`docs/stages/POLISH_2.md` §3; the owner's idea: «надо сделать систему, что будет расширять
+промпт — часто одной строки не хватает»):
+- **The visual brief** (`src/lib/visual-frame/brief.ts`, pure; `src/lib/server/media/brief-model.ts`, Claude Sonnet 5.5
+  at low effort, one request, no retry). From the **whole turn's narration** — not the first paragraph — plus the visual
+  profiles of the named people and places, the records' visible state (worn items, conditions), the world clock and the
+  previous frame's brief, the model writes plain English prose: the most visual beat of the turn, the composition
+  (foreground, middle, background), each person's pose, expression, what they hold, clothes and state, the place's
+  materials, light and layout, time and weather, light and palette, camera, continuity, what must not appear; plus a
+  short form for models that read short prompts, the people in frame (`who`, names for matching only), and the story's
+  changes to a look (`profileUpdates`). The compiler (`compileBriefPrompt`) turns it into the model's dialect: GPT Image
+  takes the brief whole with numbered references and identity locks, FLUX gets the short form with plain surfaces instead
+  of negatives. The brief is stored in the picture's private `shot` (never in a projection, never shown to the player).
+- **Where it runs.** A frame row is created at once from the first paragraph's shot (today's path, the fallback), so
+  the board shows «рисуется» and polls; the director runs after the response (`directFrame` in `pictures-service.ts`):
+  a live frame waits for the narration to leave «generating» (bounded, 150 s; the committed text otherwise), the brief
+  is written, the row's prompt, shot and references are replaced (`picture.brief`, migration 65 lets a queued or
+  generating row change those three), then the paid picture is drawn. No key, a timeout or an unparsable reply leave
+  the shot's prompt in place. Price: the brief's usage joins the row's cost like the shot's.
+- **Visual profiles** (`rpg_private.visual_profiles`, migration 65: append-only versions; `profiles` in the board;
+  `profileFor`). A full look per named person or place — face, age, hair, build, usual clothes, marks; for a place its
+  materials, light, layout, landmarks — drafted once by Sonnet from the records' text and the ready anchors (the
+  portrait and figure, or the place's view, as images) when an anchor becomes ready without a profile, or on «Составить»
+  on the card; edited by the owner on the person's or place's card (`VisualProfileEditor` in `redraw-anchor.tsx`:
+  the party, character, holdings and map cards) — the owner's text has the highest authority, a model update never
+  rewrites it, it only appends to the list of changes (a wound, a borrowed shirt), each of which the owner can remove.
+  Every brief and every anchor prompt reads the profile (`lookOf`) instead of the one-line appearance.
+- **«Перерисовать» with a comment.** The frames panel takes one line («сделай ночь», «он без шлема»); the brief model
+  folds it into the brief and returns the one change as an edit instruction; when the turn already has a ready frame,
+  the request goes to the model as an edit of that frame — «change only this; keep everything else» (`compileEditPrompt`),
+  the previous frame as the only reference. Without a previous frame the comment shapes a fresh brief.
+- **Proof** (`scripts/eval/pictures/brief-proof.mjs`, `PICTURES_RUN=pictures-brief`): the eight bake-off shots, today's
+  one-clause shot against the brief written from a synthetic whole-turn Russian narration (`narration.mjs`), on GPT Image
+  2.5 Sunburst and Flare, two samples each; the bake-off's judges (Haiku per picture, Sonnet identity side by side); the
+  owner's blind page in `docs/samples/pictures-brief/` (the bake-off's JSON shape, four variants per shot, the narration
+  included). Records: `docs/runs/pictures-brief-*.json`; the numbers in `docs/runs/polish2-report.md`.
+Tests: `tests/polish2-director.test.mjs` (the request, the parser, the compiled prompts per family, the reference order,
+the board's profiles, migration 65, the wiring).

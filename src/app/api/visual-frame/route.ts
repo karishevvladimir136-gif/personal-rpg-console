@@ -18,10 +18,11 @@ import {
   readPictureBoard,
   savePictureSettings,
   savePictureStyle,
+  saveVisualProfile,
   signedPictureUrl,
   signedStyleReferenceUrl,
 } from "@/lib/server/media/pictures-store";
-import { autopilotStep, requestAnchor, requestFrame, restyleCampaign, type Schedule } from "@/lib/server/media/pictures-service";
+import { autopilotStep, draftVisualProfile, requestAnchor, requestFrame, restyleCampaign, type Schedule } from "@/lib/server/media/pictures-service";
 import { publicJson, errorResponse } from "@/lib/persistence/route-response";
 import { exactKeys } from "@/lib/visual-frame/real-frame";
 import { PersistenceError } from "@/lib/server/errors";
@@ -112,6 +113,8 @@ async function picturesAction(action: string, campaignId: string, input: unknown
     case "pictures.style.activate": return activatePictureStyle(campaignId, input);
     case "pictures.style.clear": return clearPictureStyle(campaignId, input);
     case "pictures.hide": return hidePicture(campaignId, input);
+    case "pictures.profile.save": return saveVisualProfile(campaignId, input);
+    case "pictures.profile.draft": return draftVisualProfile(campaignId, input);
     default: throw new PersistenceError("validation");
   }
 }

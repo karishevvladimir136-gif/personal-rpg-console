@@ -9,7 +9,7 @@ import { FAL_SIZES, FAST_FAL_IMAGE_MODEL, generateFalImage, isContentRefusal, so
 import { generateOpenAIImage, type OpenAIImageModelId } from "./openai-image.ts";
 import { isOpenAIPictureModel, maxReferencesFor, parsePicture, pictureSizeFor, type PictureComposition, type PictureSubjectKind, type PictureTier, type PictureTrigger, type PublicPicture } from "./pictures.ts";
 
-export type PictureRpcAction = "read" | "settings.save" | "style.save" | "style.activate" | "style.clear" | "picture.create" | "picture.update" | "picture.hide" | "picture.private" | "style.private";
+export type PictureRpcAction = "read" | "settings.save" | "style.save" | "style.activate" | "style.clear" | "picture.create" | "picture.update" | "picture.hide" | "picture.private" | "style.private" | "picture.brief" | "profile.save";
 export type PictureJobContext = {
   campaignId: string;
   rpc: (action: PictureRpcAction, payload?: unknown) => Promise<unknown>;
@@ -50,6 +50,11 @@ export async function createPictureRow(ctx: PictureJobContext, input: CreatePict
 }
 export async function updatePictureRow(ctx: PictureJobContext, payload: Record<string, unknown>) {
   return parsePicture(await ctx.rpc("picture.update", payload));
+}
+/** Polish 2 §3: a queued or generating picture takes its brief — the compiled prompt, the shot with
+ * the brief inside (private), the references the brief needs. */
+export async function briefPictureRow(ctx: PictureJobContext, payload: { id: string; prompt: string; shot: unknown; referenceIds: string[] }) {
+  return parsePicture(await ctx.rpc("picture.brief", payload));
 }
 
 /** The pixels of reference pictures (ready pictures or style references of this campaign), in order; a missing object is skipped. */

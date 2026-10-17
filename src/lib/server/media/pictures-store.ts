@@ -5,7 +5,7 @@ import { authorizeCampaign } from "../campaign-authorization";
 import { databaseError, PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
 import { sniffImage, type FalReference } from "../../visual-frame/fal-image";
-import { parsePicture, parsePictureBoard, parsePictureSettings, parsePictureStyle, stylePreset, type PictureBoard } from "../../visual-frame/pictures";
+import { parsePicture, parsePictureBoard, parsePictureSettings, parsePictureStyle, parseVisualProfile, stylePreset, type PictureBoard } from "../../visual-frame/pictures";
 import { privatePicture, styleStoragePath, type PictureJobContext, type PictureRpcAction } from "../../visual-frame/picture-job";
 
 export { createPictureRow, loadReferences, pictureStoragePath, privatePicture, updatePictureRow } from "../../visual-frame/picture-job";
@@ -117,6 +117,16 @@ export async function clearPictureStyle(campaignId: string, value: unknown) {
   const ctx = await picturesContext(campaignId);
   await ctx.rpc("style.clear", { scope: value.scope });
   return boardOf(ctx);
+}
+/** Polish 2 §3: the owner's edit of a visual profile (the look and the story's changes) — a new version, source «owner». */
+export async function saveVisualProfile(campaignId: string, value: unknown) {
+  if (!isRecord(value) || !isRecord(value.subject) || !["entity", "location"].includes(String(value.subject.kind)) || !isUuid(value.subject.id) ||
+    typeof value.look !== "string" || value.look.length > 2000 ||
+    (value.changes !== undefined && (!Array.isArray(value.changes) || value.changes.length > 12 || value.changes.some((row) => typeof row !== "string" || !row.trim() || row.length > 300))))
+    throw new PersistenceError("validation");
+  const ctx = await picturesContext(campaignId);
+  const changes = Array.isArray(value.changes) ? (value.changes as string[]).map((row) => row.trim()) : [];
+  return parseVisualProfile(await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: value.subject.kind, subjectId: value.subject.id, look: value.look.trim(), changes, source: "owner" }));
 }
 export async function hidePicture(campaignId: string, value: unknown) {
   if (!isRecord(value) || !isUuid(value.id) || typeof value.hidden !== "boolean") throw new PersistenceError("validation");

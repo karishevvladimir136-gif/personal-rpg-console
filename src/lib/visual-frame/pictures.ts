@@ -82,6 +82,19 @@ export type PictureSettings = {
   models: Partial<Record<PictureTier, PictureModelId>>;
   revision: number;
 };
+/** Polish 2 §3: the visual profile of a named person or place — a full look, drafted once by the
+ * model from the records and the approved anchor, edited by the owner (the owner's text has the
+ * highest authority), with the story's changes to the look appended as they happen. Versions are history. */
+export type VisualProfile = {
+  id: string;
+  subjectKind: "entity" | "location";
+  subjectId: string;
+  version: number;
+  look: string;
+  changes: string[];
+  source: "model" | "owner";
+  createdAt: string;
+};
 export type PictureBoard = {
   campaignId: string;
   worldId: string | null;
@@ -89,6 +102,7 @@ export type PictureBoard = {
   today: { count: number; costUsdMicros: number };
   styles: PictureStyle[];
   pictures: PublicPicture[];
+  profiles: VisualProfile[];
 };
 
 export const defaultPictureAutopilot: PictureAutopilot = {
@@ -180,6 +194,12 @@ export function parsePictureStyle(raw: unknown): PictureStyle | null {
   return { id: raw.id, scope: raw.scope, scopeId: raw.scopeId, version: raw.version as number, preset: raw.preset, label: raw.label,
     styleText: raw.styleText, hasReference: raw.hasReference === true, active: raw.active === true, createdAt: raw.createdAt };
 }
+export function parseVisualProfile(raw: unknown): VisualProfile | null {
+  if (!isRecord(raw) || !isUuid(raw.id) || !oneOf(["entity", "location"] as const, raw.subjectKind) || !isUuid(raw.subjectId) || !Number.isSafeInteger(raw.version) ||
+    typeof raw.look !== "string" || !oneOf(["model", "owner"] as const, raw.source) || typeof raw.createdAt !== "string") return null;
+  return { id: raw.id, subjectKind: raw.subjectKind, subjectId: raw.subjectId, version: raw.version as number, look: raw.look,
+    changes: Array.isArray(raw.changes) ? raw.changes.filter((v): v is string => typeof v === "string" && v.trim().length > 0).slice(0, 12) : [], source: raw.source, createdAt: raw.createdAt };
+}
 export function parsePictureBoard(raw: unknown): PictureBoard | null {
   if (!isRecord(raw) || !isUuid(raw.campaignId)) return null;
   const today = isRecord(raw.today) ? raw.today : {};
@@ -190,10 +210,17 @@ export function parsePictureBoard(raw: unknown): PictureBoard | null {
     today: { count: Number.isSafeInteger(today.count) ? (today.count as number) : 0, costUsdMicros: Number.isSafeInteger(today.costUsdMicros) ? (today.costUsdMicros as number) : 0 },
     styles: Array.isArray(raw.styles) ? raw.styles.map(parsePictureStyle).filter((row): row is PictureStyle => row !== null) : [],
     pictures: Array.isArray(raw.pictures) ? raw.pictures.map(parsePicture).filter((row): row is PublicPicture => row !== null) : [],
+    profiles: Array.isArray(raw.profiles) ? raw.profiles.map(parseVisualProfile).filter((row): row is VisualProfile => row !== null) : [],
   };
 }
 export const emptyPictureBoard = (campaignId: string): PictureBoard =>
-  ({ campaignId, worldId: null, settings: defaultPictureSettings, today: { count: 0, costUsdMicros: 0 }, styles: [], pictures: [] });
+  ({ campaignId, worldId: null, settings: defaultPictureSettings, today: { count: 0, costUsdMicros: 0 }, styles: [], pictures: [], profiles: [] });
+/** The profile in force for a subject: the newest version. */
+export function profileFor(board: Pick<PictureBoard, "profiles">, subject: { kind: "entity" | "location"; id: string }): VisualProfile | null {
+  return [...(board.profiles ?? [])].filter((row) => row.subjectKind === subject.kind && row.subjectId === subject.id).sort((a, b) => b.version - a.version)[0] ?? null;
+}
+/** The profile's text for a brief: the look and the story's changes so far. */
+export const profileText = (profile: VisualProfile | null) => (profile ? { look: profile.look, changes: profile.changes } : null);
 
 // Style presets the owner can start from, edit or replace. Nothing is tied to
 // one look; the text is what the image model reads.

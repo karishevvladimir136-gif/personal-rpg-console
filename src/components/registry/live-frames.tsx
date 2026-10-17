@@ -166,6 +166,8 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
   useLiveFrameTrigger(live, play, pictures);
   const [pending, setPending] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
+  // Polish 2 §3: «Перерисовать» with one line from the owner («сделай ночь», «он без шлема»).
+  const [comment, setComment] = useState("");
   if (!pictures) return null;
   const { board } = pictures;
   const gameTurns = (play?.turns ?? []).filter((turn) => turn.mode === "game");
@@ -221,9 +223,15 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
       ) : null}
       <div className={f.tools}>
         {currentId && !off && (
-          <button type="button" className={r.btnGhost} disabled={pending || pictures.preview || current?.drawing} onClick={() => void act("pictures.frame", { operationId: currentId, trigger: "redraw" })}>
+          <button type="button" className={r.btnGhost} disabled={pending || pictures.preview || current?.drawing}
+            onClick={() => { const text = comment.trim(); setComment(""); void act("pictures.frame", { operationId: currentId, trigger: "redraw", ...(text ? { comment: text } : {}) }); }}>
             <RefreshCw size={16} aria-hidden="true" />{shown || hiddenOnly ? c("Перерисовать", "Redraw") : c("Нарисовать кадр", "Draw a frame")}
           </button>
+        )}
+        {currentId && !off && shown && (
+          <input type="text" className={f.comment} value={comment} maxLength={300} disabled={pending || pictures.preview || current?.drawing} data-testid="redraw-comment"
+            placeholder={c("Что изменить: «сделай ночь», «он без шлема»…", "What to change: «make it night», «no helmet»…")}
+            aria-label={c("Комментарий к перерисовке", "Comment for the redraw")} onChange={(event) => setComment(event.target.value)} />
         )}
         {shown && (
           <button type="button" className={r.btnGhost} disabled={pending || pictures.preview} onClick={() => void hideTurn()}>

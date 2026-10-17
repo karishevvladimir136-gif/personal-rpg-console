@@ -14,7 +14,10 @@ import { generateOpenAIImage, openAIImageReserveUsdMicros } from "../../../src/l
 
 export const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 export const runsDir = join(root, "docs", "runs");
-export const samplesDir = join(root, "docs", "samples", "pictures");
+/** The run's name: the bake-off's files are `pictures-*` under docs/runs and docs/samples/pictures; another
+ * run (polish 2's brief proof: PICTURES_RUN=pictures-brief) keeps its own ledger, results and samples. */
+export const RUN = process.env.PICTURES_RUN ?? "pictures";
+export const samplesDir = join(root, "docs", "samples", RUN);
 export const imagesDir = join(samplesDir, "img");
 export const anchorsDir = join(samplesDir, "anchors");
 for (const dir of [runsDir, samplesDir, imagesDir, anchorsDir]) mkdirSync(dir, { recursive: true });
@@ -38,7 +41,7 @@ export const SIZES = { frame: "landscape_16_9_hd", figure: "portrait_16_9_hd", p
 export const SEED_VALUES = [101, 202, 303];
 
 // ---- budget guard and ledger -------------------------------------------------
-const ledgerFile = join(runsDir, "pictures-ledger.json");
+const ledgerFile = join(runsDir, `${RUN}-ledger.json`);
 export const CAP_USD = Number(process.env.PICTURES_CAP_USD ?? 20);
 export const ledger = existsSync(ledgerFile) ? JSON.parse(readFileSync(ledgerFile, "utf8"))
   : { capUsd: CAP_USD, totalUsdMicros: 0, note: "Every paid call of the picture bake-off: reserved at its upper bound before it is sent, settled afterwards (fal at list price, OpenAI and Anthropic from the reply's own usage).", entries: [] };
@@ -62,7 +65,7 @@ export function settle(entry, actualMicros, extra = {}) {
 }
 
 // ---- results (one row per paid picture; the resume point) -------------------------
-const resultsFile = join(runsDir, "pictures-results.json");
+const resultsFile = join(runsDir, `${RUN}-results.json`);
 export const results = existsSync(resultsFile) ? JSON.parse(readFileSync(resultsFile, "utf8")) : { rows: [] };
 export const saveResults = () => writeFileSync(resultsFile, JSON.stringify(results, null, 2) + "\n");
 export const rowOf = (key) => results.rows.find((row) => row.key === key) ?? null;
@@ -87,7 +90,7 @@ export function saveImage(bytes, dir = "img") {
 // ---- one picture ------------------------------------------------------------------
 const keys = { fal: () => providerKey("FAL_KEY"), openai: () => providerKey("OPENAI_API_KEY") };
 /** One paid picture through the guard. Never retries; a content refusal is recorded as such. */
-export async function draw(modelKey, { prompt, size, references = [], seed = null, note }) {
+export async function draw(modelKey, { prompt, size, references = [], seed = null, note, moderation = undefined }) {
   const model = MODELS[modelKey];
   if (!model) throw new Error(`unknown model ${modelKey}`);
   const [width, height] = FAL_SIZES[size];
@@ -113,7 +116,7 @@ export async function draw(modelKey, { prompt, size, references = [], seed = nul
       return { ok: false, refusal: isContentRefusal(error), code: error.code, detail: error.detail, usdMicros: expected };
     }
   }
-  const input = { model: model.id, prompt, width, height, quality: model.quality, format: "jpeg", references };
+  const input = { model: model.id, prompt, width, height, quality: model.quality, format: "jpeg", references, ...(moderation ? { moderation } : {}) };
   const expected = openAIImageReserveUsdMicros(input);
   const entry = reserve("openai", model.id, expected, note);
   try {

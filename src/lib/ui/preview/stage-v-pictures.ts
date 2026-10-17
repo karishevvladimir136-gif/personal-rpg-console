@@ -36,6 +36,7 @@ export function previewPictureBoard(input: {
     board: {
       campaignId: input.campaignId, worldId: input.worldId,
       settings: { frames: "every", quality: "fast", dailyCap: 60, autopilot: { enabled: true, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal" }, models: {}, revision: 2 },
+      profiles: [],
       today: { count: pictures.length, costUsdMicros: input.todayCostUsdMicros ?? pictures.reduce((sum, row) => sum + row.costUsdMicros, 0) },
       styles: [style], pictures,
     },

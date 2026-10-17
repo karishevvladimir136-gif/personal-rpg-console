@@ -1,7 +1,7 @@
 import "server-only";
 import { readCampaign } from "../repository";
 import { readTurn, readWorldClock } from "../gameplay-service";
-import { subscribeLiveTurn } from "../dm/live-turns";
+import { liveTurnFinished, subscribeLiveTurn } from "../dm/live-turns";
 import { PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
 import type { CampaignSnapshot } from "../../persistence/contracts";
@@ -16,6 +16,7 @@ import {
   maxReferencesFor,
   modelForTier,
   planAutopilot,
+  profileFor,
   referencesForAnchor,
   referencesForShot,
   restylePlan,
@@ -26,13 +27,16 @@ import {
   type PictureTier,
   type PictureTrigger,
   type PublicPicture,
+  type VisualProfile,
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
-import { compileAnchorPrompt, compileRecordsFrame, promptFamily, type BriefReference } from "../../visual-frame/prompt-compiler";
+import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefPerson, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
+import { briefReferences, compileBriefPrompt, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
+import { buildBrief, draftProfile } from "./brief-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
-import { createPictureRow, runPictureJob as runJob } from "../../visual-frame/picture-job";
+import { briefPictureRow, createPictureRow, privatePicture, runPictureJob as runJob } from "../../visual-frame/picture-job";
 
 // The Stage V frame engine. A turn never waits for a picture: every request
 // creates a queued row, answers at once, and the paid work runs after the
@@ -69,6 +73,34 @@ async function turnText(campaignId: string, operationId: string): Promise<{ text
   }
   return { text, finished, changes };
 }
+/** Polish 2 §3: the whole turn's narration for the brief — the live registry followed until the
+ * turn leaves «generating» (bounded), else the committed turn's text. Public text only. */
+async function wholeNarration(campaignId: string, operationId: string, waitMs: number): Promise<{ text: string; complete: boolean }> {
+  let text = "";
+  let finished = liveTurnFinished(operationId);
+  const collect = (event: Parameters<Parameters<typeof subscribeLiveTurn>[1]>[0]) => {
+    if (event.type === "text") text += event.text;
+    else if (event.type === "status" && event.status !== "generating") finished = true;
+  };
+  const unsubscribe = subscribeLiveTurn(operationId, collect);
+  if (!finished && text.trim()) {
+    await new Promise<void>((resolve) => {
+      const timer = setTimeout(resolve, waitMs);
+      const listen = subscribeLiveTurn(operationId, (event) => {
+        if (event.type === "text") text += event.text;
+        else if (event.type === "status" && event.status !== "generating") { finished = true; clearTimeout(timer); listen(); resolve(); }
+      });
+    });
+  }
+  unsubscribe();
+  if (!text.trim() || !finished) {
+    try {
+      const turn = await readTurn(campaignId, operationId);
+      if (turn.narration && (!text.trim() || turn.narration.length >= text.length)) return { text: turn.narration, complete: true };
+    } catch { /* the live text is what there is */ }
+  }
+  return { text, complete: finished };
+}
 function paragraphFor(trigger: PictureTrigger, text: string, finished: boolean) {
   if (trigger === "key_moment") {
     const paragraphs = text.trim().split(/\n\s*\n/).map((row) => row.trim()).filter(Boolean);
@@ -85,6 +117,14 @@ function appearanceOf(snapshot: CampaignSnapshot, entityId: string) {
   const guidance = reference && reference.kind === "reference" ? [reference.appearance, reference.outfit].filter(Boolean).join(" ") : "";
   return [guidance, entity?.details ?? ""].filter(Boolean).join(" ").slice(0, 400);
 }
+/** Polish 2 §3: the look a prompt describes — the visual profile (and the story's changes) when one exists, else the records' appearance. */
+function lookOf(board: Pick<PictureBoard, "profiles">, snapshot: CampaignSnapshot, entityId: string) {
+  const profile = profileFor(board, { kind: "entity", id: entityId });
+  if (!profile || !profile.look.trim()) return appearanceOf(snapshot, entityId);
+  return [profile.look, profile.changes.length ? `Now: ${profile.changes.join("; ")}.` : ""].filter(Boolean).join(" ").slice(0, 1600);
+}
+const nameOfSubject = (snapshot: CampaignSnapshot, profile: Pick<VisualProfile, "subjectKind" | "subjectId">) =>
+  profile.subjectKind === "entity" ? snapshot.entities.find((row) => row.id === profile.subjectId)?.name ?? null : snapshot.locations.find((row) => row.id === profile.subjectId)?.name ?? null;
 function shotContext(snapshot: CampaignSnapshot): ShotContext {
   const hero = snapshot.entities.find((row) => row.kind === "player") ?? null;
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
@@ -99,10 +139,13 @@ function shotContext(snapshot: CampaignSnapshot): ShotContext {
 /** A frame for one turn. `live` while the narration streams (needs the first paragraph),
  * `committed` after a reload, `key_moment` once the turn is saved (better model), `redraw` by the owner. */
 export async function requestFrame(campaignId: string, value: unknown, schedule: Schedule = detached): Promise<FrameRequestResult> {
-  if (!isRecord(value) || !isUuid(value.operationId) || !["live", "committed", "key_moment", "redraw"].includes(String(value.trigger)))
+  if (!isRecord(value) || !isUuid(value.operationId) || !["live", "committed", "key_moment", "redraw"].includes(String(value.trigger)) ||
+    (value.comment !== undefined && value.comment !== null && (typeof value.comment !== "string" || value.comment.length > 300)))
     throw new PersistenceError("validation");
   const operationId = value.operationId;
   const trigger = value.trigger as "live" | "committed" | "key_moment" | "redraw";
+  // «Перерисовать» with a comment (polish 2 §3): one line from the owner, merged into the brief and sent as an edit.
+  const comment = trigger === "redraw" && typeof value.comment === "string" && value.comment.trim() ? value.comment.trim() : null;
   const ctx = await picturesContext(campaignId);
   const board = await boardOf(ctx);
   const frames = board.settings.frames;
@@ -141,7 +184,7 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
     worldMinutes: clock.worldMinutes,
     people: shot.who.map((name) => {
       const entity = snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
-      return { name, entity, appearance: entity ? appearanceOf(snapshot, entity.id) : "" };
+      return { name, entity, appearance: entity ? lookOf(board, snapshot, entity.id) : "" };
     }),
     references: [...referenceIds, ...(heroFigure ? [heroFigure.id] : [])].map((id) => {
       const row = board.pictures.find((picture) => picture.id === id);
@@ -153,12 +196,149 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const picture = await createPictureRow(ctx, {
     id: crypto.randomUUID(), kind: "frame", subjectKind: "turn", subjectId: operationId, composition: "frame", timeline: snapshot.timeline,
     tier, trigger, model, styleVersionId: style?.id ?? null,
-    shot: { ...shot, meta: { source: built.source, model: built.source === "model" ? "claude-haiku-5-5" : null, usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, error: built.error, paragraphChars: paragraph.length } },
+    shot: { ...shot, meta: { source: built.source, model: built.source === "model" ? "claude-haiku-5-5" : null, usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, error: built.error, paragraphChars: paragraph.length }, ...(comment ? { comment } : {}) },
     prompt, referenceIds: compiled.referenceIds,
   });
   log("picture_frame_queued", { campaignId, operationId, pictureId: picture.id, trigger, tier, model, references: compiled.referenceIds.length, shotSource: built.source, shotMs: built.elapsedMs });
-  schedule(() => runPictureJob(ctx, picture.id, { extraCostUsdMicros: built.costUsdMicros }));
+  // The shot director runs after the response: the brief from the whole turn (waiting for the narration
+  // to end on a live frame), then the paid picture. The shot above is the fallback.
+  schedule(async () => {
+    const directed = await directFrame(ctx, picture.id, { operationId, trigger, shot, model, comment }).catch((error) => {
+      log("picture_brief_failed", { campaignId, pictureId: picture.id, message: String((error as Error)?.message ?? error).slice(0, 200) });
+      return { costUsdMicros: 0 };
+    });
+    return runPictureJob(ctx, picture.id, { extraCostUsdMicros: built.costUsdMicros + directed.costUsdMicros });
+  });
   return { status: "queued", picture };
+}
+
+/** How long a live frame waits for the whole narration before the brief is written from what there is. */
+const NARRATION_WAIT_MS = 150_000;
+
+/** Polish 2 §3, the shot director: the brief of the turn (Claude Sonnet 5.5) from the whole narration, the
+ * visual profiles, the records' state, the clock and the previous frame; the prompt compiled from it in
+ * the model's dialect, the references the brief needs, the brief stored with the picture (private); the
+ * story's changes to a look appended to the profiles. A redraw with the owner's comment becomes an edit of
+ * the previous frame. Any failure leaves the shot's prompt in place. Returns the brief's cost. */
+async function directFrame(ctx: PicturesContext, pictureId: string, input: { operationId: string; trigger: PictureTrigger; shot: Shot; model: string; comment: string | null }): Promise<{ costUsdMicros: number }> {
+  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  if (!apiKey) return { costUsdMicros: 0 };
+  const { operationId, trigger, comment } = input;
+  const narration = await wholeNarration(ctx.campaignId, operationId, trigger === "live" ? NARRATION_WAIT_MS : 0);
+  if (!narration.text.trim()) return { costUsdMicros: 0 };
+  // Fresh records and board: the turn may have added people and places, the autopilot anchors.
+  const [snapshot, board, clock] = await Promise.all([readCampaign(ctx.campaignId), boardOf(ctx), readWorldClock(ctx.campaignId).catch(() => ({ worldMinutes: null }))]);
+  const row = await privatePicture(ctx, pictureId);
+  if (row.status !== "queued") return { costUsdMicros: 0 };
+  const context = shotContext(snapshot);
+  const place = snapshot.locations.find((loc) => loc.id === snapshot.publicState.current_location_id) ?? null;
+  const profiles: BriefRequestInput["profiles"] = board.profiles.map((profile) => {
+    const name = nameOfSubject(snapshot, profile);
+    return name ? { name, kind: profile.subjectKind === "entity" ? "person" as const : "place" as const, look: profile.look, changes: profile.changes } : null;
+  }).filter((row): row is NonNullable<typeof row> => row !== null);
+  const state = snapshot.entities.filter((row) => ["player", "companion", "npc"].includes(row.kind)).map((row) => {
+    const worn = snapshot.items.filter((item) => item.equipped_entity_id === row.id && item.quantity > 0).map((item) => item.name).slice(0, 8);
+    const conditions = row.conditions.filter(Boolean).slice(0, 4);
+    const lines = [worn.length ? `wears or carries ${worn.join(", ")}` : "", conditions.length ? `visible condition: ${conditions.join(", ")}` : ""].filter(Boolean);
+    return { name: row.name, lines };
+  }).filter((row) => row.lines.length).slice(0, 12);
+  // Continuity: the newest ready frame of an earlier turn and its brief, if one was written.
+  const previousFrame = [...board.pictures].filter((p) => p.kind === "frame" && p.status === "ready" && !p.hidden && p.subjectId !== operationId && p.createdAt < row.createdAt).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null;
+  const previousBrief = previousFrame ? await privatePicture(ctx, previousFrame.id).then((p) => briefOf(p.shot)?.brief ?? null).catch(() => null) : null;
+  const style = styleTextFor(board, snapshot.settings.values.visualStyle);
+  const built = await buildBrief(apiKey, {
+    narration: narration.text, heroName: context.heroName, names: context.names, placeName: place?.name ?? null, profiles, state,
+    clock: { timeOfDay: timeOfDay(clock.worldMinutes) }, previous: previousBrief, style, comment, language: context.language,
+  });
+  log("picture_brief", { campaignId: ctx.campaignId, pictureId, trigger, ok: !!built.brief, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, error: built.error, narrationChars: narration.text.length, complete: narration.complete, words: built.brief ? built.brief.brief.split(/\s+/).length : 0 });
+  if (!built.brief) return { costUsdMicros: built.costUsdMicros };
+  const brief = built.brief;
+  // The people of the brief, the hero first; identity references by role, in the fixed order.
+  const matched = brief.who.map((name) => snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null);
+  const entityIds = [...new Set(matched.filter((row): row is NonNullable<typeof row> => row !== null).sort((a, b) => (a.kind === "player" ? -1 : 0) - (b.kind === "player" ? -1 : 0)).map((row) => row.id))];
+  const people: BriefPerson[] = entityIds.map((id, index) => {
+    const entity = snapshot.entities.find((row) => row.id === id)!;
+    return { key: id, label: entity.kind === "player" ? "the hero" : `person ${index + 1}`, pronoun: "they", appearance: lookOf(board, snapshot, id) };
+  });
+  for (const name of brief.who) if (!matched[brief.who.indexOf(name)]) people.push({ key: `${name}#${people.length}`, label: `person ${people.length + 1}`, pronoun: "they", appearance: "as described in the scene" });
+  const activeStyleRow = activeStyle(board);
+  const placeAnchor = place ? anchorFor(board, { kind: "location", id: place.id }, "location").picture : null;
+  const heroId = snapshot.entities.find((row) => row.kind === "player" && entityIds.includes(row.id))?.id ?? null;
+  const heroFigure = heroId ? anchorFor(board, { kind: "entity", id: heroId }, "figure").picture : null;
+  const candidateIds = [...referencesForShot(board, { entityIds, locationId: place?.id ?? null, model: input.model }), ...(heroFigure ? [heroFigure.id] : [])];
+  const roles = candidateIds.map((id) => {
+    const picture = board.pictures.find((p) => p.id === id);
+    const role: ReferenceRole = id === activeStyleRow?.id ? "style" : id === placeAnchor?.id ? "place" : picture?.composition === "figure" ? "figure" : picture?.composition === "portrait" ? "face" : "person";
+    return { id, role, entityId: picture?.subjectId ?? null };
+  });
+  const ordered = briefReferences(roles, people, maxReferencesFor(input.model));
+  // A redraw with the owner's comment: the previous frame of this turn goes back as the only reference, the change as an edit.
+  const previousOfTurn = comment ? framesOfTurn(board, operationId).filter((p) => p.status === "ready" && p.id !== pictureId).at(-1) ?? null : null;
+  const edit = comment && brief.edit && previousOfTurn;
+  const prompt = edit ? compileEditPrompt(brief.edit!, promptFamily(input.model)) : compileBriefPrompt({ brief, people, references: ordered, style, modelId: input.model });
+  const referenceIds = edit ? [previousOfTurn!.id] : ordered.map((r) => r.id);
+  await briefPictureRow(ctx, { id: pictureId, prompt, referenceIds, shot: {
+    ...input.shot, who: brief.who.length ? brief.who : input.shot.who, brief,
+    meta: { ...(isRecord(row.shot) && isRecord(row.shot.meta) ? row.shot.meta : {}), brief: { model: "claude-sonnet-5-5", usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, narrationChars: narration.text.length, complete: narration.complete, edit: !!edit } },
+    ...(comment ? { comment } : {}),
+  } });
+  log("picture_brief_applied", { campaignId: ctx.campaignId, pictureId, references: referenceIds.length, people: people.length, edit: !!edit });
+  // The story changed a look: the change joins the person's or place's profile (the owner's text stays).
+  for (const update of brief.profileUpdates) {
+    const entity = snapshot.entities.find((row) => nameMatches(row.name, update.who)) ?? null;
+    const location = entity ? null : snapshot.locations.find((row) => nameMatches(row.name, update.who)) ?? null;
+    const subject = entity ? { kind: "entity" as const, id: entity.id } : location ? { kind: "location" as const, id: location.id } : null;
+    if (!subject) continue;
+    const current = profileFor(board, subject);
+    if (current?.changes.some((change) => change.toLowerCase() === update.change.toLowerCase())) continue;
+    await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: subject.kind, subjectId: subject.id, look: current?.look ?? "", changes: [...(current?.changes ?? []), update.change].slice(-12), source: "model" }).catch((error) =>
+      log("profile_update_failed", { campaignId: ctx.campaignId, subject: subject.kind, message: String((error as Error)?.message ?? error).slice(0, 120) }));
+  }
+  return { costUsdMicros: built.costUsdMicros };
+}
+const briefOf = (shot: unknown): VisualBrief | null => (isRecord(shot) && isRecord(shot.brief) && typeof shot.brief.brief === "string" ? shot.brief as unknown as VisualBrief : null);
+
+/** Polish 2 §3: the visual profile of a person or a place, drafted once by the model from the records'
+ * text and the ready anchors (portrait and figure, or the place's view); saved as a model version. The
+ * owner edits it on the card afterwards. */
+export async function draftVisualProfile(campaignId: string, value: unknown) {
+  if (!isRecord(value) || !isRecord(value.subject) || !["entity", "location"].includes(String(value.subject.kind)) || !isUuid(value.subject.id)) throw new PersistenceError("validation");
+  const ctx = await picturesContext(campaignId);
+  const subject = { kind: value.subject.kind as "entity" | "location", id: value.subject.id };
+  return draftProfileFor(ctx, subject, await boardOf(ctx), await readCampaign(campaignId));
+}
+async function draftProfileFor(ctx: PicturesContext, subject: { kind: "entity" | "location"; id: string }, board: PictureBoard, snapshot: CampaignSnapshot) {
+  const apiKey = process.env.ANTHROPIC_API_KEY ?? "";
+  if (!apiKey) return { status: "not_configured" as const };
+  let name = "", text = "";
+  if (subject.kind === "entity") {
+    const row = snapshot.entities.find((entity) => entity.id === subject.id);
+    if (!row) throw new PersistenceError("not_found");
+    const worn = snapshot.items.filter((item) => item.equipped_entity_id === row.id && item.quantity > 0).map((item) => item.name).slice(0, 12);
+    name = row.name;
+    text = [appearanceOf(snapshot, row.id), row.details, worn.length ? `Wears or carries: ${worn.join(", ")}.` : "", row.conditions.length ? `Visible condition: ${row.conditions.join(", ")}.` : ""].filter(Boolean).join("\n");
+  } else {
+    const row = snapshot.locations.find((location) => location.id === subject.id);
+    if (!row) throw new PersistenceError("not_found");
+    name = row.name;
+    text = row.description;
+  }
+  const anchors = subject.kind === "entity"
+    ? [{ picture: anchorFor(board, subject, "portrait").picture, label: "the approved portrait" }, { picture: anchorFor(board, subject, "figure").picture, label: "the approved full figure" }]
+    : [{ picture: anchorFor(board, subject, "location").picture, label: "the approved view of the place" }];
+  const images: { bytes: Uint8Array; contentType: string; label: string }[] = [];
+  for (const anchor of anchors) {
+    if (!anchor.picture) continue;
+    const row = await privatePicture(ctx, anchor.picture.id).catch(() => null);
+    const object = row?.storagePath ? await ctx.storage.get(row.storagePath).catch(() => null) : null;
+    if (object) images.push({ bytes: object.bytes, contentType: object.contentType, label: anchor.label });
+  }
+  const drafted = await draftProfile(apiKey, { kind: subject.kind === "entity" ? "person" : "place", name, text, images, language: snapshot.settings.values.language === "en" ? "en" : "ru" });
+  log("profile_drafted", { campaignId: ctx.campaignId, subject: subject.kind, ok: !!drafted.look, images: images.length, ms: drafted.elapsedMs, costUsdMicros: drafted.costUsdMicros, usage: drafted.usage, error: drafted.error });
+  if (!drafted.look) return { status: "failed" as const, error: drafted.error };
+  const current = profileFor(board, subject);
+  const profile = await ctx.rpc("profile.save", { id: crypto.randomUUID(), subjectKind: subject.kind, subjectId: subject.id, look: drafted.look, changes: current?.changes ?? [], source: "model" });
+  return { status: "drafted" as const, profile, costUsdMicros: drafted.costUsdMicros };
 }
 
 /** An anchor of a record: the autopilot's next picture, «Перерисовать», or a restyle. */
@@ -208,10 +388,11 @@ async function queueAnchor(ctx: PicturesContext, board: PictureBoard, snapshot: 
   const referenceIds = referencesForAnchor(board, subject, chosen, model);
   const styleText = styleTextFor(board, snapshot.settings.values.visualStyle);
   // Polish 2: a person's portrait or figure goes through the prompt compiler (the model's dialect, the
-  // face reference by role, the anatomy guard) with the carried items as a separate constraint.
+  // face reference by role, the anatomy guard) with the carried items as a separate constraint; the
+  // look comes from the visual profile when the owner has one.
   const prompt = person && (chosen === "portrait" || chosen === "figure")
     ? compileAnchorPrompt({
-        person: { key: person.entity.id, label: person.entity.kind === "player" ? "the hero" : "this character", pronoun: "they", appearance: appearanceOf(snapshot, person.entity.id) || "as described in the records",
+        person: { key: person.entity.id, label: person.entity.kind === "player" ? "the hero" : "this character", pronoun: "they", appearance: lookOf(board, snapshot, person.entity.id) || "as described in the records",
           state: person.entity.conditions.filter(Boolean).slice(0, 4).map((condition) => `visible condition: ${condition}`) },
         composition: chosen, carried: person.carried, style: styleText,
         references: referenceIds.map((id): BriefReference => (id === style?.id ? { role: "style" } : { role: "face", person: person!.entity.id })),
@@ -264,7 +445,18 @@ export async function restyleCampaign(campaignId: string, value: unknown, schedu
   return { status: "queued" as const, count: plan.length, fastUsdMicros, qualityUsdMicros, queued };
 }
 
-/** The paid work of one picture, with the server's keys (fal for fal models, OpenAI for GPT Image). */
-export function runPictureJob(ctx: PicturesContext, pictureId: string, options: { extraCostUsdMicros?: number } = {}) {
-  return runJob(ctx, pictureId, { apiKey: process.env.FAL_KEY ?? "", openAIApiKey: process.env.OPENAI_API_KEY ?? "", extraCostUsdMicros: options.extraCostUsdMicros });
+/** The paid work of one picture, with the server's keys (fal for fal models, OpenAI for GPT Image).
+ * A ready anchor of a person or a place without a visual profile gets one drafted (polish 2 §3). */
+export async function runPictureJob(ctx: PicturesContext, pictureId: string, options: { extraCostUsdMicros?: number } = {}) {
+  const picture = await runJob(ctx, pictureId, { apiKey: process.env.FAL_KEY ?? "", openAIApiKey: process.env.OPENAI_API_KEY ?? "", extraCostUsdMicros: options.extraCostUsdMicros });
+  if (picture?.status === "ready" && picture.kind === "anchor" && (picture.subjectKind === "entity" || picture.subjectKind === "location") && ["portrait", "figure", "location"].includes(picture.composition)) {
+    try {
+      const board = await boardOf(ctx);
+      const subject = { kind: picture.subjectKind, id: picture.subjectId };
+      if (!profileFor(board, subject)?.look.trim()) await draftProfileFor(ctx, subject, board, await readCampaign(ctx.campaignId));
+    } catch (error) {
+      log("profile_draft_failed", { campaignId: ctx.campaignId, pictureId, message: String((error as Error)?.message ?? error).slice(0, 200) });
+    }
+  }
+  return picture;
 }

@@ -16,7 +16,7 @@ test("migration 54: settings, styles with versions and roll-back, campaign overr
     assert.ok(f.files.includes("202610160054_stage_v_pictures.sql"));
     const w = await world(f);
     const read = await call(f, w.cid, "read");
-    assert.deepEqual(Object.keys(read).sort(), ["campaignId", "pictures", "settings", "styles", "today", "worldId"]);
+    assert.deepEqual(Object.keys(read).sort(), ["campaignId", "pictures", "profiles", "settings", "styles", "today", "worldId"]);
     assert.equal(read.settings.revision, 0, "defaults until the first save");
     assert.equal(read.settings.frames, "every");
     assert.equal(read.settings.autopilot.provider, "fal");

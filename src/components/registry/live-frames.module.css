@@ -188,3 +188,16 @@
 .earlier > .strip {
   margin-top: 8px;
 }
+
+/* Polish 2 §3: the one-line comment for «Перерисовать» */
+.comment {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #1b1511;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+}
