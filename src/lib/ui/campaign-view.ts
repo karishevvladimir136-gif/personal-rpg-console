@@ -234,7 +234,8 @@ export function turnStatsOf(turns: PublicTurn[], count = 20) {
   const rows = turns.filter((turn) => turn.status === "committed" && turn.stats).slice(-count).map((turn) => turn.stats!);
   if (!rows.length) return null;
   const median = (values: number[]) => { const sorted = [...values].sort((a, b) => a - b); return sorted[Math.floor(sorted.length / 2)]; };
-  const firstWords = rows.map((row) => row.firstTextMs).filter((value): value is number => value !== null);
+  // Polish item 14: from the player's send to the first visible word, whatever request it came from.
+  const firstWords = rows.map((row) => row.firstWordMs ?? row.firstTextMs).filter((value): value is number => value !== null && value !== undefined);
   return { turns: rows.length, medianFirstWordMs: firstWords.length ? median(firstWords) : null, medianTurnMs: median(rows.map((row) => row.latencyMs)),
     avgCostUsd: rows.reduce((sum, row) => sum + row.costUsd, 0) / rows.length, rejectedCalls: rows.reduce((sum, row) => sum + row.rejectedCalls, 0),
     cacheReadShare: rows.filter((row) => row.cacheReadShare !== null).length ? rows.reduce((sum, row) => sum + (row.cacheReadShare ?? 0), 0) / rows.filter((row) => row.cacheReadShare !== null).length : null };

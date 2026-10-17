@@ -110,7 +110,7 @@ test("Anthropic: text only, with signed thinking kept for replay and cache-read 
   assert.equal(error, undefined);
   assert.equal(text(events), "Мельница скрипит.");
   const usage = events.find((e) => e.type === "usage").usage;
-  assert.deepEqual(usage, { inputTokens: 3012, outputTokens: 42, cacheReadTokens: 3000, cacheWriteTokens: 0, reasoningTokens: null });
+  assert.deepEqual(usage, { inputTokens: 3012, outputTokens: 42, cacheReadTokens: 3000, cacheWriteTokens: 0, cacheWrite1hTokens: 0, reasoningTokens: null });
   const stop = events.at(-1);
   assert.equal(stop.type, "stop");
   assert.equal(stop.reason, "end");

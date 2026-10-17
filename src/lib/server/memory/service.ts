@@ -8,6 +8,8 @@ import type { TimelineFence } from "../../saves/contracts";
 import { createSaveStore } from "../saves/store";
 import { DmError } from "../../gameplay/dm-errors";
 import { scheduleDigest } from "../session-digest";
+import { readDmSettings } from "../dm-settings";
+import { DM_LOOP_RUNTIME } from "../../gameplay/dm-loop/contracts";
 
 async function authorizedMemory(campaignId: string, timeline?: TimelineFence) {
   const { user } = await authorizeCampaign(campaignId);
@@ -42,10 +44,13 @@ export async function mutateMemory(
         : await store.retry(validateMemoryRequest(value, campaignId, "retry"));
   // Stage 4 §4: «Закончить сессию» — a loop campaign's closed session is digested in the background.
   if (action === "end") scheduleDigest(campaignId, validateMemoryRequest(value, campaignId, "end").sessionId, "end");
+  // Polish item 22: a loop campaign pays for one memory — the Stage 4 digest — never the legacy summaries.
+  const loop = (await readDmSettings(campaignId).catch(() => null))?.runtime === DM_LOOP_RUNTIME;
   return {
     snapshot,
     // Capture already-authorized store, not request cookies, for after-response work.
     run: async () => {
+      if (loop) { console.info(JSON.stringify({ event: "legacy_memory_skipped", campaignId, reason: "dm-loop-v1 session end: the Stage 4 digest is the memory" })); return; }
       try {
         await processMemoryJobs(
           campaignId,

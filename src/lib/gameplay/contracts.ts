@@ -200,7 +200,9 @@ export type PublicTurn = {
   threads?: string[];
   nextTension?: "calm" | "tense" | "climax" | null;
   /** Owner-facing numbers of the turn (UI_DATA_NEEDS #5); no private content. */
-  stats?: { requests: number; latencyMs: number; firstTextMs: number | null; costUsd: number; cacheReadShare: number | null; rejectedCalls: number; effort: string | null };
+  stats?: { requests: number; latencyMs: number; firstTextMs: number | null; costUsd: number; cacheReadShare: number | null; rejectedCalls: number; effort: string | null;
+    /** Polish items 13–14: the first word from the player's send; the depth chosen and why. */
+    firstWordMs?: number | null; depthReason?: string | null; depthTension?: string | null };
 };
 export type RestRecord = {
   id: string;

@@ -8,7 +8,10 @@ export type { DmEffort, DmProviderId, DmUsage } from "../../../model-runtime/dm-
 
 /** System prompt blocks in order. `cache: true` marks the stable prefix that
  * providers may cache; volatile blocks follow it. */
-export type DmSystemBlock = { text: string; cache: boolean };
+/** A system layer; `cache` marks a breakpoint, `ttl` the cache lifetime of that
+ * block (polish item 12: the stable layers keep a one-hour cache so a player's
+ * pause does not rewrite them; the provider decides what it can honour). */
+export type DmSystemBlock = { text: string; cache: boolean; ttl?: "5m" | "1h" };
 
 export type DmToolCall = { id: string; name: string; arguments: string };
 

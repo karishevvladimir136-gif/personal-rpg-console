@@ -61,15 +61,19 @@ export type DmUsage = {
   outputTokens: number;
   cacheReadTokens: number;
   cacheWriteTokens: number;
+  /** The part of cacheWriteTokens written with a one-hour lifetime (Anthropic reports it apart; polish item 12). */
+  cacheWrite1hTokens?: number;
   /** Separately reported reasoning tokens (already included in output), when the provider reports them. */
   reasoningTokens: number | null;
 };
 
 export function dmUsageCost(spec: Pick<DmModelSpec, "price">, usage: DmUsage): number {
   const uncached = Math.max(0, usage.inputTokens - usage.cacheReadTokens - usage.cacheWriteTokens);
+  const write1h = Math.min(usage.cacheWriteTokens, Math.max(0, usage.cacheWrite1hTokens ?? 0));
   return (uncached * spec.price.input +
     usage.cacheReadTokens * spec.price.cacheRead +
-    usage.cacheWriteTokens * spec.price.cacheWrite +
+    (usage.cacheWriteTokens - write1h) * spec.price.cacheWrite +
+    write1h * (spec.price.cacheWrite1h ?? spec.price.cacheWrite) +
     usage.outputTokens * spec.price.output) / 1_000_000;
 }
 

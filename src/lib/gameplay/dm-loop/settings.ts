@@ -4,7 +4,7 @@ import { validateModelSelection } from "../../model-runtime/registry.ts";
 import type { ModelSelection } from "../../production/contracts.ts";
 import { DM_LOOP_RUNTIME } from "./contracts.ts";
 import { effectiveDmLoopLimits, parseDmLoopLimits, type DmLoopTurnLimits } from "./limits.ts";
-import { parseDepthRange, type DepthRange } from "./depth.ts";
+import { DEFAULT_DEPTH_RANGE, parseDepthRange, type DepthRange } from "./depth.ts";
 
 export type DmRuntimeId = "astra-primary-v1" | typeof DM_LOOP_RUNTIME;
 export type DmSettings = {
@@ -58,7 +58,9 @@ export function parseDmSettings(value: unknown): DmSettings {
   }
   let limits: DmLoopTurnLimits;
   try { limits = effectiveDmLoopLimits(v.limits); } catch { throw new DmSettingsError("unavailable"); }
-  const depth = v.depth === null || v.depth === undefined ? null : parseDepthRange(v.depth);
+  // Polish item 13: a campaign that never set its depth (no settings row yet) thinks
+  // at high and goes to xhigh for a climax; a stored null stays the owner's «fixed effort».
+  const depth = v.depth === null || v.depth === undefined ? (v.revision === 0 ? { ...DEFAULT_DEPTH_RANGE } : null) : parseDepthRange(v.depth);
   if (v.depth !== null && v.depth !== undefined && !depth) throw new DmSettingsError("unavailable");
   return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
     customLimits: v.limits !== null && v.limits !== undefined, depth,

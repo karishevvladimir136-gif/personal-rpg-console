@@ -365,3 +365,34 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
   rule named. The die tumbles (2D, faces cycling from a fixed sequence, never a random source) and respects reduced motion.
 - **The bench** records every accepted roll (`effects.rolls`); checks `heroRollBonus` and `heroRollDc`; scenario `17-trade-bonus`
   plays the player naming his trade and his tools (fake: 3/3).
+
+## 13. Polish stage — group 3: speed and cost
+
+- **Depth per scene** (`src/lib/gameplay/dm-loop/depth.ts`, item 13): the base of the campaign's range is the base; the top
+  only for a climax — active combat, the DM's own `nextTension: "climax"` hint, an off-screen plan that comes due now
+  (`duePlans`), or a player input that opens a decisive moment (`decisiveInput`: attack / jump / confess / wager stems in
+  both languages; rules only, no pre-turn model); `tense` alone changes nothing; at most two deep turns in a row
+  (`MAX_DEEP_STREAK`) unless the DM marks a climax again; the `depth_state` fact keeps the streak. Every new campaign gets
+  `DEFAULT_DEPTH_RANGE` high … xhigh; the range stays the owner's control. The turn log (`dm_loop_turn`) and the public
+  turn's `stats` carry `depthReason` and `depthTension` (migration 59).
+- **Prompt order and the 1-hour cache** (item 12): five system blocks ordered by volatility — 1 how-to-DM, 2 the world,
+  3 the stable dossier (party in short, people's core, factions, the closed journal, pinned facts, notebook, adventure
+  guidance, session recaps), 4 the session tail (Character Models by presence tier, the open journal, secrets, plans, likes,
+  ledger), 5 now (state, recent scenes, the variety counter), then the player's input. Blocks 1–3 carry
+  `cache_control: {type: "ephemeral", ttl: "1h"}` (`DmSystemBlock.ttl`); 4 and 5 are not cached. Nothing that changes
+  per turn sits above block 4; `DOSSIER_BUDGETS.layer3.models` is 16,000 so the models no longer crowd the stable layer.
+  The adapter reads `cache_creation.ephemeral_1h_input_tokens` into `DmUsage.cacheWrite1hTokens` and `dmUsageCost` prices
+  it at the 1-hour rate ($8/M on Opus 5.5). Not done as the item sketched it: the conversation history is not an
+  append-only message block with its own breakpoint — the loop sends recent scenes as text in block 5, so they stay
+  uncached; the before/after measurement (final group, paid) says whether that is enough.
+- **The first word** (item 14): `firstWordMs` is measured from the player's send (`sentAt` on the turn input, the command's
+  arrival otherwise) to the first narration character of whichever request produced it; it travels on the usage entry,
+  the `turn_finished` observation, the `dm_loop_turn` log line and the public turn's `stats` (the game screen's turn stats
+  prefer it over the old per-request minimum). World, hero and opening-scene generation already keep `usage` in the world
+  lab's run meta (`rpg_private.world_lab_runs`), so the final report counts it from there.
+- **One memory** (item 22): nothing of Stage 4 reads the legacy Astra summaries any more — the dossier's «Ранее в…» comes from
+  `sessionRecaps` (the digest's recaps) — so a loop campaign no longer queues them: `runLoopWithMaintenance` logs
+  `legacy_memory_skipped` instead of calling the legacy maintenance, and the memory service's `run()` skips queued legacy jobs
+  of a loop campaign. Older campaigns on the legacy runtime are untouched.
+- **Chat with DM and the digest** take the cached prefix as all blocks but the last (`feedback.ts`, `digest.ts`), so they
+  share the cache with the turn.

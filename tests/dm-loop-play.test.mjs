@@ -208,7 +208,7 @@ test("talking to a companion is an ordinary turn with an addressee; identity is 
     const model = JSON.parse(state.dmState.npc[`character_${tam.id}`]);
     assert.equal(model.episodes.length, 1);
     assert.equal(model.identity.observableVoice, "Dry, quick jokes.");
-    assert.ok(talk.model.requests[0].system[2].text.includes("Dry, quick jokes."));
+    assert.ok(talk.model.requests[0].system[3].text.includes("Dry, quick jokes."), "the companion's model is in the session tail");
     assert.ok(talk.model.requests[0].messages[0].text.includes("The player speaks to Tam"));
     const fixed = await c.turn("Tam changes her mind about everything.", [
       { text: "Tam shrugs. ", toolCalls: [{ name: "note_character", arguments: { actorRef: tam.id, identity: { values: ["gold"] } } }] },
@@ -267,7 +267,8 @@ test("a harmless private detail never fails the turn; a literal secret is logged
       { text: "\"Only my sister Wenna,\" he says, and his voice sounds strained. " },
     ]);
     assert.equal(harmless.result.status, "committed");
-    assert.deepEqual((await c.row(harmless.input.operationId)).checkpoint.dmLoop.diagnostics, []);
+    // (the depth diagnostic is the default range at work, not a leak)
+    assert.deepEqual((await c.row(harmless.input.operationId)).checkpoint.dmLoop.diagnostics.filter((d) => d.kind !== "depth"), []);
     const leak = await c.turn("Tell me everything.", [
       { text: "He breaks: he secretly lets smugglers hide crates in the old mill at night." },
     ]);
@@ -305,7 +306,7 @@ test("DM settings: runtime and model are editable; a turn pins the model at its 
   const c = await loopCampaign();
   try {
     assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null,
-      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: null, notebookVisible: false, boostNext: false, revision: 0 });
+      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, revision: 0 });
     const saved = await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1",
       dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } });
     assert.equal(saved.revision, 1);

@@ -104,7 +104,8 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     assert.equal(view.playMinutes, 42);
     // The pins and notes reach the dossier layer of the next turn, and the public snapshot.
     const played = await c.turn("I look at the mill.", [{ text: "The wheel turns. ", toolCalls: [finish()] }]);
-    const living = played.model.requests[0].system[2].text;
+    // Polish item 12: the dossier is a stable block (pins) and the session's tail (likes).
+    const living = `${played.model.requests[0].system[2].text}\n${played.model.requests[0].system[3].text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
     assert.match(living, /What the player enjoys[^\n]*Slow investigations/);
     assert.match(played.model.requests[0].system[1].text, /Theme question: What does loyalty cost\?/);
@@ -181,7 +182,7 @@ test("off-screen plans: the receipt of time passing lists plans that came due; t
       ] },
     ]);
     assert.equal(second.result.status, "committed", JSON.stringify(c.errors));
-    const plansLayer = second.model.requests[0].system[2].text;
+    const plansLayer = second.model.requests[0].system[3].text;
     assert.match(plansLayer, /Off-screen plans[\s\S]*plan_reeve_revenge[\s\S]*"due":"day 3/);
     const timeReceipt = (await c.row(second.input.operationId)).checkpoint.dmLoop.receipts[0];
     assert.equal(timeReceipt.result.value.duePlans.length, 1);
@@ -264,13 +265,17 @@ test("depth per scene: the pin picks a level inside the range with hysteresis; Â
     const calm = await c.turn("Another quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(calm.model.requests[0].effort, "medium");
     assert.equal(calm.model.requests[0].turnEffort, undefined, "at the configured level nothing is anchored");
-    const tense = await c.turn("The guard stops me.", [{ text: "Halt. ", toolCalls: [finish({ nextTension: "tense" })] }]);
-    assert.equal(tense.model.requests[0].effort, "high", "tense: the middle of the range");
+    // Polish item 13: tension alone never raises the depth â€” the base holds; a climax takes the top.
+    const tense = await c.turn("The guard stops me.", [{ text: "Halt. ", toolCalls: [finish({ nextTension: "climax" })] }]);
+    assert.equal(tense.model.requests[0].effort, "medium", "tense: the base of the range");
     const row = await c.row(tense.input.operationId);
     assert.equal(row.checkpoint.dmLoop.pin.depth.tension, "tense");
-    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "high"));
-    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "high");
-    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "high" }, { tension: "tense", reason: "x" }, false).changed, false);
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "medium"));
+    const climax = await c.turn("I draw.", [{ text: "Steel. ", toolCalls: [finish({ nextTension: "calm" })] }]);
+    assert.equal(climax.model.requests[0].effort, "xhigh", "the DM's climax hint takes the top");
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "low");
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "climax"), "max");
+    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "medium", streak: 0 }, { tension: "tense", reason: "x" }, false).changed, false);
     assert.equal(parseDepthRange({ min: "max", max: "low" }), null);
   } finally { await c.f.db.close(); }
 });
@@ -372,7 +377,7 @@ test("Chat with DM on a loop campaign: the campaign's model answers and may prop
     const request = scripted.requests[0];
     assert.equal(request.toolset, null);
     assert.doesNotMatch(request.system.map((b) => b.text).join("\n"), /stolen ledger/, "the feedback source carries no private state");
-    assert.match(request.system[3].text, /out-of-game question/);
+    assert.match(request.system[4].text, /out-of-game question/);
   } finally { await c.f.db.close(); }
 });
 

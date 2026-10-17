@@ -246,7 +246,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         ...(selected.continuationEffort && selected.continuationEffort !== depth.effort ? { continuationEffort: selected.continuationEffort } : {}),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
-        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext } } : {}) };
+        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}) };
       if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
     }
     const pin = loop.pin;
@@ -265,6 +265,8 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       informed = source; // An unavailable Memory index never blocks play; current state and Canon stay.
     }
     const narrationSceneId = stableGameplayId(operationId, "scene:narration");
+    // Polish item 14: the first word is measured from the player's send (the durable begin), whatever request it comes in.
+    const sentAt = Date.parse(claim.turn.public.created_at) || Date.now();
     const shadow = ShadowState.restore(source, operationId, loop.shadow);
     const context = buildDmLoopContext(informed, input);
     const language: "ru" | "en" = source.snapshot.settings.values.language === "ru" ? "ru" : "en";
@@ -383,6 +385,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
           tokens: context.layers[index]?.usedTokens ?? 0, budgetTokens: context.layers[index]?.budgetTokens ?? 0 })) });
       const started = now();
       let firstTextMs: number | null = null;
+      let firstWordMs: number | null = null;
       let roundText = "";
       // A text part that follows a tool call inside the same message is joined
       // like the text of a new request: a paragraph break after a finished
@@ -395,6 +398,8 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         for await (const event of model.stream(request)) {
           if (event.type === "text_delta") {
             if (firstTextMs === null) firstTextMs = Math.round(now() - started);
+            if (firstWordMs === null && event.text.trim() && !loop.text.trim() && !roundText.trim() &&
+              !loop.usage.some((entry) => entry.firstWordMs != null)) firstWordMs = Math.max(0, Date.now() - sentAt);
             if (event.text.trim()) outcomePending = false;
             // The live stream gets exactly what the saved narration will have
             // between this request's text and the previous one (joinText).
@@ -431,7 +436,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       requireRule(stop);
       const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort,
         inputTokens: 0, outputTokens: 0, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: null, costUsd: 0,
-        firstTextMs, requestBytes }), latencyMs: Math.round(now() - started), toolCalls: toolCalls.length, firstTextMs };
+        firstTextMs, requestBytes }), latencyMs: Math.round(now() - started), toolCalls: toolCalls.length, firstTextMs, firstWordMs };
       loop.usage.push(entry);
       loop.requests++;
       observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
@@ -472,7 +477,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     const metrics = advanceMetrics(parseMetrics(source.privateState), loop.receipts, loop.meta, partyNames,
       shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })));
     shadow.setPrivate("fact", "metrics", serializeMetrics(metrics.metrics));
-    if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort }));
+    if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort, streak: pin.depth.streak ?? 0 }));
     // Polish (the Мокей turn): a person recorded ahead of the story stays out of
     // the player's chips and codex until the narration names them or they are
     // present; people met this turn get their chip now.
@@ -513,6 +518,14 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
       dmLoop: { receipts: loop.receipts, meta: loop.meta, usage: loop.usage, requests: loop.requests },
     });
     live({ type: "status", status: result.status === "committed" ? "committed" : "failed" });
+    if (result.status === "committed") {
+      const inputTokens = loop.usage.reduce((sum, entry) => sum + entry.inputTokens, 0);
+      observe({ type: "turn_finished", operationId, effort: pin.effort, depthReason: pin.depth?.reason ?? null,
+        firstWordMs: loop.usage.find((entry) => entry.firstWordMs != null)?.firstWordMs ?? null,
+        turnMs: Math.max(0, Date.now() - sentAt), requests: loop.requests,
+        cacheReadShare: inputTokens > 0 ? Number((loop.usage.reduce((sum, entry) => sum + entry.cacheReadTokens, 0) / inputTokens).toFixed(3)) : null,
+        costUsd: Number(loop.usage.reduce((sum, entry) => sum + entry.costUsd, 0).toFixed(5)), toolCalls: loop.receipts.length });
+    }
     if (result.status === "committed" && deps.afterCommit) {
       // Real minutes this turn stands for: since the previous committed turn, at most 30 (a pause is not play).
       const previous = source.runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== operationId)

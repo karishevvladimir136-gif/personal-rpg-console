@@ -26,7 +26,6 @@ import { digestOnEntry } from "./session-digest";
 import { syncWorldFromDossier } from "./world-bridge";
 import { loopFeedbackProvider } from "../gameplay/dm-loop/feedback";
 import { readPublicCampaign } from "./public-campaign";
-import { maintainAstraMemoryAfterCommit } from "../memory/lifecycle";
 import type { TurnStore } from "../gameplay/server-contracts";
 import type { MemoryStore, SummaryProvider } from "../memory/server-contracts";
 import type { DmLoopObservation } from "../gameplay/dm-loop/contracts";
@@ -99,6 +98,11 @@ function logDmLoop(observation: DmLoopObservation) {
       cacheWriteTokens: u.cacheWriteTokens, cacheReadShare: u.inputTokens ? Number((u.cacheReadTokens / u.inputTokens).toFixed(3)) : 0,
       outputTokens: u.outputTokens, costUsd: Number(u.costUsd.toFixed(5)), latencyMs: u.latencyMs, firstTextMs: u.firstTextMs,
       toolCalls: u.toolCalls, stop: observation.stop }));
+  } else if (observation.type === "turn_finished") {
+    // Polish item 14: one line per turn, to tell deep thinking from tool rounds or cache misses.
+    console.info(JSON.stringify({ event: "dm_loop_turn", operationId: observation.operationId, effort: observation.effort, depthReason: observation.depthReason,
+      firstWordMs: observation.firstWordMs, turnMs: observation.turnMs, requests: observation.requests, toolCalls: observation.toolCalls,
+      cacheReadShare: observation.cacheReadShare, costUsd: observation.costUsd }));
   } else if (observation.type === "tool_receipt") {
     console.info(JSON.stringify({ event: "dm_loop_tool", operationId: observation.operationId, position: observation.receipt.position,
       tool: observation.receipt.call.name, ok: observation.receipt.result.ok }));
@@ -142,18 +146,15 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     observe: logDmLoop,
   };
 }
-/** Runs a dm-loop-v1 turn and schedules the existing memory maintenance after a commit. */
+/** Runs a dm-loop-v1 turn. Polish item 22: the legacy memory summaries (GPT-6
+ * Astra, two per turn, ≈$3.50 a session) are not queued for a loop campaign any
+ * more — the dossier reads the Stage 4 session recaps and the notebook instead,
+ * and the exact-event retrieval needs no model call. One memory, not two. */
 async function runLoopWithMaintenance(store: TurnStore, memory: MemoryStore, summaries: SummaryProvider,
   timeline: TimelineFence, campaignId: string, execute: () => Promise<Awaited<ReturnType<typeof runDmLoopTurn>>>) {
+  void store; void memory; void summaries; void timeline;
   const result = await execute();
-  if (result.status === "committed") {
-    try {
-      after(async () => {
-        try { await maintainAstraMemoryAfterCommit(campaignId, memory, summaries, timeline); }
-        catch { console.info(JSON.stringify({ event: "memory_work_pending", category: "unavailable" })); }
-      });
-    } catch { console.info(JSON.stringify({ event: "memory_work_pending", category: "unavailable" })); }
-  }
+  if (result.status === "committed") console.info(JSON.stringify({ event: "legacy_memory_skipped", campaignId, reason: "dm-loop-v1 keeps one memory: the dossier" }));
   return result;
 }
 /** Whether a world-logic campaign's opening is still unfinished (play must wait). */

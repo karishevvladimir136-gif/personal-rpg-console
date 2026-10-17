@@ -43,14 +43,15 @@ export function buildDigestRequest(source: RuntimeSource, session: DigestSession
     timeline: source.snapshot.timeline ?? source.runtime.timeline, expectedRevision: source.runtime.revision, mode: "game",
     input: "", companionId: null, listenerIds: [], mechanic: null };
   const context = buildDmLoopContext(source, input);
-  const [howToDm, world, living] = context.system;
+  // Every layer but «now»: how to DM, the world, the stable dossier and the session's tail.
+  const prefix = context.system.slice(0, -1);
   const span = session.startWorldMinutes === null ? `up to ${worldDay(session.endWorldMinutes)}` : `${worldDay(session.startWorldMinutes)} → ${worldDay(session.endWorldMinutes)} (${session.endWorldMinutes - session.startWorldMinutes} game minutes)`;
   const scenes = session.scenes.map((scene) => `[${scene.role}] ${scene.body}`).join("\n");
   const openPlans = allPlans(source.privateState).filter((plan) => plan.status === "open");
   const now = [`The session «${session.title}» (${session.id}) just ended. Game time it covered: ${span}. Current game time: ${worldDay(session.endWorldMinutes)} (minute ${session.endWorldMinutes}).`,
     openPlans.length ? `Open plans with their keys and due minutes: ${openPlans.map((p) => `${p.key} (actor ${p.actorId ?? "none"}, due minute ${p.dueWorldMinutes})`).join("; ")}.` : "No open plans yet; create a plan for every important antagonist and faction that has a goal.",
     `Scenes of the session (oldest first):\n${scenes || "(no scenes)"}`].join("\n\n");
-  const system: DmSystemBlock[] = [howToDm, world, living, { text: now, cache: false }];
+  const system: DmSystemBlock[] = [...prefix, { text: now, cache: false }];
   const messages: DmMessage[] = [{ role: "user", text: DIGEST_INSTRUCTIONS }];
   return { system, messages, effort, tokens: system.reduce((sum, block) => sum + estimateTokens(block.text), 0) + estimateTokens(DIGEST_INSTRUCTIONS) };
 }

@@ -52,8 +52,11 @@ const clipChars = (text: string, max: number) => (text.length <= max ? text : `$
 export const DOSSIER_BUDGETS = {
   layer1: 7000,
   layer2: { guide: 6000, canon: 20000, reference: 6000, packet: 6000 },
+  // Polish item 12: layer 3 is two blocks — the stable part (cached for an hour)
+  // and the session's tail after the breakpoint (Character Models by presence,
+  // the open journal, secrets, plans, likes, the ledger), which changes most turns.
   layer3: { party: 4000, codex: 12000, factions: 1200, journal: 4000, pinned: 800, secrets: 3500, plans: 1500,
-    notebook: 1500, likes: 300, ledger: 500, adventure: 900, memory: 4000 },
+    notebook: 1500, likes: 300, ledger: 500, adventure: 900, memory: 4000, models: 16000 },
   layer4: { memory: 6000, scenes: 7000, exchanges: 5000 },
 } as const;
 
@@ -137,7 +140,7 @@ function modelText(snapshot: RuntimeSource["snapshot"], model: CharacterModel): 
   void _v; void _b; void _a;
   return json({ ...body, relationships: body.relationships.map((r) => ({ ...r, actorId: snapshot.entities.find((e) => e.id === r.actorId)?.name ?? r.actorId })) });
 }
-function partyInShort(source: RuntimeSource, models: Models): Budgeted {
+function partyInShort(source: RuntimeSource): Budgeted {
   const { snapshot, runtime } = source;
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
   const party = snapshot.entities.filter((row) => row.kind === "player" || (row.kind === "companion" && controlled.has(row.id)));
@@ -147,61 +150,105 @@ function partyInShort(source: RuntimeSource, models: Models): Budgeted {
     const line = { id: row.id, name: row.name, role: row.kind === "player" ? "hero" : "companion", details: clipChars(row.details, 600),
       stats: row.stats, ...(sheet ? { sheet } : {}), ...(profile.attitude ? { attitudeToHero: profile.attitude.text } : {}),
       ...(profile.relation ? { relation: profile.relation } : {}), ...(profile.homePlaceId ? { home: profile.homePlaceId } : {}) };
-    const model = row.kind === "companion" ? models.get(row.id) ?? null : null;
-    return { label: row.name, text: `- ${json(line)}${model ? `\n  model (private Character Model): ${modelText(snapshot, model)}` : ""}` };
+    return { label: row.name, text: `- ${json(line)}` };
   });
-  return withinBudget(entries, DOSSIER_BUDGETS.layer3.party, "Party (identity, sheets and the companions' Character Models; HP, money, items and presence are in the current state):");
+  return withinBudget(entries, DOSSIER_BUDGETS.layer3.party, "Party (identity and sheets; the companions' Character Models are in the session tail; HP, money, items and presence are in the current state):");
 }
 
-/** The codex of people: important first, then by relationship distance to the
- * party, Character Models included while the budget lasts, names only after. */
-function codexOfPeople(source: RuntimeSource, input: TurnInput, models: Models): Budgeted {
+/** Relationship distance of each person to the party through the models. */
+function distances(source: RuntimeSource, models: Models): (id: string) => number {
   const { snapshot, runtime } = source;
   const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
-  const people = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") && !controlled.has(row.id));
   const partyIds = snapshot.entities.filter((row) => row.kind === "player" || controlled.has(row.id)).map((row) => row.id);
-  // Relationship distance: linked to a party member in anyone's model → 1; linked to such a person → 2; else 3.
   const linked = new Map<string, Set<string>>();
   for (const [actorId, model] of models) for (const r of model.relationships) {
     (linked.get(actorId) ?? linked.set(actorId, new Set()).get(actorId)!).add(r.actorId);
     (linked.get(r.actorId) ?? linked.set(r.actorId, new Set()).get(r.actorId)!).add(actorId);
   }
-  const distance = (id: string) => {
+  return (id: string) => {
     const first = linked.get(id) ?? new Set();
     if (partyIds.some((p) => first.has(p))) return 1;
     for (const other of first) if (partyIds.some((p) => linked.get(other)?.has(p))) return 2;
     return 3;
   };
+}
+
+/** The core of a Character Model for a person who is mentioned or relevant but
+ * not in the scene (polish item 8): wants, boundaries, the current state, the
+ * attitude to the party, the voice, open debts and promises. */
+function modelCore(source: RuntimeSource, model: CharacterModel): string {
+  const { snapshot, runtime } = source;
+  const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
+  const partyIds = new Set(snapshot.entities.filter((row) => row.kind === "player" || controlled.has(row.id)).map((row) => row.id));
+  const name = (id: string) => snapshot.entities.find((e) => e.id === id)?.name ?? id;
+  const debts = snapshot.quests.filter((q) => q.status === "open" && (q.kind === "debt" || q.kind === "promise") && q.detail?.counterpartId === model.actorId).map((q) => q.title);
+  return json({ wants: model.identity.wants, boundaries: model.identity.boundaries, current: model.current,
+    toParty: model.relationships.filter((r) => partyIds.has(r.actorId)).map((r) => ({ who: name(r.actorId), affection: r.affection, trust: r.trust, respect: r.respect, ...(r.unresolvedHurt ? { hurt: r.unresolvedHurt } : {}) })),
+    voice: model.identity.observableVoice, signatures: model.identity.signatures, ...(debts.length ? { openDebtsAndPromises: debts } : {}) });
+}
+
+/** The session tail's Character Models (polish item 8): people present in the
+ * scene get their full model, people mentioned or relevant the core, the rest
+ * one line — while the models budget lasts. */
+function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): Budgeted {
+  const { snapshot, runtime } = source;
+  const present = new Set(runtime.configuration?.presentEntityIds ?? []);
+  const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
+  const distance = distances(source, models);
   const lower = input.input.toLocaleLowerCase();
+  const rows = [...models.values()].map((model) => {
+    const row = snapshot.entities.find((e) => e.id === model.actorId);
+    if (!row) return null;
+    const mentioned = row.name.length >= 3 && lower.includes(row.name.toLocaleLowerCase());
+    const tier: "present" | "relevant" | "other" = present.has(row.id) || controlled.has(row.id) || row.id === input.companionId ? "present"
+      : mentioned || !!profileOf(row).important || distance(row.id) === 1 ? "relevant" : "other";
+    return { row, model, tier, rank: tier === "present" ? 0 : tier === "relevant" ? 1 : 2 };
+  }).filter((entry): entry is NonNullable<typeof entry> => entry !== null)
+    .sort((a, b) => a.rank - b.rank || a.row.name.localeCompare(b.row.name));
+  const entries = rows.map(({ row, model, tier }) => tier === "present"
+    ? { label: row.name, text: `- ${row.name} (${row.id}, in the scene) — model: ${modelText(snapshot, model)}` }
+    : tier === "relevant" ? { label: row.name, text: `- ${row.name} (${row.id}) — core: ${modelCore(source, model)}` }
+      : { label: row.name, text: `- ${row.name} (${row.id}): ${clipChars(model.current.goal ?? model.identity.wants[0] ?? model.identity.observableVoice, 160)}` });
+  const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.models, "Character Models (private; full for people in the scene, the core for people mentioned or relevant, one line for the rest; identity is fixed, current state and episodes evolve with note_character):");
+  const statblocks = Object.entries((source.privateState.npc as JsonObject | undefined) ?? {})
+    .filter(([key, value]) => key.startsWith("statblock_") && typeof value === "string")
+    .map(([key, value]) => { const actor = snapshot.entities.find((row) => row.id === key.slice("statblock_".length)); return actor ? `- ${actor.name}: ${clipChars(String(value), 600)}` : null; })
+    .filter(Boolean);
+  if (statblocks.length) budgeted.text += `${budgeted.text ? "\n" : ""}Stat blocks (private):\n${statblocks.join("\n")}`;
+  return budgeted;
+}
+
+/** The codex of people (stable within a session): identity, relation, faction,
+ * home, importance — important first, then by relationship distance; never a
+ * model (those are the tail's, by presence). */
+function codexOfPeople(source: RuntimeSource, input: TurnInput, models: Models): Budgeted {
+  const { snapshot, runtime } = source;
+  const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
+  const people = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") && !controlled.has(row.id));
+  const distance = distances(source, models);
+  // Stable order (no input-dependent sorting, so the block caches): important first, then by distance, then by name.
   const rows = people.map((row) => {
     const profile = profileOf(row);
     const model = models.get(row.id) ?? null;
     const important = !!profile.important || model !== null;
-    const mentioned = row.name.length >= 3 && lower.includes(row.name.toLocaleLowerCase());
-    return { row, profile, model, important, mentioned, distance: distance(row.id), companion: row.id === input.companionId };
-  }).sort((a, b) => Number(b.companion) - Number(a.companion) || Number(b.important) - Number(a.important) || a.distance - b.distance ||
-    Number(b.mentioned) - Number(a.mentioned) || a.row.name.localeCompare(b.row.name));
-  const entries = rows.map(({ row, profile, model }) => {
+    return { row, profile, model, important, distance: distance(row.id) };
+  }).sort((a, b) => Number(b.important) - Number(a.important) || a.distance - b.distance || a.row.name.localeCompare(b.row.name));
+  void input;
+  const entries = rows.map(({ row, profile }) => {
     const faction = profile.factionId ? snapshot.entities.find((e) => e.id === profile.factionId)?.name ?? null : null;
     const home = profile.homePlaceId ? snapshot.locations.find((l) => l.id === profile.homePlaceId)?.name ?? null : null;
     const head = { id: row.id, name: row.name, kind: row.kind, details: clipChars(row.details, 400),
       ...(profile.relation ? { relation: profile.relation } : {}), ...(faction ? { faction } : {}), ...(home ? { home } : {}),
       ...(profile.important ? { important: true } : {}),
       ...(profile.unmet ? { notMetYet: "the hero has not met this person; the player's screens hide them until your narration names them" } : {}) };
-    if (!model) return { label: row.name, text: `- ${json(head)}` };
-    return { label: row.name, text: `- ${json(head)}\n  model: ${modelText(snapshot, model)}` };
+    return { label: row.name, text: `- ${json(head)}` };
   });
-  const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.codex, "Codex of people (Character Models are private; identity is fixed, current state and episodes evolve with note_character):");
+  const budgeted = withinBudget(entries, DOSSIER_BUDGETS.layer3.codex, "Codex of people (public identity; their private Character Models are in the session tail):");
   // Dropped people still exist for the DM: names and IDs only.
   if (budgeted.dropped.length) {
     const names = rows.filter((r) => budgeted.dropped.includes(r.row.name)).map((r) => `${r.row.name} (${r.row.id})`);
     budgeted.text += `\nAlso known (details in the current state): ${names.join(", ")}`;
   }
-  const statblocks = Object.entries((source.privateState.npc as JsonObject | undefined) ?? {})
-    .filter(([key, value]) => key.startsWith("statblock_") && typeof value === "string")
-    .map(([key, value]) => { const actor = snapshot.entities.find((row) => row.id === key.slice("statblock_".length)); return actor ? `- ${actor.name}: ${clipChars(String(value), 600)}` : null; })
-    .filter(Boolean);
-  if (statblocks.length) budgeted.text += `\nStat blocks (private):\n${statblocks.join("\n")}`;
   return budgeted;
 }
 
@@ -227,7 +274,7 @@ function rewardTermsOf(source: RuntimeSource, quest: Quest): RewardTerms | null 
   if (typeof raw !== "string") return null;
   try { return JSON.parse(raw) as RewardTerms; } catch { return null; }
 }
-function journal(source: RuntimeSource): Budgeted {
+function journal(source: RuntimeSource, which: "stable" | "open" = "open"): Budgeted {
   const { snapshot } = source;
   const name = (id: string | null | undefined) => (id ? snapshot.entities.find((e) => e.id === id)?.name ?? id : null);
   const place = (id: string) => snapshot.locations.find((l) => l.id === id)?.name ?? id;
@@ -245,10 +292,15 @@ function journal(source: RuntimeSource): Budgeted {
     return `- ${json(entry)}`;
   };
   const order = ["arc", "quest", "thread", "debt", "promise"];
-  const open = snapshot.quests.filter((q) => q.status === "open").sort((a, b) => order.indexOf(a.kind ?? "quest") - order.indexOf(b.kind ?? "quest") || a.title.localeCompare(b.title));
+  const open = snapshot.quests.filter((q) => q.status === "open" && q.kind !== "arc").sort((a, b) => order.indexOf(a.kind ?? "quest") - order.indexOf(b.kind ?? "quest") || a.title.localeCompare(b.title));
+  const arc = snapshot.quests.filter((q) => q.status === "open" && q.kind === "arc");
   const closed = snapshot.quests.filter((q) => q.status !== "open").sort((a, b) => b.updated_at.localeCompare(a.updated_at)).slice(0, 6);
-  const entries = [...open.map((q) => ({ label: q.title, text: line(q) })), ...closed.map((q) => ({ label: q.title, text: line(q) }))];
-  return withinBudget(entries, DOSSIER_BUDGETS.layer3.journal, "Journal (the main arc, open quests with their server-kept reward terms, open threads, debts and promises; then the last closed ones):");
+  if (which === "stable") {
+    const entries = [...arc.map((q) => ({ label: q.title, text: line(q) })), ...closed.map((q) => ({ label: q.title, text: line(q) }))];
+    return withinBudget(entries, Math.floor(DOSSIER_BUDGETS.layer3.journal / 2), "Journal, the long lines (the main arc with its steps; the last closed quests, threads, debts and promises):");
+  }
+  const entries = open.map((q) => ({ label: q.title, text: line(q) }));
+  return withinBudget(entries, DOSSIER_BUDGETS.layer3.journal, "Journal, open now (quests with their server-kept reward terms, open threads, debts and promises):");
 }
 
 function pinnedFacts(source: RuntimeSource): Budgeted {
@@ -324,15 +376,14 @@ function adventureGuidance(source: RuntimeSource): Budgeted {
 type MemoryRow = { text: string; attribution: string | null; authority: string; unresolved: boolean };
 const memoryLine = (row: MemoryRow) =>
   `- [${row.authority}${row.unresolved ? ", unresolved" : ""}${row.attribution ? `, ${row.attribution}` : ""}] ${row.text}`;
-/** Memory digests: slow-moving, so they sit in the cached living layer. */
-function memorySummaries(source: RuntimeSource): Budgeted {
-  const memory = source.memory;
-  if (!memory) return { text: "", dropped: [], used: 0 };
-  const rows = (summary: { entries: MemoryRow[] } | null) => summary?.entries.map(memoryLine) ?? [];
-  const publicRows = rows(memory.publicSummary);
-  const privateRows = rows(memory.privateSummary);
-  const entries = [...publicRows.map((text, i) => ({ label: `public digest ${i + 1}`, text })), ...privateRows.map((text, i) => ({ label: `private digest ${i + 1}`, text: `(private) ${text}` }))];
-  return withinBudget(entries, DOSSIER_BUDGETS.layer3.memory, "Campaign memory digest (quoted evidence; owner corrections outrank everything else; private rows are DM-only):");
+/** The campaign's chapters (polish item 22): the «Ранее в…» of the closed
+ * sessions, newest first, written by the Stage 4 digest — the one memory of a
+ * loop campaign, in place of the legacy summaries. Slow-moving, so cached. */
+function sessionRecaps(source: RuntimeSource): Budgeted {
+  const sessions = source.snapshot.sessions.filter((row) => row.status === "closed" && row.recap.trim())
+    .sort((a, b) => b.updated_at.localeCompare(a.updated_at));
+  const entries = sessions.map((row, index) => ({ label: `session ${row.title}`, text: `- ${index === 0 ? "(the last session) " : ""}«${row.title}»: ${clipChars(row.recap.trim(), 1200)}` }));
+  return withinBudget(entries, DOSSIER_BUDGETS.layer3.memory, "Previous sessions («Ранее в…», newest first; what the player knows):");
 }
 
 /** Recent and retrieved memory rows change with every turn and input: volatile layer. */
@@ -475,22 +526,32 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
   layers.push({ layer: 2, budgetTokens: layer2Budget, usedTokens: estimateTokens(world), dropped: [...canonText.dropped, ...referenceText.dropped,
     ...(guide && guideText !== guide.body.trim() ? ["DM guide tail"] : [])] });
 
-  // Layer 3: the dossier.
+  // Layer 3: the dossier — the stable part (cached for an hour: it changes when a
+  // person is met, a quest closes or a session ends) and the session's tail
+  // (polish item 12: the models, the open journal, secrets, plans, likes and the
+  // ledger change most turns, so they sit after the last breakpoint).
   const models = storedModels(source);
   const ledger = parseLedger(source.privateState);
-  const parts = [partyInShort(source, models), codexOfPeople(source, input, models), factions(source), journal(source), pinnedFacts(source),
-    privateSecrets(source), offScreenPlans(source), notebook(source), playerLikes(source), attentionLedger(source, ledger),
-    adventureGuidance(source), memorySummaries(source)];
-  const living = parts.map((part) => part.text).filter(Boolean).join("\n\n")
+  const stableParts = [partyInShort(source), codexOfPeople(source, input, models), factions(source), journal(source, "stable"), pinnedFacts(source),
+    notebook(source), adventureGuidance(source), sessionRecaps(source)];
+  const tailParts = [peopleModels(source, input, models), journal(source, "open"), privateSecrets(source), offScreenPlans(source),
+    playerLikes(source), attentionLedger(source, ledger)];
+  const living = stableParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "No dossier yet. Start it as the story needs: note_character for people who matter, note_world for secrets and plans, quest for the journal.";
-  const layer3Budget = Object.values(DOSSIER_BUDGETS.layer3).reduce((sum, value) => sum + value, 0);
-  layers.push({ layer: 3, budgetTokens: layer3Budget, usedTokens: estimateTokens(living), dropped: parts.flatMap((part) => part.dropped) });
+  const tail = tailParts.map((part) => part.text).filter(Boolean).join("\n\n")
+    || "This session's tail is empty so far: no Character Models, open journal entries, private notes or plans yet.";
+  const stableBudget = DOSSIER_BUDGETS.layer3.party + DOSSIER_BUDGETS.layer3.codex + DOSSIER_BUDGETS.layer3.factions + Math.floor(DOSSIER_BUDGETS.layer3.journal / 2) +
+    DOSSIER_BUDGETS.layer3.pinned + DOSSIER_BUDGETS.layer3.notebook + DOSSIER_BUDGETS.layer3.adventure + DOSSIER_BUDGETS.layer3.memory;
+  const tailBudget = DOSSIER_BUDGETS.layer3.models + DOSSIER_BUDGETS.layer3.journal + DOSSIER_BUDGETS.layer3.secrets + DOSSIER_BUDGETS.layer3.plans +
+    DOSSIER_BUDGETS.layer3.likes + DOSSIER_BUDGETS.layer3.ledger;
+  layers.push({ layer: 3, budgetTokens: stableBudget, usedTokens: estimateTokens(living), dropped: stableParts.flatMap((part) => part.dropped) });
+  layers.push({ layer: 4, budgetTokens: tailBudget, usedTokens: estimateTokens(tail), dropped: tailParts.flatMap((part) => part.dropped) });
 
-  // Layer 4: now.
+  // Layer 5: now.
   const retrieved = memoryRecent(source);
   const state = currentState(source, input);
   const now = [varietyCounter(source, input), retrieved.text, state.text].filter(Boolean).join("\n\n");
-  layers.push({ layer: 4, budgetTokens: DOSSIER_BUDGETS.layer4.memory + DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges,
+  layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory + DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges,
     usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
 
   const addressee = input.mode === "companion" && input.companionId
@@ -498,13 +559,14 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput): DmL
     : "";
   const user = `${addressee ? `${addressee}\n\n` : ""}Player: ${input.input}`;
   const system: DmSystemBlock[] = [
-    { text: howToDm, cache: true },
-    { text: world, cache: true },
-    { text: living, cache: true },
+    { text: howToDm, cache: true, ttl: "1h" },
+    { text: world, cache: true, ttl: "1h" },
+    { text: living, cache: true, ttl: "1h" },
+    { text: tail, cache: false },
     { text: now, cache: false },
   ];
   const cachedPrefixBytes = bytes(howToDm) + bytes(world) + bytes(living);
-  return { system, user, cachedPrefixBytes, totalBytes: cachedPrefixBytes + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
+  return { system, user, cachedPrefixBytes, totalBytes: cachedPrefixBytes + bytes(tail) + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
 }
 
 /** Private strings (12+ characters) that appear literally in a public text and

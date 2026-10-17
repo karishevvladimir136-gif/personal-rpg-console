@@ -276,3 +276,14 @@ medium 2–3 s, high ~10 s, xhigh ~19 s) and the cost (×3 from medium to xhigh)
 bottom, tense ones in the middle, a climax or an «important turn» at the top, with hysteresis so the level does
 not flap. On Astra the switch costs nothing in cache terms thanks to the anchored request-level effort
 (`docs/MODELS.md`, Stage 4 table); on Opus a top-level change kept the cache in the probe.
+
+## 7. Polish stage (2026-10-17): the depth rule, the 1-hour cache and the first word
+
+Session 1 of the Russian campaign (`docs/stages/POLISH.md`, items 12–14) showed cache writes at 57% of the DM's cost,
+«tense → xhigh» held for 22 of 23 turns (median first word 69.5 s against 16.1 s at high, no quality gain) and an app
+first-word figure that measured each request from its own start. The polish stage changed three things
+(`docs/TURN_LOOP.md` §13): the base of the depth range is the base and only a climax (combat, the DM's climax hint, a due
+off-screen plan, a decisive player input) takes the top, at most twice in a row; the prompt is ordered by volatility with
+the three stable blocks on a 1-hour cache and the session tail uncached; the first word is measured from the player's send
+to the first narration character. The before/after numbers on the long Russian replay are recorded in the final group of
+the polish run (`docs/runs/polish-*.jsonl`), inside the run's paid cap.

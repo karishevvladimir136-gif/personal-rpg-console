@@ -41,6 +41,7 @@ import { PersistentPlacesBelonging } from "./persistent-places-belonging";
 import { CurrentAdventure } from "./current-adventure";
 import { PersistentMediaVisualFrame } from "./persistent-visual-frame";
 import { SessionMemoryPanel } from "./session-memory";
+import { SessionEnd } from "./registry/session-end";
 import {
   StoredFrameImage,
   RealFrameHistory,
@@ -937,7 +938,11 @@ function SessionsView({
                 )}
               >
                 <ReviewTool reviewOnly={reviewOnly}>
-                  <SessionMemoryPanel sessionId={selected.id} />
+                  <SessionEnd sessionId={selected.id} />
+                  <details>
+                    <summary>{w("Legacy session controls", "Старые элементы управления сессией")}</summary>
+                    <SessionMemoryPanel sessionId={selected.id} />
+                  </details>
                 </ReviewTool>
               </Disclosure>
             </>

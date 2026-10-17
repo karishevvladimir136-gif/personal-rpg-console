@@ -53,7 +53,9 @@ export type DmLoopPin = {
   limits?: DmLoopTurnLimits;
   /** Stage 4 depth per scene: the campaign's range, the tension class this
    * turn was judged at and why. `effort` above is the level chosen inside the range. */
-  depth?: { min: DmEffort; max: DmEffort; tension: DmLoopTension; reason: string; boosted: boolean };
+  depth?: { min: DmEffort; max: DmEffort; tension: DmLoopTension; reason: string; boosted: boolean;
+    /** Polish item 13: deep turns in a row counting this one (at most two unless the DM marks a climax again). */
+    streak?: number };
 };
 
 /** What this turn has created so far, against the pinned per-turn limits. */
@@ -76,6 +78,9 @@ export type DmLoopUsageEntry = {
   latencyMs: number;
   /** Time to the first narration character of this request, if any text came. */
   firstTextMs: number | null;
+  /** Polish item 14: time from the player's send (the durable begin) to the first
+   * visible narration character of the whole turn, on the request where it came. */
+  firstWordMs?: number | null;
   requestBytes: number;
   toolCalls: number;
 };
@@ -176,6 +181,11 @@ export type DmLoopObservation =
        * Stage 4 adds the estimated tokens and the layer's budget. */
       layers: { bytes: number; hash: string; tokens?: number; budgetTokens?: number }[] }
   | { type: "request_finished"; operationId: string; request: number; usage: DmLoopUsageEntry; stop: string }
+  /** Polish item 14: one line per committed turn for the sandbox log — the depth
+   * and why, the first word from the player's send, the full turn, requests,
+   * the cache read share and the cost (to tell deep thinking from tool rounds or cache misses). */
+  | { type: "turn_finished"; operationId: string; effort: DmEffort; depthReason: string | null; firstWordMs: number | null;
+      turnMs: number; requests: number; cacheReadShare: number | null; costUsd: number; toolCalls: number }
   | { type: "tool_receipt"; operationId: string; receipt: DmLoopReceipt }
   | { type: "diagnostic"; operationId: string; diagnostic: DmLoopDiagnostic }
   | { type: "live"; operationId: string; event: DmLoopLiveEvent }

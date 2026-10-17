@@ -24,7 +24,8 @@ const API_VERSION = "2023-06-01";
 
 type Block = Record<string, unknown> & { type: string };
 type Usage = { input_tokens?: number; output_tokens?: number;
-  cache_creation_input_tokens?: number; cache_read_input_tokens?: number };
+  cache_creation_input_tokens?: number; cache_read_input_tokens?: number;
+  cache_creation?: { ephemeral_5m_input_tokens?: number; ephemeral_1h_input_tokens?: number } };
 type StreamData = {
   type?: string;
   index: number;
@@ -75,8 +76,11 @@ export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
     max_tokens: request.maxOutputTokens,
     stream: true,
     cache_control: { type: "ephemeral" },
+    // Polish item 12: the stable layers ask for a one-hour cache (a write costs
+    // 2× instead of 1.25×, but a player's pause past five minutes no longer
+    // rewrites them); longer lifetimes must come first, which the layer order gives.
     system: request.system.map((block, index) => ({ type: "text", text: block.text,
-      ...(cached.includes(index) ? { cache_control: { type: "ephemeral" } } : {}) })),
+      ...(cached.includes(index) ? { cache_control: { type: "ephemeral", ...(block.ttl === "1h" ? { ttl: "1h" } : {}) } } : {}) })),
     messages: anthropicMessages(request.messages, modelId),
     ...(request.toolset && request.toolset.anthropic.length ? { tools: request.toolset.anthropic } : {}),
     // Adaptive thinking is always on for Opus 5.5; effort is the only control.
@@ -127,7 +131,7 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
   apiKey: string): AsyncGenerator<DmModelEvent> {
   const blocks: Block[] = [];
   const toolJson = new Map<number, string>();
-  const usage = { input: 0, cacheRead: 0, cacheWrite: 0, output: 0 };
+  const usage = { input: 0, cacheRead: 0, cacheWrite: 0, cacheWrite1h: 0, output: 0 };
   let reason: unknown = null;
   for await (const sse of sseEvents(body)) {
     let data: StreamData;
@@ -141,6 +145,7 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
         const start = data.message?.usage ?? {};
         usage.input = Number(start.input_tokens ?? 0);
         usage.cacheWrite = Number(start.cache_creation_input_tokens ?? 0);
+        usage.cacheWrite1h = Number(start.cache_creation?.ephemeral_1h_input_tokens ?? 0);
         usage.cacheRead = Number(start.cache_read_input_tokens ?? 0);
         usage.output = Number(start.output_tokens ?? 0);
         break;
@@ -183,12 +188,13 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
         if (data.usage?.input_tokens !== undefined) usage.input = Number(data.usage.input_tokens);
         if (data.usage?.cache_read_input_tokens !== undefined) usage.cacheRead = Number(data.usage.cache_read_input_tokens);
         if (data.usage?.cache_creation_input_tokens !== undefined) usage.cacheWrite = Number(data.usage.cache_creation_input_tokens);
+        if (data.usage?.cache_creation?.ephemeral_1h_input_tokens !== undefined) usage.cacheWrite1h = Number(data.usage.cache_creation.ephemeral_1h_input_tokens);
         break;
       }
       case "message_stop":
         yield { type: "usage", usage: { inputTokens: usage.input + usage.cacheRead + usage.cacheWrite,
           outputTokens: usage.output, cacheReadTokens: usage.cacheRead, cacheWriteTokens: usage.cacheWrite,
-          reasoningTokens: null } };
+          cacheWrite1hTokens: usage.cacheWrite1h, reasoningTokens: null } };
         yield { type: "stop", reason: stopReason(reason), providerReason: typeof reason === "string" ? reason : null,
           native: { providerId: "anthropic", modelId, items: blocks.filter(Boolean) } };
         return;

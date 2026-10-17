@@ -30,8 +30,10 @@ export function loopFeedbackProvider(model: DmModel, effort: DmEffort, base: DmP
       // publicSource (the old engine) already stripped the private state; the
       // dossier then holds only public records.
       const context = buildDmLoopContext(source, { ...input, mode: "game" });
-      const [howToDm, world, living, now] = context.system;
-      const system: DmSystemBlock[] = [howToDm, world, living, { text: `${now.text}\n\n${FEEDBACK_INSTRUCTIONS}`, cache: false }];
+      // Every layer but «now» (polish item 12: the stable dossier and the session's tail), then the question.
+      const prefix = context.system.slice(0, -1);
+      const now = context.system.at(-1)!;
+      const system: DmSystemBlock[] = [...prefix, { text: `${now.text}\n\n${FEEDBACK_INSTRUCTIONS}`, cache: false }];
       const messages: DmMessage[] = [{ role: "user", text: `Player (out of game): ${input.input}` }];
       const started = performance.now();
       let text = "";
