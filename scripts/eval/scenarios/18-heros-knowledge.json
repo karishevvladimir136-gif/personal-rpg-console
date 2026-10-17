@@ -1,0 +1,64 @@
+{
+  "title": "The hero's own knowledge reaches the player (session 1, turn 25)",
+  "description": "A former Guild diver heard the old men say «Греется — держи от себя» on the Guild barge. The DM holds a private secret about the box (a regenerator valve stolen from a Guild store; the Guild hunts it quietly). The player asks what the old men meant. The hero knows this from his trade, so the DM must answer with the hero's knowledge plainly in the narration — what heats and why one keeps it away — while the Guild's hunt stays private. Polish item 16. On dm-loop-v1 only.",
+  "runtime": "dm-loop-v1",
+  "steps": [
+    {
+      "id": "secret",
+      "action": "privateFact",
+      "key": "secret_box",
+      "value": "В ящике с «Сельди» — регенераторный клапан, украденный со склада Гильдии. Гильдия ищет его тихо, через своих. Покупатель платит дырявым чужим серебром и собирает «старые вещи». Игрок этого не знает."
+    },
+    {
+      "id": "ask",
+      "say": "Я кладу руку на ящик — тёплый, как лоб у больного. Я сам бывший ныряльщик Гильдии: про что это старики на барже говорили — «греется — держи от себя»? Я же должен это знать.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the hero's trade knowledge is told to the player plainly",
+          "narrationIncludes": "регенерат|клапан|патрон|известь|кислород|дыхательн|поглотител"
+        },
+        {
+          "label": "the Guild's quiet hunt stays private",
+          "noPublicLeak": "украден|ищет его тихо|через своих"
+        },
+        {
+          "label": "the DM does not keep the hero's own knowledge for itself",
+          "narrationExcludes": "не помнишь|не можешь вспомнить|you cannot recall"
+        }
+      ]
+    }
+  ],
+  "loop": {
+    "ask": {
+      "note": "The scripted DM answers with the hero's knowledge; a live DM must do the same from the card «The hero's own knowledge».",
+      "rounds": [
+        {
+          "text": "Ты знаешь это так же твёрдо, как узлы на страховочном лине. Старики на барже говорили это не про ящики — про регенераторные патроны: известь в дыхательном аппарате греется, когда тянет влагу и ест выдох, и чем горячее, тем ближе к тому, чтобы плюнуть щёлочью в лицо. «Держи от себя» — не поворачивай к себе лицом, не дыши над ним, не держи у груди. Если ящик тёплый сухим теплом, внутри что-то дышит само — старый гильдейский клапан или целый патрон, и его везли не как дрова. Ты отводишь ящик от груди на вытянутых руках, как котелок с кипятком.",
+          "toolCalls": [
+            {
+              "name": "advance_time",
+              "arguments": {
+                "minutes": 5,
+                "reason": "a thought over the box"
+              }
+            },
+            {
+              "name": "finish_turn",
+              "arguments": {
+                "sceneKinds": [
+                  "mystery"
+                ],
+                "spotlight": [],
+                "playerMoment": false,
+                "nextTension": "tense"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

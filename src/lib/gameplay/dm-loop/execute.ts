@@ -1379,6 +1379,9 @@ export function playerMomentGate(shadow: ShadowState, ctx: ToolContext, nextTens
   return { accepted: true, reason: reason || (ctx.language === "ru" ? "решающий бросок" : "the decisive roll") };
 }
 
+/** The DM's likes note (polish item 15): about 1,200 characters, clipped with a notice instead of refusing the turn. */
+export const PLAYER_LIKES_CAP = 1200;
+
 function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result: DmLoopReceiptResult; meta: DmLoopMeta } {
   const spotlight = ((args.spotlight as unknown[]) ?? []).flatMap((ref) => {
     try { return [shadow.resolve(ref, ["entities"], "spotlight").id]; } catch { return []; }
@@ -1389,11 +1392,14 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
   const tension = args.nextTension !== undefined && (TENSION_CLASSES as readonly string[]).includes(str(args.nextTension)) ? str(args.nextTension) as DmLoopTension : null;
   const gate = args.playerMoment ? playerMomentGate(shadow, ctx, tension) : null;
   const moment = !!gate?.accepted;
+  const likesRaw = args.playerLikes !== undefined ? str(args.playerLikes).trim() : "";
+  const likes = { text: likesRaw ? likesRaw.slice(0, PLAYER_LIKES_CAP).trimEnd() : null, clipped: likesRaw.length > PLAYER_LIKES_CAP };
   const meta: DmLoopMeta = { sceneKinds: [...new Set((args.sceneKinds as DmLoopMeta["sceneKinds"]) ?? [])], spotlight: [...new Set(spotlight)],
     playerMoment: moment, playerMomentReason: moment ? gate!.reason : null, nextTension: tension, threads: [...new Set(threads)],
-    playerLikes: args.playerLikes !== undefined ? str(args.playerLikes) || null : null, npcRefused: !!args.npcRefused };
+    playerLikes: likes.text, npcRefused: !!args.npcRefused };
   shadow.finished = true;
   const value: JsonObject = { recorded: true, playerMoment: moment,
+    ...(likes.clipped ? { playerLikesClipped: `playerLikes was longer than ${PLAYER_LIKES_CAP} characters and was clipped; keep the note to what still holds.` } : {}),
     ...(gate && !gate.accepted ? { playerMomentRefused: `playerMoment was not accepted: ${gate.reason}. The turn is recorded without it; the player simply writes the next action.` } : {}) };
   return { result: ok(value, moment ? `Your moment: ${gate!.reason}` : gate ? `Turn recorded (player moment refused: ${gate.reason})` : "Turn recorded"), meta };
 }

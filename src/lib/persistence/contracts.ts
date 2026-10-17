@@ -14,6 +14,8 @@ export type Campaign = ScopedRow & {
   play_minutes?: number;
   status?: "active" | "finished";
   player_likes?: string;
+  /** Polish item 15: the DM's observations of what the player enjoys (the DM writes it; the player's own words stay in player_likes). */
+  dm_likes?: string;
   theme?: string;
   pinned_facts?: PinnedFact[];
 };

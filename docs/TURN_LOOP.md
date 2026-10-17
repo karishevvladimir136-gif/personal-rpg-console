@@ -396,3 +396,39 @@ Everything below lives in the loop and the SQL of migration 55; the UI reads pub
   of a loop campaign. Older campaigns on the legacy runtime are untouched.
 - **Chat with DM and the digest** take the cached prefix as all blocks but the last (`feedback.ts`, `digest.ts`), so they
   share the cache with the turn.
+
+## 14. Polish stage — group 4: the DM's craft from session 1
+
+- **Doctrine as pending DM Craft versions** (migration 60, `rpg_private.dm_craft_seed`): six new cards, one version each,
+  none activated — the owner approves them in the DM Craft screen («Pending versions» → «Review and approve»; the
+  version's provenance is its one line «what changes»). The bench and the test fixture activate the latest version of
+  every key for their synthetic owner. The cards: «The hero's own knowledge, and three clues per mystery» (item 16: what
+  the hero knows from trade, past and origin reaches the player when it matters; three clues of different kinds per
+  conclusion, at least one direct; a private fact `clues_<mystery>` with seen / next), «Danger from an opponent, a fight
+  that plays as a fight, a clear end» (item 9: someone's rational interest is to take by force; a clash has at least two
+  hero actions, an opponent with intent and a cost; preparation becomes a montage; each session ends on a clear beat),
+  «The hero's moment, and never deciding for the hero» (item 17 and the «How do you want to do this?» rule: a natural 20
+  and a decisive success are the hero's, companions never take the beat, `playerMoment` only for a climax after a roll,
+  the hero's choices are never written for the player), «Time words against the clock» (item 18), «Open questions stay
+  open; a tic once a scene» (item 23: a private fact `open_questions`; a signature at most once a scene) and «Records
+  that match the fiction» (items 10, 20, 21: the record operation each fiction calls for, money never an item, a rejected
+  call retried instead of noted).
+- **The likes note in two parts** (item 15): `rpg_campaigns.player_likes` holds the player's own words (the wizard and the
+  owner's edits on the settings screen; the DM never writes it) and the new `rpg_campaigns.dm_likes` the DM's observations
+  (`finish_turn.playerLikes` through the server-only `rpg_dossier dm_likes` action, and the digest's `playerLikes`). The
+  tool accepts up to 4,000 characters and the server clips the note to `PLAYER_LIKES_CAP` (1,200) with a notice in the
+  receipt (`playerLikesClipped`) instead of refusing the turn. The dossier's session tail shows both, the player's words
+  first («theirs — never rewrite, always honour»); the settings screen shows the player's words as an editable note and
+  the DM's observations read-only beneath. The dossier view carries `dmLikes`.
+- **The clock in words** (item 18): the state block carries `timeOfDay` («вечер» / "evening", `partOfDay`) next to
+  `worldDay`, with the instruction to check every «morning / evening / since…» against it. The bench gains
+  `timeWordsMatchClock` (a time-of-day word in the narration against the clock at the turn's start; references to
+  another day are not contradictions) and `narrationIncludes`.
+- **The digest's notebook** names, per mystery, the clues the player has met and the next clue to offer, and the direct
+  questions still unanswered; its `playerLikes` is the DM's observations.
+- **The proof of item 16**: scenario `18-heros-knowledge` (the turn-25 situation: the former Guild diver asks what the old
+  men meant by «греется — держи от себя»; the narration must carry the hero's trade knowledge while the Guild's quiet hunt
+  stays private; fake 4/4). The live proof is the final group's smoke.
+- Not built here: the speech profiles with per-tic frequencies and the dossier's count of recent signature uses (group 7);
+  the Russian rewrite of the cards' texts (the voice stage; the cards' Russian here is the agent's draft for the owner's
+  review).

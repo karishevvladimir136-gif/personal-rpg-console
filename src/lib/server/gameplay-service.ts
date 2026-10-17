@@ -131,7 +131,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     },
     afterCommit: async ({ playerLikes, boostUsed, playMinutes }) => {
       const dossier = await dossierService(ownerId, campaignId);
-      if (playerLikes) await dossier.likes(playerLikes);
+      // Polish item 15: the DM's note lives next to the player's own words, never over them.
+      if (playerLikes) await dossier.dmLikes(playerLikes);
       if (boostUsed) await markBoostUsed(campaignId);
       // Polish item 21: the campaign's play time counts real minutes of play.
       if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});

@@ -7,7 +7,10 @@ import type { PinnedFact } from "../../persistence/contracts.ts";
 export type DossierView = {
   campaignId: string;
   pinned: PinnedFact[];
+  /** The player's own words (the wizard and the owner's edits; the DM never rewrites them). */
   playerLikes: string;
+  /** The DM's observations (finish_turn and the digest; polish item 15). */
+  dmLikes: string;
   theme: string;
   status: "active" | "finished";
   playMinutes: number;
@@ -30,7 +33,7 @@ export function parseDossier(value: unknown): DossierView {
     (v.status !== "active" && v.status !== "finished") || !Number.isSafeInteger(v.playMinutes) || !Number.isSafeInteger(v.revision))
     throw new DossierError("unavailable");
   const pinned = v.pinned.filter((pin): pin is PinnedFact => !!pin && typeof pin === "object" && typeof (pin as PinnedFact).id === "string" && typeof (pin as PinnedFact).text === "string");
-  return { campaignId: v.campaignId, pinned, playerLikes: v.playerLikes, theme: v.theme, status: v.status, playMinutes: v.playMinutes as number, revision: v.revision as number };
+  return { campaignId: v.campaignId, pinned, playerLikes: v.playerLikes, dmLikes: typeof v.dmLikes === "string" ? v.dmLikes : "", theme: v.theme, status: v.status, playMinutes: v.playMinutes as number, revision: v.revision as number };
 }
 
 export function parseNotebook(value: unknown): NotebookView {

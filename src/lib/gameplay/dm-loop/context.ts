@@ -99,6 +99,13 @@ function describeStyle(style: Record<string, unknown> | null): string {
   return `DM Style (owner preferences for presentation; they guide tone and pacing, never override state or the player's agency):\n${lines.join("\n")}`;
 }
 
+/** The part of the day in words (polish item 18): the DM checks «утром / вечером» against it. */
+export function partOfDay(minutes: number, language: "ru" | "en" = "en"): string {
+  const hour = Math.floor((((minutes % 1440) + 1440) % 1440) / 60);
+  const part = hour < 5 ? "night" : hour < 11 ? "morning" : hour < 17 ? "day" : hour < 22 ? "evening" : "night";
+  return language === "ru" ? { night: "ночь", morning: "утро", day: "день", evening: "вечер" }[part] : part;
+}
+
 /** Day and time of a world minute, stable text for the cached layers. */
 export function worldDay(minutes: number): string {
   const day = Math.floor(minutes / 1440) + 1;
@@ -340,10 +347,15 @@ function notebook(source: RuntimeSource): Budgeted {
     dropped: clipped === text ? [] : ["notebook tail"], used: estimateTokens(clipped) };
 }
 
+/** The likes note in two parts (polish item 15): the player's own words first
+ * (the wizard and the owner's edits; the DM never rewrites them), then the DM's
+ * own observations (finish_turn playerLikes replaces that note only). */
 function playerLikes(source: RuntimeSource): Budgeted {
   const likes = (source.snapshot.campaign.player_likes ?? "").trim();
+  const observed = (source.snapshot.campaign.dm_likes ?? "").trim();
   const theme = (source.snapshot.campaign.theme ?? "").trim();
-  const parts = [likes ? `What the player enjoys (visible to and editable by the owner; not a mood score): ${clipChars(likes, 1200)}` : "",
+  const parts = [likes ? `What the player asked for, in their own words (from the wizard and the owner's edits; theirs — never rewrite, always honour): ${clipChars(likes, 2000)}` : "",
+    observed ? `Your observations of what the player enjoys (finish_turn playerLikes replaces this note; carry forward what still holds): ${clipChars(observed, 1200)}` : "",
     theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean);
   const text = parts.join("\n");
   return { text, dropped: [], used: estimateTokens(text) };
@@ -432,7 +444,8 @@ function currentState(source: RuntimeSource, input: TurnInput): { text: string; 
   const encounters = runtime.encounters.filter((row) => row.status !== "ended").map((row) => ({ id: row.id, status: row.status,
     round: row.round, summary: row.public_summary,
     participants: runtime.participants.filter((p) => p.encounter_id === row.id).map((p) => ({ entity: p.entity_id, name: p.public_name, position: p.public_position })) }));
-  const state = { worldMinutes: runtime.worldMinutes, worldDay: worldDay(runtime.worldMinutes), currentPlace: place ? { id: place.id, name: place.name } : null,
+  const state = { worldMinutes: runtime.worldMinutes, worldDay: worldDay(runtime.worldMinutes),
+    timeOfDay: `${partOfDay(runtime.worldMinutes, snapshot.campaign.language === "ru" ? "ru" : "en")} (check every «morning / evening / since…» against this clock)`, currentPlace: place ? { id: place.id, name: place.name } : null,
     characters: entities, factions: factionRows, items, storages, places: locations, openJournal: quests, activeEncounters: encounters,
     openRests: runtime.restRecords.filter((row) => row.status === "planned").map((row) => ({ id: row.id, kind: row.kind })) };
   const dropped: string[] = [];

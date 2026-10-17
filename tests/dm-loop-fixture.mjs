@@ -54,13 +54,14 @@ export async function attachLoop(f) {
     read: () => readDmSettingsWith(dmSettingsRpc, f.owner, f.cid),
     save: (value) => saveDmSettingsWith(dmSettingsRpc, f.owner, f.cid, value),
   };
-  /** Stage 4 craft (migration 55 seeds it pending): activate the condensed doctrine
-   * and the new cards for this synthetic owner, as the real owner would in the DM Craft screen. */
+  /** Stage 4 and polish craft (migrations 55 and 60 seed them pending): activate the
+   * condensed doctrine and the new cards for this synthetic owner, as the real owner
+   * would in the DM Craft screen — the latest version of every key. */
   const activateStage4Craft = async () => {
     const craft = async (action, payload = {}) => (await f.one("select public.rpg_dm_craft($1,$2,$3::jsonb) result",
       [f.owner, action, JSON.stringify(action === "read" ? payload : { requestId: randomUUID(), ...payload })])).result;
     let view = await craft("read");
-    const keys = ["core-doctrine", "world-resistance", "living-world", "long-campaign", "villains-and-theme", "systemic-world"];
+    const keys = [...new Set(view.versions.map((row) => row.key))].sort();
     for (const key of keys) {
       const versions = view.versions.filter((row) => row.key === key).sort((a, b) => b.version - a.version);
       if (!versions.length) continue;
@@ -101,7 +102,7 @@ export async function attachLoop(f) {
       },
       // Stage 4: the DM's player-likes note and the used «important turn» flag.
       afterCommit: async ({ playerLikes, boostUsed }) => {
-        if (playerLikes) await dossier("likes", { playerLikes });
+        if (playerLikes) await dossier("dm_likes", { playerLikes }); // polish item 15: the DM's own note
         if (boostUsed) await dmSettingsRpc({ p_owner_id: f.owner, p_campaign_id: f.cid, p_action: "boost_used", p_payload: {} });
       },
       random,

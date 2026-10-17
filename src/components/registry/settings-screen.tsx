@@ -249,10 +249,16 @@ export function RegistrySettings({ data, more, preview }: {
               <a className={r.btnGhost} href="#more-settings">{c("Изменить в полных настройках", "Change in the full settings")}</a>
               <div className={r.stack} style={{ gap: 6 }}>
                 <span className={r.eyebrow}>{c("Что мне нравится", "What I enjoy")}</span>
-                <p className={r.note} style={{ margin: 0 }}>{c("Записка ведущего о том, что тебе нравится в игре. Её видишь ты, её пишет ведущий, и ты можешь поправить.", "The DM's note on what you enjoy in the game. You see it, the DM writes it, and you can correct it.")}</p>
+                <p className={r.note} style={{ margin: 0 }}>{c("Твои собственные слова о том, что тебе нравится в игре: из мастера создания и твоих правок. Ведущий их читает и никогда не переписывает.", "Your own words on what you enjoy in the game, from the wizard and your edits. The DM reads them and never rewrites them.")}</p>
                 <textarea className={s.note} rows={3} value={likes} maxLength={2000} disabled={!!chrome?.href} aria-label={c("Что мне нравится", "What I enjoy")}
                   onChange={(event) => setLikesDraft(event.target.value)} />
                 {likesDraft !== null && <div className={r.row}><button type="button" className={r.btnMain} onClick={() => void saveNote("likes", likesDraft)}>{c("Сохранить", "Save")}</button><button type="button" className={r.btnGhost} onClick={() => setLikesDraft(null)}>{c("Отмена", "Cancel")}</button></div>}
+                {(dossier?.dmLikes ?? data.campaign.dm_likes ?? "").trim() && (
+                  <>
+                    <span className={r.eyebrow}>{c("Наблюдения ведущего", "The DM's observations")}</span>
+                    <p className={r.note} style={{ margin: 0 }} data-testid="dm-likes">{dossier?.dmLikes ?? data.campaign.dm_likes}</p>
+                  </>
+                )}
                 <span className={r.eyebrow}>{c("Тема кампании (вопрос)", "Campaign theme (a question)")}</span>
                 <input className={s.note} value={theme} maxLength={500} disabled={!!chrome?.href} aria-label={c("Тема кампании", "Campaign theme")}
                   placeholder={c("Например: что стоит верность, когда никто не смотрит?", "For example: what does loyalty cost when nobody is watching?")}

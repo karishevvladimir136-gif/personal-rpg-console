@@ -270,7 +270,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       playerMoment: { type: "boolean" },
       nextTension: opt({ type: "string", enum: [...TENSION_CLASSES] }),
       threadRefs: opt({ type: "array", maxItems: 8, items: ref("A thread, debt, promise or quest this turn touched.") }),
-      playerLikes: opt(str("What the player seems to enjoy (themes, scene kinds, pace); replaces the note.", L.maxShortText)),
+      playerLikes: opt(str("Your observations of what the player enjoys (themes, scene kinds, pace); replaces your previous note, so carry forward what still holds; up to 1200 characters (longer is clipped). The player's own words in the dossier are theirs — never rewrite them here.", L.maxLongText)),
       npcRefused: opt({ type: "boolean", description: "True when a character refused, bargained down or walked away from the hero this turn." }),
     }),
   },

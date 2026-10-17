@@ -248,6 +248,24 @@ export async function evaluateCheck(check, ctx) {
       const n = (ctx.turn?.effects.accepted ?? []).filter((k) => !arg.kind || k === arg.kind).length;
       return result(compare(n, arg), `accepted: ${(ctx.turn?.effects.accepted ?? []).join(", ") || "none"}`);
     }
+    case "narrationIncludes": {
+      const text = ctx.turn?.narration ?? "";
+      return result(matcher(arg).test(text), text ? `narration ${text.length} chars` : "no narration");
+    }
+    case "timeWordsMatchClock": {
+      // Polish item 18: a time-of-day word in the narration must agree with the game
+      // clock at the turn's start (the DM's «this morning» on an evening clock fails).
+      const text = (ctx.turn?.narration ?? "").toLocaleLowerCase();
+      const minutes = ctx.before?.worldMinutes ?? null;
+      if (minutes === null) return result(false, "no world clock in the snapshot");
+      const hour = Math.floor((minutes % 1440) / 60);
+      const part = hour < 5 ? "night" : hour < 11 ? "morning" : hour < 17 ? "day" : hour < 22 ? "evening" : "night";
+      const words = { morning: /(^|[^\p{L}])(утр[ао]м?|поутру|this morning|in the morning)/u, day: /(^|[^\p{L}])(днём|в полдень|this afternoon|at noon|midday)/u,
+        evening: /(^|[^\p{L}])(вечером|под вечер|this evening|in the evening)/u, night: /(^|[^\p{L}])(ночью|за полночь|tonight|at night|in the night)/u };
+      const found = Object.entries(words).filter(([, re]) => re.test(text)).map(([name]) => name);
+      const wrong = found.filter((name) => name !== part && !/(вчера|yesterday|last night|прошл|завтра|tomorrow)/u.test(text));
+      return result(wrong.length === 0, `clock ${part} (${String(hour).padStart(2, "0")}:00), narration mentions: ${found.join(", ") || "no time of day"}`);
+    }
     case "narrationExcludes": {
       const text = ctx.turn?.narration ?? "";
       return result(!matcher(arg).test(text), text ? `narration ${text.length} chars` : "no narration");

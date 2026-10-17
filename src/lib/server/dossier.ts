@@ -53,6 +53,8 @@ export async function readNotebook(campaignId: string): Promise<NotebookView | n
 export async function dossierService(ownerId: string, campaignId: string) {
   return {
     likes: (playerLikes: string) => call(ownerId, campaignId, "likes", { requestId: randomUUID(), playerLikes }),
+    /** The DM's observations (polish item 15): never the player's own words. */
+    dmLikes: (playerLikes: string) => call(ownerId, campaignId, "dm_likes", { requestId: randomUUID(), playerLikes }),
     playTime: (minutes: number) => call(ownerId, campaignId, "play_time", { requestId: randomUUID(), minutes }),
     notebook: () => call(ownerId, campaignId, "notebook", {}).then(parseNotebook),
     /** The same source a turn claims (private state included); server-only. */

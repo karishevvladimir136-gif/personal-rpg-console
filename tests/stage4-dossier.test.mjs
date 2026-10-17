@@ -107,7 +107,7 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     // Polish item 12: the dossier is a stable block (pins) and the session's tail (likes).
     const living = `${played.model.requests[0].system[2].text}\n${played.model.requests[0].system[3].text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
-    assert.match(living, /What the player enjoys[^\n]*Slow investigations/);
+    assert.match(living, /What the player asked for, in their own words[^\n]*Slow investigations/);
     assert.match(played.model.requests[0].system[1].text, /Theme question: What does loyalty cost\?/);
     const snapshot = await c.f.saves(c.cid, "campaign");
     assert.equal(snapshot.campaign.pinned_facts.length, 1);
@@ -406,7 +406,7 @@ test("the session digest parser keeps plans by key, bounds texts and rejects non
       const after = await c.f.saves(c.cid, "campaign");
       assert.equal(after.sessions.find((row) => row.id === session.id).title, "The Wet Road");
       assert.equal(after.sessions.find((row) => row.id === session.id).recap, "Previously…");
-      assert.equal(after.campaign.player_likes, "Roads.");
+      assert.equal(after.campaign.dm_likes, "Roads.", "the digest refreshes the DM's observations, never the player's words (polish item 15)");
       const notebook = await c.dossier("notebook");
       assert.equal(notebook.notebook, "1) …");
       assert.equal(notebook.digestedSessionId, session.id);
