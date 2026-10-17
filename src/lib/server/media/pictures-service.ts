@@ -13,6 +13,7 @@ import {
   compositionForEntity,
   COMPOSITIONS,
   framesOfTurn,
+  maxReferencesFor,
   modelForTier,
   planAutopilot,
   referencesForAnchor,
@@ -26,7 +27,8 @@ import {
   type PictureTrigger,
   type PublicPicture,
 } from "../../visual-frame/pictures";
-import { fallbackShot, firstParagraph, framePrompt, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
+import { fallbackShot, firstParagraph, shotEntityIds, type Shot, type ShotContext } from "../../visual-frame/shot";
+import { compileRecordsFrame } from "../../visual-frame/prompt-compiler";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
 import { boardOf, picturesContext, type PicturesContext } from "./pictures-store";
@@ -124,22 +126,32 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const entityIds = shotEntityIds(shot, snapshot.entities);
   const referenceIds = referencesForShot(board, { entityIds, locationId: snapshot.publicState.current_location_id, model });
   const place = snapshot.locations.find((row) => row.id === snapshot.publicState.current_location_id) ?? null;
-  const people = entityIds.map((id) => snapshot.entities.find((row) => row.id === id)?.name ?? "").filter(Boolean);
   const style = activeStyle(board);
-  const appearance = Object.fromEntries(shot.who.map((name) => {
-    const entity = snapshot.entities.find((row) => nameMatches(row.name, name));
-    return [name, entity ? appearanceOf(snapshot, entity.id) : ""];
-  }));
-  const prompt = framePrompt(shot, styleTextFor(board, snapshot.settings.values.visualStyle), {
-    people, place: referenceIds.length && place && anchorFor(board, { kind: "location", id: place.id }, "location").picture ? place.name : null, style: !!style?.hasReference,
-  }, appearance);
+  // The prompt compiler (PICTURE_MODELS.md) writes the model's own dialect: each reference with its
+  // role, the hero's full figure beside the portrait, identity locks, what the records say is worn now.
+  const placeAnchor = place ? anchorFor(board, { kind: "location", id: place.id }, "location").picture : null;
+  const heroId = snapshot.entities.find((row) => row.kind === "player" && entityIds.includes(row.id))?.id ?? null;
+  const heroFigure = heroId ? anchorFor(board, { kind: "entity", id: heroId }, "figure").picture : null;
+  const compiled = compileRecordsFrame({
+    modelId: model, shot, style: styleTextFor(board, snapshot.settings.values.visualStyle), items: snapshot.items, maxReferences: maxReferencesFor(model),
+    people: shot.who.map((name) => {
+      const entity = snapshot.entities.find((row) => nameMatches(row.name, name)) ?? null;
+      return { name, entity, appearance: entity ? appearanceOf(snapshot, entity.id) : "" };
+    }),
+    references: [...referenceIds, ...(heroFigure ? [heroFigure.id] : [])].map((id) => {
+      const row = board.pictures.find((picture) => picture.id === id);
+      return id === style?.id ? { id, role: "style" as const } : id === placeAnchor?.id ? { id, role: "place" as const }
+        : { id, role: row?.composition === "figure" ? "figure" as const : row?.composition === "portrait" ? "face" as const : "person" as const, entityId: row?.subjectId ?? null };
+    }),
+  });
+  const prompt = compiled.prompt;
   const picture = await createPictureRow(ctx, {
     id: crypto.randomUUID(), kind: "frame", subjectKind: "turn", subjectId: operationId, composition: "frame", timeline: snapshot.timeline,
     tier, trigger, model, styleVersionId: style?.id ?? null,
     shot: { ...shot, meta: { source: built.source, model: built.source === "model" ? "claude-haiku-5-5" : null, usage: built.usage, costUsdMicros: built.costUsdMicros, elapsedMs: built.elapsedMs, error: built.error, paragraphChars: paragraph.length } },
-    prompt, referenceIds,
+    prompt, referenceIds: compiled.referenceIds,
   });
-  log("picture_frame_queued", { campaignId, operationId, pictureId: picture.id, trigger, tier, model, references: referenceIds.length, shotSource: built.source, shotMs: built.elapsedMs });
+  log("picture_frame_queued", { campaignId, operationId, pictureId: picture.id, trigger, tier, model, references: compiled.referenceIds.length, shotSource: built.source, shotMs: built.elapsedMs });
   schedule(() => runPictureJob(ctx, picture.id, { extraCostUsdMicros: built.costUsdMicros }));
   return { status: "queued", picture };
 }

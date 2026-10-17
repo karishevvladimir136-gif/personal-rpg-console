@@ -5,7 +5,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { FAL_IMAGE_MODELS, falEndpoint, falImagePriceUsdMicros, falQueueRoot, falRequestBody, generateFalImage, isContentRefusal } from "../src/lib/visual-frame/fal-image.ts";
 import { generateOpenAIImage, openAIImageCostUsdMicros, openAIImageReserveUsdMicros, openAIRequest, openAIRequestFields } from "../src/lib/visual-frame/openai-image.ts";
-import { compileAnchorPrompt, compileEditPrompt, compileFramePrompt, orderReferences, promptFamily, timeOfDay } from "../src/lib/visual-frame/prompt-compiler.ts";
+import { compileAnchorPrompt, compileEditPrompt, compileFramePrompt, compileRecordsFrame, orderReferences, promptFamily, timeOfDay } from "../src/lib/visual-frame/prompt-compiler.ts";
 
 const jpeg = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 0, 0x10, 0x4a, 0x46, 0x49, 0x46, 0, 1]);
 const ref = { bytes: jpeg, contentType: "image/jpeg" };
@@ -185,4 +185,30 @@ test("prompt compiler: model families, the anchor prompt, the edit prompt, time 
   assert.equal(timeOfDay(1440 + 9 * 60), "in the morning");
   assert.equal(timeOfDay(20 * 60), "at dusk");
   assert.equal(timeOfDay(23 * 60), "at night");
+});
+
+test("records path: worn items and conditions become the state, references go subjects first and keep their IDs", () => {
+  const heroRow = { id: "hero-1", kind: "player", conditions: ["soaked"] };
+  const docker = { id: "npc-2", kind: "npc", conditions: [] };
+  const out = compileRecordsFrame({
+    modelId: "fal-ai/flux-2/klein/9b",
+    shot: { who: ["Рэй", "Фрол"], action: "the docker reads a note while the hero waits", where: "an attic", angle: "medium shot", mood: "candlelight" },
+    style: "Cinematic noir",
+    people: [{ name: "Рэй", entity: heroRow, appearance: "dark swept-back hair, stubble" }, { name: "Фрол", entity: docker, appearance: "big, red-nosed" }],
+    items: [
+      { name: "grey linen shirt", quantity: 1, equipped_entity_id: "hero-1" },
+      { name: "spare rope", quantity: 1, equipped_entity_id: null },
+      { name: "torn sack", quantity: 0, equipped_entity_id: "hero-1" },
+    ],
+    references: [{ id: "style-1", role: "style" }, { id: "place-1", role: "place" }, { id: "p-hero", role: "face", entityId: "hero-1" },
+      { id: "p-docker", role: "face", entityId: "npc-2" }, { id: "f-hero", role: "figure", entityId: "hero-1" }],
+    maxReferences: 4,
+    worldMinutes: 19 * 60 + 30,
+  });
+  assert.deepEqual(out.referenceIds, ["p-hero", "f-hero", "p-docker", "place-1"], "the hero's face and figure first; the style is cut before any subject");
+  assert.match(out.prompt, /Right now: they wear or carry grey linen shirt; visible condition: soaked\./);
+  assert.equal(/spare rope|torn sack|Рэй|Фрол/.test(out.prompt), false);
+  assert.match(out.prompt, /The hero \(the first and second images\)/);
+  assert.match(out.prompt, /at dusk/);
+  assert.match(out.prompt, /plain and unmarked/, "a FLUX model gets the FLUX dialect");
 });

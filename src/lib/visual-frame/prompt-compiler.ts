@@ -216,3 +216,38 @@ export function timeOfDay(worldMinutes: number | null | undefined) {
   if (hour < 21) return "at dusk";
   return "at night";
 }
+
+/** The app's frame from its records: the people the shot matched, what each wears now (equipped
+ * items) and visible conditions, references with their roles in the fixed order, the clock when the
+ * caller has it. Returns the prompt and the reference IDs in the order the prompt numbers them. */
+export function compileRecordsFrame(input: {
+  modelId: string;
+  shot: Shot;
+  style: string;
+  /** shot.who name → the matched public record, if any. */
+  people: { name: string; entity: { id: string; kind: string; conditions: string[] } | null; appearance: string }[];
+  items: { name: string; quantity: number; equipped_entity_id: string | null }[];
+  references: { id: string; role: ReferenceRole; entityId?: string | null }[];
+  maxReferences: number;
+  worldMinutes?: number | null;
+}): { prompt: string; referenceIds: string[] } {
+  const people: BriefPerson[] = input.people.map((row, index) => {
+    const hero = row.entity?.kind === "player";
+    const worn = row.entity ? input.items.filter((item) => item.equipped_entity_id === row.entity!.id && item.quantity > 0).map((item) => item.name).slice(0, 8) : [];
+    const conditions = (row.entity?.conditions ?? []).filter(Boolean).slice(0, 4);
+    return {
+      key: row.entity?.id ?? `${row.name}#${index}`,
+      label: hero ? "the hero" : `person ${index + 1}`,
+      pronoun: "they",
+      appearance: row.appearance || "as described in the scene",
+      state: [worn.length ? `they wear or carry ${listing(worn)}` : "", conditions.length ? `visible condition: ${conditions.join(", ")}` : ""].filter(Boolean),
+    };
+  });
+  const keyOf = (entityId?: string | null) => (entityId ? people.find((row) => row.key === entityId)?.key : undefined);
+  const references = orderReferences(input.references.map((row) => ({ ...row, person: keyOf(row.entityId) })), people, input.maxReferences);
+  const prompt = compileFramePrompt({
+    shot: input.shot, people, references, style: input.style,
+    clock: input.worldMinutes === undefined || input.worldMinutes === null ? null : { timeOfDay: timeOfDay(input.worldMinutes) },
+  }, promptFamily(input.modelId));
+  return { prompt, referenceIds: references.map((row) => row.id) };
+}
