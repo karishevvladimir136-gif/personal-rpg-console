@@ -236,7 +236,9 @@ function peopleModels(source: RuntimeSource, input: TurnInput, models: Models): 
   const rows = [...models.values()].map((model) => {
     const row = snapshot.entities.find((e) => e.id === model.actorId);
     if (!row) return null;
-    const mentioned = row.name.length >= 3 && lower.includes(row.name.toLocaleLowerCase());
+    // Mentioned by any word of the name («the work organiser» names «Local work organiser»; «Марте» names «Марта»).
+    const mentioned = row.name.toLocaleLowerCase().split(/[\s,.\-–]+/).filter((word) => word.length >= 4)
+      .some((word) => lower.includes(word.length > 6 ? word.slice(0, -2) : word));
     const tier: "present" | "relevant" | "other" = present.has(row.id) || controlled.has(row.id) || row.id === input.companionId ? "present"
       : mentioned || !!profileOf(row).important || distance(row.id) === 1 ? "relevant" : "other";
     return { row, model, tier, rank: tier === "present" ? 0 : tier === "relevant" ? 1 : 2 };

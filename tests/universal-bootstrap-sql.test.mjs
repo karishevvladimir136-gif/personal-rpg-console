@@ -458,9 +458,9 @@ test("Migration 30 is byte-identical and Basic compatibility remains available a
     ),
   );
   assert.equal(
-    createHash("sha256").update(bytes).digest("hex"),
-    // The bytes as carried by claude/integration (commit 52de331 «prepare a playable opening»
-    // reworked the file before this stage); the polish stage never edits applied migrations.
+    createHash("sha256").update(bytes.toString("utf8").replace(/\r\n/g, "\n")).digest("hex"),
+    // Polish: hashed with LF line endings, so a Windows checkout (CRLF) and a cloud checkout
+    // (LF) of the same committed bytes agree; the migration itself is unchanged.
     "c0adc32d295497a77ab16cf9964b9d5d20e6a11be91c402cea4dc8468741bb82",
   );
   const f = await setup();

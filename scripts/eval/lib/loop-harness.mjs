@@ -124,7 +124,7 @@ export async function runLoopScenario(scenario, options) {
   const effort = options.effort ?? selection.defaultEffort;
   const continuationEffort = options.continuationEffort && options.continuationEffort !== effort ? options.continuationEffort : null;
   const scenarioStarted = performance.now();
-  const c = await loopCampaign();
+  const c = await loopCampaign({ language: scenario.language, example: scenario.fixture, startMinutes: scenario.startMinutes });
   const { f, cid, hero } = c;
   // Stage 4: the bench plays on the Stage 4 craft (the owner activates it in the DM Craft screen).
   await c.activateStage4Craft();

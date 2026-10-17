@@ -14,9 +14,14 @@ import { readDmSettingsWith, saveDmSettingsWith } from "../src/lib/gameplay/dm-l
 const usage = { model: "fake", inputTokens: 0, outputTokens: 0, calls: 1, latencyMs: 0 };
 
 export async function loopCampaign(options = {}) {
-  const f = await setup(undefined, options.language ?? "en", 99);
+  // Polish: a bench scenario may bring its own world/hero/opening texts (`example`, the shape of
+  // `examples.fantasy`) and language — the Russian replay plays a Russian campaign.
+  const f = await setup(options.example ?? undefined, options.language ?? "en", 99);
   await f.create();
-  await f.startOpening();
+  await f.proposeOpening();
+  // The opening may set the clock (polish group 10, migration 63): «Утро» starts at 8:00, not 00:00.
+  if (options.startMinutes !== undefined && options.startMinutes !== null) f.openingCommit.input.startMinutes = options.startMinutes;
+  await f.service.perform(f.openingCommit);
   return attachLoop(f);
 }
 

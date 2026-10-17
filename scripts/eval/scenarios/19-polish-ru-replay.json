@@ -1,0 +1,421 @@
+{
+  "title": "Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»",
+  "description": "A Russian campaign on the loop (the fixture brings its own world, hero and opening: Рэй, a listed-off diver, owes Marta forty coins in Скрипучая Гавань). Thirty player turns through work, a dive, a night, a watch at the breakwater, a chase or a fight, a second dive and the debt paid. Live only (no scripted answers; the fake bench skips it): it measures the depth rule (share of top-effort turns), the 1-hour cache (cache read share), the first word and the time words against the clock. The opening starts the clock at 8:00.",
+  "runtime": "dm-loop-v1",
+  "language": "ru",
+  "startMinutes": 480,
+  "fixture": {
+    "world": {
+      "title": "Ржавое побережье",
+      "premise": "Северное побережье холодного моря: гавани на сваях, гильдия водолазов, контрабанда, старые затонувшие суда. Магии нет; есть паровые насосы, водолазные шлемы, долги и слухи."
+    },
+    "name": "Рэй",
+    "description": "Бывший гильдейский водолаз, списанный за спор с мастером. Умею работать под водой в шлеме, читать течения и чинить насосы. Не умею долго плыть без снаряжения и боюсь закрытых трюмов. Ношу нож и гарпунный пистолет. Должен сорок монет трактирщице Марте.",
+    "caps": [
+      "работать под водой в шлеме",
+      "читать течения",
+      "чинить насосы"
+    ],
+    "limits": [
+      "боюсь закрытых трюмов"
+    ],
+    "item": "нож",
+    "adventure": "Рэй возвращается в Скрипучую Гавань, чтобы расплатиться с долгом и найти работу по своему ремеслу. Открытые решения; тайны не раскрывать заранее.",
+    "location": "Скрипучая Гавань, причал у кабака Марты",
+    "situation": "Утро. На причале пахнет смолой и жареной рыбой. У кабака Марты лодочник Мокей чинит сеть; Марта ждёт свой долг.",
+    "npc": "Марта",
+    "narration": "Утро над Скрипучей Гаванью: понтоны скрипят под ногами, с кухни кабака тянет жареной рыбой. Марта вытирает руки о передник и смотрит на тебя так, будто уже считает сорок монет. У края причала Мокей чинит сеть и делает вид, что не слушает."
+  },
+  "steps": [
+    {
+      "id": "s01",
+      "say": "Оглядываюсь на причале: кто здесь, что изменилось с прошлой осени.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s02",
+      "say": "Подхожу к Марте. Говорю, что долг помню и отдам, но сперва мне нужна работа. Спрашиваю, что в гавани слышно.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s03",
+      "say": "Спрашиваю Мокея про его сеть и про то, что творится на воде — не было ли чего странного в последние дни.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s04",
+      "say": "Иду к гильдейской конторе узнать, берут ли списанных водолазов на подённую работу.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s05",
+      "say": "Торгуюсь за цену погружения: прошу больше, ссылаясь на то, что умею читать течения.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s06",
+      "say": "Соглашаюсь на работу. Проверяю снаряжение: шлем, насос, нож, гарпунный пистолет. Спрашиваю, кто будет качать воздух.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s07",
+      "say": "Иду с нанимателем к месту погружения, по дороге расспрашиваю, что именно надо достать и почему это срочно.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s08",
+      "say": "Ныряю. Спускаюсь медленно, слушаю насос, смотрю, куда тянет течение.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s09",
+      "say": "Осматриваю то, что нашёл на дне, и ищу способ поднять груз, не повредив его.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s10",
+      "say": "Поднимаюсь на поверхность и докладываю, что видел. Об одной детали пока молчу — хочу понять, кому можно верить.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s11",
+      "say": "Вечером иду в кабак Марты. Отдаю ей часть долга из полученных денег и спрашиваю, кто ещё интересовался этой работой.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s12",
+      "say": "Расспрашиваю Марту о затонувшей «Сельди»: чья это была лодка и что на ней везли.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s13",
+      "say": "Ложусь спать в комнате над кабаком, но перед сном проверяю, заперта ли дверь, и кладу нож под руку.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s14",
+      "say": "Утром иду к Мокею: прошу отвезти меня к волнорезу, где, говорят, что-то лежит.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s15",
+      "say": "У волнореза осматриваю берег и воду. Ищу следы: обломки, верёвки, свежие борозды на песке.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s16",
+      "say": "Замечаю чужую лодку. Прячусь за камнями и наблюдаю, кто в ней и что они делают.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s17",
+      "say": "Они меня заметили. Пытаюсь уйти к Мокею, не ввязываясь в драку.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s18",
+      "say": "Если догоняют — отбиваюсь: гарпунный пистолет на самого опасного, нож наготове.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s19",
+      "say": "После стычки осматриваю себя и Мокея, перевязываю, что надо. Спрашиваю, узнал ли он кого-нибудь из тех людей.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s20",
+      "say": "Возвращаемся в гавань. Иду к Марте, рассказываю, что случилось, и прошу совета.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s21",
+      "say": "Иду в гильдейскую контору и требую объяснений: почему на месте моей работы были чужие люди.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s22",
+      "say": "Предлагаю сделку: я достаю груз, но хочу долю и имя того, кто за этим стоит.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s23",
+      "say": "Готовлю второе погружение: проверяю насос, беру запасной шланг, договариваюсь с Мокеем о сигнале.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s24",
+      "say": "Ныряю к «Сельди». Ищу трюм и то, что в нём спрятано.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s25",
+      "say": "В трюме темно и тесно. Беру себя в руки, работаю на ощупь, стараюсь не зацепить шланг.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s26",
+      "say": "Поднимаю найденное наверх и внимательно рассматриваю при свете.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s27",
+      "say": "Решаю, кому отнести находку. Иду к тому, кому доверяю больше, и спрашиваю, что он об этом знает.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s28",
+      "say": "Расплачиваюсь с Мартой полностью и спрашиваю, что она сама думает обо всей этой истории.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s29",
+      "say": "Вечером сижу у огня, перебираю всё, что узнал за эти дни, и спрашиваю у Мокея, что бы он сделал на моём месте.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    },
+    {
+      "id": "s30",
+      "say": "Утром решаю, что делать дальше: остаюсь в гавани и говорю об этом Марте.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the DM's time words agree with the clock (item 18)",
+          "timeWordsMatchClock": true
+        }
+      ]
+    }
+  ]
+}
