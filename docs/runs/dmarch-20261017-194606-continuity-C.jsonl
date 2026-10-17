@@ -1,0 +1,1 @@
+{"type":"run","run":"dmarch-20261017-194606-continuity-C","purpose":"DM architecture bake-off: continuity run","variant":"C","label":"Fable 5.1 writer + Opus 5.5 bookkeeper","provider":"live","scenario":"19-polish-ru-replay","steps":["s01","s02","s03","s04","s05"],"commit":"0c58091","node":"v24.22.0","startedAt":"2026-10-17T19:46:06.071Z","budgetUsd":3.2}

@@ -50,6 +50,14 @@
       "settled": true,
       "finishedAt": "2026-10-17T19:45:49.778Z",
       "record": "docs/runs/dmarch-20261017-194127-scenes.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-194606-continuity-C",
+      "what": "continuity run C (5 turns)",
+      "startedAt": "2026-10-17T19:46:06.070Z",
+      "reservedUsd": 3.2,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }
