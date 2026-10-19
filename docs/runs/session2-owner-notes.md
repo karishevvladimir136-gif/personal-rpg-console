@@ -351,6 +351,12 @@ what the witness saw. Note for the voice rules: here a character repeating anoth
 fixing a fact and pressing on), so the rule is «no echo for a quip», not «no echo». One flag (pair 8): a clue line
 contradicts itself in its fragments (asked vs already knew) and names the key cargo with a rare word the owner did
 not know — a clue must read one way even in broken speech, and its key noun must be a word the player knows.
+Turn 8: a novice's testimony approved (X6). The sergeant's fourth rejected quip (pair 9), and now the owner is angry
+at the frequency («хватит шутить»): the DM has turned one companion into a joke machine — nearly every line of his
+ends in a built punchline. This one also uses the «it's not X, it's Y» template (an English LLM tic, see item 38) and
+states the plot inference for the player inside the joke. Do: rephrase the voice layer's humour rule (rare, only when
+the moment asks for it, a finished joke aimed at someone present, never the scene's last word), and let the session
+report count quips per companion. Mid-session workaround offered to the owner: an out-of-game note in his next action.
 
 34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
     the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
