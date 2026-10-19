@@ -23,7 +23,23 @@ owner's real states with the line he actually typed, so the move always fits the
 node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns 5,8,12 --variants A,C,D --budget-usd 6
 node scripts/eval/real-replay/synthetic.mjs --out scripts/eval/out/synthetic-snapshots.json          # a synthetic campaign's snapshots
 node scripts/eval/real-replay/replay.mjs --snapshots scripts/eval/out/synthetic-snapshots.json --turns 1,2 --variants A,D --dry
+# the voice stage (§7): the voice variants, the examples file outside the repo, the stage's ledger
+node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns 1,16 --variants A --voice five --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 3
+node scripts/eval/voice-metrics.mjs docs/samples/real-replay/<dir>                                    # the voice metrics per variant (§6)
 ```
+
+- **The voice variants (voice stage §7).** `--voice live|off|layer|five|all` — `live` plays the turn as it was (the
+  campaign's own examples mode and samples); `off` is the prompt before the voice stage (no voice layer, no reminder, no
+  examples); `layer` is the Russian voice layer and the reminder without examples; `five` and `all` add the examples from
+  `--examples-file <path>`, which must lie **outside the repository** and is read at run time — the passages never enter
+  a record or a sample (only their count and the variant's label do). After every committed turn of a paid run the
+  quotable-line check (§5, Claude Haiku 5.5, cents) reads the narration's NPC lines; its flags are in the record and the
+  sample for `voice-metrics.mjs` (`--no-quotable` skips it). `--ledger voice|polish3` names the stage's ledger (the voice
+  stage's `docs/runs/voice-ledger.json`, cap $8, is the default).
+- **The owner's fixes (2026-10-18).** The snapshot list names every committed loop turn, from the turn row's claim-time
+  source when no snapshot row exists (migration 70: inside `rpg_turn_snapshots` the turns table is aliased `tr`, no
+  longer shadowed by the variable `t`); the `--base` path reads the route's answer (the decoded `payload`) as well as the
+  SQL's shape (`lib/snapshots.mjs`), and a `--snapshots` file may hold either (one `?turn=N` answer per row works).
 
 Faithfulness: the copy plays on the same shadow-state validators and tools as the app; the SQL commit's own checks
 (the timeline fence, the revision) do not run, so a record the database would refuse is not caught here — the samples

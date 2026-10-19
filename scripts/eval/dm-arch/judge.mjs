@@ -28,9 +28,10 @@ for (let i = 2; i < process.argv.length; i++) {
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!args.dry && !(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required (or --dry)");
-if (!["dmarch", "polish3"].includes(args.ledger)) throw new Error("--ledger must be dmarch or polish3");
-const prefix = args.ledger === "polish3" ? "polish3" : "dmarch";
-const openRun = args.ledger === "polish3" ? openPolish3Run : openDmArchRun;
+if (!["dmarch", "polish3", "voice"].includes(args.ledger)) throw new Error("--ledger must be dmarch, polish3 or voice");
+const prefix = args.ledger === "dmarch" ? "dmarch" : args.ledger;
+// The real-replay ledger module serves several stages (its default is the voice stage's): name the ledger explicitly.
+const openRun = args.ledger === "dmarch" ? openDmArchRun : (run, budgetUsd, what) => openPolish3Run(run, budgetUsd, what, args.ledger);
 
 const CATEGORIES = ["items", "money", "debts_promises", "people", "places", "time"];
 const SYSTEM = `You are the records judge of a role-playing game. A game master narrated one turn; a bookkeeping layer then made records in the game's database through tools. You compare the records with the narration and report, per category, how many facts of the narration should have been recorded (narrated), how many of them were recorded correctly (recorded), how many were missed (missed), how many records contradict the narration (wrong: a wrong amount, owner, name, direction or time), and how many records have no basis in the narration or the writer's ledger (invented, counted once overall).

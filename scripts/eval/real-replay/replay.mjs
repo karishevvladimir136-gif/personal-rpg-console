@@ -8,12 +8,19 @@
 //
 //   node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns 5,8,12
 //        --variants A,C,D [--budget-usd N | --dry] [--out docs/samples/real-replay] [--craft live|all|none|session1]
+//        [--voice live|off|layer|five|all] [--examples-file <path outside the repo>] [--ledger voice|polish3] [--no-quotable]
 //   node scripts/eval/real-replay/replay.mjs --snapshots <file.json> --turns 1,2 --variants A,D --budget-usd 2
 //
 // --base: the app that holds the campaign (the owner's sandbox on :3100; the real app on :3000 is
 // refused unless RPG_TEST_ALLOW_OWNER_PORT=1). --snapshots: a file of snapshot payloads instead
 // (the synthetic campaign of the smoke, written by synthetic.mjs). A cost line is printed before
 // a paid run and the guard never lets it cross --budget-usd (or the stage's ledger cap).
+// Voice stage part 7: --voice picks the voice variant (live: as the turn had it; off: the prompt
+// before the voice stage; layer: the layer and the reminder; five / all: the layer plus the
+// examples of --examples-file, read at run time from outside the repository and never copied into
+// a record or a sample — the sample carries the variant's label and the passage count only).
+// After every committed turn of a paid run the quotable-line check (Haiku, part 5) reads the
+// narration's NPC lines; its flags go into the record and the sample for the metrics (--no-quotable skips it).
 import { appendFile, mkdir, readFile, writeFile } from "node:fs/promises";
 import { randomBytes, randomUUID } from "node:crypto";
 import { join } from "node:path";
@@ -23,12 +30,15 @@ import { DM_LOOP_DEFAULT_LIMITS } from "../../../src/lib/gameplay/dm-loop/limits
 import { DEFAULT_DEPTH_RANGE } from "../../../src/lib/gameplay/dm-loop/depth.ts";
 import { createSnapshotTurnStore, noMemory, seededRandom, snapshotInput } from "../../../src/lib/gameplay/replay/memory-store.ts";
 import { buildReplaySample } from "../../../src/lib/gameplay/replay/samples.ts";
-import { decodeTurnSnapshot, parseTurnSnapshotPayload } from "../../../src/lib/gameplay/turn-snapshot.ts";
+import { checkQuotableLines } from "../../../src/lib/gameplay/dm-loop/quotable.ts";
 import { VARIANTS, MODELS, createBudget, guardedModel, dryModel } from "./lib/models.mjs";
-import { openRun, ROOT } from "./lib/ledger.mjs";
+import { openRun, ROOT, LEDGERS, DEFAULT_LEDGER } from "./lib/ledger.mjs";
 import { craftVariant } from "./lib/craft.mjs";
+import { readExamplesFile, voiceVariant, VOICE_VARIANTS } from "./lib/voice.mjs";
+import { snapshotListOf, snapshotPayloadOf } from "./lib/snapshots.mjs";
 
-const args = { base: null, campaign: null, snapshots: null, turns: null, variants: ["A", "D"], budgetUsd: null, dry: false, out: null, craft: "live", maxContinues: 8 };
+const args = { base: null, campaign: null, snapshots: null, turns: null, variants: ["A", "D"], budgetUsd: null, dry: false, out: null, craft: "live", maxContinues: 8,
+  voice: "live", examplesFile: null, ledger: DEFAULT_LEDGER, quotable: true };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i], value = () => process.argv[++i];
   if (flag === "--base") args.base = value().replace(/\/$/, "");
@@ -40,13 +50,21 @@ for (let i = 2; i < process.argv.length; i++) {
   else if (flag === "--dry") args.dry = true;
   else if (flag === "--out") args.out = value();
   else if (flag === "--craft") args.craft = value();
+  else if (flag === "--voice") args.voice = value();
+  else if (flag === "--examples-file") args.examplesFile = value();
+  else if (flag === "--ledger") args.ledger = value();
+  else if (flag === "--no-quotable") args.quotable = false;
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!args.turns?.length) throw new Error("--turns N,M is required");
 if (!args.snapshots && !(args.base && args.campaign)) throw new Error("--base <app> --campaign <id>, or --snapshots <file>, is required");
 for (const id of args.variants) if (!VARIANTS[id] && id !== "live") throw new Error(`unknown variant ${id}; variants: ${Object.keys(VARIANTS).join(", ")}, live`);
 if (!["live", "all", "none", "session1"].includes(args.craft)) throw new Error("--craft must be live, all, none or session1");
+if (!VOICE_VARIANTS.includes(args.voice)) throw new Error(`--voice must be one of ${VOICE_VARIANTS.join(", ")}`);
+if (!LEDGERS[args.ledger]) throw new Error(`--ledger must be one of ${Object.keys(LEDGERS).join(", ")}`);
 if (!args.dry && !(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required for a paid run (or --dry)");
+if ((args.voice === "five" || args.voice === "all") && !args.examplesFile) throw new Error(`--voice ${args.voice} needs --examples-file <path outside the repo>`);
+const examples = args.examplesFile ? await readExamplesFile(args.examplesFile) : null;
 if (args.base) {
   const url = new URL(args.base);
   if ((url.port === "3000" || (!url.port && url.protocol === "http:")) && process.env.RPG_TEST_ALLOW_OWNER_PORT !== "1")
@@ -65,18 +83,20 @@ async function loadSnapshots() {
   if (args.snapshots) {
     const file = JSON.parse(await readFile(args.snapshots, "utf8"));
     const rows = Array.isArray(file) ? file : file.snapshots;
-    return { campaignId: file.campaignId ?? rows[0]?.input?.campaignId ?? "synthetic", title: file.title ?? "synthetic campaign",
-      byTurn: new Map(rows.map((row, index) => [row.turnNo ?? index + 1, row.payload ?? row])) };
+    // A file of payloads (synthetic.mjs) or of the route's answers (the owner's workaround: one ?turn=N answer per row).
+    return { campaignId: file.campaignId ?? rows[0]?.input?.campaignId ?? rows[0]?.payload?.input?.campaignId ?? "synthetic", title: file.title ?? "synthetic campaign",
+      byTurn: new Map(rows.map((row, index) => [row.turnNo ?? index + 1, row.payload && !row.payload.schemaVersion ? row.payload : snapshotPayloadOf(row.payload ?? row)])) };
   }
   const listUrl = `${args.base}/api/campaigns/${encodeURIComponent(args.campaign)}/snapshots`;
-  const list = await fetch(listUrl).then(async (response) => { if (!response.ok) throw new Error(`${listUrl}: HTTP ${response.status}`); return response.json(); });
+  const list = snapshotListOf(await fetch(listUrl).then(async (response) => { if (!response.ok) throw new Error(`${listUrl}: HTTP ${response.status}`); return response.json(); }));
   const byTurn = new Map();
   for (const turnNo of args.turns) {
-    const summary = list.snapshots.find((row) => row.turnNo === turnNo);
-    if (!summary) { console.log(`turn ${turnNo}: no snapshot (the campaign has ${list.snapshots.length}); skipped`); continue; }
+    const summary = list.find((row) => row.turnNo === turnNo);
+    if (!summary) { console.log(`turn ${turnNo}: no snapshot (the campaign has ${list.length}); skipped`); continue; }
+    // The route answers with the decoded payload (owner's replay fix 2); the SQL's shape is accepted too.
     const row = await fetch(`${listUrl}?operationId=${encodeURIComponent(summary.operationId)}`).then(async (response) => {
       if (!response.ok) throw new Error(`snapshot of turn ${turnNo}: HTTP ${response.status}`); return response.json(); });
-    byTurn.set(turnNo, row.encoding === "json" ? parseTurnSnapshotPayload(row.source) : decodeTurnSnapshot(row.source));
+    byTurn.set(turnNo, snapshotPayloadOf(row));
   }
   const any = [...byTurn.values()][0];
   return { campaignId: args.campaign, title: any?.source.snapshot.campaign.title ?? args.campaign, byTurn };
@@ -97,16 +117,17 @@ const variants = args.variants.map((id) => {
 });
 const estimate = turns.length * variants.reduce((sum, v) => sum + v.usdPerTurn, 0);
 console.log(`${args.dry ? "Dry" : "Paid"} replay of ${turns.length} turn(s) × ${variants.length} variant(s) [${variants.map((v) => v.id).join(", ")}] on «${snapshots.title}»` +
-  `${args.dry ? "" : `: estimated $${estimate.toFixed(2)} (bake-off $/turn), hard budget $${args.budgetUsd.toFixed(2)}`}; craft set: ${args.craft}.`);
+  `${args.dry ? "" : `: estimated $${estimate.toFixed(2)} (bake-off $/turn), hard budget $${args.budgetUsd.toFixed(2)}`}; craft set: ${args.craft}; voice: ${args.voice}${examples ? ` (${examples.passages} passages of ${examples.kinds} kind(s) from the examples file)` : ""}.`);
 
 const apiKey = args.dry ? null : providerKey("ANTHROPIC_API_KEY");
 if (!args.dry && !apiKey) throw new Error("ANTHROPIC_API_KEY is needed (environment or .env.local)");
-const ledger = args.dry ? null : await openRun(runId, args.budgetUsd, `real replay: ${turns.length} turns × ${variants.map((v) => v.id).join("+")} on ${snapshots.title}`);
+const ledger = args.dry ? null : await openRun(runId, args.budgetUsd, `real replay: ${turns.length} turns × ${variants.map((v) => v.id).join("+")} on ${snapshots.title}; voice ${args.voice}; craft ${args.craft}`, args.ledger);
 const budget = createBudget(args.dry ? 0 : ledger.budgetUsd);
 const outDir = args.out ? join(ROOT, args.out) : join(ROOT, "docs", "samples", "real-replay", String(snapshots.campaignId).slice(0, 8));
 await mkdir(outDir, { recursive: true });
-await write({ type: "run", run: runId, purpose: "polish 3 §4: blind samples on the owner's own turns", campaignId: snapshots.campaignId, title: snapshots.title,
-  turns, variants: variants.map((v) => v.id), craft: args.craft, dry: args.dry, startedAt: new Date().toISOString(), budgetUsd: budget.limitUsd });
+await write({ type: "run", run: runId, purpose: "polish 3 §4 / voice stage §7: blind samples on the owner's own turns", campaignId: snapshots.campaignId, title: snapshots.title,
+  turns, variants: variants.map((v) => v.id), craft: args.craft, voice: args.voice, examplesPassages: examples?.passages ?? null, ledger: args.ledger, quotable: args.quotable && !args.dry,
+  dry: args.dry, startedAt: new Date().toISOString(), budgetUsd: budget.limitUsd });
 
 let stopReason = null;
 const written = [];
@@ -116,6 +137,13 @@ try {
     for (const variant of variants) {
       if (!args.dry && budget.exhausted) { stopReason = "budget_reached"; break; }
       const record = await playVariant(payload, turnNo, variant);
+      // Voice stage part 5/7: the quotable-line check on the committed narration (cents; counted in the budget).
+      if (record.outcome === "committed" && record.narration && args.quotable && !args.dry && !budget.exhausted) {
+        const check = await checkQuotableLines(apiKey, record.narration, payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en");
+        budget.spentUsd += check.costUsdMicros / 1_000_000;
+        record.quotable = { flags: check.flags, lines: check.lines, costUsd: Number((check.costUsdMicros / 1_000_000).toFixed(6)), error: check.error };
+        record.costUsd = Number((record.costUsd + check.costUsdMicros / 1_000_000).toFixed(5));
+      }
       await write(record);
       if (record.outcome === "committed" && record.narration) {
         const sample = buildReplaySample(payload, record, { language: payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en", campaignTitle: snapshots.title });
@@ -123,8 +151,9 @@ try {
         await writeFile(file, `${JSON.stringify(sample, null, 2)}\n`, "utf8");
         written.push(file);
       }
-      console.log(`  turn ${turnNo} · ${variant.id}: ${record.outcome} · first word ${record.firstWordMs ?? "–"} ms · text ${record.textDoneMs ?? "–"} ms · records ${record.recordsDoneMs ?? "–"} ms` +
-        ` · $${record.costUsd.toFixed(4)} · ${record.receipts.filter((r) => r.result.ok).length} accepted, ${record.receipts.filter((r) => !r.result.ok).length} rejected${record.outcome !== "committed" ? ` · ${record.errorCode ?? ""} ${record.exception ?? ""}` : ""}`);
+      console.log(`  turn ${turnNo} · ${variant.id} · voice ${args.voice}: ${record.outcome} · first word ${record.firstWordMs ?? "–"} ms · text ${record.textDoneMs ?? "–"} ms · records ${record.recordsDoneMs ?? "–"} ms` +
+        ` · $${record.costUsd.toFixed(4)} · ${record.receipts.filter((r) => r.result.ok).length} accepted, ${record.receipts.filter((r) => !r.result.ok).length} rejected` +
+        `${record.quotable ? ` · quotable ${record.quotable.flags.length}/${record.quotable.lines}${record.quotable.error ? ` (${record.quotable.error})` : ""}` : ""}${record.outcome !== "committed" ? ` · ${record.errorCode ?? ""} ${record.exception ?? ""}` : ""}`);
     }
     if (stopReason) break;
   }
@@ -136,15 +165,15 @@ await writeFile(join(outDir, "README.md"), `# Real replay — blind samples («$
 
 One file per turn × variant: the owner's own line from that turn, played from the state before it (the live campaign
 untouched), with the real previous exchange as «before» context. The file name carries no hint of the variant; the
-variant (writer, bookkeeper, effort, craft set), the timings, the tokens, the cost and the accepted records are inside
-each file. ${written.length} sample(s) over ${turns.length} turn(s). Written by \`node scripts/eval/real-replay/replay.mjs\`; the record is
-\`docs/runs/${runId}.jsonl\`.
+variant (writer, bookkeeper, effort, craft set, voice variant), the timings, the tokens, the cost, the accepted records and
+the quotable-line flags are inside each file; the examples file's passages never are. ${written.length} sample(s) over ${turns.length} turn(s).
+Written by \`node scripts/eval/real-replay/replay.mjs\`; the record is \`docs/runs/${runId}.jsonl\`.
 `, "utf8");
 console.log(`\n${written.length} sample(s) in ${outDir.replace(`${ROOT}/`, "")}; spent ${budget.spentUsd.toFixed(4)} USD${stopReason ? `; stopped: ${stopReason}` : ""}. Record: docs/runs/${runId}.jsonl`);
 
 /** One turn of one variant on an isolated copy of the snapshot. */
 async function playVariant(payload, turnNo, variant) {
-  const crafted = craftVariant(payload, args.craft);
+  const crafted = voiceVariant(craftVariant(payload, args.craft), args.voice, examples);
   const store = createSnapshotTurnStore(crafted);
   const transport = [];
   const writerLive = args.dry ? null : guardedModel(variant.writer, budget, apiKey, transport);
@@ -196,7 +225,8 @@ async function playVariant(payload, turnNo, variant) {
   return {
     type: "turn", run: runId, campaignId: snapshots.campaignId, operationId, turnNo, input: input.input,
     variant: { id: variant.id, label: variant.label, runtime: variant.runtime, writer: `${variant.writer.providerId}/${variant.writer.modelId}`,
-      bookkeeper: variant.bookkeeper ? `${variant.bookkeeper.providerId}/${variant.bookkeeper.modelId}@${variant.bookkeeper.effort}` : null, effort: variant.effort, craft: args.craft },
+      bookkeeper: variant.bookkeeper ? `${variant.bookkeeper.providerId}/${variant.bookkeeper.modelId}@${variant.bookkeeper.effort}` : null, effort: variant.effort, craft: args.craft,
+      voice: args.voice, ...(examples ? { examplesPassages: examples.passages } : {}) },
     outcome: result?.status ?? "error", continues, errorCode: result?.failure ?? (thrown ? thrown.code ?? "exception" : null), exception: thrown ? String(thrown.message).slice(0, 200) : null,
     failure: observations.filter((o) => o.type === "failure").map((o) => ({ code: o.code, message: o.message })),
     narration: result?.status === "committed" ? result.narration : null,

@@ -14,6 +14,15 @@ import { parseDmSettings } from "../src/lib/gameplay/dm-loop/settings.ts";
 import { listTurnSnapshotsWith, readTurnSnapshotWith } from "../src/lib/gameplay/turn-snapshot.ts";
 import { checkQuotableLines, npcLines, parseQuotableFlags, quotableLine, quotableRequest, QUOTABLE_MODEL } from "../src/lib/gameplay/dm-loop/quotable.ts";
 import { readFileSync } from "node:fs";
+import { incompleteSpeechShare, particleRate, tennisShare, voiceMetrics, voiceMetricsTable } from "../scripts/eval/lib/voice-metrics.mjs";
+import { readExamplesFile, voiceVariant } from "../scripts/eval/real-replay/lib/voice.mjs";
+import { snapshotListOf, snapshotPayloadOf } from "../scripts/eval/real-replay/lib/snapshots.mjs";
+import { DEFAULT_LEDGER, ledgerSpec } from "../scripts/eval/real-replay/lib/ledger.mjs";
+import { buildReplaySample } from "../src/lib/gameplay/replay/samples.ts";
+import { encodeTurnSnapshot } from "../src/lib/gameplay/turn-snapshot.ts";
+import { rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 
 const finish = (kind = "quiet") => ({ name: "finish_turn", arguments: { sceneKinds: [kind], spotlight: [], playerMoment: false, nextTension: "calm" } });
 const time = (minutes = 5) => ({ name: "advance_time", arguments: { minutes, reason: "время" } });
@@ -328,6 +337,104 @@ test("§5 the flags are logged per turn (migration 70) and the next turn's tail 
     // The public state never sees the flags.
     assert.doesNotMatch(JSON.stringify(await c.f.saves(c.cid, "campaign")), /лозунг вместо обиды/);
   } finally { await c.f.db.close(); }
+});
+
+// --- Part 6: the metrics ------------------------------------------------------------------------
+test("§6 the voice metrics over synthetic narrations: particles, incomplete speech, short paragraphs, metaphor markers, flags, repeated phrases per character, tennis, Latin, канцелярит, calques", () => {
+  // SYNTHETIC narrations written for this test (two turns of one variant).
+  const stiff = "Фрол смотрит на воду.\n— Я полагаю, что данный вопрос является важным, и мы должны обсудить его в рамках нашей встречи, — говорит Фрол.\n— Безусловно, стоит отметить, что это не просто сделка, а судьба, — отвечает Марта.\n— Мы вернём себе небо, — говорит Фрол.\n— Мы вернём себе небо, — повторяет Фрол.\nВетер, словно зверь, бьёт в ставни, будто просится внутрь.";
+  const alive = "Фрол сплёвывает за борт.\n— Ну и чего тебе-то?\n— Сорок монет.\n— Э?\nОн долго молчит.\n— Небось, Марта послала… — Фрол вытирает руки. — Ладно. Бери, даром.\n— Даром?\n— Даром.";
+  const m = voiceMetrics([{ narration: stiff, flags: [{ line: "Мы вернём себе небо", why: "лозунг" }] }, { narration: alive, flags: [] }], ["Фрол", "Марта"]);
+  assert.equal(m.turns, 2);
+  assert.equal(m.quotableFlags, 1);
+  assert.equal(m.quotableChecked, 2);
+  assert.equal(m.quotableFlagsPerTurn, 0.5);
+  assert.equal(m.speechLines, 7, "the lines of two or more words, the repeated line once");
+  assert.ok(m.particleRate > 0, "particles counted in the speech (ну, -то, э, небось)");
+  assert.ok(m.incompleteSpeechShare > 0.3, `incomplete ${m.incompleteSpeechShare}`);
+  assert.ok(m.shortParagraphShare > 0.3, `short paragraphs ${m.shortParagraphShare}`);
+  assert.ok(m.metaphorDensity > 0, "словно, будто");
+  assert.ok(m.kancelyaritPerThousand > 0, "является, данный, в рамках");
+  assert.ok(m.calqueMarkersPerThousand > 0, "стоит отметить, не просто … а, безусловно");
+  assert.equal(m.latinShare, 0);
+  assert.deepEqual(m.repeatedPhrases[0], { who: "Фрол", phrase: "мы вернём себе", times: 2 });
+  // Tennis: the stiff narration alternates with bare attributions only (a perfect match); the alive one
+  // has a pause and an action between some lines («Он долго молчит.», «Фрол вытирает руки»).
+  assert.equal(tennisShare(stiff), 1);
+  assert.ok(tennisShare(alive) > 0 && tennisShare(alive) < 1, `tennis ${tennisShare(alive)}`);
+  assert.equal(tennisShare("— Да.\nОн встаёт.\n— Нет."), 0, "a narrative paragraph between is a beat");
+  assert.equal(particleRate([]), null);
+  assert.equal(incompleteSpeechShare(["Сорок монет."]), 1, "a two-word answer counts as incomplete");
+  assert.equal(incompleteSpeechShare(["Сорок монет я тебе не дам."]), 0);
+  assert.match(voiceMetricsTable([{ variant: "layer · A", metrics: m }]), /^\| Variant \| Turns \|[\s\S]*\n\| layer · A \| 2 \| /);
+});
+
+// --- Part 7: the replay tool's voice variants; the owner's replay fix 2 ------------------------
+test("§7 the replay's voice variants rewrite the isolated copy only: off drops the layer, the reminder and the examples; layer keeps the prose; five and all take the examples file; the label is in the sample, the passages are not", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const call = async (action, payload) => (await c.f.one("select public.rpg_dossier($1,$2,$3,$4::jsonb,null) result", [c.owner, c.cid, action, JSON.stringify(payload)])).result;
+    await call("voice_save", { requestId: randomUUID(), scope: "campaign", samples: "Отрывок из базы кампании (синтетический)." });
+    let captured = null;
+    await c.turn("Смотрю.", [{ text: "Вода. ", toolCalls: [time(), finish()] }], { deps: { afterCommit: async ({ input, source }) => { captured = { input, source }; } } });
+    assert.ok(captured, "afterCommit delivered the source");
+    const payload = { schemaVersion: 1, input: captured.input, source: structuredClone(captured.source), takenAt: new Date().toISOString() };
+    payload.source.voiceMode = "five"; payload.source.voiceExamplesOn = true;
+    const live = buildDmLoopContext(voiceVariant(payload, "live").source, payload.input);
+    assert.match(live.parts.howToDm, /Отрывок из базы кампании/, "live: the snapshot's own samples and mode");
+    const off = buildDmLoopContext(voiceVariant(payload, "off").source, payload.input);
+    assert.doesNotMatch(off.parts.howToDm, /Голос\. Люди говорят|Образцы голоса/, "off: no layer, no examples");
+    assert.doesNotMatch(off.parts.now, /Перед репликой — чего человек хочет/, "off: no reminder");
+    const layer = buildDmLoopContext(voiceVariant(payload, "layer").source, payload.input);
+    assert.match(layer.parts.howToDm, /Голос\. Люди говорят/);
+    assert.doesNotMatch(layer.parts.howToDm, /Образцы голоса|Отрывок из базы/, "layer: the prose without examples, the snapshot's samples dropped");
+    assert.match(layer.parts.now, /Перед репликой — чего человек хочет/);
+    // The examples file: outside the repository only; read at run time.
+    const outside = join(tmpdir(), `voice-examples-${randomUUID()}.md`);
+    await writeFile(outside, "## торг\nСинтетический файл: первый.\n---\n## быт\nСинтетический файл: второй.\n---\nСинтетический файл: третий.", "utf8");
+    try {
+      const examples = await readExamplesFile(outside);
+      assert.deepEqual({ passages: examples.passages, kinds: examples.kinds }, { passages: 3, kinds: 3 });
+      await assert.rejects(readExamplesFile("docs/stages/VOICE.md"), /outside the repository/);
+      assert.throws(() => voiceVariant(payload, "five"), /needs --examples-file/);
+      const five = voiceVariant(payload, "five", examples);
+      const fiveContext = buildDmLoopContext(five.source, payload.input);
+      assert.match(fiveContext.parts.howToDm, /Образцы голоса[\s\S]*Синтетический файл: первый/);
+      assert.doesNotMatch(fiveContext.parts.howToDm, /Отрывок из базы/, "the snapshot's samples are replaced, never kept alongside");
+      assert.equal(five.source.voiceMode, "five");
+      const all = voiceVariant(payload, "all", examples, 5000);
+      assert.equal(all.source.voiceMode, "all");
+      assert.equal(all.source.voiceTokenCap, 5000);
+      assert.equal((buildDmLoopContext(all.source, payload.input).parts.howToDm.match(/<example>/g) ?? []).length, 3);
+      assert.equal(payload.source.voiceSamples, "Отрывок из базы кампании (синтетический).", "the payload itself is untouched");
+      // The sample carries the label and the count, never the passages.
+      const record = { run: "r", campaignId: c.cid, operationId: payload.input.operationId, turnNo: 1, input: "Смотрю.", variant: { id: "A", label: "A", runtime: "single", writer: "anthropic/claude-opus-5-5", bookkeeper: null, effort: "high", craft: "live", voice: "five", examplesPassages: 3 },
+        outcome: "committed", narration: "— Ну? — говорит Марта.", firstWordMs: 1, textDoneMs: 2, recordsDoneMs: 2, durationMs: 2, requests: 1, costUsd: 0.01, cacheReadShare: 0,
+        tokens: { input: 1, output: 1, cached: 0, cacheWrite: 0, cacheWrite1h: 0 }, usage: [], receipts: [], diagnostics: [], effort: "high", tension: null,
+        quotable: { flags: [{ line: "Ну?", why: "x" }], lines: 1, costUsd: 0.00005, error: null } };
+      const sample = buildReplaySample(five, record, { language: "ru", campaignTitle: "t" });
+      assert.equal(sample.variant.voice, "five");
+      assert.equal(sample.variant.examplesPassages, 3);
+      assert.deepEqual(sample.turns[0].quotable.flags, [{ line: "Ну?", why: "x" }]);
+      assert.doesNotMatch(JSON.stringify(sample), /Синтетический файл|Отрывок из базы/, "no passage in a sample");
+    } finally { await rm(outside, { force: true }); }
+  } finally { await c.f.db.close(); }
+});
+
+test("owner's replay fix 2: the tool reads the route's answer (the decoded payload) as well as the SQL's shape; the stage's ledger is its own", () => {
+  const payload = { schemaVersion: 1, input: { operationId: "op", input: "x", campaignId: "c" }, source: { snapshot: {} }, takenAt: "t" };
+  assert.deepEqual(snapshotPayloadOf({ operationId: "op", turnNo: 3, stored: "snapshot", payload }), payload, "the route's shape (readTurnSnapshotWith)");
+  assert.deepEqual(snapshotPayloadOf({ encoding: "json", source: payload }), payload, "the SQL's shape for a pre-68 turn");
+  assert.deepEqual(snapshotPayloadOf({ encoding: "gzip-base64", source: encodeTurnSnapshot(payload.input, payload.source).source }).input, payload.input, "the SQL's shape for a snapshot row");
+  assert.deepEqual(snapshotPayloadOf(payload), payload, "a bare payload");
+  assert.throws(() => snapshotPayloadOf({ operationId: "op" }), /without a payload/);
+  assert.deepEqual(snapshotListOf({ campaignId: "c", keep: null, snapshots: [{ turnNo: 1 }] }), [{ turnNo: 1 }]);
+  assert.deepEqual(snapshotListOf([{ turnNo: 2 }]), [{ turnNo: 2 }]);
+  assert.match(readFileSync(new URL("../scripts/eval/real-replay/replay.mjs", import.meta.url), "utf8"), /byTurn\.set\(turnNo, snapshotPayloadOf\(row\)\)/, "the --base path uses it");
+  assert.equal(ledgerSpec("voice").capUsd, 8);
+  assert.equal(ledgerSpec("polish3").capUsd, 20);
+  assert.equal(DEFAULT_LEDGER, "voice");
+  assert.throws(() => ledgerSpec("other"), /unknown ledger/);
 });
 
 test("owner's replay fix 1: the snapshot list names every committed loop turn, from its claim-time source when no snapshot row exists", async () => {
