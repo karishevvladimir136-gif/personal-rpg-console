@@ -137,3 +137,9 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     right); the review screen lets the owner pick a starting item's kind and slot and equips it at creation; an item's
     `mechanics` field is set from the review; later, item bonuses applied to rolls from equipped items (attunement 3 in
     a 5e campaign).
+
+15. **The adventure's description reaches a turn as 600 characters, «owner-advisory, never new facts»**
+    (`adventureGuidance` in `dm-loop/context.ts`). The owner writes his adventure hooks there (session 2: the mage goes
+    on a job with two guards). Anything past 600 characters, and any fact in it, lives only in the opening. Do, with
+    item 8: the adventure's full text in the turn while the adventure is active (budgeted like canon), and its stated
+    facts — people, places, who goes with the hero — offered as records at the opening review.
