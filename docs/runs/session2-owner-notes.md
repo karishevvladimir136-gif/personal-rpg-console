@@ -250,3 +250,6 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     to the read view with «Сохранено»; history behind a small «Версии» link; no system paragraphs. Also: the false
     «Покинуть страницу и потерять несохранённые изменения?» when leaving «Приключения» after the adventure was saved
     (the opening panel counts as unsaved).
+    Owner after saving the canon: «это мега-окно справа должно прятаться после сохранения документа, а не вечно висеть».
+    Saving closes the document panel (back to the list with «Сохранено» on the saved row); the panel opens only when a
+    document is picked.
