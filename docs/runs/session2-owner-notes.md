@@ -506,3 +506,9 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     narration never states the DM's private plans, NPC intentions or timings the hero has not learned; the privacy check
     (`astra-privacy-context` / the DM's private notes) flags a narration that repeats a private note's hour or intent;
     the session report greps narration for facts that appear only in private notes.
+
+42. **The action box is tiny** (owner, 14:43: «важный нюанс. поле ввода оч мелкое»). The composer's textarea has
+    `rows={2}` (`gameplay-composer.tsx`), so a normal plan of attack (three sentences) already scrolls inside a
+    two-line box with its own scrollbar. Do: start at about 4 lines, grow with the text up to about half the screen,
+    no inner scrollbar until then; the same font size as the story text; keep it pinned at the bottom of the play
+    column. Part of the owner's acceptance pass (item 33).
