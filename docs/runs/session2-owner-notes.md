@@ -214,3 +214,13 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     → 3 Приключение (title, what we play, the pace, who goes with the hero; full text kept — item 15) → 4 Ведущий (model,
     depth range, «Что мне нравится», voice examples mode) → 5 Первая сцена (the DM proposes the opening from all of it,
     the people in it become records; the owner edits, «Играть»).
+
+22. **The campaign screens do not fill the window** (owner, with screenshots of «Приключения» at full width and zoomed
+    out: «нужно как минимум протянуть вниз до конца экрана… внизу пустая полоса»; also «разрешение и размерность»).
+    The campaign shell is a centred column with the side menu as a card that ends after «Настройки» and the content
+    panel that ends after its last field, so a tall or wide window shows an empty band below and wide margins at the
+    sides. Do: the side menu full height (sticky, to the bottom of the window), the content area at least the window's
+    height, and on wide screens use the width (a larger max width, or scale type and spacing with the viewport) — with
+    item 5's typography pass; screenshots at 1440×900, 1920×1080, 2560×1440 and a phone.
+    Also seen on this screen: the step-4 sentence («Берегост, пост стражи, раннее утро…») landed in «Во что вы хотите
+    сыграть?» as the whole premise — the first scene and the adventure's premise are one field (item 21).
