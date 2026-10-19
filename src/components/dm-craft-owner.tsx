@@ -13,6 +13,10 @@ import type {
   CraftVersionInput,
 } from "@/lib/dm-craft/contracts";
 
+/** Polish 3 §7: whom a card is for (the label is translated by `t`). */
+function roleLabel(role: "writer" | "bookkeeper" | "both") {
+  return role === "writer" ? "For the writer" : role === "bookkeeper" ? "For the bookkeeper" : "For both";
+}
 function versionText(version: CraftVersion, language: "en" | "ru") {
   return version[language];
 }
@@ -86,6 +90,7 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
       category: version.category,
       stages: [...version.stages],
       triggers: [...version.triggers],
+      role: version.role ?? "both",
       en: { ...version.en },
       ru: { ...version.ru },
       provenance: "Owner manual edit",
@@ -100,6 +105,7 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
       category: "",
       stages: ["plan", "narrate"],
       triggers: [],
+      role: "both",
       en: { title: "", guidance: "", avoid: "" },
       ru: { title: "", guidance: "", avoid: "" },
       provenance: "Owner manual edit",
@@ -231,6 +237,8 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
                       t(stage === "plan" ? "Planning" : "Narration"),
                     )
                     .join(" · ")}
+                  {" · "}
+                  {t(roleLabel(version.role ?? "both"))}
                 </p>
                 <Button onClick={() => editVersion(version)} disabled={busy || !!previewView}>
                   {t("Edit and review a new version")}
@@ -287,6 +295,19 @@ export function DmCraftOwner({ previewView }: { previewView?: CraftOwnerView } =
                     />
                   </label>
                 </div>
+                <label className="field">
+                  {t("For whom")}
+                  <select
+                    value={editing.role ?? "both"}
+                    onChange={(event) =>
+                      setEditing({ ...editing, role: event.target.value as CraftVersionInput["role"] })
+                    }
+                  >
+                    {(["both", "writer", "bookkeeper"] as const).map((role) => (
+                      <option key={role} value={role}>{t(roleLabel(role))}</option>
+                    ))}
+                  </select>
+                </label>
                 <fieldset className="dm-craft-stages">
                   <legend>{t("Used during")}</legend>
                   {(["plan", "narrate"] as const).map((stage) => (

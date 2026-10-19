@@ -10,20 +10,27 @@ import { providerKey } from "../lib/keys.mjs";
 import { dmModels, dmUsageCost } from "../../../src/lib/model-runtime/dm-models.ts";
 import { createLoopBudget } from "../lib/loop-harness.mjs";
 import { stamp, RUNS_DIR } from "./lib/harness.mjs";
-import { openRun } from "./lib/ledger.mjs";
+import { openRun as openDmArchRun } from "./lib/ledger.mjs";
+import { openRun as openPolish3Run } from "../real-replay/lib/ledger.mjs";
 
 const JUDGE = { providerId: "anthropic", modelId: "claude-sonnet-5-5" };
 const MAX_OUTPUT = 2500;
-const args = { budgetUsd: null, files: null, effort: "medium", dry: false };
+// Polish 3 §6: `--ledger polish3` charges the stage's own ledger and names the record polish3-…-judge; the
+// turn records of the loop bench (scripts/eval/run.mjs with --bookkeeper) are judged like the bake-off's.
+const args = { budgetUsd: null, files: null, effort: "medium", dry: false, ledger: "dmarch" };
 for (let i = 2; i < process.argv.length; i++) {
   const flag = process.argv[i], value = () => process.argv[++i];
   if (flag === "--budget-usd") args.budgetUsd = Number(value());
   else if (flag === "--files") args.files = value().split(",");
   else if (flag === "--effort") args.effort = value();
   else if (flag === "--dry") args.dry = true;
+  else if (flag === "--ledger") args.ledger = value();
   else throw new Error(`unknown argument ${flag}`);
 }
 if (!args.dry && !(args.budgetUsd > 0)) throw new Error("--budget-usd N (N > 0) is required (or --dry)");
+if (!["dmarch", "polish3"].includes(args.ledger)) throw new Error("--ledger must be dmarch or polish3");
+const prefix = args.ledger === "polish3" ? "polish3" : "dmarch";
+const openRun = args.ledger === "polish3" ? openPolish3Run : openDmArchRun;
 
 const CATEGORIES = ["items", "money", "debts_promises", "people", "places", "time"];
 const SYSTEM = `You are the records judge of a role-playing game. A game master narrated one turn; a bookkeeping layer then made records in the game's database through tools. You compare the records with the narration and report, per category, how many facts of the narration should have been recorded (narrated), how many of them were recorded correctly (recorded), how many were missed (missed), how many records contradict the narration (wrong: a wrong amount, owner, name, direction or time), and how many records have no basis in the narration or the writer's ledger (invented, counted once overall).
@@ -39,6 +46,7 @@ Rules:
 verdict: good = nothing missed or wrong that matters to play; fair = one or two small gaps; poor = a money, item, debt or person fact is missing or wrong.`;
 
 function brief(turn) {
+  // The loop bench's records (polish 3 §6) keep the ledger as {found, text, clipped} and the clock as worldMinutesBefore/After, as the bake-off's do.
   const accepted = turn.receipts.filter((r) => r.result.ok).map((r) => ({ tool: r.call.name, arguments: r.call.arguments, summary: r.result.summary }));
   const rejected = turn.receipts.filter((r) => !r.result.ok).map((r) => ({ tool: r.call.name, arguments: r.call.arguments, reason: r.result.reason }));
   return [
@@ -72,7 +80,7 @@ function parseJson(text) {
 
 async function judged() {
   const done = new Map();
-  const files = (await readdir(RUNS_DIR)).filter((file) => /^dmarch-.*-judge.*\.jsonl$/.test(file) && !file.includes("-dry"));
+  const files = (await readdir(RUNS_DIR)).filter((file) => /^(dmarch|polish3)-.*-judge.*\.jsonl$/.test(file) && !file.includes("-dry"));
   for (const file of files)
     for (const line of (await readFile(join(RUNS_DIR, file), "utf8")).split("\n")) {
       if (!line.trim()) continue;
@@ -92,7 +100,7 @@ for (const file of files)
   }
 const done = args.dry ? new Map() : await judged();
 const pending = turns.filter((turn) => !done.has(turn.operationId));
-const runId = `dmarch-${stamp()}-judge${args.dry ? "-dry" : ""}`;
+const runId = `${prefix}-${stamp()}-judge${args.dry ? "-dry" : ""}`;
 const recordFile = join(RUNS_DIR, `${runId}.jsonl`);
 await mkdir(RUNS_DIR, { recursive: true });
 const write = (record) => appendFile(recordFile, `${JSON.stringify(record)}\n`, "utf8");

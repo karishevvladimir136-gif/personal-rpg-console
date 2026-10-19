@@ -1,12 +1,17 @@
 import type { RuntimeSource, ContextStage } from "./server-contracts";
 import type { TurnInput } from "./contracts";
-import type { CraftVersion } from "../dm-craft/contracts.ts";
+import type { CraftRole, CraftVersion } from "../dm-craft/contracts.ts";
 import { CRAFT_SELECTOR_POLICY, LEGACY_CRAFT_SELECTOR_POLICY } from "../dm-craft/contracts.ts";
 import { parseDmStyle } from "../dm-craft/validation.ts";
 import { DmError } from "./dm-errors.ts";
 import { isTimelineFence, sameTimeline } from "../saves/fence.ts";
 
-function card(value: CraftVersion, stage: "plan" | "narrate", locale: "en" | "ru") {
+/** A card as the context reads it: the text in the campaign's language, its key, its role and its triggers
+ * (polish 3 §7: the role picks whom it travels with; the triggers let the bookkeeper's selection run on
+ * the narration and the ledger, as the SQL selector runs on the player's input). */
+export type ContextCard = { key: string; title: string; guidance: string; avoid: string; role: CraftRole; triggers: string[] };
+
+function card(value: CraftVersion, stage: "plan" | "narrate", locale: "en" | "ru"): ContextCard {
   if (
     !value ||
     typeof value.id !== "string" ||
@@ -28,7 +33,27 @@ function card(value: CraftVersion, stage: "plan" | "narrate", locale: "en" | "ru
     text.avoid.length > 800
   )
     throw new DmError("context");
-  return { title: text.title, guidance: text.guidance, avoid: text.avoid };
+  const role: CraftRole = value.role === "writer" || value.role === "bookkeeper" ? value.role : "both";
+  return { key: value.key, title: text.title, guidance: text.guidance, avoid: text.avoid, role, triggers: Array.isArray(value.triggers) ? value.triggers.filter((t) => typeof t === "string") : [] };
+}
+
+/** Whether a card travels with a role of the turn: the single loop takes every card, the writer the
+ * writer's and the shared ones, the bookkeeper the bookkeeper's and the shared ones. */
+export function cardForRole(cardRole: CraftRole, role: "dm" | "writer" | "bookkeeper"): boolean {
+  return role === "dm" || cardRole === "both" || cardRole === role;
+}
+
+/** The selector of `dm_craft_stage_v2` in TypeScript: the cards whose literal triggers occur in the text,
+ * by the count of triggers found, at most `limit` (two, as the SQL). The bookkeeper's selection runs on the
+ * narration and the ledger; the replay tool's on the owner's line. */
+export function selectCraftCards<T extends { key: string; triggers: string[] }>(library: T[], text: string, limit = 2): T[] {
+  const lower = text.toLocaleLowerCase();
+  return library
+    .map((entry) => ({ entry, score: entry.triggers.filter((trigger) => trigger.trim().length >= 2 && lower.includes(trigger.toLocaleLowerCase())).length }))
+    .filter((row) => row.score > 0)
+    .sort((a, b) => b.score - a.score || a.entry.key.localeCompare(b.entry.key))
+    .slice(0, limit)
+    .map((row) => row.entry);
 }
 
 /** Only the pinned, stage-appropriate, public-safe owner guidance is admitted. */
@@ -64,7 +89,7 @@ export function pinnedCraftForStage(
     throw new DmError("context");
   }
   if (stage === "feedback")
-    return { styleRevision: pinned.styleRevision, style, doctrine: null, cards: [], library: [] };
+    return { styleRevision: pinned.styleRevision, style, doctrine: null, cards: [] as ContextCard[], library: [] as ContextCard[] };
   const locale = source.snapshot.settings.values.language;
   if (locale !== "en" && locale !== "ru") throw new DmError("context");
   if (pinned.doctrine && (pinned.doctrine.kind !== "doctrine" || pinned.doctrine.key !== "core-doctrine"))
@@ -78,8 +103,9 @@ export function pinnedCraftForStage(
     styleRevision: pinned.styleRevision,
     style,
     doctrine: pinned.doctrine ? card(pinned.doctrine, stage, locale) : null,
+    /** The cards the SQL selector chose for this turn (at most two, by the input's words and the public signal). */
     cards: selected.map((entry) => card(entry, stage, locale)),
-    /** The whole approved library (stage 4 layer 1); empty before migration 55. */
+    /** The whole approved library (every active card of the stage), for a selection run on other text. */
     library: library.map((entry) => card(entry, stage, locale)),
   };
 }

@@ -118,7 +118,9 @@ export type DmLoopDiagnostic =
   /** Polish 3 §2: a retryable transport failure of the writer's continuation was retried once. */
   | { kind: "writer_retried"; request: number }
   /** Polish 3 §3: rejected record calls were sent back with their reasons for one retry. */
-  | { kind: "records_retry_asked"; calls: string[] };
+  | { kind: "records_retry_asked"; calls: string[] }
+  /** Polish 3 §7: the narration's time-of-day words disagreed with the clock (the note the next turn's tail shows). */
+  | { kind: "time_words"; detail: string };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";

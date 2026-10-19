@@ -20,7 +20,14 @@
 import type { TurnInput, JsonObject } from "../contracts.ts";
 import type { RuntimeSource } from "../server-contracts.ts";
 import type { Entity, PublicProfile, Quest } from "../../persistence/contracts.ts";
-import { pinnedCraftForStage } from "../dm-craft-context.ts";
+import { cardForRole, pinnedCraftForStage, type ContextCard } from "../dm-craft-context.ts";
+import { timeCheckLine, TIME_CHECK_KEY } from "./time-words.ts";
+
+/** Polish 3 §7: the cards chosen for a turn, as one block of the volatile tail (empty when none). */
+export function craftCardsBlock(cards: ContextCard[]): string {
+  if (!cards.length) return "";
+  return `DM Craft cards for this turn (the owner's approved cards chosen for this scene by its words; the doctrine above always applies):\n${cards.map((card) => `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}`).join("\n")}`;
+}
 import { parseCharacterModel, type CharacterModel } from "../character-model.ts";
 import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
 import { DM_ROLE, dmTurnShape, WRITER_ROLE, writerTurnShape } from "./roles.ts";
@@ -319,7 +326,7 @@ function pinnedFacts(source: RuntimeSource): Budgeted {
   return withinBudget(entries, DOSSIER_BUDGETS.layer3.pinned, "Owner-pinned facts (always true; the owner's word outranks everything but a later owner correction):");
 }
 
-const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state"]);
+const RESERVED_FACTS = new Set(["notebook", "notebook_session", "ledger", "variety", "metrics", "depth_state", TIME_CHECK_KEY]);
 function privateSecrets(source: RuntimeSource): Budgeted {
   const entries: { label: string; text: string }[] = [];
   for (const kind of ["fact", "clock", "consequence"] as const) {
@@ -497,8 +504,11 @@ export type DmContextRole = "dm" | "writer";
 export type DmLoopContext = {
   role: DmContextRole;
   system: DmSystemBlock[];
-  /** The blocks by name (the bookkeeper's layers are built from the living part, the tail and «now»). */
-  parts: { howToDm: string; world: string; history: string[]; living: string; tail: string; now: string };
+  /** The blocks by name (the bookkeeper's layers are built from the living part, the tail and «now»);
+   * `tailBase` is the tail without this role's cards and the time line, for another role's own cards. */
+  parts: { howToDm: string; world: string; history: string[]; living: string; tail: string; tailBase: string; now: string; timeLine: string };
+  /** Polish 3 §7: the cards chosen for this turn (filtered by the role) and the whole library with triggers and roles. */
+  craft: { selected: ContextCard[]; library: ContextCard[] };
   /** The player's literal input with its addressee, as the first user message. */
   user: string;
   cachedPrefixBytes: number;
@@ -536,19 +546,20 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const layers: DossierLayerReport[] = [];
   let craft: ReturnType<typeof pinnedCraftForStage> = null;
   try { craft = pinnedCraftForStage(source, input, "plan"); } catch { craft = null; }
-  // Layer 1: the whole approved library, by key order, while the budget lasts.
-  const library = (craft?.library ?? []).map((card) => ({ label: card.title, text: `## ${card.title}\n${card.guidance}\nAvoid: ${card.avoid}` }));
+  // Polish 3 §7: always-on stays short — layer 1 is the role, the turn shape, the voice slot, the
+  // campaign language, the core doctrine and the style; the library is no longer listed whole. The
+  // cards the selector chose for this turn (at most two, by the input's words and the public signal)
+  // travel in the volatile tail, filtered by the role (the single loop takes every one).
   // Polish group 7: the voice part of layer 1 (empty until the voice stage fills it) and the
   // owner's «Образцы голоса» when the campaign's switch allows them — cached with the role.
   const voice = voiceLayer(language, source.voiceSamples, !!source.voiceExamplesOn);
-  const fixed = [role === "writer" ? WRITER_ROLE : DM_ROLE, role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
+  const howToDm = [role === "writer" ? WRITER_ROLE : DM_ROLE, role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
     `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
     craft?.doctrine ? `DM Craft — how to run (the owner's approved doctrine):\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null)].filter(Boolean).join("\n\n");
-  const libraryBudget = Math.max(0, DOSSIER_BUDGETS.layer1 - estimateTokens(fixed));
-  const cards = withinBudget(library, libraryBudget, "DM Craft library (the owner's approved cards; all of them apply, pick what the scene calls for):");
-  const howToDm = [fixed, cards.text].filter(Boolean).join("\n\n");
-  layers.push({ layer: 1, budgetTokens: DOSSIER_BUDGETS.layer1, usedTokens: estimateTokens(howToDm), dropped: cards.dropped });
+  layers.push({ layer: 1, budgetTokens: DOSSIER_BUDGETS.layer1, usedTokens: estimateTokens(howToDm), dropped: [] });
+  const selectedCards = (craft?.cards ?? []).filter((card) => cardForRole(card.role, role));
+  const cardsText = craftCardsBlock(selectedCards);
 
   // Layer 2: the world.
   const guide = snapshot.documents.find((doc) => doc.id === snapshot.dmGuideDocumentId);
@@ -584,8 +595,11 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     playerLikes(source), attentionLedger(source, ledger)];
   const living = stableParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "No dossier yet. Start it as the story needs: note_character for people who matter, note_world for secrets and plans, quest for the journal.";
-  const tail = tailParts.map((part) => part.text).filter(Boolean).join("\n\n")
+  const tailBase = tailParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "This session's tail is empty so far: no Character Models, open journal entries, private notes or plans yet.";
+  // Polish 3 §7: the cards chosen for this turn and the one line of the time-word check (nothing when it passed).
+  const timeLine = timeCheckLine(source.privateState, snapshot.settings.values.language === "ru" ? "ru" : "en");
+  const tail = [tailBase, cardsText, timeLine].filter(Boolean).join("\n\n");
   const stableBudget = DOSSIER_BUDGETS.layer3.party + DOSSIER_BUDGETS.layer3.codex + DOSSIER_BUDGETS.layer3.factions + Math.floor(DOSSIER_BUDGETS.layer3.journal / 2) +
     DOSSIER_BUDGETS.layer3.pinned + DOSSIER_BUDGETS.layer3.notebook + DOSSIER_BUDGETS.layer3.adventure + DOSSIER_BUDGETS.layer3.memory;
   const tailBudget = DOSSIER_BUDGETS.layer3.models + DOSSIER_BUDGETS.layer3.journal + DOSSIER_BUDGETS.layer3.secrets + DOSSIER_BUDGETS.layer3.plans +
@@ -622,7 +636,8 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     { text: now, cache: false },
   ];
   const cachedPrefixBytes = bytes(howToDm) + bytes(world) + history.blocks.reduce((sum, text) => sum + bytes(text), 0) + bytes(living);
-  return { role, system, parts: { howToDm, world, history: history.blocks, living, tail, now }, user, cachedPrefixBytes,
+  return { role, system, parts: { howToDm, world, history: history.blocks, living, tail, tailBase, now, timeLine },
+    craft: { selected: selectedCards, library: craft?.library ?? [] }, user, cachedPrefixBytes,
     totalBytes: cachedPrefixBytes + bytes(tail) + bytes(now) + bytes(user), layers, memoryQuery: memoryQueryFor(source, input) };
 }
 

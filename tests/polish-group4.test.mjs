@@ -33,7 +33,10 @@ test("the polish cards arrive owner-approved (202610180090): the draft v1 kept, 
     }
     const first = await c.turn("Здороваюсь с Фролом.", [{ text: "Фрол кивает. ", toolCalls: [finish()] }]);
     assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
-    const layer1 = first.model.requests[0].system[0].text;
+    // Polish 3 §7: the library no longer sits whole in layer 1; the approved cards reach the DM through the
+    // turn's pinned library (the selector picks at most two per turn for the tail, by the scene's words).
+    const layer1 = (await c.row(first.input.operationId)).source.craft.library.map((card) => `## ${card.ru.title}\n${card.ru.guidance}`).join("\n");
+    assert.doesNotMatch(first.model.requests[0].system[0].text, /DM Craft library/, "always-on stays short");
     for (const title of ["Что знает герой — и три улики на каждую тайну", "Опасность от людей, бой как бой, внятный финал", "Момент героя — и решения только за игроком",
       "Слова о времени — сверяй с часами", "Вопрос без ответа не пропадает; привычка — не чаще раза за сцену", "Записи совпадают с историей"])
       assert.match(layer1, new RegExp(`## ${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`), `the approved card «${title}» is in layer 1`);

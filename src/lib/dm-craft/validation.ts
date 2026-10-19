@@ -69,7 +69,9 @@ export function parseCraftEntry(value: unknown): CraftVersionInput {
     "en",
     "ru",
     "provenance",
-  ]);
+  ], ["role"]);
+  // Polish 3 §7: the card's role (writer, bookkeeper, both); absent means both.
+  const role = item.role === undefined ? undefined : choices(item.role, ["writer", "bookkeeper", "both"] as const);
   const key = string(item.key, 80, 2);
   if (!/^[a-z][a-z0-9-]{1,79}$/.test(key))
     throw new Error("invalid_dm_craft");
@@ -87,6 +89,7 @@ export function parseCraftEntry(value: unknown): CraftVersionInput {
     category: string(item.category, 80),
     stages,
     triggers,
+    ...(role ? { role } : {}),
     en: locale(item.en),
     ru: locale(item.ru),
     provenance: string(item.provenance, 240),

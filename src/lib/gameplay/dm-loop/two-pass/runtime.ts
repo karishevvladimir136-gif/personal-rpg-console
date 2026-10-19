@@ -41,6 +41,7 @@ import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
 import { continuation, executeDmLoopTurn, joinText, narrationNames, retriableRejection, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
+import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
 export const TWO_PASS_RUNTIME = "dm-loop-v1/two-pass" as const;
@@ -248,12 +249,19 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       }
       return pause;
     };
+    /** The narration and the ledger the bookkeeper works on (its craft cards are selected on them; polish 3 §7). */
+    const bookkeeperText = () => {
+      const at = bookkeeperStart(loop.transcript);
+      const writerText = (at >= 0 ? loop.transcript.slice(0, at) : loop.transcript).filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
+      const split = splitLedger(writerText);
+      return { narration: split.narration, ledger: split.ledger };
+    };
     /** One model request of either pass; returns what came back. */
     const request = async (phase: "writer" | "bookkeeper", messages: DmMessage[], firstRound: boolean) => {
       const model = phase === "writer" ? writer : bookkeeper;
       const spec = phase === "writer" ? writerSpec : bookkeeperSpec;
       const effort = phase === "writer" ? pin.effort : pin.bookkeeper!.effort;
-      const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName);
+      const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName, bookkeeperText());
       const body: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
         maxOutputTokens: L.maxOutputTokens + thinkingAllowance(effort), operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(body.system) + JSON.stringify(body.messages)).length;
@@ -495,6 +503,10 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })));
     shadow.setPrivate("fact", "metrics", serializeMetrics(metrics.metrics));
     if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort, streak: pin.depth.streak ?? 0 }));
+    // Polish 3 §7: the time words against the clock the turn started at; a mismatch is one line in the next turn's tail.
+    const timeNote = timeCheckNote(operationId, timeWordsAgainstClock(narration, source.runtime.worldMinutes));
+    if (timeNote) { shadow.setPrivate("fact", TIME_CHECK_KEY, timeNote); diagnostic({ kind: "time_words", detail: timeNote }); }
+    else if (parseTimeCheckNote(source.privateState)) shadow.setPrivate("fact", TIME_CHECK_KEY, "");
     const present = new Set(shadow.runtime.configuration?.presentEntityIds ?? []);
     const met: NonNullable<DmLoopMeta["met"]> = [];
     const createdIds = new Set(loop.receipts.flatMap((receipt) =>

@@ -5,7 +5,8 @@
 // three layers (living, tail, now) and a brief with this turn's narration and ledger.
 import type { DmSystemBlock } from "../../../server/dm/model/contracts.ts";
 import type { DmLoopReceipt } from "../contracts.ts";
-import type { DmLoopContext } from "../context.ts";
+import { craftCardsBlock, type DmLoopContext } from "../context.ts";
+import { cardForRole, selectCraftCards } from "../../dm-craft-context.ts";
 import { BOOKKEEPER_ROLE, LEDGER_CLOSE, LEDGER_OPEN } from "../roles.ts";
 
 export { LEDGER_OPEN, LEDGER_CLOSE } from "../roles.ts";
@@ -23,16 +24,25 @@ export function writerSystem(context: DmLoopContext): DmSystemBlock[] {
 }
 
 /** The bookkeeper's system layers: its role (cached for an hour), then the dossier's
- * living part (cached), the session tail and «now» — no craft, no canon, no history:
- * this turn's narration is its history, which keeps the prompt small and cache-stable. */
-export function bookkeeperSystem(context: DmLoopContext, language: "Russian" | "English"): DmSystemBlock[] {
+ * living part (cached), the session tail and «now» — no canon, no history: this turn's
+ * narration is its history, which keeps the prompt small and cache-stable. Polish 3 §7:
+ * its own craft cards (the bookkeeper's and the shared ones), selected on the narration
+ * and the ledger, travel in its tail. */
+export function bookkeeperSystem(context: DmLoopContext, language: "Russian" | "English", text: { narration: string; ledger: string } = { narration: "", ledger: "" }): DmSystemBlock[] {
   const role = `${BOOKKEEPER_ROLE}\n\nCampaign language: ${language}. Names, item names, place names, currencies and notes are written in ${language}, in the campaign's spelling; the player's chips are built from your records.`;
+  const cards = bookkeeperCards(context, text);
   return [
     { text: role, cache: true, ttl: "1h" },
     { text: context.parts.living, cache: true, ttl: "5m" },
-    { text: context.parts.tail, cache: false },
+    { text: [context.parts.tailBase, craftCardsBlock(cards)].filter(Boolean).join("\n\n"), cache: false },
     { text: context.parts.now, cache: false },
   ];
+}
+
+/** The bookkeeper's cards: the library's bookkeeper and shared cards whose triggers occur in the narration or the ledger, at most two. */
+export function bookkeeperCards(context: DmLoopContext, text: { narration: string; ledger: string }) {
+  const eligible = context.craft.library.filter((card) => cardForRole(card.role, "bookkeeper"));
+  return selectCraftCards(eligible, `${text.narration}\n${text.ledger}`);
 }
 
 /** The narration and the ledger of the writer's text. A missing ledger is

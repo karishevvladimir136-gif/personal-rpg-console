@@ -309,7 +309,7 @@ test("the attention ledger and the resistance metrics are pure and bounded", () 
   assert.equal(report.fightsUncertainShare, 1);
 });
 
-test("layer 1 carries the whole active craft library; layers stay stable across turns; the memory query names participants", async () => {
+test("layer 1 carries the doctrine and the style, not the library (polish 3 §7); layers stay stable across turns; the memory query names participants", async () => {
   const c = await loopCampaign();
   try {
     await c.activateStage4Craft();
@@ -318,8 +318,11 @@ test("layer 1 carries the whole active craft library; layers stay stable across 
     const layer1 = first.model.requests[0].system[0].text;
     assert.match(layer1, /^You are the game master/);
     assert.doesNotMatch(layer1, /Dungeon Master/);
-    assert.match(layer1, /DM Craft library[\s\S]*Life off screen[\s\S]*The long campaign[\s\S]*A world that pushes back/);
+    // Polish 3 §7: always-on stays short — the library is no longer listed whole in the cached layer.
+    assert.doesNotMatch(layer1, /DM Craft library/);
+    assert.doesNotMatch(layer1, /The long campaign/);
     assert.match(layer1, /How to run the game/);
+    assert.match(layer1, /DM Style/);
     assert.ok(estimateTokens(layer1) <= 12000, `layer 1 within budget: ${estimateTokens(layer1)}`);
     const second = await c.turn("I ask the organiser about work.", [{ text: "Work. ", toolCalls: [finish()] }]);
     const hashes = (played) => played.deps && null;

@@ -24,6 +24,7 @@ import type { DmEffort, DmMessage, DmModel, DmModelRequest, DmToolCall } from ".
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
+import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
 import { chooseDepth, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
@@ -520,6 +521,10 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       shadow.snapshot.entities.filter((row) => row.kind === "player" || controlledIds.has(row.id)).map((row) => ({ hp: row.hp, maxHp: row.max_hp })));
     shadow.setPrivate("fact", "metrics", serializeMetrics(metrics.metrics));
     if (pin.depth) shadow.setPrivate("fact", "depth_state", JSON.stringify({ tension: pin.depth.tension, effort: pin.effort, streak: pin.depth.streak ?? 0 }));
+    // Polish 3 §7: the time words against the clock the turn started at; a mismatch is one line in the next turn's tail.
+    const timeNote = timeCheckNote(operationId, timeWordsAgainstClock(narration, source.runtime.worldMinutes));
+    if (timeNote) { shadow.setPrivate("fact", TIME_CHECK_KEY, timeNote); diagnostic({ kind: "time_words", detail: timeNote }); }
+    else if (parseTimeCheckNote(source.privateState)) shadow.setPrivate("fact", TIME_CHECK_KEY, "");
     // Polish (the Мокей turn): a person recorded ahead of the story stays out of
     // the player's chips and codex until the narration names them or they are
     // present; people met this turn get their chip now.
@@ -551,7 +556,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       for (const person of met) live({ type: "tool", name: "meet", ok: true, summary: person.player });
     }
     // The commit keeps the checkpoint as last persisted: the leak diagnostics and the people met must be in it.
-    if (met.length || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure")) await persist("generating");
+    if (met.length || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure" || row.kind === "time_words")) await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",
       resolution: { changes: shadow.orderedChanges(), worldMinutes: shadow.worldMinutes,

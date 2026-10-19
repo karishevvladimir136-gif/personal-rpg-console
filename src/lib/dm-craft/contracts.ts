@@ -6,6 +6,10 @@ export const CRAFT_SELECTOR_POLICY = "mega-dm-v1-public-context-2" as const;
 export type CraftStage = "plan" | "narrate";
 export type CraftKind = "doctrine" | "card";
 export type CraftLocaleText = { title: string; guidance: string; avoid: string };
+/** Polish 3 §7: whom a card is for — the writer (narration craft), the bookkeeper (records, the
+ * clock through tools, private notes) or both. Absent on payloads from before migration 69: both. */
+export type CraftRole = "writer" | "bookkeeper" | "both";
+export const CRAFT_ROLES: readonly CraftRole[] = ["writer", "bookkeeper", "both"];
 export type CraftVersion = {
   id: string;
   key: string;
@@ -14,6 +18,7 @@ export type CraftVersion = {
   category: string;
   stages: CraftStage[];
   triggers: string[];
+  role?: CraftRole;
   en: CraftLocaleText;
   ru: CraftLocaleText;
   provenance: string;

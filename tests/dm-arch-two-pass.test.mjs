@@ -86,7 +86,8 @@ test("the writer's layer 1 keeps the campaign line, doctrine and cards; the book
     assert.match(bookkeeper[0].text, /Exact fields of the tools/);
     assert.doesNotMatch(bookkeeper[0].text, /\broll\b, /);
     assert.equal(bookkeeper[1].text, context.parts.living);
-    assert.equal(bookkeeper[2].text, context.parts.tail);
+    // Polish 3 §7: the bookkeeper's tail is the shared tail with its own cards (none for an empty brief), never the writer's.
+    assert.ok(bookkeeper[2].text.startsWith(context.parts.tailBase));
     assert.equal(bookkeeper[3].text, context.parts.now);
     const joined = bookkeeper.map((b) => b.text).join("\n");
     assert.doesNotMatch(joined, /Canon documents/);

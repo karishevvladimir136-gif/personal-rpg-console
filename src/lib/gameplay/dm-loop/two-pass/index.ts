@@ -4,5 +4,5 @@
 export { runTwoPassTurn, resumeTwoPassTurn, executeTwoPassTurn, runCampaignTurn, resumeCampaignTurn, bookkeeperOf, bookkeeperStart,
   writerEffort, writerToolset, bookkeeperToolset, TWO_PASS_RUNTIME, FABLE_WRITER_EFFORT,
   type TwoPassDependencies, type TwoPassBookkeeper, type BookkeeperSelection, type CampaignTurnDependencies, type TwoPassObservation } from "./runtime.ts";
-export { writerSystem, bookkeeperSystem, bookkeeperBrief, splitLedger, createLedgerGate, rejectedCallsMessage, LEDGER_OPEN, LEDGER_CLOSE,
+export { writerSystem, bookkeeperSystem, bookkeeperCards, bookkeeperBrief, splitLedger, createLedgerGate, rejectedCallsMessage, LEDGER_OPEN, LEDGER_CLOSE,
   LEDGER_MAX_CHARS, BOOKKEEPER_MARKER } from "./prompts.ts";
