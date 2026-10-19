@@ -153,3 +153,13 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     drop or repair the offending entries instead of failing the draft; say what failed in plain words; let the owner
     go straight to a manual sheet. Workaround today: a short «Кто вы?» for the draft, the full text and the sheet
     entered on the review screen (the owner's review is not grounded).
+
+    Log (`.sandbox/app.log`, read by the planner with the owner's permission): three draft requests
+    `POST /api/campaign-bootstrap 503` after 2.6, 2.8 and 2.0 minutes (under the 180 s ceiling for `world.compose`, so the
+    model answered and the answer was refused), then five quick 503s for «Восстановить результат». No provider-attempt
+    line is logged for the bootstrap, so the refusal reason is not in the log — add one.
+17. **Money leak: the «Ранее в…» digest of «Рэй» fails and is retried on every entry.** `session_digest_unparsed` 9 times
+    in the sandbox log, Opus at xhigh, **$4.43** in total ($0.33–0.69 each, `reason: entry`). `digestOnEntry` runs whenever
+    the campaign is opened while its session has no digest; an unparsed answer leaves it without one, so the next entry
+    pays again. Do: one failed digest per session per day at most (record the failure), a parse repair or a fallback
+    digest, the digest at the depth range's base (high), not xhigh; find why it does not parse.
