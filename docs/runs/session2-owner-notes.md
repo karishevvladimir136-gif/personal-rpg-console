@@ -200,3 +200,7 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     changes anything in place (or says it in words: «поменяй запугивание на убеждение»), presses one button, and the
     game opens. Numbers the owner gave are kept exactly. No verbatim-quote rejections: the owner's approval is the
     authority. Limits are said where they bite.
+    Owner on the item cap: «ограничение 12 предметов убираем — это извращение». Drop the 12-possession and 8-resource
+    caps at creation (`bootstrapLimits`), keep only a sane technical ceiling far above play needs. And no
+    «Нужен ответ» questions that block approval for things the owner already wrote (the draft asked what the battle
+    staff is for).
