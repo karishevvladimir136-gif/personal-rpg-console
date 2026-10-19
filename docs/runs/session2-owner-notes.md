@@ -691,3 +691,14 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
   in the 5e text of Scorching Ray, a sensible ruling — owner: «то, что оно всё горит, — это хорошо, это физика»), and
   turned it into a clock with a consequence (the crown catches in two or three turns, the glow is visible from the mine
   a mile away).
+
+55. **Loot can be seen but not handed out** (owner, 16:36: «экран имущества странный… всё имущество отображается, но я
+    не могу его раскинуть по инвентарям»). The loot now sits in «Лагерь · общий запас» (the vest, rations, the red
+    cloak, the morningstar, a bedroll) — good, nothing lost this time. But there is no way to move a thing to the hero,
+    a companion or the horses' saddlebags: the item card's «Передать…» only writes «Передаю «…» » into the action box
+    (`character-screen.tsx`), so every move costs a DM turn. And the places are abstract: «Лагерь» is «what nobody
+    carries» while the party is in a forest an hour from camp; the horses («Казённые лошади стражи») hold 0 items, list
+    the three riders as «на борту» (item 35) and have an empty «Характеристики». Do: owner moves between inventories
+    without a turn — drag between the hero's, the companions' and the mounts' lists (BG3-style), or «Отдать → Брам /
+    Тоби / седельные сумки / себе» on the card — recorded as an owner move the DM sees next turn; while travelling,
+    the party's shared things are on the mounts, «Лагерь» is a place you set up; mounts are not a crewed holding.
