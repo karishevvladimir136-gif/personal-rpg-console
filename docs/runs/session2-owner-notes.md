@@ -378,3 +378,22 @@ fragmentary whisper) — kept in the same private doc as positive examples.
     item 26, a campaign's rules come from its world/DM guide, not from the old preset; rerolls default to off and appear
     only when the sheet or the DM grants one; no pause after a roll unless a reroll is actually available (or the
     owner turns on interactive dice). Owner decides whether this campaign keeps the 2 rerolls.
+
+38. **Narration reads like a translation; «приём» for a spell** (owner: «только не приём, а заклинание… как будто
+    перевод местами, не русский язык слегка»; pair 7 in the private doc). The content of the failed Arcana check was
+    good (a failure still gave part of the truth), but the sentences are English calques — «any of half a dozen…»,
+    «makes a living», «the burns tell nothing more», «X wouldn't be lying here» — and a spell was called a «приём».
+    Likely causes, to verify in the fix cycle: (a) the role, doctrine and tool layers (`dm-loop/roles.ts`) are English,
+    only the voice layer is Russian, so the model plans in English and translates; (b) the voice layer
+    (`dm-loop/voice.ts`) has no check against calques; (c) the 5e guide's terminology list names «ячейка заклинаний»
+    but not plainly «заклинание / заговор / круг», and says rules stay out of people's speech — the DM may be avoiding
+    game words. Do: a native Russian role/doctrine for Russian campaigns (or a short Russian «write as a Russian author,
+    not a translator» check in the last layer), measured on the 48-scene probe set before/after.
+    Related voice finding: the voice layer asks for humour «dark, dry, one line, never explained» — this is likely what
+    produces the sergeant's clipped fake proverbs (pairs 3, 4, 6); the owner's own fix keeps the dark humour but as a
+    finished joke with a setup. Rephrase that rule.
+    Related rules conflict: `roles.ts` still tells the DM «Difficulty follows the ladder — easy 8 … nearly_impossible 19
+    (in words)» and «a natural 20 gives the success plus a visible extra», while this campaign's 5e guide says numeric
+    DC 5/10/15/20/25/30 and no natural-20 effect on checks. Check in the session-2 report which one the DM followed
+    (the Arcana roll: total 10 failed, DC hidden). Do: the core role defers to the campaign's DM guide on difficulty and
+    natural 20/1 when the guide states a system.
