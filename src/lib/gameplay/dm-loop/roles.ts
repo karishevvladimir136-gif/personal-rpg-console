@@ -53,14 +53,22 @@ How this game works:
 
 ${toolFieldSheet()}`;
 
+/** Voice stage part 2: one sentence in the turn shape of both the single loop and the writer —
+ * before a person speaks, decide in thinking what they want from the hero right now; the line
+ * serves that want. No tool, no written note: a step of the thinking before the text. */
+export const WANT_BEFORE_THE_LINE_RU = "Перед каждой репликой персонажа реши в размышлении, чего этот человек хочет от героя прямо сейчас, — реплика служит этому хотению (шаг мысли, не инструмент).";
+export const WANT_BEFORE_THE_LINE_EN = "Before a person speaks, decide in your thinking what they want from the hero right now — the line serves that want (a step of thought, not a tool).";
+
 /** Two or three short examples of the turn's shape, in the campaign language
  * (stage 2b §2). They live in the cached layer 1. */
 export function dmTurnShape(language: "Russian" | "English"): string {
   if (language === "Russian") return `Форма хода (примеры; стрелки — вызовы инструментов внутри того же ответа):
+${WANT_BEFORE_THE_LINE_RU}
 1. Бросок внутри истории. Текст: «Рован тянет ставню на себя; петля скрипит.» → roll(1d20, difficulty hard, reason «Скрытность: пробраться в кладовую», skill «скрытность», bonuses [{«темнота», +2}]) → текст: «…во дворе тихо. Он проскальзывает внутрь, в запах муки.» → последнее сообщение: upsert_place(кладовая) + note_world(…) + advance_time(10) + finish_turn.
 2. Покупка. Текст: «— Две монеты за буханку, — говорит пекарь, не поднимая глаз.» → money spend(2 coins, fromRef герой) → текст: «Рован отсчитывает монеты на прилавок; она заворачивает ещё тёплый хлеб.» → последнее сообщение: upsert_character(пекарь) + item create(буханка, ownerRef герой) + item create(буханки ×6, ownerRef пекарь) + note_character(пекарь) + advance_time(5) + finish_turn.
 3. Разговор, в котором нечего решать. Текст: весь разговор целиком → последнее сообщение: note_character(…) + advance_time(15) + finish_turn.`;
   return `Shape of a turn (examples; the arrows are tool calls inside the same reply):
+${WANT_BEFORE_THE_LINE_EN}
 1. A roll inside the story. Text: "Rowan eases the shutter open; the hinge grinds." → roll(1d20, difficulty hard, reason "Stealth: sneaking into the storeroom", skill "stealth", bonuses [{"the dark", +2}]) → text: "…the courtyard stays quiet. He slips inside, into the smell of flour." → final message: upsert_place(storeroom) + note_world(…) + advance_time(10) + finish_turn.
 2. A purchase. Text: "“Two coins the loaf,” the baker says, and does not look up." → money spend(2 coins, fromRef the hero) → text: "Rowan counts the coins onto the board; she wraps a loaf still warm from the oven." → final message: upsert_character(baker) + item create(loaf, ownerRef hero) + item create(loaves ×6, ownerRef baker) + note_character(baker) + advance_time(5) + finish_turn.
 3. A conversation with nothing to decide. Text: the whole exchange → final message: note_character(…) + advance_time(15) + finish_turn.`;
@@ -87,6 +95,7 @@ How this game works:
 
 export function writerTurnShape(language: "Russian" | "English"): string {
   if (language === "Russian") return `Форма хода (примеры; стрелки — вызовы roll внутри того же ответа; блок в конце — ledger):
+${WANT_BEFORE_THE_LINE_RU}
 1. Бросок внутри истории. Текст: «Рован тянет ставню на себя; петля скрипит.» → roll(1d20, difficulty hard, reason «Скрытность: пробраться в кладовую», skill «скрытность», bonuses [{«темнота», +2}]) → текст: «…во дворе тихо. Он проскальзывает внутрь, в запах муки.» → ${LEDGER_OPEN}
 места — кладовая мельницы, за двором
 время — 10 минут, герой в кладовой
@@ -106,6 +115,7 @@ ${LEDGER_CLOSE}
 сцена — conversation; в фокусе …; кто-то отказал герою: да/нет; напряжение дальше: calm
 ${LEDGER_CLOSE}`;
   return `Shape of a turn (examples; the arrows are roll calls inside the same reply; the block at the end is the ledger):
+${WANT_BEFORE_THE_LINE_EN}
 1. A roll inside the story. Text: "Rowan eases the shutter open; the hinge grinds." → roll(1d20, difficulty hard, reason "Stealth: sneaking into the storeroom", skill "stealth", bonuses [{"the dark", +2}]) → text: "…the courtyard stays quiet. He slips inside, into the smell of flour." → ${LEDGER_OPEN}
 places — the mill's storeroom, behind the yard
 time — 10 minutes, the hero is in the storeroom
