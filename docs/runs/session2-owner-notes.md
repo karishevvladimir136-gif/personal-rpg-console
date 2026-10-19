@@ -279,7 +279,7 @@ Problems:
     potions, the tusk) either were not entered or did not reach the record; gold entered as a resource would not be
     money anyway. Session 2: the DM sets them in the first turn. Do: starting money as money (the campaign's currency),
     counters with a max (`_max`), and the review screen saying which is which.
-29. **The opening scene has no picture** (the scene header shows only «П»). Live frames start from a turn's first
+29. **The opening scene's picture came late, not never** (corrected: a few minutes after approval the frame appeared — a dawn over Beregost, the owner: «очень-очень хорошая, видно, что рассвет»). Before that the header showed only «П» with no «рисуется…» state. Do: show «рисуется…» in the scene header while the opening frame is in work. Original note: (the scene header shows only «П»). Live frames start from a turn's first
     paragraph; the approved opening is not a turn. Do: draw the opening's frame when it is approved (or as the first
     key frame), like any scene.
 30. **Small screen issues:** «Закончить сессию» is boxed and larger than its neighbours (it should be the quietest of
