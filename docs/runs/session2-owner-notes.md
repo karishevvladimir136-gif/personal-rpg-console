@@ -702,3 +702,17 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     without a turn — drag between the hero's, the companions' and the mounts' lists (BG3-style), or «Отдать → Брам /
     Тоби / седельные сумки / себе» on the card — recorded as an owner move the DM sees next turn; while travelling,
     the party's shared things are on the mounts, «Лагерь» is a place you set up; mounts are not a crewed holding.
+
+56. **Item 32 again: a turn lost to max_tokens → provider error** (owner, 16:43: «DM не удалось завершить это действие…
+    я начал читать, там всё было логично»). Operation `0b6dc33d-…` (app.log): the owner asked for loot handling, both
+    fake cloaks put on, and the sergeant's plan for the night. Request 1 ran at xhigh: 104.7k input, first text after
+    131 s, **16,000 output tokens — stop `max_tokens`** (176 s, $0.511), 10 tool calls executed (item ×2,
+    upsert_character ×3, note_character ×2, note_world ×3), the narration cut off mid-stream. The continuation request
+    (400 KB) then failed at once: `dm_loop_failed code=provider retryable=false`. Same chain as the first turn of the
+    session (`7dadd0c2-…`, 10,000 output). So the cap was raised from 10k to 16k but the real fault remains: the
+    continuation after a truncated response is rejected by the provider (most likely the cut-off assistant message ends
+    in an incomplete block), and the whole turn is lost after three minutes. Do (priority, with item 32): on
+    `max_tokens`, drop the incomplete last block and continue from the complete ones (or retry once at one depth lower);
+    set the output cap from the depth (xhigh thinking alone can take most of 16k); never lose the streamed narration
+    the player already read; log the provider's error text (secrets filtered) instead of just «provider». An open
+    planning question («какой план?») at xhigh is the typical trigger: long thinking plus many private notes.
