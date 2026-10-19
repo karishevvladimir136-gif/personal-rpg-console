@@ -343,3 +343,10 @@ in the private project doc (голос/отрывки_ru.md, pairs 2–3; never 
     kept the sergeant's first name, changed the rest). The opening review's answers apparently do not reach the records
     or the turn. Do: answers to the opening questions are applied to the opening's people (names, notes) before play,
     and kept in the DM's context; check the same for «Как зовут…»-type answers in the hero review.
+
+35. **«Экипаж и люди дома · Казённые лошади стражи» on the party screen** (owner: «какая-то хурма… выглядит странно»).
+    The DM recorded the guard's horses as a holding (transport) with the hero and both companions as its crew; the party
+    screen shows every holding's crew under «Экипаж и люди дома», so the three riders appear as the «crew» of the
+    horses. The party itself is right (two in the squad, with 5e stat blocks and portraits). Do: holding crews stay on
+    «Имущество», not on «Партия»; mounts are shown as mounts («Кони: казённые, 3 — у отряда»), not as a crewed holding;
+    the `holding` tool's guidance says a borrowed horse is a mount/item, a holding is property the hero owns or runs.
