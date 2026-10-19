@@ -186,3 +186,17 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     per-item save, no «черновик сохранён»). Do: the first line of the description under the name; a taller box that
     grows; a quiet «Изменения применятся при создании» note near the edits; and item fields for kind, slot, damage,
     bonus and attunement (with item 14).
+
+20. **TOP PRIORITY — hero creation in one pass.** Owner (2026-10-19, after ~40 minutes of pasting a 5e wizard into the
+    review form): «это должно быть одной кнопкой и быстро, и не сидеть и вставлять. Утвердили на экране персонажа, оно
+    отобразилось, всё, играем. Иначе это пизда, очень фрустрирует». What went wrong today: the draft runs on the app's
+    OpenAI model with verbatim-quote validation and failed three times on a detailed description (item 16); the draft
+    that passed ignored the owner's numbers (its own scores, HP 12, defence 2); level and spells cannot be entered
+    (item 9); every item needed a hand-pasted description and stats with no fields for them (items 14, 19); the item
+    list silently stops at 12 («Добавить · Вещи» greys out without a word); a consequential question blocked approval.
+    Do: the campaign's DM (Opus, the campaign's rules — 5e here) builds the whole hero from the owner's words in one
+    call — scores, modifiers, level, proficiencies, saves, spells, features, HP, AC, every item with kind, slot,
+    properties, damage and bonuses, equipped on the doll, counters — and shows it as a readable sheet; the owner
+    changes anything in place (or says it in words: «поменяй запугивание на убеждение»), presses one button, and the
+    game opens. Numbers the owner gave are kept exactly. No verbatim-quote rejections: the owner's approval is the
+    authority. Limits are said where they bite.
