@@ -557,3 +557,16 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     (цел / ранен / тяжело ранен / без сознания / мёртв — never numbers, per the guide), spent action/movement/reaction
     reset each turn; the panel follows the latest receipts. This is the base of the owner's planned combat screen
     (initiative ribbon, enemy cards with states).
+
+46. **No damage rolls; enemies' hit points invisible and maybe untracked** (owner, 15:02: «по ДнД оно не бросает на
+    урон. И нет понимания хитов самих противников. И коня»). Three Scorching Ray hits (3 × 2d6), two arrow hits on the
+    brute earlier and two on the horse were narrated without a single damage roll on screen; the horse (5e riding
+    horse, 13 HP) took two longbow hits (1d8+2 each) and ran off — plausible, but nothing shows it. The 5e guide says
+    «Урон — формулой кости», and the tools allow it: `roll` with a formula is a server roll (a hero's or companion's
+    shows as a line), and an NPC's HP is kept with `resource hp` (with `max` at creation; private, no chip). Whether the
+    DM gave the brute and the horse hit points at all is not visible — for the report: list every damage roll and every
+    NPC HP change in combat. Owner also asked whether the brute should have been incinerated: in 5e no — 6d6 fire
+    (avg 21) after ~13 from arrows puts a ~30-HP brute at about 0, which is what the story shows (down, smoking,
+    twitching). Do: the guide and the role require a damage roll for every hit (crits double the dice), shown in the
+    round block next to the attack; enemies and animals get stat-block HP at `combat start`, each damage roll spends
+    it, and the combat panel shows the wound in words (item 45). Mid-session workaround: an out-of-game note.
