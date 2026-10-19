@@ -143,3 +143,13 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     on a job with two guards). Anything past 600 characters, and any fact in it, lives only in the opening. Do, with
     item 8: the adventure's full text in the turn while the adventure is active (budgeted like canon), and its stated
     facts — people, places, who goes with the hero — offered as records at the opening review.
+
+16. **The hero draft failed on the owner's detailed «Кто вы?»** («Не удалось подготовить или сохранить предложение.
+    Проверьте настройку ИИ и актуальность начала.»; «Ответ пока не подтверждён…»). Likely cause (planner, from the code,
+    not yet confirmed by a log): `parseCreationProposal` grounds every capability, limitation, possession and resource in
+    a verbatim quote of the owner's text — the label inside the quote, the quote inside the text, a quantity or amount
+    as digits inside the quote — and one miss rejects the whole draft. A rich 5e description («два зелья лечения»
+    without the digit, spell slots «4 / 3 / 2» that the model labels «Ячейки 1 круга») is exactly what breaks it. Do:
+    drop or repair the offending entries instead of failing the draft; say what failed in plain words; let the owner
+    go straight to a manual sheet. Workaround today: a short «Кто вы?» for the draft, the full text and the sheet
+    entered on the review screen (the owner's review is not grounded).
