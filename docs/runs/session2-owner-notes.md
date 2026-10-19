@@ -125,3 +125,15 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     Do: step 1 is the world only (pick or create, then «Дальше»); step 2 holds the hero fields and the AI button; the
     stepper follows. Also check what «Другие поддерживаемые правила» opens (the old ruleset choice?) and drop or
     explain it.
+
+14. **Items and the doll (found preparing the hero's kit).** The humanoid doll has eight slots — head, neck, body,
+    main hand, off hand, belt, legs, boots (`humanoidSlots` in `dm-loop/execute.ts`) — and **no ring slots**; the
+    owner's hero wears a ring on the right hand and wants the left free for another. Starting possessions are inserted
+    with category `possession` (only the profile's weapon becomes `weapon` and goes to the hand,
+    `202610030035_world_logic_natural_action_bridge.sql`), while head/body/boots take `armor`/`clothing` and the neck
+    `accessory`/`jewelry`/`gear` — so a starting robe, hat, boots or amulet cannot go on the doll until the DM changes
+    its category. Item bonuses never reach a roll by themselves: the session 2 hero has them folded into the sheet lines
+    with the source in brackets, and the DM guide says to fix the line when an item comes off. Do: ring slots (left,
+    right); the review screen lets the owner pick a starting item's kind and slot and equips it at creation; an item's
+    `mechanics` field is set from the review; later, item bonuses applied to rolls from equipped items (attunement 3 in
+    a 5e campaign).
