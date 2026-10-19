@@ -498,3 +498,11 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     reason on the card), the explorer's hat +1 added through `bonuses` while worn (as the 5e guide asks), sheet +7 →
     best of 15/18 + 8 = 26. Every part of the roll exactly per the guide. Owner on the turn: «неожиданно хорошо» — a rich,
     fair clue trail, companions adding what they know, no quips, and a real choice with a clock at the end (X12).
+
+41. **The narrator leaked the DM's private plan.** The turn ended with «…а в одиннадцать к окну кельи Рука придёт
+    человек с рыжими сапогами» — stated as fact. Nobody in play named an hour (owner: «нет, там просто было „вечер“ и
+    всё»); the hour and the certainty that he will come are the DM's own plan for the antagonist. A clock is good craft,
+    but only with what the hero knows («вечером», «после того как храм запрут»). Do: the role/doctrine says the
+    narration never states the DM's private plans, NPC intentions or timings the hero has not learned; the privacy check
+    (`astra-privacy-context` / the DM's private notes) flags a narration that repeats a private note's hour or intent;
+    the session report greps narration for facts that appear only in private notes.
