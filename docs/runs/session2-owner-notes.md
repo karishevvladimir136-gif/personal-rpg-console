@@ -101,3 +101,14 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     a new campaign plays with the depth range high…xhigh (`DEFAULT_DEPTH_RANGE` on the first save). Do: the wizard and
     its summary show the range the campaign will get («высокая — очень высокая») and the DM step offers the range, not a
     single effort; Opus's single-effort default high.
+
+11. **Strange texts on the wizard's first step — owner: «это надо убрать».** Three lines:
+    «Выбери мир, опиши героя своими словами — ведущий соберёт черновик листа по правилам кампании, ты его проверишь и
+    поправишь.» (also not true: the draft is written by the app's OpenAI model, not the campaign's DM);
+    the second «Новая кампания» heading with «Опишите любого героя в своём мире. Этот стиль кампании не требует класса,
+    уровня, здоровья или человеческого тела.» (developer wording, and wrong for a 5e campaign);
+    under «Мир»: «Общая основа с независимыми героями и состоянием Кампаний. Создание Мира не генерирует историю,
+    персонажей или тайны. Акторы и Канон из Пакетов требуют явной подготовки в Кампании.» (internal jargon).
+    Do: remove all three and the duplicate heading; at most one plain line where it helps (for the world form, after
+    item 8: «Этот текст ведущий видит в каждом ходе»). Sweep the other wizard steps and the review screen for the same
+    kind of text.
