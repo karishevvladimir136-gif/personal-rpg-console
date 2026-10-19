@@ -635,3 +635,13 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     full coin name on hover, and the wallet is not a resource counter at all; the same line on the inventory. With
     item 33 («Зм» → the word) and item 32 (counters with Latin names: «Shaman tusk», «Arcane recovery»,
     «Healing potions» — show Russian labels).
+
+53. **The turn arrives in halves with «Ведущий думает…» in the middle** (owner, 16:07: «ведущий как будто вначале
+    выдаёт половину хода, потом думает и продолжает — как так?»). By design: the DM writes up to the moment that needs
+    dice, calls `roll`, the server rolls, and the DM continues from the result in a new request (the loop joins the
+    segments) — so the outcome is never decided before the dice. Here the pause was the enemies' saving throws and the
+    damage for the hero's Lightning Bolt — private NPC rolls, so the player sees only a gap and a generic «думает».
+    Do: name the pause by what is happening («бросаю спасброски противников…», «бросаю урон…», «записываю
+    добычу…») from the tool being run; show the public part of the roll at that point (the hero's damage dice; enemy
+    saves as «спасброски: двое из двух провалили», no numbers if the guide hides them); keep the gap short (the second
+    request reuses the cache).
