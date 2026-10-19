@@ -368,3 +368,13 @@ fragmentary whisper) — kept in the same private doc as positive examples.
     rings) — item 33 is mostly «give the hero the universal set». Do: when the DM makes a companion with a stat block,
     it records the block's gear as items and equips them (DM guidance + a check in the receipt: a companion with an
     attack and no weapon gets a hint); the hero moves to the universal slots, keeping what he wears.
+
+37. **«Запросить разрешённый переброс» on every player roll — a house rule, not 5e** (seen on the first skill check:
+    Arcana from the sheet line +7, d20 3, total 10, failure — the sheet number was picked up correctly). The button
+    comes from the campaign's old difficulty preset: the default «medium» is `rerolls: "limited"`, 2 per session
+    (`campaign-settings.ts`, migration 202609170001 default). Because rerolls are not `disabled`, the turn loop also
+    pauses after every visible player roll and waits for «Дальше» (`dm-loop/loop.ts`, `pause = true`) — one extra click
+    per roll. Pure 5e has no free rerolls (only from a feature: Lucky, Portent; Inspiration gives advantage). Do: with
+    item 26, a campaign's rules come from its world/DM guide, not from the old preset; rerolls default to off and appear
+    only when the sheet or the DM grants one; no pause after a roll unless a reroll is actually available (or the
+    owner turns on interactive dice). Owner decides whether this campaign keeps the 2 rerolls.
