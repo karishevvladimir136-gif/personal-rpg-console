@@ -331,3 +331,15 @@ Problems:
     Owner (13:09): «я лично буду принимать в следующем цикле правок». The fix stage ends with an owner acceptance
     pass in the sandbox: a short checklist per screen (what changed, where to look) and his «принято» or notes before
     anything is called done. Also: the wallet shows the currency as «Зм» — show the word («золотые» / «Золото»).
+
+## The first real turn (2026-10-19 13:11)
+
+Owner: «диалоги стали лучше». Two lines flagged, both the patterns VOICE.md names — a one-word command put at the end
+of a speech for the beat, and a quip built by echoing another character's word; the owner's «было → как надо» pairs are
+in the private project doc (голос/отрывки_ru.md, pairs 2–3; never in git).
+
+34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
+    the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
+    kept the sergeant's first name, changed the rest). The opening review's answers apparently do not reach the records
+    or the turn. Do: answers to the opening questions are applied to the opening's people (names, notes) before play,
+    and kept in the DM's context; check the same for «Как зовут…»-type answers in the hero review.
