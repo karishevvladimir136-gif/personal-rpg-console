@@ -22,9 +22,14 @@ leaked and no money or item record was wrong:
 | C — Fable writes, Opus records | 26.7 s | 48 s | 84 s | $27 | 4 / 0 of 58 |
 | D — Opus writes, Sonnet records | 15.7 s | 34 s | 51 s | $11 | 9 / 0 of 56 |
 
-The owner is judging the prose blind; whichever writer wins, the app needs the split as a real runtime the owner can
-choose, not a server flag. Polish 2 also showed that the DM's output (57% of the cost, mostly bookkeeping) is now the
-money — which is what the split moves to a cheaper or better-suited model.
+The blind prose page failed as a test of prose (owner, 2026-10-18: «тексты практически бредовые, только первый
+норм»), and the cause is the bench, not the writers: the scenes came from the scripted harbour replay, whose player lines
+were written in advance; by turn 5 reference run A's story had diverged (the hero became a struck-off diver, barred from
+diving), so «Торгуюсь за цену погружения» and «Ныряю» contradict the world, and all four DMs spend the turn explaining
+why not. Only s01, before any divergence, reads like play. The timings, costs and record counts stand; **the writer must
+be chosen on the owner's own story** — part 4 builds that. Until then the app needs the split as a real runtime the
+owner can choose, not a server flag. Polish 2 also showed that the DM's output (57% of the cost, mostly bookkeeping) is
+now the money — which is what the split moves to a cheaper or better-suited model.
 
 ## 1. Merge
 
@@ -50,7 +55,7 @@ commit (clean worktree pinned to it, as polish 2 did).
   turn's checkpoint, never into the scenes, the player's chips or the export's public text.
 - **Depth**: the depth rule (high … xhigh) applies to the writer only; a Fable writer is pinned to high (xhigh is where
   its cost and wait double). The bookkeeper runs at a fixed effort: Opus high, Sonnet high; measure Sonnet at medium in
-  part 4 and keep it if the records hold.
+  part 6 and keep it if the records hold.
 - **The game screen**: after the text, a quiet «Ведущий записывает…» state until the commit; the chips arrive with the
   commit. The composer opens as soon as the text ends — the player may type; the send is held until the commit and goes
   at once when it lands (no two-commit turn).
@@ -71,14 +76,43 @@ commit (clean worktree pinned to it, as polish 2 did).
   (`db431570-…`) and the tool rejected it, so the party never moved and the time call fell with it. Reproduce on that
   state (likely a place of polish group 9's parent/whereabouts kind), fix, and add the regression test.
 
-## 4. Proof
+## 4. Replayable turns: blind tests on the owner's own story
+
+Every future blind test of the DM (the writer choice now, the voice stage's A/B next) must run on the owner's real
+states with the line he actually typed, so the move always fits the world.
+
+- **A state snapshot at every committed turn** of a campaign: compact, private, owner-only, never shown to the DM or the
+  player; pruned by an owner setting (default: keep all). From session 2 on, every turn can be replayed.
+- **`scripts/eval/real-replay/`**: given a campaign, a list of turn numbers and variants (today's loop on Opus, and any
+  writer + bookkeeper pair), it restores the snapshot before each turn into an isolated copy (never the live campaign;
+  nothing is written back), plays the owner's own line from that turn with each variant (the dice fixed per state, as
+  the bake-off did), and writes blind samples in the bake-off's JSON shape — the variant inside the file, the file name
+  silent — with the real previous turn's player line and narration as «before» context. A cost line before the paid run
+  and a guard. It runs where the campaign lives: the owner's local session runs it against the sandbox; the app's
+  server is the only way in, with the same keys rule.
+- **Session 1**: if its states before each turn can be rebuilt from the record history, make that possible and say how
+  faithful it is; if not, say so — session 2 is then the material.
+- Proof: tests on a synthetic campaign (snapshot at commit, restore into a copy, the copy isolated from the live
+  campaign, the samples' shape), and one paid smoke run of two turns × two variants on a synthetic campaign.
+
+## 5. Pictures by the owner's second blind page (2026-10-18)
+
+One line against the shot director, on Sunburst and Flare, seven scenes: best — one line 4, director 3; Sunburst 5,
+Flare 2. The director does not win and costs time (it waits for the whole narration, the frame comes about 20 s after
+the text, more refusals and extra people). So: **the director's switch off by default** (kept in the settings; the visual
+profiles still feed the one-line shot and the anchors), and **live frames on Sunburst** by default as well (the owner
+picked Sunburst in 11 of 16 scenes over both pages; same price, about 30 s instead of 16, and the frame starts from the
+first paragraph while the player reads). Flare stays the fast choice in the settings.
+
+## 6. Proof
 
 - Tests: the setting and its migration, the writer's and bookkeeper's layers (the history block on the writer only; the
   approved craft cards on the writer), the ledger check and clip, the held send, the bookkeeper-only resume, the retry
   of a rejected call, `move_party` on the listed place.
 - **Live replay**: polish 2's 20-turn Russian replay, continuous (the bake-off's continuity runs were only 4–5 turns):
   **D for all 20 turns**, then **C for the first 10**. Polish 2's run on today's loop is the baseline (first word 21.8 s
-  median, $3.99 for 20 turns, 37/40 checks) — do not repeat it. Per turn: first word, text done, records done, held-send
+  median, $3.99 for 20 turns, 37/40 checks) — do not repeat it. This run measures speed, cost, continuity and records;
+  its prose is not judged (scripted lines, see «Why»). Per turn: first word, text done, records done, held-send
   wait, cost split by model, cache writes and reads per model, checks; the bake-off's Sonnet judge on missed and wrong
   facts per turn. Sonnet bookkeeper at medium on turns 11–20 of D if the first ten are clean.
 - **First word after polish 2**: the median rose 16.4 s → 21.8 s, put down to story variance. Split each turn's first
@@ -91,5 +125,6 @@ commit (clean worktree pinned to it, as polish 2 did).
 typecheck, lint, full suites (`--test-concurrency=2`, Node 24), build, fake bench (both runtimes), screenshots with the
 overflow check (the settings screen and the «Ведущий записывает…» state, desktop and phone), the live replay above.
 Report in English: per part what changed and how it was proved, the replay table against polish 2's baseline, the
-first-word breakdown, money spent, «Needs the owner». Then the owner plays session 2 in the sandbox on the architecture
-the blind page chose, and the local session runs `docs/SESSION_REPORT_PROMPT.md` into `C:\dev\rpg-exports\session-2\`.
+first-word breakdown, money spent, «Needs the owner». Then the owner plays session 2 in the sandbox on today's loop (the
+clean comparison with session 1), the local session runs `docs/SESSION_REPORT_PROMPT.md` into
+`C:\dev\rpg-exports\session-2\`, and runs part 4's tool on eight of session 2's turns for the writer's blind page.
