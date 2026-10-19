@@ -1,10 +1,9 @@
 # Message for the local Claude session: update the sandbox to the voice stage, load the bank, replay session 1 with four voice variants
 
 Send to the local session on the owner's laptop (the one that runs the sandbox), after the voice stage (branch
-`claude/voice`; the stage's report is `docs/runs/voice-report.md`). The owner first saves his passage bank from the
-project file «голос/отрывки_ru» as a plain text file **outside the repository**, for example
-`C:\dev\rpg-exports\voice\bank-source.md` (the repo is public: the bank never goes into git, a log, a fixture or a
-sample).
+`claude/voice`; the stage's report is `docs/runs/voice-report.md`). The owner first saves the planner's converted bank
+file `bank.md` as `C:\dev\rpg-exports\voice\bank.md` — **outside the repository** (the repo is public: the bank never
+goes into git, a log, a fixture or a sample).
 
 ```
 Owner request: update my sandbox to the voice stage, load my passage bank into «Образцы голоса», then replay session 1
@@ -20,13 +19,15 @@ never commit or push the bank, the converted file or the samples; never paste a 
    applies migrations, restart the sandbox app on :3100. Check and tell me: Settings → «Образцы голоса» shows the
    three-way «Образцы в подсказке ведущего» (Выключено · Пять · Все) with «Выключено» selected and the new format text
    (`---` between passages, `## вид` at the head of a passage).
+   Then run `node --test tests/voice-stage.test.mjs` (Node 24) and tell me it passes: the planner edited the two voice
+   texts after the stage's final suite (owner-approved wording, 2026-10-18).
 
-2. Convert the bank. Read C:\dev\rpg-exports\voice\bank-source.md (the project file's format: each passage has a
-   source line naming the author/book and a kind). Write C:\dev\rpg-exports\voice\bank.md in the repository's passage
-   format: drop every source line (author, book, page — nothing that names where a passage comes from), keep one
-   `## <kind>` line at the head of each passage (торг, ссора, быт, драка, тишина, смешное, переход…, as the project
-   file labels them), separate passages with a line `---`, keep the passages' text otherwise untouched. Tell me how
-   many passages and how many kinds the file has, and roughly how many characters (not a word of the text).
+2. The bank file. The planner already converted my bank into the repository's passage format and I saved it as
+   C:\dev\rpg-exports\voice\bank.md (outside the repo): 45 passages, each with one `## <kind>` line (торг, ссора, быт,
+   драка, напряжение, подтекст, смешное, тишина, переход, байка, описание), separated by `---`, no source lines, about
+   103 000 characters. Check that it exists and parses into 45 passages (report the counts only, not a word of the
+   text). No conversion is needed. The «all» variant quotes the bank up to its token cap (30 000 estimated tokens by
+   default, about two thirds of this bank) — that is expected.
 
 3. Load the bank. Campaign: the one of session 1 (hero «рэй», world «Ржавое побережье»). Either paste bank.md into
    Settings → «Образцы голоса» (scope «Этой кампании») and save, or POST it to the sandbox's dossier route:
@@ -54,6 +55,7 @@ never commit or push the bank, the converted file or the samples; never paste a 
    node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice layer --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-layer
    node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice five  --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-five
    node scripts/eval/real-replay/replay.mjs --base http://127.0.0.1:3100 --campaign <id> --turns <the eight> --variants <W> --craft all --voice all   --examples-file C:\dev\rpg-exports\voice\bank.md --budget-usd 2.5 --out docs/samples/real-replay/s1-voice-all
+   If the writer is C (Fable writes), use --budget-usd 5 on each of the four runs and raise capUsd to 28 instead of 18.
    The «all» run's first turn writes the whole bank into the one-hour cache (dearer once, then almost free); if a run
    stops on its budget, say which turns it completed and do not restart it without asking me.
 
