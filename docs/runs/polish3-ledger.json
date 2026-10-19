@@ -1,0 +1,25 @@
+{
+  "capUsd": 20,
+  "entries": [
+    {
+      "run": "20261019-034810-loop-opus+sonnet-live-19-polish-ru-replay",
+      "what": "part 6: live replay D, 20 turns, Opus 5.5 writer + Sonnet 5.5 bookkeeper (medium from turn 11)",
+      "startedAt": "2026-10-19T04:08:17.807Z",
+      "reservedUsd": 6.5,
+      "spentUsd": 4.1672,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:08:17.807Z",
+      "record": "docs/runs/polish3-20261019-034810-loop-opus+sonnet-live-ru-replay.jsonl"
+    },
+    {
+      "run": "polish3-20261019-040819-judge",
+      "what": "records judge (20 turns, claude-sonnet-5-5 medium)",
+      "startedAt": "2026-10-19T04:08:19.087Z",
+      "reservedUsd": 1,
+      "spentUsd": 0.2484,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:09:43.241Z",
+      "record": "docs/runs/polish3-20261019-040819-judge.jsonl"
+    }
+  ]
+}

@@ -9,6 +9,11 @@ node scripts/eval/run.mjs --scenario 01-miller           # one scenario
 node scripts/eval/run.mjs --scenario 01-miller,03-reward-once
 node scripts/eval/run.mjs --scenario all --provider live --budget-usd 10   # paid, see docs/BASELINE.md
 node scripts/eval/report.mjs <run-id>                    # table + medians for a finished run
+node scripts/eval/run.mjs --runtime dm-loop-v1 --provider live --model opus --writer opus --bookkeeper sonnet \
+  --bookkeeper-switch 11:medium --scenario 19-polish-ru-replay --max-steps 20 --budget-usd 6.5   # polish 3 §6: the split
+node scripts/eval/first-word.mjs docs/runs/<run>.jsonl   # the first word split into queue, time to first token, uncached input
+node scripts/eval/dm-arch/judge.mjs --ledger polish3 --budget-usd 1 --files docs/runs/<run>.jsonl   # the records judge
+node scripts/eval/judge-summary.mjs docs/runs/<judge>.jsonl docs/runs/<run>.jsonl                    # its summary
 node scripts/eval/probe-models.mjs --dry-run             # live DmModel probe; paid without --dry-run:
 node scripts/eval/probe-models.mjs --budget-usd 2 [--models opus,astra] [--efforts medium,high] [--runs 2]
 ```
