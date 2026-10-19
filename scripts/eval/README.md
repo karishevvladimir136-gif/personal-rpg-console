@@ -14,6 +14,7 @@ node scripts/eval/run.mjs --runtime dm-loop-v1 --provider live --model opus --wr
 node scripts/eval/first-word.mjs docs/runs/<run>.jsonl   # the first word split into queue, time to first token, uncached input
 node scripts/eval/dm-arch/judge.mjs --ledger polish3 --budget-usd 1 --files docs/runs/<run>.jsonl   # the records judge
 node scripts/eval/judge-summary.mjs docs/runs/<judge>.jsonl docs/runs/<run>.jsonl                    # its summary
+node scripts/eval/voice-metrics.mjs docs/samples/real-replay/<dir> [docs/runs/<run>.jsonl] [--by voice|variant|file]   # voice stage §6: the voice metrics per variant
 node scripts/eval/probe-models.mjs --dry-run             # live DmModel probe; paid without --dry-run:
 node scripts/eval/probe-models.mjs --budget-usd 2 [--models opus,astra] [--efforts medium,high] [--runs 2]
 ```
