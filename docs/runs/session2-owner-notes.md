@@ -93,3 +93,11 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
    order gives the save +4. The session 2 hero works around it with lines named «Проверка X ±N» before «Спасбросок X ±N»
    (simulated: all 24 probes resolve right). A 5e sheet should compute check, save and skill modifiers from the scores,
    proficiency and level instead.
+
+## New-campaign wizard (2026-10-19)
+
+10. **«Сводка» says «Ведущий: Claude Opus 5.5 · средняя».** Owner: «ведущий снова неправильно указан». The wizard's DM
+    step defaults Opus to `defaultEffort` medium (`dmTurnModels` in `dm-settings-client.ts`) and the summary shows it, but
+    a new campaign plays with the depth range high…xhigh (`DEFAULT_DEPTH_RANGE` on the first save). Do: the wizard and
+    its summary show the range the campaign will get («высокая — очень высокая») and the DM step offers the range, not a
+    single effort; Opus's single-effort default high.
