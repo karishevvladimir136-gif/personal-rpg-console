@@ -96,7 +96,7 @@ polish 2's run on today's loop (`docs/runs/polish2-20261017-184438-…`), not re
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Polish 2 baseline — Opus 5.5, today's loop | 20 | 21.8 s / 30.8 s / 51.3 s | 46 s (= records) | 46 s | – | $3.99 | $3.99 / – | 74% | 32 | 37/40 | (not judged) | – |
 | **D — Opus 5.5 writer + Sonnet 5.5 bookkeeper** (high on 1–10, medium on 11–20) | 20 | **15.3 s** / 22.1 s / 29.2 s | 34.1 s | 50.9 s | 14.3 s / 44.8 s | $4.17 | $2.75 / $1.42 | 59% / 53% | 56 | 34/40 | 126 / 15 / **0** / 4 | 13 / 7 / 0 |
-| **C — Fable 5.1 writer + Opus 5.5 bookkeeper** | 10 | C_FIRST | C_TEXT | C_RECORDS | C_WAIT | C_COST | C_SPLIT | C_CACHE | C_REQ | C_CHECKS | C_JUDGE | C_VERDICTS |
+| **C — Fable 5.1 writer + Opus 5.5 bookkeeper** (the first ten turns) | 10 | 20.0 s / 24.5 s / 41.1 s | 41.1 s | 73.9 s | 30.5 s / 44.0 s | $4.38 ($0.44 a turn) | $3.09 / $1.29 | 56% / 52% | 25 | 19/20 | 69 / 2 / **0** / 5 | 7 / 3 / 0 |
 
 - **D per turn** (`docs/runs/polish3-20261019-034810-loop-opus+sonnet-live-ru-replay.jsonl`): first word 10–29 s; the
   ledger present on all 20 turns, none clipped; 15 rejected calls over 11 turns (`note_world` without `operation` four
@@ -106,10 +106,17 @@ polish 2's run on today's loop (`docs/runs/polish2-20261017-184438-…`), not re
   (Sonnet 5.5 medium, $0.25): **Sonnet at high (turns 1–10): 68 facts, 4 missed, 0 wrong, 8 good / 2 fair; at medium
   (11–20): 58 facts, 11 missed, 0 wrong, 5 good / 5 fair** — the misses at medium are people recorded as notes
   instead of characters, items left unrecorded after a rejected call. Medium does not hold: the bookkeeper stays at
-  high (the setting allows medium).
-- **C per turn**: C_PER_TURN
+  high (the setting allows medium). **On C the Opus bookkeeper (high) missed 2 of 69 facts, 0 wrong, 5 invented
+  (notes that go beyond the narration), 7 good / 3 fair** — the best records of the three, as in the bake-off.
+- **C per turn** (`docs/runs/polish3-20261019-040609-loop-fable+opus-live-ru-replay.jsonl`): first word 5.8–41.1 s
+  (the 41 s turn, s08, is the night watch — Fable thinks longest before a tense scene), text done 25–69 s, the records
+  46–103 s; narrations of 185–380 words (D's: 120–300); one rejected call in ten turns (an item equipped to a slot the
+  hero's sheet does not have); 19/20 checks (one time-word miss); the ledger on every turn, none clipped; the writer
+  made 1.5 requests a turn (its rolls), the bookkeeper 1. C's first word is not slower than today's loop (20.0 s against
+  21.8 s) but the chips come 23 s later than D's and the turn costs 1.6× D's; against the bake-off's same-state scenes
+  (C 26.7 s, D 15.7 s) the continuous run keeps the order.
 - **The held send**: a player who types at the text's end waits the bookkeeper's time — 14 s median on D (max 45 s on
-  the longest bookkeeping turn), C_WAIT on C.
+  the longest bookkeeping turn), 30 s on C (Opus records more slowly than Sonnet).
 
 ### Where the first word goes (`scripts/eval/first-word.mjs`)
 
@@ -118,6 +125,7 @@ polish 2's run on today's loop (`docs/runs/polish2-20261017-184438-…`), not re
 | Polish (before the cache change) | 20.8 s | 246 ms | 20.5 s | 44 519 / 23 695 / 20 615 / 4 | – | 0.32 | 0.68 | 3 (22.4 s) |
 | Polish 2 (the append-only history) | 21.8 s | 287 ms | 21.4 s | 42 054 / 30 721 / 2 735 / 8 259 | 0.38 | 0.26 | 0.42 | 5 (34.8 s vs 17.8 s at the base) |
 | Polish 3 D (the writer's first request) | 15.3 s | 164 ms | 15.2 s | 31 132 / 17 672 / 3 203 / 10 094 | 0.12 | 0.01 | 0.87 | 0 |
+| Polish 3 C (Fable's first request) | 20.0 s | 103 ms | 19.9 s | 21 734 / 12 723 / 2 085 / 7 258 | 0.68 | 0.63 | 0.87 | 0 |
 
 The queue before the first request (the durable begin, the claim, the dossier, the memory retrieval) is 160–290 ms in
 every run: the first word is the model's time to its first token. That time tracks the request's output (thinking and
@@ -135,11 +143,36 @@ above the breakpoint would save tokens, not seconds — the levers on the first 
   input was 59%.
 - The cache split after part 7: the cached prefix shrinks by the library and the tail grows by the selected cards
   (≈ 700 tokens at the plain rate, which the one-hour cache no longer has to hold).
-- First word after part 7: POST7_FIRST_WORD
+- **First word after part 7** (`docs/runs/polish3-20261019-041923-loop-opus+sonnet-live-ru-replay-post7.jsonl`: the
+  first five turns of the same replay on D, on the final code; $0.67): layer 1 **3 134 tokens** live (7 534 on the
+  pre-part-7 D run — the library and the field sheet's share), the writer's cached prefix 16–31 KB growing with the
+  history; first word **9.3 s median** (the same five turns on the pre-part-7 D run: 12.7 s median; polish 2's loop:
+  12.5 s on its first five), text done 23 s, records 44 s, cost $0.13 a turn (D's first five: $0.18); the time-word
+  check fired live on turn 5 (a «night» word on a morning clock — the line for turn 6's tail), the only check miss.
+  Five turns are a small sample and the first turns of a campaign are the cheapest; the direction is a shorter cached
+  layer and no slower first word.
 
 ## The replay tool's paid smoke (part 4)
 
-SMOKE_RESULT
+`node scripts/eval/real-replay/synthetic.mjs` builds a throwaway copy of the 30-turn Russian scenario on PGlite (three
+committed turns, snapshots saved at each commit), then `replay.mjs` played the owner's lines of turns 2 and 3 on
+variants A (Opus 5.5 single loop) and D (Opus 5.5 writer + Sonnet 5.5 bookkeeper at high) from the snapshots, each
+on its own isolated store, the source campaign untouched. Record `docs/runs/real-replay-20261019-041923.jsonl`;
+four blind samples in `docs/samples/real-replay/synthetic-smoke/` (the file name carries no variant; the variant,
+timings, tokens, cost and the accepted records are inside each file). Spent **$0.66** of the $2 budget
+(estimate before the run: $1.16).
+
+| Turn | Variant | Outcome | First word | Text done | Records done | Cost | Records |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 2 | A | committed | 32.8 s | 70.3 s | 70.3 s | $0.27 | 14 accepted |
+| 2 | D | committed | 12.8 s | 30.9 s | 63.9 s | $0.17 | 17 accepted |
+| 3 | A | committed | 15.1 s | 46.9 s | 46.9 s | $0.10 | 10 accepted |
+| 3 | D | committed | 9.4 s | 25.3 s | 48.3 s | $0.12 | 11 accepted, 3 rejected then re-sent |
+
+Turn 3 on D exercised part 3 live: the bookkeeper sent three `note_world` calls without `operation`, the server
+rejected them with the field name, the retry message went back once (`records_retry_asked` in the diagnostics) and
+the three re-sent calls were accepted. Turn 2 on D also fired the part-7 time-word check (a «night» word on an 08:10
+clock) — the diagnostic is in the sample. No leaks on any of the four turns.
 
 ## Money
 
@@ -147,11 +180,11 @@ SMOKE_RESULT
 | --- | --- | --- |
 | Part 6: live replay D, 20 turns (budget $6.5) | `docs/runs/polish3-20261019-034810-loop-opus+sonnet-live-ru-replay.jsonl` | $4.17 |
 | Part 6: the records judge on D (Sonnet 5.5 medium, 20 turns) | `docs/runs/polish3-20261019-040819-judge.jsonl` | $0.25 |
-| Part 6: live replay C, 10 turns (budget $7) | C_RECORD | C_SPENT |
-| Part 6: the records judge on C | C_JUDGE_RECORD | C_JUDGE_SPENT |
-| Part 4: the replay tool's smoke, 2 turns × 2 variants on the synthetic campaign | SMOKE_RECORD | SMOKE_SPENT |
-| Part 7: a 5-turn D run on the final code (the first word after part 7) | POST7_RECORD | POST7_SPENT |
-| **Total** | `docs/runs/polish3-ledger.json` | **TOTAL_SPENT of $20** |
+| Part 6: live replay C, 10 turns (budget $7) | `docs/runs/polish3-20261019-040609-loop-fable+opus-live-ru-replay.jsonl` | $4.38 |
+| Part 6: the records judge on C (Sonnet 5.5 medium, 10 turns) | `docs/runs/polish3-20261019-041923-judge.jsonl` | $0.14 |
+| Part 4: the replay tool's smoke, 2 turns × 2 variants on the synthetic campaign | `docs/runs/real-replay-20261019-041923.jsonl` (budget $2) | $0.66 |
+| Part 7: a 5-turn D run on the final code (the first word after part 7; budget $1.5) | `docs/runs/polish3-20261019-041923-loop-opus+sonnet-live-ru-replay-post7.jsonl` | $0.67 |
+| **Total** | `docs/runs/polish3-ledger.json` | **$10.26 of $20** |
 
 No other paid call was made (the fake benches, the screenshots and the suites are free; no OpenAI, no fal).
 
@@ -161,12 +194,12 @@ No other paid call was made (the fake benches, the screenshots and the suites ar
 | --- | --- |
 | `pnpm typecheck` | pass |
 | `pnpm lint` | pass, zero warnings |
-| `pnpm build` | BUILD_RESULT |
+| `pnpm build` | pass (the screenshots worktree, 139d0b7; the final code differs from it only in docs, records and screenshots) |
 | Full suite on the merge commit (part 1, clean worktree, Node 24.19, `--test-concurrency=2`) | 2587 tests · 2557 pass · 27 skipped · 3 fail (the bake-off's layer test, fixed in part 2; two CRLF artefacts) |
-| Full suite on the final code (clean worktree, Node 24.19, `--test-concurrency=2`) | FINAL_SUITE |
+| Full suite on the final code (clean worktree, Node 24.19, `--test-concurrency=2`) | 2 604 tests · 2 573 pass · 27 skipped · 4 fail (747 s): two Windows CRLF artefacts (`sandbox-start`, `polish-group6`, as on the merge commit) and two test expectations fixed in the closing commit — `integration-saves` listed the migrations without 69, and `mega-dm-correction` expected the promises card for a line that no longer names a promise (the owner-approved Stage 4 cards of migration 90 tie it at one trigger hit; the test now asks with a line that names the promise). Both files pass alone on the final code; the fixes touch no application code |
 | Fake bench, loop runtime (`--runtime dm-loop-v1 --scenario all`, 21 scenarios) | all pass, 351/351 checks (the known weakness W2 of scenario 08 stays open as the bench expects) |
 | Fake bench, Astra runtime (`--runtime astra-primary-v1 --scenario all`) | 6 of the old scenarios fail (the miller, the baker, the loaves are not recorded) — identically on the polish 2 head (096fb5a) in a separate worktree, so it predates this stage; the Astra runtime is not touched by polish 3 |
-| Screenshots (`stage5-screenshots.mjs` on an isolated server on 3105 without `.env.local`) | SHOTS_RESULT |
+| Screenshots (`stage5-screenshots.mjs`, `stage-v-screenshots.mjs` on an isolated `next start` on 3105 without `.env.local`; playwright-core 1.58 + Edge) | 50 + 16 shots, desktop and phone, zero horizontal overflow, zero clipping (`docs/screens/stage-5/index.json`, `docs/screens/stage-v/index.json`); the settings screen’s «Ведущий» and the «Ведущий записывает…» state (`game-recording-*.jpg`) among them |
 | Live replay (part 6) | D 20 turns + C 10 turns, above |
 
 ## What to click

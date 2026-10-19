@@ -6,10 +6,10 @@ play.** Branch from `claude/polish-2` with `claude/dm-arch-bakeoff-zuxey2` merge
 part 7; migrations 68 (`polish3_dm_architecture`), 69 (`polish3_craft_roles`) and the owner's 90 (`owner_approves_craft`),
 all additive. The owner report is `docs/runs/polish3-report.md` («Needs the owner» lists the decisions left open); the
 resume notes `docs/runs/polish3-progress.md`; the docs `docs/TURN_LOOP.md` §22–§25 and `docs/SPEED.md` §9. Final checks:
-typecheck pass, lint pass (zero warnings), build BUILD_STATUS, the loop fake bench 21/21 (the Astra-runtime fake bench
-fails 6 old scenarios identically on the polish 2 head — predates this stage), screenshots SHOTS_STATUS, the full suite on
+typecheck pass, lint pass (zero warnings), build pass, the loop fake bench 21/21 (the Astra-runtime fake bench
+fails 6 old scenarios identically on the polish 2 head — predates this stage), screenshots 50 + 16 shots with zero overflow, the full suite on
 the merge commit 2587 tests · 2557 pass · 27 skipped · 3 fail (the bake-off's layer test, fixed in part 2; two Windows
-CRLF artefacts), the full suite on the final code FINAL_SUITE_STATUS. Paid: TOTAL_SPENT of the $20 cap
+CRLF artefacts), the full suite on the final code 2604 tests · 2573 pass · 27 skipped · 4 fail (the two CRLF artefacts and two test expectations — the migration list without 69, the craft card for a line without a promise — fixed in the closing commit, test files only). Paid: $10.26 of the $20 cap
 (`docs/runs/polish3-ledger.json`).
 
 **Polish 3 in short (2026-10-19):** the writer + bookkeeper split is a campaign setting («Ведущий»: today's loop —
@@ -23,7 +23,7 @@ an isolated copy with any variant and craft set; the shot director is off by def
 Sunburst; layer 1 lost the whole library (8 851 → 4 162 tokens), each craft key has a role, the time-word check runs in
 code. The live replay: the Opus + Sonnet pair brought the first word from 21.8 s to 15.3 s median at the same cost
 ($4.17 for 20 turns), text at 34 s, records at 51 s, 0 wrong facts (15 of 126 missed, mostly with Sonnet at medium —
-the default stays high); the Fable + Opus pair's first ten turns: C_SUMMARY. The Polish 2 and bake-off sections below are
+the default stays high); the Fable + Opus pair’s first ten turns: first word 20.0 s, text at 41 s, records at 74 s, $0.44 a turn, 2 of 69 facts missed, 0 wrong. The Polish 2 and bake-off sections below are
 each stage's own closing status, kept unchanged.
 
 **Previous stage:** Polish 2 (`docs/stages/POLISH_2.md`) — **done on `claude/polish-2`, waiting for the owner's review,

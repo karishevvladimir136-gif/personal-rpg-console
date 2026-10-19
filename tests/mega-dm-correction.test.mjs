@@ -44,7 +44,10 @@ test("public scene relevance is pinned at claim and private state never selects 
     await f.runtime(w.cid, "begin", input);
     const claim = await f.runtime(w.cid, "claim", { operationId: input.operationId });
     assert.equal(claim.source.craft.policyVersion, "mega-dm-v1-public-context-2");
-    assert.ok(claim.source.craft.narrate.some((card) => card.key === "promises-and-relationships"));
+    // The public signal (a promise, an old bridge) ties five cards at one hit since the owner approved the Stage 4 cards
+    // (migration 90); the two pinned ones are the selector's own, and a line that names the promise brings the promises card in.
+    const promised = await f.one("select rpg_private.dm_craft_stage_v2($1,$2,'narrate',$3) selected", [f.owner, w.cid, "I keep my promise to my friend."]);
+    assert.ok(promised.selected.some((card) => card.key === "promises-and-relationships"));
     assert.ok(!claim.source.craft.narrate.some((card) => card.key === "threads-and-payoff"));
     assert.ok(claim.source.craft.narrate.length <= 2);
     const again = await f.one("select rpg_private.dm_craft_stage_v2($1,$2,'narrate',$3) selected", [f.owner, w.cid, input.input]);

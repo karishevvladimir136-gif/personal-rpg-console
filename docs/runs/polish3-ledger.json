@@ -20,6 +20,46 @@
       "settled": true,
       "finishedAt": "2026-10-19T04:09:43.241Z",
       "record": "docs/runs/polish3-20261019-040819-judge.jsonl"
+    },
+    {
+      "run": "20261019-040609-loop-fable+opus-live-19-polish-ru-replay",
+      "what": "part 6: live replay C, 10 turns, Fable 5.1 writer + Opus 5.5 bookkeeper",
+      "startedAt": "2026-10-19T04:19:21.757Z",
+      "reservedUsd": 7,
+      "spentUsd": 4.3793,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:19:21.758Z",
+      "record": "docs/runs/polish3-20261019-040609-loop-fable+opus-live-ru-replay.jsonl"
+    },
+    {
+      "run": "polish3-20261019-041923-judge",
+      "what": "records judge (10 turns, claude-sonnet-5-5 medium)",
+      "startedAt": "2026-10-19T04:19:23.046Z",
+      "reservedUsd": 0.6,
+      "spentUsd": 0.1419,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:20:01.861Z",
+      "record": "docs/runs/polish3-20261019-041923-judge.jsonl"
+    },
+    {
+      "run": "real-replay-20261019-041923",
+      "what": "real replay: 2 turns × A+D on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»",
+      "startedAt": "2026-10-19T04:19:23.382Z",
+      "reservedUsd": 2,
+      "spentUsd": 0.6561,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:23:12.751Z",
+      "record": "docs/runs/real-replay-20261019-041923.jsonl"
+    },
+    {
+      "run": "20261019-041923-loop-opus+sonnet-live-19-polish-ru-replay-post7",
+      "what": "part 7: a 5-turn D run on the final code (layer 1 without the library; the first word after part 7)",
+      "startedAt": "2026-10-19T04:23:28.946Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.6716,
+      "settled": true,
+      "finishedAt": "2026-10-19T04:23:28.947Z",
+      "record": "docs/runs/polish3-20261019-041923-loop-opus+sonnet-live-ru-replay-post7.jsonl"
     }
   ]
 }

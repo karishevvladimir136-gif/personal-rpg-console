@@ -30,6 +30,7 @@ const NEW_MIGRATIONS = [
   "202610170066_polish2_opening_dm.sql",
   "202610170067_polish2_followups.sql",
   "202610180068_polish3_dm_architecture.sql",
+  "202610180069_polish3_craft_roles.sql",
   "202610180090_owner_approves_craft.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>

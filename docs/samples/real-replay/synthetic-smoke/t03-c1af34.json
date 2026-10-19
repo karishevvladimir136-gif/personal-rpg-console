@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "scene": "t03",
+  "title": "Turn 3",
+  "description": "Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»: the owner's own turn 3, replayed from the state before it; one turn per variant.",
+  "language": "ru",
+  "keyStep": "t3",
+  "createdAt": "2026-10-19T04:23:12.744Z",
+  "run": "real-replay-20261019-041923",
+  "record": "docs/runs/real-replay-20261019-041923.jsonl",
+  "variant": {
+    "id": "D",
+    "label": "Opus 5.5 writer + Sonnet 5.5 bookkeeper",
+    "runtime": "two-pass",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": "anthropic/claude-sonnet-5-5@high",
+    "effort": "high",
+    "craft": "live"
+  },
+  "before": {
+    "input": "Подхожу к Марте. Говорю, что долг помню и отдам, но сперва мне нужна работа. Спрашиваю, что в гавани слышно.",
+    "narration": "— Работа есть, — говорит Марта. — Сорок монет ты мне должен, помнишь."
+  },
+  "turns": [
+    {
+      "step": "t3",
+      "input": "Спрашиваю Мокея про его сеть и про то, что творится на воде — не было ли чего странного в последние дни.",
+      "outcome": "committed",
+      "narration": "Мокей не поднимает головы. Он протягивает челнок через ячею, затягивает узел зубами и только потом сплёвывает в воду.\n\n— Сеть, говоришь. — Он приподнимает край, чтобы ты увидел. — На, гляди.\n\nДыра с две ладони шириной. Только края не размахрённые, как бывает, когда цепляешь камень. Их срезало ровно, будто ножом, а на соседних нитях бурая полоса ржавчины, ещё свежая и мокрая. Такой след оставляет натянутый стальной трос, и ты это знаешь не хуже Мокея.\n\n— Тянул у Старого волнолома, на всегдашнем месте. Двадцать лет тяну, там песок да мидии. А позавчера зацепило что-то. Железо. Раньше его там не было. — Он снова берётся за челнок. — Ну дак а странного… Три ночи назад гильдейская баржа ушла туда же. Огней не зажигала. Я ещё подумал: кто ж в темноте к волнолому идёт, там же мелко. Вернулась под утро. Шла, будто груз оставила.\n\nОн наконец смотрит на тебя исподлобья.\n\n— Твой бывший мастер на корме стоял. Мне так показалось. Темно было.\n\nТут ты вспоминаешь то, что знает каждый гильдейский водолаз. У Старого волнолома на дне лежит «Цапля», грузовой бот, затонул лет восемь назад. Гильдия тогда его осмотрела и признала пустым, трюм заварили, чтобы туда не лазили дураки. Ты этот заваренный люк видел сам, через стекло шлема, на учебном спуске.\n\nЗа спиной у тебя Марта громко ставит на стойку пустую кружку. Сорок монет она ждёт, а работу, о которой говорила, пока так и не назвала.",
+      "firstWordMs": 9443,
+      "textDoneMs": 25262,
+      "recordsDoneMs": 48258,
+      "durationMs": 48258,
+      "requests": 3,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 49976,
+        "output": 5638,
+        "cached": 35521,
+        "cacheWrite": 709,
+        "cacheWrite1h": 95
+      },
+      "cacheReadShare": 0.711,
+      "costUsd": 0.11806,
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_place",
+          "upsert_place",
+          "quest",
+          "note_character",
+          "advance_time",
+          "finish_turn",
+          "note_world",
+          "note_world",
+          "note_world",
+          "finish_turn"
+        ],
+        "rejected": [
+          {
+            "name": "note_world",
+            "reason": "Arguments of note_world are invalid: note_world.operation: missing."
+          },
+          {
+            "name": "note_world",
+            "reason": "Arguments of note_world are invalid: note_world.key: does not match the pattern; note_world.operation: missing."
+          },
+          {
+            "name": "note_world",
+            "reason": "Arguments of note_world are invalid: note_world.operation: missing."
+          }
+        ],
+        "player": [
+          "Новое место: Старый волнолом",
+          "Новое место: «Цапля»",
+          "Зацепка: Железо у Старого волнолома",
+          "Прошло: 15 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "tension": "tense",
+          "reason": "DM hint: tense"
+        },
+        {
+          "kind": "records_retry_asked",
+          "calls": [
+            "note_world",
+            "note_world",
+            "note_world"
+          ]
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.11806,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}
