@@ -297,3 +297,22 @@ living dossier (one block per scene row, one breakpoint on the last, a bucketed 
 them at the 5-minute rate, and drops the top-level breakpoint: a turn writes its own two rows and the living dossier and
 pays the rest once at the plain rate (`docs/TURN_LOOP.md` §19). The before/after numbers on the 20-turn Russian replay
 are in `docs/runs/polish2-report.md`.
+
+## 9. Polish 3 (2026-10-19): the split in the app, and where the first word goes
+
+The writer + bookkeeper split (`docs/TURN_LOOP.md` §22) moves the DM's output — polish 2 measured it at 57% of the
+cost, mostly bookkeeping — to a bookkeeper model after the text, so the player reads while the records are made. On the
+20-turn Russian replay with Opus 5.5 writing and Sonnet 5.5 recording (D; `docs/runs/polish3-20261019-034810-…`), the
+first word came at 15.3 s median against 21.8 s on today's loop (polish 2's baseline), the text was complete at
+34.1 s, the records at 50.9 s; the held-send wait (the time a player who typed at the text's end waits for the commit)
+was 14.3 s median, 44.8 s at most; the run cost $4.17 (writer $2.75, bookkeeper $1.42). The numbers per turn and
+against the baseline are in `docs/runs/polish3-report.md`.
+
+**Where the first word goes** (`scripts/eval/first-word.mjs`): each turn's first word is split into the queue before
+the first request (the durable begin, the claim, the dossier and the memory retrieval), the request's time to its
+first token, and the uncached input of that request. In both polish 2 runs and in D the queue is 160–290 ms median —
+the first word is the model's time to the first token. It correlates with the request's output tokens (thinking:
+r = 0.68 / 0.42 / 0.87) far more than with the uncached input (r = – / 0.38 / 0.12) or the cached prefix (0.32 / 0.26 /
+0.01): the longer cached history of polish 2 does not cost time, the uncached tail costs little, and the xhigh turns
+(34.8 s against 17.8 s at the base in polish 2) are where the time goes. Moving the stable part of the tail above the
+breakpoint would save tokens, not seconds; the lever on the first word is the depth rule and the split.

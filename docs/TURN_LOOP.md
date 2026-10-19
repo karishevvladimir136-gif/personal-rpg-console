@@ -606,3 +606,100 @@ Not done here (for the owner, with the reasons, in the report): the wizard's deb
 journal debt to a person — it needs the wizard's creation contract (the schema, the review and the SQL commit) to carry
 debts and create the creditor; the DM records the debt on the first turn today; and the public `lore` record for the
 codex's «Мир» tab — a new record family (table, tool, projection, codex tab) outside the follow-ups' size.
+
+## 22. Polish 3 — part 2: the writer and the bookkeeper as a campaign setting
+
+The bake-off (`docs/runs/dmarch-REPORT.md`) measured the split — a writer that only narrates (with the `roll` tool) and
+closes with a private ledger, then a bookkeeper that records with today's tools — and found it sound. Polish 3
+(`docs/stages/POLISH_3.md` §2) makes it a runtime the owner chooses per campaign, not a server flag:
+
+- **The setting** («Ведущий» in the campaign settings; `rpg_private.dm_settings.dm_split`, migration 68): null —
+  today's loop (the default for every campaign, new and old); an object `{writer, bookkeeper}` — the split. Three
+  choices with the bake-off's numbers (the median first word, the cost of a 41-turn session): «Opus ведёт один»,
+  «Fable пишет — Opus записывает», «Opus пишет — Sonnet записывает»; «Подробнее» offers the writer (Opus 5.5 /
+  Fable 5.1) and the bookkeeper (Opus 5.5 / Sonnet 5.5) separately, with the bookkeeper's effort (high by default,
+  medium selectable). The model assert of migration 52 became role-aware (`dm_turn_model_selection(v, role)`: `turn`
+  Opus or Astra; `writer` Opus or Fable; `bookkeeper` Opus or Sonnet; `pin` any writer — the execution-profile pin of a
+  loop turn and the opening's `world.compose` ticket).
+- **The runtime** (`src/lib/gameplay/dm-loop/two-pass/`): `runCampaignTurn` / `resumeCampaignTurn` dispatch a new
+  turn by the campaign's choice and a resumed turn by its own pin — the pin carries the bookkeeper
+  (`DmLoopPin.bookkeeper`), so a retry keeps the pair whatever the settings say now. The writer's layers are the loop's
+  own built with the writer role (`buildDmLoopContext(source, input, { role: "writer" })`: the same voice slot,
+  doctrine, style, cards and append-only history; `roles.ts` holds the three roles); the bookkeeper's are its own
+  cached role, the dossier's living part, the tail and «now» (no canon, no history: this turn's narration is its
+  history). The depth rule applies to the writer only; a Fable writer is pinned to high; the bookkeeper runs at its
+  fixed effort.
+- **The ledger**: the fixed tag and headings; a writer that closes without one is asked once (`ledger_asked`); a
+  ledger past `LEDGER_MAX_CHARS` (6 000) is clipped (`ledger_clipped`); it goes into the bookkeeper's brief and the
+  turn's checkpoint, never into the scenes, the chips or the export. The server keeps it apart for the shot director
+  (`keepLiveTurnLedger`), which starts at the writer's end and reads it for clothes, wounds and items.
+- **The game screen**: when the writer's text is complete the stream says `recording` (a status that keeps the
+  stream open until the commit): the game screen shows a quiet «Ведущий записывает…», the composer opens for the next
+  action, and a send is held and goes the moment the turn commits (no two-commit turn). The chips arrive with the
+  commit.
+- **Resume and failure**: one checkpoint with the bookkeeper's marker; a failure during bookkeeping resumes the
+  bookkeeper only; a retryable transport failure of the writer's continuation (after a dice pause, after the ledger
+  request) is retried once (`writer_retried`); a refusal or an empty narration fails the turn as today.
+- **Other consumers**: the opening is written by the campaign's writer; the cost gauges and the records count both
+  models (the usage entries carry each model's own costs and cache numbers).
+- Tests: `tests/polish3-split.test.mjs` (the settings and the SQL roles, the dispatcher, the resume on the pinned
+  pair, the writer's retry, the ledger, the live view, the wiring), `tests/dm-arch-two-pass.test.mjs` updated.
+
+## 23. Polish 3 — part 3: the bookkeeping fixes (both runtimes)
+
+- **Every rejected record call is retried once with the server's reason** (`retriableRejection`,
+  `rejectedCallsMessage`): after a message with rejected record calls — the people, places, notes, journal, time,
+  holdings, combat and item creations — the server sends the reasons back as one user message and the model resends
+  the fixed calls (then `finish_turn` again); once per turn, within the request and tool caps. A deciding call the
+  state refused (money the hero does not have, an item they do not hold) is the story's business and is not sent back.
+- **The exact field names of the schemas** travel in both roles' layer 1 (`toolFieldSheet`, generated from the tool
+  definitions: the required and optional fields with their enums), with the bake-off's misses named: no `details` on
+  `upsert_character`, a `factionRef` only to an existing faction, a clock advanced with a numeric `amount`, reward
+  terms on a quest only, `note_world` with `kind`, `key` and `operation`.
+- **`move_party` resolves every place ID the state lists**: the bake-off's rejection (`db431570-…-cea-…` for
+  `…-9cea-…`) was a model dropping one character of a listed ID, not a place of the parent/whereabouts kind; the
+  resolver now accepts a hex-and-dash string within two edits of exactly one listed ID (`nearlySameId`).
+
+## 24. Polish 3 — part 4: replayable turns
+
+- **A state snapshot at every committed loop turn** (`rpg_private.turn_snapshots`, `rpg_turn_snapshots`): the
+  runtime source the turn started from (the public snapshot, the runtime state, the private DM state, the pinned
+  craft and voice; never the retrieved memory rows) with the player's input and the campaign's rules of the moment
+  (limits, depth, the split), gzip-compressed and base64-encoded by the server after the commit
+  (`saveTurnSnapshot`, never failing the turn). Compact, private, owner-only — never shown to the DM or the player;
+  pruned by the DM setting `snapshotsKeep` (null: keep all). Turns from before migration 68 — session 1 among them —
+  are read from the turn row's own claim-time source (`rpg_private.turns.source`, kept since the phase 2 runtime),
+  the same state uncompressed. `GET /api/campaigns/<id>/snapshots` lists them; `?turn=N` or `?operationId=…` returns
+  one, decoded.
+- **`scripts/eval/real-replay/`**: the replay tool restores a snapshot into an isolated in-memory copy
+  (`src/lib/gameplay/replay/memory-store.ts`: the turn store the loop needs, over the snapshot; the live campaign is
+  never read or written), plays the owner's own line with each variant (A, C, D, Dm, the campaign's own) on the real
+  turn path — the tools' validators run against the shadow state; the SQL commit's own checks do not — with the dice
+  fixed per state, and writes blind samples in the bake-off's shape with the real previous exchange as «before»
+  (`samples.ts`). A cost line before the paid run, the guard and the stage's ledger (`docs/runs/polish3-ledger.json`).
+  It reads the snapshots through the app's server (the sandbox on :3100; :3000 refused unless
+  `RPG_TEST_ALLOW_OWNER_PORT=1`) or from a file (`synthetic.mjs` writes a synthetic campaign's).
+- Tests: `tests/polish3-replay.test.mjs` (the snapshot at commit, the restore into a copy, the copy isolated, the
+  samples' shape), the snapshot RPC in `tests/polish3-split.test.mjs`.
+
+## 25. Polish 3 — part 7: craft by role and by situation
+
+- **Always-on stays short**: layer 1 is the role, the turn shape, the voice slot, the campaign language, the core
+  doctrine and the style; the approved library is no longer listed whole (on the fixture campaign 8 851 → 4 162
+  tokens; the library's 4 689 tokens leave the cached layer). The cards the selector chose for the turn
+  (`dm_craft_stage_v2`: at most two per stage, by the input's literal triggers and the public signal) travel in the
+  volatile tail (`craftCardsBlock`), so the cached layers never change with them.
+- **Each key its role** (migration 69, `rpg_private.dm_craft_roles`): writer, bookkeeper or both — a per-key owner
+  setting (versions are immutable history), read into every version's JSON, set by content for the 22 active keys
+  (records → bookkeeper; the clock through tools, private clue and question notes and off-screen plans beside
+  narration craft → both; narration craft → writer) and through the seed for new owners; a save that names a role
+  sets it; the DM Craft screen shows it («Для кого») and lets the owner change it. The single loop gets every
+  selected card; the writer the writer's and the shared ones; the bookkeeper selects its own and the shared ones on
+  the narration and the ledger (`selectCraftCards`, the SQL selector's rule in TypeScript).
+- **Code instead of a rule**: the time-of-day words of a committed narration are checked against the clock the
+  turn started at (`time-words.ts`, the bench's check), on both runtimes; a mismatch is one private line in the next
+  turn's tail — what was written, what the clock said — and nothing otherwise (`time_check` in the private facts,
+  never a secret; `time_words` in the diagnostics).
+- **The ablation**: the replay tool takes `--craft live|all|none|session1` (session 1's set: the core doctrine and
+  the ten Mega DM cards; the Stage 4 and polish cards waited for the owner's approval until 2026-10-18).
+- Tests: `tests/polish3-craft.test.mjs`; `tests/stage4-dossier.test.mjs`, `tests/polish-group4.test.mjs` updated.
