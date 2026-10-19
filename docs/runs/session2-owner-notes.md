@@ -86,3 +86,10 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
    now. Do (later, after the owner judges the 5e test): a per-campaign rules choice that switches the ladder to the 5e
    DCs and the natural-20/1 hints, and a 5e sheet (level, ability modifiers, proficiency, saves, spell slots, damage
    dice).
+
+   Also for item 9 (planner, reading `sheetBonus` in `dm-loop/execute.ts`): the six ability scores live in
+   `character_sheet.attributes` and never reach a roll; the skill match takes the first sheet line whose stems match,
+   in both directions, so «Спасбросок Интеллекта +7» above «Интеллект +4» gives a plain Int check +7 and the reverse
+   order gives the save +4. The session 2 hero works around it with lines named «Проверка X ±N» before «Спасбросок X ±N»
+   (simulated: all 24 probes resolve right). A 5e sheet should compute check, save and skill modifiers from the scores,
+   proficiency and level instead.
