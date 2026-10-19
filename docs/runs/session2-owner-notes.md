@@ -20,6 +20,14 @@ Two causes of the dialogue problems in session 2, both in what the DM is told, n
 First in the fix cycle: delete the humour recipe and add «a speech ends when the person has said what he needed»;
 then a native Russian role/doctrine for Russian campaigns, measured on the probe scenes before/after.
 
+**Confirmed in play (14:23):** the owner put one out-of-game note in his action (no quips on another's word, no closing
+aphorisms, a joke at most once a scene; and the DC in every roll's title). The very next turn had no quips at all —
+owner: «тупые шутки ушли» (approved as X11 in the private doc). So the quips came from the instruction, not the model.
+Two side notes for the fix: (a) the DM answered the note inside the story text («Вне игры: принято…» with a stray «)*»)
+— an owner's out-of-game note needs its own short reply outside the narration; (b) the note lives only in the turn
+history, so it drops out of the DM's window once the history passes the budget — owner corrections like this belong
+in the campaign's always-on owner rules (the highest authority), not in a chat line.
+
 ## Home screen (2026-10-19)
 
 1. **A side menu appeared at the top left** («RPG CONSOLE · Библиотека историй»: Кампании, Миры, Крафт ведущего,
