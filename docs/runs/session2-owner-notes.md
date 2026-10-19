@@ -32,3 +32,19 @@ campaign); the local session checks and loads it (`docs/HOME_FIX.md`). Also in t
    OpenAI and fal with «ключ есть / нет»; «Ведущий — в настройках каждой кампании (по умолчанию Claude Opus 5.5)»;
    «Картинки — в настройках кампании»; the app model renamed to what it is («Фоновая модель OpenAI: сборка канона мира
    в «Мирах»…»), its chips under «Подробнее». Open question for the owner later: move canon compile to Claude too?
+
+## Small, unreadable text (2026-10-19)
+
+5. **Owner: «нечитаемый шрифт, очень-очень мелкий»**, especially the help lines under the switches on General settings
+   («Сделать повествование чуть просторнее.», «Настройка сохранена для будущей поддержки…») and the status chips
+   («Настроено · не проверено»). Cause: the pre-Stage-5 screens (General settings, and likely the World Library and DM
+   Craft pages) render inside the new shell with the old global sizes — `body` 13px, `.muted` 12px, `.setting-row p`
+   11px, `.panel-heading .muted` 10px (`src/app/globals.css`). Do: one typography pass over every owner screen — body
+   text 16px, helper and muted text at least 14px, chips and labels at least 13px, nothing smaller anywhere (phone
+   included); check with screenshots of every library and campaign screen at 1440×900 and 390×844.
+6. **«Крупный текст истории» does nothing on today's game screen.** It adds `.large-text` and enlarges
+   `.narration > p` (22px) and `.player-reply p` (18px) — classes of the old game screen; the Stage 5 game screen uses
+   `.gameplay-narration .prose` (17px) and `.gameplay-owner-words .prose` (16px) inside `CampaignShell`, which never
+   sets the class. Owner asked what it is. Do: make it work on the game screen (the shell sets the class; narration and
+   the owner's words clearly larger, e.g. 20–21px and 18px, line length kept), and say in its help line what it does
+   («Текст истории на экране игры крупнее»).
