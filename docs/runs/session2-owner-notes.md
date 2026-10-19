@@ -482,3 +482,10 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     единице», and the English role tells the DM «a natural 1 costs something tied to what was tried», while the 5e
     guide says a natural 1 on a check is just a number — check whether the narration adds a mishap. For the report:
     every check with DC, roll, result and what the failure still gave (fail forward).
+    Result (14:28): the natural 1 was handled as the 5e guide says — no mishap; the failed check still gave the two
+    schools (enchantment across the road, evocation fire fan at the ditch) but not the power. The DM chose the Detect
+    Magic ritual for the hero (fine, from «использую чутьё магии»), but also wrote the hero a spoken line («— Минут
+    десять, — бросает Джеймс») — the role forbids writing the player's words. Minor terms: «обрядом» where 5e Russian
+    says «ритуалом». Voice (owner: «так. лучше», but one line «явно перевод… косная речь», pair 13): with the quips gone
+    the calques remain — the English-instructions cause; the DM also sprinkles «ведь» everywhere (the voice layer's
+    particles rule taken literally) and gives a companion a repeated gesture across scenes («сглатывает» ×3).
