@@ -340,6 +340,11 @@ in the private project doc (голос/отрывки_ru.md, pairs 2–3; never 
 Turn 3 (owner: «диалоги стали местами лучше»): a third line flagged as bad and illogical — a dark quip for the reader
 that skips the character's actual reason for what he is doing (pair 4 in the same doc). The quip pattern persists;
 review the share of quips per scene in the session-2 report.
+Turns 4–5: two more pairs (5–6). The narrator hedges a grim detail with a euphemism and a wink at the reader instead
+of naming it plainly; the sergeant again echoes another character's word and closes with a clipped fake proverb. The
+owner is fine with the sergeant's dark humour as such — he wants it as a finished joke in plain speech. Three lines
+approved as good (X1–X3: a nervous recruit's question, a priest's clue told as an everyday remark, a survivor's
+fragmentary whisper) — kept in the same private doc as positive examples.
 
 34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
     the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
