@@ -409,3 +409,12 @@ report count quips per companion. Mid-session workaround offered to the owner: a
     DC 5/10/15/20/25/30 and no natural-20 effect on checks. Check in the session-2 report which one the DM followed
     (the Arcana roll: total 10 failed, DC hidden). Do: the core role defers to the campaign's DM guide on difficulty and
     natural 20/1 when the guide states a system.
+
+39. **«Какая сложность?» — the DC is hidden and nobody can say what it was** (owner, on a Persuasion check: +3 from the
+    sheet, d20 7, total 10, failure; the earlier Arcana check was also 10 and failed). Campaign setting `showDc` defaults
+    to false (migration 202609170001), so the card shows no DC and the DM is told «DCs stay hidden»; the toggle is
+    «Показывать сложность (DC)» in the campaign part of Настройки. The dm-loop does not log tool arguments, so the DC
+    is only in the database receipts — the planner cannot see it from app.log. Both failures at 10 rule out the old
+    ladder's «normal 10»; it was 13 (ladder «hard») or 15 (the 5e guide's «medium»). Do: for a 5e campaign show the
+    DC on the card after the roll by default (owner decides); the session report lists every player roll with its DC,
+    difficulty word, bonuses and result from the receipts (that also answers item 38's ladder-vs-guide question).
