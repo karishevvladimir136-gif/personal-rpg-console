@@ -233,3 +233,8 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     request grew 33→155 KB). The owner values the wait over money. Do after session 2's report: check whether the
     window filled and anything dropped; if so, raise it (try ~120k) and measure the first word and the cost per turn on
     the replay tool before keeping it.
+
+24. **«Дополнительно · объекты и контейнеры» under the adventure form** (owner: «надо убрать, это странно»). It is
+    `persistent-adventure-loot.tsx`, the old hand-made loot/containers panel from before the DM placed items itself.
+    Do: remove it from the Adventures screen (keep the code only if something still needs it; the DM's `item` tool
+    and the camp cover containers in play).
