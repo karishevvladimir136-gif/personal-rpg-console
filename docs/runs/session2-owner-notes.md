@@ -350,3 +350,13 @@ in the private project doc (голос/отрывки_ru.md, pairs 2–3; never 
     horses. The party itself is right (two in the squad, with 5e stat blocks and portraits). Do: holding crews stay on
     «Имущество», not on «Партия»; mounts are shown as mounts («Кони: казённые, 3 — у отряда»), not as a crewed holding;
     the `holding` tool's guidance says a borrowed horse is a mount/item, a holding is property the hero owns or runs.
+
+36. **Companions have stat blocks but no gear** (owner: «инвентарь теперь видим всех… исходя из инвентаря они голые и
+    без оружия»). The inventory screen now switches between the hero and the companions (good). The DM created the
+    sergeant as a 5e Veteran (58 HP, attack +5) and the recruit as a Scout (16 HP, +4) but gave them no items — only a
+    healing potion for the recruit — so their dolls are empty. Also seen: companions get a different, newer slot set
+    («Универсальные слоты»: голова, шея, талисман, тело, плащ, основная и вторая рука, кольцо I и II, руки, пояс, ноги —
+    «ведущий надевает вещи туда, куда они просятся по описанию»), while the hero still has the old humanoid eight (no
+    rings) — item 33 is mostly «give the hero the universal set». Do: when the DM makes a companion with a stat block,
+    it records the block's gear as items and equips them (DM guidance + a check in the receipt: a companion with an
+    attack and no weapon gets a hint); the hero moves to the universal slots, keeping what he wears.
