@@ -658,3 +658,19 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     own turn, nothing is half-cast. Do: the guide says how a planned ambush starts (owner's choice — see below), the
     hero's initiative is a visible roll, and the story shows the trigger the player named. Owner decision pending: RAW,
     or a house rule — «тот, кто начинает подготовленную засаду, действует первым; остальные действуют по его сигналу».
+
+## Combat — a separate stage (owner, 16:15: «можно будет отдельно что-то по бою сделать»)
+
+The second fight (the shift ambush) again shows the panel at «Раунд 1» with every participant at «Действие 1 · Движение
+1 · Реакция 1», the party listed first, no wounds («Кривой — Рядом» though he lies with a bolt in his back). Group the
+combat findings into one stage after the voice fix, built on the owner's planned combat screen (initiative ribbon with
+portraits, «Зоны / Карта», enemy cards with wounds in words, «что известно» from checks, enemy intent only when
+noticed, action hints from the sheet, an end-of-fight summary; no system rules in code):
+- the DM's combat tool: initiative order from the rolls, «next turn» and rounds, conditions (paralysed, prone,
+  concentrating, surprised, fled), wounds in words, resources per turn (item 45);
+- every hit has a visible damage roll; enemies and animals get stat-block HP (item 46); enemy gear as items so loot
+  works (item 48);
+- the hero's initiative is a visible roll; a planned ambush starts the way the guide says (item 54);
+- a round's rolls in one compact block, companion and enemy rolls as lines rolled by the DM, the hero's important rolls
+  as cards (items 43, 44); the mid-turn pause named by what is rolled (item 53);
+- tests on the 48-scene probes plus two scripted fights (an ambush, a chase) before the owner's acceptance pass.
