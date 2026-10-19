@@ -253,3 +253,13 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     Owner after saving the canon: «это мега-окно справа должно прятаться после сохранения документа, а не вечно висеть».
     Saving closes the document panel (back to the list with «Сохранено» on the saved row); the panel opens only when a
     document is picked.
+
+26. **Campaign settings: «Правила и пределы кампании» again** (owner: «мы же вроде тестили правила и пределы кампании —
+    оно снова тут, надо убрать»). The block shows «Правила: World Logic» (the internal ruleset label, wrong for a 5e
+    campaign) with «Книги правил в библиотеке», and «Пределы одного хода» — money created per turn 1 000 000, items 50,
+    people 20, game minutes 10 080, actions 40, model requests 10, with «Сохранить пределы» — plus three more read-only
+    caps. These are record guards, not anything the owner plays with. Do: drop the limits from the owner's settings
+    (keep them server-side; at most a folded «Для разработчика» if needed for tests); replace «World Logic» with what the
+    campaign's rules are in words (e.g. «D&D 5e — по руководству ведущего» from the DM guide's first line, or «Свои
+    правила») and a link to edit the DM guide. Same screen: the picture-models caption still says Flare (the planner's
+    `d74b6c6` is not loaded in the sandbox yet).
