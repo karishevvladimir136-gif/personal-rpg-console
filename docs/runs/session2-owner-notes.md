@@ -65,3 +65,24 @@ campaign); the local session checks and loads it (`docs/HOME_FIX.md`). Also in t
    Also: «Как вести игру» first and visibly the main one (wider or set apart above the grid); English tags not shown in
    the grid (in the opened card, Russian names where a mapping is obvious); the grid 3–4 columns on a wide screen,
    1 on a phone; the same typography rules as item 5.
+
+## Found while preparing the session 2 world (2026-10-19, planner)
+
+The owner chose a new world for session 2: classic D&D 5e, the Forgotten Realms, Baldur's Gate and the Sword Coast. The
+planner wrote three texts for him (the world form, a canon document, the DM guide with 5e rulings; on the owner's PC in
+`C:\Dev\rpg-exports\worlds\baldurs-gate\`, not in git). Preparing them showed two gaps:
+
+8. **The world's text never reaches a play turn.** «Создать Мир» stores a title and the setting (up to 20,000
+   characters) as the world's premise; the bootstrap passes it to the hero draft and the opening
+   (`202609300031_universal_campaign_bootstrap.sql`), but the DM's turn context (`dm-loop/context.ts`, layer 2) reads only
+   the campaign's DM guide, canon and reference documents and the adventure's title and premise. A world described only
+   in the form is forgotten after the opening. Do: on campaign creation, copy the world's setting into a canon document
+   of the campaign (titled with the world's name, versioned like any document), or read the world's premise into layer 2;
+   say it on the form («этот текст ведущий видит в каждом ходе»).
+9. **No D&D 5e support beyond knowledge.** The `roll` tool's difficulty ladder is 8 / 10 / 13 / 16 / 19 and its
+   description prefers words over `dc`; it hints «the hero's moment» on any natural 20 and a cost on any natural 1 (5e:
+   only attacks crit or miss; death saves have their own 20/1); the sheet takes no level or spells at creation
+   (`bootstrap-validation.ts`), ability scores are display only, weapon damage is one number. The DM guide covers it for
+   now. Do (later, after the owner judges the 5e test): a per-campaign rules choice that switches the ladder to the 5e
+   DCs and the natural-20/1 hints, and a 5e sheet (level, ability modifiers, proficiency, saves, spell slots, damage
+   dice).
