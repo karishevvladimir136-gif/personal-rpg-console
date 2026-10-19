@@ -600,3 +600,15 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     existed only in the narration two turns back, never as a record, so a loot done from the records cannot find it.
     Do: an enemy made from a stat block gets its gear as items at creation (as companions, item 36), so a body can be
     searched from the records and nothing the story showed disappears.
+
+49. **No spells tab** (owner, 15:52: «я понял, чего у нас нет — вкладки заклинания. Это неудобно. Чтобы там и список,
+    и т. д.»). Today the wizard's magic is lines in «Умения» («Заговоры: …», «1 круг: …», «Книга заклинаний: …») and the
+    slots are separate counters in «Кошелёк и ресурсы». Do: a «Заклинания» tab next to Персонаж / Инвентарь / Задания:
+    slots by level with pips (the same counters), cantrips, prepared spells by level with «подготовлено N из M», the
+    spellbook (known, not prepared), rituals and concentration marked, the spell being concentrated on now; each spell
+    a card (casting time, range, components, duration, save or attack, damage and «на круг выше», a short text);
+    a «Колдовать» button that puts «колдую <заклинание> ячейкой <круг> на …» into the action box. Rules stay knowledge,
+    not code: spells are per-character records written by the hero step / the DM from the system's knowledge (5e here,
+    any «powers» list elsewhere), editable by the owner, and changed in play by the DM (learn, prepare after a long rest)
+    — with item 18 (the hero sheet cannot change in play today). Seen on the same screen, good: silver and copper now
+    have their own counters next to gold (См 11, Мм 26), and the foreign coin is an item marked as a clue.
