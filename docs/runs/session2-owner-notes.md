@@ -3,6 +3,23 @@
 Collected from the owner's messages in the planner's chat during session 2 (sandbox, branch `claude/session-2-prep`).
 Each item: what he saw, what he wants. Fixed together after the session unless it blocks play.
 
+## Key finding — the DM's instructions (owner: «запомни и запиши, иначе это бред»)
+
+Two causes of the dialogue problems in session 2, both in what the DM is told, not in the model:
+
+1. **The DM's instructions are English.** Role, turn rules, tool descriptions, section headers and server replies are
+   English (`dm-loop/roles.ts` ≈ 20.7k Latin letters vs 2.7k Cyrillic, the Cyrillic being the turn-shape examples;
+   `context.ts` almost all English); only the voice layer (~580 tokens) is Russian. The model plans in English and
+   writes Russian as a translation — calques in narration that reasons or explains (item 38).
+2. **The voice layer's humour rule is a recipe for the quips** the owner keeps rejecting: «одна строка, что
+   переворачивает чужие слова буквально и мрачно — смерть, долг, утопленники, глупость годятся». The voice layer was
+   added on 2026-10-18 (commits 0c024c3, 65595bf), after session 1 — which matches the owner's «в прошлой кампании
+   такого треша не было». The campaign's «Что мне нравится» («чёрный сухой юмор») and the DM's own observations repeat
+   it. Plus the habit of closing every speech with a punchline or a fake syllogism.
+
+First in the fix cycle: delete the humour recipe and add «a speech ends when the person has said what he needed»;
+then a native Russian role/doctrine for Russian campaigns, measured on the probe scenes before/after.
+
 ## Home screen (2026-10-19)
 
 1. **A side menu appeared at the top left** («RPG CONSOLE · Библиотека историй»: Кампании, Миры, Крафт ведущего,
