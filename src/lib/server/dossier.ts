@@ -8,6 +8,7 @@ import type { DossierRpc } from "../gameplay/dossier/contracts";
 import type { RuntimeSource } from "../gameplay/server-contracts";
 import type { TimelineFence } from "../saves/contracts";
 import { parseDossier, parseNotebook, type DossierView, type NotebookView } from "../gameplay/dossier/contracts";
+import { VOICE_SAMPLES_MAX_CHARS } from "../gameplay/dm-loop/voice";
 
 export type { DossierView, NotebookView } from "../gameplay/dossier/contracts";
 
@@ -56,7 +57,7 @@ export async function readVoiceSamples(campaignId: string): Promise<VoiceSamples
 export async function saveVoiceSamples(campaignId: string, value: unknown): Promise<VoiceSamplesView> {
   const { user } = await authorizeCampaign(campaignId);
   const v = value && typeof value === "object" ? value as Record<string, unknown> : {};
-  if ((v.scope !== "campaign" && v.scope !== "account") || typeof v.samples !== "string" || v.samples.length > 40_000) throw new PersistenceError("validation");
+  if ((v.scope !== "campaign" && v.scope !== "account") || typeof v.samples !== "string" || v.samples.length > VOICE_SAMPLES_MAX_CHARS) throw new PersistenceError("validation");
   return parseVoice(await call(user.id, campaignId, "voice_save", { requestId: randomUUID(), scope: v.scope, samples: v.samples }));
 }
 
@@ -80,5 +81,9 @@ export async function dossierService(ownerId: string, campaignId: string) {
     source: () => call(ownerId, campaignId, "source", {}) as Promise<RuntimeSource & { timeline: TimelineFence }>,
     digest: (payload: { sessionId: string; recap: string; title: string; notebook: string; plans: { key: string; value: string }[]; playerLikes?: string; stinger?: string }, timeline: unknown) =>
       call(ownerId, campaignId, "digest", { requestId: randomUUID(), ...payload }, timeline),
+    /** Voice stage part 5: the quotable-line check's flags of a committed turn (the per-turn log; the newest row feeds the next turn's tail). */
+    voiceFlagsSave: (payload: { operationId: string; flags: { line: string; why: string }[]; lines: number; model: string | null; usage: unknown; costUsdMicros: number }) =>
+      call(ownerId, campaignId, "voice_flags_save", { requestId: randomUUID(), ...payload }),
+    voiceFlagsRead: (limit = 50) => call(ownerId, campaignId, "voice_flags_read", { limit }) as Promise<{ campaignId: string; rows: { operationId: string; flags: { line: string; why: string }[]; lines: number; model: string | null; costUsdMicros: number; createdAt: string }[] }>,
   };
 }

@@ -369,7 +369,9 @@ test("§4 the turn snapshot: compact, round-trips, saved once per committed turn
     await c.settings.save({ expectedRevision: settings.revision, runtime: "dm-loop-v1", dmTurn: settings.dmTurn, snapshotsKeep: 1 });
     const pruned = await listTurnSnapshotsWith(rpc, c.owner, c.cid);
     assert.equal(pruned.keep, 1);
-    assert.deepEqual(pruned.snapshots.map((row) => row.turnNo), [2]);
+    // The pruned turn is still listed from its claim-time source (the voice stage's fix of the list: the
+    // turns table is aliased `tr`, no longer shadowed by the variable `t`), the kept one from its row.
+    assert.deepEqual(pruned.snapshots.map((row) => [row.turnNo, row.stored]), [[1, "turn"], [2, "snapshot"]]);
     // Nothing of it reaches the DM's context or the public state.
     const state = await c.state();
     assert.ok(!JSON.stringify(state.scenes).includes("gzip"));

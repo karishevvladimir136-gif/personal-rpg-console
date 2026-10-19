@@ -80,12 +80,13 @@ export function RegistrySettings({ data, more, preview }: {
       if (action === "likes") setLikesDraft(null); else setThemeDraft(null);
     } catch { setError(c("Не удалось сохранить записку.", "Could not save the note.")); }
   };
-  const saveDepth = async (patch: { depth?: { min: string; max: string } | null; notebookVisible?: boolean }) => {
+  const saveDepth = async (patch: { depth?: { min: string; max: string } | null; notebookVisible?: boolean; voiceMode?: DmSettings["voiceMode"]; voiceTokenCap?: number }) => {
     if (!current || saving || chrome?.href) return;
     setSaving(true);
     try {
       const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn,
-        ...(patch.depth !== undefined ? { depth: patch.depth as DmSettings["depth"] } : {}), ...(patch.notebookVisible !== undefined ? { notebookVisible: patch.notebookVisible } : {}) });
+        ...(patch.depth !== undefined ? { depth: patch.depth as DmSettings["depth"] } : {}), ...(patch.notebookVisible !== undefined ? { notebookVisible: patch.notebookVisible } : {}),
+        ...(patch.voiceMode !== undefined ? { voiceMode: patch.voiceMode } : {}), ...(patch.voiceTokenCap !== undefined ? { voiceTokenCap: patch.voiceTokenCap } : {}) });
       setDm(saved);
     } catch { setError(c("Не удалось сохранить. Проверь соединение и попробуй ещё раз.", "Could not save. Check the connection and try again.")); }
     finally { setSaving(false); }
@@ -339,12 +340,12 @@ export function RegistrySettings({ data, more, preview }: {
                 <PinnedList campaignId={data.campaign.id} pinned={pinnedOf(data)} />
 
                 <span className={r.eyebrow}>{c("Образцы голоса", "Voice samples")}</span>
-                <p className={r.note} style={{ margin: 0 }}>{c("Отрывки прозы, которую ты любишь: ведущий будет учиться у их интонации, когда этап голоса включит образцы. Хранятся только в базе, приватно; в репозиторий, логи и примеры не попадают.", "Passages of prose you like: the DM learns their tone once the voice stage turns the samples on. Stored only in the database, privately; never in the repository, logs or fixtures.")}</p>
+                <p className={r.note} style={{ margin: 0 }}>{c("Отрывки прозы, которую ты любишь: ведущий учится у их интонации и ритма. Формат: отрывки разделяет строка «---», отрывок может начинаться со строки «## вид» (торг, ссора, быт, драка, тишина, смешное). Хранятся только в базе, приватно; в репозиторий, логи и примеры не попадают.", "Passages of prose you like: the DM learns their tone and rhythm. Format: a line «---» separates passages; a passage may start with a line «## kind» (bargaining, argument, everyday, fight, quiet, funny). Stored only in the database, privately; never in the repository, logs or fixtures.")}</p>
                 <Segmented label={c("Чьи образцы", "Which samples")} value={voiceScope} disabled={!!chrome?.href}
                   options={[{ value: "campaign", label: c("Этой кампании", "This campaign") }, { value: "account", label: c("По умолчанию для всех", "Default for all campaigns") }]}
                   onChange={(value) => { setVoiceScope(value); setVoiceDraft(null); }} />
-                <textarea className={s.note} rows={6} maxLength={40000} disabled={!!chrome?.href || !voice} aria-label={c("Образцы голоса", "Voice samples")}
-                  value={voiceDraft ?? voice?.[voiceScope] ?? ""} placeholder={c("Вставь один-два абзаца; пустая строка разделяет отрывки.", "Paste a paragraph or two; a blank line separates passages.")}
+                <textarea className={s.note} rows={6} maxLength={200000} disabled={!!chrome?.href || !voice} aria-label={c("Образцы голоса", "Voice samples")}
+                  value={voiceDraft ?? voice?.[voiceScope] ?? ""} placeholder={c("## торг\nОтрывок…\n---\n## тишина\nДругой отрывок…", "## bargaining\nA passage…\n---\n## quiet\nAnother passage…")}
                   onChange={(event) => setVoiceDraft(event.target.value)} />
                 {voiceDraft !== null && (
                   <div className={r.row}>
@@ -358,8 +359,19 @@ export function RegistrySettings({ data, more, preview }: {
                     <button type="button" className={r.btnGhost} onClick={() => setVoiceDraft(null)}>{c("Отмена", "Cancel")}</button>
                   </div>
                 )}
-                <Switch title={c("Использовать образцы голоса", "Use the voice samples")} hint={c("Включит этап голоса, когда слой голоса будет написан; пока выключено и ничего не меняет.", "The voice stage turns this on once the voice layer is written; off until then and changes nothing.")}
-                  checked={!!current?.voiceExamples} disabled onChange={() => {}} />
+                <span className={r.eyebrow}>{c("Образцы в подсказке ведущего", "Samples in the DM's prompt")}</span>
+                <Segmented label={c("Образцы в подсказке ведущего", "Samples in the DM's prompt")} value={current?.voiceMode ?? "off"} disabled={saving || !current || !!chrome?.href}
+                  options={[{ value: "off", label: c("Выключено", "Off") }, { value: "five", label: c("Пять", "Five") }, { value: "all", label: c("Все", "All") }]}
+                  onChange={(value) => void saveDepth({ voiceMode: value })} />
+                <p className={r.note} style={{ margin: 0 }}>{c("«Пять» — пять разных отрывков по видам, одни и те же всю сессию (так подсказка остаётся в кэше). «Все» — весь банк до предела токенов ниже, в кэшируемом слое: дороже на первом ходе сессии, потом почти даром.", "«Five» — five passages of different kinds, the same ones for a whole session (so the prompt stays cached). «All» — the whole bank up to the token cap below, in the cached layer: dearer on a session's first turn, almost free after.")}</p>
+                {current?.voiceMode === "all" && (
+                  <label className={r.note} style={{ margin: 0, display: "flex", gap: 8, alignItems: "center" }}>
+                    <span>{c("Предел токенов для «Все»", "Token cap for «All»")}</span>
+                    <input className={s.note} type="number" min={1000} max={150000} step={1000} style={{ width: 120 }} aria-label={c("Предел токенов", "Token cap")}
+                      defaultValue={current.voiceTokenCap} disabled={saving || !!chrome?.href}
+                      onBlur={(event) => { const next = Number(event.target.value); if (Number.isSafeInteger(next) && next >= 1000 && next <= 150000 && next !== current.voiceTokenCap) void saveDepth({ voiceTokenCap: next }); }} />
+                  </label>
+                )}
 
                 <Switch title={c("Заглянуть в блокнот мастера", "Peek into the DM's notebook")} hint={c("Показывает заметки подготовки между сессиями. По умолчанию выключено.", "Shows the prep notes between sessions. Off by default.")}
                   checked={!!current?.notebookVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ notebookVisible: value })} />

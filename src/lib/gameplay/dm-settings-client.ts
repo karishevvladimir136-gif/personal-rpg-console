@@ -73,6 +73,8 @@ function parse(value: unknown): DmSettings {
   return { campaignId: v.campaignId, runtime: v.runtime, dmTurn, limits, customLimits: !!v.customLimits,
     depth: v.depth === null || v.depth === undefined ? null : parseDepthRange(v.depth),
     notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true,
+    voiceMode: v.voiceMode === "five" || v.voiceMode === "all" ? v.voiceMode : "off",
+    voiceTokenCap: Number.isSafeInteger(v.voiceTokenCap) ? v.voiceTokenCap as number : 30_000,
     split, snapshotsKeep: Number.isSafeInteger(v.snapshotsKeep) ? v.snapshotsKeep as number : null, revision: v.revision as number };
 }
 

@@ -80,12 +80,14 @@ test("the budgets of item 8 and the last turns verbatim", () => {
   assert.match(src("src/lib/gameplay/dm-loop/context.ts"), /while \(start > 0 && used \+ costs\[start - 1\] <= HISTORY_BUDGET\)/, "the budget drops the oldest rows, never the newest");
 });
 
-test("the voice slot and the reminder are empty (off); the samples are quoted only when the switch is on", () => {
-  assert.equal(voiceLayer("Russian", "Отрывок.", false), "");
-  assert.equal(voiceLayer("English", "Отрывок.", true), "Образцы голоса (отрывки прозы, которую любит игрок; учись у их интонации и ритма, не копируй сюжет и имена):\n<example>\nОтрывок.\n</example>");
-  assert.equal(voiceReminder("Russian"), "");
-  assert.match(voiceExamplesBlock("Первый.\n\nВторой.\n\nТретий.", true), /<example>\nПервый\.\n<\/example>\n<example>\nВторой\./);
-  assert.equal(voiceExamplesBlock("", true), "");
+test("the voice slot and the reminder (filled by the voice stage); the samples are quoted only when the mode allows", () => {
+  // The voice stage filled the slots (tests/voice-stage.test.mjs); here only the mechanics around them.
+  assert.ok(voiceLayer("Russian", "Отрывок.", "off").length > 1000, "the Russian prose is in the slot");
+  assert.doesNotMatch(voiceLayer("Russian", "Отрывок.", "off"), /Отрывок\./, "no examples while the mode is off");
+  assert.equal(voiceLayer("English", "Отрывок.", "five"), "Образцы голоса (отрывки прозы, которую любит игрок; учись у их интонации и ритма, не копируй сюжет и имена):\n<example>\nОтрывок.\n</example>");
+  assert.ok(voiceReminder("Russian").length > 0);
+  assert.match(voiceExamplesBlock("Первый.\n---\nВторой.\n---\nТретий.", "five").text, /<example>\nПервый\.\n<\/example>\n<example>\nВторой\./);
+  assert.equal(voiceExamplesBlock("", "five").text, "");
 });
 
 test("«Образцы голоса»: stored privately per campaign with an account default, reaching the turn's source only through the switch", async () => {

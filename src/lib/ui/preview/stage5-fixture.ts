@@ -308,7 +308,7 @@ export const shovSample: PreviewSample = {
     pacing: { kind: "evening", custom: null }, mode: "canon", status: "active",
     start: { worldMinutes: 4 * 1440 + 300, sceneId: null }, completion: null, summary: null, review: null, createdAt: at(0),
   }),
-  dmSettings: { campaignId: PREVIEW_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "medium" }, limits: { ...DM_LOOP_DEFAULT_LIMITS }, customLimits: false, depth: { min: "medium", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false, split: null, snapshotsKeep: null, revision: 3 },
+  dmSettings: { campaignId: PREVIEW_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "medium" }, limits: { ...DM_LOOP_DEFAULT_LIMITS }, customLimits: false, depth: { min: "medium", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false, voiceMode: "off", voiceTokenCap: 30_000, split: null, snapshotsKeep: null, revision: 3 },
   library: previewLibrary,
   images: previewImages,
   drawing: previewDrawing,

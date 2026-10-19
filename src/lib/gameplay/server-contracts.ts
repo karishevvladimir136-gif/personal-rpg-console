@@ -161,9 +161,19 @@ export type RuntimeSource = {
   adventureContext?: JsonObject;
   memory?: ContextMemory;
   /** Polish group 7: «Образцы голоса» — the owner's passages (private; the campaign's, else the
-   * account default) and the campaign's switch that lets the voice layer quote them. */
+   * account default) and the campaign's switch that lets the voice layer quote them. Voice stage
+   * part 3: the examples mode (off · five · all) and the token cap of «all»; `voiceExamplesOn`
+   * mirrors `voiceMode !== "off"`. */
   voiceSamples?: string | null;
   voiceExamplesOn?: boolean;
+  voiceMode?: "off" | "five" | "all";
+  voiceTokenCap?: number;
+  /** Voice stage part 5: the quotable-line check's newest flags (the line, why); quoted in the
+   * next turn's tail only when they belong to the last committed turn. */
+  voiceFlags?: { operationId: string; flags: { line: string; why: string }[] } | null;
+  /** The replay tool's «off» voice variant only (never set by the database): no voice layer,
+   * no reminder, no examples — the prompt as it was before the voice stage. */
+  voiceLayerOff?: boolean;
   ownerId: string;
   snapshot: CampaignSnapshot;
   runtime: PlaySnapshot;

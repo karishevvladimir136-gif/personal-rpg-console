@@ -5,6 +5,7 @@ import type { ModelSelection } from "../../production/contracts.ts";
 import { DM_LOOP_RUNTIME } from "./contracts.ts";
 import { effectiveDmLoopLimits, parseDmLoopLimits, type DmLoopTurnLimits } from "./limits.ts";
 import { DEFAULT_DEPTH_RANGE, parseDepthRange, type DepthRange } from "./depth.ts";
+import { isVoiceMode, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN, type VoiceMode } from "./voice.ts";
 
 export type DmRuntimeId = "astra-primary-v1" | typeof DM_LOOP_RUNTIME;
 /** Polish 3 §2: the split — a writer that narrates (with the roll tool) and closes with a
@@ -40,8 +41,12 @@ export type DmSettings = {
   notebookVisible: boolean;
   /** Stage 4 §7: «⚡ важный ход» — the next turn takes the top of the range, then the flag clears. */
   boostNext: boolean;
-  /** Polish group 7: the voice layer may quote the owner's «Образцы голоса»; off until the voice stage. */
+  /** Polish group 7: the voice layer may quote the owner's «Образцы голоса» (mirrors voiceMode !== "off"). */
   voiceExamples: boolean;
+  /** Voice stage part 3: the examples mode — off · five (diverse by kind, stable per session) · all (up to the cap). */
+  voiceMode: VoiceMode;
+  /** Voice stage part 3: the token cap of the «all» mode (estimated tokens; default 30 000). */
+  voiceTokenCap: number;
   /** Polish 3 §2: the writer + bookkeeper split; null — today's loop (the default for every campaign). */
   split: DmSplit | null;
   /** Polish 3 §4: how many of the newest turn snapshots to keep; null — all (the default). */
@@ -57,6 +62,9 @@ export type DmSettingsSave = {
   notebookVisible?: boolean;
   boostNext?: boolean;
   voiceExamples?: boolean;
+  /** Omitted: keep. The mode wins over the old boolean when both are sent. */
+  voiceMode?: VoiceMode;
+  voiceTokenCap?: number;
   /** Omitted: keep. null: today's loop. An object: the split. */
   split?: DmSplit | null;
   /** Omitted: keep. null: keep every snapshot. */
@@ -95,9 +103,13 @@ export function parseDmSettings(value: unknown): DmSettings {
   try { split = parseDmSplit(v.split); } catch { throw new DmSettingsError("unavailable"); }
   const keep = v.snapshotsKeep;
   if (keep !== null && keep !== undefined && !(Number.isSafeInteger(keep) && (keep as number) >= 1)) throw new DmSettingsError("unavailable");
+  // Voice stage part 3: a row from before migration 70 carries the boolean only (true → five).
+  const voiceMode: VoiceMode = isVoiceMode(v.voiceMode) ? v.voiceMode : v.voiceExamples === true ? "five" : "off";
+  const voiceTokenCap = Number.isSafeInteger(v.voiceTokenCap) && (v.voiceTokenCap as number) >= VOICE_TOKEN_CAP_MIN && (v.voiceTokenCap as number) <= VOICE_TOKEN_CAP_MAX
+    ? v.voiceTokenCap as number : VOICE_TOKEN_CAP_DEFAULT;
   return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
     customLimits: v.limits !== null && v.limits !== undefined, depth,
-    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true,
+    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: voiceMode !== "off", voiceMode, voiceTokenCap,
     split, snapshotsKeep: keep === null || keep === undefined ? null : keep as number, revision: v.revision as number };
 }
 
@@ -105,7 +117,7 @@ export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if (!value || typeof value !== "object") throw new DmSettingsError("validation");
   const v = value as Record<string, unknown>;
   const keys = Object.keys(v);
-  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples", "split", "snapshotsKeep"]);
+  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples", "voiceMode", "voiceTokenCap", "split", "snapshotsKeep"]);
   if (!["dmTurn", "expectedRevision", "runtime"].every((key) => keys.includes(key)) || keys.some((key) => !allowed.has(key)) ||
     !Number.isSafeInteger(v.expectedRevision) ||
     (v.runtime !== "astra-primary-v1" && v.runtime !== DM_LOOP_RUNTIME)) throw new DmSettingsError("validation");
@@ -125,6 +137,11 @@ export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if ("notebookVisible" in v) { if (typeof v.notebookVisible !== "boolean") throw new DmSettingsError("validation"); save.notebookVisible = v.notebookVisible; }
   if ("boostNext" in v) { if (typeof v.boostNext !== "boolean") throw new DmSettingsError("validation"); save.boostNext = v.boostNext; }
   if ("voiceExamples" in v) { if (typeof v.voiceExamples !== "boolean") throw new DmSettingsError("validation"); save.voiceExamples = v.voiceExamples; }
+  if ("voiceMode" in v) { if (!isVoiceMode(v.voiceMode)) throw new DmSettingsError("validation"); save.voiceMode = v.voiceMode; }
+  if ("voiceTokenCap" in v) {
+    if (!Number.isSafeInteger(v.voiceTokenCap) || (v.voiceTokenCap as number) < VOICE_TOKEN_CAP_MIN || (v.voiceTokenCap as number) > VOICE_TOKEN_CAP_MAX) throw new DmSettingsError("validation");
+    save.voiceTokenCap = v.voiceTokenCap as number;
+  }
   if ("split" in v) save.split = parseDmSplit(v.split);
   if ("snapshotsKeep" in v) {
     if (v.snapshotsKeep === null) save.snapshotsKeep = null;
