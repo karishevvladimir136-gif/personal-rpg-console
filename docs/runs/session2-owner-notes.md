@@ -716,3 +716,8 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     set the output cap from the depth (xhigh thinking alone can take most of 16k); never lose the streamed narration
     the player already read; log the provider's error text (secrets filtered) instead of just «provider». An open
     planning question («какой план?») at xhigh is the typical trigger: long thinking plus many private notes.
+    **Owner decision (16:47): «поднимаем запас до предела»** — after the session (he works around it by splitting big
+    requests until then). The output cap of a DM request becomes the model's own maximum from
+    `model-runtime/capabilities.ts` (128k for the current models) instead of 6,000 + `thinkingAllowance` (`loop.ts`),
+    for every depth and both providers; the narration-length guidance stays in the prompt. Plus the continuation fix
+    above. Log every turn over 32k output (tokens, seconds, cost) so a runaway is visible.
