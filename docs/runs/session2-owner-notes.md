@@ -163,3 +163,11 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     the campaign is opened while its session has no digest; an unparsed answer leaves it without one, so the next entry
     pays again. Do: one failed digest per session per day at most (record the failure), a parse repair or a fallback
     digest, the digest at the depth range's base (high), not xhigh; find why it does not parse.
+    Why nine for one owner visit (planner, from the log and `session-digest.ts`): the runs come in bursts of three at
+    the same moment (log lines 6694–6696, 6909–6911) right after parallel `GET /api/campaigns/<id>/play` requests —
+    the game screen asks for the play state two or three times on open, each `readPlay` calls `digestOnEntry`, and
+    `scheduleDigest` has no in-flight guard (only `retryDigest` checks `inFlight`), so one open = three paid digests.
+    The other bursts follow other visits: the local sessions also opened «Рэй» while checking settings for session 2.
+    Fix first: an in-flight guard in `scheduleDigest`; after a failed digest, no automatic retry on entry (the «Повторить»
+    button stays); the unparsed reason and the first 300 characters logged. Before the owner reopens session 2's
+    campaign after its session ends.
