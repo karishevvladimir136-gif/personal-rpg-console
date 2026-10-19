@@ -612,3 +612,17 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     any «powers» list elsewhere), editable by the owner, and changed in play by the DM (learn, prepare after a long rest)
     — with item 18 (the hero sheet cannot change in play today). Seen on the same screen, good: silver and copper now
     have their own counters next to gold (См 11, Мм 26), and the foreign coin is an item marked as a clue.
+
+50. **A big time cost was paid without asking** (owner, 15:56: «как мы резко перескочили час?»). The hero asked to use
+    Arcane Recovery; in 5e it needs a short rest (one hour), so the DM ran the hour in the same turn — 17:15 → 18:50 —
+    with the companion's errand told in sequence though it ran in parallel, and said so only afterwards in its aside.
+    An hour before sunset with the enemy shift due at 19:00 is a real decision. Do: when an action costs notable time
+    (a rest, a ritual, a search of an area, travel), the DM names the cost and stops for the player's yes before
+    spending it, unless the player already accepted it.
+
+51. **A companion asks the hero a question and the same turn walks on** (owner, 16:02: «ответа не дождался и пошёл —
+    зачем спрашивать?»). The sergeant asks the mage whether his fire will reach him, «waits for the answer without
+    moving», then leaves for his position, and the turn runs on to the enemy's arrival. The DM may not answer for the
+    hero, so the question hangs. Do: a question put to the hero ends the turn (the player answers next), or the DM
+    does not ask it — the companion states what he needs to state. One exchange of a conversation per turn, as the
+    role already says.
