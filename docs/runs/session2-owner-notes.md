@@ -489,3 +489,8 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     says «ритуалом». Voice (owner: «так. лучше», but one line «явно перевод… косная речь», pair 13): with the quips gone
     the calques remain — the English-instructions cause; the DM also sprinkles «ведь» everywhere (the voice layer's
     particles rule taken literally) and gives a companion a repeated gesture across scenes («сглатывает» ×3).
+    Owner (14:31) noticed the natural 1 cost nothing («даже в прошлой кампании он при такой ситуации ранил себя ножем»).
+    That is the planner's 5e guide working (RAW: 1 on a check is just a number); session 1 ran on the English role's
+    «a natural 1 costs something». Owner decision pending: RAW 5e, BG3-style (1 always fails, 20 always succeeds), or a
+    house rule (1 = a cost that follows from the action itself, proportionate; 20 = a small extra). Whatever he picks
+    goes into the campaign's DM guide; the core role must defer to the guide on this.
