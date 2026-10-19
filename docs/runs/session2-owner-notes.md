@@ -48,3 +48,20 @@ campaign); the local session checks and loads it (`docs/HOME_FIX.md`). Also in t
    sets the class. Owner asked what it is. Do: make it work on the game screen (the shell sets the class; narration and
    the owner's words clearly larger, e.g. 20–21px and 18px, line length kept), and say in its help line what it does
    («Текст истории на экране игры крупнее»).
+
+## «Мастерство Ведущего» screen (2026-10-19)
+
+7. **Owner: «выглядит неаккуратно… куча разных карточек… этот мега-список снизу».** Today: 22 cards in a 5-column grid,
+   each as tall as its full text (from 6 lines to 40), the «Избегать» block, tags (some English: cognitive, knowledge,
+   world, voice), the role, and an «Изменить и проверить новую версию» button on each; under them a long «История
+   версий» of every version of every card. The owner wants:
+   - **all cards the same size**, showing only a short description (the first sentence or two of the text, clipped to
+     three lines), the title, the kind («Основные принципы» / «Карточка»), the role («Для писателя» / «Для учётчика» /
+     «Для обоих») and the version;
+   - **the full text opens on click** (a panel or a dialog over the grid): the text, «Избегать», tags, the role switch,
+     «Изменить и проверить новую версию» — the edit button lives here, not on every card;
+   - **the version history out of the page**: inside the opened card, the history of that card only (folded), with
+     «Сделать одобренной» as today.
+   Also: «Как вести игру» first and visibly the main one (wider or set apart above the grid); English tags not shown in
+   the grid (in the opened card, Russian names where a mapping is obvious); the grid 3–4 columns on a wide screen,
+   1 on a phone; the same typography rules as item 5.
