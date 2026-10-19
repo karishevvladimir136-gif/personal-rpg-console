@@ -304,7 +304,7 @@ test("approved cognitive Craft is bilingual, pinned, bounded and new Style never
     const view = (await f.one("select public.rpg_dm_craft($1,'read','{}'::jsonb) result", [f.owner])).result;
     const active = view.effective.find((entry) => entry.key === "core-doctrine");
     const doctrine = view.versions.find((entry) => entry.id === active.activeVersionId);
-    assert.equal(doctrine.version, 2);
+    assert.equal(doctrine.version, 4, "the owner-approved v4 (Stage 4's v3 with v2's lost lines restored)");
     assert.match(doctrine.en.guidance, /agency|connection|hope/);
     assert.match(doctrine.ru.guidance, /свободу|связь|надежду/);
     assert.match(doctrine.en.avoid, /real owner/);
