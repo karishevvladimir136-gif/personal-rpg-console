@@ -626,3 +626,12 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     hero, so the question hangs. Do: a question put to the hero ends the turn (the player answers next), or the DM
     does not ask it — the companion states what he needs to state. One exchange of a conversation per turn, as the
     role already says.
+
+52. **The coins sit as three loose counters in the wrong order** (owner, 16:05: «монеты тоже выглядят спорно… это надо
+    как-то упорядочить и убрать»). After the loot the DM added silver and copper as their own counters, so the side
+    panel shows «Зм 10 / Мм 26 / См 11» — three full rows among the spell slots, in the order they were created
+    (gold, copper, silver), with bare abbreviations; the inventory header repeats «10 Зм · 26 Мм · 11 См». Do: money is
+    one wallet line in the system's order of value — «Кошелёк: 10 зм · 11 см · 26 мм» (5e: пм, зм, эм, см, мм) — the
+    full coin name on hover, and the wallet is not a resource counter at all; the same line on the inventory. With
+    item 33 («Зм» → the word) and item 32 (counters with Latin names: «Shaman tusk», «Arcane recovery»,
+    «Healing potions» — show Russian labels).
