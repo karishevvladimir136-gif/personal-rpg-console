@@ -16,3 +16,19 @@ Each item: what he saw, what he wants. Fixed together after the session unless i
 **Status:** 1–3 fixed by the planner in `d74b6c6` on `claude/session-2-prep` (the owner asked for it before starting the
 campaign); the local session checks and loads it (`docs/HOME_FIX.md`). Also in that commit: the stale Flare caption in
 «Модели картинок» (live frames have been on Sunburst since polish 3).
+
+## General settings → «ИИ: провайдеры и модели» (2026-10-19)
+
+4. **The block is a leftover of the old OpenAI-only app.** Owner: «тут какая-то шняга снова с провайдерами». It lists
+   only OpenAI under «Доступность провайдеров», shows «Модель приложения по умолчанию: gpt-6-astra · high», the chips
+   gpt-6-astra / gpt-6-sol / gpt-5.4 / gpt-5.4-mini, and says «Выберите модели, которые ведут… ваши кампании» and
+   «Кампании наследуют эту модель». None of that is true for play today: the DM is chosen per campaign (Settings →
+   «Ведущий»; the new-campaign wizard defaults to Claude Opus 5.5) and `dm.turn` never inherits the app model
+   (`resolveExecutionProfile`); the opening and the «Ранее в…» digest run on the campaign's DM model; pictures run on
+   the campaign's «Картинки» choice (OpenAI GPT Image, fal). The app model (env `OPENAI_DM_MODEL`, default GPT-6 Astra)
+   still serves the old paths: the World Library's canon compile (`world-library/authoring.ts`, `canon.compile`), the
+   old Astra loop's tasks and memory summaries (`production-service.ts`), World Lab, and the opening only when a
+   campaign has no DM choice. Do (after the session): rewrite the block to say who does what — providers Anthropic,
+   OpenAI and fal with «ключ есть / нет»; «Ведущий — в настройках каждой кампании (по умолчанию Claude Opus 5.5)»;
+   «Картинки — в настройках кампании»; the app model renamed to what it is («Фоновая модель OpenAI: сборка канона мира
+   в «Мирах»…»), its chips under «Подробнее». Open question for the owner later: move canon compile to Claude too?
