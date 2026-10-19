@@ -319,3 +319,12 @@ Problems:
     «Arcane recovery») — labels in the campaign language (b above); the DM first set only the maxima and left current
     values at 0, then raised them in the same turn; the narration reported the bookkeeping («Максимумы встали, но
     текущие значения остались на нуле…») — fine for an out-of-game turn.
+
+33. **The doll's slots, seen with the kit on** (owner, after the DM equipped hat, tusk, robe, staff and boots: «ура»; but
+    «ноги и сапоги — дублирование… а где кольцо?»). Today: head, neck, armor/coat, main hand, off hand, belt, legs, boots.
+    Do, Baldur's Gate-like: Голова, Амулет, Плащ, Броня/одежда, Перчатки/наручи, Пояс, Сапоги, Кольцо (левая), Кольцо
+    (правая), Основная рука, Вторая рука — no «Ноги»; `humanoidSlots` and the categories they accept to match (clothing,
+    jewelry, accessory as real item kinds — item 14). Existing heroes keep their equipped items (legs → none in use).
+    And, again (items 5, 22, 30), owner: «оно должно быть больше, на весь экран… мне казалось, мы это фиксили»; the item
+    card «вечно висит» — it opens on a click and closes. Acceptance for these: screenshots at 1920×1080 and 2560×1440 of
+    the character and inventory screens, filling the window, before the fix is called done.
