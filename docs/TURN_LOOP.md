@@ -703,3 +703,54 @@ closes with a private ledger, then a bookkeeper that records with today's tools 
 - **The ablation**: the replay tool takes `--craft live|all|none|session1` (session 1's set: the core doctrine and
   the ten Mega DM cards; the Stage 4 and polish cards waited for the owner's approval until 2026-10-18).
 - Tests: `tests/polish3-craft.test.mjs`; `tests/stage4-dossier.test.mjs`, `tests/polish-group4.test.mjs` updated.
+
+## 26. The voice stage: living Russian, natural dialogue, humour
+
+`docs/stages/VOICE.md` «The build». The mechanics of group 7 (§16) are filled and extended; the owner's bank never
+enters the repository, a log, a fixture or a test (the tests use synthetic placeholder passages, marked as such).
+
+- **The voice layer** (`VOICE_LAYER_RU`, `src/lib/gameplay/dm-loop/voice.ts`): native Russian prose of about 550
+  estimated tokens (630 on Opus's own count) in the cached layer 1, right after the turn shape, for Russian campaigns
+  and both roles — people speak to get something from the listener, not to be quoted; speaking is not answering (no
+  point-by-point replies in complete sentences); the particles and word order of spoken Russian; prices, terms and
+  risks in the narration, not in speeches; similes with the narrator and rarely; anger names the grievance in the
+  person's own words, not a symmetric epigram; the owner's test «сказал бы это живой человек вслух, в лицо, в ту
+  секунду?»; a tic at most once a scene; humour black, dry, one line, never explained, no sound puns; the «Э?»
+  pause when the hero says something wild. **The reminder** (`VOICE_REMINDER_RU`, ≤ 120 tokens) closes the last,
+  uncached block next to the player's input with the rules that drift first: the want before the line, no
+  point-by-point answers, game information in the narration, the owner's test.
+- **Want before the line**: one sentence at the head of both turn shapes (`WANT_BEFORE_THE_LINE_RU/EN`): before a
+  person speaks, decide in thinking what they want from the hero right now; the line serves that want. No tool.
+- **«Образцы голоса» in a passage format**: passages separated by a line `---`, each may start with `## <kind>`
+  (`parseVoicePassages`; a text without `---` is one passage, so a multi-paragraph piece never splits). **The
+  examples mode** is a campaign setting (migration 70: `dm_settings.voice_mode` off · five · all, `voice_token_cap`
+  default 30 000; the old boolean mirrors the mode; the samples store takes 200 000 characters): *five* picks five
+  passages diverse by kind — round-robin over the kinds in their order of first appearance, each kind's list rotated
+  by the session id — so the pick is stable for a session (the cached layer holds) and differs between sessions;
+  *all* quotes the whole bank in order up to the cap, whole passages only, the dropped tail counted in the layer-1
+  report. Both sit in the cached layer 1 after the prose (`voiceExamplesBlock`). The settings screen's switch became
+  «Образцы в подсказке ведущего» (Выключено · Пять · Все, the cap for «Все»). The replay tool's `off` variant sets
+  `voiceLayerOff` on its isolated copy (never the database): no layer, no reminder, no examples.
+- **Speech profiles in play** (`speechProfilesBlock`): the profiles of the people in the scene (register, sentence
+  length, tics with their frequency, never says, ты/вы) travel in the last block right before the reminder — the
+  persona-drift remedy, next to the player's input — and a named person who spoke in the last narration without a
+  profile gets one line asking for it (note_character speech for the loop; for the writer, the ledger's people line
+  so the bookkeeper records it).
+- **The quotable-line check** (`quotable.ts`, `src/lib/server/voice/quotable-check.ts`; the time-word pattern): after
+  a commit, off the turn's path (Next's `after`), Claude Haiku 5.5 at low effort reads the narration's NPC lines
+  (dash lines without their attribution, quoted speech) and flags lines that are slogans, symmetric epigrams or
+  metaphors standing in for a motive; the flags are stored per turn (`rpg_private.voice_flags`, `rpg_dossier
+  voice_flags_save / voice_flags_read`, `runtime_source.voiceFlags`) and logged (`dm_loop_quotable`); the next turn's
+  tail carries one line — the line, why — only while the flags belong to the last committed turn, nothing otherwise.
+  A failure or a missing key is one log line, never a turn failure.
+- **The metrics** (`scripts/eval/voice-metrics.mjs`, `scripts/eval/lib/voice-metrics.mjs`): per variant over sample
+  folders and run records — particles per 100 speech words, the share of incomplete speech sentences, the share of
+  ≤ 5-word paragraphs, simile markers per 100 words, quotable flags per checked turn, repeated three-word phrases per
+  character, the «tennis» share (reply–reply with at most a bare attribution between), Latin letters, канцелярит and
+  the humanizer-ru calque markers per 1 000 words, the share of sentences with a spaced dash.
+- **The replay tool** takes `--voice live|off|layer|five|all` with `--examples-file <path outside the repo>` (read at
+  run time; the sample carries the variant's label and the passage count, never a passage), `--ledger voice|polish3`
+  (the stage's ledger, cap $8, is the default) and runs the quotable check on every committed paid turn. The owner's
+  two replay bugs are fixed: the snapshot list names pre-migration-68 turns (migration 70 aliases the turns table
+  `tr` in `rpg_turn_snapshots`), and the `--base` path reads the route's decoded `payload` (`lib/snapshots.mjs`).
+- Tests: `tests/voice-stage.test.mjs`; `tests/polish-group7.test.mjs`, `tests/polish3-split.test.mjs` updated.

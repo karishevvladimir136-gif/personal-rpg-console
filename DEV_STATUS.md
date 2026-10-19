@@ -1,6 +1,31 @@
 # Development status
 
-**Current stage:** Polish 3 (`docs/stages/POLISH_3.md`, parts 1–7) — **done on `claude/polish-3-stage-009b43` (pushed also
+**Current stage:** the voice stage (`docs/stages/VOICE.md` «The build», parts 1–8, plus the owner's two replay-tool
+bugs of 2026-10-18) — **done on `claude/voice`, waiting for the owner's approval of the two Russian texts, the local
+session of `docs/REPLAY_2_PROMPT.md` (the bank loaded, session 1 replayed with four voice variants) and the planner's
+blind page.** Branch from `claude/polish-3` (8d6d26a); migration 70 (`voice_stage`), additive. The owner report is
+`docs/runs/voice-report.md` (the two texts printed in full; «Needs the owner» lists the decisions left open); the resume
+notes `docs/runs/voice-progress.md`; the docs `docs/TURN_LOOP.md` §26 and `scripts/eval/real-replay/README.md`. Final
+checks: typecheck pass, lint pass (zero warnings), build pass, the loop fake bench 21/21 (351/351 checks), the stage's
+tests 16/16, screenshots 50 with zero overflow, the full suite on a detached worktree pinned to the final commit as the
+report's table says. Paid: the smoke of two synthetic turns × four voice variants with a synthetic examples file, 8/8
+committed, **$1.75 of the $8 cap** (`docs/runs/voice-ledger.json`).
+
+**The voice stage in short (2026-10-19):** the Russian voice layer (about 550 tokens, native prose: people speak to
+get something, speaking is not answering, the particles of spoken Russian, game information in the narration,
+similes with the narrator, the quotable-line test, dark dry one-line humour never explained, the «Э?» pause) sits in
+the cached layer 1 for both roles and its reminder (≤ 120 tokens) closes the last block next to the player's input;
+«want before the line» is one sentence in both turn shapes; «Образцы голоса» has a passage format (`---`, `## вид`)
+and a per-campaign examples mode (off · five diverse and stable per session · all up to a token cap, in the cached
+layer; the store takes 200 000 characters) with the settings screen's switch turned into that mode; the speech
+profiles of the people present travel next to the reminder and a person who spoke without one is asked for; the
+quotable-line check (Claude Haiku 5.5, after the commit, off the turn's path) flags slogans, epigrams and metaphors
+standing in for a motive, logs them per turn and puts one line into the next turn's tail; `scripts/eval/voice-metrics.mjs`
+prints the voice metrics per variant; the replay tool takes `--voice off|layer|five|all` with an examples file outside
+the repo and the stage's own ledger; the snapshot list names pre-migration-68 turns again and the `--base` path reads
+the route's shape. The Polish 3 and earlier sections below are each stage's own closing status, kept unchanged.
+
+**Previous stage:** Polish 3 (`docs/stages/POLISH_3.md`, parts 1–7) — **done on `claude/polish-3-stage-009b43` (pushed also
 as `claude/polish-3`), waiting for the owner's review, the writer's blind page on his own turns and the session 2 sandbox
 play.** Branch from `claude/polish-2` with `claude/dm-arch-bakeoff-zuxey2` merged first and `claude/craft-approval` for
 part 7; migrations 68 (`polish3_dm_architecture`), 69 (`polish3_craft_roles`) and the owner's 90 (`owner_approves_craft`),

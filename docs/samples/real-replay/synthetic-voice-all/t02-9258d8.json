@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "scene": "t02",
+  "title": "Turn 2",
+  "description": "Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»: the owner's own turn 2, replayed from the state before it; one turn per variant.",
+  "language": "ru",
+  "keyStep": "t2",
+  "createdAt": "2026-10-19T05:34:11.014Z",
+  "run": "real-replay-20261019-053315",
+  "record": "docs/runs/real-replay-20261019-053315.jsonl",
+  "variant": {
+    "id": "A",
+    "label": "Opus 5.5, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": null,
+    "effort": "high",
+    "craft": "live",
+    "voice": "all",
+    "examplesPassages": 7
+  },
+  "before": {
+    "input": "Оглядываюсь на причале: кто здесь, что изменилось с прошлой осени.",
+    "narration": "Ты оглядываешься: причал, лодки, Марта у кабака вытирает руки о передник."
+  },
+  "turns": [
+    {
+      "step": "t2",
+      "input": "Подхожу к Марте. Говорю, что долг помню и отдам, но сперва мне нужна работа. Спрашиваю, что в гавани слышно.",
+      "outcome": "committed",
+      "narration": "Марта не перестаёт вытирать руки, хотя они давно сухие. Слушает тебя до конца и только потом кивает.\n\n— Помнишь — это хорошо. Я тоже помню.\n\nОна смотрит поверх твоего плеча на воду, туда, где за дальними понтонами из воды торчит верхушка мачты. Короткая, кривая, как палец.\n\n— Видишь? Лукьяна Сома баржа. Третий день на дне. Он сходил в гильдию, там ему назвали цену, и он пришёл ко мне пить. С утра сидит, вон, у окна.\n\nЛукьян, по её словам, сулит тридцать монет тому, кто достанет из трюма ящик. Из трюма. Ты чувствуешь это слово где-то под рёбрами.\n\n— Только вот что. — Марта наконец убирает тряпку за пояс. — Платить он будет при мне. И своё я заберу сразу.\n\n— На тихой воде легла, — говорит Мокей от края причала. Сеть он не опускает. — Ни ветра, ничего. Я ещё подумал тогда.\n\n— Тебе за «подумал» не платят, — отвечает Марта.\n\n— Мне и за сеть не платят.\n\nРемесло своё ты знаешь. Гружёная баржа у причала, в штиль, сама на дно не ложится. Разве что шов разошёлся. Или кто-то ей помог.\n\nМарта уже стоит в дверях кабака и держит дверь. Ждёт, пока решишь, войдёшь или нет.",
+      "firstWordMs": 20335,
+      "textDoneMs": 52607,
+      "recordsDoneMs": 52607,
+      "durationMs": 52607,
+      "requests": 1,
+      "effort": "high",
+      "tension": "calm",
+      "tokens": {
+        "input": 23726,
+        "output": 5272,
+        "cached": 0,
+        "cacheWrite": 21930,
+        "cacheWrite1h": 21312
+      },
+      "cacheReadShare": 0,
+      "costUsd": 0.28654,
+      "quotable": {
+        "flags": [
+          {
+            "line": "На тихой воде легла",
+            "why": "Поэтичный образ «на тихой воде легла» без мотива; звучит как строка для цитаты, а не как реплика в разговоре."
+          }
+        ],
+        "lines": 7,
+        "costUsd": 0.000327,
+        "error": null
+      },
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "upsert_place",
+          "quest",
+          "quest",
+          "note_character",
+          "note_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Новое место: Кабак «Сухой Якорь»",
+          "Новое место: Дальние понтоны",
+          "Долг: Долг Марте",
+          "Зацепка: Баржа Лукьяна Сома",
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "tension": "calm",
+          "reason": "DM hint: calm"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.28654,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

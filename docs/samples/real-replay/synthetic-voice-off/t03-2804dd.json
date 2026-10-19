@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "scene": "t03",
+  "title": "Turn 3",
+  "description": "Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»: the owner's own turn 3, replayed from the state before it; one turn per variant.",
+  "language": "ru",
+  "keyStep": "t3",
+  "createdAt": "2026-10-19T05:29:21.078Z",
+  "run": "real-replay-20261019-052738",
+  "record": "docs/runs/real-replay-20261019-052738.jsonl",
+  "variant": {
+    "id": "A",
+    "label": "Opus 5.5, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": null,
+    "effort": "high",
+    "craft": "live",
+    "voice": "off"
+  },
+  "before": {
+    "input": "Подхожу к Марте. Говорю, что долг помню и отдам, но сперва мне нужна работа. Спрашиваю, что в гавани слышно.",
+    "narration": "— Работа есть, — говорит Марта. — Сорок монет ты мне должен, помнишь."
+  },
+  "turns": [
+    {
+      "step": "t3",
+      "input": "Спрашиваю Мокея про его сеть и про то, что творится на воде — не было ли чего странного в последние дни.",
+      "outcome": "committed",
+      "narration": "Мокей не поднимает головы, пока не затянет узел. Потом встряхивает сеть: посередине дыра в ладонь, и края у неё не рваные, а будто перетёртые.\n\n— Видал? Третья за неделю. У Старого мола цепляю. Двадцать лет там хожу, всегда чисто было.\n\nОн протягивает тебе край. Нити в рыжей пыли, к одной прилипла чёрная крошка смолы. Смола свежая, ещё мажется. Ты такое видел по работе: камень или борт затонувшей шаланды так не режут. Это натянутый трос, просмолённый, и в воде он недавно: водоросль на нём сесть не успела. Ржавчина тоже говорит, что под водой что-то железное, и кто-то его держит или тянет.\n\n— Странного, говоришь… — Мокей сплёвывает в воду. — Позавчера ночью у мола лодка стояла. Без фонаря. Я с рыбой шёл и слышу: насос стучит. Ручной, как у вас, гильдейских. Тук-тук, тук-тук. Час, не меньше.\n\nНаконец он поднимает на тебя глаза, светлые, в красных прожилках от ветра.\n\n— Я к ним не полез. И тебе не советую. Только если там чего достанешь, сеть мою с того троса сними. Там уже две висят, хорошие, новые были.\n\nЗа спиной хлопает дверь кабака: Марта выплёскивает с крыльца ведро и делает вид, что не слушает.",
+      "firstWordMs": 19117,
+      "textDoneMs": 51131,
+      "recordsDoneMs": 51131,
+      "durationMs": 51131,
+      "requests": 1,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 22111,
+        "output": 5112,
+        "cached": 19263,
+        "cacheWrite": 713,
+        "cacheWrite1h": 95
+      },
+      "cacheReadShare": 0.871,
+      "costUsd": 0.11859,
+      "quotable": {
+        "flags": [],
+        "lines": 4,
+        "costUsd": 0.000111,
+        "error": null
+      },
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "note_character",
+          "note_character",
+          "upsert_place",
+          "quest",
+          "note_world",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Новое место: Старый мол",
+          "Зацепка: Трос у Старого мола",
+          "Прошло: 10 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "tension": "tense",
+          "reason": "DM hint: tense"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.11859,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

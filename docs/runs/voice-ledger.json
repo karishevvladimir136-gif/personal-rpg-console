@@ -1,0 +1,55 @@
+{
+  "capUsd": 8,
+  "entries": [
+    {
+      "run": "real-replay-20261019-052738",
+      "what": "real replay: 2 turns × A on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»; voice off; craft live",
+      "startedAt": "2026-10-19T05:27:38.603Z",
+      "reservedUsd": 1,
+      "spentUsd": 0.3852,
+      "settled": true,
+      "finishedAt": "2026-10-19T05:29:21.079Z",
+      "record": "docs/runs/real-replay-20261019-052738.jsonl"
+    },
+    {
+      "run": "real-replay-20261019-052921",
+      "what": "real replay: 2 turns × A on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»; voice layer; craft live",
+      "startedAt": "2026-10-19T05:29:21.268Z",
+      "reservedUsd": 1,
+      "spentUsd": 0.4174,
+      "settled": true,
+      "finishedAt": "2026-10-19T05:31:20.299Z",
+      "record": "docs/runs/real-replay-20261019-052921.jsonl"
+    },
+    {
+      "run": "real-replay-20261019-053120",
+      "what": "real replay: 2 turns × A on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»; voice five; craft live",
+      "startedAt": "2026-10-19T05:31:20.502Z",
+      "reservedUsd": 1,
+      "spentUsd": 0.4139,
+      "settled": true,
+      "finishedAt": "2026-10-19T05:33:14.872Z",
+      "record": "docs/runs/real-replay-20261019-053120.jsonl"
+    },
+    {
+      "run": "real-replay-20261019-053315",
+      "what": "real replay: 2 turns × A on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»; voice all; craft live",
+      "startedAt": "2026-10-19T05:33:15.090Z",
+      "reservedUsd": 1,
+      "spentUsd": 0.4238,
+      "settled": true,
+      "finishedAt": "2026-10-19T05:35:13.334Z",
+      "record": "docs/runs/real-replay-20261019-053315.jsonl"
+    },
+    {
+      "run": "real-replay-20261019-053556",
+      "what": "real replay: 1 turns × A on Polish: the 30-turn Russian replay (items 12–14, 18) — the harbour, the debt, the sunk «Сельдь»; voice five; craft live",
+      "startedAt": "2026-10-19T05:35:56.238Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.1136,
+      "settled": true,
+      "finishedAt": "2026-10-19T05:36:48.199Z",
+      "record": "docs/runs/real-replay-20261019-053556.jsonl"
+    }
+  ]
+}
