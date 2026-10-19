@@ -105,6 +105,25 @@ calques surface there first. Hypothesis to measure: particle rate and the share 
 vs the owner's passages. Consequences: the bank is dialogue-heavy; game information moves into narration and cards
 where it can; speech profiles per person; a dialogue-only second pass stays in reserve (narration does not need it).
 
+**Owner, 2026-10-18, after rereading his chat campaign «Мир Шва» (Claude as DM in claude.ai) next to the sandbox:**
+«диалоги в сендбоксе были лучше. описания и там и там хороши. но диалоги в компании слегка кринж». So the chat
+campaign is a reference for **descriptions only** (three pieces are in the bank as such); dialogue references come from
+the books. His first before/after pair names the pattern exactly: an elf saboteur's «Вы украли у нас небо. Я заберу у
+вас его кусок» — «звучит очень не очень»; the direction he gave: «Вы ответите за унижение нашего клана» or the like.
+The failure is **the quotable line**: a symmetric epigram with a metaphor, written for the reader, where a person in
+anger names the grievance in his own terms (the clan, the humiliation, who did what). For the voice layer: people
+speak to get something from the listener, not to be quoted; no symmetric slogans or metaphors standing in for a motive.
+Measure: the share of NPC lines that are aphorisms or contain a metaphor, against the owner's passages.
+
+**The passage bank so far** (private: the claude.ai project file «голос/отрывки_ru», never in git): 18 Russian
+passages from 8 sources — Рудазов, Брайт, Панов, Пратчетт (translation, lower weight; the original is an English-bank
+candidate), Николаев, Лукин, Марина и Сергей Дьяченко, and three description pieces from «Мир Шва» — cut into about
+40 pieces of 150–400 words; every kind is covered (bargaining, argument and subtext, everyday talk, fight, tension
+before a fight, a stand-off without a fight, dark humour, a quiet scene, a transition). Note for the stage: most book
+passages are close third or first person with the viewpoint character's thoughts; in the game that character is the
+player's hero, so the bank teaches NPC lines, behaviour during talk, world irony and rhythm — never the hero's
+thoughts.
+
 ## The experiment: Russian first, English as the control (owner, 2026-10-16)
 
 The owner reads and talks in English daily (lives in San Francisco); Russian is his native language. Rule: build the
