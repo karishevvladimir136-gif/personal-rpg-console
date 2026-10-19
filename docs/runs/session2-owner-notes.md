@@ -171,3 +171,11 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     Fix first: an in-flight guard in `scheduleDigest`; after a failed digest, no automatic retry on entry (the «Повторить»
     button stays); the unparsed reason and the first 300 characters logged. Before the owner reopens session 2's
     campaign after its session ends.
+
+18. **Nobody can change the hero's sheet lines after creation.** `upsert_character` refuses the player's hero («The
+    player's hero cannot be rewritten here») and no other DM tool edits `character_sheet`; the owner's records screen
+    shows the sheet but (planner, not fully confirmed) does not edit its lines. So a 5e level-up (proficiency +3 → +4 at
+    level 9, new spells, a new ability line) and any change of a bonus stay impossible in play. The owner spotted the
+    consequence himself («а если он кольцо снимет?»): the session 2 hero now keeps clean numbers in the lines and the
+    DM adds worn items' bonuses per roll (DM guide). Do: a DM tool (and an owner form) for the hero's sheet lines,
+    level, attributes and the combat profile, versioned like other records; with item 14, bonuses from equipped items.
