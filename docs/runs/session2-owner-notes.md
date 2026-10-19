@@ -544,3 +544,16 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     workaround given to the owner: an out-of-game note asking the DM to roll companions as plain formula rolls (no
     `dc`), which the loop treats as a plain roll — a small chip, no card, no pause; and «Дальше» already continues
     without revealing each die.
+
+45. **The «Бой» panel is stuck at round 1** (owner, 14:58: «появился бой, только он отображает прошлый ход»). It shows
+    «Раунд 1», the ambush summary, «Ходит сейчас» on the hero, every participant with «Действие 1 · Движение 1 ·
+    Реакция 1», the sentry «Рядом», the brute «Далеко» — while play is in round 3, the sentry is held by Hold Person
+    and the brute is wounded and fleeing on horseback. Cause: the DM's `combat` tool (`dm-loop/execute.ts`) has only
+    `start`, `position` and `end`. At start the order is the party first, then the others (not initiative), the first
+    one is «active», resources are set to 1/1/1 and never change; there is no way to advance the turn or the round,
+    set initiative, or show a condition or a wound. The DM keeps the real order in its head (its out-of-game aside
+    named it). Do: a `combat turn` action (next actor, round counter, initiative order set at start from the DM's
+    rolls), conditions per participant (paralysed, prone, concentrating, fled), the enemies' wound state in words
+    (цел / ранен / тяжело ранен / без сознания / мёртв — never numbers, per the guide), spent action/movement/reaction
+    reset each turn; the panel follows the latest receipts. This is the base of the owner's planned combat screen
+    (initiative ribbon, enemy cards with states).
