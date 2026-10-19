@@ -113,6 +113,8 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
     "./dm/model": { createDmModel: () => ({}) },
     "./dm/live-turns": { publishLiveTurnEvent: () => {}, keepLiveTurnLedger: () => {} },
     "./turn-snapshots": { saveTurnSnapshot: async () => {} },
+    // Voice stage part 5: the quotable-line check is scheduled after a loop commit only, never on this path.
+    "./voice/quotable-check": { scheduleQuotableCheck: () => {} },
     "./dm-settings": { readDmSettings: async () => ({ campaignId: "campaign", runtime: "astra-primary-v1", dmTurn: null, revision: 1 }),
       markBoostUsed: async () => {} },
     // Stage 4: the dossier, the session digest, the World Engine bridge and the

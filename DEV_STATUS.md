@@ -7,8 +7,9 @@ blind page.** Branch from `claude/polish-3` (8d6d26a); migration 70 (`voice_stag
 `docs/runs/voice-report.md` (the two texts printed in full; «Needs the owner» lists the decisions left open); the resume
 notes `docs/runs/voice-progress.md`; the docs `docs/TURN_LOOP.md` §26 and `scripts/eval/real-replay/README.md`. Final
 checks: typecheck pass, lint pass (zero warnings), build pass, the loop fake bench 21/21 (351/351 checks), the stage's
-tests 16/16, screenshots 50 with zero overflow, the full suite on a detached worktree pinned to the final commit as the
-report's table says. Paid: the smoke of two synthetic turns × four voice variants with a synthetic examples file, 8/8
+tests 16/16, screenshots 50 with zero overflow, the full suite on a detached worktree pinned to the part-8 commit
+2 620 tests · 2 588 pass · 27 skipped · 5 fail (the two Windows CRLF artefacts and three test expectations shifted by
+the new settings fields and the new server module, fixed in the closing commit — test files only, green alone). Paid: the smoke of two synthetic turns × four voice variants with a synthetic examples file, 8/8
 committed, **$1.75 of the $8 cap** (`docs/runs/voice-ledger.json`).
 
 **The voice stage in short (2026-10-19):** the Russian voice layer (about 550 tokens, native prose: people speak to

@@ -213,7 +213,7 @@ token-count endpoint was used twice to measure the two texts.
 | The stage's tests (`tests/voice-stage.test.mjs`) | 16 pass; the touched files (`polish-group7`, `polish3-split`, `polish3-replay`, `polish3-craft`, `integration-saves`) pass |
 | Fake bench, loop runtime (`--runtime dm-loop-v1 --scenario all`, 21 scenarios) | all pass, 351/351 checks (the known weakness W2 of scenario 08 stays open as the bench expects, as in polish 3) |
 | Screenshots (`stage5-screenshots.mjs` on an isolated `next start` on 3105; playwright-core 1.58 + Edge) | 50 shots, desktop and phone, zero horizontal overflow, zero clipping (`docs/screens/stage-5/index.json`); the settings screen with «Образцы в подсказке ведущего» among them (`settings-*.jpg`) |
-| Full suite on the final code (a detached worktree pinned to the final commit, Node 24.19, `--test-concurrency=2`) | SUITE_RESULT |
+| Full suite on the part-8 commit 487c8b4 (a detached worktree pinned to it, Node 24.19, `--test-concurrency=2`, 908 s) | **2 620 tests · 2 588 pass · 27 skipped · 5 fail**: the two Windows CRLF artefacts (`sandbox-start`, `polish-group6`, as in polish 3 — environment-specific per `docs/CLOUD.md`, not rewritten) and three test expectations shifted by this stage, fixed in the closing commit with no application change — `dm-loop-play` compared the whole settings object (the mode and the cap are new fields) and `astra-first-startup-gate` keeps an allow-list of the gameplay service's modules (the quotable-check module added, stubbed). The two files pass alone on the final code (19/19); lint stays at zero warnings |
 
 ## What to click
 
