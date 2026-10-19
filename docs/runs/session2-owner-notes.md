@@ -472,3 +472,13 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     Mid-session workaround: an out-of-game note asking the DM to put the DC into the roll's title. Do (with item 26):
     hidden settings must not act; the few that matter in play (show DC, rerolls on/off) live on the short Настройки
     screen; the old tabs go.
+
+40. **«Пока абсолютно все проверки неудачные»** (owner, 14:24). Four player-visible checks so far, all failed: Arcana
+    +7 (d20 3), Persuasion +3 (7), Arcana +7 vs DC 15 (natural 1), and the companion Tobias's Survival +5 (7; a 5e Scout
+    has exactly Survival +5 — the DM used the stat block, and had the companion act on his own: owner «что важно, он
+    использовал спутника»). The dice are fair (`crypto.randomInt(1, 21)`, uniform 1–20); four d20s all ≤ 7 is about
+    1.5% — bad luck, not a bias. DCs are standard 5e (15 «medium»). The out-of-game note works: the hero's roll title
+    now carries «(сложность 15)»; the companion's does not (the note said «my rolls»). Watch: the card says «Провал на
+    единице», and the English role tells the DM «a natural 1 costs something tied to what was tried», while the 5e
+    guide says a natural 1 on a check is just a number — check whether the narration adds a mishap. For the report:
+    every check with DC, roll, result and what the failure still gave (fail forward).
