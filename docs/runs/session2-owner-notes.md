@@ -345,6 +345,12 @@ of naming it plainly; the sergeant again echoes another character's word and clo
 owner is fine with the sergeant's dark humour as such — he wants it as a finished joke in plain speech. Three lines
 approved as good (X1–X3: a nervous recruit's question, a priest's clue told as an everyday remark, a survivor's
 fragmentary whisper) — kept in the same private doc as positive examples.
+Turn 7 (owner: «а вот тут удивительно нормальные диалоги»): a whole interrogation scene approved (X5) — everyone speaks
+to get something, the wounded man's speech is short fragments in the order he saw things, magic shown only through
+what the witness saw. Note for the voice rules: here a character repeating another's word works (an interrogator
+fixing a fact and pressing on), so the rule is «no echo for a quip», not «no echo». One flag (pair 8): a clue line
+contradicts itself in its fragments (asked vs already knew) and names the key cargo with a rare word the owner did
+not know — a clue must read one way even in broken speech, and its key noun must be a word the player knows.
 
 34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
     the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
