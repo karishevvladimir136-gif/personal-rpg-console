@@ -287,3 +287,15 @@ Problems:
     move them behind «Исправить» in the owner's editor; the item panel under the grid stays open — open on a click on an
     item, close on a second click or outside; the character and inventory screens are small and lost on a big monitor
     (items 5 and 22).
+
+31. **The map: drawn well, filed under the wrong scale** (owner: «карту нарисовало просто супер», but «оно почему-то во
+    вкладке Мир, хотя по логике это окрестности… региональной карты нет… везде на мир ссылается»). With one place on
+    record (the guard post), the atlas drew a fine map of Beregost itself and shows it as «Мир»; «Регион» and
+    «Окрестности» show the same picture under «На уровне … пока нет известных мест с метками… Открыть уровень «Мир»».
+    Do: the level follows the scale of what is drawn — one settlement and its streets is «Окрестности»; «Регион» is the
+    Sword Coast along the Trade Way (Baldur's Gate, Candlekeep, the Friendly Arm, Beregost, Nashkel, Cloakwood), drawn
+    from the world's canon; «Мир» is Faerûn's west. For marks on them the DM records the places the hero knows from the
+    canon and his background as «known»/«rumored» at the start (or the canon's places become map entries). Also the
+    folds under the map — «Известные места без меток», «Открытые места», «Изменить размещение на карте», «Места, где вы
+    дома», «Инструменты «что, если»», «Изменить / Исправить записи» — go behind one quiet «Ещё» (owner: «эта … осталась
+    снизу»).
