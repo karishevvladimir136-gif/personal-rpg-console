@@ -120,6 +120,35 @@ first paragraph while the player reads). Flare stays the fast choice in the sett
   and say whether the longer cached history or the uncached tail costs time; if it does, move what is stable above the
   breakpoint.
 
+## 7. Craft by role and by situation (owner, 2026-10-18 — added while the run was going)
+
+The owner's worry: more rules, drier prose. Today the whole active DM Craft library is in layer 1 on every turn (the
+Stage 4 test «layer 1 carries the whole active craft library»), and with the owner's approval below it grows from 11
+to 22 entries. Research points the same way (instruction density lowers adherence and favours early instructions;
+more constraints make stories less coherent). Do this after the part you are in, before the final checks:
+
+- **First merge `origin/claude/craft-approval`**: migration `202610180090_owner_approves_craft.sql` — the owner approved
+  all twelve pending versions (Stage 4's doctrine v3 and five cards, the six polish cards) as new versions with the
+  Russian rewritten in plain Russian; «How to run the game» v4 restores the v2 lines v3 had dropped. Its SQL was proved
+  on PostgreSQL 16 with all migrations; its JS test updates (polish-group4, mega-dm-storage, mega-dm-character-model,
+  the migration list) have **not** been run — run them. Keep its number after your own migrations in the list.
+- **Always-on stays short**: layer 1 keeps the core doctrine, the voice slot and the style; the library is no longer
+  listed whole. The existing selector (`dm_craft_stage_v2`: at most two cards per stage, by triggers and the public
+  signal) decides which cards travel, in the volatile tail (they change per turn and must not break the cached layers).
+  Report layer 1's tokens and the cache split before and after.
+- **Each role its rules**: a card role — writer, bookkeeper or both — as an additive column (default both), set for the
+  22 active keys by their content (records, the clock through tools, private clue and question notes → bookkeeper;
+  narration craft → writer; mixed → both). The single loop gets every selected card; in the split the writer gets
+  writer + both and the bookkeeper bookkeeper + both, its selection run on the narration and the ledger. The DM Craft
+  screen shows the role and lets the owner change it.
+- **Code instead of a rule where code can check**: the bench's time-word check runs after each committed turn; a
+  mismatch puts one line into the next turn's tail (what was written, what the clock said), nothing otherwise. The same
+  pattern for any other rule the server can verify.
+- **For the owner's ablation**: part 4's tool takes a craft-set variant per run — none; the set active before
+  2026-10-18 (session 1's: core doctrine v2 and its ten cards); all — so the owner judges blind, on his own turns,
+  whether the cards cost prose.
+- Tests for each; the layer-1 numbers and any change in first word in the report.
+
 ## Checks
 
 typecheck, lint, full suites (`--test-concurrency=2`, Node 24), build, fake bench (both runtimes), screenshots with the
