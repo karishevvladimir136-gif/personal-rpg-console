@@ -674,3 +674,11 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
 - a round's rolls in one compact block, companion and enemy rolls as lines rolled by the DM, the hero's important rolls
   as cards (items 43, 44); the mid-turn pause named by what is rolled (item 53);
 - tests on the 48-scene probes plus two scripted fights (an ambush, a chase) before the owner's acceptance pass.
+- speed (owner, 16:16: «по бою оно, конечно, немного долго думает»): a combat turn is several model requests (one per
+  roll the DM waits for), and combat runs at the top of the depth range (very high), so every continuation thinks long
+  again. Try: the continuation after a roll runs at a lower depth (the plan is already made), the DM batches the
+  round's rolls in one tool message, and the pause is named (item 53). Measure seconds per combat turn before/after.
+- good in the same fight: the DM ruled that the two missed rays set the dry needles and the lantern oil on fire (not
+  in the 5e text of Scorching Ray, a sensible ruling — owner: «то, что оно всё горит, — это хорошо, это физика»), and
+  turned it into a clock with a consequence (the crown catches in two or three turns, the glow is visible from the mine
+  a mile away).
