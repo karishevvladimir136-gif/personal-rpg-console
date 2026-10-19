@@ -22,6 +22,7 @@ import type { RuntimeSource } from "../server-contracts.ts";
 import type { Entity, PublicProfile, Quest } from "../../persistence/contracts.ts";
 import { cardForRole, pinnedCraftForStage, type ContextCard } from "../dm-craft-context.ts";
 import { timeCheckLine, TIME_CHECK_KEY } from "./time-words.ts";
+import { quotableLine } from "./quotable.ts";
 
 /** Polish 3 §7: the cards chosen for a turn, as one block of the volatile tail (empty when none). */
 export function craftCardsBlock(cards: ContextCard[]): string {
@@ -32,20 +33,14 @@ import { parseCharacterModel, type CharacterModel } from "../character-model.ts"
 import type { DmSystemBlock } from "../../server/dm/model/contracts.ts";
 import { DM_ROLE, dmTurnShape, WRITER_ROLE, writerTurnShape } from "./roles.ts";
 import { allPlans } from "./plans.ts";
-import { voiceLayer, voiceReminder } from "./voice.ts";
+import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
 
-/** Tokens, estimated: Latin text runs about four characters per token, Cyrillic
- * and other non-ASCII text about 2.4 (both providers tokenize Russian in
- * syllable-sized pieces). Good to about ±15%, which is what a budget needs. */
-export function estimateTokens(text: string): number {
-  let ascii = 0, other = 0;
-  for (let at = 0; at < text.length; at++) { if (text.charCodeAt(at) < 128) ascii++; else other++; }
-  return Math.ceil(ascii / 4 + other / 2.4);
-}
+import { estimateTokens } from "./tokens.ts";
+export { estimateTokens };
 const clipTokens = (text: string, maxTokens: number) => {
   if (estimateTokens(text) <= maxTokens) return text;
   // Trim to the budget by proportion, then by whole lines.
@@ -180,6 +175,47 @@ function modelCore(source: RuntimeSource, model: CharacterModel): string {
 /** The speech profile with names in place of IDs (polish group 7). */
 function speechText(snapshot: RuntimeSource["snapshot"], speech: NonNullable<CharacterModel["speech"]>) {
   return { ...speech, address: speech.address.map((a) => ({ to: snapshot.entities.find((e) => e.id === a.actorId)?.name ?? a.actorId, form: a.form })) };
+}
+
+/** Voice stage part 4: the speech profiles of the people in the scene travel in the last block
+ * next to the voice reminder (persona drift: attention to the cached layers drops between turns,
+ * so the profile is repeated where the player's input is), and a named person who spoke in the
+ * last narration without a profile gets one line asking for it — the DM drafts the profile the
+ * first time a person speaks (note_character speech; the writer describes how they speak in the
+ * ledger's people line and the bookkeeper records it). */
+export function speechProfilesBlock(source: RuntimeSource, input: TurnInput, models: Models, role: DmContextRole = "dm"): string {
+  const { snapshot, runtime } = source;
+  const present = new Set(runtime.configuration?.presentEntityIds ?? []);
+  const controlled = new Set(runtime.configuration?.controlledEntityIds ?? []);
+  const people = snapshot.entities.filter((row) => (row.kind === "npc" || row.kind === "companion") &&
+    (present.has(row.id) || controlled.has(row.id) || row.id === input.companionId));
+  const name = (id: string) => snapshot.entities.find((e) => e.id === id)?.name ?? id;
+  const lines: string[] = [];
+  for (const row of people) {
+    const speech = models.get(row.id)?.speech;
+    if (!speech) continue;
+    const parts = [speech.register, `sentences ${speech.sentenceLength}`];
+    if (speech.tics.length) parts.push(`tics: ${speech.tics.map((t) => `«${t.phrase}» (${t.frequency})`).join(", ")}`);
+    if (speech.neverSays.length) parts.push(`never says: ${speech.neverSays.join("; ")}`);
+    if (speech.address.length) parts.push(`address: ${speech.address.map((a) => `${name(a.actorId)} — ${a.form}`).join(", ")}`);
+    lines.push(`- ${row.name}: ${parts.join("; ")}`);
+  }
+  // Who spoke in the last narration without a profile: a present person whose name stands in a
+  // narration that has dialogue lines (a dash line or «…»); the hero's own words are the player's.
+  const lastNarration = [...snapshot.scenes].reverse().find((row) => row.role === "narration")?.body ?? "";
+  const hasDialogue = /(^|\n)\s*[—–-]\s\S/u.test(lastNarration) || /«[^»]{3,}»/u.test(lastNarration);
+  const missing = hasDialogue ? people.filter((row) => !models.get(row.id)?.speech && narrationNamesPerson(lastNarration, row.name)).map((row) => row.name) : [];
+  const head = lines.length ? `Speech profiles of the people in the scene (every line of theirs comes from these; a tic at most once a scene):\n${lines.join("\n")}` : "";
+  const ask = missing.length ? `${missing.join(", ")} spoke in the last turn without a speech profile: draft it this turn — ${role === "writer"
+    ? "in the ledger's people line say how they speak (register, sentence length, a tic with its frequency, what they never say, ты/вы towards the hero) so the bookkeeper records it"
+    : "note_character speech (register, sentence length, tics with a frequency, what they never say, ты/вы towards each person)"} — so every later line is theirs.` : "";
+  return [head, ask].filter(Boolean).join("\n");
+}
+/** A person's name (any word of four letters or more, declined forms by a cut stem) in a text. */
+function narrationNamesPerson(text: string, personName: string): boolean {
+  const lower = text.toLocaleLowerCase();
+  return personName.toLocaleLowerCase().split(/[\s,.\-–]+/).filter((word) => word.length >= 4)
+    .some((word) => lower.includes(word.length > 5 ? word.slice(0, -2) : word));
 }
 
 /** How often each tic and signature of a person sounded in the recent narration
@@ -550,14 +586,19 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   // campaign language, the core doctrine and the style; the library is no longer listed whole. The
   // cards the selector chose for this turn (at most two, by the input's words and the public signal)
   // travel in the volatile tail, filtered by the role (the single loop takes every one).
-  // Polish group 7: the voice part of layer 1 (empty until the voice stage fills it) and the
-  // owner's «Образцы голоса» when the campaign's switch allows them — cached with the role.
-  const voice = voiceLayer(language, source.voiceSamples, !!source.voiceExamplesOn);
+  // Polish group 7 / voice stage: the voice part of layer 1 and the owner's «Образцы голоса» by the
+  // campaign's examples mode (five diverse passages, stable per session; or the whole bank up to the
+  // cap) — cached with the role. The replay's «off» variant leaves the whole slot out (`voiceLayerOff`).
+  const voiceOptions = { tokenCap: source.voiceTokenCap, seed: snapshot.publicState.current_session_id ?? snapshot.campaign.id, layerOff: !!source.voiceLayerOff };
+  const voiceMode = source.voiceMode ?? (source.voiceExamplesOn ? "five" : "off");
+  const voice = voiceLayer(language, source.voiceSamples, voiceMode, voiceOptions);
+  const examples = voiceExamplesBlock(source.voiceSamples, voiceOptions.layerOff ? "off" : voiceMode, voiceOptions);
   const howToDm = [role === "writer" ? WRITER_ROLE : DM_ROLE, role === "writer" ? writerTurnShape(language) : dmTurnShape(language), voice,
     `Campaign language: ${language}. Narrate and voice characters in ${language}; keep established names in the campaign's spelling.`,
     craft?.doctrine ? `DM Craft — how to run (the owner's approved doctrine):\n${craft.doctrine.title}\n${craft.doctrine.guidance}\nAvoid: ${craft.doctrine.avoid}` : "",
     describeStyle((craft?.style ?? snapshot.settings.values.dmStyle ?? null) as Record<string, unknown> | null)].filter(Boolean).join("\n\n");
-  layers.push({ layer: 1, budgetTokens: DOSSIER_BUDGETS.layer1, usedTokens: estimateTokens(howToDm), dropped: [] });
+  layers.push({ layer: 1, budgetTokens: DOSSIER_BUDGETS.layer1 + (examples.mode === "all" ? Math.min(VOICE_TOKEN_CAP_MAX, Math.max(VOICE_TOKEN_CAP_MIN, source.voiceTokenCap ?? VOICE_TOKEN_CAP_DEFAULT)) : 0),
+    usedTokens: estimateTokens(howToDm), dropped: examples.dropped ? [`voice examples: ${examples.dropped} passage(s) beyond the cap`] : [] });
   const selectedCards = (craft?.cards ?? []).filter((card) => cardForRole(card.role, role));
   const cardsText = craftCardsBlock(selectedCards);
 
@@ -598,8 +639,11 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const tailBase = tailParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "This session's tail is empty so far: no Character Models, open journal entries, private notes or plans yet.";
   // Polish 3 §7: the cards chosen for this turn and the one line of the time-word check (nothing when it passed).
+  // Voice stage part 5: the one line of the quotable-line check, when the last committed turn was flagged.
   const timeLine = timeCheckLine(source.privateState, snapshot.settings.values.language === "ru" ? "ru" : "en");
-  const tail = [tailBase, cardsText, timeLine].filter(Boolean).join("\n\n");
+  const lastCommitted = source.runtime.turns.filter((turn) => turn.status === "committed" && turn.id !== input.operationId).at(-1)?.id ?? null;
+  const quotable = voiceOptions.layerOff ? "" : quotableLine(source.voiceFlags, lastCommitted, snapshot.settings.values.language === "ru" ? "ru" : "en");
+  const tail = [tailBase, cardsText, timeLine, quotable].filter(Boolean).join("\n\n");
   const stableBudget = DOSSIER_BUDGETS.layer3.party + DOSSIER_BUDGETS.layer3.codex + DOSSIER_BUDGETS.layer3.factions + Math.floor(DOSSIER_BUDGETS.layer3.journal / 2) +
     DOSSIER_BUDGETS.layer3.pinned + DOSSIER_BUDGETS.layer3.notebook + DOSSIER_BUDGETS.layer3.adventure + DOSSIER_BUDGETS.layer3.memory;
   const tailBudget = DOSSIER_BUDGETS.layer3.models + DOSSIER_BUDGETS.layer3.journal + DOSSIER_BUDGETS.layer3.secrets + DOSSIER_BUDGETS.layer3.plans +
@@ -618,7 +662,8 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   // Layer 5: now — only what changes with the turn.
   const retrieved = memoryRecent(source, new Set(history.bodies));
   const state = currentState(source, input);
-  const now = [varietyCounter(source, input), retrieved.text, state.text, voiceReminder(language)].filter(Boolean).join("\n\n");
+  // Voice stage part 4: the speech profiles of the people present next to the reminder, after the state.
+  const now = [varietyCounter(source, input), retrieved.text, state.text, speechProfilesBlock(source, input, models, role), voiceReminder(language, { layerOff: voiceOptions.layerOff })].filter(Boolean).join("\n\n");
   layers.push({ layer: 5, budgetTokens: DOSSIER_BUDGETS.layer4.memory, usedTokens: estimateTokens(now), dropped: [...retrieved.dropped, ...state.dropped] });
 
   const addressee = input.mode === "companion" && input.companionId
