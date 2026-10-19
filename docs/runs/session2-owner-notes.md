@@ -523,6 +523,16 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     only where a reroll is actually available (item 37), the caption once. Rules note for the report: Bram's card says
     «засада и дальний выстрел гасят друг друга», but at about forty paces the target is within a heavy crossbow's normal
     range (100 ft), so the advantage against a sleeping target should stand — check the DM's range reasoning.
+    Correction (14:51): the DM's own scale is 3 ft per pace (40 paces = 120 ft, «Hold Person needs half of it» = 60 ft;
+    35 paces ≈ 105 ft), so the target was at long range for a heavy crossbow (100/400) and «advantage and long range
+    cancel» was right; the planner's note was wrong. The narration used all four of Tobias's arrows (two at the
+    sleeper — thigh hit, side graze; two in round 2 — shoulder hit, miss) and Bram's missed bolt. The owner read it as
+    «only the second rolls counted»: the first round's cards had scrolled away above the second round's, and the story
+    never ties a sentence to a card. Do (with item 43): each roll line in the round block carries the outcome as told
+    («в ляжку», «мимо»), so card and story can be matched at a glance. Good DM craft in the same turn: an out-of-game
+    aside listing the spent 2nd-level slot (with an offer to use the shaman's tusk instead), concentration, the
+    initiative order and the ranges in feet against the hero's spells (Fire Bolt and Scorching Ray reach 105 ft,
+    Lightning Bolt does not) — exactly the 5e bookkeeping the guide asks for.
 
 44. **Owner decision: the DM rolls for companions; the player rolls only the hero's important rolls** (14:47: «давай
     за спутников бросает ведущий. а сам я только важные броски за главного героя»). Today a companion is a controlled
