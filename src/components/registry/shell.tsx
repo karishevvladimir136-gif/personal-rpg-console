@@ -260,10 +260,21 @@ export function LibraryShell({ children }: { children: ReactNode }) {
   const items: { id: LibraryScreenId; label: string; icon: LucideIcon }[] = [
     { id: "campaigns", label: c("Кампании", "Campaigns"), icon: BookOpen },
     { id: "world-library", label: c("Миры", "Worlds"), icon: Globe },
-    { id: "dm-craft", label: c("Крафт ведущего", "DM Craft"), icon: Feather },
+    { id: "dm-craft", label: c("Мастерство Ведущего", "DM Craft"), icon: Feather },
     { id: "settings", label: c("Настройки", "Settings"), icon: Settings },
   ];
   const largeText = workspace?.data?.preferences.largeText;
+  // The home screen is the menu itself: no side menu or tab bar repeating its buttons, the card centred
+  // in the window (owner, session 2: «оно раньше было по середине экрана»).
+  if (current === "menu")
+    return (
+      <div className={`${s.menuApp} ${largeText ? "large-text" : ""}`}>
+        <a className={s.skip} href="#main">{c("К содержимому", "Skip to content")}</a>
+        <main id="main" tabIndex={-1} className={s.menuMain}>
+          {children}
+        </main>
+      </div>
+    );
   return (
     <div className={`${s.app} ${largeText ? "large-text" : ""}`}>
       <a className={s.skip} href="#main">{c("К содержимому", "Skip to content")}</a>

@@ -115,9 +115,9 @@ export const defaultPictureSettings: PictureSettings = { frames: "every", qualit
 
 // Polish 2: the catalogue of picture models of both providers, one entry per model, and the
 // defaults per tier from the owner's blind picks (2026-10-17, docs/stages/POLISH_2.md §2):
-// GPT Image 2.5 Sunburst for anchors, key frames and redraws (the quality tier), GPT Image 2.5
-// Flare for live frames (the fast tier). Every other model stays in the catalogue, off by
-// default; the owner switches a tier in the picture settings.
+// GPT Image 2.5 Sunburst for anchors, key frames and redraws (the quality tier), and since polish 3
+// for live frames too (the fast tier; see DEFAULT_TIER_MODELS). Every other model stays in the
+// catalogue, off by default; the owner switches a tier in the picture settings.
 export type PictureModelId = FalImageModelId | OpenAIImageModelId;
 export type PictureModel = {
   id: PictureModelId; provider: "fal" | "openai"; label: string; tier: PictureTier; maxReferences: number;

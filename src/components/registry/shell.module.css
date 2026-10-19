@@ -138,6 +138,21 @@
   gap: 14px;
   outline: none;
 }
+/* The home screen: the menu card alone, in the middle of the window. */
+.menuApp {
+  min-height: 100dvh;
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+}
+.menuMain {
+  width: 100%;
+  min-width: 0;
+  display: grid;
+  justify-items: center;
+  outline: none;
+}
 .header {
   display: flex;
   flex-wrap: wrap;

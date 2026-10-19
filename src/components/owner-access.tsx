@@ -202,9 +202,6 @@ export function PersistentMainMenu({
         )}
       </nav>
       {error && <p role="alert">{t(error)}</p>}
-      <Link className="text-link" href="/preview">
-        {t("Open isolated Phase 0 preview")}
-      </Link>
     </section>
   );
 }

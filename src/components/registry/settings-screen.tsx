@@ -502,7 +502,7 @@ function PicturesBlock({ data, providers }: { data: CampaignSnapshot; providers:
           </div>
           <div>
             <span className={r.eyebrow}>{c("Модели картинок", "Picture models")}</span>
-            <p className={r.note}>{c("По твоему слепому выбору (17.10.2026): анкеры, ключевые кадры и перерисовки — GPT Image 2.5 Sunburst; живые кадры — GPT Image 2.5 Flare, а если она отказала, Sunburst. Остальные модели остаются в каталоге — можно переключить любой из двух уровней.", "By your blind picks (2026-10-17): anchors, key frames and redraws on GPT Image 2.5 Sunburst; live frames on GPT Image 2.5 Flare, Sunburst when it refuses. The other models stay in the catalogue — either tier can be switched.")}</p>
+            <p className={r.note}>{c("По твоему слепому выбору (17 и 18.10.2026): всё на GPT Image 2.5 Sunburst — анкеры, ключевые кадры, перерисовки и живые кадры. Flare — быстрый вариант для живых кадров (около 16 с вместо 30). Остальные модели остаются в каталоге — можно переключить любой из двух уровней.", "By your blind picks (2026-10-17 and 18): everything on GPT Image 2.5 Sunburst — anchors, key frames, redraws and live frames. Flare is the fast choice for live frames (about 16 s instead of 30). The other models stay in the catalogue — either tier can be switched.")}</p>
             {([["quality", c("Лучше: анкеры, ключевые кадры, перерисовки", "Better: anchors, key frames, redraws")], ["fast", c("Быстро: живые кадры", "Fast: live frames")]] as [PictureTier, string][]).map(([tier, label]) => (
               <label key={tier} className={s.pick}>
                 <span className={r.small}>{label}{tierModel(tier) === DEFAULT_TIER_MODELS[tier] ? "" : ` · ${c("своя", "custom")}`}</span>

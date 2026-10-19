@@ -225,13 +225,14 @@ details > summary {
   }
 }
 
-/* Main menu (Campaigns · General settings · Exit), in the library shell. */
+/* Main menu (Campaigns · General settings · Exit): the home screen, centred by the library shell. */
 .main-menu-scene {
   position: relative;
   margin: 0 auto;
-  width: min(100%, 640px);
+  width: min(100%, 760px);
   min-height: 0;
-  padding: 40px 28px 34px;
+  box-sizing: border-box;
+  padding: clamp(32px, 6vh, 64px) clamp(20px, 5vw, 56px) clamp(28px, 5vh, 52px);
   border: 1px solid var(--line-strong);
   border-radius: 10px;
   background:
@@ -245,17 +246,21 @@ details > summary {
   font-family: var(--f-display);
   font-weight: 700;
   color: var(--brass);
-  font-size: clamp(30px, 4vw, 46px);
+  font-size: clamp(32px, 4.6vw, 58px);
 }
 .main-menu-scene > p {
   font-family: var(--f-display);
   color: var(--muted);
+  font-size: clamp(17px, 1.6vw, 21px);
 }
 .menu-ornament {
   color: var(--brass);
-  font-size: 56px;
+  font-size: clamp(52px, 6vw, 72px);
+}
+.main-menu-links {
+  width: min(100%, 440px);
 }
 .main-menu-links .button {
-  min-height: 52px;
-  font-size: 17px;
+  min-height: 60px;
+  font-size: 19px;
 }

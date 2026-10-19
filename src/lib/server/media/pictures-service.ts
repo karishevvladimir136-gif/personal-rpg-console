@@ -168,7 +168,7 @@ export async function requestFrame(campaignId: string, value: unknown, schedule:
   const built = await buildShot(process.env.ANTHROPIC_API_KEY ?? "", paragraph, context);
   const shot: Shot = built.shot ?? fallbackShot(paragraph, context);
   // Polish 2 (the owner's blind picks): live and committed frames on the live tier the owner chose
-  // (Flare by default); key moments and «Перерисовать» on the quality tier (Sunburst by default).
+  // (Sunburst by default since polish 3); key moments and «Перерисовать» on the quality tier (Sunburst by default).
   const tier: PictureTier = trigger === "key_moment" || trigger === "redraw" ? "quality" : board.settings.quality;
   const model = modelForTier(tier, board.settings);
   const entityIds = shotEntityIds(shot, snapshot.entities);
