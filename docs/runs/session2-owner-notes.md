@@ -523,3 +523,14 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     only where a reroll is actually available (item 37), the caption once. Rules note for the report: Bram's card says
     «засада и дальний выстрел гасят друг друга», but at about forty paces the target is within a heavy crossbow's normal
     range (100 ft), so the advantage against a sleeping target should stand — check the DM's range reasoning.
+
+44. **Owner decision: the DM rolls for companions; the player rolls only the hero's important rolls** (14:47: «давай
+    за спутников бросает ведущий. а сам я только важные броски за главного героя»). Today a companion is a controlled
+    entity, so every companion check is `visibility: "player"` (`dm-loop/execute.ts`: «A check of the hero or a
+    companion is the player's») — a full card, the interactive pause and a reroll offer each. Do: companion and NPC
+    rolls are rolled by the server for the DM and shown as one compact line each inside the turn (who, what, d20,
+    total, result), no pause, no «Бросить куб», no reroll; only the hero's important checks get the card and the
+    player's click. A campaign setting may switch companions back to the player, default «ведущий». Mid-session
+    workaround given to the owner: an out-of-game note asking the DM to roll companions as plain formula rolls (no
+    `dc`), which the loop treats as a plain roll — a small chip, no card, no pause; and «Дальше» already continues
+    without revealing each die.
