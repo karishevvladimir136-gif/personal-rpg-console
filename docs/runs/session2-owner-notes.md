@@ -579,3 +579,13 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     come from each person's model (a veteran guard whose comrade the gang carried off may approve; a recruit who would
     not shoot a sleeper flinches), never a uniform disapproval from every companion — that would be the model's own
     ethics leaking into the cast. Planner's own slip: he first read the sergeant's look as disapproval.
+
+48. **«Собрать все трофеи» left the weapons and armour behind** (owner, 15:25: «они не сняли оружие и броню, а это
+    важно»). The search turn (Investigation 24 vs 15) was rich in small finds — two purses, a foreign coin, the burned
+    note with the green wax, the captive's ring — but the brute's morningstar stayed by the blanket, the sentry's light
+    crossbow was dropped into the brush, and the sentry's red cloak with the charcoal Fist — the proof of the fake
+    checkpoint — was never mentioned; nothing says whether the brute wore armour (a 5e thug has leather, AC 11, yet the
+    story showed only a shirt). Do: the guide says a search or loot lists everything the bodies carry by their stat
+    block (weapons, armour, ammunition, money, clothes that matter as evidence), and what the party takes is recorded
+    with `item` (money with `money`, in the world's coins — silver and copper too, not only gold; item 28); the report
+    checks that each «забрали» in the story has its item receipt.
