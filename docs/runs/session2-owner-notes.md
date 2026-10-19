@@ -584,6 +584,15 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     come from each person's model (a veteran guard whose comrade the gang carried off may approve; a recruit who would
     not shoot a sleeper flinches), never a uniform disapproval from every companion — that would be the model's own
     ethics leaking into the cast. Planner's own slip: he first read the sergeant's look as disapproval.
+    Owner asked at 16:21 whether the model drifts toward peaceful choices: the sergeant, ordered to finish a dying
+    enemy, holds the blade and says the man is a second source to check the prisoner's story against, then «скажете
+    кончать — кончу». Tally so far: lethal acts done — the hero's dagger, the sergeant's bolt into an armed enemy, the
+    sergeant putting down the wounded horse; friction — the recruit twice (refused to shoot a sleeper, refused to finish
+    the brute; in character), the sergeant once (a tactical reason, defers to the hero). Planner's read: no drift yet —
+    the objections come from the people (a scared recruit, a professional who wants intelligence), not from the
+    narrator, and nobody refuses the hero outright twice. The report counts lethal orders and how companions answered
+    (done / done after a reason / refused) and flags moral rather than practical objections, enemies who always
+    surrender, and long lingering on a dying enemy's suffering right before a kill order.
 
 48. **«Собрать все трофеи» left the weapons and armour behind** (owner, 15:25: «они не сняли оружие и броню, а это
     важно»). The search turn (Investigation 24 vs 15) was rich in small finds — two purses, a foreign coin, the burned
