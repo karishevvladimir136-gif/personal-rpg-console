@@ -1,8 +1,55 @@
-# Voice stage — living Russian, natural dialogue, humour (draft, not launched)
+# Voice stage — living Russian, natural dialogue, humour
 
-Planner's draft, 2026-10-16. Launch after the polish run, when the owner has handed over his passages. The polish run
-builds the mechanics this stage fills (slots off, «Образцы голоса», speech profiles, metrics — see POLISH «Scope of
-this run»).
+Planner's draft, 2026-10-16; **launched 2026-10-18** — the build is the section «The build» right below; the rest of
+the file is the research and the reasoning it rests on. The polish runs built the mechanics this stage fills (the empty
+`VOICE_LAYER_RU` / `VOICE_REMINDER_RU` slots in `src/lib/gameplay/dm-loop/voice.ts`, «Образцы голоса» in the database,
+speech profiles in the Character Models, the replay tool of polish 3).
+
+## The build (launched 2026-10-18)
+
+Cloud session (`docs/CLOUD.md`, environment `rpg-console`). Branch `claude/voice` from `origin/claude/polish-3`. One
+session, unattended, in this order; commit and push after each part; progress in `docs/runs/voice-progress.md`; report
+in English with «Needs the owner». Never `main`; keys only in `.env.local`; paid calls within **$8**, in a ledger.
+**No passage of the owner's bank and no other author's text enters the repository, a log, a fixture or a test** — the
+bank lives in the owner's private project file and reaches the sandbox's «Образцы голоса» only through his local
+session; tests use synthetic placeholder passages you write yourself, clearly marked as such.
+
+1. **The Russian voice layer** (`VOICE_LAYER_RU`, about 400–600 tokens) and **the reminder** (`VOICE_REMINDER_RU`,
+   ≤ 120 tokens), written natively in Russian prose (not a list, not a translation; plain words, verbs, «что делать и
+   зачем»), from what this file records: the dialogue diagnostic (§1 of the research), speaking is answering and the
+   assistant habit (§«Why narration is rich…»), the particles and word order of spoken Russian, the humour calibration
+   (dark, deadpan, one line, nobody explains it afterwards), the quotable-line pattern and the owner's test «сказал бы
+   это живой человек вслух, в лицо, в ту секунду?», metaphors stay with the narrator and sparingly, game information
+   goes into narration rather than speeches, tics at most once a scene, and from the owner's chat codex: every person
+   has a want of their own; the «Э?» pause when the hero says something wild. The reminder repeats the two or three
+   rules that drift first. Print both texts in full in the report — the owner reads and approves the wording.
+2. **Want before the line.** In the turn shape of the single loop and of the writer: before a person speaks, decide in
+   thinking what they want from the hero right now; the line serves that want. One sentence in the turn shape, no tool.
+3. **Examples that work.** `voiceExamplesBlock` splits the samples on blank lines, so a multi-paragraph passage becomes
+   several «passages» and only the first five paragraphs travel. Give «Образцы голоса» a passage format — passages
+   separated by a line `---`, each may start with `## <kind>` — and a per-campaign examples mode: off · five (diverse by
+   kind, round-robin over kinds, stable per session for the cache) · all (many-shot, up to a token cap in the settings,
+   default 30 000; in the cached layer 1). The settings screen's voice switch becomes this mode; the owner can paste the
+   bank there. Measure the cached layer's size and the cost per turn in each mode.
+4. **Speech profiles in play.** The Character Models already carry `speech` (register, tics, never-says, address). Make
+   sure the DM drafts a profile the first time a named person speaks (the voice layer asks for it; the tool exists),
+   and that the profiles of the people present travel in the last layer next to the reminder.
+5. **The quotable-line check**, the pattern of polish 3's time words: after a committed turn, a cheap model (Claude
+   Haiku 5.5) reads the NPC lines of the narration and flags lines that are slogans, symmetric epigrams or metaphors
+   standing in for a motive; a flag puts one line into the next turn's tail (the line, why), nothing otherwise.
+   Asynchronous — it never delays the turn. Log flags per turn for the metrics.
+6. **Metrics** over any set of samples (bench, replay): particle rate in NPC lines, share of incomplete sentences in
+   speech, share of ≤ 5-word paragraphs, metaphor density, quotable-line flags, repeated phrases per character,
+   «tennis» share (reply–reply with no action or beat between), Latin letters, канцелярит and calque markers
+   (humanizer-ru list). A script that prints them per variant.
+7. **The replay tool gets voice variants**: `--voice off|layer|five|all` (with `--examples-file <path outside the repo>`
+   for the five/all modes, read at run time, never copied into the samples' metadata), labelled inside the sample files.
+8. **Proof.** Tests for each part with synthetic passages; the fake bench; a paid smoke on a synthetic campaign (two
+   turns × four voice variants); the metrics on it. Then **`docs/REPLAY_2_PROMPT.md`** for the owner's local session:
+   load the bank into the sandbox's «Образцы голоса» from the file the owner saves outside the repo (convert the
+   project file's format: drop the source lines, keep `## <kind>`, separate with `---`), then replay session 1's same
+   eight turns with the writer the owner chose on the writer page, four voice variants, budget $10, zip outside the
+   repo — the planner builds the blind page (prose and dialogue judged separately).
 
 ## Inputs from the owner (never committed: the repo is public)
 
