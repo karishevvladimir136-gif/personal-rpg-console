@@ -112,3 +112,16 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     Do: remove all three and the duplicate heading; at most one plain line where it helps (for the world form, after
     item 8: «Этот текст ведущий видит в каждом ходе»). Sweep the other wizard steps and the review screen for the same
     kind of text.
+
+12. **After «Создать Мир» the owner could not tell it worked** («что-то сломалось… не понимаю, что делать»). The world is
+    created and selected (`worlds.tsx`: `onCreated` selects it and closes the form), but nothing says so: the picker
+    shows «… · v1», the premise box ends in «Кампании сохраняют записанные версии своей основы.», and the same «Создать
+    Мир» button is back under it — pressing it again starts a second world. Do: a clear «Мир создан и выбран» state;
+    the button becomes «Ещё один мир…» (or hides while a fresh world is selected); drop the «v1» suffix for a world
+    with one version.
+13. **The «Герой» step is on the «Мир» step.** The stepper shows four steps, but step 1's form also holds «Название
+    кампании», «Имя», «Кто вы?», «Язык кампании» and «Подготовить предложение с ИИ» (`bootstrap/new-campaign.tsx`), while
+    step 2 «Герой» shows nothing of its own. Owner: «у нас есть отдельно экран героя и его дублирование в окне мир».
+    Do: step 1 is the world only (pick or create, then «Дальше»); step 2 holds the hero fields and the AI button; the
+    stepper follows. Also check what «Другие поддерживаемые правила» opens (the old ruleset choice?) and drop or
+    explain it.
