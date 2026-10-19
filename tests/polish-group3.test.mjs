@@ -22,22 +22,47 @@ hook.deregister();
 const finish = (extra = {}) => ({ name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false, ...extra } });
 const publicTurn = async (c, operationId) => (await (await c.deps(createScriptedDmModel([]))).store.readPlay(c.cid)).turns.find((row) => row.id === operationId);
 
-test("depth rule: the base holds for calm and tense; a climax takes the top; at most two deep turns in a row unless the DM marks a climax again", () => {
+test("depth rule: calm is the base; a climax is always the top; a tense turn is the top for at most three in a row until a climax or a calm turn resets it", () => {
   const range = { min: "high", max: "xhigh" };
+  assert.equal(MAX_DEEP_STREAK, 3);
   assert.equal(effortForTension(range, "calm"), "high");
-  assert.equal(effortForTension(range, "tense"), "high");
+  assert.equal(effortForTension(range, "tense"), "xhigh");
   assert.equal(effortForTension(range, "climax"), "xhigh");
-  const first = chooseDepth(range, "high", null, { tension: "climax", reason: "an off-screen plan comes due and meets the hero" }, false);
-  assert.equal(first.effort, "xhigh"); assert.equal(first.streak, 1);
-  const second = chooseDepth(range, "high", { tension: "climax", effort: "xhigh", streak: 1 }, { tension: "climax", reason: "active combat" }, false);
-  assert.equal(second.effort, "xhigh"); assert.equal(second.streak, 2);
-  const third = chooseDepth(range, "high", { tension: "climax", effort: "xhigh", streak: 2 }, { tension: "climax", reason: "active combat" }, false);
-  assert.equal(third.effort, "high", `after ${MAX_DEEP_STREAK} deep turns the base returns`);
-  assert.match(third.reason, /deep turns in a row/);
-  assert.equal(third.streak, 0);
-  const marked = chooseDepth(range, "high", { tension: "climax", effort: "xhigh", streak: 2 }, { tension: "climax", reason: "DM hint: climax" }, false);
-  assert.equal(marked.effort, "xhigh", "the DM's own climax mark always counts");
-  assert.equal(chooseDepth(range, "high", { tension: "calm", effort: "high", streak: 0 }, { tension: "tense", reason: "DM hint: tense" }, false).effort, "high");
+  const tense = { tension: "tense", reason: "DM hint: tense" };
+  // Three deep tense turns, then the base while the tension holds.
+  let state = { tension: "calm", effort: "high", streak: 0 };
+  const efforts = [];
+  for (let i = 0; i < 5; i++) {
+    const d = chooseDepth(range, "high", state, tense, false);
+    efforts.push(d.effort);
+    state = { tension: d.tension, effort: d.effort, streak: d.streak };
+  }
+  assert.deepEqual(efforts, ["xhigh", "xhigh", "xhigh", "high", "high"], `after ${MAX_DEEP_STREAK} deep tense turns the base returns`);
+  assert.equal(state.streak, 5);
+  const capped = chooseDepth(range, "high", { tension: "tense", effort: "xhigh", streak: 3 }, tense, false);
+  assert.match(capped.reason, /deep tense turns in a row/);
+  // A climax is never capped and resets the count; so does a calm turn.
+  for (const reason of ["active combat", "DM hint: climax", "an off-screen plan comes due and meets the hero", "the player's input opens a decisive moment"]) {
+    const climax = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 7 }, { tension: "climax", reason }, false);
+    assert.equal(climax.effort, "xhigh", reason); assert.equal(climax.streak, 0, reason);
+  }
+  const climaxes = [];
+  state = null;
+  for (let i = 0; i < 5; i++) {
+    const d = chooseDepth(range, "high", state, { tension: "climax", reason: "active combat" }, false);
+    climaxes.push(d.effort); state = { tension: d.tension, effort: d.effort, streak: d.streak };
+  }
+  assert.deepEqual(climaxes, ["xhigh", "xhigh", "xhigh", "xhigh", "xhigh"], "a long fight stays deep");
+  const boosted = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 4 }, tense, true);
+  assert.equal(boosted.effort, "xhigh"); assert.equal(boosted.streak, 0, "«важный ход» is a climax");
+  const calm = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 4 }, { tension: "calm", reason: "DM hint: calm" }, false);
+  assert.equal(calm.effort, "high"); assert.equal(calm.streak, 0);
+  const afterReset = chooseDepth(range, "high", { tension: calm.tension, effort: calm.effort, streak: calm.streak }, tense, false);
+  assert.equal(afterReset.effort, "xhigh", "after a calm turn a tense turn is deep again");
+  // A count stored after a climax (or under the older rule) does not cap a tense turn.
+  assert.equal(chooseDepth(range, "high", { tension: "climax", effort: "xhigh", streak: 2 }, tense, false).effort, "xhigh");
+  // A single-level range never reports a cap.
+  assert.equal(chooseDepth({ min: "high", max: "high" }, "high", { tension: "tense", effort: "high", streak: 9 }, tense, false).reason, "DM hint: tense");
   assert.equal(chooseDepth(null, "medium", null, { tension: "climax", reason: "x" }, false).effort, "medium");
   assert.deepEqual(parseDepthState({ fact: { depth_state: JSON.stringify({ tension: "climax", effort: "xhigh", streak: 2 }) } }), { tension: "climax", effort: "xhigh", streak: 2 });
   assert.equal(decisiveInput("Бью Фрола веслом по рукам и прыгаю за ящиком."), true);

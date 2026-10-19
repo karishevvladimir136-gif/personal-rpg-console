@@ -265,17 +265,20 @@ test("depth per scene: the pin picks a level inside the range with hysteresis; Â
     const calm = await c.turn("Another quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(calm.model.requests[0].effort, "medium");
     assert.equal(calm.model.requests[0].turnEffort, undefined, "at the configured level nothing is anchored");
-    // Polish item 13: tension alone never raises the depth â€” the base holds; a climax takes the top.
+    // Session 2 prep: a hard (tense) scene thinks at the top again; a climax takes the top too.
     const tense = await c.turn("The guard stops me.", [{ text: "Halt. ", toolCalls: [finish({ nextTension: "climax" })] }]);
-    assert.equal(tense.model.requests[0].effort, "medium", "tense: the base of the range");
+    assert.equal(tense.model.requests[0].effort, "xhigh", "tense: the top of the range");
     const row = await c.row(tense.input.operationId);
     assert.equal(row.checkpoint.dmLoop.pin.depth.tension, "tense");
-    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "medium"));
+    assert.equal(row.checkpoint.dmLoop.pin.depth.streak, 1);
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "xhigh"));
     const climax = await c.turn("I draw.", [{ text: "Steel. ", toolCalls: [finish({ nextTension: "calm" })] }]);
     assert.equal(climax.model.requests[0].effort, "xhigh", "the DM's climax hint takes the top");
-    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "low");
+    assert.equal((await c.row(climax.input.operationId)).checkpoint.dmLoop.pin.depth.streak, 0, "a climax resets the tense count");
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "calm"), "low");
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "max");
     assert.deepEqual(effortForTension({ min: "low", max: "max" }, "climax"), "max");
-    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "medium", streak: 0 }, { tension: "tense", reason: "x" }, false).changed, false);
+    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "max", streak: 1 }, { tension: "tense", reason: "x" }, false).changed, false);
     assert.equal(parseDepthRange({ min: "max", max: "low" }), null);
   } finally { await c.f.db.close(); }
 });

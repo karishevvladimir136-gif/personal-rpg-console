@@ -54,7 +54,7 @@ export type DmLoopPin = {
   /** Stage 4 depth per scene: the campaign's range, the tension class this
    * turn was judged at and why. `effort` above is the level chosen inside the range. */
   depth?: { min: DmEffort; max: DmEffort; tension: DmLoopTension; reason: string; boosted: boolean;
-    /** Polish item 13: deep turns in a row counting this one (at most two unless the DM marks a climax again). */
+    /** Tense turns in a row counting this one (session 2 prep: at most three deep ones; a calm turn or a climax resets it). */
     streak?: number };
   /** Polish 3 §2: the bookkeeper of a split turn (the writer is the pin itself), fixed at the
    * turn's start so a retry keeps the pair; absent on a single-loop turn. */
