@@ -570,3 +570,12 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     twitching). Do: the guide and the role require a damage roll for every hit (crits double the dice), shown in the
     round block next to the attack; enemies and animals get stat-block HP at `combat start`, each damage roll spends
     it, and the combat panel shows the wound in words (item 45). Mid-session workaround: an out-of-game note.
+
+47. **Owner principle: the narrator never judges the hero; people react from their own character** (15:18, after the
+    hero finished off the dying bandit with a dagger: «если бы рассказчик начал оценивать поведение, значит, мы сделали
+    не игру, а симулятор бреда… это стражники, может, Брам вообще отлично относится к идее — это члены банды, что
+    убили кучу народа»). The turn did this right: no narrator verdict; the prisoner panics, the young recruit is shaken
+    («Он же дышал»), the veteran only looks — left open. Watch in the report: reactions to the hero's violence must
+    come from each person's model (a veteran guard whose comrade the gang carried off may approve; a recruit who would
+    not shoot a sleeper flinches), never a uniform disapproval from every companion — that would be the model's own
+    ethics leaking into the cast. Planner's own slip: he first read the sergeant's look as disapproval.
