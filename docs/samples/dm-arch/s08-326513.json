@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "scene": "s08",
+  "title": "Scene s08",
+  "description": "Harbour replay, turn s08: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s08",
+  "createdAt": "2026-10-17T19:46:21.445Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "B",
+    "label": "Fable 5.1, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s08",
+      "input": "Ныряю. Спускаюсь медленно, слушаю насос, смотрю, куда тянет течение.",
+      "outcome": "committed",
+      "narration": "Ты поднимаешься с корточек и говоришь, что вниз пойдёшь сам. Клим не сразу понимает, потом хохочет так, что самокрутка падает ему под ноги.\n\n— Слыхал, Сыч? Он ныряет. — Он даже не встаёт между тобой и рундуком, просто кивает на него. — Давай. Замок там гильдейский, ключ у мастера. Зубами откроешь?\n\nРундук у рубки как стоял, так и стоит: дубовый, окованный, замок с ладонь. Шлемы внутри, ты слышишь, как медь глухо звякнула, когда баржу качнуло на якоре.\n\nДверь рубки открывается. Брага выходит на палубу впервые за всё утро, и впервые за полгода смотрит на тебя прямо. Он не постарел, только обветрился сильнее.\n\n— Нет, — говорит он. Коротко, как отдают команду. — Ты списан. Под воду идёт Савва. Ты встаёшь к рукояти рядом с Климом, или идёшь на берег. Отсюда до берега вплавь, лодку не дам.\n\nОн не ждёт ответа и поворачивается к Савве:\n\n— Одевайся. Четверть часа.\n\nСавва не двигается. Он смотрит не на Брагу, а на тебя, потом на левый цилиндр, на крышку, которую ты не завинтил. Трёт шрам на шее.\n\n— Помпу смотрел, — говорит он тихо, так, чтобы слышал только ты. — Клим спрашивал, ты не ответил. Мне туда на шланге идти. Годится она или нет?\n\nБрага у рубки ждёт, что ты сделаешь. Клим поднял самокрутку и снова сунул в зубы. Палуба притихла.",
+      "firstWordMs": 20270,
+      "textDoneMs": 140199,
+      "durationMs": 140199,
+      "requests": 1,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 43146,
+        "output": 10000,
+        "cached": 22522,
+        "cacheWrite": 20620,
+        "cacheWrite1h": 1832,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.522,
+      "costUsd": 0.77716,
+      "tools": {
+        "accepted": [
+          "note_world",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Прошло: 10 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "max_tokens",
+          "outputTokens": 10000
+        },
+        {
+          "kind": "suspected_leak",
+          "detail": "трёт шрам на шее"
+        }
+      ],
+      "leaks": [
+        "трёт шрам на шее"
+      ]
+    }
+  ],
+  "totals": {
+    "costUsd": 0.77716,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 1
+  }
+}

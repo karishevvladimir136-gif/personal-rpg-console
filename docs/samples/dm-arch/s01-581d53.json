@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "scene": "s01",
+  "title": "Scene s01",
+  "description": "Harbour replay, turn s01: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s01",
+  "createdAt": "2026-10-17T19:46:21.442Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "C",
+    "label": "Fable 5.1 writer + Opus 5.5 bookkeeper",
+    "runtime": "two-pass",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": "anthropic/claude-opus-5-5@high",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s01",
+      "input": "Оглядываюсь на причале: кто здесь, что изменилось с прошлой осени.",
+      "outcome": "committed",
+      "narration": "Понтоны идут под ногой с тем же вздохом, что и прошлой осенью, — Скрипучая Гавань не зря так зовётся. Но кое-что здесь сдвинулось.\n\nПервое, что бросается в глаза: старого подъёмного крана на конце мола больше нет. Остался только пень от стойки, обугленный, в чёрных потёках. Там, где он стоял, теперь пришвартована чужая баржа — низкая, широкая, с насосом на палубе под брезентом. На корме намалёвано свежей краской: «Угорь». Двое на ней не чинят, не грузят — просто сидят и смотрят на причал. На тебя тоже.\n\nВторое — вывеска гильдейской водолазной артели над сараем у воды. Прошлой осенью там был резной шлем; теперь доска новая, и шлем на ней нарисован другой, с тремя иллюминаторами вместо четырёх. Чужой образец. Дверь сарая закрыта, хотя утро уже рабочее.\n\nТретье — рыбы на причале меньше. Корзин у кабака две вместо обычных шести, и чайки дерутся за одну и ту же.\n\nМокей, когда ты смотришь на него, не поднимает головы, но игла в его руке на мгновение замирает. Сеть у него новая — и порвана не водой, а чем-то ровным, будто ножом.\n\nМарта с крыльца не уходит. Она складывает руки на груди, и это весь её разговор: она ждёт, когда ты подойдёшь сам.",
+      "firstWordMs": 7105,
+      "textDoneMs": 29007,
+      "durationMs": 73636,
+      "requests": 2,
+      "effort": "high",
+      "tension": "calm",
+      "tokens": {
+        "input": 29090,
+        "output": 6841,
+        "cached": 23626,
+        "cacheWrite": 5456,
+        "cacheWrite1h": 1094,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.812,
+      "costUsd": 0.2387,
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "upsert_place",
+          "quest",
+          "quest",
+          "note_character",
+          "note_character",
+          "note_world",
+          "note_world",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Новое место: Баржа «Угорь»",
+          "Новое место: Сарай водолазной артели",
+          "Долг: Долг Марте",
+          "Зацепка: Перемены в Скрипучей Гавани",
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "no tension signal",
+          "tension": "calm"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.2387,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

@@ -23,6 +23,16 @@ the «Что, если» wording, the slot backfill. Not done: the wizard's debt
 the report). The Polish, Integration, Stage 4 and Stage V sections below are each stage's own closing status, kept
 unchanged.
 
+**DM architecture bake-off (2026-10-17, branch `claude/dm-arch-bakeoff-zuxey2` from `claude/polish`; spec
+`docs/stages/DM_ARCH.md`) — done, waiting for the owner's blind page.** Four variants on the same saved state per
+scene: A Opus 5.5 in today's loop, B Fable 5.1 in today's loop, C Fable writer + Opus bookkeeper, D Opus writer +
+Sonnet 5.5 bookkeeper. The experimental two-pass runtime is new files only (`src/lib/gameplay/dm-loop/two-pass/`),
+off unless the server flag `DM_TWO_PASS` names a bookkeeper; the model registry knows Fable 5.1 and Sonnet 5.5. Report
+`docs/runs/dmarch-REPORT.md`, resume notes `docs/runs/dmarch-progress.md`, blind samples `docs/samples/dm-arch/` (32).
+From the numbers: D halves the wait for the first word at today's cost with more small records missed; C has the best
+records and Fable's prose at 2.5× today's cost; B is not viable. Paid $25.58 of $30. Checks: typecheck, lint (0
+warnings), build pass; the touched tests 114 pass; `tests/dm-arch-two-pass.test.mjs` 6/6.
+
 **Current stage:** Polish after the owner's first sandbox play (`docs/stages/POLISH.md`) — **done on `claude/polish`,
 waiting for the owner's review and the next sandbox play.** Branch from `claude/integration` with
 `claude/fix-dm-craft-payload` merged first; ten groups in the spec's order, each with its own test file

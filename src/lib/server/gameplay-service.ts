@@ -17,6 +17,7 @@ import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
 import { withAstraTurnPin } from "../production/dm-turn-pin";
 import { DM_LOOP_RUNTIME, runDmLoopTurn, resumeDmLoopTurn, type DmLoopDependencies } from "../gameplay/dm-loop/loop";
+import { runTwoPassTurn, resumeTwoPassTurn, twoPassFlag } from "../gameplay/dm-loop/two-pass";
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { publishLiveTurnEvent } from "./dm/live-turns";
@@ -147,6 +148,20 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     observe: logDmLoop,
   };
 }
+/** The DM architecture bake-off's experimental writer + bookkeeper runtime
+ * (docs/stages/DM_ARCH.md), behind the server flag DM_TWO_PASS (the bookkeeper
+ * model) and DM_TWO_PASS_WRITER (optional writer override). Unset: today's loop,
+ * exactly as before. The turn rows are dm-loop-v1 rows either way. */
+function loopRunner(deps: DmLoopDependencies) {
+  const flag = twoPassFlag();
+  if (!flag) return { run: (input: Parameters<typeof runDmLoopTurn>[0]) => runDmLoopTurn(input, deps),
+    resume: (input: Parameters<typeof resumeDmLoopTurn>[0]) => resumeDmLoopTurn(input, deps) };
+  const twoPassDeps = { ...deps,
+    ...(flag.writer ? { pin: async (claim: Parameters<DmLoopDependencies["pin"]>[0]) => ({ ...(await deps.pin(claim)), ...flag.writer }) } : {}),
+    bookkeeper: { ...flag.bookkeeper, model: createDmModel(flag.bookkeeper) } };
+  return { run: (input: Parameters<typeof runTwoPassTurn>[0]) => runTwoPassTurn(input, twoPassDeps),
+    resume: (input: Parameters<typeof resumeTwoPassTurn>[0]) => resumeTwoPassTurn(input, twoPassDeps) };
+}
 /** Runs a dm-loop-v1 turn. Polish item 22: the legacy memory summaries (GPT-6
  * Astra, two per turn, ≈$3.50 a session) are not queued for a loop campaign any
  * more — the dossier reads the Stage 4 session recaps and the notebook instead,
@@ -268,7 +283,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
     const deps = dmLoopDependencies(store, memory, loopProduction.summaries, loopProduction,
       async () => dmSettings ?? readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, loopProduction.summaries, requireTimeline(input), campaignId,
-      () => runDmLoopTurn(input, deps));
+      () => loopRunner(deps).run(input));
   }
   const worldTakeover = rulesetId === "world-logic-v1"
     ? (await store.takeoverStatus?.(campaignId))?.active === true : false;
@@ -334,7 +349,7 @@ export async function continueTurn(
   if (identity === DM_LOOP_RUNTIME) {
     const deps = dmLoopDependencies(store, memory, production.summaries, production, () => readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, production.summaries, requireTimeline(input), campaignId,
-      () => resumeDmLoopTurn(input, deps));
+      () => loopRunner(deps).resume(input));
   }
   if (identity === "astra-primary-v1")
     return runWithAstraMemoryMaintenance(store, memory, production.summaries,

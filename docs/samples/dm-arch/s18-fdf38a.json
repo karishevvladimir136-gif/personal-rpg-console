@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "scene": "s18",
+  "title": "Scene s18",
+  "description": "Harbour replay, turn s18: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s18",
+  "createdAt": "2026-10-17T19:46:21.452Z",
+  "run": "dmarch-20261017-193714-scenes",
+  "record": "docs/runs/dmarch-20261017-193714-scenes.jsonl",
+  "variant": {
+    "id": "C",
+    "label": "Fable 5.1 writer + Opus 5.5 bookkeeper",
+    "runtime": "two-pass",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": "anthropic/claude-opus-5-5@high",
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s18",
+      "input": "Если догоняют — отбиваюсь: гарпунный пистолет на самого опасного, нож наготове.",
+      "outcome": "committed",
+      "narration": "Никто тебя не догоняет. За кормой пусто: серая вода, чайки, старые сваи. Единственное, что движется в гавани, это баркас. Он отваливает от гильдейской баржи и идёт к причалу, не торопясь, гребец один, вёсла ложатся в лад. На носу стоит Клим.\n\nРука у тебя уже на ремне, на рукояти гарпунного пистолета. Мокей это видит и говорит в сеть, которую ещё не взял в руки:\n\n— Это Клим. Не ночные. — Он подтягивает лодку к сходням и глядит на твою руку. — Убери. На пристани с этим не ходят.\n\nБаркас тычется в понтон рядом. Клим перешагивает на доски, тяжело, и сразу замечает, где у тебя ладонь. Останавливается в трёх шагах. Своей руки к ножу не несёт, просто смотрит: на пистолет, потом тебе в лицо.\n\n— Ты это в кого собрался, водолаз? — Голос ровный, без вчерашней насмешки. — В меня?\n\nГребец на баркасе перестал табанить и тоже смотрит. В дверях «Сухого Якоря» показывается Марта с тряпкой в руках и замирает.\n\n— Мастер в рубке ждёт. Сказал: до смены. — Клим кивает на баркас. — Сам сядешь или мне тебя сажать? Мне всё одно, но ему про пистолет я скажу. Слово в слово.\n\nОн не двигается с места и ждёт. Мокей делает вид, что занят узлом.",
+      "firstWordMs": 27121,
+      "textDoneMs": 41482,
+      "durationMs": 60867,
+      "requests": 2,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 80800,
+        "output": 4536,
+        "cached": 27972,
+        "cacheWrite": 52820,
+        "cacheWrite1h": 0,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.346,
+      "costUsd": 0.62809,
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "note_character",
+          "note_world",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.62809,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

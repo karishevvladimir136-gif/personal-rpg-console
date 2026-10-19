@@ -1,0 +1,85 @@
+{
+  "capUsd": 30,
+  "entries": [
+    {
+      "run": "dmarch-20261017-182013-scenes-smoke",
+      "what": "scene branches C × 1 scenes (1 pairs)",
+      "startedAt": "2026-10-17T18:20:13.261Z",
+      "reservedUsd": 1.5,
+      "spentUsd": 0.5123,
+      "settled": true,
+      "finishedAt": "2026-10-17T18:21:30.496Z",
+      "record": "docs/runs/dmarch-20261017-182013-scenes-smoke.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-182146-reference-A",
+      "what": "reference run A (19-polish-ru-replay)",
+      "startedAt": "2026-10-17T18:21:46.454Z",
+      "reservedUsd": 9,
+      "spentUsd": 7.765,
+      "settled": true,
+      "finishedAt": "2026-10-17T18:53:33.913Z",
+      "record": "docs/runs/dmarch-20261017-182146-reference-A.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-190822-scenes",
+      "what": "scene branches BCD × 8 scenes (24 pairs)",
+      "startedAt": "2026-10-17T19:08:22.063Z",
+      "reservedUsd": 13,
+      "spentUsd": 10.5341,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:36:48.970Z",
+      "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-193714-scenes",
+      "what": "scene branches BCD × 8 scenes (6 pairs)",
+      "startedAt": "2026-10-17T19:37:14.092Z",
+      "reservedUsd": 4.5,
+      "spentUsd": 2.0115,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:40:54.839Z",
+      "record": "docs/runs/dmarch-20261017-193714-scenes.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-194127-scenes",
+      "what": "scene branches BCD × 1 scenes (3 pairs)",
+      "startedAt": "2026-10-17T19:41:27.498Z",
+      "reservedUsd": 4,
+      "spentUsd": 1.652,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:45:49.778Z",
+      "record": "docs/runs/dmarch-20261017-194127-scenes.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-194606-continuity-C",
+      "what": "continuity run C (5 turns)",
+      "startedAt": "2026-10-17T19:46:06.070Z",
+      "reservedUsd": 3.2,
+      "spentUsd": 1.5681,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:50:52.263Z",
+      "record": "docs/runs/dmarch-20261017-194606-continuity-C.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-195052-continuity-D",
+      "what": "continuity run D (5 turns)",
+      "startedAt": "2026-10-17T19:50:52.652Z",
+      "reservedUsd": 1.6,
+      "spentUsd": 0.7496,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:54:35.400Z",
+      "record": "docs/runs/dmarch-20261017-195052-continuity-D.jsonl"
+    },
+    {
+      "run": "dmarch-20261017-195450-judge",
+      "what": "records judge (63 turns, claude-sonnet-5-5 medium)",
+      "startedAt": "2026-10-17T19:54:50.385Z",
+      "reservedUsd": 3.5,
+      "spentUsd": 0.7866,
+      "settled": true,
+      "finishedAt": "2026-10-17T19:59:46.738Z",
+      "record": "docs/runs/dmarch-20261017-195450-judge.jsonl"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "scene": "s05",
+  "title": "Scene s05",
+  "description": "Harbour replay, turn s05: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s05",
+  "createdAt": "2026-10-17T19:46:21.443Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "B",
+    "label": "Fable 5.1, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s05",
+      "input": "Торгуюсь за цену погружения: прошу больше, ссылаясь на то, что умею читать течения.",
+      "outcome": "committed",
+      "narration": "Писарь не сразу понимает, о чём ты. Потом понимает, и перо в его руке опускается на стол.\n\n— Погружение? — Он даже оглядывается на дверь, будто проверяет, не слышит ли кто с баржи. — Я вам устав прочёл. Списанных под воду не пускаем. Не за четыре монеты, не за сорок. Течения вы читаете или по звёздам ходите, в книге от этого строчка не меняется.\n\nОн постукивает пальцем по клеёнке.\n\n— Помпа — четыре монеты. Ставка одна на всех, её смотритель утвердил, не я. Хотите больше, идите к мастеру Браге сами. Только он вас видеть не желает, вы слышали.\n\nУ сходней один из курильщиков коротко фыркает и сплёвывает в воду.\n\n— Течения он читает. — Говорит не тебе, а напарнику, но так, чтобы слышно было. — К Дорну иди, читатель. Он за такое платит. Пока.\n\nВторой толкает его локтем, и оба замолкают.\n\nПисарь ждёт, перо снова над пустой строкой.\n\n— Так вписывать на помпу или нет? У меня до полудня ещё люди будут.",
+      "firstWordMs": 15568,
+      "textDoneMs": 101594,
+      "durationMs": 101594,
+      "requests": 1,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 36193,
+        "output": 10000,
+        "cached": 22522,
+        "cacheWrite": 13667,
+        "cacheWrite1h": 1363,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.622,
+      "costUsd": 0.68673,
+      "tools": {
+        "accepted": [
+          "note_world",
+          "note_character",
+          "advance_time",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn",
+          "finish_turn"
+        ],
+        "rejected": [
+          {
+            "name": "finish_turn",
+            "reason": "This turn reached its 40-call limit."
+          },
+          {
+            "name": "finish_turn",
+            "reason": "This turn reached its 40-call limit."
+          },
+          {
+            "name": "finish_turn",
+            "reason": "This turn reached its 40-call limit."
+          },
+          {
+            "name": "finish_turn",
+            "reason": "This turn reached its 40-call limit."
+          },
+          {
+            "name": "finish_turn",
+            "reason": "This turn reached its 40-call limit."
+          }
+        ],
+        "player": [
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "max_tokens",
+          "outputTokens": 10000
+        },
+        {
+          "kind": "tool_cap_reached",
+          "calls": 40
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.68673,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

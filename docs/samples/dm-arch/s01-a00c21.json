@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "scene": "s01",
+  "title": "Scene s01",
+  "description": "Harbour replay, turn s01: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s01",
+  "createdAt": "2026-10-17T19:46:21.442Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "B",
+    "label": "Fable 5.1, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s01",
+      "input": "Оглядываюсь на причале: кто здесь, что изменилось с прошлой осени.",
+      "outcome": "committed",
+      "narration": "Причал тот же, но что-то в нём сдвинулось — как доска, которую переложили, а ты всё равно ставишь ногу по старой памяти.\n\nПонтоны под кабаком Марты осели ещё на ладонь: вода стоит у самых краёв настила, и там, где осенью было сухо, теперь тёмные пятна. Насос на дальнем конце причала — тот, что выкачивал воду из понтонных ячеек, — молчит. Рычаг обмотан тряпкой, кожух снят, рядом ведро с ржавой водой. Ты по звуку знаешь, когда насос здоров; этот не звучит вовсе. Похоже, уже не первую неделю.\n\nГильдейской баржи у третьего пирса нет. Осенью там стоял «Терпеливый» с жёлтым флагом, и мастер Кобб вёл с него счёт подъёмам. Сейчас — пустая вода и обрезанный канат на кнехте. Зато у соседнего причала чужая лодка: низкая, широкая, просмолённая до черноты, без названия на борту. На ней двое мужчин сворачивают канат и не смотрят в твою сторону ровно настолько, чтобы это было заметно.\n\nМокей всё тот же — седой, в залатанной куртке, с челноком в зубах. Сеть у него порвана не по-рыбацки: дыра ровная, длинная, будто резали. Он поймал твой взгляд, пожевал челнок и уткнулся обратно в узлы.\n\nА Марта уже стоит в дверях кабака, руки на переднике, и ждать больше не собирается.\n\n— Рэй, — говорит она. — Живой. Это хорошо. Сорок монет — это тоже хорошо, если они при тебе.",
+      "firstWordMs": 8343,
+      "textDoneMs": 90558,
+      "durationMs": 90558,
+      "requests": 1,
+      "effort": "high",
+      "tension": "calm",
+      "tokens": {
+        "input": 24569,
+        "output": 7321,
+        "cached": 0,
+        "cacheWrite": 24565,
+        "cacheWrite1h": 23069,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0,
+      "costUsd": 0.84617,
+      "tools": {
+        "accepted": [
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "quest",
+          "quest",
+          "note_character",
+          "note_character",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_world",
+          "upsert_place",
+          "advance_time",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Фракция: Гильдия водолазов",
+          "Долг: Сорок монет Марте",
+          "Зацепка: Где «Терпеливый»?",
+          "Прошло: 5 минут"
+        ],
+        "rolls": []
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "no tension signal",
+          "tension": "calm"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.84617,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

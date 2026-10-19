@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "scene": "s13",
+  "title": "Scene s13",
+  "description": "Harbour replay, turn s13: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s13",
+  "createdAt": "2026-10-17T19:46:21.449Z",
+  "run": "dmarch-20261017-190822-scenes",
+  "record": "docs/runs/dmarch-20261017-190822-scenes.jsonl",
+  "variant": {
+    "id": "B",
+    "label": "Fable 5.1, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-fable-5-1",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s13",
+      "input": "Ложусь спать в комнате над кабаком, но перед сном проверяю, заперта ли дверь, и кладу нож под руку.",
+      "outcome": "committed",
+      "narration": "Ты допиваешь кружку и говоришь Марте, что ночевать будешь у неё. Она смотрит на тебя так же, как утром: считает.\n\n— Комната наверху свободна, та самая. Монета за ночь, остальное в счёт. — Пауза. — Ты теперь на помпе, расчёт на закате, я знаю, сколько там платят.",
+      "firstWordMs": 39581,
+      "textDoneMs": 149274,
+      "durationMs": 149274,
+      "requests": 4,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 210819,
+        "output": 11371,
+        "cached": 170494,
+        "cacheWrite": 40313,
+        "cacheWrite1h": 2089,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.809,
+      "costUsd": 1.13087,
+      "tools": {
+        "accepted": [
+          "money",
+          "roll",
+          "note_world",
+          "note_world",
+          "note_world",
+          "note_character",
+          "note_character",
+          "note_character",
+          "note_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "upsert_place",
+          "quest",
+          "move_party",
+          "rest",
+          "finish_turn",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "−1 монета → Марта",
+          "Чуткий сон: проснуться, если ночью что-то случится у двери или на воде: 3 — не вышло",
+          "Новое место: Комната над «Сухим Якорем»",
+          "Журнал: «Затонувший «Кулик»» обновлено",
+          "Переход: Комната над «Сухим Якорем» (30 минут)",
+          "Долгий отдых (9 часов 30 минут)"
+        ],
+        "rolls": [
+          {
+            "actor": "Рэй",
+            "reason": "Чуткий сон: проснуться, если ночью что-то случится у двери или на воде",
+            "modifier": 1,
+            "bonuses": [
+              {
+                "value": 1,
+                "source": "дверь подпёрта стулом, нож под рукой"
+              }
+            ],
+            "advantage": "normal",
+            "dc": 10,
+            "difficulty": "normal",
+            "natural": null,
+            "visibility": "player"
+          }
+        ]
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "outcome_asked"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 1.13087,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}

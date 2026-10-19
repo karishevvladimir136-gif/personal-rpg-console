@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "scene": "s13",
+  "title": "Scene s13",
+  "description": "Harbour replay, turn s13: the same state for every variant; one turn.",
+  "language": "ru",
+  "keyStep": "s13",
+  "createdAt": "2026-10-17T19:46:21.448Z",
+  "run": "dmarch-20261017-182146-reference-A",
+  "record": "docs/runs/dmarch-20261017-182146-reference-A.jsonl",
+  "variant": {
+    "id": "A",
+    "label": "Opus 5.5, single loop",
+    "runtime": "single",
+    "writer": "anthropic/claude-opus-5-5",
+    "bookkeeper": null,
+    "effort": "high"
+  },
+  "turns": [
+    {
+      "step": "s13",
+      "input": "Ложусь спать в комнате над кабаком, но перед сном проверяю, заперта ли дверь, и кладу нож под руку.",
+      "outcome": "committed",
+      "narration": "Марта кладёт ключ на стойку, но руку с него не убирает.\n\n— Комната две монеты. — Она смотрит на твою единственную монету и сама себе кивает. — Ясно. Допишу к долгу, будет тридцать девять. — Только тут она отпускает ключ. — Наверх и налево. Та самая, где шкипер ночевал.\n\nПотом добавляет совсем тихо, протирая стойку:\n\n— Этот, у окна, тоже на ночь остаётся. Заплатил вперёд, серебром. Его комната через стенку от твоей.\n\nКогда ты проходишь мимо двери, Клим даже не встаёт.\n\n— Утром в рубку, водолаз. До смены. — Он провожает тебя взглядом до лестницы. — Не проспи.\n\nКомната тесная: топчан, табурет, таз с водой. Окно смотрит на гавань. Даже в темноте видно волнолом и чёрную палку мачты над водой, там, где лежит «Кулик». Отсюда шкипер полночи и глядел на воду. Засов на двери железный, тугой. Ты задвигаешь его до упора, дёргаешь дверь, и она держит. Нож ложится под край подушки, рукоятью к ладони. Внизу ещё какое-то время гремят кружками, потом Марта гасит лампы, и дом затихает. Только понтоны скрипят под окном.\n\nПросыпаешься ты от тихого металлического звука.",
+      "firstWordMs": 26921,
+      "textDoneMs": 70163,
+      "durationMs": 70163,
+      "requests": 3,
+      "effort": "high",
+      "tension": "tense",
+      "tokens": {
+        "input": 155602,
+        "output": 6329,
+        "cached": 122022,
+        "cacheWrite": 33570,
+        "cacheWrite1h": 2089,
+        "reasoning": 0,
+        "estimated": false
+      },
+      "cacheReadShare": 0.784,
+      "costUsd": 0.32514,
+      "tools": {
+        "accepted": [
+          "roll",
+          "quest",
+          "upsert_place",
+          "upsert_character",
+          "upsert_character",
+          "upsert_character",
+          "note_world",
+          "note_character",
+          "note_character",
+          "advance_time",
+          "finish_turn",
+          "finish_turn"
+        ],
+        "rejected": [],
+        "player": [
+          "Чуткий сон: услышать, кто ночью пробует твою дверь: 12 — получилось",
+          "Журнал: «Сорок монет Марте» обновлено",
+          "Новое место: Комната над «Сухим Якорем»",
+          "Прошло: 5 часов 30 минут"
+        ],
+        "rolls": [
+          {
+            "actor": "Рэй",
+            "reason": "Чуткий сон: услышать, кто ночью пробует твою дверь",
+            "modifier": 2,
+            "bonuses": [
+              {
+                "value": 2,
+                "source": "засов задвинут, ручка звякает о железо"
+              }
+            ],
+            "advantage": "normal",
+            "dc": 10,
+            "difficulty": "normal",
+            "natural": null,
+            "visibility": "player"
+          }
+        ]
+      },
+      "diagnostics": [
+        {
+          "kind": "depth",
+          "effort": "high",
+          "reason": "DM hint: tense",
+          "tension": "tense"
+        },
+        {
+          "kind": "outcome_asked"
+        }
+      ],
+      "leaks": []
+    }
+  ],
+  "totals": {
+    "costUsd": 0.32514,
+    "committed": 1,
+    "failed": 0,
+    "leaks": 0
+  }
+}
