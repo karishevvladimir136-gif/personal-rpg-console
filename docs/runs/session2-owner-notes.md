@@ -357,6 +357,15 @@ ends in a built punchline. This one also uses the «it's not X, it's Y» templat
 states the plot inference for the player inside the joke. Do: rephrase the voice layer's humour rule (rare, only when
 the moment asks for it, a finished joke aimed at someone present, never the scene's last word), and let the session
 report count quips per companion. Mid-session workaround offered to the owner: an out-of-game note in his next action.
+Turn 9: pairs 10–11. Root cause found in the voice layer itself (`VOICE_LAYER_RU`, last paragraph): the humour rule is
+literally a recipe for the rejected lines — «one line that turns someone else's words literally and grimly — death,
+debt, drowned men, stupidity — and nobody explains it». The sergeant's quips follow it to the letter (echo another's
+word → death/debt twist). Second habit: every speech ends with a «clincher» line, often a fake syllogism that does not
+follow (pair 11; owner: «не надо больше афоризмов… как оно вообще следует одно из другого»); the rule «главное
+слово — в конец… обрыв вместо точки» may feed it. FIRST in the voice fix: delete the humour recipe (humour comes from
+character and situation, rare, a finished thought, aimed at someone present); add «a speech ends when the person has
+said what he needed; no closing generalisation, no line for the reader»; keep the rest of the layer (the want, «говорить
+— не значит отвечать», particles), which the approved lines show working.
 
 34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
     the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
@@ -416,5 +425,5 @@ report count quips per companion. Mid-session workaround offered to the owner: a
     «Показывать сложность (DC)» in the campaign part of Настройки. The dm-loop does not log tool arguments, so the DC
     is only in the database receipts — the planner cannot see it from app.log. Both failures at 10 rule out the old
     ladder's «normal 10»; it was 13 (ladder «hard») or 15 (the 5e guide's «medium»). Do: for a 5e campaign show the
-    DC on the card after the roll by default (owner decides); the session report lists every player roll with its DC,
+    DC on the card after the roll by default (owner, turn 9: «надо, чтобы было видно, какая сложность» — yes, show it); the session report lists every player roll with its DC,
     difficulty word, bonuses and result from the receipts (that also answers item 38's ladder-vs-guide question).
