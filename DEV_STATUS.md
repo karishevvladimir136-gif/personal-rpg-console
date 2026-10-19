@@ -1,6 +1,32 @@
 # Development status
 
-**Current stage:** Polish 2 (`docs/stages/POLISH_2.md`) — **done on `claude/polish-2`, waiting for the owner's review,
+**Current stage:** Polish 3 (`docs/stages/POLISH_3.md`, parts 1–7) — **done on `claude/polish-3-stage-009b43` (pushed also
+as `claude/polish-3`), waiting for the owner's review, the writer's blind page on his own turns and the session 2 sandbox
+play.** Branch from `claude/polish-2` with `claude/dm-arch-bakeoff-zuxey2` merged first and `claude/craft-approval` for
+part 7; migrations 68 (`polish3_dm_architecture`), 69 (`polish3_craft_roles`) and the owner's 90 (`owner_approves_craft`),
+all additive. The owner report is `docs/runs/polish3-report.md` («Needs the owner» lists the decisions left open); the
+resume notes `docs/runs/polish3-progress.md`; the docs `docs/TURN_LOOP.md` §22–§25 and `docs/SPEED.md` §9. Final checks:
+typecheck pass, lint pass (zero warnings), build BUILD_STATUS, the loop fake bench 21/21 (the Astra-runtime fake bench
+fails 6 old scenarios identically on the polish 2 head — predates this stage), screenshots SHOTS_STATUS, the full suite on
+the merge commit 2587 tests · 2557 pass · 27 skipped · 3 fail (the bake-off's layer test, fixed in part 2; two Windows
+CRLF artefacts), the full suite on the final code FINAL_SUITE_STATUS. Paid: TOTAL_SPENT of the $20 cap
+(`docs/runs/polish3-ledger.json`).
+
+**Polish 3 in short (2026-10-19):** the writer + bookkeeper split is a campaign setting («Ведущий»: today's loop —
+the default —, Fable + Opus, Opus + Sonnet, or any pair), with the writer's layers the loop's own, the bookkeeper's
+small and cache-stable, the ledger asked once and clipped, a «Ведущий записывает…» state in which the next action may
+be typed and is sent at the commit, and a resume that restarts the bookkeeper only; every rejected record call goes
+back once with its reason and both roles carry the schemas' field names; `move_party` accepts an ID mangled by a
+character; every committed loop turn keeps a private compressed snapshot of the state before it and
+`scripts/eval/real-replay/` replays the owner's own turns (session 1's too, from the turn rows' claim-time sources) on
+an isolated copy with any variant and craft set; the shot director is off by default and live frames draw on
+Sunburst; layer 1 lost the whole library (8 851 → 4 162 tokens), each craft key has a role, the time-word check runs in
+code. The live replay: the Opus + Sonnet pair brought the first word from 21.8 s to 15.3 s median at the same cost
+($4.17 for 20 turns), text at 34 s, records at 51 s, 0 wrong facts (15 of 126 missed, mostly with Sonnet at medium —
+the default stays high); the Fable + Opus pair's first ten turns: C_SUMMARY. The Polish 2 and bake-off sections below are
+each stage's own closing status, kept unchanged.
+
+**Previous stage:** Polish 2 (`docs/stages/POLISH_2.md`) — **done on `claude/polish-2`, waiting for the owner's review,
 the blind page verdict and the session 2 sandbox play.** Branch from `claude/polish` with `claude/picture-models` merged
 first; six parts in the spec's order, each with its own test file (`tests/polish2-pictures`, `-director`, `-cache`,
 `-opening`, `-followups`; 27 tests) and its section in the docs (`docs/stages/STAGE_V.md` §9–§10, `docs/TURN_LOOP.md`

@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-17T19:06:03.362Z",
+  "date": "2026-10-19T04:17:09.871Z",
   "shots": [
     {
       "file": "menu-desktop.jpg",
@@ -53,6 +53,14 @@
     {
       "file": "game-combat-desktop.jpg",
       "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "game-recording-desktop.jpg",
+      "url": "/preview/stage-5/game?recording=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 1440,
@@ -245,6 +253,14 @@
     {
       "file": "game-combat-phone.jpg",
       "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "game-recording-phone.jpg",
+      "url": "/preview/stage-5/game?recording=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 390,
