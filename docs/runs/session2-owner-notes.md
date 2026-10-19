@@ -328,3 +328,6 @@ Problems:
     And, again (items 5, 22, 30), owner: «оно должно быть больше, на весь экран… мне казалось, мы это фиксили»; the item
     card «вечно висит» — it opens on a click and closes. Acceptance for these: screenshots at 1920×1080 and 2560×1440 of
     the character and inventory screens, filling the window, before the fix is called done.
+    Owner (13:09): «я лично буду принимать в следующем цикле правок». The fix stage ends with an owner acceptance
+    pass in the sandbox: a short checklist per screen (what changed, where to look) and his «принято» or notes before
+    anything is called done. Also: the wallet shows the currency as «Зм» — show the word («золотые» / «Золото»).
