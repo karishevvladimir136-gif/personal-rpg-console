@@ -507,7 +507,10 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     (`astra-privacy-context` / the DM's private notes) flags a narration that repeats a private note's hour or intent;
     the session report greps narration for facts that appear only in private notes.
     It repeats: two turns later the DM's own out-of-game aside says «засада в одиннадцать» as the party's plan, though
-    the party knows only «вечером» — the private hour now reads as the hero's knowledge.
+    the party knows only «вечером» — the private hour now reads as the hero's knowledge. And at 15:33 it moved into the
+    fiction: the sergeant says «В окно Рука Дирк полезет в одиннадцать» — no one in play gave that hour; the DM's private
+    plan has become a companion's knowledge. The fix must stop it at the source (private plans never in narration or
+    asides), because once a companion says it, it is canon.
 
 42. **The action box is tiny** (owner, 14:43: «важный нюанс. поле ввода оч мелкое»). The composer's textarea has
     `rows={2}` (`gameplay-composer.tsx`), so a normal plan of attack (three sentences) already scrolls inside a
