@@ -299,3 +299,18 @@ Problems:
     folds under the map — «Известные места без меток», «Открытые места», «Изменить размещение на карте», «Места, где вы
     дома», «Инструменты «что, если»», «Изменить / Исправить записи» — go behind one quiet «Ещё» (owner: «эта … осталась
     снизу»).
+
+## The first turn failed (2026-10-19 12:58)
+
+32. **«DM не удалось завершить это действие» on the first turn** (log, operation `7dadd0c2-…`). The owner's input was an
+    out-of-game setup (money 60, seven counters, four items to equip) plus his line to the captain. Request 1: Opus at
+    high, 102 s, **stop `max_tokens` at the 10 000-token output cap**, $0.51, 21 tool calls — `money` ok; `resource` ×7
+    rejected (counter names must match `^[a-z][a-z0-9_ -]*$`, Latin only — the DM used the owner's Russian names);
+    `item` ×4 rejected, ×2 ok (equip of a `possession` into a slot, item 27); four `upsert_character` (the captain, the
+    sergeant, the recruit), two `upsert_place`, one `quest` ok. Request 2 (163 KB) failed at once: `dm_loop_failed
+    code: provider, retryable: false` — most likely the continuation after a `max_tokens` stop that cut a tool call or
+    the text; the whole turn rolled back. Do: (a) a `max_tokens` stop never fails the turn — continue the loop correctly
+    (close or drop the cut block) or raise the cap; the output cap per request (10 000) is low for high/xhigh with many
+    tool calls — measure and raise; (b) counters accept any language as a label (key derived, the label kept), so «ячейки
+    1 круга» works; (c) the rejected `provider` error and its HTTP body logged; (d) an out-of-game setup should not be a
+    turn at all — the owner's editor (or the one-pass hero, item 20) sets money, counters and equipment directly.
