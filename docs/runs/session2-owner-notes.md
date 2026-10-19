@@ -645,3 +645,16 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     добычу…») from the tool being run; show the public part of the roll at that point (the hero's damage dice; enemy
     saves as «спасброски: двое из двух провалили», no numbers if the guide hides them); keep the gap short (the second
     request reuses the cache).
+
+54. **The planned ambush went off without the hero** (owner, 16:09: «эээ, а как так вышло?»). The hero's plan: wait
+    until both enemies are on the platform, give the bird call, Lightning Bolt both. The DM rolled initiative: the hero
+    a natural 1 (total 3), so the surprised enemies lost round 1 but the prisoner (jumped off as agreed) and the
+    sergeant (shot the second enemy off the trunk) acted before the hero; when his turn came the line was gone. RAW
+    5e — the well-known ambush problem: whoever springs a planned ambush can roll low and act last. Three faults on
+    top: (a) the hero's trigger is not in the story — no bird call is told; the prisoner just jumps while the second
+    man is still climbing, against the hero's «жду, пока оба залезут», so it reads as if the DM sprang it early;
+    (b) the hero's initiative roll was not shown — the player learned it from the aside; (c) the story says the hero
+    «finally finishes the formula» while the others act, as if casting took the round — in 5e a spell is cast on one's
+    own turn, nothing is half-cast. Do: the guide says how a planned ambush starts (owner's choice — see below), the
+    hero's initiative is a visible roll, and the story shows the trigger the player named. Owner decision pending: RAW,
+    or a house rule — «тот, кто начинает подготовленную засаду, действует первым; остальные действуют по его сигналу».
