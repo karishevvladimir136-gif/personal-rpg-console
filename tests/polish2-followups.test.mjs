@@ -52,7 +52,8 @@ test("the first adventure saves on the first click and goes straight to the open
   assert.ok(COMPOSITIONS.includes("atlas"));
   assert.equal(pictureSizeFor("gpt-image-2.5-sunburst", "atlas"), "landscape_16_9_hd");
   assert.ok(pictureCostUsdMicros("quality", "atlas") > 0);
-  assert.equal(parsePictureSettings({}).director, true);
+  assert.equal(parsePictureSettings({}).director, false, "polish 3 §5: off by default");
+  assert.equal(parsePictureSettings({ director: true }).director, true);
   assert.equal(parsePictureSettings({ director: false }).director, false);
   assert.match(src("src/lib/server/media/pictures-service.ts"), /!board\.settings\.director \? \{ costUsdMicros: 0 \} : await directFrame/);
 });
@@ -89,9 +90,9 @@ test("migration 67: the hero's slots are backfilled, the atlas composition is ac
     assert.ok(Array.isArray(slots) && slots.length >= 8, `a player without slots got the humanoid set (${slots?.length})`);
     assert.ok(slots.some((slot) => slot.id === "hand"));
     const read = await call(f, w.cid, "read");
-    assert.equal(read.settings.director, true, "on by default");
-    const saved = await call(f, w.cid, "settings.save", { expectedRevision: 0, frames: "every", quality: "fast", dailyCap: 10, autopilot: read.settings.autopilot, director: false });
-    assert.equal(saved.director, false);
+    assert.equal(read.settings.director, false, "polish 3 §5 (migration 68): off by default");
+    const saved = await call(f, w.cid, "settings.save", { expectedRevision: 0, frames: "every", quality: "fast", dailyCap: 10, autopilot: read.settings.autopilot, director: true });
+    assert.equal(saved.director, true);
     await assert.rejects(call(f, w.cid, "settings.save", { expectedRevision: 1, frames: "every", quality: "fast", dailyCap: 10, autopilot: read.settings.autopilot, director: "yes" }), /rpg_validation/);
     const fence = await f.fence(w.cid);
     const place = (await f.one("select id from public.rpg_locations where campaign_id=$1 limit 1", [w.cid]))?.id;

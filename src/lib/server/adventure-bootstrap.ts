@@ -85,7 +85,8 @@ export async function performBootstrap(command: BootstrapCommand) {
       // app default only when the campaign has no DM choice yet.
       let dmTurn: import("../production/contracts.ts").ModelSelection | null = null;
       if (cid && command.action === "opening.propose") {
-        try { dmTurn = (await readDmSettings(cid)).dmTurn; } catch { dmTurn = null; }
+        // Polish 3 §2: on a split campaign the opening is written by the campaign's writer model.
+        try { const settings = await readDmSettings(cid); dmTurn = settings.split?.writer ?? settings.dmTurn; } catch { dmTurn = null; }
       }
       return resolveExecutionProfile({
         task: "world.compose",

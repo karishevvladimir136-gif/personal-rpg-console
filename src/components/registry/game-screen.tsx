@@ -522,8 +522,12 @@ function LiveBlock({ view, phase, deeper = null }: { view: LiveTurnView; phase: 
   const changes = orderChanges(liveChanges(view));
   if (phase === "saved" && !changes.length && !deeper) return null;
   return (
-    <div className="gameplay-live-turn" role="status" aria-live="polite">
-      {phase === "streaming" && view.text && <div className="prose">{view.text}<span className={g.caret} aria-hidden="true" /></div>}
+    <div className="gameplay-live-turn" role="status" aria-live="polite" data-recording={view.status === "recording" ? "true" : undefined}>
+      {phase === "streaming" && view.text && <div className="prose">{view.text}{view.status !== "recording" && <span className={g.caret} aria-hidden="true" />}</div>}
+      {/* Polish 3 §2: the text is complete; the bookkeeper records until the commit (a quiet line, the composer open). */}
+      {phase === "streaming" && view.status === "recording" && (
+        <p className={r.muted} style={{ margin: 0 }}>{c("Ведущий записывает…", "DM is recording…")}</p>
+      )}
       {phase === "saved" && (
         <details key={view.operationId} className={g.changes}>
           <summary>

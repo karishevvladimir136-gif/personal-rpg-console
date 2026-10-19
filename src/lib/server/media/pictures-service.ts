@@ -3,7 +3,7 @@ import { readCampaign } from "../repository";
 import { readTurn, readWorldClock } from "../gameplay-service";
 import { readMapLayout } from "../map-layout";
 import { atlasLevelView, atlasOpeningLevel, projectAtlas, type AtlasLevel } from "../../map/atlas-view";
-import { liveTurnFinished, subscribeLiveTurn } from "../dm/live-turns";
+import { liveTurnFinished, liveTurnLedger, subscribeLiveTurn } from "../dm/live-turns";
 import { PersistenceError } from "../errors";
 import { isUuid } from "../../persistence/validation";
 import type { CampaignSnapshot } from "../../persistence/contracts";
@@ -66,6 +66,7 @@ async function turnText(campaignId: string, operationId: string): Promise<{ text
   const unsubscribe = subscribeLiveTurn(operationId, (event) => {
     if (event.type === "text") text += event.text;
     else if (event.type === "tool") changes.push({ name: event.name, ok: event.ok, summary: event.summary });
+    // «recording» (polish 3 §2) counts as finished text: the writer's narration is complete.
     else if (event.type === "status" && event.status !== "generating") finished = true;
   });
   unsubscribe();
@@ -248,9 +249,11 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   const previousFrame = [...board.pictures].filter((p) => p.kind === "frame" && p.status === "ready" && !p.hidden && p.subjectId !== operationId && p.createdAt < row.createdAt).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null;
   const previousBrief = previousFrame ? await privatePicture(ctx, previousFrame.id).then((p) => briefOf(p.shot)?.brief ?? null).catch(() => null) : null;
   const style = styleTextFor(board, snapshot.settings.values.visualStyle);
+  // Polish 3 §2: on a split turn the director starts at the writer's end (the «recording» status
+  // finishes the narration wait) and reads the writer's ledger for clothes, wounds and items.
   const built = await buildBrief(apiKey, {
     narration: narration.text, heroName: context.heroName, names: context.names, placeName: place?.name ?? null, profiles, state,
-    clock: { timeOfDay: timeOfDay(clock.worldMinutes) }, previous: previousBrief, style, comment, language: context.language,
+    clock: { timeOfDay: timeOfDay(clock.worldMinutes) }, previous: previousBrief, ledger: liveTurnLedger(operationId), style, comment, language: context.language,
   });
   log("picture_brief", { campaignId: ctx.campaignId, pictureId, trigger, ok: !!built.brief, ms: built.elapsedMs, costUsdMicros: built.costUsdMicros, error: built.error, narrationChars: narration.text.length, complete: narration.complete, words: built.brief ? built.brief.brief.split(/\s+/).length : 0 });
   if (!built.brief) return { costUsdMicros: built.costUsdMicros };

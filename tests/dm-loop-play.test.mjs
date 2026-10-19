@@ -306,7 +306,8 @@ test("DM settings: runtime and model are editable; a turn pins the model at its 
   const c = await loopCampaign();
   try {
     assert.deepEqual(await c.settings.read(), { campaignId: c.cid, runtime: "dm-loop-v1", dmTurn: null,
-      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false, revision: 0 });
+      limits: DM_LOOP_DEFAULT_LIMITS, customLimits: false, depth: { min: "high", max: "xhigh" }, notebookVisible: false, boostNext: false, voiceExamples: false,
+      split: null, snapshotsKeep: null, revision: 0 });
     const saved = await c.settings.save({ expectedRevision: 0, runtime: "dm-loop-v1",
       dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } });
     assert.equal(saved.revision, 1);

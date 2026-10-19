@@ -53,9 +53,9 @@ const openAIReply = (outputTokens = 1000, imageTokens = 0) => json({ data: [{ b6
 const moderationBlock = () => json({ error: { code: "moderation_blocked", message: "Your request was rejected by the safety system.", type: "invalid_request_error" } }, 400);
 
 test("the model per tier: the blind picks by default, the owner's choice from the picture settings, unknown IDs ignored", () => {
-  assert.deepEqual(DEFAULT_TIER_MODELS, { fast: "gpt-image-2.5-flare", quality: "gpt-image-2.5-sunburst" });
+  assert.deepEqual(DEFAULT_TIER_MODELS, { fast: "gpt-image-2.5-sunburst", quality: "gpt-image-2.5-sunburst" }); // polish 3 §5: live frames on Sunburst too
   assert.equal(modelForTier("quality"), "gpt-image-2.5-sunburst");
-  assert.equal(modelForTier("fast"), "gpt-image-2.5-flare");
+  assert.equal(modelForTier("fast"), "gpt-image-2.5-sunburst");
   const settings = parsePictureSettings({ models: { fast: "fal-ai/flux-2/klein/9b", quality: "no-such-model" } });
   assert.deepEqual(settings.models, { fast: "fal-ai/flux-2/klein/9b" }, "a model outside the catalogue is dropped");
   assert.equal(modelForTier("fast", settings), "fal-ai/flux-2/klein/9b", "FLUX stays in the catalogue for the owner's switch");

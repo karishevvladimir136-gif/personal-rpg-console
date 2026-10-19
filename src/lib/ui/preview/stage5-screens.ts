@@ -7,6 +7,8 @@ export type Stage5Variant = {
   /** Which synthetic sample campaign: the steampunk D&D-style one or the narrative noir. */
   world: "shov" | "noir";
   moment: boolean;
+  /** Polish 3 §2: the «Ведущий записывает…» state (the text complete, the bookkeeper recording). */
+  recording?: boolean;
   combat: boolean;
   dice: boolean;
   talk: boolean;

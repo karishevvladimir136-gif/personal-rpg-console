@@ -1,7 +1,7 @@
 import { authorizeCampaign } from "@/lib/server/campaign-authorization";
 import { isUuid } from "@/lib/persistence/validation";
 import { gameplayErrorResponse } from "@/lib/gameplay/http-response";
-import { subscribeLiveTurn } from "@/lib/server/dm/live-turns";
+import { liveTurnEnds, subscribeLiveTurn } from "@/lib/server/dm/live-turns";
 import { PersistenceError } from "@/lib/server/errors";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -26,7 +26,7 @@ export async function GET(_request: Request, context: { params: Promise<{ campai
         };
         unsubscribe = subscribeLiveTurn(operationId, (event) => {
           try { controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`)); } catch { close(); return; }
-          if (event.type === "status" && event.status !== "generating") close();
+          if (liveTurnEnds(event)) close();
         });
         timer = setTimeout(close, 10 * 60 * 1000);
       },

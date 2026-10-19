@@ -19,6 +19,29 @@ export class ToolReject extends Error {
     this.hint = hint;
   }
 }
+/** Polish 3 §3: two IDs are «nearly the same» when, dashes aside, they are within two edits
+ * (a dropped, doubled or mistyped character) of each other and share their first eight characters. */
+export function nearlySameId(text: string, id: string): boolean {
+  const a = text.toLocaleLowerCase().replace(/-/g, "");
+  const b = id.toLocaleLowerCase().replace(/-/g, "");
+  if (a === b) return true;
+  if (a.slice(0, 8) !== b.slice(0, 8) || Math.abs(a.length - b.length) > 2) return false;
+  // Levenshtein distance, bounded at 3 (two rows of the matrix).
+  let previous = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    const current = [i];
+    let best = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      current[j] = Math.min(previous[j] + 1, current[j - 1] + 1, previous[j - 1] + cost);
+      if (current[j] < best) best = current[j];
+    }
+    if (best > 2) return false;
+    previous = current;
+  }
+  return previous[b.length] <= 2;
+}
+
 export function reject(condition: unknown, reason: string, hint: string | null = null): asserts condition {
   if (!condition) throw new ToolReject(reason, hint);
 }
@@ -202,6 +225,13 @@ export class ShadowState {
         "Use an ID from the context or a local key of a record created in this turn.");
     }
     const lower = text.toLocaleLowerCase();
+    // Polish 3 §3: a model copies an ID the state lists and drops or doubles a character
+    // (the bake-off's move_party rejection: «db431570-f3e9-542c-cea-…» for «…-9cea-…»).
+    // A hex-and-dash string that is one or two edits away from exactly one listed ID is that ID.
+    if (/^[0-9a-f-]{30,40}$/i.test(lower) && !isUuid(text as unknown)) {
+      const near = families.flatMap((family) => this.rowsOf(family).filter((row) => nearlySameId(lower, row.id)).map((row) => ({ family, id: row.id })));
+      if (near.length === 1) return near[0];
+    }
     const matches: ShadowRef[] = [];
     for (const family of families) {
       for (const row of this.rowsOf(family)) {

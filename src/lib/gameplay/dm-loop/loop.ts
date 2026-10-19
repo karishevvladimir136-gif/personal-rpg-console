@@ -54,7 +54,9 @@ export type DmLoopDependencies = {
    * player-likes note, the used «important turn» flag. */
   afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean;
     /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
-    playMinutes: number }) => Promise<void>;
+    playMinutes: number;
+    /** Polish 3 §4: the turn's literal input and the runtime source it started from (the state before the turn), for the snapshot. */
+    input?: TurnInput; source?: RuntimeSource }) => Promise<void>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -185,6 +187,20 @@ const PENDING_OUTCOME = "The player saw the roll but not what came of it. Narrat
 /** Item 5: a model that stops after the narration without finish_turn loses the scene kinds, the
  * tension and the refusal hint; it is asked once for the closing bookkeeping. */
 const FINISH_NOW = "The narration is complete but the turn is not closed. Send the final bookkeeping message now: the records the narration needs (people, places, items, notes, time) and finish_turn with sceneKinds, spotlight, nextTension and, when someone refused the hero, npcRefused. No more narration text.";
+/** Polish 3 §3: a rejected call the server sends back for a retry — a record call whose fix is in the
+ * reason (a field name, a reference, a kind, a currency name). A deciding call the state refused (money
+ * the hero does not have, an item they do not hold, a claim already paid) is the story's business: the
+ * model adapts the narration, as the role says, and is not asked to resend it. */
+export function retriableRejection(call: { name: string; arguments: Record<string, unknown> }): boolean {
+  if (BOOKKEEPING_TOOLS.has(call.name) || call.name === "quest" || call.name === "combat") return true;
+  if (call.name === "item") return call.arguments.action === "create" || call.arguments.action === "modify";
+  return false;
+}
+/** Polish 3 §3: the message that sends rejected bookkeeping calls back once with the server's reasons. */
+export function rejectedCallsMessage(rejected: { name: string; reason: string }[]): string {
+  return `The server rejected ${rejected.length === 1 ? "one call" : `${rejected.length} calls`} of your last message. Fix each as the reason says and resend them in your next message, then finish_turn again; no more narration text:\n` +
+    rejected.map((row) => `- ${row.name}: ${row.reason}`).join("\n");
+}
 
 function parseArguments(call: DmToolCall): Record<string, unknown> {
   try {
@@ -195,7 +211,7 @@ function parseArguments(call: DmToolCall): Record<string, unknown> {
   }
 }
 
-async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: ResumeInput | null): Promise<PublicTurn> {
+export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependencies, command: ResumeInput | null): Promise<PublicTurn> {
   const { store, memory } = deps;
   requireRule(typeof store.recordDmTool === "function");
   const recordDmTool = store.recordDmTool;
@@ -355,6 +371,20 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
           shadow.finished = true;
           loop.meta ??= implicitMeta(loop.receipts);
           diagnostic({ kind: "implicit_finish", calls: last.toolCalls.length });
+        }
+        // Polish 3 §3: every rejected record call of a message goes back once with the server's
+        // reason (the bake-off's misses: a field name, a faction that does not exist, a clock as text).
+        if (!pause && loop.text.trim() && !loop.diagnostics.some((row) => row.kind === "records_retry_asked") &&
+          loop.requests < limits.modelRequestsPerTurn - 1 && loop.receipts.length < limits.toolCallsPerTurn) {
+          const rejected = last.toolCalls.flatMap((call) => {
+            const receipt = loop.receipts.find((row) => row.call.id === call.id);
+            return receipt && !receipt.result.ok && retriableRejection(receipt.call) ? [{ name: call.name, reason: receipt.result.reason }] : [];
+          });
+          if (rejected.length) {
+            diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
+            loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
+            shadow.finished = false;
+          }
         }
         await persist(pause ? "awaiting_confirmation" : "generating");
         if (pause) {
@@ -544,7 +574,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;
@@ -558,6 +588,7 @@ async function execute(claim: TurnClaim, deps: DmLoopDependencies, command: Resu
     catch { throw new TurnError(safe.code, safe.retryable); }
   }
 }
+const execute = executeDmLoopTurn;
 
 export async function runDmLoopTurn(input: TurnInput, deps: DmLoopDependencies): Promise<PublicTurn> {
   const current = requireTurnTimeline(await deps.store.begin(input, DM_LOOP_RUNTIME), input.campaignId, input.operationId, input.timeline);

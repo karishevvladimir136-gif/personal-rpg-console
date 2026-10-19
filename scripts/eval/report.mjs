@@ -100,6 +100,17 @@ export function formatReport(records) {
     lines.push(`  scenario checks passed ${scenarios.reduce((sum, s) => sum + s.checksPassed, 0)}/${scenarios.reduce((sum, s) => sum + s.checksTotal, 0)};` +
       ` scenarios passed ${scenarios.filter((s) => s.passed).length}/${scenarios.length}`);
     lines.push(`  suspected literal secret leaks logged: ${leaks.length}${leaks.length ? ` — ${leaks.join(" | ")}` : ""}`);
+    // Polish 3 §6: the split's own numbers — the text complete, the records complete, the held-send wait, the cost per model.
+    const split = fresh.filter((turn) => turn.phases?.bookkeeper);
+    if (split.length) {
+      const sumUsd = (key) => split.reduce((sum, turn) => sum + (turn.phases[key]?.costUsd ?? 0), 0);
+      const share = (key, part) => { const input = split.reduce((s, t) => s + (t.phases[key]?.inputTokens ?? 0), 0); const value = split.reduce((s, t) => s + (t.phases[key]?.[part] ?? 0), 0); return input ? fmt(value / input * 100) : "–"; };
+      lines.push(`  split (${header.writer ?? "writer"} + ${header.bookkeeper ?? "bookkeeper"}): text done, median ${fmt(median(split.map((t) => t.textDoneMs)))} ms; records done, median ${fmt(median(split.map((t) => t.recordsDoneMs)))} ms;` +
+        ` held-send wait, median ${fmt(median(split.map((t) => t.heldSendWaitMs)))} ms (max ${fmt(Math.max(...split.map((t) => t.heldSendWaitMs ?? 0)))} ms)`);
+      lines.push(`  cost: writer $${fmt(sumUsd("writer"), 4)} (cache read ${share("writer", "cacheReadTokens")}%, write ${share("writer", "cacheWriteTokens")}%), bookkeeper $${fmt(sumUsd("bookkeeper"), 4)} (cache read ${share("bookkeeper", "cacheReadTokens")}%, write ${share("bookkeeper", "cacheWriteTokens")}%);` +
+        ` ledger found on ${split.filter((t) => t.ledger?.found).length}/${split.length} turns, clipped ${split.filter((t) => t.ledger?.clipped).length};` +
+        ` bookkeeper requests, median ${fmt(median(split.map((t) => t.phases.bookkeeper.requests)), 1)}; writer requests, median ${fmt(median(split.map((t) => t.phases.writer.requests)), 1)}`);
+    }
     const rejected = fresh.flatMap((turn) => (turn.effects?.rejected ?? []).map((r) => `${turn.scenario}/${turn.step}: ${r.name} — ${r.reason}`));
     if (rejected.length) { lines.push("  rejected calls:"); for (const line of rejected) lines.push(`    ${line}`); }
     const failures = fresh.filter((turn) => turn.outcome === "failed" || turn.outcome === "error")

@@ -19,7 +19,7 @@ const root = join(here, "..", "..");
 
 function parseArgs(argv) {
   const args = { provider: "fake", scenario: null, budgetUsd: null, verbose: false, runtime: "astra-primary-v1",
-    model: "astra", effort: null, continuationEffort: null };
+    model: "astra", effort: null, continuationEffort: null, writer: null, bookkeeper: null };
   for (let index = 0; index < argv.length; index++) {
     const flag = argv[index];
     const value = () => {
@@ -35,9 +35,17 @@ function parseArgs(argv) {
     else if (flag === "--effort") args.effort = value();
     else if (flag === "--continuation-effort") args.continuationEffort = value();
     else if (flag === "--max-steps") args.maxSteps = Number(value());
+    // Polish 3 §6: the split — `--writer opus|fable --bookkeeper sonnet|opus[@effort]` (dm-loop-v1, live).
+    else if (flag === "--writer") args.writer = value();
+    else if (flag === "--bookkeeper") { const [model, effort] = value().split("@"); args.bookkeeper = { model, effort: effort ?? null }; }
     else if (flag === "--verbose") args.verbose = true;
     else throw Error(`unknown argument ${flag}`);
   }
+  if (args.writer && !["opus", "fable"].includes(args.writer)) throw Error("--writer must be opus or fable");
+  if (args.bookkeeper && !["opus", "sonnet"].includes(args.bookkeeper.model)) throw Error("--bookkeeper must be opus or sonnet, optionally @medium or @high");
+  if (args.bookkeeper?.effort && !["medium", "high"].includes(args.bookkeeper.effort)) throw Error("the bookkeeper's effort must be medium or high");
+  if ((args.writer || args.bookkeeper) && args.runtime !== "dm-loop-v1") throw Error("--writer and --bookkeeper need --runtime dm-loop-v1");
+  if (args.writer === "fable" && !args.bookkeeper) throw Error("a Fable writer needs a bookkeeper (--bookkeeper)");
   if (args.continuationEffort && !["low", "medium", "high", "xhigh", "max"].includes(args.continuationEffort))
     throw Error("--continuation-effort must be low, medium, high, xhigh or max");
   if (!args.scenario) throw Error("--scenario is required (a name from scripts/eval/scenarios, a comma list, or all)");
@@ -82,8 +90,9 @@ try {
   selected = await scenarios(args.scenario, args.runtime);
   if (args.runtime === "dm-loop-v1") {
     ({ LOOP_MODELS: loopModels } = await import("./lib/loop-harness.mjs"));
-    apiKey = args.provider === "live" ? providerKey(loopModels[args.model].key) : "synthetic-eval-only";
-    if (!apiKey) throw Error(`live provider needs ${loopModels[args.model].key} (environment or .env.local)`);
+    const keyName = loopModels[args.writer ?? args.model].key;
+    apiKey = args.provider === "live" ? providerKey(keyName) : "synthetic-eval-only";
+    if (!apiKey) throw Error(`live provider needs ${keyName} (environment or .env.local)`);
   } else {
     apiKey = args.provider === "live" ? openAiKey() : "synthetic-eval-only";
     if (!apiKey) throw Error("live provider needs OPENAI_API_KEY (environment or .env.local)");
@@ -94,7 +103,7 @@ try {
   process.exit(2);
 }
 const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\..+$/, "").replace("T", "-");
-const label = args.runtime === "dm-loop-v1" ? `loop-${args.model}` : "astra";
+const label = args.runtime === "dm-loop-v1" ? (args.bookkeeper ? `loop-${args.writer ?? args.model}+${args.bookkeeper.model}${args.bookkeeper.effort ? `-${args.bookkeeper.effort}` : ""}` : `loop-${args.model}`) : "astra";
 const runId = `${stamp}-${label}-${args.provider}-${args.scenario === "all" ? "all" : selected.map((s) => s.name).join("+")}`.slice(0, 120);
 const outDir = join(here, "out");
 await mkdir(outDir, { recursive: true });
@@ -112,11 +121,14 @@ if (args.runtime === "dm-loop-v1") {
   const { runLoopScenario, loadLoopScript, createLoopBudget } = await import("./lib/loop-harness.mjs");
   const effort = args.effort ?? loopModels[args.model].defaultEffort;
   const budget = args.provider === "live" ? createLoopBudget(args.budgetUsd) : null;
-  write({ type: "run", run: runId, provider: args.provider, runtime: "dm-loop-v1", model: loopModels[args.model].modelId,
+  const writerModel = loopModels[args.writer ?? args.model];
+  const bookkeeperModel = args.bookkeeper ? loopModels[args.bookkeeper.model] : null;
+  write({ type: "run", run: runId, provider: args.provider, runtime: "dm-loop-v1", model: writerModel.modelId,
+    writer: writerModel.modelId, bookkeeper: bookkeeperModel ? `${bookkeeperModel.modelId}@${args.bookkeeper.effort ?? bookkeeperModel.defaultEffort}` : null,
     effort, continuationEffort: args.continuationEffort, scenarios: selected.map((s) => s.name), commit: gitCommit(), node: process.version,
     startedAt: new Date().toISOString(), budgetUsd: args.budgetUsd });
   if (args.provider === "live")
-    console.log(`Live ${loopModels[args.model].modelId} (${effort}${args.continuationEffort ? `, continuations ${args.continuationEffort}` : ""}) run on dm-loop-v1 with a hard budget of ${args.budgetUsd} USD.`);
+    console.log(`Live ${writerModel.modelId} (${effort}${args.continuationEffort ? `, continuations ${args.continuationEffort}` : ""})${bookkeeperModel ? ` writer + ${bookkeeperModel.modelId}@${args.bookkeeper.effort ?? bookkeeperModel.defaultEffort} bookkeeper` : ""} run on dm-loop-v1 with a hard budget of ${args.budgetUsd} USD.`);
   for (const scenario of selected) {
     if (budget?.exhausted) { stopReason = "budget_reached"; break; }
     const script = await loadLoopScript(scenario.name);
@@ -126,7 +138,7 @@ if (args.runtime === "dm-loop-v1") {
     }
     process.stdout.write(`▶ ${scenario.name} — ${scenario.title}\n`);
     const summary = await runLoopScenario({ ...scenario, loop: scenario.loop ?? script ?? {} }, { live: args.provider === "live",
-      model: args.model, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
+      model: args.model, writer: args.writer, bookkeeper: args.bookkeeper, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
     process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
       `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
       `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +

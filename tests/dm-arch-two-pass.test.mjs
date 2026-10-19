@@ -7,7 +7,7 @@ import { randomUUID } from "node:crypto";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { runTwoPassTurn, resumeTwoPassTurn, splitLedger, createLedgerGate, writerSystem, bookkeeperSystem,
-  BOOKKEEPER_MARKER, twoPassFlag } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
+  BOOKKEEPER_MARKER, writerEffort, bookkeeperOf } from "../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { buildDmLoopContext } from "../src/lib/gameplay/dm-loop/context.ts";
 import { joinText } from "../src/lib/gameplay/dm-loop/loop.ts";
 
@@ -40,7 +40,7 @@ test("splitLedger and the stream gate keep the ledger away from the player", () 
   assert.equal(split.narration, "Марта вытирает руки.\n\nОна ждёт.");
   assert.match(split.ledger, /^lюди — Мира/u);
   assert.ok(split.found);
-  assert.deepEqual(splitLedger("Только текст."), { narration: "Только текст.", ledger: "", found: false });
+  assert.deepEqual(splitLedger("Только текст."), { narration: "Только текст.", ledger: "", found: false, clipped: false });
   // An unclosed ledger is taken to the end.
   assert.equal(splitLedger("Текст. <LEDGER>\nвремя — 5").narration, "Текст.");
   const gate = createLedgerGate();
@@ -67,22 +67,31 @@ test("the writer's layer 1 keeps the campaign line, doctrine and cards; the book
       mode: "game", input: "Оглядываюсь.", companionId: null, listenerIds: [], mechanic: null };
     await store.begin(input, "dm-loop-v1");
     const claim = await store.claim(c.cid, input.operationId);
-    const context = buildDmLoopContext(claim.source, input);
-    const writer = writerSystem(context.system, "Russian");
-    assert.equal(writer.length, 5);
+    // Polish 3 §2: the writer's layers are the loop's own built with the writer role; only layer 1 differs.
+    const dm = buildDmLoopContext(claim.source, input);
+    const context = buildDmLoopContext(claim.source, input, { role: "writer" });
+    const writer = writerSystem(context);
+    assert.equal(writer.length, dm.system.length);
+    assert.ok(writer.length >= 6, "the history block of the opening sits between the world and the living dossier");
     assert.match(writer[0].text, /You write; a bookkeeper records/);
     assert.match(writer[0].text, /Campaign language: Russian/);
     assert.match(writer[0].text, /DM Craft — how to run/);
     assert.doesNotMatch(writer[0].text, /Tools available: roll, query_state/);
-    assert.equal(writer[1].text, context.system[1].text);
-    assert.equal(writer[4].text, context.system[4].text);
-    const bookkeeper = bookkeeperSystem(context.system, "Russian");
+    assert.match(dm.system[0].text, /Tools available: roll, query_state/);
+    for (let index = 1; index < dm.system.length; index++) assert.equal(writer[index].text, dm.system[index].text, `layer ${index} is the loop's own`);
+    assert.ok(writer.some((block) => /Recent scenes and exchanges/.test(block.text)), "the writer takes the append-only history block");
+    const bookkeeper = bookkeeperSystem(context, "Russian");
     assert.equal(bookkeeper.length, 4);
     assert.match(bookkeeper[0].text, /You are the bookkeeper/);
+    assert.match(bookkeeper[0].text, /Exact fields of the tools/);
     assert.doesNotMatch(bookkeeper[0].text, /\broll\b, /);
-    assert.equal(bookkeeper[1].text, context.system[2].text);
-    assert.equal(bookkeeper[3].text, context.system[4].text);
-    assert.doesNotMatch(bookkeeper.map((b) => b.text).join("\n"), /Canon documents/);
+    assert.equal(bookkeeper[1].text, context.parts.living);
+    assert.equal(bookkeeper[2].text, context.parts.tail);
+    assert.equal(bookkeeper[3].text, context.parts.now);
+    const joined = bookkeeper.map((b) => b.text).join("\n");
+    assert.doesNotMatch(joined, /Canon documents/);
+    assert.doesNotMatch(joined, /Recent scenes and exchanges/);
+    assert.doesNotMatch(joined, /DM Craft/);
     await store.cancel({ commandId: randomUUID(), campaignId: c.cid, operationId: input.operationId, timeline: input.timeline, action: "cancel", checkId: null });
   } finally { await c.f.db.close(); }
 });
@@ -96,7 +105,7 @@ test("a plain turn: the narration streams without the ledger, the bookkeeper's r
       { text: "", toolCalls: [
         { name: "upsert_character", arguments: { localKey: "mira", name: "Мира", kind: "npc", present: true } },
         { name: "item", arguments: { action: "create", localKey: "bread", name: "Буханка хлеба", category: "consumable", quantity: 1, ownerRef: c.hero } },
-        { name: "advance_time", arguments: { minutes: 5 } },
+        { name: "advance_time", arguments: { minutes: 5, reason: "покупка" } },
         { name: "finish_turn", arguments: { sceneKinds: ["trade"], spotlight: ["mira"], playerMoment: false, nextTension: "calm" } },
       ] },
     ]);
@@ -165,27 +174,30 @@ test("a bookkeeper that answers with text only is asked once for the records; a 
     ], [
       { text: "Nothing to record." },
       { text: "", toolCalls: [
-        { name: "advance_time", arguments: { minutes: 3 } },
+        { name: "advance_time", arguments: { minutes: 3, reason: "смотрит" } },
         { name: "finish_turn", arguments: { sceneKinds: ["quiet"], spotlight: [], playerMoment: false } },
       ] },
     ]);
     assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
     assert.equal(played.result.narration, "Море серое и спокойное.");
+    // Polish 3 §2: a missing ledger is asked for once (the scripted writer has nothing to add).
+    assert.equal(played.writer.requests.length, 2);
+    assert.match(played.writer.requests[1].messages.at(-1).text, /the ledger is missing/);
     assert.match(played.bookkeeper.requests[0].messages[0].text, /Writer's ledger: none was written/);
     assert.equal(played.bookkeeper.requests.length, 2);
     assert.match(played.bookkeeper.requests[1].messages.at(-1).text, /No records were made yet/);
     const row = await c.row(played.input.operationId);
     assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "finish_asked"));
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "ledger_asked"));
     assert.equal(row.checkpoint.dmLoop.meta.sceneKinds[0], "quiet");
   } finally { await c.f.db.close(); }
 });
 
-test("the server flag: off by default, the bookkeeper named with an effort, an optional writer override", () => {
-  assert.equal(twoPassFlag({}), null);
-  assert.equal(twoPassFlag({ DM_TWO_PASS: "off" }), null);
-  assert.equal(twoPassFlag({ DM_TWO_PASS: "nonsense" }), null);
-  assert.deepEqual(twoPassFlag({ DM_TWO_PASS: "anthropic/claude-opus-5-5@medium" }),
-    { bookkeeper: { providerId: "anthropic", modelId: "claude-opus-5-5", effort: "medium" }, writer: null });
-  assert.deepEqual(twoPassFlag({ DM_TWO_PASS: "anthropic/claude-sonnet-5-5", DM_TWO_PASS_WRITER: "anthropic/claude-fable-5-1@xhigh" }),
-    { bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", effort: "high" }, writer: { providerId: "anthropic", modelId: "claude-fable-5-1", effort: "xhigh" } });
+test("polish 3 §2: the server flag is gone; a Fable writer is pinned to high, the bookkeeper's effort is its selection's (high by default)", () => {
+  assert.equal(writerEffort("claude-fable-5-1", "xhigh"), "high");
+  assert.equal(writerEffort("claude-opus-5-5", "xhigh"), "xhigh");
+  assert.deepEqual(bookkeeperOf({ writer: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", reasoning: null } }),
+    { providerId: "anthropic", modelId: "claude-sonnet-5-5", effort: "high" });
+  assert.deepEqual(bookkeeperOf({ writer: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", reasoning: "medium" } }),
+    { providerId: "anthropic", modelId: "claude-sonnet-5-5", effort: "medium" });
 });

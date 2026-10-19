@@ -56,6 +56,9 @@ export type DmLoopPin = {
   depth?: { min: DmEffort; max: DmEffort; tension: DmLoopTension; reason: string; boosted: boolean;
     /** Polish item 13: deep turns in a row counting this one (at most two unless the DM marks a climax again). */
     streak?: number };
+  /** Polish 3 §2: the bookkeeper of a split turn (the writer is the pin itself), fixed at the
+   * turn's start so a retry keeps the pair; absent on a single-loop turn. */
+  bookkeeper?: { providerId: DmProviderId; modelId: string; effort: DmEffort };
 };
 
 /** What this turn has created so far, against the pinned per-turn limits. */
@@ -107,7 +110,15 @@ export type DmLoopDiagnostic =
    * it; the loop asked once for the narration of the outcome. */
   | { kind: "outcome_asked" }
   /** Polish group 7 (item 5): the model stopped after narration without finish_turn and was asked once. */
-  | { kind: "finish_asked" };
+  | { kind: "finish_asked" }
+  /** Polish 3 §2: the writer closed without a ledger and was asked once for it. */
+  | { kind: "ledger_asked" }
+  /** Polish 3 §2: the writer's ledger was longer than the budget and was clipped. */
+  | { kind: "ledger_clipped"; chars: number }
+  /** Polish 3 §2: a retryable transport failure of the writer's continuation was retried once. */
+  | { kind: "writer_retried"; request: number }
+  /** Polish 3 §3: rejected record calls were sent back with their reasons for one retry. */
+  | { kind: "records_retry_asked"; calls: string[] };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";
@@ -176,7 +187,9 @@ export type DmLoopLiveEvent =
   | { type: "tool"; name: string; ok: boolean; summary: string; action?: string }
   /** finish_turn handed the decisive description to the player (server-checked). */
   | { type: "moment"; reason: string | null }
-  | { type: "status"; status: "generating" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" };
+  /** `recording` (polish 3 §2): the writer's text is complete and the bookkeeper records; the
+   * turn is still running and its stream stays open until the commit. */
+  | { type: "status"; status: "generating" | "recording" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" };
 
 /** Diagnostics the loop reports to the server log / bench (never to the player). */
 export type DmLoopObservation =

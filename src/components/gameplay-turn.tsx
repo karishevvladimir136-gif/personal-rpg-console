@@ -242,11 +242,14 @@ export function GameplayGuidanceProposal({
 export function GameplayTurn({
   turn,
   busy,
+  recording = false,
   onCommand,
   onSaved,
 }: {
   turn: PublicTurn;
   busy: boolean;
+  /** Polish 3 §2: the writer's text is complete and the bookkeeper records (a quiet state until the commit). */
+  recording?: boolean;
   onCommand: (action: ResumeInput["action"], checkId?: string | null) => void;
   onSaved: () => Promise<void>;
 }) {
@@ -297,8 +300,8 @@ export function GameplayTurn({
         </div>
       </article>
       {thinking && (
-        <p role="status" className="muted">
-          {t("DM is thinking…")}
+        <p role="status" className="muted" data-recording={recording ? "true" : undefined}>
+          {t(recording ? "DM is recording…" : "DM is thinking…")}
         </p>
       )}
       {turn.status === "failed" && (

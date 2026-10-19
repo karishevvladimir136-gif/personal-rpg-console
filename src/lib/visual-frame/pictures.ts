@@ -110,7 +110,8 @@ export type PictureBoard = {
 export const defaultPictureAutopilot: PictureAutopilot = {
   enabled: false, items: true, portraits: true, figures: true, places: true, holdings: true, autoAccept: true, provider: "fal",
 };
-export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, director: true, revision: 0 };
+/** Polish 3 §5 (the owner's second blind page, 2026-10-18): the shot director is off by default. */
+export const defaultPictureSettings: PictureSettings = { frames: "every", quality: "fast", dailyCap: 60, autopilot: defaultPictureAutopilot, models: {}, director: false, revision: 0 };
 
 // Polish 2: the catalogue of picture models of both providers, one entry per model, and the
 // defaults per tier from the owner's blind picks (2026-10-17, docs/stages/POLISH_2.md §2):
@@ -135,7 +136,9 @@ export const PICTURE_MODELS: PictureModel[] = [
 export const pictureModel = (id: string) => PICTURE_MODELS.find((row) => row.id === id) ?? null;
 export const isPictureModelId = (id: unknown): id is PictureModelId => typeof id === "string" && pictureModel(id) !== null;
 export const isOpenAIPictureModel = (id: string) => openAIImageModel(id) !== null;
-export const DEFAULT_TIER_MODELS: Record<PictureTier, PictureModelId> = { fast: "gpt-image-2.5-flare", quality: "gpt-image-2.5-sunburst" };
+/** Polish 3 §5: live frames on Sunburst by default too (the owner picked it in 11 of 16 scenes over both blind
+ * pages; same price, about 30 s instead of 16, and the frame starts from the first paragraph). Flare stays a choice. */
+export const DEFAULT_TIER_MODELS: Record<PictureTier, PictureModelId> = { fast: "gpt-image-2.5-sunburst", quality: "gpt-image-2.5-sunburst" };
 export function parsePictureModels(raw: unknown): PictureSettings["models"] {
   const v = isRecord(raw) ? raw : {};
   const models: PictureSettings["models"] = {};
@@ -172,7 +175,7 @@ export function parsePictureSettings(raw: unknown): PictureSettings {
     dailyCap: Number.isSafeInteger(cap) && cap >= 0 && cap <= 500 ? cap : 60,
     autopilot: parsePictureAutopilot(v.autopilot),
     models: parsePictureModels(v.models),
-    director: typeof v.director === "boolean" ? v.director : true,
+    director: typeof v.director === "boolean" ? v.director : false,
     revision: Number.isSafeInteger(v.revision) ? (v.revision as number) : 0,
   };
 }

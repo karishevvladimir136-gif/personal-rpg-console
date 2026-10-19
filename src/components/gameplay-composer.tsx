@@ -218,12 +218,29 @@ export function GameplayComposer({
     saveJournal(localStorageForDraft(), key, next);
     queueMicrotask(() => setJournal(next));
   }, [knownAttempt, key, scope.stale]);
+  // Polish 3 §2: while the bookkeeper records («recording»), the composer is open for the next
+  // action; a send is held and goes the moment the turn commits (no two-commit turn).
+  const [held, setHeld] = useState<{ text: string; send: boolean }>({ text: "", send: false });
+  const heldRef = useRef(held);
+  useEffect(() => { heldRef.current = held; }, [held]);
+  const sendRef = useRef<() => Promise<void>>(async () => {});
+  const recording = busy && live?.status === "recording";
   const accept = async (turn: PublicTurn) => {
     write(reconcileJournal(current.current, turn));
     // The committed turn replaces the provisional text; a failed one discards it.
     stopLive.current();
     setLive(null);
     await onSaved();
+    const next = heldRef.current;
+    if (next.text.trim() && turn.status === "committed" && next.send) {
+      write({ ...current.current, text: next.text });
+      setHeld({ text: "", send: false });
+      window.setTimeout(() => { void sendRef.current(); }, 0);
+    } else if (next.text.trim()) {
+      // A typed draft that was not sent stays in the composer.
+      write({ ...current.current, text: next.text });
+      setHeld({ text: "", send: false });
+    }
   };
   const run = async (action: () => Promise<void>) => {
     if (busyRef.current) return;
@@ -329,6 +346,7 @@ export function GameplayComposer({
         throw cause;
       }
     });
+  useEffect(() => { sendRef.current = send; });
   const command = (
     turn: PublicTurn,
     action: ResumeInput["action"],
@@ -498,6 +516,7 @@ export function GameplayComposer({
         >
           <GameplayTurn
             turn={(unresolved || turns.at(-1))!}
+            recording={recording}
             busy={
               busy ||
               timelineBlocked ||
@@ -514,9 +533,10 @@ export function GameplayComposer({
         </div>
       )}
       {showLiveView && live && busy && (live.text || live.changes.length > 0) && (
-        <div className="gameplay-live-turn" role="status" aria-live="polite">
-          <span className="eyebrow">{t("DM is writing… (provisional until saved)")}</span>
+        <div className="gameplay-live-turn" role="status" aria-live="polite" data-recording={recording ? "true" : undefined}>
+          <span className="eyebrow">{t(recording ? "DM is recording…" : "DM is writing… (provisional until saved)")}</span>
           {live.text && <div className="prose">{live.text}</div>}
+          {recording && <p className="muted">{t(held.send ? "Will be sent once the records are in." : "The text is complete; the DM is recording. You can write your next action — it is sent once the records are in.")}</p>}
           {live.changes.length > 0 && (
             <ul className="gameplay-live-changes">
               {live.changes.map((change, index) => (
@@ -543,6 +563,10 @@ export function GameplayComposer({
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            if (recording) {
+              if (held.text.trim()) setHeld({ text: held.text, send: true });
+              return;
+            }
             void send();
           }}
         >
@@ -560,11 +584,13 @@ export function GameplayComposer({
             </span>
             <textarea
               rows={mode === "feedback" ? 5 : 2}
-              value={journal.text}
+              value={recording ? held.text : journal.text}
               maxLength={actionMaxCharacters}
-              disabled={!ready || busy || !!journal.attempt}
+              disabled={!ready || (recording ? held.send : busy || !!journal.attempt)}
+              data-recording={recording ? "true" : undefined}
               onChange={(event) =>
-                write({ ...current.current, text: event.target.value })
+                recording ? setHeld({ text: event.target.value, send: false })
+                  : write({ ...current.current, text: event.target.value })
               }
               placeholder={t(
                 mode === "feedback"
@@ -622,29 +648,33 @@ export function GameplayComposer({
             <p role="alert">{t(error)}</p>
           )}
           <div className="button-group gameplay-send-row">
-            {!activeKnownAttempt && (
+            {(!activeKnownAttempt || recording) && (
               <Button
                 primary
                 type="submit"
                 disabled={
-                  !ready ||
-                  timelineBlocked ||
-                  busy ||
-                  !sessionAllowed ||
-                  (mode !== "feedback" && !currentSession) ||
-                  (!journal.attempt &&
-                    (!journal.text.trim() || stateChangingBusy))
+                  recording
+                    ? !held.text.trim() || held.send
+                    : !ready ||
+                      timelineBlocked ||
+                      busy ||
+                      !sessionAllowed ||
+                      (mode !== "feedback" && !currentSession) ||
+                      (!journal.attempt &&
+                        (!journal.text.trim() || stateChangingBusy))
                 }
               >
                 <Icon name="Send" />
                 {t(
-                  busy
-                    ? "DM is thinking…"
-                    : journal.command || journal.attempt
-                      ? "Try again"
-                      : mode === "feedback"
-                        ? "Send feedback"
-                        : "Send",
+                  recording
+                    ? "Send after the records"
+                    : busy
+                      ? "DM is thinking…"
+                      : journal.command || journal.attempt
+                        ? "Try again"
+                        : mode === "feedback"
+                          ? "Send feedback"
+                          : "Send",
                 )}
               </Button>
             )}

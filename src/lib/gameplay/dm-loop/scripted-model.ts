@@ -30,12 +30,17 @@ export type ScriptedDmModel = DmModel & {
 };
 
 const bytes = (value: unknown) => new TextEncoder().encode(JSON.stringify(value)).length;
+/** Polish 3: two scripted models in one turn (a writer and a bookkeeper) must not share call IDs —
+ * the loop skips a call whose ID it already recorded. Each instance numbers its calls apart. */
+let instances = 0;
 
 export function createScriptedDmModel(initial: ScriptedRound[] = [],
   options: { providerId?: "openai" | "anthropic"; modelId?: string; chunk?: number } = {}): ScriptedDmModel {
   const providerId = options.providerId ?? "openai";
   const modelId = options.modelId ?? "scripted-dm";
   const chunk = options.chunk ?? 12;
+  const instance = ++instances;
+  const callId = () => (instance === 1 ? `call_${++calls}` : `call_${instance}_${++calls}`);
   let rounds = [...initial];
   let calls = 0;
   const requests: DmModelRequest[] = [];
@@ -44,8 +49,12 @@ export function createScriptedDmModel(initial: ScriptedRound[] = [],
     // Polish group 7 (item 5): a script that ended without finish_turn answers the loop's
     // one closing nudge the way a live model would — with finish_turn and nothing else.
     const last = request.messages.at(-1);
+    // Polish 3: a script without an answer to the server's «rejected calls» message (§3) or to the
+    // writer's missing-ledger request (§2) answers with nothing — a live model resends the fixed
+    // calls or the ledger; a script has none to send, and the turn closes with what was accepted.
     const round = rounds.shift() ?? (last?.role === "user" && /not closed/.test(last.text)
-      ? { text: "", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["other"], spotlight: [], playerMoment: false } }] } : undefined);
+      ? { text: "", toolCalls: [{ name: "finish_turn", arguments: { sceneKinds: ["other"], spotlight: [], playerMoment: false } }] }
+      : last?.role === "user" && (/^The server rejected /.test(last.text) || /the ledger is missing/.test(last.text)) ? { text: "" } : undefined);
     if (!round) throw new DmModelError("provider_rejected", "the script has no answer left for this request");
     if (round.failBefore === "transport") throw new DmModelError("retryable_transport", "scripted connection loss");
     if (round.failBefore === "rejected") throw new DmModelError("provider_rejected", "scripted rejection");
@@ -55,7 +64,7 @@ export function createScriptedDmModel(initial: ScriptedRound[] = [],
       for (const part of round.parts) {
         if ("text" in part) { for (let at = 0; at < part.text.length; at += chunk) yield { type: "text_delta", text: part.text.slice(at, at + chunk) }; }
         else {
-          const call = { id: `call_${++calls}`, name: part.toolCall.name, arguments: JSON.stringify(part.toolCall.arguments) };
+          const call = { id: callId(), name: part.toolCall.name, arguments: JSON.stringify(part.toolCall.arguments) };
           toolCalls.push(call);
           yield { type: "tool_call", ...call };
         }
@@ -63,7 +72,7 @@ export function createScriptedDmModel(initial: ScriptedRound[] = [],
     } else {
       for (let at = 0; at < text.length; at += chunk) yield { type: "text_delta", text: text.slice(at, at + chunk) };
       if (round.failAfterText) throw new DmModelError("retryable_transport", "scripted stream break after text");
-      for (const call of (round.toolCalls ?? []).map((call) => ({ id: `call_${++calls}`, name: call.name, arguments: JSON.stringify(call.arguments) }))) {
+      for (const call of (round.toolCalls ?? []).map((call) => ({ id: callId(), name: call.name, arguments: JSON.stringify(call.arguments) }))) {
         toolCalls.push(call);
         yield { type: "tool_call", ...call };
       }

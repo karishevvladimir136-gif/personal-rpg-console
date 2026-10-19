@@ -99,11 +99,12 @@ export async function attachLoop(f) {
       store, memory: createRpcMemoryStore(f.owner, memoryRpc, timeline), summaries,
       model: () => model,
       // The campaign's DM settings at the turn's start: model and per-turn limits pinned together.
+      // Polish 3 §2: on a split campaign the pinned «dm.turn» model is the writer (as the app does).
       pin: async (claim) => {
         const current = await settings.read();
         return { ...dmLoopPinFromProfile(await pinDmLoopModel(profileRpc,
           { ownerId: f.owner, campaignId: f.cid, operationId: claim.lease.operationId, timeline },
-          async () => ({ policy: null, dmTurn: current.dmTurn }))), limits: current.limits, depth: current.depth, boostNext: current.boostNext };
+          async () => ({ policy: null, dmTurn: current.split?.writer ?? current.dmTurn }))), limits: current.limits, depth: current.depth, boostNext: current.boostNext };
       },
       // Stage 4: the DM's player-likes note and the used «important turn» flag.
       afterCommit: async ({ playerLikes, boostUsed }) => {

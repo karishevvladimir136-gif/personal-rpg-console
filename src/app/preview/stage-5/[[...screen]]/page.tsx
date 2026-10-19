@@ -22,6 +22,7 @@ export default async function Page({
       variant={{
         world: query.world === "noir" ? "noir" : "shov",
         moment: query.moment === "1",
+        recording: query.recording === "1",
         combat: query.combat === "1",
         dice: query.dice === "1",
         talk: query.talk === "1",

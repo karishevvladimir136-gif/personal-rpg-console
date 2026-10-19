@@ -10,8 +10,12 @@ export type LiveTurnView = {
   changes: { name: string; ok: boolean; summary: string; action?: string }[];
   /** finish_turn handed the decisive description to the player (server-checked, polish). */
   moment?: { reason: string | null } | null;
-  status: "generating" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" | null;
+  /** `recording` (polish 3 §2): the text is complete, the bookkeeper records; the composer may open. */
+  status: "generating" | "recording" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" | null;
 };
+
+/** A status that ends the stream (`recording` keeps it open until the commit). */
+export const liveStatusEnds = (status: LiveTurnView["status"]) => status !== null && status !== "generating" && status !== "recording";
 
 export const emptyLiveTurn = (operationId: string): LiveTurnView => ({ operationId, text: "", changes: [], moment: null, status: null });
 
@@ -41,7 +45,7 @@ export function followLiveTurn(campaignId: string, operationId: string, onView: 
     if (!event) return;
     view = applyLiveEvent(view, event);
     onView(view);
-    if (event.type === "status" && event.status !== "generating") source.close();
+    if (event.type === "status" && liveStatusEnds(event.status)) source.close();
   };
   source.onerror = () => { source.close(); };
   return () => source.close();

@@ -9,7 +9,7 @@ import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loopCampaign } from "../../../tests/dm-loop-fixture.mjs";
-import { runDmLoopTurn, resumeDmLoopTurn } from "../../../src/lib/gameplay/dm-loop/loop.ts";
+import { runCampaignTurn, resumeCampaignTurn, bookkeeperOf, bookkeeperStart, splitLedger } from "../../../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { createScriptedDmModel } from "../../../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { dmLoopLimits } from "../../../src/lib/gameplay/dm-loop/limits.ts";
 import { dmModels, dmRequestReservation } from "../../../src/lib/model-runtime/dm-models.ts";
@@ -30,6 +30,9 @@ const MAX_CONTINUES = 8;
 export const LOOP_MODELS = {
   opus: { providerId: "anthropic", modelId: "claude-opus-5-5", key: "ANTHROPIC_API_KEY", defaultEffort: "high" },
   astra: { providerId: "openai", modelId: "gpt-6-astra", key: "OPENAI_API_KEY", defaultEffort: "medium" },
+  // Polish 3 §6: the split's writer (fable) and bookkeepers (sonnet, opus) — `--writer` and `--bookkeeper`.
+  fable: { providerId: "anthropic", modelId: "claude-fable-5-1", key: "ANTHROPIC_API_KEY", defaultEffort: "high" },
+  sonnet: { providerId: "anthropic", modelId: "claude-sonnet-5-5", key: "ANTHROPIC_API_KEY", defaultEffort: "high" },
 };
 
 /** The loop scripts of an old scenario live beside it: scenarios/loop/<name>.json
@@ -95,6 +98,33 @@ function liveModel(selection, budget, apiKey, log) {
   } };
 }
 
+function phaseTotals(entries) {
+  const total = (key) => entries.reduce((sum, entry) => sum + (entry[key] ?? 0), 0);
+  return { requests: entries.length, inputTokens: total("inputTokens"), outputTokens: total("outputTokens"), cacheReadTokens: total("cacheReadTokens"),
+    cacheWriteTokens: total("cacheWriteTokens"), cacheWrite1hTokens: total("cacheWrite1hTokens"), costUsd: Number(total("costUsd").toFixed(5)), latencyMs: total("latencyMs"),
+    cacheReadShare: total("inputTokens") ? Number((total("cacheReadTokens") / total("inputTokens")).toFixed(3)) : null };
+}
+
+/** Polish 3 §6: the split's fields of a turn record (empty on a single-loop turn). */
+function twoPassFields(observations, usage, loop, result, durationMs, split, isBookkeeperUsage, worldMinutesBefore) {
+  if (!split) return { worldMinutesBefore };
+  const twoPass = observations.filter((o) => o.type === "two_pass");
+  const writerFinished = twoPass.find((o) => o.event === "writer_finished") ?? null;
+  const textDoneMs = writerFinished?.atMs ?? null;
+  const recordsDoneMs = result?.status === "committed" ? durationMs : null;
+  const transcript = loop?.transcript ?? [];
+  const markerAt = bookkeeperStart(transcript);
+  const writerText = (markerAt >= 0 ? transcript.slice(0, markerAt) : transcript).filter((m) => m.role === "assistant").map((m) => m.text).join("\n");
+  const ledger = splitLedger(writerText);
+  return {
+    textDoneMs, recordsDoneMs, heldSendWaitMs: textDoneMs !== null && recordsDoneMs !== null ? Math.max(0, recordsDoneMs - textDoneMs) : null,
+    phases: { writer: phaseTotals(usage.filter((entry) => !isBookkeeperUsage(entry))), bookkeeper: phaseTotals(usage.filter(isBookkeeperUsage)) },
+    twoPass: twoPass.map((o) => ({ event: o.event, atMs: o.atMs, requests: o.requests, ledgerFound: o.ledgerFound, ledgerChars: o.ledgerChars, narrationChars: o.narrationChars, calls: o.calls, rejected: o.rejected, finished: o.finished })),
+    ledger: { found: ledger.found, text: ledger.ledger, clipped: ledger.clipped },
+    worldMinutesBefore,
+  };
+}
+
 /** The hero and the companions (the loop counts controlled companions; the bench takes every companion). */
 function afterParty(state) {
   return state.entities.filter((row) => row.id === state.heroId || row.kind === "companion");
@@ -120,7 +150,12 @@ function callsByRequest(usage, receipts) {
  */
 export async function runLoopScenario(scenario, options) {
   const { write, runId, live } = options;
-  const selection = LOOP_MODELS[options.model ?? "astra"];
+  // Polish 3 §6: `writer` (opus or fable) plays the writer of a split when `bookkeeper` names one; without a
+  // bookkeeper the model plays today's loop. The settings' own choice (dmTurn) stays an SQL-valid single-loop model.
+  const writerKey = options.writer ?? options.model ?? "astra";
+  const selection = LOOP_MODELS[writerKey];
+  const bookkeeperSel = options.bookkeeper ? LOOP_MODELS[options.bookkeeper.model] : null;
+  const bookkeeperEffort = options.bookkeeper?.effort ?? bookkeeperSel?.defaultEffort ?? "high";
   const effort = options.effort ?? selection.defaultEffort;
   const continuationEffort = options.continuationEffort && options.continuationEffort !== effort ? options.continuationEffort : null;
   const scenarioStarted = performance.now();
@@ -132,8 +167,12 @@ export async function runLoopScenario(scenario, options) {
   const layerHashes = [];
   const transport = [];
   // The campaign's DM model is the one under test; the loop pins it per turn.
+  const single = bookkeeperSel ? LOOP_MODELS.opus : selection;
   await c.settings.save({ expectedRevision: (await c.settings.read()).revision, runtime: "dm-loop-v1",
-    dmTurn: { providerId: selection.providerId, modelId: selection.modelId, reasoning: effort } });
+    dmTurn: { providerId: single.providerId, modelId: single.modelId, reasoning: effort },
+    split: bookkeeperSel ? { writer: { providerId: selection.providerId, modelId: selection.modelId, reasoning: effort },
+      bookkeeper: { providerId: bookkeeperSel.providerId, modelId: bookkeeperSel.modelId, reasoning: bookkeeperEffort } } : null });
+  const split = (await c.settings.read()).split;
   const steps = new Map();
   const inputs = new Map();
   const saves = new Map();
@@ -143,6 +182,9 @@ export async function runLoopScenario(scenario, options) {
   let stopReason = null;
   const scripted = live ? null : createScriptedDmModel([]);
   const liveAdapter = live ? liveModel(selection, options.budget, options.apiKey, transport) : null;
+  const bookkeeperAdapter = live && bookkeeperSel ? liveModel(bookkeeperSel, options.budget, options.apiKey, transport) : null;
+  const bookkeeperModel = bookkeeperSel ? (live ? bookkeeperAdapter.model : createScriptedDmModel([])) : null;
+  const isBookkeeperUsage = (entry) => !!bookkeeperSel && entry.modelId === bookkeeperSel.modelId && entry.modelId !== selection.modelId;
   let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [], naturalness = null;
   try {
     steps.set("start", await snapshot(f, cid, hero));
@@ -175,29 +217,29 @@ export async function runLoopScenario(scenario, options) {
         const deps = await c.deps(live ? liveAdapter.model : scripted, { observe: (observation) => {
           observations.push(observation);
           if (observation.type === "live" && observation.event.type === "text" && firstWordAt === null) firstWordAt = performance.now();
-          if (live && observation.type === "request_finished") liveAdapter.settle(observation.usage.costUsd);
-          if (live && observation.type === "failure") liveAdapter.abandon();
-        } });
+          if (live && observation.type === "request_finished") (isBookkeeperUsage(observation.usage) ? bookkeeperAdapter : liveAdapter).settle(observation.usage.costUsd);
+          if (live && observation.type === "failure") { liveAdapter.abandon(); bookkeeperAdapter?.abandon(); }
+        }, split, ...(split ? { bookkeeper: bookkeeperOf(split) } : {}), bookkeeperModel: () => bookkeeperModel });
         if (continuationEffort) {
           const pinned = deps.pin;
           deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });
         }
         let result = null, firstStatus = null, resumes = 0, thrown = null, retried = false;
         try {
-          result = await runDmLoopTurn(input, deps);
+          result = await runCampaignTurn(input, deps);
           firstStatus = result.status;
           while (result.status === "awaiting_confirmation" && resumes < MAX_CONTINUES) {
             resumes++;
-            result = await resumeDmLoopTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
+            result = await resumeCampaignTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
               timeline: input.timeline, action: "continue", checkId: null }, deps);
           }
           if (result.status === "failed" && result.canRetry && step.retryOnFailure && !live) {
             retried = true;
-            result = await resumeDmLoopTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
+            result = await resumeCampaignTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
               timeline: input.timeline, action: "retry", checkId: null }, deps);
             while (result.status === "awaiting_confirmation" && resumes < MAX_CONTINUES) {
               resumes++;
-              result = await resumeDmLoopTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
+              result = await resumeCampaignTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
                 timeline: input.timeline, action: "continue", checkId: null }, deps);
             }
           }
@@ -205,7 +247,7 @@ export async function runLoopScenario(scenario, options) {
         const durationMs = Math.round(performance.now() - started);
         let cancelledAfterFailure = false;
         if (result?.status === "failed" && result.canRetry) {
-          await resumeDmLoopTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
+          await resumeCampaignTurn({ commandId: randomUUID(), campaignId: cid, operationId: input.operationId,
             timeline: input.timeline, action: "cancel", checkId: null }, deps);
           cancelledAfterFailure = true;
         }
@@ -233,6 +275,9 @@ export async function runLoopScenario(scenario, options) {
           failure: observations.filter((o) => o.type === "failure").map((o) => ({ code: o.code, message: o.message })),
           durationMs,
           firstWordMs: firstWordAt === null ? null : Math.round(firstWordAt - started),
+          // Polish 3 §6: the split's milestones per turn — the text complete (the writer's end), the records
+          // complete (the commit), the held-send wait between them; the cost and the cache per model.
+          ...twoPassFields(observations, usage, loop, result, durationMs, split, isBookkeeperUsage, before.worldMinutes ?? null),
           modelRequests: { total: usage.length, plan: 0, narrate: 0, other: usage.length },
           tokens: { input: sum(usage, "inputTokens"), output: sum(usage, "outputTokens"), cached: sum(usage, "cacheReadTokens"),
             cacheWrite: sum(usage, "cacheWriteTokens"), cacheWrite1h: sum(usage, "cacheWrite1hTokens"), reasoning: sum(usage, "reasoningTokens"), estimated: !live },
@@ -329,6 +374,7 @@ export async function runLoopScenario(scenario, options) {
       }
       const afterState = await snapshot(f, cid, hero);
       record.changes = diff(before, afterState);
+      record.worldMinutesAfter = afterState.worldMinutes ?? null;
       const expectations = (scenario.loop?.expect?.[step.id]) ?? step.loopExpect ?? step.expect ?? [];
       const checks = [];
       for (const { weakness, scripted: scriptedOnly, ...check } of expectations) {

@@ -7,6 +7,24 @@ import { effectiveDmLoopLimits, parseDmLoopLimits, type DmLoopTurnLimits } from 
 import { DEFAULT_DEPTH_RANGE, parseDepthRange, type DepthRange } from "./depth.ts";
 
 export type DmRuntimeId = "astra-primary-v1" | typeof DM_LOOP_RUNTIME;
+/** Polish 3 §2: the split — a writer that narrates (with the roll tool) and closes with a
+ * private ledger, and a bookkeeper that records with today's tools. null: today's loop. */
+export type DmSplit = { writer: ModelSelection; bookkeeper: ModelSelection };
+export const DM_WRITER_MODELS: readonly string[] = ["claude-opus-5-5", "claude-fable-5-1"];
+export const DM_BOOKKEEPER_MODELS: readonly string[] = ["claude-opus-5-5", "claude-sonnet-5-5"];
+export function parseDmSplit(value: unknown): DmSplit | null {
+  if (value === null || value === undefined) return null;
+  if (!value || typeof value !== "object" || Array.isArray(value)) throw new DmSettingsError("validation");
+  const v = value as Record<string, unknown>;
+  const keys = Object.keys(v);
+  if (keys.length !== 2 || !keys.includes("writer") || !keys.includes("bookkeeper")) throw new DmSettingsError("validation");
+  let writer: ModelSelection, bookkeeper: ModelSelection;
+  try { writer = validateModelSelection(v.writer, "dm.turn"); bookkeeper = validateModelSelection(v.bookkeeper, "dm.turn"); }
+  catch { throw new DmSettingsError("validation"); }
+  if (writer.providerId !== "anthropic" || !DM_WRITER_MODELS.includes(writer.modelId) ||
+    bookkeeper.providerId !== "anthropic" || !DM_BOOKKEEPER_MODELS.includes(bookkeeper.modelId)) throw new DmSettingsError("validation");
+  return { writer, bookkeeper };
+}
 export type DmSettings = {
   campaignId: string;
   runtime: DmRuntimeId;
@@ -24,6 +42,10 @@ export type DmSettings = {
   boostNext: boolean;
   /** Polish group 7: the voice layer may quote the owner's «Образцы голоса»; off until the voice stage. */
   voiceExamples: boolean;
+  /** Polish 3 §2: the writer + bookkeeper split; null — today's loop (the default for every campaign). */
+  split: DmSplit | null;
+  /** Polish 3 §4: how many of the newest turn snapshots to keep; null — all (the default). */
+  snapshotsKeep: number | null;
   revision: number;
 };
 export type DmSettingsSave = {
@@ -35,6 +57,10 @@ export type DmSettingsSave = {
   notebookVisible?: boolean;
   boostNext?: boolean;
   voiceExamples?: boolean;
+  /** Omitted: keep. null: today's loop. An object: the split. */
+  split?: DmSplit | null;
+  /** Omitted: keep. null: keep every snapshot. */
+  snapshotsKeep?: number | null;
 };
 
 export type DmSettingsRpc = (args: {
@@ -65,16 +91,21 @@ export function parseDmSettings(value: unknown): DmSettings {
   // at high and goes to xhigh for a climax; a stored null stays the owner's «fixed effort».
   const depth = v.depth === null || v.depth === undefined ? (v.revision === 0 ? { ...DEFAULT_DEPTH_RANGE } : null) : parseDepthRange(v.depth);
   if (v.depth !== null && v.depth !== undefined && !depth) throw new DmSettingsError("unavailable");
+  let split: DmSplit | null = null;
+  try { split = parseDmSplit(v.split); } catch { throw new DmSettingsError("unavailable"); }
+  const keep = v.snapshotsKeep;
+  if (keep !== null && keep !== undefined && !(Number.isSafeInteger(keep) && (keep as number) >= 1)) throw new DmSettingsError("unavailable");
   return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
     customLimits: v.limits !== null && v.limits !== undefined, depth,
-    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true, revision: v.revision as number };
+    notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true,
+    split, snapshotsKeep: keep === null || keep === undefined ? null : keep as number, revision: v.revision as number };
 }
 
 export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if (!value || typeof value !== "object") throw new DmSettingsError("validation");
   const v = value as Record<string, unknown>;
   const keys = Object.keys(v);
-  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples"]);
+  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples", "split", "snapshotsKeep"]);
   if (!["dmTurn", "expectedRevision", "runtime"].every((key) => keys.includes(key)) || keys.some((key) => !allowed.has(key)) ||
     !Number.isSafeInteger(v.expectedRevision) ||
     (v.runtime !== "astra-primary-v1" && v.runtime !== DM_LOOP_RUNTIME)) throw new DmSettingsError("validation");
@@ -94,6 +125,12 @@ export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if ("notebookVisible" in v) { if (typeof v.notebookVisible !== "boolean") throw new DmSettingsError("validation"); save.notebookVisible = v.notebookVisible; }
   if ("boostNext" in v) { if (typeof v.boostNext !== "boolean") throw new DmSettingsError("validation"); save.boostNext = v.boostNext; }
   if ("voiceExamples" in v) { if (typeof v.voiceExamples !== "boolean") throw new DmSettingsError("validation"); save.voiceExamples = v.voiceExamples; }
+  if ("split" in v) save.split = parseDmSplit(v.split);
+  if ("snapshotsKeep" in v) {
+    if (v.snapshotsKeep === null) save.snapshotsKeep = null;
+    else if (Number.isSafeInteger(v.snapshotsKeep) && (v.snapshotsKeep as number) >= 1 && (v.snapshotsKeep as number) <= 100_000) save.snapshotsKeep = v.snapshotsKeep as number;
+    else throw new DmSettingsError("validation");
+  }
   return save;
 }
 

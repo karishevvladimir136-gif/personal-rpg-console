@@ -49,6 +49,9 @@ export type BriefRequestInput = {
   clock: { timeOfDay: string | null };
   /** The previous frame's brief (continuity), if any. */
   previous: string | null;
+  /** Polish 3 §2: the writer's private ledger of a split turn — what changed in clothes, wounds and
+   * items this turn. Visible facts only reach the brief; the ledger itself is never shown. */
+  ledger?: string | null;
   style: string;
   /** «Перерисовать» with a comment: the owner's one line, in any language. */
   comment: string | null;
@@ -86,6 +89,7 @@ export function briefRequest(input: BriefRequestInput) {
     profiles.length ? `Visual profiles:\n${profiles.join("\n")}` : "",
     state.length ? `Visible state from the records:\n${state.join("\n")}` : "",
     input.previous ? `The previous frame's brief (for continuity):\n${clip(input.previous, 1200)}` : "",
+    input.ledger ? `The game master's private notes on what changed this turn (use only what is visible — clothes, wounds, things held or lost; never secrets, plans or anything the player has not seen):\n${clip(input.ledger, 1500)}` : "",
     input.style ? `Art style of the campaign (do not describe it; the illustrator has it): ${clip(input.style, 300)}` : "",
     input.comment ? `Owner's comment for the redraw (one change to make): ${clip(input.comment, 300)}` : "",
     `The turn's narration (${input.language === "ru" ? "Russian" : "English"}):`,

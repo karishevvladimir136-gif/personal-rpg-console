@@ -9,7 +9,8 @@ import { pinnedOf, turnStatsOf } from "@/lib/ui/campaign-view";
 import { PinnedList } from "./pins";
 import { EFFORT_ORDER } from "@/lib/gameplay/dm-loop/depth";
 import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from "@/lib/campaign-settings";
-import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmTurnModels, saveDmSettings, type DmLoopTurnLimits, type DmSettings } from "@/lib/gameplay/dm-settings-client";
+import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmArchitectureOf, dmArchitectures, dmBookkeeperModels, dmTurnModels, dmWriterModels, saveDmSettings,
+  type DmLoopTurnLimits, type DmSettings, type DmSplit } from "@/lib/gameplay/dm-settings-client";
 import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
 import { readJson } from "@/lib/persistence/client";
 import { usd } from "@/lib/visual-frame/fal-image";
@@ -124,6 +125,24 @@ export function RegistrySettings({ data, more, preview }: {
       setSaving(false);
     }
   };
+  // Polish 3 §2: the DM architecture — today's loop or a writer + bookkeeper pair — saved as the campaign's split.
+  const split = current?.split ?? null;
+  const architecture = dmArchitectureOf(split);
+  const saveSplit = async (next: DmSplit | null) => {
+    if (!current || saving || chrome?.href) return;
+    setSaving(true);
+    setError("");
+    try {
+      const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn, split: next });
+      setDm(saved);
+    } catch {
+      setError(c("Не удалось сохранить. Проверь соединение и попробуй ещё раз.", "Could not save. Check the connection and try again."));
+    } finally {
+      setSaving(false);
+    }
+  };
+  const writerEntry = split ? dmWriterModels.find((row) => row.modelId === split.writer.modelId) ?? null : null;
+  const bookkeeperEntry = split ? dmBookkeeperModels.find((row) => row.modelId === split.bookkeeper.modelId) ?? null : null;
   const limitLabels: Record<keyof DmLoopTurnLimits, string> = {
     moneyPerTurn: c("Денег создаётся за ход", "Money created per turn"),
     itemsPerTurn: c("Новых предметов за ход", "Items created per turn"),
@@ -180,6 +199,51 @@ export function RegistrySettings({ data, more, preview }: {
         <div className={s.column}>
           <Panel eyebrow={c("Кто ведёт игру", "Who runs the game")}>
             <div className={r.stack}>
+              <div className={r.stack} style={{ gap: 6 }} data-testid="dm-architecture">
+                <span className={r.eyebrow}>{c("Ведущий", "Game master")}</span>
+                <div className={r.choices}>
+                  {dmArchitectures.map((row) => (
+                    <button key={row.id} type="button" className={r.choice} aria-pressed={architecture === row.id} disabled={saving || !current}
+                      onClick={() => void saveSplit(row.split)}>
+                      <span className={r.choiceTitle}>{c(row.ru, row.en)}</span>
+                      <span className={r.eyebrow}>{c(`первое слово ~${row.firstWordS} с · ~$${row.sessionUsd} за сессию`, `first word ~${row.firstWordS} s · ~$${row.sessionUsd} a session`)}</span>
+                    </button>
+                  ))}
+                </div>
+                <p className={r.note} style={{ margin: 0 }}>{c("Числа — из сравнения 17 октября на одних и тех же восьми сценах: медиана первого слова и цена сессии в 41 ход. «Opus ведёт один» — сегодняшний ход, он по умолчанию. В паре писатель рассказывает и бросает кости, а бухгалтер записывает: текст приходит раньше, фишки — после записи.",
+                  "The numbers come from the bake-off of 17 October on the same eight scenes: the median first word and the cost of a 41-turn session. «Opus runs alone» is today's loop, the default. In a pair the writer narrates and rolls the dice while the bookkeeper records: the text arrives sooner, the chips after the records.")}</p>
+                <details>
+                  <summary>{c("Подробнее", "More")}</summary>
+                  <div className={r.stack} style={{ gap: 8 }}>
+                    <p className={r.note} style={{ margin: 0 }}>{c("Любая пара: писатель и бухгалтер по отдельности. Fable пишет только на высокой глубине (на очень высокой её цена и ожидание удваиваются); бухгалтер работает на своей постоянной глубине.",
+                      "Any pair: the writer and the bookkeeper separately. Fable writes at high only (extra high doubles its cost and wait); the bookkeeper runs at its own fixed effort.")}</p>
+                    <Segmented label={c("Писатель", "Writer")} value={split?.writer.modelId ?? "single"} disabled={saving || !current}
+                      options={[{ value: "single", label: c("нет пары", "no pair") }, ...dmWriterModels.map((row) => ({ value: row.modelId, label: row.label }))]}
+                      onChange={(value) => {
+                        if (value === "single") { void saveSplit(null); return; }
+                        const writer = dmWriterModels.find((row) => row.modelId === value)!;
+                        void saveSplit({ writer: { providerId: "anthropic", modelId: writer.modelId, reasoning: writer.modelId === "claude-fable-5-1" ? "high" : split?.writer.reasoning ?? writer.defaultEffort },
+                          bookkeeper: split?.bookkeeper ?? { providerId: "anthropic", modelId: "claude-sonnet-5-5", reasoning: "high" } });
+                      }} />
+                    {split && (
+                      <>
+                        <Segmented label={c("Бухгалтер", "Bookkeeper")} value={split.bookkeeper.modelId} disabled={saving}
+                          options={dmBookkeeperModels.map((row) => ({ value: row.modelId, label: row.label }))}
+                          onChange={(value) => void saveSplit({ writer: split.writer, bookkeeper: { providerId: "anthropic", modelId: value, reasoning: split.bookkeeper.reasoning ?? "high" } })} />
+                        <Segmented label={c("Глубина бухгалтера", "Bookkeeper effort")} value={split.bookkeeper.reasoning ?? bookkeeperEntry?.defaultEffort ?? "high"} disabled={saving}
+                          options={(bookkeeperEntry?.efforts ?? ["medium", "high"]).map((value) => ({ value, label: effortLabel(value, c.language) }))}
+                          onChange={(value) => void saveSplit({ writer: split.writer, bookkeeper: { ...split.bookkeeper, reasoning: value } })} />
+                        {writerEntry && writerEntry.efforts.length > 1 && (
+                          <Segmented label={c("Глубина писателя", "Writer effort")} value={split.writer.reasoning ?? writerEntry.defaultEffort} disabled={saving}
+                            options={writerEntry.efforts.map((value) => ({ value, label: effortLabel(value, c.language) }))}
+                            onChange={(value) => void saveSplit({ writer: { ...split.writer, reasoning: value }, bookkeeper: split.bookkeeper })} />
+                        )}
+                      </>
+                    )}
+                  </div>
+                </details>
+              </div>
+              {split && <span className={r.eyebrow}>{c("Модель сегодняшнего хода (без пары)", "The model of today's loop (no pair)")}</span>}
               <div className={r.choices}>
                 {dmTurnModels.map((row) => (
                   <button key={row.modelId} type="button" className={r.choice} aria-pressed={chosenModel === row.modelId} disabled={saving || !current}

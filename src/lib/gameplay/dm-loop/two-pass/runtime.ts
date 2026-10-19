@@ -1,18 +1,20 @@
-// The experimental two-pass turn runtime (docs/stages/DM_ARCH.md, variants C
-// and D): the same durable turn as dm-loop-v1 (begin → claim → checkpoints →
-// one atomic commit, the same store, the same tools and validators), played in
-// two passes by two models:
+// The writer + bookkeeper turn runtime (polish 3 §2, from the bake-off of
+// docs/stages/DM_ARCH.md, variants C and D): the same durable turn as dm-loop-v1
+// (begin → claim → checkpoints → one atomic commit, the same store, the same tools
+// and validators), played in two passes by two models:
 //
-//   writer     — the full dossier, the player's input, the roll tool only;
-//                streams the narration and closes with a private <ledger>;
-//   bookkeeper — the dossier without craft and canon, the narration, the
-//                ledger and the rolls; makes every record with today's tools
-//                and finish_turn. The narration is canon: it records, never rewrites.
+//   writer     — the full dossier with the writer role, the player's input, the roll
+//                tool only; streams the narration and closes with a private <ledger>;
+//   bookkeeper — its own role, the dossier's living part, tail and «now», the
+//                narration, the ledger and the rolls; makes every record with
+//                today's tools and finish_turn. The narration is canon.
 //
-// The turn row is a dm-loop-v1 turn (the store, the SQL and the player's screen
-// see no difference); the bookkeeper's conversation follows the writer's in the
-// one transcript, after a marker message. Nothing here changes the default loop:
-// its exported pieces are reused, the rest is written beside it.
+// The turn row is a dm-loop-v1 turn (the store, the SQL and the player's screen see
+// no difference); the pin carries the bookkeeper, the bookkeeper's conversation
+// follows the writer's in the one transcript after a marker message. A campaign
+// chooses the split in its DM settings (`split`); `runCampaignTurn` dispatches a
+// turn to this runtime or to the default loop by the campaign's choice, and a
+// resume by the turn's own pin.
 import { createHash } from "node:crypto";
 import type { JsonObject as JsonObjectValue, PublicTurn, ResumeInput, TurnInput } from "../../contracts.ts";
 import type { RecordedCheck, RuntimeSource, TurnClaim } from "../../server-contracts.ts";
@@ -35,32 +37,43 @@ import type { PublicProfile } from "../../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "../limits.ts";
 import { ShadowState } from "../shadow.ts";
 import { dmLoopTools } from "../tools.ts";
+import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
-  type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { continuation, joinText, narrationNames, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
-import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, splitLedger, writerSystem } from "./prompts.ts";
+  type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
+import { continuation, executeDmLoopTurn, joinText, narrationNames, retriableRejection, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
+import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
 export const TWO_PASS_RUNTIME = "dm-loop-v1/two-pass" as const;
 
-export type TwoPassBookkeeper = { providerId: DmProviderId; modelId: string; effort: DmEffort; model: DmModel };
+export type BookkeeperSelection = { providerId: DmProviderId; modelId: string; effort: DmEffort };
+export type TwoPassBookkeeper = BookkeeperSelection & { model: DmModel };
 
 export type TwoPassDependencies = DmLoopDependencies & {
-  /** The bookkeeper's model and pin; `deps.model(pin)` stays the writer's. */
-  bookkeeper: TwoPassBookkeeper;
+  /** The bookkeeper of a new turn: its selection and (the bench, the tests) its adapter. A resumed
+   * turn takes the selection from its pin; the adapter then comes from `bookkeeperModel`. */
+  bookkeeper?: TwoPassBookkeeper | BookkeeperSelection;
+  /** The adapter for a pinned bookkeeper selection (the app). */
+  bookkeeperModel?: (selection: BookkeeperSelection) => DmModel;
 };
 
 /** The writer's one tool and the bookkeeper's fifteen. */
 export const writerToolset = compileToolset(dmLoopTools.filter((tool) => tool.name === "roll"));
 export const bookkeeperToolset = compileToolset(dmLoopTools.filter((tool) => tool.name !== "roll"));
 
-/** Bench observations of the split, reported through `observe` beside the loop's own. */
+/** Bench observations of the split, reported through `observe` beside the loop's own. The
+ * ledger travels on `writer_finished` for the server's private consumers only (never the player). */
 export type TwoPassObservation =
-  | { type: "two_pass"; operationId: string; event: "writer_finished"; atMs: number; requests: number; ledgerFound: boolean; ledgerChars: number; narrationChars: number }
+  | { type: "two_pass"; operationId: string; event: "writer_finished"; atMs: number; requests: number; ledgerFound: boolean; ledgerChars: number; narrationChars: number; ledger: string }
   | { type: "two_pass"; operationId: string; event: "bookkeeper_finished"; atMs: number; requests: number; calls: number; rejected: number; finished: boolean };
 
 const WRAP_UP = "The tool budget of this turn is used up. Send no further tool calls except finish_turn.";
 const RECORDS_NOW = "No records were made yet. Send the records the narration and the ledger call for now, as tool calls, and finish_turn in the same message as the time call.";
 const PENDING_OUTCOME = "The player saw the roll but not what came of it. Narrate the outcome of that roll now, as text, in the campaign language, within the result you received. Then close with the ledger.";
+const LEDGER_NOW = "The narration is complete but the ledger is missing. Send the ledger now — the private <ledger> … </ledger> block with the headings that apply (items, money, debts and promises, people, places, time, plans, combat, secrets, the player, scene) — and nothing else: no more narration, no rolls.";
+
+/** Polish 3 §2: a Fable writer is pinned to high (xhigh is where its cost and wait double). */
+export const FABLE_WRITER_EFFORT: DmEffort = "high";
+const FABLE_MODEL = "claude-fable-5-1";
 
 function parseArguments(call: DmToolCall): Record<string, unknown> {
   try {
@@ -103,7 +116,12 @@ export function bookkeeperStart(transcript: DmMessage[]): number {
   return transcript.findIndex((message) => message.role === "user" && message.text.startsWith(BOOKKEEPER_MARKER));
 }
 
-async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: ResumeInput | null): Promise<PublicTurn> {
+/** The writer's effort for a selection: the depth rule applies to any writer but Fable, which is pinned to high. */
+export function writerEffort(modelId: string, chosen: DmEffort): DmEffort {
+  return modelId === FABLE_MODEL ? FABLE_WRITER_EFFORT : chosen;
+}
+
+export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependencies, command: ResumeInput | null): Promise<PublicTurn> {
   const { store, memory } = deps;
   requireRule(typeof store.recordDmTool === "function");
   const recordDmTool = store.recordDmTool;
@@ -142,23 +160,31 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
     live({ type: "status", status: "generating" });
     if (!loop.pin) {
       const selected = await deps.pin(claim);
-      const range = parseDepthRange(selected.depth ?? null);
+      const bookkeeper = deps.bookkeeper;
+      requireRule(bookkeeper);
+      // The depth rule (stage 4 §7) applies to the writer only; the bookkeeper runs at its fixed effort.
+      const fable = selected.modelId === FABLE_MODEL;
+      const range = fable ? null : parseDepthRange(selected.depth ?? null);
       const lastLoopTurn = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId);
       const signal = tensionSignals(source, input, lastLoopTurn?.nextTension ?? null);
-      const depth = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
-      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: depth.effort,
+      const depth = chooseDepth(range, writerEffort(selected.modelId, selected.effort), parseDepthState(source.privateState), signal, !fable && !!selected.boostNext);
+      loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: writerEffort(selected.modelId, depth.effort),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
-        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}) };
+        ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}),
+        bookkeeper: { providerId: bookkeeper.providerId, modelId: bookkeeper.modelId, effort: bookkeeper.effort } };
       if (range) loop.diagnostics.push({ kind: "depth", effort: depth.effort, tension: depth.tension, reason: depth.reason });
     }
     const pin = loop.pin;
+    requireRule(pin.bookkeeper);
     const limits = pin.limits ?? DM_LOOP_DEFAULT_LIMITS;
     const writerSpec = dmModelSpec(pin.providerId, pin.modelId);
-    const bookkeeperSpec = dmModelSpec(deps.bookkeeper.providerId, deps.bookkeeper.modelId);
+    const bookkeeperSpec = dmModelSpec(pin.bookkeeper.providerId, pin.bookkeeper.modelId);
     if (!writerSpec || !bookkeeperSpec) throw new DmError("configuration");
     const writer = deps.model(pin);
-    const bookkeeper = deps.bookkeeper.model;
+    const bookkeeperModel = deps.bookkeeperModel?.(pin.bookkeeper) ?? (deps.bookkeeper && "model" in deps.bookkeeper ? deps.bookkeeper.model : null);
+    if (!bookkeeperModel) throw new DmError("configuration");
+    const bookkeeper = bookkeeperModel;
     let informed: RuntimeSource = source;
     try {
       informed = await withUnifiedMemory(source, input, memory, true, buildDmLoopContext(source, input).memoryQuery);
@@ -169,7 +195,9 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
     const narrationSceneId = stableGameplayId(operationId, "scene:narration");
     const sentAt = Date.parse(claim.turn.public.created_at) || Date.now();
     const shadow = ShadowState.restore(source, operationId, loop.shadow);
-    const context = buildDmLoopContext(informed, input);
+    // Polish 3 §2: the writer's layers are the loop's own with the writer role (the voice slot,
+    // the doctrine, the style, the approved cards and the append-only history included).
+    const context = buildDmLoopContext(informed, input, { role: "writer" });
     const language: "ru" | "en" = source.snapshot.settings.values.language === "ru" ? "ru" : "en";
     const languageName = language === "ru" ? "Russian" : "English";
     const lastHint = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId)?.nextTension ?? null;
@@ -190,8 +218,8 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
       loop.diagnostics.push(entry);
       observe({ type: "diagnostic", operationId, diagnostic: entry });
     };
+    const asked = (kind: DmLoopCheckpoint["diagnostics"][number]["kind"]) => loop.diagnostics.some((row) => row.kind === kind);
     let outcomePending = false;
-    const outcomeAsked = () => loop.diagnostics.some((row) => row.kind === "outcome_asked");
     const executeCalls = async (calls: DmToolCall[], phase: "writer" | "bookkeeper") => {
       let pause = false;
       for (const call of calls) {
@@ -224,8 +252,8 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
     const request = async (phase: "writer" | "bookkeeper", messages: DmMessage[], firstRound: boolean) => {
       const model = phase === "writer" ? writer : bookkeeper;
       const spec = phase === "writer" ? writerSpec : bookkeeperSpec;
-      const effort = phase === "writer" ? pin.effort : deps.bookkeeper.effort;
-      const system = phase === "writer" ? writerSystem(context.system, languageName) : bookkeeperSystem(context.system, languageName);
+      const effort = phase === "writer" ? pin.effort : pin.bookkeeper!.effort;
+      const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName);
       const body: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
         maxOutputTokens: L.maxOutputTokens + thinkingAllowance(effort), operationId, cacheKey: input.campaignId };
       const requestBytes = new TextEncoder().encode(JSON.stringify(body.system) + JSON.stringify(body.messages)).length;
@@ -283,6 +311,8 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
         }
         if (phase === "writer") show(gate.flush());
       } catch (error) {
+        // A broken stream after text reached the player: what was shown stays shown; the retry
+        // (below) or the player's «Повторить» continues from the checkpoint.
         if (error instanceof DmModelError) {
           if (error.kind === "not_configured") throw new DmError("configuration");
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
@@ -299,6 +329,20 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
       observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
       loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
       return { toolCalls, stop, roundText, shownRound };
+    };
+    /** Polish 3 §3: rejected record calls of the last message go back once with their reasons. */
+    const retryRejected = async (calls: DmToolCall[]) => {
+      const rejected = calls.flatMap((call) => {
+        const receipt = loop.receipts.find((row) => row.call.id === call.id);
+        return receipt && !receipt.result.ok && retriableRejection(receipt.call) ? [{ name: call.name, reason: receipt.result.reason }] : [];
+      });
+      if (!rejected.length || asked("records_retry_asked")) return false;
+      const bookkeeperRequests = loop.transcript.slice(Math.max(0, bookkeeperStart(loop.transcript))).filter((m) => m.role === "assistant").length;
+      if (bookkeeperRequests >= limits.modelRequestsPerTurn - 1 || loop.receipts.length >= limits.toolCallsPerTurn) return false;
+      diagnostic({ kind: "records_retry_asked", calls: rejected.map((row) => row.name) });
+      loop.transcript.push({ role: "user", text: rejectedCallsMessage(rejected) });
+      shadow.finished = false;
+      return true;
     };
 
     // ---- The writer's pass -------------------------------------------------
@@ -328,15 +372,35 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
         if (writerRequests >= limits.modelRequestsPerTurn) { diagnostic({ kind: "request_cap_reached", requests: loop.requests }); break; }
         if (writerRequests === limits.modelRequestsPerTurn - 1 && last?.role !== "user")
           loop.transcript.push({ role: "user", text: "This is the last request of the turn: finish the narration now and close with the ledger; no more rolls." });
-        const round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), writerRequests === 0);
+        // Polish 3 §2: a retryable transport failure of a continuation (after a dice pause, after the
+        // ledger request) is retried once before the turn fails; the first request fails as today.
+        let round: Awaited<ReturnType<typeof request>>;
+        try {
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), writerRequests === 0);
+        } catch (error) {
+          const retryable = error instanceof DmError && error.code === "provider" && error.retryable;
+          const alreadyRetried = loop.diagnostics.some((row) => row.kind === "writer_retried" && row.request === writerRequests + 1);
+          if (!retryable || writerRequests === 0 || alreadyRetried) throw error;
+          diagnostic({ kind: "writer_retried", request: writerRequests + 1 });
+          await persist("generating");
+          round = await request("writer", rendered(loop.transcript, loop.receipts, checkpoint.checks), false);
+        }
         loop.text = joinText(loop.text, round.shownRound);
         await persist("generating");
         if (round.stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: round.stop.providerReason }); break; }
         if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
         if (!round.toolCalls.length) {
-          if (outcomePending && !outcomeAsked() && writerRequests + 1 < limits.modelRequestsPerTurn) {
+          if (outcomePending && !asked("outcome_asked") && writerRequests + 1 < limits.modelRequestsPerTurn) {
             diagnostic({ kind: "outcome_asked" });
             loop.transcript.push({ role: "user", text: PENDING_OUTCOME });
+            await persist("generating");
+            continue;
+          }
+          // Polish 3 §2: a missing ledger is asked for once, as the loop asks for finish_turn.
+          const soFar = loop.transcript.filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
+          if (!splitLedger(soFar).found && loop.text.trim() && !asked("ledger_asked") && round.stop.reason !== "max_tokens" && writerRequests + 1 < limits.modelRequestsPerTurn) {
+            diagnostic({ kind: "ledger_asked" });
+            loop.transcript.push({ role: "user", text: LEDGER_NOW });
             await persist("generating");
             continue;
           }
@@ -347,6 +411,7 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
       const writerText = loop.transcript.filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
       const split = splitLedger(writerText);
       loop.text = split.narration;
+      if (split.clipped) diagnostic({ kind: "ledger_clipped", chars: split.ledger.length });
       if (!loop.text.trim()) {
         diagnostic({ kind: "empty_narration" });
         await persist("generating");
@@ -358,9 +423,14 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
       loop.transcript.push({ role: "user", text: brief });
       markerAt = loop.transcript.length - 1;
       await persist("generating");
+      // The text is complete: the player may read and type; the composer holds the send until the commit.
+      live({ type: "status", status: "recording" });
       twoPass({ type: "two_pass", operationId, event: "writer_finished", atMs: Math.max(0, Date.now() - sentAt),
         requests: loop.transcript.slice(0, markerAt).filter((m) => m.role === "assistant").length,
-        ledgerFound: split.found, ledgerChars: split.ledger.length, narrationChars: loop.text.length });
+        ledgerFound: split.found, ledgerChars: split.ledger.length, narrationChars: loop.text.length, ledger: split.ledger });
+    } else {
+      // A resume inside the bookkeeper's pass: the text was complete before the failure.
+      live({ type: "status", status: "recording" });
     }
 
     // ---- The bookkeeper's pass --------------------------------------------
@@ -376,7 +446,9 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
           const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
           return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
         }) });
+        const retrying = await retryRejected(last.toolCalls);
         await persist("generating");
+        if (retrying) continue;
         if (shadow.finished) break;
         continue;
       }
@@ -391,7 +463,7 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
       if (round.stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: loop.usage.at(-1)?.outputTokens ?? 0 });
       if (!round.toolCalls.length) {
         const bookkeeperReceipts = loop.receipts.filter((receipt) => receipt.call.name !== "roll");
-        if (!bookkeeperReceipts.length && round.stop.reason !== "max_tokens" && !loop.diagnostics.some((row) => row.kind === "finish_asked")) {
+        if (!bookkeeperReceipts.length && round.stop.reason !== "max_tokens" && !asked("finish_asked")) {
           diagnostic({ kind: "finish_asked" });
           loop.transcript.push({ role: "user", text: RECORDS_NOW });
           await persist("generating");
@@ -470,7 +542,7 @@ async function execute(claim: TurnClaim, deps: TwoPassDependencies, command: Res
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;
@@ -491,7 +563,7 @@ export async function runTwoPassTurn(input: TurnInput, deps: TwoPassDependencies
     (current.status === "failed" && !current.canRetry)) return current;
   const claim = await deps.store.claim(input.campaignId, input.operationId);
   if (claim) requireClaimTimeline(claim, input.campaignId, input.operationId, input.timeline);
-  return requireTurnTimeline(claim ? await execute(claim, deps, null)
+  return requireTurnTimeline(claim ? await executeTwoPassTurn(claim, deps, null)
     : await deps.store.getPublic(input.campaignId, input.operationId), input.campaignId, input.operationId, input.timeline);
 }
 
@@ -503,6 +575,55 @@ export async function resumeTwoPassTurn(command: ResumeInput, deps: TwoPassDepen
   requireRule(command.action === "retry" ? current.status === "failed" && current.canRetry : current.status === "awaiting_confirmation");
   const claim = await deps.store.claim(command.campaignId, command.operationId);
   if (claim) requireClaimTimeline(claim, command.campaignId, command.operationId, command.timeline);
-  return requireTurnTimeline(claim ? await execute(claim, deps, command)
+  return requireTurnTimeline(claim ? await executeTwoPassTurn(claim, deps, command)
     : await deps.store.getPublic(command.campaignId, command.operationId), command.campaignId, command.operationId, command.timeline);
+}
+
+// ---- The campaign's choice ---------------------------------------------------
+export type CampaignTurnDependencies = TwoPassDependencies & {
+  /** The campaign's DM settings choice at the turn's start: null — today's loop. */
+  split: DmSplit | null;
+};
+
+/** The bookkeeper selection of a split (its fixed effort: the selection's reasoning, else high). */
+export function bookkeeperOf(split: DmSplit): BookkeeperSelection {
+  return { providerId: split.bookkeeper.providerId as DmProviderId, modelId: split.bookkeeper.modelId,
+    effort: (split.bookkeeper.reasoning ?? "high") as DmEffort };
+}
+
+/** Which runtime a claimed turn plays on: a pinned turn by its pin (a retry keeps the pair,
+ * whatever the settings say now), a new turn by the campaign's choice. */
+function isSplitTurn(claim: TurnClaim, split: DmSplit | null): boolean {
+  const pin: DmLoopPin | null = claim.turn.checkpoint.dmLoop?.pin ?? null;
+  if (pin) return !!pin.bookkeeper;
+  return !!split;
+}
+
+function twoPassDeps(deps: CampaignTurnDependencies): TwoPassDependencies {
+  return { ...deps, ...(deps.split && !deps.bookkeeper ? { bookkeeper: bookkeeperOf(deps.split) } : {}) };
+}
+
+/** Runs a dm-loop-v1 turn on the campaign's runtime: the split when the settings say so, today's loop otherwise. */
+export async function runCampaignTurn(input: TurnInput, deps: CampaignTurnDependencies): Promise<PublicTurn> {
+  const current = requireTurnTimeline(await deps.store.begin(input, DM_LOOP_RUNTIME), input.campaignId, input.operationId, input.timeline);
+  if (["committed", "cancelled", "awaiting_confirmation"].includes(current.status) ||
+    (current.status === "failed" && !current.canRetry)) return current;
+  const claim = await deps.store.claim(input.campaignId, input.operationId);
+  if (claim) requireClaimTimeline(claim, input.campaignId, input.operationId, input.timeline);
+  const played = claim ? (isSplitTurn(claim, deps.split) ? await executeTwoPassTurn(claim, twoPassDeps(deps), null) : await executeDmLoopTurn(claim, deps, null))
+    : await deps.store.getPublic(input.campaignId, input.operationId);
+  return requireTurnTimeline(played, input.campaignId, input.operationId, input.timeline);
+}
+
+export async function resumeCampaignTurn(command: ResumeInput, deps: CampaignTurnDependencies): Promise<PublicTurn> {
+  const current = requireTurnTimeline(await deps.store.getPublic(command.campaignId, command.operationId),
+    command.campaignId, command.operationId, command.timeline);
+  if (["committed", "cancelled"].includes(current.status)) return current;
+  if (command.action === "cancel") return deps.store.cancel(command);
+  requireRule(command.action === "retry" ? current.status === "failed" && current.canRetry : current.status === "awaiting_confirmation");
+  const claim = await deps.store.claim(command.campaignId, command.operationId);
+  if (claim) requireClaimTimeline(claim, command.campaignId, command.operationId, command.timeline);
+  const played = claim ? (isSplitTurn(claim, deps.split) ? await executeTwoPassTurn(claim, twoPassDeps(deps), command) : await executeDmLoopTurn(claim, deps, command))
+    : await deps.store.getPublic(command.campaignId, command.operationId);
+  return requireTurnTimeline(played, command.campaignId, command.operationId, command.timeline);
 }

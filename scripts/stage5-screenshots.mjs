@@ -25,14 +25,14 @@ const executablePath = process.env.BROWSER_PATH ?? (existsSync(edge) ? edge : un
 
 const shots = [
   ["menu", ""], ["campaigns", ""], ["new-campaign", ""], ["new-campaign-dm", "?step=2"],
-  ["game", ""], ["game-moment-dice", "?moment=1&dice=1"], ["game-combat", "?combat=1"],
+  ["game", ""], ["game-moment-dice", "?moment=1&dice=1"], ["game-combat", "?combat=1"], ["game-recording", "?recording=1"],
   ["character", ""], ["inventory", ""], ["party", ""], ["party-talk", "?talk=1"], ["party-combat", "?combat=1"],
   ["journal", ""], ["codex", ""], ["map", ""], ["holdings", ""], ["settings", ""], ["adventures", ""],
   // The second sample: a narrative noir with no classes, levels, ability scores, spells or gold.
   ["noir-game", "?world=noir"], ["noir-character", "?world=noir"], ["noir-holdings", "?world=noir"], ["noir-party", "?world=noir"],
   ["noir-campaigns", "?world=noir"], ["noir-settings", "?world=noir"],
 ].filter(([name]) => !only || only.has(name));
-const route = (name) => name.replace(/^noir-/, "").replace(/-(moment-dice|combat|talk|dm)$/, "");
+const route = (name) => name.replace(/^noir-/, "").replace(/-(moment-dice|combat|talk|dm|recording)$/, "");
 
 /** Width of a baseline or progressive JPEG from its SOF segment. */
 function jpegWidth(buffer) {

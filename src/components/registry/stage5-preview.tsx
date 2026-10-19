@@ -86,7 +86,9 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
     case "game":
       return <RegistryGame data={snapshot} preview={{
         play, playerMoment: variant.moment, diceOpen: variant.dice, asideOpen: variant.aside,
-        adventure: sample.adventure(), live: sample.live(language),
+        adventure: sample.adventure(),
+        // Polish 3 §2: the recording state — the text complete, no chips yet, the bookkeeper at work.
+        live: variant.recording ? { ...sample.live(language), status: "recording", changes: [] } : sample.live(language),
       }} />;
     case "character":
     case "inventory":

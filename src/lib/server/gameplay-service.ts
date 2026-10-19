@@ -16,11 +16,13 @@ import { randomUUID } from "node:crypto";
 import { runTurn, resumeTurn } from "../gameplay/turn-engine";
 import { runAstraTurn, resumeAstraTurn, selectAstraPrimaryRuntime } from "../gameplay/astra-primary";
 import { withAstraTurnPin } from "../production/dm-turn-pin";
-import { DM_LOOP_RUNTIME, runDmLoopTurn, resumeDmLoopTurn, type DmLoopDependencies } from "../gameplay/dm-loop/loop";
-import { runTwoPassTurn, resumeTwoPassTurn, twoPassFlag } from "../gameplay/dm-loop/two-pass";
+import { DM_LOOP_RUNTIME, runDmLoopTurn } from "../gameplay/dm-loop/loop";
+import { runCampaignTurn, resumeCampaignTurn, bookkeeperOf, type BookkeeperSelection, type CampaignTurnDependencies, type TwoPassDependencies,
+  type TwoPassObservation } from "../gameplay/dm-loop/two-pass";
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
-import { publishLiveTurnEvent } from "./dm/live-turns";
+import { keepLiveTurnLedger, publishLiveTurnEvent } from "./dm/live-turns";
+import { saveTurnSnapshot } from "./turn-snapshots";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry } from "./session-digest";
@@ -115,22 +117,40 @@ function logDmLoop(observation: DmLoopObservation) {
   } else if (observation.type === "request_started") {
     console.info(JSON.stringify({ event: "dm_loop_request_started", operationId: observation.operationId,
       request: observation.request, requestBytes: observation.requestBytes, cachedPrefixBytes: observation.cachedPrefixBytes }));
+  } else if ((observation as unknown as TwoPassObservation).type === "two_pass") {
+    // Polish 3 §2: the split's milestones. The ledger is private: kept for the shot director, never logged.
+    const split = observation as unknown as TwoPassObservation;
+    if (split.event === "writer_finished") {
+      if (split.ledger.trim()) keepLiveTurnLedger(split.operationId, split.ledger);
+      console.info(JSON.stringify({ event: "dm_loop_writer_finished", operationId: split.operationId, atMs: split.atMs, requests: split.requests,
+        ledgerFound: split.ledgerFound, ledgerChars: split.ledgerChars, narrationChars: split.narrationChars }));
+    } else {
+      console.info(JSON.stringify({ event: "dm_loop_bookkeeper_finished", operationId: split.operationId, atMs: split.atMs, requests: split.requests,
+        calls: split.calls, rejected: split.rejected, finished: split.finished }));
+    }
   }
 }
 function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: SummaryProvider,
-  production: ReturnType<typeof productionServices>, settings: () => Promise<DmSettings>, ownerId: string, campaignId: string): DmLoopDependencies {
+  production: ReturnType<typeof productionServices>, settings: () => Promise<DmSettings>, ownerId: string, campaignId: string): TwoPassDependencies {
   return {
     store, memory, summaries,
     model: (pin) => createDmModel(pin),
     pin: async (claim) => {
       // The campaign's DM settings at the turn's start: the model, the
       // per-turn limits, the depth range and the «important turn» flag are
-      // pinned together and stay with the operation.
+      // pinned together and stay with the operation. Polish 3 §2: on a split
+      // campaign the pinned «dm.turn» model is the writer.
       const current = await settings();
-      return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.dmTurn)),
+      return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.split?.writer ?? current.dmTurn)),
         limits: current.limits, depth: current.depth, boostNext: current.boostNext };
     },
-    afterCommit: async ({ playerLikes, boostUsed, playMinutes }) => {
+    bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
+    afterCommit: async ({ playerLikes, boostUsed, playMinutes, input, source }) => {
+      // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
+      if (source && input) {
+        const current = await settings().catch(() => null);
+        await saveTurnSnapshot(ownerId, campaignId, input, source, current ? { limits: current.limits, depth: current.depth, split: current.split, dmTurn: current.dmTurn } : undefined);
+      }
       const dossier = await dossierService(ownerId, campaignId);
       // Polish item 15: the DM's note lives next to the player's own words, never over them.
       if (playerLikes) await dossier.dmLikes(playerLikes);
@@ -148,19 +168,14 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
     observe: logDmLoop,
   };
 }
-/** The DM architecture bake-off's experimental writer + bookkeeper runtime
- * (docs/stages/DM_ARCH.md), behind the server flag DM_TWO_PASS (the bookkeeper
- * model) and DM_TWO_PASS_WRITER (optional writer override). Unset: today's loop,
- * exactly as before. The turn rows are dm-loop-v1 rows either way. */
-function loopRunner(deps: DmLoopDependencies) {
-  const flag = twoPassFlag();
-  if (!flag) return { run: (input: Parameters<typeof runDmLoopTurn>[0]) => runDmLoopTurn(input, deps),
-    resume: (input: Parameters<typeof resumeDmLoopTurn>[0]) => resumeDmLoopTurn(input, deps) };
-  const twoPassDeps = { ...deps,
-    ...(flag.writer ? { pin: async (claim: Parameters<DmLoopDependencies["pin"]>[0]) => ({ ...(await deps.pin(claim)), ...flag.writer }) } : {}),
-    bookkeeper: { ...flag.bookkeeper, model: createDmModel(flag.bookkeeper) } };
-  return { run: (input: Parameters<typeof runTwoPassTurn>[0]) => runTwoPassTurn(input, twoPassDeps),
-    resume: (input: Parameters<typeof resumeTwoPassTurn>[0]) => resumeTwoPassTurn(input, twoPassDeps) };
+/** Polish 3 §2: the campaign's DM architecture from its settings — today's loop, or the writer +
+ * bookkeeper split; a turn in flight resumes on the runtime its pin names. The turn rows are
+ * dm-loop-v1 rows either way. */
+async function loopRunner(deps: TwoPassDependencies, settings: () => Promise<DmSettings>) {
+  const current = await settings();
+  const campaignDeps: CampaignTurnDependencies = { ...deps, split: current.split, ...(current.split ? { bookkeeper: bookkeeperOf(current.split) } : {}) };
+  return { run: (input: Parameters<typeof runDmLoopTurn>[0]) => runCampaignTurn(input, campaignDeps),
+    resume: (input: Parameters<typeof resumeCampaignTurn>[0]) => resumeCampaignTurn(input, campaignDeps) };
 }
 /** Runs a dm-loop-v1 turn. Polish item 22: the legacy memory summaries (GPT-6
  * Astra, two per turn, ≈$3.50 a session) are not queued for a loop campaign any
@@ -198,7 +213,7 @@ export async function readPlay(campaignId: string) {
     (await store.takeoverStatus?.(campaignId))?.active === true;
   if (dmSettings.runtime === DM_LOOP_RUNTIME) {
     const pending = await openingPending(owner.client, campaignId, timeline, settings.ruleset.id);
-    const choice = dmLoopPinFromProfile(dmLoopProfile(settings.runtimePolicy, dmSettings.dmTurn));
+    const choice = dmLoopPinFromProfile(dmLoopProfile(settings.runtimePolicy, dmSettings.split?.writer ?? dmSettings.dmTurn));
     const key = choice.providerId === "anthropic" ? process.env.ANTHROPIC_API_KEY : process.env.OPENAI_API_KEY;
     // Stage 4 §4: on entry, a stale open session is closed and digested, a
     // closed one without «Ранее в…» gets its digest; never blocks the read.
@@ -283,7 +298,7 @@ export async function submitTurn(campaignId: string, value: unknown) {
     const deps = dmLoopDependencies(store, memory, loopProduction.summaries, loopProduction,
       async () => dmSettings ?? readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, loopProduction.summaries, requireTimeline(input), campaignId,
-      () => loopRunner(deps).run(input));
+      async () => (await loopRunner(deps, async () => dmSettings ?? readDmSettings(campaignId))).run(input));
   }
   const worldTakeover = rulesetId === "world-logic-v1"
     ? (await store.takeoverStatus?.(campaignId))?.active === true : false;
@@ -349,7 +364,7 @@ export async function continueTurn(
   if (identity === DM_LOOP_RUNTIME) {
     const deps = dmLoopDependencies(store, memory, production.summaries, production, () => readDmSettings(campaignId), user.id, campaignId);
     return runLoopWithMaintenance(store, memory, production.summaries, requireTimeline(input), campaignId,
-      () => loopRunner(deps).resume(input));
+      async () => (await loopRunner(deps, () => readDmSettings(campaignId))).resume(input));
   }
   if (identity === "astra-primary-v1")
     return runWithAstraMemoryMaintenance(store, memory, production.summaries,
