@@ -38,12 +38,16 @@ function parseArgs(argv) {
     // Polish 3 §6: the split — `--writer opus|fable --bookkeeper sonnet|opus[@effort]` (dm-loop-v1, live).
     else if (flag === "--writer") args.writer = value();
     else if (flag === "--bookkeeper") { const [model, effort] = value().split("@"); args.bookkeeper = { model, effort: effort ?? null }; }
+    // `--bookkeeper-switch 11:medium` — the bookkeeper's effort changes from that turn on (polish 3 §6: Sonnet at medium on turns 11–20).
+    else if (flag === "--bookkeeper-switch") { const [turn, effort] = value().split(":"); args.bookkeeperSwitch = { turn: Number(turn), effort }; }
     else if (flag === "--verbose") args.verbose = true;
     else throw Error(`unknown argument ${flag}`);
   }
   if (args.writer && !["opus", "fable"].includes(args.writer)) throw Error("--writer must be opus or fable");
   if (args.bookkeeper && !["opus", "sonnet"].includes(args.bookkeeper.model)) throw Error("--bookkeeper must be opus or sonnet, optionally @medium or @high");
   if (args.bookkeeper?.effort && !["medium", "high"].includes(args.bookkeeper.effort)) throw Error("the bookkeeper's effort must be medium or high");
+  if (args.bookkeeperSwitch && (!args.bookkeeper || !Number.isInteger(args.bookkeeperSwitch.turn) || args.bookkeeperSwitch.turn < 1 || !["medium", "high"].includes(args.bookkeeperSwitch.effort)))
+    throw Error("--bookkeeper-switch N:effort needs --bookkeeper, a turn number and medium or high");
   if ((args.writer || args.bookkeeper) && args.runtime !== "dm-loop-v1") throw Error("--writer and --bookkeeper need --runtime dm-loop-v1");
   if (args.writer === "fable" && !args.bookkeeper) throw Error("a Fable writer needs a bookkeeper (--bookkeeper)");
   if (args.continuationEffort && !["low", "medium", "high", "xhigh", "max"].includes(args.continuationEffort))
@@ -125,6 +129,7 @@ if (args.runtime === "dm-loop-v1") {
   const bookkeeperModel = args.bookkeeper ? loopModels[args.bookkeeper.model] : null;
   write({ type: "run", run: runId, provider: args.provider, runtime: "dm-loop-v1", model: writerModel.modelId,
     writer: writerModel.modelId, bookkeeper: bookkeeperModel ? `${bookkeeperModel.modelId}@${args.bookkeeper.effort ?? bookkeeperModel.defaultEffort}` : null,
+    bookkeeperSwitch: args.bookkeeperSwitch ?? null,
     effort, continuationEffort: args.continuationEffort, scenarios: selected.map((s) => s.name), commit: gitCommit(), node: process.version,
     startedAt: new Date().toISOString(), budgetUsd: args.budgetUsd });
   if (args.provider === "live")
@@ -138,7 +143,7 @@ if (args.runtime === "dm-loop-v1") {
     }
     process.stdout.write(`▶ ${scenario.name} — ${scenario.title}\n`);
     const summary = await runLoopScenario({ ...scenario, loop: scenario.loop ?? script ?? {} }, { live: args.provider === "live",
-      model: args.model, writer: args.writer, bookkeeper: args.bookkeeper, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
+      model: args.model, writer: args.writer, bookkeeper: args.bookkeeper, bookkeeperSwitch: args.bookkeeperSwitch ?? null, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
     process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
       `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
       `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +

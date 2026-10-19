@@ -219,7 +219,10 @@ export async function runLoopScenario(scenario, options) {
           if (observation.type === "live" && observation.event.type === "text" && firstWordAt === null) firstWordAt = performance.now();
           if (live && observation.type === "request_finished") (isBookkeeperUsage(observation.usage) ? bookkeeperAdapter : liveAdapter).settle(observation.usage.costUsd);
           if (live && observation.type === "failure") { liveAdapter.abandon(); bookkeeperAdapter?.abandon(); }
-        }, split, ...(split ? { bookkeeper: bookkeeperOf(split) } : {}), bookkeeperModel: () => bookkeeperModel });
+        }, split, ...(split ? { bookkeeper: { ...bookkeeperOf(split),
+          // Polish 3 §6: the bookkeeper's effort may change from a given turn on (Sonnet at medium on turns 11–20).
+          ...(options.bookkeeperSwitch && turnIndex >= options.bookkeeperSwitch.turn ? { effort: options.bookkeeperSwitch.effort } : {}) } } : {}),
+        bookkeeperModel: () => bookkeeperModel });
         if (continuationEffort) {
           const pinned = deps.pin;
           deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });
