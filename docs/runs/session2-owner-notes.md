@@ -433,3 +433,10 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     «Наблюдения ведущего» repeat it — together with the voice layer's humour recipe, three places push the DM to quip.
     In the fix, «Что мне нравится» stays the owner's words, but the humour recipe goes, and the DM's observations must
     follow the owner's later corrections («хватит шутить») over the wizard text.
+    Worse: for this campaign the toggle cannot be reached at all. The rules system is «Логика мира», so the settings
+    tab «Правила и стиль игры» hides both «Сложность и правила» and «Проверки и кости» (`showMechanics` false; the note
+    says the dice values are «kept for Console Basic») — yet those hidden values still act in play: rerolls «limited 2»
+    (item 37), the pause after every roll, `showDc` false. Owner on that screen: «тут столько настроек, это п…ц».
+    Mid-session workaround: an out-of-game note asking the DM to put the DC into the roll's title. Do (with item 26):
+    hidden settings must not act; the few that matter in play (show DC, rerolls on/off) live on the short Настройки
+    screen; the old tabs go.
