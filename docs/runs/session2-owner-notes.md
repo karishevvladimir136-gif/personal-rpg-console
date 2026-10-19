@@ -314,3 +314,8 @@ Problems:
     tool calls — measure and raise; (b) counters accept any language as a label (key derived, the label kept), so «ячейки
     1 круга» works; (c) the rejected `provider` error and its HTTP body logged; (d) an out-of-game setup should not be a
     turn at all — the owner's editor (or the one-pass hero, item 20) sets money, counters and equipment directly.
+    Retry as a records-only turn with Latin counter ids worked (23 changes): money 60 («Зм 60»), hit dice, slots 1–3,
+    arcane recovery, the tusk. Seen: counters with no Russian presentation show their raw key in English («Shaman tusk»,
+    «Arcane recovery») — labels in the campaign language (b above); the DM first set only the maxima and left current
+    values at 0, then raised them in the same turn; the narration reported the bookkeeping («Максимумы встали, но
+    текущие значения остались на нуле…») — fine for an out-of-game turn.
