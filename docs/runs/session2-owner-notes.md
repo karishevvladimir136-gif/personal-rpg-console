@@ -263,3 +263,27 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     campaign's rules are in words (e.g. «D&D 5e — по руководству ведущего» from the DM guide's first line, or «Свои
     правила») and a link to edit the DM guide. Same screen: the picture-models caption still says Flare (the planner's
     `d74b6c6` is not loaded in the sandbox yet).
+
+## First look at the game, character and inventory screens (2026-10-19)
+
+Owner: the character screen «моё уважение, сильно лучше», items with descriptions and pictures «сильно более симпатично».
+Problems:
+
+27. **CRITICAL — the owner cannot put items on the hero** («МЫ НЕ МОЖЕМ ОДЕТЬ ПРЕДМЕТЫ НА ПЕРСОНАЖА»). The item card offers
+    «Перерисовать / Использовать / Передать…» and no «Надеть»; the doll's slots take only matching kinds and the starting
+    items are `possession` (item 14). In play the DM can do it (`item modify category` then `equip`; the rejection lists
+    the slots), so session 2 asks the DM in the first turn. Do: «Надеть / Снять» on every item card (the slot chosen by
+    kind, a kind picker when it fits none), drag to the doll, ring slots; starting items equipped at creation.
+28. **Money and counters are not on the hero.** «Кошелёк и ресурсы» shows only «Монеты 0»; the hero has no resources at
+    all (`resourcesOf(entity)` empty) — the review's counters (gold 60, slots 4/3/2, hit dice, arcane recovery,
+    potions, the tusk) either were not entered or did not reach the record; gold entered as a resource would not be
+    money anyway. Session 2: the DM sets them in the first turn. Do: starting money as money (the campaign's currency),
+    counters with a max (`_max`), and the review screen saying which is which.
+29. **The opening scene has no picture** (the scene header shows only «П»). Live frames start from a turn's first
+    paragraph; the approved opening is not a turn. Do: draw the opening's frame when it is approved (or as the first
+    key frame), like any scene.
+30. **Small screen issues:** «Закончить сессию» is boxed and larger than its neighbours (it should be the quietest of
+    the four); the HP buttons «−10 −5 −1 +1 +5 +10 Полные» on the character screen are the owner's manual corrections —
+    move them behind «Исправить» in the owner's editor; the item panel under the grid stays open — open on a click on an
+    item, close on a second click or outside; the character and inventory screens are small and lost on a big monitor
+    (items 5 and 22).
