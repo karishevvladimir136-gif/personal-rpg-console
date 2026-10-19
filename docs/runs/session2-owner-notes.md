@@ -238,3 +238,15 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     `persistent-adventure-loot.tsx`, the old hand-made loot/containers panel from before the DM placed items itself.
     Do: remove it from the Adventures screen (keep the code only if something still needs it; the DM's `item` tool
     and the camp cover containers in play).
+
+25. **The Library's document view and editor** (owner: «повылезала админка… окна странно выглядят, какой-то треш с
+    вложенными окнами… после сохранения оно не сворачивается»). Opening the DM Guide shows a panel with «В этой
+    версии нет текста.», under it an «Редактировать документ» fold holding a second framed panel «Руководство для DM»
+    with two paragraphs of system text («Изменения указаний действуют в текущей временной линии.», «Сохраняйте или
+    восстанавливайте руководство явно…»), a «Прочитать текстовый файл или Markdown» picker, «Сохранить новую версию»,
+    «Обновить сохранённые данные», «Использовать сохранённые значения», «История версий»; after saving the editor stays
+    open under the read view. Do: one panel — the document reads cleanly (Markdown rendered: headings, lists); «Изменить»
+    turns that same panel into the editor (title, status, text, «Загрузить файл» as a small link); «Сохранить» returns
+    to the read view with «Сохранено»; history behind a small «Версии» link; no system paragraphs. Also: the false
+    «Покинуть страницу и потерять несохранённые изменения?» when leaving «Приключения» after the adventure was saved
+    (the opening panel counts as unsaved).
