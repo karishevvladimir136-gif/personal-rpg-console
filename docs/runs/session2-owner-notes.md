@@ -204,3 +204,13 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     caps at creation (`bootstrapLimits`), keep only a sane technical ceiling far above play needs. And no
     «Нужен ответ» questions that block approval for things the owner already wrote (the draft asked what the battle
     staff is for).
+
+21. **The new-campaign flow is out of order** (owner: «слегка нелогично — оно мне предлагает сразу первую сцену»). Today:
+    Мир → Герой → Ведущий → «Начало» (where the first scene starts, before any adventure exists) → «Начать кампанию»
+    opens a separate «Приключения» screen where the adventure is written («Во что вы хотите сыграть?», the pace) → the
+    DM's opening on yet another screen → and the campaign's canon, DM guide and voice mode are set in the Library and
+    Settings outside the flow. Do, one wizard in story order: 1 Мир (pick or create; its text becomes the campaign's
+    canon — item 8; a rules document can belong to the world, e.g. «D&D 5e» for this one) → 2 Герой (one pass — item 20)
+    → 3 Приключение (title, what we play, the pace, who goes with the hero; full text kept — item 15) → 4 Ведущий (model,
+    depth range, «Что мне нравится», voice examples mode) → 5 Первая сцена (the DM proposes the opening from all of it,
+    the people in it become records; the owner edits, «Играть»).
