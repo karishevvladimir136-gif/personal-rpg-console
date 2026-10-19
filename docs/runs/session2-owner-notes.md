@@ -506,6 +506,8 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     narration never states the DM's private plans, NPC intentions or timings the hero has not learned; the privacy check
     (`astra-privacy-context` / the DM's private notes) flags a narration that repeats a private note's hour or intent;
     the session report greps narration for facts that appear only in private notes.
+    It repeats: two turns later the DM's own out-of-game aside says «засада в одиннадцать» as the party's plan, though
+    the party knows only «вечером» — the private hour now reads as the hero's knowledge.
 
 42. **The action box is tiny** (owner, 14:43: «важный нюанс. поле ввода оч мелкое»). The composer's textarea has
     `rows={2}` (`gameplay-composer.tsx`), so a normal plan of attack (three sentences) already scrolls inside a
@@ -589,3 +591,9 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     block (weapons, armour, ammunition, money, clothes that matter as evidence), and what the party takes is recorded
     with `item` (money with `money`, in the world's coins — silver and copper too, not only gold; item 28); the report
     checks that each «забрали» in the story has its item receipt.
+    Next turn (15:27), the owner asked again to take all weapons and armour: the DM collected the brute's leather vest,
+    the morningstar, the red cloak, the blanket and rations — and forgot the light crossbow with its bolts (owner:
+    «арбалет они где-то про…ли»); its aside listing «общие вещи» names no crossbow, bolts, cleaver or horn. The crossbow
+    existed only in the narration two turns back, never as a record, so a loot done from the records cannot find it.
+    Do: an enemy made from a stat block gets its gear as items at creation (as companions, item 36), so a body can be
+    searched from the records and nothing the story showed disappears.
