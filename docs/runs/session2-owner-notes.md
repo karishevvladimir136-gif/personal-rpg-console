@@ -512,3 +512,14 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     two-line box with its own scrollbar. Do: start at about 4 lines, grow with the text up to about half the screen,
     no inner scrollbar until then; the same font size as the story text; keep it pinned at the bottom of the play
     column. Part of the owner's acceptance pass (item 33).
+
+43. **The first combat round is a wall of roll cards** (owner, 14:45, screenshot: «так. а вот…»). The ambush (hero's
+    Hold Person on the horn sentry; companions shoot the sleeping brute) produced one full-size card per roll — the
+    hero's spell, Tobias's two longbow attacks (5e Scout multiattack, advantage on a sleeping target — correct), Bram's
+    heavy crossbow — each with its own «Бросить куб» (interactive dice: the server has rolled, the player clicks to
+    reveal) and its own full-width «Запросить разрешённый переброс» with the caption repeated under every card. With a
+    party of three plus enemies, every round becomes a column of cards and clicks. Do: a combat round's rolls form one
+    compact block (one line per roll: who → what → result; one «Показать броски» for the round), reroll as a small link
+    only where a reroll is actually available (item 37), the caption once. Rules note for the report: Bram's card says
+    «засада и дальний выстрел гасят друг друга», but at about forty paces the target is within a heavy crossbow's normal
+    range (100 ft), so the advantage against a sleeping target should stand — check the DM's range reasoning.
