@@ -494,3 +494,7 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     «a natural 1 costs something». Owner decision pending: RAW 5e, BG3-style (1 always fails, 20 always succeeds), or a
     house rule (1 = a cost that follows from the action itself, proportionate; 20 = a small extra). Whatever he picks
     goes into the campaign's DM guide; the core role must defer to the guide on this.
+    First success (14:33): Investigation, DC 15 in the title, advantage from the companion's Help (5e Help action, the
+    reason on the card), the explorer's hat +1 added through `bonuses` while worn (as the 5e guide asks), sheet +7 →
+    best of 15/18 + 8 = 26. Every part of the roll exactly per the guide. Owner on the turn: «неожиданно хорошо» — a rich,
+    fair clue trail, companions adding what they know, no quips, and a real choice with a clock at the end (X12).
