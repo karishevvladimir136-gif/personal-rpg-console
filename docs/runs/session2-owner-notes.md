@@ -224,3 +224,12 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     item 5's typography pass; screenshots at 1440×900, 1920×1080, 2560×1440 and a phone.
     Also seen on this screen: the step-4 sentence («Берегост, пост стражи, раннее утро…») landed in «Во что вы хотите
     сыграть?» as the whole premise — the first scene and the adventure's premise are one field (item 21).
+
+23. **The history window: 45k tokens of a 1M-token model** (owner: «почему только 45 тысяч? там огромное окно, плюс у нас
+    кеширование»). `HISTORY_BUDGET` = layer 4 scenes 30k + exchanges 15k (polish item 8). At the app's Opus prices
+    (input $4, cache read $0.20, 1-hour cache write $8 per MTok) a bigger window costs little to read and more to
+    rewrite: per model call a 150k history reads for ~$0.03 (a turn makes several calls), and a rewrite after an hour's
+    pause or a window shift is ~$1.20 instead of ~$0.36; the first word grows with the prefix (session 1: +2 s while the
+    request grew 33→155 KB). The owner values the wait over money. Do after session 2's report: check whether the
+    window filled and anything dropped; if so, raise it (try ~120k) and measure the first word and the cost per turn on
+    the replay tool before keeping it.
