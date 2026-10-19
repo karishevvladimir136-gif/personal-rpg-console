@@ -57,7 +57,9 @@ export type DmLoopDependencies = {
     /** Polish item 21: real minutes of play this turn stands for (1–30), for the campaign's play time. */
     playMinutes: number;
     /** Polish 3 §4: the turn's literal input and the runtime source it started from (the state before the turn), for the snapshot. */
-    input?: TurnInput; source?: RuntimeSource }) => Promise<void>;
+    input?: TurnInput; source?: RuntimeSource;
+    /** Voice stage part 5: the committed narration, for the asynchronous quotable-line check. */
+    narration?: string }) => Promise<void>;
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
@@ -579,7 +581,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         .map((turn) => Date.parse(turn.updated_at)).filter((ms) => Number.isFinite(ms));
       const since = previous.length ? Math.max(...previous) : Date.parse(claim.turn.public.created_at) || Date.now();
       const playMinutes = Math.max(1, Math.min(30, Math.round((Date.now() - since) / 60000)));
-      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source }); }
+      try { await deps.afterCommit({ operationId, playerLikes: loop.meta?.playerLikes ?? null, boostUsed: !!pin.depth?.boosted, playMinutes, input, source: claim.source, narration }); }
       catch { /* a note or a flag never fails a committed turn */ }
     }
     return result;

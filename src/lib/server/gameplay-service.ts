@@ -23,6 +23,7 @@ import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { keepLiveTurnLedger, publishLiveTurnEvent } from "./dm/live-turns";
 import { saveTurnSnapshot } from "./turn-snapshots";
+import { scheduleQuotableCheck } from "./voice/quotable-check";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
 import { dossierService } from "./dossier";
 import { digestOnEntry } from "./session-digest";
@@ -145,12 +146,14 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
         limits: current.limits, depth: current.depth, boostNext: current.boostNext };
     },
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
-    afterCommit: async ({ playerLikes, boostUsed, playMinutes, input, source }) => {
+    afterCommit: async ({ operationId, playerLikes, boostUsed, playMinutes, input, source, narration }) => {
       // Polish 3 §4: the state before this turn, with the campaign's rules of the moment, for the replay tool (never fails the turn).
       if (source && input) {
         const current = await settings().catch(() => null);
         await saveTurnSnapshot(ownerId, campaignId, input, source, current ? { limits: current.limits, depth: current.depth, split: current.split, dmTurn: current.dmTurn } : undefined);
       }
+      // Voice stage part 5: the quotable-line check, off the turn's path (the flags reach the next turn's tail).
+      if (narration?.trim() && source) scheduleQuotableCheck({ ownerId, campaignId, operationId, narration, language: source.snapshot.settings.values.language === "ru" ? "ru" : "en" });
       const dossier = await dossierService(ownerId, campaignId);
       // Polish item 15: the DM's note lives next to the player's own words, never over them.
       if (playerLikes) await dossier.dmLikes(playerLikes);
