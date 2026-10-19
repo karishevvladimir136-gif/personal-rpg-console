@@ -12,3 +12,7 @@ Each item: what he saw, what he wants. Fixed together after the session unless i
    раньше было по середине экрана». Do: centre the card vertically again and scale it up on large screens.
 3. Minor, seen on the same screen: the names differ — «Крафт ведущего» in the side menu, «Мастерство Ведущего» on the
    card: one name everywhere; the developer link «Открыть отдельный макет этапа 0» should not be on the owner's home.
+
+**Status:** 1–3 fixed by the planner in `d74b6c6` on `claude/session-2-prep` (the owner asked for it before starting the
+campaign); the local session checks and loads it (`docs/HOME_FIX.md`). Also in that commit: the stale Flare caption in
+«Модели картинок» (live frames have been on Sunburst since polish 3).
