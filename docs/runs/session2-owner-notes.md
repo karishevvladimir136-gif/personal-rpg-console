@@ -179,3 +179,10 @@ planner wrote three texts for him (the world form, a canon document, the DM guid
     consequence himself («а если он кольцо снимет?»): the session 2 hero now keeps clean numbers in the lines and the
     DM adds worn items' bonuses per roll (DM guide). Do: a DM tool (and an owner form) for the hero's sheet lines,
     level, attributes and the combat profile, versioned like other records; with item 14, bonuses from equipped items.
+
+19. **The review screen's item editing confuses** (owner: «какой-то баг… нет кнопки сохранить»). The folded item shows
+    only «Название ×1», never its description; the description box is five lines high and scrolls, so a pasted card
+    looks cut; and nothing says the edits are kept and applied by «Создать персонажа и кампанию» at the bottom (no
+    per-item save, no «черновик сохранён»). Do: the first line of the description under the name; a taller box that
+    grows; a quiet «Изменения применятся при создании» note near the edits; and item fields for kind, slot, damage,
+    bonus and attunement (with item 14).
