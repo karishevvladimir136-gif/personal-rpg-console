@@ -316,6 +316,13 @@ Problems:
     folds under the map — «Известные места без меток», «Открытые места», «Изменить размещение на карте», «Места, где вы
     дома», «Инструменты «что, если»», «Изменить / Исправить записи» — go behind one quiet «Ещё» (owner: «эта … осталась
     снизу»).
+    Later (14:21, the party at Кривой брод): the atlas redrew «Мир» as a painting of the ford itself — owner: «очень-очень
+    хорошо рисует местность… отличная основа для 2D-движка, потом туда добавим интерактивные точки», but «это по факту
+    локация, не мир; нет карты региона, где мы перемещаемся». Do: keep these pictures as each place's location
+    illustration (the base for the future 2D scene with interactive points), not as a map level; add a real region map
+    — a stable painted map of the stretch of the Trade Way the party travels (Beregost, Кривой брод, the road south to
+    Nashkel, what the canon names around it) with the places as marks and the party's position and route between them
+    (at a place, or «в пути» between two); redraw it only when a new place appears in the region, not on every move.
 
 ## The first turn failed (2026-10-19 12:58)
 
