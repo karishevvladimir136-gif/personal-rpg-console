@@ -1,6 +1,6 @@
 // Polish stage, group 4 (docs/stages/POLISH.md): the DM's craft from session 1 —
-// the new doctrine as pending DM Craft versions (never activated by the
-// migration), the likes note in two parts (the player's own words and the DM's
+// the new doctrine as DM Craft versions (seeded pending; the owner approved them
+// on 2026-10-18, migration 202610180090), the likes note in two parts (the player's own words and the DM's
 // observations), the clock with the part of the day in words, and the bench's
 // time-word check.
 import test from "node:test";
@@ -14,32 +14,34 @@ import { evaluateCheck } from "../scripts/eval/lib/state.mjs";
 const finish = (extra = {}) => ({ name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false, ...extra } });
 const POLISH_KEYS = ["heros-knowledge", "danger-and-pacing", "heros-moment", "time-and-clock", "open-questions-and-tics", "records-match-the-fiction"];
 
-test("the polish cards are seeded pending: a version each, none active, one line «what changes»; the owner's approval puts them into layer 1", async () => {
+test("the polish cards arrive owner-approved (202610180090): the draft v1 kept, v2 active with the Russian rewritten and the English unchanged, in layer 1 from the first turn", async () => {
   const c = await loopCampaign({ language: "ru" });
   try {
     const craft = async (action, payload = {}) => (await c.f.one("select public.rpg_dm_craft($1,$2,$3::jsonb) result",
       [c.owner, action, JSON.stringify(action === "read" ? payload : { requestId: randomUUID(), ...payload })])).result;
     const view = await craft("read");
     for (const key of POLISH_KEYS) {
-      const versions = view.versions.filter((row) => row.key === key);
-      assert.equal(versions.length, 1, `${key} has exactly one version`);
-      assert.equal(versions[0].kind, "card");
-      assert.match(versions[0].provenance, /^Polish: /, "the provenance is the one line «what changes»");
-      assert.ok(versions[0].en.title && versions[0].ru.title && versions[0].en.guidance.length <= 1600 && versions[0].ru.guidance.length <= 1600);
+      const versions = view.versions.filter((row) => row.key === key).sort((a, b) => a.version - b.version);
+      assert.deepEqual(versions.map((row) => row.version), [1, 2], `${key}: the draft and the approved version`);
+      assert.match(versions[0].provenance, /^Polish: /, "the draft keeps its one line «what changes»");
+      assert.match(versions[1].provenance, /^Owner approved on 2026-10-18/);
+      assert.deepEqual(versions[1].en, versions[0].en, "the English text is unchanged");
+      assert.notDeepEqual(versions[1].ru, versions[0].ru, "the Russian text is rewritten");
+      assert.ok(versions[1].ru.guidance.length <= 1600 && versions[1].ru.avoid.length <= 800);
       const effective = view.effective.find((row) => row.key === key);
-      assert.ok(!effective || effective.activeVersionId === null, `${key} is pending, never activated by the migration`);
+      assert.equal(effective?.activeVersionId, versions[1].id, `${key} is active at v2`);
     }
-    const before = await c.turn("Здороваюсь с Фролом.", [{ text: "Фрол кивает. ", toolCalls: [finish()] }]);
-    assert.equal(before.result.status, "committed", JSON.stringify(c.errors));
-    const layer1Before = before.model.requests[0].system[0].text;
-    assert.doesNotMatch(layer1Before, /Знание героя и три улики/, "a pending card is not in the DM's hands");
-    await c.activateStage4Craft();
-    const after = await c.turn("Спрашиваю Фрола о лодке.", [{ text: "Фрол пожимает плечами. ", toolCalls: [finish()] }]);
-    assert.equal(after.result.status, "committed", JSON.stringify(c.errors));
-    const layer1 = after.model.requests[0].system[0].text;
-    for (const title of ["Знание героя и три улики на тайну", "Опасность от противника, бой как бой, ясный финал", "Момент героя — и никогда не решать за героя",
-      "Слова о времени — по часам", "Открытые вопросы остаются открытыми; тик — раз за сцену", "Записи, совпадающие с историей"])
+    const first = await c.turn("Здороваюсь с Фролом.", [{ text: "Фрол кивает. ", toolCalls: [finish()] }]);
+    assert.equal(first.result.status, "committed", JSON.stringify(c.errors));
+    const layer1 = first.model.requests[0].system[0].text;
+    for (const title of ["Что знает герой — и три улики на каждую тайну", "Опасность от людей, бой как бой, внятный финал", "Момент героя — и решения только за игроком",
+      "Слова о времени — сверяй с часами", "Вопрос без ответа не пропадает; привычка — не чаще раза за сцену", "Записи совпадают с историей"])
       assert.match(layer1, new RegExp(`## ${title.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`), `the approved card «${title}» is in layer 1`);
+    assert.doesNotMatch(layer1, /Знание героя и три улики на тайну/, "the draft's wording is not in the DM's hands");
+    // «Restore this version» still brings a draft back.
+    const draft = view.versions.find((row) => row.key === "heros-moment" && row.version === 1);
+    const restored = await craft("activate", { expectedActivationRevision: view.effective.find((row) => row.key === "heros-moment").activationRevision, key: "heros-moment", versionId: draft.id });
+    assert.equal(restored.effective.find((row) => row.key === "heros-moment").activeVersionId, draft.id);
   } finally { await c.f.db.close(); }
 });
 

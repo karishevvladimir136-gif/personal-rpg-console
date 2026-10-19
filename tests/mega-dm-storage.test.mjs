@@ -41,10 +41,11 @@ test("Mega DM migration seeds a small owner-scoped immutable bilingual library a
   try {
     const view = await craft(f, "read");
     assert.equal(view.policyVersion, "mega-dm-v1-public-context-2");
-    // 12 Mega DM versions plus the six Stage 4 versions (core doctrine v3 and five
-    // cards) and the six polish cards, seeded pending: no effective row until the owner activates them.
-    assert.equal(view.versions.length, 24);
-    assert.equal(view.effective.length, 11);
+    // 12 Mega DM versions, the six Stage 4 versions (core doctrine v3 and five cards) and the six
+    // polish cards as seeded, plus the owner's approval of those twelve (202610180090): a new version
+    // each with the Russian rewritten, active — 36 versions, 22 effective keys.
+    assert.equal(view.versions.length, 36);
+    assert.equal(view.effective.length, 22);
     assert.ok(view.versions.every((v) => v.en.guidance && v.ru.guidance));
     await assert.rejects(craft(f, "read", {}, f.other), /rpg_forbidden/);
     const w = await world(f);
