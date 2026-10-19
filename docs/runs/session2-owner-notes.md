@@ -427,3 +427,9 @@ said what he needed; no closing generalisation, no line for the reader»; keep t
     ladder's «normal 10»; it was 13 (ladder «hard») or 15 (the 5e guide's «medium»). Do: for a 5e campaign show the
     DC on the card after the roll by default (owner, turn 9: «надо, чтобы было видно, какая сложность» — yes, show it); the session report lists every player roll with its DC,
     difficulty word, bonuses and result from the receipts (that also answers item 38's ladder-vs-guide question).
+    Owner could not find the toggle («а где?»): it is inside the collapsed «Ещё · все прежние настройки кампании» at the
+    bottom of Настройки → «Проверки и кости»; the «Изменить в полных настройках» link jumps to the closed block without
+    opening it. Also seen on that screen: the campaign's «Что мне нравится» says «чёрный сухой юмор», and the DM's
+    «Наблюдения ведущего» repeat it — together with the voice layer's humour recipe, three places push the DM to quip.
+    In the fix, «Что мне нравится» stays the owner's words, but the humour recipe goes, and the DM's observations must
+    follow the owner's later corrections («хватит шутить») over the wizard text.
