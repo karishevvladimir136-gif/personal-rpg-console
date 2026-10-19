@@ -337,6 +337,9 @@ Problems:
 Owner: «диалоги стали лучше». Two lines flagged, both the patterns VOICE.md names — a one-word command put at the end
 of a speech for the beat, and a quip built by echoing another character's word; the owner's «было → как надо» pairs are
 in the private project doc (голос/отрывки_ru.md, pairs 2–3; never in git).
+Turn 3 (owner: «диалоги стали местами лучше»): a third line flagged as bad and illogical — a dark quip for the reader
+that skips the character's actual reason for what he is doing (pair 4 in the same doc). The quip pattern persists;
+review the share of quips per scene in the session-2 report.
 
 34. **The owner's names from the opening review were not used.** In the opening's «Что нужно уточнить» the owner gave
     the captain, the sergeant and the recruit names and their 5e strength; in play the DM introduced its own names (it
