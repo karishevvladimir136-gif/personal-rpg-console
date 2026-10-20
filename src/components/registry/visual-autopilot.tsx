@@ -12,7 +12,7 @@ import {
 import { referenceIsCurrent, visualDocuments } from "@/lib/visual-frame/model";
 import { subjectVisualDocuments } from "@/lib/visual-frame/subject-job";
 import { autopilotStorageKey, parseLedger, planVisualAutopilot, subjectKey, type AutopilotLedger } from "@/lib/ui/visual-autopilot";
-import { capRemaining, type PictureSettings } from "@/lib/visual-frame/pictures";
+import { capRemaining, isTimeZone, type PictureSettings } from "@/lib/visual-frame/pictures";
 import { usePictures } from "./live-frames";
 
 // The visual autopilot on the campaign's own picture settings (Stage V): after a
@@ -70,11 +70,23 @@ export function VisualAutopilot({ data, refresh, transport = defaultMediaFrameTr
     if (!pictures || !settings) return;
     setSaving(true);
     try {
-      await pictures.send("pictures.settings", { ...settings, ...next, autopilot: { ...settings.autopilot, ...(next.autopilot ?? {}) }, expectedRevision: settings.revision });
+      // Fix run E: every save carries this device's time zone — the daily picture count starts at the owner's midnight.
+      const zone = deviceTimeZone();
+      await pictures.send("pictures.settings", { ...settings, ...next, ...(zone ? { timeZone: zone } : {}), autopilot: { ...settings.autopilot, ...(next.autopilot ?? {}) }, expectedRevision: settings.revision });
     } finally {
       setSaving(false);
     }
   }, [pictures, settings]);
+  // Fix run E: a campaign still counting by UTC (or by another device's zone) takes this device's zone once.
+  const zoneSynced = useRef(false);
+  useEffect(() => {
+    if (!pictures || !pictures.loaded || pictures.preview || !settings || zoneSynced.current) return;
+    const zone = deviceTimeZone();
+    if (!zone || zone === settings.timeZone) return;
+    zoneSynced.current = true;
+    // After this render: the save sets «saving» (the status rule of this file — never a synchronous set in an effect).
+    queueMicrotask(() => void save({}).catch(() => { zoneSynced.current = false; }));
+  }, [pictures, settings, save]);
   useEffect(() => {
     if (!pictures || !pictures.loaded || !settings) return;
     const autopilot = settings.autopilot;
@@ -162,4 +174,14 @@ export function PreviewAutopilot({ children }: { children: ReactNode }) {
       {children}
     </AutopilotContext.Provider>
   );
+}
+
+/** The device's IANA time zone («America/Los_Angeles»), when the browser says and the database would take it. */
+export function deviceTimeZone(): string | null {
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return isTimeZone(zone) ? zone : null;
+  } catch {
+    return null;
+  }
 }

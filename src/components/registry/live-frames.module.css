@@ -201,3 +201,19 @@
   font: inherit;
   font-size: 14px;
 }
+
+/* Fix run E (item 77): the frame of a turn, in that turn. */
+.turnFrame {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 4px;
+}
+.turnFrame > button,
+.turnFrame > div[role="img"] {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  background: #0e0a08;
+}

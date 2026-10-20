@@ -75,9 +75,10 @@ export function CodexRoute() {
 
 /** Polish 2 §6: one «Картинки» page in place of «Галерея» and «Визуальная библия». */
 export function PicturesRoute() {
+  const runtime = useGameplayRuntime();
   return (
     <RecordBoundary>
-      {(data) => <RegistryPictures data={data} legacy={<><PersistentSecondaryPage screen="gallery" /><PersistentMediaVisualFrame /></>} />}
+      {(data) => <RegistryPictures data={data} play={runtime.play} legacy={<><PersistentSecondaryPage screen="gallery" /><PersistentMediaVisualFrame /></>} />}
     </RecordBoundary>
   );
 }

@@ -86,3 +86,35 @@
   text-decoration: underline dotted;
   text-underline-offset: 3px;
 }
+
+/* Fix run E (item 80): the gallery — frames in story order with their own captions. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+.galleryFrame {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: inherit;
+  cursor: zoom-in;
+}
+.galleryFrame > img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--line-strong);
+  background: #0e0a08;
+}
+.galleryCaption {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--muted);
+}

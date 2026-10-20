@@ -47,6 +47,7 @@ test("E: an out-of-game reply is no moment of the story — no frame; an aside i
   assert.equal(storyText(turn), "Сержант присаживается у костра и чертит палкой в пыли путь до рудника.");
   assert.equal(storyText("Ты киваешь. (Вне игры: бросок за меня.) Сержант уходит."), "Ты киваешь. Сержант уходит.");
   assert.equal(outOfGameOnly("Вне игровых правил нет, говорит сержант, и это правда, которую знает вся застава."), false, "«вне игровых» is not «вне игры»");
+  assert.equal(outOfGameOnly("Сержант кивает."), false, "a short story line is still story");
 });
 
 test("E: the shot and the brief resolve role words, write the caption in the campaign language, direct gaze and hands, keep gear to the records", () => {
@@ -313,4 +314,40 @@ test("E (item 75): the party council never offers the hero as a listener, and th
   const composer = src("src/components/gameplay-composer.tsx");
   assert.match(composer, /row\.id !== companionId && row\.kind !== "player" &&\s*play\.configuration\?\.presentEntityIds\.includes\(row\.id\)/);
   assert.match(src("src/lib/ui/campaign-view.ts"), /export function partyOf[^]*?\.filter\(\(row\) => row\.kind === "companion"\)/);
+});
+
+test("E (items 77, 80): the frame button says every answer in words; the gallery holds every frame in story order by session with its own caption", async () => {
+  const { frameStatusText, galleryChapters, frameCaptionOf } = await import("../src/lib/visual-frame/pictures.ts");
+  assert.equal(frameStatusText("queued", "ru"), null, "a queued frame shows itself drawing");
+  assert.equal(frameStatusText("cap", "ru"), "Дневной лимит картинок исчерпан — новый день начнётся в полночь.");
+  assert.equal(frameStatusText("no_text", "ru"), "У этого хода нет текста — рисовать нечего.");
+  assert.equal(frameStatusText("ooc", "ru"), "Это ответ вне игры — кадр ему не нужен.");
+  assert.equal(frameStatusText("off", "en"), "Frames are off in the picture settings.");
+  assert.match(frameStatusText("error", "ru"), /попробуй ещё раз/);
+  const session = (id, at) => ({ id, campaign_id: "c", title: id, status: "closed", recap: "", revision: 1, updated_at: at });
+  const turn = (id, sid, at) => ({ id, session_id: sid, input: "", narration: `Ход ${id}.`, created_at: at, status: "committed", mode: "game" });
+  const frame = (id, turnId, at, extra = {}) => ({ id, kind: "frame", subjectKind: "turn", subjectId: turnId, composition: "frame", version: 1, status: "ready", hidden: false, createdAt: at, caption: null, review: null, ...extra });
+  const chapters = galleryChapters({ sessions: [session("s2", "2026-10-20"), session("s1", "2026-10-19")] },
+    [turn("a", "s1", "1"), turn("b", "s1", "2"), turn("c", "s2", "3"), turn("d", "s2", "4")],
+    { pictures: [frame("fa", "a", "1", { caption: "Сержант чертит путь." }), frame("fc", "c", "3"), frame("fd", "d", "4", { hidden: true })] });
+  assert.deepEqual(chapters.map((row) => [row.session.id, row.frames.map((f) => f.picture.id)]), [["s1", ["fa"]], ["s2", ["fc"]]], "story order by session; a hidden frame stays out");
+  assert.equal(frameCaptionOf(chapters[0].frames[0].turn, chapters[0].frames[0].picture), "Сержант чертит путь.");
+  assert.equal(frameCaptionOf(chapters[1].frames[0].turn, chapters[1].frames[0].picture), "Ход c.");
+
+  const gallery = src("src/components/registry/pictures-screen.tsx");
+  for (const label of ['c("Галерея", "Gallery")', 'c(`Кадры · ${frameCount}`', 'c("Люди", "People")', 'c("Места", "Places")', 'c("Вещи", "Things")', 'c("Карты", "Maps")'])
+    assert.ok(gallery.includes(label), label);
+  assert.match(gallery, /turnHref=\{\(turnId\) => `\$\{gameHref\}#saved-turn-\$\{turnId\}`\}/, "«К ходу» opens the turn in the game");
+  assert.match(gallery, /"pictures\.frame", \{ operationId: entry\.turn\.id, trigger: "redraw" \}/, "«Перерисовать» from the large view");
+  assert.doesNotMatch(gallery, /href\("chronicle"\)|\/chronicle|c\("Хроника"/, "the chronicle left the navigation");
+  const frames = src("src/components/registry/live-frames.tsx");
+  assert.match(frames, /c\("Галерея", "Gallery"\)/);
+  assert.doesNotMatch(frames, /c\("Хроника", "Chronicle"\)/);
+  assert.match(frames, /const words = result \? frameStatusText\(/, "the answer is read, never swallowed");
+  assert.match(frames, /export function TurnFrame\(/, "the frame of a turn, in that turn");
+  assert.match(frames, /c\("Проверка кадра: ", "Frame check: "\)/, "the vision check's mark");
+  assert.match(src("src/components/registry/routes.tsx"), /<RegistryPictures data=\{data\} play=\{runtime\.play\}/);
+  const autopilot = src("src/components/registry/visual-autopilot.tsx");
+  assert.match(autopilot, /\.\.\.\(zone \? \{ timeZone: zone \} : \{\}\)/, "every picture-settings save carries the device's zone");
+  assert.match(autopilot, /Intl\.DateTimeFormat\(\)\.resolvedOptions\(\)\.timeZone/);
 });

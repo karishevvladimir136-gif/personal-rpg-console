@@ -5,15 +5,19 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { frameFor, framesOfTurn, parsePictureAutopilot, parsePictureSettings } from "../src/lib/visual-frame/pictures.ts";
+import { frameCaptionOf, frameFor, framesOfTurn, parsePictureAutopilot, parsePictureSettings } from "../src/lib/visual-frame/pictures.ts";
+import { outOfGameOnly } from "../src/lib/visual-frame/shot.ts";
 
 const src = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 // The frames panel is a React client module (CSS modules, next/link): its pure helpers are
 // re-implemented here from the source text, the component itself is checked as text.
 const frameHelpers = src("src/components/registry/live-frames.tsx");
 const helper = (name) => { const match = frameHelpers.match(new RegExp(`export function ${name}\\([^)]*\\)[^{]*\\{([\\s\\S]*?)\\n\\}`)); return match ? match[1] : null; };
-const currentFrameTurnId = new Function("play", "live", helper("currentFrameTurnId").replace(/: [A-Za-z<>\[\]| ]+(?=[=,)])/g, ""));
-const frameCaption = new Function("turn", helper("frameCaption"));
+const currentFrameTurnIdOf = new Function("play", "live", "outOfGameOnly", helper("currentFrameTurnId").replace(/: [A-Za-z<>\[\]| ]+(?=[=,)])/g, ""));
+const currentFrameTurnId = (play, live) => currentFrameTurnIdOf(play, live, outOfGameOnly);
+// Fix run E: the caption is the pure frameCaptionOf (the picture's own moment first).
+assert.match(helper("frameCaption"), /return frameCaptionOf\(turn, picture\);/);
+const frameCaption = (turn, picture) => frameCaptionOf(turn, picture);
 const picture = (over) => ({ id: over.id, kind: "frame", subjectKind: "turn", subjectId: over.turnId, composition: "frame", timeline: { timelineId: "t", epoch: 1 },
   version: over.version ?? 1, status: over.status ?? "ready", hidden: over.hidden ?? false, model: "m", tier: "fast", trigger: "live", styleVersionId: null,
   width: 1024, height: 576, costUsdMicros: 0, error: null, createdAt: `2026-10-17T00:00:0${over.version ?? 1}Z`, shotText: null });
@@ -41,8 +45,12 @@ test("the frames panel hides every ready version of the turn and offers «Пок
   assert.equal(frameCaption({ input: "Иду к стойке.", narration: "Марта смотрит на пояс.\nВторая строка." }), "Марта смотрит на пояс.");
   assert.equal(frameCaption({ input: "Иду к стойке.", narration: null }), "Иду к стойке.");
   assert.equal(frameCaption({ input: "x", narration: "а".repeat(200) }).length, 158);
-  const play = { turns: [{ id: "t1", mode: "game" }, { id: "f1", mode: "feedback" }] };
+  assert.equal(frameCaption({ input: "x", narration: "Первая строка." }, { caption: "Сержант чертит в пыли путь." }), "Сержант чертит в пыли путь.", "fix run E: the shot's own moment");
+  const play = { turns: [{ id: "t1", mode: "game", status: "committed", narration: "Сержант кивает." }, { id: "f1", mode: "feedback", status: "committed", narration: "x" }] };
   assert.equal(currentFrameTurnId(play, null), "t1");
+  // Fix run E (item 77): the button never targets a failed turn (no text) or an out-of-game reply.
+  const after = { turns: [...play.turns, { id: "bad", mode: "game", status: "failed", narration: null }, { id: "ooc", mode: "game", status: "committed", narration: "(Вне игры: записываю.)" }] };
+  assert.equal(currentFrameTurnId(after, null), "t1");
   assert.equal(currentFrameTurnId(play, { operationId: "t2", status: "generating" }), "t2", "the streaming turn's frame");
   assert.equal(currentFrameTurnId(play, { operationId: "t1", status: "committed" }), "t1");
   assert.equal(currentFrameTurnId(null, null), null);

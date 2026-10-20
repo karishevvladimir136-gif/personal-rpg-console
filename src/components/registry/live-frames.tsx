@@ -7,8 +7,8 @@ import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
 import { defaultPicturesTransport, type PicturesAction, type PicturesTransport } from "@/lib/ui/pictures-client";
-import { emptyPictureBoard, frameFor, framesOfTurn, pictureUrl, styleReferenceUrl, type PictureBoard, type PictureStyle, type PublicPicture } from "@/lib/visual-frame/pictures";
-import { firstParagraph, isKeyMoment } from "@/lib/visual-frame/shot";
+import { emptyPictureBoard, frameCaptionOf, frameFor, framesOfTurn, frameStatusText, pictureUrl, styleReferenceUrl, type PictureBoard, type PictureStyle, type PublicPicture } from "@/lib/visual-frame/pictures";
+import { firstParagraph, isKeyMoment, outOfGameOnly } from "@/lib/visual-frame/shot";
 import { registry as r, useCopy } from "./primitives";
 import f from "./live-frames.module.css";
 
@@ -103,23 +103,25 @@ function useLiveFrameTrigger(live: LiveTurnView | null, play: PlaySnapshot | nul
   }, [live, play, pictures]);
 }
 
-/** The turn whose frame the panel shows: the streaming turn, else the latest game turn. */
+/** The turn whose frame the panel shows: the streaming turn, else the latest game turn with narration. Fix run E
+ * (item 77): never a failed turn (no text: the button drew nothing) nor an out-of-game reply. */
 export function currentFrameTurnId(play: PlaySnapshot | null, live: LiveTurnView | null): string | null {
-  const latest = (play?.turns ?? []).filter((turn) => turn.mode === "game").at(-1) ?? null;
-  return live && (live.status === null || live.status === "generating") ? live.operationId : latest?.id ?? live?.operationId ?? null;
+  const narrated = (play?.turns ?? []).filter((turn) => turn.mode === "game" && turn.status === "committed" && !!turn.narration?.trim() && !outOfGameOnly(turn.narration ?? ""));
+  return live && (live.status === null || live.status === "generating") ? live.operationId : narrated.at(-1)?.id ?? null;
 }
 
-/** The first line of a turn, for the lightbox caption: the narration's first sentence, else the player's words. */
-export function frameCaption(turn: { input: string; narration: string | null }): string {
-  const text = (turn.narration?.trim() || turn.input).split(/\n/)[0].trim();
-  return text.length > 160 ? `${text.slice(0, 157).trimEnd()}…` : text;
+/** The caption of a frame: its own moment (fix run E, item 78b), else the turn's first line. */
+export function frameCaption(turn: { input: string; narration: string | null }, picture?: PublicPicture | null): string {
+  return frameCaptionOf(turn, picture);
 }
 
-type LightboxEntry = { turn: { id: string; input: string; narration: string | null }; picture: PublicPicture };
+export type LightboxEntry = { turn: { id: string; input: string; narration: string | null }; picture: PublicPicture };
 
-/** Polish group 5: a frame opened large — the turn's first line, «←/→» through the frames, Esc to close. */
-function FrameLightbox({ entries, index, urlFor, onIndex, onClose }: {
+/** Polish group 5: a frame opened large — its caption, «К ходу», «←/→» through the frames, Esc to close. Fix run E
+ * (item 80): the gallery adds «Перерисовать» and its own address of the turn. */
+export function FrameLightbox({ entries, index, urlFor, onIndex, onClose, turnHref, onRedraw }: {
   entries: LightboxEntry[]; index: number; urlFor: (picture: PublicPicture) => string | null; onIndex: (index: number) => void; onClose: () => void;
+  turnHref?: (turnId: string) => string; onRedraw?: (entry: LightboxEntry) => void;
 }) {
   const c = useCopy();
   const entry = entries[index];
@@ -143,8 +145,10 @@ function FrameLightbox({ entries, index, urlFor, onIndex, onClose }: {
         <div className={f.lightboxBar}>
           <button type="button" className={r.iconBtn} aria-label={c("Предыдущий кадр", "Previous frame")} disabled={index <= 0} onClick={() => onIndex(index - 1)}><ChevronLeft size={20} aria-hidden="true" /></button>
           <span className={f.lightboxCaption}>
-            <span>{frameCaption(entry.turn)}</span>
-            <a href={`#saved-turn-${entry.turn.id}`} onClick={onClose}>{c("К ходу", "To the turn")}</a>
+            <span>{frameCaption(entry.turn, entry.picture)}</span>
+            {entry.picture.review && !entry.picture.review.ok && <span className={r.badgeAmber}>{c("проверка: ", "check: ")}{entry.picture.review.problems.join("; ")}</span>}
+            <a href={turnHref ? turnHref(entry.turn.id) : `#saved-turn-${entry.turn.id}`} onClick={turnHref ? undefined : onClose}>{c("К ходу", "To the turn")}</a>
+            {onRedraw && <button type="button" className={r.btnGhost} onClick={() => onRedraw(entry)}><RefreshCw size={16} aria-hidden="true" />{c("Перерисовать", "Redraw")}</button>}
           </span>
           <span className={f.lightboxCount}>{index + 1} / {entries.length}</span>
           <button type="button" className={r.iconBtn} aria-label={c("Следующий кадр", "Next frame")} disabled={index >= entries.length - 1} onClick={() => onIndex(index + 1)}><ChevronRight size={20} aria-hidden="true" /></button>
@@ -157,6 +161,7 @@ function FrameLightbox({ entries, index, urlFor, onIndex, onClose }: {
 
 /** The frames panel of the game screen: the frame of the current turn, its tools, earlier frames. */
 export function FramesPanel({ data, play, live, chronicleHref, stage = false }: {
+  /** Fix run E (item 80): the gallery's address (the chronicle left the navigation; the prop keeps its name). */
   data: CampaignSnapshot; play: PlaySnapshot | null; live: LiveTurnView | null; chronicleHref: string;
   /** Polish group 6: the stage above shows the frame itself; the panel keeps the tools and the folded strip. */
   stage?: boolean;
@@ -168,6 +173,8 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
   const [open, setOpen] = useState<number | null>(null);
   // Polish 2 §3: «Перерисовать» with one line from the owner («сделай ночь», «он без шлема»).
   const [comment, setComment] = useState("");
+  // Fix run E (item 77): the answer of «Нарисовать кадр» in words — never swallowed.
+  const [answer, setAnswer] = useState<{ turnId: string; text: string } | null>(null);
   if (!pictures) return null;
   const { board } = pictures;
   const gameTurns = (play?.turns ?? []).filter((turn) => turn.mode === "game");
@@ -182,9 +189,15 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
   const off = board.settings.frames === "off";
   if (!shown && !current?.drawing && !hiddenOnly && !earlier.length && (off || !latestTurn)) return null;
   const act = async (action: PicturesAction, input: unknown) => {
-    if (pictures.preview || pending) return;
+    if (pictures.preview || pending) return null;
     setPending(true);
-    try { await pictures.send(action, input); } catch { /* the board shows the state */ } finally { setPending(false); }
+    try { return await pictures.send(action, input); } catch { return { status: "error" }; } finally { setPending(false); }
+  };
+  const drawFrame = async (turnId: string, text: string) => {
+    setAnswer(null);
+    const result = await act("pictures.frame", { operationId: turnId, trigger: "redraw", ...(text ? { comment: text } : {}) });
+    const words = result ? frameStatusText((result as { status?: unknown }).status, c.language === "en" ? "en" : "ru") : null;
+    if (words) setAnswer({ turnId, text: words });
   };
   // «Скрыть» hides the frame of this turn: every ready version of it; «Показать» brings the newest back.
   const hideTurn = async () => {
@@ -199,6 +212,8 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
     ...earlier.map((row) => ({ turn: row.turn, picture: row.picture! })),
   ];
   const openEntry = (pictureId: string) => { const index = entries.findIndex((row) => row.picture.id === pictureId); if (index >= 0) setOpen(index); };
+  const review = shown?.review && !shown.review.ok ? shown.review : null;
+  const redrawing = review?.redrawId ? board.pictures.some((row) => row.id === review.redrawId && (row.status === "queued" || row.status === "generating")) : false;
   const label = shown ? (shown.trigger === "key_moment" ? c("ключевой момент · лучшая модель", "key moment · better model") : shown.tier === "quality" ? c("качество", "quality") : c("живой кадр", "live frame")) : null;
   return (
     <section id="registry-frames" className={f.panel} aria-label={c("Кадры", "Frames")}>
@@ -221,10 +236,17 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
       ) : current?.failed ? (
         <p className={f.line}><span>{c("Кадр не вышел; повтора не будет — можно перерисовать.", "The frame failed; it will not retry — you can redraw.")}</span></p>
       ) : null}
+      {shown?.caption && !stage && <p className={f.line}><span>{shown.caption}</span></p>}
+      {review && (
+        <p className={f.line} role="status">
+          <span>{redrawing ? c("Проверка нашла ошибку, кадр перерисовывается: ", "The check found a mistake; the frame is being redrawn: ")
+            : c("Проверка кадра: ", "Frame check: ")}{review.problems.join("; ")}{redrawing ? "" : c(" — можно перерисовать.", " — you can redraw it.")}</span>
+        </p>
+      )}
       <div className={f.tools}>
         {currentId && !off && (
           <button type="button" className={r.btnGhost} disabled={pending || pictures.preview || current?.drawing}
-            onClick={() => { const text = comment.trim(); setComment(""); void act("pictures.frame", { operationId: currentId, trigger: "redraw", ...(text ? { comment: text } : {}) }); }}>
+            onClick={() => { const text = comment.trim(); setComment(""); void drawFrame(currentId, text); }}>
             <RefreshCw size={16} aria-hidden="true" />{shown || hiddenOnly ? c("Перерисовать", "Redraw") : c("Нарисовать кадр", "Draw a frame")}
           </button>
         )}
@@ -243,14 +265,15 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
             <Eye size={16} aria-hidden="true" />{c("Показать", "Show")}
           </button>
         )}
-        <Link className={r.btnGhost} href={chronicleHref}><BookOpen size={16} aria-hidden="true" />{c("Хроника", "Chronicle")}</Link>
+        <Link className={r.btnGhost} href={chronicleHref}><BookOpen size={16} aria-hidden="true" />{c("Галерея", "Gallery")}</Link>
       </div>
+      {answer && answer.turnId === currentId && <p className={f.line} role="status"><span>{answer.text}</span></p>}
       {earlier.length > 0 && (
         <details className={f.earlier}>
           <summary>{c(`Кадры прошлых ходов · ${earlier.length}`, `Frames of earlier turns · ${earlier.length}`)}</summary>
           <div className={f.strip} role="list" aria-label={c("Кадры прошлых ходов", "Frames of earlier turns")}>
             {earlier.map(({ turn, picture }) => (
-              <button key={turn.id} type="button" role="listitem" className={f.thumb} title={frameCaption(turn)} onClick={() => openEntry(picture!.id)}>
+              <button key={turn.id} type="button" role="listitem" className={f.thumb} title={frameCaption(turn, picture)} onClick={() => openEntry(picture!.id)}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={pictures.urlFor(picture!) ?? ""} alt={c("Кадр прошлого хода", "Frame of an earlier turn")} />
               </button>
@@ -266,5 +289,31 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
       </span>
       {data.campaign.id ? null : null}
     </section>
+  );
+}
+
+/** Fix run E (item 77): the frame of one turn, in that turn, in place — drawn, being drawn, or a line why not. A click
+ * opens it large; the gallery keeps every frame. */
+export function TurnFrame({ turn }: { turn: { id: string; input: string; narration: string | null } }) {
+  const c = useCopy();
+  const pictures = usePictures();
+  const [open, setOpen] = useState(false);
+  if (!pictures) return null;
+  const { picture, drawing } = frameFor(pictures.board, turn.id);
+  const url = picture ? pictures.urlFor(picture) : null;
+  if (!picture && !drawing) return null;
+  return (
+    <figure className={f.turnFrame} data-testid="turn-frame">
+      {url && picture ? (
+        <button type="button" className={f.frameButton} aria-label={c("Открыть кадр крупно", "Open the frame large")} onClick={() => setOpen(true)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={url} alt={frameCaption(turn, picture)} loading="lazy" />
+        </button>
+      ) : (
+        <div className={r.drawing} role="img" aria-label={c("Кадр рисуется", "The frame is being drawn")}>{c("кадр рисуется…", "drawing the frame…")}</div>
+      )}
+      {picture && <figcaption className={f.line}><span>{frameCaption(turn, picture)}</span>{drawing && <span className={r.badgeAmber}>{c("рисуется новый…", "drawing a new one…")}</span>}</figcaption>}
+      {open && picture && <FrameLightbox entries={[{ turn, picture }]} index={0} urlFor={pictures.urlFor} onIndex={() => {}} onClose={() => setOpen(false)} />}
+    </figure>
   );
 }

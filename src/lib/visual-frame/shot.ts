@@ -100,8 +100,8 @@ export function storyText(text: string): string {
   return text.replace(/\r/g, "").split(/\n\s*\n/).map((paragraph) => paragraph.replace(OOC_ASIDE, " ").replace(/[ \t]+/g, " ").trim())
     .filter((paragraph) => paragraph && !OOC_PARAGRAPH.test(paragraph)).join("\n\n");
 }
-/** A narration with no story in it, only an out-of-game aside. */
-export const outOfGameOnly = (text: string) => !!text.trim() && (storyText(text).match(/\p{L}/gu)?.length ?? 0) < 24;
+/** A narration with no story in it, only an out-of-game aside (a short story line without one is still story). */
+export const outOfGameOnly = (text: string) => !!text.trim() && new RegExp(OOC_WORD, "iu").test(text) && (storyText(text).match(/\p{L}/gu)?.length ?? 0) < 24;
 
 // Fix run E (item 78a): role words to people. The narration calls the hero «маг» and the sergeant «сержант»;
 // the shot or the brief may pass such a word on instead of a name. A word that names nobody finds the person

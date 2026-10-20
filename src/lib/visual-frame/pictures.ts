@@ -338,6 +338,32 @@ export function frameFor(board: Pick<PictureBoard, "pictures">, turnId: string) 
   const shown = rows.filter((row) => row.status === "ready" && !row.hidden).at(-1) ?? null;
   return { picture: shown, drawing: rows.some((row) => row.status === "queued" || row.status === "generating"), failed: rows.at(-1)?.status === "failed" };
 }
+/** Fix run E (item 77): what the frame button's answer means, in words — every answer but «queued» (the drawing
+ * shows itself). Null for «queued». */
+export function frameStatusText(status: unknown, language: "ru" | "en"): string | null {
+  const ru = language === "ru";
+  switch (status) {
+    case "queued": return null;
+    case "existing": return ru ? "Кадр этого хода уже есть." : "This turn already has a frame.";
+    case "waiting": return ru ? "Текст хода ещё идёт — кадр появится после первого абзаца." : "The turn is still being written — the frame comes after the first paragraph.";
+    case "off": return ru ? "Кадры выключены в настройках картинок." : "Frames are off in the picture settings.";
+    case "cap": return ru ? "Дневной лимит картинок исчерпан — новый день начнётся в полночь." : "The daily picture limit is reached — a new day starts at midnight.";
+    case "no_text": return ru ? "У этого хода нет текста — рисовать нечего." : "This turn has no text — nothing to draw.";
+    case "ooc": return ru ? "Это ответ вне игры — кадр ему не нужен." : "This is an out-of-game reply — it needs no frame.";
+    default: return ru ? "Кадр не удалось попросить — попробуй ещё раз." : "The frame could not be requested — try again.";
+  }
+}
+/** Fix run E (item 78b): a frame's caption is its own moment (the shot's), else the turn's first line. */
+export function frameCaptionOf(turn: { input: string; narration: string | null }, picture?: Pick<PublicPicture, "caption"> | null): string {
+  const text = picture?.caption?.trim() || (turn.narration?.trim() || turn.input).split(/\n/)[0].trim().replace(/^[*_(\s]+/, "");
+  return text.length > 160 ? `${text.slice(0, 157).trimEnd()}…` : text;
+}
+/** Fix run E (item 80): the gallery's frames — every shown frame in story order, by session (chapter). */
+export function galleryChapters(snapshot: CampaignSnapshot, turns: Parameters<typeof chronicleChapters>[1], board: Pick<PictureBoard, "pictures">) {
+  return chronicleChapters(snapshot, turns, board)
+    .map((chapter) => ({ session: chapter.session, number: chapter.number, frames: chapter.turns.filter((row) => row.frame).map((row) => ({ turn: row.turn, picture: row.frame! })) }))
+    .filter((chapter) => chapter.frames.length > 0);
+}
 export const pictureUrl = (campaignId: string, pictureId: string) =>
   `/api/visual-frame?action=picture&campaignId=${encodeURIComponent(campaignId)}&pictureId=${encodeURIComponent(pictureId)}`;
 export const styleReferenceUrl = (campaignId: string, styleId: string) =>

@@ -739,7 +739,7 @@ function StylePanel({ data, samples }: { data: CampaignSnapshot; samples: (Subje
               <button type="button" className={r.btnMain} disabled={pending || !text.trim()} onClick={() => void save()}>{c("Сохранить как новую версию", "Save as a new version")}</button>
               <button type="button" className={r.btnGhost} disabled={pending} onClick={() => setEditing(false)}>{c("Отмена", "Cancel")}</button>
             </div>
-            <p className={r.note}>{c("Смена стиля создаёт новую версию; прошлые версии остаются, их можно вернуть. Прошлые кадры хранят свой стиль; хронику можно перерисовать по запросу.", "Changing the style creates a new version; earlier versions stay and can be restored. Past frames keep their style; the chronicle can be re-rendered on request.")}</p>
+            <p className={r.note}>{c("Смена стиля создаёт новую версию; прошлые версии остаются, их можно вернуть. Прошлые кадры хранят свой стиль; любой кадр можно перерисовать в галерее.", "Changing the style creates a new version; earlier versions stay and can be restored. Past frames keep their style; any frame can be redrawn in the gallery.")}</p>
           </>
         )}
       </div>
