@@ -931,11 +931,22 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     (gallop, read on the way); every declared sub-action is either shown or explicitly deferred. Probe scene: an
     order the companion disagrees with.
 
-68. **A town used as a person, and a deduction said three times** (owner, 20:58: «что значит „Тарр знает, что стража
-    не спит“? Тарр — это город»). The sergeant's line made the town the subject of «knows» — an English metonymy
-    («Tarr knows now…») — where the DM meant the letter's author and his people, now warned that the watch is on the
-    temple. Its first half restated what the intercepted letter says in plain words, and the sergeant's own
-    deduction from the previous turn, in the «X. Значит, Y» template. In the same turn the merchant's good thought
-    (a man bled on his doorstep and he still writes about money) came out as a broken phrase. Voice stage: a place
-    name never acts or knows; a companion does not restate what the scene just showed; probe scene: companions
-    react to a letter everyone has read.
+68. **A name with no anchor, and a deduction said three times** (owner, 20:58: «что значит „Тарр знает, что стража
+    не спит“? Тарр — это город»). Correction (21:05): Tarr is a person — the next turn names the man at the
+    merchant's scales Tarr; the planner first misread the line as a town used as a person. The real problem is that
+    the owner did not know who Tarr was: the DM dropped the name with nothing attached (who he is, where). The line's
+    first half restated what the intercepted letter says in plain words, and the sergeant's own deduction from the
+    previous turn, in the «X. Значит, Y» template; its second half was a stock formula instead of the thought (he is
+    now warned the watch is on the temple). In the same turn the merchant's good thought (a man bled on his
+    doorstep and he still writes about money) came out as a broken phrase. Voice stage: a name that has not been on
+    screen for a while comes with its anchor («Tarr, the merchant's clerk»); a companion does not restate what the
+    scene just showed. Probe scene: companions react to a letter everyone has read.
+
+69. **The reveal closed with a quip; gestures and verbal tics repeat** (owner, 21:05: «странно читается»). The
+    narration showed the clue well (the scrubbed, sanded threshold in a dry yard, after the letter mentioned blood on
+    the author's doorstep), then the merchant's line turned the discovery into a wry punchline instead of saying
+    what it means to him (his own man wrote the letter). The same turn repeated the scout's swallow and verbal tic
+    and the sergeant's strap gesture again — a touch the owner liked once is now a tic. The out-of-game note also
+    corrected itself mid-sentence (Mage Armor «holds until nine… already gone, so AC 13») — the note should be
+    written from the state, not drafted aloud. Voice stage: a companion's signature gesture or word at most once per
+    scene; the report counts repeats per companion.
