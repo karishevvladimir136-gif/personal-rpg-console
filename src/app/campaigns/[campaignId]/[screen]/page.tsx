@@ -22,6 +22,7 @@ import {
   SettingsRoute,
 } from "@/components/registry/routes";
 import { ChronicleRoute } from "@/components/registry/chronicle";
+import { LiveRoute } from "@/components/live2d/route";
 
 export default async function Page({
   params,
@@ -75,6 +76,8 @@ export default async function Page({
       return <ChronicleRoute />;
     case "owner":
       return <OwnerRoute />;
+    case "live":
+      return <LiveRoute />;
     case "sessions":
     case "map":
       return <PersistentSecondaryPage screen={screen} />;

@@ -1,0 +1,278 @@
+{
+  "takenAt": "2026-10-20T08:23:51.034Z",
+  "shots": [
+    {
+      "file": "world-1920.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "region-1920.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "region-travel-1920.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "town-1920.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "district-1920.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "scene-1920.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "scene-en-1920.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-ford-r1-1920.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-ford-r2-1920.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=2",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-ford-r3-1920.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=3",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-ford-r4-1920.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=4",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-ford-zones-1920.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=2&view=zones",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-lair-r1-1920.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-lair-r2-1920.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=2",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "battle-lair-r3-1920.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=3",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 1920
+    },
+    {
+      "file": "world-2560.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "region-2560.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "region-travel-2560.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "town-2560.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "district-2560.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "scene-2560.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "scene-en-2560.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "battle-ford-r4-2560.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=4",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "battle-lair-r3-2560.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=3",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 2560
+    },
+    {
+      "file": "world-phone.jpg",
+      "url": "/preview/live2d?level=world",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "region-phone.jpg",
+      "url": "/preview/live2d?level=region",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "region-travel-phone.jpg",
+      "url": "/preview/live2d?level=region&travel=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "town-phone.jpg",
+      "url": "/preview/live2d?level=town",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "district-phone.jpg",
+      "url": "/preview/live2d?level=district",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "scene-phone.jpg",
+      "url": "/preview/live2d?level=scene",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "scene-en-phone.jpg",
+      "url": "/preview/live2d?level=scene&lang=en",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-ford-r1-phone.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-ford-r2-phone.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=2",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-ford-r3-phone.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=3",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-ford-r4-phone.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=4",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-ford-zones-phone.jpg",
+      "url": "/preview/live2d/battle?fight=ford&round=2&view=zones",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-lair-r1-phone.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-lair-r2-phone.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=2",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    },
+    {
+      "file": "battle-lair-r3-phone.jpg",
+      "url": "/preview/live2d/battle?fight=lair&round=3",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "viewportWidth": 390
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+/* 2D Live: the painted region, the town, the scene — dark charcoal, bronze and gold,
+   the picture first, the controls quiet. Phone: the picture keeps its aspect, pins
+   stay 44px tap targets. */
+.screen {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  padding: 14px;
+}
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  min-width: 0;
+  font-family: var(--f-display);
+  font-size: 15px;
+}
+.crumbs button {
+  min-height: var(--touch);
+  padding: 0 6px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+}
+.crumbs button[aria-current="true"] {
+  color: var(--brass-hi);
+  font-weight: 700;
+}
+.crumbs button:hover { color: var(--text); }
+.crumbs .sep { color: var(--brass-dim); }
+.textLink {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch);
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--brass);
+  text-decoration: none;
+  font-family: var(--f-body);
+  font-size: 14px;
+}
+.textLink:hover { border-color: var(--brass-hi); color: var(--text); }
+
+.stage {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid #78613f73;
+  border-radius: 12px;
+  background:
+    radial-gradient(ellipse at 29% 39%, #9e825243, transparent 17%),
+    radial-gradient(ellipse at 66% 67%, #7b6d483a, transparent 23%),
+    linear-gradient(135deg, #1d2928, #272924 42%, #1b2221 78%);
+  box-shadow: 0 18px 45px #0005;
+  isolation: isolate;
+  touch-action: none;
+}
+.stageTall { aspect-ratio: 16 / 10; }
+.art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, #0b1010a8);
+}
+.artLabel {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  z-index: 3;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #0f1312b8;
+  color: #cbbf9f;
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.route {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.route path {
+  fill: none;
+  stroke: var(--brass-hi);
+  stroke-width: 0.5;
+  stroke-dasharray: 1.6 1.2;
+  vector-effect: non-scaling-stroke;
+  stroke-width: 2px;
+  opacity: .85;
+}
+
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+  min-width: var(--touch);
+  min-height: var(--touch);
+  padding: 4px;
+  border: 0;
+  background: transparent;
+  color: #f1e4c4;
+  font: inherit;
+  cursor: pointer;
+}
+.pinMark {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--brass-hi);
+  background: #2b2114;
+  box-shadow: 0 0 0 3px #0008, 0 0 14px #cfa86066;
+}
+.knownPin .pinMark { background: #2b2114; }
+.visitedPin .pinMark { background: var(--brass); }
+.rumoredPin .pinMark { border-style: dashed; background: transparent; }
+.trackedPin .pinMark { border-color: var(--verdigris); box-shadow: 0 0 0 3px #0008, 0 0 14px #64a99877; }
+.pinLabel {
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #0f1312c9;
+  font-family: var(--f-display);
+  font-size: 13px;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px #000;
+}
+.pin:hover .pinLabel, .pin:focus-visible .pinLabel { background: #3a2c1fe6; color: var(--brass-hi); }
+.party {
+  position: absolute;
+  z-index: 4;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff3d6;
+  background: radial-gradient(circle at 35% 35%, #ffe6a8, #b8703f);
+  box-shadow: 0 0 0 4px #0009, 0 0 22px #e7c47dbb;
+  pointer-events: none;
+}
+.partyGliding { animation: breathe 1.2s ease-in-out infinite; }
+@keyframes breathe { 50% { box-shadow: 0 0 0 7px #0007, 0 0 30px #e7c47d; } }
+
+.hotspot {
+  position: absolute;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: var(--touch);
+  height: var(--touch);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.ring {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--brass-hi);
+  background: #1a140c88;
+  box-shadow: 0 0 0 3px #0007, 0 0 16px #cfa86088;
+  transition: transform .15s ease;
+}
+.ringExit { border-radius: 6px; transform: rotate(45deg); }
+.ringApprox { border-style: dashed; opacity: .85; }
+.hotspot:hover .ring, .hotspot:focus-visible .ring { transform: scale(1.25); }
+.hotspot:hover .ringExit, .hotspot:focus-visible .ringExit { transform: rotate(45deg) scale(1.25); }
+.token {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--brass-hi);
+  object-fit: cover;
+  background: #2b2114;
+  box-shadow: 0 0 0 3px #000a, 0 4px 14px #000a;
+  display: grid;
+  place-items: center;
+  font-family: var(--f-display);
+  font-weight: 700;
+  color: var(--brass-hi);
+}
+.tip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  z-index: 5;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 220px;
+  padding: 6px 9px;
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  background: #0f1312ef;
+  color: var(--text);
+  font-size: 13px;
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+}
+.tip b { display: block; font-family: var(--f-display); color: var(--brass-hi); }
+.hotspotDragging { cursor: grabbing; opacity: .8; }
+
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.strip b { color: var(--brass-hi); font-family: var(--f-display); font-weight: 600; }
+.note {
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass);
+  border-radius: 6px;
+  background: var(--leather);
+  color: var(--text);
+  font-size: 14px;
+}
+.warn { border-left-color: var(--amber); }
+.sideList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+.sideList span {
+  padding: 3px 9px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 999px;
+  color: var(--text);
+}
+.tools {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--leather);
+}
+.tools summary {
+  min-height: var(--touch);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 14px;
+}
+.toolsBody { display: grid; gap: 12px; padding: 4px 12px 14px; }
+.field { display: grid; gap: 4px; font-size: 13px; color: var(--muted); }
+.field textarea, .field input {
+  min-height: var(--touch);
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.empty {
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  padding: 18px;
+  text-align: center;
+  color: var(--text);
+}
+@media (max-width: 640px) {
+  .screen { padding: 10px; gap: 10px; }
+  .stage { border-radius: 8px; }
+  .pinLabel { font-size: 13px; }
+  .textLink { margin-left: 0; }
+}

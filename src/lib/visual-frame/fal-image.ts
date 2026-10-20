@@ -173,7 +173,7 @@ export const DEFAULT_FAL_IMAGE_MODEL: FalImageModelId = "fal-ai/flux-2-pro";
 /** Picked in Stage V by measured speed, cost and consistency (docs/runs/stage-v). */
 export const FAST_FAL_IMAGE_MODEL: FalImageModelId = "fal-ai/flux-2/klein/9b";
 
-export type FalComposition = "portrait" | "item" | "location" | "holding" | "figure" | "atlas" | "frame";
+export type FalComposition = "portrait" | "item" | "location" | "holding" | "figure" | "atlas" | "frame" | "scene" | "region" | "battle";
 export const FAL_SIZES = {
   square_hd: [1024, 1024],
   portrait_4_3: [768, 1024],
@@ -195,6 +195,10 @@ export const COMPOSITION_SIZE: Record<FalComposition, FalSizePreset> = {
   figure: "portrait_16_9",
   atlas: "landscape_16_9",
   frame: "landscape_16_9",
+  // 2D Live: scenes and region maps are drawn wide, like frames; the battle background square-ish for a grid.
+  scene: "landscape_16_9",
+  region: "landscape_16_9",
+  battle: "landscape_4_3",
 };
 
 export type FalImageErrorCode = "not_configured" | "validation" | "unavailable" | "failed" | "timeout";
@@ -477,6 +481,10 @@ export function falSubjectPrompt(input: {
     holding: "Wide illustration of the vehicle or base as a whole, clear silhouette, atmospheric light.",
     atlas: "Top-down illustrated map background, parchment and ink, soft terrain, no labels.",
     frame: "A cinematic story frame of the moment described, one clear focal action.",
+    // 2D Live: these three are drawn from their own briefs (src/lib/live2d); the framing here is the fallback.
+    scene: "Wide establishing illustration of the place with its layout readable at a glance, no people, no text.",
+    region: "A painted atlas map of the region from high above, places as small landmarks, no labels.",
+    battle: "Top-down view of the place for a battle map, the ground plane flat and readable, no people, no grid lines, no text.",
   };
   return [
     framing[input.composition],

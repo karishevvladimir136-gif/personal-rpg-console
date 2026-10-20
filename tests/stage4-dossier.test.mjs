@@ -462,6 +462,9 @@ test("tool descriptions stay compact: seventeen tools, their descriptions under 
   // Fix run D: the item's bonuses / hands / charges, money's source, the counter's label, the roll's ammunition and a
   // character's gear and sheet (≈ +900 after trimming the longest descriptions); OpenAI's strict form spells out every
   // optional field, so its ceiling is 11k (the schema sits in the cached prefix).
-  assert.ok(estimateTokens(openai) < 11000, `openai tool schema ${estimateTokens(openai)} tokens`);
-  assert.ok(estimateTokens(anthropic) < 10000, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
+  // 2D Live part 2 grows the combat tool to the fight's fifteen actions (about 2.6k of the total).
+  // The session 3 candidate carries both: 17 tools at 12 855 (OpenAI) / 11 874 (Anthropic) estimated tokens, re-measured
+  // after the merge (the fix run alone 10 529 / 9 835, the 2D branch alone 11 468 / 10 656).
+  assert.ok(estimateTokens(openai) < 13500, `openai tool schema ${estimateTokens(openai)} tokens`);
+  assert.ok(estimateTokens(anthropic) < 12500, `anthropic tool schema ${estimateTokens(anthropic)} tokens`);
 });

@@ -22,6 +22,11 @@ import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
 import { patchSheet, sheetChanges, type AnySheet, type SheetPatch } from "../../inventory/sheet.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
+import type { EncounterParticipant } from "../contracts.ts";
+import { combatantJson, DEFAULT_GRID, defaultEconomy, fieldJson, MAX_LOG, parseCombatant, parseFeature, parseField, parsePlacement, placementJson, type Combatant, type Field, type LogLine, type Side } from "../../live2d/battle/contracts.ts";
+import { adjacentIds, cellDistance, distanceFeet, insideGrid, moveCost, sight, zoneFrom } from "../../live2d/battle/geometry.ts";
+import { fightCard, type Fighter as BattleFighter } from "../../live2d/battle/battlefield.ts";
+import { attackRuling, damageRuling, rulesOnByDefault, rulesText, type AppliedRule } from "../../live2d/battle/rules.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -1529,46 +1534,410 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 
 // --- combat ----------------------------------------------------------------
 function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
+  // 2D Live part 2: the fight's state lives in the encounter rows (the field on the encounter,
+  // the combatant in each participant); the server measures, the DM and the system decide.
   const action = str(args.action);
+  const l = ctx.language;
   const active = shadow.runtime.encounters.find((row) => row.status === "active");
+  const partyIds = new Set(shadow.partyIds());
+  const rows = () => shadow.runtime.participants.filter((row) => row.encounter_id === active!.id).sort((a, b) => a.turn_order - b.turn_order);
+  const fighterOf = (row: EncounterParticipant): BattleFighter => ({ participantId: row.id, entityId: row.entity_id, name: row.public_name, turnOrder: row.turn_order,
+    combatant: parseCombatant(row.public_resources, { side: row.entity_id && partyIds.has(row.entity_id) ? "party" : "foe" }), placement: parsePlacement(row.public_position) });
+  const fieldOf = () => parseField((active as { public_field?: unknown } | undefined)?.public_field);
+  const saveField = (field: Field) => shadow.apply({ family: "encounters", id: active!.id, expectedRevision: null, values: { public_field: fieldJson(field) } });
+  const saveFighter = (fighter: BattleFighter) => shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null,
+    values: { public_resources: combatantJson(fighter.combatant), public_position: placementJson(fighter.placement) } });
+  const participantOf = (ref: unknown, what: string) => {
+    const entity = entityOf(shadow, ref, what);
+    const row = rows().find((p) => p.entity_id === entity.id);
+    reject(row, `${entity.name} is not in this encounter.`, "Add them with combat place.");
+    return { entity, fighter: fighterOf(row) };
+  };
+  const heroId = shadow.snapshot.entities.find((row) => row.kind === "player")?.id ?? null;
+  /** Both views agree: every zone word is derived from the coordinates, seen from the hero. */
+  const deriveZones = (field: Field, fighters: BattleFighter[]) => {
+    const hero = fighters.find((row) => row.entityId === heroId) ?? fighters.find((row) => row.combatant.side === "party") ?? null;
+    for (const fighter of fighters) {
+      if (!hero || fighter.placement.x === null || hero.placement.x === null) continue;
+      const before = fighter.placement.position;
+      fighter.placement.position = fighter.participantId === hero.participantId ? "nearby" : zoneFrom(field, hero.placement, fighter.placement).zone;
+      if (before !== fighter.placement.position) saveFighter(fighter);
+    }
+  };
+  const placementArgs = (what: string) => ((args.placements as { actorRef: unknown; x: unknown; y: unknown; z?: unknown; initiative?: unknown; side?: unknown }[] | undefined) ?? []).map((entry) => {
+    const x = int(entry.x), y = int(entry.y);
+    reject(x !== null && y !== null, `${what}: x and y are grid cells (integers).`);
+    const side: Side | null = entry.side === "party" || entry.side === "foe" || entry.side === "other" ? entry.side : null;
+    return { entity: entityOf(shadow, entry.actorRef, `${what}.actorRef`), x: x!, y: y!, z: int(entry.z) ?? 0, initiative: int(entry.initiative), side };
+  });
+  const logLine = (field: Field, line: LogLine) => { field.log = [...field.log, line].slice(-MAX_LOG); };
+  const wordList = (v: unknown) => (Array.isArray(v) ? v.map((row) => str(row).toLowerCase()).filter(Boolean).slice(0, 12) : []);
+
   if (action === "start") {
     reject(!active, "An encounter is already active.", "End it first (combat end) or add positions.");
     const refs = (args.participantRefs as unknown[] | undefined) ?? [];
-    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!),
-      ...refs.map((ref) => entityOf(shadow, ref, "participantRefs"))].map((e) => [e.id, e])).values()];
+    const placed = placementArgs("placements");
+    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!), ...refs.map((ref) => entityOf(shadow, ref, "participantRefs")), ...placed.map((row) => row.entity)].map((e) => [e.id, e])).values()];
     const id = stableGameplayId(ctx.input.operationId, `dm-loop:encounter:${ctx.toolCalls}`);
-    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null,
-      settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary) } });
-    participants.forEach((entity, index) => {
-      shadow.apply({ family: "encounter_participants", id: stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`),
-        expectedRevision: null, values: { encounter_id: id, entity_id: entity.id, public_name: entity.name, turn_order: index + 1,
-          public_position: { position: "nearby" }, public_resources: { action: 1, move: 1, reaction: 1, active: index === 0, defending: false, withdrawn: false } } });
+    const grid = args.grid && typeof args.grid === "object" ? args.grid as { cols?: unknown; rows?: unknown } : {};
+    const field: Field = { ...parseField({ grid: { cols: int(grid.cols) ?? DEFAULT_GRID.cols, rows: int(grid.rows) ?? DEFAULT_GRID.rows }, ambient: args.ambient }),
+      locationId: shadow.snapshot.publicState.current_location_id, opening: args.opening === "party" ? "party" : null, activeParticipantId: null, turnInRound: 0, log: [], features: [], pendingReaction: null,
+      rules: typeof args.rules === "boolean" ? args.rules : rulesOnByDefault(`${shadow.snapshot.settings.values.rulesSystem?.label ?? ""} ${shadow.snapshot.settings.values.rulesSystem?.id ?? ""}`) };
+    const surprised = new Set(((args.surprisedRefs as unknown[] | undefined) ?? []).map((ref) => entityOf(shadow, ref, "surprisedRefs").id));
+    const hpRows = new Map(((args.hp as { actorRef: unknown; current: unknown; max: unknown; ac?: unknown; resist?: unknown; immune?: unknown; vulnerable?: unknown; moveMaxFeet?: unknown }[] | undefined) ?? [])
+      .map((row) => [entityOf(shadow, row.actorRef, "hp.actorRef").id, { current: int(row.current) ?? 0, max: int(row.max) ?? 1, ac: int(row.ac), resist: wordList(row.resist), immune: wordList(row.immune), vulnerable: wordList(row.vulnerable), moveMaxFeet: int(row.moveMaxFeet) }]));
+    const initiativeOf = new Map(placed.map((row) => [row.entity.id, row.initiative]));
+    // Order: initiative totals when given (party first on ties), else the party first as before.
+    const ordered = [...participants].sort((a, b) => ((initiativeOf.get(b.id) ?? -99) - (initiativeOf.get(a.id) ?? -99)) || (Number(partyIds.has(b.id)) - Number(partyIds.has(a.id))));
+    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null, settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary), public_field: fieldJson(field) } });
+    const fighters: BattleFighter[] = [];
+    ordered.forEach((entity, index) => {
+      const place = placed.find((row) => row.entity.id === entity.id);
+      const side: Side = place?.side ?? (partyIds.has(entity.id) ? "party" : "foe");
+      const given = hpRows.get(entity.id) ?? null;
+      const hp = given ? { current: given.current, max: given.max } : side !== "party" && entity.max_hp ? { current: entity.hp ?? entity.max_hp, max: entity.max_hp } : null;
+      if (given) {
+        reject(!partyIds.has(entity.id), `${entity.name} is in the party: their hit points go through resource.`);
+        shadow.apply(entityChange(shadow, entity, { hp: given.current, max_hp: given.max }));
+      }
+      const moveMax = given?.moveMaxFeet ?? 30;
+      const combatant: Combatant = { initiative: initiativeOf.get(entity.id) ?? null, active: index === 0, side,
+        economy: surprised.has(entity.id) ? { ...defaultEconomy(moveMax), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(moveMax),
+        conditions: surprised.has(entity.id) ? ["surprised"] : [], deathSaves: null, hp, known: [], intent: null,
+        ac: given?.ac ?? null, resist: given?.resist ?? [], immune: given?.immune ?? [], vulnerable: given?.vulnerable ?? [], defending: false, withdrawn: false };
+      const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`);
+      const fighter: BattleFighter = { participantId, entityId: entity.id, name: entity.name, turnOrder: index + 1, combatant, placement: { position: "nearby", x: place?.x ?? null, y: place?.y ?? null, z: place?.z ?? 0 } };
+      shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: id, entity_id: entity.id, public_name: entity.name, turn_order: index + 1,
+        public_position: placementJson(fighter.placement), public_resources: combatantJson(combatant) } });
+      fighters.push(fighter);
     });
+    field.activeParticipantId = fighters[0]?.participantId ?? null;
+    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { public_field: fieldJson(field) } });
     const config = shadow.configuration();
     config.presentEntityIds = [...new Set([...config.presentEntityIds, ...participants.map((p) => p.id)])];
     shadow.setConfiguration(config);
-    return ok({ encounterId: id, participants: participants.map((p) => p.name) }, `Combat begins: ${participants.map((p) => p.name).join(", ")}`,
-      null, chip.combatStart(ctx.language, participants.map((p) => p.name)));
+    // The zones from the coordinates, seen from the hero.
+    const started = shadow.runtime.encounters.find((row) => row.id === id)!;
+    const hero = fighters.find((row) => row.entityId === heroId) ?? null;
+    if (hero && hero.placement.x !== null) for (const fighter of fighters) {
+      fighter.placement.position = fighter === hero ? "nearby" : zoneFrom(field, hero.placement, fighter.placement).zone;
+      shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null, values: { public_position: placementJson(fighter.placement) } });
+    }
+    void started;
+    const order = fighters.map((row) => `${row.name}${row.combatant.initiative !== null ? ` (${row.combatant.initiative})` : ""}`);
+    return ok({ encounterId: id, order, active: fighters[0]?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null) },
+      `Combat begins: ${order.join(", ")}${field.opening ? "; the party's planned opening resolves before initiative" : ""}`, null, chip.combatStart(l, participants.map((p) => p.name)));
   }
   reject(active, "No encounter is active.", "Start one with combat start.");
+  const field = fieldOf();
+  const fighters = rows().map(fighterOf);
+
   if (action === "position") {
     const moved: string[] = [];
     for (const entry of (args.positions as { actorRef: unknown; position: string }[] | undefined) ?? []) {
-      const entity = entityOf(shadow, entry.actorRef, "positions.actorRef");
-      const participant = shadow.runtime.participants.find((row) => row.encounter_id === active.id && row.entity_id === entity.id);
-      reject(participant, `${entity.name} is not in this encounter.`);
-      shadow.apply({ family: "encounter_participants", id: participant.id, expectedRevision: null,
-        values: { public_position: { position: entry.position } } });
-      moved.push(`${entity.name}: ${entry.position}`);
+      const { entity, fighter } = participantOf(entry.actorRef, "positions.actorRef");
+      reject(fighter.placement.x === null, `${entity.name} stands on the grid: use combat move with cells.`);
+      fighter.placement.position = entry.position === "far" || entry.position === "cover" ? entry.position : "nearby";
+      saveFighter(fighter);
+      moved.push(`${entity.name}: ${fighter.placement.position}`);
     }
     return ok({ encounterId: active.id, moved }, `Positions: ${moved.join(", ") || "unchanged"}`);
+  }
+  if (action === "place") {
+    const placed = placementArgs("placements");
+    reject(placed.length > 0, "combat place needs placements.");
+    const names: string[] = [];
+    for (const row of placed) {
+      reject(insideGrid(field, { x: row.x, y: row.y }), `${row.entity.name}: (${row.x}, ${row.y}) is outside the ${field.grid.cols}×${field.grid.rows} grid.`);
+      const existing = fighters.find((f) => f.entityId === row.entity.id) ?? null;
+      if (!existing) {
+        // A late arrival joins at the end of the order.
+        const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${active.id}:${row.entity.id}:${ctx.toolCalls}`);
+        const turnOrder = Math.max(0, ...fighters.map((f) => f.turnOrder)) + 1;
+        const fighter: BattleFighter = { participantId, entityId: row.entity.id, name: row.entity.name, turnOrder, placement: { position: "nearby", x: row.x, y: row.y, z: row.z },
+          combatant: { initiative: row.initiative, active: false, side: row.side ?? (partyIds.has(row.entity.id) ? "party" : "foe"), economy: defaultEconomy(), conditions: [], deathSaves: null,
+            hp: !partyIds.has(row.entity.id) && row.entity.max_hp ? { current: row.entity.hp ?? row.entity.max_hp, max: row.entity.max_hp } : null, known: [], intent: null,
+            ac: null, resist: [], immune: [], vulnerable: [], defending: false, withdrawn: false } };
+        shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: active.id, entity_id: row.entity.id, public_name: row.entity.name, turn_order: turnOrder,
+          public_position: placementJson(fighter.placement), public_resources: combatantJson(fighter.combatant) } });
+        fighters.push(fighter);
+        const config = shadow.configuration();
+        config.presentEntityIds = [...new Set([...config.presentEntityIds, row.entity.id])];
+        shadow.setConfiguration(config);
+      } else {
+        existing.placement = { ...existing.placement, x: row.x, y: row.y, z: row.z };
+        if (row.initiative !== null) existing.combatant.initiative = row.initiative;
+        if (row.side) existing.combatant.side = row.side;
+        saveFighter(existing);
+      }
+      names.push(`${row.entity.name} → (${row.x}, ${row.y}${row.z ? `, +${row.z} ft` : ""})`);
+    }
+    deriveZones(field, fighters);
+    return ok({ encounterId: active.id, placed: names }, `Placed: ${names.join("; ")}`);
+  }
+  if (action === "move") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const x = int(args.x), y = int(args.y);
+    reject(x !== null && y !== null, `move needs x and y (cells of the ${field.grid.cols}×${field.grid.rows} grid).`);
+    // A move past the edge of the grid is leaving the field (a fleeing foe, in the live probes): the fighter is withdrawn and
+    // out of the turn order, the token stays at the cell it left from.
+    if (!insideGrid(field, { x: x!, y: y! })) {
+      fighter.combatant.withdrawn = true;
+      fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions, "fled"])].slice(0, 12);
+      saveFighter(fighter);
+      deriveZones(field, fighters);
+      return ok({ actor: entity.name, withdrawn: true, to: { x, y } }, `${entity.name} leaves the field (past the edge of the ${field.grid.cols}×${field.grid.rows} grid): fled, out of the fight.`,
+        null, partyIds.has(entity.id) ? (l === "ru" ? `${entity.name} уходит с поля боя` : `${entity.name} leaves the field`) : null);
+    }
+    reject(fighter.placement.x !== null && fighter.placement.y !== null, `${entity.name} has no position yet: place them first (combat place).`);
+    const from = { x: fighter.placement.x!, y: fighter.placement.y! };
+    const cost = moveCost(field, from, { x: x!, y: y! });
+    reject(!cost.blocked, `${entity.name} cannot pass ${cost.blocked?.label ?? "a wall"} on that line.`, "Move around it in two steps.");
+    const free = args.free === true;
+    reject(free || cost.feet <= fighter.combatant.economy.moveFeet, `${entity.name} has ${fighter.combatant.economy.moveFeet} ft of movement left; that move is ${cost.feet} ft.`, "Move a shorter way, or free: true when the movement is forced.");
+    const opportunity = adjacentIds(field, from, fighters.filter((f) => f.participantId !== fighter.participantId && f.combatant.side !== fighter.combatant.side && f.combatant.economy.reaction && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled/.test(c))).map((f) => ({ id: f.participantId, placement: f.placement })))
+      .filter((pid) => cellDistance({ x: x!, y: y! }, { x: fighters.find((f) => f.participantId === pid)!.placement.x!, y: fighters.find((f) => f.participantId === pid)!.placement.y! }) > 1)
+      .map((pid) => fighters.find((f) => f.participantId === pid)!.name);
+    fighter.placement = { ...fighter.placement, x: x!, y: y! };
+    if (!free) fighter.combatant.economy.moveFeet = Math.max(0, fighter.combatant.economy.moveFeet - cost.feet);
+    saveFighter(fighter);
+    deriveZones(field, fighters);
+    const crossed = cost.crossed.filter((row) => row.kind === "burning" || row.kind === "difficult").map((row) => row.label);
+    const player = l === "ru" ? `${entity.name} → (${x}, ${y}), ${cost.feet} фт` : `${entity.name} → (${x}, ${y}), ${cost.feet} ft`;
+    return ok({ actor: entity.name, from, to: { x, y }, feet: cost.feet, movementLeft: fighter.combatant.economy.moveFeet, crossed, opportunityAttacks: opportunity },
+      `${entity.name} moves to (${x}, ${y}): ${cost.feet} ft${free ? " (forced)" : `, ${fighter.combatant.economy.moveFeet} ft left`}${crossed.length ? `; crosses ${crossed.join(", ")}` : ""}${opportunity.length ? `; leaves the reach of ${opportunity.join(", ")} — they may take an opportunity attack (roll it if they do)` : ""}`,
+      null, partyIds.has(entity.id) ? player : null);
+  }
+  if (action === "next_turn") {
+    const alive = fighters.filter((row) => !row.combatant.withdrawn && !row.combatant.conditions.some((c) => c === "dead" || c === "fled"));
+    reject(alive.length > 0, "Nobody is left to act.");
+    const current = fighters.find((row) => row.participantId === field.activeParticipantId) ?? fighters.find((row) => row.combatant.active) ?? null;
+    const after = alive.filter((row) => !current || row.turnOrder > current.turnOrder);
+    const next = after[0] ?? alive[0];
+    let round = active.round;
+    const wrapped = !after.length;
+    if (wrapped) {
+      round += 1;
+      // Surprise ends with the first round.
+      for (const row of fighters) if (row.combatant.conditions.includes("surprised")) { row.combatant.conditions = row.combatant.conditions.filter((c) => c !== "surprised"); saveFighter(row); }
+    }
+    for (const row of fighters) if (row.combatant.active && row.participantId !== next.participantId) { row.combatant.active = false; saveFighter(row); }
+    next.combatant.active = true;
+    const paralysed = next.combatant.conditions.some((c) => /paralysed|unconscious|stunned|без сознания|парализ/i.test(c));
+    next.combatant.economy = paralysed ? { ...defaultEconomy(next.combatant.economy.moveMaxFeet), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(next.combatant.economy.moveMaxFeet);
+    saveFighter(next);
+    field.activeParticipantId = next.participantId;
+    field.turnInRound = wrapped ? 1 : field.turnInRound + 1;
+    saveField(field);
+    if (wrapped) shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { round } });
+    const player = l === "ru" ? `Раунд ${round} · ходит ${next.name}` : `Round ${round} · ${next.name} to act`;
+    return ok({ round, active: next.name, activeId: next.entityId, newRound: wrapped, economy: next.combatant.economy }, `Round ${round}: ${next.name} acts${paralysed ? " (cannot act: " + next.combatant.conditions.join(", ") + ")" : ""}`, null, player);
+  }
+  if (action === "profile") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    if (args.ac !== undefined) fighter.combatant.ac = int(args.ac);
+    if (args.resist !== undefined) fighter.combatant.resist = wordList(args.resist);
+    if (args.immune !== undefined) fighter.combatant.immune = wordList(args.immune);
+    if (args.vulnerable !== undefined) fighter.combatant.vulnerable = wordList(args.vulnerable);
+    if (args.moveMaxFeet !== undefined) { const speed = int(args.moveMaxFeet) ?? 30; fighter.combatant.economy.moveMaxFeet = speed; fighter.combatant.economy.moveFeet = Math.min(fighter.combatant.economy.moveFeet, speed); }
+    saveFighter(fighter);
+    return ok({ actor: entity.name, ac: fighter.combatant.ac, resist: fighter.combatant.resist, immune: fighter.combatant.immune, vulnerable: fighter.combatant.vulnerable, moveMaxFeet: fighter.combatant.economy.moveMaxFeet },
+      `${entity.name}: AC ${fighter.combatant.ac ?? "?"}${fighter.combatant.resist.length ? `, resists ${fighter.combatant.resist.join(", ")}` : ""}${fighter.combatant.immune.length ? `, immune ${fighter.combatant.immune.join(", ")}` : ""}${fighter.combatant.vulnerable.length ? `, vulnerable ${fighter.combatant.vulnerable.join(", ")}` : ""}, speed ${fighter.combatant.economy.moveMaxFeet} ft`);
+  }
+  if (action === "attack") {
+    // The optional rules module (Part 2): the server measures and does the sums; the DM narrates.
+    const { entity: attacker, fighter: af } = participantOf(args.actorRef, "actorRef");
+    const { entity: target, fighter: tf } = participantOf(args.targetRef, "targetRef");
+    reject(attacker.id !== target.id, "attack: the target is the attacker.");
+    const bonus = int(args.attackBonus) ?? 0;
+    // A party member's armour class from the sheet when the DM gives none: the system's own stat name (ac, КД, armour, defense).
+    const sheetAc = partyIds.has(target.id) ? Object.entries(target.stats).find(([key, value]) => /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита)$/i.test(key) && typeof value === "number")?.[1] ?? null : null;
+    const ac = int(args.ac) ?? tf.combatant.ac ?? sheetAc;
+    reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
+    reject(str(args.damage).length > 0, "attack needs the damage formula (1d8+3).");
+    const formula = parseFormula(str(args.damage));
+    const count = Math.min(8, Math.max(1, int(args.count) ?? 1));
+    const ranged = args.ranged === true;
+    const damageType = str(args.damageType).toLowerCase() || null;
+    const feet = distanceFeet(af.placement, tf.placement, field.grid.feetPerCell);
+    const look = af.placement.x !== null && af.placement.y !== null && tf.placement.x !== null && tf.placement.y !== null
+      ? sight(field, { x: af.placement.x, y: af.placement.y }, { x: tf.placement.x, y: tf.placement.y }) : null;
+    // 5e: a hostile able to act within 5 ft of the shooter puts a ranged attack at disadvantage (the server measures it).
+    const hostileAdjacent = ranged && af.placement.x !== null && af.placement.y !== null && adjacentIds(field, { x: af.placement.x, y: af.placement.y },
+      fighters.filter((f) => f.participantId !== af.participantId && f.combatant.side !== af.combatant.side && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled|мертв|без сознания|парализ/iu.test(c))).map((f) => ({ id: f.participantId, placement: f.placement }))).length > 0;
+    const ruling = field.rules ? attackRuling({ attacker: af.combatant, target: tf.combatant, feet, cover: look?.cover ?? null, ranged, hostileAdjacent })
+      : { advantage: "normal" as const, autoCrit: false, acBonus: 0, rules: [] as AppliedRule[], impossible: null as string | null };
+    reject(ruling.impossible === null, `${attacker.name} cannot attack ${target.name}: ${ruling.impossible}.`);
+    reject(!look || look.visible, `${attacker.name} has no line of sight to ${target.name} (${look?.blockedBy?.label ?? "a wall"}).`);
+    if (!ranged && feet !== null) reject(feet <= 10, `${target.name} is ${feet} ft away: out of melee reach (move first, or ranged: true).`);
+    const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+    const visibleCard = controlled.has(attacker.id) && count === 1 && ctx.checks.length < L.maxChecksPerTurn;
+    const results: JsonObject[] = [];
+    const playerLines: string[] = [];
+    let recorded: RecordedCheck | null = null;
+    let totalDamage = 0;
+    for (let i = 0; i < count; i++) {
+      let kept: number, dice: number[];
+      if (visibleCard) {
+        // targetId stays null: the receipt store checks a target against the database, and a foe created this turn is not there yet (the name is in the reason).
+        const proposal = { index: ctx.checks.length, actorId: attacker.id, targetId: null, kind: "attack" as const, stat: "attack" as const, dc: ac + ruling.acBonus, dcPublic: true, visibility: "player" as const,
+          important: true, uncertainty: "meaningful" as const, advantage: ruling.advantage, reason: str(args.reason) || (l === "ru" ? `Атака: ${target.name}` : `Attack: ${target.name}`),
+          bonuses: ruling.acBonus ? [{ source: l === "ru" ? "укрытие цели" : "the target's cover", value: 0 }] : [], advantageReason: ruling.rules.length ? rulesText(ruling.rules, l === "ru" ? "ru" : "en") : null, difficulty: null, natural: null as RecordedCheck["natural"] };
+        const rolled = recordServerRoll(ctx.input.operationId, proposal, bonus, 1, ctx.random);
+        recorded = { ...rolled, natural: rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null };
+        kept = rolled.kept; dice = [...rolled.dice];
+      } else {
+        dice = Array.from({ length: ruling.advantage === "normal" ? 1 : 2 }, () => ctx.random(1, 21));
+        kept = ruling.advantage === "advantage" ? Math.max(...dice) : ruling.advantage === "disadvantage" ? Math.min(...dice) : dice[0];
+      }
+      const total = kept + bonus;
+      const hit = kept === 20 || (kept !== 1 && total >= ac + ruling.acBonus);
+      const crit = kept === 20 || (hit && ruling.autoCrit);
+      let damage = 0;
+      let damageRules: AppliedRule[] = [];
+      if (hit) {
+        const roll = () => Array.from({ length: formula.count }, () => ctx.random(1, formula.sides + 1));
+        const base = roll();
+        if (field.rules) {
+          const ruled = damageRuling({ dice: base, modifier: formula.modifier, crit, critDice: crit ? roll() : undefined, damageType, target: tf.combatant });
+          damage = ruled.total; damageRules = ruled.rules;
+        } else damage = Math.max(0, base.reduce((sum, die) => sum + die, 0) + formula.modifier);
+        totalDamage += damage;
+      }
+      const applied = [...ruling.rules, ...damageRules];
+      const rulesLine = applied.length ? ` (${rulesText(applied, l === "ru" ? "ru" : "en")})` : "";
+      const outcome = hit ? (l === "ru" ? `попал${crit ? ", крит!" : ""}, ${damage} урона` : `hit${crit ? ", crit!" : ""}, ${damage} damage`) : (l === "ru" ? `промах${kept === 1 ? " (единица)" : ""}` : `miss${kept === 1 ? " (natural 1)" : ""}`);
+      playerLines.push(`${attacker.name} → ${target.name}: ${total} ${l === "ru" ? "против КД" : "vs AC"} ${ac + ruling.acBonus} · ${outcome}${rulesLine}`);
+      results.push({ dice, kept, bonus, total, ac: ac + ruling.acBonus, hit, crit, damage, damageType, rules: applied.map((row) => `${row.rule}: ${row.effect}`) });
+      logLine(field, { round: active.round, actor: attacker.name, what: str(args.reason) || (ranged ? (l === "ru" ? "выстрел" : "shot") : (l === "ru" ? "удар" : "strike")), result: hit ? (l === "ru" ? `${total} против КД ${ac + ruling.acBonus} · попал${crit ? ", крит!" : ""}, ${damage} урона → ${target.name}` : `${total} vs AC ${ac + ruling.acBonus} · hit${crit ? ", crit!" : ""}, ${damage} damage → ${target.name}`) : (l === "ru" ? `${total} против КД ${ac + ruling.acBonus} · промах` : `${total} vs AC ${ac + ruling.acBonus} · miss`), ref: recorded?.id ?? null });
+    }
+    // The hit points: a foe's mirror and record, a party member's record (as resource hp would).
+    let hpLine = "";
+    if (totalDamage > 0) {
+      const current = tf.combatant.hp?.current ?? target.hp ?? target.max_hp ?? 0;
+      const max = tf.combatant.hp?.max ?? target.max_hp ?? Math.max(1, current);
+      const next = Math.max(0, current - totalDamage);
+      if (!partyIds.has(target.id)) tf.combatant.hp = { current: next, max };
+      shadow.apply(entityChange(shadow, target, { hp: next, max_hp: max }));
+      if (next === 0 && !tf.combatant.conditions.includes("dead") && !tf.combatant.conditions.includes("unconscious")) tf.combatant.conditions = [...tf.combatant.conditions, partyIds.has(target.id) ? "dying" : "unconscious"];
+      hpLine = ` HP ${current} → ${next}/${max}${next === 0 ? (partyIds.has(target.id) ? " (down, dying: death saves follow)" : " (down)") : ""}`;
+    }
+    if (af.participantId === field.activeParticipantId) af.combatant.economy.action = false;
+    saveFighter(af);
+    saveFighter(tf);
+    saveField(field);
+    const summary = `${results.map((row, index) => `${count > 1 ? `#${index + 1}: ` : ""}${row.total} vs AC ${row.ac} — ${row.hit ? `hit${row.crit ? " (crit)" : ""}, ${row.damage} ${row.damageType ?? ""} damage` : "miss"}${(row.rules as string[]).length ? ` [${(row.rules as string[]).join("; ")}]` : ""}`).join("; ")}; ${target.name}${hpLine || " unhurt"}. Narrate it.`;
+    return ok({ attacker: attacker.name, target: target.name, feet, cover: look?.cover ?? null, rulesModule: field.rules, attacks: results, totalDamage, ...(recorded ? { checkId: recorded.id } : {}) },
+      `${attacker.name} attacks ${target.name}: ${summary}`, recorded, playerLines.join("\n"));
+  }
+  if (action === "condition") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const add = ((args.add as unknown[] | undefined) ?? []).map((row) => str(row).toLowerCase()).filter(Boolean);
+    const remove = new Set(((args.remove as unknown[] | undefined) ?? []).map((row) => str(row).toLowerCase()));
+    fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions.filter((c) => !remove.has(c)), ...add])].slice(0, 12);
+    const save = str(args.deathSave);
+    if (save) {
+      reject(partyIds.has(entity.id), "deathSave is for the hero and companions; an enemy at 0 is down or dead by the system's word.");
+      const pips = save === "reset" ? null : { ...(fighter.combatant.deathSaves ?? { success: 0, fail: 0 }) };
+      if (pips) { if (save === "success") pips.success = Math.min(3, pips.success + 1); else pips.fail = Math.min(3, pips.fail + 1); }
+      fighter.combatant.deathSaves = pips;
+      if (pips && !fighter.combatant.conditions.includes("dying") && pips.success < 3 && pips.fail < 3) fighter.combatant.conditions.push("dying");
+    }
+    if (add.includes("dead") || add.includes("unconscious")) { fighter.combatant.active = false; }
+    saveFighter(fighter);
+    const words = fighter.combatant.conditions.join(", ") || (l === "ru" ? "без состояний" : "no conditions");
+    const pipsText = fighter.combatant.deathSaves ? ` · ${fighter.combatant.deathSaves.success}✓/${fighter.combatant.deathSaves.fail}✗` : "";
+    return ok({ actor: entity.name, conditions: fighter.combatant.conditions, deathSaves: fighter.combatant.deathSaves }, `${entity.name}: ${words}${pipsText}`, null, `${entity.name}: ${words}${pipsText}`);
+  }
+  if (action === "hp") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    reject(!partyIds.has(entity.id), `${entity.name} is in the party: use resource hp.`);
+    const current = fighter.combatant.hp?.current ?? entity.hp ?? entity.max_hp ?? 0;
+    const max = int(args.max) ?? fighter.combatant.hp?.max ?? entity.max_hp ?? Math.max(1, current);
+    const next = Math.max(0, Math.min(max, args.set !== undefined ? int(args.set) ?? current : current + (int(args.delta) ?? 0)));
+    fighter.combatant.hp = { current: next, max };
+    const by = args.byRef !== undefined ? entityOf(shadow, args.byRef, "byRef") : null;
+    const damage = current - next;
+    if (damage > 0) logLine(field, { round: active.round, actor: by?.name ?? "?", what: str(args.reason) || (l === "ru" ? "удар" : "hit"), result: l === "ru" ? `${damage} урона → ${entity.name}` : `${damage} damage → ${entity.name}`, ref: null });
+    if (next === 0 && !fighter.combatant.conditions.includes("dead")) { fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions, "unconscious"])]; }
+    saveFighter(fighter);
+    saveField(field);
+    shadow.apply(entityChange(shadow, entity, { hp: next, max_hp: max }));
+    const player = damage > 0 ? (l === "ru" ? `${entity.name}: −${damage} (${next}/${max})` : `${entity.name}: −${damage} (${next}/${max})`) : next > current ? (l === "ru" ? `${entity.name}: +${next - current} (${next}/${max})` : `${entity.name}: +${next - current} (${next}/${max})`) : null;
+    return ok({ actor: entity.name, before: current, after: next, max, by: by?.name ?? null }, `${entity.name} HP ${current} → ${next}/${max}${next === 0 ? " (down)" : ""}`, null, player);
+  }
+  if (action === "feature") {
+    const op = str(args.op) || "add";
+    const key = str(args.key);
+    reject(/^[a-z0-9][a-z0-9_-]{0,59}$/.test(key), "feature needs a key (lowercase letters, digits, dashes).");
+    if (op === "remove") {
+      reject(field.features.some((row) => row.key === key), `No feature "${key}" on the field.`);
+      field.features = field.features.filter((row) => row.key !== key);
+      saveField(field);
+      return ok({ removed: key }, `Feature removed: ${key}`);
+    }
+    const existing = field.features.find((row) => row.key === key) ?? null;
+    const parsed = parseFeature({ key, kind: args.kind ?? existing?.kind, label: args.label ?? existing?.label ?? key, cells: args.cells ?? existing?.cells,
+      cover: args.cover ?? existing?.cover, radiusFeet: args.radiusFeet ?? existing?.radiusFeet, dimRadiusFeet: args.dimRadiusFeet ?? existing?.dimRadiusFeet, heightFeet: args.heightFeet ?? existing?.heightFeet });
+    reject(parsed, "feature needs kind and at least one cell [x, y].");
+    reject(parsed!.cells.every((cell) => insideGrid(field, { x: cell[0], y: cell[1] })), `feature "${key}": a cell is outside the ${field.grid.cols}×${field.grid.rows} grid.`);
+    field.features = [...field.features.filter((row) => row.key !== key), parsed!].slice(0, 40);
+    saveField(field);
+    deriveZones(field, fighters);
+    return ok({ feature: parsed }, `Feature ${existing ? "updated" : "added"}: ${parsed!.label} (${parsed!.kind}, ${parsed!.cells.length} cells)`);
+  }
+  if (action === "known") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const text = str(args.text);
+    reject(text.length > 0, "known needs text.");
+    const revealed = args.revealed !== false;
+    fighter.combatant.known = [...fighter.combatant.known.filter((row) => row.text !== text), { text, revealed }].slice(-12);
+    saveFighter(fighter);
+    return ok({ actor: entity.name, known: fighter.combatant.known }, `${entity.name}: ${revealed ? "known" : "hidden"} — ${text}`, null, revealed ? (l === "ru" ? `О ${entity.name}: ${text}` : `About ${entity.name}: ${text}`) : null);
+  }
+  if (action === "intent") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const text = str(args.text);
+    const noticed = args.noticedByRef !== undefined && args.noticedByRef !== null ? entityOf(shadow, args.noticedByRef, "noticedByRef") : null;
+    fighter.combatant.intent = text ? { text, noticedBy: noticed?.id ?? null } : null;
+    saveFighter(fighter);
+    return ok({ actor: entity.name, intent: fighter.combatant.intent }, text ? `${entity.name} intends: ${text}${noticed ? ` (noticed by ${noticed.name})` : " (unnoticed)"}` : `${entity.name}: no intent`, null,
+      text && noticed ? (l === "ru" ? `${noticed.name} замечает: ${entity.name} — ${text}` : `${noticed.name} notices: ${entity.name} — ${text}`) : null);
+  }
+  if (action === "reaction") {
+    if (args.resolved === true) {
+      field.pendingReaction = null;
+      saveField(field);
+      return ok({ resolved: true }, "Reaction resolved");
+    }
+    const { entity, fighter } = participantOf(args.targetRef, "targetRef");
+    reject(partyIds.has(entity.id), "A reaction choice is the player's: targetRef must be the hero or a companion.");
+    reject(fighter.combatant.economy.reaction, `${entity.name} has no reaction left this round.`);
+    const options = ((args.options as unknown[] | undefined) ?? []).map((row) => str(row)).filter(Boolean).slice(0, 4);
+    reject(options.length > 0 && str(args.trigger).length > 0, "reaction needs the trigger and at least one option.");
+    field.pendingReaction = { targetId: fighter.participantId, trigger: str(args.trigger), options };
+    saveField(field);
+    return ok({ target: entity.name, trigger: str(args.trigger), options }, `Reaction pending for ${entity.name}: ${str(args.trigger)} — ${options.join(" / ")}. End the turn now and let the player choose.`,
+      null, l === "ru" ? `Реакция ${entity.name}: ${options.join(" / ")}` : `${entity.name}'s reaction: ${options.join(" / ")}`);
+  }
+  if (action === "log") {
+    const actor = args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef") : null;
+    const what = str(args.what), result = str(args.result);
+    reject(result.length > 0, "log needs a result.");
+    logLine(field, { round: active.round, actor: actor?.name ?? "—", what, result, ref: null });
+    saveField(field);
+    return ok({ logged: true }, `Log: ${actor?.name ?? "—"} · ${what} → ${result}`);
   }
   reject(action === "end", `Unknown combat action "${action}".`);
   const outcome = str(args.outcome);
   reject(outcome.length > 0, "combat end needs an outcome.");
-  shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { status: "ended", outcome,
+  const card = fightCard({ round: active.round, log: field.log, fighters });
+  field.pendingReaction = null;
+  field.activeParticipantId = null;
+  shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { status: "ended", outcome, public_field: fieldJson(field),
     ...(args.summary !== undefined ? { public_summary: str(args.summary) } : {}) } });
-  return ok({ encounterId: active.id, outcome }, `Combat ends: ${outcome}`, null, chip.combatEnd(ctx.language, outcome));
+  const cardLine = l === "ru" ? `Итог: ${card.rounds} р., нанесено ${card.dealt}, получено ${card.taken}${card.closeCalls.length ? `, на грани: ${card.closeCalls.join(", ")}` : ""}` : `Card: ${card.rounds} rounds, dealt ${card.dealt}, taken ${card.taken}${card.closeCalls.length ? `, close calls: ${card.closeCalls.join(", ")}` : ""}`;
+  return ok({ encounterId: active.id, outcome, card }, `Combat ends: ${outcome}. ${cardLine}`, null, `${chip.combatEnd(l, outcome)} · ${cardLine}`);
 }
 
 // --- holdings --------------------------------------------------------------

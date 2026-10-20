@@ -22,6 +22,7 @@
 import type { TurnInput, JsonObject } from "../contracts.ts";
 import type { RuntimeSource } from "../server-contracts.ts";
 import type { Entity, PublicProfile, Quest } from "../../persistence/contracts.ts";
+import { battlefield } from "./battlefield.ts";
 import { cardForRole, pinnedCraftForStage, type ContextCard } from "../dm-craft-context.ts";
 import { timeCheckLine, TIME_CHECK_KEY } from "./time-words.ts";
 import { quotableLine } from "./quotable.ts";
@@ -693,7 +694,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   const stableParts = [partyInShort(source), codexOfPeople(source, input, models), factions(source), journal(source, "stable"), pinnedFacts(source),
     notebook(source), adventureGuidance(source), sessionRecaps(source)];
   const tailParts = [peopleModels(source, input, models), journal(source, "open"), privateSecrets(source), offScreenPlans(source),
-    playerLikes(source), attentionLedger(source, ledger)];
+    playerLikes(source), attentionLedger(source, ledger), battlefield(source)];
   const living = stableParts.map((part) => part.text).filter(Boolean).join("\n\n")
     || "No dossier yet. Start it as the story needs: note_character for people who matter, note_world for secrets and plans, quest for the journal.";
   const tailBase = tailParts.map((part) => part.text).filter(Boolean).join("\n\n")

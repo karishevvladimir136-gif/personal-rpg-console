@@ -48,6 +48,8 @@ const NEW_MIGRATIONS = [
   "202610200083_fix_s2_starting_gear.sql",
   "202610200084_fix_s2_hero_one_pass.sql",
   "202610200096_fix_s2_owner_corrections.sql",
+  "202610210200_live2d.sql",
+  "202610210201_live2d_battle.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);

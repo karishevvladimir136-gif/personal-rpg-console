@@ -127,6 +127,10 @@ test("F2 item 5: nothing on the owner's screens is under 13px; helper and muted 
       const selector = block[1].replace(/\/\*[\s\S]*?\*\//g, "").trim();
       if (/::(before|after)/.test(selector)) continue;
       if (file.endsWith("globals.css") && /combat|initiative/i.test(selector)) continue;
+      // Merge after session 2: the 2D Live battle map's on-token badges (initiative, HP, condition letters, the
+      // opportunity-attack flag, the phone token's initials) and the SVG's feature labels (grid units) are the map's
+      // drawing, sized to the 44 px token; every text panel of the 2D screens keeps the 13 px floor.
+      if (file.endsWith("live2d/battle/battle.module.css") && /^\.(init|hpNum|condChip|oa|tokenFace|featureLabel)$/.test(selector)) continue;
       for (const size of block[2].matchAll(/font-size:\s*([0-9.]+)(px|rem)/g)) {
         const px = size[2] === "px" ? Number(size[1]) : Number(size[1]) * 16;
         if (px > 0 && px < 13) small.push(`${file}: ${selector} ${size[1]}${size[2]}`);
