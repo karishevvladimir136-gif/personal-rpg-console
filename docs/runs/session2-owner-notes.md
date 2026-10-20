@@ -1124,3 +1124,19 @@ report); the guard post's place record says «Раннее утро» — a time
     chronicle screen and its batch redraw leave the navigation (a «campaign as a book» export can come later as
     a button). Small, same screenshot: the hero panel shows two resources in English («Shaman tusk», «Arcane
     recovery»).
+
+81. **«Закончить сессию»: two paid digests, the chapter card shown twice, an odd recap** (owner, 22:16: «подвело оно,
+    конечно, странно»). Log: `session_digest` ran twice for the same session — `reason: entry` ($0.48, 46 s) while
+    the `reason: end` one was running ($1.06, 66 s); $1.54 in total (the planner had told the owner $0.3–0.7 —
+    wrong). This is item 17's missing in-flight guard: the open game screen kept polling (`/play` and
+    `dossier?view=digest` about once a second), `readPlay` saw a session with no digest and started an entry digest
+    in parallel. The screen then shows the «Глава закрыта — Зелёный сургуч» card twice with identical text. Content,
+    planner's reading (owner to say what struck him): the «Ранее в…» is one dense paragraph listing facts rather
+    than a recap of what matters next (where we are, what is at stake, what comes next); a minor detail (the
+    caravan master wearing his ring again) sits beside the main facts; the open hooks show only the quest and one
+    promise, while the live threads are more (the wounded man at large, the buyer, the convoy in six days, the
+    enemy mage's real name and his unpaid debt, the carter's loading place, the report for the captain); and
+    «Тем временем…» shows the wounded man let in at the back gate of the buyer's inn — it answers, for free, the
+    question the heroes were left with (the sergeant had only guessed it), which the hero cannot know. Do: the
+    in-flight guard and no digest on entry while an end digest runs; one card; the recap short and forward-looking;
+    hooks from all open threads; «meanwhile» shows a sign that keeps a question open, not the answer.
