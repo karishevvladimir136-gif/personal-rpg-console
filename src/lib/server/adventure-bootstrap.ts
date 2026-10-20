@@ -6,6 +6,8 @@ import { authorizeCampaign } from "./campaign-authorization";
 import { PersistenceError } from "./errors";
 import { createBootstrapService } from "../adventures/bootstrap-service.ts";
 import { createBootstrapProvider } from "./adventure-bootstrap-provider.ts";
+import { createHeroDraftProvider } from "./hero-draft-provider.ts";
+import { HERO_DRAFT_DM } from "../adventures/hero-draft-request.ts";
 import { resolveExecutionProfile } from "../model-runtime/registry.ts";
 import { applicationModelSelection } from "../model-runtime/defaults.ts";
 import { executionProviderOptions } from "./model-runtime/profiles.ts";
@@ -66,10 +68,13 @@ export async function performBootstrap(command: BootstrapCommand) {
   }
   return await createBootstrapService(
     rpc,
+    // Fix run F (item 20): the hero is built by the campaign's DM in one pass (schema 3); the opening keeps its path.
     (ticket) =>
-      createBootstrapProvider(
-        executionProviderOptions(ticket.profile, "world.compose"),
-      )(ticket),
+      ticket.kind === "creation"
+        ? createHeroDraftProvider()(ticket)
+        : createBootstrapProvider(
+            executionProviderOptions(ticket.profile, "world.compose"),
+          )(ticket),
     async (cid) => {
       const policy = cid
         ? (
@@ -88,11 +93,14 @@ export async function performBootstrap(command: BootstrapCommand) {
         // Polish 3 §2: on a split campaign the opening is written by the campaign's writer model.
         try { const settings = await readDmSettings(cid); dmTurn = settings.split?.writer ?? settings.dmTurn; } catch { dmTurn = null; }
       }
+      // Fix run F (item 20): a new hero is drafted by the DM a new campaign gets (the wizard's default, Claude Opus
+      // 5.5 at high), not by the app's background OpenAI model.
+      const creationDm = !cid && command.action === "creation.propose" ? { ...HERO_DRAFT_DM } : null;
       return resolveExecutionProfile({
         task: "world.compose",
         profileId: randomUUID(),
-        campaignPolicy: dmTurn ? null : policy,
-        globalDefault: dmTurn ?? applicationModelSelection(process.env),
+        campaignPolicy: dmTurn || creationDm ? null : policy,
+        globalDefault: dmTurn ?? creationDm ?? applicationModelSelection(process.env),
       });
     },
   ).perform(command);

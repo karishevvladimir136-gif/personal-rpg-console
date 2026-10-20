@@ -3,6 +3,7 @@ import type {
   BootstrapDraft,
   CreationInput,
   CreationProposal,
+  HeroProposal,
   OpeningProposal,
   StartCommand,
 } from "./bootstrap-contracts.ts";
@@ -10,8 +11,8 @@ import type { ProviderResult } from "../gameplay/server-contracts.ts";
 import type { ExecutionProfile } from "../production/contracts.ts";
 import {
   parseCreationInput,
-  parseCreationProposal,
-  parseCreationReview,
+  parseAnyCreationProposal,
+  parseAnyCreationReview,
   parseOpeningProposal,
   parseOpeningReview,
   parseBootstrapCommand,
@@ -45,7 +46,7 @@ export type BootstrapRpc = (
 ) => Promise<unknown>;
 export type BootstrapProvider = (
   ticket: BootstrapTicket,
-) => Promise<ProviderResult<CreationProposal | OpeningProposal>>;
+) => Promise<ProviderResult<CreationProposal | HeroProposal | OpeningProposal>>;
 function ticket(value: unknown): BootstrapTicket {
   const v = object(value, ["kind", "input", "world", "profile", "context"]);
   ensure(v.kind === "creation" || v.kind === "opening");
@@ -82,7 +83,7 @@ function projection(t: BootstrapTicket, result: unknown): BootstrapDraft {
         kind: "creation",
         draftId: (t.input as CreationInput).requestId,
         input: t.input as CreationInput,
-        proposal: parseCreationProposal(r.output, t.input as CreationInput),
+        proposal: parseAnyCreationProposal(r.output, t.input as CreationInput),
         usage,
       }
     : {
@@ -163,7 +164,7 @@ export function createBootstrapService(
       const pinned = ticket(saved.ticket),
         draft = projection(pinned, saved.result);
       if (draft.kind === "creation")
-        parseCreationReview(command.input.review, draft.proposal);
+        parseAnyCreationReview(command.input.review, draft.proposal);
       else
         parseOpeningReview(
           command.input.review,

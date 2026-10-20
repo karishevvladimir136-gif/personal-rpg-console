@@ -13,6 +13,14 @@ import type {
 } from "./bootstrap-contracts.ts";
 import { parseAdventureCommand } from "./validation.ts";
 import {
+  isHeroProposal,
+  isHeroReview,
+  parseHeroProposal,
+  parseHeroReview,
+  type HeroProposal,
+  type HeroReview,
+} from "./hero-draft.ts";
+import {
   ensure,
   integer,
   list,
@@ -24,11 +32,13 @@ import {
   uuid,
 } from "../foundation-loop/fields.ts";
 
+// Fix run F (item 20): the 12-thing and 8-resource caps at creation are gone («ограничение 12 предметов убираем»);
+// the ceilings stay far above play (the database's validators take the same numbers, migration 84).
 export const bootstrapLimits = {
   facts: 24,
-  possessions: 12,
+  possessions: 80,
   possessionQuantity: 1000,
-  resources: 8,
+  resources: 40,
   actors: 4,
   questions: 8,
   sheetSkills: 12,
@@ -142,7 +152,7 @@ export function parseCreationInput(value: unknown): CreationInput {
     title: text(v.title, 200),
     language: literal(v.language, ["en", "ru"]),
     name: text(v.name, 200),
-    description: text(v.description, 8000),
+    description: text(v.description, 20000),
   };
 }
 export function parseCreationProposal(
@@ -246,6 +256,21 @@ export function parseCreationProposal(
   }
   return proposal;
 }
+/** Any stored creation draft: the hero built in one pass (schema 3) or an older grounded draft (1, 2). */
+export function parseAnyCreationProposal(
+  value: unknown,
+  input?: CreationInput,
+): CreationProposal | HeroProposal {
+  return isHeroProposal(value) ? parseHeroProposal(value) : parseCreationProposal(value, input);
+}
+/** Any owner review of a creation draft, by its draft's schema (or by its own shape without one). */
+export function parseAnyCreationReview(
+  value: unknown,
+  proposal?: CreationProposal | HeroProposal,
+): CreationReview | HeroReview {
+  if (proposal) return proposal.schemaVersion === 3 ? parseHeroReview(value, proposal) : parseCreationReview(value, proposal);
+  return isHeroReview(value) ? parseHeroReview(value) : parseCreationReview(value);
+}
 function answers(value: unknown) {
   return list(
     value,
@@ -304,7 +329,7 @@ export function parseCreationReview(
       : value && typeof value === "object" && Object.hasOwn(value, "sheet") ? [...keys, "sheet", ...(Object.hasOwn(value, "equipmentProfile") ? ["equipmentProfile"] : [])] : keys);
   const result: CreationReview = {
     name: text(v.name, 200),
-    description: text(v.description, 8000),
+    description: text(v.description, 20000),
     capabilities: lines(v.capabilities),
     limitations: lines(v.limitations),
     possessions: unique(
@@ -503,7 +528,7 @@ export function parseBootstrapCommand(value: unknown): BootstrapCommand {
   );
   const base = { requestId: uuid(i.requestId), draftId: uuid(i.draftId) };
   return action === "creation.commit"
-    ? { action, input: { ...base, review: parseCreationReview(i.review) } }
+    ? { action, input: { ...base, review: parseAnyCreationReview(i.review) } }
     : {
         action,
         input: {

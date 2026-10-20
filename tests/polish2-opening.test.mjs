@@ -40,7 +40,8 @@ test("the registry admits the DM's Anthropic model for the opening (world.compos
   assert.equal(profile.registryVersion, "openai-responses-v1", "the profile DTO's version tag is unchanged (the SQL contract pins it)");
   // The bootstrap server resolves the opening from the DM's choice before the policy's primary.
   const bootstrap = src("src/lib/server/adventure-bootstrap.ts");
-  assert.match(bootstrap, /campaignPolicy: dmTurn \? null : policy,\s*globalDefault: dmTurn \?\? applicationModelSelection\(process\.env\)/);
+  // Fix run F (item 20): a new hero is drafted by the DM a new campaign gets (creationDm), before the app's model.
+  assert.match(bootstrap, /campaignPolicy: dmTurn \|\| creationDm \? null : policy,\s*globalDefault: dmTurn \?\? creationDm \?\? applicationModelSelection\(process\.env\)/);
 });
 
 test("the schema for Anthropic's structured outputs: bounds and counts removed, a nullable type array becomes anyOf, additionalProperties stays false", () => {

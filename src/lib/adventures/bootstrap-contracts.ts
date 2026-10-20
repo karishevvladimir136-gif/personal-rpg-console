@@ -1,4 +1,6 @@
 import type { AdventureCommand, NewHeroResult } from "./contracts.ts";
+import type { HeroProposal, HeroReview } from "./hero-draft.ts";
+export type { HeroProposal, HeroReview } from "./hero-draft.ts";
 
 // Browser-safe authoring data. No identifiers, state patches or knowledge grants
 // belong in model proposals. The existing server authorities materialize review.
@@ -114,7 +116,7 @@ export type BootstrapCommand =
   | { action: "creation.propose"; input: CreationInput }
   | {
       action: "creation.commit";
-      input: { requestId: string; draftId: string; review: CreationReview };
+      input: { requestId: string; draftId: string; review: CreationReview | HeroReview };
     }
   | { action: "opening.propose"; input: StartCommand }
   | {
@@ -139,7 +141,8 @@ export type CreationDraft = {
   kind: "creation";
   draftId: string;
   input: CreationInput;
-  proposal: CreationProposal;
+  /** Schema 3 (fix run F): the hero built by the campaign's DM in one pass; 1 and 2 are older drafts. */
+  proposal: CreationProposal | HeroProposal;
   usage: BootstrapUsage;
 };
 export type OpeningDraft = {

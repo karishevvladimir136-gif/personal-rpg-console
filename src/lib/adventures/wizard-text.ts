@@ -1,7 +1,8 @@
 // Polish stage, group 10 (docs/stages/POLISH.md «Wizard and the path to the first turn»):
 // two pure text helpers the wizard and the opening review use. No model call.
-import type { CreationInput, CreationProposal, CreationReview } from "./bootstrap-contracts.ts";
+import type { CreationInput, CreationProposal, CreationReview, HeroProposal, HeroReview } from "./bootstrap-contracts.ts";
 import { initialCreationReview } from "./bootstrap-validation.ts";
+import { initialHeroReview } from "./hero-draft.ts";
 
 const PARTICLES = new Set([
   "из", "де", "фон", "ван", "да", "ди", "ла", "ле", "дель", "аль", "бен", "ибн",
@@ -23,7 +24,11 @@ type Lang = "en" | "ru";
  * one item until the owner says otherwise (the wizard no longer asks for every single knife).
  * The policy baseline, initialCreationReview, stays null so a server commit still needs an
  * explicit number. */
-export function wizardCreationReview(input: CreationInput, proposal: CreationProposal): CreationReview {
+export function wizardCreationReview(input: CreationInput, proposal: CreationProposal): CreationReview;
+export function wizardCreationReview(input: CreationInput, proposal: CreationProposal | HeroProposal): CreationReview | HeroReview;
+export function wizardCreationReview(input: CreationInput, proposal: CreationProposal | HeroProposal): CreationReview | HeroReview {
+  // Fix run F: the hero the DM built in one pass opens as it is (its things already have their quantities).
+  if (proposal.schemaVersion === 3) return initialHeroReview(input, proposal);
   const review = initialCreationReview(input, proposal);
   return { ...review, possessions: review.possessions.map((row) => ({ ...row, quantity: row.quantity ?? 1 })) };
 }
@@ -137,4 +142,32 @@ export function wizardAdventureSetup(start: WizardStart, language: Lang) {
         : "The DM chooses the opening: a scene from the world and the hero's story, with something to answer from the first minute.",
     pacing: { kind: "evening" as const, custom: null },
   };
+}
+
+/** Fix run F (item 21): the new-campaign wizard in story order — the world, the hero, the adventure, the DM, the
+ * first scene. Each step's title and its one-line hint. */
+export function wizardSteps(language: Lang): { id: "world" | "hero" | "adventure" | "dm" | "opening"; title: string; hint: string }[] {
+  const ru = language === "ru";
+  return [
+    { id: "world", title: ru ? "Мир" : "World", hint: ru ? "выбрать или создать" : "pick or create" },
+    { id: "hero", title: ru ? "Герой" : "Hero", hint: ru ? "своими словами" : "in your own words" },
+    { id: "adventure", title: ru ? "Приключение" : "Adventure", hint: ru ? "во что играем" : "what we play" },
+    { id: "dm", title: ru ? "Ведущий" : "DM", hint: ru ? "модель и глубина" : "model and depth" },
+    { id: "opening", title: ru ? "Первая сцена" : "First scene", hint: ru ? "начало — и играть" : "the opening — and play" },
+  ];
+}
+const DEPTH_NAMES: Record<string, [string, string]> = {
+  low: ["низкая", "low"], medium: ["средняя", "medium"], high: ["высокая", "high"], xhigh: ["очень высокая", "extra high"], max: ["максимум", "max"],
+};
+/** Item 10: the depth range a campaign plays at, as the summary and the DM step say it («высокая — очень высокая»). */
+export function depthRangeLabel(range: { min: string; max: string }, language: Lang): string {
+  const name = (level: string) => DEPTH_NAMES[level]?.[language === "ru" ? 0 : 1] ?? level;
+  return range.min === range.max ? name(range.min) : `${name(range.min)} — ${name(range.max)}`;
+}
+/** The first adventure's text from the wizard's adventure step: what we play, and who goes with the hero (item 15:
+ * the whole text reaches every turn while the adventure is active). */
+export function wizardAdventurePremise(premise: string, companions: string, language: Lang): string {
+  const people = companions.trim();
+  const body = premise.trim();
+  return people ? `${body}${body ? "\n\n" : ""}${language === "ru" ? "С героем идут" : "Going with the hero"}: ${people}` : body;
 }

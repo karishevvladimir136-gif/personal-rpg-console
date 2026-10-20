@@ -34,6 +34,8 @@ function serverFixture({ replay = false } = {}) {
     }) },
     "../adventures/astra-startup-review.ts": { astraFirstCreationReviewReady },
     "./adventure-bootstrap-provider.ts": { createBootstrapProvider: () => () => {} },
+    "./hero-draft-provider.ts": { createHeroDraftProvider: () => () => {} },
+    "../adventures/hero-draft-request.ts": { HERO_DRAFT_DM: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } },
     "../model-runtime/registry.ts": { resolveExecutionProfile: () => ({}) },
     "../model-runtime/defaults.ts": { applicationModelSelection: () => ({}) },
     "./model-runtime/profiles.ts": { executionProviderOptions: () => ({}) },

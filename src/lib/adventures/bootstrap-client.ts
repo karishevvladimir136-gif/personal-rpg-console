@@ -8,7 +8,7 @@ import type {
 import {
   parseBootstrapCommand,
   parseCreationInput,
-  parseCreationProposal,
+  parseAnyCreationProposal,
   parseOpeningProposal,
 } from "./bootstrap-validation.ts";
 import { parseAdventureCatalog, parseAdventureCommand } from "./validation.ts";
@@ -50,7 +50,7 @@ export function parseBootstrapDraft(value: unknown): BootstrapDraft {
       kind,
       draftId,
       input,
-      proposal: parseCreationProposal(v.proposal, input),
+      proposal: parseAnyCreationProposal(v.proposal, input),
       usage,
     };
   }
