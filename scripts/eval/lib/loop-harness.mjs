@@ -202,7 +202,10 @@ export async function runLoopScenario(scenario, options) {
   let stopReason = null;
   const scripted = live ? null : createScriptedDmModel([]);
   const liveAdapter = live ? liveModel(selection, options.budget, options.apiKey, transport) : null;
-  const bookkeeperAdapter = live && bookkeeperSel ? liveModel(bookkeeperSel, options.budget, options.apiKey, transport) : null;
+  // Merge after session 2: the same model in both roles (Opus writes, Opus records) shares one adapter — its usage
+  // cannot be told apart by model id, so a second adapter's reservations were never settled and tripped the guard.
+  const bookkeeperAdapter = live && bookkeeperSel ? (bookkeeperSel.modelId === selection.modelId ? liveAdapter
+    : liveModel(bookkeeperSel, options.budget, options.apiKey, transport)) : null;
   const bookkeeperModel = bookkeeperSel ? (live ? bookkeeperAdapter.model : createScriptedDmModel([])) : null;
   const isBookkeeperUsage = (entry) => !!bookkeeperSel && entry.modelId === bookkeeperSel.modelId && entry.modelId !== selection.modelId;
   let metrics = null, dossierBudget = null, depths = {}, selfDisclosures = [], naturalness = null;

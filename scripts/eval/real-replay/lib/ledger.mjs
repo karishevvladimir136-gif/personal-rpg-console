@@ -15,6 +15,9 @@ export const LEDGERS = {
   // The fixes after session 2 (docs/stages/FIX_S2_RUN.md): $50 for the whole run, stages A and B within $30.
   fixs2: { file: join(ROOT, "docs", "runs", "fix-s2-ledger.json"), capUsd: 50, label: "the fix-s2 run", stageCaps: { AB: 30 },
     markdown: join(ROOT, "docs", "runs", "fix-s2-ledger.md") },
+  // The merge after session 2 (docs/stages/MERGE_S2.md): the session 3 probes on the merged code, $15.
+  merges2: { file: join(ROOT, "docs", "runs", "merge-s2-ledger.json"), capUsd: 15, label: "the merge after session 2",
+    markdown: join(ROOT, "docs", "runs", "merge-s2-ledger.md") },
 };
 export const DEFAULT_LEDGER = "fixs2";
 export const LEDGER_FILE = LEDGERS[DEFAULT_LEDGER].file;
