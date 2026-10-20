@@ -130,7 +130,7 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
     assert.equal(card.rounds, 2);
     assert.equal(card.dealt, 9);
     assert.ok(card.taken > 0);
-    assert.equal(card.misses, 1);
+    assert.equal(card.misses, 2, "the opening miss and Пузо's logged miss");
     assert.equal(card.crits, 1);
     assert.match(receipts[1].result.player, /Итог: 2 р\., нанесено 9/);
     play = await playOf(c);
