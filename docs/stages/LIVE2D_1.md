@@ -1,4 +1,4 @@
-# 2D Live — the first slice (parallel to the session 2 fix run)
+# 2D Live — the first slice and the combat screen (parallel to the session 2 fix run)
 
 Owner (2026-10-19 23:34): «можно отдельно в клауде 2D-движок, то, что мы хотели тогда» — start the 2D presentation layer
 now, in a second cloud session, while the fix run (`docs/stages/FIX_S2_RUN.md`) works on its own branch.
@@ -10,7 +10,7 @@ the progress file and stop; a new session continues from it.
 
 Hard rules: never `main`; keys only in `.env.local`, never printed or logged; `APP_ANTHROPIC_API_KEY`, never
 `ANTHROPIC_API_KEY`; never the owner's real database or port 3000; never edit an applied migration; the repo is public —
-fixtures synthetic, no campaign dialogue; live paid calls (pictures, vision, DM) within **$25**, stopped by a guard, every
+fixtures synthetic, no campaign dialogue; live paid calls (pictures, vision, DM) within **$40**, stopped by a guard, every
 call in `docs/runs/live2d-1-ledger.md`.
 
 ## Read first
@@ -77,14 +77,67 @@ A clickable scene is a promise: what is drawn is what is there. So:
   of contradicting objects, the redraw rate and the cost per scene. Target: ≥ 90% of «must show» found after at most one
   redraw, zero named people in backgrounds, zero markers for things not in the records.
 
+## Part 2 — the combat screen and the battle map, «как в Friends & Fables, чтобы бой был прям вау» (owner, 23:44)
+
+Moved here from the fix run's stage C: it is the same spatial engine as the scenes (a painted place, tokens on top,
+positions held by the server). Build it after Part 1 on the same branch. Inputs: `docs/REBUILD_PLAN.md` §13 «Экран боя»,
+the mockup `design/canvas/Combat.dc.html` (on `claude/handoff`), the notes' section «Combat — a separate stage» and items
+43–46, 54, 61, 64, 65; the existing combat code (`src/components/gameplay-combat.tsx`, `src/lib/gameplay/combat-exchange.ts`,
+the `combat` tool in `src/lib/gameplay/dm-loop/tools.ts` / `execute.ts`, combat-readiness). Owner decisions that stand:
+enemy HP and damage shown as numbers, BG3-style (a bar with numbers on each enemy card and token); damage rolled per
+attack and shown; 5e dying and death saves (not «dies at 0» as in Friends & Fables); a party-set ambush — the planned
+opening goes before initiative; coup de grâce on a helpless target is an execution; no D&D rules hardcoded — the grid,
+movement, conditions and action economy come from the campaign's system as knowledge.
+
+**The combat state on the server** (the DM's `combat` tool grows): initiative from the rolls and the order kept; «next
+turn» and rounds; per-combatant action / bonus action / reaction / movement as the system gives them; conditions
+(prone, paralysed, concentrating, surprised, fled, unconscious, dying with death-save pips); enemy HP from the stat block
+recorded at combat start and changed per hit; positions on a 5-ft grid with elevation; features (cover, difficult ground,
+light sources and their radius, burning areas). `move` takes grid coordinates; the server computes distances, reach,
+ranges, cover and line of sight and gives the DM a short text block every combat turn («Брам в 10 фт от Кадрика; между
+Джеймсом и Серым горящая телега — укрытие на три четверти; Серый вне света»), because the model cannot see the picture.
+The zones view («вплотную / рядом / далеко / в укрытии») is derived from the coordinates, so both views always agree.
+A round's independent rolls go in one message (one request per round where possible).
+
+**The battle map — the «wow»:**
+- the background: the place's scene drawn top-down for battle (from the Part 1 scene sheet: same layout, same objects,
+  no people), grid-aligned, on the quality tier, checked like a scene (no invented walls, doors or cover); a new
+  background only when a fight starts somewhere new;
+- portrait tokens (hero, companions, each enemy type) with HP bars and condition icons; the active combatant
+  highlighted; tokens glide when moved; damage numbers float up from a token on a hit, «Промах» on a miss, a crit marked;
+- an initiative ribbon of portraits across the top (allies and enemies in different colours), the round number, whose
+  turn it is;
+- **your turn**: hovering a spell or weapon from the hero's sheet shows its range ring; area spells show their template
+  where you point (a Fireball's 20-ft sphere, a cone, a line) with the creatures it would catch highlighted; dragging
+  your token shows the path and its length in feet against your remaining movement and any opportunity attacks; letting
+  go writes the intent into the action box («подхожу к телеге, 25 фт», «Огненный шар в точку у двери барака — в радиусе
+  Кадрик, Пузо, Лысый»); the DM decides;
+- light and line of sight: dark areas shaded, light sources glow with their radius, what the hero cannot see is greyed;
+- enemy cards: portrait, HP bar with numbers, conditions, «что известно» unlocked by knowledge checks or observation
+  («???» until then), the enemy's intent only when the hero or a companion could notice it (an arrow on the map);
+- reactions: when an enemy attack would hit the hero and he has a reaction (Shield, an opportunity attack), the turn
+  pauses with a choice card;
+- a combat log of roll receipts; the end-of-fight card — damage dealt and taken, resources spent, close calls, loot
+  (the inventory records from the fix run's stage D);
+- phone layout: the map pans and zooms, the ribbon scrolls.
+
+**Combat speed**: the continuation after a roll runs a notch lower in depth (the plan is already made); measure seconds
+per combat turn before and after on the probe fights.
+
+**Probes**: two scripted fights on the synthetic campaign — an ambush at a ford and a lair fight with an area spell, a
+caster on high ground and a burning cart — recorded as screenshots per round, with the DM's battlefield text checked
+against the map (distances, cover, who is in an area).
+
 ## Not in this slice
-The battle map (it is in the fix run, stage C); EXPLORE 3D; video; music; Enter This World.
+EXPLORE 3D; video; music; Enter This World.
 
 ## Living next to the fix run (it works in parallel on `claude/session2-fixes-a-f-*`)
 - New code under `src/lib/live2d/` and `src/components/live2d/`, a new screen in `src/app/campaigns/[campaignId]/[screen]/
   page.tsx` and one navigation link; touch shared files only where unavoidable and list every one in the report.
-- Do not change the dm-loop core (`src/lib/gameplay/dm-loop/*`), the inventory or the turn screen — the fix run rewrites
-  them. Read through existing APIs; if the slice needs a new DM tool or context block, write it as a proposal in the report.
+- In the dm-loop core (`src/lib/gameplay/dm-loop/*`) change only the `combat` tool (its schema and handler) and add the
+  battlefield context block in a file of its own, wired by one line in `context.ts`; the fix run edits the same folder
+  (the cache layout, `roll`, `rest`, the rules), so keep the diff there small and list it in the report. Do not change
+  the inventory or the turn timeline — the fix run rewrites them; read them through their APIs.
 - Migrations only with the prefix `2026102102` (the fix run uses lower numbers), each self-contained.
 
 ## Done when
