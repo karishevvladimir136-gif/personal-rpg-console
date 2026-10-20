@@ -990,3 +990,10 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     instead of sending it to the provider; `rest` restores every rest-based resource in one call; bookkeeping
     tools may run in a follow-up request after the story is shown. Previous turn's diagnostic also flagged
     `time_words`: the text said «night» at 11:40.
+    Owner, 21:39: raise the cap now, mid-session. Checked on `claude/session-2-prep`: the cap is one constant
+    (`dmLoopLimits.maxOutputTokens`, 6000) plus `thinkingAllowance`; the Anthropic adapter streams; the reservation
+    estimate (`dmRequestReservation`) has no callers, so a larger cap costs nothing until tokens are written;
+    narration stays bounded by `maxNarrationChars` (12000); no SQL check on it; one test pins it
+    (`tests/stage4-dossier.test.mjs`, 6000 + 10000). Set to 32000, not 128000: at about 95 output tokens a second
+    a 300-second lease ends near 28000 tokens, so anything higher is unusable until lease renewal lands. Hotfix
+    handed to the local session.
