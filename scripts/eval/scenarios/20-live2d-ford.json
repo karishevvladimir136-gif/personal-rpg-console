@@ -1,0 +1,99 @@
+{
+  "title": "2D Live part 2: the ford ambush (live DM, the grid and the rules module)",
+  "description": "A synthetic Russian campaign on the loop. Two bandits come to a ford; the party sets a planned ambush. Live only: the DM is expected to open the fight with combat start (placements on the grid, initiative, enemy hit points and armour class), to read the battlefield block, to attack through combat attack and to pass turns with next_turn. Measures seconds per combat turn and whether the DM's narration agrees with the server's distances and cover.",
+  "runtime": "dm-loop-v1",
+  "language": "ru",
+  "startMinutes": 600,
+  "fixture": {
+    "world": {
+      "title": "Серый тракт",
+      "premise": "Дорога вдоль реки от Белого Камня на юг: заставы, броды, старые шахты в холмах и ельники у Чёрного Ручья. Правила — D&D 5e: хиты, класс доспеха, инициатива, преимущество и помеха, укрытия."
+    },
+    "name": "Ярвен",
+    "description": "Наёмная мечница лет тридцати, бывшая стражница Белого Камня. Умею биться мечом, стрелять из лука и устраивать засады. Не умею лечить. Ношу меч, короткий лук и кожаный доспех (КД 15); 24 хита, бонус атаки +5, урон мечом 1d8+3, луком 1d6+3.",
+    "caps": [
+      "биться мечом",
+      "стрелять из лука",
+      "устраивать засады"
+    ],
+    "limits": [
+      "Не умею лечить"
+    ],
+    "item": "меч",
+    "adventure": "Ярвен охраняет брод от разбойников, которые грабят обозы на Сером тракте. Правила D&D 5e; бои на сетке 5 футов.",
+    "location": "Кривой брод",
+    "situation": "Полдень. Ярвен и лучник Тобин (спутник, 14 хитов, КД 13, лук +4, урон 1d6+2) залегли за валунами у брода. По дороге с того берега идут двое разбойников: Кривой Ян с дубиной (11 хитов, КД 12) и Пузо с арбалетом (9 хитов, КД 13).",
+    "npc": "Тобин",
+    "narration": "Полдень над Кривым бродом. Вода бьёт по камням отмели, вешки из жердей торчат из потока. Тобин лежит рядом за валуном, стрела на тетиве. С того берега, не таясь, идут двое: кривой на один глаз детина с дубиной и толстяк с арбалетом на плече. До воды им шагов тридцать."
+  },
+  "steps": [
+    {
+      "id": "ambush",
+      "say": "Мы с Тобином ждём за валунами: как только Ян ступит в воду — бьём первыми. Я выхожу и рублю его мечом, Тобин стреляет в Пузо.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the fight opened on the server",
+          "toolAccepted": {
+            "name": "combat",
+            "min": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "press",
+      "say": "Бью Яна ещё раз, пока он не очухался.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the battlefield block reached the DM",
+          "contextIncludes": "Поле боя"
+        },
+        {
+          "toolAccepted": {
+            "name": "combat",
+            "min": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "step-back",
+      "say": "Отхожу на пять шагов к берегу, чтобы Пузо не достал арбалетом в упор, и стреляю в него из лука.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "contextIncludes": "Поле боя"
+        }
+      ]
+    },
+    {
+      "id": "finish",
+      "say": "Добиваю того, кто ближе. Если второй бежит — пусть бежит, стрелу в спину не трачу.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "contextIncludes": "Поле боя"
+        }
+      ]
+    },
+    {
+      "id": "after",
+      "say": "Осматриваю тела и проверяю, цел ли Тобин.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}

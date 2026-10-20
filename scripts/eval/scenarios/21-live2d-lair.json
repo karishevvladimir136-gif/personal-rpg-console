@@ -1,0 +1,99 @@
+{
+  "title": "2D Live part 2: the lair fight (live DM — a caster on high ground, a burning cart, an area spell)",
+  "description": "A synthetic Russian campaign on the loop. The party storms a bandit lair: a caster on a ledge, a burning cart that gives cover, a torch in a dark barn, a Fireball. Live only: the DM is expected to open the fight with combat start (placements with elevation, features for the cart, the fire, the torch), to read the battlefield block (cover and light), to attack through combat attack (cover's AC, resistances), and to offer a reaction with combat reaction. Measures seconds per combat turn.",
+  "runtime": "dm-loop-v1",
+  "language": "ru",
+  "startMinutes": 600,
+  "fixture": {
+    "world": {
+      "title": "Серый тракт",
+      "premise": "Дорога вдоль реки от Белого Камня на юг: заставы, броды, старые шахты в холмах и ельники у Чёрного Ручья. Правила — D&D 5e: хиты, класс доспеха, инициатива, преимущество и помеха, укрытия, заклинания."
+    },
+    "name": "Ярвен",
+    "description": "Боевая волшебница лет тридцати. Умею бросать Огненный шар, ставить Щит и бить Огненным снарядом. Слаба в ближнем бою. Ношу посох, кинжал и кожаный доспех (КД 14); 20 хитов, бонус атаки заклинаниями +6, Сл. спасброска 14. Огненный шар — сфера 20 футов, 8d6 огня, спасбросок Ловкости; Щит — реакция, +5 к КД до начала следующего хода; Огненный снаряд — дальняя атака, 1d10 огня.",
+    "caps": [
+      "бросать Огненный шар",
+      "ставить Щит",
+      "бить Огненным снарядом"
+    ],
+    "limits": [
+      "Слаба в ближнем бою"
+    ],
+    "item": "посох",
+    "adventure": "Ярвен выслеживает шайку, что грабила обозы, до их логова — старого сарая у Старой Шахты. Правила D&D 5e; бои на сетке 5 футов.",
+    "location": "Логово у Старой Шахты",
+    "situation": "Ночь. Тёмный сарай с провалившейся крышей; у дальней стены на уступе высотой в десять футов стоит колдун Кадрик (18 хитов, КД 12, сопротивление огню); посреди сарая горит опрокинутая телега — за ней укрытие на три четверти; на стене у входа факел. Громила Серый с топором (20 хитов, КД 14, уязвим к огню) стоит справа у стены. Спутник Орм (14 хитов, КД 13, меч +4, 1d8+2) входит следом за Ярвен.",
+    "npc": "Орм",
+    "narration": "Ночь. Вы вламываетесь в сарай у Старой Шахты. Посреди него горит опрокинутая телега, и в её свете видно колдуна на уступе у дальней стены — Кадрик уже плетёт заклинание. Справа, у стены барака, громила Серый поднимает топор. Факел у входа коптит. Орм обнажает меч."
+  },
+  "steps": [
+    {
+      "id": "storm",
+      "say": "Орм, на громилу! Я бросаю Огненный шар в точку между телегой и уступом так, чтобы накрыть Кадрика и Серого, но не Орма.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the fight opened on the server",
+          "toolAccepted": {
+            "name": "combat",
+            "min": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "cover",
+      "say": "Укрываюсь за горящей телегой от колдуна и бью его Огненным снарядом.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "label": "the battlefield block reached the DM",
+          "contextIncludes": "Поле боя"
+        },
+        {
+          "toolAccepted": {
+            "name": "combat",
+            "min": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "shield",
+      "say": "Если Кадрик бьёт по мне заклинанием — ставлю Щит. Иначе ещё один Огненный снаряд в него.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "contextIncludes": "Поле боя"
+        }
+      ]
+    },
+    {
+      "id": "ledge",
+      "say": "Обхожу телегу и лезу на уступ к Кадрику, чтобы добить его кинжалом.",
+      "expect": [
+        {
+          "outcome": "committed"
+        },
+        {
+          "contextIncludes": "Поле боя"
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "say": "Добиваем, кто остался, и тушим телегу.",
+      "expect": [
+        {
+          "outcome": "committed"
+        }
+      ]
+    }
+  ]
+}

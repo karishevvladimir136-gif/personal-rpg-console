@@ -1,5 +1,19 @@
 # Development status
 
+**Current stage (parallel to the session 2 fix run):** 2D Live, the first slice and the combat screen
+(`docs/stages/LIVE2D_1.md`, Parts 1 and 2) — **built on `claude/live2d-1-9lq5bf` (the cloud session's name for
+`claude/live2d-1`), waiting for the owner's pass over `docs/runs/live2d-1-acceptance.md`.** Branch from
+`claude/session-2-prep` (`d74b6c6`); migrations `202610210200_live2d` and `202610210201_live2d_battle`, additive. The
+report is `docs/runs/live2d-1-report.md` (the probe numbers, the shared files touched, the proposals for the fix run,
+«Needs the owner»); the resume notes `docs/runs/live2d-1-progress.md`; the ledger `docs/runs/live2d-1-ledger.md`.
+Part 1: the painted region with travel and marker modes, the scene with checked hotspots (8/8 probe places at 100 %
+must-show after at most one redraw, 0 contradictions, 0 people in backgrounds, $0.057 a scene), the hierarchy world ›
+region › town › district › scene, private POI seeds. Part 2: the fight held on the server (grid, initiative, economy,
+conditions, enemy HP, features), the DM's battlefield block, the optional rules module on attacks, the battle screen
+with tokens, drag-to-intent, templates, reaction and end cards; two scripted fights through the real loop; the live DM
+probes and the suite on the frozen candidate are recorded in the report. The sections below are each earlier stage's
+own closing status, kept unchanged.
+
 **Current stage:** the voice stage (`docs/stages/VOICE.md` «The build», parts 1–8, plus the owner's two replay-tool
 bugs of 2026-10-18) — **done on `claude/voice`, waiting for the owner's approval of the two Russian texts, the local
 session of `docs/REPLAY_2_PROMPT.md` (the bank loaded, session 1 replayed with four voice variants) and the planner's

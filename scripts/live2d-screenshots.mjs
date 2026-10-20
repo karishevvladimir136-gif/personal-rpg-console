@@ -25,6 +25,10 @@ const executablePath = process.env.BROWSER_PATH ?? undefined;
 const shots = [
   ["world", "?level=world"], ["region", "?level=region"], ["region-travel", "?level=region&travel=1"],
   ["town", "?level=town"], ["district", "?level=district"], ["scene", "?level=scene"], ["scene-en", "?level=scene&lang=en"],
+  // Part 2: the two probe fights round by round (the synthetic fixtures), the zones view once, the end card.
+  ["battle-ford-r1", "/battle?fight=ford&round=1"], ["battle-ford-r2", "/battle?fight=ford&round=2"], ["battle-ford-r3", "/battle?fight=ford&round=3"], ["battle-ford-r4", "/battle?fight=ford&round=4"],
+  ["battle-ford-zones", "/battle?fight=ford&round=2&view=zones"],
+  ["battle-lair-r1", "/battle?fight=lair&round=1"], ["battle-lair-r2", "/battle?fight=lair&round=2"], ["battle-lair-r3", "/battle?fight=lair&round=3"],
 ].filter(([name]) => !only || only.has(name));
 
 const clippedElements = () => {
@@ -34,6 +38,18 @@ const clippedElements = () => {
     if (style.visibility === "hidden" || style.display === "none" || style.position === "fixed") continue;
     const rect = element.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0 || rect.left >= window.innerWidth) continue;
+    // A horizontally scrolling region (the initiative ribbon on a phone) is meant to overflow its box: an element that
+    // sits inside such a region and within its scroll width is reachable by scrolling, not clipped.
+    let scroller = element.parentElement, inScroller = false;
+    while (scroller && scroller !== document.body) {
+      const overflowX = getComputedStyle(scroller).overflowX;
+      if ((overflowX === "auto" || overflowX === "scroll") && scroller.scrollWidth > scroller.clientWidth) {
+        const box = scroller.getBoundingClientRect();
+        if (box.right <= window.innerWidth + 1) { inScroller = true; break; }
+      }
+      scroller = scroller.parentElement;
+    }
+    if (inScroller) continue;
     const px = Math.round(rect.right - window.innerWidth);
     if (px > worst.px) worst = { px, hint: `${element.tagName.toLowerCase()}${element.className && typeof element.className === "string" ? "." + element.className.split(/\s+/)[0] : ""} “${(element.textContent ?? "").trim().slice(0, 40)}”` };
   }
@@ -49,6 +65,8 @@ try {
     const page = await context.newPage();
     for (const [name, query] of shots) {
       const url = `${base}/preview/live2d${query}`;
+      // The 2560 pass keeps the walk and the last round of each fight (the rest is the same layout, wider).
+      if (width === 2560 && /^battle-/.test(name) && !/-r4$|lair-r3$/.test(name)) continue;
       await page.goto(url, { waitUntil: "networkidle" });
       await page.waitForTimeout(name === "region-travel" ? 1800 : 500);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
