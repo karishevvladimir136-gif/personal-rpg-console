@@ -1081,3 +1081,8 @@ report); the guard post's place record says «Раннее утро» — a time
     pose, gaze or expression from them); the shot director writes who looks at whom and each person's expression
     for this moment; portrait anchors in a neutral, front or three-quarter pose, ideally two angles; the report's
     picture check counts gaze direction per companion across frames.
+    Follow-up to 76/78 (owner, 22:06: «сцена хорошая, картинки мы сильно пофиксили»): the empty night ravine frame
+    keeps the place from the frame before it (the same tree platform, cliffs and stream bed) — the place anchor
+    works across frames. It was drawn for an out-of-game exchange (the «ты» agreement), so 78(c) holds — here it
+    happened to read as «the scene holds still». The reply's opening «*(Вне игры…» was rendered with the asterisk
+    and a drop cap on «(В» — the out-of-game reply styled as narration (see the note under item 1's key finding).
