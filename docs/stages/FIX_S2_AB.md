@@ -119,6 +119,13 @@ wrong records, untold rolls, the voice metrics. The owner picks the default for 
 bake-off had the split at 15.7 s first word vs 24.7 s at the same cost, with equal record completeness; the agentic
 game master study found the narrator/archivist split raised story coherence — both are reasons to measure, not to
 assume).
+**Owner's decision (2026-10-20 00:38): session 3 runs on «пишет — записывает»** unless the probe table shows its records
+worse than the single DM's. To make that safe, add the **ledger checker**: after the bookkeeper commits, a cheap model
+(Haiku, like the quotable-line check, off the turn's path) compares the narration, the writer's ledger and the actual
+receipts — every take / drink / spend / give / wound / heal / learn in the story must have a matching record; a miss
+triggers one correcting bookkeeper call, and what still does not match becomes an owner chip («не записано: седло
+Дирка») and a log line. The checker's hits per session go into the report; the session 2 known misses (the saddle, three
+bandits' weapons, the key, a shot bolt) are the probe cases.
 
 ## Stage B — the DM's core
 
