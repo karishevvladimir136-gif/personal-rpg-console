@@ -1,6 +1,6 @@
 {
   "capUsd": 40,
-  "totalUsdMicros": 734744,
+  "totalUsdMicros": 2564914,
   "note": "Every paid call of the 2D Live slice: reserved at its upper bound before it is sent, settled afterwards (OpenAI and Anthropic from the reply's own usage, fal at list price).",
   "entries": [
     {
@@ -646,6 +646,32 @@
         "imageInputTokens": 0,
         "outputTokens": 983
       }
+    },
+    {
+      "at": "2026-10-20T07:58:38.054Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "live ford fight, attempt 1 (turns failed at commit)",
+      "reservedUsdMicros": 1330640,
+      "usdMicros": 1330640,
+      "settled": true,
+      "record": "scripts/eval/out/20261020-075221-loop-opus-live-20-live2d-ford.jsonl",
+      "turns": 2,
+      "modelRequests": null,
+      "stopReason": null
+    },
+    {
+      "at": "2026-10-20T07:58:38.207Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "live lair fight, attempt 1 (stopped)",
+      "reservedUsdMicros": 499530,
+      "usdMicros": 499530,
+      "settled": true,
+      "record": "scripts/eval/out/20261020-075628-loop-opus-live-21-live2d-lair.jsonl",
+      "turns": 1,
+      "modelRequests": null,
+      "stopReason": null
     }
   ]
 }

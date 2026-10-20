@@ -52,5 +52,7 @@ afterwards from the reply's own usage (OpenAI images, Anthropic) or fal's list p
 | 2026-10-20 07:21 | preview art tobin.jpg | gpt-image-2.5-sunburst | $0.165 | $0.053 | ok |
 | 2026-10-20 07:22 | preview art orm.jpg | gpt-image-2.5-sunburst | $0.165 | $0.053 | ok |
 | 2026-10-20 07:23 | preview art veresk.jpg | gpt-image-2.5-sunburst | $0.163 | $0.030 | ok |
+| 2026-10-20 07:58 | live ford fight, attempt 1 (turns failed at commit) | claude-opus-5-5 | $1.331 | $1.331 | ok |
+| 2026-10-20 07:58 | live lair fight, attempt 1 (stopped) | claude-opus-5-5 | $0.500 | $0.500 | ok |
 
-**Spent so far: $0.735 of $40** (46 calls).
+**Spent so far: $2.565 of $40** (48 calls).
