@@ -10,7 +10,6 @@ import { PersistentWorldLab } from "@/components/persistent-world-lab";
 import { PersistentTimelineExplorer } from "@/components/persistent-timeline-explorer";
 import { PersistentPlacesBelonging } from "@/components/persistent-places-belonging";
 import { PersistentAdventures } from "@/components/persistent-adventures";
-import { PersistentAdventureLoot } from "@/components/persistent-adventure-loot";
 import { PersistentSecondaryPage } from "@/components/persistent-secondary-pages";
 import {
   CharacterRoute,
@@ -40,13 +39,10 @@ export default async function Page({
     case "frame":
     case "gallery":
       return <PicturesRoute />;
+    // Fix run F (item 24): the old hand-made loot and containers panel is gone from «Приключения» (the DM places
+    // things itself; it stays under the settings' advanced section).
     case "adventures":
-      return (
-        <>
-          <PersistentAdventures />
-          <PersistentAdventureLoot />
-        </>
-      );
+      return <PersistentAdventures />;
     case "timeline":
       return <PersistentTimelineExplorer />;
     case "home":

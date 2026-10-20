@@ -277,3 +277,24 @@ test("an opening's people: the owner's name answers are applied before play", as
   assert.equal(applied.actors[1].name, "Сержант", "no answer, no change");
   assert.deepEqual(applied.answers, review.answers, "the answers themselves are kept (they are pinned for the DM)");
 });
+
+test("item 15: the active adventure's whole text reaches the turn (it was cut at 600 characters as «never new facts»)", async () => {
+  const tail = "С героем идут два стражника тракта: Брам, ветеран, и Лис, новобранец.";
+  const adventure = `${"Дорога на юг идёт через холмы и броды; караван ждёт у ворот. ".repeat(14)}${tail}`;
+  const f = await setup({ world, name: "Тессен", description: "Волшебник. Ношу посох.", caps: [], limits: [], item: null, adventure,
+    location: "Пост стражи", situation: "Утро у поста стражи.", npc: "Капитан стражи", narration: "Утро у поста. Что ты делаешь?" }, "ru", 999);
+  try {
+    f.creation = { ...f.creation, possessions: [] };
+    await f.create();
+    await f.startOpening();
+    const { buildDmLoopContext } = await import("../src/lib/gameplay/dm-loop/context.ts");
+    const source = (await f.one("select public.rpg_dossier($1,$2,'source','{}'::jsonb,null) result", [f.owner, f.cid])).result;
+    assert.ok(adventure.length > 600);
+    const context = buildDmLoopContext(source, { operationId: randomUUID(), campaignId: f.cid, timeline: source.timeline, expectedRevision: source.runtime.revision,
+      mode: "game", input: "Иду к каравану.", companionId: null, listenerIds: [], mechanic: null });
+    const text = context.system.map((block) => block.text).join("\n");
+    assert.ok(text.includes(tail), "the end of a long adventure text is in the turn");
+    assert.match(text, /is established for this adventure/);
+    assert.doesNotMatch(text, /never new facts/);
+  } finally { await f.db.close(); }
+});

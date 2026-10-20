@@ -69,7 +69,8 @@ export const DOSSIER_BUDGETS = {
   // and the session's tail after the breakpoint (Character Models by presence,
   // the open journal, secrets, plans, likes, the ledger), which changes most turns.
   layer3: { party: 4000, codex: 30000, factions: 1200, journal: 4000, pinned: 800, secrets: 3500, plans: 1500,
-    notebook: 1500, likes: 300, ledger: 500, adventure: 900, memory: 4000, models: 16000 },
+    // Fix run F (item 15): the active adventure's whole text, budgeted like a canon document (it was 600 characters).
+    notebook: 1500, likes: 300, ledger: 500, adventure: 8000, memory: 4000, models: 16000 },
   layer4: { memory: 6000, scenes: 30000, exchanges: 15000 },
 } as const;
 
@@ -447,7 +448,10 @@ function adventureGuidance(source: RuntimeSource): Budgeted {
   const pacing = context.pacing?.kind ?? "open";
   const pace = { quick: "a quick adventure: one sitting, converge soon, few detours", evening: "an evening adventure: a few hours of play, a clear arc with room for one detour",
     mini_arc: "a mini arc: several sessions, several threads converging", open: "open play: no planned convergence", custom: context.pacing?.custom ?? "custom pacing" }[pacing] ?? pacing;
-  const text = `Active adventure (owner-advisory; guidance for density and convergence, never new facts, a timer or the player's decisions): «${context.title}» — ${clipChars(context.premise ?? "", 600)}. Pacing: ${pace}. Rewards: reward power follows the party's actual level and resources in the state; invent no reward power beyond what the world established; loot is what the place plausibly holds.`;
+  // Fix run F (item 15): the owner writes his adventure's set-up here (who goes with the hero, the job, the places) —
+  // the whole text reaches every turn while the adventure is active, and what it states is established.
+  const premise = clipTokens((context.premise ?? "").trim(), DOSSIER_BUDGETS.layer3.adventure - 400);
+  const text = `Active adventure «${context.title}» — the owner's set-up for it. What it states (the people, the places, who goes with the hero, the job) is established for this adventure; the pacing is guidance for density and convergence, never a timer or the player's decisions:\n${premise}\nPacing: ${pace}. Rewards: reward power follows the party's actual level and resources in the state; invent no reward power beyond what the world established; loot is what the place plausibly holds.`;
   return { text: clipTokens(text, DOSSIER_BUDGETS.layer3.adventure), dropped: [], used: Math.min(estimateTokens(text), DOSSIER_BUDGETS.layer3.adventure) };
 }
 

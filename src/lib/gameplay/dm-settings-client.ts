@@ -23,7 +23,7 @@ export const dmLoopLimitLabels: Record<keyof DmLoopTurnLimits, string> = {
  * `dmModels[].defaultReasoning` in src/lib/model-runtime/dm-models.ts (the server's default when a
  * selection carries no effort); a test keeps the two in step, since client code may not import model-runtime. */
 export const dmTurnModels: readonly { providerId: "anthropic" | "openai"; modelId: string; label: string; efforts: readonly string[]; defaultEffort: string }[] = [
-  { providerId: "anthropic", modelId: "claude-opus-5-5", label: "Claude Opus 5.5", efforts: ["low", "medium", "high", "xhigh", "max"], defaultEffort: "medium" },
+  { providerId: "anthropic", modelId: "claude-opus-5-5", label: "Claude Opus 5.5", efforts: ["low", "medium", "high", "xhigh", "max"], defaultEffort: "high" },
   { providerId: "openai", modelId: "gpt-6-astra", label: "GPT-6 Astra", efforts: ["low", "medium", "high", "xhigh", "max"], defaultEffort: "high" },
 ];
 

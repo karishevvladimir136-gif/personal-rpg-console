@@ -32,7 +32,8 @@ export const dmModels = {
     contextLimit: 1_000_000,
     maxOutputTokens: 128_000,
     reasoning: ["low", "medium", "high", "xhigh", "max"],
-    defaultReasoning: "medium",
+    // Fix run F (item 10): a campaign plays at high (DEFAULT_DEPTH_RANGE); the single-effort default matches it.
+    defaultReasoning: "high",
     price: { input: 4, output: 20, cacheRead: 0.2, cacheWrite: 5, cacheWrite1h: 8 },
   },
   // DM architecture bake-off (docs/stages/DM_ARCH.md): the two experimental
