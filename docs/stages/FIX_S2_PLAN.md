@@ -51,6 +51,21 @@ sessions, «meanwhile» through in-world channels (item 81).
   not read the layer — «на Шве ведущий сам придумал и сам всё спрятал, в этом была сама идея». The field stays for an
   optional one-line steer («пусть за этим стоит культ»), never the truth itself. The owner's view of the layer stays off.
 
+- **Confirmed 2026-10-20 08:40:** session 3 on «Opus пишет — Opus записывает» (the $0.70 vs $0.40 difference accepted).
+
+## Before session 3 (owner, 08:40: «посмотрим все экраны до игры, чтобы избежать той проблемы»)
+
+1. Merge the two branches (`claude/session2-fixes-a-f-jh3krk` + `claude/live2d-1-9lq5bf`) — a cloud task with the full
+   suite on the merge commit.
+2. The local session loads the merge into the sandbox by `docs/SANDBOX_LOAD_FIX_S2.md` (dump, migrations, production
+   build, the one-time data corrections, the 2D migration).
+3. The owner's acceptance pass over every screen by the Russian checklists (fix run + 2D) — nothing is done until
+   «принято».
+4. **A prose check before real play**: a fresh test campaign in the sandbox on the new mode with the Russian
+   instructions, 6–8 turns on the known probe situations (a companion talk, an objection to an order, an
+   interrogation, a search after a fight, a short fight); the owner judges the lines, the planner files pairs against
+   «Отрывки»; instructions are fixed before session 3, not during it.
+
 ## Still open for the owner
 
 The gallery details (item 80 — going ahead as proposed unless he objects).
