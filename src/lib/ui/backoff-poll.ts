@@ -24,7 +24,10 @@ export function createBackoffPoll(options: BackoffPollOptions): BackoffPoll {
   const base = options.baseMs ?? 3000;
   const max = options.maxMs ?? 30000;
   const factor = options.factor ?? 1.6;
-  const timers = options.timers ?? { set: (fn: () => void, ms: number) => setTimeout(fn, ms), clear: (handle: unknown) => clearTimeout(handle as ReturnType<typeof setTimeout>) };
+  // The page's own timers (the window's, as the polling interval before it used): a test harness or a server render
+  // that stubs the window never gets a real timer from the screen.
+  const host: Pick<typeof globalThis, "setTimeout" | "clearTimeout"> = typeof window !== "undefined" ? window : globalThis;
+  const timers = options.timers ?? { set: (fn: () => void, ms: number) => host.setTimeout(fn, ms), clear: (handle: unknown) => host.clearTimeout(handle as ReturnType<typeof setTimeout>) };
   const hidden = options.hidden ?? (() => typeof document !== "undefined" && document.visibilityState === "hidden");
   let delay = base;
   let handle: unknown = null;

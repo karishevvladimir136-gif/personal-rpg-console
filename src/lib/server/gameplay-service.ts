@@ -22,7 +22,7 @@ import { runCampaignTurn, resumeCampaignTurn, bookkeeperOf, type BookkeeperSelec
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { keepLiveTurnLedger, publishLiveTurnEvent } from "./dm/live-turns";
-import { appendObservations } from "../gameplay/dm-loop/observations.ts";
+import { appendObservations } from "../gameplay/dm-loop/observations";
 import { saveTurnSnapshot } from "./turn-snapshots";
 import { scheduleQuotableCheck } from "./voice/quotable-check";
 import { checkLedger } from "../gameplay/dm-loop/ledger-check";

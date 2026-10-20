@@ -120,7 +120,11 @@ function serviceFixture({ sheet = structured, pinned = null, takeover = false,
     // Stage 4: the dossier, the session digest, the World Engine bridge and the
     // loop's feedback provider are not reached on the Astra runtime path.
     "./dossier": { dossierService: () => ({}) },
-    "./session-digest": { digestOnEntry: async () => {} },
+    "./session-digest": { digestOnEntry: async () => {}, entryCheckDue: () => false },
+    // Fix run A2/A6/B1: the DM's observations, the ledger checker and the hidden-layer prep are loop-only.
+    "../gameplay/dm-loop/observations": { appendObservations: (stored) => stored },
+    "../gameplay/dm-loop/ledger-check": { checkLedger: async () => ({ misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: null }) },
+    "./hidden-layer-prep": { prepSchedulable: () => false, schedulePrep: () => false },
     "./world-bridge": { syncWorldFromDossier: async () => {} },
     "../gameplay/dm-loop/feedback": { loopFeedbackProvider: () => ({}) },
     "./public-campaign": { readPublicCampaign: async () => ({}) },
