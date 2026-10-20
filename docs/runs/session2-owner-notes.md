@@ -739,6 +739,11 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     under each. The panel stays open, so the play page grows by the whole session. Do: owner tools live on their own
     screen (or a drawer), not under the story; the transcript is a compact list (time, who, first line) that opens one
     record to correct; Russian headings; with items 24–25 (admin panels that «повылезали»).
+    Cause found (18:54, owner: «а негде закрыть»): the owner did not open it — `game-screen.tsx` renders the panel as
+    `<details open={combat || <an unresolved mechanic turn> || undefined}>`, so it is forced open the whole time an
+    encounter is active and every poll of `/play` (each 1–2 s) re-opens it; clicking the header cannot close it. Since
+    the combat panel never advances or ends on its own (item 45), the transcript hangs under the story for the whole
+    fight. Do: never force the owner panel open; if combat needs a tool from it, put that tool in the combat panel.
 
 58. **A finished turn thrown away by a «conflict»** (owner, 18:51: «оно просчитало ход, там были хорошие идеи, и
     какая-то … случилась»; screen: «Попробовать снова» and «Записи кампании изменились. Проверьте актуальное
