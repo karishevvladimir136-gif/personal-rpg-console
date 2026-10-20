@@ -1,0 +1,153 @@
+{
+  "kind": "pack",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "defaultModel": "fal-ai/lyria3/pro",
+  "perMood": {},
+  "moods": [
+    "explore",
+    "trade"
+  ],
+  "variants": 2,
+  "startedAt": "2026-10-20T16:52:42.915Z",
+  "elapsedMs": 60754,
+  "spentUsdMicros": 360000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": "explore",
+      "modelId": "fal-ai/lyria3/pro",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: wonder and curiosity, a strange place slowly unfolding, discovery, wide and airy. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 1009,
+      "expectedUsdMicros": 80000,
+      "ok": true,
+      "file": "docs/runs/music-review/shov/explore-1.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1429614,
+      "elapsedMs": 27470,
+      "requestId": "01a15a3a-c42f-7fa2-843c-58c1169e3392",
+      "priceUsdMicros": 80000,
+      "seconds": 59.271837,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -11.6,
+      "lra": 5.2,
+      "peakDbfs": 0,
+      "seam": {
+        "headDb": -45.199722,
+        "tailDb": -48.417804,
+        "bodyDb": -14.710752
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "explore",
+      "modelId": "google/lyria-3.5",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: wonder and curiosity, a strange place slowly unfolding, discovery, wide and airy. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long. Variation 2: a different motif and instrumentation from the first take, the same mood.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 2018,
+      "expectedUsdMicros": 100000,
+      "ok": true,
+      "file": "docs/runs/music-review/shov/explore-2.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1473163,
+      "elapsedMs": 25476,
+      "requestId": "01a15a3a-c43b-7863-91b1-617892cc2bbc",
+      "priceUsdMicros": 100000,
+      "seconds": 61.152653,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -11.6,
+      "lra": 6.4,
+      "peakDbfs": -0.3,
+      "seam": {
+        "headDb": -217.566479,
+        "tailDb": null,
+        "bodyDb": -14.706216
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "trade",
+      "modelId": "fal-ai/lyria3/pro",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a market or a shop, bustling and lively, bargaining, coins and voices around. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 1010,
+      "expectedUsdMicros": 80000,
+      "ok": true,
+      "file": "docs/runs/music-review/shov/trade-1.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1422090,
+      "elapsedMs": 19178,
+      "requestId": "01a15a3a-c430-7e02-80aa-2d1903e3e089",
+      "priceUsdMicros": 80000,
+      "seconds": 58.958367,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -12.3,
+      "lra": 1.8,
+      "peakDbfs": 0.1,
+      "seam": {
+        "headDb": -15.089542,
+        "tailDb": -54.179275,
+        "bodyDb": -14.715512
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "trade",
+      "modelId": "google/lyria-3.5",
+      "variant": 2,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a market or a shop, bustling and lively, bargaining, coins and voices around. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long. Variation 2: a different motif and instrumentation from the first take, the same mood.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": 2019,
+      "expectedUsdMicros": 100000,
+      "ok": true,
+      "file": "docs/runs/music-review/shov/trade-2.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1512034,
+      "elapsedMs": 29219,
+      "requestId": "01a15a3b-369a-7101-a4bd-a07e7bcf4fc2",
+      "priceUsdMicros": 100000,
+      "seconds": 62.772245,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -12,
+      "lra": 6.3,
+      "peakDbfs": 0.6,
+      "seam": {
+        "headDb": -20.170147,
+        "tailDb": null,
+        "bodyDb": -14.705811
+      }
+    }
+  ]
+}

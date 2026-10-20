@@ -1,6 +1,6 @@
 {
   "capUsd": 50,
-  "totalUsdMicros": 13100000,
+  "totalUsdMicros": 14400000,
   "note": "The music stage: every fal call, counted at the list price before the request and settled after. Validation probes (rejected by the worker before generation) are recorded at $0.",
   "entries": [
     {
@@ -1353,7 +1353,9 @@
       "note": "noir/town#1 60s",
       "reservedUsdMicros": 80000,
       "usdMicros": 80000,
-      "settled": false
+      "settled": true,
+      "outcome": "ok 60.1s audio/mpeg 21s",
+      "requestId": "01a15a38-0cc5-7123-94f7-47796dc932f1"
     },
     {
       "at": "2026-10-20T16:49:45.101Z",
@@ -1362,7 +1364,9 @@
       "note": "noir/town#2 60s",
       "reservedUsdMicros": 100000,
       "usdMicros": 100000,
-      "settled": false
+      "settled": true,
+      "outcome": "ok 62.7s audio/mpeg 28s",
+      "requestId": "01a15a38-0cbd-7621-b35d-e277e1e822af"
     },
     {
       "at": "2026-10-20T16:49:45.103Z",
@@ -1371,7 +1375,225 @@
       "note": "noir/night#1 60s",
       "reservedUsdMicros": 80000,
       "usdMicros": 80000,
-      "settled": false
+      "settled": true,
+      "outcome": "ok 58.6s audio/mpeg 23s",
+      "requestId": "01a15a38-0d2e-7e60-9e9d-91fe134fb86f"
+    },
+    {
+      "at": "2026-10-20T16:50:14.836Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "noir/night#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 61.4s audio/mpeg 22s",
+      "requestId": "01a15a38-80ee-7590-bf81-3cc4e2d92528"
+    },
+    {
+      "at": "2026-10-20T16:50:14.837Z",
+      "kind": "music",
+      "model": "fal-ai/stable-audio-3/medium/text-to-audio",
+      "note": "noir/night#3 60s",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "ok 60.0s audio/mpeg 9s",
+      "requestId": "01a15a38-80e4-7c00-bd10-ca5b9103a6e7"
+    },
+    {
+      "at": "2026-10-20T16:50:14.838Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "noir/dread#1 75s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 74.3s audio/mpeg 26s",
+      "requestId": "01a15a38-80ec-7ef0-beb9-4bc7c50e7650"
+    },
+    {
+      "at": "2026-10-20T16:50:43.502Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "noir/dread#2 75s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 74.9s audio/mpeg 26s",
+      "requestId": "01a15a38-f0e7-7cb2-93ca-18e4a250f75a"
+    },
+    {
+      "at": "2026-10-20T16:50:43.504Z",
+      "kind": "music",
+      "model": "fal-ai/stable-audio-3/medium/text-to-audio",
+      "note": "noir/dread#3 75s",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "ok 75.0s audio/mpeg 9s",
+      "requestId": "01a15a38-f0df-7610-bf6a-dbb9fe141ce5"
+    },
+    {
+      "at": "2026-10-20T16:50:43.505Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "noir/sorrow#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 59.2s audio/mpeg 29s",
+      "requestId": "01a15a38-f0e5-75a0-af5a-1170904d475e"
+    },
+    {
+      "at": "2026-10-20T16:51:14.633Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "noir/sorrow#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 66.8s audio/mpeg 26s",
+      "requestId": "01a15a39-6a82-7990-91df-086734d869af"
+    },
+    {
+      "at": "2026-10-20T16:51:14.635Z",
+      "kind": "music",
+      "model": "fal-ai/stable-audio-3/medium/text-to-audio",
+      "note": "noir/sorrow#3 60s",
+      "reservedUsdMicros": 40000,
+      "usdMicros": 40000,
+      "settled": true,
+      "outcome": "ok 60.0s audio/mpeg 9s",
+      "requestId": "01a15a39-6ac1-7df3-a6df-39023b220a35"
+    },
+    {
+      "at": "2026-10-20T16:51:14.637Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "noir/triumph#1 75s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 73.7s audio/mpeg 24s",
+      "requestId": "01a15a39-6ac8-7503-ac70-6bb6e5994695"
+    },
+    {
+      "at": "2026-10-20T16:51:43.152Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "noir/triumph#2 75s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 76.8s audio/mpeg 25s",
+      "requestId": "01a15a39-d9e6-7b41-ab51-69171526aeb9"
+    },
+    {
+      "at": "2026-10-20T16:52:24.673Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "shov/explore#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "dry"
+    },
+    {
+      "at": "2026-10-20T16:52:24.682Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "shov/explore#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "dry"
+    },
+    {
+      "at": "2026-10-20T16:52:24.683Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "shov/trade#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "dry"
+    },
+    {
+      "at": "2026-10-20T16:52:24.685Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "shov/trade#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 0,
+      "settled": true,
+      "outcome": "dry"
+    },
+    {
+      "at": "2026-10-20T16:52:42.916Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "shov/explore#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 59.3s audio/mpeg 27s",
+      "requestId": "01a15a3a-c42f-7fa2-843c-58c1169e3392"
+    },
+    {
+      "at": "2026-10-20T16:52:42.950Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "shov/explore#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 61.2s audio/mpeg 25s",
+      "requestId": "01a15a3a-c43b-7863-91b1-617892cc2bbc"
+    },
+    {
+      "at": "2026-10-20T16:52:42.953Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "shov/trade#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 59.0s audio/mpeg 19s",
+      "requestId": "01a15a3a-c430-7e02-80aa-2d1903e3e089"
+    },
+    {
+      "at": "2026-10-20T16:53:12.420Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "shov/trade#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 62.8s audio/mpeg 29s",
+      "requestId": "01a15a3b-369a-7101-a4bd-a07e7bcf4fc2"
+    },
+    {
+      "at": "2026-10-20T16:53:43.784Z",
+      "kind": "music",
+      "model": "fal-ai/lyria3/pro",
+      "note": "noir/travel#1 60s",
+      "reservedUsdMicros": 80000,
+      "usdMicros": 80000,
+      "settled": true,
+      "outcome": "ok 58.7s audio/mpeg 21s",
+      "requestId": "01a15a3b-b155-7b81-9c8f-a00ca5846252"
+    },
+    {
+      "at": "2026-10-20T16:53:43.815Z",
+      "kind": "music",
+      "model": "google/lyria-3.5",
+      "note": "noir/travel#2 60s",
+      "reservedUsdMicros": 100000,
+      "usdMicros": 100000,
+      "settled": true,
+      "outcome": "ok 62.1s audio/mpeg 26s",
+      "requestId": "01a15a3b-b156-7341-93b5-559082547588"
     }
   ]
 }

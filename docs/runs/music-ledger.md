@@ -2,7 +2,7 @@
 
 Cap **$50** (the stage file says $40; the owner raised it to $50 in the session's task). Every fal request of the stage, counted at the list price before it is sent and settled after it returns (a failed request settles at the list price: fal may bill it). Validation probes — bodies the worker rejected before any generation — are recorded at $0; fal does not bill them. Times are UTC.
 
-**Total settled: $13.1000 of $50.**
+**Total settled: $14.4000 of $50.**
 
 | # | When | Kind | Model | What | Counted | Settled | Outcome |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -131,6 +131,26 @@ Cap **$50** (the stage file says $40; the owner raised it to $50 in the session'
 | 123 | 2026-10-20 16:49:16 | music | google/lyria-3.5 | noir/humor#2 60s | $0.1000 | $0.1000 | ok 62.8s audio/mpeg 24s |
 | 124 | 2026-10-20 16:49:16 | music | fal-ai/lyria3/pro | noir/trade#1 60s | $0.0800 | $0.0800 | ok 59.7s audio/mpeg 27s |
 | 125 | 2026-10-20 16:49:16 | music | google/lyria-3.5 | noir/trade#2 60s | $0.1000 | $0.1000 | ok 62.7s audio/mpeg 21s |
-| 126 | 2026-10-20 16:49:45 | music | fal-ai/lyria3/pro | noir/town#1 60s | $0.0800 | open |  |
-| 127 | 2026-10-20 16:49:45 | music | google/lyria-3.5 | noir/town#2 60s | $0.1000 | open |  |
-| 128 | 2026-10-20 16:49:45 | music | fal-ai/lyria3/pro | noir/night#1 60s | $0.0800 | open |  |
+| 126 | 2026-10-20 16:49:45 | music | fal-ai/lyria3/pro | noir/town#1 60s | $0.0800 | $0.0800 | ok 60.1s audio/mpeg 21s |
+| 127 | 2026-10-20 16:49:45 | music | google/lyria-3.5 | noir/town#2 60s | $0.1000 | $0.1000 | ok 62.7s audio/mpeg 28s |
+| 128 | 2026-10-20 16:49:45 | music | fal-ai/lyria3/pro | noir/night#1 60s | $0.0800 | $0.0800 | ok 58.6s audio/mpeg 23s |
+| 129 | 2026-10-20 16:50:14 | music | google/lyria-3.5 | noir/night#2 60s | $0.1000 | $0.1000 | ok 61.4s audio/mpeg 22s |
+| 130 | 2026-10-20 16:50:14 | music | fal-ai/stable-audio-3/medium/text-to-audio | noir/night#3 60s | $0.0400 | $0.0400 | ok 60.0s audio/mpeg 9s |
+| 131 | 2026-10-20 16:50:14 | music | fal-ai/lyria3/pro | noir/dread#1 75s | $0.0800 | $0.0800 | ok 74.3s audio/mpeg 26s |
+| 132 | 2026-10-20 16:50:43 | music | google/lyria-3.5 | noir/dread#2 75s | $0.1000 | $0.1000 | ok 74.9s audio/mpeg 26s |
+| 133 | 2026-10-20 16:50:43 | music | fal-ai/stable-audio-3/medium/text-to-audio | noir/dread#3 75s | $0.0400 | $0.0400 | ok 75.0s audio/mpeg 9s |
+| 134 | 2026-10-20 16:50:43 | music | fal-ai/lyria3/pro | noir/sorrow#1 60s | $0.0800 | $0.0800 | ok 59.2s audio/mpeg 29s |
+| 135 | 2026-10-20 16:51:14 | music | google/lyria-3.5 | noir/sorrow#2 60s | $0.1000 | $0.1000 | ok 66.8s audio/mpeg 26s |
+| 136 | 2026-10-20 16:51:14 | music | fal-ai/stable-audio-3/medium/text-to-audio | noir/sorrow#3 60s | $0.0400 | $0.0400 | ok 60.0s audio/mpeg 9s |
+| 137 | 2026-10-20 16:51:14 | music | fal-ai/lyria3/pro | noir/triumph#1 75s | $0.0800 | $0.0800 | ok 73.7s audio/mpeg 24s |
+| 138 | 2026-10-20 16:51:43 | music | google/lyria-3.5 | noir/triumph#2 75s | $0.1000 | $0.1000 | ok 76.8s audio/mpeg 25s |
+| 139 | 2026-10-20 16:52:24 | music | fal-ai/lyria3/pro | shov/explore#1 60s | $0.0800 | $0.0000 | dry |
+| 140 | 2026-10-20 16:52:24 | music | google/lyria-3.5 | shov/explore#2 60s | $0.1000 | $0.0000 | dry |
+| 141 | 2026-10-20 16:52:24 | music | fal-ai/lyria3/pro | shov/trade#1 60s | $0.0800 | $0.0000 | dry |
+| 142 | 2026-10-20 16:52:24 | music | google/lyria-3.5 | shov/trade#2 60s | $0.1000 | $0.0000 | dry |
+| 143 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/explore#1 60s | $0.0800 | $0.0800 | ok 59.3s audio/mpeg 27s |
+| 144 | 2026-10-20 16:52:42 | music | google/lyria-3.5 | shov/explore#2 60s | $0.1000 | $0.1000 | ok 61.2s audio/mpeg 25s |
+| 145 | 2026-10-20 16:52:42 | music | fal-ai/lyria3/pro | shov/trade#1 60s | $0.0800 | $0.0800 | ok 59.0s audio/mpeg 19s |
+| 146 | 2026-10-20 16:53:12 | music | google/lyria-3.5 | shov/trade#2 60s | $0.1000 | $0.1000 | ok 62.8s audio/mpeg 29s |
+| 147 | 2026-10-20 16:53:43 | music | fal-ai/lyria3/pro | noir/travel#1 60s | $0.0800 | $0.0800 | ok 58.7s audio/mpeg 21s |
+| 148 | 2026-10-20 16:53:43 | music | google/lyria-3.5 | noir/travel#2 60s | $0.1000 | $0.1000 | ok 62.1s audio/mpeg 26s |

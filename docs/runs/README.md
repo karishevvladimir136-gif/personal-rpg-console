@@ -10,6 +10,8 @@ From Stage 4 on, no paid run is thrown away. Every live bench run, probe and bli
 | `probe-depth-<time>.jsonl` | `node scripts/eval/probe-depth.mjs` | one request per effort step: cache read/write tokens, first word, cost (Stage 4 §7: does an effort change keep the cache) |
 | `probe-<time>.jsonl` | `node scripts/eval/probe-models.mjs` | the per-effort speed probe (first word, turn time, cost, cache share) |
 
+| `music-review/*.json`, `music-ledger.json` / `.md`, `music-session-log.md` | `node scripts/music-bench.mjs compare|pack`, `node scripts/music-session-log.mjs` | the music stage: every fal music request (prompt, model, seed, price, time, the measured length, loudness and seam), the review MP3s in `music-review/`, the ledger of every paid call, the 20-turn mood log |
+
 `node scripts/eval/recompute.mjs docs/runs/<file>.jsonl` prints the run's report again and recomputes the resistance
 metrics from the receipts in the record; they must match the stored per-scenario metrics.
 `node scripts/eval/report.mjs docs/runs/<file>.jsonl [--calls]` prints the report or every paid call.

@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-19T05:32:01.308Z",
+  "date": "2026-10-20T16:52:23.118Z",
   "shots": [
     {
       "file": "menu-desktop.jpg",
@@ -29,14 +29,6 @@
     {
       "file": "new-campaign-dm-desktop.jpg",
       "url": "/preview/stage-5/new-campaign?step=2",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 1440,
-      "viewportWidth": 1440
-    },
-    {
-      "file": "game-desktop.jpg",
-      "url": "/preview/stage-5/game",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 1440,
@@ -139,24 +131,8 @@
       "viewportWidth": 1440
     },
     {
-      "file": "settings-desktop.jpg",
-      "url": "/preview/stage-5/settings",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 1440,
-      "viewportWidth": 1440
-    },
-    {
       "file": "adventures-desktop.jpg",
       "url": "/preview/stage-5/adventures",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 1440,
-      "viewportWidth": 1440
-    },
-    {
-      "file": "noir-game-desktop.jpg",
-      "url": "/preview/stage-5/game?world=noir",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 1440,
@@ -189,6 +165,30 @@
     {
       "file": "noir-campaigns-desktop.jpg",
       "url": "/preview/stage-5/campaigns?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "game-desktop.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "settings-desktop.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 1440,
+      "viewportWidth": 1440
+    },
+    {
+      "file": "noir-game-desktop.jpg",
+      "url": "/preview/stage-5/game?world=noir",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 1440,
@@ -229,14 +229,6 @@
     {
       "file": "new-campaign-dm-phone.jpg",
       "url": "/preview/stage-5/new-campaign?step=2",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 390,
-      "viewportWidth": 390
-    },
-    {
-      "file": "game-phone.jpg",
-      "url": "/preview/stage-5/game",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 390,
@@ -339,24 +331,8 @@
       "viewportWidth": 390
     },
     {
-      "file": "settings-phone.jpg",
-      "url": "/preview/stage-5/settings",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 390,
-      "viewportWidth": 390
-    },
-    {
       "file": "adventures-phone.jpg",
       "url": "/preview/stage-5/adventures",
-      "horizontalOverflowPx": 0,
-      "clippedPx": 0,
-      "imageWidth": 390,
-      "viewportWidth": 390
-    },
-    {
-      "file": "noir-game-phone.jpg",
-      "url": "/preview/stage-5/game?world=noir",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 390,
@@ -389,6 +365,30 @@
     {
       "file": "noir-campaigns-phone.jpg",
       "url": "/preview/stage-5/campaigns?world=noir",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "game-phone.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "settings-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0,
+      "imageWidth": 390,
+      "viewportWidth": 390
+    },
+    {
+      "file": "noir-game-phone.jpg",
+      "url": "/preview/stage-5/game?world=noir",
       "horizontalOverflowPx": 0,
       "clippedPx": 0,
       "imageWidth": 390,
