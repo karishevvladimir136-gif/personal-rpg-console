@@ -24,7 +24,7 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   A3 — depth: every turn at the range's base, «⚡ важный ход» and a combat climax one level deeper (default range high–high);
   bundled rolls (`roll` takes the attack's damage and a save's half-on-save effect in one call); «Продолжение хода»
   (same / one notch lighter) as a DM option (migration 73: `dm_options`).
-- Stage A, part 2 (this commit): the client's polling backs off (3 s → 20 s, paused in a hidden tab, one read in
+- Stage A, part 2 (commit `3af4a34`): the client's polling backs off (3 s → 20 s, paused in a hidden tab, one read in
   flight); the stream is `no-transform`; the session-end card polls only while open; the digest's guard (one at a
   time, once a minute on entry, never while a turn is unresolved) and its cut-by-cap reason in the log (A4); the party
   council as a light call (two system blocks, notes/time/finish tools, medium depth, no memory retrieval); «Что мне
@@ -39,16 +39,23 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   (`scripts/eval/fix-s2/probes.mjs`: talk, council, mine-style fight, long rest) and the replay's flags
   (`--continuation`, `--memory`, `--instructions`, `--label`, `--ledger-check`, variant O = Opus writes and records).
 
+- Stage A, measurements and follow-ups (this commit): the probes before (base) and after in four arms ($14.97 in all);
+  found and fixed live — the bookkeeper recorded a roll's applied damage twice (the brief now says it is applied), a cut
+  continuation refused with HTTP 400 (plain-text retry; whitespace-only blocks filtered), the lighter continuation left
+  a fight untold twice in three (default stays «как основной запрос»; the outcome request runs at the turn's depth), the
+  ledger checker's false flags (it now gets the people on record and the party's tracked stock: 8/8 known misses caught,
+  0/6 controls flagged); the DM options in Settings; «Opus пишет — Opus записывает» as a choice; the owner screen's
+  preview, Russian causes and phone cards; screenshots `docs/runs/fix-s2-shots/A-*`; the report's stage A section.
+
 ## In progress
 
-- Stage A measurements (paid, guarded, `FIX_S2_STAGE=A`): the cache before/after on a live turn pair; the probes in
-  «Opus ведёт один» (same / lighter continuation) and «пишет — записывает» (Sonnet / Opus records) with the ledger
-  checker; the continuation default by the result; the stage's clean-worktree suite and screenshots.
+- Stage A's clean-worktree full suite on this commit.
 
 ## Next
 
-- Stage B (B1 hidden layer, B2 memory hygiene with fact validity and the memory presets measured, B3 rules, B4 voice and
-  the Russian instructions via a Fable subagent), then D → C → E → F.
+- Stage B: B4's Russian instructions through a Fable subagent (in the background), B1 the hidden layer, B2 memory
+  hygiene (fact validity, the memory presets measured with the recall probes), B3 the rules, the B probes in both
+  instruction languages (A+B budget left: about $15). Then D → C → E → F.
 
 ## Owner's instructions during the run
 
@@ -78,6 +85,8 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
 
 ## Open questions
 
+- Session 3's mode: the owner's «Opus пишет — Opus записывает» holds on the records but costs ~$0.70 a turn against
+  ~$0.40 (in the report's «Needs the owner»).
 - The ledger checker runs before the commit (while the player already reads the text), so its correction lands in
   the same atomic commit; the stage doc says «after the bookkeeper commits … off the turn's path». The player's text
   is never delayed; the turn's records close a few seconds later (one Haiku call, ≈2–4 s; a correction adds one

@@ -2,18 +2,13 @@
 
 import { useEffect, useState } from "react";
 import type { CampaignSnapshot } from "@/lib/persistence/contracts";
-import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
+import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import type { DmView } from "@/lib/gameplay/dm-loop/dm-view";
 import { readJson } from "@/lib/persistence/client";
+import { effortLabel } from "@/lib/ui/effort";
+import { causeLabel, EXPENSIVE_COST_USD, EXPENSIVE_REQUESTS, turnFlagged, unrecordedPhrase } from "@/lib/ui/turn-costs";
 import { Panel, Plate, registry as r, useCopy } from "./primitives";
 import o from "./owner.module.css";
-
-/** Fix run A3: a turn over $1 or over four requests is flagged (the owner: «ход за 2,5 доллара — это треш»). */
-export const EXPENSIVE_COST_USD = 1;
-export const EXPENSIVE_REQUESTS = 4;
-export function turnFlagged(turn: Pick<PublicTurn, "stats">): boolean {
-  return !!turn.stats && (turn.stats.costUsd > EXPENSIVE_COST_USD || turn.stats.requests > EXPENSIVE_REQUESTS);
-}
 
 /** The price of each turn: cost, requests, seconds, depth; the expensive ones flagged with their causes. */
 export function TurnCosts({ play }: { play: PlaySnapshot | null }) {
@@ -26,8 +21,8 @@ export function TurnCosts({ play }: { play: PlaySnapshot | null }) {
     <div className={r.stack}>
       <p className={o.help}>{c(`Последние ${turns.length} ходов стоили $${total.toFixed(2)}. Ход дороже $${EXPENSIVE_COST_USD} или больше ${EXPENSIVE_REQUESTS} запросов отмечен — у него названа причина.`,
         `The last ${turns.length} turns cost $${total.toFixed(2)}. A turn over $${EXPENSIVE_COST_USD} or over ${EXPENSIVE_REQUESTS} requests is flagged with its cause.`)}
-        {" "}{unrecorded ? c(`Проверка записей нашла ${unrecorded} незаписанных событий — они в последнем столбце; поправьте их в листе героя или в инвентаре.`,
-          `The record check found ${unrecorded} unrecorded events — in the last column; correct them on the hero's sheet or in the inventory.`) : ""}</p>
+        {" "}{unrecorded ? c(`Проверка записей нашла ${unrecordedPhrase(unrecorded)} — в столбце «Не записано»; поправьте их в листе героя или в инвентаре.`,
+          `The record check found ${unrecorded} unrecorded event${unrecorded === 1 ? "" : "s"} — in the «Not recorded» column; correct them on the hero's sheet or in the inventory.`) : ""}</p>
       <div className={o.tableWrap}><table className={o.table}>
         <thead><tr><th>{c("Ход", "Turn")}</th><th>{c("Цена", "Cost")}</th><th>{c("Запросы", "Requests")}</th><th>{c("Секунды", "Seconds")}</th><th>{c("Глубина", "Depth")}</th><th>{c("Почему дорого", "Why expensive")}</th><th>{c("Не записано", "Not recorded")}</th></tr></thead>
         <tbody>
@@ -35,14 +30,14 @@ export function TurnCosts({ play }: { play: PlaySnapshot | null }) {
             const stats = turn.stats!;
             const flagged = turnFlagged(turn);
             return (
-              <tr key={turn.id}>
-                <td>{turn.input.slice(0, 60)}{turn.input.length > 60 ? "…" : ""}</td>
-                <td className={`${o.num} ${flagged && stats.costUsd > EXPENSIVE_COST_USD ? o.flag : ""}`}>${stats.costUsd.toFixed(2)}</td>
-                <td className={`${o.num} ${flagged && stats.requests > EXPENSIVE_REQUESTS ? o.flag : ""}`}>{stats.requests}</td>
-                <td className={o.num}>{Math.round(stats.latencyMs / 1000)}</td>
-                <td>{stats.effort ?? "—"}</td>
-                <td>{flagged ? (stats.expensiveCauses?.join("; ") || c("дорогой ход", "an expensive turn")) : ""}</td>
-                <td>{stats.unrecorded?.length ? <span className={o.chips}>{stats.unrecorded.map((chip) => <span key={chip} className={o.chip}>{chip}</span>)}</span> : ""}</td>
+              <tr key={turn.id} className={flagged || stats.unrecorded?.length ? o.marked : undefined}>
+                <td className={o.turnCell}>{turn.input.slice(0, 60)}{turn.input.length > 60 ? "…" : ""}</td>
+                <td data-label={c("Цена", "Cost")} className={`${o.num} ${flagged && stats.costUsd > EXPENSIVE_COST_USD ? o.flag : ""}`}>${stats.costUsd.toFixed(2)}</td>
+                <td data-label={c("Запросы", "Requests")} className={`${o.num} ${flagged && stats.requests > EXPENSIVE_REQUESTS ? o.flag : ""}`}>{stats.requests}</td>
+                <td data-label={c("Секунды", "Seconds")} className={o.num}>{Math.round(stats.latencyMs / 1000)}</td>
+                <td data-label={c("Глубина", "Depth")}>{stats.effort ? effortLabel(stats.effort, c.language) : "—"}</td>
+                <td data-label={c("Почему дорого", "Why expensive")} className={flagged ? undefined : o.emptyCell}>{flagged ? (stats.expensiveCauses?.map((cause) => causeLabel(cause, c.language)).join("; ") || c("дорогой ход", "an expensive turn")) : ""}</td>
+                <td data-label={c("Не записано", "Not recorded")} className={stats.unrecorded?.length ? undefined : o.emptyCell}>{stats.unrecorded?.length ? <span className={o.chips}>{stats.unrecorded.map((chip) => <span key={chip} className={o.chip}>{chip}</span>)}</span> : ""}</td>
               </tr>
             );
           })}
@@ -50,6 +45,12 @@ export function TurnCosts({ play }: { play: PlaySnapshot | null }) {
       </table></div>
     </div>
   );
+}
+
+/** A layer is a problem when it is past its budget or dropped something other than the history's oldest scenes (the
+ * window moving on is by design: they live on in the dossier). */
+function overBudget(layer: DmView["layers"][number]): boolean {
+  return layer.tokens > layer.budgetTokens || layer.dropped.some((name) => name !== "older scenes before the window");
 }
 
 const LAYER_NAMES: Record<DmView["layers"][number]["key"], [string, string, string, string]> = {
@@ -63,17 +64,19 @@ const LAYER_NAMES: Record<DmView["layers"][number]["key"], [string, string, stri
 };
 
 /** Fix run A5: «Что видит ведущий» — the layers of the last turn's request. */
-export function DmViewPanel({ campaignId }: { campaignId: string }) {
+export function DmViewPanel({ campaignId, preview }: { campaignId: string; preview?: { view: DmView | null } }) {
   const c = useCopy();
-  const [view, setView] = useState<DmView | null | undefined>(undefined);
+  const [loaded, setView] = useState<DmView | null | undefined>(undefined);
+  const view = preview ? preview.view : loaded;
   const [failed, setFailed] = useState(false);
   useEffect(() => {
+    if (preview) return;
     let live = true;
     readJson<{ view: DmView | null }>(`/api/campaigns/${encodeURIComponent(campaignId)}/dm-view`)
       .then((result) => { if (live) setView(result.view); })
       .catch(() => { if (live) setFailed(true); });
     return () => { live = false; };
-  }, [campaignId]);
+  }, [campaignId, preview]);
   if (failed) return <p role="alert" className={r.error}>{c("Не удалось прочитать последний ход.", "The last turn could not be read.")}</p>;
   if (view === undefined) return <p role="status" className={r.muted}>{c("Читаю последний ход…", "Reading the last turn…")}</p>;
   if (!view) return <p className={r.empty}>{c("Пока нет сохранённых ходов.", "No saved turns yet.")}</p>;
@@ -93,11 +96,11 @@ export function DmViewPanel({ campaignId }: { campaignId: string }) {
             <summary>
               <span className={o.layerName}>{c(ru, en)}</span>
               <span className={o.num}>{Math.round(layer.tokens / 100) / 10}k{layer.budgetTokens ? ` / ${Math.round(layer.budgetTokens / 1000)}k` : ""}</span>
-              {layer.budgetTokens > 0 && <span className={o.bar} aria-hidden="true"><span className={`${o.barFill} ${layer.dropped.length ? o.barOver : ""}`} style={{ display: "block", width: `${share}%` }} /></span>}
+              {layer.budgetTokens > 0 && <span className={o.bar} aria-hidden="true"><span className={`${o.barFill} ${overBudget(layer) ? o.barOver : ""}`} style={{ display: "block", width: `${share}%` }} /></span>}
               <span className={r.muted}>{layer.cached ? c("из кэша", "cached") : c("каждый ход заново", "new each turn")}</span>
             </summary>
             <p className={o.help}>{c(ruHint, enHint)}.</p>
-            {layer.dropped.length > 0 && <p className={`${o.help} ${o.flag}`}>{c("Не поместилось в бюджет: ", "Dropped by the budget: ")}{layer.dropped.join(", ")}</p>}
+            {layer.dropped.length > 0 && <p className={`${o.help} ${overBudget(layer) ? o.flag : ""}`}>{c("Не поместилось в бюджет: ", "Dropped by the budget: ")}{layer.dropped.map((name) => (name === "older scenes before the window" ? c("старые сцены до окна памяти (они в досье)", "older scenes before the window (they are in the dossier)") : name)).join(", ")}</p>}
             {layer.text !== null ? <pre className={o.pre}>{layer.text}</pre>
               : <p className={o.help}>{c("Тайный слой ведущего: текст скрыт. Его можно открыть в «Настройки → Ведущий → Показывать мне тайны ведущего».", "The DM's private layer: hidden. Open it in Settings → DM → Show me the DM's secrets.")}</p>}
           </details>
@@ -113,14 +116,14 @@ export function DmViewPanel({ campaignId }: { campaignId: string }) {
   );
 }
 
-export function RegistryOwner({ data, play }: { data: CampaignSnapshot; play: PlaySnapshot | null }) {
+export function RegistryOwner({ data, play, preview }: { data: CampaignSnapshot; play: PlaySnapshot | null; preview?: { view: DmView | null } }) {
   const c = useCopy();
   return (
     <div className={o.screen}>
       <Plate eyebrow={c("Для владельца", "For the owner")} title={c("Ходы и ведущий", "Turns and the DM")}
         sub={c("Что стоил каждый ход и что ведущий получил на последнем. В игре ничего не меняет.", "What each turn cost and what the DM received on the last one. Changes nothing in play.")} />
       <Panel title={c("Цена ходов", "The price of turns")}><TurnCosts play={play} /></Panel>
-      <Panel title={c("Что видит ведущий", "What the DM sees")}><DmViewPanel campaignId={data.campaign.id} /></Panel>
+      <Panel title={c("Что видит ведущий", "What the DM sees")}><DmViewPanel campaignId={data.campaign.id} preview={preview} /></Panel>
     </div>
   );
 }

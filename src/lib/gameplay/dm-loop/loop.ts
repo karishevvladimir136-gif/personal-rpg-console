@@ -123,6 +123,21 @@ export function expensiveTurn(loop: Pick<DmLoopCheckpoint, "usage" | "requests" 
 /** Fix run A1 (items 56, 73): what the loop sends after a request the output cap cut. The cut tool
  * call is dropped by the adapter (never sent to the provider again); the model continues once from
  * the complete part. */
+/** Fix run A1: the request after a cut, refused by the provider (a stage A probe lost a fight turn on an HTTP 400
+ * there): the cut message goes back once as plain text and calls, without its provider-native blocks (its thinking).
+ * Returns whether it changed the transcript — only when the transcript ends with the cut note. */
+export function plainCutMessage(transcript: DmMessage[], note: string): boolean {
+  const last = transcript.at(-1);
+  if (last?.role !== "user" || last.text !== note) return false;
+  for (let at = transcript.length - 1; at >= 0; at--) {
+    const message = transcript[at];
+    if (message.role !== "assistant") continue;
+    if (!message.native) return false;
+    transcript[at] = { ...message, native: null };
+    return true;
+  }
+  return false;
+}
 export const CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then send the final bookkeeping message with finish_turn. Keep your thinking short.";
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
@@ -478,7 +493,11 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
       // Requests after the first (continuations after tool results) may run at
       // the pinned continuation effort (stage 2b §3).
-      const planned = loop.requests > 0 && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      // Fix run A3: a request that answers «narrate the outcome» or «narrate now» thinks at the turn's own depth — on the
+      // lighter continuation the stage A probe's fight twice answered it with a bare finish_turn, the rolls never told.
+      const lastAsk = loop.transcript.at(-1);
+      const narrationAsked = lastAsk?.role === "user" && (lastAsk.text === PENDING_OUTCOME || lastAsk.text === NARRATE_NOW);
+      const planned = loop.requests > 0 && pin.continuationEffort && !narrationAsked ? pin.continuationEffort : pin.effort;
       // Fix run A1: the request after a cut thinks one level lower (the plan is made; long thinking cut it).
       const effort = cutRecovery ? lowerEffort(planned) : planned;
       // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
@@ -541,6 +560,12 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
             providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
+          if (error.kind === "provider_rejected" && cutRecovery && !loop.diagnostics.some((row) => row.kind === "cut_plain_retry") &&
+            plainCutMessage(loop.transcript, CUT_BY_CAP)) {
+            diagnostic({ kind: "cut_plain_retry" });
+            await persist("generating");
+            continue;
+          }
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
         }

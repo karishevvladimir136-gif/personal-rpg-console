@@ -31,7 +31,7 @@ import { buildDmLoopContext, suspectedLiteralLeaks } from "../context.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "../ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "../metrics.ts";
 import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals } from "../depth.ts";
-import { ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult } from "../ledger-check.ts";
+import { ledgerCheckState, ledgerChip, ledgerCorrectionMessage, type LedgerCheckResult, type LedgerCheckState } from "../ledger-check.ts";
 import { executeDmLoopTool } from "../execute.ts";
 import { chip } from "../receipt-text.ts";
 import type { PublicProfile } from "../../../persistence/contracts.ts";
@@ -41,7 +41,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
+import { continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
@@ -60,7 +60,7 @@ export type TwoPassDependencies = DmLoopDependencies & {
   /** The adapter for a pinned bookkeeper selection (the app). */
   bookkeeperModel?: (selection: BookkeeperSelection) => DmModel;
   /** Fix run A6: the ledger checker (Haiku in the app; a fake in tests) — absent: no check. */
-  ledgerCheck?: (input: { narration: string; ledger: string; receipts: DmLoopReceipt[]; language: "ru" | "en" }) => Promise<LedgerCheckResult>;
+  ledgerCheck?: (input: { narration: string; ledger: string; receipts: DmLoopReceipt[]; language: "ru" | "en"; state?: LedgerCheckState }) => Promise<LedgerCheckResult>;
 };
 
 /** The writer's one tool and the bookkeeper's fifteen. */
@@ -273,7 +273,9 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       const model = phase === "writer" ? writer : bookkeeper;
       const spec = phase === "writer" ? writerSpec : bookkeeperSpec;
       // Fix run A6: the writer's continuations (after a roll) take the pinned continuation depth (A3).
-      const writerEffort = !firstRound && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      // Fix run A3: «narrate the outcome» is answered at the turn's own depth (the lighter one skipped the narration).
+      const asksOutcome = (() => { const lastAsk = messages.at(-1); return lastAsk?.role === "user" && lastAsk.text === PENDING_OUTCOME; })();
+      const writerEffort = !firstRound && pin.continuationEffort && !asksOutcome ? pin.continuationEffort : pin.effort;
       const effort = phase === "writer" ? (writerCut ? lowerEffort(writerEffort) : writerEffort) : pin.bookkeeper!.effort;
       writerCut = false;
       const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName, bookkeeperText());
@@ -341,6 +343,14 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
             providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
+          // Fix run A1/A6: the writer's request after a cut, refused — the cut message goes back once as plain text.
+          if (phase === "writer" && error.kind === "provider_rejected" && !asked("cut_plain_retry") && plainCutMessage(loop.transcript, WRITER_CUT_BY_CAP)) {
+            diagnostic({ kind: "cut_plain_retry" });
+            await persist("generating");
+            stopHeartbeat();
+            writerCut = true;
+            return request(phase, rendered(loop.transcript, loop.receipts, checkpoint.checks), firstRound);
+          }
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
         }
@@ -519,7 +529,8 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
     if (deps.ledgerCheck && !asked("ledger_checked")) {
       const writerText = loop.transcript.slice(0, markerAt).filter((m) => m.role === "assistant").reduce((text, m) => joinText(text, m.text), "");
       const ledgerText = splitLedger(writerText).ledger;
-      const check = () => deps.ledgerCheck!({ narration: loop.text, ledger: ledgerText, receipts: loop.receipts, language }).catch((error: unknown) =>
+      const check = () => deps.ledgerCheck!({ narration: loop.text, ledger: ledgerText, receipts: loop.receipts, language,
+        state: ledgerCheckState({ snapshot: shadow.snapshot, runtime: shadow.runtime }) }).catch((error: unknown) =>
         ({ misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: String((error as Error)?.message ?? error).slice(0, 120) }));
       const first = await check();
       diagnostic({ kind: "ledger_checked", misses: first.misses.map((miss) => miss.event), costUsd: first.costUsdMicros / 1_000_000, error: first.error });

@@ -36,17 +36,21 @@ export const dmBookkeeperModels: readonly { modelId: string; label: string; effo
   { modelId: "claude-opus-5-5", label: "Claude Opus 5.5", efforts: ["medium", "high"], defaultEffort: "high" },
   { modelId: "claude-sonnet-5-5", label: "Claude Sonnet 5.5", efforts: ["medium", "high"], defaultEffort: "high" },
 ];
-/** The three choices of «Ведущий» with the bake-off's numbers (2026-10-17, the same eight states each):
- * the median first word and the cost of a 41-turn session. `split` null is today's loop. */
-export const dmArchitectures: readonly { id: "single" | "fable-opus" | "opus-sonnet"; ru: string; en: string; firstWordS: number; sessionUsd: number;
+/** The choices of «Ведущий» with their measured numbers: the median first word and the cost of a 41-turn session.
+ * Fix run A6 (2026-10-20): the single DM and the two Opus pairs from the stage A probes after the fixes (the owner's
+ * session 3 choice, «Opus пишет — Opus записывает», added); Fable's pair from the bake-off of 2026-10-17. `split` null
+ * is today's loop. */
+export const dmArchitectures: readonly { id: "single" | "fable-opus" | "opus-sonnet" | "opus-opus"; ru: string; en: string; firstWordS: number; sessionUsd: number;
   split: DmSplit | null }[] = [
-  { id: "single", ru: "Opus ведёт один", en: "Opus runs alone", firstWordS: 24.7, sessionUsd: 12, split: null },
+  { id: "single", ru: "Opus ведёт один", en: "Opus runs alone", firstWordS: 18.4, sessionUsd: 17, split: null },
+  { id: "opus-opus", ru: "Opus пишет — Opus записывает", en: "Opus writes — Opus records", firstWordS: 15.7, sessionUsd: 29,
+    split: { writer: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } } },
+  { id: "opus-sonnet", ru: "Opus пишет — Sonnet записывает", en: "Opus writes — Sonnet records", firstWordS: 14.0, sessionUsd: 22,
+    split: { writer: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", reasoning: "high" } } },
   { id: "fable-opus", ru: "Fable пишет — Opus записывает", en: "Fable writes — Opus records", firstWordS: 26.7, sessionUsd: 27,
     split: { writer: { providerId: "anthropic", modelId: "claude-fable-5-1", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" } } },
-  { id: "opus-sonnet", ru: "Opus пишет — Sonnet записывает", en: "Opus writes — Sonnet records", firstWordS: 15.7, sessionUsd: 11,
-    split: { writer: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, bookkeeper: { providerId: "anthropic", modelId: "claude-sonnet-5-5", reasoning: "high" } } },
 ];
-/** Which of the three choices a stored split is (null: a custom pair from «Подробнее»). */
+/** Which of the choices a stored split is (null: a custom pair from «Подробнее»). */
 export function dmArchitectureOf(split: DmSplit | null): (typeof dmArchitectures)[number]["id"] | null {
   if (!split) return "single";
   const found = dmArchitectures.find((row) => row.split && row.split.writer.modelId === split.writer.modelId && row.split.bookkeeper.modelId === split.bookkeeper.modelId);

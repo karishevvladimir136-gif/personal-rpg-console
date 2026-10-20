@@ -34,7 +34,7 @@ import { DEFAULT_DEPTH_RANGE } from "../../../src/lib/gameplay/dm-loop/depth.ts"
 import { createSnapshotTurnStore, noMemory, seededRandom, snapshotInput } from "../../../src/lib/gameplay/replay/memory-store.ts";
 import { buildReplaySample } from "../../../src/lib/gameplay/replay/samples.ts";
 import { checkQuotableLines } from "../../../src/lib/gameplay/dm-loop/quotable.ts";
-import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
+import { checkLedger, ledgerCheckState } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
 import { VARIANTS, MODELS, createBudget, guardedModel, dryModel } from "./lib/models.mjs";
 import { openRun, ROOT, LEDGERS, DEFAULT_LEDGER } from "./lib/ledger.mjs";
 import { craftVariant } from "./lib/craft.mjs";
@@ -170,7 +170,7 @@ try {
       // Fix run A6: the residual misses of the committed records, the same check for both modes (a fraction of a cent).
       if (record.outcome === "committed" && record.narration && args.ledgerCheck === "on" && !args.dry && !budget.exhausted) {
         const post = await guardedLedgerCheck({ narration: record.narration, ledger: record.ledger ?? "", receipts: record.receipts,
-          language: payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en" });
+          language: payload.source.snapshot.settings.values.language === "ru" ? "ru" : "en", state: ledgerCheckState(payload.source) });
         record.ledgerCheck = { ...record.ledgerCheck, post: { misses: post.misses, costUsd: Number((post.costUsdMicros / 1_000_000).toFixed(6)), error: post.error } };
         record.costUsd = Number((record.costUsd + post.costUsdMicros / 1_000_000).toFixed(5));
       }
@@ -273,6 +273,8 @@ async function playVariant(payload, turnNo, variant) {
       voice: args.voice, ...(examples ? { examplesPassages: examples.passages } : {}) },
     outcome: result?.status ?? "error", continues, errorCode: result?.failure ?? (thrown ? thrown.code ?? "exception" : null), exception: thrown ? String(thrown.message).slice(0, 200) : null,
     failure: observations.filter((o) => o.type === "failure").map((o) => ({ code: o.code, message: o.message })),
+    // Fix run: the provider's own reason of a failed request (the checkpoint is not written after it).
+    providerErrors: observations.filter((o) => o.type === "diagnostic" && o.diagnostic.kind === "provider_error").map((o) => o.diagnostic),
     narration: result?.status === "committed" ? result.narration : null,
     firstWordMs: firstWordAt === null ? null : Math.round(firstWordAt - started), textDoneMs: variant.runtime === "two-pass" ? textDone : (result?.status === "committed" ? durationMs : null),
     recordsDoneMs: result?.status === "committed" ? durationMs : null, durationMs, requests: usage.length,
@@ -280,6 +282,9 @@ async function playVariant(payload, turnNo, variant) {
     tokens: { input: sum("inputTokens"), output: sum("outputTokens"), cached: sum("cacheReadTokens"), cacheWrite: sum("cacheWriteTokens"), cacheWrite1h: sum("cacheWrite1hTokens") },
     usage, receipts: loop?.receipts ?? [], diagnostics: loop?.diagnostics ?? [], effort: loop?.pin?.effort ?? null, tension: loop?.pin?.depth?.tension ?? null,
     ledger: twoPass.find((o) => o.event === "writer_finished")?.ledger ?? null, transport: transport.map((t) => ({ ...t })),
+    // Fix run: the turn's shape — each model answer's text length and calls (why a turn took the requests it took).
+    shape: (loop?.transcript ?? []).filter((m) => m.role === "assistant").map((m) => ({ text: (m.text ?? "").length, calls: (m.toolCalls ?? []).map((call) => call.name) })),
+    nudges: (loop?.transcript ?? []).filter((m) => m.role === "user").slice(1).map((m) => (m.text ?? "").slice(0, 80)),
     // Fix run A6: the in-turn checks of the split (first, then after the correction) and the chips left; the checker's cost is in costUsd.
     ledgerCheck: { live: (loop?.diagnostics ?? []).filter((d) => d.kind === "ledger_checked"), unrecorded: (loop?.diagnostics ?? []).find((d) => d.kind === "ledger_unrecorded")?.chips ?? [] },
   };

@@ -93,7 +93,7 @@ test("A6: on a split campaign a council line is the loop's light call — no boo
 });
 
 // ---- A6: the ledger checker (owner's decision: session 3 plays on «пишет — записывает») ----------------
-import { checkLedger, ledgerCheckRequest, parseLedgerMisses, recordLines, LEDGER_CHECK_MODEL } from "../src/lib/gameplay/dm-loop/ledger-check.ts";
+import { checkLedger, ledgerCheckRequest, ledgerCheckState, parseLedgerMisses, recordLines, LEDGER_CHECK_MODEL } from "../src/lib/gameplay/dm-loop/ledger-check.ts";
 
 const SADDLE_LEDGER = "\n<ledger>\nпредмет — седло Дирка переходит герою\nвремя — 5 минут\n</ledger>";
 const saddle = (hero) => ({ name: "item", arguments: { action: "create", localKey: "saddle", name: "Седло Дирка", category: "gear", quantity: 1, ownerRef: hero } });
@@ -164,6 +164,17 @@ test("A6 ledger checker: the request reads the story, the ledger and the accepte
   assert.match(request.user, /NARRATION:\nТы берёшь ключ\.[\s\S]*LEDGER:\n\(none\)[\s\S]*1\. item: Седло Дирка/);
   assert.deepEqual(parseLedgerMisses('Вот: {"misses":[{"event":"  взял  ключ ","expected":"item create"},{"expected":"no event"}]}'), [{ event: "взял ключ", expected: "item create" }]);
   assert.deepEqual(parseLedgerMisses("not json"), []);
+  // The records' state: the people on record (a known companion is not «new») and what the party tracks (ammunition only when tracked).
+  const state = ledgerCheckState({ snapshot: { entities: [
+    { id: "h", name: "Рэй", kind: "player", resources: { hp: 9 } }, { id: "b", name: "Брам", kind: "companion", resources: { "болты": 12 } },
+    { id: "n", name: "Кондрат", kind: "npc", resources: { hp: 4 } }, { id: "f", name: "Гильдия", kind: "faction", resources: {} }],
+    items: [{ name: "Гарпун", quantity: 3, owner_entity_id: "h" }, { name: "Сабля", quantity: 1, owner_entity_id: "n" }] },
+    runtime: { configuration: { controlledEntityIds: ["b"] } } });
+  assert.deepEqual(state.people, ["Рэй", "Брам", "Кондрат"]);
+  assert.deepEqual(state.tracked, ["Рэй: hp 9", "Брам: болты 12", "Рэй: Гарпун ×3"]);
+  const withState = ledgerCheckRequest({ narration: "Брам стреляет.", ledger: "", records: [], language: "ru", state });
+  assert.match(withState.user, /PEOPLE ON RECORD:\nРэй; Брам; Кондрат[\s\S]*TRACKED BY THE PARTY \(counters and items\):\nРэй: hp 9\nБрам: болты 12/);
+  assert.match(withState.system, /только для того, что есть в списке/);
   assert.equal(parseLedgerMisses(JSON.stringify({ misses: Array.from({ length: 30 }, (_, i) => ({ event: `e${i}` })) })).length, 12);
   let sent = null;
   const fetcher = async (url, init) => { sent = { url, body: JSON.parse(init.body), key: init.headers["x-api-key"] };
@@ -177,4 +188,44 @@ test("A6 ledger checker: the request reads the story, the ledger and the accepte
   const broken = await checkLedger("k", { narration: "x", ledger: "", receipts, language: "en" }, { fetcher: async () => new Response("{}", { status: 529 }) });
   assert.match(broken.error, /HTTP 529/);
   assert.deepEqual(broken.misses, []);
+});
+
+test("A6: the bookkeeper's brief says which roll damage is already applied, so the wound is never recorded twice", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const met = await c.turn("На меня выходит разбойник.", [{ text: "Из кустов выходит разбойник с дубиной. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "thug", name: "Разбойник", kind: "npc", present: true, hp: 20, maxHp: 20, description: "Разбойник с дубиной." } }, time(), finish()] }]);
+    assert.equal(met.result.status, "committed", JSON.stringify(c.errors));
+    await split(c);
+    const thug = (await c.state()).entities.find((row) => row.name === "Разбойник");
+    c.forceDice([15, 6]);
+    const played = await campaignTurn(c, "Бью разбойника посохом.", [
+      { text: "Ты замахиваешься посохом. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+3", reason: "удар посохом", actorRef: c.hero, kind: "attack", dc: 12, visibility: "player",
+        damage: "1d6+1", targetRef: thug.id } }] },
+      { text: "Посох бьёт разбойника в плечо." + LEDGER },
+    ], [{ text: "", toolCalls: [time(), finish()] }]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const brief = played.bookkeeper.requests[0].messages[0].text;
+    assert.match(brief, /damage 7 ALREADY APPLIED: Разбойник 20 → 13\/20 \(do not record this damage again\)/);
+    assert.match(played.bookkeeper.requests[0].system[0].text, /ALREADY APPLIED has changed those hit points/);
+    assert.equal((await c.state()).entities.find((row) => row.id === thug.id).hp, 13);
+  } finally { await c.f.db.close(); }
+});
+
+test("A6: the writer's continuation after a cut that the provider refuses goes again once as plain text", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    await split(c);
+    const played = await campaignTurn(c, "Слушаю бригадира.", [
+      { text: "Бригадир начинает: сначала погасли лампы, потом", stop: "max_tokens" },
+      { failBefore: "rejected" },
+      { text: " у ствола дважды ударил колокол." + LEDGER },
+    ], [{ text: "", toolCalls: [time(), finish()] }]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const kinds = (await c.row(played.input.operationId)).checkpoint.dmLoop.diagnostics.map((d) => d.kind);
+    assert.ok(kinds.includes("cut_plain_retry"), kinds.join(","));
+    assert.equal(played.writer.requests[2].messages[1].native, null);
+    assert.equal(played.writer.requests[2].messages.at(-1).text, WRITER_CUT_BY_CAP);
+    assert.notEqual(played.writer.requests[2].effort, played.writer.requests[0].effort, "still one notch lower");
+  } finally { await c.f.db.close(); }
 });

@@ -80,13 +80,15 @@ export function RegistrySettings({ data, more, preview }: {
       if (action === "likes") setLikesDraft(null); else setThemeDraft(null);
     } catch { setError(c("Не удалось сохранить записку.", "Could not save the note.")); }
   };
-  const saveDepth = async (patch: { depth?: { min: string; max: string } | null; notebookVisible?: boolean; voiceMode?: DmSettings["voiceMode"]; voiceTokenCap?: number }) => {
+  const saveDepth = async (patch: { depth?: { min: string; max: string } | null; notebookVisible?: boolean; voiceMode?: DmSettings["voiceMode"]; voiceTokenCap?: number;
+    options?: Partial<DmSettings["options"]> }) => {
     if (!current || saving || chrome?.href) return;
     setSaving(true);
     try {
       const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn,
         ...(patch.depth !== undefined ? { depth: patch.depth as DmSettings["depth"] } : {}), ...(patch.notebookVisible !== undefined ? { notebookVisible: patch.notebookVisible } : {}),
-        ...(patch.voiceMode !== undefined ? { voiceMode: patch.voiceMode } : {}), ...(patch.voiceTokenCap !== undefined ? { voiceTokenCap: patch.voiceTokenCap } : {}) });
+        ...(patch.voiceMode !== undefined ? { voiceMode: patch.voiceMode } : {}), ...(patch.voiceTokenCap !== undefined ? { voiceTokenCap: patch.voiceTokenCap } : {}),
+        ...(patch.options ? { options: patch.options } : {}) });
       setDm(saved);
     } catch { setError(c("Не удалось сохранить. Проверь соединение и попробуй ещё раз.", "Could not save. Check the connection and try again.")); }
     finally { setSaving(false); }
@@ -211,8 +213,8 @@ export function RegistrySettings({ data, more, preview }: {
                     </button>
                   ))}
                 </div>
-                <p className={r.note} style={{ margin: 0 }}>{c("Числа — из сравнения 17 октября на одних и тех же восьми сценах: медиана первого слова и цена сессии в 41 ход. «Opus ведёт один» — сегодняшний ход, он по умолчанию. В паре писатель рассказывает и бросает кости, а бухгалтер записывает: текст приходит раньше, фишки — после записи.",
-                  "The numbers come from the bake-off of 17 October on the same eight scenes: the median first word and the cost of a 41-turn session. «Opus runs alone» is today's loop, the default. In a pair the writer narrates and rolls the dice while the bookkeeper records: the text arrives sooner, the chips after the records.")}</p>
+                <p className={r.note} style={{ margin: 0 }}>{c("Числа — медиана первого слова и цена сессии в 41 ход: пробы 20 октября после исправлений (у Fable — сравнение 17 октября). В паре писатель рассказывает и бросает кости, а бухгалтер записывает: текст приходит сразу, фишки — через 40–60 секунд, после записи и проверки записей. «Opus пишет — Opus записывает» — твой выбор для третьей сессии; «Opus ведёт один» — по умолчанию для новой кампании.",
+                  "The numbers are the median first word and the cost of a 41-turn session: the probes of 20 October after the fixes (Fable's from the bake-off of 17 October). In a pair the writer narrates and rolls the dice while the bookkeeper records: the text arrives at once, the chips 40–60 seconds later, after the records and their check. «Opus writes — Opus records» is your choice for session 3; «Opus runs alone» is the default for a new campaign.")}</p>
                 <details>
                   <summary>{c("Подробнее", "More")}</summary>
                   <div className={r.stack} style={{ gap: 8 }}>
@@ -382,6 +384,23 @@ export function RegistrySettings({ data, more, preview }: {
                       : <p className={r.note} style={{ margin: 0 }}>{c("Пока пусто: блокнот пишется после закрытия сессии.", "Empty so far: the notebook is written after a session closes.")}</p>}
                   </div>
                 )}
+                {/* Fix run A2/A3/A5: the DM's options (migration 73), measured on the stage A probes. */}
+                <div className={r.stack} style={{ gap: 6 }} data-testid="dm-options">
+                  <span className={r.eyebrow}>{c("Продолжение хода", "Turn continuation")}</span>
+                  <Segmented label={c("Продолжение хода", "Turn continuation")} value={current?.options.continuation ?? "same"} disabled={saving || !current || !!chrome?.href}
+                    options={[{ value: "same", label: c("как основной запрос", "as the first request") }, { value: "lighter", label: c("на ступень легче", "one notch lighter") }]}
+                    onChange={(value) => void saveDepth({ options: { continuation: value as DmSettings["options"]["continuation"] } })} />
+                  <p className={r.note} style={{ margin: 0 }}>{c("Запрос после броска думает так же глубоко, как первый, или на ступень меньше. На пробах «на ступень легче» дважды из трёх раз оставил итог боя без рассказа, поэтому по умолчанию — как основной запрос.",
+                    "The request after a roll thinks as deep as the first one, or one notch less. On the probes «one notch lighter» twice in three left the fight's outcome untold, so the default is «as the first request».")}</p>
+                  <span className={r.eyebrow}>{c("Память ведущего", "DM memory")}</span>
+                  <Segmented label={c("Память ведущего", "DM memory")} value={current?.options.memory ?? "compact"} disabled={saving || !current || !!chrome?.href}
+                    options={[{ value: "compact", label: c("компактно", "compact") }, { value: "standard", label: c("стандарт", "standard") }, { value: "wide", label: c("широко", "wide") }]}
+                    onChange={(value) => void saveDepth({ options: { memory: value as DmSettings["options"]["memory"] } })} />
+                  <p className={r.note} style={{ margin: 0 }}>{c("Сколько последних сцен ведущий читает дословно: «компактно» — около 45 тысяч токенов (как раньше), «стандарт» — около 200 тысяч (весь запрос около 300 тысяч), «широко» — около 380 тысяч (около 500 тысяч). Шире — дороже первый ход сессии; более старое ведущий помнит по досье.",
+                    "How many recent scenes the DM reads verbatim: «compact» about 45 thousand tokens (as before), «standard» about 200 thousand (about 300 thousand for the whole request), «wide» about 380 thousand (about 500 thousand). Wider costs more on a session's first turn; the dossier keeps the older story.")}</p>
+                </div>
+                <Switch title={c("Показывать мне тайны ведущего", "Show me the DM's secrets")} hint={c("Открывает тайный слой в «Для владельца → Что видит ведущий»: досье, заметки, планы. Это спойлеры. По умолчанию выключено.", "Opens the private layers in «For the owner → What the DM sees»: the dossier, notes, plans. These are spoilers. Off by default.")}
+                  checked={!!current?.options.secretsVisible} disabled={saving || !current || !!chrome?.href} onChange={(value) => void saveDepth({ options: { secretsVisible: value } })} />
               </div>
             </div>
           </Panel>

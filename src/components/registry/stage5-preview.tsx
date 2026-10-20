@@ -24,6 +24,8 @@ import { RegistryHoldings } from "./holdings-screen";
 import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns, RegistryNewCampaign } from "./library-screen";
 import { RegistryChronicle } from "./chronicle";
+import { RegistryOwner } from "./owner-screen";
+import { previewDmView, previewOwnerPlay } from "@/lib/ui/preview/owner-fixture";
 import { Plate, useCopy } from "./primitives";
 
 const samples: Record<Stage5Variant["world"], PreviewSample> = { shov: shovSample, noir: noirSample };
@@ -115,6 +117,8 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       );
     case "adventures":
       return <PreviewAdventures sample={sample} language={language} />;
+    case "owner":
+      return <RegistryOwner data={snapshot} play={previewOwnerPlay(play)} preview={{ view: previewDmView }} />;
     default:
       return null;
   }

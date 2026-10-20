@@ -1,0 +1,69 @@
+{
+  "base": "PREVIEW_URL",
+  "date": "2026-10-20T09:01:18.471Z",
+  "shots": [
+    {
+      "stage": "A",
+      "file": "A-owner-1080p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-settings-1080p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-game-recording-1080p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-owner-1440p.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-settings-1440p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-game-recording-1440p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-owner-phone.jpg",
+      "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-settings-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "A",
+      "file": "A-game-recording-phone.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    }
+  ]
+}

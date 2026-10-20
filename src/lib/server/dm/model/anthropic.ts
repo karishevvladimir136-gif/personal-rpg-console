@@ -53,7 +53,8 @@ export function completeBlocks(blocks: Block[]): Block[] {
     if (!block) return false;
     if (block.type === "tool_use") return !block.incomplete;
     if (block.type === "thinking") return typeof block.signature === "string" && block.signature.length > 0;
-    if (block.type === "text") return typeof block.text === "string" && block.text.length > 0;
+    // A whitespace-only text block (interleaved thinking can leave one before the cut) is refused by the API.
+    if (block.type === "text") return typeof block.text === "string" && block.text.trim().length > 0;
     return true;
   }).map((block) => {
     if (block.type !== "tool_use") return block;

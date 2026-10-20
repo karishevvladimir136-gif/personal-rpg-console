@@ -41,8 +41,14 @@ function rolls(row) {
   const narration = row.narration ?? "";
   const told = (roll) => (roll.total !== undefined && narration.includes(String(roll.total))) || (roll.target && narration.includes(roll.target)) ||
     (roll.actor && roll.actor !== "DM" && narration.includes(roll.actor));
-  return { rolls: parsed.length, attacks: attacks.length, bundled: attacks.filter((roll) => roll.damage).length, separateDamage,
-    untold: parsed.filter((roll) => roll.visibility === "player" && !told(roll)).length };
+  // The plain case first: no narration at all after the first answer that rolled — every roll of the turn untold
+  // (the stage A probe's lighter fights). The shape is the record's (each answer's text length and calls).
+  const shape = row.shape ?? [];
+  const firstRoll = shape.findIndex((answer) => answer.calls.includes("roll"));
+  const textAfter = firstRoll < 0 ? null : shape.slice(firstRoll + 1).reduce((sum, answer) => sum + answer.text, 0);
+  const untold = textAfter === 0 ? parsed.filter((roll) => roll.visibility === "player").length
+    : parsed.filter((roll) => roll.visibility === "player" && !told(roll)).length;
+  return { rolls: parsed.length, attacks: attacks.length, bundled: attacks.filter((roll) => roll.damage).length, separateDamage, untold };
 }
 
 const median = (values) => { const sorted = values.filter((v) => typeof v === "number").sort((a, b) => a - b); if (!sorted.length) return null;

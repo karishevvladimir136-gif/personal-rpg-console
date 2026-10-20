@@ -170,6 +170,50 @@ test("Anthropic: at max_tokens the cut tool call is dropped (no tool_call event,
   assert.ok(!stop.native.items.some((item) => "incomplete" in item));
 });
 
+test("Anthropic: a whitespace-only text block left before the cut is not sent back (the API refuses one)", async () => {
+  const events = [
+    ["message_start", { type: "message_start", message: { usage: { input_tokens: 10, output_tokens: 1 } } }],
+    ["content_block_start", { type: "content_block_start", index: 0, content_block: { type: "thinking", thinking: "", signature: "" } }],
+    ["content_block_delta", { type: "content_block_delta", index: 0, delta: { type: "signature_delta", signature: "SIG" } }],
+    ["content_block_stop", { type: "content_block_stop", index: 0 }],
+    ["content_block_start", { type: "content_block_start", index: 1, content_block: { type: "text", text: "" } }],
+    ["content_block_delta", { type: "content_block_delta", index: 1, delta: { type: "text_delta", text: "Стражник поднимает щит." } }],
+    ["content_block_stop", { type: "content_block_stop", index: 1 }],
+    ["content_block_start", { type: "content_block_start", index: 2, content_block: { type: "text", text: "" } }],
+    ["content_block_delta", { type: "content_block_delta", index: 2, delta: { type: "text_delta", text: "\n\n" } }],
+    ["content_block_stop", { type: "content_block_stop", index: 2 }],
+    ["message_delta", { type: "message_delta", delta: { stop_reason: "max_tokens" }, usage: { output_tokens: 32000 } }],
+    ["message_stop", { type: "message_stop" }],
+  ];
+  const model = createAnthropicDmModel("claude-opus-5-5", { apiKey: "synthetic-test-key-not-real", fetcher: async () => response(sse(events)) });
+  const out = [];
+  for await (const event of model.stream(request)) out.push(event);
+  assert.deepEqual(out.find((e) => e.type === "stop").native.items.map((item) => item.type), ["thinking", "text"]);
+});
+
+test("A1: a continuation after a cut that the provider refuses goes again once with the cut message as plain text; the turn commits", async () => {
+  const c = await loopCampaign();
+  try {
+    const played = await c.turn("I listen to the foreman's story.", [
+      { text: "The foreman rubs his neck and begins: first the lamps went out, then", stop: "max_tokens" },
+      { failBefore: "rejected" },
+      { text: " the bell at the shaft rang twice and nobody answered.", toolCalls: [finish()] },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const kinds = (await c.row(played.input.operationId)).checkpoint.dmLoop.diagnostics.map((d) => d.kind);
+    assert.ok(kinds.includes("cut_continued") && kinds.includes("provider_error") && kinds.includes("cut_plain_retry"), kinds.join(","));
+    const third = played.model.requests[2];
+    assert.equal(third.messages[1].role, "assistant");
+    assert.equal(third.messages[1].native, null, "the cut message goes back without its native blocks");
+    assert.equal(third.messages.at(-1).text, CUT_BY_CAP);
+    assert.match(played.result.narration, /then the bell at the shaft rang twice/);
+    const again = await c.turn("I ask once more.", [
+      { text: "He shrugs, and then", stop: "max_tokens" }, { failBefore: "rejected" }, { failBefore: "rejected" },
+    ]);
+    assert.equal(again.result.status, "failed", "only one plain retry");
+  } finally { await c.f.db.close(); }
+});
+
 test("OpenAI: at max_output_tokens a trailing reasoning item without its following item is not sent back", async () => {
   const events = [
     ["response.output_item.done", { type: "response.output_item.done", output_index: 0, item: { type: "message", role: "assistant", content: [{ type: "output_text", text: "Он ждёт." }] } }],
@@ -296,6 +340,25 @@ test("the DM options: stored as one object, merged key by key, defaults in TypeS
   } finally { await c.f.db.close(); }
 });
 
+test("A3: on the lighter continuation, the request that answers «narrate the outcome» thinks at the turn's own depth", async () => {
+  const c = await loopCampaign();
+  try {
+    const before = await c.settings.read();
+    await c.settings.save({ expectedRevision: before.revision, runtime: "dm-loop-v1", dmTurn: before.dmTurn, options: { continuation: "lighter" } });
+    const played = await c.turn("I try to pick the lock.", [
+      { text: "You kneel at the lock. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20+2", reason: "picking the lock", actorRef: c.hero, visibility: "player", difficulty: "normal" } }] },
+      { text: "", toolCalls: [{ name: "advance_time", arguments: { minutes: 5, reason: "the lock" } }, finish()] },
+      { text: "The pins give one by one and the lock opens.", toolCalls: [finish()] },
+    ]);
+    assert.equal(played.result.status, "committed", JSON.stringify(c.errors));
+    const row = await c.row(played.input.operationId);
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "outcome_asked"));
+    const pin = row.checkpoint.dmLoop.pin;
+    assert.equal(played.model.requests[1].effort, pin.continuationEffort, "the plain continuation is lighter");
+    assert.equal(played.model.requests[2].effort, pin.effort, "the outcome is narrated at the turn's depth");
+  } finally { await c.f.db.close(); }
+});
+
 // --- A3: the party council is a light call ---------------------------------------------------------
 test("A3: a council line is a light call — the role layer and one small block, notes and time only, medium depth, the hero never a listener", async () => {
   const c = await loopCampaign();
@@ -390,4 +453,20 @@ test("A4: one digest per session at a time; no entry digest while one runs or af
   guard.setStatus("camp-a", "s2", { state: "running", reason: null, costUsd: null });
   guard.clearStaleRunning("camp-a", "s2");
   assert.equal(guard.readDigestStatus("camp-a", "s2"), null);
+});
+
+// --- A3/A6: the owner panel's reading of a turn's price ---------------------------------------------
+test("the owner panel flags a turn over $1 or 4 requests and names its causes in Russian; the unrecorded phrase agrees in number", async () => {
+  const { causeLabel, turnFlagged, unrecordedPhrase } = await import("../src/lib/ui/turn-costs.ts");
+  assert.equal(turnFlagged({ stats: { costUsd: 0.46, requests: 3 } }), false);
+  assert.equal(turnFlagged({ stats: { costUsd: 0.52, requests: 4 } }), false, "four requests is the limit, not over it");
+  assert.equal(turnFlagged({ stats: { costUsd: 1.06, requests: 1 } }), true);
+  assert.equal(turnFlagged({ stats: { costUsd: 0.3, requests: 5 } }), true);
+  assert.equal(causeLabel("rolls not bundled: 3 requests ended on rolls alone", "ru"), "броски не собраны вместе: 3 запроса только с бросками");
+  assert.equal(causeLabel("deep thinking (xhigh)", "ru"), "глубокое обдумывание (очень высокая)");
+  assert.equal(causeLabel("a low cache share (0.45)", "ru"), "мало прочитано из кэша (45%)");
+  assert.equal(causeLabel("a long continuation chain: 6 requests", "en"), "a long continuation chain: 6 requests");
+  assert.equal(causeLabel("something new", "ru"), "something new");
+  assert.deepEqual([1, 2, 5, 11, 21, 22, 112].map(unrecordedPhrase), ["1 незаписанное событие", "2 незаписанных события", "5 незаписанных событий",
+    "11 незаписанных событий", "21 незаписанное событие", "22 незаписанных события", "112 незаписанных событий"]);
 });

@@ -1,6 +1,6 @@
 export const stage5Screens = [
   "menu", "campaigns", "new-campaign",
-  "game", "character", "inventory", "party", "journal", "codex", "map", "holdings", "settings", "adventures", "chronicle",
+  "game", "character", "inventory", "party", "journal", "codex", "map", "holdings", "settings", "adventures", "chronicle", "owner",
 ] as const;
 export type Stage5Screen = (typeof stage5Screens)[number];
 export type Stage5Variant = {

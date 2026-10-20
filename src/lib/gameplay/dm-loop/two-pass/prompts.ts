@@ -108,8 +108,15 @@ export function bookkeeperBrief(args: { playerInput: string; narration: string; 
     if (!receipt.result.ok) return `- ${JSON.stringify(receipt.call.arguments)} → rejected: ${receipt.result.reason}`;
     const value = receipt.result.value as Record<string, unknown>;
     const check = args.checks.find((row) => row.id === value.checkId);
+    // Fix run A6: a roll with its damage already changed the target's hit points — the brief says so, or the
+    // bookkeeper records the same wound a second time (the stage A probe: Opus + Sonnet).
+    const damage = value.damage && typeof value.damage === "object" ? value.damage as Record<string, unknown> : null;
+    const applied = damage?.applied && typeof damage.applied === "object" ? damage.applied as Record<string, unknown> : null;
+    const damageText = !damage ? "" : damage.hit !== true ? "; damage: a miss, nothing to record"
+      : applied ? `; damage ${String(damage.total)} ALREADY APPLIED: ${String(applied.target)} ${String(applied.before)} → ${String(applied.after)}/${String(applied.max)} (do not record this damage again)`
+      : `; damage ${String(damage.total)} to ${String(damage.target ?? "the target")} NOT applied (no hit points on record): record it with resource`;
     return `- ${String(value.reason ?? "")}: ${String(value.actor ?? "")}, ${value.visibility === "player" ? "shown to the player" : "private"}` +
-      `${check ? `, dice ${check.dice.join("+")} total ${check.total}${check.success === null ? "" : check.success ? ", success" : ", failure"}` : ""}`;
+      `${check ? `, dice ${check.dice.join("+")} total ${check.total}${check.success === null ? "" : check.success ? ", success" : ", failure"}` : ""}${damageText}`;
   });
   return [BOOKKEEPER_MARKER,
     `Player: ${args.playerInput}`,

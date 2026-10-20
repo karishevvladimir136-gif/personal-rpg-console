@@ -20,4 +20,17 @@
 .tableWrap { overflow-x: auto; max-width: 100%; }
 .chips { display: flex; flex-wrap: wrap; gap: 4px; }
 .chip { font-size: 14px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--ember, #e08a5b); color: var(--ember, #e08a5b); white-space: nowrap; }
-@media (max-width: 600px) { .table { font-size: 14px; } .table th, .table td { padding: 6px; } }
+.turnCell { min-width: 220px; }
+/* Phones: each turn is a small card — the line on top, the numbers as labelled pairs; empty cells are not drawn. */
+@media (max-width: 600px) {
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table thead { display: none; }
+  .table tr { border: 1px solid var(--line, rgba(200, 170, 110, 0.18)); border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; }
+  .table tr.marked { border-color: var(--ember, #e08a5b); }
+  .table td { border: 0; padding: 3px 0; font-size: 15px; }
+  .table td[data-label]::before { content: attr(data-label) ": "; color: var(--muted); font-size: 14px; }
+  .table td[data-label] { display: inline-block; width: auto; margin-right: 14px; }
+  .table td.emptyCell { display: none; }
+  .turnCell { min-width: 0; font-size: 16px; margin-bottom: 4px; }
+  .chip { white-space: normal; }
+}

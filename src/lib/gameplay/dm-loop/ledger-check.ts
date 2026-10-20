@@ -14,6 +14,22 @@ export const LEDGER_CHECK_MODEL = QUOTABLE_MODEL;
 export const LEDGER_CHECK_MAX_MISSES = 12;
 
 export type LedgerMiss = { event: string; expected: string };
+/** What the records already hold (the stage A probes: without it the checker took known companions for new people and
+ * asked for arrows nobody tracks): the people on record and what the party's members track — counters and items. */
+export type LedgerCheckState = { people: string[]; tracked: string[] };
+type StateSource = { snapshot: { entities: { id: string; name: string; kind: string; resources?: Record<string, number> | null }[];
+  items: { name: string; quantity: number; owner_entity_id: string | null }[] }; runtime: { configuration?: { controlledEntityIds?: string[] } | null } };
+export function ledgerCheckState(source: StateSource): LedgerCheckState {
+  const party = new Set(source.runtime.configuration?.controlledEntityIds ?? []);
+  for (const row of source.snapshot.entities) if (row.kind === "player") party.add(row.id);
+  const names = new Map(source.snapshot.entities.map((row) => [row.id, row.name]));
+  const people = source.snapshot.entities.filter((row) => row.kind !== "faction").map((row) => row.name).slice(0, 80);
+  const counters = source.snapshot.entities.filter((row) => party.has(row.id))
+    .flatMap((row) => Object.entries(row.resources ?? {}).map(([key, value]) => `${row.name}: ${key} ${value}`));
+  const items = source.snapshot.items.filter((row) => row.quantity > 0 && row.owner_entity_id && party.has(row.owner_entity_id))
+    .map((row) => `${names.get(row.owner_entity_id!) ?? "?"}: ${row.name} ×${row.quantity}`);
+  return { people, tracked: [...counters, ...items].slice(0, 120) };
+}
 export type LedgerCheckResult = { misses: LedgerMiss[]; usage: { inputTokens: number; outputTokens: number } | null; costUsdMicros: number; elapsedMs: number; error: string | null };
 
 /** The accepted records of the turn as short lines (the receipts' own summaries). */
@@ -22,12 +38,13 @@ export function recordLines(receipts: DmLoopReceipt[]): string[] {
     .map((receipt) => `${receipt.call.name}: ${receipt.result.ok ? receipt.result.summary : ""}`.slice(0, 300));
 }
 
-export function ledgerCheckRequest(input: { narration: string; ledger: string; records: string[]; language: "ru" | "en" }): { system: string; user: string } {
+export function ledgerCheckRequest(input: { narration: string; ledger: string; records: string[]; language: "ru" | "en"; state?: LedgerCheckState }): { system: string; user: string } {
   const system = input.language === "ru"
-    ? `Ты проверяешь учёт хода ролевой игры. Тебе дают рассказ ведущего, его черновой список изменений (ledger) и записи, которые сервер принял. Найди события рассказа, у которых нет подходящей записи: герой или спутник что-то взял, нашёл, купил, отдал, потерял, выпил или съел, потратил или получил деньги, был ранен или вылечен, израсходовал заряды или стрелы, кто-то новый появился, время заметно прошло. Не отмечай то, что лишь упомянуто, обдумано или предложено, и то, что уже записано другими словами. Отмечай только явные пропуски. Ответь одним JSON-объектом: {"misses":[{"event":"что случилось, словами рассказа (только то, что видел игрок), до десяти слов","expected":"какая запись нужна: item / money / resource / upsert_character / advance_time и что именно"}]}; если пропусков нет — {"misses":[]}.`
-    : `You check the bookkeeping of one turn of a role-playing game. You get the DM's narration, its draft list of changes (the ledger) and the records the server accepted. Find the events of the story that have no matching record: the hero or a companion took, found, bought, gave, lost, drank or ate something, spent or received money, was wounded or healed, used charges or arrows, someone new appeared, notable time passed. Do not flag what is only mentioned, considered or offered, nor what is already recorded in other words. Flag only clear misses. Answer with one JSON object: {"misses":[{"event":"what happened, in the narration's words (only what the player read), up to ten words","expected":"the record needed: item / money / resource / upsert_character / advance_time and what exactly"}]}; with no misses, {"misses":[]}.`;
+    ? `Ты проверяешь учёт хода ролевой игры. Тебе дают рассказ ведущего, его черновой список изменений (ledger) и записи, которые сервер принял. Найди события рассказа, у которых нет подходящей записи: герой или спутник что-то взял, нашёл, купил, отдал, потерял, выпил или съел, потратил или получил деньги, был ранен или вылечен, израсходовал заряды или стрелы, кто-то новый появился, время заметно прошло. Не отмечай то, что лишь упомянуто, обдумано или предложено, и то, что уже записано другими словами. Человек из списка «люди в записях» — не новый. Расход стрел, болтов, зарядов, зелий, еды отмечай только для того, что есть в списке «что ведёт партия». Отмечай только явные пропуски. Ответь одним JSON-объектом: {"misses":[{"event":"что случилось, словами рассказа (только то, что видел игрок), до десяти слов","expected":"какая запись нужна: item / money / resource / upsert_character / advance_time и что именно"}]}; если пропусков нет — {"misses":[]}.`
+    : `You check the bookkeeping of one turn of a role-playing game. You get the DM's narration, its draft list of changes (the ledger) and the records the server accepted. Find the events of the story that have no matching record: the hero or a companion took, found, bought, gave, lost, drank or ate something, spent or received money, was wounded or healed, used charges or arrows, someone new appeared, notable time passed. Do not flag what is only mentioned, considered or offered, nor what is already recorded in other words. A person on the PEOPLE ON RECORD list is not new. Flag the use of arrows, bolts, charges, potions or food only for what the TRACKED list holds. Flag only clear misses. Answer with one JSON object: {"misses":[{"event":"what happened, in the narration's words (only what the player read), up to ten words","expected":"the record needed: item / money / resource / upsert_character / advance_time and what exactly"}]}; with no misses, {"misses":[]}.`;
   const user = [`NARRATION:\n${input.narration.slice(0, 16000)}`, `LEDGER:\n${input.ledger.slice(0, 6000) || "(none)"}`,
-    `ACCEPTED RECORDS:\n${input.records.length ? input.records.map((line, index) => `${index + 1}. ${line}`).join("\n") : "(none)"}`].join("\n\n");
+    `ACCEPTED RECORDS:\n${input.records.length ? input.records.map((line, index) => `${index + 1}. ${line}`).join("\n") : "(none)"}`,
+    ...(input.state ? [`PEOPLE ON RECORD:\n${input.state.people.join("; ") || "(none)"}`, `TRACKED BY THE PARTY (counters and items):\n${input.state.tracked.join("\n") || "(nothing)"}`] : [])].join("\n\n");
   return { system, user };
 }
 
@@ -62,12 +79,12 @@ export function ledgerChip(language: "ru" | "en", miss: LedgerMiss): string {
 
 type Fetcher = typeof fetch;
 /** One request to the cheap model, no retry; a failure is reported, never thrown. The key comes from server code. */
-export async function checkLedger(apiKey: string, input: { narration: string; ledger: string; receipts: DmLoopReceipt[]; language: "ru" | "en" },
+export async function checkLedger(apiKey: string, input: { narration: string; ledger: string; receipts: DmLoopReceipt[]; language: "ru" | "en"; state?: LedgerCheckState },
   options: { fetcher?: Fetcher; timeoutMs?: number } = {}): Promise<LedgerCheckResult> {
   const started = Date.now();
   if (!input.narration.trim()) return { misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: null };
   if (!apiKey) return { misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0, error: "not_configured" };
-  const request = ledgerCheckRequest({ narration: input.narration, ledger: input.ledger, records: recordLines(input.receipts), language: input.language });
+  const request = ledgerCheckRequest({ narration: input.narration, ledger: input.ledger, records: recordLines(input.receipts), language: input.language, state: input.state });
   try {
     const response = await (options.fetcher ?? fetch)("https://api.anthropic.com/v1/messages", {
       method: "POST",

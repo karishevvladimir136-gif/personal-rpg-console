@@ -78,13 +78,14 @@ test("§2 the settings: a split is a writer (Opus or Fable) and a bookkeeper (Op
   assert.equal(parseDmSettings(read).split, null, "a row from before migration 68 reads as today's loop");
   assert.equal(parseDmSettings(read).snapshotsKeep, null);
   assert.deepEqual(parseDmSettings({ ...read, split: splitOf(FABLE, OPUS), snapshotsKeep: 12 }).split, splitOf(FABLE, OPUS));
-  // The three choices, their numbers and the custom pair.
-  assert.deepEqual(dmArchitectures.map((row) => row.id), ["single", "fable-opus", "opus-sonnet"]);
+  // The choices, their numbers and the custom pair (fix run A6: the owner's session 3 pair, Opus + Opus, is a choice).
+  assert.deepEqual(dmArchitectures.map((row) => row.id), ["single", "opus-opus", "opus-sonnet", "fable-opus"]);
   assert.equal(dmArchitectures[0].split, null);
   assert.equal(dmArchitectureOf(null), "single");
   assert.equal(dmArchitectureOf(splitOf(FABLE, OPUS)), "fable-opus");
   assert.equal(dmArchitectureOf(splitOf(OPUS, SONNET)), "opus-sonnet");
-  assert.equal(dmArchitectureOf(splitOf(OPUS, OPUS)), null, "a custom pair from «Подробнее»");
+  assert.equal(dmArchitectureOf(splitOf(OPUS, OPUS)), "opus-opus");
+  assert.equal(dmArchitectureOf(splitOf(FABLE, SONNET)), null, "a custom pair from «Подробнее»");
   for (const row of [...dmWriterModels, ...dmBookkeeperModels]) assert.ok(dmModelSpec("anthropic", row.modelId), row.modelId);
   assert.deepEqual([...dmWriterModels.find((row) => row.modelId === "claude-fable-5-1").efforts], ["high"], "Fable writes at high only");
 });

@@ -1,0 +1,137 @@
+{
+  "capUsd": 50,
+  "entries": [
+    {
+      "run": "real-replay-20261020-080648",
+      "what": "real replay: 4 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:06:49.052Z",
+      "reservedUsd": 4,
+      "spentUsd": 1.8935,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:08:57.551Z",
+      "record": "docs/runs/real-replay-20261020-080648.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-080918",
+      "what": "real replay: 2 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:09:18.590Z",
+      "reservedUsd": 8,
+      "spentUsd": 1.4099,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:11:40.435Z",
+      "record": "docs/runs/real-replay-20261020-080918.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-081201",
+      "what": "real replay: 4 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:12:01.100Z",
+      "reservedUsd": 10,
+      "spentUsd": 2.0139,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:15:44.051Z",
+      "record": "docs/runs/real-replay-20261020-081201.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-081650",
+      "what": "real replay: 4 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:16:50.501Z",
+      "reservedUsd": 10,
+      "spentUsd": 1.9707,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:20:12.947Z",
+      "record": "docs/runs/real-replay-20261020-081650.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-082026",
+      "what": "real replay: 4 turns × D on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:20:26.122Z",
+      "reservedUsd": 10,
+      "spentUsd": 2.3927,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:25:07.691Z",
+      "record": "docs/runs/real-replay-20261020-082026.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-082708",
+      "what": "real replay: 4 turns × O on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:27:08.334Z",
+      "reservedUsd": 12,
+      "spentUsd": 2.9843,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:32:47.377Z",
+      "record": "docs/runs/real-replay-20261020-082708.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-083351",
+      "what": "real replay: 2 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:33:52.063Z",
+      "reservedUsd": 8,
+      "spentUsd": 1.1681,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:38:43.548Z",
+      "record": "docs/runs/real-replay-20261020-083351.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-083844",
+      "what": "real replay: 2 turns × A on Fix run probes (seed a); voice live; craft live",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:38:44.376Z",
+      "reservedUsd": 8,
+      "spentUsd": 0.6949,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:40:56.781Z",
+      "record": "docs/runs/real-replay-20261020-083844.jsonl"
+    },
+    {
+      "run": "cut-probe-20261020-084303",
+      "what": "fix run A1: the cut → continue path on the live provider (small caps)",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:43:03.384Z",
+      "reservedUsd": 0.6,
+      "spentUsd": 0,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:43:04.397Z",
+      "record": "scripts/eval/fix-s2/cut-probe.mjs (cut-probe-20261020-084303)"
+    },
+    {
+      "run": "cut-probe-20261020-084311",
+      "what": "fix run A1: the cut → continue path on the live provider (small caps)",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:43:11.771Z",
+      "reservedUsd": 2,
+      "spentUsd": 0.4317,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:44:10.072Z",
+      "record": "scripts/eval/fix-s2/cut-probe.mjs (cut-probe-20261020-084311)"
+    },
+    {
+      "run": "ledger-recheck-20261020-085021",
+      "what": "fix run A6: the ledger checker with the records' state over the stage A probe records",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:50:21.765Z",
+      "reservedUsd": 0.2,
+      "spentUsd": 0.0107,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:51:24.954Z",
+      "record": "scripts/eval/fix-s2/recheck-ledger.mjs (ledger-recheck-20261020-085021)"
+    },
+    {
+      "run": "ledger-cases-20261020-085149",
+      "what": "fix run A6: the ledger checker on session 2's known misses (synthetic) and controls",
+      "stage": "AB",
+      "startedAt": "2026-10-20T08:51:49.816Z",
+      "reservedUsd": 0.1,
+      "spentUsd": 0.0023,
+      "settled": true,
+      "finishedAt": "2026-10-20T08:52:13.340Z",
+      "record": "scripts/eval/fix-s2/ledger-cases.mjs (ledger-cases-20261020-085149)"
+    }
+  ]
+}
