@@ -3,6 +3,18 @@
 Collected from the owner's messages in the planner's chat during session 2 (sandbox, branch `claude/session-2-prep`).
 Each item: what he saw, what he wants. Fixed together after the session unless it blocks play.
 
+## Owner's verdict on session 2 (22:26, after the end)
+
+«Мы сделали огромный шаг вперёд.» What he names as working — keep it working through every fix:
+- the session never broke down — play never had to stop (single turns did fail and were recovered: items 56, 58, 73);
+- fights were tense, fair and hard;
+- no item was lost — the companions kept the loot (74);
+- the companions did not act dumb and were active; companions joined and left the party;
+- modifiers were applied (one exception found: 66), advantage was used when it should be and not otherwise;
+- magic played honestly — spell slots were never hallucinated;
+- almost no moment where the DM got stuck or something the player wanted could not be done.
+His summary of what remains: «есть небольшие поправки к ДМ» — fixes, not a rebuild.
+
 ## Key finding — the DM's instructions (owner: «запомни и запиши, иначе это бред»)
 
 Two causes of the dialogue problems in session 2, both in what the DM is told, not in the model:
