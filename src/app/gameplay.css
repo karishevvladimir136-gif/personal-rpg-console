@@ -34,7 +34,7 @@
   margin: 7px 0;
 }
 .gameplay-owner-input time {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 .gameplay-narration {
@@ -230,7 +230,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 .session-public-recap {
@@ -433,13 +433,13 @@
   border: 0;
   padding: 0;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 13px;
 }
 .moment-reroll {
   display: grid;
   gap: 4px;
   margin: 6px 0 10px;
-  font-size: 12px;
+  font-size: 13px;
 }
 @keyframes moment-die-tumble {
   0% { transform: rotate3d(1, 1, 0, 0deg) scale(0.9); }

@@ -179,7 +179,7 @@ div.sceneImage {
 }
 .memberTop span:last-child {
   font-family: var(--f-mono);
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--muted);
 }
 /* Polish group 10: the player's own actions, one row with one plain line under it. */
@@ -280,7 +280,7 @@ div.sceneImage {
 }
 .game :global(.gameplay-owner-words time) {
   font-family: var(--f-mono);
-  font-size: 11.5px;
+  font-size: 14px;
   color: var(--brass-dim);
 }
 .game :global(.gameplay-narration) {
@@ -316,7 +316,7 @@ div.sceneImage {
 }
 .game :global(.gameplay-check .moment-head .eyebrow) {
   font-family: var(--f-mono);
-  font-size: 11.5px;
+  font-size: 13px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass-dim);
@@ -379,7 +379,7 @@ div.sceneImage {
   color: var(--muted);
 }
 .game :global(.gameplay-check .moment-replay) {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--brass-dim);
 }
 .game :global(.gameplay-live-turn) {
@@ -391,7 +391,7 @@ div.sceneImage {
 }
 .game :global(.gameplay-live-turn > .eyebrow) {
   font-family: var(--f-mono);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: none;
   color: var(--brass);
@@ -428,8 +428,8 @@ div.sceneImage {
 }
 .game :global(form .field > span) {
   font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass-dim);
 }
@@ -522,13 +522,26 @@ div.sceneImage {
   }
 }
 @media (min-width: 2300px) {
+  .game {
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: 18px;
+  }
   .game :global(.gameplay-narration .prose),
   .game :global(.gameplay-live-turn .prose),
   .opening {
-    font-size: 19.5px;
+    font-size: 20.5px;
+  }
+  .game :global(.gameplay-narration .prose),
+  .game :global(.gameplay-live-turn .prose),
+  .game :global(.gameplay-owner-words .prose),
+  .opening {
+    max-width: 90ch;
   }
   .game :global(.gameplay-owner-words .prose) {
-    font-size: 18px;
+    font-size: 18.5px;
+  }
+  .sceneImage {
+    height: 360px;
   }
 }
 :global(.large-text) .game :global(.gameplay-narration .prose),
@@ -544,10 +557,10 @@ div.sceneImage {
   :global(.large-text) .game :global(.gameplay-narration .prose),
   :global(.large-text) .game :global(.gameplay-live-turn .prose),
   :global(.large-text) .opening {
-    font-size: 23px;
+    font-size: 24.5px;
   }
   :global(.large-text) .game :global(.gameplay-owner-words .prose) {
-    font-size: 20px;
+    font-size: 21.5px;
   }
 }
 @media (max-width: 760px) {
@@ -771,7 +784,7 @@ div.sceneImage {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--muted);
 }
 .changes > summary::before {

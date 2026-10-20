@@ -66,7 +66,7 @@
 .saved-game-card time {
   display: block;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .saved-game-details {
   margin: 0;
@@ -76,7 +76,7 @@
 }
 .saved-game-details dt {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 .saved-game-details dd {
   margin: 0;
@@ -174,7 +174,7 @@
     border: 0;
     padding: 6px 0;
     font: inherit;
-    font-size: 9px;
+    font-size: 13px;
     min-height: 44px;
   }
   .bottom-nav .more-campaign-nav.active {

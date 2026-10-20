@@ -75,7 +75,7 @@ em {
   color: #e3cf9f;
 }
 small {
-  font-size: 13px;
+  font-size: 14px;
 }
 :focus-visible,
 button:focus-visible,
@@ -119,8 +119,8 @@ input[type="radio"] {
 /* Legacy building blocks, re-skinned. Flows and markup are unchanged. */
 .eyebrow {
   font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass-dim);
 }
@@ -175,7 +175,7 @@ input[type="radio"] {
   color: var(--brass);
   background: rgba(207, 168, 96, 0.06);
   font-family: var(--f-mono);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.06em;
 }
 .badge.green {
@@ -184,7 +184,7 @@ input[type="radio"] {
 }
 .muted {
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
 }
 .tabs {
   border-bottom-color: var(--line);

@@ -34,7 +34,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
 }
 button,
@@ -96,7 +96,7 @@ p {
   line-height: 1.75;
 }
 small {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--muted);
 }
 em {
@@ -286,7 +286,7 @@ textarea {
   color: #dfd3bd;
 }
 .preview-indicator {
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 1.6px;
   color: #a6a399;
   display: flex;
@@ -312,7 +312,7 @@ main {
   margin: 0 30px;
   padding: 16px 0;
   border-top: 1px solid var(--border);
-  font-size: 10px;
+  font-size: 13px;
   color: #899294;
 }
 .page-footer > span:first-child {
@@ -336,7 +336,7 @@ main {
     serif;
 }
 .eyebrow {
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 2px;
   color: var(--gold);
   font-family: Arial, sans-serif;
@@ -366,7 +366,7 @@ main {
   color: #e7d4b3;
 }
 .panel-heading .muted {
-  font-size: 10px;
+  font-size: 14px;
 }
 .button {
   display: inline-flex;
@@ -378,7 +378,7 @@ main {
   border: 1px solid #4b4b41;
   border-radius: 5px;
   background: linear-gradient(#192023, #101719);
-  font-size: 12px;
+  font-size: 13px;
   white-space: nowrap;
   transition:
     border-color 0.15s,
@@ -398,7 +398,7 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 11px;
+  font-size: 14px;
   color: #d4ba8e;
 }
 .text-link:hover {
@@ -424,7 +424,7 @@ main {
 }
 .muted {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .gold {
   color: var(--gold);
@@ -467,7 +467,7 @@ main {
   gap: 9px;
   margin: 0 0 20px;
   color: #c8c8be;
-  font-size: 12px;
+  font-size: 14px;
 }
 .button-group {
   display: flex;
@@ -561,7 +561,7 @@ main {
   border: 1px solid #a78a5b73;
   background: #0a121aa8;
   padding: 7px 10px;
-  font-size: 8px;
+  font-size: 13px;
   letter-spacing: 1.6px;
 }
 .cover-title {
@@ -606,7 +606,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px 10px;
-  font-size: 10px;
+  font-size: 13px;
   color: #a4aeaf;
 }
 .campaign-meta > span {
@@ -631,7 +631,7 @@ main {
   border-radius: 4px;
 }
 .campaign-character p {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--muted);
   margin-top: 5px;
 }
@@ -648,7 +648,7 @@ main {
   display: flex;
   justify-content: center;
   gap: 25px;
-  font-size: 10px;
+  font-size: 13px;
   color: #a6a391;
   margin-top: 18px;
 }
@@ -666,7 +666,7 @@ main {
   font-size: 21px;
 }
 .section-heading > span {
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .other-campaigns {
@@ -695,7 +695,7 @@ main {
   margin: 9px 0 7px;
 }
 .concept-card p {
-  font-size: 10px;
+  font-size: 14px;
   color: #b2aaa0;
   margin-bottom: 9px;
 }
@@ -777,7 +777,7 @@ main {
   color: #b6c0c3;
 }
 .scene-caption > span {
-  font-size: 10px;
+  font-size: 14px;
   color: #a8b3b8;
 }
 .narration {
@@ -790,7 +790,7 @@ main {
   margin: 7px 0 19px;
 }
 .scene-kicker > span:last-child {
-  font-size: 9px;
+  font-size: 13px;
   color: #879296;
 }
 .narration > p {
@@ -924,7 +924,7 @@ main {
   gap: 6px;
   align-items: center;
   color: #a8b1b2;
-  font-size: 10px;
+  font-size: 13px;
   padding: 3px 0;
 }
 .composer-tools button.selected,
@@ -938,7 +938,7 @@ main {
   margin-top: 12px;
 }
 .suggestions button {
-  font-size: 10px;
+  font-size: 13px;
   border: 1px solid #515345;
   border-radius: 4px;
   padding: 8px;
@@ -1160,7 +1160,7 @@ main {
   gap: 8px;
   padding: 5px 0;
   color: #c3cccd;
-  font-size: 11px;
+  font-size: 13px;
 }
 .stats-list dd {
   color: #eee5d6;
@@ -1277,7 +1277,7 @@ main {
   width: 100%;
   margin-bottom: 14px;
   padding: 9px 11px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .filter-chips {
   display: flex;
@@ -1343,11 +1343,11 @@ main {
 }
 .item-type {
   color: #95a0a1;
-  font-size: 10px;
+  font-size: 13px;
 }
 .item-row > span:last-child {
   text-align: right;
-  font-size: 11px;
+  font-size: 13px;
 }
 .vehicle-storage {
   border-top: 1px solid #66553b;
@@ -1369,11 +1369,11 @@ main {
 }
 .vehicle-row p {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 14px;
   margin: 5px 0 8px;
 }
 .vehicle-row .button {
-  font-size: 10px;
+  font-size: 13px;
   min-height: 31px;
   padding: 5px 9px;
 }
@@ -1446,12 +1446,12 @@ main {
   font-size: 29px;
 }
 .board-heading p {
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 3px;
   color: #b5a68b;
 }
 .board-heading em {
-  font-size: 12px;
+  font-size: 13px;
 }
 .evidence-board {
   position: relative;
@@ -1536,7 +1536,7 @@ main {
   box-shadow: 1px 3px 3px #0008;
 }
 .board-footer {
-  font-size: 9px;
+  font-size: 13px;
   color: #969c90;
   display: flex;
   align-items: center;
@@ -1637,7 +1637,7 @@ main {
 }
 .party-card p.gold {
   color: var(--gold);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* Map */
@@ -1749,7 +1749,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 9px;
-  font-size: 9px;
+  font-size: 13px;
 }
 .map-legend span {
   display: flex;
@@ -1788,7 +1788,7 @@ main {
   margin: 12px 0;
 }
 .location-detail-body > p.gold {
-  font-size: 12px;
+  font-size: 14px;
   color: #b7a381;
   margin: 0 0 16px;
 }
@@ -1800,7 +1800,7 @@ main {
   display: grid;
   grid-template-columns: 90px 1fr;
   gap: 13px 10px;
-  font-size: 12px;
+  font-size: 14px;
   border-top: 1px solid var(--border);
   padding-top: 18px;
   margin: 22px 0;
@@ -1814,7 +1814,7 @@ main {
 }
 .location-detail .detail-list {
   grid-template-columns: 63px 1fr;
-  font-size: 10px;
+  font-size: 14px;
 }
 .location-strip {
   display: grid;
@@ -1894,7 +1894,7 @@ main {
   position: absolute;
   top: 20px;
   left: 20px;
-  font-size: 9px;
+  font-size: 13px;
   color: #b6bbaf;
 }
 
@@ -1973,7 +1973,7 @@ main {
 .document-row > span {
   margin-left: auto;
   color: #a6b2b4;
-  font-size: 11px;
+  font-size: 13px;
 }
 .recap-grid {
   display: grid;
@@ -2109,7 +2109,7 @@ main {
 .change-list {
   list-style: none;
   padding: 0;
-  font-size: 11px;
+  font-size: 13px;
   color: #b6bdb5;
 }
 .change-list li {
@@ -2188,7 +2188,7 @@ main {
 .rules-preview-note p {
   margin: 10px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .rules-section {
@@ -2257,13 +2257,13 @@ main {
   display: block;
   color: #aeb3b0;
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.65;
 }
 .rules-section > .muted,
 .rules-advanced > .muted {
   margin: 14px 0;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
 }
 .rules-advanced {
@@ -2281,7 +2281,7 @@ main {
 .rules-advanced summary span {
   margin-left: 12px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .rules-fields .field > span {
   display: flex;
@@ -2354,7 +2354,7 @@ main {
 }
 .setting-row p {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 15px;
 }
 .toggle {
   width: 40px;
@@ -2393,7 +2393,7 @@ main {
   gap: 12px;
   margin: 20px 0;
   color: #b6c1c1;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 /* Checks & Dice: an isolated sample, using the campaign's presentation settings. */
@@ -2427,7 +2427,7 @@ main {
 }
 .dice-settings-preview p {
   max-width: 580px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.7;
   margin: 0;
 }
@@ -2462,7 +2462,7 @@ main {
 }
 .dice-modal .dice-demo-label {
   color: #d5b98a;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.5px;
   margin: 0 0 17px;
 }
@@ -2480,7 +2480,7 @@ main {
 .dice-demo-setup summary {
   cursor: pointer;
   color: #adb6b3;
-  font-size: 12px;
+  font-size: 13px;
   min-height: 25px;
 }
 .dice-demo-setup summary > span {
@@ -2495,17 +2495,17 @@ main {
 }
 .dice-demo-controls .field {
   margin: 0;
-  font-size: 11px;
+  font-size: 14px;
   min-width: 0;
 }
 .dice-demo-controls select {
   min-width: 0;
   width: 100%;
-  font-size: 12px;
+  font-size: 13px;
 }
 .dice-modal .dice-demo-footnote {
   color: #929c9c;
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 10px 0;
 }
@@ -2655,12 +2655,12 @@ main {
 }
 .dice-modifiers span {
   color: #d0d2c8;
-  font-size: 12px;
+  font-size: 13px;
 }
 .dice-modifiers small {
   display: block;
   color: #97a29f;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1.5;
   margin-top: 4px;
 }
@@ -2705,7 +2705,7 @@ main {
     sans-serif;
 }
 .dice-equation {
-  font-size: 12px;
+  font-size: 13px;
   color: #c0bbaa;
   line-height: 1.8;
   margin: 13px 0;
@@ -2715,7 +2715,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 11px;
+  font-size: 13px;
   margin: 10px 0;
 }
 .dice-individual-results span {
@@ -2817,7 +2817,7 @@ main {
     font-size: 21px;
   }
   .dice-modifiers span {
-    font-size: 11px;
+    font-size: 13px;
   }
   .dice-result {
     padding: 13px;
@@ -2944,7 +2944,7 @@ main {
     font-size: 38px;
   }
   .brand > span:last-child > span {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 2px;
   }
   .brand-motto {
@@ -3102,29 +3102,29 @@ main {
     margin-left: 165px;
   }
   .brand {
-    font-size: 12px;
+    font-size: 13px;
   }
   .brand > span:last-child > span {
-    font-size: 9px;
+    font-size: 13px;
   }
   .brand-mark {
     font-size: 33px;
   }
   .brand-motto {
-    font-size: 8px;
+    font-size: 13px;
   }
   .nav-link {
-    font-size: 11px;
+    font-size: 13px;
     min-height: 41px;
   }
   .campaign-switch {
-    font-size: 10px;
+    font-size: 13px;
   }
   .campaign-switch > svg:last-child {
     display: none;
   }
   .preview-indicator {
-    font-size: 8px;
+    font-size: 13px;
     letter-spacing: 0.7px;
   }
   .game-grid {
@@ -3173,7 +3173,7 @@ main {
     gap: 10px;
   }
   .composer-tools button {
-    font-size: 9px;
+    font-size: 13px;
   }
   .input-row textarea {
     font-size: 14px;
@@ -3226,13 +3226,13 @@ main {
   }
   .campaign-links {
     gap: 12px;
-    font-size: 9px;
+    font-size: 13px;
   }
   .concept-card h2 {
     font-size: 16px;
   }
   .concept-card .eyebrow {
-    font-size: 7px;
+    font-size: 13px;
   }
   .concept-card .art {
     width: 30%;
@@ -3261,7 +3261,7 @@ main {
 }
 @media (max-width: 760px) {
   body {
-    font-size: 13px;
+    font-size: 16px;
   }
   .sidebar {
     display: none;
@@ -3277,7 +3277,7 @@ main {
     font-size: 18px;
   }
   .sidebar .brand > span:last-child > span {
-    font-size: 12px;
+    font-size: 13px;
   }
   .sidebar .nav-link {
     min-height: 44px;
@@ -3325,7 +3325,7 @@ main {
     justify-content: center;
   }
   .breadcrumbs a {
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 1.1px;
   }
   .breadcrumbs > svg,
@@ -3354,20 +3354,20 @@ main {
     font-size: 29px;
   }
   .page-heading p {
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.7;
   }
   .page-heading > .badge {
     display: none;
   }
   .page-heading > .button {
-    font-size: 10px;
+    font-size: 13px;
     padding: 9px 11px;
     margin-top: 9px;
     gap: 7px;
   }
   .eyebrow {
-    font-size: 8px;
+    font-size: 13px;
     letter-spacing: 1.5px;
   }
   .page-footer {
@@ -3375,7 +3375,7 @@ main {
     align-items: center;
     gap: 8px;
     margin: 0 16px;
-    font-size: 9px;
+    font-size: 13px;
   }
   .bottom-nav {
     display: grid;
@@ -3396,7 +3396,7 @@ main {
     align-items: center;
     gap: 6px;
     color: #9aa6ad;
-    font-size: 9px;
+    font-size: 13px;
     padding: 6px 0;
     position: relative;
   }
@@ -3473,7 +3473,7 @@ main {
   }
   .campaign-meta {
     grid-template-columns: 1fr 1fr;
-    font-size: 9px;
+    font-size: 13px;
     gap: 16px 8px;
   }
   .campaign-meta svg {
@@ -3498,7 +3498,7 @@ main {
   }
   .concept-card small {
     display: block;
-    font-size: 10px;
+    font-size: 14px;
   }
   .concept-card > svg:last-child {
     display: none;
@@ -3507,7 +3507,7 @@ main {
     padding-right: 10px;
   }
   .section-heading > span {
-    font-size: 8px;
+    font-size: 13px;
   }
   .game-title {
     margin-bottom: 15px;
@@ -3519,7 +3519,7 @@ main {
     font-size: 23px;
   }
   .game-title .text-link {
-    font-size: 9px;
+    font-size: 14px;
   }
   .game-grid {
     display: block;
@@ -3534,14 +3534,14 @@ main {
   }
   .mobile-stats summary {
     cursor: pointer;
-    font-size: 11px;
+    font-size: 13px;
     color: #d6c9b4;
     min-height: 22px;
   }
   .mobile-stats summary > span {
     float: right;
     color: #9cb6bd;
-    font-size: 10px;
+    font-size: 13px;
   }
   .mobile-stats .identity {
     margin-top: 18px;
@@ -3561,13 +3561,13 @@ main {
     font-size: 28px;
   }
   .scene-caption p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .scene-caption .eyebrow {
-    font-size: 7px;
+    font-size: 14px;
   }
   .scene-caption > span {
-    font-size: 9px;
+    font-size: 14px;
   }
   .narration {
     padding: 9px 20px 20px;
@@ -3582,7 +3582,7 @@ main {
     margin-bottom: 23px;
   }
   .scene-kicker > span:last-child {
-    font-size: 8px;
+    font-size: 13px;
   }
   .scene-actions {
     gap: 8px;
@@ -3625,7 +3625,7 @@ main {
     padding-top: 8px;
   }
   .composer-tools button {
-    font-size: 9px;
+    font-size: 13px;
     min-height: 29px;
   }
   .composer-tools button svg {
@@ -3646,13 +3646,13 @@ main {
     font-size: 30px;
   }
   .character-stats > p {
-    font-size: 10px;
+    font-size: 14px;
   }
   .character-stats .meter > div:first-child {
-    font-size: 9px;
+    font-size: 13px;
   }
   .stats-list > div {
-    font-size: 10px;
+    font-size: 13px;
   }
   .stats-list dd span {
     margin-left: 7px;
@@ -3661,7 +3661,7 @@ main {
     font-size: 15px;
   }
   .character-stats .badge {
-    font-size: 7px;
+    font-size: 13px;
     padding: 5px;
     white-space: normal;
   }
@@ -3677,13 +3677,13 @@ main {
     width: 23px;
   }
   .equipment-slot > span:first-child {
-    font-size: 10px;
+    font-size: 13px;
   }
   .equipment-slot small {
-    font-size: 7px;
+    font-size: 14px;
   }
   .paper-doll > p {
-    font-size: 9px;
+    font-size: 14px;
     padding: 0 10px;
   }
   .paper-doll > .art {
@@ -3697,7 +3697,7 @@ main {
   }
   .filter-chips button {
     padding: 10px;
-    font-size: 10px;
+    font-size: 13px;
     min-height: 37px;
   }
   .item-table-head,
@@ -3713,7 +3713,7 @@ main {
     min-height: 57px;
   }
   .item-type {
-    font-size: 9px;
+    font-size: 13px;
   }
   .item-name {
     gap: 7px;
@@ -3754,13 +3754,13 @@ main {
     font-size: 15px;
   }
   .evidence-card p {
-    font-size: 11px;
+    font-size: 14px;
   }
   .evidence-threads {
     display: none;
   }
   .board-footer {
-    font-size: 8px;
+    font-size: 13px;
     line-height: 1.6;
     padding: 12px;
   }
@@ -3816,14 +3816,14 @@ main {
     min-height: 350px;
   }
   .map-pin b {
-    font-size: 10px;
+    font-size: 13px;
     padding: 4px;
   }
   .map-pin > span {
     font-size: 27px;
   }
   .map-legend {
-    font-size: 8px;
+    font-size: 13px;
     padding: 9px;
     bottom: 12px;
     left: 12px;
@@ -3851,7 +3851,7 @@ main {
     padding: 10px;
   }
   .location-card small {
-    font-size: 9px;
+    font-size: 14px;
   }
   .location-card .art {
     height: 90px;
@@ -3862,7 +3862,7 @@ main {
     letter-spacing: 2px;
   }
   .schematic-pin b {
-    font-size: 9px;
+    font-size: 13px;
   }
   .library-banner {
     margin: -22px -16px 20px;
@@ -3894,7 +3894,7 @@ main {
     font-size: 15px;
   }
   .document-row small {
-    font-size: 9px;
+    font-size: 14px;
   }
   .document-row > svg:first-child {
     width: 20px;
@@ -3928,7 +3928,7 @@ main {
     font-size: 17px;
   }
   .moment-card p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .recap-notes {
     display: block;
@@ -3945,14 +3945,14 @@ main {
     padding: 12px;
   }
   .gallery-card small {
-    font-size: 8px;
+    font-size: 14px;
   }
   .settings-grid {
     grid-template-columns: 1fr;
     gap: 0;
   }
   .future-row {
-    font-size: 10px;
+    font-size: 14px;
   }
   .modal {
     padding: 20px;
@@ -4385,7 +4385,7 @@ main {
   margin: 5px 0;
 }
 .conversation-identity p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--muted);
 }
 .conversation-history {
@@ -4425,7 +4425,7 @@ main {
   margin: 16px 0;
 }
 .conversation-starters .button {
-  font-size: 11px;
+  font-size: 13px;
   text-align: left;
   max-width: 100%;
   white-space: normal;
@@ -5522,6 +5522,53 @@ main {
 .persistent-documents .button, .persistent-documents .badge { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .persistent-documents h3, .persistent-documents p { overflow-wrap: anywhere; }
 .persistent-documents .panel-heading { flex-wrap: wrap; gap: 12px; }
+
+/* Fix run after session 2 (item 25): the Library — the list alone until a document is picked, then the list and one
+   document panel; the document reads as a page (Markdown), «Изменить» turns the same panel into the editor. */
+.library-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; align-items: start; }
+.library-layout-open { grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.6fr); }
+.library-list { min-width: 0; }
+.document-panel.panel { margin: 0; overflow: visible; background: linear-gradient(180deg, var(--leather-2), var(--leather)); }
+.document-panel .panel-heading h2 { font-size: 24px; overflow-wrap: anywhere; }
+.document-panel-actions { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.document-panel-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 16px; }
+.document-panel-bar small { margin: 0; }
+.document-versions-link { margin-left: auto; }
+.document-panel .persistence-document-body { max-height: none; overflow: visible; white-space: normal; padding: 4px 0 8px; border: 0; background: transparent; font-family: var(--f-body); font-size: 17px; line-height: 1.65; }
+.document-row > .document-saved { margin-left: auto; color: var(--verdigris); font-size: 14px; font-family: var(--f-body); }
+.library-editor { display: grid; gap: 14px; }
+.library-editor .persistence-fields { display: grid; gap: 14px; }
+.library-editor-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(160px, 1fr); gap: 14px; }
+.library-editor textarea { width: 100%; min-height: 380px; font-size: 16px; line-height: 1.6; }
+.library-editor-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 14px; color: var(--muted); }
+.library-editor-tools .text-link { padding: 0; border: 0; background: transparent; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.markdown-view { display: grid; gap: 12px; max-width: 82ch; }
+.markdown-view h2, .markdown-view h3, .markdown-view h4, .markdown-view h5 { margin: 10px 0 0; line-height: 1.25; color: var(--brass); font-family: var(--f-display); font-weight: 700; }
+.markdown-view h2 { font-size: 26px; }
+.markdown-view h3 { font-size: 21px; }
+.markdown-view h4, .markdown-view h5 { font-size: 18px; color: var(--brass-hi); }
+.markdown-view > :first-child { margin-top: 0; }
+.markdown-view p { margin: 0; line-height: 1.65; white-space: pre-line; }
+.markdown-view ul, .markdown-view ol { display: grid; gap: 4px; margin: 0; padding-left: 24px; }
+.markdown-view ul { list-style: disc; }
+.markdown-view ol { list-style: decimal; }
+.markdown-view li::marker { color: var(--brass-dim); }
+.library-list .document-row > div { flex: 1 1 auto; }
+.markdown-view li { line-height: 1.55; }
+.markdown-view blockquote { margin: 0; padding: 8px 14px; border-left: 2px solid var(--brass-dim); color: var(--muted); }
+.markdown-view code { font-family: var(--f-mono); font-size: 0.9em; padding: 1px 4px; border-radius: 3px; background: rgba(207, 168, 96, 0.08); }
+.markdown-view hr { width: 100%; border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
+.markdown-view strong { color: var(--text); }
+@media (max-width: 1100px) {
+  .library-layout-open { grid-template-columns: minmax(0, 1fr); }
+  /* On a narrow screen the open document takes the page; its × goes back to the list. */
+  .library-layout-open .library-list { display: none; }
+}
+@media (max-width: 640px) {
+  .library-editor-row { grid-template-columns: minmax(0, 1fr); }
+  .library-editor textarea { min-height: 300px; }
+  .document-panel .panel-heading h2 { font-size: 21px; }
+}
 
 /* Owner DM Craft and campaign storytelling preferences */
 .dm-craft-section-title,

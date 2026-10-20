@@ -16,7 +16,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .storySurface {
   padding: 0;
@@ -51,7 +51,7 @@
 .scenePlaceholder p {
   margin: 5px 0 0;
   color: #b4b4ab;
-  font-size: 13px;
+  font-size: 14px;
 }
 .reviewComposer {
   padding: 15px 24px 20px;
@@ -130,7 +130,7 @@
     serif;
 }
 .game :global(.gameplay-owner-input time) {
-  font-size: 10px;
+  font-size: 14px;
 }
 .game :global(.gameplay-narration .prose),
 .opening :global(.prose) {
@@ -171,7 +171,7 @@
 }
 .inputMode :global(.tabs button) {
   padding: 8px 12px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .game :global(.gameplay-channel form) {
   margin: 0;
@@ -228,7 +228,7 @@
 }
 .game :global(.gameplay-channel form > .muted) {
   margin: 10px 0 0;
-  font-size: 11px;
+  font-size: 14px;
 }
 .game :global(.button-group:empty) {
   display: none;
@@ -241,7 +241,7 @@
 .secondary > summary {
   cursor: pointer;
   color: #c6ad85;
-  font-size: 12px;
+  font-size: 13px;
   padding: 6px 0;
 }
 .secondary[open] > summary {
@@ -258,7 +258,7 @@
 }
 .contextResources {
   margin: 10px 0;
-  font-size: 12px;
+  font-size: 13px;
 }
 .contextResources dt {
   color: var(--muted);
@@ -349,7 +349,7 @@
 }
 .attributeGrid span {
   color: #b7a687;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.08em;
 }
 .attributeGrid strong {
@@ -532,7 +532,7 @@
   border-radius: 4px;
   color: #cfc4b1;
   background: #10191c;
-  font-size: 12px;
+  font-size: 13px;
 }
 .categoryFilters button[aria-pressed="true"] {
   border-color: #b99860;
@@ -562,7 +562,7 @@
 }
 .inventoryGroupHeading span {
   color: #b8a98f;
-  font-size: 12px;
+  font-size: 13px;
 }
 .itemVisual {
   max-width: 300px;
@@ -582,7 +582,7 @@
   border-radius: 4px;
   background: #a7854a12;
 }
-.itemEssentials dt { color: #b5a586; font-size: 11px; }
+.itemEssentials dt { color: #b5a586; font-size: 13px; }
 .itemEssentials dd { margin: 0; color: #f0dac0; font: 17px Georgia, serif; }
 .subjectPortrait {
   grid-column: 1;
@@ -656,7 +656,7 @@
 }
 .characterDoll :global(.no-equipment-note) {
   grid-column: 2;
-  font-size: 12px;
+  font-size: 14px;
 }
 .characterDoll :global(.doll-caption) {
   position: static;
@@ -715,7 +715,7 @@
     font-size: 23px;
   }
   .scenePlaceholder p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .gameHeader,
   .characterHeader {

@@ -81,7 +81,7 @@
   color: var(--text);
 }
 .pendingNote {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -93,7 +93,7 @@
   gap: 8px 12px;
   min-height: 32px;
   font-family: var(--f-mono);
-  font-size: 13.5px;
+  font-size: 14px;
   color: var(--brass);
 }
 .pauseMark {
@@ -122,7 +122,7 @@
   flex-basis: 100%;
   font-family: var(--f-body);
   font-style: normal;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 @keyframes pulse {

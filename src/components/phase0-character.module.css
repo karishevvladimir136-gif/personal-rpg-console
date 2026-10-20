@@ -13,7 +13,7 @@
 }
 
 .headingTools :global(.badge) {
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .tabs {
@@ -265,7 +265,7 @@
   right: 10px;
   text-align: center;
   color: #e0c28f;
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .portraitAction summary {
@@ -292,7 +292,7 @@
 }
 
 .portraitAction :global(.button) {
-  font-size: 10px;
+  font-size: 13px;
   min-height: 29px;
   padding: 5px 9px;
   background: #0b1418d9;
@@ -461,11 +461,11 @@
   }
 
   .equipmentSlot > span:first-child {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .equipmentSlot small {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .inventoryPanel {

@@ -115,7 +115,7 @@
   border-radius: 50%;
   border: 1px solid var(--brass-dim);
   color: var(--brass-dim);
-  font-size: 11px;
+  font-size: 13px;
   text-decoration: none;
   cursor: help;
 }
@@ -128,7 +128,7 @@
   cursor: pointer;
   padding: 2px 0;
   font: inherit;
-  font-size: 13.5px;
+  font-size: 14px;
 }
 .parchmentLink {
   composes: linkButton;
@@ -245,12 +245,13 @@
 }
 .slotLabel {
   font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
+  font-size: 13px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--brass-dim);
   display: block;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .slotName {
   font-size: 13.5px;
@@ -310,7 +311,7 @@
 }
 .version {
   font-family: var(--f-mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
   background: rgba(22, 17, 13, 0.75);
   border-radius: 3px;
@@ -318,7 +319,7 @@
 }
 .dollHint {
   margin: 10px 0 0;
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--muted);
   text-align: center;
 }
@@ -462,7 +463,7 @@ button.holderAvatar:not(:disabled) {
   overflow-wrap: anywhere;
 }
 .rowMeta {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.3;
   color: var(--muted);
 }
@@ -561,7 +562,7 @@ button.holderAvatar:not(:disabled) {
 .history {
   margin: 0;
   padding-left: 16px;
-  font-size: 12.5px;
+  font-size: 14px;
   color: #5b4630;
 }
 .picker {
@@ -580,7 +581,7 @@ button.holderAvatar:not(:disabled) {
   background: rgba(42, 31, 22, 0.2);
 }
 .pickerNote {
-  font-size: 13.5px;
+  font-size: 14px;
   color: #6b3a14;
 }
 .give {
@@ -663,7 +664,7 @@ button.holderAvatar:not(:disabled) {
   gap: 4px;
   align-items: center;
   font-family: var(--f-mono);
-  font-size: 11px;
+  font-size: 13px;
   color: var(--brass-dim);
 }
 .spellMarks abbr {
@@ -717,7 +718,7 @@ button.holderAvatar:not(:disabled) {
 }
 .cellName {
   font-family: var(--f-body);
-  font-size: 10px;
+  font-size: 13px;
   line-height: 1.15;
   text-align: center;
   color: var(--text);
@@ -820,7 +821,42 @@ button.holderAvatar:not(:disabled) {
     height: 60px;
   }
   .slotName {
+    font-size: 16px;
+  }
+  /* Fix run after session 2 (items 22, 30, 33): on a big monitor the sheet and the lists are not small. */
+  .slotLabel {
+    font-size: 14px;
+  }
+  .name {
+    font-size: 36px;
+  }
+  .skill {
+    font-size: 16.5px;
+    padding: 6px 0;
+  }
+  .list {
+    font-size: 16.5px;
+  }
+  .row {
+    grid-template-columns: 48px minmax(0, 1fr) auto;
+    min-height: 58px;
+  }
+  .rowArt {
+    width: 48px;
+    height: 48px;
+  }
+  .rowName {
+    font-size: 16.5px;
+  }
+  .rowMeta {
     font-size: 14.5px;
+  }
+  .filters > button {
+    min-height: 34px;
+    font-size: 14.5px;
+  }
+  .linkButton {
+    font-size: 15.5px;
   }
 }
 @media (max-width: 1500px) {
@@ -853,7 +889,7 @@ button.holderAvatar:not(:disabled) {
     gap: 5px;
   }
   .stats > * > :first-child {
-    font-size: 9px;
+    font-size: 13px;
     letter-spacing: 0.06em;
     line-height: 1.25;
   }
@@ -875,11 +911,15 @@ button.holderAvatar:not(:disabled) {
     height: 30px;
   }
   .slotName {
-    font-size: 12px;
+    font-size: 13px;
   }
+  /* A phone's narrow slot: the label in plain words (13px), broken between words, never inside one. */
   .slotLabel {
-    font-size: 8.5px;
-    letter-spacing: 0.06em;
+    font-family: var(--f-body);
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+    overflow-wrap: normal;
   }
   .lists {
     column-width: auto;

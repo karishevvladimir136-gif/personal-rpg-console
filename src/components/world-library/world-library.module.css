@@ -33,7 +33,7 @@
 }
 .workspace small {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
 }
 .workspace button {
   border: 1px solid #786344;
@@ -101,7 +101,7 @@
   color: #b89a66;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 11px;
+  font-size: 13px;
 }
 .boundary {
   border-left: 2px solid #806a47;
@@ -343,7 +343,7 @@
 .digest {
   overflow-wrap: anywhere;
   font-family: monospace;
-  font-size: 12px;
+  font-size: 14px;
 }
 .approval {
   border-top: 1px solid #806a47;

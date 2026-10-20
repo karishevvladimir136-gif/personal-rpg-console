@@ -1,3 +1,6 @@
+/* Fix run after session 2 (items 22, 33): the campaign and library screens fill the window — the side menu runs the
+   window's full height (sticky), the content column is at least the window's height, and a wide monitor's width is
+   used (no 1920px cap with empty bands at the sides; the menu and type grow a step on very wide screens). */
 .app {
   min-height: 100dvh;
   box-sizing: border-box;
@@ -5,7 +8,7 @@
   grid-template-columns: 248px minmax(0, 1fr);
   gap: 16px;
   padding: 16px;
-  max-width: 1920px;
+  max-width: 3200px;
   margin: 0 auto;
 }
 .skip {
@@ -25,7 +28,8 @@
   position: sticky;
   top: 16px;
   align-self: start;
-  max-height: calc(100dvh - 32px);
+  height: calc(100dvh - 32px);
+  box-sizing: border-box;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -44,8 +48,8 @@
 }
 .brandEyebrow {
   font-family: var(--f-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.16em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass-dim);
 }
@@ -100,8 +104,8 @@
   gap: 8px;
   padding: 0 12px;
   font-family: var(--f-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--brass-dim);
   cursor: pointer;
@@ -115,7 +119,8 @@
   min-height: 40px;
 }
 .dm {
-  margin-top: 4px;
+  /* The DM box sits at the foot of the full-height menu. */
+  margin-top: auto;
   padding: 12px;
   border: 1px dashed var(--line);
   border-radius: 6px;
@@ -137,6 +142,15 @@
   flex-direction: column;
   gap: 14px;
   outline: none;
+}
+@media (min-width: 1024px) {
+  /* The content column is at least the window's height; the campaign page's own <main> takes what is left. */
+  .app > .main {
+    min-height: calc(100dvh - 32px);
+  }
+  .main > .main {
+    flex: 1 0 auto;
+  }
 }
 /* The home screen: the menu card alone, in the middle of the window. */
 .menuApp {
@@ -276,7 +290,7 @@
     gap: 2px;
     min-height: 54px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     text-decoration: none;
     background: transparent;
@@ -293,4 +307,50 @@
 /* Library (app-level) shell. */
 .libraryApp {
   composes: app;
+}
+
+/* Fix run after session 2 (item 22): very wide monitors — a wider menu, larger menu and header type, more air. */
+@media (min-width: 2200px) {
+  .app {
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px 28px;
+  }
+  .nav {
+    top: 22px;
+    height: calc(100dvh - 44px);
+    padding: 22px 14px;
+  }
+  .app > .main {
+    min-height: calc(100dvh - 44px);
+  }
+  .brandTitle {
+    font-size: 27px;
+  }
+  .link {
+    font-size: 19.5px;
+    min-height: 50px;
+  }
+  .more .link {
+    font-size: 17px;
+    min-height: 44px;
+  }
+  .dmName {
+    font-size: 17px;
+  }
+  .dmMeta {
+    font-size: 15px;
+  }
+  .header {
+    padding: 14px 22px;
+  }
+  .crumbs {
+    font-size: 17px;
+  }
+  .crumbs a {
+    font-size: 23px;
+  }
+  .clock {
+    font-size: 15px;
+  }
 }

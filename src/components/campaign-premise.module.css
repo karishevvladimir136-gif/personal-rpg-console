@@ -66,11 +66,11 @@
   margin: 0;
 }
 .metadata > span {
-  font-size: 12px;
+  font-size: 13px;
 }
 .kicker {
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   margin-top: 5px;
 }
 .examples {
@@ -94,7 +94,7 @@
 }
 .exampleGrid p {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 14px;
   margin: 0;
 }
 .boundary,
@@ -102,7 +102,7 @@
   padding: 16px;
   border-left: 2px solid var(--bronze);
   background: #d2af7908;
-  font-size: 13px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 .footer {
@@ -144,7 +144,7 @@
 .version time {
   margin-left: auto;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .versionBody {
   padding: 0 18px 18px;

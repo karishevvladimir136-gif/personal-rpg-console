@@ -51,7 +51,7 @@
   min-width: 0;
 }
 .panel :global(.muted) {
-  font-size: 13px;
+  font-size: 14px;
 }
 .heading {
   display: flex;
@@ -62,14 +62,14 @@
 }
 .eyebrow {
   color: var(--gold, #c6a575);
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .progressDetails {
   margin-top: 12px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 .progressDetails summary {
   cursor: pointer;
@@ -335,7 +335,7 @@
   display: grid;
   gap: 10px;
   color: var(--muted, #a29c90);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 .srOnly {
