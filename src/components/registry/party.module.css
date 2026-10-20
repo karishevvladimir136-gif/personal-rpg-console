@@ -99,3 +99,31 @@
   padding: 0;
   box-shadow: none;
 }
+/* Stage D §7: a companion's card shows the sheet's lines (attacks, saves, skills with numbers). */
+.sheet {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+.sheet ul {
+  font-size: 14px;
+}
+/* A mount's saddlebags (item 35): their things, never riders. */
+.bag {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+}
+.bag > li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px dotted var(--line);
+}
+.bag > li:last-child {
+  border-bottom: 0;
+}

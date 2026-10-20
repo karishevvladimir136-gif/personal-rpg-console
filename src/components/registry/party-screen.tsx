@@ -5,12 +5,15 @@ import { MessagesSquare, X } from "lucide-react";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
 import type { PlaySnapshot } from "@/lib/gameplay/contracts";
 import { characterViewModel } from "@/lib/character-view-model";
-import { companionAttitude, currentPlace, holdingsOf, homeRosterOf, inCombat, partyOf, statLabel, worldClock } from "@/lib/ui/campaign-view";
+import { companionAttitude, currentPlace, heroOf, homeRosterOf, inCombat, mountsOf, partyOf, sheetOf, statLabel, worldClock, type MountView } from "@/lib/ui/campaign-view";
+import { walletOfEntity } from "@/lib/inventory/model";
+import { inventoryItemLabel } from "@/lib/live-inventory-view";
 import { GameplayComposer } from "../gameplay-composer";
 import { GameplayTurn } from "../gameplay-turn";
 import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome } from "./shell";
-import { Art, Panel, Plate, registry as r, ThinBar, useCopy } from "./primitives";
+import { SheetLines } from "./character-screen";
+import { Art, Panel, Plate, registry as r, ThinBar, useCopy, WalletLine } from "./primitives";
 import s from "./party.module.css";
 
 type Group = "party" | "reserve" | "nearby";
@@ -28,20 +31,24 @@ export function RegistryParty({ data, play, onSaved, preview }: {
     preview?.talkTo ? { id: preview.talkTo, council: !!preview.council } : null);
   const [redraw, setRedraw] = useState<string | null>(null);
   const party = partyOf(data, play);
+  const hero = heroOf(data, play);
   const present = new Set(play?.configuration?.presentEntityIds ?? []);
   const nearby = data.entities.filter((row) => row.kind === "npc" && present.has(row.id) && !row.public_profile?.unmet);
   const combat = inCombat(play);
+  const mounts = mountsOf(data);
+  const companions = party.filter((row) => row.present).map((row) => row.entity);
   const lists: Record<Group, Entity[]> = {
-    party: party.filter((row) => row.present).map((row) => row.entity),
+    // The hero's card leads the party (the wallet and the sheet beside the companions').
+    party: [...(hero ? [hero] : []), ...companions],
     reserve: party.filter((row) => !row.present).map((row) => row.entity),
     nearby,
   };
   const groups = [
-    { id: "party" as const, label: c(`Отряд · ${lists.party.length}`, `Party · ${lists.party.length}`) },
+    { id: "party" as const, label: c(`Отряд · ${companions.length}`, `Party · ${companions.length}`) },
     { id: "reserve" as const, label: c(`В резерве · ${lists.reserve.length}`, `In reserve · ${lists.reserve.length}`) },
     { id: "nearby" as const, label: c(`Люди рядом · ${lists.nearby.length}`, `People nearby · ${lists.nearby.length}`) },
   ];
-  const council = lists.party.length > 1;
+  const council = companions.length > 1;
   const talking = talk ? data.entities.find((row) => row.id === talk.id) ?? null : null;
   const place = currentPlace(data);
   const clock = worldClock(play?.worldMinutes, c.language);
@@ -50,7 +57,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
       <Plate eyebrow={c(`${data.campaign.title} · спутники и люди рядом`, `${data.campaign.title} · companions and people nearby`)} title={c("Партия", "Party")}
         aside={(
           <button type="button" className={r.btn} disabled={combat || !council} title={combat ? c("В бою недоступно", "Not during combat") : undefined}
-            onClick={() => lists.party[0] && setTalk({ id: lists.party[0].id, council: true })}>
+            onClick={() => companions[0] && setTalk({ id: companions[0].id, council: true })}>
             <MessagesSquare size={18} aria-hidden="true" />{c("Совет партии", "Party council")}
           </button>
         )}>
@@ -59,16 +66,18 @@ export function RegistryParty({ data, play, onSaved, preview }: {
         </div>
       </Plate>
       {combat && <p className={r.later} role="status">{c("Идёт бой: разговоры и совет недоступны до его конца.", "Combat is on: talks and the council wait until it ends.")}</p>}
-      {lists[group].length ? (
+      {lists[group].length || (group === "party" && mounts.length) ? (
         <div className={s.cards}>
           {lists[group].map((entity) => (
-            <MemberCard key={entity.id} data={data} entity={entity} tag={group === "party" ? c("в отряде", "in party") : group === "reserve" ? c("в резерве", "in reserve") : c("рядом", "nearby")}
+            <MemberCard key={entity.id} data={data} entity={entity}
+              tag={entity.kind === "player" ? c("герой", "hero") : group === "party" ? c("в отряде", "in party") : group === "reserve" ? c("в резерве", "in reserve") : c("рядом", "nearby")}
               canTalk={entity.kind === "companion" && group === "party" && !combat} combat={combat}
               onTalk={() => setTalk({ id: entity.id, council: false })} onRedraw={() => setRedraw(entity.id)} />
           ))}
+          {group === "party" && mounts.map((mount) => <MountCard key={mount.entity.id} mount={mount} onRedraw={() => setRedraw(mount.entity.id)} />)}
         </div>
       ) : <Panel><p className={r.empty}>{group === "nearby" ? c("Рядом никого нет.", "No one is nearby.") : c("Здесь пока никого.", "No one here yet.")}</p></Panel>}
-      <CrewAndHome data={data} />
+      <PeopleBackHome data={data} />
       <footer className={r.note}>
         {c("«К тебе» — только то, что герой мог заметить сам. Тайные мысли спутников видит один ведущий. Поговорить можно в любой момент, кроме боя: разговор — это сцена в мире, идёт время, а спутник запоминает сказанное.",
           "“Toward you” is only what the hero could notice. Companions' private thoughts stay with the DM. You can talk any time except in combat: a talk is a scene in the world — time passes and the companion remembers.")}
@@ -79,7 +88,7 @@ export function RegistryParty({ data, play, onSaved, preview }: {
           <aside className={r.drawer} role="dialog" aria-modal="true" aria-label={c("Разговор", "Talk")}>
             <div className={s.talkHead}>
               <div className={s.talkAvatars}>
-                {(talk.council ? lists.party : [talking]).map((entity) => (
+                {(talk.council ? companions : [talking]).map((entity) => (
                   <span key={entity.id} className={r.avatarSmall}><Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 25%" /></span>
                 ))}
               </div>
@@ -114,13 +123,22 @@ export function RegistryParty({ data, play, onSaved, preview }: {
   );
 }
 
+/** A person's card: the same sheet view as the hero's (stage D §7) — level, armour class, speed, attacks, saves and
+ * skills with the numbers of the stat block; a stat of 0 is a stub and never shows («Навык 0»); the purse. */
 function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
   data: CampaignSnapshot; entity: Entity; tag: string; canTalk: boolean; combat: boolean; onTalk: () => void; onRedraw: () => void;
 }) {
   const c = useCopy();
   const model = characterViewModel(data, entity);
-  const chips = [...model.abilities, ...model.skills].slice(0, 3);
-  const stats = model.derivedStats.filter(([key]) => key !== "level").slice(0, 2);
+  const sheet = sheetOf(entity);
+  const tiles: [string, string | number][] = [];
+  if (sheet.armorClass !== null) tiles.push([c.label("Armor class"), sheet.armorClass]);
+  if (sheet.speed) tiles.push([c.label("Speed"), sheet.speed]);
+  for (const [key, value] of model.derivedStats.filter(([, value]) => value !== 0)) {
+    const label = c.label(statLabel(key));
+    if (!tiles.some(([seen]) => seen === label)) tiles.push([label, value]);
+  }
+  const person = entity.kind === "player" || entity.kind === "companion";
   return (
     <article className={s.card}>
       <div className={s.cardArt}>
@@ -131,7 +149,7 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
       <div className={s.cardBody}>
         <div>
           <div className={s.name}>{entity.name}</div>
-          {model.sheet.role && <div className={`${r.small} ${r.muted}`}>{model.sheet.role}</div>}
+          {(sheet.role || sheet.level !== null) && <div className={`${r.small} ${r.muted}`}>{[sheet.role, sheet.level !== null ? c.t("Level {level}", { level: sheet.level }) : null].filter(Boolean).join(" · ")}</div>}
         </div>
         {entity.hp !== null && (
           <div className={s.hpRow}>
@@ -140,13 +158,14 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
             <span className={r.num}>{entity.max_hp ? `${entity.hp}/${entity.max_hp}` : entity.hp}</span>
           </div>
         )}
-        {(stats.length > 0 || entity.conditions.length > 0) && (
+        {(tiles.length > 0 || entity.conditions.length > 0) && (
           <div className={r.chips}>
-            {stats.map(([key, value]) => <span key={key} className={r.badge}>{c.label(statLabel(key))} {value}</span>)}
+            {tiles.map(([label, value]) => <span key={label} className={r.badge}>{label} {value}</span>)}
             {entity.conditions.map((condition) => <span key={condition} className={r.badgeAmber}>{condition}</span>)}
           </div>
         )}
-        {chips.length > 0 && <div className={r.chips}>{chips.map((chip) => <span key={chip} className={r.chip}>{chip}</span>)}</div>}
+        {person && <WalletLine wallet={walletOfEntity(entity)} />}
+        <div className={s.sheet}><SheetLines sheet={sheet} skills={model.skills} compact /></div>
         {entity.kind === "companion" && companionAttitude(entity) && (
           <div className={r.stack} style={{ gap: 2 }}>
             <span className={r.eyebrow}>{c("К тебе", "Toward you")}</span>
@@ -165,21 +184,51 @@ function MemberCard({ data, entity, tag, canTalk, combat, onTalk, onRedraw }: {
   );
 }
 
-/** Crew aboard the party's holdings and people back home (UI_DATA_NEEDS #11). */
-function CrewAndHome({ data }: { data: CampaignSnapshot }) {
+/** A mount travels with the party and carries its saddlebags: their things and coins — never riders (item 35). */
+function MountCard({ mount, onRedraw }: { mount: MountView; onRedraw: () => void }) {
   const c = useCopy();
-  const crews = holdingsOf(data).filter((row) => row.details?.passengers.length);
-  const homes = homeRosterOf(data);
-  if (!crews.length && !homes.length) return null;
+  const { entity } = mount;
   return (
-    <Panel eyebrow={c("Экипаж и люди дома", "Crew and people back home")}>
-      <div className={r.stack} style={{ gap: 10 }}>
-        {crews.map((holding) => (
-          <div key={holding.id} className={r.stack} style={{ gap: 4 }}>
-            <span className={r.eyebrow}>{holding.name}</span>
-            <div className={r.chips}>{holding.details!.passengers.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
+    <article className={s.card}>
+      <div className={s.cardArt}>
+        <Art subject={{ kind: "entity", id: entity.id }} name={entity.name} position="center 40%" />
+        <span className={s.tag}>{c("ездовое", "mount")}</span>
+        <button type="button" className={s.redraw} onClick={onRedraw} aria-label={c("Перерисовать портрет", "Redraw portrait")}>↻</button>
+      </div>
+      <div className={s.cardBody}>
+        <div>
+          <div className={s.name}>{entity.name}</div>
+          {entity.details && <div className={`${r.small} ${r.muted}`}>{entity.details.split(/(?<=[.!?])\s/u)[0]}</div>}
+        </div>
+        {entity.hp !== null && entity.max_hp ? (
+          <div className={s.hpRow}>
+            <span className={r.eyebrow}>{c("Хиты", "HP")}</span>
+            <ThinBar value={entity.hp} max={entity.max_hp} label={c(`Хиты: ${entity.name}`, `HP: ${entity.name}`)} />
+            <span className={r.num}>{`${entity.hp}/${entity.max_hp}`}</span>
           </div>
-        ))}
+        ) : null}
+        <div className={r.stack} style={{ gap: 4 }}>
+          <span className={r.eyebrow}>{mount.storage?.name ?? c("Седельные сумки", "Saddlebags")}</span>
+          <WalletLine wallet={mount.wallet} />
+          {mount.items.length ? (
+            <ul className={s.bag}>
+              {mount.items.map((item) => <li key={item.id}><span>{inventoryItemLabel(item.name)}</span>{item.quantity > 1 && <span className={r.num}>×{item.quantity}</span>}</li>)}
+            </ul>
+          ) : <span className={`${r.small} ${r.muted}`}>{c("Сумки пусты.", "The bags are empty.")}</span>}
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** People back home (UI_DATA_NEEDS #11). A holding's crew stays on «Имущество» (item 35). */
+function PeopleBackHome({ data }: { data: CampaignSnapshot }) {
+  const c = useCopy();
+  const homes = homeRosterOf(data);
+  if (!homes.length) return null;
+  return (
+    <Panel eyebrow={c("Люди дома", "People back home")}>
+      <div className={r.stack} style={{ gap: 10 }}>
         {homes.map((home) => (
           <div key={home.place.id} className={r.stack} style={{ gap: 4 }}>
             <span className={r.eyebrow}>{home.place.name}</span>

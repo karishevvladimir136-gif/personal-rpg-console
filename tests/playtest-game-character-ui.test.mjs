@@ -298,7 +298,8 @@ test("Game and Character display public money and resources without storage keys
   state.data.entities[0].resources = { currency_silver: 2, Focus: 1 };
   const game = render("game", state);
   const character = render("character", state);
-  assert.match(game, /<dt>Silver<\/dt><dd>2<\/dd>/);
+  // Fix S2, stage D (design §2, items 33, 52): a 5e coin shows as its code in lower case (the full name on hover).
+  assert.match(game, /<dt>sp<\/dt><dd>2<\/dd>/);
   assert.doesNotMatch(game, /currency_silver/);
   assert.match(character, /<h3 class="section-label">Money<\/h3>/);
   assert.match(character, /<dt>Silver<\/dt><dd>2<\/dd>/);

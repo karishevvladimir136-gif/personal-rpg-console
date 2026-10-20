@@ -13,6 +13,8 @@ import type {
 } from "../persistence/contracts.ts";
 import type { PlaySnapshot, PublicTurn } from "../gameplay/contracts.ts";
 import { resourcePresentation } from "../resource-presentation.ts";
+import { coinOf, itemMechanics, universalSlots as modelUniversalSlots, walletOfEntity, walletOfStorage, type SpellRecord } from "../inventory/model.ts";
+import { slotsFor } from "../inventory/owner-moves.ts";
 
 export type Lang = "en" | "ru";
 const pick = (lang: Lang, ru: string, en: string) => (lang === "ru" ? ru : en);
@@ -80,7 +82,7 @@ export function heroOf(data: CampaignSnapshot, play?: PlaySnapshot | null): Enti
 }
 
 export type ResourceView = { key: string; label: string; value: number; max: number | null };
-export type MoneyView = { key: string; label: string; value: number };
+export type MoneyView = { key: string; label: string; value: number; /** A known coin's full name, for the hover. */ title?: string };
 /** Named counters and money exactly as the record keeps them. Labels come from
  * resourcePresentation (English source phrases for the shared catalog);
  * a paired `<key>_max` value is the cap. No ruleset vocabulary here. */
@@ -109,35 +111,30 @@ export function inventoryOf(data: CampaignSnapshot, entityId: string): Item[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export type SlotView = { id: string; label: string; item: Item | null };
-/** The universal paper doll (polish group 8, the registry port): twelve slots for any ruleset — left
- * голова, шея, талисман, тело, плащ; right основная рука, вторая рука, кольцо I, кольцо II, руки; bottom
- * пояс, ноги. Records created before the polish stage, or with no slots, show it; the loop's equip
- * tool uses the record's own slots, so the migration gives every hero these as records too. */
-export function universalSlots(language: Lang): { id: string; label: string; accepts: string[] }[] {
-  const ru = language === "ru";
-  return [
-    { id: "head", label: ru ? "Голова" : "Head", accepts: ["armor", "clothing"] },
-    { id: "neck", label: ru ? "Шея" : "Neck", accepts: ["accessory", "jewelry", "gear"] },
-    { id: "talisman", label: ru ? "Талисман" : "Talisman", accepts: ["accessory", "jewelry", "misc"] },
-    { id: "body", label: ru ? "Тело" : "Body", accepts: ["armor", "clothing"] },
-    { id: "cloak", label: ru ? "Плащ" : "Cloak", accepts: ["clothing", "armor"] },
-    { id: "hand", label: ru ? "Основная рука" : "Main hand", accepts: ["weapon", "tool"] },
-    { id: "offhand", label: ru ? "Вторая рука" : "Off hand", accepts: ["weapon", "shield", "tool"] },
-    { id: "ring1", label: ru ? "Кольцо I" : "Ring I", accepts: ["jewelry", "accessory"] },
-    { id: "ring2", label: ru ? "Кольцо II" : "Ring II", accepts: ["jewelry", "accessory"] },
-    { id: "gloves", label: ru ? "Руки" : "Hands", accepts: ["clothing", "armor", "gear"] },
-    { id: "belt", label: ru ? "Пояс" : "Belt", accepts: ["gear", "clothing", "consumable", "weapon", "tool"] },
-    { id: "legs", label: ru ? "Ноги" : "Legs", accepts: ["armor", "clothing"] },
-  ];
+export type SlotView = { id: string; label: string; accepts: string[]; item: Item | null; blockedBy: Item | null };
+/** The paper doll (fix S2, stage D, items 14, 27, 33): the model's eleven slots — Голова, Амулет, Плащ, Броня /
+ * одежда, Перчатки / наручи, Пояс, Сапоги, Кольцо (левая), Кольцо (правая), Основная рука, Вторая рука; no «Ноги». */
+export const universalSlots = (language: Lang) => modelUniversalSlots(language);
+/** A person's doll: the eleven when the record's own slots are older or missing (the first owner move gives the
+ * record them), else its own; a two-handed thing in the main hand blocks the off hand («занято: посох»). */
+export function equipmentOf(data: Pick<CampaignSnapshot, "items" | "campaign">, entity: Entity): SlotView[] {
+  const slots = slotsFor(entity, data.campaign.language === "ru" ? "ru" : "en");
+  const worn = (id: string) => data.items.find((item) => item.equipped_entity_id === entity.id && item.equipped_slot === id && item.quantity > 0) ?? null;
+  const main = worn("hand");
+  const twoHanded = main && itemMechanics(main).hands === 2 ? main : null;
+  return slots.map((slot) => {
+    const item = worn(slot.id);
+    return { id: slot.id, label: slot.label, accepts: slot.accepts, item, blockedBy: slot.id === "offhand" && !item ? twoHanded : null };
+  });
 }
-export function equipmentOf(data: CampaignSnapshot, entity: Entity): SlotView[] {
-  const slots = entity.equipment_slots.length ? entity.equipment_slots : universalSlots(data.campaign.language === "ru" ? "ru" : "en");
-  return slots.map((slot) => ({
-    id: slot.id,
-    label: slot.label,
-    item: data.items.find((item) => item.equipped_entity_id === entity.id && item.equipped_slot === slot.id && item.quantity > 0) ?? null,
-  }));
+/** Where each slot sits on the doll (BG3-like): the body down the left, jewellery and belt on the right, the two
+ * hands under the figure. A slot a world named itself goes to the shorter column. */
+export function dollLayout<T extends { id: string }>(slots: T[]): { left: T[]; right: T[]; hands: T[] } {
+  const LEFT = ["head", "cloak", "body", "gloves", "boots"], RIGHT = ["amulet", "ring_left", "ring_right", "belt"], HANDS = ["hand", "offhand"];
+  const order = (ids: string[]) => ids.map((id) => slots.find((slot) => slot.id === id)).filter((slot): slot is T => !!slot);
+  const left = order(LEFT), right = order(RIGHT), hands = order(HANDS);
+  for (const slot of slots.filter((row) => ![...LEFT, ...RIGHT, ...HANDS].includes(row.id))) (left.length <= right.length ? left : right).push(slot);
+  return { left, right, hands };
 }
 
 /** The campaign's currency as the world named it: the first currency on any record, else the
@@ -145,16 +142,107 @@ export function equipmentOf(data: CampaignSnapshot, entity: Entity): SlotView[] 
 export function campaignCurrency(data: Pick<CampaignSnapshot, "entities" | "campaign">): { key: string; label: string } {
   for (const row of data.entities) {
     const key = Object.keys(row.resources).find((name) => name.startsWith("currency_"));
-    if (key) return { key, label: resourcePresentation(key).label };
+    if (key) return { key, label: coinOf(key.slice("currency_".length).replaceAll("_", " "), data.campaign.language)?.code ?? resourcePresentation(key).label };
   }
   const label = data.campaign.language === "ru" ? "монеты" : "coins";
   return { key: `currency_${label}`, label: resourcePresentation(`currency_${label}`).label };
 }
+/** The wallet as rows (the play screen's side panel): a known coin under its code in lower case, in the order of value,
+ * two records of one coin summed (item 52); a world's own currency keeps its word. */
 export function walletOf(data: Pick<CampaignSnapshot, "entities" | "campaign">, entity: Pick<Entity, "resources">): MoneyView[] {
   const { money } = resourcesOf(entity);
-  if (money.length) return money;
-  const currency = campaignCurrency(data);
-  return [{ key: currency.key, label: currency.label, value: 0 }];
+  if (!money.length) {
+    const currency = campaignCurrency(data);
+    return [{ key: currency.key, label: currency.label, value: 0 }];
+  }
+  const language = data.campaign.language;
+  const rows = new Map<string, MoneyView & { rank: number; index: number }>();
+  money.forEach((row, index) => {
+    const coin = coinOf(row.key.slice("currency_".length).replaceAll("_", " "), language);
+    const label = coin?.code ?? row.label;
+    const seen = rows.get(label);
+    if (seen) seen.value += row.value;
+    else rows.set(label, { key: row.key, label, value: row.value, rank: coin?.value ?? -1, index, ...(coin ? { title: coin.name } : {}) });
+  });
+  return [...rows.values()].sort((a, b) => b.rank - a.rank || a.index - b.index)
+    .map((row) => ({ key: row.key, label: row.label, value: row.value, ...(row.title ? { title: row.title } : {}) }));
+}
+
+/** The character sheet as the screens show it, schema 1 (creation) or 2 (level, saves, attacks, speed, armour class,
+ * the spells as records — a companion's from its stat block). */
+export type SheetView = {
+  schema: 1 | 2;
+  mode: "structured_rpg" | "narrative";
+  role: string | null;
+  level: number | null;
+  tier: string | null;
+  attributes: readonly (readonly [string, number])[];
+  armorClass: number | null;
+  speed: string | null;
+  skills: string[];
+  saves: string[];
+  attacks: string[];
+  abilities: string[];
+  limitations: string[];
+  /** Schema 2: the spells as records (the spells tab). */
+  spells: SpellRecord[];
+  /** Schema 1: the spells as lines. */
+  spellLines: string[];
+  preparedMax: number | null;
+};
+const lines = (value: unknown) => (Array.isArray(value) ? value.filter((line): line is string => typeof line === "string" && line.trim().length > 0) : []);
+export function sheetOf(entity: Pick<Entity, "character_sheet" | "stats">): SheetView {
+  const sheet = (entity.character_sheet ?? null) as Record<string, unknown> | null;
+  const schema = sheet?.schemaVersion === 2 ? 2 : 1;
+  const attributes = sheet?.attributes && typeof sheet.attributes === "object" ? sheet.attributes as Record<string, number> : null;
+  const number = (value: unknown) => (typeof value === "number" && Number.isFinite(value) ? value : null);
+  const stat = number(entity.stats?.level);
+  const spells = schema === 2 && Array.isArray(sheet?.spells)
+    ? (sheet!.spells as unknown[]).filter((spell): spell is SpellRecord => !!spell && typeof spell === "object" && typeof (spell as SpellRecord).name === "string" && Number.isInteger((spell as SpellRecord).level))
+    : [];
+  return {
+    schema,
+    mode: sheet?.mode === "structured_rpg" ? "structured_rpg" : "narrative",
+    role: typeof sheet?.role === "string" && sheet.role.trim() ? sheet.role : null,
+    // A schema-2 sheet's level is the one the DM's level-up and the owner's edit change; else the older stat.
+    level: schema === 2 && number(sheet?.level) !== null ? number(sheet?.level) : stat && stat > 0 ? stat : number(sheet?.level),
+    tier: typeof sheet?.tier === "string" && sheet.tier.trim() ? sheet.tier : null,
+    attributes: attributes ? ([["STR", attributes.strength], ["DEX", attributes.dexterity], ["CON", attributes.constitution], ["INT", attributes.intelligence],
+      ["WIS", attributes.wisdom], ["CHA", attributes.charisma]] as const).filter(([, value]) => Number.isFinite(value)) : [],
+    armorClass: number(sheet?.armorClass),
+    speed: typeof sheet?.speed === "string" && sheet.speed.trim() ? sheet.speed : null,
+    skills: lines(sheet?.skills),
+    saves: lines(sheet?.saves),
+    attacks: lines(sheet?.attacks),
+    abilities: lines(sheet?.abilities),
+    limitations: lines(sheet?.limitations),
+    spells,
+    spellLines: schema === 1 ? lines(sheet?.spells) : [],
+    preparedMax: number(sheet?.preparedMax),
+  };
+}
+
+/** «Здесь лежит» (item 55, design §4): what lies at the party's place and nobody carries — storages of kind `place`
+ * at the current location, with their things and coins. */
+export type PileView = { storage: Storage; place: Location | null; items: Item[]; wallet: Record<string, number> };
+export function placePilesOf(data: Pick<CampaignSnapshot, "storages" | "items" | "locations" | "publicState">): PileView[] {
+  const here = data.publicState.current_location_id;
+  if (!here) return [];
+  return data.storages
+    .filter((storage) => storage.kind === "place" && storage.detail?.locationId === here)
+    .map((storage) => ({ storage, place: data.locations.find((row) => row.id === here) ?? null,
+      items: data.items.filter((item) => item.storage_id === storage.id && item.quantity > 0).sort((a, b) => a.name.localeCompare(b.name)),
+      wallet: walletOfStorage(storage) }));
+}
+/** The party's mounts with their saddlebags (item 35): a mount carries things and coins, never riders. */
+export type MountView = { entity: Entity; storage: Storage | null; items: Item[]; wallet: Record<string, number> };
+export function mountsOf(data: Pick<CampaignSnapshot, "entities" | "storages" | "items">): MountView[] {
+  return data.entities.filter((row) => row.kind === "mount").map((entity) => {
+    const storage = data.storages.find((row) => row.entity_id === entity.id) ?? null;
+    const wallet: Record<string, number> = { ...walletOfEntity(entity) };
+    for (const [label, amount] of Object.entries(storage ? walletOfStorage(storage) : {})) wallet[label] = (wallet[label] ?? 0) + amount;
+    return { entity, storage, wallet, items: storage ? data.items.filter((item) => item.storage_id === storage.id && item.quantity > 0).sort((a, b) => a.name.localeCompare(b.name)) : [] };
+  }).sort((a, b) => a.entity.name.localeCompare(b.entity.name));
 }
 
 export type PartyMember = { entity: Entity; present: boolean };

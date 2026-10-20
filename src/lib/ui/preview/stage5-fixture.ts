@@ -17,22 +17,17 @@ import { createCampaignSettings } from "../../campaign-settings.ts";
 import { DM_OPTION_DEFAULTS } from "../../gameplay/dm-loop/options.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
 import { previewPictureBoard } from "./stage-v-pictures.ts";
+import { universalSlots } from "../../inventory/model.ts";
 
 export const PREVIEW_CAMPAIGN_ID = "5e5e5e5e-0000-4000-8000-000000000001";
 const id = (n: number) => `5e5e5e5e-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const at = (minute: number) => new Date(Date.UTC(2026, 9, 14, 18, minute)).toISOString();
 const row = (n: number, minute = 0) => ({ id: id(n), campaign_id: PREVIEW_CAMPAIGN_ID, revision: 1, updated_at: at(minute) });
 
-const slots = [
-  { id: "head", label: "Голова", accepts: ["armor", "gear"] },
-  { id: "neck", label: "Шея", accepts: ["gear", "misc"] },
-  { id: "body", label: "Тело", accepts: ["armor"] },
-  { id: "hand", label: "Рука", accepts: ["weapon", "tool"] },
-  { id: "offhand", label: "Вторая рука", accepts: ["weapon", "tool", "gear"] },
-  { id: "belt", label: "Пояс", accepts: ["gear", "tool"] },
-  { id: "legs", label: "Ноги", accepts: ["armor"] },
-  { id: "boots", label: "Обувь", accepts: ["armor"] },
-];
+// Fix S2, stage D: the eleven-slot doll of every person record.
+const slots = universalSlots("ru");
+/** A sheet of schema 2 (level, saves, attacks, speed, armour class, spells as records); the DTO still types schema 1. */
+const sheetV2 = (sheet: Record<string, unknown>) => ({ schemaVersion: 2, mode: "structured_rpg", tier: null, background: "", abilities: [], limitations: [], skills: [], ...sheet }) as unknown as Entity["character_sheet"];
 
 const entity = (n: number, value: Partial<Entity> & Pick<Entity, "kind" | "name">): Entity => ({
   ...row(n),
@@ -50,8 +45,10 @@ const entity = (n: number, value: Partial<Entity> & Pick<Entity, "kind" | "name"
 export const PREVIEW_IDS = {
   hero: id(10), meg: id(11), urzul: id(12), wolf: id(13), zarga: id(14), irena: id(15),
   isolde: id(20), tiago: id(21), tinka: id(22), gruk: id(23), rourke: id(24), cornelius: id(25),
-  airship: id(30),
-  heroStorage: id(40), camp: id(41), hold: id(42), megStorage: id(43),
+  airship: id(30), mule: id(31),
+  heroStorage: id(40), camp: id(41), hold: id(42), megStorage: id(43), urzulStorage: id(44), saddlebags: id(45), chest: id(46),
+  staff: id(140), ringLeft: id(141), ringRight: id(142), gloves: id(143), crossbow: id(144), sword: id(145), mail: id(146), bolts: id(147),
+  smallTent: id(148), waterskin: id(149), mithral: id(150), cup: id(151),
   lisbon: id(50), cave: id(51), alcantara: id(52), tower: id(53), geneva: id(54), boston: id(55),
   session5: id(60), session6: id(61), session7: id(62),
   revolver: id(70), watch: id(71), core: id(72), crystal: id(73), toolkit: id(74), coat: id(75), boots: id(76), potion: id(77), satchel: id(78), goggles: id(79),
@@ -64,27 +61,53 @@ const entities: Entity[] = [
     kind: "player", name: "Джеймс Хейл", hp: 49, max_hp: 56,
     details: "Внук гудзонской контрабандистки. Чинит довоенные машины руками и магией — сам не до конца понимает, откуда она. Язык подвешен лучше, чем рука на револьвере. Отцовские часы остановились на 3:17.",
     stats: { level: 6, armor_class: 17, attack: 8, spell_dc: 15, speed: 30, proficiency: 3 },
+    // Stage D: the purse is money (one line, «Кошелёк: 10 зм · 11 см · 26 мм»); counters are pools with labels — one
+    // left without a label to show the «?» mark; the spell slots are the spells tab's pips.
     resources: {
-      resource_spell_slots_1: 3, resource_spell_slots_1_max: 4,
-      resource_spell_slots_2: 2, resource_spell_slots_2_max: 3,
-      resource_spell_slots_3: 3, resource_spell_slots_3_max: 3,
-      resource_sorcery_points: 4, resource_sorcery_points_max: 6,
-      currency_gold: 185,
+      spell_slots_1: 3, spell_slots_1_max: 4,
+      spell_slots_2: 1, spell_slots_2_max: 3,
+      spell_slots_3: 2, spell_slots_3_max: 3,
+      sorcery_points: 4, sorcery_points_max: 6,
+      hit_dice: 5, hit_dice_max: 6,
+      aether_charge: 2, aether_charge_max: 3,
+      currency_зм: 10, currency_мм: 26, currency_см: 11,
     },
-    conditions: [],
+    conditions: ["Концентрация: Невидимость"],
     equipment_slots: slots,
-    character_sheet: {
-      schemaVersion: 1, mode: "structured_rpg", role: "Чародей · красная драконья кровь", level: 6, tier: null,
+    character_sheet: sheetV2({
+      role: "Чародей · красная драконья кровь", level: 6,
       background: "Народный герой, наладчик довоенных машин.",
       attributes: { strength: 8, dexterity: 14, constitution: 15, intelligence: 12, wisdom: 10, charisma: 18 },
-      skills: ["Убеждение +7", "Обман +7", "Запугивание +7", "Анализ (механизмы) +7", "Ловкость рук +5", "Проницательность +3"],
+      armorClass: 17, speed: "30 футов",
+      skills: ["Убеждение +7", "Обман +7", "Запугивание +7", "Анализ (механизмы) +4", "Ловкость рук +5", "Проницательность +3"],
+      saves: ["Телосложение +5", "Харизма +7"],
+      attacks: ["Посох-громоотвод +2, 1к8 дробящий (двуручный)", "Револьвер «Аргумент» +5, 1к10 колющий"],
       abilities: ["Метамагия: ускоренное заклинание", "Драконья стойкость", "Чутьё на механизмы"],
       limitations: ["Боится высоты, хотя летает на дирижабле"],
-      spells: ["Огненный шар", "Щит", "Огненный снаряд", "Зеркальное отражение", "Починка"],
-    },
+      preparedMax: 7,
+      spells: [
+        { name: "Огненный снаряд", level: 0, castingTime: "1 действие", range: "120 футов", components: "В, С", duration: "Мгновенная", saveOrAttack: "Дальнобойная атака заклинанием", damage: "2к10 огнём", text: "Сгусток огня летит в существо или предмет; горючее, что никто не держит, загорается." },
+        { name: "Починка", level: 0, castingTime: "1 минута", range: "Касание", components: "В, С, М (два магнитных камня)", duration: "Мгновенная", text: "Чинит одну поломку или разрыв: порванное звено, треснувший клапан, распоротый шов." },
+        { name: "Свет", level: 0, castingTime: "1 действие", range: "Касание", components: "В, М (светлячок)", duration: "1 час", text: "Предмет светит ярким светом на 20 футов." },
+        { name: "Щит", level: 1, castingTime: "1 реакция", range: "На себя", components: "В, С", duration: "1 раунд", text: "Незримый барьер: +5 к защите до начала вашего следующего хода, «Волшебная стрела» не причиняет урона.", prepared: true },
+        { name: "Волшебная стрела", level: 1, castingTime: "1 действие", range: "120 футов", components: "В, С", duration: "Мгновенная", damage: "3 × (1к4+1) силовым", higherLevels: "Один дротик сверх трёх за каждый круг ячейки выше первого.", text: "Три светящихся дротика всегда попадают в цель.", prepared: true },
+        { name: "Обнаружение магии", level: 1, castingTime: "1 действие", range: "На себя", components: "В, С", duration: "Концентрация, до 10 минут", ritual: true, concentration: true, known: true, prepared: false, text: "Вы чувствуете магию в пределах 30 футов." },
+        { name: "Зеркальное отражение", level: 2, castingTime: "1 действие", range: "На себя", components: "В, С", duration: "1 минута", text: "Три иллюзорных двойника сбивают врагов с толку.", prepared: true },
+        { name: "Невидимость", level: 2, castingTime: "1 действие", range: "Касание", components: "В, С, М (ресница в смоле)", duration: "Концентрация, до 1 часа", concentration: true, higherLevels: "Ещё одна цель за каждый круг выше второго.", text: "Цель невидима, пока не атакует или не сотворит заклинание.", prepared: true },
+        { name: "Огненный шар", level: 3, castingTime: "1 действие", range: "150 футов", components: "В, С, М (шарик гуано и сера)", duration: "Мгновенная", saveOrAttack: "Спасбросок Ловкости, половина при успехе", damage: "8к6 огнём", higherLevels: "+1к6 за каждый круг ячейки выше третьего.", text: "Яркая вспышка расцветает в точке и взрывается сферой радиусом 20 футов.", prepared: true },
+        { name: "Контрзаклинание", level: 3, castingTime: "1 реакция", range: "60 футов", components: "С", duration: "Мгновенная", known: true, prepared: false, text: "Вы прерываете чужое заклинание в момент его сотворения." },
+      ],
+    }),
   }),
-  entity(11, { kind: "companion", name: "Мэг Рыжая", hp: 45, max_hp: 45, details: "Пилот «Бабки». Курит сигариллы, держит штурвал и половину долгов экипажа.", stats: { level: 6, armor_class: 15 }, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Пилот · стрелок", level: 6, tier: null, background: "", attributes: null, skills: [], abilities: [], limitations: [], spells: [] } }),
-  entity(12, { kind: "companion", name: "Урзул Железный Бок", hp: 61, max_hp: 68, details: "Орк из Гхара; половина рёбер заменена клёпаным железом. Говорит мало, держит слово.", stats: { level: 6, armor_class: 18 }, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Воин · страж", level: 6, tier: null, background: "", attributes: null, skills: [], abilities: [], limitations: [], spells: [] } }),
+  entity(11, { kind: "companion", name: "Мэг Рыжая", hp: 45, max_hp: 45, details: "Пилот «Бабки». Курит сигариллы, держит штурвал и половину долгов экипажа.", stats: { level: 6, armor_class: 15 }, resources: { currency_зм: 3, currency_см: 8 }, equipment_slots: slots, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Пилот · стрелок", level: 6, tier: null, background: "", attributes: null, skills: ["Восприятие +5", "Пилотирование +7"], abilities: [], limitations: [], spells: [] } }),
+  // Stage D §7: a companion's sheet written from a 5e stat block (a veteran), with the block's gear as items.
+  entity(12, { kind: "companion", name: "Урзул Железный Бок", hp: 58, max_hp: 58, details: "Орк из Гхара; половина рёбер заменена клёпаным железом. Говорит мало, держит слово.", stats: { level: 6, armor_class: 17, skill: 0 }, resources: { currency_зм: 2 }, equipment_slots: slots,
+    character_sheet: sheetV2({ role: "Ветеран · страж", level: 6,
+      attributes: { strength: 16, dexterity: 13, constitution: 14, intelligence: 10, wisdom: 11, charisma: 10 },
+      armorClass: 17, speed: "30 футов",
+      skills: ["Атлетика +5", "Восприятие +2"], saves: ["Сила +5", "Телосложение +4"],
+      attacks: ["Длинный меч +5, 1к8+3 рубящий", "Короткий меч +5, 1к6+3 колющий", "Лёгкий арбалет +3, 1к8+1 колющий"],
+      abilities: ["Мультиатака: два удара длинным мечом и один коротким"] }) }),
   entity(13, { kind: "companion", name: "Вольф Кесслер", hp: 60, max_hp: 60, details: "Инженер Паровой Лиги, бывший офицер. Монокль, привычка всё записывать.", stats: { level: 6, armor_class: 14 }, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Инженер · артиллерист", level: 6, tier: null, background: "", attributes: null, skills: [], abilities: [], limitations: [], spells: [] } }),
   entity(14, { kind: "companion", name: "Зарга", hp: 40, max_hp: 40, details: "Шаманка Гхара. Слышит Шов и не любит, когда о нём шутят.", stats: { level: 6, armor_class: 13 }, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Шаманка · целительница", level: 6, tier: null, background: "", attributes: null, skills: [], abilities: [], limitations: [], spells: [] } }),
   entity(15, { kind: "companion", name: "Ирэна", hp: 29, max_hp: 42, details: "Разведчица. Осталась в Лиссабоне долечивать ногу.", stats: { level: 5, armor_class: 14 }, character_sheet: { schemaVersion: 1, mode: "structured_rpg", role: "Разведчица", level: 5, tier: null, background: "", attributes: null, skills: [], abilities: [], limitations: [], spells: [] } }),
@@ -95,6 +118,8 @@ const entities: Entity[] = [
   entity(24, { kind: "npc", name: "Майор Рурк", details: "Ведёт экспедицию к складке под Женевой. Двое его людей не вернулись." }),
   entity(25, { kind: "npc", name: "Корнелиус", details: "Сбежал из-под стражи после пожара в Алкантаре." }),
   entity(30, { kind: "transport", name: "«Железная Бабка»", hp: 120, max_hp: 140, details: "Старый дирижабль: латаная оболочка, деревянная гондола на заклёпках, два латунных винта — правый кашляет.", stats: { speed: 40, crew: 6, cargo: 12 } }),
+  // Stage D §5: a mount carries saddlebags (things and coins), never riders.
+  entity(31, { kind: "mount", name: "Упрямец", hp: 11, max_hp: 11, details: "Серый мул с рваным ухом. Везёт палатку, воду и всё, что не влезло в торбу.", stats: { speed: 40 } }),
 ];
 
 const storages: Storage[] = [
@@ -102,22 +127,46 @@ const storages: Storage[] = [
   { ...row(41), name: "Общий запас", kind: "camp", entity_id: null },
   { ...row(42), name: "Трюм «Бабки»", kind: "transport", entity_id: I.airship },
   { ...row(43), name: "Сумка Мэг", kind: "companion", entity_id: I.meg },
+  { ...row(44), name: "Вещмешок Урзула", kind: "companion", entity_id: I.urzul },
+  { ...row(45), name: "Седельные сумки (Упрямец)", kind: "transport", entity_id: I.mule, detail: { wallet: { "см": 40, "мм": 12 } } },
+  // «Здесь лежит»: found at the place, carried by nobody yet (a storage of kind `place` at the current location).
+  { ...row(46), name: "Сундук контрабандистов", kind: "place", entity_id: null, detail: { locationId: I.cave, wallet: { "зм": 80, "мм": 1800 } } },
 ];
 
 const item = (n: number, value: Partial<Item> & Pick<Item, "name" | "category" | "storage_id">): Item => ({
   ...row(n, n), quantity: 1, description: "", mechanics: "", owner_entity_id: null, equipped_entity_id: null, equipped_slot: null, ...value,
 });
 const items: Item[] = [
-  item(70, { name: "Револьвер «Аргумент»", category: "weapon", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "hand", description: "Тяжёлый шестизарядный, гравировка по стволу, рукоять из ореха.", mechanics: "1d10 колющий, дальность 40/120" }),
-  item(71, { name: "Отцовские часы", category: "misc", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "neck", description: "Серебряные карманные часы. Стрелки остановились на 3:17. Сюжетная вещь: отец что-то оставил внутри.", mechanics: "" }),
+  item(70, { name: "Револьвер «Аргумент»", category: "weapon", storage_id: I.heroStorage, owner_entity_id: I.hero, description: "Тяжёлый шестизарядный, гравировка по стволу, рукоять из ореха.", mechanics: "1d10 колющий, дальность 40/120" }),
+  item(71, { name: "Отцовские часы", category: "accessory", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "amulet", description: "Серебряные карманные часы на цепочке. Стрелки остановились на 3:17. Сюжетная вещь: отец что-то оставил внутри.", mechanics: "" }),
   item(72, { name: "Сердечник Г-7", category: "misc", storage_id: I.heroStorage, owner_entity_id: I.hero, description: "Ключевой предмет задания «Сердца для Узора». Тёплый на ощупь, тихо гудит.", mechanics: "" }),
   item(73, { name: "Кристалл эфирита", category: "consumable", quantity: 2, storage_id: I.heroStorage, owner_entity_id: I.hero, description: "Светится фиолетовым. Подпитывает двигатель или заклинание.", mechanics: "Магический: восстанавливает 1 ячейку заклинаний 1 круга" }),
-  item(74, { name: "Набор наладчика", category: "tool", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "offhand", description: "Ключи, щупы, мотки медной проволоки.", mechanics: "Преимущество на починку механизмов" }),
+  item(74, { name: "Набор наладчика", category: "tool", storage_id: I.heroStorage, owner_entity_id: I.hero, description: "Ключи, щупы, мотки медной проволоки.", mechanics: "Преимущество на починку механизмов" }),
   item(75, { name: "Кожаный плащ наладчика", category: "armor", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "body", description: "Потёртая кожа, десяток карманов.", mechanics: "КД 11 + ЛОВ" }),
   item(76, { name: "Армейские сапоги", category: "armor", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "boots", description: "Довоенные, на вечной подошве.", mechanics: "" }),
   item(77, { name: "Зелье лечения", category: "consumable", quantity: 3, storage_id: I.heroStorage, owner_entity_id: I.hero, description: "Красное, горьковатое.", mechanics: "2d4+2 хитов" }),
   item(78, { name: "Торба контрабандистки", category: "gear", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "belt", description: "Бабушкина. Внутри больше, чем снаружи.", mechanics: "Магическая: вмещает вдвое больше" }),
-  item(79, { name: "Латунные очки", category: "gear", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "head", description: "С тёмными и увеличительными стёклами.", mechanics: "" }),
+  item(79, { name: "Латунные очки", category: "clothing", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "head", description: "С тёмными и увеличительными стёклами.", mechanics: "" }),
+  // Stage D: a two-handed staff (the off hand reads «занято»), a ring on each hand, gloves with a bonus to a roll.
+  item(140, { name: "Посох-громоотвод", category: "weapon", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "hand", rarity: "magic",
+    description: "Окованный медью посох с громоотводом на навершии; гудит перед грозой.", mechanics: "1к8 дробящий, двуручный; заряд: «Огненный шар» без ячейки",
+    detail: { hands: 2, charges: { value: 5, max: 7 } } as Item["detail"] }),
+  item(141, { name: "Кольцо защиты", category: "jewelry", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "ring_left", rarity: "magic",
+    description: "Тусклое серебро с выгравированным щитом.", mechanics: "", detail: { bonuses: [{ to: "защита", value: 1 }, { to: "спасброски", value: 1 }], attunement: true } as Item["detail"] }),
+  item(142, { name: "Перстень искры", category: "jewelry", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "ring_right",
+    description: "Медный перстень, тёплый на пальце.", mechanics: "Раз в день — «Огненный снаряд» без компонентов." }),
+  item(143, { name: "Перчатки механика", category: "clothing", storage_id: I.heroStorage, owner_entity_id: I.hero, equipped_entity_id: I.hero, equipped_slot: "gloves",
+    description: "Кожа с медными накладками на пальцах.", mechanics: "", detail: { bonuses: [{ to: "Ловкость рук", value: 1 }] } as Item["detail"] }),
+  // The hero's crossbow, lent to Урзул: «отдано: Урзул» on the hero's list, «взято у Джеймса» on his.
+  item(144, { name: "Лёгкий арбалет", category: "weapon", storage_id: I.urzulStorage, owner_entity_id: I.hero, description: "Армейский, с латунным прицелом.", mechanics: "1к8 колющий, 80/320, двуручный",
+    detail: { status: "lent", holderId: I.urzul, condition: "до конца экспедиции", hands: 2, history: [{ at: 4 * 1440 + 380, event: "lent", note: "Урзул Железный Бок — до конца экспедиции" }] } as Item["detail"] }),
+  item(145, { name: "Длинный меч", category: "weapon", storage_id: I.urzulStorage, owner_entity_id: I.urzul, equipped_entity_id: I.urzul, equipped_slot: "hand", mechanics: "1к8+3 рубящий" }),
+  item(146, { name: "Кольчуга", category: "armor", storage_id: I.urzulStorage, owner_entity_id: I.urzul, equipped_entity_id: I.urzul, equipped_slot: "body", mechanics: "Защита 16" }),
+  item(147, { name: "Болты для лёгкого арбалета", category: "ammunition", quantity: 16, storage_id: I.urzulStorage, owner_entity_id: I.urzul }),
+  item(148, { name: "Палатка на двоих", category: "gear", storage_id: I.saddlebags, owner_entity_id: I.mule, description: "Просмолённая парусина." }),
+  item(149, { name: "Бурдюк с водой", category: "consumable", quantity: 2, storage_id: I.saddlebags, owner_entity_id: I.mule }),
+  item(150, { name: "Мифриловая рубаха", category: "armor", storage_id: I.chest, rarity: "magic", description: "Лёгкая, как шёлк; звенит, если её встряхнуть.", mechanics: "Защита 13 + Ловкость" }),
+  item(151, { name: "Серебряный кубок с гравировкой", category: "misc", quantity: 2, storage_id: I.chest, description: "Герб, который никто из вас не узнаёт." }),
   item(80, { name: "Сухари", category: "consumable", quantity: 12, storage_id: I.camp, description: "Запас на неделю.", mechanics: "" }),
   item(81, { name: "Верёвка, 15 м", category: "gear", quantity: 2, storage_id: I.camp, description: "", mechanics: "" }),
   item(82, { name: "Палатка на четверых", category: "gear", storage_id: I.camp, description: "", mechanics: "" }),

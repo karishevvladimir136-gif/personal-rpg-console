@@ -190,6 +190,153 @@
       "url": "/preview/stage-5/game?recording=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-1080p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-1080p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-spells-1080p.jpg",
+      "url": "/preview/stage-5/character?spells=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-companion-1080p.jpg",
+      "url": "/preview/stage-5/character?companion=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-card-1080p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-party-1080p.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-holdings-1080p.jpg",
+      "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-1440p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-1440p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-spells-1440p.jpg",
+      "url": "/preview/stage-5/character?spells=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-companion-1440p.jpg",
+      "url": "/preview/stage-5/character?companion=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-card-1440p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-party-1440p.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-holdings-1440p.jpg",
+      "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-phone.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-phone.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-spells-phone.jpg",
+      "url": "/preview/stage-5/character?spells=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-character-companion-phone.jpg",
+      "url": "/preview/stage-5/character?companion=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-inventory-card-phone.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-party-phone.jpg",
+      "url": "/preview/stage-5/party",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "D",
+      "file": "D-holdings-phone.jpg",
+      "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
     }
   ]
 }

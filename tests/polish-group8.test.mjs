@@ -25,20 +25,25 @@ test("a currency in the campaign language is money; the wallet always exists in 
   assert.deepEqual(walletOf(named, named.entities[0]), [{ key: "currency_талеры", label: "Талеры", value: 40 }]);
 });
 
-test("the universal paper doll: twelve slots for a record without any; a record's own slots win", () => {
+// Fix S2, stage D (docs/runs/fix-s2-inventory-design.md §3) replaced the twelve-slot doll by the model's eleven for
+// every person record: a record without slots, or with older ones, is shown with the eleven.
+test("the universal paper doll: the eleven slots for a record without any or with older ones; a mount has none", () => {
   const data = { campaign: { language: "ru" }, items: [], entities: [] };
   const slots = equipmentOf(data, entity());
-  assert.deepEqual(slots.map((row) => row.id), ["head", "neck", "talisman", "body", "cloak", "hand", "offhand", "ring1", "ring2", "gloves", "belt", "legs"]);
+  assert.deepEqual(slots.map((row) => row.id), ["head", "amulet", "cloak", "body", "gloves", "belt", "boots", "ring_left", "ring_right", "hand", "offhand"]);
   assert.equal(slots.find((row) => row.id === "hand").label, "Основная рука");
-  assert.equal(universalSlots("en").find((row) => row.id === "talisman").label, "Talisman");
-  const own = equipmentOf(data, entity({ equipment_slots: [{ id: "hand", label: "Рука", accepts: ["weapon"] }] }));
-  assert.deepEqual(own.map((row) => row.id), ["hand"]);
+  assert.equal(universalSlots("en").find((row) => row.id === "amulet").label, "Amulet");
+  const older = equipmentOf(data, entity({ equipment_slots: [{ id: "hand", label: "Рука", accepts: ["weapon"] }] }));
+  assert.equal(older.length, 11, "an older doll is shown with the eleven");
+  assert.deepEqual(equipmentOf(data, entity({ kind: "mount" })).map((row) => row.id), [], "a mount carries saddlebags, not a doll");
 });
 
 test("the character screen: the backstory block, the wallet line, numbers only when real, the HP correction; the sidebar labels in Russian", () => {
   const screen = src("src/components/registry/character-screen.tsx");
   assert.match(screen, /c\("Предыстория", "Backstory"\)/);
-  assert.match(screen, /const money = walletOf\(data, entity\)/);
+  // Fix S2, stage D: the wallet is one line («Кошелёк: …», WalletLine) with «Разделить…», never per-key rows.
+  assert.match(screen, /<MoneyLine person=\{entity\}/);
+  assert.match(src("src/components/registry/primitives.tsx"), /export function WalletLine/);
   assert.match(screen, /model\.derivedStats\.filter\(\(\[, value\]\) => value !== 0\)/, "stub zeros never show");
   assert.match(screen, /function HpCorrection/);
   assert.match(screen, /operation: "entity\.save"[\s\S]*correctionScope: "timeline"/, "an owner correction of the record");

@@ -7,6 +7,7 @@ import { createCampaignSettings } from "../../campaign-settings.ts";
 import { DM_OPTION_DEFAULTS } from "../../gameplay/dm-loop/options.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
 import { previewPictureBoard } from "./stage-v-pictures.ts";
+import { universalSlots } from "../../inventory/model.ts";
 
 export const NOIR_CAMPAIGN_ID = "7a7a7a7a-0000-4000-8000-000000000001";
 const id = (n: number) => `7a7a7a7a-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -32,11 +33,8 @@ const entities: Entity[] = [
     stats: { edge: 2, nerve: 3, heat: 1 },
     resources: { resource_stress: 2, resource_stress_max: 6, resource_favors: 3, currency_credits: 1240 },
     conditions: ["Shaken"],
-    equipment_slots: [
-      { id: "implant", label: "Implant", accepts: ["gear"] },
-      { id: "coat", label: "Coat", accepts: ["gear"] },
-      { id: "sidearm", label: "Sidearm", accepts: ["weapon"] },
-    ],
+    // Fix S2, stage D: one eleven-slot doll for every person record, whatever the world.
+    equipment_slots: universalSlots("en"),
     character_sheet: { ...narrative("Private investigator", ["Interrogation", "Lockpicking", "Street contacts", "Reading a room"]), abilities: ["Nobody lies to Dana twice"], limitations: ["Owes the Syndicate"] },
   }),
   entity(11, { kind: "companion", name: "Rook", hp: 4, max_hp: 4, details: "A battered courier drone with a dry sense of humour.", character_sheet: narrative("Drone") }),
@@ -50,9 +48,9 @@ const item = (n: number, value: Partial<Item> & Pick<Item, "name" | "category" |
 });
 const items: Item[] = [
   item(70, { name: "Data chip “Lazarus”", category: "misc", storage_id: N.danaStorage, owner_entity_id: N.dana, description: "Pulled from a dead man's palm. Encrypted." }),
-  item(71, { name: "Snub pistol", category: "weapon", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "sidearm", mechanics: "Close range" }),
-  item(72, { name: "Neural splice", category: "gear", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "implant", description: "Records what she sees. Usually." }),
-  item(73, { name: "Trench coat", category: "gear", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "coat" }),
+  item(71, { name: "Snub pistol", category: "weapon", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "hand", mechanics: "Close range" }),
+  item(72, { name: "Neural splice", category: "accessory", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "amulet", description: "Records what she sees. Usually." }),
+  item(73, { name: "Trench coat", category: "clothing", storage_id: N.danaStorage, owner_entity_id: N.dana, equipped_entity_id: N.dana, equipped_slot: "cloak" }),
   item(74, { name: "Stim patch", category: "consumable", quantity: 4, storage_id: N.danaStorage, owner_entity_id: N.dana, mechanics: "Clears 1 stress" }),
   item(75, { name: "Lockpick set", category: "tool", storage_id: N.danaStorage, owner_entity_id: N.dana }),
   item(76, { name: "Cash envelope", category: "misc", storage_id: N.safehouse, description: "Velvet's advance. Untouched." }),

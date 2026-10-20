@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 import { useLanguage } from "../language-context";
 import { CampaignDataPreview } from "../persistence-context";
 import { MainMenu } from "../main-menu";
@@ -85,6 +86,7 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
   const c = useCopy();
   const snapshot = useMemo(() => sample.snapshot(), [sample]);
   const play = useMemo(() => sample.play({ combat: variant.combat }), [sample, variant.combat]);
+  const flags = useSearchParams();
   switch (screen) {
     case "game": {
       // Stage C: the turn being told — text, rolls in place, the named pause (?combat=1 waits for the hero's roll,
@@ -96,8 +98,17 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       }} />;
     }
     case "character":
-    case "inventory":
-      return <RegistryCharacter data={snapshot} play={play} initialTab={screen === "inventory" ? "inv" : "char"} preview={{ figure: sample.figure }} />;
+    case "inventory": {
+      // Fix S2, stage D shots: ?spells=1 opens the spells tab, ?companion=1 a companion's sheet from a stat block,
+      // ?card=1 the card of the thing in the main hand.
+      const hero = snapshot.entities.find((row) => row.kind === "player");
+      const companion = flags.get("companion") === "1"
+        ? snapshot.entities.find((row) => row.kind === "companion" && (row.character_sheet as { schemaVersion?: number } | null)?.schemaVersion === 2) ?? null : null;
+      const member = companion ?? hero ?? null;
+      const card = flags.get("card") === "1" && member ? snapshot.items.find((row) => row.equipped_entity_id === member.id && row.equipped_slot === "hand")?.id ?? null : null;
+      return <RegistryCharacter data={snapshot} play={play} initialTab={screen === "inventory" ? "inv" : flags.get("spells") === "1" ? "spells" : "char"}
+        preview={{ figure: sample.figure, memberId: companion?.id ?? null, itemId: card }} />;
+    }
     case "party":
       return <RegistryParty data={snapshot} play={play} onSaved={async () => {}} preview={{ talkTo: variant.talk ? sample.talkTo : null }} />;
     case "journal":
@@ -107,7 +118,7 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
     case "chronicle":
       return <RegistryChronicle data={snapshot} play={play} preview />;
     case "holdings":
-      return <RegistryHoldings data={snapshot} initialId={variant.holding} />;
+      return <RegistryHoldings data={snapshot} initialId={variant.holding} play={play} />;
     case "settings":
       return <RegistrySettings data={snapshot} preview={{ providers: { fal: { configured: true, persistence: false } } }} />;
     case "map":

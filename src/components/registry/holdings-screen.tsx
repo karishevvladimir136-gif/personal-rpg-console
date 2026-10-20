@@ -2,15 +2,18 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Home, PawPrint, Ship, Tent, X, type LucideIcon } from "lucide-react";
-import type { CampaignSnapshot } from "@/lib/persistence/contracts";
-import { holdingsNavLabel, holdingsOf, statLabel, type HoldingKind, type HoldingView } from "@/lib/ui/campaign-view";
+import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
+import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import { heroOf, holdingsNavLabel, holdingsOf, mountsOf, statLabel, type HoldingKind, type HoldingView } from "@/lib/ui/campaign-view";
 import { appendToComposerDraft, draftStorage } from "@/lib/ui/composer-draft";
+import { walletOfStorage } from "@/lib/inventory/model";
+import { planEquip, planMove, planUnequip, type MoveTarget } from "@/lib/inventory/owner-moves";
 import { RedrawAnchor } from "./redraw-anchor";
 import { useChrome, type CampaignScreenId } from "./shell";
-import { ItemCard, ItemCell } from "./character-screen";
-import { Art, Gauge, Panel, Plate, registry as r, useCopy, type Copy } from "./primitives";
+import { holdersOf, ItemCard, ItemCell, useOwnerMoves } from "./character-screen";
+import { Art, Gauge, Panel, Plate, registry as r, useCopy, WalletLine, type Copy } from "./primitives";
 import s from "./holdings.module.css";
 
 const ICONS: Record<HoldingKind, LucideIcon> = { camp: Tent, transport: Ship, mount: PawPrint, base: Home };
@@ -21,15 +24,23 @@ export function holdingKindLabel(kind: HoldingKind, c: Copy) {
         : c("Ездовое животное", "Mount");
 }
 
-export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; initialId?: string | null }) {
+export function RegistryHoldings({ data, initialId, play = null }: { data: CampaignSnapshot; initialId?: string | null; play?: PlaySnapshot | null }) {
   const c = useCopy();
   const chrome = useChrome();
   const router = useRouter();
-  const holdings = holdingsOf(data);
+  const moves = useOwnerMoves(data, !!chrome?.href);
+  const view = moves.view;
+  const holdings = holdingsOf(view);
   const [selectedId, setSelectedId] = useState(initialId ?? holdings.find((row) => row.kind !== "camp")?.id ?? holdings[0].id);
   const [itemId, setItemId] = useState<string | null>(null);
   const [redraw, setRedraw] = useState<{ kind: "entity" | "item"; id: string } | null>(null);
   const [notice, setNotice] = useState("");
+  useEffect(() => {
+    if (!itemId) return;
+    const close = (event: KeyboardEvent) => { if (event.key === "Escape") setItemId(null); };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [itemId]);
   const selected = holdings.find((row) => row.id === selectedId) ?? holdings[0];
   const href = (screen: CampaignScreenId) => chrome?.href?.(screen) ?? `/campaigns/${encodeURIComponent(data.campaign.id)}/${screen}`;
   const title = holdingsNavLabel(holdings, c.language);
@@ -39,11 +50,22 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
       router.push(href("game"));
     else setNotice(c("Сначала дождись конца текущего хода.", "Wait until the current turn finishes."));
   };
+  // Owner moves without a turn (item 55): «Отдать → …» to the hero, a companion or a mount; «Надеть» on the hero.
+  const ctx = { language: view.campaign.language, at: play?.worldMinutes ?? 0, newId: () => crypto.randomUUID() };
+  const hero = heroOf(view, play);
+  const holders = holdersOf(view, play, c);
+  const thing = view.items.find((row) => row.id === itemId && row.quantity > 0) ?? null;
+  const name = selected.name || selected.storage?.name || holdingKindLabel(selected.kind, c);
+  const targets = (item: NonNullable<typeof thing>) => holders.filter((holder) => holder.entity && holder.target && holder.entity.id !== selected.entity?.id).map((holder) => ({
+    key: holder.key, target: holder.target as MoveTarget,
+    label: holder.entity!.id === hero?.id ? c("себе", "myself") : holder.kind === "mount" ? c(`седельные сумки (${holder.name})`, `saddlebags (${holder.name})`) : holder.name,
+  })).filter((target) => !(item.owner_entity_id === target.key && view.storages.find((row) => row.entity_id === target.key)?.id === item.storage_id));
   return (
     <div className={s.page}>
       <Plate eyebrow={c(`${data.campaign.title} · владения партии`, `${data.campaign.title} · party holdings`)} title={title}
         sub={holdings.length > 1 ? c(`${holdings.length} записи: лагерь всегда, остальное ведущий создаёт и убирает по ходу истории`, `${holdings.length} records: the camp always, the rest the DM creates and removes as the story goes`)
           : c("Пока есть только лагерь. Транспорт, базы и ездовые появятся, когда их создаст ведущий.", "Only the camp so far. Transport, bases and mounts appear when the DM creates them.")} />
+      {(moves.status || notice) && <p className={moves.status?.tone === "error" ? r.error : r.note} role="status">{moves.status?.text ?? notice}</p>}
       <div className={s.layout}>
         <nav className={s.list} aria-label={c("Владения партии", "Party holdings")}>
           {holdings.map((holding) => {
@@ -60,10 +82,20 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
             );
           })}
         </nav>
-        <Detail holding={selected} itemId={itemId} onItem={setItemId}
-          onRedraw={setRedraw} onAct={act} />
+        <Detail view={view} holding={selected} itemId={thing?.id ?? null} onItem={(id) => setItemId((current) => (current === id ? null : id))} onRedraw={setRedraw} />
       </div>
-      {notice && <p className={r.note} role="status">{notice}</p>}
+      {thing && (
+        <ItemCard key={thing.id} item={thing} view={view} viewerId={selected.entity?.id ?? null} wearer={hero} targets={targets(thing)} busy={moves.busy} picker={null}
+          onClose={() => setItemId(null)} onRedraw={() => setRedraw({ kind: "item", id: thing.id })}
+          onUse={() => act(c(`Беру из «${name}»: «${thing.name}».`, `I take the ${thing.name} from ${name}.`))}
+          onEquip={hero ? async () => {
+            const plan = planEquip(view, thing.id, hero.id, {}, ctx);
+            if (!plan.ok && plan.kinds) moves.setStatus({ tone: "error", text: c(`${plan.reason} Вид вещи выбирается на листе персонажа.`, `${plan.reason} The kind is picked on the character sheet.`) });
+            else if (await moves.run(plan)) setItemId(null);
+          } : undefined}
+          onUnequip={() => void moves.run(planUnequip(view, thing.id, ctx))}
+          onMove={async (target, quantity) => { if (await moves.run(planMove(view, thing.id, target, quantity, ctx)) && (quantity === null || quantity === thing.quantity)) setItemId(null); }} />
+      )}
       <p className={r.note}>
         {c("Прежние экраны лагеря и мест, где вы дома, остаются доступны: ", "The earlier camp and places-of-belonging screens stay available: ")}
         <Link href={href("camp")} style={{ color: "var(--brass)" }}>{c("Лагерь и отдых", "Camp and rest")}</Link>{" · "}
@@ -77,7 +109,7 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
               <h2 className={r.h2}>{c("Перерисовать", "Redraw")}</h2>
               <button type="button" className={r.iconBtn} aria-label={c("Закрыть", "Close")} onClick={() => setRedraw(null)}><X size={20} aria-hidden="true" /></button>
             </div>
-            <RedrawAnchor data={data} subject={redraw} name={(redraw.kind === "entity" ? data.entities.find((row) => row.id === redraw.id)?.name : data.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
+            <RedrawAnchor data={data} subject={redraw} name={(redraw.kind === "entity" ? view.entities.find((row) => row.id === redraw.id)?.name : view.items.find((row) => row.id === redraw.id)?.name) ?? ""} />
           </aside>
         </>
       )}
@@ -85,38 +117,41 @@ export function RegistryHoldings({ data, initialId }: { data: CampaignSnapshot; 
   );
 }
 
-/** Features, armament and people aboard (UI_DATA_NEEDS #12). */
+/** Features, armament and people aboard (UI_DATA_NEEDS #12); a mount carries saddlebags, never riders (item 35). */
 function HoldingDetails({ holding }: { holding: HoldingView }) {
   const c = useCopy();
   const details = holding.details;
+  const passengers = holding.kind === "mount" ? [] : details?.passengers ?? [];
   return (
-    <Panel eyebrow={c("Особенности и люди на борту", "Features and people aboard")}>
-      {details && (details.features.length || details.armament || details.passengers.length) ? (
+    <Panel eyebrow={holding.kind === "mount" ? c("Особенности", "Features") : c("Особенности и люди на борту", "Features and people aboard")}>
+      {details && (details.features.length || details.armament || passengers.length) ? (
         <div className={r.stack} style={{ gap: 8 }}>
           {details.features.length > 0 && (
             <div className={r.kv}>{details.features.map((row) => <div key={row.name}><span>{row.name}</span><span>{row.description}</span></div>)}</div>
           )}
           {details.armament && <div className={r.row}><span className={r.eyebrow}>{c("Вооружение", "Armament")}</span><span>{details.armament}</span></div>}
-          {details.passengers.length > 0 && (
+          {passengers.length > 0 && (
             <div className={r.stack} style={{ gap: 4 }}>
               <span className={r.eyebrow}>{c("На борту", "Aboard")}</span>
-              <div className={r.chips}>{details.passengers.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
+              <div className={r.chips}>{passengers.map((row) => <span key={row.id} className={r.chip}>{row.name}</span>)}</div>
             </div>
           )}
         </div>
-      ) : <p className={r.empty}>{c("Ведущий ещё не записал особенностей, вооружения или людей на борту.", "The DM has not recorded features, armament or people aboard yet.")}</p>}
+      ) : <p className={r.empty}>{holding.kind === "mount" ? c("Ведущий ещё не записал особенностей.", "The DM has not recorded features yet.")
+        : c("Ведущий ещё не записал особенностей, вооружения или людей на борту.", "The DM has not recorded features, armament or people aboard yet.")}</p>}
     </Panel>
   );
 }
 
-function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
-  holding: HoldingView; itemId: string | null; onItem: (id: string) => void;
-  onRedraw: (subject: { kind: "entity" | "item"; id: string }) => void; onAct: (text: string) => void;
+function Detail({ view, holding, itemId, onItem, onRedraw }: {
+  view: CampaignSnapshot; holding: HoldingView; itemId: string | null; onItem: (id: string) => void;
+  onRedraw: (subject: { kind: "entity" | "item"; id: string }) => void;
 }) {
   const c = useCopy();
-  const entity = holding.entity;
-  const selected = holding.items.find((item) => item.id === itemId) ?? holding.items[0] ?? null;
+  const entity: Entity | null = holding.entity;
   const name = holding.name || holding.storage?.name || holdingKindLabel(holding.kind, c);
+  // A mount's coins ride in its saddlebags; a base or a place keeps a chest.
+  const wallet = holding.kind === "mount" && entity ? mountsOf(view).find((row) => row.entity.id === entity.id)?.wallet ?? {} : holding.storage ? walletOfStorage(holding.storage) : {};
   return (
     <div className={s.detail}>
       <Panel>
@@ -140,9 +175,9 @@ function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
           <Panel eyebrow={c("Характеристики", "Specifications")}>
             <div className={r.stack}>
               {entity.hp !== null && <Gauge label={c("Состояние", "Condition")} value={entity.hp} max={entity.max_hp} />}
-              {Object.keys(entity.stats).length > 0 && (
+              {Object.entries(entity.stats).some(([, value]) => value !== 0) && (
                 <div className={r.kv}>
-                  {Object.entries(entity.stats).map(([key, value]) => <div key={key}><span>{c.label(statLabel(key))}</span><span>{value}</span></div>)}
+                  {Object.entries(entity.stats).filter(([, value]) => value !== 0).map(([key, value]) => <div key={key}><span>{c.label(statLabel(key))}</span><span>{value}</span></div>)}
                 </div>
               )}
               {entity.conditions.length > 0 && <div className={r.chips}>{entity.conditions.map((row) => <span key={row} className={r.badgeAmber}>{row}</span>)}</div>}
@@ -154,18 +189,14 @@ function Detail({ holding, itemId, onItem, onRedraw, onAct }: {
       {!entity && holding.kind === "base" && <div className={s.columns}><HoldingDetails holding={holding} /></div>}
       <Panel eyebrow={holding.storage?.name ?? c("Хранилище", "Storage")} title={c("Что лежит внутри", "What's inside")}
         action={<span className={`${r.small} ${r.muted}`}>{c(`${holding.items.length} предм.`, `${holding.items.length} items`)}</span>}>
-        {holding.items.length ? (
-          <div className={r.stack}>
+        <div className={r.stack}>
+          {(holding.kind === "mount" || Object.keys(wallet).length > 0) && <WalletLine wallet={wallet} />}
+          {holding.items.length ? (
             <div className={r.grid}>
-              {holding.items.map((item) => <ItemCell key={item.id} item={item} pressed={item.id === selected?.id} onPick={() => onItem(item.id)} />)}
+              {holding.items.map((item) => <ItemCell key={item.id} item={item} pressed={item.id === itemId} onPick={() => onItem(item.id)} />)}
             </div>
-            {selected && (
-              <ItemCard item={selected} entity={null} onRedraw={() => onRedraw({ kind: "item", id: selected.id })}
-                onUse={() => onAct(c(`Беру из «${name}»: «${selected.name}».`, `I take the ${selected.name} from ${name}.`))}
-                onGive={() => onAct(c(`Передаю «${selected.name}» из «${name}» `, `I hand the ${selected.name} from ${name} to `))} />
-            )}
-          </div>
-        ) : <p className={r.empty}>{holding.storage ? c("Пусто.", "Empty.") : c("У лагеря пока нет хранилища в записях.", "The camp has no storage record yet.")}</p>}
+          ) : <p className={r.empty}>{holding.storage ? c("Пусто.", "Empty.") : c("У лагеря пока нет хранилища в записях.", "The camp has no storage record yet.")}</p>}
+        </div>
       </Panel>
     </div>
   );
