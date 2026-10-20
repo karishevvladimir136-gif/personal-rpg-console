@@ -158,6 +158,17 @@ export function prepareCommand(
   if (previous) return previous;
   return { ...input, commandId: createId() };
 }
+// A command the server refused (any 4xx) changed nothing, so it leaves the journal and the next
+// click sends the action the owner chooses then. One with an unknown outcome (no answer, 5xx)
+// stays and is re-sent with the same identity, which the server deduplicates.
+export function dropRefusedCommand(
+  journal: DraftJournal,
+  status: number | null,
+): DraftJournal {
+  if (!journal.command || status === null || status < 400 || status > 499)
+    return journal;
+  return { ...journal, command: null };
+}
 export function isUnresolved(turn: PublicTurn) {
   return (
     turn.status === "pending" ||

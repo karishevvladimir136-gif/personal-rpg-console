@@ -20,6 +20,7 @@ import {
 import {
   actionMaxCharacters,
   belongsToChannel,
+  dropRefusedCommand,
   emptyJournal,
   isUnresolved,
   journalKey,
@@ -242,6 +243,19 @@ export function GameplayComposer({
       setHeld({ text: "", send: false });
     }
   };
+  /** Sends a stored command; one the server refused leaves the journal (dropRefusedCommand). */
+  const resume = async (pending: ResumeInput) => {
+    try {
+      return await resumeTurn(pending);
+    } catch (cause) {
+      const next = dropRefusedCommand(
+        current.current,
+        cause instanceof GameplayClientError ? cause.status : null,
+      );
+      if (next !== current.current) write(next);
+      throw cause;
+    }
+  };
   const run = async (action: () => Promise<void>) => {
     if (busyRef.current) return;
     busyRef.current = true;
@@ -283,7 +297,7 @@ export function GameplayComposer({
         return;
       if (current.current.command) {
         if (mode === "game" || mode === "companion") follow(current.current.command.operationId);
-        const result = await resumeTurn(current.current.command);
+        const result = await resume(current.current.command);
         write({ ...current.current, command: null });
         await accept(result);
         return;
@@ -299,7 +313,7 @@ export function GameplayComposer({
         });
         write({ ...current.current, command: pending });
         if (mode === "game" || mode === "companion") follow(previous.operationId);
-        const result = await resumeTurn(pending);
+        const result = await resume(pending);
         write({ ...current.current, command: null });
         await accept(result);
         return;
@@ -389,7 +403,7 @@ export function GameplayComposer({
         recovered: current.current.recovered || !current.current.attempt,
       });
       if (turn.mode === "game" || turn.mode === "companion") follow(turn.id);
-      const result = await resumeTurn(pending);
+      const result = await resume(pending);
       write({ ...current.current, command: null });
       await accept(result);
     });

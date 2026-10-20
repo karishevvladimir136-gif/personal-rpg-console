@@ -33,6 +33,7 @@ const NEW_MIGRATIONS = [
   "202610180069_polish3_craft_roles.sql",
   "202610180090_owner_approves_craft.sql",
   "202610190070_voice_stage.sql",
+  "202610200071_dm_loop_turn_lease.sql",
   "202610210200_live2d.sql",
   "202610210201_live2d_battle.sql",
 ];

@@ -607,12 +607,20 @@ export async function runDmLoopTurn(input: TurnInput, deps: DmLoopDependencies):
     : await deps.store.getPublic(input.campaignId, input.operationId), input.campaignId, input.operationId, input.timeline);
 }
 
+/** May a retry command claim this turn? A failed turn when the server offers a retry; a pending or
+ * generating one always, because the claim decides: a live lease returns the turn unchanged, an
+ * expired one (its claimant went silent — the public turn then shows `canRetry`) is taken over
+ * and resumed from the last checkpoint. */
+export function retryClaimable(turn: PublicTurn): boolean {
+  return turn.status === "failed" ? turn.canRetry : turn.status === "pending" || turn.status === "generating";
+}
+
 export async function resumeDmLoopTurn(command: ResumeInput, deps: DmLoopDependencies): Promise<PublicTurn> {
   const current = requireTurnTimeline(await deps.store.getPublic(command.campaignId, command.operationId),
     command.campaignId, command.operationId, command.timeline);
   if (["committed", "cancelled"].includes(current.status)) return current;
   if (command.action === "cancel") return deps.store.cancel(command);
-  requireRule(command.action === "retry" ? current.status === "failed" && current.canRetry : current.status === "awaiting_confirmation");
+  requireRule(command.action === "retry" ? retryClaimable(current) : current.status === "awaiting_confirmation");
   const claim = await deps.store.claim(command.campaignId, command.operationId);
   if (claim) requireClaimTimeline(claim, command.campaignId, command.operationId, command.timeline);
   return requireTurnTimeline(claim ? await execute(claim, deps, command)

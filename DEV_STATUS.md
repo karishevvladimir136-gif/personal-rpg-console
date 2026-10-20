@@ -11,8 +11,24 @@ must-show after at most one redraw, 0 contradictions, 0 people in backgrounds, $
 region › town › district › scene, private POI seeds. Part 2: the fight held on the server (grid, initiative, economy,
 conditions, enemy HP, features), the DM's battlefield block, the optional rules module on attacks, the battle screen
 with tokens, drag-to-intent, templates, reaction and end cards; two scripted fights through the real loop; the live DM
-probes and the suite on the frozen candidate are recorded in the report. The sections below are each earlier stage's
-own closing status, kept unchanged.
+probes and the suite on the frozen candidate are recorded in the report. The owner's turn-lease fix (`claude/stage-fix-turn-lease`, migration 71) is merged into this
+branch: a fight turn runs 100–200 s and the live probes needed it. The sections below are each earlier stage's own
+closing status, kept unchanged.
+
+**Latest fix: the stuck long turn (session 2)** — **done on `claude/stage-fix-turn-lease`, waiting for the owner's
+check in the sandbox.** Branch from `claude/session-2-prep` (d74b6c6); migration 71 (`dm_loop_turn_lease`), additive.
+A dm-loop-v1 turn of more than five minutes (ten Opus requests at xhigh) found its 300 s claim lease expired at the
+commit and at the failure after it and stayed `generating`; its offered retry was refused (422) and the composer
+re-sent that refused command on every click. Now every receipt, checkpoint, commit and failure renews the lease of the
+current claimant (the lease token stays the fence), a retry may take over a pending or generating turn whose lease
+expired (`retryClaimable`, all three resume paths), and the composer drops a command the server refused with a 4xx.
+The owner report is `docs/runs/turn-lease-fix-report.md`; the docs `docs/TURN_LOOP.md` §27. Checks on the final code:
+typecheck pass, lint pass (zero warnings), build pass, the fix's tests 7/7 (`tests/dm-loop-turn-lease.test.mjs`; tests
+1–2 fail without migration 71 and test 3 with the old retry rule), the full suite 2 627 tests · 2 598 pass · 27 skipped
+· 2 fail (the two Windows CRLF artefacts: the game page's CSS and the sandbox config; no file of this fix). No paid
+calls. Known limits: a single model request longer than five minutes still lets a retry take the turn over meanwhile
+(the old attempt is then fenced out, nothing is applied twice); the Astra runtime's lease is unchanged. The voice stage
+section below is that stage's own closing status, kept unchanged.
 
 **Current stage:** the voice stage (`docs/stages/VOICE.md` «The build», parts 1–8, plus the owner's two replay-tool
 bugs of 2026-10-18) — **done on `claude/voice`, waiting for the owner's approval of the two Russian texts, the local
