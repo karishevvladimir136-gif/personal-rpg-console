@@ -128,3 +128,97 @@ region map, 4 preview-art pictures, 10 sheets/checks ×2, 9 locator calls, 1 see
   region (the direction doc's «this area is boring») should exist before the Chat-with-DM director does it.
 - The region map for a flat campaign is drawn once for all world-level places; when session 2's places get a region
   record (item 31's «Побережье Мечей»), the map follows the region anchor and is drawn afresh for it.
+
+---
+
+# Part 2 — the combat screen and the battle map
+
+## What was built
+
+**The fight lives on the server, in the encounter rows** (`src/lib/live2d/battle/contracts.ts`, migration
+`202610210201_live2d_battle.sql`): per combatant in `encounter_participants.public_resources` (initiative, the active
+flag, side, the action economy — action / bonus / reaction / movement left and max —, conditions as the system's words,
+death-save pips, the enemy's HP mirror, «what is known» lines, the noticed intent, armour class and the damage types
+resisted / ignored / feared) and `public_position` (the zone word plus the grid cell `x, y` and the elevation `z`); the
+battlefield in the encounter's new `public_field` (the grid, features — cover with half / three-quarters / full,
+difficult ground, light sources with a radius, burning areas, walls, elevation —, the ambient light, the active turn
+pointer, the planned-ambush flag, the pending reaction, the roll log, the rules switch). The turn's commit carries it
+atomically with everything else; the play projection returns it to every client; an old encounter reads as «no map».
+No rule of any system is in code: the grid is 5-ft cells, the words and numbers come from the DM.
+
+**The `combat` tool grew** (`src/lib/gameplay/dm-loop/tools.ts`, the handler in `execute.ts`; the old `start` /
+`position` / `end` keep working): `start` with placements and initiative totals, the grid, the ambient light,
+`surprisedRefs` (no action in round 1), `opening: "party"` (the owner's house rule: the party's declared ambush resolves
+before initiative), stat-block `hp` rows with AC, resistances and speed, `rules` on/off; `place` (a late arrival joins);
+`move` to a cell — the server measures the path (difficult ground doubles it, a wall blocks), spends movement and names
+the foes who may take an opportunity attack; `next_turn` (the order kept, the round counter, the economy restored at the
+start of one's turn, surprise cleared after round 1); `attack` (below); `condition` with `deathSave`; `hp` for enemies
+(the party's goes through `resource`), logged with who dealt it; `profile`; `feature` add/update/remove; `known`;
+`intent` with who noticed it; `reaction` (the trigger and the options; the DM ends the turn so the player chooses; the
+card writes «Реакция: <option>» into the action box; `resolved: true` clears it); `log`; `end` with the fight's card
+(rounds, damage dealt and taken, hits, misses, crits, close calls, the fallen). Every player-visible line is a chip in
+the campaign's language («Раунд 2 · ходит Кадрик», «Брам → (3, 4), 25 фт», «Серый: −9 (13/22)»).
+
+**Geometry, measured not ruled** (`geometry.ts`, 4 tests + the fights): Chebyshev distance × 5 ft with elevation added,
+Bresenham lines, line of sight (a wall or full cover blocks), the best cover between two cells, the light on a cell
+(bright within a source's radius, dim within its dim radius, else the ambient), hazards under a cell, a move's cost,
+sphere and line templates, who is caught, opportunity-attack candidates. The zone words («вплотную / рядом / далеко /
+в укрытии») are **derived from the coordinates seen from the hero** every time anything moves, so the zones view and
+the map never disagree (tested).
+
+**The battlefield block** (`src/lib/gameplay/dm-loop/battlefield.ts`, wired by one line in `context.ts`): for the active
+encounter, the short text the DM reads instead of the picture — per party member the distance, zone word, cover and
+elevation to each foe; each foe's light, hazards, conditions and HP; the features on the field; the party's spent
+economy, conditions and death saves; a pending reaction; the ambush rule. ≤ 2 400 characters. Example from the lair
+probe: «Rowan: Кадрик 40 фт, далеко, укрытие на три четверти (горящая телега), выше на 10 фт; Серый 35 фт, далеко.
+Кадрик: на свету, HP 18/18; Серый: вне света, HP 20/20.»
+
+**The optional rules module** (`rules.ts`, the owner's addition; 3 tests): when the campaign's system describes them
+(on by default for 5e-like systems by the rules-system name; the DM switches it per fight), `combat attack` applies what
+is pure arithmetic — a condition's advantage or disadvantage (blinded, restrained, poisoned, frightened or prone
+attacker; blinded, restrained, stunned, petrified, paralysed or unconscious target; prone target near / far; a ranged
+attack within 5 ft; an unseen attacker or target), the auto-crit on a paralysed or unconscious target within 5 ft,
+cover's +2 / +5 to AC, the crit's doubled dice, resistance / immunity / vulnerability by damage type, advantage and
+disadvantage cancelling — and **names each applied rule on the card** («укрытие на три четверти: +5 к КД; сопротивление:
+fire: урон вдвое меньше»). `count` rolls several attacks or rays separately (session 2's three-rays-as-one). The hero's
+attack is a visible roll card (the check DTO, kind `attack`); an enemy's roll stays private. The DM still decides what
+happens; the code does the sums.
+
+**The battle background** (`server/battle.ts`, `battle.prepare`): the place's Part 1 scene sheet drawn top-down for the
+grid (composition `battle`, 1024×768 → 24 × 18 cells), checked like a scene (every must-show feature from above, no
+invented walls, doors or cover, no people), one corrected redraw, flagged otherwise; one per place and sheet revision;
+without one the map shows plain ground, and text play never waits.
+
+**The battle screen** (`src/components/live2d/battle/*`; the «2D» screen switches to it when a fight is on — the banner
+«Идёт бой — открыть карту боя»): the header (round, place, light, whose turn), the initiative ribbon (portrait rings,
+allies and foes in different colours, the active one glowing, a foe click → target), «Зоны / Карта», the map (the
+picture under an SVG grid; cover hatch, burning glow, difficult stipple, walls, light radii; dark cells shaded; cells the
+hero cannot see greyed; tokens that glide; foes' HP bars with numbers; condition chips; floating «−N» / «Промах» / crit
+from the turn's chips; the hero's token draggable with the path, «N фт из M», «атака по возможности» on adjacent foes,
+release → «Иду в клетку (x, y), N фт» / «Подхожу к <feature>, N фт» in the action box; «Шар 20 фт» / «Линия 30 фт»
+templates with the caught names → «Шар в точку (x, y) — в области: …»), the fight log, the target card (HP numbers —
+the owner's BG3 decision —, conditions, «Что известно» with «???», the intent only when noticed), «Твой ход» with the
+economy dots and death-save pips, the reaction card, the end-of-fight card; on a phone the ribbon scrolls, the map pans
+and zooms, the aside goes under the map. Nothing on it changes the state: every click is words in the action box.
+
+## Probes
+
+**Two scripted fights through the real loop** (`tests/live2d-fights.test.mjs`, PGlite, deterministic dice): the ford
+ambush (the planned opening before initiative, a surprised bandit, zones from the coordinates, the hero's attack as a
+card with the exact numbers, the record's HP mirrored, a move that leaves a foe's reach naming the opportunity attack,
+round wrap, death saves 1✓/1✗, the end card summing the log, the block gone from the context after the fight) and the
+lair (a caster on a ledge z = 10, a burning cart as three-quarters cover, a torch in the dark, the battlefield text with
+distance + elevation + cover + light, a ranged attack through cover with +5 AC and the fire resistance halving the
+damage, a pending reaction the DM is told about, a move into a wall refused, a move through the fire reported). The
+battlefield text reaches the next turn's context («Поле боя»).
+
+**Screenshots per round** (`docs/runs/live2d-1-shots/battle-*`): the ford rounds 1–4 and the zones view, the lair
+rounds 1–3, at 1920 and 390 (the last round of each at 2560) — from the synthetic fixtures
+(`src/lib/ui/preview/live2d-battle-fixture.ts`), zero overflow; the scrolling ribbon is the one legitimate overflow and
+the width check now knows a horizontal scroll region.
+
+**Live DM probes** (scenarios `20-live2d-ford`, `21-live2d-lair`, Claude Opus 5.5, the bench harness): see the table
+below. The first attempts died at the end of every turn with a bare «validation» after all tool calls had been
+accepted — the 300 s turn lease expired on 100–200 s fight turns (the owner's known «stuck long turn» bug); the fix
+branch `claude/stage-fix-turn-lease` (migration 71, every receipt renews the lease) is merged into this branch, and the
+fix run was told to merge it first too, so integration is clean.

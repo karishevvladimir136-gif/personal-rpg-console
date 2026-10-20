@@ -1342,8 +1342,10 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     const { entity: target, fighter: tf } = participantOf(args.targetRef, "targetRef");
     reject(attacker.id !== target.id, "attack: the target is the attacker.");
     const bonus = int(args.attackBonus) ?? 0;
-    const ac = int(args.ac) ?? tf.combatant.ac ?? (partyIds.has(target.id) && typeof target.stats.ac === "number" ? target.stats.ac : null);
-    reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`);
+    // A party member's armour class from the sheet when the DM gives none: the system's own stat name (ac, КД, armour, defense).
+    const sheetAc = partyIds.has(target.id) ? Object.entries(target.stats).find(([key, value]) => /^(ac|кд|armou?r|armou?r_class|defen[cs]e|защита)$/i.test(key) && typeof value === "number")?.[1] ?? null : null;
+    const ac = int(args.ac) ?? tf.combatant.ac ?? sheetAc;
+    reject(ac !== null, `attack needs ${target.name}'s armour class: ac here, or combat profile once.`, partyIds.has(target.id) ? "The sheet names no armour class stat; pass ac from the sheet's text." : undefined);
     reject(str(args.damage).length > 0, "attack needs the damage formula (1d8+3).");
     const formula = parseFormula(str(args.damage));
     const count = Math.min(8, Math.max(1, int(args.count) ?? 1));
@@ -1366,7 +1368,8 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     for (let i = 0; i < count; i++) {
       let kept: number, dice: number[];
       if (visibleCard) {
-        const proposal = { index: ctx.checks.length, actorId: attacker.id, targetId: target.id, kind: "attack" as const, stat: "attack" as const, dc: ac + ruling.acBonus, dcPublic: true, visibility: "player" as const,
+        // targetId stays null: the receipt store checks a target against the database, and a foe created this turn is not there yet (the name is in the reason).
+        const proposal = { index: ctx.checks.length, actorId: attacker.id, targetId: null, kind: "attack" as const, stat: "attack" as const, dc: ac + ruling.acBonus, dcPublic: true, visibility: "player" as const,
           important: true, uncertainty: "meaningful" as const, advantage: ruling.advantage, reason: str(args.reason) || (l === "ru" ? `Атака: ${target.name}` : `Attack: ${target.name}`),
           bonuses: ruling.acBonus ? [{ source: l === "ru" ? "укрытие цели" : "the target's cover", value: 0 }] : [], advantageReason: ruling.rules.length ? rulesText(ruling.rules, l === "ru" ? "ru" : "en") : null, difficulty: null, natural: null as RecordedCheck["natural"] };
         const rolled = recordServerRoll(ctx.input.operationId, proposal, bonus, 1, ctx.random);

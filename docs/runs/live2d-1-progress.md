@@ -19,16 +19,20 @@ Branch `claude/live2d-1-9lq5bf` (the session's own name for `claude/live2d-1`) f
   contradictions, 0 people, $0.057 a scene), the preview art, 21 screenshots (`docs/runs/live2d-1-shots/`), the report
   `docs/runs/live2d-1-report.md`, the owner's checklist `docs/runs/live2d-1-acceptance.md`. Spent $0.73 of $40.
 
+- Part 2 (built) — the battle model (`src/lib/live2d/battle/*`: contracts, geometry, the DM's battlefield text, the
+  optional rules module), migration `202610210201_live2d_battle.sql` (`public_field` on the encounter, battle
+  backgrounds), the grown `combat` tool (start/place/move/next_turn/attack/condition/hp/profile/feature/known/intent/
+  reaction/log/end), the battlefield block in the DM's context, `battle.prepare` (the top-down background), the battle
+  screen (`src/components/live2d/battle/*`, `/preview/live2d/battle?fight=ford|lair&round=N`), the two scripted fights
+  through the real loop (`tests/live2d-fights.test.mjs`), 18 battle screenshots. The owner's turn-lease fix
+  (`claude/stage-fix-turn-lease`, migration 71) is merged: the first live fight attempts died on the expired lease.
+
 ## In progress
-- Part 2 — the combat screen and the battle map: the battle model (`src/lib/live2d/battle/*`: contracts, geometry,
-  battlefield text, the optional rules module), migration `202610210201_live2d_battle.sql` (`public_field` on the
-  encounter, battle backgrounds), the grown `combat` tool (start/place/move/next_turn/condition/hp/feature/known/
-  intent/reaction/log/end) and the battlefield block in the DM's context. Next inside Part 2: the `attack` action with
-  the rules module, `battle.prepare` (the top-down background), the battle map screen (a fork is building it), the two
-  scripted fights, the live DM probes, screenshots per round.
+- Part 2 — the live DM probes (scenarios `20-live2d-ford`, `21-live2d-lair`, Opus 5.5, $3.50 each), then the report's
+  Part 2 section, the full suite on the frozen candidate, the final screenshots index.
 
 ## Next
-- After Part 2: the full suite on the frozen candidate, the report's Part 2 section, DEV_STATUS.
+- Owner acceptance (`docs/runs/live2d-1-acceptance.md`); the proposals for the fix run in the report.
 
 ## Open questions
 - none yet

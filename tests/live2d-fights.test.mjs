@@ -23,12 +23,18 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
           placements: [{ actorRef: c.hero, x: 3, y: 6, initiative: 15 }, { actorRef: "b1", x: 5, y: 6, initiative: 11 }, { actorRef: "b2", x: 9, y: 3, initiative: 8 }],
           surprisedRefs: ["b2"], hp: [{ actorRef: "b1", current: 11, max: 11, ac: 12 }, { actorRef: "b2", current: 9, max: 9, ac: 13, resist: ["cold"] }] } },
         { name: "combat", arguments: { action: "feature", op: "add", key: "river", kind: "difficult", label: "река у брода", cells: [[6, 0], [6, 1], [6, 2], [6, 3], [6, 4], [6, 5], [6, 6], [6, 7], [6, 8]] } },
+        // The opening blow in the same turn the bandits were recorded: the card's target is not in the database yet.
+        { name: "combat", arguments: { action: "attack", actorRef: c.hero, targetRef: "b1", attackBonus: 5, damage: "1d8+3", damageType: "slashing", reason: "Первый удар из засады" } },
       ] },
       { text: "Бой начался. " },
-    ]);
+    ], { dice: [3, 2] });
     assert.equal(start.result.status, "committed", JSON.stringify(c.errors));
     let receipts = await receiptsOf(c, start);
     assert.ok(receipts.every((r) => r.result.ok), okSummaries(receipts));
+    const opening = receipts.find((r) => r.call.arguments.action === "attack");
+    assert.ok(opening.result.check, "the opening blow is a card even though the target was created this turn");
+    assert.equal(opening.result.check.targetId, null);
+    assert.equal(opening.result.value.attacks[0].hit, false, "3 + 5 against AC 12: a miss");
     const started = receipts.find((r) => r.call.arguments.action === "start");
     assert.deepEqual(started.result.value.order.slice(0, 1), [`${started.result.value.order[0].split(" (")[0]} (15)`], "initiative order, the hero first");
     assert.match(started.result.summary, /planned opening resolves before initiative/);
@@ -81,8 +87,9 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
     const yan2 = play.participants.find((row) => row.public_name === "Кривой Ян");
     assert.equal(yan2.public_resources.hp.current, 2);
     assert.equal((await c.state()).entities.find((row) => row.name === "Кривой Ян").hp, 2, "the record mirrors the hit");
-    assert.equal(encounter.public_field.log.length, 1);
-    assert.match(encounter.public_field.log[0].result, /9 урона → Кривой Ян/);
+    assert.equal(encounter.public_field.log.length, 2, "the opening miss and the hit");
+    assert.match(encounter.public_field.log[0].result, /промах/);
+    assert.match(encounter.public_field.log[1].result, /9 урона → Кривой Ян/);
     assert.equal(encounter.public_field.activeParticipantId, yan2.id);
     // Yan swings back (a private roll: no card), the hero steps away and Yan may take an opportunity attack; the hero goes down.
     const back = await c.turn("Отступаю к берегу.", [
