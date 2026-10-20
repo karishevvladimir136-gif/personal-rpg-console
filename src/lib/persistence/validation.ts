@@ -166,6 +166,12 @@ export function validateSettings(value: unknown, campaignId: string) {
   return s;
 }
 
+/** Fix run D (migration 78): optional fields an owner's save may carry beside the required ones. */
+const optionalKeys: Record<string, string[]> = {
+  "item.save": ["detail", "rarity"],
+  "storage.save": ["detail"],
+  "entity.save": ["character_sheet", "public_profile"],
+};
 const payloadKeys: Record<string, string[]> = {
   "feedback.send": ["body"],
   "campaign.create": ["title", "subtitle", "language"],
@@ -253,11 +259,15 @@ export function validateMutation(value: unknown): Mutation {
     input.payload,
     payloadKeys[op],
     optionalId.includes(op)
-      ? ["id"]
+      ? ["id", ...(optionalKeys[op] ?? [])]
       : op === "campaign.create"
         ? ["premise"]
         : [],
   );
+  // Fix run D (migration 78): the owner's moves and sheet edits carry the model's own fields.
+  for (const key of ["detail", "public_profile", "character_sheet"])
+    if (key in p && p[key] !== null) assert(typeof p[key] === "object" && !Array.isArray(p[key]) && JSON.stringify(p[key]).length <= 120_000);
+  if ("rarity" in p && p.rarity !== null) enumeration(p.rarity, ["common", "relic", "magic", "story"]);
   if (p.id !== undefined) uuid(p.id);
   if (input.expectedRevision !== 0 && optionalId.includes(op)) uuid(p.id);
   for (const key of ["title", "name"]) if (key in p) str(p[key]);
@@ -326,9 +336,10 @@ export function validateMutation(value: unknown): Mutation {
         "camp",
         "transport",
         "merchant",
+        "place",
       ]);
       nullableId(p.entity_id);
-      assert((p.kind === "camp") === (p.entity_id === null));
+      assert((p.kind === "camp" || p.kind === "place") === (p.entity_id === null));
       break;
     case "item.save":
       str(p.category, 120);

@@ -203,7 +203,7 @@ export type CampaignSnapshot = {
   feedback: DmFeedbackMessage[];
   dmGuideDocumentId: string;
 };
-export type EntityInput = Omit<Entity, keyof ScopedRow | "character_sheet">;
+export type EntityInput = Omit<Entity, keyof ScopedRow>;
 export type StorageInput = Omit<Storage, keyof ScopedRow>;
 export type ItemInput = Omit<Item, keyof ScopedRow>;
 export type SessionInput = Omit<Session, keyof ScopedRow>;

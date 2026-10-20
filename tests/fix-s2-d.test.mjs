@@ -1,7 +1,6 @@
 // Fix run after session 2, stage D — records and inventory (docs/runs/fix-s2-inventory-design.md).
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { coinOf, counterLabel, equipPlan, equippedBonuses, guessKind, potionCounter, sameStack, spellBook, castLine, universalSlots, walletLine, walletParts }
   from "../src/lib/inventory/model.ts";
@@ -98,7 +97,7 @@ test("D migrations: SQL and TypeScript agree — the eleven slots, the kind a na
   } finally { await c.f.db.close(); }
 });
 
-test("D migration 77: an older hero converts once — the doll keeps what he wears (legs come off), possessions get kinds, potions become items, coins join under their codes, a mount drops its riders", async () => {
+test("D conversion (migration 77, run by the owner's session): an older hero converts once — the doll keeps what he wears (legs come off), possessions get kinds, potions become items, coins join under their codes, a mount drops its riders", async () => {
   const c = await loopCampaign({ language: "ru" });
   try {
     const { f } = c;
@@ -119,8 +118,10 @@ test("D migration 77: an older hero converts once — the doll keeps what he wea
     const mount = (await f.one(`insert into public.rpg_entities(id,campaign_id,kind,name,details,hp,max_hp,stats,resources,conditions,equipment_slots,public_profile,revision)
       values(gen_random_uuid(),$1,'mount','Казённые лошади','',null,null,'{}','{}','[]','[]',$2::jsonb,1) returning id`, [c.cid, JSON.stringify({ holding: { features: [], armament: "", passengers: [c.hero] } })])).id;
 
-    const convert = readFileSync(new URL("../supabase/migrations/202610200077_fix_s2_inventory_convert.sql", import.meta.url), "utf8").replaceAll("create function", "create or replace function");
-    await f.db.exec(convert);
+    // Migration 77 defines the conversion; the owner's local session runs it once (docs/SANDBOX_LOAD_FIX_S2.md).
+    const convert = async () => (await f.one("select rpg_private.fix_s2_inventory_convert() r")).r;
+    const done = await convert();
+    assert.deepEqual(done, { itemKinds: 0, dolls: 1, takenOff: 1, potionItems: 3, mounts: 1, wallets: 1 }, "the possessions got their kinds on insert (migration 76's trigger)");
     const items = Object.fromEntries((await f.db.query("select id,name,category,quantity,equipped_slot from public.rpg_items where campaign_id=$1", [c.cid])).rows.map((row) => [row.id, row]));
     assert.equal(items[tusk].equipped_slot, "amulet");
     assert.equal(items[tusk].category, "jewelry", "the worn tusk takes the amulet slot's kind");
@@ -142,7 +143,7 @@ test("D migration 77: an older hero converts once — the doll keeps what he wea
 
     // Idempotent: a second run changes nothing.
     const before = (await f.db.query("select id,revision from public.rpg_entities where campaign_id=$1 union all select id,revision from public.rpg_items where campaign_id=$1 order by 1", [c.cid])).rows;
-    await f.db.exec(convert);
+    assert.deepEqual(await convert(), { itemKinds: 0, dolls: 0, takenOff: 0, potionItems: 0, mounts: 0, wallets: 0 });
     const after = (await f.db.query("select id,revision from public.rpg_entities where campaign_id=$1 union all select id,revision from public.rpg_items where campaign_id=$1 order by 1", [c.cid])).rows;
     assert.deepEqual(after, before);
   } finally { await c.f.db.close(); }
@@ -302,5 +303,31 @@ test("D scenario (the DM's side): gear from a stat block, bolts that merge and a
     assert.equal(mountReceipts[3].result.value.place, pile.id ? (await c.f.one("select name from public.rpg_storages where id=$1", [pile.id])).name : null);
     const horse = (await c.f.one("select id from public.rpg_entities where campaign_id=$1 and name='Гнедая'", [c.cid])).id;
     assert.equal((await find("Тяжёлый арбалет")).owner_entity_id, horse);
+  } finally { await c.f.db.close(); }
+});
+
+test("D migration 78: the owner's saves carry an item's detail (an owner move's history), a place pile, and a character's sheet; the checks still hold", async () => {
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const { f } = c;
+    assert.equal(typeof f.mutation, "function");
+    const storage = await f.one("select id from public.rpg_storages where entity_id=$1 order by id limit 1", [c.hero]);
+    const created = await f.mutation("item.save", c.cid, { name: "Красный плащ", category: "clothing", quantity: 1, description: "", mechanics: "", owner_entity_id: c.hero,
+      storage_id: storage.id, equipped_entity_id: null, equipped_slot: null, detail: { history: [{ at: 0, event: "owner_moved", note: "лагерь → Рэй" }] } });
+    const row = await f.one("select detail from public.rpg_items where id=$1", [created.id]);
+    assert.equal(row.detail.history[0].event, "owner_moved");
+    // A wrong rarity, an array for detail, a place pile with an owner — refused.
+    await assert.rejects(f.mutation("item.save", c.cid, { id: created.id, name: "Красный плащ", category: "clothing", quantity: 1, description: "", mechanics: "", owner_entity_id: c.hero,
+      storage_id: storage.id, equipped_entity_id: null, equipped_slot: null, detail: [] }, created.revision));
+    const pile = await f.mutation("storage.save", c.cid, { name: "Здесь лежит: склад", kind: "place", entity_id: null, detail: { locationId: "x", wallet: { "зм": 3 } } });
+    assert.ok(pile.id);
+    await assert.rejects(f.mutation("storage.save", c.cid, { name: "x", kind: "place", entity_id: c.hero, detail: {} }));
+    // The owner edits the hero's sheet (schema 2); an invalid sheet is refused by the table's check.
+    const hero = await f.one("select * from public.rpg_entities where id=$1", [c.hero]);
+    const fields = { kind: hero.kind, name: hero.name, details: hero.details, hp: hero.hp, max_hp: hero.max_hp, stats: hero.stats, resources: hero.resources, conditions: hero.conditions, equipment_slots: hero.equipment_slots };
+    const sheet = { schemaVersion: 2, mode: "structured_rpg", role: "Волшебник", level: 7, skills: ["Магия +7"], spells: [{ name: "Огненный шар", level: 3, prepared: true }] };
+    const saved = await f.mutation("entity.save", c.cid, { id: c.hero, ...fields, character_sheet: sheet }, hero.revision);
+    assert.equal((await f.one("select character_sheet from public.rpg_entities where id=$1", [c.hero])).character_sheet.level, 7);
+    await assert.rejects(f.mutation("entity.save", c.cid, { id: c.hero, ...fields, character_sheet: { ...sheet, level: 99 } }, saved.revision));
   } finally { await c.f.db.close(); }
 });

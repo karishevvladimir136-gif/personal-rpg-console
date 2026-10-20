@@ -1,6 +1,9 @@
 -- Fix run after session 2, stage D: the one-time conversion of existing records to the inventory model of migration 76
--- (docs/runs/fix-s2-inventory-design.md §10). Idempotent: a converted record is left as it is. Only these rows change;
--- scenes, turns, saves and private state are never touched.
+-- (docs/runs/fix-s2-inventory-design.md §10). This migration only DEFINES it: rpg_private.fix_s2_inventory_convert()
+-- changes data, so the owner's local session runs it once, after the database dump (docs/SANDBOX_LOAD_FIX_S2.md);
+-- applying migrations never changes game state. New campaigns need none of it (migration 76: the eleven slots at
+-- creation, a 'possession' gets its kind on insert). Idempotent: a converted record is left as it is; it returns what
+-- it changed. Only these rows change — scenes, turns, saves and private state are never touched.
 --  1. Kinds: an item of a kind the model does not know (the bootstrap's 'possession') gets the kind its name says
 --     (rpg_private.guess_item_kind of migration 76, the same stems as guessKind in the model), else 'gear'.
 --  2. The doll: a person record (hero, companion, NPC) with the older slots gets the eleven; what it wears stays on —
@@ -15,16 +18,34 @@
 --     two entries of one coin summed — so the DM's «золотые» and an older «зм» are one balance (coinOf in the model).
 begin;
 
+create function rpg_private.coin_code(label text,lang text) returns text language plpgsql immutable set search_path='' as $$
+declare w text:=btrim(regexp_replace(replace(lower(label),'_',' '),'[«»"''“”.]','','g')); ru boolean:=lang='ru'; c record; s text; begin
+ for c in select * from (values
+   (1,case when ru then 'пм' else 'pp' end,array['пм','платин','pp','platinum']),
+   (2,case when ru then 'зм' else 'gp' end,array['зм','золот','gp','gold']),
+   (3,case when ru then 'эм' else 'ep' end,array['эм','электр','ep','electrum']),
+   (4,case when ru then 'см' else 'sp' end,array['см','серебр','sp','silver']),
+   (5,case when ru then 'мм' else 'cp' end,array['мм','медн','медяк','cp','copper'])) v(n,code,words) order by n loop
+  foreach s in array c.words loop
+   if (length(s)<=2 and (w=s or w like s||' %')) or (length(s)>2 and (w like s||'%' or w like '% '||s||'%')) then return c.code; end if;
+  end loop;
+ end loop;
+ return null;
+end $$;
 
--- 1. Kinds ----------------------------------------------------------------------------------------------------------
-update public.rpg_items set category=rpg_private.guess_item_kind(name),revision=revision+1,updated_at=now()
- where category not in ('weapon','shield','armor','clothing','jewelry','accessory','ammunition','consumable','tool','gear','misc');
-
--- 2. The doll -------------------------------------------------------------------------------------------------------
-do $$ declare e record; i record; slots jsonb; target text; slot jsonb; used text[];
+create function rpg_private.fix_s2_inventory_convert() returns jsonb language plpgsql set search_path='' as $$
+declare e record; i record; k text; v integer; slots jsonb; target text; slot jsonb; used text[]; bag uuid; item_name text; stack uuid;
+  ru boolean; code text; next jsonb;
+  kinds integer:=0; dolls integer:=0; worn_off integer:=0; potions integer:=0; coins integer:=0; mounts integer:=0;
   remap constant jsonb:='{"neck":"amulet","talisman":"amulet","ring1":"ring_left","ring2":"ring_right"}';
   eleven constant text[]:=array['amulet','belt','body','boots','cloak','gloves','hand','head','offhand','ring_left','ring_right'];
 begin
+ -- 1. Kinds.
+ update public.rpg_items set category=rpg_private.guess_item_kind(name),revision=revision+1,updated_at=now()
+  where category not in ('weapon','shield','armor','clothing','jewelry','accessory','ammunition','consumable','tool','gear','misc');
+ get diagnostics kinds = row_count;
+
+ -- 2. The doll.
  for e in select en.id,en.campaign_id,en.equipment_slots,c.language from public.rpg_entities en
    join public.rpg_campaigns c on c.id=en.campaign_id
    where en.kind in ('player','companion','npc') and jsonb_array_length(en.equipment_slots)>0 loop
@@ -34,9 +55,11 @@ begin
   for i in select it.id,it.category,it.equipped_slot from public.rpg_items it
     where it.campaign_id=e.campaign_id and it.equipped_entity_id=e.id order by it.updated_at,it.id loop
    target:=coalesce(remap->>i.equipped_slot,i.equipped_slot);
+   slot:=null;
    select value into slot from jsonb_array_elements(slots) where value->>'id'=target;
    if slot is null or target=any(used) then
     update public.rpg_items set equipped_entity_id=null,equipped_slot=null,revision=revision+1,updated_at=now() where id=i.id;
+    worn_off:=worn_off+1;
    else
     update public.rpg_items set equipped_slot=target,
       category=case when slot->'accepts' ? category then category else slot->'accepts'->>0 end,
@@ -46,11 +69,10 @@ begin
    end if;
   end loop;
   update public.rpg_entities set equipment_slots=slots,revision=revision+1,updated_at=now() where id=e.id;
+  dolls:=dolls+1;
  end loop;
-end $$;
 
--- 3. Potion counters → items ------------------------------------------------------------------------------------------
-do $$ declare e record; k text; v integer; bag uuid; item_name text; stack uuid; ru boolean; begin
+ -- 3. Potion counters → items.
  for e in select en.id,en.campaign_id,en.kind,en.name,en.resources,c.language from public.rpg_entities en
    join public.rpg_campaigns c on c.id=en.campaign_id where en.kind in ('player','companion','npc') loop
   ru:=e.language='ru';
@@ -58,6 +80,7 @@ do $$ declare e record; k text; v integer; bag uuid; item_name text; stack uuid;
     where key !~ '_(max|min)$' and key ~* '((^|_)(healing_)?potions?($|_)|elixir|зель|эликсир)' loop
    v:=coalesce((e.resources->>k)::integer,0);
    if v>0 then
+    bag:=null; stack:=null;
     select s.id into bag from public.rpg_storages s where s.campaign_id=e.campaign_id and s.entity_id=e.id order by s.id limit 1;
     if bag is null then
      bag:=gen_random_uuid();
@@ -82,34 +105,19 @@ do $$ declare e record; k text; v integer; bag uuid; item_name text; stack uuid;
         jsonb_build_object('history',jsonb_build_array(jsonb_build_object('at',0,'event','created',
           'note',case when ru then 'перенесено из счётчика «'||k||'»' else 'moved from the counter "'||k||'"' end))),1);
     end if;
-    stack:=null; bag:=null;
+    potions:=potions+v;
    end if;
    update public.rpg_entities set resources=resources-k-(k||'_max')-(k||'_min'),revision=revision+1,updated_at=now() where id=e.id;
   end loop;
  end loop;
-end $$;
 
--- 4. Mounts carry saddlebags, not riders -------------------------------------------------------------------------------
-update public.rpg_entities set public_profile=jsonb_set(public_profile,'{holding,passengers}','[]'::jsonb),revision=revision+1,updated_at=now()
- where kind='mount' and jsonb_typeof(public_profile#>'{holding,passengers}')='array'
-   and jsonb_array_length(public_profile#>'{holding,passengers}')>0;
+ -- 4. Mounts carry saddlebags, not riders.
+ update public.rpg_entities set public_profile=jsonb_set(public_profile,'{holding,passengers}','[]'::jsonb),revision=revision+1,updated_at=now()
+  where kind='mount' and jsonb_typeof(public_profile#>'{holding,passengers}')='array'
+    and jsonb_array_length(public_profile#>'{holding,passengers}')>0;
+ get diagnostics mounts = row_count;
 
--- 5. Coins under their codes ---------------------------------------------------------------------------------------------
-create function rpg_private.coin_code(label text,lang text) returns text language plpgsql immutable set search_path='' as $$
-declare w text:=btrim(regexp_replace(replace(lower(label),'_',' '),'[«»"''“”.]','','g')); ru boolean:=lang='ru'; c record; s text; begin
- for c in select * from (values
-   (1,case when ru then 'пм' else 'pp' end,array['пм','платин','pp','platinum']),
-   (2,case when ru then 'зм' else 'gp' end,array['зм','золот','gp','gold']),
-   (3,case when ru then 'эм' else 'ep' end,array['эм','электр','ep','electrum']),
-   (4,case when ru then 'см' else 'sp' end,array['см','серебр','sp','silver']),
-   (5,case when ru then 'мм' else 'cp' end,array['мм','медн','медяк','cp','copper'])) v(n,code,words) order by n loop
-  foreach s in array c.words loop
-   if (length(s)<=2 and (w=s or w like s||' %')) or (length(s)>2 and (w like s||'%' or w like '% '||s||'%')) then return c.code; end if;
-  end loop;
- end loop;
- return null;
-end $$;
-do $$ declare e record; k text; code text; v integer; next jsonb; begin
+ -- 5. Coins under their codes.
  for e in select en.id,en.resources,c.language from public.rpg_entities en join public.rpg_campaigns c on c.id=en.campaign_id
    where exists(select 1 from jsonb_object_keys(en.resources) key where key like 'currency\_%') loop
   next:=e.resources;
@@ -119,10 +127,15 @@ do $$ declare e record; k text; code text; v integer; next jsonb; begin
    v:=coalesce((next->>k)::integer,0);
    next:=(next-k)||jsonb_build_object('currency_'||code,coalesce((next->>('currency_'||code))::integer,0)+v);
   end loop;
-  if next<>e.resources then update public.rpg_entities set resources=next,revision=revision+1,updated_at=now() where id=e.id; end if;
+  if next<>e.resources then
+   update public.rpg_entities set resources=next,revision=revision+1,updated_at=now() where id=e.id;
+   coins:=coins+1;
+  end if;
  end loop;
+
+ return jsonb_build_object('itemKinds',kinds,'dolls',dolls,'takenOff',worn_off,'potionItems',potions,'mounts',mounts,'wallets',coins);
 end $$;
 
-revoke all on function rpg_private.coin_code(text,text) from public,anon,authenticated;
+revoke all on function rpg_private.coin_code(text,text),rpg_private.fix_s2_inventory_convert() from public,anon,authenticated;
 
 commit;
