@@ -1106,3 +1106,8 @@ report); the guard post's place record says «Раннее утро» — a time
     the shot carries the hero's position (hidden, behind what) and the light; a temporary look the story set
     (soot on the face, a burned robe, bandages) is kept as the person's current appearance until the story removes
     it, and the frame compiler sends it with the gear.
+    Reference frame (owner, 22:11, shown as the example): the hero downed behind the burning cart, out of the
+    enemy mage's sight, his hat fallen beside him; the sergeant standing over the dead bandit leader with a bloody
+    blade — and the key on the dead man's neck chain, a detail from the story. Everything comes from the turn and
+    the records (no invented props, no shield), the hero is recognisable, and people are placed by the action.
+    Only nit: the hero at 0 HP is drawn with open eyes. Use this frame as the target in the picture stage's checks.
