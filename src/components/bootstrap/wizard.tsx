@@ -118,7 +118,9 @@ export function CampaignWizard({ language, worlds, onClose, onCreated, preview, 
     <div className={lib.page}>
       <Plate eyebrow={ru ? "Нулевая сессия" : "Session zero"} title={ru ? "Новая кампания" : "New campaign"}
         aside={<button type="button" className={r.btnGhost} onClick={() => {
-          if (!dirty || window.confirm(ru ? "Отменить несохранённое?" : "Discard unsaved changes?")) { onClose(); }
+          // Closing ends this wizard: the next «Новая кампания» starts afresh (a created campaign stays and can be
+          // started from its «Приключения» screen).
+          if (!dirty || window.confirm(ru ? "Отменить несохранённое?" : "Discard unsaved changes?")) { if (!preview) writeProgress(null); onClose(); }
         }}>{created ? (ru ? "Закрыть" : "Close") : (ru ? "Отмена" : "Cancel")}</button>} />
       <ol className={lib.steps} aria-label={ru ? "Шаги" : "Steps"}>
         {steps.map((row, index) => (
