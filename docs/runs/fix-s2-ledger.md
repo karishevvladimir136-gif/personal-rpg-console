@@ -31,4 +31,5 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | picture-recheck-20261020-135348 | E | fix run E: the vision check again on the probe's frames (the token cap raised) | $0.10 | $0.0031 | yes |
 | picture-shot-20261020-144551 | E | fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes | $0.50 | $0.0979 | yes |
 | picture-shot-20261020-144908 | E | fix run E: the default frame path (shot, records frame, picture, check) on synthetic scenes | $0.40 | $0.0647 | yes |
-| **Total** | | | **$29.8018 of $50** | |
+| hero-probe-20261020-165543 | F | fix run F: the one-pass hero on the live DM (two synthetic descriptions) | $2.00 | $0.0000 | no |
+| **Total** | | | **$31.8018 of $50** | |

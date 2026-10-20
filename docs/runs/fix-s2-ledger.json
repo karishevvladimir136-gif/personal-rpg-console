@@ -297,6 +297,15 @@
       "settled": true,
       "finishedAt": "2026-10-20T14:50:29.741Z",
       "record": "scripts/eval/fix-s2/picture-probe.mjs --path shot (picture-shot-20261020-144908)"
+    },
+    {
+      "run": "hero-probe-20261020-165543",
+      "what": "fix run F: the one-pass hero on the live DM (two synthetic descriptions)",
+      "stage": "F",
+      "startedAt": "2026-10-20T16:55:43.626Z",
+      "reservedUsd": 2,
+      "spentUsd": 0,
+      "settled": false
     }
   ]
 }
