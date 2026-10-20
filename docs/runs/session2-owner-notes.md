@@ -833,3 +833,15 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     check told in the story first, damage rolled by formula, the aside never carries an untold event). In code (fix
     cycle, owner-approved): the item-60 check before finish_turn and the continuation-after-roll rule; the session
     report flags wound descriptions that do not match the HP band.
+
+62. **The app slowed to a halt after a good turn** (owner, 19:26: «Не удалось подтвердить сохранение. Черновик остался в
+    форме», then a full-page «The campaign store could not be reached»). app.log: the turn itself **committed**
+    (`5194936e-…`, high, 186 s, 7 requests, 26 tools, $1.74 — combat). Right after, `/play`, `/memory` and
+    `/api/campaigns/<id>` went from ~1 s to 14–50 s, then 503; the page layout threw «campaign store could not be
+    reached»; even `proxy.ts` time rose to 2–19 s, i.e. the whole Node process (or the machine) was starving, not only
+    the database. The play page polls `/play` every 1–2 s; once a read takes longer than the interval, requests pile up
+    and the server collapses. The owner's laptop is known to run hot under load (Docker Supabase + Next dev server +
+    browser + the local Claude session). Do: the play page backs off when a read is slow or fails (no overlapping
+    polls; exponential backoff on 5xx), or moves to server-sent updates; `/play` gets lighter (no full transcript);
+    after a committed turn the client confirms from the stored turn, never shows «не удалось подтвердить сохранение»
+    for a turn that did commit; the report records the machine load if the local session can.
