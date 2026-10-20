@@ -1,0 +1,51 @@
+{
+  "kind": "compare",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "models": [
+    "google/lyria-3.5"
+  ],
+  "moods": [
+    "travel"
+  ],
+  "seconds": 60,
+  "startedAt": "2026-10-20T16:30:24.959Z",
+  "elapsedMs": 18119,
+  "spentUsdMicros": 100000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": "travel",
+      "modelId": "google/lyria-3.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing. About 60 seconds long.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 100000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-travel-google_lyria_3.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio",
+        "lyrics"
+      ],
+      "bytes": 1512034,
+      "elapsedMs": 17001,
+      "requestId": "01a15a26-5913-7da3-ac71-32ca5c10056f",
+      "priceUsdMicros": 100000,
+      "seconds": 62.746083,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -11.6,
+      "lra": 3.5,
+      "peakDbfs": 0.1,
+      "seam": {
+        "headDb": -16.176684,
+        "tailDb": null,
+        "bodyDb": -14.272441
+      }
+    }
+  ]
+}

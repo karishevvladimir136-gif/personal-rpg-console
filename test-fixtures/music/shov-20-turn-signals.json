@@ -1,0 +1,27 @@
+{
+  "note": "Synthetic public scene signals of the 20-turn «Мир Шва» scene (test-fixtures/stage-v/shov-scene.json), labelled by the session from the turns' public text the way finish_turn would record them: scene kinds, the server's tension reading, the DM's hint for the next turn, whether an encounter is active, the player's moment, the world clock. No private state.",
+  "startMinutes": 1920,
+  "secondsPerTurn": 70,
+  "turns": [
+    { "turn": 1, "place": "cave", "sceneKinds": ["travel", "conversation"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 1920 },
+    { "turn": 2, "place": "cave", "sceneKinds": ["conversation", "quiet"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 1940 },
+    { "turn": 3, "place": "sky", "sceneKinds": ["conversation"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2000 },
+    { "turn": 4, "place": "sky", "sceneKinds": ["mystery", "conversation"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2020 },
+    { "turn": 5, "place": "sky", "sceneKinds": ["mystery", "exploration"], "tension": "tense", "hint": "tense", "encounterActive": false, "playerMoment": false, "minutes": 2040 },
+    { "turn": 6, "place": "sky", "sceneKinds": ["travel"], "tension": "tense", "hint": "climax", "encounterActive": false, "playerMoment": false, "minutes": 2050 },
+    { "turn": 7, "place": "sky", "sceneKinds": ["combat"], "tension": "tense", "hint": "climax", "encounterActive": true, "playerMoment": false, "minutes": 2055 },
+    { "turn": 8, "place": "sky", "sceneKinds": ["combat"], "tension": "climax", "hint": "calm", "encounterActive": true, "playerMoment": true, "minutes": 2060 },
+    { "turn": 9, "place": "sky", "sceneKinds": ["quiet", "humor"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2120 },
+    { "turn": 10, "place": "sky", "sceneKinds": ["quiet", "conversation"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2140 },
+    { "turn": 11, "place": "sky", "sceneKinds": ["conversation", "mystery"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2200 },
+    { "turn": 12, "place": "sky", "sceneKinds": ["quiet"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 2850 },
+    { "turn": 13, "place": "geneva", "sceneKinds": ["travel", "exploration"], "tension": "calm", "hint": null, "encounterActive": false, "playerMoment": false, "minutes": 3360 },
+    { "turn": 14, "place": "geneva", "sceneKinds": ["conversation"], "tension": "tense", "hint": "tense", "encounterActive": false, "playerMoment": false, "minutes": 3420 },
+    { "turn": 15, "place": "geneva", "sceneKinds": ["conversation", "mystery"], "tension": "tense", "hint": "tense", "encounterActive": false, "playerMoment": false, "minutes": 3440 },
+    { "turn": 16, "place": "geneva", "sceneKinds": ["other"], "tension": "tense", "hint": "climax", "encounterActive": false, "playerMoment": false, "minutes": 3450 },
+    { "turn": 17, "place": "geneva", "sceneKinds": ["combat", "conversation"], "tension": "climax", "hint": "climax", "encounterActive": true, "playerMoment": false, "minutes": 3452 },
+    { "turn": 18, "place": "geneva", "sceneKinds": ["combat"], "tension": "climax", "hint": "climax", "encounterActive": true, "playerMoment": true, "minutes": 3454 },
+    { "turn": 19, "place": "geneva", "sceneKinds": ["combat", "conversation"], "tension": "tense", "hint": "tense", "encounterActive": true, "playerMoment": false, "minutes": 3456 },
+    { "turn": 20, "place": "geneva", "sceneKinds": ["combat"], "tension": "climax", "hint": "calm", "encounterActive": true, "playerMoment": true, "minutes": 3458 }
+  ]
+}

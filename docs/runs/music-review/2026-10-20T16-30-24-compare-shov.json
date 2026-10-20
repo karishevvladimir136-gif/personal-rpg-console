@@ -1,0 +1,186 @@
+{
+  "kind": "compare",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "models": [
+    "elevenlabs/music/v2.5"
+  ],
+  "moods": [
+    "travel",
+    "tension",
+    "combat",
+    "warm",
+    "mystery"
+  ],
+  "seconds": 60,
+  "startedAt": "2026-10-20T16:29:37.689Z",
+  "elapsedMs": 47179,
+  "spentUsdMicros": 4000000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": "travel",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a steady walking pace on an open road, light hopeful forward motion, the party on the move. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-travel-elevenlabs_music_v2.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 960514,
+      "elapsedMs": 8944,
+      "requestId": "01a15a25-a0c0-71c0-bd45-603e5f18935a",
+      "priceUsdMicros": 800000,
+      "seconds": 60.029375,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -14.5,
+      "lra": 2.3,
+      "peakDbfs": -1,
+      "seam": {
+        "headDb": -34.272989,
+        "tailDb": -74.467459,
+        "bodyDb": -17.694141
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "tension",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a standoff or an interrogation, pressure building, held breath, a pulse underneath, no release yet. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-tension-elevenlabs_music_v2.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 960514,
+      "elapsedMs": 8912,
+      "requestId": "01a15a25-c777-7df0-a427-546b6e06b7d8",
+      "priceUsdMicros": 800000,
+      "seconds": 60.029375,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -16.6,
+      "lra": 11.9,
+      "peakDbfs": -0.7,
+      "seam": {
+        "headDb": -27.869606,
+        "tailDb": -78.640215,
+        "bodyDb": -20.210655
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "combat",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a fight in progress, driving rhythm, urgency and danger, blows landing. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-combat-elevenlabs_music_v2.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 960514,
+      "elapsedMs": 8428,
+      "requestId": "01a15a25-ee69-7092-9e54-c8d6979d7553",
+      "priceUsdMicros": 800000,
+      "seconds": 60.029375,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -15,
+      "lra": 4.2,
+      "peakDbfs": -1.4,
+      "seam": {
+        "headDb": -18.086091,
+        "tailDb": -64.193244,
+        "bodyDb": -17.598373
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "warm",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: a warm private moment with a companion, tender and intimate, gentle, close. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-warm-elevenlabs_music_v2.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 960514,
+      "elapsedMs": 8465,
+      "requestId": "01a15a26-138c-76d1-99d5-895388691d73",
+      "priceUsdMicros": 800000,
+      "seconds": 60.029375,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -14.1,
+      "lra": 7.9,
+      "peakDbfs": -1,
+      "seam": {
+        "headDb": -25.795603,
+        "tailDb": -71.70652,
+        "bodyDb": -16.832685
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": "mystery",
+      "modelId": "elevenlabs/music/v2.5",
+      "variant": 1,
+      "requestedSeconds": 60,
+      "prompt": "Instrumental background music for a tabletop role-playing session. World and musical style: Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy. Mood: an uneasy investigation, unanswered questions, sparse and shadowy, a question hanging in the air. Shaped to loop in the background: a steady texture from the first second, no long intro, no big final cadence, no fade-out, ending as it begins so it can repeat. Even dynamics; nothing sudden or jarring. No vocals, no lyrics, no singing.",
+      "negativePrompt": "vocals, singing, lyrics, choir with words, spoken word, rap, voice, abrupt ending, applause, crowd noise, silence",
+      "seed": null,
+      "expectedUsdMicros": 800000,
+      "ok": true,
+      "file": "docs/runs/music-review/compare/shov-mystery-elevenlabs_music_v2.5.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 960514,
+      "elapsedMs": 7060,
+      "requestId": "01a15a26-3904-7393-a569-5f400eb35546",
+      "priceUsdMicros": 800000,
+      "seconds": 60.029375,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -15.2,
+      "lra": 9.2,
+      "peakDbfs": -0.6,
+      "seam": {
+        "headDb": -12.965848,
+        "tailDb": -82.626225,
+        "bodyDb": -17.240724
+      }
+    }
+  ]
+}

@@ -52,6 +52,7 @@ import { effortLabel } from "@/lib/ui/effort";
 import { useCopy, registry as r } from "./primitives";
 import { LiveImages } from "./live-images";
 import { VisualAutopilot } from "./visual-autopilot";
+import { MusicControl, MusicProvider } from "./music-player";
 import s from "./shell.module.css";
 
 export type CampaignScreenId =
@@ -160,8 +161,12 @@ export function CampaignShell({ children }: { children: ReactNode }) {
     </Link>
   );
   const tabs: NavItem[] = [primary[0], primary[1], primary[2], primary[4], primary[3]];
+  // The music stage: the soundtrack provider wraps the live shell (the header control and every
+  // screen share one player); previews render no player.
+  const Music = chrome?.href ? NoMusic : MusicProvider;
   return (
     <ClockContext.Provider value={clockValue}>
+     <Music campaignId={campaign.id}>
       <div className={s.app}>
         <a className={s.skip} href="#main">{c("К содержимому", "Skip to content")}</a>
         <nav className={s.nav} aria-label={c("Разделы кампании", "Campaign sections")}>
@@ -192,7 +197,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
             <b>{campaign.title}</b>
             <span>{[session?.title, place?.name].filter(Boolean).join(" · ") || active?.label}</span>
           </div>
-          {dm && <span className={r.pill}>{shortModel}</span>}
+          <MusicControl campaignId={campaign.id} compact />
         </header>
         <div className={s.main}>
           <header className={s.header}>
@@ -205,6 +210,8 @@ export function CampaignShell({ children }: { children: ReactNode }) {
             <div className={s.headerTools}>
               {clock && <span className={s.clock}>{clock}</span>}
               {dm && <span className={r.pill}>{shortModel}</span>}
+              {/* The music stage: one small player control (mood, volume, mute, off, pin, skip). */}
+              <MusicControl campaignId={campaign.id} />
               <Link className={r.iconBtn} href={href("saves")} aria-label={c("Сохранить игру", "Save game")} title={c("Сейвы", "Saves")}>
                 <Save size={20} strokeWidth={1.6} aria-hidden="true" />
               </Link>
@@ -243,8 +250,12 @@ export function CampaignShell({ children }: { children: ReactNode }) {
           </>
         )}
       </div>
+     </Music>
     </ClockContext.Provider>
   );
+}
+function NoMusic({ children }: { campaignId: string; children: ReactNode }) {
+  return <>{children}</>;
 }
 
 export type LibraryScreenId = "campaigns" | "world-library" | "dm-craft" | "settings" | "menu";
