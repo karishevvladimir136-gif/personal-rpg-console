@@ -997,3 +997,22 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     (`tests/stage4-dossier.test.mjs`, 6000 + 10000). Set to 32000, not 128000: at about 95 output tokens a second
     a 300-second lease ends near 28000 tokens, so anything higher is unusable until lease renewal lands. Hotfix
     handed to the local session.
+
+74. **Good: the inventories after a long expedition** (owner, 21:44: «предметы Брам заботливо себе складывал. Всё. Не
+    потеряли ничего. Нормальный инвентарь после хорошего похода. У нашего героя тоже»). The sergeant carried the
+    loot (scimitars, a light crossbow with its 5e line correct, bolts, armour pieces, a cloak, a horn); the hero's
+    gear, magic items and coins are in order. Small UI points seen on the screenshots: the same ammunition sits in
+    four separate stacks (16, 9, 7 and one) — merge identical items or show why they differ; the hero's coins read
+    «зм · мм · см» — order them зм · см · мм; two hero items still show the «…» placeholder picture (drawing was
+    off); the breadcrumb says «Сессия 1» for this campaign's first session, while the project calls it session 2 —
+    harmless, but the report should name both.
+
+## Session end (owner, 21:44)
+
+The owner ended the play here: «мы отыграли длиннющую сессию, собрали кучу правок — предлагаю закончить, вытащить
+данные сессии и добить правки». The last move (long rest, council in the morning) failed on max_tokens (item 73) and
+was not replayed; the mid-session cap hotfix is not needed now and goes into stage 1. Next: «Закончить сессию» pressed
+once by the owner, then the campaign stays closed until item 17's digest guard lands; the local session runs
+`docs/SESSION_2_REPORT_PROMPT.md` into `C:\Dev\rpg-exports\session-2\`; the planner then writes the fix plan from the
+notes and the report. Hypothesis for item 17 to check in the report: the digest asks for 6000 output tokens at xhigh,
+whose thinking alone may use most of them — an «unparsed» digest may simply be a cut one.
