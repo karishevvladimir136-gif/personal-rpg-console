@@ -1,9 +1,23 @@
 # Stage «Музыка» — a soundtrack that follows the scene
 
-Runs in a cloud session (`docs/CLOUD.md`) after the video stage, on `claude/stage-music` from the latest finished media
-branch. Do not touch the DM loop, the context, world records, pictures or video code; this stage owns new audio files
+Runs in a cloud session (`docs/CLOUD.md`, environment `rpg-console`) — started 2026-10-20 by the owner's decision, in
+parallel with the fix run and the 2D slice. Branch `claude/stage-music` from `origin/claude/session-2-prep` (`d74b6c6`).
+Do not touch the DM loop, the context, world records, pictures or video code; this stage owns new audio files
 (`src/lib/audio/*`, a player component), a music block in the settings screen and one small player control in the
-shell.
+shell. Living next to the other two sessions: migrations with the prefix `2026102103` only; shared files touched (the
+shell, the settings screen, the campaign page router) listed in the report; the scene signal is read from what
+`finish_turn` already commits (scene kinds, tension) and from the public campaign state — no new DM tool. Report in
+`docs/runs/music-report.md`, progress in `docs/runs/music-progress.md`, the ledger in `docs/runs/music-ledger.md`;
+end with a Russian acceptance checklist `docs/runs/music-acceptance.md`.
+
+**Generation on fal (all reachable with the existing fal key; check each endpoint's docs for loop/extend before relying
+on seamless loops):** `fal-ai/lyria3/pro` ($0.08 a track, up to 3 min, top of the instrumental leaderboard),
+`fal-ai/elevenlabs/music` (`force_instrumental`, 3 s–10 min, section plan with fixed durations — the best fit for cues
+that must hold a runtime; $0.80 an output minute), `fal-ai/stable-audio-25/text-to-audio` (long evolving textures,
+WAV, seeds), `fal-ai/lyria2` (30-s ambient beds, seeds), `fal-ai/ace-step/prompt-to-audio` (instrumental toggle,
+$0.0002/s — drafts and volume). Compare on the same mood list; the owner hears the finalists (publish the review pack as
+files in `docs/runs/music-review/` — small MP3s, synthetic worlds only). Loop seams: if no endpoint loops natively,
+generate with a few seconds of overlap and crossfade in the player.
 
 ## What the owner gets
 
