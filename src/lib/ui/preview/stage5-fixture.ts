@@ -249,6 +249,17 @@ const turn = (n: number, input: string, narration: string, checks: VisibleCheck[
   visualDescription: null, checks, proposal: null, failure: null, canRetry: false, canCancel: false, timeline: { timelineId: id(900), epoch: 1 },
 });
 
+/** Fix run E (item 80): turns of the two earlier sessions, for the gallery only (the game feed shows this session). */
+const galleryTurn = (n: number, session: string, minute: number, input: string, narration: string): PublicTurn =>
+  ({ ...turn(n, input, narration, [], minute, id(100)), session_id: session });
+export const previewGalleryTurns: PublicTurn[] = [
+  galleryTurn(210, I.session5, 1, "Пробираюсь к котлам.", "Пар бьёт из клапанов; ты протискиваешься между котлами, пока Мэг держит дверь."),
+  galleryTurn(211, I.session5, 2, "Урзул, заслонку!", "Урзул упирается плечом и вышибает заслонку. Фабрику накрывает пар."),
+  galleryTurn(212, I.session5, 3, "Уходим по крышам.", "Вы уходите по крышам, а за спиной встаёт столб огня."),
+  galleryTurn(213, I.session6, 4, "Пусть поклянётся.", "Директриса кладёт ладонь на камень клятвы и произносит слова."),
+  galleryTurn(214, I.session6, 5, "Где Корнелиус?", "Вольф молча показывает на дым: Корнелиус уже далеко."),
+];
+
 export function previewPlay(options: { combat?: boolean } = {}): PlaySnapshot {
   return structuredClone({
     rulesetId: "world-logic-v1",
@@ -330,7 +341,14 @@ export const previewPictures = previewPictureBoard({
     { id: id(721), subjectKind: "item", subjectId: I.watch, composition: "item", image: "/preview/stage-v/shov-oil-klein9b-%D0%BE%D1%82%D1%86%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B5-%D1%87%D0%B0%D1%81%D1%8B-item.jpg" },
   ],
   frames: [
-    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-klein9b-refs-t01.jpg", trigger: "live" },
+    // Fix run E (item 80): the gallery's frames of earlier sessions (turns in previewGalleryTurns), each with its own moment.
+    { id: id(732), turnId: id(210), image: "/preview/stage-v/shov-oil-klein9b-refs-t02.jpg", trigger: "live", caption: "Ты протискиваешься между котлами, пока Мэг держит дверь." },
+    { id: id(733), turnId: id(211), image: "/preview/stage-v/shov-oil-klein9b-refs-t03.jpg", trigger: "key_moment", caption: "Урзул вышибает заслонку — и фабрику накрывает пар.",
+      review: { ok: false, problems: ["у Урзула три руки"], redrawId: null, gaze: [], checkedAt: "2026-10-14T18:20:00.000Z" } },
+    { id: id(734), turnId: id(212), image: "/preview/stage-v/shov-oil-klein9b-refs-t04.jpg", trigger: "live", caption: "Вы уходите по крышам, а за спиной встаёт столб огня." },
+    { id: id(735), turnId: id(213), image: "/preview/stage-v/shov-oil-klein9b-refs-t05.jpg", trigger: "live", caption: "Директриса кладёт ладонь на камень клятвы." },
+    { id: id(736), turnId: id(214), image: "/preview/stage-v/shov-oil-klein9b-refs-t06.jpg", trigger: "live", caption: "Вольф смотрит вслед Корнелиусу, уходящему в дым." },
+    { id: id(730), turnId: id(200), image: "/preview/stage-v/shov-oil-klein9b-refs-t01.jpg", trigger: "live", caption: "Изольда у трапа смотрит не на тебя, а на сердечник в твоей торбе." },
     // The streaming turn of the game preview: its frame is being drawn.
     { id: id(731), turnId: id(202), image: "", trigger: "live", status: "generating" },
   ],

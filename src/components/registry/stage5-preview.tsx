@@ -7,7 +7,8 @@ import { CampaignDataPreview } from "../persistence-context";
 import { MainMenu } from "../main-menu";
 import { AtlasMap } from "../atlas-map";
 import { AdventuresPanel } from "../adventures/adventures-panel";
-import { shovSample } from "@/lib/ui/preview/stage5-fixture";
+import { PREVIEW_IDS, previewGalleryTurns, shovSample } from "@/lib/ui/preview/stage5-fixture";
+import { previewEnded } from "@/lib/ui/preview/stage5-ending";
 import { noirSample } from "@/lib/ui/preview/stage5-noir";
 import type { PreviewSample } from "@/lib/ui/preview/stage5-sample";
 import { stage5Screens, type Stage5Screen, type Stage5Variant } from "@/lib/ui/preview/stage5-screens";
@@ -27,6 +28,8 @@ import { RegistrySettings } from "./settings-screen";
 import { RegistryCampaigns, RegistryNewCampaign } from "./library-screen";
 import { RegistryChronicle } from "./chronicle";
 import { RegistryOwner } from "./owner-screen";
+import { RegistryPictures } from "./pictures-screen";
+import { SessionEnd } from "./session-end";
 import { previewDmView, previewOwnerPlay } from "@/lib/ui/preview/owner-fixture";
 import { Plate, useCopy } from "./primitives";
 
@@ -40,7 +43,10 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   const language = lang ?? sample.language;
   const { setLanguage } = useLanguage();
   useEffect(() => setLanguage(language), [language, setLanguage]);
-  const snapshot = useMemo(() => sample.snapshot(), [sample]);
+  const flags = useSearchParams();
+  // Fix run E: the session-close preview (?cards=1 the long form, else the short one) reads the ended session.
+  const endingForm = screen === "ending" ? (flags.get("cards") === "1" ? "cards" as const : "short" as const) : null;
+  const snapshot = useMemo(() => (endingForm ? previewEnded(sample.snapshot(), endingForm) : sample.snapshot()), [sample, endingForm]);
   const query = new URLSearchParams({ ...(variant.world === "noir" ? { world: "noir" } : {}), ...(lang ? { lang } : {}) }).toString();
   const suffix = query ? `?${query}` : "";
   const chrome = useMemo(() => ({
@@ -133,6 +139,16 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       return <PreviewAdventures sample={sample} language={language} />;
     case "owner":
       return <RegistryOwner data={snapshot} play={previewOwnerPlay(play)} preview={{ view: previewDmView }} />;
+    case "gallery":
+      // Fix run E (item 80): every frame in story order by session (the earlier sessions' turns are the gallery's own).
+      return <RegistryPictures data={snapshot} play={{ ...play, turns: [...previewGalleryTurns, ...play.turns] }} />;
+    case "ending":
+      return (
+        <div style={{ display: "grid", gap: 14 }}>
+          <Plate eyebrow={snapshot.campaign.title} title={c("Конец сессии", "Session end")} />
+          <SessionEnd sessionId={PREVIEW_IDS.session7} />
+        </div>
+      );
     default:
       return null;
   }

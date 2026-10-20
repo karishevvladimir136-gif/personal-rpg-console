@@ -217,7 +217,8 @@ export function FramesPanel({ data, play, live, chronicleHref, stage = false }: 
   const label = shown ? (shown.trigger === "key_moment" ? c("ключевой момент · лучшая модель", "key moment · better model") : shown.tier === "quality" ? c("качество", "quality") : c("живой кадр", "live frame")) : null;
   return (
     <section id="registry-frames" className={f.panel} aria-label={c("Кадры", "Frames")}>
-      {stage && shown ? null : shown && pictures.urlFor(shown) ? (
+      {/* Fix run E (item 77): on the game screen (`stage`) the frame and its drawing live in the turn; the panel keeps the tools. */}
+      {stage && (shown || current?.drawing) ? null : shown && pictures.urlFor(shown) ? (
         <div className={f.frame}>
           {/* Short-lived authenticated URLs; next/image cannot proxy them. */}
           <button type="button" className={f.frameButton} aria-label={c("Открыть кадр крупно", "Open the frame large")} onClick={() => openEntry(shown.id)}>

@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-20T13:44:26.808Z",
+  "date": "2026-10-20T14:29:31.384Z",
   "shots": [
     {
       "stage": "A",
@@ -335,6 +335,90 @@
       "stage": "D",
       "file": "D-holdings-phone.jpg",
       "url": "/preview/stage-5/holdings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-gallery-1080p.jpg",
+      "url": "/preview/stage-5/gallery",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-1080p.jpg",
+      "url": "/preview/stage-5/ending",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-cards-1080p.jpg",
+      "url": "/preview/stage-5/ending?cards=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-gallery-1440p.jpg",
+      "url": "/preview/stage-5/gallery",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-1440p.jpg",
+      "url": "/preview/stage-5/ending",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-cards-1440p.jpg",
+      "url": "/preview/stage-5/ending?cards=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-gallery-phone.jpg",
+      "url": "/preview/stage-5/gallery",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-phone.jpg",
+      "url": "/preview/stage-5/ending",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-ending-cards-phone.jpg",
+      "url": "/preview/stage-5/ending?cards=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-game-1080p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-game-1440p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "E",
+      "file": "E-game-phone.jpg",
+      "url": "/preview/stage-5/game",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     }
