@@ -13,6 +13,16 @@ Order and detail:
 Read first: `docs/runs/session2-owner-notes.md` whole (the owner's verdict, key findings 1 and 2, items 1–85),
 `docs/stages/FIX_S2_PLAN.md`.
 
+Models (owner, 23:26 — switch automatically): run the session on **Opus 5.5**. Two parts go to **Fable 5.1** through a
+subagent (the Agent tool with `model: "fable"`), with the inputs passed in full and the result reviewed and committed by
+you on Opus:
+- **B4 — the Russian instructions**: the Russian role, doctrine and this run's rules, written by the Fable subagent from
+  the English originals, the owner's rules in the notes and the approved/rejected voice patterns described there
+  (never the private voice bank); you wire it in and run the probes;
+- **D — the one-page inventory design note**, written by the Fable subagent from items 14, 27, 28, 33, 35, 36, 48, 49,
+  52, 55, 74 and the report's ledger findings; you implement it.
+If the `fable` model is not available to subagents here, do both on Opus and say so in the report.
+
 Working rules:
 - Commit and push after each part; keep `docs/runs/fix-s2-progress.md` current (done, in progress, next, open
   questions). If your context runs low, finish the part you are in, push, write «next» in the progress file and stop — a
