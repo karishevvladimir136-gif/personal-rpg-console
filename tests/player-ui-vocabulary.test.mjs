@@ -12,9 +12,10 @@ test("ordinary creation copy names campaign style, not the ruleset implementatio
   assert.match(review, /This campaign style does not require a class, level, HP, or humanoid anatomy/);
   assert.match(review, /Этот стиль кампании не требует класса/);
   assert.doesNotMatch(review, /World Logic requires|World Logic не требует/);
-  assert.match(creation, /Free-form campaign/);
-  assert.match(creation, /Свободная кампания/);
-  assert.doesNotMatch(creation, /advanced \? "World Logic"/);
+  // Fix run F (item 13): the old «Другие поддерживаемые правила» toggle (a Level 1 Fighter on the starter rules,
+  // back to «Свободная кампания») is gone from the creation form; no ruleset name surfaces there either.
+  assert.doesNotMatch(creation, /Free-form campaign|Свободная кампания|c\.fighter|c\.advanced/);
+  assert.doesNotMatch(creation, /World Logic/);
 });
 
 test("ordinary combat setup copy does not surface the backend ruleset name", () => {

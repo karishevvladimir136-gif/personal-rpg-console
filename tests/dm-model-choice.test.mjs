@@ -21,7 +21,8 @@ const policy = (revision, taskOverrides, primary = null) =>
   ({ schemaVersion: 1, revision, primary, taskOverrides });
 
 test("only the dm.turn task may choose Claude Opus 5.5; every other task stays OpenAI-only", () => {
-  assert.deepEqual(validateModelSelection({ ...opus, reasoning: null }, "dm.turn"), opus);
+  // Fix run F (item 10): an unset effort is Opus's own default — high, as a campaign plays.
+  assert.deepEqual(validateModelSelection({ ...opus, reasoning: null }, "dm.turn"), { ...opus, reasoning: "high" });
   assert.deepEqual(validateModelSelection({ ...astra, reasoning: null }, "dm.turn"), astra);
   for (const [value, task] of [
     [opus, undefined], [opus, "dm.plan"], [opus, "world.resolve"], [opus, "memory.summary"],
@@ -42,7 +43,7 @@ test("dm.turn defaults to Astra, never inherits the OpenAI primary, and pins its
     campaignPolicy: policy(3, { "dm.turn": { ...opus, reasoning: null } },
       { providerId: "openai", modelId: "gpt-5.4", reasoning: "low" }), globalDefault: null });
   assert.equal(chosen.providerId, "anthropic");
-  assert.equal(chosen.reasoning, "medium");
+  assert.equal(chosen.reasoning, "high");
   assert.equal(chosen.policyRevision, 3);
   const inheritsPrimary = resolveExecutionProfile({ task: "dm.turn", profileId: id,
     campaignPolicy: policy(4, {}, { providerId: "openai", modelId: "gpt-5.4", reasoning: "low" }), globalDefault: null });

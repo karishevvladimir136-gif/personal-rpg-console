@@ -446,16 +446,16 @@ test("complete opening leads with playable preview and keeps optional correction
   const html = render(ui("components/bootstrap/review.tsx").OpeningReviewFields, {
     language: "en", value: review, onChange: noCall, questions: [],
   });
-  assert.ok(html.indexOf("Proposed opening") < html.indexOf("Correct opening details"));
+  assert.ok(html.indexOf("Proposed opening") < html.indexOf("Change the scene and the people"));
   for (const value of ["Copper Lantern", "A traveler waits", "Rain taps", "Orin", "knows the road"])
     assert.ok(html.includes(value), value);
-  assert.match(html, /<details><summary>Correct opening details<\/summary>/);
+  assert.match(html, /<details><summary>Change the scene and the people<\/summary>/);
   assert.doesNotMatch(html, /<details open=""/);
   assert.deepEqual(review, before);
   const missing = render(ui("components/bootstrap/review.tsx").OpeningReviewFields, {
     language: "en", value: { ...review, narration: null }, onChange: noCall, questions: [],
   });
-  assert.match(missing, /This opening still needs public details/);
+  assert.match(missing, /Something is missing in the scene/);
   assert.match(missing, /<details open=""/);
 });
 test("Pending command recovery is exact; invalid cache never grants state authority or a replacement attempt", () => {

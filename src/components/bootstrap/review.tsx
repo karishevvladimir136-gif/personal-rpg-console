@@ -120,7 +120,7 @@ export function bootstrapText(language: "en" | "ru") {
         actorsHelp:
           "Each becomes a record of the campaign; change any name or description. The hero is not listed — he is already there.",
         confirm:
-          "I have read the opening — let's play.",
+          "I have read the opening — ready to play.",
         pending:
           "The response is not confirmed. Recover the same request; it will not call the AI again.",
         preparing: "Preparing proposal…",

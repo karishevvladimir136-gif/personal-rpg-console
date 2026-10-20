@@ -161,7 +161,8 @@ test("the naturalness metrics: Latin letters, канцелярит, sentence-len
 test("the opening proposal is written by the campaign's own DM (polish 2 §5: whichever provider serves it)", () => {
   const bootstrap = src("src/lib/server/adventure-bootstrap.ts");
   assert.match(bootstrap, /command\.action === "opening\.propose"[\s\S]*readDmSettings\(cid\)/);
-  assert.match(bootstrap, /globalDefault: dmTurn \?\? applicationModelSelection\(process\.env\)/);
+  // Fix run F (item 20): a new hero is drafted by the DM a new campaign gets (creationDm) before the app's model.
+  assert.match(bootstrap, /globalDefault: dmTurn \?\? creationDm \?\? applicationModelSelection\(process\.env\)/);
 });
 
 test("a person is «mentioned» by any word of their name: the core with the voice when named, one line otherwise", async () => {

@@ -61,9 +61,11 @@ test("the wizard's start becomes the first adventure's draft", () => {
   const dm = wizardAdventureSetup({ choice: "dm", phrase: "" }, "ru");
   assert.match(dm.premise, /Ведущий выбирает начало сам/);
   assert.equal(dm.pacing.kind, "evening");
-  const library = src("src/components/registry/library-screen.tsx");
-  assert.match(library, /sessionStorage\.setItem\(wizardStartKey\(createdId\)/, "the wizard hands its start over");
-  assert.match(library, /aria-pressed=\{startChoice === "mine"\}/, "the start is a real choice");
+  // Fix run F (item 21): the wizard no longer hands a start phrase to the adventures screen — the adventure is
+  // written in the wizard's own «Приключение» step (an empty text leaves the start to the DM) and the opening follows.
+  const library = src("src/components/bootstrap/wizard.tsx");
+  assert.match(library, /prepareAdventureAttempt\(current, \{ \.\.\.setup \}\)/, "the wizard prepares the first adventure itself");
+  assert.match(library, /wizardAdventureSetup\(\{ choice: "dm", phrase: "" \}, language\)\.premise/, "an empty text leaves the start to the DM");
   const panel = src("src/components/adventures/adventures-panel.tsx");
   assert.match(panel, /parseWizardStart\(sessionStorage\.getItem\(wizardStartKey\(campaignId\)\)\)/, "the adventures screen reads it");
   assert.match(panel, /initial: wizardAdventureSetup\(handoff, language\)/, "the form opens prefilled");
