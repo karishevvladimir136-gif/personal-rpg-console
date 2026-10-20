@@ -65,9 +65,14 @@ continuation under 5k tokens. Put the numbers in the report.
   only if the attack hits (a crit doubles the dice); a save with its effect. A player-interactive roll still pauses.
 - **Continuations think less** (owner, 23:52 — «отличная идея»): the request after a tool result runs one notch lower in
   depth than the turn's first request (xhigh → high, high → medium) — the plan is already made, the continuation tells
-  the result. The mechanism exists (`continuationEffort` in the pin, `loop.ts`); set it by default and check that the
-  quality of the told result holds on the probes. Measure seconds per turn and per combat turn before and after; the
-  planner's estimate is a combat turn from 2–5 minutes down to about 40–70 seconds — report the real numbers.
+  the result. The mechanism exists (`continuationEffort` in the pin, `loop.ts`). Owner (23:54): «а это не повредит
+  качеству?» — so it is adopted only if measured harmless: run the probes both ways (same depth vs one notch lower) and
+  compare the voice metrics, untold rolls, decisions made for the hero and record errors as well as the seconds; make it
+  a campaign setting («Продолжение хода: как основной запрос / на ступень легче») and set the default by the result.
+  Batch only rolls that do not depend on each other's outcome (two attacks on different targets, an attack with its
+  damage); when one result changes the situation (the target dropped), the next attack is declared after it. Measure
+  seconds per turn and per combat turn before and after; the planner's estimate is a combat turn from 2–5 minutes down
+  to about 40–70 seconds — report the real numbers.
 - **Polling**: the open game screen polled `/play` 231 times in 13 minutes at 3–5 s of server time each, and
   `dossier?view=digest` about once a second at the session end (items 62, 75, 81). Back off while a turn streams, stop
   when the tab is hidden, and make `/play` cheap (no heavy recompute per poll). Fix the `MaxListenersExceededWarning`
