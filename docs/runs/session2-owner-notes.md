@@ -950,3 +950,14 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     corrected itself mid-sentence (Mage Armor «holds until nine… already gone, so AC 13») — the note should be
     written from the state, not drafted aloud. Voice stage: a companion's signature gesture or word at most once per
     scene; the report counts repeats per companion.
+
+70. **Good: an honest «no» from magic, and the world gives a clue instead** (owner, 21:09: «а вот это классно»). The
+    hero suspected a trap on the scrubbed threshold and cast Detect Magic as a ritual; it found nothing, and the
+    narration gave a physical clue in its place (blood left in the cracks under the sand, a bucket of pink water
+    that is then thrown out in front of him). Rules handled right: ritual casting from the book (+10 minutes, slot
+    kept), concentration up to 10 minutes, the approach needed to bring the door into range, Stealth against the
+    clerk's passive Perception (a tie succeeds). One unit slip: the spell's 30 feet were told as «тридцать шагов»
+    («thirty paces»), while the DM's own scale this session is about 3 feet a pace (see the crossbow range above) —
+    30 feet is about ten paces. No effect this time (the hero passed two paces from the door), but the same slip
+    would matter for Fireball, Hold Person or a crossbow's range. Do: the guide states one distance unit — feet, as
+    in the rules, with paces only as «about a third» — and the battle map uses the same.
