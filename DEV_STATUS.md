@@ -1,5 +1,37 @@
 # Development status
 
+**Current milestone: the session 3 candidate** (`docs/stages/MERGE_S2.md` on `claude/handoff`) — **merged on
+`claude/s3-candidate`, waiting for the owner's acceptance** (`docs/runs/s3-acceptance.md`, the index of the three
+Russian checklists) **and the sandbox load** (`docs/SANDBOX_LOAD_FIX_S2.md`, now for the candidate). One branch holds
+the fixes after session 2 (`claude/session2-fixes-a-f-jh3krk`, the base), 2D Live with the combat screen
+(`claude/live2d-1-9lq5bf`) and the soundtrack with the ambient layer (`claude/stage-music`, merged twice: its ambient
+follow-up landed during the merge). Migrations in three ranges, all additive, no prefix twice: `202610200071`–`84` and
+`96`, `202610210200`–`201`, `202610210301`. The report is `docs/runs/merge-s2-report.md` (every conflict and its
+resolution, the schema size, the probes, the money); the ledger `docs/runs/merge-s2-ledger.md`; the audit input
+`docs/runs/s3-audit-input.md` (session 2's notes 1–85 with their commits).
+
+- **Resolutions:** unions in the status file, the page router (`owner` + `live`), the migration list, the shell (the
+  music provider + the large-text class); the `combat` tool is the 2D branch's, unchanged; the 2D preview fixture takes
+  the fix run's DM options; the fix run's 13 px text floor re-applied to the 2D and music text panels (the battle map's
+  on-token badges stay drawn); the tool-schema bound re-measured — 17 tools, 12 855 (OpenAI) / 11 874 (Anthropic)
+  estimated tokens — and set at 13 500 / 12 500.
+- **Probes on the merged code (synthetic):** session 3's mode «Opus пишет — Opus записывает» with the ledger checker —
+  the ford 5/5 turns, the lair 4/5 (the fifth stopped by its guard), the long rest 1/1 with one `rest`; no residual
+  ledger miss; the battlefield block in the writer's context on every turn after the fight opened. In this mode the
+  attacks are the writer's `roll` calls, so the 2D rules module is not applied by the server (the writer added cover by
+  hand, correctly). The 2D finding (declared attacks narrated around) did not recur on the ford in either mode; the
+  rolls-told check does not see `combat attack` cards (`roll-check.ts:13`) and nothing checks a declared but unrolled
+  action — for the audit.
+- **Checks on the candidate:** CHECKS_SHORT
+- **Money:** MONEY_SHORT of the merge's $15 cap.
+- **Known issues and what is left:** the owner's acceptance of the three checklists; the sandbox load and session 3 on
+  the owner's machine; the `d2a-composition` cancellations (pre-existing); the rules module in the split and the two
+  check gaps above (for the Ultracode audit, with `docs/runs/s3-audit-input.md`).
+- **Next step:** the Ultracode audit from `docs/runs/s3-audit-input.md`, then the owner loads the candidate with
+  `docs/SANDBOX_LOAD_FIX_S2.md` and plays session 3.
+
+The sections below are each merged branch's own closing status, kept unchanged.
+
 **Current milestone: the fixes after session 2, stages A → B → D → C → E → F** (`docs/stages/FIX_S2_RUN.md`) — **implementation
 done on `claude/session2-fixes-a-f-jh3krk`, waiting for the owner's acceptance** (`docs/runs/fix-s2-acceptance.md`, in
 Russian, per screen) **and the sandbox load from the owner's machine** (`docs/SANDBOX_LOAD_FIX_S2.md`: a dump first,

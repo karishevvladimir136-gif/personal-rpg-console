@@ -65,7 +65,82 @@ The 17 DM tools measure **12 855 estimated tokens in OpenAI's strict form and 11
 Neither branch's bound held the sum (the fix run's 11 000 / 10 000, the 2D's 12 000 / 12 000), so the bound is now
 13 500 / 12 500 with both branches' comments and the measured numbers in the test. The schema sits in the cached prefix.
 
-PROBES
+## The three checks on the merged code
+
+All probes are synthetic campaigns (the 2D branch's ford and lair scenarios, the fix run's long synthetic campaign);
+the records are committed next to this report. The bench now runs **the app's own two in-turn checks** on a live run
+(`--app-checks`: the ledger checker of the split and «every seen roll told», wired as `gameplay-service.ts` wires them,
+behind the run's budget) and records whether **the writer's first request of each turn carried the battlefield block**.
+
+### 1. Session 3's mode end to end — «Opus пишет — Opus записывает» with the ledger checker ($5.83 of ≤ $8)
+
+| Probe | Turns committed | Cost per turn (median) | Turn / text done / first word (median) | Records accepted · rejected | Ledger checker | Battlefield block in the writer's context |
+| --- | --- | --- | --- | --- | --- | --- |
+| The ford ambush (`20261020-180617`) | **5 / 5** | $0.28 (total $1.49) | 110 s / 56 s / 18 s | 87 · 1 | 0 misses in every turn | **4 of 4** turns after the fight opened |
+| The lair (`20261020-181543`) | **4 / 5** (the fifth stopped by the run's own $3 guard) | $0.33 (total $1.98) | 108 s / 53 s / 32 s | 87 · 3 | 0 misses in every committed turn | **4 of 4** turns after the fight opened |
+| The long rest (`real-replay-20261020-182723`, the fix run's probe 4) | **1 / 1** | $1.50 (a cold cache: the first request wrote 127k tokens to it; 2 requests) | 120 s / 44 s / 28 s | 23 · 0 | in turn 0, after the commit 0 | — (no fight) |
+
+- **Records complete.** No residual miss on any committed turn. The rejected records were recovered in the same turn
+  (a crossbow dropped while still equipped → recorded as changed; a fallen companion's sword → taken off, then left where
+  it fell; a `combat reaction` first aimed at the attacker, then at the hero; a `note_world` key with a Cyrillic letter,
+  then fixed). The long rest: **one `rest` call** for
+  the three party members; the three `resource` calls are the enemies' deaths, not per-counter bookkeeping.
+- **The battlefield block reached the writer** on every turn after `combat start` (the turn that opens a fight is built
+  before the fight exists). The writer used it: «До уступа ещё около 40 футов, подъём на 10 футов стоит 20 футов
+  движения» (the lair), «до него 25 футов, из них 15 по воде… дорога обойдётся в 35 футов» (the ford) are the server's
+  numbers read back.
+- **The combat tool's rules — what applies in this mode.** The bookkeeper ran the fight on the server — `start` with
+  placements and initiative, `feature` (the boulders as cover, the ford as difficult ground, the burning cart), `move`,
+  `next_turn`, `hp`, `condition`, `intent`, `known`, `reaction`, `profile`, `log` — **and never `attack`** (0 server
+  attacks in 9 turns, so no attack was rolled twice). The attacks themselves are the writer's `roll` calls (the writer's
+  only dice tool), so **the 2D rules module (cover's AC, crits, resistances, the point-blank rule) is not applied by the
+  server in this mode**; the writer applied cover by hand, correctly every time it came up (17 = AC 15 + half cover at
+  the boulders; 18 = AC 13 + three-quarters; 19 = AC 14 + three-quarters behind the burning cart; 14 in the open), and the
+  `roll` tool doubled a natural 20's dice. Small drift the server would have held: the caster's attack bonus +5 in two
+  turns and +4 in two; one Fire Bolt rolled its damage as a second roll instead of in the same call. **For the owner /
+  the audit:** in «пишет — записывает» the combat tool's `attack` and the rules module are single-DM features; making
+  them apply in the split needs the writer to resolve attacks through the server (a design change, not done here).
+- **The first ford attempt** (`20261020-180119`, 2 turns, $0.85) was cut by a bench bug, not by the app: with Opus in
+  both roles the bookkeeper's reservations were never released, so the $3 guard tripped at $0.85 of real spend. Fixed
+  in the bench and in the replay tool (`9cebbd5`, `87361e8`), then the ford re-ran whole. The first long-rest attempt
+  sent nothing ($0): the first request's worst case ($2.48 for a 455 KB context) was over its $1.50 guard.
+
+### 2. The 2D session's open finding — «the DM narrated around the hero's declared attacks without rolling them»
+
+Played on that probe, the ford, twice on the merged code: in session 3's mode (above) and with Opus alone, the mode
+where the finding was seen (`20261020-182957`, 5 / 5 turns, $1.24), both with the app's checks on.
+
+| Ford turn — the player's line | Opus writes — Opus records | Opus alone |
+| --- | --- | --- |
+| 1 «как только Ян ступит в воду — бьём первыми. Я выхожу и рублю…» | not rolled: the ambush check failed, Ян never stepped into the water (the condition of the declared action did not happen); told | the same; the foes' and Тобин's attacks resolved by `combat attack` and told; «Теперь ход за тобой» |
+| 2 «Бью Яна ещё раз» | not rolled: out of game, the DM says the hero has not hit him yet and the server's distance (30 ft, 15 of it water) puts him out of reach; offers the bow | the same: the server refused the 35-ft move (30 ft left); out of game, the numbers and three options |
+| 3 «Отхожу… и стреляю в него из лука» | **rolled**; the rolls check found **2 of 3 rolls untold** and the writer told them in the same turn | **rolled** (`combat attack`), told |
+| 4 «Добиваю того, кто ближе» | **rolled** (a natural 20); told only by implication («Он теперь без арбалета») and the check passed it | the fight had ended; a helpless foe finished in words, no roll |
+| 5 «Осматриваю тела…» | no roll needed; the DM points out the fight is still on | no roll needed |
+
+**On this probe the finding did not recur in either mode**: every declared attack that the fiction allowed was rolled;
+where it was not, the DM said why, out of game, with the server's numbers (the fix run's «the hero's declared action is
+never replaced» held). **But the checks would not have caught it**, and here is exactly where they miss:
+
+1. **`visibleRolls` reads only `roll` receipts** (`src/lib/gameplay/dm-loop/roll-check.ts:13`, `receipt.call.name ===
+   "roll"`). A `combat attack` card — the way the single DM attacks on a grid, and the way the original finding's
+   attacks went — is a player-visible card that the check never sees: in the Opus-alone ford turn 1 the check read 2 of
+   the 4 cards (the ambush and initiative rolls, not the two attacks), and in turn 3 it did not run at all (the only card
+   was the hero's attack). In session 3's mode the attacks are `roll` calls, so they are covered.
+2. **Nothing checks an action the player declared and the DM never rolled.** «Every seen roll told» compares rolls made
+   with the narration; an attack that was never rolled leaves nothing to compare. The declared-action rule lives only
+   in the instructions (`roles.ts` / `roles-ru.ts`, «The hero's will is the player's»). Catching the original pattern
+   needs a check that reads the player's line against the turn's rolls and attack cards.
+3. **An implied outcome passes.** Ford turn 4 (session 3's mode): the hero's critical shot is in the records and on its
+   card, but the story tells it only through a companion's line; the cheap checker counted that as told.
+
+### 3. The audit input
+
+`docs/runs/s3-audit-input.md`: all 85 items of `docs/runs/session2-owner-notes.md` and the key findings (as five rows),
+each with its status and the commit(s) on the candidate: **72 done, 15 partial, 0 not addressed, 3 no code needed**
+(90 rows). The partial items and the ones whose mapping needs the auditor's eye (9, 37, 38, 41: gaps found only in the
+code; 62) are listed at its end. Item 5 (small text) is now partial only for World Lab: the merge gave the 2D and music
+screens the 13 px floor.
 
 ## Checks on the candidate
 
