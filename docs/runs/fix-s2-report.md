@@ -208,7 +208,7 @@ the cache write, ≈ $1.3). Records: `docs/runs/real-replay-20261020-101759.json
 | Companions react to a letter | each from his own character; nobody restates it; speech ends on the thought | pass | pass |
 | «Is it a conspiracy?» | only what the prisoner knows; nobody explains the whole; a clue further | pass — the customs man without a name, the lighthouse signal, copper plates on the crates; one check told as «на кубике 11 … выходит 13» (now a rule) | pass — the same knowledge; refuses to name his boatmen |
 | A lair search after a fight | loot by the 5e guidance; every find recorded | records pass (every item and both purses), loot thin for the challenge (19 coins) | loot by the 5e hoard tables (rolled: 1 800 cp, 700 sp, 80 gp, six 25 gp art objects, a mithral shirt, a warm copper plate with a lost order's arms); **the party had not taken it yet and nothing was recorded where it lies** → stage D records finds where they lie |
-| A fresh campaign's prep | the layer exists; clues appear; the truth unsaid | — | pass — the layer (a chained sunken harbour, four factions, nine secrets, three clocks, the wonder) and on top of it fresh soot on the dark lighthouse's sea-side glass, a mooring ring with fresh tarred fibre, the closed-eye plaque, still water at the shoal, the bell's odd count; nobody says the truth |
+| A fresh campaign's prep | the layer exists; clues appear; the truth unsaid | pass — the layer (a chained sunken harbour, four factions, nine secrets, three clocks, the wonder) and on top of it fresh soot on the dark lighthouse's sea-side glass, a mooring ring with fresh tarred fibre, the closed-eye plaque, still water at the shoal, the bell's odd count; nobody says the truth | not run (the prep's own request is language-neutral) |
 | The mine-style fight (stage A's probe) | rolls bundled; every roll told | (stage A) | pass — 4 attacks, each with its damage in one call, all told; «Твой момент» handed the scout's killing arrow to the player |
 | The long rest (stage A's probe) | one `rest`; every record | (stage A) | pass — one `rest`; the checker caught the leader's purse, recorded in the same turn |
 
@@ -261,8 +261,9 @@ session). «Широко» stays a choice.
   the doubled modifier is dropped (tests); the loot tables were rolled with `roll`, not invented.
 - Enemies play to kill: on the Russian fight probe the round ended on the player's moment before the bandits acted;
   the leader drew his sabre and the brute readied his flail (stage A's run showed them answering in the same round).
-- No item lost: no rejected record on 12 probe turns; the checker's one catch was fixed in the turn; the one gap — the
-  lair's loot not yet taken and recorded nowhere — goes to stage D.
+- No item lost: one rejected record on 12 probe turns (a private plan without its due time, retried and accepted in the
+  same turn); the checker's one catch was fixed in the turn; the one gap — the lair's loot not yet taken and recorded
+  nowhere — goes to stage D.
 - Active companions: the veteran and the scout acted, objected, read and searched from their own characters.
 - Right modifiers and advantage: the stat blocks' +3 / +4 / +6 and the scout's +2 help in the search.
 - Honest magic and slots: no spell cast on these probes; the rest probe refilled through one `rest`.

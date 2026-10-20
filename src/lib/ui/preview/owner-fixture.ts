@@ -30,7 +30,7 @@ export const previewDmView: DmView = {
   layers: [
     { key: "howToDm", tokens: 21_400, budgetTokens: 24_000, dropped: [], blocks: 1, cached: true, text: "(The role, the turn rules, the voice and the craft doctrine — the preview shows sizes only.)" },
     { key: "world", tokens: 57_800, budgetTokens: 60_000, dropped: [], blocks: 1, cached: true, text: "(The campaign, «Что мне нравится», the DM guide, the canon, the rules.)" },
-    { key: "history", tokens: 29_600, budgetTokens: 45_000, dropped: ["older scenes before the window"], blocks: 212, cached: true, text: "(The recent scenes and lines, verbatim.)" },
+    { key: "history", tokens: 29_600, budgetTokens: 200_000, dropped: [], blocks: 212, cached: true, text: "(The recent scenes and lines, verbatim.)" },
     { key: "living", tokens: 14_900, budgetTokens: 16_000, dropped: [], blocks: 1, cached: true, text: null },
     { key: "tail", tokens: 7_100, budgetTokens: 9_000, dropped: [], blocks: 1, cached: false, text: null },
     { key: "now", tokens: 6_200, budgetTokens: 6_000, dropped: [], blocks: 1, cached: false, text: null },

@@ -2,6 +2,7 @@
 // 390×844 phone, into docs/runs/fix-s2-shots/ (FIX_S2_RUN.md). Previews read sample fixtures only; port 3000 is refused.
 //   PREVIEW_URL=http://127.0.0.1:3105 node scripts/fix-s2-screenshots.mjs --stage A --shots owner,settings,game-recording
 // Every phone shot passes the stage 5 width checks (no document overflow, nothing clipped past the right edge).
+// A shot «screen:anchor» scrolls the desktop shots to a panel first (ANCHORS; the phone shot is the full page).
 import { mkdirSync, existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -16,9 +17,11 @@ const stage = arg("--stage") ?? "X";
 const shots = (arg("--shots") ?? "owner").split(",").map((name) => name.trim()).filter(Boolean);
 const playwright = process.env.PLAYWRIGHT_MODULE ?? (existsSync("/opt/node-tools/node_modules/playwright") ? "/opt/node-tools/node_modules/playwright" : null);
 const { chromium } = await import(playwright ? pathToFileURL(join(playwright, "index.mjs")).href : "playwright");
+// The panels a desktop shot can scroll to: the text of the panel's heading (the first match).
+const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего" };
 // «game-recording» → /preview/stage-5/game?recording=1; «settings» → /preview/stage-5/settings.
 const urlOf = (name) => {
-  const [screen, ...flags] = name.split("-");
+  const [screen, ...flags] = name.split(":")[0].split("-");
   const query = new URLSearchParams(flags.map((flag) => [flag, "1"])).toString();
   return `${base}/preview/stage-5/${screen}${query ? `?${query}` : ""}`;
 };
@@ -52,7 +55,12 @@ try {
       await page.waitForTimeout(500);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       const clipped = await page.evaluate(clippedElements);
-      const file = `${stage}-${name}-${label}.jpg`;
+      const anchor = ANCHORS[name.split(":")[1] ?? ""];
+      if (anchor && label !== "phone") {
+        await page.getByText(anchor, { exact: false }).first().evaluate((element) => element.scrollIntoView({ block: "start" }));
+        await page.waitForTimeout(300);
+      }
+      const file = `${stage}-${name.replace(":", "-")}-${label}.jpg`;
       await page.screenshot({ path: join(out, file), fullPage: label === "phone", type: "jpeg", quality: 80 });
       const row = { stage, file, url: url.replace(base, ""), horizontalOverflowPx: Math.max(0, overflow), clippedPx: clipped.px, ...(clipped.px > 0 ? { clippedBy: clipped.hint } : {}) };
       if (label === "phone" && (row.horizontalOverflowPx > 1 || row.clippedPx > 1)) failed++;
