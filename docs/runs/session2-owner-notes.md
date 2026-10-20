@@ -1111,3 +1111,16 @@ report); the guard post's place record says «Раннее утро» — a time
     blade — and the key on the dead man's neck chain, a detail from the story. Everything comes from the turn and
     the records (no invented props, no shield), the hero is recognisable, and people are placed by the action.
     Only nit: the hero at 0 HP is drawn with open eyes. Use this frame as the target in the picture stage's checks.
+
+80. **Owner proposal: replace «Хроника» with a gallery** (22:12: «у нас есть хроника — там тупо вся кампания с
+    картинками; оно нам надо? может, вместо хроники — галерею?»). Planner: agree. The full story already lives in
+    the game feed (which is also why the frame button scrolls through everything, item 77), so the chronicle is a
+    second copy. A half-gallery exists already — «Картинки» (`pictures-screen.tsx`, under «Ещё»): people, places,
+    things with their anchors and only the latest 24 frames, as a redraw workshop. The chronicle also carries a
+    one-click «re-render every frame in the current style» button (`chronicle.tsx`, `rerender`) — a paid batch
+    bounded only by the daily cap. Proposal for the owner's OK: the game screen's «Хроника» button becomes
+    «Галерея»; the gallery shows all frames in story order by session, each captioned with its own moment (78b),
+    a click opens the large view with «К ходу» and «Перерисовать»; tabs Кадры / Люди / Места / Вещи / Карты; the
+    chronicle screen and its batch redraw leave the navigation (a «campaign as a book» export can come later as
+    a button). Small, same screenshot: the hero panel shows two resources in English («Shaman tusk», «Arcane
+    recovery»).
