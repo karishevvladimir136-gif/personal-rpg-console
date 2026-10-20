@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-20T15:32:47.639Z",
+  "date": "2026-10-20T15:46:49.184Z",
   "shots": [
     {
       "stage": "A",
@@ -895,6 +895,195 @@
       "stage": "F",
       "file": "F-adventures-phone.jpg",
       "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-created-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?created=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-hero-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?hero=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-sheet-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?sheet=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-item-items-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?item=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-adventure-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?adventure=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-dm-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?dm=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-people-1080p.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-created-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?created=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-hero-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?hero=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-sheet-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?sheet=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-item-items-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?item=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-adventure-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?adventure=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-dm-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?dm=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-people-1440p.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-phone.jpg",
+      "url": "/preview/stage-5/new-campaign",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-created-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?created=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-hero-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?hero=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-sheet-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?sheet=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-item-items-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?item=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-adventure-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?adventure=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-dm-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?dm=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-new-campaign-opening-people-phone.jpg",
+      "url": "/preview/stage-5/new-campaign?opening=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     }
