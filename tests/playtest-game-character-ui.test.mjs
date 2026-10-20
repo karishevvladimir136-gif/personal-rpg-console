@@ -957,6 +957,8 @@ test("Game follows new narration until the reader scrolls back; other composers 
         ],
         useRef: (current) => ({ current }),
         useEffect: (effect) => effects.push(effect),
+        // Stage C (item 42): the action box grows in a layout effect.
+        useLayoutEffect: (effect) => effects.push(effect),
       },
     });
     const { GameplayComposer } = load("src/components/gameplay-composer.tsx");
@@ -1007,6 +1009,7 @@ test("Game restores a reader's scroll position after switching input modes", () 
       ],
       useRef: (current) => ({ current }),
       useEffect: (effect) => effects.push(effect),
+      useLayoutEffect: (effect) => effects.push(effect),
     },
   });
   const { GameplayComposer } = load("src/components/gameplay-composer.tsx");

@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-20T11:33:00.788Z",
+  "date": "2026-10-20T13:44:26.808Z",
   "shots": [
     {
       "stage": "A",
@@ -125,6 +125,69 @@
       "stage": "B",
       "file": "B-owner-phone.jpg",
       "url": "/preview/stage-5/owner",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-turn-1080p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-combat-turn-1080p.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-recording-turn-1080p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-turn-1440p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-combat-turn-1440p.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-recording-turn-1440p.jpg",
+      "url": "/preview/stage-5/game?recording=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-turn-phone.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-combat-turn-phone.jpg",
+      "url": "/preview/stage-5/game?combat=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "C",
+      "file": "C-game-recording-turn-phone.jpg",
+      "url": "/preview/stage-5/game?recording=1",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     }

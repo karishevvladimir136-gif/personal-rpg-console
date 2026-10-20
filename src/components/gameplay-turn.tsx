@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "./language-context";
 import { useCampaignData } from "./persistence-context";
 import { Badge, Button, Panel } from "./ui";
-import { GameplayCheck } from "./gameplay-dice";
+import { TurnTimeline } from "./registry/turn-timeline";
 import { DmTeachReview } from "./dm-teach-review";
 import { errorMessage, readJson } from "@/lib/persistence/client";
 import type { TeachCommand } from "@/lib/dm-craft/contracts";
@@ -19,6 +19,7 @@ import {
   gameplayErrorMessage,
 } from "@/lib/gameplay/client";
 import { sameTimeline, timelineKey } from "@/lib/saves/client-state";
+import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import { SubjectAvatar } from "./visual-frame/subject-avatar";
 import { Art, useSubjectImage } from "./registry/primitives";
 import type { CampaignSnapshot, Entity } from "@/lib/persistence/contracts";
@@ -246,6 +247,9 @@ export function GameplayTurn({
   onCommand,
   onSaved,
   onResend,
+  live = null,
+  running = false,
+  companionRolls = "dm",
 }: {
   turn: PublicTurn;
   busy: boolean;
@@ -255,6 +259,12 @@ export function GameplayTurn({
   onSaved: () => Promise<void>;
   /** Fix run A1 (items 58, 73): the latest failed move that cannot be retried — send the same text again. */
   onResend?: () => void;
+  /** Stage C (items 53, 63): this turn's stream with the order of its events, while and after this page saw it told. */
+  live?: LiveTrace | null;
+  /** The player's «Дальше» or reroll for this turn is running. */
+  running?: boolean;
+  /** The DM option «Броски спутников» (item 44): chips by the DM, or cards for the player. */
+  companionRolls?: "dm" | "player";
 }) {
   const { t, language } = useLanguage();
   const { data } = useCampaignData();
@@ -265,6 +275,11 @@ export function GameplayTurn({
         ? data.entities.find((row) => row.kind === "player")
         : undefined
       : undefined;
+  const heroId = data?.entities.find((row) => row.kind === "player")?.id ?? null;
+  const party = data?.entities.filter((row) => row.kind === "companion").map((row) => row.name) ?? [];
+  // The server pauses for the player's roll when the dice are interactive or rerolls are allowed (and rolls are shown).
+  const dice = data?.settings?.values;
+  const rollsWait = !!dice && dice.dicePresentation !== "hidden" && (dice.interactiveDice || dice.difficulty?.rerolls !== "disabled");
   const thinking = turn.status === "pending" || turn.status === "generating";
   // Polish group 6: one quiet indicator while the DM thinks; the cancel options come back
   // only when a turn has been thinking for a long while (or is no longer thinking).
@@ -299,52 +314,39 @@ export function GameplayTurn({
           {speaker?.name || t(turn.mode === "feedback" ? "Owner feedback" : "Your action")}
         </span>
         <p className="prose">{turn.input}</p>
-        <time dateTime={turn.created_at}>
-          {new Date(turn.created_at).toLocaleString(language)}
-        </time>
+        {turn.created_at && (
+          <time dateTime={turn.created_at}>
+            {new Date(turn.created_at).toLocaleString(language)}
+          </time>
+        )}
         </div>
       </article>
-      {thinking && (
-        <p role="status" className="muted" data-recording={recording ? "true" : undefined}>
-          {t(recording ? "DM is recording…" : "DM is thinking…")}
-        </p>
-      )}
       {turn.status === "failed" && (
         <p role="alert">{t(failureMessage)}</p>
       )}
-      {turn.checks.map((check) => (
-        <div key={check.id}>
-          <GameplayCheck check={check} />
-          {turn.status === "awaiting_confirmation" && check.canReroll && (
-            <div className="moment-reroll">
-              <Button
-                disabled={busy}
-                onClick={() => onCommand("reroll", check.id)}
-              >
-                {t("Request an allowed reroll")}
-              </Button>
-              <span className="muted">{t("The campaign's rules grant a reroll here; the new die replaces this one.")}</span>
-            </div>
-          )}
-        </div>
-      ))}
-      {turn.narration !== null && (
-        <article className="gameplay-narration">
-          <span className="eyebrow">
-            {t(turn.mode === "mechanic" ? "Mechanical result" : "DM")}
-          </span>
-          <div className="prose">{turn.narration}</div>
-        </article>
-      )}
+      {/* Stage C: the told text, each roll in its place, the continuation and the named pause — one timeline. */}
+      <TurnTimeline
+        turn={turn}
+        trace={live}
+        label={t(turn.mode === "mechanic" ? "Mechanical result" : "DM")}
+        heroId={heroId}
+        party={party}
+        companionRolls={companionRolls}
+        rollsWait={rollsWait}
+        running={running}
+        recording={recording}
+        busy={busy}
+        onCommand={onCommand}
+        continueAction={
+          <Button primary disabled={busy} onClick={() => onCommand("continue")}>
+            {t("Onward")}
+          </Button>
+        }
+      />
       {turn.proposal && (
         <GameplayGuidanceProposal turn={turn} onSaved={onSaved} />
       )}
       <div className="button-group">
-        {turn.status === "awaiting_confirmation" && (
-          <Button primary disabled={busy} onClick={() => onCommand("continue")}>
-            {t("Onward")}
-          </Button>
-        )}
         {turn.canRetry && (
           <Button primary disabled={busy} onClick={() => onCommand("retry")}>
             {t("Try again")}

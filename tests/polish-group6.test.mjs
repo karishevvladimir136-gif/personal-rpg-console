@@ -63,7 +63,8 @@ test("one stage, one page scroll, a compact composer with icon tools; «Заце
   assert.match(css, /\.game :global\(\.gameplay-channel form\) \{\n  position: sticky;\n  bottom: 0;/);
   assert.match(css, /\.game :global\(\.gameplay-channel textarea\) \{[^}]*font-size: 17px/, "the player's text reads at the story size");
   const composer = src("src/components/gameplay-composer.tsx");
-  assert.match(composer, /rows=\{mode === "feedback" \? 5 : 2\}/, "a compact composer");
+  // Fix run after session 2, stage C (item 42): the action box starts at four lines and grows with the text.
+  assert.match(composer, /rows=\{mode === "feedback" \? 5 : 4\}/, "a comfortable composer");
   assert.match(composer, /resolveSend\?\.\(current\.current\.text\)/, "the addressee decides the mode at send time");
   assert.match(composer, /<div className="button-group gameplay-send-row">[\s\S]*\{inputTools\}\n          <\/div>/, "the tools sit next to «Отправить»");
   const turn = src("src/components/gameplay-turn.tsx");

@@ -10,6 +10,7 @@ import { shovSample } from "@/lib/ui/preview/stage5-fixture";
 import { noirSample } from "@/lib/ui/preview/stage5-noir";
 import type { PreviewSample } from "@/lib/ui/preview/stage5-sample";
 import { stage5Screens, type Stage5Screen, type Stage5Variant } from "@/lib/ui/preview/stage5-screens";
+import { previewTelling } from "@/lib/ui/preview/stage5-turn";
 import type { AdventureCatalog } from "@/lib/adventures/contracts";
 import type { AdventureTransport } from "@/lib/adventures/client";
 import type { BootstrapTransport } from "@/lib/adventures/bootstrap-contracts";
@@ -85,13 +86,15 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
   const snapshot = useMemo(() => sample.snapshot(), [sample]);
   const play = useMemo(() => sample.play({ combat: variant.combat }), [sample, variant.combat]);
   switch (screen) {
-    case "game":
+    case "game": {
+      // Stage C: the turn being told — text, rolls in place, the named pause (?combat=1 waits for the hero's roll,
+      // ?recording=1 is told to the end while the records are written).
+      const told = previewTelling(variant.world, variant, sample.live(language));
       return <RegistryGame data={snapshot} preview={{
         play, playerMoment: variant.moment, diceOpen: variant.dice, asideOpen: variant.aside,
-        adventure: sample.adventure(),
-        // Polish 3 §2: the recording state — the text complete, no chips yet, the bookkeeper at work.
-        live: variant.recording ? { ...sample.live(language), status: "recording", changes: [] } : sample.live(language),
+        adventure: sample.adventure(), live: told.live, telling: told.telling,
       }} />;
+    }
     case "character":
     case "inventory":
       return <RegistryCharacter data={snapshot} play={play} initialTab={screen === "inventory" ? "inv" : "char"} preview={{ figure: sample.figure }} />;

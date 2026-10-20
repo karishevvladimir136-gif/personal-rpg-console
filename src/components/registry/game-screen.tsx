@@ -5,8 +5,9 @@ import { sheetLines } from "@/lib/inventory/sheet";
 import { useState, type ReactNode } from "react";
 import { Dices, HelpCircle, Image as ImageIcon, Send, Sparkles, Users } from "lucide-react";
 import type { CampaignSnapshot, Entity, Scene } from "@/lib/persistence/contracts";
-import type { PlaySnapshot } from "@/lib/gameplay/contracts";
+import type { PlaySnapshot, PublicTurn } from "@/lib/gameplay/contracts";
 import type { LiveTurnView } from "@/lib/gameplay/live-turn-client";
+import type { LiveTrace } from "@/lib/ui/turn-timeline";
 import type { PublicAdventure } from "@/lib/adventures/contracts";
 import { isUnresolved } from "@/lib/gameplay/client-state";
 import { frameFor } from "@/lib/visual-frame/pictures";
@@ -65,6 +66,10 @@ export type GamePreview = {
   adventure?: PublicAdventure | null;
   diceOpen?: boolean;
   asideOpen?: boolean;
+  /** Stage C: the turn being told (its record and its stream with the order of its events). */
+  telling?: { turn: PublicTurn; trace: LiveTrace | null } | null;
+  /** The DM option «Броски спутников» for the preview (default: the DM rolls them). */
+  companionRolls?: "dm" | "player";
 };
 
 /** "Role · Level 6 · tier" from the reviewed sheet, through the existing view model. */
@@ -169,7 +174,9 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     ? c(`⚡ думал глубже · ${Math.max(1, Math.round((latestTurn.stats.firstWordMs ?? latestTurn.stats.firstTextMs ?? latestTurn.stats.latencyMs) / 1000))} с`,
       `⚡ thought deeper · ${Math.max(1, Math.round((latestTurn.stats.firstWordMs ?? latestTurn.stats.firstTextMs ?? latestTurn.stats.latencyMs) / 1000))} s`)
     : null;
-  const liveBlock = live && phase === "streaming" && liveIsLatest ? <LiveBlock view={live} phase="streaming" />
+  // Stage C: the streaming turn is told inside the turn itself (text, rolls in place, the named pause);
+  // after the save, its accepted changes fold here.
+  const liveBlock = live && phase === "streaming" && liveIsLatest ? null
     : live && phase === "saved" && liveIsLatest && (!savedView || savedView.operationId !== live.operationId) ? <LiveBlock view={live} phase="saved" deeper={deeper} />
     : savedView && (!live || phase === "saved" || !liveIsLatest) ? <LiveBlock view={savedView} phase="saved" deeper={deeper} /> : null;
   const showMoment = preview?.playerMoment || (!!live && phase === "saved" && liveIsLatest && livePlayerMoment(live)) ||
@@ -188,6 +195,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     </div>
   ) : null;
   const loopRuntime = !dmSettings || dmSettings.runtime === "dm-loop-v1";
+  // Item 44: by default the DM rolls for the companions (chips in place); the option gives the player their cards.
+  const companionRolls = preview?.companionRolls ?? dmSettings?.options?.companionRolls ?? "dm";
   // An ended session (polish item 11): the digest takes the composer's place until the next session opens.
   const memory = useSessionMemory();
   const boundary = memory.snapshot?.currentBoundary;
@@ -228,7 +237,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
     </p>
   ) : null;
   const feed = preview ? (
-    <PreviewFeed data={data} play={preview.play} liveBlock={liveBlock} opening={opening} moment={moment} tools={tools}
+    <PreviewFeed play={preview.play} telling={preview.telling ?? null} companionRolls={companionRolls} liveBlock={liveBlock} opening={opening} moment={moment} tools={tools}
       inserted={inserted} heroName={hero?.name ?? null} mode={mode} />
   ) : (
     <>
@@ -245,7 +254,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           <div className="gameplay-turns" role="log" aria-label={c("Сохранённые ходы", "Saved turns")}>
             {play.turns.filter((turn) => turn.mode === "game").slice(-3).map((turn) => (
               <div key={turn.id} className="session-saved-turn">
-                <GameplayTurn turn={turn} busy onCommand={() => {}} onSaved={async () => {}} />
+                <GameplayTurn turn={turn} companionRolls={companionRolls} busy onCommand={() => {}} onSaved={async () => {}} />
               </div>
             ))}
           </div>
@@ -269,6 +278,7 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
             onDraftText={setDraft}
             resolveSend={resolveSend}
             showLiveView={false}
+            companionRolls={companionRolls}
           />
         </>
       )}
@@ -337,7 +347,8 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
           </section>
         )}
         {!preview && play && !play.startupPending && (
-          <details className={g.more} open={combat || play.turns.some((turn) => turn.mode === "mechanic" && isUnresolved(turn)) || undefined}>
+          // Item 57: the owner's editor opens only when the owner opens it (never forced open by a fight or a poll).
+          <details className={g.more}>
             <summary>{c("Редактор кампании · для владельца", "Campaign editor · for the owner")}</summary>
             <div className={r.stack}>
               <span className={r.note}>{c("Инструменты правки записей. В обычной игре они не нужны: ведущий ведёт всё сам. Каждый подписан — когда он может пригодиться.", "Tools for correcting the records. Ordinary play does not need them: the DM keeps everything. Each one says when it may be useful.")}</span>
@@ -387,7 +398,11 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
               {session && (
                 <div className={r.stack}>
                   <span className={`${r.small} ${r.muted}`}>{c("Стенограмма: записи этой сессии; каждую можно исправить, историю ходов это не меняет.", "Transcript: this session's records; each can be corrected without changing the turn history.")}</span>
-                  <Transcript data={data} session={session} onEdit={setSceneEditor} />
+                  {/* Item 57: the session's records stay folded — opening the editor never unfolds the whole story under the play screen. */}
+                  <details className={g.transcript}>
+                    <summary>{c("Открыть стенограмму сессии", "Open the session transcript")}</summary>
+                    <Transcript data={data} session={session} onEdit={setSceneEditor} />
+                  </details>
                 </div>
               )}
               {(play.rulesetId !== "world-logic-v1" || play.configuration) && (
@@ -483,20 +498,23 @@ export function RegistryGame({ data, preview }: { data: CampaignSnapshot; previe
   );
 }
 
-/** Synthetic preview of the feed: saved turns, the provisional turn and a composer that sends nothing. */
-function PreviewFeed({ data, play, liveBlock, opening, moment, tools, inserted, heroName, mode }: {
-  data: CampaignSnapshot; play: PlaySnapshot; liveBlock: ReactNode; opening: ReactNode; moment: ReactNode; tools: ReactNode;
+/** Synthetic preview of the feed: saved turns, the turn being told and a composer that sends nothing. */
+function PreviewFeed({ play, telling, companionRolls, liveBlock, opening, moment, tools, inserted, heroName, mode }: {
+  play: PlaySnapshot; telling: { turn: PublicTurn; trace: LiveTrace | null } | null; companionRolls: "dm" | "player";
+  liveBlock: ReactNode; opening: ReactNode; moment: ReactNode; tools: ReactNode;
   inserted: string; heroName: string | null; mode: string;
 }) {
   const c = useCopy();
-  void data;
+  const turns = [...play.turns.filter((turn) => turn.mode === "game" && turn.id !== telling?.turn.id), ...(telling ? [telling.turn] : [])];
   return (
-    <>
+    // The composer's look (four lines, the story's size); not pinned, so a full-page shot shows it where it ends.
+    <div className="gameplay-channel" data-preview="true">
       <div className="gameplay-turns" role="log" aria-label={c("Сохранённые ходы", "Saved turns")}>
         {opening}
-        {play.turns.filter((turn) => turn.mode === "game").map((turn) => (
+        {turns.map((turn) => (
           <div key={turn.id} className="session-saved-turn">
-            <GameplayTurn turn={turn} busy onCommand={() => {}} onSaved={async () => {}} />
+            <GameplayTurn turn={turn} live={turn.id === telling?.turn.id ? telling.trace : null} companionRolls={companionRolls}
+              busy={false} onCommand={() => {}} onSaved={async () => {}} />
           </div>
         ))}
       </div>
@@ -505,31 +523,26 @@ function PreviewFeed({ data, play, liveBlock, opening, moment, tools, inserted, 
       <form onSubmit={(event) => event.preventDefault()} aria-label={c("Ход игрока", "Your turn")}>
         <label className="field">
           <span>{mode === "ooc" ? c("Вопрос вне игры", "Out-of-game question") : c("Твой ход", "Your turn")}</span>
-          <textarea rows={3} readOnly value={inserted} placeholder={c(`Что делает ${heroName ?? "герой"}?`, `What does ${heroName ?? "the hero"} do?`)} />
+          <textarea rows={4} readOnly value={inserted} placeholder={c(`Что делает ${heroName ?? "герой"}?`, `What does ${heroName ?? "the hero"} do?`)} />
         </label>
-        <div className="button-group">
+        <div className="button-group gameplay-send-row">
           <button type="submit" className={r.btnMain} disabled><Send size={18} aria-hidden="true" />{c("Отправить", "Send")}</button>
+          {tools}
           <span className={r.note}>{c("Предпросмотр: ход не отправляется.", "Preview: nothing is sent.")}</span>
         </div>
-        {tools}
       </form>
-    </>
+    </div>
   );
 }
 
-/** The streamed turn: the text as the DM writes it (the turn's own «Ведущий думает…» line is the only
- * indicator before the first word), then the accepted changes of the saved turn, folded (polish group 6). */
+/** The saved turn's accepted changes, folded (polish group 6). The rolls are not repeated here: they stand in
+ * the turn, in the place where the story asked for them (stage C); the turn tells its own text and pause. */
 function LiveBlock({ view, phase, deeper = null }: { view: LiveTurnView; phase: LivePhase; deeper?: string | null }) {
   const c = useCopy();
-  const changes = orderChanges(liveChanges(view));
-  if (phase === "saved" && !changes.length && !deeper) return null;
+  const changes = orderChanges(liveChanges(view)).filter((change) => change.name !== "roll");
+  if (phase !== "saved" || (!changes.length && !deeper)) return null;
   return (
-    <div className="gameplay-live-turn" role="status" aria-live="polite" data-recording={view.status === "recording" ? "true" : undefined}>
-      {phase === "streaming" && view.text && <div className="prose">{view.text}{view.status !== "recording" && <span className={g.caret} aria-hidden="true" />}</div>}
-      {/* Polish 3 §2: the text is complete; the bookkeeper records until the commit (a quiet line, the composer open). */}
-      {phase === "streaming" && view.status === "recording" && (
-        <p className={r.muted} style={{ margin: 0 }}>{c("Ведущий записывает…", "DM is recording…")}</p>
-      )}
+    <div className="gameplay-live-turn" role="status" aria-live="polite">
       {phase === "saved" && (
         <details key={view.operationId} className={g.changes}>
           <summary>

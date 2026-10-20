@@ -1,0 +1,192 @@
+/* Fix run after session 2, stage C: the turn as one timeline — the told text, the rolls in place, the named pause. */
+.timeline {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.text {
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -0.15em;
+  background: var(--brass);
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* A roll the DM made for the party: one line in place (who · what: number — outcome · damage). */
+.chip {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  justify-self: start;
+  max-width: 100%;
+  min-width: 0;
+  padding: 6px 12px 6px 10px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--brass-dim);
+  border-radius: 6px;
+  background: rgba(18, 13, 10, 0.72);
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--text);
+}
+.chip + .chip {
+  margin-top: -6px;
+}
+.chip[data-tone="success"] {
+  border-left-color: var(--verdigris);
+}
+.chip[data-tone="failure"] {
+  border-left-color: var(--crimson);
+}
+.chipIcon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--brass);
+}
+.chipLine {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.chipWho {
+  font-weight: 700;
+  color: var(--brass-hi);
+}
+
+/* The player's roll the stream announced before its card arrived. */
+.pending {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 12px 14px;
+  border: 1px dashed var(--brass-dim);
+  border-radius: 8px;
+  color: var(--brass);
+}
+.pendingTitle {
+  font-family: var(--f-display);
+  font-size: 18px;
+  color: var(--text);
+}
+.pendingNote {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* The named pause: what the turn is waiting for, in words. */
+.pause {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-height: 32px;
+  font-family: var(--f-mono);
+  font-size: 13.5px;
+  color: var(--brass);
+}
+.pauseMark {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brass);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.pauseWords {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-style: italic;
+}
+.pause[data-kind="your-roll"] .pauseWords {
+  font-family: var(--f-display);
+  font-style: normal;
+  font-size: 18px;
+  color: var(--brass-hi);
+}
+.pause[data-kind="your-roll"] .pauseMark {
+  background: var(--brass-hi);
+}
+.pauseNote {
+  flex-basis: 100%;
+  font-family: var(--f-body);
+  font-style: normal;
+  font-size: 13px;
+  color: var(--muted);
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+/* The roll card's addends (gameplay-dice): every part of the total with its source. */
+.addends {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.addend {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  max-width: 100%;
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.addend b {
+  font-family: var(--f-mono);
+  font-weight: 400;
+  color: var(--brass-hi);
+  white-space: nowrap;
+}
+.addendSource {
+  color: var(--muted);
+}
+.diceLine,
+.equation {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.equation {
+  font-family: var(--f-mono);
+  color: var(--text);
+}
+.reroll {
+  justify-self: start;
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .pauseMark {
+    animation: none;
+  }
+}

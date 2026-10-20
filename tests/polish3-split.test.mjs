@@ -416,10 +416,12 @@ test("§2 §5 the wiring: the service routes by the campaign's choice, the compo
   assert.match(composer, /"Send after the records"/);
   assert.match(composer, /value=\{recording \? held\.text : journal\.text\}/, "the composer opens for the next action while recording");
   assert.match(composer, /window\.setTimeout\(\(\) => \{ void sendRef\.current\(\); \}, 0\)/, "the held send goes at the commit");
+  // Fix run after session 2, stage C: the turn names its own pause («Ведущий записывает…») inside its timeline.
   const turn = src("src/components/gameplay-turn.tsx");
-  assert.match(turn, /recording \? "DM is recording…" : "DM is thinking…"/);
-  const game = src("src/components/registry/game-screen.tsx");
-  assert.match(game, /view\.status === "recording"/);
+  assert.match(turn, /recording=\{recording\}/);
+  const timeline = src("src/lib/ui/turn-timeline.ts");
+  assert.match(timeline, /if \(live === "recording"\) return "recording";/);
+  assert.match(timeline, /return ru \? "Ведущий записывает…" : "DM is recording…";/);
   const ru = JSON.parse(src("src/lib/locales/ru.json"));
   assert.equal(ru["DM is recording…"], "Ведущий записывает…");
   const settings = src("src/components/registry/settings-screen.tsx");

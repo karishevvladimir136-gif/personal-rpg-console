@@ -199,6 +199,15 @@
 .media {
   composes: feed;
 }
+/* Item 57: the session's transcript folds inside the owner's editor. */
+.transcript > summary {
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--brass);
+}
+.transcript[open] > summary {
+  margin-bottom: 8px;
+}
 
 /* The existing turn feed and composer, in the registry look. */
 .game :global(.gameplay-turns) {
@@ -283,83 +292,89 @@
   color: var(--text);
   white-space: pre-line;
 }
-/* A dice receipt: one compact row (who · what, the arithmetic, DC, result). */
-.game :global(.gameplay-check) {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr) auto auto;
-  grid-template-areas:
-    "icon who dc result"
-    "icon detail dc result";
-  gap: 2px 12px;
-  align-items: center;
-  padding: 10px 14px;
-  border: 1px solid var(--line-strong);
+/* Stage C (items 43, 44): the hero's roll card in the registry look — the reason, the die, every addend. */
+.game :global(.gameplay-check.moment-card) {
+  border: 1px solid var(--brass-dim);
   border-radius: 8px;
-  background: #120d0a;
+  background: linear-gradient(120deg, rgba(207, 168, 96, 0.1), transparent 55%), #120d0a;
+  padding: 12px 16px;
+  gap: 10px;
+  min-width: 0;
 }
-.game :global(.gameplay-check)::before {
-  content: "⚄";
-  font-size: 22px;
-  grid-area: icon;
-  display: grid;
-  place-items: center;
-  width: 40px;
-  height: 40px;
-  border: 1.5px solid var(--brass-dim);
-  border-radius: 8px;
-  line-height: 1;
-  color: var(--brass);
+.game :global(.gameplay-check.moment-card.failure) {
+  border-color: rgba(201, 86, 63, 0.55);
 }
-.game :global(.gameplay-check > strong) {
-  grid-area: who;
-  font-weight: 500;
-  font-size: 15px;
+.game :global(.gameplay-check.moment-card.crit) {
+  border-color: var(--brass-hi);
+  box-shadow: 0 0 18px rgba(207, 168, 96, 0.25);
+}
+.game :global(.gameplay-check .moment-head .eyebrow) {
+  font-family: var(--f-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-dim);
+}
+.game :global(.gameplay-check .moment-title) {
+  font-family: var(--f-display);
+  font-size: 20px;
+  line-height: 1.25;
   color: var(--text);
 }
-.game :global(.gameplay-check .dice-result) {
-  display: contents;
+.game :global(.gameplay-check .moment-body) {
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 14px;
 }
-.game :global(.gameplay-check .dice-result-heading) {
-  grid-area: result;
-  display: grid;
-  justify-items: end;
-  gap: 2px;
+.game :global(.gameplay-check .moment-die) {
+  width: 92px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
-.game :global(.gameplay-check .dice-result-heading > span) {
+.game :global(.gameplay-check .moment-die:disabled) {
+  cursor: default;
+}
+.game :global(.gameplay-check .moment-word) {
   font-family: var(--f-display);
+  font-size: 22px;
   font-weight: 700;
-  font-size: 17px;
-}
-.game :global(.gameplay-check .dice-result.success .dice-result-heading > span) {
   color: var(--verdigris);
 }
-.game :global(.gameplay-check .dice-result.failure .dice-result-heading > span) {
+.game :global(.gameplay-check .moment-verdict.failure .moment-word) {
   color: var(--crimson);
 }
-.game :global(.gameplay-check .dice-result-heading strong) {
-  font-family: var(--f-mono);
+.game :global(.gameplay-check .moment-total) {
+  font-family: var(--f-display);
+  font-size: 34px;
+  color: var(--text);
+}
+.game :global(.gameplay-check .moment-breakdown) {
+  display: grid;
+  gap: 6px;
+}
+.game :global(.gameplay-check .moment-tags .badge) {
+  max-width: 100%;
+  padding: 2px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  font-family: var(--f-body);
   font-size: 13px;
-  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  color: var(--brass);
+}
+.game :global(.gameplay-check .moment-hint) {
+  font-size: 14px;
   color: var(--muted);
 }
-.game :global(.gameplay-check .dice-result-heading strong small) {
-  display: none;
-}
-.game :global(.gameplay-check .dice-result > p:first-of-type) {
-  grid-area: detail;
-  margin: 0;
-  font-family: var(--f-mono);
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--muted);
-}
-.game :global(.gameplay-check .dice-individual-results),
-.game :global(.gameplay-check .dice-result > p.muted) {
-  display: none;
-}
-.game :global(.gameplay-check > .badge) {
-  grid-area: dc;
-  align-self: center;
+.game :global(.gameplay-check .moment-replay) {
+  font-size: 12.5px;
+  color: var(--brass-dim);
 }
 .game :global(.gameplay-live-turn) {
   display: grid;
@@ -434,30 +449,17 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
-/* Narrow phones: the dice receipt stacks — icon and label first, DC badge and result below. */
+/* Narrow phones: the roll card's die shrinks; the addends wrap under the verdict. */
 @media (max-width: 480px) {
-  .game :global(.gameplay-check) {
-    grid-template-columns: 40px minmax(0, 1fr) auto;
-    grid-template-areas:
-      "icon who who"
-      "icon detail detail"
-      "dc dc result";
-    gap: 4px 12px;
-    align-items: start;
+  .game :global(.gameplay-check .moment-body) {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 12px;
   }
-  .game :global(.gameplay-check > strong) {
-    overflow-wrap: anywhere;
+  .game :global(.gameplay-check .moment-die) {
+    width: 72px;
   }
-  .game :global(.gameplay-check > .badge) {
-    justify-self: start;
-    align-self: center;
-    margin-top: 6px;
-  }
-  .game :global(.gameplay-check .dice-result-heading) {
-    margin-top: 6px;
-  }
-  .game :global(.gameplay-check .dice-result > p:first-of-type) {
-    overflow-wrap: anywhere;
+  .game :global(.gameplay-check .moment-total) {
+    font-size: 28px;
   }
 }
 @media (max-width: 760px) {
@@ -630,12 +632,17 @@
   padding: 10px 0 8px;
   background: linear-gradient(180deg, rgba(27, 21, 17, 0), var(--leather) 18%);
 }
+.game :global(.gameplay-channel[data-preview="true"] form) {
+  position: static;
+}
+/* Item 42: four lines to start, the story's size, growing with the text to a third of the screen, then scrolling. */
 .game :global(.gameplay-channel textarea) {
-  min-height: 58px;
-  max-height: 320px;
+  min-height: calc(6em + 22px);
+  max-height: 34vh;
   resize: none;
   font-size: 17px;
   line-height: 1.5;
+  overflow-y: auto;
 }
 .game :global(.gameplay-owner-input .prose) {
   font-size: 17px;

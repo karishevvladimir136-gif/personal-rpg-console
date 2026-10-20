@@ -18,7 +18,8 @@ const shots = (arg("--shots") ?? "owner").split(",").map((name) => name.trim()).
 const playwright = process.env.PLAYWRIGHT_MODULE ?? (existsSync("/opt/node-tools/node_modules/playwright") ? "/opt/node-tools/node_modules/playwright" : null);
 const { chromium } = await import(playwright ? pathToFileURL(join(playwright, "index.mjs")).href : "playwright");
 // The panels a desktop shot can scroll to: the text of the panel's heading (the first match).
-const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего" };
+// Stage C: «game:turn», «game-combat:turn», «game-recording:turn» — the turn being told (its player's action).
+const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего", turn: "Киваю Мэг на того" };
 // «game-recording» → /preview/stage-5/game?recording=1; «settings» → /preview/stage-5/settings.
 const urlOf = (name) => {
   const [screen, ...flags] = name.split(":")[0].split("-");
@@ -57,7 +58,8 @@ try {
       const clipped = await page.evaluate(clippedElements);
       const anchor = ANCHORS[name.split(":")[1] ?? ""];
       if (anchor && label !== "phone") {
-        await page.getByText(anchor, { exact: false }).first().evaluate((element) => element.scrollIntoView({ block: "start" }));
+        // «instant»: the app's smooth scrolling would still be under way when the shot is taken.
+        await page.getByText(anchor, { exact: false }).first().evaluate((element) => element.scrollIntoView({ block: "start", behavior: "instant" }));
         await page.waitForTimeout(300);
       }
       const file = `${stage}-${name.replace(":", "-")}-${label}.jpg`;

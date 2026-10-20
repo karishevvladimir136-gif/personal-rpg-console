@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "./language-context";
 import {
@@ -49,6 +49,26 @@ import {
 } from "@/lib/memory/client-state";
 import { sameTimeline, timelineChangedMessage } from "@/lib/saves/client-state";
 import { followLiveTurn, type LiveTurnView } from "@/lib/gameplay/live-turn-client";
+import { provisionalTurn, traceLive, type LiveTrace } from "@/lib/ui/turn-timeline";
+
+/** Stage C (item 63): the streams this page has seen told, by turn — a remounted composer keeps the order
+ * of a told turn's rolls and text (the saved record has the text and the rolls, not where each came). */
+const toldTurns = new Map<string, LiveTrace>();
+function rememberTold(trace: LiveTrace) {
+  toldTurns.delete(trace.view.operationId);
+  toldTurns.set(trace.view.operationId, trace);
+  while (toldTurns.size > 40) toldTurns.delete(toldTurns.keys().next().value!);
+}
+
+/** Item 42: the action box grows with the text up to about a third of the screen, then scrolls. */
+function growToText(area: HTMLTextAreaElement | null) {
+  if (!area) return;
+  const cap = Math.max(160, Math.round(window.innerHeight / 3));
+  area.style.height = "auto";
+  const needed = area.scrollHeight + (area.offsetHeight - area.clientHeight);
+  area.style.height = `${Math.min(needed, cap)}px`;
+  area.style.overflowY = needed > cap ? "auto" : "hidden";
+}
 
 function localStorageForDraft() {
   try {
@@ -96,6 +116,7 @@ export function GameplayComposer({
   showLiveView = true,
   onDraftText,
   resolveSend,
+  companionRolls = "dm",
 }: {
   play: PlaySnapshot;
   mode?: TurnMode;
@@ -119,8 +140,10 @@ export function GameplayComposer({
   /** Polish group 6: the addressee named in the text decides the turn's mode at send time;
    * the draft stays one draft whatever the text names. */
   resolveSend?: (text: string) => { mode: "game" | "companion"; companionId: string | null } | null;
-  /** False when the caller renders the streamed turn itself. */
+  /** Without the turn's own told text (stage C: the text is told inside the turn); the legacy list of the stream's changes. */
   showLiveView?: boolean;
+  /** The DM option «Броски спутников» (item 44): the companions' rolls as chips ("dm") or cards ("player"). */
+  companionRolls?: "dm" | "player";
 }) {
   const { campaignId, data } = useCampaignData();
   const scope = useCampaignDraftScope();
@@ -135,8 +158,11 @@ export function GameplayComposer({
   const [error, setError] = useState("");
   const [listeners, setListeners] = useState<string[]>([]);
   const [reviewAbsent, setReviewAbsent] = useState(false);
-  // Provisional narration of the turn in flight (dm-loop-v1 streams it).
-  const [live, setLive] = useState<LiveTurnView | null>(null);
+  // Provisional narration of the turn in flight (dm-loop-v1 streams it), with the place of each change in the
+  // text (stage C, items 53, 63): the turn is told in order and the told text stays on screen.
+  const [trace, setTrace] = useState<LiveTrace | null>(null);
+  const traceRef = useRef<LiveTrace | null>(null);
+  const followed = useRef<string | null>(null);
   const stopLive = useRef<() => void>(() => {});
   const liveListener = useRef(onLiveView);
   useEffect(() => {
@@ -144,13 +170,24 @@ export function GameplayComposer({
   }, [onLiveView]);
   const follow = (operationId: string) => {
     stopLive.current();
-    setLive(null);
+    followed.current = operationId;
+    // Opened again for the same turn (after «Дальше»), the stream replays it from the start: the told text stays.
+    if (traceRef.current?.view.operationId !== operationId) {
+      traceRef.current = toldTurns.get(operationId) ?? null;
+      setTrace(traceRef.current);
+    }
     stopLive.current = followLiveTurn(campaignId, operationId, (view) => {
-      setLive(view);
-      liveListener.current?.(view);
+      traceRef.current = traceLive(traceRef.current, view);
+      rememberTold(traceRef.current);
+      setTrace(traceRef.current);
+      liveListener.current?.(traceRef.current.view);
     });
   };
+  const followRef = useRef(follow);
+  useEffect(() => { followRef.current = follow; });
   useEffect(() => () => stopLive.current(), []);
+  const live: LiveTurnView | null = (trace?.replay ?? trace)?.view ?? null;
+  const traceFor = (turnId: string) => (trace?.view.operationId === turnId ? trace : toldTurns.get(turnId) ?? null);
   const key = journalKey(campaignId, mode, companionId, scope.timeline);
   const draftListener = useRef(onDraftText);
   useEffect(() => { draftListener.current = onDraftText; }, [onDraftText]);
@@ -207,6 +244,18 @@ export function GameplayComposer({
     else (history.lastElementChild as HTMLElement | null)?.scrollIntoView?.({ block: "end" });
   }, [followLatest, latest?.id, latest?.updated_at]);
   const unresolved = turns.find(isUnresolved);
+  // Stage C (item 63): a turn still running or waiting when this composer mounts (a reload, another screen, a
+  // remount) is followed once: its stream replays the told text and the rolls in order.
+  const runningTurnId = unresolved && (unresolved.mode === "game" || unresolved.mode === "companion") &&
+    unresolved.status !== "failed" && !historyOnly ? unresolved.id : null;
+  useEffect(() => {
+    if (!runningTurnId || followed.current === runningTurnId) return;
+    let mounted = true;
+    queueMicrotask(() => {
+      if (mounted && followed.current !== runningTurnId) followRef.current(runningTurnId);
+    });
+    return () => { mounted = false; };
+  }, [runningTurnId]);
   const knownAttempt =
     journal.attempt &&
     play.turns.find((turn) => turn.id === journal.attempt?.operationId);
@@ -226,11 +275,27 @@ export function GameplayComposer({
   useEffect(() => { heldRef.current = held; }, [held]);
   const sendRef = useRef<() => Promise<void>>(async () => {});
   const recording = busy && live?.status === "recording";
+  // Stage C: the turn just sent is shown (its stream tells it) before its record reaches this screen.
+  const sent = journal.attempt;
+  const pendingTurn = busy && sent && (sent.mode === "game" || sent.mode === "companion") &&
+    !play.turns.some((turn) => turn.id === sent.operationId) ? provisionalTurn(sent) : null;
+  const compactTurn = pendingTurn ?? unresolved ?? turns.at(-1) ?? null;
+  // Item 42: four lines to start, growing with the text (typed, restored or inserted) up to a third of the screen.
+  const areaRef = useRef<HTMLTextAreaElement>(null);
+  const boxText = recording ? held.text : journal.text;
+  useLayoutEffect(() => growToText(areaRef.current), [boxText]);
   const accept = async (turn: PublicTurn) => {
     write(reconcileJournal(current.current, turn));
-    // The committed turn replaces the provisional text; a failed one discards it.
+    // The committed turn's narration replaces the provisional text (the trace keeps where each roll came);
+    // a turn paused for the player keeps its told text in place (item 63); a failed one discards it.
     stopLive.current();
-    setLive(null);
+    if (turn.status === "failed" || turn.status === "cancelled") {
+      toldTurns.delete(turn.id);
+      if (traceRef.current?.view.operationId === turn.id) {
+        traceRef.current = null;
+        setTrace(null);
+      }
+    }
     await onSaved();
     const next = heldRef.current;
     if (next.text.trim() && turn.status === "committed" && next.send) {
@@ -503,7 +568,7 @@ export function GameplayComposer({
           )}
         >
           {historyIntro}
-          {turns.map((turn) => (
+          {[...turns, ...(pendingTurn ? [pendingTurn] : [])].map((turn) => (
             <div
               key={turn.id}
               id={`saved-turn-${turn.id}`}
@@ -511,6 +576,10 @@ export function GameplayComposer({
             >
               <GameplayTurn
                 turn={turn}
+                live={traceFor(turn.id)}
+                running={busy && trace?.view.operationId === turn.id}
+                recording={recording && trace?.view.operationId === turn.id}
+                companionRolls={companionRolls}
                 busy={
                   busy ||
                   timelineBlocked ||
@@ -530,34 +599,36 @@ export function GameplayComposer({
           ))}
         </div>
       )}
-      {compact && (unresolved || turns.at(-1)) && (
+      {compact && compactTurn && (
         <div
-          id={`saved-turn-${(unresolved || turns.at(-1))!.id}`}
+          id={`saved-turn-${compactTurn.id}`}
           className="session-saved-turn"
         >
           <GameplayTurn
-            turn={(unresolved || turns.at(-1))!}
+            turn={compactTurn}
+            live={traceFor(compactTurn.id)}
+            running={busy && trace?.view.operationId === compactTurn.id}
             recording={recording}
+            companionRolls={companionRolls}
             busy={
               busy ||
               timelineBlocked ||
               !turnAllowedBySession(
                 memory.error ? null : memory.snapshot,
-                (unresolved || turns.at(-1))!,
+                compactTurn,
               )
             }
             onCommand={(action, checkId) =>
-              void command((unresolved || turns.at(-1))!, action, checkId)
+              void command(compactTurn, action, checkId)
             }
             onSaved={onSaved}
-            onResend={() => resendFailed((unresolved || turns.at(-1))!)}
+            onResend={() => resendFailed(compactTurn)}
           />
         </div>
       )}
-      {showLiveView && live && busy && (live.text || live.changes.length > 0) && (
+      {/* The told text is inside the turn (stage C); here only the stream's change list and the recording note. */}
+      {showLiveView && live && busy && (recording || live.changes.length > 0) && (
         <div className="gameplay-live-turn" role="status" aria-live="polite" data-recording={recording ? "true" : undefined}>
-          <span className="eyebrow">{t(recording ? "DM is recording…" : "DM is writing… (provisional until saved)")}</span>
-          {live.text && <div className="prose">{live.text}</div>}
           {recording && <p className="muted">{t(held.send ? "Will be sent once the records are in." : "The text is complete; the DM is recording. You can write your next action — it is sent once the records are in.")}</p>}
           {live.changes.length > 0 && (
             <ul className="gameplay-live-changes">
@@ -605,7 +676,8 @@ export function GameplayComposer({
               )}
             </span>
             <textarea
-              rows={mode === "feedback" ? 5 : 2}
+              ref={areaRef}
+              rows={mode === "feedback" ? 5 : 4}
               value={recording ? held.text : journal.text}
               maxLength={actionMaxCharacters}
               disabled={!ready || (recording ? held.send : busy || !!journal.attempt)}
@@ -621,12 +693,6 @@ export function GameplayComposer({
                     ? "A question outside the story…"
                   : "What do you do next?",
               )}
-              onInput={(event) => {
-                // Compact composer (polish group 6): two lines that grow with the text.
-                const area = event.currentTarget;
-                area.style.height = "auto";
-                area.style.height = `${Math.min(area.scrollHeight, 320)}px`;
-              }}
             />
           </label>
           {mode === "companion" && (
@@ -688,11 +754,12 @@ export function GameplayComposer({
                 }
               >
                 <Icon name="Send" />
+                {/* Stage C: a story turn names its own pause; the button never says «думает» while the turn is told. */}
                 {t(
                   recording
                     ? "Send after the records"
                     : busy
-                      ? "DM is thinking…"
+                      ? mode === "game" || mode === "companion" ? "Send" : "DM is thinking…"
                       : journal.command || journal.attempt
                         ? "Try again"
                         : mode === "feedback"
