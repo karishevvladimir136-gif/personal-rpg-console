@@ -54,5 +54,9 @@ afterwards from the reply's own usage (OpenAI images, Anthropic) or fal's list p
 | 2026-10-20 07:23 | preview art veresk.jpg | gpt-image-2.5-sunburst | $0.163 | $0.030 | ok |
 | 2026-10-20 07:58 | live ford fight, attempt 1 (turns failed at commit) | claude-opus-5-5 | $1.331 | $1.331 | ok |
 | 2026-10-20 07:58 | live lair fight, attempt 1 (stopped) | claude-opus-5-5 | $0.500 | $0.500 | ok |
+| 2026-10-20 08:17 | Part 2 live probe: the lair fight (5 turns, Opus 5.5; the bench guard stopped the last turn at USD 3.5) | claude-opus-5-5 | $2.804 | $2.804 | ok |
+| 2026-10-20 08:18 | live ford fight, attempt 2 (turn failed at commit: the turn lease) | claude-opus-5-5 | $0.409 | $0.409 | ok |
+| 2026-10-20 08:18 | live ford fight, attempt 3 (turns failed at commit: a check on a foe not yet in the DB) | claude-opus-5-5 | $0.657 | $0.657 | ok |
+| 2026-10-20 08:18 | Part 2 live probe: the ford ambush (5 turns, Opus 5.5) | claude-opus-5-5 | $1.610 | $1.610 | ok |
 
-**Spent so far: $2.565 of $40** (48 calls).
+**Spent so far: $8.045 of $40** (52 calls).

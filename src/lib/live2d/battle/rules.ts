@@ -31,6 +31,8 @@ export type AttackInput = {
   ranged: boolean;
   /** The attacker cannot see the target (darkness without darkvision, as the DM states it). */
   unseen?: boolean;
+  /** A hostile able to act stands within 5 ft of the attacker (the server measures it): a ranged attack is at disadvantage. */
+  hostileAdjacent?: boolean;
 };
 export type AttackRuling = { advantage: Advantage; autoCrit: boolean; acBonus: number; rules: AppliedRule[]; impossible: string | null };
 
@@ -56,7 +58,7 @@ export function attackRuling(input: AttackInput): AttackRuling {
   if (has(t, PETRIFIED)) { plus++; rules.push({ rule: "target petrified", effect: "advantage" }); }
   if (has(t, PARALYSED) || has(t, UNCONSCIOUS)) { plus++; rules.push({ rule: has(t, PARALYSED) ? "target paralysed" : "target unconscious", effect: adjacent ? "advantage, auto-crit within 5 ft" : "advantage" }); }
   if (has(a, INVISIBLE)) { plus++; rules.push({ rule: "attacker unseen", effect: "advantage" }); }
-  if (input.ranged && adjacent) { minus++; rules.push({ rule: "ranged attack within 5 ft", effect: "disadvantage" }); }
+  if (input.ranged && (adjacent || input.hostileAdjacent)) { minus++; rules.push({ rule: adjacent ? "ranged attack within 5 ft" : "ranged attack with a hostile within 5 ft", effect: "disadvantage" }); }
   const acBonus = input.cover === "half" ? 2 : input.cover === "three-quarters" ? 5 : 0;
   if (acBonus) rules.push({ rule: `${input.cover} cover`, effect: `+${acBonus} AC` });
   const impossible = input.cover === "full" ? "full cover: no line of attack" : has(a, INCAPACITATED) || has(a, PARALYSED) || has(a, UNCONSCIOUS) || has(a, STUNNED) ? "the attacker cannot act" : null;

@@ -1,6 +1,6 @@
 {
   "title": "2D Live part 2: the ford ambush (live DM, the grid and the rules module)",
-  "description": "A synthetic Russian campaign on the loop. Two bandits come to a ford; the party sets a planned ambush. Live only: the DM is expected to open the fight with combat start (placements on the grid, initiative, enemy hit points and armour class), to read the battlefield block, to attack through combat attack and to pass turns with next_turn. Measures seconds per combat turn and whether the DM's narration agrees with the server's distances and cover.",
+  "description": "A synthetic Russian campaign on the loop. Two bandits come to a ford; the party sets a planned ambush. Live only: the DM is expected to open the fight with combat start (placements on the grid, initiative, enemy hit points and armour class), to read the battlefield block, to attack through combat attack and to pass turns with next_turn. Measures seconds per combat turn and whether the DM's narration agrees with the server's distances and cover. The battlefield block («Поле боя») is asserted by tests/live2d-fights.test.mjs: the bench records the request context only for scripted models, so that check cannot pass on a live run.",
   "runtime": "dm-loop-v1",
   "language": "ru",
   "startMinutes": 600,
@@ -51,10 +51,6 @@
           "outcome": "committed"
         },
         {
-          "label": "the battlefield block reached the DM",
-          "contextIncludes": "Поле боя"
-        },
-        {
           "toolAccepted": {
             "name": "combat",
             "min": 1
@@ -68,9 +64,6 @@
       "expect": [
         {
           "outcome": "committed"
-        },
-        {
-          "contextIncludes": "Поле боя"
         }
       ]
     },
@@ -80,9 +73,6 @@
       "expect": [
         {
           "outcome": "committed"
-        },
-        {
-          "contextIncludes": "Поле боя"
         }
       ]
     },

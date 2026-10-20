@@ -1,6 +1,6 @@
 {
   "title": "2D Live part 2: the lair fight (live DM — a caster on high ground, a burning cart, an area spell)",
-  "description": "A synthetic Russian campaign on the loop. The party storms a bandit lair: a caster on a ledge, a burning cart that gives cover, a torch in a dark barn, a Fireball. Live only: the DM is expected to open the fight with combat start (placements with elevation, features for the cart, the fire, the torch), to read the battlefield block (cover and light), to attack through combat attack (cover's AC, resistances), and to offer a reaction with combat reaction. Measures seconds per combat turn.",
+  "description": "A synthetic Russian campaign on the loop. The party storms a bandit lair: a caster on a ledge, a burning cart that gives cover, a torch in a dark barn, a Fireball. Live only: the DM is expected to open the fight with combat start (placements with elevation, features for the cart, the fire, the torch), to read the battlefield block (cover and light), to attack through combat attack (cover's AC, resistances), and to offer a reaction with combat reaction. Measures seconds per combat turn. The battlefield block («Поле боя») is asserted by tests/live2d-fights.test.mjs: the bench records the request context only for scripted models, so that check cannot pass on a live run.",
   "runtime": "dm-loop-v1",
   "language": "ru",
   "startMinutes": 600,
@@ -51,10 +51,6 @@
           "outcome": "committed"
         },
         {
-          "label": "the battlefield block reached the DM",
-          "contextIncludes": "Поле боя"
-        },
-        {
           "toolAccepted": {
             "name": "combat",
             "min": 1
@@ -68,9 +64,6 @@
       "expect": [
         {
           "outcome": "committed"
-        },
-        {
-          "contextIncludes": "Поле боя"
         }
       ]
     },
@@ -80,9 +73,6 @@
       "expect": [
         {
           "outcome": "committed"
-        },
-        {
-          "contextIncludes": "Поле боя"
         }
       ]
     },

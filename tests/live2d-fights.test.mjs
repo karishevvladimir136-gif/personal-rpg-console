@@ -120,19 +120,24 @@ test("the ford ambush: a planned opening, surprise, positions, an attack with th
     const end = await c.turn("Пузо бежит.", [
       { text: "Разбойники бегут. ", toolCalls: [
         { name: "combat", arguments: { action: "log", actorRef: "Пузо", what: "арбалет", result: "промах" } },
+        // The live DM moved a fleeing foe past the edge of the grid three turns running: that is leaving the field.
+        { name: "combat", arguments: { action: "move", actorRef: "Пузо", x: 16, y: 5 } },
         { name: "combat", arguments: { action: "end", outcome: "escape", summary: "Разбойники бежали за реку" } },
       ] },
       { text: "Тишина над бродом. " },
     ]);
     assert.equal(end.result.status, "committed", JSON.stringify(c.errors));
     receipts = await receiptsOf(c, end);
-    const card = receipts[1].result.value.card;
+    assert.ok(receipts.every((r) => r.result.ok), okSummaries(receipts));
+    assert.equal(receipts[1].result.value.withdrawn, true, "a move past the edge withdraws the fighter");
+    assert.match(receipts[1].result.summary, /leaves the field/);
+    const card = receipts[2].result.value.card;
     assert.equal(card.rounds, 2);
     assert.equal(card.dealt, 9);
     assert.ok(card.taken > 0);
     assert.equal(card.misses, 2, "the opening miss and Пузо's logged miss");
     assert.equal(card.crits, 1);
-    assert.match(receipts[1].result.player, /Итог: 2 р\., нанесено 9/);
+    assert.match(receipts[2].result.player, /Итог: 2 р\., нанесено 9/);
     play = await playOf(c);
     assert.equal(play.encounters.find((row) => row.id === encounter.id).status, "ended");
     // After the fight the block is gone from the context.

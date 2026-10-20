@@ -1,6 +1,6 @@
 {
   "capUsd": 40,
-  "totalUsdMicros": 2564914,
+  "totalUsdMicros": 8045342,
   "note": "Every paid call of the 2D Live slice: reserved at its upper bound before it is sent, settled afterwards (OpenAI and Anthropic from the reply's own usage, fal at list price).",
   "entries": [
     {
@@ -671,6 +671,58 @@
       "record": "scripts/eval/out/20261020-075628-loop-opus-live-21-live2d-lair.jsonl",
       "turns": 1,
       "modelRequests": null,
+      "stopReason": null
+    },
+    {
+      "at": "2026-10-20T08:17:47.268Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "Part 2 live probe: the lair fight (5 turns, Opus 5.5; the bench guard stopped the last turn at USD 3.5)",
+      "reservedUsdMicros": 2804259,
+      "usdMicros": 2804259,
+      "settled": true,
+      "record": "docs/runs/20261020-080656-loop-opus-live-21-live2d-lair.jsonl",
+      "turns": 5,
+      "modelRequests": 33,
+      "stopReason": null
+    },
+    {
+      "at": "2026-10-20T08:18:16.975Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "live ford fight, attempt 2 (turn failed at commit: the turn lease)",
+      "reservedUsdMicros": 409283,
+      "usdMicros": 409283,
+      "settled": true,
+      "record": "scripts/eval/out/20261020-080121-loop-opus-live-20-live2d-ford.jsonl",
+      "turns": 1,
+      "modelRequests": 5,
+      "stopReason": null
+    },
+    {
+      "at": "2026-10-20T08:18:17.165Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "live ford fight, attempt 3 (turns failed at commit: a check on a foe not yet in the DB)",
+      "reservedUsdMicros": 656990,
+      "usdMicros": 656990,
+      "settled": true,
+      "record": "scripts/eval/out/20261020-080655-loop-opus-live-20-live2d-ford.jsonl",
+      "turns": 2,
+      "modelRequests": null,
+      "stopReason": null
+    },
+    {
+      "at": "2026-10-20T08:18:17.370Z",
+      "kind": "anthropic",
+      "model": "claude-opus-5-5",
+      "note": "Part 2 live probe: the ford ambush (5 turns, Opus 5.5)",
+      "reservedUsdMicros": 1609896,
+      "usdMicros": 1609896,
+      "settled": true,
+      "record": "docs/runs/20261020-081119-loop-opus-live-20-live2d-ford.jsonl",
+      "turns": 5,
+      "modelRequests": 19,
       "stopReason": null
     }
   ]

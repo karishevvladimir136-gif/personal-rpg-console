@@ -32,6 +32,11 @@ test("attack rulings: conditions, reach, cover, cancellation, auto-crit", () => 
   const covered = attackRuling({ attacker: c(), target: c(), feet: 30, cover: "three-quarters", ranged: true });
   assert.equal(covered.acBonus, 5);
   assert.equal(attackRuling({ attacker: c(), target: c(), feet: 30, cover: "half", ranged: true }).acBonus, 2);
+  // A ranged attack with a hostile at the shooter's elbow (5e): disadvantage even when the target is far.
+  const pointBlank = attackRuling({ attacker: c(), target: c(), feet: 30, cover: null, ranged: true, hostileAdjacent: true });
+  assert.equal(pointBlank.advantage, "disadvantage");
+  assert.equal(pointBlank.rules[0].rule, "ranged attack with a hostile within 5 ft");
+  assert.equal(attackRuling({ attacker: c(), target: c(), feet: 30, cover: null, ranged: false, hostileAdjacent: true }).advantage, "normal");
   assert.equal(attackRuling({ attacker: c(), target: c(), feet: 30, cover: "full", ranged: true }).impossible, "full cover: no line of attack");
   assert.equal(attackRuling({ attacker: c("stunned"), target: c(), feet: 5, cover: null, ranged: false }).impossible, "the attacker cannot act");
   const point = attackRuling({ attacker: c(), target: c(), feet: 5, cover: null, ranged: true });

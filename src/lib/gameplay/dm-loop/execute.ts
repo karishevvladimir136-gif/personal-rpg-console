@@ -1280,7 +1280,17 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
   if (action === "move") {
     const { entity, fighter } = participantOf(args.actorRef, "actorRef");
     const x = int(args.x), y = int(args.y);
-    reject(x !== null && y !== null && insideGrid(field, { x, y }), `move needs x and y inside the ${field.grid.cols}×${field.grid.rows} grid.`);
+    reject(x !== null && y !== null, `move needs x and y (cells of the ${field.grid.cols}×${field.grid.rows} grid).`);
+    // A move past the edge of the grid is leaving the field (a fleeing foe, in the live probes): the fighter is withdrawn and
+    // out of the turn order, the token stays at the cell it left from.
+    if (!insideGrid(field, { x: x!, y: y! })) {
+      fighter.combatant.withdrawn = true;
+      fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions, "fled"])].slice(0, 12);
+      saveFighter(fighter);
+      deriveZones(field, fighters);
+      return ok({ actor: entity.name, withdrawn: true, to: { x, y } }, `${entity.name} leaves the field (past the edge of the ${field.grid.cols}×${field.grid.rows} grid): fled, out of the fight.`,
+        null, partyIds.has(entity.id) ? (l === "ru" ? `${entity.name} уходит с поля боя` : `${entity.name} leaves the field`) : null);
+    }
     reject(fighter.placement.x !== null && fighter.placement.y !== null, `${entity.name} has no position yet: place them first (combat place).`);
     const from = { x: fighter.placement.x!, y: fighter.placement.y! };
     const cost = moveCost(field, from, { x: x!, y: y! });
@@ -1354,7 +1364,10 @@ function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRe
     const feet = distanceFeet(af.placement, tf.placement, field.grid.feetPerCell);
     const look = af.placement.x !== null && af.placement.y !== null && tf.placement.x !== null && tf.placement.y !== null
       ? sight(field, { x: af.placement.x, y: af.placement.y }, { x: tf.placement.x, y: tf.placement.y }) : null;
-    const ruling = field.rules ? attackRuling({ attacker: af.combatant, target: tf.combatant, feet, cover: look?.cover ?? null, ranged })
+    // 5e: a hostile able to act within 5 ft of the shooter puts a ranged attack at disadvantage (the server measures it).
+    const hostileAdjacent = ranged && af.placement.x !== null && af.placement.y !== null && adjacentIds(field, { x: af.placement.x, y: af.placement.y },
+      fighters.filter((f) => f.participantId !== af.participantId && f.combatant.side !== af.combatant.side && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled|мертв|без сознания|парализ/iu.test(c))).map((f) => ({ id: f.participantId, placement: f.placement }))).length > 0;
+    const ruling = field.rules ? attackRuling({ attacker: af.combatant, target: tf.combatant, feet, cover: look?.cover ?? null, ranged, hostileAdjacent })
       : { advantage: "normal" as const, autoCrit: false, acBonus: 0, rules: [] as AppliedRule[], impossible: null as string | null };
     reject(ruling.impossible === null, `${attacker.name} cannot attack ${target.name}: ${ruling.impossible}.`);
     reject(!look || look.visible, `${attacker.name} has no line of sight to ${target.name} (${look?.blockedBy?.label ?? "a wall"}).`);
