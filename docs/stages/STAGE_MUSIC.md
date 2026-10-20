@@ -45,16 +45,13 @@ quiet scene with a companion. It changes smoothly and never gets in the way.
   under music and video, its own volume and «выкл». Generated per place kind once (not per place): fal
   `fal-ai/elevenlabs/sound-effects` for short seamless loops (check its loop flag), `fal-ai/stable-audio-25` for long
   evolving soundscapes. The pack: 15–20 place kinds × 1–2 variants, plus 5–6 weathers. Never from hidden facts.
-- **Real-time music — an experiment inside this stage, not a dependency.** Google Lyria RealTime (Gemini API, a
-  separate key the owner adds as `APP_GOOGLE_API_KEY`; a persistent streaming session; experimental status) steered
-  by the same mood signal with smooth prompt transitions. Build it behind a setting «Живая музыка» with its own cap
-  ($10 of the stage's money); if it works and sounds better than the pack in the review, it ships as a mode; if the
-  API is unavailable, unstable or worse, report that and the pack stays the base — the game never depends on it.
-  Paid generation cap for the whole stage: **$60** (the pack and the review within $40, ambient $10, real-time $10).
+- Real-time generated music (Lyria RealTime) is **not** in this stage (owner, 09:10: «чисто эмбиент, без живой
+  музыки»); the pack and the ambient layer are the whole deliverable.
+  Paid generation cap for the whole stage: **$50** (the pack and the review within $40, ambient $10).
 
 ## Checks
 
-Paid generation within **$60** (see the caps above), stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
+Paid generation within **$50** (see the caps above), stopped by a guard; report every call's cost; synthetic worlds only. A review pack: the
 «Мир Шва» and «Neon & Rain» soundtracks with their mood lists, and a 20-turn synthetic session log showing which mood
 played when and why. typecheck / lint / test / build pass; push `claude/stage-music` only, never `main`, never the owner's
 database. Report in English.
