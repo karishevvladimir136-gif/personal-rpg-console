@@ -14,7 +14,8 @@ campaign, no owner content). The progress file is `docs/runs/fix-s2-progress.md`
 | D | $3.07 | the lair search and the fight on the stage D rules (Opus writes, Opus records, Russian instructions) |
 | C | $0 | (the turn on screen is code and synthetic tests; the 2D session took the combat work) |
 | E | $0.60 | the picture probe on both frame paths (the brief path twice on five synthetic scenes; the default shot path on three, then two again), one raw check call, the check re-run |
-| **Total** | **$29.80 of $50** (A+B $26.13 of $30) | |
+| F | $0.32 | the one-pass hero on the live DM (two synthetic heroes) |
+| **Total** | **$30.12 of $50** (A+B $26.13 of $30) | |
 
 ## Already fixed on the base branch
 
@@ -330,7 +331,7 @@ Settings → «Как ведущий работает»: «Инструкции 
 ### Screens
 
 `docs/runs/fix-s2-shots/D-*` — character, character with spells, a companion's sheet, inventory, the item card, party,
-holdings; 1920×1080, 2560×1440 and phone, no overflow. At 2560 the page is capped at 1920 px wide (stage F, item 22).
+holdings; 1920×1080, 2560×1440 and phone, no overflow. (The 1920 px cap at 2560 was lifted in stage F, item 22.)
 
 ## Stage C — the turn on screen
 
@@ -446,6 +447,118 @@ turn, with its caption).
 - Secrets only through people who know them: captions come from the narration only (never from the writer's private
   notes); the ending cards and «Тем временем» carry only what the hero knows or could hear; the vision check and the
   brief never reach the player.
+
+## Stage F — the new campaign, the hero, the screens and settings
+
+Two workers in their own worktrees (the new-campaign flow and the one-pass hero; the screens and settings), merged and
+reviewed here; the rest (item 32 b, the sandbox load guide, the owner's corrections, the leftovers of both workers)
+done on the branch. Items 23 (the history window, decided in stage B as «Память ведущего») and 31 (the 2D session)
+are not here.
+
+### What changed
+
+- **The hero in one pass** (items 20, 16 — your top priority from the wizard). You write «Кто вы?» (up to 20 000
+  characters) and press «Собрать героя»; the campaign's DM (Claude Opus 5.5 at high, not the app's OpenAI model) builds
+  the whole sheet in one request: scores with modifiers, HP, AC, speed, saves, skills, attacks, features, spells with
+  every field, the things (kind, the slot on the doll, damage and properties, bonuses, two-handed, attunement, charges),
+  counters with Russian labels and the purse by 5e coins. The answer is read tolerantly: every number you wrote wins
+  over the DM's, and the sheet says so («Сила 8 — как в твоём тексте (у ведущего было 10)»); a bad entry is repaired or
+  dropped with a plain note; potions given as a counter become items; the DM's questions never block. A failed or
+  unreadable call opens a sheet to fill in by hand with the reason — never «503». Every attempt, its cost and any
+  refusal are logged (session 2's three refusals left nothing behind). Migration 84 commits it: each thing goes on the
+  doll in its own slot (no guessing from the name), counters with their maximum and label, coins as the wallet; at most
+  80 things and 40 counters at creation.
+- **The sheet and «Утвердить героя»** (item 19): everything editable in place; a thing opens on a click with its kind,
+  slot (only slots that take that kind), damage, properties, bonuses, charges and description; a grey button always
+  says why («В слоте «Основная рука» две вещи»); «Изменения применятся при создании».
+- **One wizard in story order** (items 21, 11, 12, 13): Мир → Герой → Приключение (title, what we play, pace, «Кто идёт
+  с героем») → Ведущий (model, depth range in words, «Что мне нравится», voice samples) → Первая сцена («Предложить
+  первую сцену», then «Играть» opens the game). The first step is the world only; after creating one — «Мир создан и
+  выбран», «Ещё один мир…», no «v1»; the three texts and the duplicate heading are gone; «Другие поддерживаемые правила»
+  (the old Level 1 Fighter starter) is removed. A reload returns to the step reached; «Отмена» ends the wizard.
+- **What the DM reads from the start** (items 8, 15, 34): the world's text is a canon document of every new campaign
+  («Этот текст ведущий видит в каждом ходе»); the active adventure's whole text reaches every turn (it was 600
+  characters marked «never new facts») — what it states is established; the opening's DM names everyone, brings in the
+  people the adventure names and gets the hero's sheet and your likes; your answers to the opening's and the hero's
+  questions become pinned facts, and an answer to «Как зовут …?» renames that person.
+- **Depth** (item 10): the summary and the DM step show the range in words («высокая», «высокая — очень высокая»);
+  Opus's single-effort default is now high, as the campaign plays.
+- **The screens fill the window** (items 22, 33, 1–3): the 1920 px cap is gone (3200 px), the menu runs the full height
+  with the DM box at its foot, the content is at least the window's height, a one-panel page reaches the bottom; at
+  2200 px and wider the menu, headers, the sheet and the lists are a step larger and the game's side column wider; the
+  campaign list and the wizard widen to 1800 px. The home card is sized to its content and centred.
+- **Readable text** (item 5): nothing under 13 px anywhere (a test checks every style file outside World Lab and the 2D
+  session's combat rules), helper and muted text 14–15 px, body 16 px.
+- **«Крупный текст истории» works** (item 6): the story goes from 17 to 21 px (24.5 on a big monitor), your words to
+  18 px, the line kept readable.
+- **«Мастерство Ведущего»** (item 7): one-size cards with the title, kind, role, version and the first sentences; «Как
+  вести игру» set apart as the main one; the whole card in a dialog (text, «Избегать», Russian tags, the role switch,
+  «Изменить и проверить новую версию», its own folded history with «Сделать одобренной»); the long history list at the
+  bottom is gone. The role is «учётчик» everywhere (the campaign settings said «бухгалтер»).
+- **The Library** (item 25): the list alone until a document is picked; the document read as formatted text (headings,
+  lists, quotes; never inserted as HTML); «Изменить» turns the same panel into the editor with «Загрузить файл» as a
+  link and no system paragraphs; «Сохранить» closes it with «Сохранено» on the row; the history behind «Версии»; a link
+  `?doc=<id>` opens a document. The false «Покинуть страницу…» on «Приключения» is gone: it now appears only while a
+  request is in flight or when you edited the opening.
+- **General settings** (item 4): «ИИ: кто что делает» — the Anthropic, OpenAI and fal keys as «ключ есть / нет ключа»
+  (the server says only whether a key is set), «Ведущий — в настройках каждой кампании (по умолчанию Claude Opus 5.5)»,
+  «Картинки — в настройках кампании», the background OpenAI model named for its jobs, its model chips under
+  «Подробнее».
+- **Campaign settings** (items 26, 39): «Правила и кости» — the rules in words from the DM guide's first line («D&D 5e
+  (2014) … — по руководству ведущего», or «Свои правила…») with a link to the guide; «Показывать сложность (DC)»,
+  «Важные броски кидаю я» and «Перебросы» for every rules system, «Логика мира» included; the per-turn limits left the
+  screen (they still apply on the server).
+- **The opening's frame** (item 29): the approved opening is drawn as the starting place's picture (the header shows the
+  place the story is in), asked once when the opening shows («кадр сцены рисуется…»); a second open tab gets the picture
+  already in work instead of a second paid one; a failure is not retried by itself.
+- **Small things** (items 24, 30, 32 b): no loot panel on «Приключения» (it stays under the settings' advanced
+  section); «Закончить сессию» a quiet link at the end of the row; the HP buttons behind «Исправить хиты…»; item cards
+  close on Esc or a click outside; a counter named in the campaign language gets a Latin key and keeps its name.
+
+### The hero probe (two synthetic heroes, the live DM)
+
+`scripts/eval/fix-s2/hero-probe.mjs` runs the app's own provider with the wizard's default DM; the record is
+`docs/runs/fix-s2-hero-probe.json`.
+
+| Hero | Seconds | Cost | What the sheet held |
+| --- | --- | --- | --- |
+| A detailed level 9 wizard with your kind of numbers, gear, spells and money | 90 | $0.23 | every number kept (six scores, HP 58, AC 15, level 9, 60 зм · 57 см · 14 мм); slots 4/3/3/3/1 and hit dice d6 9/9 by the rules; saves with the ring of protection's +1; staff, dagger and fire bolt to-hit right; 11 things, the staff in the hand, the ring, cloak and hat worn, two healing potions as items; 17 spells (5 cantrips); no question, no note, the button open |
+| A short archer with no numbers | 39 | $0.09 | a level 1 fighter with the archery style derived by the rules (longbow +7, HP 12, AC 14 in leather), 20 arrows as ammunition, 10 зм; no question |
+
+Both sheets were ready to approve as they came. A detailed hero takes about a minute and a half — the wizard shows
+that it is working; a first real draft for your own hero costs about a quarter of a dollar.
+
+### Not done, and why
+
+- Changing the sheet in words («поменяй запугивание на убеждение») — optional in the item; not built.
+- A «fill in by hand» button before any model call — the hand-filled sheet appears only when the DM fails.
+- The people who go with the hero are not joined to the party at the opening (the opening's handoff keeps the party as
+  the hero alone); the adventure's whole text and the opening's named people reach the DM, who adds them as companions
+  on the first turn.
+- A per-world rules document («D&D 5e») — optional in item 21; the DM guide's first line names the rules.
+- The hero is drafted by the default DM (Opus 5.5 at high) even when you later pick another DM: the DM step comes
+  after the hero.
+- World Lab's styles and the 2D session's combat styles keep their sizes (not this run's to change).
+
+### Screens
+
+`docs/runs/fix-s2-shots/F-*` at 1440×900, 1920×1080, 2560×1440 and a phone, retaken on the merged branch: the wizard
+(`F-new-campaign`, `-created`, `-hero`, `-sheet`, `-item-items`, `-adventure`, `-dm`, `-opening`, `-opening-people`),
+the menu, campaigns, general settings, «Мастерство Ведущего» and a card, the Library (list, document, editor), the
+game (with the frame drawing and with large text), character, inventory and its card, campaign settings and «Правила и
+кости», «Приключения».
+
+### The regression list on stage F
+
+- Honest dice: not changed (the hero's numbers are the owner's or the rules'; rolls stay the server's).
+- No item lost: every thing the owner names becomes an item on the doll or in the pack; potions are items; a repeated
+  name stacks; nothing is guessed from a name.
+- Right modifiers: the sheet's saves, skills and attacks come from the rules with worn bonuses (the ring's +1 on the
+  probe); the owner's numbers win.
+- Honest magic and slots: slots by class and level, prepared maximum, every spell with its fields.
+- Facts held: the opening's and the hero's answers are pinned facts; the adventure's text is established.
+- Secrets only through people who know them: the settings show only whether a key is set; the Library's text is never
+  inserted as HTML; nothing DM-private reaches the new screens.
 
 ## Needs the owner
 
