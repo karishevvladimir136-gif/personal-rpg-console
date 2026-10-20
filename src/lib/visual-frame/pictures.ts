@@ -22,7 +22,7 @@ import { OPENAI_IMAGE_MODELS, openAIImageModel, openAIImageTypicalUsdMicros, typ
 
 export type PictureKind = "frame" | "anchor";
 export type PictureSubjectKind = "turn" | "entity" | "item" | "location";
-export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding" | "atlas";
+export type PictureComposition = "frame" | "portrait" | "figure" | "item" | "location" | "holding" | "atlas" | "scene" | "region" | "battle";
 export type PictureTier = "fast" | "quality";
 export type PictureTrigger = "live" | "committed" | "key_moment" | "redraw" | "autopilot" | "restyle" | "manual";
 export type PictureStatus = "queued" | "generating" | "ready" | "failed";
@@ -148,7 +148,8 @@ export function parsePictureModels(raw: unknown): PictureSettings["models"] {
 
 const KINDS: PictureKind[] = ["frame", "anchor"];
 const SUBJECT_KINDS: PictureSubjectKind[] = ["turn", "entity", "item", "location"];
-export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding", "atlas"];
+// 2D Live (docs/stages/LIVE2D_1.md): «scene» — a place's clickable scene, «region» — the painted region map, «battle» — the top-down battle background.
+export const COMPOSITIONS: PictureComposition[] = ["frame", "portrait", "figure", "item", "location", "holding", "atlas", "scene", "region", "battle"];
 const TIERS: PictureTier[] = ["fast", "quality"];
 const TRIGGERS: PictureTrigger[] = ["live", "committed", "key_moment", "redraw", "autopilot", "restyle", "manual"];
 const STATUSES: PictureStatus[] = ["queued", "generating", "ready", "failed"];
