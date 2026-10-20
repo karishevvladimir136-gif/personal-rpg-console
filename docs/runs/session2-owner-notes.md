@@ -1140,3 +1140,15 @@ report); the guard post's place record says «Раннее утро» — a time
     question the heroes were left with (the sergeant had only guessed it), which the hero cannot know. Do: the
     in-flight guard and no digest on entry while an end digest runs; one card; the recap short and forward-looking;
     hooks from all open threads; «meanwhile» shows a sign that keeps a question open, not the answer.
+    Owner's answer (22:21): «концептуально оно прикольно, но реализовано сильно в лоб». Decisions/wishes:
+    - **«Тем временем» through the world, not an all-seeing camera.** News that could reach the hero: e.g. a guard
+      reports to the captain that the wounded man was seen on the outskirts. It moves the story without handing
+      over the answer.
+    - **A structured mini-finale, like the ending slides of a good RPG** — a few cards: the fate of each person the
+      hero met, as of the save (the prisoner he vouched for, the freed captives, and so on), especially after a long
+      session (4–5 hours). After about an hour of play — not worth it; just a structured «what happened».
+    Planner's shape for the plan: the length decides the form (by play time and turns: short → «что было» as a
+    few lines plus the open threads; long → cards); one card per person or group met this session — portrait (the
+    anchors are good now), name, where they are and how they stand with the hero, one line of fate, «unknown» when
+    the hero does not know; then the open threads; then one «meanwhile» item delivered through an in-world channel
+    (a report, a rumour, a letter). One digest per session (item 17 guard), shown once.
