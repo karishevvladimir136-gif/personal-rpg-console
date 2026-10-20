@@ -16,6 +16,8 @@ import { dmModels, dmRequestReservation } from "../../../src/lib/model-runtime/d
 import { snapshot, diff, resolvePlaceholders, evaluateCheck, privateFacts } from "./state.mjs";
 import { metricsReport, parseMetrics } from "../../../src/lib/gameplay/dm-loop/metrics.ts";
 import { naturalness as naturalnessOf } from "./naturalness.mjs";
+import { checkLedger } from "../../../src/lib/gameplay/dm-loop/ledger-check.ts";
+import { checkRollsTold } from "../../../src/lib/gameplay/dm-loop/roll-check.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only"
@@ -83,7 +85,11 @@ function liveModel(selection, budget, apiKey, log) {
       throw error;
     }
   };
-  const model = createDmModel(selection, { apiKey, fetcher, maxRetries: 1 });
+  const inner = createDmModel(selection, { apiKey, fetcher, maxRetries: 1 });
+  // Merge after session 2: the live requests are kept too, so a live turn records the context it was sent.
+  const requests = [];
+  const model = { providerId: inner.providerId, modelId: inner.modelId, requests,
+    stream: (request) => { requests.push(request); return inner.stream(request); } };
   return { model, settle: (costUsd) => {
     // The loop sends one request at a time: a finished request settles every
     // open reservation (a retried attempt's one included) and charges the
@@ -96,6 +102,20 @@ function liveModel(selection, budget, apiKey, log) {
     for (const [key, reservation] of reservations) { budget.reservedUsd -= reservation; budget.spentUsd += reservation; reservations.delete(key); }
     if (budget.spentUsd >= budget.limitUsd) budget.exhausted = true;
   } };
+}
+
+/** Merge after session 2: the app's in-turn checks (gameplay-service) on a live run, each call behind the budget
+ * (a cent reserved, its measured cost settled). */
+function appChecks(budget, apiKey) {
+  const guarded = (check, empty) => async (input) => {
+    const reserve = 0.01;
+    if (budget.spentUsd + budget.reservedUsd + reserve > budget.limitUsd) { budget.exhausted = true; return { ...empty, error: "eval_budget_reached" }; }
+    budget.reservedUsd += reserve;
+    try { const result = await check(apiKey, input); budget.spentUsd += result.costUsdMicros / 1_000_000; return result; }
+    finally { budget.reservedUsd -= reserve; }
+  };
+  return { ledgerCheck: guarded(checkLedger, { misses: [], usage: null, costUsdMicros: 0, elapsedMs: 0 }),
+    rollCheck: guarded(checkRollsTold, { untold: [], costUsdMicros: 0 }) };
 }
 
 function phaseTotals(entries) {
@@ -213,6 +233,7 @@ export async function runLoopScenario(scenario, options) {
         c.forceDice(step.dice ?? []);
         const observations = [];
         let firstWordAt = null;
+        const requestsBefore = live ? liveAdapter.model.requests.length : 0;
         const started = performance.now();
         const deps = await c.deps(live ? liveAdapter.model : scripted, { observe: (observation) => {
           observations.push(observation);
@@ -222,7 +243,8 @@ export async function runLoopScenario(scenario, options) {
         }, split, ...(split ? { bookkeeper: { ...bookkeeperOf(split),
           // Polish 3 §6: the bookkeeper's effort may change from a given turn on (Sonnet at medium on turns 11–20).
           ...(options.bookkeeperSwitch && turnIndex >= options.bookkeeperSwitch.turn ? { effort: options.bookkeeperSwitch.effort } : {}) } } : {}),
-        bookkeeperModel: () => bookkeeperModel });
+        bookkeeperModel: () => bookkeeperModel,
+        ...(live && options.appChecks ? appChecks(options.budget, process.env.ANTHROPIC_API_KEY ?? options.apiKey) : {}) });
         if (continuationEffort) {
           const pinned = deps.pin;
           deps.pin = async (claim) => ({ ...(await pinned(claim)), continuationEffort });
@@ -267,8 +289,11 @@ export async function runLoopScenario(scenario, options) {
             stable: layerHashes.length ? layerHashes.at(-1)[index] === layer.hash : null }));
         if (layers.length) layerHashes.push(layers.map((layer) => layer.hash));
         if (result?.status === "committed" && result.narration) narrations.push(result.narration);
-        const contextText = (live ? liveAdapter.model : scripted).requests?.at(-1)
-          ? scripted?.requests.at(-1).system.map((block) => block.text).join("\n") : null;
+        // A live turn records its first (the writer's) request: the system blocks and the messages, where the
+        // tail (the battlefield block) sits. The scripted model keeps its last request's system blocks.
+        const contextRequest = live ? liveAdapter.model.requests[requestsBefore] : scripted.requests.at(-1);
+        const contextText = !contextRequest ? null : contextRequest.system.map((block) => block.text).join("\n")
+          + (live ? `\n${contextRequest.messages.map((m) => m.text ?? "").join("\n")}` : "");
         turn = {
           outcome: result?.status ?? "error",
           firstStatus, paused: firstStatus === "awaiting_confirmation", continues: resumes, retried,
@@ -313,6 +338,8 @@ export async function runLoopScenario(scenario, options) {
           scriptProblems: live ? transport.filter((t) => t.event === "budget_reached").map(() => "budget_reached: request not sent")
             : (scripted.exhausted ? [] : [`${scripted.rounds.length} scripted round(s) left unused`]),
           contextText,
+          // Merge after session 2: whether the turn's (writer's) context carried the battlefield block.
+          battlefieldInContext: contextText === null ? null : /Поле боя \(|Battlefield \(/.test(contextText),
           narration: result?.narration ?? null,
           checks: result?.checks ?? [],
         };

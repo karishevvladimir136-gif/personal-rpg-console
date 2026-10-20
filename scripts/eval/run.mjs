@@ -40,6 +40,9 @@ function parseArgs(argv) {
     else if (flag === "--bookkeeper") { const [model, effort] = value().split("@"); args.bookkeeper = { model, effort: effort ?? null }; }
     // `--bookkeeper-switch 11:medium` — the bookkeeper's effort changes from that turn on (polish 3 §6: Sonnet at medium on turns 11–20).
     else if (flag === "--bookkeeper-switch") { const [turn, effort] = value().split(":"); args.bookkeeperSwitch = { turn: Number(turn), effort }; }
+    // Merge after session 2: `--app-checks` runs the app's two in-turn checks on a live run — the ledger checker
+    // (the split) and «every seen roll told» (both modes) — behind the run's budget, as gameplay-service wires them.
+    else if (flag === "--app-checks") args.appChecks = true;
     else if (flag === "--verbose") args.verbose = true;
     else throw Error(`unknown argument ${flag}`);
   }
@@ -143,7 +146,8 @@ if (args.runtime === "dm-loop-v1") {
     }
     process.stdout.write(`▶ ${scenario.name} — ${scenario.title}\n`);
     const summary = await runLoopScenario({ ...scenario, loop: scenario.loop ?? script ?? {} }, { live: args.provider === "live",
-      model: args.model, writer: args.writer, bookkeeper: args.bookkeeper, bookkeeperSwitch: args.bookkeeperSwitch ?? null, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null });
+      model: args.model, writer: args.writer, bookkeeper: args.bookkeeper, bookkeeperSwitch: args.bookkeeperSwitch ?? null, effort, continuationEffort: args.continuationEffort, apiKey, budget, write, runId, verbose: args.verbose, maxSteps: args.maxSteps ?? null,
+      appChecks: !!args.appChecks && args.provider === "live" });
     process.stdout.write(`  ${summary.passed ? "PASS" : "FAIL"} checks ${summary.checksPassed}/${summary.checksTotal}` +
       `${summary.probesTotal ? `, probes ${summary.probesPassed}/${summary.probesTotal}` : ""}` +
       `${summary.weaknesses.length ? `, known weaknesses open ${summary.weaknesses.filter((w) => !w.pass).length}` : ""}` +
