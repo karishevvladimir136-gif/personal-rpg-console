@@ -60,15 +60,31 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   «компактно»); defaults by the result — Russian instructions, «стандарт» memory; a wider window slides in bigger
   steps; a roll is told as what happens, never as the die's number; the report's stage B section.
 
+- Stage B's clean-worktree full suite on `01492a5`: 2670 tests, 2640 pass, 0 fail, 27 skipped, 3 cancelled (the
+  `d2a-composition` cancellations, the same on the untouched base). Stage B is done.
+- Stage D (parts 1–3, `6cedf0c` … `9d62244`, probes `fb9ff8d`): the inventory model (`src/lib/inventory/model.ts`,
+  `sheet.ts`; the design note `docs/runs/fix-s2-inventory-design.md` by a Fable 5.1 subagent, with an implementation
+  appendix), migrations 76–78 (the place pile, the eleven-slot doll in SQL, the sheet of schema 2, the conversion
+  function the owner's session runs once, owner saves with the model's fields), the DM's tools on the model (gear and
+  sheets from stat blocks, merging stacks, found loot where it lies, coins by 5e codes, one source pays once,
+  ammunition per shot, worn items' bonuses, counters with labels, the hero's sheet with a reason, mounts with
+  saddlebags), the DM's state and the ledger checker on the model; the DM-side acceptance scenario; the loot and fight
+  probes ($3.07).
+- Stage C, part 1 (this commit): the owner's decision «the DM rolls for the companions» on the server — a companion's
+  check never pauses the turn (both DM modes) unless «Броски спутников: игрок».
+
 ## In progress
 
-- Stage B: the screenshots and the clean-worktree full suite on the stage's last commit.
-- Stage D: the one-page inventory design note is being written by a Fable 5.1 subagent (in the background).
+- Stage D: the screens (a worker in its own worktree: the doll, «Надеть / Снять», moves without a turn, the wallet
+  line, «Здесь лежит», lent marks, companion sheets, the spells tab); then the merge, screenshots and the stage's
+  clean suite.
+- Stage C: the turn on screen (a second worker after this commit: the one timeline, roll cards and companion chips,
+  the named pause, the action box, no transcript under the play screen).
 
 ## Next
 
-- Stage D from the design note (`docs/runs/fix-s2-inventory-design.md`), then C → E → F (stage D's budget: the run's
-  $50 cap less A+B's $26.13).
+- C and D merged and verified → E (frames, gallery, session close, council screen) → F (screens and settings, the
+  acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the final report). Money left: $20.79 of $50.
 
 ## Owner's instructions during the run
 

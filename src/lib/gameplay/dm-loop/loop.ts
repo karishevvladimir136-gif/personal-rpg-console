@@ -24,6 +24,7 @@ import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../serve
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildCouncilContext, buildDmLoopContext, COUNCIL_TOOLS, instructionsRu, suspectedLiteralLeaks } from "./context.ts";
+import { parseDmOptions } from "./options.ts";
 import { NUDGES_RU } from "./roles-ru.ts";
 import { untoldRollsMessage, visibleRolls, type RollCheckResult } from "./roll-check.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
@@ -105,6 +106,15 @@ export function leaseHeartbeat(store: TurnStore, lease: TurnClaim["lease"], ever
 }
 
 /** Fix run B2 (2): whether a turn's accepted records ended a fight. */
+/** Item 44 (the owner's decision, the DM option «Броски спутников»): a displayed check pauses the turn for the
+ * player's dice (interactive dice or rerolls) only when it is the hero's, or a companion's while the player rolls for
+ * the companions; by default the DM rolls for them and their roll shows as a chip in place, without a pause. */
+export function pausesForPlayer(source: RuntimeSource, check: RecordedCheck): boolean {
+  const values = source.snapshot.settings.values;
+  if (!isDisplayedCheck(source, check) || !(values.interactiveDice || values.difficulty.rerolls !== "disabled")) return false;
+  const hero = source.snapshot.entities.find((row) => row.kind === "player");
+  return check.actorId === hero?.id || parseDmOptions(source.dmOptions).companionRolls === "player";
+}
 export function combatEnded(receipts: DmLoopReceipt[]): boolean {
   return receipts.some((receipt) => receipt.call.name === "combat" && receipt.result.ok &&
     (typeof receipt.call.arguments === "object" && receipt.call.arguments !== null ? (receipt.call.arguments as { action?: unknown }).action === "end" : false));
@@ -426,8 +436,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         if (executed.result.ok && executed.result.check) {
           checkpoint.checks.push(executed.result.check);
           const check = executed.result.check;
-          if (isDisplayedCheck(source, check) && (source.snapshot.settings.values.interactiveDice ||
-            source.snapshot.settings.values.difficulty.rerolls !== "disabled")) pause = true;
+          if (pausesForPlayer(source, check)) pause = true;
           if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if (executed.meta) loop.meta = executed.meta;

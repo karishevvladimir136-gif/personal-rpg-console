@@ -43,7 +43,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
+import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
@@ -250,8 +250,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         if (executed.result.ok && executed.result.check) {
           checkpoint.checks.push(executed.result.check);
           const check = executed.result.check;
-          if (isDisplayedCheck(source, check) && (source.snapshot.settings.values.interactiveDice ||
-            source.snapshot.settings.values.difficulty.rerolls !== "disabled")) pause = true;
+          if (pausesForPlayer(source, check)) pause = true;
           if (isDisplayedCheck(source, check)) outcomePending = true;
         }
         if ("meta" in executed && executed.meta) loop.meta = executed.meta;
