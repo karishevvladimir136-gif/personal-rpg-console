@@ -12,6 +12,7 @@
 // (private, never shown to the player). When the model fails, the caller falls
 // back to the shot (shot.ts).
 import { orderReferences, promptFamily, type BriefPerson, type BriefReference, type PromptFamily, type ReferenceRole } from "./prompt-compiler.ts";
+import { resolveWho, type ScenePerson } from "./shot.ts";
 
 export const BRIEF_MODEL = "claude-sonnet-5-5";
 /** Price per 1M tokens (docs/MODELS.md, the bake-off's judge table). */
@@ -82,7 +83,7 @@ export function briefRequest(input: BriefRequestInput) {
     "people: one entry per person in `who`: label — how the brief calls this person (\"the hero\", \"the sergeant\", \"the bound prisoner\"); looksAt — at whom or what this person looks in this moment, by role (\"the sergeant\", \"the prisoner\", \"the map in his hands\", \"the fire\"); people who talk or work together look at each other or at their task, never at the viewer and never up into the distance unless the text says so; expression — this moment's expression in a few words (a person at 0 hit points or unconscious: eyes closed); action — what the body does, a concrete action, not a pose for a portrait; hands — when the action uses both hands or holds things, which hand does what (\"left hand pours from the waterskin, right hand holds the ash\"), else null.",
     "brief: 80–150 words of plain English prose, never more than 160, present tense, as a brief to an artist: the composition (foreground, middle, background); where the hero is in the moment — in the open, hidden or behind what, standing, kneeling, lying — exactly as the narration has it (a hidden hero is drawn hidden); for each person in frame the action, gaze and expression above, what they hold, and only the clothes and visible state that matter now, exactly as the profiles and the state lines say (never invent a look; never change a stated look; do not restate a whole profile — the illustrator has the profiles and the reference pictures); the place — materials, light sources, layout; the light: what lights the scene and what lies in darkness, from the text and the clock; the time of day and the weather; light and palette; the camera — distance, angle, lens feel; continuity with the previous frame when one is given (what is still there, what changed).",
     "Things in hands and on bodies come only from the state lines (what the person wears, holds or carries) and from what the narration shows them taking up this turn: never add a weapon, a shield, a lantern, a torch, a staff, a light or any other thing that neither gives; a thing carried packed away is not in hand unless the narration says so. Name in `avoid` the likely inventions this scene invites that the records do not have (\"no shield\", \"no lantern\").",
-    "Refer to people by role or appearance (\"the hero\", \"the tavern keeper\", \"a red-haired woman\"), never by name — names are for `who` and people[].who only. Say how many people are in frame. The reference pictures the illustrator has show identity only: never describe a pose, a head angle or a gaze taken from them.",
+    "Refer to people by role or appearance (\"the hero\", \"the tavern keeper\", \"a red-haired woman\"), never by name, in any alphabet — names are for `who` and people[].who only; inside people[] (looksAt, action, hands) call others by their labels. Say how many people are in frame. The reference pictures the illustrator has show identity only: never describe a pose, a head angle or a gaze taken from them.",
     "short: the same scene in at most 60 words, the subject and action first.",
     "avoid: what must not appear (extra people, text, objects the scene does not have, the inventions above), one sentence.",
     "timeOfDay / weather: from the clock given below and the text; null when neither says.",
@@ -216,17 +217,59 @@ export function briefReferences<T extends { role: ReferenceRole; entityId?: stri
   return orderReferences(references.map((row) => ({ ...row, person: keyOf(row.entityId) })), people, max);
 }
 
+/** Fix run E (items 78a, 79): the people of a brief for the compiler — role words resolved to the scene's people (the
+ * hero first), each with the brief's own label (never a name), its direction (gaze, expression, action, hands, names
+ * inside it turned into labels), the records' gear and «eyes closed» at 0 HP; a name nobody records stays a generic
+ * person. Returns the people and the matched records' IDs in that order. */
+export function directPeople(brief: Pick<VisualBrief, "who" | "people">, scene: ScenePerson[], records: { id: string; kind: string; hp: number | null; max_hp: number | null }[],
+  read: { look: (id: string) => string; gear: (id: string) => { worn: string[]; packed: string[] } }): { people: BriefPerson[]; entityIds: string[] } {
+  const resolvedIds = resolveWho(brief.who, scene);
+  const matched = brief.who.map((_, index) => (resolvedIds[index] ? records.find((row) => row.id === resolvedIds[index]) ?? null : null));
+  const entityIds = [...new Set(matched.filter((row): row is NonNullable<typeof row> => row !== null).sort((a, b) => (a.kind === "player" ? -1 : 0) - (b.kind === "player" ? -1 : 0)).map((row) => row.id))];
+  const directionOf = (id: string) => brief.people.find((row) => resolveWho([row.who], scene)[0] === id) ?? null;
+  const labels = new Map<string, string>();
+  entityIds.forEach((id, index) => {
+    const entity = records.find((row) => row.id === id)!;
+    const own = directionOf(id)?.label.toLowerCase().replace(/[^\p{L}\p{N}' -]/gu, "").trim() ?? "";
+    const hasName = !!own && scene.some((person) => relabel(own, [{ name: person.name, label: "\u0000" }]).includes("\u0000"));
+    const label = entity.kind === "player" ? "the hero" : own && !hasName && own !== "the hero" && ![...labels.values()].includes(own) ? own : `person ${index + 1}`;
+    labels.set(id, label.slice(0, 48));
+  });
+  const named = scene.map((person) => ({ name: person.name, label: labels.get(person.id) ?? "another person" }));
+  const people: BriefPerson[] = entityIds.map((id) => {
+    const entity = records.find((row) => row.id === id)!;
+    const d = directionOf(id);
+    const down = entity.hp === 0 && (entity.max_hp ?? 0) > 0;
+    return { key: id, label: labels.get(id)!, pronoun: "they", appearance: read.look(id), gear: read.gear(id),
+      state: down ? [entity.kind === "npc" ? "down at 0 hit points (unconscious or dead): eyes closed" : "down at 0 hit points: unconscious, eyes closed"] : [],
+      ...(d ? { direction: { looksAt: relabel(d.looksAt, named), expression: d.expression, action: relabel(d.action, named), hands: d.hands ? relabel(d.hands, named) : null } } : {}) };
+  });
+  brief.who.forEach((name, index) => { if (!matched[index]) people.push({ key: `${name}#${people.length}`, label: `person ${people.length + 1}`, pronoun: "they", appearance: "as described in the scene" }); });
+  return { people, entityIds };
+}
+
 /** Known names in a direction («looks at Горн») become the brief's labels: names in a prompt become lettering. */
 export function relabel(text: string, people: { name: string; label: string }[]): string {
   let out = text;
   for (const person of people) {
-    for (const part of person.name.split(/\s+/).filter((word) => word.length >= 3)) {
+    // The brief model sometimes writes a Russian name in Latin letters («Lira», «Halvar»): both spellings go.
+    const parts = person.name.split(/\s+/).filter((word) => word.length >= 3);
+    for (const part of [...parts, ...parts.flatMap(latinSpellings)]) {
       const stem = part.length > 5 ? part.slice(0, part.length - 1) : part;
       out = out.replace(new RegExp(`(?<!\\p{L})${stem.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\p{L}*`, "giu"), person.label);
     }
     out = out.replace(new RegExp(`(${person.label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})(\\s+\\1)+`, "gi"), "$1");
   }
   return out;
+}
+
+const LATIN: Record<string, string> = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "zh", з: "z", и: "i", й: "y", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r",
+  с: "s", т: "t", у: "u", ф: "f", х: "kh", ц: "ts", ч: "ch", ш: "sh", щ: "shch", ъ: "", ы: "y", ь: "", э: "e", ю: "yu", я: "ya" };
+/** A Cyrillic name in Latin letters, the two usual ways («Хальвар» → «Khalvar», «Halvar»); none for a Latin name. */
+export function latinSpellings(word: string): string[] {
+  if (!/[а-яё]/i.test(word)) return [];
+  const spell = (h: string) => [...word.toLowerCase()].map((ch) => (ch === "х" ? h : LATIN[ch] ?? ch)).join("");
+  return [...new Set([spell("kh"), spell("h")])].filter((row) => row.length >= 3);
 }
 
 const keyWords = (text: string) => text.toLowerCase().split(/[^\p{L}]+/u).filter((word) => word.length >= 4 && !["with", "from", "that", "this", "their", "longer", "still", "anymore"].includes(word));

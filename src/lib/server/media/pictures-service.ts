@@ -32,8 +32,8 @@ import {
   type VisualProfile,
 } from "../../visual-frame/pictures";
 import { fallbackShot, firstParagraph, outOfGameOnly, resolveWho, shotEntityIds, storyText, type ScenePerson, type Shot, type ShotContext } from "../../visual-frame/shot";
-import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefPerson, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
-import { applyLookChange, briefReferences, compileBriefPrompt, relabel, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
+import { compileAnchorPrompt, compileEditPrompt, compileRecordsFrame, promptFamily, timeOfDay, type BriefReference, type ReferenceRole } from "../../visual-frame/prompt-compiler";
+import { applyLookChange, briefReferences, compileBriefPrompt, directPeople, type BriefRequestInput, type VisualBrief } from "../../visual-frame/brief";
 import { checkFrame, correctionLine, type FrameCheckPerson } from "../../visual-frame/frame-check";
 import { visualDocuments } from "../../visual-frame/model";
 import { buildShot } from "./shot-model";
@@ -304,27 +304,7 @@ async function directFrame(ctx: PicturesContext, pictureId: string, input: { ope
   // The people of the brief, the hero first; identity references by role, in the fixed order.
   // Fix run E (items 78a, 79): role words resolve to the scene's people (the hero first); each person carries the
   // brief's direction (gaze, expression, action, hands) under the brief's own label, and the records' gear.
-  const resolvedIds = resolveWho(brief.who, scene);
-  const matched = brief.who.map((name, index) => (resolvedIds[index] ? snapshot.entities.find((row) => row.id === resolvedIds[index]) ?? null : null));
-  const entityIds = [...new Set(matched.filter((row): row is NonNullable<typeof row> => row !== null).sort((a, b) => (a.kind === "player" ? -1 : 0) - (b.kind === "player" ? -1 : 0)).map((row) => row.id))];
-  const directionOf = (id: string) => brief.people.find((row) => resolveWho([row.who], scene)[0] === id) ?? null;
-  const labels = new Map<string, string>();
-  entityIds.forEach((id, index) => {
-    const entity = snapshot.entities.find((row) => row.id === id)!;
-    const own = directionOf(id)?.label.toLowerCase().replace(/[^\p{L}\p{N}' -]/gu, "").trim() ?? "";
-    const hasName = own && scene.some((person) => relabel(own, [{ name: person.name, label: "\u0000" }]).includes("\u0000"));
-    const label = entity.kind === "player" ? "the hero" : own && !hasName && own !== "the hero" && ![...labels.values()].includes(own) ? own : `person ${index + 1}`;
-    labels.set(id, label.slice(0, 48));
-  });
-  const named = [...scene.map((person) => ({ name: person.name, label: labels.get(person.id) ?? "another person" }))];
-  const people: BriefPerson[] = entityIds.map((id) => {
-    const entity = snapshot.entities.find((row) => row.id === id)!;
-    const d = directionOf(id);
-    return { key: id, label: labels.get(id)!, pronoun: "they", appearance: lookOf(board, snapshot, id), gear: gearOf(snapshot, id),
-      state: isDown(entity) ? ["down at 0 hit points: unconscious, eyes closed"] : [],
-      ...(d ? { direction: { looksAt: relabel(d.looksAt, named), expression: d.expression, action: relabel(d.action, named), hands: d.hands ? relabel(d.hands, named) : null } } : {}) };
-  });
-  for (const name of brief.who) if (!matched[brief.who.indexOf(name)]) people.push({ key: `${name}#${people.length}`, label: `person ${people.length + 1}`, pronoun: "they", appearance: "as described in the scene" });
+  const { people, entityIds } = directPeople(brief, scene, snapshot.entities, { look: (id) => lookOf(board, snapshot, id), gear: (id) => gearOf(snapshot, id) });
   const activeStyleRow = activeStyle(board);
   const placeAnchor = place ? anchorFor(board, { kind: "location", id: place.id }, "location").picture : null;
   const heroId = snapshot.entities.find((row) => row.kind === "player" && entityIds.includes(row.id))?.id ?? null;

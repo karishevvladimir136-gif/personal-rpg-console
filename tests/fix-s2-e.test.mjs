@@ -106,6 +106,8 @@ test("E: the shot and the brief resolve role words, write the caption in the cam
   assert.match(prompt, /packed away, not in hand: Верёвка/);
   assert.match(prompt, /exactly two arms and two hands with five fingers each/);
   assert.doesNotMatch(prompt, /Эдрик|Хальвар/, "no name reaches the image model");
+  assert.equal(relabel("looks at Lira and at Halvar", [{ name: "Лира", label: "the scout" }, { name: "Хальвар", label: "the sergeant" }]), "looks at the scout and at the sergeant",
+    "a name the model spelled in Latin letters goes too (the probe's «looks at Lira»)");
   const flux = compileBriefPrompt({ brief, style: "", modelId: "fal-ai/flux-2-pro", people: [{ key: SERGEANT, label: "the sergeant", pronoun: "they", appearance: "", gear: { worn: ["Длинный меч"], packed: [] } }], references: [] });
   assert.match(flux, /The sergeant's gear: Длинный меч\./);
   assert.doesNotMatch(flux, /no shield/, "FLUX reads no negatives");
