@@ -70,21 +70,29 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   ammunition per shot, worn items' bonuses, counters with labels, the hero's sheet with a reason, mounts with
   saddlebags), the DM's state and the ledger checker on the model; the DM-side acceptance scenario; the loot and fight
   probes ($3.07).
-- Stage C, part 1 (this commit): the owner's decision «the DM rolls for the companions» on the server — a companion's
+- Stage C, part 1 (`716b306`): the owner's decision «the DM rolls for the companions» on the server — a companion's
   check never pauses the turn (both DM modes) unless «Броски спутников: игрок».
+- Stage C, parts 2–4 (`6419590` the screens by a worker, `c30eef8`, `727c1e5`): the turn as one timeline (text, the
+  roll cards and the companions' chips in place, the named pause), the action box that grows, the transcript folded;
+  the continuation after «Дальше» streams live; each roll of a saved turn knows its place in the text (migration 81);
+  a paused turn carries its told text; every addend of a roll with its own source (migration 82); the pause named
+  from the DM's calls.
+- Stage D, parts 4+ (`2c74835` the screens by a worker, `277f7fc`, `e762714`): the doll, the item card, «Надеть /
+  Снять», drag, owner moves with undo and history, the wallet line, «Здесь лежит», lent marks, companion sheets, the
+  spells tab; starting things on the doll at creation (migration 83); the owner-side acceptance through the real
+  saves.
+- Stage E (`b5f772e` … `91d5583`): frames that match their turn (role words, gaze and hands, gear from the records,
+  identity-only references, temporary looks, 0 HP), the caption of the frame's own moment, no frame for an
+  out-of-game reply, the vision check with one automatic redraw, the frame in its turn and the button's answers in
+  words, the day from the owner's midnight (migration 79), the gallery instead of the chronicle, the session close by
+  length (migration 80: the ending cards, the open threads, «Тем временем» through the world); the picture probe
+  ($0.43); screenshots `E-*`.
 
 ## In progress
 
-- Stage D: the screens (a worker in its own worktree: the doll, «Надеть / Снять», moves without a turn, the wallet
-  line, «Здесь лежит», lent marks, companion sheets, the spells tab); then the merge, screenshots and the stage's
-  clean suite.
-- Stage C: the turn on screen (a second worker after this commit: the one timeline, roll cards and companion chips,
-  the named pause, the action box, no transcript under the play screen).
-
-## Next
-
-- C and D merged and verified → E (frames, gallery, session close, council screen) → F (screens and settings, the
-  acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the final report). Money left: $20.79 of $50.
+- The clean-worktree full suite on `91d5583` (stages C, D and E together: their work is interleaved).
+- Stage F: the screens and settings items, the acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the
+  final report. Money left: $20.36 of $50.
 
 ## Owner's instructions during the run
 

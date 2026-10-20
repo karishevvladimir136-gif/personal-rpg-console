@@ -11,7 +11,10 @@ campaign, no owner content). The progress file is `docs/runs/fix-s2-progress.md`
 | --- | --- | --- |
 | A | $14.97 | the base («before») on four probes; four «after» arms (Opus alone at the same / a lighter continuation, Opus + Sonnet, Opus + Opus) on four probes; fight repeats for the continuation question; the cut → continue check; the ledger checker's re-check and its known-miss cases |
 | B | $11.16 | the prep of a fresh campaign; the four B probes in «Opus пишет — Opus записывает» with English and with Russian instructions; the two prep probes; the fight and the long rest with Russian instructions; the memory recall probe at «компактно» (the «стандарт» arm was refused by the guard, $0 spent) |
-| **Total** | **$26.13 of $50** (A+B $26.13 of $30) | |
+| D | $3.07 | the lair search and the fight on the stage D rules (Opus writes, Opus records, Russian instructions) |
+| C | $0 | (the turn on screen is code and synthetic tests; the 2D session took the combat work) |
+| E | $0.43 | the picture probe twice (five synthetic scenes: brief, GPT Image 2.5 Sunburst, the vision check), one raw check call, the check re-run |
+| **Total** | **$29.64 of $50** (A+B $26.13 of $30) | |
 
 ## Already fixed on the base branch
 
@@ -277,6 +280,165 @@ Settings → «Как ведущий работает»: «Инструкции 
 (видит только ведущий)» for the world and the campaign. «Для владельца»: the memory gauge. Screenshots
 `docs/runs/fix-s2-shots/B-*`.
 
+## Stage D — records and inventory, done once
+
+### What changed
+
+- **The model, once** (`docs/runs/fix-s2-inventory-design.md`, written by a Fable 5.1 subagent, with an implementation
+  appendix; `src/lib/inventory/model.ts` and `sheet.ts`, the same rules in SQL in migration 76). Things are items;
+  counters are only slots, hit dice and charges — potions are items. Money is a wallet per person (a character's
+  `currency_<code>` and a storage's wallet), one line in the order of value («Кошелёк: 10 зм · 11 см · 26 мм»), the full
+  coin name on hover; the DM's «золотые» and an older «зм» are one balance. Eleven slots on every person's doll (Голова,
+  Амулет, Плащ, Броня/одежда, Перчатки/наручи, Пояс, Сапоги, two rings, both hands; no «Ноги»); eleven kinds; a
+  thing's bonuses, hands, charges and attunement (three at most); a sheet of schema 2 (level, AC, speed, saves,
+  attacks, spells with every field) for the hero, the companions and the NPCs made from a 5e stat block.
+- **The DM's tools on the model** (D part 2): gear and sheets from stat blocks at creation (a search lists what the bodies
+  carry); identical things merge into one stack, a part of a stack moves on its own; loot the story shows lying is
+  recorded where it lies («Здесь лежит: …», a place pile); one source pays once (the mine's loot was granted twice in
+  session 2 — a second grant of the same source is refused with a hint); a ranged attack spends one arrow or bolt per
+  shot, hit or miss, and none left means no shot; worn things add their bonuses to rolls with the item as source (a
+  fiction bonus naming the same item is dropped — the ring that counted twice); new counters need a Russian label (no
+  `spell_slots_1` or `shaman_tusk` on screen); the hero's sheet changes in play only with a reason, shown as a chip;
+  mounts carry saddlebags, never riders; the ledger checker knows the people present and the place's pile.
+- **The screens** (D part 4, a worker in its own worktree, merged): the Character tab in three columns that fill the
+  window — the sheet (wallet with «Разделить…», counters with pips, attacks, saves, skills, «Изменить лист…»), the doll
+  (body slots left, amulet/rings/belt right, both hands below; a two-handed thing marks the off hand «занято»), the
+  person's own things; the item card («Надеть / Снять», the kind picker, «Отдать → себе / Брам / седельные сумки» with
+  «сколько», «Использовать», bonuses, charges, attunement, the history); the Inventory tab with drag between the hero,
+  the companions present, the saddlebags and «Здесь лежит» («Забрать →»), drag onto the doll; lent things read
+  «отдано: X» / «взято у: Y»; the Spells tab (cantrips, slots by level with pips, «подготовлено N из M», the spellbook,
+  ritual and concentration marks, «Концентрация: …», a card per spell, «Колдовать» puts the line into the action box);
+  companions open in the same sheet view with their stat block's numbers. Every owner move is an owner correction with
+  a history entry, undone if a later step fails; the DM sees them next turn (`ownerMovesSinceYouLastTouchedThem`).
+- **Starting things on the doll** (migration 83): a new hero's starting weapon goes in the hand, armour on the body,
+  the hat, cloak, boots, rings left then right; a stack and a second thing for a slot stay in the pack.
+- **The conversion of your records** (migration 77 defines it; it does not run by itself):
+  `rpg_private.fix_s2_inventory_convert()` gives the old possessions their kinds, moves every doll to the eleven slots
+  (neck and talisman → Амулет, «Ноги» comes off and stays), turns potion counters into potion items, empties a
+  mount's riders and joins coin entries under their codes. `docs/SANDBOX_LOAD_FIX_S2.md` says when to run it.
+
+### Numbers
+
+- The lair search (one turn, $1.66, 5 requests): ten things and four kinds of coins recorded where they lie, the coins
+  by their 5e codes from rolled 5e treasure tables (168 мм, 148 см, 6 зм, 13 эм), no checker miss.
+- The fight (one turn, $1.42, 3 requests): bundled attack-and-damage rolls for the hero and two companions; the dropped
+  light crossbow recorded where it lies.
+- Tests: the model and SQL agree on slots, kinds and coin words; the DM-side scenario (fight → search → take → equip →
+  drink → shoot → buy) and the owner-side acceptance (one potion of three to Брам, four gold to Брам, the staff into the
+  hand) both run through the real database saves and check every record; 14 screen tests (`fix-s2-d-ui`).
+
+### Screens
+
+`docs/runs/fix-s2-shots/D-*` — character, character with spells, a companion's sheet, inventory, the item card, party,
+holdings; 1920×1080, 2560×1440 and phone, no overflow. At 2560 the page is capped at 1920 px wide (stage F, item 22).
+
+## Stage C — the turn on screen
+
+### What changed
+
+- **One timeline per turn** (items 53, 63): the told text, each roll in the place it was made, the continuation; the
+  text never vanishes and comes back. Before the first word «Ведущий думает…» (the only place it appears); a pause in
+  the middle is named from what the DM does — «Ведущий бросает кости…», «сверяется с записями…», «записывает
+  изменения…» (the stream now says it); at the hero's roll «Ждёт твой бросок» with «Дальше»; after a companion's roll
+  «Бросок: Мэг — ведущий рассказывает, что вышло…»; while the records are written «Ведущий записывает…».
+- **The continuation after «Дальше» streams live** (it used to appear only at the commit: the reopened stream replayed
+  the old pause and closed). A saved turn knows where each roll was made (`changes[].at`, migration 81), so a turn this
+  page did not see told still shows its rolls in place; a paused turn carries the text told so far, so a reload or a
+  restart shows the card after its text.
+- **Roll cards** (items 43, 44, 66): one card per hero roll; companions' and NPCs' rolls are one-line chips in place
+  (the DM rolls for the companions — your decision; «Броски спутников: игрок» in the DM options gives you their cards).
+  The card shows every part of the total with its own source — «Скрытность +5 · Кольцо защиты +1 · тень от телеги
+  +2 · 17 + 8 = 25» — the dice kept, advantage and why, the difficulty in words, the DC only when the campaign shows it
+  (migration 82 keeps the parts with the check; older checks show «лист и снаряжение» as one line).
+- **The screen**: the action box starts at four lines and grows with the text to a third of the screen; the session
+  transcript stays folded inside the owner's editor («Открыть стенограмму сессии»), which is never forced open.
+- Combat, the battle map and the combat screen moved to the 2D session; nothing here touches them.
+
+### Screens
+
+`docs/runs/fix-s2-shots/C-game-turn-*` (a companion's chip and the named pause), `C-game-combat-turn-*` (chips, the
+hero's card waiting, «Ждёт твой бросок»), `C-game-recording-turn-*` (the card revealed, the continuation, «Ведущий
+записывает…»).
+
+## Stage E — pictures, the gallery, the session close
+
+### What changed
+
+- **Frames match their turn** (items 78, 79). Role words resolve to the scene's people, the hero first: «Горн
+  выслушивает мага» now draws the hero, not a stranger in a hood. The shot director writes each person's gaze,
+  expression and action and which hand does what; the reference pictures give identity only («do not copy the pose,
+  head angle, gaze or expression»); things in hands come only from the records — what the person wears or holds, what
+  they carry packed away, and «no other weapon, no shield, no lantern»; the hero's position (hidden, behind what) and
+  the light come from the turn; a temporary look (ash on the face, a burned robe) stays in the person's look until the
+  story removes it («no longer: …»); a person at 0 HP is drawn with closed eyes. Names never reach the picture prompt,
+  even when the model writes them in Latin letters. Portrait anchors are now neutral (front to a slight three-quarter,
+  calm face, looking at the viewer).
+- **The caption is the frame's own moment** in the campaign's language (it was the turn's first sentence).
+- **No frame for an out-of-game reply** («(Вне игры: записываю.)»), and an aside inside a story turn never reaches the
+  shot.
+- **The vision check** after each frame (Claude Haiku 5.5, a fraction of a cent): extra or missing arms and hands, a
+  shield or a lantern the person does not have, open eyes at 0 HP. A mistake queues one automatic redraw with the
+  corrections (never a second one, never past the daily limit) or marks the frame for you («Проверка кадра: …»).
+- **The frame appears in its turn** (item 77): «Кадр сцены» draws the frame of the last turn with narration (never a
+  failed or out-of-game one), the page no longer scrolls through the campaign, and every answer is said in words
+  («Дневной лимит картинок исчерпан — новый день начнётся в полночь», «У этого хода нет текста…», «Это ответ вне
+  игры…»).
+- **The daily picture limit starts at your midnight**, not UTC's (17:00 for you): the app takes the time zone of your
+  device the first time it opens (migration 79).
+- **The gallery replaces the chronicle** (item 80): «Галерея» on the game screen; all frames in story order by session
+  with their captions; a large view with «К ходу» and «Перерисовать»; tabs Кадры / Люди / Места / Вещи / Карты. The
+  chronicle and its one-click batch redraw left the navigation.
+- **The session close by length** (item 81, your design): after a short session «Что было» in a few lines; after a long
+  one (30 turns or three hours of play, pauses over 15 minutes not counted) the ending cards — one per person or group
+  met, with the portrait, where they are, how they stand with the hero, one line of fate, «неизвестно» when the hero
+  does not know; then «Открытые нити» from all live threads; then «Тем временем» through an in-world channel («донесение
+  начальнику порта»), which moves the story without answering an open question; «Ранее в…» is three or four
+  forward-looking sentences (where we are, what is at stake, what comes next). One digest per session, shown once.
+- The party council never offers the hero as a listener (stage A did it; a test pins it now).
+
+### The picture probe (synthetic scenes, live models)
+
+Five scenes shaped like session 2's misses, each through the brief (Sonnet 5.5), the picture (GPT Image 2.5
+Sunburst, no references) and the vision check; frames `docs/runs/fix-s2-shots/E-probe-*.jpg`, numbers
+`docs/runs/fix-s2-picture-probe.json`.
+
+| Scene | Who is drawn | Caption (Russian, the frame's moment) | What the frame shows |
+| --- | --- | --- | --- |
+| «Хальвар выслушивает мага и кивает» | the hero and the sergeant | yes | the hero (the mage) holding the map, the sergeant looking at it; no shield |
+| kneeling behind the root, aiming | the hero and the sergeant | yes | the hero kneels and aims, the sergeant's hand on the hilt |
+| the ash paste | the hero and the scout | yes | one hand smears the paste, the other holds the waterskin; two hands each |
+| the hidden raid | the hero and the sergeant | yes | the hero hidden in the cart's shadow, ash on his face, no lantern; the sergeant gags the guard |
+| down at 0 HP behind the burning cart | the hero, the sergeant, the leader | yes | your reference frame (item 76): eyes closed, the hat beside him, the bloody blade, the key on the dead man's chain |
+| «(Вне игры: записываю.)» | — | — | no call at all |
+
+Gaze across the frames (the check reads it): the hero looks at the map, at the target up-right, at the scout, far
+away, down; the sergeant at the map, far away, down at the guard, at the leader — no repeated portrait gaze. Found and
+fixed on the way: the check's answer was unreadable three times of five (its thinking used the 700-token cap — now
+3000); the brief once wrote «looking at Lira» in its prose (names are now scrubbed from the prose too); the check
+flagged the distant target the story names (now allowed). Not measured: likeness to a portrait anchor (the probe had
+no anchors) — that is what your session will show.
+
+### Screens
+
+`docs/runs/fix-s2-shots/E-gallery-*`, `E-ending-*` (short), `E-ending-cards-*` (long), `E-game-*` (the frame in its
+turn, with its caption).
+
+### The regression list on stages D, C and E
+
+- Honest dice: every roll is the server's; the card shows each addend with its source and the dice kept.
+- Enemies that play to kill: not changed here (stage B's rules; the combat work moved to the 2D session).
+- No item lost: loot is recorded where the story shows it lying; a part of a stack moves on its own; the owner's moves
+  keep a history and the DM sees them; one source pays once; arrows and bolts are spent per shot.
+- Active companions: the DM rolls for them and their rolls show in place as chips; companion sheets carry their stat
+  block's skills and attacks.
+- Right modifiers and advantage: the sheet's skill, each worn thing and each bonus of the fiction are separate on the card;
+  a fiction bonus naming a worn item is dropped (no double count); advantage shows why.
+- Honest magic and slots: the Spells tab shows the slots by level with pips, what is prepared and the concentration.
+- Facts held: not changed here.
+- Secrets only through people who know them: captions come from the narration only (never from the writer's private
+  notes); the ending cards and «Тем временем» carry only what the hero knows or could hear; the vision check and the
+  brief never reach the player.
+
 ## Needs the owner
 
 1. **Session 3's DM mode.** Your choice «Opus пишет — Opus записывает» holds on the probes (records as good as the single
@@ -292,3 +454,10 @@ Settings → «Как ведущий работает»: «Инструкции 
 5. **«Тайны (видит только ведущий)»** is empty for your world and campaign. If you have a truth for your campaign's world (as in
    your chat campaigns), write it there before session 3; the DM's prep builds on it. Without it the prep writes its
    own hidden layer on the first entry (one Opus call, ≈ $0.45).
+6. **The one-time conversion of your records** (stage D) runs from your own machine after the database dump —
+   `docs/SANDBOX_LOAD_FIX_S2.md` has the one line. Nothing converts by itself.
+7. **Portraits from a second angle** were not added (one neutral angle now). A second anchor per person costs one more
+   picture each; say if you want it.
+8. **The vision check's automatic redraw** costs one more frame when it finds a mistake (it counts toward the daily
+   limit). If you prefer only the mark, say so — it is one switch to add.
+9. **The chronicle** left the navigation (the gallery replaced it); its page still opens at `…/chronicle` if you miss it.
