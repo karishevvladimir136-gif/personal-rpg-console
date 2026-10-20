@@ -11,7 +11,7 @@ import { parseLive2dBoard, parseLive2dScene, parseLive2dSettings, parsePoi, pars
 
 export type Live2dRpcAction =
   | "read" | "settings.save" | "scene.save" | "scene.update" | "poi.replace" | "poi.save" | "region.save"
-  | "seed.plant" | "seed.list" | "seed.discover";
+  | "seed.plant" | "seed.list" | "seed.discover" | "battle.save";
 export type Live2dContext = {
   campaignId: string;
   ownerId: string;

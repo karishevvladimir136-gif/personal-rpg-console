@@ -25,7 +25,7 @@ test("contracts: old participant rows read with defaults; new rows round-trip; t
   assert.equal(legacy.active, true);
   assert.equal(legacy.side, "party");
   assert.equal(legacy.hp, null);
-  const fresh = parseCombatant({ initiative: 17, active: false, side: "foe", economy: { action: false, bonus: true, reaction: true, moveFeet: 10, moveMaxFeet: 30 }, conditions: ["prone"], deathSaves: null, hp: { current: 12, max: 20 }, known: [{ text: "боится огня", revealed: false }], intent: { text: "обойти с фланга", noticedBy: null }, defending: false, withdrawn: false });
+  const fresh = parseCombatant({ initiative: 17, active: false, side: "foe", economy: { action: false, bonus: true, reaction: true, moveFeet: 10, moveMaxFeet: 30 }, conditions: ["prone"], deathSaves: null, hp: { current: 12, max: 20 }, known: [{ text: "боится огня", revealed: false }], intent: { text: "обойти с фланга", noticedBy: null }, ac: 13, resist: ["cold"], immune: [], vulnerable: ["fire"], defending: false, withdrawn: false });
   const json = combatantJson(fresh);
   assert.equal(json.action, 0, "the old readers' numbers follow the economy");
   assert.equal(json.move, 1);

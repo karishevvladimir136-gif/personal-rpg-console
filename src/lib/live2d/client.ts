@@ -5,7 +5,7 @@ import { parseLive2dBoard, type Live2dBoard } from "./contracts.ts";
 
 export type Live2dAction =
   | "scene.prepare" | "scene.redraw" | "scene.sheet.save" | "poi.save" | "poi.redraw"
-  | "region.draw" | "settings.save";
+  | "region.draw" | "battle.prepare" | "settings.save";
 export type Live2dTransport = {
   board: (campaignId: string) => Promise<Live2dBoard>;
   send: (action: Live2dAction, campaignId: string, input: unknown) => Promise<unknown>;

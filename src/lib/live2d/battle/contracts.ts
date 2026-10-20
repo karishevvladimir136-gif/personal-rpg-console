@@ -26,6 +26,11 @@ export type Combatant = {
   known: { text: string; revealed: boolean }[];
   /** The enemy's intent, shown only when someone in the party noticed it. */
   intent: { text: string; noticedBy: string | null } | null;
+  /** The optional rules module's inputs, from the stat block as the DM gives them: armour class, damage types resisted / ignored / feared. */
+  ac: number | null;
+  resist: string[];
+  immune: string[];
+  vulnerable: string[];
   /** Kept for the older readers of the encounter panel. */
   defending: boolean;
   withdrawn: boolean;
@@ -58,6 +63,8 @@ export type Field = {
   turnInRound: number;
   /** The planned opening: the party's declared action resolves before initiative (the owner's house rule). */
   opening: "party" | null;
+  /** The optional rules module: the server applies conditions, cover, crits and resistances to attacks. */
+  rules: boolean;
   pendingReaction: PendingReaction;
   log: LogLine[];
 };
@@ -71,6 +78,7 @@ const int = (v: unknown, fallback: number) => (typeof v === "number" && Number.i
 const bool = (v: unknown, fallback: boolean) => (typeof v === "boolean" ? v : fallback);
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, max) : "");
 const KEY = /^[a-z0-9][a-z0-9_-]{0,59}$/;
+const words = (v: unknown) => (Array.isArray(v) ? v.map((row) => str(row, 40)).filter(Boolean).slice(0, 12) : []);
 
 /** The combatant of a participant row; an old row (`{action:1, move:1, …}`) reads with defaults. */
 export function parseCombatant(raw: unknown, fallback: { side: Side; active?: boolean } = { side: "other" }): Combatant {
@@ -94,13 +102,15 @@ export function parseCombatant(raw: unknown, fallback: { side: Side; active?: bo
     hp: isRecord(v.hp) && typeof v.hp.current === "number" && typeof v.hp.max === "number" ? { current: Math.round(v.hp.current), max: Math.max(1, Math.round(v.hp.max)) } : null,
     known: Array.isArray(v.known) ? v.known.flatMap((row) => (isRecord(row) && str(row.text, 200) ? [{ text: str(row.text, 200), revealed: row.revealed === true }] : [])).slice(0, 12) : [],
     intent: isRecord(v.intent) && str(v.intent.text, 200) ? { text: str(v.intent.text, 200), noticedBy: typeof v.intent.noticedBy === "string" ? v.intent.noticedBy : null } : null,
+    ac: typeof v.ac === "number" && Number.isFinite(v.ac) ? Math.round(v.ac) : null,
+    resist: words(v.resist), immune: words(v.immune), vulnerable: words(v.vulnerable),
     defending: bool(v.defending, false),
     withdrawn: bool(v.withdrawn, false),
   };
 }
 export function combatantJson(row: Combatant): JsonObject {
   return { ...row, deathSaves: row.deathSaves, hp: row.hp, intent: row.intent, known: row.known.map((line) => ({ ...line })),
-    conditions: [...row.conditions], economy: { ...row.economy },
+    conditions: [...row.conditions], economy: { ...row.economy }, resist: [...row.resist], immune: [...row.immune], vulnerable: [...row.vulnerable],
     // The old readers' numbers (the encounter panel of the game screen).
     action: row.economy.action ? 1 : 0, move: row.economy.moveFeet > 0 ? 1 : 0, reaction: row.economy.reaction ? 1 : 0 } as JsonObject;
 }
@@ -136,6 +146,7 @@ export function parseField(raw: unknown): Field {
     activeParticipantId: typeof v.activeParticipantId === "string" ? v.activeParticipantId : null,
     turnInRound: Math.max(0, int(v.turnInRound, 0)),
     opening: v.opening === "party" ? "party" : null,
+    rules: v.rules === true,
     pendingReaction: reaction ? { targetId: String(reaction.targetId), trigger: str(reaction.trigger, 240), options: Array.isArray(reaction.options) ? reaction.options.map((row) => str(row, 120)).filter(Boolean).slice(0, 4) : [] } : null,
     log: Array.isArray(v.log) ? v.log.flatMap((row) => (isRecord(row) ? [{ round: int(row.round, 0), actor: str(row.actor, 80), what: str(row.what, 160), result: str(row.result, 160), ref: typeof row.ref === "string" ? row.ref : null }] : [])).slice(-MAX_LOG) : [],
   };

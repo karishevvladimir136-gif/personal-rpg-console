@@ -19,6 +19,8 @@ import { scenePois } from "@/lib/live2d/scene";
 import { newPlacesSince } from "@/lib/live2d/region";
 import { routePath, startTravel, travelMinutesOf, travelPoint, travelProgress, type Travel } from "@/lib/live2d/travel";
 import { usePictures } from "../registry/live-frames";
+import { BattleScreen } from "./battle/battle-screen";
+import b from "./battle/battle.module.css";
 import { useChrome, type CampaignScreenId } from "../registry/shell";
 import { Plate, registry as r, useCopy } from "../registry/primitives";
 import s from "./live2d.module.css";
@@ -56,6 +58,9 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
   const [note, setNote] = useState<{ text: string; kind: "ok" | "warn" } | null>(null);
   const [position, setPosition] = useState<Position | null>(preview?.level ? { level: preview.level, focusId: preview.anchorId === undefined ? currentId : preview.anchorId } : null);
   const [editing, setEditing] = useState(false);
+  // Part 2: while a fight is on, the screen can switch to the battle map; «К карте мира» returns.
+  const fighting = !!play?.encounters.some((row) => row.status === "active");
+  const [battle, setBattle] = useState<boolean | null>(null);
 
   // The board and the placements from the server; polled while something is being drawn.
   const refresh = useCallback(async () => {
@@ -268,8 +273,16 @@ export function Live2dScreen({ snapshot, play, preview, transport = defaultLive2
     );
   }
 
+  if (fighting && (battle ?? preview?.level === undefined))
+    return <BattleScreen snapshot={snapshot} play={play} board={board} images={preview?.images} preview={!!preview} onBack={() => setBattle(false)} />;
   return (
     <div className={s.screen}>
+      {fighting && (
+        <div className={b.banner} role="status">
+          <span>{c("Идёт бой", "A fight is on")}</span>
+          <button type="button" onClick={() => setBattle(true)}>{c("Открыть карту боя", "Open the battle map")}</button>
+        </div>
+      )}
       <Plate eyebrow={c("2D LIVE", "2D LIVE")} title={level === "scene" ? name(focusId) : level === "region" ? (view.anchorName || c("Известный край", "The known region")) : view.anchorName || c("Мир", "World")}
         sub={c("Ведущий решает, что случилось; записи помнят; экран только показывает.", "The DM decides what happened; the records remember; the screen only shows.")} />
       {crumbBar}

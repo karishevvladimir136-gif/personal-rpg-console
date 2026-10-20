@@ -22,7 +22,7 @@ test("migration 202610210200: the public board (no seeds), settings, scenes with
     assert.ok(f.files.includes("202610210200_live2d.sql"));
     const w = await world(f);
     const read = await call(f, w.cid, "read");
-    assert.deepEqual(Object.keys(read).sort(), ["campaignId", "pois", "regionMaps", "scenes", "settings"]);
+    assert.deepEqual(Object.keys(read).sort(), ["battleMaps", "campaignId", "pois", "regionMaps", "scenes", "settings"]);
     assert.deepEqual(read.settings, { markers: "standard", revision: 0 });
     assert.deepEqual([read.scenes, read.pois, read.regionMaps], [[], [], []]);
     await fails(call(f, w.cid, "read", {}, f.other), "rpg_forbidden");
