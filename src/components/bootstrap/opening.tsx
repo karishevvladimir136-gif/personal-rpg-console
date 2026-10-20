@@ -57,7 +57,11 @@ export function OpeningBootstrap({
   );
   const [chosen, setChosen] = useState<{ draftId: string; minutes: number | null } | null>(null);
   const startMinutes = draft && chosen?.draftId === draft.draftId ? chosen.minutes : readMinutes;
-  const dirty = !!start || !!w.pending || !!draft;
+  // Fix run F (item 25): the proposal and its review are kept in this tab's storage, so only a request in flight or a
+  // review the owner actually edited is unsaved — a saved adventure's start or an untouched proposal never asks
+  // «Покинуть страницу…».
+  const [edited, setEdited] = useState<string | null>(null);
+  const dirty = !!w.pending || w.busy || (!!draft && edited === draft.draftId);
   useEffect(() => onDirty(dirty), [dirty, onDirty]);
   useEffect(() => () => onDirty(false), [onDirty]);
   // The wizard's «Предложить первую сцену» is the owner's click: the proposal starts once, without a second button.
@@ -117,7 +121,10 @@ export function OpeningBootstrap({
           <fieldset disabled={w.busy || !!w.pending}>
             <OpeningReviewFields
               value={review}
-              onChange={w.setReview}
+              onChange={(value) => {
+                setEdited(draft.draftId);
+                w.setReview(value);
+              }}
               language={language}
               questions={draft.proposal.questions}
               startMinutes={startMinutes}

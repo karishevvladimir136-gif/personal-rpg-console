@@ -208,3 +208,14 @@ test("F2 item 25: the Library's document — Markdown read safely, one panel, no
   for (const [key, value] of [["Edit this document", "Изменить"], ["Save the document", "Сохранить"], ["Versions", "Версии"], ["Upload a file", "Загрузить файл"]])
     assert.equal(ru[key], value);
 });
+
+test("F item 25: the opening asks «Покинуть страницу…» only for a request in flight or a review the owner edited", () => {
+  const opening = src("src/components/bootstrap/opening.tsx");
+  const dirty = opening.match(/const dirty = ([^;]+);/)?.[1] ?? "";
+  assert.ok(dirty, "the opening computes its unsaved state");
+  assert.ok(!/!!start\b/.test(dirty), "a saved adventure's start is not an unsaved change");
+  assert.ok(!/\|\| !!draft\s*$/.test(dirty) && !/^!!draft\b/.test(dirty), "an untouched proposal (kept in the tab's storage) is not an unsaved change");
+  assert.match(dirty, /w\.pending/, "a request in flight is");
+  assert.match(dirty, /edited === draft\.draftId/, "an edited review of this draft is");
+  assert.match(opening, /onChange=\{\(value\) => \{\s*setEdited\(draft\.draftId\);\s*w\.setReview\(value\);/, "only the owner's edit marks the review");
+});
