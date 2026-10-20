@@ -52,6 +52,31 @@ it and turns clicks into intents in the action box.** Text play keeps working wi
    player never sees until discovered, in a form the fix run's hidden layer (key finding 2) can absorb at integration;
    a discovered seed becomes a public POI.
 
+## Quality — the scene must not hallucinate (owner, 23:42: «повышенные требования к качеству генерации»)
+
+A clickable scene is a promise: what is drawn is what is there. So:
+- **The records come first.** Before a place is drawn, it gets a short scene sheet from the narration and records: the
+  layout (entrance, counter, back gate to the yard, stairs, cellar hatch), the notable objects the story named, the light
+  and time of day, what is never there. The DM sees the sheet in its context afterwards, so later narration does not
+  contradict the picture.
+- **No named people baked into the background.** People move, leave and die; draw the place without them and show them
+  as portrait tokens on their spot. Background extras only if the sheet says the place is crowded (a market).
+- **A brief with «must show» and «must not show»** from the sheet; a wide, readable composition with the key objects
+  separated (not cluttered, no text or labels in the image), on the quality tier (scene backgrounds are drawn rarely).
+- **A check after every scene picture** by a strong vision model (not the cheapest — it runs once per place): each
+  «must show» item is visible and locatable; no prominent object or feature contradicts the sheet (an invented forge,
+  a second door, a lantern nobody has). A miss or a contradiction → one redraw with the brief corrected; still wrong →
+  the scene is marked for the owner, and the missing items appear as a side list («здесь также: погреб»), never as a
+  guessed marker.
+- **Markers never invent.** The locator returns a position only for items in the records, with a confidence; low
+  confidence shows as an «approximate» marker style; the owner can drag, hide or redraw with a comment.
+- **The place anchor is shared.** Once a scene exists, the live frames of that place use it as their place reference, so
+  the turn's pictures and the scene agree.
+- **Measured, not assumed:** a probe set of at least eight synthetic places with sheets (a warehouse, a temple, a mine
+  yard, a forest camp, a tavern, a ford, a market, a guard post); report the share of «must show» items found, the rate
+  of contradicting objects, the redraw rate and the cost per scene. Target: ≥ 90% of «must show» found after at most one
+  redraw, zero named people in backgrounds, zero markers for things not in the records.
+
 ## Not in this slice
 The battle map (it is in the fix run, stage C); EXPLORE 3D; video; music; Enter This World.
 
