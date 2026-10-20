@@ -1034,3 +1034,40 @@ whose thinking alone may use most of them — an «unparsed» digest may simply 
     offers to resend the same move (the draft is kept). The `time_words` flag on this turn was a false positive
     («с утра» at noon means «since morning»). The answer itself reasoned well (why the clerk named the buyer, where
     the wounded man would go, where to catch the buyer with the iron); the gloves and the strap again.
+
+## Pictures (owner, 22:00)
+
+76. **Good: portraits, the hero, the map, and a place picture reused** («картинки персонажей очень-очень хорошие,
+    главный герой тоже очень хорошо вышел, карта тоже топ… мы вернулись обратно — он ещё раз это использовал»). On
+    returning to the Beregost guard post the app showed the place's existing picture instead of drawing a new one.
+    Frames the owner singled out as right, with the hero recognisable: James taking the sergeant aside to the
+    furnace; James giving orders between the furnace and the carts; James against the cart wheel casting Mage
+    Armor; the mine yard. Owner's summary: «добились частичной консистентности персонажа и сильно лучших картинок».
+
+77. **«Нарисовать кадр» throws the page to the top and, now, draws nothing** («как нажимаю — прокручивает к верху
+    сквозь всю кампанию, а не генерирует в чате и сохраняет в галерею; и сейчас он больше не генерирует»). Code
+    (`game-screen.tsx`): the button sends `pictures.frame` with `trigger: "redraw"`, swallows the answer
+    (`.catch(() => {})`, the status is never read), and calls `scrollIntoView` on the frames panel at the top of
+    the game screen — on a long campaign that is a scroll through the whole story. Why nothing is drawn now (log +
+    code, to confirm): `currentFrameTurnId` takes the last turn with mode «game», which is the failed long-rest
+    turn (item 73); it has no text, so `requestFrame` returns `no_text` in about 0.2 s — four such POSTs in the log,
+    no `picture_frame_queued` after them (the last frame was queued before the failed turn). Do: the frame of a turn
+    appears in that turn, in place, and goes to the gallery; the button targets the last turn with narration (never
+    a failed one) and shows every non-queued status in words (off, cap — «дневной лимит», no text, waiting).
+
+78. **A frame that does not match its caption, a generic wizard, and a frame for an out-of-game reply.**
+    (a) «Горн выслушивает мага и кивает» — the picture shows an old hooded wizard, not James («он ж не абстрактного
+    мага слушает, а Джеймса»): the shot names people by role, and `requestFrame` matches `shot.who` to records by
+    name only, so «маг» finds no entity and the hero's references are not sent. (b) «Джеймс поднимается из-за
+    корневища на колено, целится…» — the picture is a standing group talk with horses («вообще нет соответствия»);
+    the lightbox caption is the turn's first sentence (`frameCaption`), while the picture is the moment the shot
+    director chose from the whole turn, so caption and picture can be different moments; the sergeant also got a
+    shield he does not own. (c) A frame was drawn for a turn whose whole narration was «(Вне игры: записываю.)», and
+    that line is its caption. Do: role words (маг, сержант, купец, мальчишка) resolve to the scene's people, the
+    hero first; the caption is the shot's own moment; no frame for an out-of-game-only turn; worn and carried gear
+    from the records is a hard constraint (no shield).
+
+Small, from the same screenshots: the party screen groups the sergeant, the scout and the hero under «Казённые
+лошади стражи» (a holding of horses listed as their home); both companion cards show «Навык 0» (a 5e Veteran and a
+Scout have real skills — Athletics, Perception, Stealth — so the DM's rolls for them may be at +0; check in the
+report); the guard post's place record says «Раннее утро» — a time of day stored in a place description.
