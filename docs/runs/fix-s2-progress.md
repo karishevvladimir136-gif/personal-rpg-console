@@ -93,11 +93,20 @@ run's instruction names `claude/fix-s2`, so the work is on this branch instead, 
   untouched base). The default frame path's two follow-up commits (`9d1fcd2`, `39c42ee`) passed their focused tests;
   the final suite covers them. Stages C, D and E are done.
 
+- Stage F (`4593089`, `2ce04b5`; F2 by a worker `7b08b02` … `b9665d5` → merged as `…008509b`; F1 by a worker `8063f89` …
+  `dc29bd5` → merged as `a2a467a` … `e4211bc`; then `3701857`, `bdd334a`, `b718733`): the hero built by the campaign's
+  DM in one pass (migration 84), the wizard in story order, the world as a canon document, the adventure's whole text
+  in each turn, the opening's answers pinned and names applied, Opus at high; readable sizes, the screens filling the
+  window, «Крупный текст истории», «Мастерство Ведущего», the Library, «ИИ: кто что делает», «Правила и кости», the
+  opening's frame, the quiet tools; «учётчик» as the one role word; the false «Покинуть страницу…» fixed; the
+  Adventures screen's sizes and the wide campaign list. The hero probe ($0.32): both synthetic heroes right. The
+  acceptance checklist's sections 6–7, the report's stage F section, the sandbox guide, DEV_STATUS. Screenshots `F-*`
+  (26 screens × 4 sizes) retaken on the merged code. The production build passes on a clean worktree of `b718733`.
+
 ## In progress
 
-- Stage F: the screens and settings items (two workers: the new-campaign flow and one-pass hero; the screens and
-  settings), the acceptance checklist in Russian, `docs/SANDBOX_LOAD_FIX_S2.md`, the final report. Money left: $20.20
-  of $50.
+- The final clean-worktree typecheck, lint and full suite on `b718733` (the last code commit). Money: $30.12 of $50
+  spent; nothing more is planned.
 
 ## Owner's instructions during the run
 

@@ -582,3 +582,10 @@ game (with the frame drawing and with large text), character, inventory and its 
 8. **The vision check's automatic redraw** costs one more frame when it finds a mistake (it counts toward the daily
    limit). If you prefer only the mark, say so — it is one switch to add.
 9. **The chronicle** left the navigation (the gallery replaced it); its page still opens at `…/chronicle` if you miss it.
+10. **The new hero comes from the default DM** (Claude Opus 5.5 at high, about a quarter of a dollar and a minute and a
+    half for a detailed hero), because the wizard asks for the hero before the DM. If you want the DM chosen first, the
+    two steps can swap.
+11. **The people who go with the hero** (the adventure's «Кто идёт с героем») reach the DM, who adds them as companions
+    on the first turn; they are not in the party before that. Say if they should join at the opening itself.
+12. **The per-turn limits** («Правила и пределы») left the campaign settings completely (they still apply on the
+    server); they are not kept in a folded developer section.
