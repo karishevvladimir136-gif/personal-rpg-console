@@ -881,3 +881,9 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     him and the hero has a usable reaction, the turn pauses at that point («Кадрик попадает: 17 против КД 13 — ставишь
     Щит?») with the reaction as one button, then continues; enemy attack rolls show in the round block (item 64);
     mid-session workaround: the player pre-declares reactions in his action («если по мне попадут — Щит»).
+- the hero downed (19:57): the death-save card arrived before any text, so the owner saw «спасбросок от смерти» without
+  knowing he had fallen (item 63). The DM was honest about the reaction: the Grey's Scorching Ray rolled 26 (natural
+  20), 23 and 20 against AC 13, and the aside says Shield (AC 18) would not have stopped any of them. Odd: the sergeant's
+  two hits landed but their damage was «deferred to the start of the next turn» — most likely the per-turn tool/check
+  budget ran out; a combat round must be able to finish its own damage (one request per round, item 59). Good: the
+  DM's turn ends on the right question — the hero is unconscious, the companion decides, the player may hint.
