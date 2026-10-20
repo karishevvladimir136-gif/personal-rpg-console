@@ -26,6 +26,8 @@ factions' hidden aims, clocks, prepared clues) and a codex asking for 5–10 sec
 - the world form has no field for DM-only secrets; the world text is public canon;
 - the DM's private notes (`privateSecrets` in `dm-loop/context.ts`, a 3500-token budget) start empty and are filled
   only by `note_world` during play — improvised turn by turn, so the plausible, mundane answer wins.
+Owner (22:45): «по факту это и обеспечивало, что кампании Шва и вторая были достаточно хорошими — у меня везде была
+тайная штука для ведущего; по факту в этом и идея D&D».
 Do (fix plan, first among the DM fixes): (1) remove the bootstrap's ban on hidden explanations; (2) a DM prep step at
 campaign start that writes the hidden layer into the private notes — the bigger truth behind the first case, the
 factions' hidden aims, 5–10 secrets not tied to places, clocks, one wondrous thread — never shown to the player;
