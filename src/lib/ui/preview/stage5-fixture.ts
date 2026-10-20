@@ -224,7 +224,21 @@ export function previewSnapshot(): CampaignSnapshot {
     campaign: previewCampaign,
     settings: { campaign_id: PREVIEW_CAMPAIGN_ID, revision: 1, updated_at: at(0), values: settings },
     settingsHistory: [],
-    documents: [{ ...row(110), title: "Путеводитель ведущего", status: "canon", current_version_id: id(111), body: "Мир Шва: стимпанк поверх руин Старого мира." }],
+    // Fix run after session 2 (items 25, 26): the guide in Markdown (its first line is the rules in words) and two
+    // more documents, so the Library's list, reader and editor have something to show. All synthetic.
+    documents: [
+      { ...row(110), title: "Путеводитель ведущего", status: "canon", current_version_id: id(111), body: [
+        "# Путеводитель ведущего", "", "D&D 5e (2014) с поправкой на стимпанк", "",
+        "## Мир", "Мир Шва: стимпанк поверх руин Старого мира. Эфир питает машины, а гильдии делят небо над Женевой.", "",
+        "## Как вести", "- Проверки — по **книге игрока**; сложность видна после броска.", "- Паровые машины ломаются в самый неудобный момент.",
+        "- Спутники говорят своими голосами и спорят с героем.", "", "## Тон", "Приключение с горечью: победы стоят дорого, но люди умеют радоваться.",
+      ].join("\n") },
+      { ...row(112), title: "Гильдии Женевы", status: "canon", current_version_id: id(113), body: [
+        "## Три гильдии", "1. Котельщики держат порт и цены на уголь.", "2. Часовщики знают, кто кому должен.", "3. Эфирщики молчат и богатеют.", "",
+        "> В Женеве платят не деньгами, а долгами.",
+      ].join("\n") },
+      { ...row(114), title: "Слухи с причала", status: "reference", current_version_id: id(115), body: "Говорят, «Бабка» летала через грозу и вернулась без капитана.\nДругие говорят, что капитана и не было." },
+    ],
     entities,
     storages,
     items,

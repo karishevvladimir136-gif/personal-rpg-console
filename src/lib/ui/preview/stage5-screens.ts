@@ -1,6 +1,9 @@
 export const stage5Screens = [
   "menu", "campaigns", "new-campaign",
+  // Fix run after session 2, stage F: General settings, «Мастерство Ведущего» and the campaign's Library.
+  "general", "craft",
   "game", "character", "inventory", "party", "journal", "codex", "map", "holdings", "settings", "adventures", "chronicle", "owner", "gallery", "ending",
+  "library",
 ] as const;
 export type Stage5Screen = (typeof stage5Screens)[number];
 export type Stage5Variant = {

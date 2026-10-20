@@ -32,9 +32,27 @@ import { RegistryPictures } from "./pictures-screen";
 import { SessionEnd } from "./session-end";
 import { previewDmView, previewOwnerPlay } from "@/lib/ui/preview/owner-fixture";
 import { Plate, useCopy } from "./primitives";
+import { PersistentGeneralSettings } from "../persistent-settings";
+import { DmCraftOwner } from "../dm-craft-owner";
+import { PersistentLibrary } from "../persistent-documents";
+import { previewCraftView } from "@/lib/ui/preview/dm-craft-fixture";
+import type { ProviderSettings } from "@/lib/production/configuration-contracts";
 
 const samples: Record<Stage5Variant["world"], PreviewSample> = { shov: shovSample, noir: noirSample };
-const libraryScreens: Record<string, LibraryScreenId> = { menu: "menu", campaigns: "campaigns", "new-campaign": "campaigns" };
+const libraryScreens: Record<string, LibraryScreenId> = { menu: "menu", campaigns: "campaigns", "new-campaign": "campaigns", general: "settings", craft: "dm-craft" };
+const libraryPreviewScreen: Record<LibraryScreenId, string> = { menu: "menu", campaigns: "campaigns", settings: "general", "dm-craft": "craft", "world-library": "campaigns" };
+// Fix run after session 2 (item 4): the provider flags of the General settings preview — synthetic, no keys.
+const previewProviders: ProviderSettings = {
+  schemaVersion: 1,
+  providers: [
+    { id: "openai", label: "OpenAI", status: "configured_not_tested" },
+    { id: "anthropic", label: "Anthropic", status: "configured_not_tested" },
+    { id: "fal", label: "fal", status: "unavailable" },
+  ],
+  models: ["gpt-6-astra", "gpt-6-sol", "gpt-5.4", "gpt-5.4-mini"].map((model) => ({ providerId: "openai", id: model, label: model, reasoning: ["low", "medium", "high"] })),
+  globalDefault: { providerId: "openai", modelId: "gpt-6-astra", reasoning: "high" },
+  globalDefaultStatus: "configured_not_tested",
+};
 const refuse = async (): Promise<never> => { throw new Error("Synthetic preview: nothing is sent."); };
 
 /** One synthetic screen of Stage 5. Every record comes from a preview fixture. */
@@ -49,17 +67,30 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   const snapshot = useMemo(() => (endingForm ? previewEnded(sample.snapshot(), endingForm) : sample.snapshot()), [sample, endingForm]);
   const query = new URLSearchParams({ ...(variant.world === "noir" ? { world: "noir" } : {}), ...(lang ? { lang } : {}) }).toString();
   const suffix = query ? `?${query}` : "";
+  // Fix run after session 2: ?large=1 turns «Крупный текст истории» on; ?drawing=1 shows the scene header drawing.
+  const largeText = flags.get("large") === "1" ? true : undefined;
   const chrome = useMemo(() => ({
     href: (target: CampaignScreenId) => `/preview/stage-5/${(stage5Screens as readonly string[]).includes(target) ? target : "game"}${suffix}`,
-    libraryHref: (target: LibraryScreenId) => `/preview/stage-5/${target === "menu" ? "menu" : "campaigns"}${suffix}`,
+    libraryHref: (target: LibraryScreenId) => `/preview/stage-5/${libraryPreviewScreen[target] ?? "campaigns"}${suffix}`,
     current: screen in libraryScreens ? undefined : (screen as CampaignScreenId),
     libraryCurrent: libraryScreens[screen],
     dmSettings: sample.dmSettings,
-  }), [suffix, screen, sample]);
+    largeText,
+  }), [suffix, screen, sample, largeText]);
+  const drawingPlace = flags.get("drawing") === "1" ? snapshot.publicState.current_location_id : null;
+  const images = useMemo(() => {
+    const all = { ...sample.images, ...sample.pictures.images };
+    if (drawingPlace) delete all[drawingPlace];
+    return all;
+  }, [sample, drawingPlace]);
+  const drawing = useMemo(() => (drawingPlace ? new Set([...sample.drawing, drawingPlace]) : sample.drawing), [sample, drawingPlace]);
   const refresh = async () => {};
   let content: ReactNode;
   if (screen in libraryScreens) {
     const body = screen === "menu" ? <MainMenu />
+      : screen === "general" ? (
+        <PersistentGeneralSettings preview={{ preferences: { language, largeText: flags.get("large") === "1", suggestions: false, revision: 1, updated_at: "2026-10-19T12:00:00.000Z" }, providers: previewProviders }} />
+      ) : screen === "craft" ? <DmCraftOwner previewView={previewCraftView} previewOpenKey={flags.get("card") === "1" ? "afterglow-rhythm" : undefined} />
       : screen === "new-campaign" ? (
         <RegistryNewCampaign worlds={sample.worlds} preview initialStep={variant.step ?? 0} onClose={() => {}} onCreated={refresh} />
       ) : (
@@ -80,7 +111,7 @@ export function Stage5Preview({ screen, lang, variant }: { screen: Stage5Screen;
   return (
     <RegistryChrome value={chrome}>
       <CampaignDataPreview snapshot={snapshot} refresh={refresh}>
-        <PreviewImages images={{ ...sample.images, ...sample.pictures.images }} drawing={sample.drawing} board={sample.pictures.board}>
+        <PreviewImages images={images} drawing={drawing} board={sample.pictures.board}>
           <PreviewAutopilot>{content}</PreviewAutopilot>
         </PreviewImages>
       </CampaignDataPreview>
@@ -137,6 +168,9 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       );
     case "adventures":
       return <PreviewAdventures sample={sample} language={language} />;
+    case "library":
+      // Fix run after session 2 (item 25): ?doc=1 opens the DM guide, ?edit=1 its editor (nothing is saved).
+      return <PersistentLibrary initialDocumentId={flags.get("doc") === "1" ? snapshot.dmGuideDocumentId : null} initialEditing={flags.get("edit") === "1"} />;
     case "owner":
       return <RegistryOwner data={snapshot} play={previewOwnerPlay(play)} preview={{ view: previewDmView }} />;
     case "gallery":

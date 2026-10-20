@@ -105,3 +105,105 @@ test("F2 item 30: «Закончить сессию» is the quietest tool, last
   assert.equal((sheet.match(/data-item-pick=""/g) ?? []).length, 3, "the slot, the row and the cell open a card");
   assert.match(src("src/components/registry/holdings-screen.tsx"), /useCardDismiss\(!!itemId, \(\) => setItemId\(null\)\);/);
 });
+
+test("F2 item 5: nothing on the owner's screens is under 13px; helper and muted text at least 14px; body text 16px", async () => {
+  const { readdirSync, statSync } = await import("node:fs");
+  const files = [];
+  const walk = (dir) => {
+    for (const name of readdirSync(new URL(`../${dir}`, import.meta.url))) {
+      const path = `${dir}/${name}`;
+      if (statSync(new URL(`../${path}`, import.meta.url)).isDirectory()) walk(path);
+      else if (path.endsWith(".css")) files.push(path);
+    }
+  };
+  walk("src");
+  const small = [];
+  for (const file of files) {
+    // World Lab (left untouched by this stage), the Adventures screen (another worker's in this run) and the combat
+    // rules of the 2D Live session are outside this pass.
+    if (file.includes("/world-lab/") || file.includes("/components/adventures/")) continue;
+    const text = src(file);
+    for (const block of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+      const selector = block[1].replace(/\/\*[\s\S]*?\*\//g, "").trim();
+      if (/::(before|after)/.test(selector)) continue;
+      if (file.endsWith("globals.css") && /combat|initiative/i.test(selector)) continue;
+      for (const size of block[2].matchAll(/font-size:\s*([0-9.]+)(px|rem)/g)) {
+        const px = size[2] === "px" ? Number(size[1]) : Number(size[1]) * 16;
+        if (px > 0 && px < 13) small.push(`${file}: ${selector} ${size[1]}${size[2]}`);
+      }
+    }
+  }
+  assert.deepEqual(small, [], "every chip and label at least 13px");
+  const globals = src("src/app/globals.css");
+  assert.match(globals, /\nbody \{[^}]*font-size: 16px;/);
+  assert.match(globals, /\n\.setting-row p \{[^}]*font-size: 15px;/);
+  assert.match(globals, /\n\.panel-heading \.muted \{\n  font-size: 14px;/);
+  assert.match(src("src/app/registry.css"), /\n\.muted \{\n  color: var\(--muted\);\n  font-size: 15px;/);
+  assert.match(src("src/components/registry/registry.module.css"), /\n\.note \{\n  font-size: 15px;/);
+  assert.match(src("src/components/registry/registry.module.css"), /@media \(min-width: 2200px\) \{[\s\S]*\.note,[\s\S]*font-size: 16\.5px;/, "a step larger on a big monitor");
+});
+
+test("F2 item 7: «Мастерство Ведущего» — one-size cards with a short description, the main doctrine first, the whole card in a dialog with its own folded history", async () => {
+  const { craftSummary, craftCategoryLabel, craftOrder } = await import("../src/lib/ui/craft-view.ts");
+  assert.equal(craftSummary("Коротко. Второе предложение здесь. Третье не нужно."), "Коротко. Второе предложение здесь.");
+  const long = "Это первое предложение достаточно длинное, чтобы одного хватило для карточки в сетке мастерства ведущего. Второе.";
+  assert.equal(craftSummary(long), long.split(" Второе")[0]);
+  assert.ok(craftSummary("слово ".repeat(80), 220).endsWith("…"));
+  assert.equal(craftCategoryLabel("cognitive", "ru"), "разум мира");
+  assert.equal(craftCategoryLabel("voice", "ru"), "голос");
+  assert.equal(craftCategoryLabel("mystery-x", "ru"), null, "no English word in Russian tags");
+  assert.equal(craftCategoryLabel("voice", "en"), "voice");
+  const ordered = craftOrder([{ key: "b", kind: "card", title: "Б" }, { key: "core-doctrine", kind: "doctrine", title: "Как вести игру" }, { key: "a", kind: "card", title: "А" }]);
+  assert.equal(ordered.main.key, "core-doctrine");
+  assert.deepEqual(ordered.cards.map((row) => row.key), ["a", "b"]);
+  const screen = src("src/components/dm-craft-owner.tsx");
+  assert.match(screen, /aria-haspopup="dialog"/);
+  assert.match(screen, /<Modal title=\{versionText\(opened, language\)\.title\}/);
+  assert.match(screen, /history=\{view\.versions\.filter\(\(version\) => version\.key === opened\.key\)/, "the history of that card only");
+  assert.match(screen, /<details className=\{k\.history\}>/, "folded");
+  assert.match(screen, /t\("Make it the approved version"\)/);
+  assert.doesNotMatch(screen, /<Panel title=\{t\("Version history"\)\}>/, "no page-long history of every card");
+  const tile = screen.slice(screen.indexOf("const tile ="), screen.indexOf("  return (\n    <>"));
+  assert.doesNotMatch(tile, /Edit and review a new version|version\.category|Avoid:/, "the grid card: no edit button, no tags, no «Избегать»");
+  const css = src("src/components/dm-craft.module.css");
+  assert.match(css, /grid-auto-rows: 1fr;/, "the cards are one size");
+  assert.match(css, /-webkit-line-clamp: 3;/);
+  assert.match(css, /@media \(min-width: 1280px\) \{\n  \.grid \{\n    grid-template-columns: repeat\(3, minmax\(0, 1fr\)\);/);
+  assert.match(css, /@media \(min-width: 1800px\) \{\n  \.grid \{\n    grid-template-columns: repeat\(4, minmax\(0, 1fr\)\);/);
+  assert.equal(ru["Craft card"], "Карточка");
+  assert.equal(ru["Make it the approved version"], "Сделать одобренной");
+});
+
+test("F2 item 22: the shell fills the window — the full-height sticky menu, the content at least the window's height, the width used on big monitors", () => {
+  const css = src("src/components/registry/shell.module.css");
+  assert.doesNotMatch(css, /max-width: 1920px/, "no 1920px cap with empty bands at 2560");
+  assert.match(css, /\.nav \{\n  position: sticky;\n  top: 16px;\n  align-self: start;\n  height: calc\(100dvh - 32px\);/);
+  assert.match(css, /\.dm \{\n[^}]*margin-top: auto;/, "the DM box at the foot of the menu");
+  assert.match(css, /\.app > \.main \{\n    min-height: calc\(100dvh - 32px\);/);
+  assert.match(css, /@media \(min-width: 2200px\) \{\n  \.app \{\n    grid-template-columns: 300px minmax\(0, 1fr\);/);
+  assert.match(src("scripts/fix-s2-screenshots.mjs"), /\[1440, 900, "900p"\], \[1920, 1080, "1080p"\], \[2560, 1440, "1440p"\], \[390, 844, "phone"\]/);
+});
+
+test("F2 item 25: the Library's document — Markdown read safely, one panel, no system paragraphs, «Загрузить файл» as a link, history behind «Версии»", async () => {
+  const { parseMarkdown, parseInline } = await import("../src/lib/ui/markdown.ts");
+  const blocks = parseMarkdown("# Заголовок\n\nАбзац **жирный** и *курсив*.\nВторая строка.\n\n- один\n- два\n\n1. первый\n2. второй\n\n> цитата\n\n---\n<script>alert(1)</script>");
+  assert.deepEqual(blocks.map((block) => block.kind), ["heading", "paragraph", "list", "list", "quote", "rule", "paragraph"]);
+  assert.equal(blocks[0].level, 1);
+  assert.deepEqual(blocks[1].inline.map((part) => part.kind), ["text", "strong", "text", "em", "text"]);
+  assert.match(blocks[1].inline.at(-1).text, /\nВторая строка/, "line breaks inside a paragraph are kept");
+  assert.equal(blocks[2].ordered, false);
+  assert.equal(blocks[3].ordered, true);
+  assert.deepEqual(blocks[6].inline, [{ kind: "text", text: "<script>alert(1)</script>" }], "markup in a document is text, never HTML");
+  assert.deepEqual(parseInline("`код` и __важно__"), [{ kind: "code", text: "код" }, { kind: "text", text: " и " }, { kind: "strong", text: "важно" }]);
+  assert.doesNotMatch(src("src/components/markdown-view.tsx"), /dangerouslySetInnerHTML/);
+  const docs = src("src/components/persistent-documents.tsx");
+  const library = docs.slice(docs.indexOf("export function LibraryDocumentEditor"));
+  assert.doesNotMatch(library, /Guidance changes apply to the current timeline\.|Save or restore guidance explicitly|Plain text and Markdown are stored as written|Refresh saved data|Use saved values/,
+    "no system paragraphs or record-keeping buttons in the Library");
+  assert.match(library, /className="text-link"\s*onClick=\{\(\) => fileInput\.current\?\.click\(\)\}/, "«Загрузить файл» as a small link");
+  assert.match(library, /t\("Versions"\)/);
+  assert.match(library, /const afterSave = \(id: string\) => \{[\s\S]*?setSavedId\(id\);\n    setSelectedId\(null\);/, "saving closes the panel");
+  assert.match(src("src/app/campaigns/[campaignId]/[screen]/page.tsx"), /<PersistentLibrary initialDocumentId=\{typeof doc === "string" \? doc : null\} \/>/);
+  for (const [key, value] of [["Edit this document", "Изменить"], ["Save the document", "Сохранить"], ["Versions", "Версии"], ["Upload a file", "Загрузить файл"]])
+    assert.equal(ru[key], value);
+});

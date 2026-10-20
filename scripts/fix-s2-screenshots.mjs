@@ -1,5 +1,5 @@
-// Fix run after session 2: screenshots of the synthetic preview screens a stage changed, at 1920×1080, 2560×1440 and a
-// 390×844 phone, into docs/runs/fix-s2-shots/ (FIX_S2_RUN.md). Previews read sample fixtures only; port 3000 is refused.
+// Fix run after session 2: screenshots of the synthetic preview screens a stage changed, at 1440×900, 1920×1080,
+// 2560×1440 and a 390×844 phone, into docs/runs/fix-s2-shots/ (FIX_S2_RUN.md). Previews read sample fixtures only; port 3000 is refused.
 //   PREVIEW_URL=http://127.0.0.1:3105 node scripts/fix-s2-screenshots.mjs --stage A --shots owner,settings,game-recording
 // Every phone shot passes the stage 5 width checks (no document overflow, nothing clipped past the right edge).
 // A shot «screen:anchor» scrolls the desktop shots to a panel first (ANCHORS; the phone shot is the full page).
@@ -19,7 +19,9 @@ const playwright = process.env.PLAYWRIGHT_MODULE ?? (existsSync("/opt/node-tools
 const { chromium } = await import(playwright ? pathToFileURL(join(playwright, "index.mjs")).href : "playwright");
 // The panels a desktop shot can scroll to: the text of the panel's heading (the first match).
 // Stage C: «game:turn», «game-combat:turn», «game-recording:turn» — the turn being told (its player's action).
-const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего", turn: "Киваю Мэг на того" };
+// Stage F: «settings:rules» — the campaign's rules in words and the checks and dice.
+const ANCHORS = { dm: "Как ведущий работает", secrets: "Тайны (видит только ведущий)", memory: "Память ведущего", turn: "Киваю Мэг на того",
+  rules: "Правила этой кампании" };
 // «game-recording» → /preview/stage-5/game?recording=1; «settings» → /preview/stage-5/settings.
 const urlOf = (name) => {
   const [screen, ...flags] = name.split(":")[0].split("-");
@@ -47,7 +49,8 @@ const previous = existsSync(indexFile) ? JSON.parse(readFileSync(indexFile, "utf
 const report = [];
 let failed = 0;
 try {
-  for (const [width, height, label] of [[1920, 1080, "1080p"], [2560, 1440, "1440p"], [390, 844, "phone"]]) {
+  // Stage F (item 22): 1440×900 («900p») joins 1920×1080, 2560×1440 and the phone.
+  for (const [width, height, label] of [[1440, 900, "900p"], [1920, 1080, "1080p"], [2560, 1440, "1440p"], [390, 844, "phone"]]) {
     const context = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1, isMobile: width < 768, hasTouch: width < 768 });
     const page = await context.newPage();
     for (const name of shots) {

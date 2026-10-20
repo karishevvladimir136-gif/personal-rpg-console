@@ -22,7 +22,7 @@ import {
   AIProviderSettings,
   CampaignProductionSettingsPanel,
 } from "./production-settings";
-import type { CampaignProductionSettings } from "@/lib/production/configuration-contracts";
+import type { CampaignProductionSettings, ProviderSettings } from "@/lib/production/configuration-contracts";
 import { DmRuntimeSettingsPanel } from "./dm-runtime-settings";
 import { productionScopeMatches } from "@/lib/production-client";
 import { wave2ConfigText } from "@/lib/locales/wave2-config";
@@ -75,7 +75,7 @@ function useSave(mutate: (input: Mutation) => Promise<MutationResult>) {
   };
 }
 
-function PreferenceForm({ current }: { current: Preferences }) {
+function PreferenceForm({ current, preview = false }: { current: Preferences; preview?: boolean }) {
   const { t, setLanguage } = useLanguage();
   const { mutate, refresh } = useWorkspaceData();
   const [draft, setDraft] = useState(current);
@@ -91,6 +91,7 @@ function PreferenceForm({ current }: { current: Preferences }) {
     <form
       onSubmit={async (event) => {
         event.preventDefault();
+        if (preview) return;
         const result = await state.save({
           operation: "preferences.save",
           expectedRevision: baseline.revision,
@@ -216,9 +217,12 @@ function PreferenceForm({ current }: { current: Preferences }) {
   );
 }
 
-export function PersistentGeneralSettings() {
+/** `preview`: the synthetic Stage 5 preview — sample preferences and provider flags, nothing is read or saved. */
+export function PersistentGeneralSettings({ preview }: { preview?: { preferences: Preferences; providers: ProviderSettings } } = {}) {
   const { t } = useLanguage();
-  const { data, loading, error, refresh } = useWorkspaceData();
+  const workspace = useWorkspaceData();
+  const { loading, error, refresh } = workspace;
+  const data = preview ? { preferences: preview.preferences } : workspace.data;
   return (
     <>
       <div className="page-heading">
@@ -241,8 +245,8 @@ export function PersistentGeneralSettings() {
           </Button>
         </Panel>
       )}
-      {data && <PreferenceForm current={data.preferences} />}
-      {data && <AIProviderSettings />}
+      {data && <PreferenceForm current={data.preferences} preview={!!preview} />}
+      {data && <AIProviderSettings initialData={preview?.providers} />}
     </>
   );
 }
