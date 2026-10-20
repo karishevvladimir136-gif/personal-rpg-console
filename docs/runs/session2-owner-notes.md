@@ -896,3 +896,8 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
   modifier; the ring does apply — RAW, it is a saving throw). For item 37: the reroll the plan wanted to remove just
   saved the campaign — decide with the owner whether it stays as a visible, limited luck resource (like Inspiration)
   instead of a hidden preset.
+- after the fight (20:13, owner: «хорошо и интересно»): payoffs land — the captive's ring returned to its owner, the
+  merchant shouts «Крицы в третьей!», the freed captives turn on the prisoner who robbed them while he holds the hero
+  to his promise (recorded as «Слово за Щепу»). Mage Armor AC 16 correct (13 + Dex 2 + robe 1). One bookkeeping
+  question for the report: the hero went from 4 HP (the sergeant's potion) to «12 из 32» in this turn with no potion,
+  rest or hit die told — check the receipts for an untold heal (and that his own potion is still counted).
