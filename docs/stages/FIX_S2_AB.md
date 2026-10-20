@@ -110,6 +110,16 @@ Log the returned status of every `pictures.frame` request (queued / existing / c
 stopped after 20:48 with the daily cap not reached and nothing in the log said why (items 77, 83); log every dossier
 entry dropped by a budget with its layer (item 85); log the bootstrap's provider attempt and refusal reason (item 16).
 
+### A6. The two-pass runtime gets the same fixes, and the two modes are compared
+`src/lib/gameplay/dm-loop/two-pass/runtime.ts` (the «пишет — записывает» mode) has its own copy of the request loop:
+apply A1–A3 there too (the output cap, the max_tokens recovery, the lease heartbeat, the cache layout, bundled rolls,
+the continuation depth), with tests. Then run the stage's probes in both modes — «Opus ведёт один» and «Opus пишет —
+Sonnet записывает» (and Opus records, for the facts) — and put side by side: first word, full turn, cost, missed and
+wrong records, untold rolls, the voice metrics. The owner picks the default for session 3 from that table (polish 3's
+bake-off had the split at 15.7 s first word vs 24.7 s at the same cost, with equal record completeness; the agentic
+game master study found the narrator/archivist split raised story coherence — both are reasons to measure, not to
+assume).
+
 ## Stage B — the DM's core
 
 ### B1. The hidden layer (key finding 2, items 82, 84)
