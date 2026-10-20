@@ -97,6 +97,11 @@ Items 1–7, 10–13, 15, 16, 19–26, 29–32, 34 (what remains after D and C t
 pass (item 20, the owner's top priority from the wizard), the names the owner gave in the opening review used (34), the
 new-campaign flow in order (21), the screens filling the window (22), readable text sizes and «Крупный текст истории»
 working (5, 6), the DM Craft screen redesign (7), the leftover provider block (4), the campaign settings (26) — the DC and
-dice settings visible under «Логика мира» (39), the library view (25), the map's scale (31), the small issues (30), the
+dice settings visible under «Логика мира» (39), the library view (25), the small issues (30), the
 history window (23 — decide its size with stage A's cost numbers, not before). Each screen gets a line in the owner's
 acceptance checklist.
+
+## Living next to the 2D Live session (parallel, `docs/stages/LIVE2D_1.md`, branch `claude/live2d-1`)
+Item 31 (the region map; the location paintings as place illustrations) moved to the 2D session — skip it here. Leave
+`src/lib/live2d/`, `src/components/live2d/` and migrations with the prefix `2026102102` to it; keep this run's migrations
+below that prefix. The battle map stays here (stage C).
