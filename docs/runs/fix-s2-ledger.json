@@ -209,6 +209,28 @@
       "settled": true,
       "finishedAt": "2026-10-20T11:01:19.741Z",
       "record": "docs/runs/real-replay-20261020-110036.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-124207",
+      "what": "real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live",
+      "stage": "D",
+      "startedAt": "2026-10-20T12:42:07.562Z",
+      "reservedUsd": 5,
+      "spentUsd": 1.6561,
+      "settled": true,
+      "finishedAt": "2026-10-20T12:45:03.415Z",
+      "record": "docs/runs/real-replay-20261020-124207.jsonl"
+    },
+    {
+      "run": "real-replay-20261020-124524",
+      "what": "real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live",
+      "stage": "D",
+      "startedAt": "2026-10-20T12:45:24.394Z",
+      "reservedUsd": 5,
+      "spentUsd": 1.4154,
+      "settled": true,
+      "finishedAt": "2026-10-20T12:46:50.750Z",
+      "record": "docs/runs/real-replay-20261020-124524.jsonl"
     }
   ]
 }

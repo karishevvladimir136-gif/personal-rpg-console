@@ -23,4 +23,6 @@ Cap $50 (stages A+B within $30); every paid run registers here before its first 
 | real-replay-20261020-103924 | AB | real replay: 2 turns × O on Fix run probes (seed a); voice live; craft live | $6.95 | $2.1106 | yes |
 | real-replay-20261020-110008 | AB | real replay: 1 turns × A on Fix run memory probe (seed m2, 60 turns); voice live; craft live | $2.70 | $0.0000 | yes |
 | real-replay-20261020-110036 | AB | real replay: 1 turns × A on Fix run memory probe (seed m2, 60 turns); voice live; craft live | $4.50 | $0.9706 | yes |
-| **Total** | | | **$26.1347 of $50** | |
+| real-replay-20261020-124207 | D | real replay: 1 turns × O on Fix run B probes (seed b); voice live; craft live | $5.00 | $1.6561 | yes |
+| real-replay-20261020-124524 | D | real replay: 1 turns × O on Fix run probes (seed a); voice live; craft live | $5.00 | $1.4154 | yes |
+| **Total** | | | **$29.2062 of $50** | |
