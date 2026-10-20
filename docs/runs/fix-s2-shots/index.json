@@ -1,6 +1,6 @@
 {
   "base": "PREVIEW_URL",
-  "date": "2026-10-20T14:29:31.384Z",
+  "date": "2026-10-20T15:32:47.639Z",
   "shots": [
     {
       "stage": "A",
@@ -419,6 +419,482 @@
       "stage": "E",
       "file": "E-game-phone.jpg",
       "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-menu-900p.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-campaigns-900p.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-general-900p.jpg",
+      "url": "/preview/stage-5/general",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-900p.jpg",
+      "url": "/preview/stage-5/craft",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-card-900p.jpg",
+      "url": "/preview/stage-5/craft?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-900p.jpg",
+      "url": "/preview/stage-5/library",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-900p.jpg",
+      "url": "/preview/stage-5/library?doc=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-edit-900p.jpg",
+      "url": "/preview/stage-5/library?doc=1&edit=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-900p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-drawing-900p.jpg",
+      "url": "/preview/stage-5/game?drawing=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-large-900p.jpg",
+      "url": "/preview/stage-5/game?large=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-character-900p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-900p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-card-900p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-900p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-rules-900p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-adventures-900p.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-menu-1080p.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-campaigns-1080p.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-general-1080p.jpg",
+      "url": "/preview/stage-5/general",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-1080p.jpg",
+      "url": "/preview/stage-5/craft",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-card-1080p.jpg",
+      "url": "/preview/stage-5/craft?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-1080p.jpg",
+      "url": "/preview/stage-5/library",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-1080p.jpg",
+      "url": "/preview/stage-5/library?doc=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-edit-1080p.jpg",
+      "url": "/preview/stage-5/library?doc=1&edit=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-1080p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-drawing-1080p.jpg",
+      "url": "/preview/stage-5/game?drawing=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-large-1080p.jpg",
+      "url": "/preview/stage-5/game?large=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-character-1080p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-1080p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-card-1080p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-1080p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-rules-1080p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-adventures-1080p.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-menu-1440p.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-campaigns-1440p.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-general-1440p.jpg",
+      "url": "/preview/stage-5/general",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-1440p.jpg",
+      "url": "/preview/stage-5/craft",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-card-1440p.jpg",
+      "url": "/preview/stage-5/craft?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-1440p.jpg",
+      "url": "/preview/stage-5/library",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-1440p.jpg",
+      "url": "/preview/stage-5/library?doc=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-edit-1440p.jpg",
+      "url": "/preview/stage-5/library?doc=1&edit=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-1440p.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-drawing-1440p.jpg",
+      "url": "/preview/stage-5/game?drawing=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-large-1440p.jpg",
+      "url": "/preview/stage-5/game?large=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-character-1440p.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-1440p.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-card-1440p.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-1440p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-rules-1440p.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-adventures-1440p.jpg",
+      "url": "/preview/stage-5/adventures",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-menu-phone.jpg",
+      "url": "/preview/stage-5/menu",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-campaigns-phone.jpg",
+      "url": "/preview/stage-5/campaigns",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-general-phone.jpg",
+      "url": "/preview/stage-5/general",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-phone.jpg",
+      "url": "/preview/stage-5/craft",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-craft-card-phone.jpg",
+      "url": "/preview/stage-5/craft?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-phone.jpg",
+      "url": "/preview/stage-5/library",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-phone.jpg",
+      "url": "/preview/stage-5/library?doc=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-library-doc-edit-phone.jpg",
+      "url": "/preview/stage-5/library?doc=1&edit=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-phone.jpg",
+      "url": "/preview/stage-5/game",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-drawing-phone.jpg",
+      "url": "/preview/stage-5/game?drawing=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-game-large-phone.jpg",
+      "url": "/preview/stage-5/game?large=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-character-phone.jpg",
+      "url": "/preview/stage-5/character",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-phone.jpg",
+      "url": "/preview/stage-5/inventory",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-inventory-card-phone.jpg",
+      "url": "/preview/stage-5/inventory?card=1",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-settings-rules-phone.jpg",
+      "url": "/preview/stage-5/settings",
+      "horizontalOverflowPx": 0,
+      "clippedPx": 0
+    },
+    {
+      "stage": "F",
+      "file": "F-adventures-phone.jpg",
+      "url": "/preview/stage-5/adventures",
       "horizontalOverflowPx": 0,
       "clippedPx": 0
     }
