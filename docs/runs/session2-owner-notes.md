@@ -1253,3 +1253,44 @@ report); the guard post's place record says «Раннее утро» — a time
     layer into the private notes it already has (a secrets budget exists in the dossier): the bigger truth behind
     the first case, the factions' hidden aims, 5–10 secrets not tied to places, clocks, one wondrous thread; the
     session digest's notebook keeps it current; the mystery-and-wonder rule above goes into the DM's instructions.
+
+## After the report (C:\Dev\rpg-exports\session-2\, local session, 22:53)
+
+83. **Why session 2 cost three times session 1** (owner, 22:53: «очень дорогая сессия вышла, сильно дороже
+    предыдущей — не смертельно, скорее странно»). Report totals: $54.86 — DM $48.37 (70 attempts; $3.97 lost on
+    the 4 unsaved turns), pictures $4.87 (96), session close $1.54 (two digests, item 81), other $0.08. Session 1:
+    DM $14.56 for 41 turns, ≈$19.58 in all. Planner's breakdown from both `turns.csv` at the app's Opus prices
+    (input $4, output $20, cache read $0.20, cache write $5 / $8 per 1M):
+    | | session 1 | session 2 |
+    |---|---|---|
+    | turns / model requests | 41 / 69 (median 1 a turn) | 70 / 182 (median 2 a turn) |
+    | input per turn, median | 55k | 163k |
+    | input paid at the full rate | ≈0 | 7.1M → **≈$28.5 (59% of the DM)** |
+    | cache reads | 1.8M → $0.36 | 12.2M → ≈$2.4 |
+    | cache writes | 1.66M → $8.3 | 0.74M → ≈$3.7–5.9 |
+    | output (incl. thinking) | 0.29M → $5.9 | 0.62M → ≈$12.5 |
+    | DM cost per turn | $0.36 | $0.69 (high $0.61, xhigh $0.84) |
+    Causes, largest first: (1) **the uncached tail.** Polish 2 §4 removed the automatic cache breakpoint at the end
+    of the messages (session 1's cache writes were 57% of its cost), so everything after the last breakpoint — the
+    session tail, the «now» block, the turn's own messages, about 40k tokens a request on average and growing — is
+    paid at the full input rate on every request, and a turn now sends two requests on average (text → tool →
+    continuation), each paying it again; the trade that saved writes in session 1 costs more once the context and
+    the request count grew. (2) **The context grew** within the session — first-request input by thirds 65k → 107k
+    → 129k tokens (codex, character models, history). (3) **xhigh** on 25 turns: output median 14k vs 6k at high;
+    $21 of the $48. (4) Lost turns and the double digest, ≈$5.5. (5) The session was simply long — 70 attempts.
+    Do (already in the approved stage 1, now with the numbers): a cache breakpoint at the end of the stable history
+    and one inside the turn, so a continuation reads the tail at $0.20 instead of $4 (rough saving on this session:
+    112 continuation requests × ≈39k uncached tokens ≈ $14–16); keep volatile blocks after the history so the
+    prefix only grows; xhigh only for an important move; one request per turn where the tools allow; the fixes
+    for lost turns. Expected: back near $0.35–0.45 a turn at high.
+
+Other headline findings of the report to carry into the plan (the full list goes into the plan document):
+the mine's loot money recorded twice (hero +24 gp 11 sp); the sergeant's potion taken off the hero's counter; three
+hero checks with a doubled modifier (66), a ring counted twice; «Твой момент» never fired; the hour from a private
+plan said as fact (41); the lightning and the shot at the horse only in the out-of-game note (60); feet turned into
+paces one-to-one («55 футов» → «пятьдесят пять шагов», 70); the DC in roll titles vanished from turn 57 because the
+DM's own observations dropped the owner's correction (71); frames stopped after 20:48 with the daily cap (120) not
+reached and the cause not in the log — earlier than the failed rest turn, so item 77's explanation covers only the
+button after 21:34, the 20:48 stop needs the frame request status logged; the HP rise from 4 to 12 was a potion in
+turn 49 (not untold). A local session also made a lease-renewal fix on `claude/stage-fix-turn-lease` (not pushed,
+not tested in the sandbox).
