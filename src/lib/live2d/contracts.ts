@@ -106,6 +106,9 @@ export type Poi = {
  * places all sit at the world level. `signature` names the places drawn. */
 export type RegionMap = { anchorId: string | null; pictureId: string | null; signature: string; status: "drawing" | "ready" | "failed"; updatedAt: string };
 
+/** Part 2: the top-down battle background of a place, one per sheet revision, checked like a scene. */
+export type BattleMap = { locationId: string; sheetRevision: number; pictureId: string | null; status: "drawing" | "ready" | "flagged" | "failed"; check: SceneCheck | null; grid: { cols: number; rows: number; feetPerCell: number }; updatedAt: string };
+
 /** The public 2D board of a campaign: never a seed, never a prompt. */
 export type Live2dBoard = {
   campaignId: string;
@@ -113,8 +116,9 @@ export type Live2dBoard = {
   scenes: Live2dScene[];
   pois: Poi[];
   regionMaps: RegionMap[];
+  battleMaps: BattleMap[];
 };
-export const emptyLive2dBoard = (campaignId: string): Live2dBoard => ({ campaignId, settings: defaultLive2dSettings, scenes: [], pois: [], regionMaps: [] });
+export const emptyLive2dBoard = (campaignId: string): Live2dBoard => ({ campaignId, settings: defaultLive2dSettings, scenes: [], pois: [], regionMaps: [], battleMaps: [] });
 
 /** A latent hook of an area (the DM's hidden layer, item 5 of the slice): private until discovered.
  * Stored in the shape of a `note_world` fact so the fix run's hidden layer can absorb it at
@@ -210,6 +214,14 @@ export function parseRegionMap(raw: unknown): RegionMap | null {
   if (!isRecord(raw) || (raw.anchorId !== null && !isUuid(raw.anchorId)) || typeof raw.signature !== "string" || !oneOf(["drawing", "ready", "failed"] as const, raw.status) || typeof raw.updatedAt !== "string") return null;
   return { anchorId: raw.anchorId as string | null, pictureId: isUuid(raw.pictureId) ? raw.pictureId : null, signature: raw.signature, status: raw.status, updatedAt: raw.updatedAt };
 }
+export function parseBattleMap(raw: unknown): BattleMap | null {
+  if (!isRecord(raw) || !isUuid(raw.locationId) || !Number.isSafeInteger(raw.sheetRevision) || !oneOf(["drawing", "ready", "flagged", "failed"] as const, raw.status) || typeof raw.updatedAt !== "string") return null;
+  const grid = isRecord(raw.grid) ? raw.grid : {};
+  const n = (v: unknown, fallback: number) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? Math.round(v) : fallback);
+  return { locationId: raw.locationId, sheetRevision: raw.sheetRevision as number, pictureId: isUuid(raw.pictureId) ? raw.pictureId : null, status: raw.status,
+    check: parseSceneCheck(raw.check), grid: { cols: n(grid.cols, 24), rows: n(grid.rows, 18), feetPerCell: n(grid.feetPerCell, 5) }, updatedAt: raw.updatedAt };
+}
+export const battleMapOf = (board: Pick<Live2dBoard, "battleMaps">, locationId: string) => board.battleMaps.find((row) => row.locationId === locationId) ?? null;
 export function parseLive2dSettings(raw: unknown): Live2dSettings {
   const v = isRecord(raw) ? raw : {};
   return { markers: oneOf(MARKER_VISIBILITIES, v.markers) ? v.markers : "standard", revision: Number.isSafeInteger(v.revision) ? (v.revision as number) : 0 };
@@ -224,6 +236,7 @@ export function parseLive2dBoard(raw: unknown): Live2dBoard | null {
     scenes: Array.isArray(raw.scenes) ? raw.scenes.map(parseLive2dScene).filter((row): row is Live2dScene => row !== null) : [],
     pois: Array.isArray(raw.pois) ? raw.pois.map(parsePoi).filter((row): row is Poi => row !== null) : [],
     regionMaps: Array.isArray(raw.regionMaps) ? raw.regionMaps.map(parseRegionMap).filter((row): row is RegionMap => row !== null) : [],
+    battleMaps: Array.isArray(raw.battleMaps) ? raw.battleMaps.map(parseBattleMap).filter((row): row is BattleMap => row !== null) : [],
   };
 }
 export function parsePoiSeed(raw: unknown): PoiSeed | null {

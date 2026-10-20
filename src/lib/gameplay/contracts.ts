@@ -235,6 +235,8 @@ export type EncounterRecord = {
   outcome: EncounterOutcome | null;
   settings_revision: number;
   public_summary: string;
+  /** 2D Live part 2: the battlefield (grid, features, the active turn, the log); absent or {} when the fight has no map. */
+  public_field?: JsonObject;
 };
 export type EncounterParticipant = {
   id: string;

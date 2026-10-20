@@ -155,6 +155,7 @@ export const live2dBoard: Live2dBoard = {
   }],
   pois: live2dPois,
   regionMaps: [{ anchorId: I.region, pictureId: I.picRegion, signature: [I.ford, I.lodge, I.veresk].sort().join(","), status: "ready", updatedAt: at(2) }],
+  battleMaps: [],
 };
 
 /** Sample pictures: the probe drops real files under public/preview/live2d/; a missing file falls back to the placeholder. */

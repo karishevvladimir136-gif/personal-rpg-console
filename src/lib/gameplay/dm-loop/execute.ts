@@ -17,6 +17,10 @@ import { duePlans, parsePlan, planKey, serializePlan, type OffScreenPlan } from 
 import { ShadowState, ToolReject, reject } from "./shadow.ts";
 import { chip, currencyAmount, type ChipLanguage } from "./receipt-text.ts";
 import type { DmLoopMeta, DmLoopReceipt, DmLoopReceiptResult, DmLoopTension, DmLoopToolCall } from "./contracts.ts";
+import type { EncounterParticipant } from "../contracts.ts";
+import { combatantJson, DEFAULT_GRID, defaultEconomy, fieldJson, MAX_LOG, parseCombatant, parseFeature, parseField, parsePlacement, placementJson, type Combatant, type Field, type LogLine, type Side } from "../../live2d/battle/contracts.ts";
+import { adjacentIds, cellDistance, insideGrid, moveCost, zoneFrom } from "../../live2d/battle/geometry.ts";
+import { fightCard, type Fighter as BattleFighter } from "../../live2d/battle/battlefield.ts";
 
 export type ToolContext = {
   input: TurnInput;
@@ -1131,46 +1135,296 @@ function restTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopRece
 
 // --- combat ----------------------------------------------------------------
 function combatTool(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
+  // 2D Live part 2: the fight's state lives in the encounter rows (the field on the encounter,
+  // the combatant in each participant); the server measures, the DM and the system decide.
   const action = str(args.action);
+  const l = ctx.language;
   const active = shadow.runtime.encounters.find((row) => row.status === "active");
+  const partyIds = new Set(shadow.partyIds());
+  const rows = () => shadow.runtime.participants.filter((row) => row.encounter_id === active!.id).sort((a, b) => a.turn_order - b.turn_order);
+  const fighterOf = (row: EncounterParticipant): BattleFighter => ({ participantId: row.id, entityId: row.entity_id, name: row.public_name, turnOrder: row.turn_order,
+    combatant: parseCombatant(row.public_resources, { side: row.entity_id && partyIds.has(row.entity_id) ? "party" : "foe" }), placement: parsePlacement(row.public_position) });
+  const fieldOf = () => parseField((active as { public_field?: unknown } | undefined)?.public_field);
+  const saveField = (field: Field) => shadow.apply({ family: "encounters", id: active!.id, expectedRevision: null, values: { public_field: fieldJson(field) } });
+  const saveFighter = (fighter: BattleFighter) => shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null,
+    values: { public_resources: combatantJson(fighter.combatant), public_position: placementJson(fighter.placement) } });
+  const participantOf = (ref: unknown, what: string) => {
+    const entity = entityOf(shadow, ref, what);
+    const row = rows().find((p) => p.entity_id === entity.id);
+    reject(row, `${entity.name} is not in this encounter.`, "Add them with combat place.");
+    return { entity, fighter: fighterOf(row) };
+  };
+  const heroId = shadow.snapshot.entities.find((row) => row.kind === "player")?.id ?? null;
+  /** Both views agree: every zone word is derived from the coordinates, seen from the hero. */
+  const deriveZones = (field: Field, fighters: BattleFighter[]) => {
+    const hero = fighters.find((row) => row.entityId === heroId) ?? fighters.find((row) => row.combatant.side === "party") ?? null;
+    for (const fighter of fighters) {
+      if (!hero || fighter.placement.x === null || hero.placement.x === null) continue;
+      const before = fighter.placement.position;
+      fighter.placement.position = fighter.participantId === hero.participantId ? "nearby" : zoneFrom(field, hero.placement, fighter.placement).zone;
+      if (before !== fighter.placement.position) saveFighter(fighter);
+    }
+  };
+  const placementArgs = (what: string) => ((args.placements as { actorRef: unknown; x: unknown; y: unknown; z?: unknown; initiative?: unknown; side?: unknown }[] | undefined) ?? []).map((entry) => {
+    const x = int(entry.x), y = int(entry.y);
+    reject(x !== null && y !== null, `${what}: x and y are grid cells (integers).`);
+    const side: Side | null = entry.side === "party" || entry.side === "foe" || entry.side === "other" ? entry.side : null;
+    return { entity: entityOf(shadow, entry.actorRef, `${what}.actorRef`), x: x!, y: y!, z: int(entry.z) ?? 0, initiative: int(entry.initiative), side };
+  });
+  const logLine = (field: Field, line: LogLine) => { field.log = [...field.log, line].slice(-MAX_LOG); };
+
   if (action === "start") {
     reject(!active, "An encounter is already active.", "End it first (combat end) or add positions.");
     const refs = (args.participantRefs as unknown[] | undefined) ?? [];
-    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!),
-      ...refs.map((ref) => entityOf(shadow, ref, "participantRefs"))].map((e) => [e.id, e])).values()];
+    const placed = placementArgs("placements");
+    const participants = [...new Map([...shadow.partyIds().map((id) => shadow.entity(id)!), ...refs.map((ref) => entityOf(shadow, ref, "participantRefs")), ...placed.map((row) => row.entity)].map((e) => [e.id, e])).values()];
     const id = stableGameplayId(ctx.input.operationId, `dm-loop:encounter:${ctx.toolCalls}`);
-    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null,
-      settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary) } });
-    participants.forEach((entity, index) => {
-      shadow.apply({ family: "encounter_participants", id: stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`),
-        expectedRevision: null, values: { encounter_id: id, entity_id: entity.id, public_name: entity.name, turn_order: index + 1,
-          public_position: { position: "nearby" }, public_resources: { action: 1, move: 1, reaction: 1, active: index === 0, defending: false, withdrawn: false } } });
+    const grid = args.grid && typeof args.grid === "object" ? args.grid as { cols?: unknown; rows?: unknown } : {};
+    const field: Field = { ...parseField({ grid: { cols: int(grid.cols) ?? DEFAULT_GRID.cols, rows: int(grid.rows) ?? DEFAULT_GRID.rows }, ambient: args.ambient }),
+      locationId: shadow.snapshot.publicState.current_location_id, opening: args.opening === "party" ? "party" : null, activeParticipantId: null, turnInRound: 0, log: [], features: [], pendingReaction: null };
+    const surprised = new Set(((args.surprisedRefs as unknown[] | undefined) ?? []).map((ref) => entityOf(shadow, ref, "surprisedRefs").id));
+    const hpRows = new Map(((args.hp as { actorRef: unknown; current: unknown; max: unknown }[] | undefined) ?? []).map((row) => [entityOf(shadow, row.actorRef, "hp.actorRef").id, { current: int(row.current) ?? 0, max: int(row.max) ?? 1 }]));
+    const initiativeOf = new Map(placed.map((row) => [row.entity.id, row.initiative]));
+    // Order: initiative totals when given (party first on ties), else the party first as before.
+    const ordered = [...participants].sort((a, b) => ((initiativeOf.get(b.id) ?? -99) - (initiativeOf.get(a.id) ?? -99)) || (Number(partyIds.has(b.id)) - Number(partyIds.has(a.id))));
+    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { status: "active", round: 1, outcome: null, settings_revision: shadow.snapshot.settings.revision, public_summary: str(args.summary), public_field: fieldJson(field) } });
+    const fighters: BattleFighter[] = [];
+    ordered.forEach((entity, index) => {
+      const place = placed.find((row) => row.entity.id === entity.id);
+      const side: Side = place?.side ?? (partyIds.has(entity.id) ? "party" : "foe");
+      const hp = hpRows.get(entity.id) ?? (side !== "party" && entity.max_hp ? { current: entity.hp ?? entity.max_hp, max: entity.max_hp } : null);
+      if (hpRows.has(entity.id)) {
+        reject(!partyIds.has(entity.id), `${entity.name} is in the party: their hit points go through resource.`);
+        shadow.apply(entityChange(shadow, entity, { hp: hp!.current, max_hp: hp!.max }));
+      }
+      const combatant: Combatant = { initiative: initiativeOf.get(entity.id) ?? null, active: index === 0, side,
+        economy: surprised.has(entity.id) ? { ...defaultEconomy(), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(),
+        conditions: surprised.has(entity.id) ? ["surprised"] : [], deathSaves: null, hp, known: [], intent: null, defending: false, withdrawn: false };
+      const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${id}:${entity.id}`);
+      const fighter: BattleFighter = { participantId, entityId: entity.id, name: entity.name, turnOrder: index + 1, combatant, placement: { position: "nearby", x: place?.x ?? null, y: place?.y ?? null, z: place?.z ?? 0 } };
+      shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: id, entity_id: entity.id, public_name: entity.name, turn_order: index + 1,
+        public_position: placementJson(fighter.placement), public_resources: combatantJson(combatant) } });
+      fighters.push(fighter);
     });
+    field.activeParticipantId = fighters[0]?.participantId ?? null;
+    shadow.apply({ family: "encounters", id, expectedRevision: null, values: { public_field: fieldJson(field) } });
     const config = shadow.configuration();
     config.presentEntityIds = [...new Set([...config.presentEntityIds, ...participants.map((p) => p.id)])];
     shadow.setConfiguration(config);
-    return ok({ encounterId: id, participants: participants.map((p) => p.name) }, `Combat begins: ${participants.map((p) => p.name).join(", ")}`,
-      null, chip.combatStart(ctx.language, participants.map((p) => p.name)));
+    // The zones from the coordinates, seen from the hero.
+    const started = shadow.runtime.encounters.find((row) => row.id === id)!;
+    const hero = fighters.find((row) => row.entityId === heroId) ?? null;
+    if (hero && hero.placement.x !== null) for (const fighter of fighters) {
+      fighter.placement.position = fighter === hero ? "nearby" : zoneFrom(field, hero.placement, fighter.placement).zone;
+      shadow.apply({ family: "encounter_participants", id: fighter.participantId, expectedRevision: null, values: { public_position: placementJson(fighter.placement) } });
+    }
+    void started;
+    const order = fighters.map((row) => `${row.name}${row.combatant.initiative !== null ? ` (${row.combatant.initiative})` : ""}`);
+    return ok({ encounterId: id, order, active: fighters[0]?.name ?? null, grid: field.grid, mapped: fighters.some((row) => row.placement.x !== null) },
+      `Combat begins: ${order.join(", ")}${field.opening ? "; the party's planned opening resolves before initiative" : ""}`, null, chip.combatStart(l, participants.map((p) => p.name)));
   }
   reject(active, "No encounter is active.", "Start one with combat start.");
+  const field = fieldOf();
+  const fighters = rows().map(fighterOf);
+
   if (action === "position") {
     const moved: string[] = [];
     for (const entry of (args.positions as { actorRef: unknown; position: string }[] | undefined) ?? []) {
-      const entity = entityOf(shadow, entry.actorRef, "positions.actorRef");
-      const participant = shadow.runtime.participants.find((row) => row.encounter_id === active.id && row.entity_id === entity.id);
-      reject(participant, `${entity.name} is not in this encounter.`);
-      shadow.apply({ family: "encounter_participants", id: participant.id, expectedRevision: null,
-        values: { public_position: { position: entry.position } } });
-      moved.push(`${entity.name}: ${entry.position}`);
+      const { entity, fighter } = participantOf(entry.actorRef, "positions.actorRef");
+      reject(fighter.placement.x === null, `${entity.name} stands on the grid: use combat move with cells.`);
+      fighter.placement.position = entry.position === "far" || entry.position === "cover" ? entry.position : "nearby";
+      saveFighter(fighter);
+      moved.push(`${entity.name}: ${fighter.placement.position}`);
     }
     return ok({ encounterId: active.id, moved }, `Positions: ${moved.join(", ") || "unchanged"}`);
+  }
+  if (action === "place") {
+    const placed = placementArgs("placements");
+    reject(placed.length > 0, "combat place needs placements.");
+    const names: string[] = [];
+    for (const row of placed) {
+      reject(insideGrid(field, { x: row.x, y: row.y }), `${row.entity.name}: (${row.x}, ${row.y}) is outside the ${field.grid.cols}×${field.grid.rows} grid.`);
+      const existing = fighters.find((f) => f.entityId === row.entity.id) ?? null;
+      if (!existing) {
+        // A late arrival joins at the end of the order.
+        const participantId = stableGameplayId(ctx.input.operationId, `dm-loop:participant:${active.id}:${row.entity.id}:${ctx.toolCalls}`);
+        const turnOrder = Math.max(0, ...fighters.map((f) => f.turnOrder)) + 1;
+        const fighter: BattleFighter = { participantId, entityId: row.entity.id, name: row.entity.name, turnOrder, placement: { position: "nearby", x: row.x, y: row.y, z: row.z },
+          combatant: { initiative: row.initiative, active: false, side: row.side ?? (partyIds.has(row.entity.id) ? "party" : "foe"), economy: defaultEconomy(), conditions: [], deathSaves: null,
+            hp: !partyIds.has(row.entity.id) && row.entity.max_hp ? { current: row.entity.hp ?? row.entity.max_hp, max: row.entity.max_hp } : null, known: [], intent: null, defending: false, withdrawn: false } };
+        shadow.apply({ family: "encounter_participants", id: participantId, expectedRevision: null, values: { encounter_id: active.id, entity_id: row.entity.id, public_name: row.entity.name, turn_order: turnOrder,
+          public_position: placementJson(fighter.placement), public_resources: combatantJson(fighter.combatant) } });
+        fighters.push(fighter);
+        const config = shadow.configuration();
+        config.presentEntityIds = [...new Set([...config.presentEntityIds, row.entity.id])];
+        shadow.setConfiguration(config);
+      } else {
+        existing.placement = { ...existing.placement, x: row.x, y: row.y, z: row.z };
+        if (row.initiative !== null) existing.combatant.initiative = row.initiative;
+        if (row.side) existing.combatant.side = row.side;
+        saveFighter(existing);
+      }
+      names.push(`${row.entity.name} → (${row.x}, ${row.y}${row.z ? `, +${row.z} ft` : ""})`);
+    }
+    deriveZones(field, fighters);
+    return ok({ encounterId: active.id, placed: names }, `Placed: ${names.join("; ")}`);
+  }
+  if (action === "move") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const x = int(args.x), y = int(args.y);
+    reject(x !== null && y !== null && insideGrid(field, { x, y }), `move needs x and y inside the ${field.grid.cols}×${field.grid.rows} grid.`);
+    reject(fighter.placement.x !== null && fighter.placement.y !== null, `${entity.name} has no position yet: place them first (combat place).`);
+    const from = { x: fighter.placement.x!, y: fighter.placement.y! };
+    const cost = moveCost(field, from, { x: x!, y: y! });
+    reject(!cost.blocked, `${entity.name} cannot pass ${cost.blocked?.label ?? "a wall"} on that line.`, "Move around it in two steps.");
+    const free = args.free === true;
+    reject(free || cost.feet <= fighter.combatant.economy.moveFeet, `${entity.name} has ${fighter.combatant.economy.moveFeet} ft of movement left; that move is ${cost.feet} ft.`, "Move a shorter way, or free: true when the movement is forced.");
+    const opportunity = adjacentIds(field, from, fighters.filter((f) => f.participantId !== fighter.participantId && f.combatant.side !== fighter.combatant.side && f.combatant.economy.reaction && !f.combatant.conditions.some((c) => /dead|unconscious|paralysed|fled/.test(c))).map((f) => ({ id: f.participantId, placement: f.placement })))
+      .filter((pid) => cellDistance({ x: x!, y: y! }, { x: fighters.find((f) => f.participantId === pid)!.placement.x!, y: fighters.find((f) => f.participantId === pid)!.placement.y! }) > 1)
+      .map((pid) => fighters.find((f) => f.participantId === pid)!.name);
+    fighter.placement = { ...fighter.placement, x: x!, y: y! };
+    if (!free) fighter.combatant.economy.moveFeet = Math.max(0, fighter.combatant.economy.moveFeet - cost.feet);
+    saveFighter(fighter);
+    deriveZones(field, fighters);
+    const crossed = cost.crossed.filter((row) => row.kind === "burning" || row.kind === "difficult").map((row) => row.label);
+    const player = l === "ru" ? `${entity.name} → (${x}, ${y}), ${cost.feet} фт` : `${entity.name} → (${x}, ${y}), ${cost.feet} ft`;
+    return ok({ actor: entity.name, from, to: { x, y }, feet: cost.feet, movementLeft: fighter.combatant.economy.moveFeet, crossed, opportunityAttacks: opportunity },
+      `${entity.name} moves to (${x}, ${y}): ${cost.feet} ft${free ? " (forced)" : `, ${fighter.combatant.economy.moveFeet} ft left`}${crossed.length ? `; crosses ${crossed.join(", ")}` : ""}${opportunity.length ? `; leaves the reach of ${opportunity.join(", ")} — they may take an opportunity attack (roll it if they do)` : ""}`,
+      null, partyIds.has(entity.id) ? player : null);
+  }
+  if (action === "next_turn") {
+    const alive = fighters.filter((row) => !row.combatant.withdrawn && !row.combatant.conditions.some((c) => c === "dead" || c === "fled"));
+    reject(alive.length > 0, "Nobody is left to act.");
+    const current = fighters.find((row) => row.participantId === field.activeParticipantId) ?? fighters.find((row) => row.combatant.active) ?? null;
+    const after = alive.filter((row) => !current || row.turnOrder > current.turnOrder);
+    const next = after[0] ?? alive[0];
+    let round = active.round;
+    const wrapped = !after.length;
+    if (wrapped) {
+      round += 1;
+      // Surprise ends with the first round.
+      for (const row of fighters) if (row.combatant.conditions.includes("surprised")) { row.combatant.conditions = row.combatant.conditions.filter((c) => c !== "surprised"); saveFighter(row); }
+    }
+    for (const row of fighters) if (row.combatant.active && row.participantId !== next.participantId) { row.combatant.active = false; saveFighter(row); }
+    next.combatant.active = true;
+    const paralysed = next.combatant.conditions.some((c) => /paralysed|unconscious|stunned|без сознания|парализ/i.test(c));
+    next.combatant.economy = paralysed ? { ...defaultEconomy(next.combatant.economy.moveMaxFeet), action: false, bonus: false, reaction: false, moveFeet: 0 } : defaultEconomy(next.combatant.economy.moveMaxFeet);
+    saveFighter(next);
+    field.activeParticipantId = next.participantId;
+    field.turnInRound = wrapped ? 1 : field.turnInRound + 1;
+    saveField(field);
+    if (wrapped) shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { round } });
+    const player = l === "ru" ? `Раунд ${round} · ходит ${next.name}` : `Round ${round} · ${next.name} to act`;
+    return ok({ round, active: next.name, activeId: next.entityId, newRound: wrapped, economy: next.combatant.economy }, `Round ${round}: ${next.name} acts${paralysed ? " (cannot act: " + next.combatant.conditions.join(", ") + ")" : ""}`, null, player);
+  }
+  if (action === "condition") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const add = ((args.add as unknown[] | undefined) ?? []).map((row) => str(row).toLowerCase()).filter(Boolean);
+    const remove = new Set(((args.remove as unknown[] | undefined) ?? []).map((row) => str(row).toLowerCase()));
+    fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions.filter((c) => !remove.has(c)), ...add])].slice(0, 12);
+    const save = str(args.deathSave);
+    if (save) {
+      reject(partyIds.has(entity.id), "deathSave is for the hero and companions; an enemy at 0 is down or dead by the system's word.");
+      const pips = save === "reset" ? null : { ...(fighter.combatant.deathSaves ?? { success: 0, fail: 0 }) };
+      if (pips) { if (save === "success") pips.success = Math.min(3, pips.success + 1); else pips.fail = Math.min(3, pips.fail + 1); }
+      fighter.combatant.deathSaves = pips;
+      if (pips && !fighter.combatant.conditions.includes("dying") && pips.success < 3 && pips.fail < 3) fighter.combatant.conditions.push("dying");
+    }
+    if (add.includes("dead") || add.includes("unconscious")) { fighter.combatant.active = false; }
+    saveFighter(fighter);
+    const words = fighter.combatant.conditions.join(", ") || (l === "ru" ? "без состояний" : "no conditions");
+    const pipsText = fighter.combatant.deathSaves ? ` · ${fighter.combatant.deathSaves.success}✓/${fighter.combatant.deathSaves.fail}✗` : "";
+    return ok({ actor: entity.name, conditions: fighter.combatant.conditions, deathSaves: fighter.combatant.deathSaves }, `${entity.name}: ${words}${pipsText}`, null, `${entity.name}: ${words}${pipsText}`);
+  }
+  if (action === "hp") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    reject(!partyIds.has(entity.id), `${entity.name} is in the party: use resource hp.`);
+    const current = fighter.combatant.hp?.current ?? entity.hp ?? entity.max_hp ?? 0;
+    const max = int(args.max) ?? fighter.combatant.hp?.max ?? entity.max_hp ?? Math.max(1, current);
+    const next = Math.max(0, Math.min(max, args.set !== undefined ? int(args.set) ?? current : current + (int(args.delta) ?? 0)));
+    fighter.combatant.hp = { current: next, max };
+    const by = args.byRef !== undefined ? entityOf(shadow, args.byRef, "byRef") : null;
+    const damage = current - next;
+    if (damage > 0) logLine(field, { round: active.round, actor: by?.name ?? "?", what: str(args.reason) || (l === "ru" ? "удар" : "hit"), result: l === "ru" ? `${damage} урона → ${entity.name}` : `${damage} damage → ${entity.name}`, ref: null });
+    if (next === 0 && !fighter.combatant.conditions.includes("dead")) { fighter.combatant.conditions = [...new Set([...fighter.combatant.conditions, "unconscious"])]; }
+    saveFighter(fighter);
+    saveField(field);
+    shadow.apply(entityChange(shadow, entity, { hp: next, max_hp: max }));
+    const player = damage > 0 ? (l === "ru" ? `${entity.name}: −${damage} (${next}/${max})` : `${entity.name}: −${damage} (${next}/${max})`) : next > current ? (l === "ru" ? `${entity.name}: +${next - current} (${next}/${max})` : `${entity.name}: +${next - current} (${next}/${max})`) : null;
+    return ok({ actor: entity.name, before: current, after: next, max, by: by?.name ?? null }, `${entity.name} HP ${current} → ${next}/${max}${next === 0 ? " (down)" : ""}`, null, player);
+  }
+  if (action === "feature") {
+    const op = str(args.op) || "add";
+    const key = str(args.key);
+    reject(/^[a-z0-9][a-z0-9_-]{0,59}$/.test(key), "feature needs a key (lowercase letters, digits, dashes).");
+    if (op === "remove") {
+      reject(field.features.some((row) => row.key === key), `No feature "${key}" on the field.`);
+      field.features = field.features.filter((row) => row.key !== key);
+      saveField(field);
+      return ok({ removed: key }, `Feature removed: ${key}`);
+    }
+    const existing = field.features.find((row) => row.key === key) ?? null;
+    const parsed = parseFeature({ key, kind: args.kind ?? existing?.kind, label: args.label ?? existing?.label ?? key, cells: args.cells ?? existing?.cells,
+      cover: args.cover ?? existing?.cover, radiusFeet: args.radiusFeet ?? existing?.radiusFeet, dimRadiusFeet: args.dimRadiusFeet ?? existing?.dimRadiusFeet, heightFeet: args.heightFeet ?? existing?.heightFeet });
+    reject(parsed, "feature needs kind and at least one cell [x, y].");
+    reject(parsed!.cells.every((cell) => insideGrid(field, { x: cell[0], y: cell[1] })), `feature "${key}": a cell is outside the ${field.grid.cols}×${field.grid.rows} grid.`);
+    field.features = [...field.features.filter((row) => row.key !== key), parsed!].slice(0, 40);
+    saveField(field);
+    deriveZones(field, fighters);
+    return ok({ feature: parsed }, `Feature ${existing ? "updated" : "added"}: ${parsed!.label} (${parsed!.kind}, ${parsed!.cells.length} cells)`);
+  }
+  if (action === "known") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const text = str(args.text);
+    reject(text.length > 0, "known needs text.");
+    const revealed = args.revealed !== false;
+    fighter.combatant.known = [...fighter.combatant.known.filter((row) => row.text !== text), { text, revealed }].slice(-12);
+    saveFighter(fighter);
+    return ok({ actor: entity.name, known: fighter.combatant.known }, `${entity.name}: ${revealed ? "known" : "hidden"} — ${text}`, null, revealed ? (l === "ru" ? `О ${entity.name}: ${text}` : `About ${entity.name}: ${text}`) : null);
+  }
+  if (action === "intent") {
+    const { entity, fighter } = participantOf(args.actorRef, "actorRef");
+    const text = str(args.text);
+    const noticed = args.noticedByRef !== undefined && args.noticedByRef !== null ? entityOf(shadow, args.noticedByRef, "noticedByRef") : null;
+    fighter.combatant.intent = text ? { text, noticedBy: noticed?.id ?? null } : null;
+    saveFighter(fighter);
+    return ok({ actor: entity.name, intent: fighter.combatant.intent }, text ? `${entity.name} intends: ${text}${noticed ? ` (noticed by ${noticed.name})` : " (unnoticed)"}` : `${entity.name}: no intent`, null,
+      text && noticed ? (l === "ru" ? `${noticed.name} замечает: ${entity.name} — ${text}` : `${noticed.name} notices: ${entity.name} — ${text}`) : null);
+  }
+  if (action === "reaction") {
+    if (args.resolved === true) {
+      field.pendingReaction = null;
+      saveField(field);
+      return ok({ resolved: true }, "Reaction resolved");
+    }
+    const { entity, fighter } = participantOf(args.targetRef, "targetRef");
+    reject(partyIds.has(entity.id), "A reaction choice is the player's: targetRef must be the hero or a companion.");
+    reject(fighter.combatant.economy.reaction, `${entity.name} has no reaction left this round.`);
+    const options = ((args.options as unknown[] | undefined) ?? []).map((row) => str(row)).filter(Boolean).slice(0, 4);
+    reject(options.length > 0 && str(args.trigger).length > 0, "reaction needs the trigger and at least one option.");
+    field.pendingReaction = { targetId: fighter.participantId, trigger: str(args.trigger), options };
+    saveField(field);
+    return ok({ target: entity.name, trigger: str(args.trigger), options }, `Reaction pending for ${entity.name}: ${str(args.trigger)} — ${options.join(" / ")}. End the turn now and let the player choose.`,
+      null, l === "ru" ? `Реакция ${entity.name}: ${options.join(" / ")}` : `${entity.name}'s reaction: ${options.join(" / ")}`);
+  }
+  if (action === "log") {
+    const actor = args.actorRef !== undefined ? entityOf(shadow, args.actorRef, "actorRef") : null;
+    const what = str(args.what), result = str(args.result);
+    reject(result.length > 0, "log needs a result.");
+    logLine(field, { round: active.round, actor: actor?.name ?? "—", what, result, ref: null });
+    saveField(field);
+    return ok({ logged: true }, `Log: ${actor?.name ?? "—"} · ${what} → ${result}`);
   }
   reject(action === "end", `Unknown combat action "${action}".`);
   const outcome = str(args.outcome);
   reject(outcome.length > 0, "combat end needs an outcome.");
-  shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { status: "ended", outcome,
+  const card = fightCard({ round: active.round, log: field.log, fighters });
+  field.pendingReaction = null;
+  field.activeParticipantId = null;
+  shadow.apply({ family: "encounters", id: active.id, expectedRevision: null, values: { status: "ended", outcome, public_field: fieldJson(field),
     ...(args.summary !== undefined ? { public_summary: str(args.summary) } : {}) } });
-  return ok({ encounterId: active.id, outcome }, `Combat ends: ${outcome}`, null, chip.combatEnd(ctx.language, outcome));
+  const cardLine = l === "ru" ? `Итог: ${card.rounds} р., нанесено ${card.dealt}, получено ${card.taken}${card.closeCalls.length ? `, на грани: ${card.closeCalls.join(", ")}` : ""}` : `Card: ${card.rounds} rounds, dealt ${card.dealt}, taken ${card.taken}${card.closeCalls.length ? `, close calls: ${card.closeCalls.join(", ")}` : ""}`;
+  return ok({ encounterId: active.id, outcome, card }, `Combat ends: ${outcome}. ${cardLine}`, null, `${chip.combatEnd(l, outcome)} · ${cardLine}`);
 }
 
 // --- holdings --------------------------------------------------------------

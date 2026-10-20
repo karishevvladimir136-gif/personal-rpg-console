@@ -34,6 +34,7 @@ const NEW_MIGRATIONS = [
   "202610180090_owner_approves_craft.sql",
   "202610190070_voice_stage.sql",
   "202610210200_live2d.sql",
+  "202610210201_live2d_battle.sql",
 ];
 const pictures = (f, cid, action, payload = {}) =>
   f.one("select public.rpg_pictures($1,$2,$3,$4::jsonb) result", [f.owner, cid, action, JSON.stringify(payload)]).then((row) => row.result);
