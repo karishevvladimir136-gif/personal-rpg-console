@@ -433,7 +433,10 @@ test("owner's replay fix 2: the tool reads the route's answer (the decoded paylo
   assert.match(readFileSync(new URL("../scripts/eval/real-replay/replay.mjs", import.meta.url), "utf8"), /byTurn\.set\(turnNo, snapshotPayloadOf\(row\)\)/, "the --base path uses it");
   assert.equal(ledgerSpec("voice").capUsd, 8);
   assert.equal(ledgerSpec("polish3").capUsd, 20);
-  assert.equal(DEFAULT_LEDGER, "voice");
+  // The fix-s2 run (docs/stages/FIX_S2_RUN.md) is the default since 2026-10-20: $50, stages A and B within $30.
+  assert.equal(DEFAULT_LEDGER, "fixs2");
+  assert.equal(ledgerSpec("fixs2").capUsd, 50);
+  assert.equal(ledgerSpec("fixs2").stageCaps.AB, 30);
   assert.throws(() => ledgerSpec("other"), /unknown ledger/);
 });
 
