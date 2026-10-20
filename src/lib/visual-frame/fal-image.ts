@@ -481,6 +481,10 @@ export function falSubjectPrompt(input: {
     holding: "Wide illustration of the vehicle or base as a whole, clear silhouette, atmospheric light.",
     atlas: "Top-down illustrated map background, parchment and ink, soft terrain, no labels.",
     frame: "A cinematic story frame of the moment described, one clear focal action.",
+    // 2D Live: these three are drawn from their own briefs (src/lib/live2d); the framing here is the fallback.
+    scene: "Wide establishing illustration of the place with its layout readable at a glance, no people, no text.",
+    region: "A painted atlas map of the region from high above, places as small landmarks, no labels.",
+    battle: "Top-down view of the place for a battle map, the ground plane flat and readable, no people, no grid lines, no text.",
   };
   return [
     framing[input.composition],

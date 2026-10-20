@@ -14,6 +14,7 @@ import {
   Backpack,
   BookOpen,
   Bookmark,
+  Clapperboard,
   Compass,
   Contact,
   Ellipsis,
@@ -55,7 +56,7 @@ import { VisualAutopilot } from "./visual-autopilot";
 import s from "./shell.module.css";
 
 export type CampaignScreenId =
-  | "game" | "character" | "inventory" | "party" | "journal" | "codex" | "map" | "holdings"
+  | "game" | "character" | "inventory" | "party" | "journal" | "codex" | "map" | "live" | "holdings"
   | "adventures" | "library" | "settings" | "sessions" | "saves" | "timeline" | "world"
   | "dm-chat" | "gallery" | "frame" | "pictures" | "home" | "camp";
 
@@ -130,6 +131,7 @@ export function CampaignShell({ children }: { children: ReactNode }) {
     { id: "journal", label: c("Журнал", "Journal"), icon: BookOpen },
     { id: "codex", label: c("Кодекс", "Codex"), icon: Contact },
     { id: "map", label: c("Карта", "Map"), icon: MapIcon },
+    { id: "live", label: c("2D", "2D Live"), icon: Clapperboard },
     { id: "holdings", label: holdingsNavLabel(holdings, lang), icon: holdings.some((row) => row.kind !== "camp") ? Ship : Tent },
     { id: "adventures", label: c("Приключения", "Adventures"), icon: Swords },
     { id: "library", label: c("Библиотека", "Library"), icon: Library },
