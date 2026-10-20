@@ -845,3 +845,15 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     polls; exponential backoff on 5xx), or moves to server-sent updates; `/play` gets lighter (no full transcript);
     after a committed turn the client confirms from the stored turn, never shows «не удалось подтвердить сохранение»
     for a turn that did commit; the report records the machine load if the local session can.
+
+63. **The turn is shown out of order: text appears, vanishes, then a roll card from nowhere** (owner, 19:40: «он вначале
+    печатает, потом исчезает, потом проверка непонятно чего… давай всё последовательно: действие — бросок —
+    напечатал»). In the fireball turn the narration streamed (the hero signals, stands, throws the bead of fire), then
+    the streamed text disappeared and the screen showed only a card «Спасбросок Ловкости от огненного шара Серого…»
+    above the action box — with no text to say the Grey had cast anything. The turn view puts all roll cards in one
+    block above the narration, and the live text of the current segment is dropped when a roll arrives. **Owner
+    decision: show the turn as one timeline in the order it happened** — text → the roll card at the point where the
+    story asked for it → the continuation → the next card…; text already shown is never removed; a paused roll waits
+    in its place («Дальше» / reveal there). Display only: the dice stay honest (the DM still writes up to the roll, the
+    server rolls, the DM continues from the result). Together with items 43 (compact round block), 53 (name the pause)
+    and 60 (every roll told).
