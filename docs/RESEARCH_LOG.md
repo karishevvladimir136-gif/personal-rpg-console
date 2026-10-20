@@ -16,6 +16,13 @@ Private campaign data (the owner's sessions) is referenced by path on the owner'
 | 2026-10-20 | Server-held battlefield vs the DM's own distances | 2 scripted fights, 14 live turns | narrated distances/cover/light matched the server field every turn; DM narrated around declared hero attacks 3 turns (prompt issue) | `live2d-1-report.md` Part 2 |
 | 2026-10-20 | Does the DM invent a hidden truth without being told to? | session 2 private notes | No: notes held only the visible case; bootstrap forbade hidden explanations | notes key finding 2, item 84 |
 
+## The owner's own comparison (motivation; his play experience, 2026-10-20)
+AI Realms drifted into Mary Sue within about five hours of play; Everweave is good but drifts the same way fast, its
+inventory is a mess and companions take no part in combat. After session 2 on this harness: five hours, no drift, the
+hero went down and was saved by a companion and a die, not by the plot; fights already stronger than either. The
+structural reason: here the outcome is decided by server dice and stat-block records and only narrated by the model;
+there the model both decides and narrates.
+
 ## Open questions for the paper
 - Repeats: every comparison above ran once or twice; the paper needs n ≥ 5 per arm on the fixed probe set.
 - A second model family on the same harness (GPT-6 Astra), later open-weight models.
