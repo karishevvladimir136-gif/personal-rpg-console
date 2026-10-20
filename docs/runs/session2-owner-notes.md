@@ -1190,5 +1190,9 @@ report); the guard post's place record says «Раннее утро» — a time
       magic items; the DM gave a scroll.
     Do (for the plan, owner to decide the wording): a mystery layer — one hidden truth per arc, larger than the
     visible case, with clues in several places, each answer opening a deeper question; at least one touch of
-    wonder per session (an object, a sign, a place that the plain explanation does not cover); loot by the 5e
+    the wondrous per session — magic with a history and an open question (whose is it, where from, what for): an
+    item with a strange sigil and unknown properties, a ritual mark on a body, a cipher in the enemy's papers, an
+    old seal deep in a mine (the planner first wrote «what the plain explanation does not cover» — the owner
+    objected, 22:36: «мы ж в мире меча и магии — какое бытовое пояснение?»; right: magic is ordinary here, the
+    point is mystery and lore, not the unexplainable); loot by the 5e
     treasure guidance for the challenge, with the guide's «rare» meaning rare in shops, not in the loot.
