@@ -1,0 +1,86 @@
+{
+  "kind": "ambient",
+  "world": "shov",
+  "styleText": "Steampunk over the ruins of the Old World: brass and steam, airships over Lisbon and Geneva, the glow of etherite, the Steam League, orcish Ghar. Orchestral-mechanical: strings and brass with ticking clockwork percussion, a pipe organ hum, accordion and Portuguese guitar colours, 19th-century adventure romance with a touch of melancholy.",
+  "model": "fal-ai/elevenlabs/sound-effects/v2",
+  "longModel": "fal-ai/stable-audio-25/text-to-audio",
+  "longKinds": [],
+  "kinds": [
+    "tavern",
+    "engine_room"
+  ],
+  "variants": 1,
+  "startedAt": "2026-10-20T17:33:37.723Z",
+  "elapsedMs": 8965,
+  "spentUsdMicros": 220000,
+  "rows": [
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "tavern",
+      "modelId": "fal-ai/elevenlabs/sound-effects/v2",
+      "variant": 1,
+      "requestedSeconds": 22,
+      "prompt": "Ambient sound, no music: a crowded tavern: murmur of many voices, mugs on wood, a fire crackling, a door now and then. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 7,
+      "expectedUsdMicros": 110000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/tavern-1.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 353218,
+      "elapsedMs": 7984,
+      "requestId": "01a15a60-3946-7f03-b7f2-55f0a39ccc60",
+      "priceUsdMicros": 110000,
+      "seconds": 22.047347,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -32.8,
+      "lra": 4.3,
+      "peakDbfs": -6.1,
+      "seam": {
+        "headDb": -35.403921,
+        "tailDb": -39.92208,
+        "bodyDb": -35.634252
+      }
+    },
+    {
+      "world": "shov",
+      "moodId": null,
+      "ambientId": "engine_room",
+      "modelId": "fal-ai/elevenlabs/sound-effects/v2",
+      "variant": 1,
+      "requestedSeconds": 22,
+      "prompt": "Ambient sound, no music: a steam engine room: pistons thumping in rhythm, hissing steam valves, boiler roar, metal clanks. The world: Steampunk over the ruins of the Old World. Natural field-recording texture, steady and even, suitable as a quiet background loop.",
+      "negativePrompt": "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence",
+      "seed": 8,
+      "expectedUsdMicros": 110000,
+      "ok": true,
+      "file": "docs/runs/music-review/ambient/shov/engine_room-1.mp3",
+      "providerContentType": "audio/mpeg",
+      "outputKeys": [
+        "audio"
+      ],
+      "bytes": 353218,
+      "elapsedMs": 6841,
+      "requestId": "01a15a60-3954-75f1-81ad-29899f93d47f",
+      "priceUsdMicros": 110000,
+      "seconds": 22.047347,
+      "sampleRate": 44100,
+      "channels": 2,
+      "codec": "mp3",
+      "lufs": -37.4,
+      "lra": 2.6,
+      "peakDbfs": -22.3,
+      "seam": {
+        "headDb": -39.856668,
+        "tailDb": -41.78425,
+        "bodyDb": -39.721564
+      }
+    }
+  ]
+}

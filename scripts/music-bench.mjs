@@ -5,6 +5,7 @@
 // and docs/runs/music-ledger.md is rewritten from it. The run stops at the cap (default $50).
 //   node scripts/music-bench.mjs compare --world shov|noir --models a,b,c --moods x,y,z [--seconds 60] [--dry]
 //   node scripts/music-bench.mjs pack --world shov|noir --model <id> [--moods x,y] [--variants 2] [--model-for mood=id,...] [--models-by-variant a,b,c] [--kbps 96] [--dry]
+//   node scripts/music-bench.mjs ambient --world shov|noir [--kinds a,b] [--model fal-ai/elevenlabs/sound-effects/v2] [--long-model fal-ai/stable-audio-25/text-to-audio --long-kinds a,b] [--variants 1] [--kbps 80] [--dry]
 //   node scripts/music-bench.mjs ledger                      (no paid call; rewrites the markdown ledger)
 //   node scripts/music-bench.mjs probe --note "..."          (records an unbilled validation probe at $0)
 // Keys come from .env.local (never printed). Synthetic worlds only; the owner's database is never touched.
@@ -15,7 +16,8 @@ import { fileURLToPath } from "node:url";
 import { generateFalMusic, FalMusicError } from "../src/lib/audio/fal-music.ts";
 import { AUDIO_EXTENSIONS, MUSIC_MODELS, musicModel, musicPriceUsdMicros, requestedSeconds } from "../src/lib/audio/models.ts";
 import { MOOD_IDS, mood } from "../src/lib/audio/moods.ts";
-import { cueSeconds, musicRequestFor } from "../src/lib/audio/prompts.ts";
+import { ambientRequestFor, cueSeconds, musicRequestFor } from "../src/lib/audio/prompts.ts";
+import { AMBIENT_IDS, ambientKind, ambientSeconds } from "../src/lib/audio/ambient.ts";
 import { WORLD_STYLES } from "../src/lib/audio/sample-worlds.ts";
 import { providerKey } from "./eval/lib/keys.mjs";
 
@@ -87,15 +89,17 @@ function toMp3(source, target, kbps = reviewKbps) {
 }
 
 // ---- one generation, counted, recorded, converted ----
-async function generate({ world, moodId, modelId, seconds, variant, seed, outDir, baseName }) {
+async function generate({ world, moodId, ambientId, modelId, seconds, variant, seed, outDir, baseName }) {
   const model = musicModel(modelId);
   if (!model) throw new Error(`unknown model ${modelId}`);
-  const request = musicRequestFor({ styleText: WORLD_STYLES[world].styleText, moodId, model: modelId, seconds, seed, variant });
+  const request = ambientId
+    ? ambientRequestFor({ styleText: WORLD_STYLES[world].styleText, ambientId, model: modelId, seconds, seed, variant })
+    : musicRequestFor({ styleText: WORLD_STYLES[world].styleText, moodId, model: modelId, seconds, seed, variant });
   const asked = requestedSeconds(model, request.seconds);
   const expected = musicPriceUsdMicros(modelId, asked);
-  const note = `${world}/${moodId}${variant ? `#${variant}` : ""} ${asked}s`;
-  const entry = reserve("music", modelId, expected, note);
-  const record = { world, moodId, modelId, variant: variant ?? 1, requestedSeconds: asked, prompt: request.prompt, negativePrompt: request.negativePrompt, seed: seed ?? null, expectedUsdMicros: expected };
+  const note = `${world}/${ambientId ?? moodId}${variant ? `#${variant}` : ""} ${asked}s`;
+  const entry = reserve(ambientId ? "ambient" : "music", modelId, expected, note);
+  const record = { world, moodId: moodId ?? null, ambientId: ambientId ?? null, modelId, variant: variant ?? 1, requestedSeconds: asked, prompt: request.prompt, negativePrompt: request.negativePrompt, seed: seed ?? null, expectedUsdMicros: expected };
   if (dry) { settle(entry, 0, { outcome: "dry" }); return { ...record, dry: true }; }
   try {
     const result = await generateFalMusic(falKey, request);
@@ -185,6 +189,37 @@ async function main() {
     console.log(`spent ${usd(record.spentUsdMicros)}; ledger total ${usd(ledger.totalUsdMicros)} of $${ledger.capUsd}`);
     return;
   }
-  throw new Error("usage: compare | pack | ledger | probe (see the header)");
+  if (command === "ambient") {
+    const model = arg("--model", "fal-ai/elevenlabs/sound-effects/v2");
+    const longModel = arg("--long-model", "fal-ai/stable-audio-25/text-to-audio");
+    const longKinds = new Set(list(arg("--long-kinds"), []));
+    const kinds = list(arg("--kinds"), [...AMBIENT_IDS]);
+    const variants = Number(arg("--variants", 1));
+    const firstVariant = Number(arg("--first-variant", 1));
+    const outDir = join(reviewDir, "ambient", world);
+    mkdirSync(outDir, { recursive: true });
+    const started = Date.now();
+    const rows = [];
+    const jobs = [];
+    for (const ambientId of kinds) {
+      if (!AMBIENT_IDS.includes(ambientId)) throw new Error(`unknown ambient kind ${ambientId}`);
+      for (let variant = firstVariant; variant <= variants; variant += 1) {
+        const modelId = longKinds.has(ambientId) ? longModel : model;
+        jobs.push({ world, ambientId, modelId, seconds: ambientSeconds(modelId), variant, seed: variant * 7 + kinds.indexOf(ambientId), outDir, baseName: `${ambientId}-${variant}` });
+      }
+    }
+    for (let i = 0; i < jobs.length; i += 4) {
+      const batch = jobs.slice(i, i + 4);
+      console.log(batch.map((j) => `${j.ambientId}#${j.variant}`).join(", "));
+      rows.push(...(await Promise.all(batch.map((job) => generate(job)))));
+    }
+    const record = { kind: "ambient", world, styleText: WORLD_STYLES[world].styleText, model, longModel, longKinds: [...longKinds], kinds, variants, startedAt: new Date(started).toISOString(), elapsedMs: Date.now() - started, spentUsdMicros: rows.reduce((s, r) => s + (r.priceUsdMicros ?? r.expectedUsdMicros ?? 0), 0), rows };
+    saveRecord(`ambient-${world}`, record);
+    const lines = rows.filter((r) => r.ok).map((r) => `| ${r.ambientId} | ${ambientKind(r.ambientId).label.ru} | ${r.variant} | ${musicModel(r.modelId).label} | ${r.seconds.toFixed(0)} s | ${r.lufs} LUFS | ${usd(r.priceUsdMicros)} | \`${r.file.replace("docs/runs/music-review/", "")}\` |`);
+    writeFileSync(join(outDir, "kinds.md"), `# ${WORLD_STYLES[world].title} — ambient layer\n\nPlace sounds and weathers under the music. Style context: ${WORLD_STYLES[world].styleText}\n\n| Kind | Вид | Take | Model | Length | Loudness | Cost | File |\n| --- | --- | --- | --- | --- | --- | --- | --- |\n${lines.join("\n")}\n\nTotal ${usd(record.spentUsdMicros)}; failed: ${rows.filter((r) => !r.ok).length}.\n`);
+    console.log(`spent ${usd(record.spentUsdMicros)}; ledger total ${usd(ledger.totalUsdMicros)} of $${ledger.capUsd}`);
+    return;
+  }
+  throw new Error("usage: compare | pack | ambient | ledger | probe (see the header)");
 }
 main().catch((error) => { console.error(error.message); process.exitCode = 1; });

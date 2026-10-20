@@ -2,6 +2,7 @@
 // one mood, a loop-friendly shape, no vocals. Pure.
 import { musicModel, type MusicRequest } from "./models.ts";
 import { mood, type MoodId } from "./moods.ts";
+import { ambientKind, ambientSeconds, type AmbientId } from "./ambient.ts";
 
 export const MAX_STYLE_TEXT = 1200;
 
@@ -61,4 +62,29 @@ export function suggestMusicStyle(input: { title?: string | null; premise?: stri
   if (hints.length === 0) hints.push("cinematic orchestral with light electronic textures, intimate when calm, driving when in danger");
   const premise = (input.premise ?? "").trim().slice(0, 300);
   return [premise ? `The world: ${premise}` : "", hints.join("; ") + "."].filter(Boolean).join(" ").slice(0, MAX_STYLE_TEXT);
+}
+
+export const AMBIENT_NEGATIVE_PROMPT = "music, melody, instruments, singing, voices with words, speech, abrupt ending, silence";
+
+/** An ambient loop's prompt: the sound of a place or a weather, the world's flavour in one clause, no music. */
+export function ambientPrompt(input: { styleText: string; ambientId: AmbientId; model: string; variant?: number }) {
+  const kind = ambientKind(input.ambientId);
+  const model = musicModel(input.model);
+  const world = input.styleText.split(/[.;:\n]/)[0]?.trim().slice(0, 160) ?? "";
+  const flavour = world && kind.group === "place" ? ` The world: ${world}.` : "";
+  const variantNote = input.variant && input.variant > 1 ? ` Variation ${input.variant}: a different mix of the same sounds.` : "";
+  const loopNote = model?.id.includes("sound-effects") ? "" : " A steady ambience from the first second to the last, no intro, no fade-out, so it loops.";
+  return `Ambient sound, no music: ${kind.hint}.${flavour} Natural field-recording texture, steady and even, suitable as a quiet background loop.${loopNote}${variantNote}`;
+}
+
+export function ambientRequestFor(input: { styleText: string; ambientId: AmbientId; model: string; seconds?: number; seed?: number | null; variant?: number }): MusicRequest {
+  const seconds = input.seconds ?? ambientSeconds(input.model);
+  return {
+    model: input.model,
+    prompt: ambientPrompt({ styleText: input.styleText, ambientId: input.ambientId, model: input.model, variant: input.variant }),
+    negativePrompt: AMBIENT_NEGATIVE_PROMPT,
+    seconds,
+    seed: input.seed ?? null,
+    styleWords: ["ambient", "field recording"],
+  };
 }

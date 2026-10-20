@@ -5,7 +5,9 @@ import type { CampaignSnapshot } from "@/lib/persistence/contracts";
 import { musicAction, musicTrackAction, uploadMusic } from "@/lib/audio/client";
 import type { MusicTrack } from "@/lib/audio/contracts";
 import { MUSIC_MODELS, musicModel, musicPriceUsdMicros, requestedSeconds } from "@/lib/audio/models";
-import { MOODS, moodLabel, type MoodId } from "@/lib/audio/moods";
+import { MOODS, isMoodId, moodLabel, type MoodId } from "@/lib/audio/moods";
+import { AMBIENT_KINDS, ambientLabel, isAmbientId, PLACE_SOUNDS, WEATHERS } from "@/lib/audio/ambient";
+import { DEFAULT_AMBIENT_MODEL } from "@/lib/audio/music-job";
 import { cueSeconds, suggestMusicStyle } from "@/lib/audio/prompts";
 import { usd } from "@/lib/visual-frame/fal-image";
 import { useMusic } from "./music-player";
@@ -36,24 +38,29 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
   const expected = MOODS.reduce((sum, mood) => sum + musicPriceUsdMicros(model.id, requestedSeconds(model, cueSeconds(mood.id))) * variants, 0);
   const pack = state?.pack ?? null;
   const packTracks = (state?.tracks ?? []).filter((row) => row.packId === pack?.id);
+  const ambientPack = state?.ambientPack ?? null;
+  const ambientTracks = (state?.tracks ?? []).filter((row) => row.packId === ambientPack?.id);
+  const ambientModel = musicModel(DEFAULT_AMBIENT_MODEL)!;
+  const ambientExpected = AMBIENT_KINDS.length * musicPriceUsdMicros(ambientModel.id, 22);
+  const tagLabel = (id: string) => (isMoodId(id) ? moodLabel(id, c.language) : isAmbientId(id) ? ambientLabel(id, c.language) : id);
   const uploads = (state?.tracks ?? []).filter((row) => row.source === "upload");
   const save = async (patch: Partial<NonNullable<typeof settings>>) => {
     if (!settings || !music || busy) return;
     setBusy(true);
     try {
-      const next = await musicAction(campaignId, "music.settings", { expectedRevision: settings.revision, enabled: settings.enabled, model: settings.model, variants: settings.variants, packCapUsdMicros: settings.packCapUsdMicros, styleText: settings.styleText, ...patch });
+      const next = await musicAction(campaignId, "music.settings", { expectedRevision: settings.revision, enabled: settings.enabled, ambient: settings.ambient, model: settings.model, variants: settings.variants, packCapUsdMicros: settings.packCapUsdMicros, styleText: settings.styleText, ...patch });
       music.setState(next);
       setStyleDraft(null);
       setNote("");
     } catch { setNote(c("Не удалось сохранить настройки музыки.", "Could not save the music settings.")); }
     finally { setBusy(false); }
   };
-  const generate = async () => {
+  const generate = async (layer: "music" | "ambient" = "music") => {
     if (!music || busy) return;
     setBusy(true);
     try {
       if (styleDraft !== null) await save({ styleText: styleDraft });
-      await music.act("music.generate", {});
+      await music.act("music.generate", layer === "ambient" ? { layer } : {});
       setNote("");
     } catch { setNote(c("Не удалось начать генерацию.", "Could not start the generation.")); }
     finally { setBusy(false); }
@@ -84,6 +91,17 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
     );
   };
   const generating = pack?.status === "generating";
+  const ambientGenerating = ambientPack?.status === "generating";
+  const kindRow = (id: string) => {
+    const rows = ambientTracks.filter((row) => row.moods.includes(id as never));
+    const ready = rows.filter((row) => row.status === "ready").length, failed = rows.filter((row) => row.status === "failed").length;
+    return (
+      <div key={id} className={m.mood}>
+        <span>{tagLabel(id)}</span>
+        <small>{rows.length ? `${ready}/${rows.length} ${c("готово", "ready")}${failed ? ` · ${failed} ${c("не вышло", "failed")}` : ""}` : c("нет", "none")}</small>
+      </div>
+    );
+  };
   return (
     <Panel eyebrow={c("Музыка", "Music")} action={state ? (state.generation.configured ? <span className={r.badgeGreen}>fal · {c("ключ есть", "key set")}</span> : <span className={r.badgeIron}>fal · {c("нет ключа", "no key")}</span>) : null}>
       <div className={r.stack}>
@@ -134,6 +152,23 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
           </div>
         )}
         <div className={r.stack} style={{ gap: 6 }}>
+          <span className={r.eyebrow}>{c("Звуки места и погода", "Place sounds and weather")}</span>
+          <Switch title={c("Звуки места под музыкой", "Ambient layer under the music")} hint={c("Таверна, кузница, лес ночью, ручей, шахта, палуба, паровые машины; дождь и ветер — по записи места и по тексту хода. Тише музыки, со своей громкостью в плеере.", "A tavern, a forge, a forest at night, a stream, a mine, a deck, steam engines; rain and wind — from the place record and the turn's text. Quieter than the music, with its own volume in the player.")}
+            checked={settings?.ambient ?? true} disabled={preview || !settings || busy} onChange={(value) => void save({ ambient: value })} />
+          <div className={r.row}>
+            <button type="button" className={r.btnMain} disabled={preview || !settings || busy || ambientGenerating || !state?.generation.configured}
+              onClick={() => void generate("ambient")}>{ambientPack ? c("Сгенерировать звуки заново", "Generate the sounds again") : c("Сгенерировать звуки мест", "Generate the place sounds")}</button>
+            <span className={`${r.small} ${r.muted}`}>{PLACE_SOUNDS.length} {c("мест", "places")} + {WEATHERS.length} {c("погод", "weathers")} · {ambientModel.label} · ≈ {usd(ambientExpected)}</span>
+            {ambientGenerating && ambientPack && <button type="button" className={r.btnGhost} disabled={busy} onClick={() => void music?.act("music.cancel", { id: ambientPack.id })}>{c("Остановить", "Stop")}</button>}
+          </div>
+          {ambientPack && (
+            <div className={r.stack} style={{ gap: 6 }}>
+              <span className={r.eyebrow}>{c("Звуки", "Sounds")} v{ambientPack.version} · {ambientPack.status === "generating" ? c("пишутся", "generating") : ambientPack.status === "ready" ? c("готовы", "ready") : ambientPack.status === "failed" ? c("не вышло", "failed") : c("остановлены", "stopped")} · {usd(ambientPack.costUsdMicros)}</span>
+              <div className={m.moods}>{AMBIENT_KINDS.map((kind) => kindRow(kind.id))}</div>
+            </div>
+          )}
+        </div>
+        <div className={r.stack} style={{ gap: 6 }}>
           <span className={r.eyebrow}>{c("Свои треки", "Your own tracks")}</span>
           <p className={r.note} style={{ margin: 0 }}>{c("Загрузи свою музыку (например, из Suno) и отметь настроения — она будет звучать вперемешку с саундтраком.", "Upload your own music (from Suno, for example) and tag its moods; it plays mixed with the soundtrack.")}</p>
           {!preview && (
@@ -156,7 +191,7 @@ export function MusicBlock({ data }: { data: CampaignSnapshot }) {
               {uploads.map((row) => (
                 <div key={row.id} className={m.track}>
                   <span className={row.hidden ? r.badgeIron : r.badge}>{row.hidden ? c("скрыт", "hidden") : statusLabel(row.status)}</span>
-                  <span title={row.title}>{row.title} · {row.moods.map((id) => moodLabel(id, c.language)).join(", ")}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""}</span>
+                  <span title={row.title}>{row.title} · {row.moods.map(tagLabel).join(", ")}{row.durationMs ? ` · ${Math.round(row.durationMs / 1000)} ${c("с", "s")}` : ""}</span>
                   <button type="button" className={r.btnGhost} disabled={preview} onClick={() => void trackAction("music.hide", { id: row.id, hidden: !row.hidden })}>{row.hidden ? c("Вернуть", "Show") : c("Скрыть", "Hide")}</button>
                 </div>
               ))}

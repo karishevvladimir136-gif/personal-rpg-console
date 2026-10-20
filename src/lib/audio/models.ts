@@ -15,6 +15,8 @@
 //   fal-ai/stable-audio-3/medium/text-to-audio $0.0376 per track (duration, seed, negative_prompt, output_format)
 //   fal-ai/lyria2                              $0.10 per 30-second track (prompt, negative_prompt, seed)
 //   fal-ai/ace-step/prompt-to-audio            $0.0002 per second on the model page; an older index says $0.005: counted
+//   fal-ai/elevenlabs/sound-effects/v2         $0.002 per second on the model page (ambient loops: text, duration_seconds ≤ 22,
+//                                              loop, prompt_influence ≤ 1, output_format); counted at $0.005 per second
 
 export type MusicPricing =
   | { kind: "track"; usdMicros: number }
@@ -39,6 +41,8 @@ export type MusicModel = {
   /** The output format the adapter asks for, when the endpoint offers one. */
   format: "mp3" | "wav" | "model";
   tier: "quality" | "draft";
+  /** Sound effects and ambiences rather than music (the ambient layer). */
+  ambient?: boolean;
   note: { ru: string; en: string };
 };
 
@@ -84,6 +88,12 @@ export const MUSIC_MODELS: readonly MusicModel[] = [
     pricing: { kind: "second", usdMicros: 5_000 }, duration: "exact", minSeconds: 5, maxSeconds: 240,
     seed: true, negativePrompt: false, instrumentalSwitch: true, format: "model", tier: "draft",
     note: { ru: "черновики и объём, очень дёшево", en: "drafts and volume, very cheap" },
+  },
+  {
+    id: "fal-ai/elevenlabs/sound-effects/v2", label: "ElevenLabs Sound Effects 2", vendor: "ElevenLabs",
+    pricing: { kind: "second", usdMicros: 5_000 }, duration: "exact", minSeconds: 1, maxSeconds: 22,
+    seed: false, negativePrompt: false, instrumentalSwitch: false, format: "mp3", tier: "quality", ambient: true,
+    note: { ru: "короткие бесшовные петли звуков места и погоды", en: "short seamless loops of place and weather sounds" },
   },
 ] as const;
 
@@ -160,6 +170,9 @@ export function musicRequestBody(input: MusicRequest): Record<string, unknown> {
       return { prompt: input.prompt, negative_prompt: input.negativePrompt, duration: seconds, output_format: "mp3", ...seed };
     case "fal-ai/ace-step/prompt-to-audio":
       return { prompt: input.prompt, instrumental: true, duration: seconds, ...seed };
+    case "fal-ai/elevenlabs/sound-effects/v2":
+      // Ambient loops: the endpoint's own seamless-loop flag; the text holds the scene, no music words.
+      return { text: input.prompt.slice(0, 450), duration_seconds: seconds, loop: true, prompt_influence: 0.3, output_format: "mp3_44100_128" };
     default:
       throw new Error(`no request body for ${model.id}`);
   }

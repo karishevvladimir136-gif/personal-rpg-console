@@ -7,6 +7,10 @@
 import { FADE, loopPoint } from "./player-engine.ts";
 
 type Layer = { trackId: string; gain: GainNode; sources: AudioBufferSourceNode[]; timers: number[]; stopped: boolean };
+/** Independent channels: the music, the place's sound and the weather, each with its own gain and crossfades. */
+export type Channel = "music" | "place" | "weather";
+export const CHANNELS: readonly Channel[] = ["music", "place", "weather"];
+type ChannelState = { gain: GainNode | null; target: number; layers: Layer[] };
 
 /** Where a decoded track effectively ends: the last 50 ms window still within 24 dB of the track's
  * loudest windows (models fade out; a loop seam placed inside the fade is a dip). */
@@ -29,35 +33,45 @@ export function effectiveEnd(buffer: { length: number; sampleRate: number; numbe
   return Math.min(buffer.length / buffer.sampleRate, ((last + 1) * window) / buffer.sampleRate);
 }
 
+/** A make-up gain for quiet files (the sound-effects model delivers ambiences at −40 to −65 LUFS): the gain that
+ * brings the track's RMS to the target, between ×0.5 and ×40, from the same window scan as `effectiveEnd`. */
+export function makeupGain(buffer: { length: number; sampleRate: number; getChannelData: (c: number) => Float32Array }, targetRms = 0.08) {
+  const channel = buffer.getChannelData(0);
+  const step = Math.max(1, Math.floor(buffer.length / 20000));
+  let sum = 0, n = 0;
+  for (let i = 0; i < buffer.length; i += step) { sum += channel[i] * channel[i]; n += 1; }
+  const rms = Math.sqrt(sum / Math.max(1, n));
+  if (!Number.isFinite(rms) || rms <= 0) return 1;
+  return Math.max(0.5, Math.min(40, targetRms / rms));
+}
+
 export class WebMusicPlayer {
   private context: AudioContext | null = null;
-  private master: GainNode | null = null;
   private duckGain: GainNode | null = null;
-  private layers: Layer[] = [];
+  private channels: Record<Channel, ChannelState> = { music: { gain: null, target: 0.5, layers: [] }, place: { gain: null, target: 0.4, layers: [] }, weather: { gain: null, target: 0.4, layers: [] } };
   private buffers = new Map<string, AudioBuffer>();
   private pending = new Map<string, Promise<AudioBuffer>>();
-  private gainTarget = 0.5;
   private ducked = false;
-  private listeners = new Set<(trackId: string | null) => void>();
+  private listeners = new Set<(channel: Channel, trackId: string | null) => void>();
   private readonly fetchTrack: (trackId: string) => Promise<ArrayBuffer>;
   constructor(fetchTrack: (trackId: string) => Promise<ArrayBuffer>) {
     this.fetchTrack = fetchTrack;
   }
 
-  /** Called whenever the playing track changes (the React side keeps «now playing» from this). */
-  subscribe(listener: (trackId: string | null) => void) {
+  /** Called whenever a channel's playing track changes (the React side keeps «now playing» from this). */
+  subscribe(listener: (channel: Channel, trackId: string | null) => void) {
     this.listeners.add(listener);
     return () => { this.listeners.delete(listener); };
   }
-  private notify() {
-    const current = this.current;
-    for (const listener of this.listeners) listener(current);
+  private notify(channel: Channel) {
+    const current = this.current(channel);
+    for (const listener of this.listeners) listener(channel, current);
   }
   get unlocked() {
     return this.context !== null && this.context.state === "running";
   }
-  get current() {
-    return this.layers.find((layer) => !layer.stopped)?.trackId ?? null;
+  current(channel: Channel = "music") {
+    return this.channels[channel].layers.find((layer) => !layer.stopped)?.trackId ?? null;
   }
 
   /** Must be called from a user gesture: creates the context the first time and resumes it. */
@@ -67,11 +81,15 @@ export class WebMusicPlayer {
     if (!Ctx) return false;
     if (!this.context) {
       this.context = new Ctx();
-      this.master = this.context.createGain();
       this.duckGain = this.context.createGain();
-      this.master.gain.value = this.gainTarget;
       this.duckGain.gain.value = 1;
-      this.master.connect(this.duckGain).connect(this.context.destination);
+      this.duckGain.connect(this.context.destination);
+      for (const name of CHANNELS) {
+        const gain = this.context.createGain();
+        gain.gain.value = this.channels[name].target;
+        gain.connect(this.duckGain);
+        this.channels[name].gain = gain;
+      }
     }
     if (this.context.state !== "running") {
       try { await this.context.resume(); } catch { /* still locked: the next gesture tries again */ }
@@ -79,9 +97,10 @@ export class WebMusicPlayer {
     return this.context.state === "running";
   }
 
-  setGain(target: number) {
-    this.gainTarget = target;
-    if (this.context && this.master) this.master.gain.setTargetAtTime(target, this.context.currentTime, 0.1);
+  setGain(target: number, channel: Channel = "music") {
+    const state = this.channels[channel];
+    state.target = target;
+    if (this.context && state.gain) state.gain.gain.setTargetAtTime(target, this.context.currentTime, 0.1);
   }
   duck(on: boolean) {
     if (this.ducked === on) return;
@@ -98,8 +117,8 @@ export class WebMusicPlayer {
       const bytes = await this.fetchTrack(trackId);
       const decoded = await this.context!.decodeAudioData(bytes.slice(0));
       // At most three decoded tracks stay in memory (phones): the oldest goes.
-      if (this.buffers.size >= 3) {
-        const playing = new Set(this.layers.filter((layer) => !layer.stopped).map((layer) => layer.trackId));
+      if (this.buffers.size >= 5) {
+        const playing = new Set(CHANNELS.flatMap((name) => this.channels[name].layers.filter((layer) => !layer.stopped).map((layer) => layer.trackId)));
         for (const key of this.buffers.keys()) if (!playing.has(key)) { this.buffers.delete(key); break; }
       }
       this.buffers.set(trackId, decoded);
@@ -109,22 +128,25 @@ export class WebMusicPlayer {
     try { return await promise; } finally { this.pending.delete(trackId); }
   }
 
-  /** Crossfade to a track; a second call for the same track does nothing. Resolves once it plays. */
-  async play(trackId: string) {
-    if (!this.context || !this.master) return false;
-    if (this.current === trackId) return true;
+  /** Crossfade a channel to a track; a second call for the same track does nothing. Resolves once it plays. */
+  async play(trackId: string, channel: Channel = "music") {
+    const state = this.channels[channel];
+    if (!this.context || !state.gain) return false;
+    if (this.current(channel) === trackId) return true;
     const buffer = await this.buffer(trackId);
-    if (!this.context || this.current === trackId) return true;
+    if (!this.context || this.current(channel) === trackId) return true;
     const now = this.context.currentTime;
-    for (const layer of this.layers) this.fadeOut(layer, FADE.switchSeconds);
+    for (const layer of state.layers) this.fadeOut(channel, layer, FADE.switchSeconds);
     const gain = this.context.createGain();
+    // Ambient channels get a make-up gain (quiet effect files); the music keeps its own level.
+    const level = channel === "music" ? 1 : makeupGain(buffer);
     gain.gain.setValueAtTime(0.0001, now);
-    gain.gain.exponentialRampToValueAtTime(1, now + FADE.switchSeconds);
-    gain.connect(this.master);
+    gain.gain.exponentialRampToValueAtTime(level, now + FADE.switchSeconds);
+    gain.connect(state.gain);
     const layer: Layer = { trackId, gain, sources: [], timers: [], stopped: false };
-    this.layers.push(layer);
+    state.layers.push(layer);
     this.loop(layer, buffer, now);
-    this.notify();
+    this.notify(channel);
     return true;
   }
 
@@ -151,7 +173,7 @@ export class WebMusicPlayer {
     layer.timers.push(timer);
   }
 
-  private fadeOut(layer: Layer, seconds: number) {
+  private fadeOut(channel: Channel, layer: Layer, seconds: number) {
     if (layer.stopped || !this.context) return;
     layer.stopped = true;
     for (const timer of layer.timers) window.clearTimeout(timer);
@@ -160,13 +182,16 @@ export class WebMusicPlayer {
     layer.gain.gain.setValueAtTime(Math.max(0.0001, layer.gain.gain.value), now);
     layer.gain.gain.exponentialRampToValueAtTime(0.0001, now + seconds);
     for (const source of layer.sources) { try { source.stop(now + seconds + 0.05); } catch { /* already stopped */ } }
-    window.setTimeout(() => { layer.gain.disconnect(); this.layers = this.layers.filter((l) => l !== layer); }, seconds * 1000 + 200);
+    window.setTimeout(() => { layer.gain.disconnect(); this.channels[channel].layers = this.channels[channel].layers.filter((l) => l !== layer); }, seconds * 1000 + 200);
   }
 
-  stop(seconds = 1.5) {
-    const had = this.current !== null;
-    for (const layer of this.layers) this.fadeOut(layer, seconds);
-    if (had) this.notify();
+  stop(channel: Channel = "music", seconds = 1.5) {
+    const had = this.current(channel) !== null;
+    for (const layer of this.channels[channel].layers) this.fadeOut(channel, layer, seconds);
+    if (had) this.notify(channel);
+  }
+  stopAll(seconds = 1.5) {
+    for (const name of CHANNELS) this.stop(name, seconds);
   }
 
   /** Pre-decode a track so a later switch starts without a fetch. */

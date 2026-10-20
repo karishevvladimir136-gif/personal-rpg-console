@@ -4,10 +4,12 @@
 // (`music-player.tsx`) only executes what this returns. Pure.
 import { MOOD_FALLBACKS } from "./mood-select.ts";
 import type { MoodId } from "./moods.ts";
+import type { AmbientId } from "./ambient.ts";
 
 export type PlayableTrack = {
   id: string;
-  moods: MoodId[];
+  /** Moods of a music track; place kinds and weathers of an ambient track. */
+  moods: string[];
   source: "generated" | "upload";
   title: string;
   seconds: number | null;
@@ -18,8 +20,11 @@ export type PlayerPrefs = {
   enabled: boolean;
   volume: number; // 0..1
   muted: boolean;
+  /** The ambient layer on this device and its own volume. */
+  ambient: boolean;
+  ambientVolume: number;
 };
-export const DEFAULT_PREFS: PlayerPrefs = { enabled: true, volume: 0.5, muted: false };
+export const DEFAULT_PREFS: PlayerPrefs = { enabled: true, volume: 0.5, muted: false, ambient: true, ambientVolume: 0.4 };
 
 export function clampVolume(value: unknown) {
   const n = typeof value === "number" && Number.isFinite(value) ? value : 0.5;
@@ -46,9 +51,17 @@ export function pickTrack(tracks: PlayableTrack[], moodId: MoodId, lastTrackId: 
   return { track: fresh[Math.floor(random() * fresh.length) % fresh.length] ?? rows[0], moodUsed };
 }
 
+/** An ambient loop for a place kind or a weather: the kind's own takes, no take twice in a row. */
+export function pickAmbientTrack(tracks: PlayableTrack[], id: AmbientId, lastTrackId: string | null, random = Math.random): PlayableTrack | null {
+  const rows = tracks.filter((row) => !row.hidden && row.moods.includes(id));
+  if (!rows.length) return null;
+  const fresh = rows.length > 1 ? rows.filter((row) => row.id !== lastTrackId) : rows;
+  return fresh[Math.floor(random() * fresh.length) % fresh.length] ?? rows[0];
+}
+
 /** Crossfade and loop timing (seconds). A loop restarts the same buffer `overlap` seconds before its end
  * with a fade-in, while the running one fades out: the seam becomes a crossfade. */
-export const FADE = { switchSeconds: 4, loopOverlapSeconds: 3, duckSeconds: 0.6, duckGain: 0.2 } as const;
+export const FADE = { switchSeconds: 4, loopOverlapSeconds: 3, duckSeconds: 0.6, duckGain: 0.2, ambientUnderMusic: 0.6 } as const;
 
 /** When to schedule the loop of a track of `seconds` length: never inside a very short clip. */
 export function loopPoint(seconds: number) {
@@ -56,8 +69,13 @@ export function loopPoint(seconds: number) {
   return { at: Math.max(1, seconds - overlap), overlap };
 }
 
-/** The gain a layer should sit at, from the preferences and whether a video with sound is playing. */
+/** The gain the music should sit at, from the preferences and whether a video with sound is playing. */
 export function targetGain(prefs: PlayerPrefs, ducked: boolean) {
   if (!prefs.enabled || prefs.muted) return 0;
   return clampVolume(prefs.volume) * (ducked ? FADE.duckGain : 1);
+}
+/** The gain of the ambient layer: its own volume, lower under playing music, ducked under video like the music. */
+export function ambientGain(prefs: PlayerPrefs, musicPlaying: boolean, ducked: boolean) {
+  if (!prefs.ambient || prefs.muted) return 0;
+  return clampVolume(prefs.ambientVolume) * (musicPlaying ? FADE.ambientUnderMusic : 1) * (ducked ? FADE.duckGain : 1);
 }

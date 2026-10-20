@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chooseMood, initialMoodState, placeKind, stepMood } from "../src/lib/audio/mood-select.ts";
+import { chooseAmbient, initialAmbientState, stepAmbient, ambientLabel } from "../src/lib/audio/ambient.ts";
 import { moodLabel } from "../src/lib/audio/moods.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -14,24 +15,28 @@ const signals = JSON.parse(readFileSync(join(root, "test-fixtures", "music", "sh
 
 export function replaySession() {
   let state = initialMoodState();
+  let ambient = initialAmbientState();
   const rows = [];
   signals.turns.forEach((row, index) => {
     const turn = scene.turns[row.turn - 1];
-    const place = { name: scene.places[row.place], description: "" };
-    const signal = { turnId: `t${row.turn}`, sceneKinds: row.sceneKinds, tension: row.tension, hint: row.hint, playerMoment: row.playerMoment, encounterActive: row.encounterActive, worldMinutes: row.minutes, place };
+    const place = { name: scene.places[row.place], description: signals.placeDescriptions?.[row.place] ?? "" };
+    const signal = { turnId: `t${row.turn}`, sceneKinds: row.sceneKinds, tension: row.tension, hint: row.hint, playerMoment: row.playerMoment, encounterActive: row.encounterActive, worldMinutes: row.minutes, place, narration: turn.narration };
     const choice = chooseMood(signal);
+    const ambientChoice = chooseAmbient(signal);
+    ambient = stepAmbient(ambient, ambientChoice);
     const now = index * signals.secondsPerTurn * 1000;
     const step = stepMood({ ...state, lastTurnId: signal.turnId }, choice, now);
     state = step.state;
     rows.push({ turn: row.turn, place: place.name, placeKind: placeKind(place), input: turn.input, sceneKinds: row.sceneKinds, tension: row.tension, hint: row.hint, encounter: row.encounterActive, moment: row.playerMoment,
-      wanted: choice.mood, playing: step.mood, switched: step.switched, reason: step.reason, at: now / 1000 });
+      wanted: choice.mood, playing: step.mood, switched: step.switched, reason: step.reason, at: now / 1000,
+      ambientPlace: ambient.place, ambientWeather: ambient.weather, ambientReason: ambientChoice.reason });
   });
   return rows;
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const rows = replaySession();
-  const line = (r) => `| ${r.turn} | ${r.at} s | ${r.place} | ${r.input.replace(/\|/g, "/")} | ${r.sceneKinds.join(", ")} | ${r.tension ?? "—"}${r.hint ? ` → ${r.hint}` : ""}${r.encounter ? " · fight" : ""}${r.moment ? " · moment" : ""} | ${moodLabel(r.wanted, "ru")} | **${moodLabel(r.playing, "ru")}**${r.switched ? " ↺" : ""} | ${r.reason} |`;
+  const line = (r) => `| ${r.turn} | ${r.at} s | ${r.place} | ${r.input.replace(/\|/g, "/")} | ${r.sceneKinds.join(", ")} | ${r.tension ?? "—"}${r.hint ? ` → ${r.hint}` : ""}${r.encounter ? " · fight" : ""}${r.moment ? " · moment" : ""} | ${moodLabel(r.wanted, "ru")} | **${moodLabel(r.playing, "ru")}**${r.switched ? " ↺" : ""} | ${r.reason} | ${r.ambientPlace ? ambientLabel(r.ambientPlace, "ru") : "—"}${r.ambientWeather ? ` + ${ambientLabel(r.ambientWeather, "ru")}` : ""} |`;
   const switches = rows.filter((r) => r.switched).length;
   const text = `# Music stage — a 20-turn synthetic session: which mood played when and why
 
@@ -39,8 +44,10 @@ The 20-turn «Мир Шва» scene of Stage V (\`test-fixtures/stage-v/shov-sce
 
 Rules in one line: a fight or a jump of two energy steps switches at once; anything else waits until the new mood held for two turns or the current one played 90 s; nothing private is read (no ambush music for a private note).
 
-| Turn | At | Place | Player | Scene kinds | Tension → hint | Wanted | Playing | Why |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+The last column is the ambient layer: the place's sound from the public place name and the hour, the weather from the committed turn's public text (held for two turns after the word disappears).
+
+| Turn | At | Place | Player | Scene kinds | Tension → hint | Wanted | Playing | Why | Ambient |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 ${rows.map(line).join("\n")}
 `;
   writeFileSync(join(root, "docs", "runs", "music-session-log.md"), text);

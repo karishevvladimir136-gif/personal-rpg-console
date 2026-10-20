@@ -74,29 +74,32 @@ calls. Known limits: a single model request longer than five minutes still lets 
 (the old attempt is then fenced out, nothing is applied twice); the Astra runtime's lease is unchanged. The voice stage
 section below is that stage's own closing status, kept unchanged.
 
-**Current stage:** the music stage (`docs/stages/STAGE_MUSIC.md` on `claude/handoff`) — **done on `claude/stage-music`,
-waiting for the owner's ear (the review pack) and the acceptance checklist.** Branch from `claude/session-2-prep`
-(d74b6c6), a cloud session of 2026-10-20 in parallel with the fix run and the 2D slice; migration 71
-(`202610210371_music_stage`), additive. The owner report is `docs/runs/music-report.md` (the model decision, what to
-click, known limits); the Russian checklist `docs/runs/music-acceptance.md`; the resume notes
-`docs/runs/music-progress.md`; the review pack `docs/runs/music-review/` (the comparison of seven models on five moods,
-the «Мир Шва» and «Neon & Rain» soundtracks as small MP3s with their mood tables); the 20-turn mood log
+**Current stage:** the music stage (`docs/stages/STAGE_MUSIC.md` on `claude/handoff`, with the owner's ambient-layer
+addition of 2026-10-20) — **done on `claude/stage-music`, waiting for the owner's ear (the review pack) and the
+acceptance checklist.** Branch from `claude/session-2-prep` (d74b6c6), a cloud session of 2026-10-20 in parallel with
+the fix run and the 2D slice; one migration `202610210301_music_stage` (prefix `2026102103`, renumbered off the
+turn-lease fix's `202610200071`), additive. The owner report is `docs/runs/music-report.md` (the model decision, the
+ambient layer, what to click, known limits); the Russian checklist `docs/runs/music-acceptance.md`; the resume notes
+`docs/runs/music-progress.md`; the review pack `docs/runs/music-review/` (seven models on five moods, the «Мир Шва» and
+«Neon & Rain» soundtracks, the ambient loops of both worlds, as small MP3s with their tables); the 20-turn mood log
 `docs/runs/music-session-log.md`. Final checks: typecheck pass, lint pass (zero warnings), build pass, the stage's tests
-11/11, screenshots of the settings and game screens on desktop and phone with the overflow check passing, the full suite
-2 631 tests · 2 603 pass · 27 skipped · 1 fail (the stage-5 copy check: the word «Лиссабон» in the new settings block's hint, reworded in the closing commit; `tests/stage5-ui.test.mjs` green alone, 16/16). Paid: **$14.40 of the $50 cap** (every fal call, the free validation probes included, in
-`docs/runs/music-ledger.md`).
+12/12, screenshots of the settings and game screens on desktop and phone with the overflow check passing, the full
+suite 2 632 tests · 2 605 pass · 27 skipped · 0 fail. Paid: **$19.82 of the $50 cap** ($14.40 of $40 for the soundtracks and the review, $5.42 of $10 for
+the ambient layer; every fal call, the free validation probes included, in `docs/runs/music-ledger.md`).
 
 **The music stage in short (2026-10-20):** a soundtrack per world. The settings' music block generates a pack of
 15 moods × 2–3 takes of instrumental, loop-friendly music in the world's own musical style (editable, with a proposal
-from the world's records) on fal — Lyria 3 Pro and Lyria 3.5 by default, Stable Audio 3 for ambient takes, seven
+from the world's records) on fal — Lyria 3 Pro and Lyria 3.5 by default, Stable Audio 3 for ambient takes, eight
 models in the catalogue — in the background, one track per request, counted against a per-pack cap in SQL before each
 request; a turn never waits. The player picks a mood from the public scene only (the committed turn's scene kinds and
 tension, a public fight, the clock, the current place) with hysteresis (a fight at once, a calm change after two turns
 or 90 s), crossfades between moods, loops each track on itself with an overlap placed before its fade-out, ducks under
 a video with sound, never autoplays before the first click; the header control has volume, mute, «Музыка выкл», pin and
-skip; the owner's own tracks upload with mood tags and mix with the pack. Shared files touched: the shell (provider and
-control), the settings screen (one block), the migration list test. The previous stages' sections below are kept
-unchanged.
+skip; the owner's own tracks upload with mood tags and mix with the pack. The ambient layer under the music: 24 place
+kinds and 5 weathers read from the public place record, the hour and the turn's public text, generated once per world
+as 22-second seamless loops (ElevenLabs Sound Effects 2) with a make-up gain in the player, their own channels, switch
+and volume. Shared files touched: the shell (provider and control), the settings screen (one block), the migration
+list test. The previous stages' sections below are kept unchanged.
 
 **Previous stage:** the voice stage (`docs/stages/VOICE.md` «The build», parts 1–8, plus the owner's two replay-tool
 bugs of 2026-10-18) — **done on `claude/voice`, waiting for the owner's approval of the two Russian texts, the local
