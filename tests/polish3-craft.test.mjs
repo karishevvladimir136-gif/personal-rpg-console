@@ -63,7 +63,8 @@ test("§7 migration 69: every card has a role; the 22 active keys carry theirs; 
     assert.match(screen, /t\("For whom"\)/);
     assert.match(screen, /roleLabel\(version\.role \?\? "both"\)/);
     const ru = JSON.parse(src("src/lib/locales/ru.json"));
-    assert.equal(ru["For the bookkeeper"], "Для бухгалтера");
+    // Fix run after session 2 (item 7): the owner's word for the role on the craft cards is «Для учётчика».
+    assert.equal(ru["For the bookkeeper"], "Для учётчика");
   } finally { await c.f.db.close(); }
 });
 
