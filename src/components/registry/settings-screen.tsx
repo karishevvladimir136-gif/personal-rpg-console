@@ -8,11 +8,12 @@ import type { DossierView, NotebookView } from "@/lib/gameplay/dossier/contracts
 import { pinnedOf, turnStatsOf } from "@/lib/ui/campaign-view";
 import { PinnedList } from "./pins";
 import { EFFORT_ORDER } from "@/lib/gameplay/dm-loop/depth";
-import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle } from "@/lib/campaign-settings";
-import { DM_LOOP_DEFAULT_LIMITS, DM_LOOP_LIMIT_CEILINGS, DM_LOOP_LIMIT_KEYS, dmArchitectureOf, dmArchitectures, dmBookkeeperModels, dmTurnModels, dmWriterModels, saveDmSettings,
-  type DmLoopTurnLimits, type DmSettings, type DmSplit } from "@/lib/gameplay/dm-settings-client";
-import { dmLoopLimits } from "@/lib/gameplay/dm-loop/limits";
-import { readJson } from "@/lib/persistence/client";
+import { checkFrequencyOptions, dicePresentationOptions, effectiveDmStyle, updateCampaignSettings, type CampaignSettingsAction } from "@/lib/campaign-settings";
+import { dmArchitectureOf, dmArchitectures, dmBookkeeperModels, dmTurnModels, dmWriterModels, saveDmSettings,
+  type DmSettings, type DmSplit } from "@/lib/gameplay/dm-settings-client";
+import { createMutationAttempt, readJson } from "@/lib/persistence/client";
+import { rulesInWords } from "@/lib/ui/rules-words";
+import { useOptionalCampaignData } from "../persistence-context";
 import { usd } from "@/lib/visual-frame/fal-image";
 import { workshopJobs } from "@/lib/ui/visual-autopilot";
 import { readImageAsDataUrl } from "@/lib/ui/pictures-client";
@@ -43,9 +44,28 @@ export function RegistrySettings({ data, more, preview }: {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [providers, setProviders] = useState<ProviderInfo>(preview?.providers ?? null);
-  // The six per-turn limits (stage 3) as the owner edits them; null = nothing being edited.
-  const [limitsDraft, setLimitsDraft] = useState<Record<keyof DmLoopTurnLimits, string> | null>(null);
-  const [limitsError, setLimitsError] = useState("");
+  // Fix run after session 2 (items 26, 39): the checks and dice that act in play, on this short screen. The per-turn
+  // record limits stay on the server (saveDmSettings still takes them) and leave the owner's settings.
+  const campaign = useOptionalCampaignData();
+  const [diceValues, setDiceValues] = useState(data.settings.values);
+  const [diceBusy, setDiceBusy] = useState(false);
+  const [diceError, setDiceError] = useState("");
+  // The preview keeps its toggles locally; the live screen shows the saved record.
+  const shownDice = chrome?.href || !campaign ? diceValues : data.settings.values;
+  const changeDice = async (action: CampaignSettingsAction) => {
+    if (diceBusy) return;
+    const next = updateCampaignSettings(shownDice, action);
+    setDiceError("");
+    if (chrome?.href || !campaign) { setDiceValues(next); return; }
+    setDiceBusy(true);
+    try {
+      await campaign.mutate(createMutationAttempt(null, { operation: "settings.save", timeline: data.timeline, correctionScope: "timeline",
+        campaignId: data.campaign.id, expectedRevision: data.settings.revision, payload: next }));
+      await campaign.refresh().catch(() => {});
+    } catch {
+      setDiceError(c("Не удалось сохранить. Обнови страницу и попробуй ещё раз.", "Could not save. Reload the page and try again."));
+    } finally { setDiceBusy(false); }
+  };
   // Stage 4: the player-likes note and the theme question (owner-editable), the
   // depth range, the notebook option, the last turns' numbers.
   const [dossier, setDossier] = useState<DossierView | null>(null);
@@ -147,50 +167,8 @@ export function RegistrySettings({ data, more, preview }: {
   };
   const writerEntry = split ? dmWriterModels.find((row) => row.modelId === split.writer.modelId) ?? null : null;
   const bookkeeperEntry = split ? dmBookkeeperModels.find((row) => row.modelId === split.bookkeeper.modelId) ?? null : null;
-  const limitLabels: Record<keyof DmLoopTurnLimits, string> = {
-    moneyPerTurn: c("Денег создаётся за ход", "Money created per turn"),
-    itemsPerTurn: c("Новых предметов за ход", "Items created per turn"),
-    charactersPerTurn: c("Новых персонажей за ход", "New characters per turn"),
-    minutesPerTurn: c("Игровых минут за ход", "Game minutes per turn"),
-    toolCallsPerTurn: c("Действий за ход", "Tool calls per turn"),
-    modelRequestsPerTurn: c("Запросов к модели за ход", "Model requests per turn"),
-  };
-  const shownLimits = current?.limits ?? DM_LOOP_DEFAULT_LIMITS;
-  const limitValue = (key: keyof DmLoopTurnLimits) => limitsDraft ? limitsDraft[key] : String(shownLimits[key]);
-  const editLimit = (key: keyof DmLoopTurnLimits, value: string) => {
-    const base = limitsDraft ?? Object.fromEntries(DM_LOOP_LIMIT_KEYS.map((k) => [k, String(shownLimits[k])])) as Record<keyof DmLoopTurnLimits, string>;
-    setLimitsDraft({ ...base, [key]: value });
-  };
-  /** Saves the edited limits (or returns the campaign to the defaults) through the same settings API as the model. */
-  const saveLimits = async (limits: DmLoopTurnLimits | null) => {
-    if (!current || saving || chrome?.href) return;
-    setSaving(true);
-    setLimitsError("");
-    try {
-      const saved = await saveDmSettings(data.campaign.id, { expectedRevision: current.revision, runtime: current.runtime, dmTurn: current.dmTurn, limits });
-      setDm(saved);
-      setLimitsDraft(null);
-    } catch {
-      setLimitsError(c("Не удалось сохранить пределы. Проверь числа и соединение.", "Could not save the limits. Check the numbers and the connection."));
-    } finally {
-      setSaving(false);
-    }
-  };
-  const submitLimits = () => {
-    if (!limitsDraft) return;
-    const parsed = {} as DmLoopTurnLimits;
-    for (const key of DM_LOOP_LIMIT_KEYS) {
-      const n = Number(limitsDraft[key]);
-      const bound = DM_LOOP_LIMIT_CEILINGS[key];
-      if (!Number.isInteger(n) || n < bound.min || n > bound.max) {
-        setLimitsError(c(`«${limitLabels[key]}»: целое число от ${bound.min} до ${bound.max.toLocaleString(c.language)}.`, `“${limitLabels[key]}”: a whole number between ${bound.min} and ${bound.max.toLocaleString(c.language)}.`));
-        return;
-      }
-      parsed[key] = n;
-    }
-    void saveLimits(parsed);
-  };
   const settings = data.settings.values;
+  const rules = rulesInWords(data);
   const style = effectiveDmStyle(settings);
   const toneLabel = { hopeful_humanist: c("Надежда", "Hope"), balanced: c("Поровну света и тьмы", "Balanced"), bleak: c("Мрачно", "Bleak") }[style.emotionalTone];
   const frequency = checkFrequencyOptions.find((row) => row.value === settings.checkFrequency);
@@ -318,9 +296,12 @@ export function RegistrySettings({ data, more, preview }: {
                 <div><span>{c("Тон истории", "Story tone")}</span><span>{toneLabel}</span></div>
                 <div><span>{c("Как часто броски", "How often checks")}</span><span>{frequency ? c.t(frequency.label) : settings.checkFrequency}</span></div>
                 <div><span>{c("Показ бросков", "Showing rolls")}</span><span>{dice ? c.t(dice.label) : settings.dicePresentation}</span></div>
-                <div><span>{c("Важные броски кидаю я", "I roll important checks")}</span><span>{settings.interactiveDice ? c("да", "yes") : c("нет", "no")}</span></div>
               </div>
-              <a className={r.btnGhost} href="#more-settings">{c("Изменить в полных настройках", "Change in the full settings")}</a>
+              {/* Item 39: the link opens the folded full settings before it jumps there. */}
+              <a className={r.btnGhost} href="#more-settings" onClick={() => {
+                const fold = document.getElementById("more-settings");
+                if (fold instanceof HTMLDetailsElement) fold.open = true;
+              }}>{c("Изменить в полных настройках", "Change in the full settings")}</a>
               <div className={r.stack} style={{ gap: 6 }}>
                 <span className={r.eyebrow}>{c("Что мне нравится", "What I enjoy")}</span>
                 <p className={r.note} style={{ margin: 0 }}>{c("Твои собственные слова о том, что тебе нравится в игре: из мастера создания и твоих правок. Ведущий их читает и никогда не переписывает.", "Your own words on what you enjoy in the game, from the wizard and your edits. The DM reads them and never rewrites them.")}</p>
@@ -416,37 +397,41 @@ export function RegistrySettings({ data, more, preview }: {
             </div>
           </Panel>
           <OwnerSecretsPanel campaignId={data.campaign.id} preview={!!preview} />
-          <Panel eyebrow={c("Правила и пределы кампании", "Rules and campaign limits")}>
-            <div className={r.stack}>
-              <div className={r.row}>
-                <span className={r.muted}>{c("Правила:", "Rules:")}</span>
-                <span className={r.chip}>{settings.rulesSystem.label}</span>
-                <Link className={r.btnGhost} href={href("library")}>{c("Книги правил в библиотеке", "Rule books in the library")}</Link>
+          {/* Fix run after session 2 (items 26, 39): the campaign's rules in words with the way to the DM guide, and
+              the checks and dice that act in play — shown for every rules system, never hidden behind «Логика мира».
+              The per-turn record limits are guards on the server, not something the owner plays with. */}
+          <Panel eyebrow={c("Правила и кости", "Rules and dice")} label={c("Правила и кости", "Rules and dice")}>
+            <div className={r.stack} data-testid="rules-and-dice">
+              <div className={r.stack} style={{ gap: 4 }}>
+                <span className={r.eyebrow}>{c("Правила этой кампании", "This campaign's rules")}</span>
+                <p className={s.rules}>{rules.line
+                  ? c(`${rules.line} — по руководству ведущего`, `${rules.line} — by the DM guide`)
+                  : c("Свои правила — руководство ведущего пока пустое", "Own rules — the DM guide is still empty")}</p>
+                {rules.guideId && (
+                  <Link className={s.inlineLink} href={`${href("library")}?doc=${encodeURIComponent(rules.guideId)}`}>
+                    {rules.line ? c("Открыть и изменить руководство ведущего", "Open and edit the DM guide") : c("Написать руководство ведущего", "Write the DM guide")}
+                  </Link>
+                )}
+                <p className={r.note} style={{ margin: 0 }}>{c("Правила — это знания ведущего, а не код: он читает руководство перед каждым ходом. Подойдёт любая система.", "Rules are the DM's knowledge, not code: the DM reads the guide before every turn. Any system works.")}</p>
               </div>
-              <p className={r.note}>{c("Правила — это знания ведущего, а не код. Подойдёт любая система.", "Rules are the DM's knowledge, not code. Any system works.")}</p>
-              <div className={r.stack} style={{ gap: 6 }}>
-                <span className={r.eyebrow}>{c("Пределы одного хода", "Limits of one turn")}</span>
-                {DM_LOOP_LIMIT_KEYS.map((key) => (
-                  <label key={key} className={s.limit}>
-                    <span>{limitLabels[key]}</span>
-                    <input type="number" inputMode="numeric" min={DM_LOOP_LIMIT_CEILINGS[key].min} max={DM_LOOP_LIMIT_CEILINGS[key].max}
-                      value={limitValue(key)} disabled={saving || !current || !!chrome?.href} aria-label={limitLabels[key]}
-                      onChange={(event) => editLimit(key, event.target.value)} />
-                  </label>
-                ))}
-                <div className={r.row}>
-                  <button type="button" className={r.btnMain} disabled={saving || !limitsDraft} onClick={submitLimits}>{c("Сохранить пределы", "Save limits")}</button>
-                  <button type="button" className={r.btnGhost} disabled={saving || !current || (!current.customLimits && !limitsDraft)} onClick={() => void saveLimits(null)}>{c("Вернуть по умолчанию", "Back to defaults")}</button>
-                  {current?.customLimits && <span className={r.chip}>{c("свои пределы", "custom limits")}</span>}
-                </div>
-                {limitsError && <p className={r.error} role="alert">{limitsError}</p>}
+              <div className={r.stack} style={{ gap: 4 }}>
+                <span className={r.eyebrow}>{c("Проверки и кости", "Checks and dice")}</span>
+                <Switch title={c("Показывать сложность (DC)", "Show the difficulty (DC)")}
+                  hint={c("После броска на карточке видно, какое число нужно было выбросить. Тайные проверки ведущего не показываются никогда.", "After a roll the card shows the number that was needed. The DM's secret checks are never shown.")}
+                  checked={shownDice.showDc} disabled={diceBusy || shownDice.dicePresentation === "hidden"} onChange={(value) => void changeDice({ type: "showDc", value })} />
+                <Switch title={c("Важные броски кидаю я", "I roll the important checks")}
+                  hint={c("Ход ждёт, пока ты сам бросишь кость героя в важной проверке. Выкл — бросает сервер, ход не останавливается.", "The turn waits until you roll the hero's die in an important check. Off — the server rolls and the turn goes on.")}
+                  checked={shownDice.interactiveDice} disabled={diceBusy || shownDice.dicePresentation === "hidden"} onChange={(value) => void changeDice({ type: "interactiveDice", value })} />
+                <Switch title={c("Перебросы", "Rerolls")}
+                  hint={shownDice.difficulty.rerolls === "disabled"
+                    ? c("Выкл: результат броска окончателен, как в D&D 5e.", "Off: a roll stands, as in D&D 5e.")
+                    : c(`Вкл: после броска можно попросить переброс (${shownDice.difficulty.rerolls === "unlimited" ? "без ограничения" : `до ${shownDice.difficulty.rerollsPerSession} за сессию`}). Домашнее правило, не 5e.`,
+                      `On: after a roll you may ask for a reroll (${shownDice.difficulty.rerolls === "unlimited" ? "unlimited" : `up to ${shownDice.difficulty.rerollsPerSession} a session`}). A house rule, not 5e.`)}
+                  checked={shownDice.difficulty.rerolls !== "disabled"} disabled={diceBusy}
+                  onChange={(value) => void changeDice({ type: "difficulty", key: "rerolls", value: value ? "limited" : "disabled" })} />
+                {shownDice.dicePresentation === "hidden" && <p className={r.note} style={{ margin: 0 }}>{c("Броски скрыты («Показ бросков» в полных настройках), поэтому сложность и свои броски сейчас не действуют.", "Rolls are hidden («Showing rolls» in the full settings), so the difficulty and your own rolls do not apply now.")}</p>}
+                {diceError && <p className={r.error} role="alert">{diceError}</p>}
               </div>
-              <div className={r.kv}>
-                <div><span>{c("Денег за одно действие", "Money per action")}</span><span>{dmLoopLimits.maxMoneyPerCall.toLocaleString(c.language)}</span></div>
-                <div><span>{c("Предметов в стопке", "Items per stack")}</span><span>{dmLoopLimits.maxItemQuantity.toLocaleString(c.language)}</span></div>
-                <div><span>{c("Бросков за ход", "Checks per turn")}</span><span>{dmLoopLimits.maxChecksPerTurn}</span></div>
-              </div>
-              <p className={r.note}>{c("Пределы — защита записей, а не правила игры: ход, который в них упёрся, не падает, а ведущий получает причину. Новые значения действуют со следующего хода.", "Limits protect the records, they are not game rules: a turn that hits one does not fail, the DM gets the reason. New values apply from the next turn.")}</p>
             </div>
           </Panel>
         </div>
