@@ -6,7 +6,18 @@ probes below, in `docs/runs/merge-s2-ledger.md` (cap $15).
 
 ## In short
 
-PROBE_SUMMARY
+The three branches are one branch now, `claude/s3-candidate`: the fixes after session 2 as the base, 2D Live with the
+combat screen, and the soundtrack with its ambient layer (the music branch was merged twice — its ambient follow-up
+landed while the merge was under way). Conflicts in five files (nine over the three merges), resolved as unions, the schema bound re-measured; the `combat`
+tool is the 2D branch's;
+two things the merged code needed were fixed (the 2D preview's DM options; the fix run's 13 px text floor carried to the
+2D and music screens). The full suite on the frozen candidate: **2 795 tests, 0 fail**; typecheck, zero-warning lint and
+the production build pass. Session 3's mode on the merged code: the ford 5/5, the lair 4/5 (stopped by its own guard),
+the long rest 1/1 with one `rest`; records complete; the battlefield block reached the writer in every fight turn. Two
+things for the owner and the audit: in «Opus пишет — Opus записывает» the attacks are the writer's rolls, so the 2D
+rules module is not applied by the server (the writer added cover correctly by hand); and the «every seen roll told»
+check does not see `combat attack` cards nor a declared attack that was never rolled — the 2D finding did not recur on
+the ford, but the checks would not have caught it. Paid: **$7.07 of $15**.
 
 ## The branches and the order
 
@@ -144,11 +155,31 @@ screens the 13 px floor.
 
 ## Checks on the candidate
 
-CHECKS
+On a clean worktree without `.env.local`, pinned to the frozen candidate `9cebbd5` (the last merge `05a7c57` plus
+the bench's two commits; everything after it is the bench's replay fix and documents):
+
+- **Full suite** (`node --test --test-concurrency=2 tests/*.test.mjs`, Node 24): **2 795 tests · 2 768 pass · 0 fail ·
+  0 cancelled · 27 skipped** (35 min). The three known `d2a-composition` cancellations did not occur on this run.
+- **Typecheck** pass · **lint** pass with zero warnings (`eslint . --max-warnings 0`) · **production build** pass, no
+  warnings.
+- Focused runs while merging: after the 2D merge the dm-loop, combat, live2d, inventory, fix-s2, dossier and saves
+  tests (261) — 2 failures, both fixed in the merge (the 13 px rule on the 2D styles, the schema bound), then green; after
+  each music merge the music, saves, readable-text, stage-5 and settings tests (49–68) green after the music player's
+  13 px fix.
+- **Screenshots regenerated from the merge** (the production build above, `next start` on :3105): SHOTS
 
 ## Money
 
-MONEY
+`docs/runs/merge-s2-ledger.md`: **$7.07 of the $15 cap.**
+
+| Check | Runs | Spent |
+| --- | --- | --- |
+| 1 — session 3's mode (≤ $8) | the ford attempt 1 $0.85 (cut by the bench bug), the ford $1.49, the lair $1.98, the long rest $1.50 (its first attempt sent nothing, $0) | **$5.83** |
+| 2 — the open finding | the ford with Opus alone $1.24 (the session 3 mode's ford above is counted in check 1) | **$1.24** |
+| 3 — the audit input | no paid calls | $0 |
+
+Each run's own guard capped it before any request whose worst case could cross it; the checkers' calls (Haiku, about
+$0.0005 each) are inside the totals.
 
 ## Files of this merge
 

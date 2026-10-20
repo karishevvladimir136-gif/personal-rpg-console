@@ -22,8 +22,10 @@ resolution, the schema size, the probes, the money); the ledger `docs/runs/merge
   hand, correctly). The 2D finding (declared attacks narrated around) did not recur on the ford in either mode; the
   rolls-told check does not see `combat attack` cards (`roll-check.ts:13`) and nothing checks a declared but unrolled
   action — for the audit.
-- **Checks on the candidate:** CHECKS_SHORT
-- **Money:** MONEY_SHORT of the merge's $15 cap.
+- **Checks on the candidate** (`9cebbd5`, a clean worktree without `.env.local`): the full suite 2 795 tests · 2 768
+  pass · 0 fail · 0 cancelled · 27 skipped; typecheck pass; lint pass (zero warnings); production build pass (no
+  warnings); the screenshot sets of the three branches regenerated from the merge (SHOTS_SHORT).
+- **Money:** $7.07 of the merge's $15 cap (check 1 $5.83 of ≤ $8, check 2 $1.24, check 3 $0).
 - **Known issues and what is left:** the owner's acceptance of the three checklists; the sandbox load and session 3 on
   the owner's machine; the `d2a-composition` cancellations (pre-existing); the rules module in the split and the two
   check gaps above (for the Ultracode audit, with `docs/runs/s3-audit-input.md`).
