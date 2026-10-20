@@ -827,3 +827,9 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     «Добивание беспомощного: если цель без сознания или парализована и не может сопротивляться, а у нападающего есть
     время и клинок, удар в горло или сердце убивает сразу, без бросков»; the turn as a whole also lost the hero's
     lightning (item 60).
+    **Owner decision (19:19): yes — add the house rule, and «чтобы такого не было».** Given to the owner to paste into
+    the campaign's DM guide (section «Бой»), now: the coup-de-grâce rule, «раны — по хитам» (light / bloodied / badly
+    hurt / down, a deadly-sounding blow only at 0 HP), and «каждый бросок — в рассказе» (every hero spell, attack and
+    check told in the story first, damage rolled by formula, the aside never carries an untold event). In code (fix
+    cycle, owner-approved): the item-60 check before finish_turn and the continuation-after-roll rule; the session
+    report flags wound descriptions that do not match the HP band.
