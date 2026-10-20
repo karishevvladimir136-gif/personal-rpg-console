@@ -857,3 +857,14 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     in its place («Дальше» / reveal there). Display only: the dice stay honest (the DM still writes up to the roll, the
     server rolls, the DM continues from the result). Together with items 43 (compact round block), 53 (name the pause)
     and 60 (every roll told).
+
+64. **Owner wants enemy hit points and damage on screen** (19:42: «нет отображения урона и нет ХП врагов — непонятно,
+    сколько у кого… очень неудобно; но последствия фаербола показаны хорошо, вещь мощная»). The first turn after the
+    guide's Revision 3: the coup de grâce worked (one blow, the bound sergeant dead), the hero's Fireball and the
+    Grey's answering Fireball are both told in the story, wounds are told by severity. But the damage (Fireball 21, the
+    hero's half 11) lives only in the aside, and the enemies' HP is hidden by the 5e guide («хиты противников
+    скрыты»), so the player cannot follow the fight — and nobody can check the new «раны по хитам» rule (Kadrik «тяжело
+    ранен» after 21: true for a 32-HP thug, false for a 58-HP veteran). **Owner decision: show them.** Do: the combat
+    panel shows every participant's HP as a bar with numbers (BG3-style), updated by each damage roll; damage rolls
+    appear in the turn timeline next to the hit (item 63) with dice and total; the guide drops «хиты скрыты».
+    Mid-session: the owner can add one line to the DM guide asking for HP numbers and damage dice in the aside.
