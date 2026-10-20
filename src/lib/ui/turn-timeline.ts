@@ -44,7 +44,9 @@ export function rollLines(turn: Pick<PublicTurn, "status" | "changes">, trace: L
     ? trace.view.changes.flatMap((change, index) => (change.ok && change.name === "roll" ? [{ summary: change.summary, at: trace.at[index] ?? null }] : []))
     : [];
   if (turn.status !== "committed" || !turn.changes) return traced;
-  return turn.changes.filter((change) => change.tool === "roll").map((change, index) => ({ summary: change.summary, at: traced[index]?.at ?? null }));
+  // The saved turn knows where each roll was made (Stage C); the trace of a turn this page saw told is the fallback.
+  return turn.changes.filter((change) => change.tool === "roll").map((change, index) => ({ summary: change.summary,
+    at: typeof change.at === "number" ? change.at : traced[index]?.at ?? null }));
 }
 
 export type ChipTone = "success" | "failure" | null;

@@ -183,6 +183,8 @@ export type PublicTurn = {
   created_at: string;
   updated_at: string;
   narration: string | null;
+  /** Stage C: a paused dm-loop turn's text told so far (the player read it as it streamed); absent otherwise. */
+  told?: string | null;
   visualDescription: string | null;
   checks: VisibleCheck[];
   proposal: GuidanceProposal | null;
@@ -191,7 +193,8 @@ export type PublicTurn = {
   canCancel: boolean;
   /** Committed dm-loop-v1 turns (Stage 4, UI_DATA_NEEDS #1, #2): the public
    * receipt summaries, the player moment and the scene kinds of the finish. */
-  changes?: { tool: string; ok: true; summary: string; action?: string }[];
+  /** `at`: where in the narration the change was made (Stage C; rolls only, absent on older turns). */
+  changes?: { tool: string; ok: true; summary: string; action?: string; at?: number }[];
   playerMoment?: boolean;
   /** Polish: the accepted roll's reason the moment rests on («Ворот Мокея»). */
   playerMomentReason?: string | null;

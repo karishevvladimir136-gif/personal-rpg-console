@@ -43,7 +43,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
+import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, type DmLoopDependencies } from "../loop.ts";
 
 /** Fix run A6: what the writer is sent after a request the output cap cut (the loop's CUT_BY_CAP, with the ledger). */
 export const WRITER_CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then close with the ledger. Keep your thinking short.";
@@ -624,6 +624,9 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), met };
       for (const person of met) live({ type: "tool", name: "meet", ok: true, summary: person.player });
     }
+    // Stage C: each of the writer's rolls in its place in the told text (the writer's messages; the ledger comes last).
+    const textAt = rollTextOffsets(loop.transcript, loop.receipts);
+    if (Object.keys(textAt).length) loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), textAt };
     await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",

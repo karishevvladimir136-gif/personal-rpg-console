@@ -160,6 +160,8 @@ export type DmLoopMeta = {
   npcRefused?: boolean;
   /** Fix run B2: an owner's standing out-of-game rule from this turn's input, pinned after the commit. */
   ownerRule?: string | null;
+  /** Stage C: receipt position → where in the told text that roll was made (the saved turn shows it in place). */
+  textAt?: Record<string, number>;
 };
 
 /** The shadow state's delta, persisted at every checkpoint so a resume rebuilds

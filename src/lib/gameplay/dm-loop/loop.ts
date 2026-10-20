@@ -229,6 +229,23 @@ export function joinText(previous: string, next: string): string {
   return `${previous.replace(/\s+$/, "")}${continuation(previous, next)}`;
 }
 
+/** Stage C (the turn on screen): where in the told text each accepted roll was made — the text of the assistant
+ * messages up to the one that called it, joined the way the loop joins them. Computed from the transcript at the commit,
+ * so a paused and continued turn keeps it; the saved turn shows each roll in its place. Receipt position → offset. */
+export function rollTextOffsets(transcript: { role: string; text?: string; toolCalls?: { id: string }[] }[], receipts: DmLoopReceipt[]): Record<string, number> {
+  const out: Record<string, number> = {};
+  let text = "";
+  for (const message of transcript) {
+    if (message.role !== "assistant") continue;
+    text = joinText(text, message.text ?? "");
+    for (const call of message.toolCalls ?? []) {
+      const receipt = receipts.find((row) => row.call.id === call.id);
+      if (receipt && receipt.result.ok && receipt.call.name === "roll") out[String(receipt.position)] = text.length;
+    }
+  }
+  return out;
+}
+
 function toolOutput(receipt: DmLoopReceipt, checks: RecordedCheck[]): string {
   const result = receipt.result;
   if (!result.ok) return JSON.stringify({ ok: false, reason: result.reason, ...(result.hint ? { hint: result.hint } : {}) });
@@ -717,12 +734,14 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), met };
       for (const person of met) live({ type: "tool", name: "meet", ok: true, summary: person.player });
     }
+    const textAt = rollTextOffsets(loop.transcript, loop.receipts);
+    if (Object.keys(textAt).length) loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), textAt };
     // Fix run A3 (owner: «ход за 2,5 доллара — это треш»): a turn over $1, over four requests or over 32 000
     // output tokens is named with its cause in the log and the report.
     const expensive = expensiveTurn(loop);
     if (expensive) diagnostic(expensive);
     // The commit keeps the checkpoint as last persisted: the leak diagnostics and the people met must be in it.
-    if (met.length || expensive || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure" || row.kind === "time_words")) await persist("generating");
+    if (met.length || expensive || Object.keys(textAt).length || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure" || row.kind === "time_words")) await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",
       resolution: { changes: shadow.orderedChanges(), worldMinutes: shadow.worldMinutes,

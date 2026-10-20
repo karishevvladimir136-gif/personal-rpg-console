@@ -75,7 +75,8 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
   const told = turn.status === "failed" || turn.status === "cancelled" ? null : trace;
   const shown = shownStatus(turn, told, running);
   const status = recording && shown !== "committed" && shown !== "failed" && shown !== "cancelled" ? "recording" : shown;
-  const text = turn.narration ?? told?.view.text ?? "";
+  // A paused turn after a reload or a restart: the server's told text when this page has no stream of it.
+  const text = turn.narration ?? (told?.view.text || turn.told) ?? "";
   const telling = status === "generating" || status === "pending";
   const quiet = useQuiet(`${told?.view.text.length ?? 0}:${told?.view.changes.length ?? 0}:${status}`, telling && !!text.trim());
   const { items, pause } = buildTurnTimeline({

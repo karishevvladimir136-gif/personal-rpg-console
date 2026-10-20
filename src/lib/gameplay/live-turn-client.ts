@@ -35,6 +35,10 @@ export function parseLiveEvent(data: string): DmLoopLiveEvent | null {
   }
 }
 
+/** A pause the server replayed (the stream was opened again before «Дальше»): the stream stays open for the rest. */
+export const replayedPause = (event: DmLoopLiveEvent) =>
+  event.type === "status" && event.status === "awaiting_confirmation" && (event as { replayed?: unknown }).replayed === true;
+
 /** Opens the event stream of a turn; returns a function that closes it. */
 export function followLiveTurn(campaignId: string, operationId: string, onView: (view: LiveTurnView) => void): () => void {
   if (typeof EventSource === "undefined") return () => {};
@@ -45,7 +49,8 @@ export function followLiveTurn(campaignId: string, operationId: string, onView: 
     if (!event) return;
     view = applyLiveEvent(view, event);
     onView(view);
-    if (event.type === "status" && liveStatusEnds(event.status)) source.close();
+    // Stage C: opened again after «Дальше», the stream replays the old pause first — that pause is history.
+    if (event.type === "status" && liveStatusEnds(event.status) && !(replayedPause(event))) source.close();
   };
   source.onerror = () => { source.close(); };
   return () => source.close();

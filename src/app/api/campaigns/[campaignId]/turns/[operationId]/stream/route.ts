@@ -24,9 +24,10 @@ export async function GET(_request: Request, context: { params: Promise<{ campai
           if (timer) clearTimeout(timer);
           try { controller.close(); } catch { /* already closed */ }
         };
-        unsubscribe = subscribeLiveTurn(operationId, (event) => {
-          try { controller.enqueue(encoder.encode(`data: ${JSON.stringify(event)}\n\n`)); } catch { close(); return; }
-          if (liveTurnEnds(event)) close();
+        unsubscribe = subscribeLiveTurn(operationId, (event, replay) => {
+          // Stage C: a replayed event says so — the client keeps a replayed pause open for «Дальше».
+          try { controller.enqueue(encoder.encode(`data: ${JSON.stringify(replay ? { ...event, replayed: true } : event)}\n\n`)); } catch { close(); return; }
+          if (liveTurnEnds(event) && !(replay && event.type === "status" && event.status === "awaiting_confirmation")) close();
         });
         timer = setTimeout(close, 10 * 60 * 1000);
       },

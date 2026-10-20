@@ -33,19 +33,24 @@ export function publishLiveTurnEvent(operationId: string, event: DmLoopLiveEvent
   turn.events.push(event);
   turn.updated = Date.now();
   if (liveTurnEnds(event)) turn.done = true;
+  // Stage C: «Дальше» continues a paused turn — its stream is live again.
+  else if (event.type === "status" && event.status === "generating") turn.done = false;
   for (const listener of turn.listeners) listener(event);
 }
 
-/** Replays what happened so far, then follows. Returns an unsubscribe function. */
-export function subscribeLiveTurn(operationId: string, listener: (event: DmLoopLiveEvent) => void): () => void {
+/** A paused turn: «Дальше» may continue it, so a listener stays after the replay. */
+const pausedAt = (turn: LiveTurn) => { const last = turn.events.at(-1); return last?.type === "status" && last.status === "awaiting_confirmation"; };
+/** Replays what happened so far (each replayed event marked), then follows. Returns an unsubscribe function. Stage C:
+ * the client opens the stream before it sends «Дальше» — a replayed pause is history, not the end of the stream. */
+export function subscribeLiveTurn(operationId: string, listener: (event: DmLoopLiveEvent, replay?: { replayed: true }) => void): () => void {
   sweep();
   let turn = turns.get(operationId);
   if (!turn) {
     turn = { events: [], listeners: new Set(), done: false, updated: Date.now() };
     turns.set(operationId, turn);
   }
-  for (const event of turn.events) listener(event);
-  if (turn.done) return () => {};
+  for (const event of turn.events) listener(event, { replayed: true });
+  if (turn.done && !pausedAt(turn)) return () => {};
   turn.listeners.add(listener);
   return () => { turn?.listeners.delete(listener); };
 }
