@@ -682,6 +682,15 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
 - the hero's initiative is a visible roll; a planned ambush starts the way the guide says (item 54);
 - a round's rolls in one compact block, companion and enemy rolls as lines rolled by the DM, the hero's important rolls
   as cards (items 43, 44); the mid-turn pause named by what is rolled (item 53);
+- the battle map (owner, 17:15: «у нас есть зачатки нормальной карты боя — оно достаточно чётко меряет расстояния; сможем
+  сделать как в Friends & Fables»): the DM already keeps positions, heights, cover, light radius and distances in feet
+  in its asides — but in its head, so the scale drifts (40 paces = 120 ft at noon, 50 paces = 120 ft at night). Move
+  them to the server: participants and features (cover, light sources, difficult ground) with coordinates on a 5-ft
+  grid over the place's painted picture (item 31 — the location paintings become the background), distances, ranges
+  and light computed by the server and given to the DM as text, the DM moving tokens with its combat tool, the player
+  dragging his own token = an intent in the action box. Friends & Fables (reference): AI-moved tokens on battle and world
+  maps, players may move their own; its surprise round lets a party that sneaks successfully act before the enemies
+  (one answer to item 54); characters die at 0 HP there — we keep 5e dying and death saves.
 - tests on the 48-scene probes plus two scripted fights (an ambush, a chase) before the owner's acceptance pass.
 - speed (owner, 16:16: «по бою оно, конечно, немного долго думает»): a combat turn is several model requests (one per
   roll the DM waits for), and combat runs at the top of the depth range (very high), so every continuation thinks long
