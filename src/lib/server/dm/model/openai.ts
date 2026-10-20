@@ -185,6 +185,8 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
       case "response.incomplete": {
         yield usageEvent(event);
         const why = event.response?.incomplete_details?.reason ?? null;
+        // Fix run A1: a reasoning item the cap left without its following item is rejected when sent back.
+        while (items.length && items.at(-1)?.type === "reasoning") items.pop();
         yield { type: "stop", reason: why === "max_output_tokens" ? "max_tokens"
           : why === "content_filter" ? "refusal" : "other", providerReason: why, native: native() };
         return;

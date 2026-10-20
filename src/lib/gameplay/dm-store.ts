@@ -96,6 +96,8 @@ export function createRpcTurnStore(
       rpc(lease.campaignId, "astra_tool", { ...lease, position, call, result }),
     recordDmTool: (lease, position, call, result) =>
       rpc(lease.campaignId, "dm_tool", { ...lease, position, call, result }),
+    renewLease: async (lease) =>
+      (await rpc<{ renewed?: boolean } | null>(lease.campaignId, "lease_heartbeat", { operationId: lease.operationId, token: lease.token }))?.renewed === true,
     ...(astraDiagnostics ? { recordAstraStage: (lease: import("./server-contracts.ts").TurnLease,
       diagnostic: Parameters<NonNullable<TurnStore["recordAstraStage"]>>[1]) =>
       rpc<void>(lease.campaignId, "astra_diagnostic", { ...lease, diagnostic }) } : {}),

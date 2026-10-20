@@ -37,6 +37,32 @@ type StreamData = {
   error?: { type?: unknown; message?: unknown };
 };
 
+function completeJson(text: string): boolean {
+  try {
+    const value = JSON.parse(text || "{}");
+    return !!value && typeof value === "object" && !Array.isArray(value);
+  } catch {
+    return false;
+  }
+}
+
+/** Fix run A1: the blocks that may go back to the provider — a cut message (stop `max_tokens`) can end in a
+ * tool call with half its arguments, a thinking block without its signature or an empty text block. */
+export function completeBlocks(blocks: Block[]): Block[] {
+  return blocks.filter((block) => {
+    if (!block) return false;
+    if (block.type === "tool_use") return !block.incomplete;
+    if (block.type === "thinking") return typeof block.signature === "string" && block.signature.length > 0;
+    if (block.type === "text") return typeof block.text === "string" && block.text.length > 0;
+    return true;
+  }).map((block) => {
+    if (block.type !== "tool_use") return block;
+    const { incomplete: _incomplete, ...rest } = block;
+    void _incomplete;
+    return rest as Block;
+  });
+}
+
 function parseArguments(text: string): unknown {
   try {
     return JSON.parse(text || "{}");
@@ -45,14 +71,31 @@ function parseArguments(text: string): unknown {
   }
 }
 
-function anthropicMessages(messages: DmMessage[], modelId: string) {
-  return messages.map((message) => {
+/** Fix run A2: the messages that end a cached prefix inside a turn — the last message (this request's
+ * end) and the message before the latest assistant reply (where the previous request ended, so its entry
+ * is found even when the reply and its tool results are more than the provider's 20-block lookback).
+ * Both are always user-role messages (a user line or tool results). */
+export function turnBreakpoints(messages: DmMessage[]): number[] {
+  if (!messages.length) return [];
+  const end = messages.length - 1;
+  let lastAssistant = -1;
+  messages.forEach((message, index) => { if (message.role === "assistant") lastAssistant = index; });
+  const previous = lastAssistant - 1;
+  return previous >= 0 && previous !== end && messages[previous].role !== "assistant" ? [previous, end] : [end];
+}
+
+const EPHEMERAL = { type: "ephemeral" } as const;
+
+function anthropicMessages(messages: DmMessage[], modelId: string, breakpoints: number[] = []) {
+  return messages.map((message, index) => {
+    const mark = breakpoints.includes(index);
     if (message.role === "user")
-      return { role: "user", content: [{ type: "text", text: message.text }] };
+      return { role: "user", content: [{ type: "text", text: message.text, ...(mark ? { cache_control: EPHEMERAL } : {}) }] };
     if (message.role === "tool_results")
-      return { role: "user", content: message.results.map((result) => ({
+      return { role: "user", content: message.results.map((result, at) => ({
         type: "tool_result", tool_use_id: result.callId, content: result.output,
         ...(result.isError ? { is_error: true } : {}),
+        ...(mark && at === message.results.length - 1 ? { cache_control: EPHEMERAL } : {}),
       })) };
     // Thinking blocks (with signatures) must return unchanged to the same model.
     if (message.native?.providerId === "anthropic" && message.native.modelId === modelId)
@@ -75,7 +118,13 @@ export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
   // write rate for a continuation that mostly never came (cache writes 50–76% of
   // the DM's cost). Everything after the last breakpoint is now paid once at the
   // plain input rate; the history's earlier blocks are found at their boundaries.
-  const cached = request.system.flatMap((block, index) => (block.cache && block.breakpoint !== false ? [index] : [])).slice(-4);
+  // Fix run A2 (item 83): a turn's request also caches its own conversation — the last message and the
+  // end of the previous request — so a continuation reads the tail, the «now» block and the turn so far at
+  // the read rate. Those take the breakpoints first; the system keeps the latest of its own (the history's
+  // end, the world, the role) up to the provider's four.
+  const messageBreakpoints = request.cacheTurn ? turnBreakpoints(request.messages) : [];
+  const cached = request.system.flatMap((block, index) => (block.cache && block.breakpoint !== false ? [index] : []))
+    .slice(-(4 - messageBreakpoints.length));
   return {
     model: modelId,
     max_tokens: request.maxOutputTokens,
@@ -85,7 +134,7 @@ export function anthropicRequestBody(modelId: string, request: DmModelRequest) {
     // rewrites them); longer lifetimes must come first, which the layer order gives.
     system: request.system.map((block, index) => ({ type: "text", text: block.text,
       ...(cached.includes(index) ? { cache_control: { type: "ephemeral", ...(block.ttl === "1h" ? { ttl: "1h" } : {}) } } : {}) })),
-    messages: anthropicMessages(request.messages, modelId),
+    messages: anthropicMessages(request.messages, modelId, messageBreakpoints),
     ...(request.toolset && request.toolset.anthropic.length ? { tools: request.toolset.anthropic } : {}),
     // Adaptive thinking is always on for Opus 5.5; effort is the only control.
     // A continuation at another level than the turn started with is a top-level
@@ -180,6 +229,9 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
         const block = blocks[data.index];
         if (block?.type === "tool_use") {
           const json = toolJson.get(data.index) || "{}";
+          // Fix run A1 (items 32, 56, 73): a tool call the output cap cut ends in invalid JSON. It is
+          // dropped — never executed, never sent back to the provider (the next request failed on it).
+          if (!completeJson(json)) { block.incomplete = true; break; }
           block.input = parseArguments(json);
           yield { type: "tool_call", id: String(block.id), name: String(block.name), arguments: json };
         }
@@ -200,7 +252,7 @@ async function* parseStream(body: ReadableStream<Uint8Array>, modelId: string,
           outputTokens: usage.output, cacheReadTokens: usage.cacheRead, cacheWriteTokens: usage.cacheWrite,
           cacheWrite1hTokens: usage.cacheWrite1h, reasoningTokens: null } };
         yield { type: "stop", reason: stopReason(reason), providerReason: typeof reason === "string" ? reason : null,
-          native: { providerId: "anthropic", modelId, items: blocks.filter(Boolean) } };
+          native: { providerId: "anthropic", modelId, items: completeBlocks(blocks) } };
         return;
       case "error":
         throw new DmModelError(errorKind(data.error?.type),

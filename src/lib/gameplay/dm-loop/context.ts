@@ -1,8 +1,10 @@
 // The four-layer request of dm-loop-v1 (plan §10 «весь крафт в кэш», §12 the
 // campaign dossier, §11 pinned facts; stage task §1), from the most stable to
-// the most volatile, a cache breakpoint at each boundary (polish 2 §4: the
-// conversation's history sits between the world and the living dossier as
-// append-only blocks, so a turn writes only its own rows):
+// the most volatile (polish 2 §4: the conversation's history sits between the
+// world and the living dossier as append-only blocks, so a turn writes only its
+// own rows). Breakpoints (fix run A2, at most four on Anthropic): the role, the
+// world, the history's end, and the turn's own conversation (its last message,
+// and on a continuation the end of the previous request instead of the role):
 //   1. how to run the game — role, tool policy, the whole approved DM Craft
 //      library (doctrine and every active card), DM Style;
 //   2. the world — campaign, theme, DM guide, Canon, rules as knowledge
@@ -35,6 +37,7 @@ import { DM_ROLE, dmTurnShape, WRITER_ROLE, writerTurnShape } from "./roles.ts";
 import { allPlans } from "./plans.ts";
 import { voiceExamplesBlock, voiceLayer, voiceReminder, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN } from "./voice.ts";
 import { parseLedger, type AttentionLedger } from "./ledger.ts";
+import { parseDmOptions } from "./options.ts";
 
 const bytes = (text: string) => new TextEncoder().encode(text).length;
 const json = (value: unknown) => JSON.stringify(value);
@@ -393,17 +396,21 @@ function notebook(source: RuntimeSource): Budgeted {
     dropped: clipped === text ? [] : ["notebook tail"], used: estimateTokens(clipped) };
 }
 
-/** The likes note in two parts (polish item 15): the player's own words first
- * (the wizard and the owner's edits; the DM never rewrites them), then the DM's
- * own observations (finish_turn playerLikes replaces that note only). */
-function playerLikes(source: RuntimeSource): Budgeted {
+/** The likes note in two parts (polish item 15). Fix run A2: the player's own words (the wizard and the
+ * owner's edits; the DM never rewrites them) are stable and travel in the cached world layer
+ * (`ownerLikes`); the DM's own observations stay in the tail, newest last, and finish_turn playerLikes
+ * appends to them — never rewrites them whole (item 71: a rewrite dropped the owner's DC rule). */
+export function ownerLikes(source: RuntimeSource): string {
   const likes = (source.snapshot.campaign.player_likes ?? "").trim();
-  const observed = (source.snapshot.campaign.dm_likes ?? "").trim();
   const theme = (source.snapshot.campaign.theme ?? "").trim();
-  const parts = [likes ? `What the player asked for, in their own words (from the wizard and the owner's edits; theirs — never rewrite, always honour): ${clipChars(likes, 2000)}` : "",
-    observed ? `Your observations of what the player enjoys (finish_turn playerLikes replaces this note; carry forward what still holds): ${clipChars(observed, 1200)}` : "",
-    theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean);
-  const text = parts.join("\n");
+  return [likes ? `What the player asked for, in their own words (from the wizard and the owner's edits; theirs — never rewrite, always honour): ${clipChars(likes, 2000)}` : "",
+    theme ? `Campaign theme question (return to it in different guises; never moralize, not in every scene): ${clipChars(theme, 400)}` : ""].filter(Boolean).join("\n");
+}
+function playerLikes(source: RuntimeSource): Budgeted {
+  const observed = (source.snapshot.campaign.dm_likes ?? "").trim();
+  // The newest observations when the notes are long (they are appended, newest last).
+  const recent = observed.length > 1200 ? `…${observed.slice(-1200).replace(/^[^\n]*\n/, "")}` : observed;
+  const text = recent ? `Your observations of what the player enjoys (newest last; finish_turn playerLikes appends a new line — the notes are never rewritten whole): ${recent}` : "";
   return { text, dropped: [], used: estimateTokens(text) };
 }
 
@@ -479,7 +486,12 @@ function varietyCounter(source: RuntimeSource, input: TurnInput): string {
  * HISTORY_BUCKET, not one per turn: one rewrite every eight turns or so, instead of every turn. */
 export const HISTORY_BUDGET = DOSSIER_BUDGETS.layer4.scenes + DOSSIER_BUDGETS.layer4.exchanges;
 export const HISTORY_BUCKET = 16;
+/** Fix run A2 (item 23): the campaign's «Окно истории» (the DM options), the default 45 000. */
+export function historyBudget(source: RuntimeSource): number {
+  return parseDmOptions(source.dmOptions).historyWindow;
+}
 export function conversationHistory(source: RuntimeSource): { blocks: string[]; dropped: string[]; used: number; rows: number; bodies: string[] } {
+  const HISTORY_BUDGET = historyBudget(source);
   const rows = source.snapshot.scenes.map((row) => `[${row.role}] ${row.body}`);
   const bodies = source.snapshot.scenes.map((row) => row.body.replace(/\s+/g, " ").trim());
   const costs = rows.map((text) => estimateTokens(text) + 2);
@@ -610,11 +622,12 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     DOSSIER_BUDGETS.layer2.canon, "Canon documents (established facts of this world):");
   const referenceText = withinBudget(reference.map((doc) => ({ label: doc.title, text: `## ${doc.title}\n${clipTokens(doc.body, Math.floor(DOSSIER_BUDGETS.layer2.reference / 2))}` })),
     DOSSIER_BUDGETS.layer2.reference, "Rules and reference knowledge (World Library; rules are knowledge, not code):");
-  const theme = (snapshot.campaign.theme ?? "").trim();
   const guideText = guide?.body.trim() ? clipTokens(guide.body, DOSSIER_BUDGETS.layer2.guide) : "";
   const packet = source.worldTakeover ? clipTokens(json({ actors: source.worldTakeover.actors, policy: source.worldTakeover.policy, threads: source.worldTakeover.unresolvedThreads, recentEvents: source.worldTakeover.recentWorldEvents }), DOSSIER_BUDGETS.layer2.packet) : "";
+  const likesText = ownerLikes(source);
   const world = [
-    `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle ? ` — ${snapshot.campaign.subtitle}` : ""}.${theme ? ` Theme question: ${clipChars(theme, 400)}` : ""}`,
+    `Campaign: ${snapshot.campaign.title}${snapshot.campaign.subtitle ? ` — ${snapshot.campaign.subtitle}` : ""}.`,
+    likesText,
     guideText ? `DM guide (owner's standing guidance for this campaign):\n${guideText}` : "",
     canonText.text, referenceText.text,
     packet ? `Historical world packet (reference evidence from the World Logic era; current structured state outranks it):\n${packet}` : "",
@@ -655,7 +668,7 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
   // where before it would have forced the whole history to be rewritten whenever a person was met.
   const history = conversationHistory(source);
   for (const [index, block] of history.blocks.entries())
-    layers.push({ layer: 6, budgetTokens: HISTORY_BUDGET, usedTokens: estimateTokens(block), dropped: index === 0 ? history.dropped : [] });
+    layers.push({ layer: 6, budgetTokens: historyBudget(source), usedTokens: estimateTokens(block), dropped: index === 0 ? history.dropped : [] });
   layers.push({ layer: 3, budgetTokens: stableBudget, usedTokens: estimateTokens(living), dropped: stableParts.flatMap((part) => part.dropped) });
   layers.push({ layer: 4, budgetTokens: tailBudget, usedTokens: estimateTokens(tail), dropped: tailParts.flatMap((part) => part.dropped) });
 
@@ -674,9 +687,11 @@ export function buildDmLoopContext(source: RuntimeSource, input: TurnInput, opti
     { text: howToDm, cache: true, ttl: "1h" },
     { text: world, cache: true, ttl: "1h" },
     ...history.blocks.map((text, index) => ({ text, cache: true, ttl: "1h" as const, breakpoint: index === history.blocks.length - 1 })),
-    // The living dossier follows the history: rewritten each turn (the prefix before it grew), so the
-    // cheaper 5-minute write; its reads serve the turn's continuations, the chat and the digest.
-    { text: living, cache: true, ttl: "5m" },
+    // The living dossier follows the history: rewritten each turn (the prefix before it grew). Fix run A2:
+    // on Anthropic it carries no breakpoint of its own any more — the turn's request caches its whole
+    // conversation (`cacheTurn`: the end of the messages and the end of the previous request), which
+    // covers the living part, the tail and «now» for every continuation; OpenAI keeps it in its prefix.
+    { text: living, cache: true, ttl: "5m", breakpoint: false },
     { text: tail, cache: false },
     { text: now, cache: false },
   ];

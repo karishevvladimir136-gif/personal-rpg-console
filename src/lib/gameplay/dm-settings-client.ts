@@ -1,6 +1,7 @@
 import type { ModelSelection } from "../production/contracts.ts";
 import { GameplayClientError } from "./client.ts";
 import type { DmRuntimeId, DmSettings, DmSettingsSave, DmSplit } from "./dm-loop/settings.ts";
+import { parseDmOptions } from "./dm-loop/options.ts";
 import { effectiveDmLoopLimits, type DmLoopTurnLimits } from "./dm-loop/limits.ts";
 import { parseDepthRange } from "./dm-loop/depth.ts";
 
@@ -75,7 +76,7 @@ function parse(value: unknown): DmSettings {
     notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: v.voiceExamples === true,
     voiceMode: v.voiceMode === "five" || v.voiceMode === "all" ? v.voiceMode : "off",
     voiceTokenCap: Number.isSafeInteger(v.voiceTokenCap) ? v.voiceTokenCap as number : 30_000,
-    split, snapshotsKeep: Number.isSafeInteger(v.snapshotsKeep) ? v.snapshotsKeep as number : null, revision: v.revision as number };
+    split, snapshotsKeep: Number.isSafeInteger(v.snapshotsKeep) ? v.snapshotsKeep as number : null, options: parseDmOptions(v.options), revision: v.revision as number };
 }
 
 async function request(url: string, body?: unknown): Promise<DmSettings> {

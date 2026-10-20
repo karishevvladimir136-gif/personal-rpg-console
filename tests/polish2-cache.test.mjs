@@ -45,13 +45,17 @@ test("a turn appends its rows to the history: the earlier blocks are byte-identi
     assert.equal(a[0].text, b[0].text);
     assert.equal(a[1].text, b[1].text);
     assert.deepEqual([b.at(-3).cache, b.at(-3).ttl, b.at(-2).cache, b.at(-1).cache], [true, "5m", false, false]);
-    // The body: breakpoints on how to DM, the world, the last history block and the living dossier; nothing top-level.
-    const body = anthropicRequestBody("claude-opus-5-5", { system: b, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100 });
+    // Fix run A2: breakpoints on how to DM, the world and the last history block; the turn's own end
+    // carries the fourth (5-minute) — the living dossier, the tail and «now» are read from it by every continuation.
+    const body = anthropicRequestBody("claude-opus-5-5", { system: b, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100, cacheTurn: true });
     const marked = body.system.map((block, index) => (block.cache_control ? index : null)).filter((v) => v !== null);
-    assert.deepEqual(marked, [0, 1, b.length - 4, b.length - 3]);
+    assert.deepEqual(marked, [0, 1, b.length - 4]);
     assert.equal(body.system[b.length - 4].cache_control.ttl, "1h");
-    assert.equal("ttl" in body.system[b.length - 3].cache_control, false, "the living dossier at the 5-minute rate");
+    assert.deepEqual(body.messages.at(-1).content.at(-1).cache_control, { type: "ephemeral" });
     assert.equal("cache_control" in body, false);
+    // Without cacheTurn (a one-off call: the digest, the council) the old four system breakpoints stay possible.
+    const plain = anthropicRequestBody("claude-opus-5-5", { system: b, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100 });
+    assert.equal(plain.messages.at(-1).content.at(-1).cache_control, undefined);
     // The layer report has one row per block and the cached prefix counts the history and the living dossier.
     const started = c.observations.filter((o) => o.type === "request_started").at(-1);
     assert.equal(started.layers.length, b.length);

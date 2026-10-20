@@ -10,6 +10,7 @@ import { runDmLoopTurn, resumeDmLoopTurn } from "../src/lib/gameplay/dm-loop/loo
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
 import { dmLoopPinFromProfile, pinDmLoopModel } from "../src/lib/production/dm-loop-pin.ts";
 import { readDmSettingsWith, saveDmSettingsWith } from "../src/lib/gameplay/dm-loop/settings.ts";
+import { appendObservations } from "../src/lib/gameplay/dm-loop/observations.ts";
 
 const usage = { model: "fake", inputTokens: 0, outputTokens: 0, calls: 1, latencyMs: 0 };
 
@@ -104,11 +105,13 @@ export async function attachLoop(f) {
         const current = await settings.read();
         return { ...dmLoopPinFromProfile(await pinDmLoopModel(profileRpc,
           { ownerId: f.owner, campaignId: f.cid, operationId: claim.lease.operationId, timeline },
-          async () => ({ policy: null, dmTurn: current.split?.writer ?? current.dmTurn }))), limits: current.limits, depth: current.depth, boostNext: current.boostNext };
+          async () => ({ policy: null, dmTurn: current.split?.writer ?? current.dmTurn }))), limits: current.limits, depth: current.depth, boostNext: current.boostNext,
+          continuation: current.options?.continuation };
       },
       // Stage 4: the DM's player-likes note and the used «important turn» flag.
-      afterCommit: async ({ playerLikes, boostUsed }) => {
-        if (playerLikes) await dossier("dm_likes", { playerLikes }); // polish item 15: the DM's own note
+      afterCommit: async ({ playerLikes, boostUsed, source }) => {
+        // Polish item 15: the DM's own note; fix run A2: appended to the stored observations, as the app does.
+        if (playerLikes) await dossier("dm_likes", { playerLikes: appendObservations(String(source?.snapshot.campaign.dm_likes ?? ""), playerLikes) });
         if (boostUsed) await dmSettingsRpc({ p_owner_id: f.owner, p_campaign_id: f.cid, p_action: "boost_used", p_payload: {} });
       },
       random,

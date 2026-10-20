@@ -107,8 +107,9 @@ test("rpg_dossier: pins, likes, theme, status and play time are owner notes; one
     // Polish item 12: the dossier is a stable block (pins) and the session's tail (likes).
     const living = `${played.model.requests[0].system.at(-3).text}\n${played.model.requests[0].system.at(-2).text}`;
     assert.match(living, /Owner-pinned facts[\s\S]*The miller owes the hero a favour/);
-    assert.match(living, /What the player asked for, in their own words[^\n]*Slow investigations/);
-    assert.match(played.model.requests[0].system[1].text, /Theme question: What does loyalty cost\?/);
+    // Fix run A2: the player's own words and the theme are stable: the cached world layer.
+    assert.match(played.model.requests[0].system[1].text, /What the player asked for, in their own words[^\n]*Slow investigations/);
+    assert.match(played.model.requests[0].system[1].text, /theme question[^\n]*: What does loyalty cost\?/);
     const snapshot = await c.f.saves(c.cid, "campaign");
     assert.equal(snapshot.campaign.pinned_facts.length, 1);
     assert.equal(snapshot.campaign.player_likes, "Slow investigations, few fights.");
@@ -259,26 +260,27 @@ test("depth per scene: the pin picks a level inside the range with hysteresis; �
     // Cache-safe switching (§7): on OpenAI the request-level effort stays the campaign's
     // configured level; the chosen depth travels as the per-request value.
     assert.equal(boosted.model.requests[0].turnEffort, "medium", "the configured level anchors the cached prefix");
-    assert.equal(boosted.model.requests[0].maxOutputTokens, 6000 + 10000, "a deep turn gets room for its thinking");
+    // Fix run A1: one output ceiling for every depth (owner: «до предела»), thinking included.
+    assert.equal(boosted.model.requests[0].maxOutputTokens, 32000, "a deep turn gets room for its thinking");
     assert.equal((await c.row(boosted.input.operationId)).checkpoint.dmLoop.pin.baseEffort, "medium");
     assert.equal((await c.settings.read()).boostNext, false, "the flag cleared after the turn");
     const calm = await c.turn("Another quiet walk.", [{ text: "Quiet. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(calm.model.requests[0].effort, "medium");
     assert.equal(calm.model.requests[0].turnEffort, undefined, "at the configured level nothing is anchored");
-    // Session 2 prep: a hard (tense) scene thinks at the top again; a climax takes the top too.
+    // Fix run A3: a tense hint and a climax hint outside a fight stay at the base of the range.
     const tense = await c.turn("The guard stops me.", [{ text: "Halt. ", toolCalls: [finish({ nextTension: "climax" })] }]);
-    assert.equal(tense.model.requests[0].effort, "xhigh", "tense: the top of the range");
+    assert.equal(tense.model.requests[0].effort, "medium", "tense: the base of the range");
     const row = await c.row(tense.input.operationId);
     assert.equal(row.checkpoint.dmLoop.pin.depth.tension, "tense");
-    assert.equal(row.checkpoint.dmLoop.pin.depth.streak, 1);
-    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "xhigh"));
+    assert.equal(row.checkpoint.dmLoop.pin.depth.streak, 0);
+    assert.ok(row.checkpoint.dmLoop.diagnostics.some((d) => d.kind === "depth" && d.effort === "medium"));
     const climax = await c.turn("I draw.", [{ text: "Steel. ", toolCalls: [finish({ nextTension: "calm" })] }]);
-    assert.equal(climax.model.requests[0].effort, "xhigh", "the DM's climax hint takes the top");
-    assert.equal((await c.row(climax.input.operationId)).checkpoint.dmLoop.pin.depth.streak, 0, "a climax resets the tense count");
+    assert.equal(climax.model.requests[0].effort, "medium", "the DM's climax hint outside a fight: the base");
+    assert.equal((await c.row(climax.input.operationId)).checkpoint.dmLoop.pin.depth.tension, "climax");
     assert.deepEqual(effortForTension({ min: "low", max: "max" }, "calm"), "low");
-    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "max");
-    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "climax"), "max");
-    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "max", streak: 1 }, { tension: "tense", reason: "x" }, false).changed, false);
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "tense"), "low");
+    assert.deepEqual(effortForTension({ min: "low", max: "max" }, "climax"), "low");
+    assert.equal(chooseDepth(parseDepthRange({ min: "medium", max: "max" }), "high", { tension: "tense", effort: "medium", streak: 1 }, { tension: "tense", reason: "x" }, false).changed, false);
     assert.equal(parseDepthRange({ min: "max", max: "low" }), null);
   } finally { await c.f.db.close(); }
 });

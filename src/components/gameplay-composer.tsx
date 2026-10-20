@@ -361,6 +361,12 @@ export function GameplayComposer({
       }
     });
   useEffect(() => { sendRef.current = send; });
+  /** Fix run A1: a failed move that cannot be retried goes again as a new move with the same text. */
+  const resendFailed = (turn: PublicTurn) => {
+    if (turn.status !== "failed" || turn.canRetry || current.current.attempt || current.current.command) return;
+    write({ ...current.current, text: turn.input });
+    void send();
+  };
   const command = (
     turn: PublicTurn,
     action: ResumeInput["action"],
@@ -517,6 +523,7 @@ export function GameplayComposer({
                   void command(turn, action, checkId)
                 }
                 onSaved={onSaved}
+                onResend={turn.id === turns.at(-1)?.id ? () => resendFailed(turn) : undefined}
               />
               {renderAfterTurn?.(turn)}
             </div>
@@ -543,6 +550,7 @@ export function GameplayComposer({
               void command((unresolved || turns.at(-1))!, action, checkId)
             }
             onSaved={onSaved}
+            onResend={() => resendFailed((unresolved || turns.at(-1))!)}
           />
         </div>
       )}

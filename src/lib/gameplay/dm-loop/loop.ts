@@ -20,14 +20,14 @@ import { requireClaimTimeline, requireTurnTimeline } from "../timeline.ts";
 import { requireRule, safeTurnFailure, TurnError } from "../turn-errors.ts";
 import { DmError } from "../dm-errors.ts";
 import { compileToolset } from "../../server/dm/model/schema-compiler.ts";
-import type { DmEffort, DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
+import type { DmMessage, DmModel, DmModelRequest, DmToolCall } from "../../server/dm/model/contracts.ts";
 import { DmModelError } from "../../server/dm/model/contracts.ts";
 import { dmModelSpec, dmUsageCost } from "../../model-runtime/dm-models.ts";
 import { buildDmLoopContext, suspectedLiteralLeaks } from "./context.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "./time-words.ts";
 import { advanceLedger, parseLedger, serializeLedger } from "./ledger.ts";
 import { advanceMetrics, parseMetrics, serializeMetrics } from "./metrics.ts";
-import { chooseDepth, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
+import { chooseDepth, lowerEffort, parseDepthRange, parseDepthState, tensionSignals, type DepthRange } from "./depth.ts";
 import { executeDmLoopTool } from "./execute.ts";
 import { chip } from "./receipt-text.ts";
 import type { PublicProfile } from "../../persistence/contracts.ts";
@@ -50,7 +50,9 @@ export type DmLoopDependencies = {
    * «important turn» flag — for this operation (read-first: a retry
    * returns the first pin even if the campaign settings changed). */
   pin: (claim: TurnClaim) => Promise<Pick<DmLoopPin, "providerId" | "modelId" | "effort" | "continuationEffort" | "limits"> &
-    { depth?: DepthRange | null; boostNext?: boolean }>;
+    { depth?: DepthRange | null; boostNext?: boolean;
+      /** Fix run A3: «Продолжение хода» — "lighter" runs the requests after a tool result one notch below the turn's depth. */
+      continuation?: "same" | "lighter" }>;
   /** Stage 4 hooks after a commit (never block or fail the turn): the DM's
    * player-likes note, the used «important turn» flag. */
   afterCommit?: (event: { operationId: string; playerLikes: string | null; boostUsed: boolean;
@@ -63,17 +65,61 @@ export type DmLoopDependencies = {
   random?: (min: number, max: number) => number;
   observe?: (observation: DmLoopObservation) => void;
   now?: () => number;
+  /** Fix run A1: how often the lease is renewed while a request streams (tests shorten it). */
+  heartbeatMs?: number;
 };
 
 export const dmLoopToolset = compileToolset(dmLoopTools);
 
-/** Both providers count thinking against the output limit. At the deep levels a
- * turn can spend the whole narration budget on thinking and end with tool calls
- * and no text (seen on Opus xhigh in the Stage 4 blind run: 6000 tokens, 0 words),
- * so the limit grows with the effort; the narration cap itself stays. */
-export function thinkingAllowance(effort: DmEffort): number {
-  return effort === "max" ? 16000 : effort === "xhigh" ? 10000 : effort === "high" ? 4000 : 0;
+/** Fix run A1 (items 32, 56, 73): both providers count thinking against the output limit, and a
+ * scene-closing turn at high or xhigh hit the old 6000 + allowance cap three times in session 2 —
+ * each time the whole turn was lost. The cap is now one ceiling for every depth
+ * (`dmLoopLimits.maxOutputTokens`, 32 000: what the lease allowed at ~95 tokens a second before the
+ * heartbeat landed); the narration stays bounded by the prompt and `maxNarrationChars`. */
+export function dmOutputCap(): number {
+  return L.maxOutputTokens;
 }
+
+/** Fix run A1: one model request writes nothing while it streams, so the claimant renews its lease
+ * every minute meanwhile (migration 72, `lease_heartbeat`). A renewal that fails never stops the
+ * request: the next fenced write (a receipt, a checkpoint, the commit) decides. */
+export const LEASE_HEARTBEAT_MS = 60_000;
+export function leaseHeartbeat(store: TurnStore, lease: TurnClaim["lease"], everyMs = LEASE_HEARTBEAT_MS): () => void {
+  const renew = store.renewLease;
+  if (typeof renew !== "function") return () => {};
+  const timer = setInterval(() => { renew.call(store, lease).catch(() => { /* the fence decides at the next write */ }); }, everyMs);
+  (timer as { unref?: () => void }).unref?.();
+  return () => clearInterval(timer);
+}
+
+/** Fix run A3: the limits past which a turn is named as expensive (the owner panel flags it too). */
+export const EXPENSIVE_TURN = { costUsd: 1, requests: 4, outputTokens: 32_000 } as const;
+/** A turn over $1, over four requests or over 32 000 output tokens, with what made it so: rolls that came
+ * one request each instead of bundled, a long chain of continuations, deep thinking, a cut by the output
+ * cap, rejected records sent back. Null for an ordinary turn. */
+export function expensiveTurn(loop: Pick<DmLoopCheckpoint, "usage" | "requests" | "transcript" | "diagnostics" | "pin">): Extract<DmLoopCheckpoint["diagnostics"][number], { kind: "expensive_turn" }> | null {
+  const costUsd = Number(loop.usage.reduce((sum, entry) => sum + entry.costUsd, 0).toFixed(4));
+  const outputTokens = loop.usage.reduce((sum, entry) => sum + entry.outputTokens, 0);
+  if (costUsd <= EXPENSIVE_TURN.costUsd && loop.requests <= EXPENSIVE_TURN.requests && outputTokens <= EXPENSIVE_TURN.outputTokens) return null;
+  const causes: string[] = [];
+  const rollOnly = loop.transcript.filter((m) => m.role === "assistant" && m.toolCalls.length > 0 && m.toolCalls.every((call) => call.name === "roll")).length;
+  if (rollOnly >= 2) causes.push(`rolls not bundled: ${rollOnly} requests ended on rolls alone`);
+  if (loop.requests > EXPENSIVE_TURN.requests) causes.push(`a long continuation chain: ${loop.requests} requests`);
+  if (loop.pin && (loop.pin.effort === "xhigh" || loop.pin.effort === "max")) causes.push(`deep thinking (${loop.pin.effort})`);
+  if (loop.diagnostics.some((row) => row.kind === "cut_continued")) causes.push("a request cut by the output cap");
+  if (loop.diagnostics.some((row) => row.kind === "records_retry_asked")) causes.push("rejected records sent back");
+  if (outputTokens > EXPENSIVE_TURN.outputTokens) causes.push(`${outputTokens} output tokens`);
+  const inputTokens = loop.usage.reduce((sum, entry) => sum + entry.inputTokens, 0);
+  const cacheRead = loop.usage.reduce((sum, entry) => sum + entry.cacheReadTokens, 0);
+  if (inputTokens > 0 && cacheRead / inputTokens < 0.6) causes.push(`a low cache share (${(cacheRead / inputTokens).toFixed(2)})`);
+  if (!causes.length) causes.push("a large context");
+  return { kind: "expensive_turn", costUsd, requests: loop.requests, outputTokens, latencyMs: loop.usage.reduce((sum, entry) => sum + entry.latencyMs, 0), causes };
+}
+
+/** Fix run A1 (items 56, 73): what the loop sends after a request the output cap cut. The cut tool
+ * call is dropped by the adapter (never sent to the provider again); the model continues once from
+ * the complete part. */
+export const CUT_BY_CAP = "Your last message was cut off by the output limit. Continue exactly where it stopped — do not repeat what is already written — finish the narration briefly, then send the final bookkeeping message with finish_turn. Keep your thinking short.";
 
 const WRAP_UP = "The tool budget of this turn is used up. Finish the narration now with what was accepted; make no further tool calls.";
 
@@ -264,8 +310,10 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       const lastLoopTurn = [...source.runtime.turns].reverse().find((turn) => turn.status === "committed" && turn.nextTension !== undefined && turn.id !== operationId);
       const signal = tensionSignals(source, input, lastLoopTurn?.nextTension ?? null);
       const depth = chooseDepth(range, selected.effort, parseDepthState(source.privateState), signal, !!selected.boostNext);
+      // Fix run A3: a lighter continuation is one notch below this turn's depth (xhigh → high, high → medium).
+      const continuationEffort = selected.continuation === "lighter" ? lowerEffort(depth.effort) : selected.continuationEffort;
       loop.pin = { providerId: selected.providerId, modelId: selected.modelId, effort: depth.effort,
-        ...(selected.continuationEffort && selected.continuationEffort !== depth.effort ? { continuationEffort: selected.continuationEffort } : {}),
+        ...(continuationEffort && continuationEffort !== depth.effort ? { continuationEffort } : {}),
         ...(range && depth.effort !== selected.effort ? { baseEffort: selected.effort } : {}),
         runtime: DM_LOOP_RUNTIME, privacy: "single-narrator", limits: { ...(selected.limits ?? DM_LOOP_DEFAULT_LIMITS) },
         ...(range ? { depth: { min: range.min, max: range.max, tension: depth.tension, reason: depth.reason, boosted: !!selected.boostNext, streak: depth.streak } } : {}) };
@@ -347,6 +395,11 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       }
       return pause;
     };
+    // Fix run A1: the request after a cut by the output cap (one level lower), and the note that goes
+    // after the results of a cut message's complete calls.
+    let cutRecovery = loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.transcript.at(-1)?.role === "user" &&
+      (loop.transcript.at(-1) as { text?: string }).text === CUT_BY_CAP;
+    let pendingCutNote = false;
     for (;;) {
       const last = loop.transcript.at(-1);
       if (last?.role === "assistant" && last.toolCalls.length &&
@@ -357,6 +410,11 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
           const receipt = loop.receipts.find((row) => row.call.id === call.id)!;
           return { callId: call.id, output: toolOutput(receipt, checkpoint.checks), isError: !receipt.result.ok };
         }) });
+        if (pendingCutNote) {
+          pendingCutNote = false;
+          shadow.finished = false;
+          loop.transcript.push({ role: "user", text: CUT_BY_CAP });
+        }
         // finish_turn ends the turn once narration exists; a model that calls it
         // before writing (Opus tends to put text last) is asked for the text.
         if (shadow.finished && !loop.text.trim()) {
@@ -407,13 +465,15 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       if (lastRequest && last?.role !== "user") loop.transcript.push({ role: "user", text: WRAP_UP });
       // Requests after the first (continuations after tool results) may run at
       // the pinned continuation effort (stage 2b §3).
-      const effort = loop.requests > 0 && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      const planned = loop.requests > 0 && pin.continuationEffort ? pin.continuationEffort : pin.effort;
+      // Fix run A1: the request after a cut thinks one level lower (the plan is made; long thinking cut it).
+      const effort = cutRecovery ? lowerEffort(planned) : planned;
       // Cache-safe depth (stage 4 §7): on OpenAI the request-level effort stays the
       // campaign's configured level and the chosen one travels as an update item.
       const anchor = pin.providerId === "openai" && pin.baseEffort ? pin.baseEffort : pin.effort;
       const request: DmModelRequest = { system: context.system, messages: renderedTranscript(loop, checkpoint.checks),
         toolset: dmLoopToolset, effort, ...(effort !== anchor ? { turnEffort: anchor } : {}),
-        maxOutputTokens: L.maxOutputTokens + thinkingAllowance(effort), operationId, cacheKey: input.campaignId };
+        maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
       const requestBytes = new TextEncoder().encode(JSON.stringify(request.system) + JSON.stringify(request.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes, cachedPrefixBytes: context.cachedPrefixBytes,
         layers: context.system.map((block, index) => ({ bytes: new TextEncoder().encode(block.text).length,
@@ -430,6 +490,7 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       const toolCalls: DmToolCall[] = [];
       let usage: DmLoopUsageEntry | null = null;
       let stop: Extract<Awaited<ReturnType<DmModel["stream"]>> extends AsyncIterable<infer E> ? E : never, { type: "stop" }> | null = null;
+      const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
       try {
         for await (const event of model.stream(request)) {
           if (event.type === "text_delta") {
@@ -463,11 +524,16 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
         }
       } catch (error) {
         if (error instanceof DmModelError) {
+          // Fix run A1 (item 32c): the provider's own reason (secrets filtered by the adapter) reaches the log.
+          diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
+            providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
         }
         throw new DmError("provider", true);
+      } finally {
+        stopHeartbeat();
       }
       requireRule(stop);
       const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: pin.providerId, modelId: pin.modelId, effort,
@@ -476,11 +542,28 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       loop.usage.push(entry);
       loop.requests++;
       observe({ type: "request_finished", operationId, request: loop.requests, usage: entry, stop: stop.reason });
-      loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
+      cutRecovery = false;
+      const cut = stop.reason === "max_tokens";
+      // A request the cap cut before it wrote anything leaves no assistant message (an empty one is invalid).
+      if (roundText.trim() || toolCalls.length) loop.transcript.push({ role: "assistant", text: roundText, toolCalls, native: stop.native });
       loop.text = joinText(loop.text, roundText);
       await persist("generating");
       if (stop.reason === "refusal") { diagnostic({ kind: "model_refusal", providerReason: stop.providerReason }); break; }
-      if (stop.reason === "max_tokens") diagnostic({ kind: "max_tokens", outputTokens: entry.outputTokens });
+      if (cut) {
+        diagnostic({ kind: "max_tokens", outputTokens: entry.outputTokens });
+        // Fix run A1 (items 32, 56, 73): a cut never fails the turn. Once per turn the model continues from
+        // the complete part (after the results of its complete calls, when it made any), one level lower.
+        if (!loop.diagnostics.some((row) => row.kind === "cut_continued") && loop.requests < limits.modelRequestsPerTurn) {
+          diagnostic({ kind: "cut_continued", toolCalls: toolCalls.length });
+          cutRecovery = true;
+          if (!toolCalls.length) {
+            loop.transcript.push({ role: "user", text: CUT_BY_CAP });
+            await persist("generating");
+            continue;
+          }
+          pendingCutNote = true;
+        }
+      }
       if (!toolCalls.length) {
         if (outcomePending && !outcomeAsked() && loop.requests < limits.modelRequestsPerTurn) {
           diagnostic({ kind: "outcome_asked" });
@@ -557,8 +640,12 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
       loop.meta = { ...(loop.meta ?? implicitMeta(loop.receipts)), met };
       for (const person of met) live({ type: "tool", name: "meet", ok: true, summary: person.player });
     }
+    // Fix run A3 (owner: «ход за 2,5 доллара — это треш»): a turn over $1, over four requests or over 32 000
+    // output tokens is named with its cause in the log and the report.
+    const expensive = expensiveTurn(loop);
+    if (expensive) diagnostic(expensive);
     // The commit keeps the checkpoint as last persisted: the leak diagnostics and the people met must be in it.
-    if (met.length || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure" || row.kind === "time_words")) await persist("generating");
+    if (met.length || expensive || loop.diagnostics.some((row) => row.kind === "suspected_leak" || row.kind === "self_disclosure" || row.kind === "time_words")) await persist("generating");
     const result = await store.commit(lease, {
       narration, visualDescription: "",
       resolution: { changes: shadow.orderedChanges(), worldMinutes: shadow.worldMinutes,

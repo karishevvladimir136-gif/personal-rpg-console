@@ -1,16 +1,12 @@
 // Depth per scene (plan §8б, stage task §7; polish item 13): the owner sets a
 // range from the model's own effort list; each turn picks a level inside it.
-// Session 1 showed «tense → xhigh» sticking for 22 of 23 turns (a heist is
-// always tense), so polish item 13 kept tense turns at the base. Session 2 prep
-// (owner, 2026-10-18) brings deep thinking back to hard scenes with the cap
-// against sticking kept for them only:
-// - calm: the base of the range;
-// - climax (active combat, the DM's climax hint, an off-screen plan that comes
-//   due and meets the hero, a decisive player input, «важный ход»): always the
-//   top, and it resets the tense cap;
-// - tense (the DM's tense hint, three or more important people present, the main
-//   arc on its last step): the top, but at most MAX_DEEP_STREAK deep tense turns
-//   in a row; after that the base until a climax or a calm turn resets the count.
+// Fix run A3 (owner's decision after session 2, items 59 and 75: «ход на пять
+// минут»): every turn thinks at the base of the range; only the player's
+// «⚡ важный ход» and a combat climax (an active fight the DM marked as its climax)
+// think deep — the top of the range, or one level above the base when both ends
+// are the same (the new default range is «высокая — высокая» with the button shown).
+// The DM's «tense» hint, many important people, a due plan or a decisive input no
+// longer raise the level by themselves; they still name the turn's tension.
 import type { JsonObject, TurnInput } from "../contracts.ts";
 import type { RuntimeSource } from "../server-contracts.ts";
 import type { DmEffort } from "../../model-runtime/dm-models.ts";
@@ -19,10 +15,14 @@ import { duePlans } from "./plans.ts";
 
 export const EFFORT_ORDER: readonly DmEffort[] = ["low", "medium", "high", "xhigh", "max"];
 export type DepthRange = { min: DmEffort; max: DmEffort };
+/** One level lower (low stays low): the request after a cut by the output cap (fix run A1). */
+export function lowerEffort(effort: DmEffort): DmEffort {
+  return EFFORT_ORDER[Math.max(0, EFFORT_ORDER.indexOf(effort) - 1)];
+}
 export type DepthState = { tension: DmLoopTension; effort: DmEffort; /** Tense turns in a row since the last calm or climax turn (the cap's count). */ streak?: number };
-/** Every new campaign thinks at high and goes to xhigh for a hard scene (polish item 13, session 2 prep). */
-export const DEFAULT_DEPTH_RANGE: DepthRange = Object.freeze({ min: "high", max: "xhigh" });
-/** The most deep tense turns in a row; a climax is never capped. */
+/** Every new campaign thinks at high; «⚡ важный ход» and a combat climax go one level deeper (fix run A3). */
+export const DEFAULT_DEPTH_RANGE: DepthRange = Object.freeze({ min: "high", max: "high" });
+/** Kept for the depth state's stored count (written by older turns); no longer caps anything. */
 export const MAX_DEEP_STREAK = 3;
 
 export function parseDepthRange(value: unknown): DepthRange | null {
@@ -57,9 +57,13 @@ export function decisiveInput(text: string): boolean {
 /** The server's reading of this turn's tension: active combat, the DM's climax
  * hint, an off-screen plan that comes due now or a decisive player input are a
  * climax; the DM's tense hint, many important people in the scene or an open arc
- * on its last step are tense; the rest is calm. */
-export function tensionSignals(source: RuntimeSource, input: TurnInput, hint: DmLoopTension | null): { tension: DmLoopTension; reason: string } {
-  if (source.runtime.encounters.some((row) => row.status === "active")) return { tension: "climax", reason: "active combat" };
+ * on its last step are tense; the rest is calm. `combatClimax` (fix run A3): an
+ * active fight the DM's previous turn marked as its climax — the one signal that
+ * thinks deep besides the player's button. */
+export function tensionSignals(source: RuntimeSource, input: TurnInput, hint: DmLoopTension | null): { tension: DmLoopTension; reason: string; combatClimax?: boolean } {
+  const combat = source.runtime.encounters.some((row) => row.status === "active");
+  if (combat && hint === "climax") return { tension: "climax", reason: "the climax of a fight (DM hint)", combatClimax: true };
+  if (combat) return { tension: "climax", reason: "active combat" };
   if (hint === "climax") return { tension: "climax", reason: "DM hint: climax" };
   if (duePlans(source.privateState, source.runtime.worldMinutes).length) return { tension: "climax", reason: "an off-screen plan comes due and meets the hero" };
   if (input.mode !== "companion" && decisiveInput(input.input)) return { tension: "climax", reason: "the player's input opens a decisive moment" };
@@ -74,30 +78,30 @@ export function tensionSignals(source: RuntimeSource, input: TurnInput, hint: Dm
   return { tension: "calm", reason: hint === "calm" ? "DM hint: calm" : "no tension signal" };
 }
 
-/** The effort for a tension class inside the range before the tense cap: the
- * base for a calm turn, the top for a tense turn and a climax. */
-export function effortForTension(range: DepthRange, tension: DmLoopTension): DmEffort {
-  return tension === "calm" ? range.min : range.max;
+/** The deep level of a range (fix run A3): its top, or one level above the base when both ends are the
+ * same — never past xhigh by this rule (max stays a deliberate choice of the range). */
+export function deepEffort(range: DepthRange): DmEffort {
+  if (range.max !== range.min) return range.max;
+  const at = EFFORT_ORDER.indexOf(range.min);
+  const xhigh = EFFORT_ORDER.indexOf("xhigh");
+  return at >= xhigh ? range.min : EFFORT_ORDER[at + 1];
 }
 
-/** The level of this turn: a boosted turn («важный ход») and a climax always
- * take the top; a tense turn takes the top unless MAX_DEEP_STREAK tense turns
- * in a row came before it (then the base until a climax or a calm turn resets
- * the count); a calm turn is the base. `streak` is the count of tense turns in
- * a row for the next turn (0 after a calm turn or a climax). */
+/** The effort for a tension class inside the range (fix run A3): the base for every class; the deep level
+ * is only for the button and a combat climax (chooseDepth). */
+export function effortForTension(range: DepthRange, tension: DmLoopTension): DmEffort {
+  void tension;
+  return range.min;
+}
+
+/** The level of this turn (fix run A3): a boosted turn («важный ход») and a combat climax take the deep
+ * level; every other turn — calm, tense or a climax outside a fight — the base. `streak` stays 0 (the
+ * old tense cap has nothing to cap). */
 export function chooseDepth(range: DepthRange | null, pinnedEffort: DmEffort, previous: DepthState | null,
-  signal: { tension: DmLoopTension; reason: string }, boosted: boolean): { effort: DmEffort; tension: DmLoopTension; reason: string; changed: boolean; streak: number } {
+  signal: { tension: DmLoopTension; reason: string; combatClimax?: boolean }, boosted: boolean): { effort: DmEffort; tension: DmLoopTension; reason: string; changed: boolean; streak: number } {
   if (!range) return { effort: pinnedEffort, tension: signal.tension, reason: "no depth range set", changed: false, streak: 0 };
-  // Only a run of tense turns counts; a stored count after a calm turn or a
-  // climax (or one written under the older rule) starts over.
-  const streakBefore = previous?.tension === "tense" ? previous.streak ?? 0 : 0;
-  if (boosted) return { effort: range.max, tension: "climax", reason: "important turn", changed: previous?.effort !== range.max, streak: 0 };
-  if (signal.tension !== "tense") {
-    const effort = effortForTension(range, signal.tension);
-    return { effort, tension: signal.tension, reason: signal.reason, changed: previous?.effort !== effort, streak: 0 };
-  }
-  const capped = range.max !== range.min && streakBefore >= MAX_DEEP_STREAK;
-  const effort = capped ? range.min : range.max;
-  const reason = capped ? `${signal.reason}; ${streakBefore} deep tense turns in a row, back to the base until a climax or a calm turn` : signal.reason;
-  return { effort, tension: "tense", reason, changed: previous?.effort !== effort, streak: streakBefore + 1 };
+  if (boosted) { const effort = deepEffort(range); return { effort, tension: "climax", reason: "important turn", changed: previous?.effort !== effort, streak: 0 }; }
+  if (signal.combatClimax) { const effort = deepEffort(range); return { effort, tension: "climax", reason: signal.reason, changed: previous?.effort !== effort, streak: 0 }; }
+  const effort = range.min;
+  return { effort, tension: signal.tension, reason: `${signal.reason}; the base of the range (deep only for «важный ход» or a combat climax)`, changed: previous?.effort !== effort, streak: 0 };
 }

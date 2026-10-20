@@ -8,7 +8,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { loopCampaign } from "./dm-loop-fixture.mjs";
 import { createScriptedDmModel } from "../src/lib/gameplay/dm-loop/scripted-model.ts";
-import { chooseDepth, decisiveInput, DEFAULT_DEPTH_RANGE, effortForTension, MAX_DEEP_STREAK, parseDepthState } from "../src/lib/gameplay/dm-loop/depth.ts";
+import { chooseDepth, decisiveInput, deepEffort, DEFAULT_DEPTH_RANGE, effortForTension, MAX_DEEP_STREAK, parseDepthState } from "../src/lib/gameplay/dm-loop/depth.ts";
 import { parseDmSettings } from "../src/lib/gameplay/dm-loop/settings.ts";
 import { registerHooks } from "node:module";
 import { dmModels, dmUsageCost } from "../src/lib/model-runtime/dm-models.ts";
@@ -22,90 +22,76 @@ hook.deregister();
 const finish = (extra = {}) => ({ name: "finish_turn", arguments: { sceneKinds: ["conversation"], spotlight: [], playerMoment: false, ...extra } });
 const publicTurn = async (c, operationId) => (await (await c.deps(createScriptedDmModel([]))).store.readPlay(c.cid)).turns.find((row) => row.id === operationId);
 
-test("depth rule: calm is the base; a climax is always the top; a tense turn is the top for at most three in a row until a climax or a calm turn resets it", () => {
+test("depth rule (fix run A3): every turn thinks at the base; only «важный ход» and a combat climax go deep", () => {
   const range = { min: "high", max: "xhigh" };
-  assert.equal(MAX_DEEP_STREAK, 3);
-  assert.equal(effortForTension(range, "calm"), "high");
-  assert.equal(effortForTension(range, "tense"), "xhigh");
-  assert.equal(effortForTension(range, "climax"), "xhigh");
+  for (const tension of ["calm", "tense", "climax"]) assert.equal(effortForTension(range, tension), "high", tension);
   const tense = { tension: "tense", reason: "DM hint: tense" };
-  // Three deep tense turns, then the base while the tension holds.
+  // A tense run, a climax outside a fight, a due plan, a decisive input: all at the base now.
   let state = { tension: "calm", effort: "high", streak: 0 };
-  const efforts = [];
   for (let i = 0; i < 5; i++) {
     const d = chooseDepth(range, "high", state, tense, false);
-    efforts.push(d.effort);
+    assert.equal(d.effort, "high"); assert.equal(d.streak, 0);
     state = { tension: d.tension, effort: d.effort, streak: d.streak };
   }
-  assert.deepEqual(efforts, ["xhigh", "xhigh", "xhigh", "high", "high"], `after ${MAX_DEEP_STREAK} deep tense turns the base returns`);
-  assert.equal(state.streak, 5);
-  const capped = chooseDepth(range, "high", { tension: "tense", effort: "xhigh", streak: 3 }, tense, false);
-  assert.match(capped.reason, /deep tense turns in a row/);
-  // A climax is never capped and resets the count; so does a calm turn.
-  for (const reason of ["active combat", "DM hint: climax", "an off-screen plan comes due and meets the hero", "the player's input opens a decisive moment"]) {
-    const climax = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 7 }, { tension: "climax", reason }, false);
-    assert.equal(climax.effort, "xhigh", reason); assert.equal(climax.streak, 0, reason);
-  }
-  const climaxes = [];
-  state = null;
-  for (let i = 0; i < 5; i++) {
-    const d = chooseDepth(range, "high", state, { tension: "climax", reason: "active combat" }, false);
-    climaxes.push(d.effort); state = { tension: d.tension, effort: d.effort, streak: d.streak };
-  }
-  assert.deepEqual(climaxes, ["xhigh", "xhigh", "xhigh", "xhigh", "xhigh"], "a long fight stays deep");
-  const boosted = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 4 }, tense, true);
-  assert.equal(boosted.effort, "xhigh"); assert.equal(boosted.streak, 0, "«важный ход» is a climax");
-  const calm = chooseDepth(range, "high", { tension: "tense", effort: "high", streak: 4 }, { tension: "calm", reason: "DM hint: calm" }, false);
-  assert.equal(calm.effort, "high"); assert.equal(calm.streak, 0);
-  const afterReset = chooseDepth(range, "high", { tension: calm.tension, effort: calm.effort, streak: calm.streak }, tense, false);
-  assert.equal(afterReset.effort, "xhigh", "after a calm turn a tense turn is deep again");
-  // A count stored after a climax (or under the older rule) does not cap a tense turn.
-  assert.equal(chooseDepth(range, "high", { tension: "climax", effort: "xhigh", streak: 2 }, tense, false).effort, "xhigh");
-  // A single-level range never reports a cap.
-  assert.equal(chooseDepth({ min: "high", max: "high" }, "high", { tension: "tense", effort: "high", streak: 9 }, tense, false).reason, "DM hint: tense");
+  for (const reason of ["active combat", "DM hint: climax", "an off-screen plan comes due and meets the hero", "the player's input opens a decisive moment"])
+    assert.equal(chooseDepth(range, "high", null, { tension: "climax", reason }, false).effort, "high", reason);
+  // The two deep signals: the player's button and a fight's climax.
+  assert.equal(chooseDepth(range, "high", null, tense, true).effort, "xhigh", "«важный ход»");
+  assert.equal(chooseDepth(range, "high", null, { tension: "climax", reason: "the climax of a fight (DM hint)", combatClimax: true }, false).effort, "xhigh");
+  // The new default range high–high: the deep level is one notch above the base, never past xhigh by this rule.
+  assert.equal(deepEffort({ min: "high", max: "high" }), "xhigh");
+  assert.equal(deepEffort({ min: "medium", max: "medium" }), "high");
+  assert.equal(deepEffort({ min: "xhigh", max: "xhigh" }), "xhigh");
+  assert.equal(deepEffort({ min: "high", max: "max" }), "max");
+  assert.equal(chooseDepth({ min: "high", max: "high" }, "high", null, tense, true).effort, "xhigh");
+  assert.equal(chooseDepth({ min: "high", max: "high" }, "high", null, tense, false).effort, "high");
   assert.equal(chooseDepth(null, "medium", null, { tension: "climax", reason: "x" }, false).effort, "medium");
+  assert.equal(MAX_DEEP_STREAK, 3, "kept for stored states");
   assert.deepEqual(parseDepthState({ fact: { depth_state: JSON.stringify({ tension: "climax", effort: "xhigh", streak: 2 }) } }), { tension: "climax", effort: "xhigh", streak: 2 });
   assert.equal(decisiveInput("Бью Фрола веслом по рукам и прыгаю за ящиком."), true);
   assert.equal(decisiveInput("Признаюсь Марте, что ящик у меня."), true);
   assert.equal(decisiveInput("I draw and attack the stranger."), true);
   assert.equal(decisiveInput("Спрашиваю Марту про рыбу и сажусь у окна."), false);
   assert.equal(decisiveInput("I ask the organiser about the notices."), false);
-  assert.deepEqual(DEFAULT_DEPTH_RANGE, { min: "high", max: "xhigh" });
+  assert.deepEqual(DEFAULT_DEPTH_RANGE, { min: "high", max: "high" }, "fix run A3: «высокая — высокая» with the button shown");
   // A campaign that never set its depth (no row: revision 0) gets the default range; a stored null stays fixed.
   const fresh = parseDmSettings({ campaignId: "c", runtime: "dm-loop-v1", dmTurn: null, limits: null, depth: null, notebookVisible: false, boostNext: false, revision: 0 });
-  assert.deepEqual(fresh.depth, { min: "high", max: "xhigh" });
+  assert.deepEqual(fresh.depth, { min: "high", max: "high" });
   const fixed = parseDmSettings({ campaignId: "c", runtime: "dm-loop-v1", dmTurn: null, limits: null, depth: null, notebookVisible: false, boostNext: false, revision: 3 });
   assert.equal(fixed.depth, null);
 });
 
-test("a decisive player input and a due off-screen plan take the top of the range; the depth and its reason reach the public turn", async () => {
+test("fix run A3: a decisive input and a due plan stay at the base; a fight's climax and «важный ход» go deep; the reason reaches the public turn", async () => {
   const c = await loopCampaign({ language: "ru" });
   try {
     const current = await c.settings.read();
-    await c.settings.save({ expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, depth: { min: "high", max: "xhigh" } });
+    await c.settings.save({ expectedRevision: current.revision, runtime: "dm-loop-v1", dmTurn: { providerId: "anthropic", modelId: "claude-opus-5-5", reasoning: "high" }, depth: { min: "high", max: "high" } });
     const quiet = await c.turn("Спрашиваю Марту про рыбу.", [{ text: "Марта пожимает плечами. ", toolCalls: [finish({ nextTension: "tense" })] }]);
     assert.equal(quiet.model.requests[0].effort, "high", "a quiet input stays at the base even when the DM says tense");
     const decisive = await c.turn("Бью Фрола веслом и прыгаю за ящиком.", [{ text: "Весло свистит. ", toolCalls: [finish({ nextTension: "calm" })] }]);
-    assert.equal(decisive.model.requests[0].effort, "xhigh");
+    assert.equal(decisive.model.requests[0].effort, "high", "a decisive input alone no longer thinks deep");
     const turn = await publicTurn(c, decisive.input.operationId);
-    assert.equal(turn.stats.effort, "xhigh");
+    assert.equal(turn.stats.effort, "high");
     assert.match(turn.stats.depthReason, /decisive moment/);
     assert.equal(turn.stats.depthTension, "climax");
     assert.ok(Number.isFinite(turn.stats.firstWordMs) && turn.stats.firstWordMs >= 0, "the first word is measured from the player's send");
-    // A plan that comes due: the next turn is deep too; the third deep turn in a row returns to the base.
-    const planned = await c.turn("Жду у стойки.", [{ text: "Тихо. ", toolCalls: [
-      { name: "note_world", arguments: { kind: "fact", key: "plan_frol", operation: "set", value: "Фрол идёт к стойке.", actorRef: "world", dueInMinutes: 0, consequence: "Фрол здесь." } },
-      finish({ nextTension: "calm" })] }]);
-    assert.equal(planned.result.status, "committed", JSON.stringify(c.errors));
-    const due = await c.turn("Оглядываюсь.", [{ text: "Фрол у стойки. ", toolCalls: [
-      { name: "note_world", arguments: { kind: "fact", key: "plan_frol", operation: "set", planStatus: "done" } }, finish({ nextTension: "calm" })] }]);
-    assert.equal(due.model.requests[0].effort, "xhigh", "a due plan meets the hero: deep");
-    assert.match((await c.row(due.input.operationId)).checkpoint.dmLoop.pin.depth.reason, /comes due/);
+    // A fight the DM marks as its climax: the next turn inside it thinks one notch deeper.
+    const fight = await c.turn("Вступаю в драку.", [{ text: "Драка. ", toolCalls: [
+      { name: "upsert_character", arguments: { localKey: "frol", name: "Фрол", kind: "npc", present: true } },
+      { name: "combat", arguments: { action: "start", participantRefs: ["frol"], summary: "Драка у стойки" } },
+      finish({ nextTension: "climax" })] }]);
+    assert.equal(fight.result.status, "committed", JSON.stringify(c.errors));
+    const climax = await c.turn("Добиваю.", [{ text: "Удар. ", toolCalls: [finish({ nextTension: "calm" })] }]);
+    assert.equal(climax.model.requests[0].effort, "xhigh", "the climax of a fight");
+    assert.match((await c.row(climax.input.operationId)).checkpoint.dmLoop.pin.depth.reason, /climax of a fight/);
+    const settings = await c.settings.read();
+    await c.settings.save({ expectedRevision: settings.revision, runtime: "dm-loop-v1", dmTurn: settings.dmTurn, boostNext: true });
+    const boosted = await c.turn("Важный ход.", [{ text: "Тихо. ", toolCalls: [finish({ nextTension: "calm" })] }]);
+    assert.equal(boosted.model.requests[0].effort, "xhigh", "«важный ход»");
     const observed = c.observations.filter((o) => o.type === "turn_finished");
     assert.ok(observed.length >= 4);
-    const last = observed.at(-1);
-    assert.equal(last.effort, "xhigh");
-    assert.ok(last.turnMs >= 0 && last.requests >= 1 && typeof last.costUsd === "number");
+    assert.equal(observed.at(-1).effort, "xhigh");
+    assert.ok(observed.at(-1).turnMs >= 0 && observed.at(-1).requests >= 1 && typeof observed.at(-1).costUsd === "number");
   } finally { await c.f.db.close(); }
 });
 
@@ -143,13 +129,15 @@ test("the prompt is ordered by volatility: how to DM, the world, the conversatio
     const started = c.observations.filter((o) => o.type === "request_started").at(-1);
     assert.equal(started.layers.length, system.length);
     assert.equal(started.layers.at(-2).tokens > 0, true);
-    // The Anthropic body: four breakpoints at most — how to DM, the world, the last history block, the living dossier — and no top-level one.
-    const body = anthropicRequestBody("claude-opus-5-5", { system, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100 });
+    // Fix run A2: the Anthropic body — how to DM, the world, the last history block, and the turn's own end
+    // (the living dossier no longer has its own breakpoint); no top-level one.
+    const body = anthropicRequestBody("claude-opus-5-5", { system, messages: [{ role: "user", text: "x" }], toolset: null, effort: "high", maxOutputTokens: 100, cacheTurn: true });
     const marks = body.system.map((block) => block.cache_control ?? null);
     assert.deepEqual(marks.slice(0, 2), [{ type: "ephemeral", ttl: "1h" }, { type: "ephemeral", ttl: "1h" }]);
-    assert.deepEqual(marks.slice(-3), [{ type: "ephemeral" }, null, null]);
+    assert.deepEqual(marks.slice(-3), [null, null, null]);
     assert.deepEqual(marks.slice(2, -3).filter(Boolean), [{ type: "ephemeral", ttl: "1h" }], "one breakpoint on the last history block");
-    assert.equal("cache_control" in body, false, "no top-level breakpoint: nothing after the living dossier is written");
+    assert.deepEqual(body.messages.at(-1).content.at(-1).cache_control, { type: "ephemeral" }, "the turn's end");
+    assert.equal("cache_control" in body, false, "no top-level breakpoint");
     // The legacy memory summaries are no longer the dossier's memory: no digest block, the session recaps instead.
     assert.doesNotMatch(stable, /Campaign memory digest/);
   } finally { await c.f.db.close(); }
@@ -169,7 +157,7 @@ test("the first save of a new campaign stores the default depth range when it na
   const calls = [];
   const rpc = async (args) => { calls.push(args.p_payload); return { data: { campaignId: "c", runtime: "dm-loop-v1", dmTurn: null, limits: null, depth: args.p_payload.depth ?? null, notebookVisible: false, boostNext: false, voiceExamples: false, revision: 1 } }; };
   const fresh = await saveDmSettingsWith(rpc, "o", "c", { expectedRevision: 0, runtime: "dm-loop-v1", dmTurn: null });
-  assert.deepEqual(calls[0].depth, DEFAULT_DEPTH_RANGE, "a fresh row gets high … xhigh");
+  assert.deepEqual(calls[0].depth, DEFAULT_DEPTH_RANGE, "a fresh row gets high … high");
   assert.deepEqual(fresh.depth, DEFAULT_DEPTH_RANGE);
   await saveDmSettingsWith(rpc, "o", "c", { expectedRevision: 1, runtime: "dm-loop-v1", dmTurn: null });
   assert.equal("depth" in calls[1], false, "a later save without depth keeps whatever is stored");

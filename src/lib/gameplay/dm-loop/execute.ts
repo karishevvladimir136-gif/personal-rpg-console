@@ -275,6 +275,48 @@ export function sheetBonus(actor: Entity, skill: string): { value: number; sourc
   return null;
 }
 
+/** Fix run A3: the damage of a bundled pair — an attack with its damage (rolled only on a hit; a natural
+ * 20 doubles the dice, a natural 1 always misses) or a save with its effect (full on a failure, half on a
+ * success with halfOnSave) — and its application to the target's hit points. One call instead of two
+ * requests: the mine fight of session 2 made one request per die. */
+function bundledDamage(shadow: ShadowState, args: Args, ctx: ToolContext, roll: { actor: Entity | null; kind: string; dc: number | null;
+  success: boolean | null; natural: "crit" | "fumble" | null }): { value: JsonObject; summary: string; player: string | null } | null {
+  if (args.damage === undefined) return null;
+  reject(roll.dc !== null && roll.success !== null, "damage needs an attack against a defence (dc) or a save against a difficulty.",
+    "Pass dc (the target's defence for an attack, the difficulty for a save) or roll the damage on its own.");
+  const formula = parseFormula(str(args.damage));
+  const save = roll.kind === "save";
+  const hit = save ? true : roll.natural === "crit" ? true : roll.natural === "fumble" ? false : roll.success === true;
+  const critical = !save && roll.natural === "crit";
+  const target = args.targetRef !== undefined ? entityOf(shadow, args.targetRef, "targetRef") : save ? roll.actor : null;
+  if (!hit) return { value: { formula: str(args.damage), hit: false, total: 0, target: target?.name ?? null }, summary: "miss, no damage", player: null };
+  const count = critical ? formula.count * 2 : formula.count;
+  const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
+  reject(dice.every((die) => Number.isInteger(die) && die >= 1 && die <= formula.sides), "The dice source misbehaved.");
+  const rolled = Math.max(0, dice.reduce((sum, die) => sum + die, 0) + formula.modifier);
+  const total = save ? (roll.success ? (args.halfOnSave === true ? Math.floor(rolled / 2) : 0) : rolled) : rolled;
+  const value: JsonObject = { formula: str(args.damage), hit: true, critical, dice, rolled, total, ...(save ? { saved: roll.success, halfOnSave: args.halfOnSave === true } : {}),
+    target: target?.name ?? null };
+  let applied = "";
+  let player: string | null = null;
+  if (target && total > 0) {
+    if (target.max_hp === null && target.hp === null) {
+      value.applied = null;
+      value.note = `${target.name} has no hit points on record; give them with resource hp max (from the stat block), then subtract this damage.`;
+    } else {
+      const max = target.max_hp ?? target.hp ?? 0;
+      const before = target.hp ?? max;
+      const after = Math.max(0, before - total);
+      shadow.apply(entityChange(shadow, target, { hp: after, max_hp: max }));
+      value.applied = { target: target.name, before, after, max };
+      applied = `; ${target.name} ${before} → ${after}/${max}`;
+      const controlled = new Set(shadow.runtime.configuration?.controlledEntityIds ?? [shadow.hero().id]);
+      if (controlled.has(target.id)) player = chip.hp(ctx.language, target.name, isHero(target), before, after, max, str(args.reason));
+    }
+  }
+  return { value, summary: `damage ${str(args.damage)}${critical ? " doubled" : ""}: ${total}${applied}`, player };
+}
+
 function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptResult {
   const formula = parseFormula(str(args.formula));
   const actorText = str(args.actorRef);
@@ -355,12 +397,14 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const rolled = recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random);
     const natural: RecordedCheck["natural"] = rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null;
     const check: RecordedCheck = { ...rolled, natural };
+    const damage = bundledDamage(shadow, args, ctx, { actor, kind, dc, success: check.success, natural });
     const value: JsonObject = { formula: str(args.formula), reason, actor: actor.name, visibility,
       dice: [...check.dice], kept: check.kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason,
-      difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept) };
-    const player = visibility === "player"
+      difficulty, total: check.total, dc, success: check.success, natural, checkId: check.id, ...bonusLine(check.kept), ...(damage ? { damage: damage.value } : {}) };
+    const rolledChip = visibility === "player"
       ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, check.total, dc, ctx.showDc, check.success, natural) : null;
-    return ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}`, check, player);
+    const player = rolledChip ? withDamageChip(ctx.language, rolledChip, damage) : null;
+    return ok(value, `${actor.name} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${check.total} vs ${dc} — ${check.success ? "success" : "failure"}${natural === "crit" ? " (natural 20)" : natural === "fumble" ? " (natural 1)" : ""}${damage ? `; ${damage.summary}` : ""}`, check, player);
   }
   const count = advantage === "normal" ? formula.count : 2;
   const dice = Array.from({ length: count }, () => ctx.random(1, formula.sides + 1));
@@ -369,11 +413,24 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     : advantage === "advantage" ? Math.max(...dice) : Math.min(...dice);
   const total = kept + modifier;
   const natural = formula.count === 1 && formula.sides === 20 ? (kept === 20 ? "crit" : kept === 1 ? "fumble" : null) : null;
+  const success = dc === null ? null : total >= dc;
+  const damage = bundledDamage(shadow, args, ctx, { actor, kind: kindText, dc, success, natural });
   const value: JsonObject = { formula: str(args.formula), reason, actor: actor?.name ?? "DM", visibility,
-    dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success: dc === null ? null : total >= dc, natural, ...bonusLine(natural ? kept : 0) };
-  const player = visibility === "player" && actor
-    ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, dc === null ? null : total >= dc, natural) : null;
-  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${total >= dc ? "success" : "failure"}` : ""}`, null, player);
+    dice, kept, modifier, modifierSource: sourceText, bonuses, advantage, advantageReason, difficulty, total, dc, success, natural, ...bonusLine(natural ? kept : 0),
+    ...(damage ? { damage: damage.value } : {}) };
+  const rolledChip = visibility === "player" && actor
+    ? chip.roll(ctx.language, actor.name, actor.kind === "player", reason, total, dc, ctx.showDc, success, natural) : null;
+  // A hit on the hero or a companion is theirs to see even when the attacker's roll is private.
+  const player = rolledChip ? withDamageChip(ctx.language, rolledChip, damage) : damage?.player ?? null;
+  return ok(value, `${actor?.name ?? "The DM"} rolls ${str(args.formula)}${sourceText ? ` (${sourceText})` : ""}: ${total}${dc !== null ? ` vs ${dc} — ${success ? "success" : "failure"}` : ""}${damage ? `; ${damage.summary}` : ""}`, null, player);
+}
+
+/** The roll's chip with its damage («Атака посохом: 17 — получилось · урон 9»). */
+function withDamageChip(language: ChipLanguage, rolled: string, damage: ReturnType<typeof bundledDamage>): string {
+  if (!damage || damage.value.hit !== true) return rolled;
+  const total = Number(damage.value.total ?? 0);
+  const crit = damage.value.critical === true;
+  return `${rolled} · ${language === "ru" ? `урон ${total}${crit ? " (крит, кости вдвойне)" : ""}` : `damage ${total}${crit ? " (critical, dice doubled)" : ""}`}${damage.player ? ` · ${damage.player}` : ""}`;
 }
 
 // --- query_state -----------------------------------------------------------
@@ -1425,7 +1482,7 @@ function finishTurn(shadow: ShadowState, args: Args, ctx: ToolContext): { result
     playerLikes: likes.text, npcRefused: !!args.npcRefused };
   shadow.finished = true;
   const value: JsonObject = { recorded: true, playerMoment: moment,
-    ...(likes.clipped ? { playerLikesClipped: `playerLikes was longer than ${PLAYER_LIKES_CAP} characters and was clipped; keep the note to what still holds.` } : {}),
+    ...(likes.clipped ? { playerLikesClipped: `playerLikes was longer than ${PLAYER_LIKES_CAP} characters and was clipped; one or two short new lines are enough (they are appended).` } : {}),
     ...(gate && !gate.accepted ? { playerMomentRefused: `playerMoment was not accepted: ${gate.reason}. The turn is recorded without it; the player simply writes the next action.` } : {}) };
   return { result: ok(value, moment ? `Your moment: ${gate!.reason}` : gate ? `Turn recorded (player moment refused: ${gate.reason})` : "Turn recorded"), meta };
 }

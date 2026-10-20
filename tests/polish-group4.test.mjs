@@ -66,11 +66,13 @@ test("the likes note in two parts: the DM's observations never overwrite the pla
     assert.equal(view.playerLikes, campaign.player_likes);
     assert.equal(view.dmLikes, campaign.dm_likes);
     const next = await c.turn("Беру верёвку.", [{ text: "Верёвка твоя. ", toolCalls: [finish()] }]);
+    // Fix run A2: the player's own words are stable and travel in the cached world layer; the DM's observations in the tail.
     const tail = next.model.requests[0].system.at(-2).text;
-    const own = tail.indexOf("What the player asked for, in their own words");
-    const observed = tail.indexOf("Your observations of what the player enjoys");
-    assert.ok(own >= 0 && observed > own, "the dossier shows both, the player's words first");
-    assert.match(tail, /Бои короткие, опасные и с ценой/);
+    const world = next.model.requests[0].system[1].text;
+    assert.ok(world.includes("What the player asked for, in their own words"), "the player's words: the cached world layer");
+    assert.match(world, /Бои короткие, опасные и с ценой/);
+    assert.ok(tail.includes("Your observations of what the player enjoys"), "the DM's observations: the tail");
+    assert.ok(!tail.includes("What the player asked for"));
   } finally { await c.f.db.close(); }
 });
 

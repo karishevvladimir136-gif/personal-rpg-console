@@ -836,7 +836,8 @@ test("failure recovery offers one clear action in the primary feed", () => {
   ];
   const html = render("game", state);
   assert.match(html, /role="alert"/);
-  assert.ok(html.includes("The DM could not finish this turn. Your action is preserved."));
+  // Fix run A1: a failed move says that nothing changed in the game and what «Try again» does.
+  assert.ok(html.includes("The DM could not finish this move, so nothing changed in the game. «Try again» runs the same move again."));
   assert.doesNotMatch(html, /The DM needs more context for this action/);
   assert.ok(html.includes("Try again"));
   assert.ok(html.includes("More options"));
@@ -856,7 +857,8 @@ test("Game processing and provider interruption use restrained copy", () => {
     failure: "provider", canRetry: true, canCancel: true,
   })];
   const failed = render("game", state);
-  assert.match(failed, /The DM connection was interrupted\. Try again\./);
+  // Fix run A1: the failed move says that nothing changed in the game and what «Try again» does.
+  assert.match(failed, /The DM connection was interrupted — nothing changed in the game yet\. «Try again» continues this same move/);
   assert.equal((failed.match(/>Try again</g) ?? []).length, 1);
   assert.doesNotMatch(failed, /The DM could not respond|Retry same submission|Check saved turn|Resume this turn/);
   assert.ok(failed.indexOf("More options") < failed.indexOf("Abandon this action"));

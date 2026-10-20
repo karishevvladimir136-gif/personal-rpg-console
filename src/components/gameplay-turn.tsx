@@ -245,6 +245,7 @@ export function GameplayTurn({
   recording = false,
   onCommand,
   onSaved,
+  onResend,
 }: {
   turn: PublicTurn;
   busy: boolean;
@@ -252,6 +253,8 @@ export function GameplayTurn({
   recording?: boolean;
   onCommand: (action: ResumeInput["action"], checkId?: string | null) => void;
   onSaved: () => Promise<void>;
+  /** Fix run A1 (items 58, 73): the latest failed move that cannot be retried — send the same text again. */
+  onResend?: () => void;
 }) {
   const { t, language } = useLanguage();
   const { data } = useCampaignData();
@@ -276,15 +279,17 @@ export function GameplayTurn({
     turn.status === "failed" &&
     turn.canRetry &&
     (turn.failure === "provider" || turn.failure === "unavailable");
+  // Fix run A1 (items 58, 73 follow-up): a failed move says plainly that nothing changed in the game
+  // (the owner believed a failed long rest had happened) and what to do: continue or send it again.
   const failureMessage = interrupted
-    ? "The DM connection was interrupted. Try again."
+    ? "The DM connection was interrupted — nothing changed in the game yet. «Try again» continues this same move from where it stopped."
     : turn.failure === "configuration"
       ? "The DM needs setup before play can continue."
-      : turn.failure === "context" || turn.failure === "validation"
-        ? "The DM could not finish this turn. Your action is preserved."
+      : turn.canRetry
+        ? "The DM could not finish this move, so nothing changed in the game. «Try again» runs the same move again."
         : turn.failure === "conflict"
-          ? "The world changed while this action was underway. Review the latest scene."
-          : "The DM could not finish this action.";
+          ? "While the move was running the campaign's records changed, so it was not saved and nothing changed in the game. Your text is back in the box — send it again."
+          : "The DM could not finish this move, so nothing changed in the game. Your text is back in the box — send it again or change it.";
   return (
     <Panel className="gameplay-turn">
       <article className="gameplay-owner-input">
@@ -343,6 +348,11 @@ export function GameplayTurn({
         {turn.canRetry && (
           <Button primary disabled={busy} onClick={() => onCommand("retry")}>
             {t("Try again")}
+          </Button>
+        )}
+        {turn.status === "failed" && !turn.canRetry && onResend && turn.failure !== "configuration" && (
+          <Button primary disabled={busy} onClick={onResend}>
+            {t("Send this move again")}
           </Button>
         )}
       </div>

@@ -120,7 +120,13 @@ export type DmLoopDiagnostic =
   /** Polish 3 §3: rejected record calls were sent back with their reasons for one retry. */
   | { kind: "records_retry_asked"; calls: string[] }
   /** Polish 3 §7: the narration's time-of-day words disagreed with the clock (the note the next turn's tail shows). */
-  | { kind: "time_words"; detail: string };
+  | { kind: "time_words"; detail: string }
+  /** Fix run A1 (items 32, 56, 73): the request after a cut by the output cap continues the turn once. */
+  | { kind: "cut_continued"; toolCalls: number }
+  /** Fix run A3: a turn over $1, over four requests or over 32 000 output tokens, with its causes. */
+  | { kind: "expensive_turn"; costUsd: number; requests: number; outputTokens: number; latencyMs: number; causes: string[] }
+  /** Fix run A1 (item 32c): the provider's own error (kind, HTTP status, code, the message with secrets filtered). */
+  | { kind: "provider_error"; errorKind: string; httpStatus: number | null; providerCode: string | null; message: string };
 
 export type DmLoopSceneKind = "combat" | "conversation" | "mystery" | "exploration" | "quiet" |
   "humor" | "trade" | "travel" | "other";

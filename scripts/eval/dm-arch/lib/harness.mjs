@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { loopCampaign } from "../../../../tests/dm-loop-fixture.mjs";
-import { runDmLoopTurn, resumeDmLoopTurn, thinkingAllowance } from "../../../../src/lib/gameplay/dm-loop/loop.ts";
+import { runDmLoopTurn, resumeDmLoopTurn } from "../../../../src/lib/gameplay/dm-loop/loop.ts";
 import { runTwoPassTurn, resumeTwoPassTurn, splitLedger, bookkeeperStart } from "../../../../src/lib/gameplay/dm-loop/two-pass/index.ts";
 import { dmLoopLimits } from "../../../../src/lib/gameplay/dm-loop/limits.ts";
 import { dmModels, dmRequestReservation } from "../../../../src/lib/model-runtime/dm-models.ts";
@@ -31,7 +31,7 @@ export const STATES_DIR = join(ROOT, "scripts", "eval", "out", "dmarch-states");
 export const RUNS_DIR = join(ROOT, "docs", "runs");
 const MAX_CONTINUES = 8;
 /** The worst case of one request for the guard: the narration allowance plus the deepest thinking allowance. */
-const RESERVE_OUTPUT_TOKENS = dmLoopLimits.maxOutputTokens + thinkingAllowance("xhigh");
+const RESERVE_OUTPUT_TOKENS = dmLoopLimits.maxOutputTokens;
 
 export async function loadScenario(name = SCENARIO) {
   const file = join(ROOT, "scripts", "eval", "scenarios", `${name}.json`);

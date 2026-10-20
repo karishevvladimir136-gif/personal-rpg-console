@@ -4,6 +4,7 @@ import type { CampaignSnapshot, Entity, Item, Scene } from "../../persistence/co
 import { DM_LOOP_DEFAULT_LIMITS } from "../../gameplay/dm-loop/limits.ts";
 import type { PlaySnapshot, PublicTurn } from "../../gameplay/contracts.ts";
 import { createCampaignSettings } from "../../campaign-settings.ts";
+import { DM_OPTION_DEFAULTS } from "../../gameplay/dm-loop/options.ts";
 import type { PreviewSample } from "./stage5-sample.ts";
 import { previewPictureBoard } from "./stage-v-pictures.ts";
 
@@ -160,7 +161,7 @@ export const noirSample: PreviewSample = {
     pacing: { kind: "mini_arc", custom: null }, mode: "canon", status: "active",
     start: { worldMinutes: 1 * 1440, sceneId: null }, completion: null, summary: null, review: null, createdAt: at(0),
   }),
-  dmSettings: { campaignId: NOIR_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "openai", modelId: "gpt-6-astra", reasoning: "high" }, limits: { ...DM_LOOP_DEFAULT_LIMITS }, customLimits: false, depth: null, notebookVisible: false, boostNext: false, voiceExamples: false, voiceMode: "off", voiceTokenCap: 30_000, split: null, snapshotsKeep: null, revision: 1 },
+  dmSettings: { campaignId: NOIR_CAMPAIGN_ID, runtime: "dm-loop-v1", dmTurn: { providerId: "openai", modelId: "gpt-6-astra", reasoning: "high" }, limits: { ...DM_LOOP_DEFAULT_LIMITS }, customLimits: false, depth: null, notebookVisible: false, boostNext: false, voiceExamples: false, voiceMode: "off", voiceTokenCap: 30_000, split: null, snapshotsKeep: null, options: { ...DM_OPTION_DEFAULTS }, revision: 1 },
   library: [{ ...row(1), title: "Neon & Rain", subtitle: "The Lazarus case", language: "en" }],
   images: {
     [N.dana]: "/preview/stage-5/noir-dana.jpg",

@@ -12,6 +12,7 @@ import { dmModelSpec, dmUsageCost, type DmEffort } from "../model-runtime/dm-mod
 import { buildDigestRequest, runDigest } from "../gameplay/dm-loop/digest";
 import { EFFORT_ORDER } from "../gameplay/dm-loop/depth";
 import { DM_LOOP_RUNTIME } from "../gameplay/dm-loop/contracts";
+import { appendObservations } from "../gameplay/dm-loop/observations";
 import type { PlaySnapshot } from "../gameplay/contracts";
 import type { CampaignSnapshot } from "../persistence/contracts";
 
@@ -79,7 +80,9 @@ export async function digestClosedSession(campaignId: string, sessionId: string,
       return;
     }
     await dossier.digest({ sessionId, recap: result.digest.recap, title: result.digest.title, notebook: result.digest.notebook,
-      plans: result.digest.plans, stinger: result.digest.stinger, ...(result.digest.playerLikes ? { playerLikes: result.digest.playerLikes } : {}) }, source.timeline);
+      plans: result.digest.plans, stinger: result.digest.stinger,
+      // Fix run A2: the digest's observations are appended to the DM's notes, never written over them.
+      ...(result.digest.playerLikes ? { playerLikes: appendObservations(String(source.snapshot.campaign.dm_likes ?? ""), result.digest.playerLikes) } : {}) }, source.timeline);
     console.info(JSON.stringify({ event: "session_digest", campaignId, sessionId, reason, model: pin.modelId, effort, requestTokens: request.tokens,
       plans: result.digest.plans.length, stinger: result.digest.stinger.length > 0, costUsd: cost, latencyMs: Math.round(performance.now() - started) }));
     setStatus(campaignId, sessionId, { state: "done", reason: null, costUsd: cost });

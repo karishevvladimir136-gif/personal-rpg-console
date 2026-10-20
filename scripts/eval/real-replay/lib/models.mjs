@@ -4,7 +4,6 @@
 import { registerHooks } from "node:module";
 import { dmModels, dmRequestReservation } from "../../../../src/lib/model-runtime/dm-models.ts";
 import { dmLoopLimits } from "../../../../src/lib/gameplay/dm-loop/limits.ts";
-import { thinkingAllowance } from "../../../../src/lib/gameplay/dm-loop/loop.ts";
 
 const hook = registerHooks({ resolve(specifier, context, nextResolve) {
   return specifier === "server-only" ? { url: "data:text/javascript,export%20{}", shortCircuit: true } : nextResolve(specifier, context);
@@ -12,7 +11,7 @@ const hook = registerHooks({ resolve(specifier, context, nextResolve) {
 const { createDmModel } = await import("../../../../src/lib/server/dm/model/index.ts");
 hook.deregister();
 
-const RESERVE_OUTPUT_TOKENS = dmLoopLimits.maxOutputTokens + thinkingAllowance("xhigh");
+const RESERVE_OUTPUT_TOKENS = dmLoopLimits.maxOutputTokens;
 
 export const MODELS = {
   opus: { providerId: "anthropic", modelId: "claude-opus-5-5", label: "Opus 5.5" },

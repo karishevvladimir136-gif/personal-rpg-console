@@ -46,6 +46,10 @@ export type DmModelRequest = {
   operationId?: string;
   /** Stable key for the provider's prompt-cache routing/accounting (a campaign ID). */
   cacheKey?: string;
+  /** Fix run A2: a request of a turn's tool loop. On Anthropic the end of the conversation and the end of
+   * the previous request carry breakpoints (5-minute), so a continuation after tool results reads the
+   * whole turn so far from the cache instead of paying the tail and the turn's messages again. */
+  cacheTurn?: boolean;
 };
 
 export type DmStopReason = "end" | "tool_use" | "max_tokens" | "refusal" | "other";

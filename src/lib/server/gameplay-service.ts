@@ -22,6 +22,7 @@ import { runCampaignTurn, resumeCampaignTurn, bookkeeperOf, type BookkeeperSelec
 import { dmLoopPinFromProfile, dmLoopProfile } from "../production/dm-loop-pin";
 import { createDmModel } from "./dm/model";
 import { keepLiveTurnLedger, publishLiveTurnEvent } from "./dm/live-turns";
+import { appendObservations } from "../gameplay/dm-loop/observations.ts";
 import { saveTurnSnapshot } from "./turn-snapshots";
 import { scheduleQuotableCheck } from "./voice/quotable-check";
 import { markBoostUsed, readDmSettings, type DmSettings } from "./dm-settings";
@@ -143,7 +144,7 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       // campaign the pinned «dm.turn» model is the writer.
       const current = await settings();
       return { ...dmLoopPinFromProfile(await production.pinDmLoopModel(claim.lease.operationId, async () => current.split?.writer ?? current.dmTurn)),
-        limits: current.limits, depth: current.depth, boostNext: current.boostNext };
+        limits: current.limits, depth: current.depth, boostNext: current.boostNext, continuation: current.options.continuation };
     },
     bookkeeperModel: (selection: BookkeeperSelection) => createDmModel(selection),
     afterCommit: async ({ operationId, playerLikes, boostUsed, playMinutes, input, source, narration }) => {
@@ -156,7 +157,8 @@ function dmLoopDependencies(store: TurnStore, memory: MemoryStore, summaries: Su
       if (narration?.trim() && source) scheduleQuotableCheck({ ownerId, campaignId, operationId, narration, language: source.snapshot.settings.values.language === "ru" ? "ru" : "en" });
       const dossier = await dossierService(ownerId, campaignId);
       // Polish item 15: the DM's note lives next to the player's own words, never over them.
-      if (playerLikes) await dossier.dmLikes(playerLikes);
+      // Fix run A2: and it is appended to the stored observations, never rewritten whole.
+      if (playerLikes) await dossier.dmLikes(appendObservations(String(source?.snapshot.campaign.dm_likes ?? ""), playerLikes));
       if (boostUsed) await markBoostUsed(campaignId);
       // Polish item 21: the campaign's play time counts real minutes of play.
       if (playMinutes > 0) await dossier.playTime(playMinutes).catch(() => {});

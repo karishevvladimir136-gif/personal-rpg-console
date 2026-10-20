@@ -40,7 +40,7 @@ import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
 import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
-import { continuation, executeDmLoopTurn, joinText, narrationNames, retriableRejection, retryClaimable, thinkingAllowance, type DmLoopDependencies } from "../loop.ts";
+import { continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, retriableRejection, retryClaimable, type DmLoopDependencies } from "../loop.ts";
 import { parseTimeCheckNote, timeCheckNote, timeWordsAgainstClock, TIME_CHECK_KEY } from "../time-words.ts";
 import { BOOKKEEPER_MARKER, bookkeeperBrief, bookkeeperSystem, createLedgerGate, rejectedCallsMessage, splitLedger, writerSystem } from "./prompts.ts";
 
@@ -263,7 +263,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
       const effort = phase === "writer" ? pin.effort : pin.bookkeeper!.effort;
       const system = phase === "writer" ? writerSystem(context) : bookkeeperSystem(context, languageName, bookkeeperText());
       const body: DmModelRequest = { system, messages, toolset: phase === "writer" ? writerToolset : bookkeeperToolset, effort,
-        maxOutputTokens: L.maxOutputTokens + thinkingAllowance(effort), operationId, cacheKey: input.campaignId };
+        maxOutputTokens: dmOutputCap(), operationId, cacheKey: input.campaignId, cacheTurn: true };
       const requestBytes = new TextEncoder().encode(JSON.stringify(body.system) + JSON.stringify(body.messages)).length;
       observe({ type: "request_started", operationId, request: loop.requests + 1, requestBytes,
         cachedPrefixBytes: system.filter((block) => block.cache).reduce((sum, block) => sum + new TextEncoder().encode(block.text).length, 0),
@@ -295,6 +295,7 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
           if (piece) live({ type: "text", text: piece });
         }
       };
+      const stopHeartbeat = leaseHeartbeat(store, lease, deps.heartbeatMs);
       try {
         for await (const event of model.stream(body)) {
           if (event.type === "text_delta") {
@@ -322,11 +323,15 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
         // A broken stream after text reached the player: what was shown stays shown; the retry
         // (below) or the player's «Повторить» continues from the checkpoint.
         if (error instanceof DmModelError) {
+          diagnostic({ kind: "provider_error", errorKind: error.kind, httpStatus: error.detail.httpStatus ?? null,
+            providerCode: error.detail.providerCode ?? null, message: error.message.slice(0, 300) });
           if (error.kind === "not_configured") throw new DmError("configuration");
           if (error.kind === "provider_rejected" || error.kind === "fatal") throw new DmError("provider", false);
           throw new DmError("provider", true);
         }
         throw new DmError("provider", true);
+      } finally {
+        stopHeartbeat();
       }
       requireRule(stop);
       const entry: DmLoopUsageEntry = { ...(usage ?? { providerId: spec.providerId, modelId: spec.modelId, effort,

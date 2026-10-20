@@ -6,6 +6,7 @@ import { DM_LOOP_RUNTIME } from "./contracts.ts";
 import { effectiveDmLoopLimits, parseDmLoopLimits, type DmLoopTurnLimits } from "./limits.ts";
 import { DEFAULT_DEPTH_RANGE, parseDepthRange, type DepthRange } from "./depth.ts";
 import { isVoiceMode, VOICE_TOKEN_CAP_DEFAULT, VOICE_TOKEN_CAP_MAX, VOICE_TOKEN_CAP_MIN, type VoiceMode } from "./voice.ts";
+import { parseDmOptions, parseDmOptionsPatch, type DmOptions } from "./options.ts";
 
 export type DmRuntimeId = "astra-primary-v1" | typeof DM_LOOP_RUNTIME;
 /** Polish 3 §2: the split — a writer that narrates (with the roll tool) and closes with a
@@ -51,8 +52,16 @@ export type DmSettings = {
   split: DmSplit | null;
   /** Polish 3 §4: how many of the newest turn snapshots to keep; null — all (the default). */
   snapshotsKeep: number | null;
+  /** Fix run after session 2: the DM's options (migration 73), with the defaults filled in. */
+  options: DmOptions;
   revision: number;
 };
+
+export { DM_OPTION_DEFAULTS, parseDmOptions, type DmOptions } from "./options.ts";
+/** A save's options: only known keys with allowed values (anything else is a validation error). */
+export function parseDmOptionsSave(value: unknown): Partial<DmOptions> {
+  try { return parseDmOptionsPatch(value); } catch { throw new DmSettingsError("validation"); }
+}
 export type DmSettingsSave = {
   expectedRevision: number; runtime: DmRuntimeId; dmTurn: ModelSelection | null;
   /** Omitted: keep the stored limits. null: return to the defaults. An object: the campaign's own limits. */
@@ -69,6 +78,8 @@ export type DmSettingsSave = {
   split?: DmSplit | null;
   /** Omitted: keep. null: keep every snapshot. */
   snapshotsKeep?: number | null;
+  /** Omitted: keep. The keys given are merged into the stored options. */
+  options?: Partial<DmOptions>;
 };
 
 export type DmSettingsRpc = (args: {
@@ -110,14 +121,14 @@ export function parseDmSettings(value: unknown): DmSettings {
   return { campaignId: v.campaignId, runtime: v.runtime as DmRuntimeId, dmTurn, limits,
     customLimits: v.limits !== null && v.limits !== undefined, depth,
     notebookVisible: v.notebookVisible === true, boostNext: v.boostNext === true, voiceExamples: voiceMode !== "off", voiceMode, voiceTokenCap,
-    split, snapshotsKeep: keep === null || keep === undefined ? null : keep as number, revision: v.revision as number };
+    split, snapshotsKeep: keep === null || keep === undefined ? null : keep as number, options: parseDmOptions(v.options), revision: v.revision as number };
 }
 
 export function parseDmSettingsSave(value: unknown): DmSettingsSave {
   if (!value || typeof value !== "object") throw new DmSettingsError("validation");
   const v = value as Record<string, unknown>;
   const keys = Object.keys(v);
-  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples", "voiceMode", "voiceTokenCap", "split", "snapshotsKeep"]);
+  const allowed = new Set(["dmTurn", "expectedRevision", "runtime", "limits", "depth", "notebookVisible", "boostNext", "voiceExamples", "voiceMode", "voiceTokenCap", "split", "snapshotsKeep", "options"]);
   if (!["dmTurn", "expectedRevision", "runtime"].every((key) => keys.includes(key)) || keys.some((key) => !allowed.has(key)) ||
     !Number.isSafeInteger(v.expectedRevision) ||
     (v.runtime !== "astra-primary-v1" && v.runtime !== DM_LOOP_RUNTIME)) throw new DmSettingsError("validation");
@@ -148,6 +159,7 @@ export function parseDmSettingsSave(value: unknown): DmSettingsSave {
     else if (Number.isSafeInteger(v.snapshotsKeep) && (v.snapshotsKeep as number) >= 1 && (v.snapshotsKeep as number) <= 100_000) save.snapshotsKeep = v.snapshotsKeep as number;
     else throw new DmSettingsError("validation");
   }
+  if ("options" in v) save.options = parseDmOptionsSave(v.options);
   return save;
 }
 

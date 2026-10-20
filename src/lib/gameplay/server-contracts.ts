@@ -168,6 +168,8 @@ export type RuntimeSource = {
   voiceExamplesOn?: boolean;
   voiceMode?: "off" | "five" | "all";
   voiceTokenCap?: number;
+  /** Fix run (migration 73): the campaign's DM options as stored (parse with parseDmOptions). */
+  dmOptions?: import("./contracts.ts").JsonObject;
   /** Voice stage part 5: the quotable-line check's newest flags (the line, why); quoted in the
    * next turn's tail only when they belong to the last committed turn. */
   voiceFlags?: { operationId: string; flags: { line: string; why: string }[] } | null;
@@ -336,6 +338,9 @@ export interface TurnStore {
     failureCategory: "configuration" | "provider" | "context" | "validation" |
       "conflict" | "unavailable" | null;
   }): Promise<void>;
+  /** dm-loop-v1 (fix run A1, migration 72): renew the claimant's lease while a model request streams;
+   * false when the lease is no longer this claimant's (another claim took the turn over, or it ended). */
+  renewLease?(lease: TurnLease): Promise<boolean>;
   readPlay(campaignId: string): Promise<PlaySnapshot>;
   getPublic(campaignId: string, operationId: string): Promise<PublicTurn>;
   claim(campaignId: string, operationId: string): Promise<TurnClaim | null>;

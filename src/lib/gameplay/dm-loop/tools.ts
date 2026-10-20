@@ -48,6 +48,9 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       advantage: opt({ type: "string", enum: ["normal", "advantage", "disadvantage"], description: "Roll two single dice and keep the higher (advantage) or lower (disadvantage)." }),
       advantageReason: opt(str("Why advantage or disadvantage, in the campaign language (shown on the card).", 160)),
       kind: opt({ type: "string", enum: ["skill", "attack", "save", "other"], description: "What kind of check this is; default skill." }),
+      damage: opt(str("Fix the pair in one call: an attack's damage formula (1d8+3), rolled by the server only when the attack hits (a natural 20 doubles its dice); or a save's damage (kind save: full on a failed save, half on a success with halfOnSave, none otherwise).", 32)),
+      targetRef: opt(ref("Who takes the damage: the attack's target; for a save the one who saves (the default). The server subtracts it from their hit points and returns what is left.")),
+      halfOnSave: opt({ type: "boolean", description: "kind save with damage: a successful save still takes half (Fireball, Lightning Bolt)." }),
     }),
   },
   {
@@ -279,7 +282,7 @@ export const dmLoopTools: readonly DmToolDefinition[] = [
       playerMoment: { type: "boolean" },
       nextTension: opt({ type: "string", enum: [...TENSION_CLASSES] }),
       threadRefs: opt({ type: "array", maxItems: 8, items: ref("A thread, debt, promise or quest this turn touched.") }),
-      playerLikes: opt(str("Your observations of what the player enjoys (themes, scene kinds, pace); replaces your previous note, so carry forward what still holds; up to 1200 characters (longer is clipped). The player's own words in the dossier are theirs — never rewrite them here.", L.maxLongText)),
+      playerLikes: opt(str("A NEW observation of what the player enjoys (themes, scene kinds, pace), one or two short lines; it is appended to your notes (they are never rewritten whole), so only what the notes do not hold yet; up to 1200 characters (longer is clipped). The player's own words in the dossier are theirs — never repeat or rewrite them here.", L.maxLongText)),
       npcRefused: opt({ type: "boolean", description: "True when a character refused, bargained down or walked away from the hero this turn." }),
     }),
   },
