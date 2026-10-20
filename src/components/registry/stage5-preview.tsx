@@ -170,7 +170,7 @@ function CampaignScreen({ screen, sample, variant, language }: { screen: Stage5S
       return <PreviewAdventures sample={sample} language={language} />;
     case "library":
       // Fix run after session 2 (item 25): ?doc=1 opens the DM guide, ?edit=1 its editor (nothing is saved).
-      return <PersistentLibrary initialDocumentId={flags.get("doc") === "1" ? snapshot.dmGuideDocumentId : null} initialEditing={flags.get("edit") === "1"} />;
+      return <PersistentLibrary initialDocumentId={flags.get("doc") === "1" ? snapshot.dmGuideDocumentId : flags.get("doc")} initialEditing={flags.get("edit") === "1"} />;
     case "owner":
       return <RegistryOwner data={snapshot} play={previewOwnerPlay(play)} preview={{ view: previewDmView }} />;
     case "gallery":

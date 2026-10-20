@@ -61,7 +61,8 @@ test("F2 item 26: the campaign's rules in words from the DM guide's first line; 
   assert.doesNotMatch(screen, /Правила и пределы кампании|Пределы одного хода|Сохранить пределы|DM_LOOP_LIMIT_KEYS|rulesSystem\.label/);
   assert.match(screen, /c\(`\$\{rules\.line\} — по руководству ведущего`/);
   assert.match(screen, /c\("Свои правила — руководство ведущего пока пустое"/);
-  assert.match(screen, /href=\{`\$\{href\("library"\)\}\?doc=\$\{encodeURIComponent\(rules\.guideId\)\}`\}/, "the link opens the DM guide in the Library");
+  assert.match(screen, /href=\{`\$\{href\("library"\)\}\$\{href\("library"\)\.includes\("\?"\) \? "&" : "\?"\}doc=\$\{encodeURIComponent\(rules\.guideId\)\}`\}/,
+    "the link opens the DM guide in the Library");
   for (const title of ["Показывать сложность (DC)", "Важные броски кидаю я", "Перебросы"]) assert.ok(screen.includes(`c("${title}"`), title);
   assert.match(screen, /operation: "settings\.save", timeline: data\.timeline, correctionScope: "timeline"/);
   assert.match(screen, /value: value \? "limited" : "disabled"/);

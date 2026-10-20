@@ -864,7 +864,7 @@ export function PersistentLibrary({
                   onDirty={setDirty}
                   onSaving={setSaving}
                   onSaved={afterSave}
-                  onCancel={close}
+                  onCancel={() => { setDirty(false); setCreating(false); setEditing(false); }}
                 />
               </Panel>
             ) : selected ? (

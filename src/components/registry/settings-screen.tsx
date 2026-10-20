@@ -408,7 +408,7 @@ export function RegistrySettings({ data, more, preview }: {
                   ? c(`${rules.line} — по руководству ведущего`, `${rules.line} — by the DM guide`)
                   : c("Свои правила — руководство ведущего пока пустое", "Own rules — the DM guide is still empty")}</p>
                 {rules.guideId && (
-                  <Link className={s.inlineLink} href={`${href("library")}?doc=${encodeURIComponent(rules.guideId)}`}>
+                  <Link className={s.inlineLink} href={`${href("library")}${href("library").includes("?") ? "&" : "?"}doc=${encodeURIComponent(rules.guideId)}`}>
                     {rules.line ? c("Открыть и изменить руководство ведущего", "Open and edit the DM guide") : c("Написать руководство ведущего", "Write the DM guide")}
                   </Link>
                 )}
