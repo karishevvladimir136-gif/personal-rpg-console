@@ -72,7 +72,7 @@ function Verdict({ check }: { check: VisibleCheck }) {
 /** The addends before the roll (what the hero brings), the die and the sum once it is revealed. */
 function Breakdown({ check, revealed }: { check: VisibleCheck; revealed: boolean }) {
   const c = useCopy();
-  const addends = checkAddends(check, c("лист и снаряжение", "sheet and gear"));
+  const addends = checkAddends(check, c("лист и снаряжение", "sheet and gear"), { formula: c("формула", "formula"), cap: c("предел бонусов", "bonus cap") });
   const dice = check.advantage !== "normal"
     ? c(`Два куба: ${check.dice.join(" и ")} — взят ${check.advantage === "advantage" ? "больший" : "меньший"}, ${check.kept}`,
       `Two dice: ${check.dice.join(" and ")} — the ${check.advantage === "advantage" ? "higher" : "lower"} one counts, ${check.kept}`)

@@ -43,7 +43,11 @@ export type CheckProposal = {
   advantageReason?: string | null;
   difficulty?: "easy" | "normal" | "hard" | "very_hard" | "nearly_impossible" | null;
   natural?: "crit" | "fumble" | null;
+  /** Fix run C (item 66): every part of the modifier with its own source — the sheet's skill or stat, each worn thing,
+   * each bonus of the fiction, the formula's own number; they sum to the modifier. Absent on older checks. */
+  addends?: CheckAddend[];
 };
+export type CheckAddend = { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap" };
 export type RecordedCheck = CheckProposal & {
   id: string;
   dice: number[];

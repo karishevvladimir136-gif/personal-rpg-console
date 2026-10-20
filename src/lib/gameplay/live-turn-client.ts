@@ -12,6 +12,8 @@ export type LiveTurnView = {
   moment?: { reason: string | null } | null;
   /** `recording` (polish 3 §2): the text is complete, the bookkeeper records; the composer may open. */
   status: "generating" | "recording" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" | null;
+  /** Stage C (item 53): what the DM's latest calls do (dice, records, a lookup) — the pause's words. */
+  working?: ("roll" | "record" | "lookup")[];
 };
 
 /** A status that ends the stream (`recording` keeps it open until the commit). */
@@ -23,6 +25,7 @@ export function applyLiveEvent(view: LiveTurnView, event: DmLoopLiveEvent): Live
   if (event.type === "text") return { ...view, text: view.text + event.text };
   if (event.type === "tool") return { ...view, changes: [...view.changes, { name: event.name, ok: event.ok, summary: event.summary, ...(event.action ? { action: event.action } : {}) }] };
   if (event.type === "moment") return { ...view, moment: { reason: event.reason } };
+  if (event.type === "working") return { ...view, working: event.tools };
   return { ...view, status: event.status };
 }
 

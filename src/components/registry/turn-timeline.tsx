@@ -81,7 +81,7 @@ export function TurnTimeline({ turn, trace, label, heroId, party, companionRolls
   const quiet = useQuiet(`${told?.view.text.length ?? 0}:${told?.view.changes.length ?? 0}:${status}`, telling && !!text.trim());
   const { items, pause } = buildTurnTimeline({
     text, rolls: rollLines(turn, told), checks: turn.checks, heroId, party, companionRolls, status,
-    idle: quiet, rollsWait, language: c.ru ? "ru" : "en",
+    idle: quiet, working: told?.view.working, rollsWait, language: c.ru ? "ru" : "en",
   });
   const awaiting = status === "awaiting_confirmation";
   const rerollable = awaiting && turn.checks.some((check) => check.canReroll);

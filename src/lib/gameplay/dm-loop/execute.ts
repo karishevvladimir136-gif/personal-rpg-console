@@ -8,7 +8,7 @@ import type { JsonObject, TurnInput } from "../contracts.ts";
 import type { Entity, EquipmentSlot, Item, ItemDetail, PublicProfile, Quest, QuestDetail, Storage } from "../../persistence/contracts.ts";
 import { ITEM_KINDS, SLOT_REMAP, coinOf, counterLabel, counterLabelled, equipPlan, equippedBonuses, needsUniversalSlots, potionCounter, sameStack,
   universalSlots, walletOfStorage } from "../../inventory/model.ts";
-import type { RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
+import type { CheckAddend, RecordChange, RecordedCheck, RuntimeSource } from "../server-contracts.ts";
 import { recordServerRoll, stableGameplayId } from "../dice.ts";
 import { basicProfile } from "../mechanics/profile.ts";
 import { settledItemTransfer } from "../../progression/settlement-core.ts";
@@ -350,6 +350,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
   let modifier = fromSheet ? 0 : formula.modifier;
   const sources: string[] = [];
   let modifierSource: string | null = null;
+  // Fix run C (item 66): each part of the modifier with its own source, for the roll card.
+  const addends: CheckAddend[] = !fromSheet && formula.modifier ? [{ source: str(args.formula), value: formula.modifier, kind: "formula" }] : [];
   if (args.modifierField !== undefined) {
     reject(actor, "A sheet modifier needs an actor (actorRef is \"dm\").");
     const field = str(args.modifierField);
@@ -360,6 +362,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     modifier += value;
     modifierSource = `${field} ${value >= 0 ? "+" : ""}${value}`;
     sources.push(modifierSource);
+    addends.push({ source: field, value, kind: "sheet" });
   }
   if (args.skill !== undefined) {
     reject(actor, "A sheet skill needs an actor (actorRef is \"dm\").");
@@ -371,6 +374,7 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     modifier += bonus.value;
     modifierSource = modifierSource ? `${modifierSource}, ${bonus.source}` : bonus.source;
     sources.push(bonus.source);
+    addends.push({ source: bonus.source.replace(/\s[+−-]\d+$/u, "") || skill, value: bonus.value, kind: "sheet" });
   }
   // The fiction's bonuses (tools, help, prepared gear, position), capped as a sum.
   const bonuses: { source: string; value: number }[] = [];
@@ -387,6 +391,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
     const capped = Math.max(-FICTION_BONUS_CAP, Math.min(FICTION_BONUS_CAP, sum));
     clipped = capped !== sum;
     modifier += capped;
+    addends.push(...bonuses.map((bonus) => ({ source: bonus.source, value: bonus.value, kind: "fiction" as const })));
+    if (clipped) addends.push({ source: `cap ±${FICTION_BONUS_CAP}`, value: capped - sum, kind: "cap" });
     sources.push(...bonuses.map((b) => `${b.source} ${b.value >= 0 ? "+" : ""}${b.value}`));
   }
   // Fix run D (§3): what the actor wears or holds adds its own bonuses, outside the fiction's cap, with the item as
@@ -401,9 +407,12 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
         const at = sources.indexOf(`${removed.source} ${removed.value >= 0 ? "+" : ""}${removed.value}`);
         if (at >= 0) sources.splice(at, 1);
         modifier -= removed.value;
+        const gone = addends.findIndex((row) => row.kind === "fiction" && row.source === removed.source && row.value === removed.value);
+        if (gone >= 0) addends.splice(gone, 1);
       }
       modifier += bonus.value;
       sources.push(bonus.source);
+      addends.push({ source: bonus.source.replace(/\s[+−-]\d+$/u, ""), value: bonus.value, kind: "gear" });
     }
   }
   reject(modifier >= -100 && modifier <= 100, "The total modifier must stay between -100 and +100.");
@@ -450,6 +459,8 @@ function roll(shadow: ShadowState, args: Args, ctx: ToolContext): DmLoopReceiptR
       index: ctx.checks.length, actorId: actor.id, targetId: null, kind, stat: kind,
       dc, dcPublic: true, visibility, important: true, uncertainty: "meaningful" as const, advantage,
       reason, bonuses, advantageReason, difficulty, natural: null as RecordedCheck["natural"],
+      // The parts sum to the modifier (a fiction bonus over the cap shows its «cap» part); none when there is no modifier.
+      ...(addends.length && addends.reduce((sum, row) => sum + row.value, 0) === modifier ? { addends: addends.slice(0, 10) } : {}),
     };
     const rolled = recordServerRoll(ctx.input.operationId, proposal, modifier, 1, ctx.random);
     const natural: RecordedCheck["natural"] = rolled.kept === 20 ? "crit" : rolled.kept === 1 ? "fumble" : null;

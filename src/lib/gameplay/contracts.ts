@@ -151,6 +151,8 @@ export type VisibleCheck = {
   advantageReason?: string | null;
   difficulty?: "easy" | "normal" | "hard" | "very_hard" | "nearly_impossible" | null;
   natural?: "crit" | "fumble" | null;
+  /** Fix run C: every part of the modifier with its own source (sums to `modifier`); absent on older checks. */
+  addends?: { source: string; value: number; kind: "sheet" | "gear" | "fiction" | "formula" | "cap" }[];
 };
 export type GuidanceProposal = {
   teachingCandidate?: import("../dm-craft/contracts.ts").TeachingCandidate | null;

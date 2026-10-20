@@ -206,7 +206,9 @@ export type DmLoopLiveEvent =
   | { type: "moment"; reason: string | null }
   /** `recording` (polish 3 §2): the writer's text is complete and the bookkeeper records; the
    * turn is still running and its stream stays open until the commit. */
-  | { type: "status"; status: "generating" | "recording" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" };
+  | { type: "status"; status: "generating" | "recording" | "awaiting_confirmation" | "committed" | "failed" | "cancelled" }
+  /** Stage C (item 53): what the DM's pause is about, by kind only (never a tool's arguments): dice, records, a lookup. */
+  | { type: "working"; tools: DmLoopWork[] };
 
 /** Diagnostics the loop reports to the server log / bench (never to the player). */
 export type DmLoopObservation =
@@ -225,3 +227,15 @@ export type DmLoopObservation =
   | { type: "live"; operationId: string; event: DmLoopLiveEvent }
   /** The safe failure category plus the error's own message (never provider or SQL payloads). */
   | { type: "failure"; operationId: string; code: string; retryable: boolean; message: string; stack: string | null };
+
+export type DmLoopWork = "roll" | "record" | "lookup";
+/** The kinds of work a message's calls do, for the named pause; finish_turn and the clock are not a pause of their own. */
+export function workOf(names: string[]): DmLoopWork[] {
+  const kinds = new Set<DmLoopWork>();
+  for (const name of names) {
+    if (name === "roll") kinds.add("roll");
+    else if (name === "query_state" || name === "recall") kinds.add("lookup");
+    else if (name !== "finish_turn" && name !== "advance_time") kinds.add("record");
+  }
+  return [...kinds];
+}

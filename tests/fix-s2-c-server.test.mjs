@@ -79,3 +79,60 @@ test("C: each roll of a saved turn knows where in the text it was made; a paused
     assert.equal(waiting.told, "Ты целишься в громилу. ");
   } finally { await c.f.db.close(); }
 });
+
+test("C (item 66): a check records every part of its modifier with its own source; the card shows each; the database keeps them", async () => {
+  const { checkAddends } = await import("../src/lib/ui/turn-timeline.ts");
+  const recorded = { modifier: 8, bonuses: [{ source: "помощь сержанта", value: 2 }],
+    addends: [{ source: "Скрытность", value: 5, kind: "sheet" }, { source: "Кольцо защиты", value: 1, kind: "gear" }, { source: "помощь сержанта", value: 2, kind: "fiction" }] };
+  assert.deepEqual(checkAddends(recorded, "лист и снаряжение"), [{ source: "Скрытность", value: 5 }, { source: "Кольцо защиты", value: 1 }, { source: "помощь сержанта", value: 2 }]);
+  assert.deepEqual(checkAddends({ modifier: 8, bonuses: [{ source: "помощь сержанта", value: 2 }] }, "лист и снаряжение"),
+    [{ source: "лист и снаряжение", value: 6 }, { source: "помощь сержанта", value: 2 }], "an older check: one line for the sheet and the gear");
+  assert.deepEqual(checkAddends({ ...recorded, modifier: 9 }, "лист"), [{ source: "лист", value: 7 }, { source: "помощь сержанта", value: 2 }], "addends that do not sum are not trusted");
+
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const { createScriptedDmModel } = await import("../src/lib/gameplay/dm-loop/scripted-model.ts");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    await c.f.db.query("update public.rpg_entities set stats=stats||'{\"stealth\":5}'::jsonb where id=$1", [c.hero]);
+    const finish = { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false, nextTension: "calm" } };
+    const done = await c.turn("Крадусь.", [{ text: "Ты крадёшься вдоль стены. ", toolCalls: [{ name: "roll", arguments: { formula: "1d20", reason: "Скрытность", actorRef: c.hero,
+      visibility: "player", kind: "skill", dc: 12, modifierField: "stealth", bonuses: [{ source: "тень от телеги", value: 2 }] } }] },
+      { text: "Никто не оборачивается.", toolCalls: [{ name: "advance_time", arguments: { minutes: 1, reason: "время" } }, finish] }]);
+    assert.equal(done.result.status, "committed", JSON.stringify(c.errors));
+    const play = await (await c.deps(createScriptedDmModel([]))).store.readPlay(c.cid);
+    const check = play.turns.find((row) => row.id === done.input.operationId).checks[0];
+    assert.equal(check.modifier, 7);
+    assert.deepEqual(check.addends, [{ source: "stealth", value: 5, kind: "sheet" }, { source: "тень от телеги", value: 2, kind: "fiction" }]);
+  } finally { await c.f.db.close(); }
+});
+
+test("C (item 53): the pause names what the DM does — the stream says dice, records or a lookup; kinds only, never arguments", async () => {
+  const { workOf } = await import("../src/lib/gameplay/dm-loop/contracts.ts");
+  const { applyLiveEvent, emptyLiveTurn } = await import("../src/lib/gameplay/live-turn-client.ts");
+  const { pauseWords } = await import("../src/lib/ui/turn-timeline.ts");
+  assert.deepEqual(workOf(["roll", "item", "finish_turn"]), ["roll", "record"]);
+  assert.deepEqual(workOf(["recall", "query_state"]), ["lookup"]);
+  assert.deepEqual(workOf(["finish_turn", "advance_time"]), []);
+  const view = applyLiveEvent(emptyLiveTurn("t"), { type: "working", tools: ["roll"] });
+  assert.deepEqual(view.working, ["roll"]);
+  assert.equal(view.status, null, "a working event is not a status");
+  assert.equal(pauseWords({ kind: "gap", working: ["roll", "record"] }, "ru"), "Ведущий бросает кости…");
+  assert.equal(pauseWords({ kind: "gap", working: ["record"] }, "ru"), "Ведущий записывает изменения…");
+  assert.equal(pauseWords({ kind: "gap", working: ["lookup"] }, "ru"), "Ведущий сверяется с записями…");
+  assert.equal(pauseWords({ kind: "gap" }, "ru"), "Ведущий бросает кости и сверяет записи…");
+  const { loopCampaign } = await import("./dm-loop-fixture.mjs");
+  const c = await loopCampaign({ language: "ru" });
+  try {
+    const events = [];
+    const finish = { name: "finish_turn", arguments: { sceneKinds: ["exploration"], spotlight: [], playerMoment: false, nextTension: "calm" } };
+    const done = await c.turn("Осматриваюсь.", [{ text: "Ты оглядываешь двор. ", toolCalls: [{ name: "advance_time", arguments: { minutes: 5, reason: "осмотр" } }, finish] }],
+      { deps: { observe: (row) => { if (row.type === "live") events.push(row.event); } } });
+    assert.equal(done.result.status, "committed", JSON.stringify(c.errors));
+    assert.ok(!events.some((row) => row.type === "working"), "the clock and finish_turn name no pause");
+    const more = [];
+    const looked = await c.turn("Что у меня в сумке?", [{ text: "Ты роешься в сумке. ", toolCalls: [{ name: "query_state", arguments: { ref: c.hero } }] },
+      { text: "Верёвка на месте.", toolCalls: [finish] }], { deps: { observe: (row) => { if (row.type === "live") more.push(row.event); } } });
+    assert.equal(looked.result.status, "committed", JSON.stringify(c.errors));
+    assert.deepEqual(more.filter((row) => row.type === "working").map((row) => row.tools), [["lookup"]], "a lookup names its pause");
+  } finally { await c.f.db.close(); }
+});

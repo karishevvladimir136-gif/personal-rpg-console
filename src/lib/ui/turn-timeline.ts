@@ -63,7 +63,7 @@ export type TurnPause =
   /** Before the first word, and only then. */
   | { kind: "thinking" }
   /** The text stopped in the middle of the turn: the DM rolls or writes a record before going on. */
-  | { kind: "gap" }
+  | { kind: "gap"; working?: ("roll" | "record" | "lookup")[] }
   /** A roll was made and the DM tells what came of it. */
   | { kind: "after-roll"; who: string | null }
   /** The turn waits for the player's roll (the hero's, or a companion's when the player rolls for them). */
@@ -84,6 +84,8 @@ export type TimelineInput = {
   status: TurnStatus | "recording";
   /** No new text for a moment while the turn runs (the DM rolls or records before going on). */
   idle?: boolean;
+  /** What the DM's latest calls do (the stream says), for the pause's words. */
+  working?: ("roll" | "record" | "lookup")[];
   /** The campaign's dice settings make the player's rolls wait for the player (interactive dice or rerolls). */
   rollsWait?: boolean;
   language: "ru" | "en";
@@ -182,7 +184,7 @@ function pauseOf(input: TimelineInput, items: TimelineItem[]): TurnPause | null 
   if (!input.text.trim() && !items.length) return { kind: "thinking" };
   if (last && last.kind !== "text")
     return { kind: "after-roll", who: last.kind === "chip" ? last.who : last.kind === "card" && last.check.actorId !== input.heroId ? last.check.actorName : null };
-  return input.idle ? { kind: "gap" } : null;
+  return input.idle ? { kind: "gap", ...(input.working?.length ? { working: input.working } : {}) } : null;
 }
 
 /** The pause in words (the owner's: «ждёт твой бросок», «бросок Брама», «ведущий записывает»). */
@@ -191,8 +193,14 @@ export function pauseWords(pause: TurnPause, language: "ru" | "en"): string {
   switch (pause.kind) {
     case "thinking":
       return ru ? "Ведущий думает…" : "DM is thinking…";
-    case "gap":
+    case "gap": {
+      // Stage C (item 53): named from what the DM's calls do, when the stream says.
+      const w = pause.working ?? [];
+      if (w.includes("roll")) return ru ? "Ведущий бросает кости…" : "The DM rolls the dice…";
+      if (w.includes("lookup")) return ru ? "Ведущий сверяется с записями…" : "The DM checks the records…";
+      if (w.includes("record")) return ru ? "Ведущий записывает изменения…" : "The DM writes the changes down…";
       return ru ? "Ведущий бросает кости и сверяет записи…" : "The DM rolls and checks the records…";
+    }
     case "after-roll":
       return pause.who
         ? (ru ? `Бросок: ${pause.who} — ведущий рассказывает, что вышло…` : `${pause.who}'s roll — the DM tells what came of it…`)
@@ -215,9 +223,13 @@ export function shownStatus(turn: Pick<PublicTurn, "status">, trace: LiveTrace |
   return turn.status;
 }
 
-/** Every addend of a roll card's total in order: the part from the sheet and the worn items (the modifier the
- * fiction did not give; the record does not split it further yet), then each bonus of the fiction with its source. */
-export function checkAddends(check: Pick<VisibleCheck, "modifier" | "bonuses">, sheetLabel: string): { source: string; value: number }[] {
+/** Every addend of a roll card's total in order. A check recorded with its addends (fix run C) shows each with its own
+ * source — the sheet's skill, each worn thing, each bonus of the fiction; an older one shows the part from the sheet and
+ * the worn items as one line, then each bonus of the fiction. */
+export function checkAddends(check: Pick<VisibleCheck, "modifier" | "bonuses" | "addends">, sheetLabel: string,
+  words: { formula: string; cap: string } = { formula: "формула", cap: "предел бонусов" }): { source: string; value: number }[] {
+  if (check.addends?.length && check.addends.reduce((sum, row) => sum + row.value, 0) === check.modifier)
+    return check.addends.filter((row) => row.value !== 0).map((row) => ({ source: row.kind === "formula" ? words.formula : row.kind === "cap" ? words.cap : row.source, value: row.value }));
   const bonuses = check.bonuses ?? [];
   const sheet = check.modifier - bonuses.reduce((sum, bonus) => sum + bonus.value, 0);
   return [...(sheet !== 0 ? [{ source: sheetLabel, value: sheet }] : []), ...bonuses.filter((bonus) => bonus.value !== 0)];

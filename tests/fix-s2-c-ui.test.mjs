@@ -162,7 +162,7 @@ test("the roll card shows every addend: the sheet and gear, each bonus of the fi
   assert.deepEqual(checkAddends({ modifier: 0, bonuses: [] }, "sheet"), []);
   assert.deepEqual(checkAddends({ modifier: -1, bonuses: [{ source: "mud", value: -2 }] }, "sheet"), [{ source: "sheet", value: 1 }, { source: "mud", value: -2 }]);
   const dice = src("src/components/gameplay-dice.tsx");
-  assert.match(dice, /checkAddends\(check, c\("лист и снаряжение", "sheet and gear"\)\)/);
+  assert.match(dice, /checkAddends\(check, c\("лист и снаряжение", "sheet and gear"\), \{ formula: c\("формула", "formula"\), cap: c\("предел бонусов", "bonus cap"\) \}\)/);
   assert.match(dice, /check\.dc !== null \? t\("DC \{value\}"/, "the DC shows only when the campaign shows it");
   assert.match(dice, /advantageReason/, "advantage and why");
   assert.match(dice, /ready = check\.interactive/, "a saved card shows its result; only a waiting turn asks for the tap");

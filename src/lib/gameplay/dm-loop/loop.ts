@@ -37,7 +37,7 @@ import type { PublicProfile } from "../../persistence/contracts.ts";
 import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "./limits.ts";
 import { ShadowState } from "./shadow.ts";
 import { dmLoopTools } from "./tools.ts";
-import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
+import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "./contracts.ts";
 
 export { DM_LOOP_RUNTIME } from "./contracts.ts";
@@ -443,6 +443,9 @@ export async function executeDmLoopTurn(claim: TurnClaim, deps: DmLoopDependenci
     /** Execute the calls of one assistant message; recorded ones are replayed. */
     const executeCalls = async (calls: DmToolCall[]) => {
       let pause = false;
+      // Stage C (item 53): the pause names what the DM does now (dice, records, a lookup) — kinds only.
+      const work = workOf(calls.filter((call) => !loop.receipts.some((row) => row.call.id === call.id)).map((call) => call.name));
+      if (work.length) live({ type: "working", tools: work });
       for (const call of calls) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };

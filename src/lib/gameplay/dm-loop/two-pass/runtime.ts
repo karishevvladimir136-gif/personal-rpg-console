@@ -41,7 +41,7 @@ import { dmLoopLimits as L, DM_LOOP_DEFAULT_LIMITS } from "../limits.ts";
 import { ShadowState } from "../shadow.ts";
 import { dmLoopTools } from "../tools.ts";
 import type { DmSplit } from "../settings.ts";
-import { DM_LOOP_RUNTIME, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
+import { DM_LOOP_RUNTIME, workOf, type DmLoopCheckpoint, type DmLoopLiveEvent, type DmLoopMeta, type DmLoopObservation,
   type DmLoopPin, type DmLoopReceipt, type DmLoopUsageEntry } from "../contracts.ts";
 import { combatEnded, continuation, dmOutputCap, executeDmLoopTurn, joinText, leaseHeartbeat, narrationNames, pausesForPlayer, plainCutMessage, retriableRejection, retryClaimable, rollTextOffsets, type DmLoopDependencies } from "../loop.ts";
 
@@ -237,6 +237,9 @@ export async function executeTwoPassTurn(claim: TurnClaim, deps: TwoPassDependen
     let outcomePending = false;
     const executeCalls = async (calls: DmToolCall[], phase: "writer" | "bookkeeper") => {
       let pause = false;
+      // Stage C (item 53): the writer's pause names its dice; the bookkeeper's pass already reads «записывает».
+      const work = phase === "writer" ? workOf(calls.filter((call) => !loop.receipts.some((row) => row.call.id === call.id)).map((call) => call.name)) : [];
+      if (work.length) live({ type: "working", tools: work });
       for (const call of calls) {
         if (loop.receipts.some((row) => row.call.id === call.id)) continue;
         const toolCall = { id: call.id, name: call.name, arguments: parseArguments(call) as DmLoopReceipt["call"]["arguments"] };
