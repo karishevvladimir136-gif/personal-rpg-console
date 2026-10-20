@@ -13,8 +13,8 @@ campaign, no owner content). The progress file is `docs/runs/fix-s2-progress.md`
 | B | $11.16 | the prep of a fresh campaign; the four B probes in «Opus пишет — Opus записывает» with English and with Russian instructions; the two prep probes; the fight and the long rest with Russian instructions; the memory recall probe at «компактно» (the «стандарт» arm was refused by the guard, $0 spent) |
 | D | $3.07 | the lair search and the fight on the stage D rules (Opus writes, Opus records, Russian instructions) |
 | C | $0 | (the turn on screen is code and synthetic tests; the 2D session took the combat work) |
-| E | $0.43 | the picture probe twice (five synthetic scenes: brief, GPT Image 2.5 Sunburst, the vision check), one raw check call, the check re-run |
-| **Total** | **$29.64 of $50** (A+B $26.13 of $30) | |
+| E | $0.60 | the picture probe on both frame paths (the brief path twice on five synthetic scenes; the default shot path on three, then two again), one raw check call, the check re-run |
+| **Total** | **$29.80 of $50** (A+B $26.13 of $30) | |
 
 ## Already fixed on the base branch
 
@@ -410,6 +410,14 @@ Sunburst, no references) and the vision check; frames `docs/runs/fix-s2-shots/E-
 | the hidden raid | the hero and the sergeant | yes | the hero hidden in the cart's shadow, ash on his face, no lantern; the sergeant gags the guard |
 | down at 0 HP behind the burning cart | the hero, the sergeant, the leader | yes | your reference frame (item 76): eyes closed, the hat beside him, the bloody blade, the key on the dead man's chain |
 | «(Вне игры: записываю.)» | — | — | no call at all |
+
+**The default path.** Session 2 played with the shot director off (polish 3's default), so most frames come from the
+short shot, not the brief. The same rules now hold there: the shot gives each person's gaze and which hand does what,
+the frame carries the records' gear («wears or holds only: …; no other weapon, no shield, no lantern»), «eyes closed»
+at 0 HP, and identity-only references. Probed live on three scenes (`E-probe-shot-*.jpg`): the right people (the mage is
+the hero), Russian captions, gaze and hands; the first run found names in the shot model's own text, a dead man drawn
+with open eyes, and a rope belt flagged by the check — all three fixed, the two scenes re-run clean. The brief path
+(«режиссёр кадра» on in «Картинки») stays the richer one for about $0.01–0.02 more a frame.
 
 Gaze across the frames (the check reads it): the hero looks at the map, at the target up-right, at the scout, far
 away, down; the sergeant at the map, far away, down at the guard, at the leader — no repeated portrait gaze. Found and
