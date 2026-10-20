@@ -22,8 +22,9 @@ people who knew them. Every stage ends by re-checking these on its probe scenes.
 | **E** | Pictures, gallery, session close | 76–80, 81 (mini-finale cards, «meanwhile» through the world), 75 (council UI) | screenshots; a picture probe set; the reference frame of item 76 |
 | **F** | Screens and settings | 1–36 (home, settings, text size, DM Craft screen, wizard, first look), 42, 57 | the owner's acceptance pass per screen |
 
-Stages A and B run first, in one cloud session (`docs/stages/FIX_S2_AB.md`). C–F get their own stage docs after the
-owner has played on A+B.
+All six stages run before session 3 (owner, 23:16: «давай всё» — no more piecemeal inventory fixes), in one cloud session
+in the order A → B → D → C → E → F: `docs/stages/FIX_S2_RUN.md` (the run), `FIX_S2_AB.md` and `FIX_S2_CDEF.md` (the
+detail). The owner then accepts each screen himself in the sandbox (`docs/runs/fix-s2-acceptance.md`).
 
 ## Decisions already taken by the owner (do not reopen)
 
