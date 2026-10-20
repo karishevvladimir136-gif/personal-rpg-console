@@ -921,7 +921,8 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     sergeant to put down the burned horse, take the papers to read on the way and gallop back to the merchant. The
     sergeant refused (fine — a companion has his own will), but then the narration settled the dispute itself: a
     line with an ambiguous subject that reads as the hero giving in, the party riding back at a walk instead of the
-    declared gallop, and the papers never read. The companion's real argument (the horse is worth about half a
+    declared gallop, and the papers read only later, at the stream. (The closing out-of-game note did leave the
+    order open — «if you insist, he'll do it» — but the walk and the hero's acceptance were already narrated.) The companion's real argument (the horse is worth about half a
     year of a guard's pay; a farrier in Beregost; the caravan can pick it up) was given as the narrator's aside about
     what he «knows», while his spoken reason was pity. The owner liked the idea itself («про продать коня — хорошая
     идея»). Same family as 50 (time cost paid without asking) and 51 (a question to the hero must end the turn).
@@ -929,3 +930,12 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     that objection — the narration never accepts, changes or replaces the hero's declared action or its manner
     (gallop, read on the way); every declared sub-action is either shown or explicitly deferred. Probe scene: an
     order the companion disagrees with.
+
+68. **A town used as a person, and a deduction said three times** (owner, 20:58: «что значит „Тарр знает, что стража
+    не спит“? Тарр — это город»). The sergeant's line made the town the subject of «knows» — an English metonymy
+    («Tarr knows now…») — where the DM meant the letter's author and his people, now warned that the watch is on the
+    temple. Its first half restated what the intercepted letter says in plain words, and the sergeant's own
+    deduction from the previous turn, in the «X. Значит, Y» template. In the same turn the merchant's good thought
+    (a man bled on his doorstep and he still writes about money) came out as a broken phrase. Voice stage: a place
+    name never acts or knows; a companion does not restate what the scene just showed; probe scene: companions
+    react to a letter everyone has read.
