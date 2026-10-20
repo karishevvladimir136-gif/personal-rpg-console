@@ -765,3 +765,10 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     действия» and sending again. Do: offer «Попробовать снова» only for retryable failures, make it actually rerun (or
     recommit) the turn; for a conflict say plainly «пока шёл ход, изменились записи (картинка); ход не сохранён —
     отправьте ещё раз» with one button that resends the same text.
+    «Отказаться от этого действия» fails the same way (18:57): it posts `action: "cancel"` to the same `/resume`
+    route → 422 again (eight 422s in the log). Both buttons on the failed turn are dead, the screen keeps «Ведущий
+    думает…» and shows no «Отправить». The original `POST /turns` came back 409 after 5.1 min; the client stayed in its
+    «retry» state instead of re-reading the turn (failed, `retryable:false`, which `runDmLoopTurn` treats as final).
+    Workaround given: copy the text, reload the page. Do: after a 409/422 the client re-reads the turn and, for a final
+    failure, frees the composer; «Отказаться» must work on any non-committed turn (check why the cancel payload fails
+    validation — the request shape vs `rpg_runtime('cancel')`), and a test covers conflict → cancel → new turn.
