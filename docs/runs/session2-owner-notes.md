@@ -804,3 +804,14 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     the lease renewal (item 58) and the output cap at the model's maximum (item 56). The owner set both ends of the
     depth range to «высокая» for the rest of session 2. These five form the «speed and reliability» stage; it goes
     first in the fix cycle, before the voice fix, because lost and stuck turns block play.
+
+60. **The hero's own strike is missing from the story** (owner, 19:14: «какой … вспышки?»). The hero's action: signal
+    the sergeant, send the prisoner to oil the barracks, Lightning Bolt the Grey through the window. The narration
+    shows him readying the bolt («губы уже держат первое слово молнии… остаётся дождаться, когда тень подойдёт к
+    окну»), then the sergeant's strike, then «Гвоздь… бежит прямо на свет вспышки» and the office on fire — the bolt
+    itself, the flash, the hit are never told. Only the aside says it: «Серый увернулся наполовину, 9 урона из 19…
+    ушёл „Туманным шагом“ на склон». The turn is written in pieces (text → roll → continuation); the piece after the
+    roll started from the next actor and skipped the event the roll decided, as if already told. Do: the continuation
+    after a roll narrates that roll's outcome first; a check before finish_turn — every hero attack, spell or check
+    rolled this turn is told in the narration (a hint back to the DM if not); the aside never carries an event the
+    story did not show.
