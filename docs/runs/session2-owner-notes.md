@@ -785,3 +785,17 @@ noticed, action hints from the sheet, an end-of-fight summary; no system rules i
     marked failed (by the owner of the operation) and is then retryable or cancellable; the client drops a failed
     command from its journal so the next button sends its own action. Risk until then: the session-2 depth change puts
     tense scenes at xhigh, so turns over 5 min will stick again — the local session keeps the recovery recipe.
+
+59. **Turn speed** (owner, 19:09: «ход на пять минут — это в целом п…ц»). From app.log, the last 41 turns of the
+    session (`dm_loop_turn`): **high** — 18 turns, median 49 s (max 124 s), first word median 22 s, median cost
+    $0.27; **xhigh** — 23 turns, median **161 s** (2.7 min), first word median 50 s, median 2 requests (max 8), median
+    cost $0.55 (max $2.03; one 62-min outlier includes waiting for the player's dice). 16 of 41 turns took over two
+    minutes; total ≈ $23.3 for the 41 (plus ≈ $3.3 in lost turns). The session-2 depth change sends tense scenes to
+    xhigh, and most of this evening was tense, so more than half the turns ran 3× slower and 2× dearer than at high.
+    Do (speed is a first-class target: a normal turn ≤ 45 s to the end, first words ≤ 15 s; a combat round ≤ 90 s):
+    (1) depth — xhigh only on the DM's explicit «важный ход» or the owner's button, not on every tense scene;
+    continuations after a roll at low depth (the plan is made); (2) one request per round, not per die — the DM asks
+    for all of a round's rolls in one tool message, the server can roll an attack with its damage in one call; (3) a
+    cache breakpoint on the growing turn so each continuation reads ~95% from cache (today 0.55–0.64); (4) the lease
+    renewed per request (item 58); (5) the session report charts turn time and cost by depth and by scene type.
+    Mid-session workaround offered: set both ends of the depth range to «высокая».
