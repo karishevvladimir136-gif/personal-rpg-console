@@ -92,7 +92,11 @@ digest was retried on every entry, three at a time (item 17, $4.43). Add the gua
 runs or after one failed (the «Повторить» button stays); the card shows once. The digest asks for 6000 output tokens —
 check whether «unparsed» digests were cut by the cap (thinking counts against it) and give it room.
 
-### A5. Logging that the session needed
+### A5. Logging that the session needed, and «Что видит ведущий»
+An owner screen (under the owner panel) that shows exactly what the DM received on the last turn: each context layer
+with its token count and budget, what was dropped, the instruction language in force, the active craft cards, the
+pinned facts, the request count and cost. Both key findings of session 2 were found by reading code; this screen
+would have shown them in a minute. Read-only, no secrets to the player (owner-only route).
 Log the returned status of every `pictures.frame` request (queued / existing / cap / no_text / waiting / off) — frames
 stopped after 20:48 with the daily cap not reached and nothing in the log said why (items 77, 83); log every dossier
 entry dropped by a budget with its layer (item 85); log the bootstrap's provider attempt and refusal reason (item 16).

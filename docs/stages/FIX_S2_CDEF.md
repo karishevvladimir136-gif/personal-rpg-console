@@ -31,6 +31,8 @@ The owner: «иначе мы тот инвентарь уже четвёртый
   per shot by the server when a ranged attack uses it; identical items merge into one stack (normalised name and kind;
   «лёгкие болты» = «болты для лёгкого арбалета»); change chips and counters in Russian, never `spell_slots_1` or
   `shaman_tusk`; the light crossbow lent and never returned shows as lent.
+- **Companion cards** show the stat block's skills and attacks (report §24: «Навык 0» is an empty generic field while
+  the real numbers exist) — the same sheet view as the hero, read from the block.
 - **Spells tab** (item 49): slots by level with pips, cantrips, prepared by level («подготовлено N из M»), the
   spellbook, rituals and concentration marked, the spell being concentrated on, a card per spell, «Колдовать» puts the
   line into the action box. Spells are per-character records from the system's knowledge, not code.
